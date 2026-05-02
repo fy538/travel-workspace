@@ -8989,6 +8989,194 @@
         }
       }
     },
+    "/api/users/{user_id}/insight": {
+      "get": {
+        "tags": [
+          "users_insight"
+        ],
+        "summary": "Get User Insight",
+        "description": "Return a one-line insight extracted from the user's Personal Memory.",
+        "operationId": "get_user_insight_api_users__user_id__insight_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalInsightResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/{user_id}/for-you": {
+      "get": {
+        "tags": [
+          "users_insight"
+        ],
+        "summary": "Get For You",
+        "description": "Return a personalized list of venue recommendations based on Personal Memory.",
+        "operationId": "get_for_you_api_users__user_id__for_you_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ForYouItem"
+                  },
+                  "title": "Response Get For You Api Users  User Id  For You Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/{user_id}/trip-highlights": {
+      "get": {
+        "tags": [
+          "users_insight"
+        ],
+        "summary": "Get Trip Highlights",
+        "description": "Return recent trip highlights for the user, ordered by start_date desc.",
+        "operationId": "get_trip_highlights_api_users__user_id__trip_highlights_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TripHighlightResponse"
+                  },
+                  "title": "Response Get Trip Highlights Api Users  User Id  Trip Highlights Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/voice/token": {
       "post": {
         "tags": [
@@ -12967,6 +13155,45 @@
         ],
         "title": "FollowRequest"
       },
+      "ForYouItem": {
+        "properties": {
+          "venue_id": {
+            "type": "integer",
+            "title": "Venue Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "city": {
+            "type": "string",
+            "title": "City"
+          },
+          "hook": {
+            "type": "string",
+            "title": "Hook"
+          },
+          "why_for_you": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Why For You"
+          }
+        },
+        "type": "object",
+        "required": [
+          "venue_id",
+          "name",
+          "city",
+          "hook"
+        ],
+        "title": "ForYouItem"
+      },
       "HTTPValidationError": {
         "properties": {
           "detail": {
@@ -14542,6 +14769,24 @@
         ],
         "title": "PendingVote",
         "description": "A proposal the user hasn't voted on."
+      },
+      "PersonalInsightResponse": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "action_label": {
+            "type": "string",
+            "title": "Action Label",
+            "default": "Tell me more"
+          }
+        },
+        "type": "object",
+        "required": [
+          "text"
+        ],
+        "title": "PersonalInsightResponse"
       },
       "PersonalMemory": {
         "properties": {
@@ -16944,6 +17189,34 @@
         ],
         "title": "TripDigest",
         "description": "A daily, trip-summary, or planning-context structured digest.\n\n`content` is the LLM's structured JSON output; `rendered_markdown` is a\npre-formatted textual view populated at generation time so consumers\n(planner prompt, admin UI) don't need to re-render the payload."
+      },
+      "TripHighlightResponse": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "title": "Trip Id"
+          },
+          "destination": {
+            "type": "string",
+            "title": "Destination"
+          },
+          "date_label": {
+            "type": "string",
+            "title": "Date Label"
+          },
+          "caption": {
+            "type": "string",
+            "title": "Caption"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "destination",
+          "date_label",
+          "caption"
+        ],
+        "title": "TripHighlightResponse"
       },
       "TripMember": {
         "properties": {
