@@ -1,0 +1,10 @@
+# Sub-repos — tracked independently
+Travel Agent/
+Travel App/
+
+# macOS
+.DS_Store
+
+# Editor
+.idea/
+.vscode/
