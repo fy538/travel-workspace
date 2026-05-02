@@ -1187,6 +1187,66 @@
         }
       }
     },
+    "/metrics/tokens": {
+      "get": {
+        "tags": [
+          "metrics"
+        ],
+        "summary": "Get Token Metrics",
+        "description": "Token usage and estimated cost from the prompt_calls audit log.\n\nGroups by ``context_label`` (subsystem) or by ``model``.  When grouping\nby subsystem, each entry also includes a per-model breakdown so you can\nsee which models a given subsystem is spending on.\n\nCost estimates use the same per-token rates as ``backend/core/logging_config.py``.",
+        "operationId": "get_token_metrics_metrics_tokens_get",
+        "parameters": [
+          {
+            "name": "since",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Time window: '24h', '7d', '30d', '4w' etc.",
+              "default": "24h",
+              "title": "Since"
+            },
+            "description": "Time window: '24h', '7d', '30d', '4w' etc."
+          },
+          {
+            "name": "by",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Group dimension: 'subsystem' or 'model'",
+              "default": "subsystem",
+              "title": "By"
+            },
+            "description": "Group dimension: 'subsystem' or 'model'"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Get Token Metrics Metrics Tokens Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/booking/sessions": {
       "post": {
         "tags": [
@@ -7443,6 +7503,70 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DigestEmailResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/digests": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Trip Digests",
+        "description": "Get all daily digests for a trip, ordered by day number.\n\nReturns the AI-generated day summaries that power the Memory screen.\nOnly includes ``daily`` digest type \u2014 not trip_summary or planning_context.",
+        "operationId": "get_trip_digests_api_trips__trip_id__digests_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TripDigest"
+                  },
+                  "title": "Response Get Trip Digests Api Trips  Trip Id  Digests Get"
                 }
               }
             }
