@@ -6437,6 +6437,146 @@
         }
       }
     },
+    "/api/trips/{trip_id}/home_cards/dismiss": {
+      "post": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Dismiss Trip Home Card",
+        "description": "Mark a home card as dismissed for this user on this trip.\n\nIdempotent (the underlying upsert no-ops on conflict). Tier-1 cards\nare non-dismissable \u2014 attempting to dismiss one returns 409. The tap\ntarget on the client side hides the X for tier-1 cards anyway, so a\nclient hitting this is misbehaving.",
+        "operationId": "dismiss_trip_home_card_api_trips__trip_id__home_cards_dismiss_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DismissCardRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DismissCardResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/home_cards/undismiss": {
+      "post": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Undismiss Trip Home Card",
+        "description": "Reverse a prior dismissal \u2014 used by the frontend's undo toast.\n\nReturns ``status='restored'`` when a row was actually removed,\n``status='no_op'`` when no matching dismissal existed (the user\npressed undo after the toast expired in another window, or the row\nwas already cleaned up). Both cases are 200 \u2014 the frontend doesn't\nneed to distinguish.",
+        "operationId": "undismiss_trip_home_card_api_trips__trip_id__home_cards_undismiss_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DismissCardRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DismissCardResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/users/{user_id}/modality/route": {
       "post": {
         "tags": [
@@ -15990,6 +16130,53 @@
         "title": "DigestRunResponse",
         "description": "Result of a manual digest run."
       },
+      "DismissCardRequest": {
+        "properties": {
+          "archetype": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 1,
+            "title": "Archetype"
+          },
+          "ref_id": {
+            "type": "string",
+            "maxLength": 256,
+            "minLength": 1,
+            "title": "Ref Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "archetype",
+          "ref_id"
+        ],
+        "title": "DismissCardRequest",
+        "description": "Body for POST /api/trips/{tid}/home_cards/dismiss.\n\nIdentifies the card by its (archetype, ref_id) tuple \u2014 the same shape\nthe GET response surfaces. ``ref_id`` is TEXT to accommodate place\nslugs alongside UUIDs."
+      },
+      "DismissCardResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "default": "dismissed"
+          },
+          "archetype": {
+            "type": "string",
+            "title": "Archetype"
+          },
+          "ref_id": {
+            "type": "string",
+            "title": "Ref Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "archetype",
+          "ref_id"
+        ],
+        "title": "DismissCardResponse",
+        "description": "Acknowledgment payload \u2014 the frontend uses ``status`` to drive the\nundo toast. ``dismissed`` is the tuple just affected so the client\nhas everything it needs to call the undo endpoint without re-deriving\nkeys."
+      },
       "DossierDetail": {
         "properties": {
           "id": {
@@ -18270,6 +18457,14 @@
             "type": "string",
             "title": "Ref Id",
             "description": "UUID-as-string for the underlying entity (proposal / experience / digest), or place slug for place_context."
+          },
+          "tier": {
+            "type": "integer",
+            "maximum": 3.0,
+            "minimum": 1.0,
+            "title": "Tier",
+            "description": "Phase 3 urgency tier driving in-zone ranking and dismissal rules. 1 = urgent / blocking (non-dismissable), 2 = this trip, 3 = informational / ambient. Phase 3 sets tier statically per archetype; deadline-driven dynamic promotion arrives in Phase 5.",
+            "default": 2
           }
         },
         "type": "object",
