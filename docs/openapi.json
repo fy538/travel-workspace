@@ -18238,7 +18238,7 @@
           "archetype": {
             "type": "string",
             "title": "Archetype",
-            "description": "'pending_decision' | 'happening_nearby'"
+            "description": "'pending_decision' | 'morning_brief' | 'happening_nearby' | 'place_context'"
           },
           "title": {
             "type": "string",
@@ -18269,7 +18269,7 @@
           "ref_id": {
             "type": "string",
             "title": "Ref Id",
-            "description": "UUID-as-string for the underlying entity (proposal / experience)."
+            "description": "UUID-as-string for the underlying entity (proposal / experience / digest), or place slug for place_context."
           }
         },
         "type": "object",
@@ -18279,7 +18279,7 @@
           "ref_id"
         ],
         "title": "HomeCard",
-        "description": "One follow-on card. Archetype discriminates render + tap target."
+        "description": "One follow-on card. Archetype discriminates render + tap target.\n\nPhase 2 archetypes:\n- ``pending_decision`` \u2014 open proposal awaiting group input (active)\n- ``morning_brief`` \u2014 today's digest restated as a card (active)\n- ``happening_nearby`` \u2014 taste-DNA-ranked experience for the destination (ambient)\n- ``place_context`` \u2014 curated destination angle worth knowing (ambient)"
       },
       "HomeConversationResponse": {
         "properties": {
@@ -18316,12 +18316,21 @@
           "anchor": {
             "$ref": "#/components/schemas/HomeAnchor"
           },
-          "cards": {
+          "active": {
             "items": {
               "$ref": "#/components/schemas/HomeCard"
             },
             "type": "array",
-            "title": "Cards"
+            "title": "Active",
+            "description": "Cards needing user attention \u2014 decisions, briefings."
+          },
+          "ambient": {
+            "items": {
+              "$ref": "#/components/schemas/HomeCard"
+            },
+            "type": "array",
+            "title": "Ambient",
+            "description": "Quieter discovery/context cards \u2014 happenings, place angles."
           }
         },
         "type": "object",
@@ -18329,7 +18338,7 @@
           "anchor"
         ],
         "title": "HomeFeed",
-        "description": "Full payload for ``GET /trips/{trip_id}/home_cards``."
+        "description": "Full payload for ``GET /trips/{trip_id}/home_cards``.\n\nThree zones; clients render top-to-bottom: anchor, active, ambient."
       },
       "HydratedMember": {
         "properties": {
