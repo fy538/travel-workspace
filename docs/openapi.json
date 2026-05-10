@@ -6577,6 +6577,76 @@
         }
       }
     },
+    "/api/trips/{trip_id}/observations": {
+      "post": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Capture Trip Moment",
+        "description": "Persist a user-captured memory moment for this trip.\n\nWrites through ``create_observation`` with ``source_mode='proactive'``\nand ``category='general'`` so the row is distinguishable from\nagent-captured observations downstream (the reflection / digest\npipeline already consumes observations; user-captured ones flow into\nthe same path).\n\nTrip-member-gated. Observations are auto-shared inside shareable\ncategories (food, accessibility, etc.); ``general`` captures default\nto private \u2014 the writer can later widen via the personal-memory\nsurface if they want the group to see.",
+        "operationId": "capture_trip_moment_api_trips__trip_id__observations_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CaptureMomentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Observation"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/users/{user_id}/modality/route": {
       "post": {
         "tags": [
@@ -14875,6 +14945,29 @@
         ],
         "title": "BridgeRenderResponse",
         "description": "Inline base64 audio data URL for the bridge.\n\nPhase 6b.3 v1 returns the audio inline so the client can hand\nit directly to ``adapter.setSource()`` without an extra round-trip.\nPhase 8 can switch to CDN URLs once R2 is wired and bridge audio\nstarts being cached server-side."
+      },
+      "CaptureMomentRequest": {
+        "properties": {
+          "content": {
+            "type": "string",
+            "maxLength": 4000,
+            "minLength": 1,
+            "title": "Content"
+          },
+          "importance": {
+            "type": "integer",
+            "maximum": 10.0,
+            "minimum": 1.0,
+            "title": "Importance",
+            "default": 5
+          }
+        },
+        "type": "object",
+        "required": [
+          "content"
+        ],
+        "title": "CaptureMomentRequest",
+        "description": "Body for POST /api/trips/{tid}/observations.\n\nThe capture-nudge card surfaces a soft prompt at evening-during-trip;\nthe user types a short reflection and submits. The body is text-only\nin Phase 4 \u2014 photo capture lands in Phase 5 once the media pipeline\n(S3 / CDN / size limits) is in place.\n\n``content`` is the captured text. ``importance`` is exposed so future\nsurfaces (voice agent transcribed memories, multi-line journal) can\nbias persistence; the home capture-nudge passes the default 5."
       },
       "CartResponse": {
         "properties": {
