@@ -1,0 +1,60 @@
+name: Reliability
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: reliability-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  contract-and-golden-path:
+    name: Contract and golden paths
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out workspace
+        uses: actions/checkout@v4
+
+      - name: Check out Travel Agent
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository_owner }}/travel-agent
+          path: Travel Agent
+
+      - name: Check out Travel App
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository_owner }}/travel-app
+          path: Travel App
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: Travel Agent/requirements-dev.txt
+
+      - name: Install backend dependencies
+        run: pip install -r requirements-dev.txt
+        working-directory: Travel Agent
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: Travel App/package-lock.json
+
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: Travel App
+
+      - name: Contract check
+        run: make contract-check
+
+      - name: Golden path QA
+        run: make golden-path-qa

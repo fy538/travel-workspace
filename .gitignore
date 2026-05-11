@@ -1,4 +1,4 @@
-# Sub-repos — tracked independently
+# Child repos — tracked independently
 Travel Agent/
 Travel App/
 Travel Agent copy/
@@ -9,3 +9,22 @@ Travel Agent copy/
 # Editor
 .idea/
 .vscode/
+
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Logs and local output
+*.log
+.cache/
+.tmp/
+tmp/
+
+# Tool caches
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+node_modules/
+coverage/

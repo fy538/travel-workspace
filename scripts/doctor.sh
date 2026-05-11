@@ -39,6 +39,16 @@ check_command() {
   fi
 }
 
+check_ignored() {
+  local path="$1"
+  local label="$2"
+  if git -C "$WORKSPACE_DIR" check-ignore -q "$path"; then
+    ok "$label ignored by workspace git"
+  else
+    warn "$label is not ignored by workspace git"
+  fi
+}
+
 header "Workspace"
 
 [ -d "$AGENT_DIR" ] || fail "Travel Agent repo missing at $AGENT_DIR"
@@ -47,6 +57,18 @@ header "Workspace"
 ok "Workspace repo present"
 ok "Travel Agent repo present"
 ok "Travel App repo present"
+
+tracked_child_files="$(
+  git -C "$WORKSPACE_DIR" ls-files -- "Travel Agent" "Travel App" 2>/dev/null || true
+)"
+if [ -n "$tracked_child_files" ]; then
+  fail "Workspace is tracking files inside child repos. Remove them from the parent index."
+else
+  ok "Workspace is not tracking child repo source"
+fi
+
+check_ignored "Travel Agent/README.md" "Travel Agent"
+check_ignored "Travel App/README.md" "Travel App"
 
 if [ -f "$SNAPSHOT_PATH" ]; then
   ok "Committed OpenAPI snapshot present"
@@ -85,8 +107,15 @@ check_command node "node"
 
 header "Remotes"
 
+workspace_remote="$(git -C "$WORKSPACE_DIR" remote get-url origin 2>/dev/null || true)"
 agent_remote="$(git -C "$AGENT_DIR" remote get-url origin 2>/dev/null || true)"
 app_remote="$(git -C "$APP_DIR" remote get-url origin 2>/dev/null || true)"
+
+if [ -n "$workspace_remote" ]; then
+  ok "Workspace origin: $workspace_remote"
+else
+  warn "Workspace has no origin remote"
+fi
 
 if [ -n "$agent_remote" ]; then
   ok "Travel Agent origin: $agent_remote"

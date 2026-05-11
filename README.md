@@ -28,18 +28,39 @@ This is **not** a superproject for the child repos.
 
 - [AGENTS.md](./AGENTS.md) — cross-repo AI and workflow guidance
 - [CLAUDE.md](./CLAUDE.md) — existing cross-repo contract notes
+- [Workspace Repo Setup](./docs/Workspace%20Repo%20Setup.md) — how to clone/bootstrap this coordination repo
 - [docs/openapi.json](./docs/openapi.json) — committed backend schema snapshot
 - [travel.code-workspace](./travel.code-workspace) — saved multi-root editor workspace
+
+## First-Time Setup
+
+```bash
+git clone <travel-workspace-url> "Travel Workspace"
+cd "Travel Workspace"
+make bootstrap
+make doctor
+make contract-check
+```
+
+`make bootstrap` clones or validates the child repos at `Travel Agent/` and
+`Travel App/`. Those folders remain independent Git repos and are ignored by
+the workspace repo.
 
 ## Common Commands
 
 ```bash
+make bootstrap
 make dev
 make dev-backend
 make sync-types
 make sync-types-snapshot
 make typecheck
 make doctor
+make contract-check
+make mock-real-parity
+make golden-path-qa
+make offline-qa
+make reliability-report
 make test-backend
 make test-frontend
 make test-all
@@ -62,6 +83,26 @@ make status
 ```
 
 That creates or switches the same branch name in both child repos using the default `codex/` prefix.
+
+### Offline reliability workflow
+
+Use these commands when you want Codex or Claude Code to test reliability without
+burning product API tokens:
+
+```bash
+make contract-check      # OpenAPI snapshot agrees with generated app types
+make mock-real-parity    # mock and HTTP API seams still typecheck/test
+make golden-path-qa      # focused MVP journey invariants
+make offline-qa          # full offline reliability ladder
+make reliability-report  # cheap status snapshot
+```
+
+See [Agent Reliability Playbook](./docs/reliability/Agent%20Reliability%20Playbook.md)
+and [Golden Paths](./docs/reliability/Golden%20Paths.md) for the testing model.
+The reliability folder also includes [trace artifacts](./docs/reliability/traces/README.md),
+[agent prompt templates](./docs/reliability/prompts/README.md), a
+[manual live canary plan](./docs/reliability/Live%20Canary%20Plan.md), and the
+[CI plan](./docs/reliability/CI%20Plan.md).
 
 ### Frontend-only task
 

@@ -5,9 +5,13 @@
 # Each sub-project has its own Makefile with fine-grained targets.
 # This file wires the cross-repo workflows that span both repos.
 
-.PHONY: dev dev-backend sync-types typecheck doctor status help
+.PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help
+.PHONY: contract-check mock-real-parity golden-path-qa offline-qa reliability-report
 
 # ── Development ───────────────────────────────────────────────────────────────
+
+bootstrap: ## Clone/validate child repos in this workspace
+	@./scripts/bootstrap-repos.sh
 
 dev: ## Start all services: Docker infra + API server + Expo iOS simulator
 	@./scripts/dev.sh
@@ -28,6 +32,23 @@ typecheck: ## Type-check Travel App (tsc --noEmit)
 
 doctor: ## Validate workspace layout and key local tooling
 	@./scripts/doctor.sh
+
+# ── Reliability ───────────────────────────────────────────────────────────────
+
+contract-check: ## Verify OpenAPI snapshot matches generated Travel App types
+	@./scripts/contract-check.sh
+
+mock-real-parity: ## Check frontend mock/API parity seams without live backend calls
+	@./scripts/mock-real-parity.sh
+
+golden-path-qa: ## Run focused deterministic MVP golden-path checks
+	@./scripts/golden-path-qa.sh
+
+offline-qa: ## Run the full offline reliability ladder
+	@./scripts/offline-qa.sh
+
+reliability-report: ## Print a cheap reliability snapshot without running tests
+	@./scripts/reliability-report.sh
 
 # ── Tests ─────────────────────────────────────────────────────────────────────
 
