@@ -17,24 +17,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out workspace
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Check out Travel Agent
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: ${{ github.repository_owner }}/travel-agent
           path: Travel Agent
           token: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN || github.token }}
 
       - name: Check out Travel App
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: ${{ github.repository_owner }}/travel-app
           path: Travel App
           token: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN || github.token }}
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.13"
           cache: pip
@@ -45,7 +45,7 @@ jobs:
         working-directory: Travel Agent
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 20
           cache: npm
