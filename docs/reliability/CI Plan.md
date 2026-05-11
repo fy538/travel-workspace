@@ -23,6 +23,31 @@ is great locally, but the backend suite has thousands of tests and belongs in
 the backend repo's own CI. The workspace gate should catch cross-repo contract
 drift and MVP journey regressions without duplicating every child-repo check.
 
+The workflow also writes `reliability-report.txt` and uploads it as a GitHub
+Actions artifact on every run, including failed runs. That report is a cheap
+snapshot of OpenAPI shape, test surface, and the three repo working states.
+
+## Cross-Repo Triggering
+
+The workspace workflow runs on:
+
+- pushes and pull requests in `travel-workspace`
+- manual `workflow_dispatch`
+- `repository_dispatch` events from child repos
+
+Child repo CI should dispatch the workspace workflow only after its own `main`
+CI succeeds. This makes the workspace repo a real coordination gate without
+duplicating full child-repo CI inside the parent.
+
+Expected dispatch event types:
+
+- `travel-agent-ci-success`
+- `travel-app-ci-success`
+
+Child dispatch jobs intentionally skip with a notice if their dispatch token is
+missing. That keeps child CI from breaking before the secret is installed, while
+making the missing automation visible in logs.
+
 ## Private Child Repo Access
 
 If `travel-agent` and `travel-app` are private, the workspace repo's default
@@ -42,6 +67,36 @@ Use a fine-grained GitHub token with read-only contents access to:
 The workflow falls back to `github.token` for public child repos, but the secret
 is required for private sibling checkout.
 
+## Child-to-Parent Dispatch Token
+
+Each private child repo needs a separate secret named:
+
+```text
+TRAVEL_WORKSPACE_DISPATCH_TOKEN
+```
+
+Use a fine-grained GitHub token with `Contents: read and write` access to:
+
+- `fy538/travel-workspace`
+
+This token is used only to call GitHub's `repository_dispatch` endpoint on the
+workspace repo. Keep it separate from `TRAVEL_WORKSPACE_CI_TOKEN`, which is a
+read-only checkout token owned by the workspace workflow.
+
+## Contract Ownership
+
+The workspace repo is the canonical cross-repo contract gate.
+
+- Backend CI owns backend lint, import boundaries, offline tests, DB tests, and
+  manual evals.
+- Frontend CI owns app lint, typecheck, and Jest tests.
+- Workspace CI owns committed OpenAPI snapshot vs generated frontend type drift
+  and deterministic MVP golden-path coherence.
+
+Do not duplicate the full workspace contract check inside `travel-app` CI unless
+there is a specific release reason. Duplicating it requires private sibling repo
+checkout and tends to become more fragile than the parent coordination gate.
+
 ## Promotion Path
 
 Start with:
@@ -52,7 +107,6 @@ Start with:
 Add later if the workflow is stable and runtime is acceptable:
 
 - `mock-real-parity`
-- `reliability-report` as an uploaded artifact
 - selected trace-specific tests for newly promoted MVP journeys
 
 Do not add live canaries to CI until there is a separate budget, fixture, and

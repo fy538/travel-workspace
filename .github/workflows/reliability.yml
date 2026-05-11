@@ -6,16 +6,32 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
+  repository_dispatch:
+    types:
+      - travel-agent-ci-success
+      - travel-app-ci-success
 
 concurrency:
   group: reliability-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   contract-and-golden-path:
     name: Contract and golden paths
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     steps:
+      - name: Show cross-repo trigger
+        if: github.event_name == 'repository_dispatch'
+        run: |
+          echo "Triggered by: ${{ github.event.action }}"
+          echo "Source repo: ${{ github.event.client_payload.source_repo }}"
+          echo "Source SHA: ${{ github.event.client_payload.source_sha }}"
+          echo "Source run: ${{ github.event.client_payload.source_run_id }}"
+
       - name: Check out workspace
         uses: actions/checkout@v6
 
@@ -60,3 +76,15 @@ jobs:
 
       - name: Golden path QA
         run: make golden-path-qa
+
+      - name: Write reliability report
+        if: always()
+        run: make reliability-report > reliability-report.txt
+
+      - name: Upload reliability report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: reliability-report-${{ github.run_id }}
+          path: reliability-report.txt
+          retention-days: 14
