@@ -60,7 +60,7 @@ Do not hand-maintain TypeScript copies of backend schema models when generated t
 
 ## Commands
 
-Run these from `/Users/feihuyan/Documents/Claude/Projects`:
+Run these from `/Users/feihuyan/Documents/Claude/Travel Workspace`:
 
 ```bash
 make dev                  # backend infra + API + Expo

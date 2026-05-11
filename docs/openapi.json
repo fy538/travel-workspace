@@ -8818,6 +8818,66 @@
         }
       }
     },
+    "/api/trips/{trip_id}/plan-state": {
+      "get": {
+        "tags": [
+          "plan"
+        ],
+        "summary": "Get Plan State",
+        "description": "Return the Plan v2 shell read-model for a trip.",
+        "operationId": "get_plan_state_api_trips__trip_id__plan_state_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripPlanState"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/proposals": {
       "get": {
         "tags": [
@@ -10552,6 +10612,66 @@
                     "$ref": "#/components/schemas/ItineraryDayOut"
                   },
                   "title": "Response Get Trip Itinerary Api Trips  Trip Id  Itinerary Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/map-state": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Trip Map State",
+        "description": "Trip Map v2 spatial read model \u2014 composed itinerary projection.",
+        "operationId": "get_trip_map_state_api_trips__trip_id__map_state_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripMapState"
                 }
               }
             }
@@ -18518,7 +18638,7 @@
           "archetype": {
             "type": "string",
             "title": "Archetype",
-            "description": "'pending_decision' | 'morning_brief' | 'happening_nearby' | 'place_context'"
+            "description": "Discriminator for render + tap routing. Active zone: 'pending_decision' | 'morning_brief' | 'booking_event' | 'constraint_meal' | 'capture_nudge' | 'just_accepted' | 'pending_too_long' | 'unread_intake' | 'planning_brief' | 'trip_retrospective' | 'settlement_closeout'. Ambient zone: 'happening_nearby' | 'place_context' | 'memory_highlight' | 'next_trip_inspo'. The legacy 'group_state' alias is still emitted for one release of back-compat."
           },
           "title": {
             "type": "string",
@@ -18550,6 +18670,18 @@
             "type": "string",
             "title": "Ref Id",
             "description": "UUID-as-string for the underlying entity (proposal / experience / digest), or place slug for place_context."
+          },
+          "day_number": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Day Number",
+            "description": "1-based itinerary day index when the card naturally targets one day (e.g. morning digest). Omit when trip-wide or not applicable."
           },
           "tier": {
             "type": "integer",
@@ -20379,6 +20511,592 @@
         "title": "ManifestEntry",
         "description": "One entry in the offline-narration manifest.\n\nCarries everything the client needs to render the entry (entity\nmetadata, depth tier) plus the audio URL to download. The\n``audio_url`` is a relative path against the API base \u2014 the client\nconstructs the absolute URL itself so this works across dev /\nstaging / prod without server-side host detection."
       },
+      "MapBase": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "entity_type": {
+            "type": "string",
+            "title": "Entity Type"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "point": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MapPoint"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "entity_type",
+          "name"
+        ],
+        "title": "MapBase"
+      },
+      "MapBounds": {
+        "properties": {
+          "north": {
+            "type": "number",
+            "title": "North"
+          },
+          "south": {
+            "type": "number",
+            "title": "South"
+          },
+          "east": {
+            "type": "number",
+            "title": "East"
+          },
+          "west": {
+            "type": "number",
+            "title": "West"
+          }
+        },
+        "type": "object",
+        "required": [
+          "north",
+          "south",
+          "east",
+          "west"
+        ],
+        "title": "MapBounds"
+      },
+      "MapContext": {
+        "properties": {},
+        "type": "object",
+        "title": "MapContext"
+      },
+      "MapDay": {
+        "properties": {
+          "day_number": {
+            "type": "integer",
+            "title": "Day Number"
+          },
+          "date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date"
+          },
+          "theme": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Theme"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "default": "soft"
+          },
+          "cluster_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cluster Label"
+          },
+          "route_quality": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Route Quality"
+          },
+          "points": {
+            "items": {
+              "$ref": "#/components/schemas/MapStop"
+            },
+            "type": "array",
+            "title": "Points"
+          },
+          "segments": {
+            "items": {
+              "$ref": "#/components/schemas/MapSegment"
+            },
+            "type": "array",
+            "title": "Segments"
+          },
+          "notes": {
+            "items": {
+              "$ref": "#/components/schemas/MapSpatialNote"
+            },
+            "type": "array",
+            "title": "Notes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "day_number"
+        ],
+        "title": "MapDay"
+      },
+      "MapLayerAvailability": {
+        "properties": {
+          "has_itinerary_points": {
+            "type": "boolean",
+            "title": "Has Itinerary Points",
+            "default": false
+          },
+          "has_base": {
+            "type": "boolean",
+            "title": "Has Base",
+            "default": false
+          },
+          "has_current_location": {
+            "type": "boolean",
+            "title": "Has Current Location",
+            "default": false
+          },
+          "has_saved_nearby": {
+            "type": "boolean",
+            "title": "Has Saved Nearby",
+            "default": false
+          },
+          "has_recommendations_nearby": {
+            "type": "boolean",
+            "title": "Has Recommendations Nearby",
+            "default": false
+          },
+          "has_place_context": {
+            "type": "boolean",
+            "title": "Has Place Context",
+            "default": false
+          },
+          "has_route_geometry": {
+            "type": "boolean",
+            "title": "Has Route Geometry",
+            "default": false
+          }
+        },
+        "type": "object",
+        "title": "MapLayerAvailability"
+      },
+      "MapNearMe": {
+        "properties": {
+          "freshness": {
+            "type": "string",
+            "title": "Freshness",
+            "default": "absent"
+          }
+        },
+        "type": "object",
+        "title": "MapNearMe"
+      },
+      "MapPlace": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "slug": {
+            "type": "string",
+            "title": "Slug"
+          },
+          "place_type": {
+            "type": "string",
+            "title": "Place Type"
+          },
+          "centroid": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MapPoint"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "bounds": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MapBounds"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "character": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Character"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "slug",
+          "place_type"
+        ],
+        "title": "MapPlace"
+      },
+      "MapPoint": {
+        "properties": {
+          "lat": {
+            "type": "number",
+            "title": "Lat"
+          },
+          "lng": {
+            "type": "number",
+            "title": "Lng"
+          }
+        },
+        "type": "object",
+        "required": [
+          "lat",
+          "lng"
+        ],
+        "title": "MapPoint"
+      },
+      "MapSegment": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "from_stop_id": {
+            "type": "string",
+            "title": "From Stop Id"
+          },
+          "to_stop_id": {
+            "type": "string",
+            "title": "To Stop Id"
+          },
+          "mode": {
+            "type": "string",
+            "title": "Mode"
+          },
+          "minutes": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Minutes"
+          },
+          "distance_km": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Distance Km"
+          },
+          "geometry": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/MapPoint"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Geometry"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "risk": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Risk"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "from_stop_id",
+          "to_stop_id",
+          "mode"
+        ],
+        "title": "MapSegment"
+      },
+      "MapSpatialNote": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "severity": {
+            "type": "string",
+            "title": "Severity"
+          },
+          "scope": {
+            "type": "string",
+            "title": "Scope"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "body": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Body"
+          },
+          "target_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Id"
+          },
+          "cta": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "severity",
+          "scope",
+          "title"
+        ],
+        "title": "MapSpatialNote"
+      },
+      "MapStop": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "block_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Block Id"
+          },
+          "entity_type": {
+            "type": "string",
+            "title": "Entity Type"
+          },
+          "entity_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Entity Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "subtitle": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subtitle"
+          },
+          "point": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MapPoint"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "time_start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Start"
+          },
+          "time_end": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time End"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "role": {
+            "type": "string",
+            "title": "Role"
+          },
+          "day_number": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Day Number"
+          },
+          "action": {
+            "$ref": "#/components/schemas/MapStopAction"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "entity_type",
+          "title",
+          "status",
+          "role"
+        ],
+        "title": "MapStop"
+      },
+      "MapStopAction": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "title": "Kind",
+            "default": "none"
+          },
+          "href": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Href"
+          },
+          "payload": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Payload"
+          }
+        },
+        "type": "object",
+        "title": "MapStopAction"
+      },
       "MarkReadRequest": {
         "properties": {
           "user_id": {
@@ -22076,6 +22794,1097 @@
           "name"
         ],
         "title": "PlaceRef"
+      },
+      "PlanBlock": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "day_id": {
+            "type": "string",
+            "title": "Day Id"
+          },
+          "sort_order": {
+            "type": "integer",
+            "title": "Sort Order"
+          },
+          "block_type": {
+            "type": "string",
+            "title": "Block Type"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "time_start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Start"
+          },
+          "time_end": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time End"
+          },
+          "entity": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlanEntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "commitment_state": {
+            "$ref": "#/components/schemas/PlanCommitmentState"
+          },
+          "raw_status": {
+            "type": "string",
+            "title": "Raw Status"
+          },
+          "booking_state": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Booking State"
+          },
+          "travel_to_next": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlanTravelSegment"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "energy_rationale": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Energy Rationale"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          },
+          "interlude": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Interlude"
+          },
+          "participants": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Participants"
+          },
+          "open_decision_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Open Decision Ids"
+          },
+          "recent_change_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Recent Change Ids"
+          },
+          "flags": {
+            "items": {
+              "$ref": "#/components/schemas/PlanBlockFlag"
+            },
+            "type": "array",
+            "title": "Flags"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "day_id",
+          "sort_order",
+          "block_type",
+          "title",
+          "commitment_state",
+          "raw_status"
+        ],
+        "title": "PlanBlock"
+      },
+      "PlanBlockFlag": {
+        "type": "string",
+        "enum": [
+          "changed_recently",
+          "needs_booking",
+          "booking_in_progress",
+          "has_open_proposal",
+          "weather_sensitive",
+          "private_constraint_influenced",
+          "subgroup",
+          "cancelled"
+        ],
+        "title": "PlanBlockFlag",
+        "description": "UI hints derived server-side for blocks."
+      },
+      "PlanBookingSummary": {
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "title": "Session Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "autonomy_level": {
+            "type": "string",
+            "title": "Autonomy Level"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "session_id",
+          "status",
+          "autonomy_level",
+          "created_at"
+        ],
+        "title": "PlanBookingSummary",
+        "description": "Lightweight booking session row for the plan-state shell."
+      },
+      "PlanChange": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "planner_generated_version",
+              "proposal_accepted",
+              "proposal_rejected",
+              "proposal_reverted",
+              "block_updated",
+              "experience_pinned",
+              "booking_handed_off",
+              "booking_confirmed",
+              "booking_failed",
+              "accommodation_confirmed"
+            ],
+            "title": "Type"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "summary": {
+            "type": "string",
+            "title": "Summary"
+          },
+          "affected_block_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Affected Block Ids"
+          },
+          "day_numbers": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Day Numbers"
+          },
+          "source": {
+            "$ref": "#/components/schemas/PlanChangeSource"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "type",
+          "title",
+          "summary",
+          "source",
+          "created_at"
+        ],
+        "title": "PlanChange"
+      },
+      "PlanChangeSource": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "planner",
+              "proposal",
+              "booking",
+              "manual_edit",
+              "concierge_tool",
+              "system"
+            ],
+            "title": "Kind"
+          },
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind"
+        ],
+        "title": "PlanChangeSource"
+      },
+      "PlanCommitmentState": {
+        "type": "string",
+        "enum": [
+          "open",
+          "suggested",
+          "proposed",
+          "tentative",
+          "confirmed",
+          "handed_off",
+          "booking_in_progress",
+          "booked",
+          "cancelled",
+          "completed"
+        ],
+        "title": "PlanCommitmentState",
+        "description": "Server-derived commitment lane for an itinerary block."
+      },
+      "PlanCrossTrip": {
+        "properties": {
+          "accommodation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlanCrossTripAccommodation"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "costs": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlanCrossTripCosts"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "booking_sessions": {
+            "items": {
+              "$ref": "#/components/schemas/PlanBookingSummary"
+            },
+            "type": "array",
+            "title": "Booking Sessions"
+          }
+        },
+        "type": "object",
+        "title": "PlanCrossTrip"
+      },
+      "PlanCrossTripAccommodation": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "open",
+              "suggested",
+              "confirmed",
+              "booked"
+            ],
+            "title": "State"
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source"
+          }
+        },
+        "type": "object",
+        "required": [
+          "label",
+          "state"
+        ],
+        "title": "PlanCrossTripAccommodation"
+      },
+      "PlanCrossTripCosts": {
+        "properties": {
+          "state": {
+            "type": "string",
+            "enum": [
+              "not_started",
+              "in_progress",
+              "settled"
+            ],
+            "title": "State"
+          },
+          "summary": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Summary"
+          }
+        },
+        "type": "object",
+        "required": [
+          "state"
+        ],
+        "title": "PlanCrossTripCosts"
+      },
+      "PlanDay": {
+        "properties": {
+          "day_id": {
+            "type": "string",
+            "title": "Day Id"
+          },
+          "day_number": {
+            "type": "integer",
+            "title": "Day Number"
+          },
+          "date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date"
+          },
+          "relative_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Relative Label"
+          },
+          "day_theme": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Day Theme"
+          },
+          "energy_target": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Energy Target"
+          },
+          "opener": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Opener"
+          },
+          "closing": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Closing"
+          },
+          "state": {
+            "type": "string",
+            "title": "State"
+          },
+          "blocks": {
+            "items": {
+              "$ref": "#/components/schemas/PlanBlock"
+            },
+            "type": "array",
+            "title": "Blocks"
+          },
+          "decisions": {
+            "items": {
+              "$ref": "#/components/schemas/PlanDecision"
+            },
+            "type": "array",
+            "title": "Decisions"
+          },
+          "changes": {
+            "items": {
+              "$ref": "#/components/schemas/PlanChange"
+            },
+            "type": "array",
+            "title": "Changes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "day_id",
+          "day_number",
+          "state"
+        ],
+        "title": "PlanDay"
+      },
+      "PlanDecision": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id",
+            "description": "Opaque decision identifier; for ``change_proposal`` equals the change-proposal UUID (see ``_proposal_to_plan_decision``)."
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "change_proposal",
+              "reaction_card",
+              "booking_proposal"
+            ],
+            "title": "Source"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "proposal_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proposal Type"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "affected_block_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Affected Block Ids"
+          },
+          "day_numbers": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Day Numbers"
+          },
+          "approval_mode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Approval Mode"
+          },
+          "deadline": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deadline"
+          },
+          "votes": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlanDecisionVotes"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "impact": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlanDecisionImpact"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created At"
+          },
+          "resolved_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolved At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "source",
+          "status",
+          "title",
+          "created_at"
+        ],
+        "title": "PlanDecision"
+      },
+      "PlanDecisionImpact": {
+        "properties": {
+          "headline": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Headline"
+          },
+          "group_benefit": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Group Benefit"
+          },
+          "timing_impact": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timing Impact"
+          },
+          "budget_impact": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Budget Impact"
+          },
+          "logistics_impact": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Logistics Impact"
+          },
+          "trade_offs": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trade Offs"
+          },
+          "before_snapshot": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Before Snapshot"
+          },
+          "after_snapshot": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "After Snapshot"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "title": "PlanDecisionImpact"
+      },
+      "PlanDecisionVotes": {
+        "properties": {
+          "approve": {
+            "type": "integer",
+            "title": "Approve",
+            "default": 0
+          },
+          "reject": {
+            "type": "integer",
+            "title": "Reject",
+            "default": 0
+          },
+          "neutral": {
+            "type": "integer",
+            "title": "Neutral",
+            "default": 0
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total",
+            "default": 0
+          },
+          "my_vote": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "My Vote"
+          }
+        },
+        "type": "object",
+        "title": "PlanDecisionVotes"
+      },
+      "PlanEntityRef": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "venue",
+              "experience",
+              "site"
+            ],
+            "title": "Kind"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "id"
+        ],
+        "title": "PlanEntityRef"
+      },
+      "PlanItinerary": {
+        "properties": {
+          "itinerary_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Itinerary Id"
+          },
+          "version_number": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Version Number"
+          },
+          "status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Status"
+          },
+          "created_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created At"
+          },
+          "latest_change_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latest Change At"
+          }
+        },
+        "type": "object",
+        "title": "PlanItinerary"
+      },
+      "PlanNextItem": {
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "title": "Block Id"
+          },
+          "day_number": {
+            "type": "integer",
+            "title": "Day Number"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "time_start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Start"
+          }
+        },
+        "type": "object",
+        "required": [
+          "block_id",
+          "day_number",
+          "title"
+        ],
+        "title": "PlanNextItem",
+        "description": "Next actionable moment on the timeline (best-effort)."
+      },
+      "PlanSoftnessSummary": {
+        "properties": {
+          "open_days": {
+            "type": "integer",
+            "title": "Open Days",
+            "default": 0
+          },
+          "tentative_blocks": {
+            "type": "integer",
+            "title": "Tentative Blocks",
+            "default": 0
+          },
+          "proposed_changes": {
+            "type": "integer",
+            "title": "Proposed Changes",
+            "default": 0
+          },
+          "booked_blocks": {
+            "type": "integer",
+            "title": "Booked Blocks",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "title": "PlanSoftnessSummary"
+      },
+      "PlanStatusRail": {
+        "properties": {
+          "next": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlanNextItem"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "unresolved_count": {
+            "type": "integer",
+            "title": "Unresolved Count",
+            "default": 0
+          },
+          "recent_change_count": {
+            "type": "integer",
+            "title": "Recent Change Count",
+            "default": 0
+          },
+          "booking_attention_count": {
+            "type": "integer",
+            "title": "Booking Attention Count",
+            "default": 0
+          },
+          "softness_summary": {
+            "$ref": "#/components/schemas/PlanSoftnessSummary"
+          }
+        },
+        "type": "object",
+        "title": "PlanStatusRail"
+      },
+      "PlanTravelSegment": {
+        "properties": {
+          "mode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mode"
+          },
+          "minutes": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Minutes"
+          },
+          "rationale": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rationale"
+          },
+          "distance_km": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Distance Km"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "title": "PlanTravelSegment",
+        "description": "Mirrors ``BlockTransition`` \u2014 extras allowed for booking-specific keys."
+      },
+      "PlanTripHeader": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "title": "Trip Id"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "phase": {
+            "type": "string",
+            "enum": [
+              "ideation",
+              "pre_trip",
+              "during_trip",
+              "post_trip"
+            ],
+            "title": "Phase"
+          },
+          "date_range": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "object",
+            "title": "Date Range"
+          },
+          "current_day_number": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current Day Number"
+          },
+          "timezone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timezone"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "phase",
+          "date_range"
+        ],
+        "title": "PlanTripHeader"
       },
       "PrerenderHintResponse": {
         "properties": {
@@ -25113,6 +26922,87 @@
         ],
         "title": "TripHighlightResponse"
       },
+      "TripMapState": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "title": "Trip Id"
+          },
+          "phase": {
+            "type": "string",
+            "title": "Phase"
+          },
+          "destination": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MapPlace"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "base": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MapBase"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "days": {
+            "items": {
+              "$ref": "#/components/schemas/MapDay"
+            },
+            "type": "array",
+            "title": "Days"
+          },
+          "layers": {
+            "$ref": "#/components/schemas/MapLayerAvailability"
+          },
+          "spatial_notes": {
+            "items": {
+              "$ref": "#/components/schemas/MapSpatialNote"
+            },
+            "type": "array",
+            "title": "Spatial Notes"
+          },
+          "near_me": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MapNearMe"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "context": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MapContext"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "generated_at": {
+            "type": "string",
+            "title": "Generated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "phase",
+          "generated_at"
+        ],
+        "title": "TripMapState",
+        "description": "Full response for map-state endpoint."
+      },
       "TripMember": {
         "properties": {
           "id": {
@@ -25165,6 +27055,60 @@
           "joined_at"
         ],
         "title": "TripMember"
+      },
+      "TripPlanState": {
+        "properties": {
+          "trip": {
+            "$ref": "#/components/schemas/PlanTripHeader"
+          },
+          "itinerary": {
+            "$ref": "#/components/schemas/PlanItinerary"
+          },
+          "status_rail": {
+            "$ref": "#/components/schemas/PlanStatusRail"
+          },
+          "days": {
+            "items": {
+              "$ref": "#/components/schemas/PlanDay"
+            },
+            "type": "array",
+            "title": "Days"
+          },
+          "open_decisions": {
+            "items": {
+              "$ref": "#/components/schemas/PlanDecision"
+            },
+            "type": "array",
+            "title": "Open Decisions"
+          },
+          "recent_changes": {
+            "items": {
+              "$ref": "#/components/schemas/PlanChange"
+            },
+            "type": "array",
+            "title": "Recent Changes"
+          },
+          "cross_trip": {
+            "$ref": "#/components/schemas/PlanCrossTrip"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip",
+          "itinerary",
+          "status_rail",
+          "days",
+          "open_decisions",
+          "recent_changes",
+          "cross_trip",
+          "generated_at"
+        ],
+        "title": "TripPlanState"
       },
       "TripSettlement": {
         "properties": {

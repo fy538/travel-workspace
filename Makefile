@@ -1,6 +1,6 @@
 # Workspace Makefile — Travel Agent + Travel App
 #
-# Run from: /Users/feihuyan/Documents/Claude/Projects/
+# Run from: /Users/feihuyan/Documents/Claude/Travel Workspace/
 #
 # Each sub-project has its own Makefile with fine-grained targets.
 # This file wires the cross-repo workflows that span both repos.
