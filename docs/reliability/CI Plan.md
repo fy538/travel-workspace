@@ -23,6 +23,25 @@ is great locally, but the backend suite has thousands of tests and belongs in
 the backend repo's own CI. The workspace gate should catch cross-repo contract
 drift and MVP journey regressions without duplicating every child-repo check.
 
+## Private Child Repo Access
+
+If `travel-agent` and `travel-app` are private, the workspace repo's default
+`GITHUB_TOKEN` cannot check them out as sibling repositories. Add a workspace
+repo secret named:
+
+```text
+TRAVEL_WORKSPACE_CI_TOKEN
+```
+
+Use a fine-grained GitHub token with read-only contents access to:
+
+- `fy538/travel-agent`
+- `fy538/travel-app`
+- `fy538/travel-workspace`
+
+The workflow falls back to `github.token` for public child repos, but the secret
+is required for private sibling checkout.
+
 ## Promotion Path
 
 Start with:
