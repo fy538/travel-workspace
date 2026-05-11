@@ -1,0 +1,37 @@
+{
+  "folders": [
+    {
+      "name": "Workspace Meta",
+      "path": "."
+    },
+    {
+      "name": "Travel Agent",
+      "path": "Travel Agent"
+    },
+    {
+      "name": "Travel App",
+      "path": "Travel App"
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/.DS_Store": true
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/.expo": true,
+      "**/.pytest_cache": true,
+      "**/__pycache__": true
+    },
+    "workbench.editor.labelFormat": "medium"
+  },
+  "extensions": {
+    "recommendations": [
+      "ms-python.python",
+      "ms-python.vscode-pylance",
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "bradlc.vscode-tailwindcss"
+    ]
+  }
+}

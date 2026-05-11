@@ -5,7 +5,7 @@
 # Each sub-project has its own Makefile with fine-grained targets.
 # This file wires the cross-repo workflows that span both repos.
 
-.PHONY: dev dev-backend sync-types typecheck help
+.PHONY: dev dev-backend sync-types typecheck doctor status help
 
 # ── Development ───────────────────────────────────────────────────────────────
 
@@ -26,6 +26,9 @@ sync-types-snapshot: ## Sync types from committed snapshot (no backend needed)
 typecheck: ## Type-check Travel App (tsc --noEmit)
 	@cd "Travel App" && npx tsc --noEmit
 
+doctor: ## Validate workspace layout and key local tooling
+	@./scripts/doctor.sh
+
 # ── Tests ─────────────────────────────────────────────────────────────────────
 
 test-backend: ## Run offline backend tests
@@ -35,6 +38,17 @@ test-frontend: ## Run frontend Jest tests
 	@cd "Travel App" && npx jest --no-coverage
 
 test-all: test-backend test-frontend ## Run all tests (offline)
+
+status: ## Show git status for workspace + child repos
+	@echo ""
+	@echo "== Workspace =="
+	@git status --short || true
+	@echo ""
+	@echo "== Travel Agent =="
+	@cd "Travel Agent" && git status --short || true
+	@echo ""
+	@echo "== Travel App =="
+	@cd "Travel App" && git status --short || true
 
 # ── Help ──────────────────────────────────────────────────────────────────────
 
