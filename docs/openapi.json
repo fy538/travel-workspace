@@ -8416,6 +8416,255 @@
         }
       }
     },
+    "/api/me/memory": {
+      "get": {
+        "tags": [
+          "memory"
+        ],
+        "summary": "Get Memory Home",
+        "description": "Return the Memory home payload for the caller.\n\nDNA dimensions are derived from the latest Personal Memory; copy is\nflagged provisional when ``trips_observed < 3``.",
+        "operationId": "get_memory_home_api_me_memory_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MemoryHome"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/story": {
+      "get": {
+        "tags": [
+          "memory"
+        ],
+        "summary": "Get Trip Story",
+        "description": "Return the composed Trip Story for the caller on this trip.\n\nComposes on demand if missing. Returns 404 if the trip doesn't exist,\n403 if the caller is not a member, and 422 if composition fails\nbecause there is no upstream signal yet.",
+        "operationId": "get_trip_story_api_trips__trip_id__story_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripStory"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/story/sections/{section_id}": {
+      "patch": {
+        "tags": [
+          "memory"
+        ],
+        "summary": "Patch Trip Story Section",
+        "description": "Edit one section. Persists the new body AND routes a reflection\nobservation into Personal Memory.",
+        "operationId": "patch_trip_story_section_api_trips__trip_id__story_sections__section_id__patch",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "section_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Section Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TripStorySectionEdit"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripStory"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/memory/interactions": {
+      "post": {
+        "tags": [
+          "memory"
+        ],
+        "summary": "Log Interaction",
+        "description": "Log one behavioral event from a Memory surface. Fire-and-forget.",
+        "operationId": "log_interaction_api_memory_interactions_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MemoryInteractionCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/_InteractionAck"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/notifications/{outcome_id}/response": {
       "post": {
         "tags": [
@@ -16390,6 +16639,25 @@
         "title": "DismissCardResponse",
         "description": "Acknowledgment payload \u2014 the frontend uses ``status`` to drive the\nundo toast. ``dismissed`` is the tuple just affected so the client\nhas everything it needs to call the undo endpoint without re-deriving\nkeys."
       },
+      "DnaConfidence": {
+        "properties": {
+          "trips_observed": {
+            "type": "integer",
+            "title": "Trips Observed"
+          },
+          "is_provisional": {
+            "type": "boolean",
+            "title": "Is Provisional"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trips_observed",
+          "is_provisional"
+        ],
+        "title": "DnaConfidence",
+        "description": "How sure the agent is about the DNA dimensions. Powers provisional copy."
+      },
       "DossierDetail": {
         "properties": {
           "id": {
@@ -21131,6 +21399,183 @@
         ],
         "title": "MarkReadResponse",
         "description": "Response after marking as read."
+      },
+      "MemoryHome": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "dna_dimensions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Dna Dimensions"
+          },
+          "dna_confidence": {
+            "$ref": "#/components/schemas/DnaConfidence"
+          },
+          "recent_trip": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MemoryHomeTripCard"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "trip_count": {
+            "type": "integer",
+            "title": "Trip Count",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "dna_confidence"
+        ],
+        "title": "MemoryHome",
+        "description": "GET /api/me/memory response payload."
+      },
+      "MemoryHomeTripCard": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "hero_title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hero Title"
+          },
+          "one_liner": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "One Liner"
+          },
+          "start_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start Date"
+          },
+          "end_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Date"
+          },
+          "hero_image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hero Image Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "title"
+        ],
+        "title": "MemoryHomeTripCard",
+        "description": "Recent-trip card on the Memory home surface."
+      },
+      "MemoryInteractionCreate": {
+        "properties": {
+          "surface": {
+            "type": "string",
+            "enum": [
+              "memory_home",
+              "trip_story",
+              "dna_card",
+              "trip_log",
+              "map"
+            ],
+            "title": "Surface"
+          },
+          "interaction": {
+            "type": "string",
+            "enum": [
+              "dwell",
+              "share",
+              "save",
+              "unsave",
+              "view"
+            ],
+            "title": "Interaction"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "target_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Id"
+          },
+          "metadata_": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Metadata"
+          }
+        },
+        "type": "object",
+        "required": [
+          "surface",
+          "interaction"
+        ],
+        "title": "MemoryInteractionCreate",
+        "description": "Body of POST /api/memory/interactions (single event)."
       },
       "MemoryResetResponse": {
         "properties": {
@@ -27188,6 +27633,161 @@
         ],
         "title": "TripSettlement"
       },
+      "TripStory": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "version": {
+            "type": "integer",
+            "title": "Version"
+          },
+          "hero_title": {
+            "type": "string",
+            "title": "Hero Title"
+          },
+          "hero_subtitle": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hero Subtitle"
+          },
+          "sections": {
+            "items": {
+              "$ref": "#/components/schemas/TripStorySection"
+            },
+            "type": "array",
+            "title": "Sections"
+          },
+          "photo_slots": {
+            "items": {
+              "$ref": "#/components/schemas/TripStoryPhotoSlot"
+            },
+            "type": "array",
+            "title": "Photo Slots"
+          },
+          "composer_model": {
+            "type": "string",
+            "title": "Composer Model",
+            "default": ""
+          },
+          "composed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Composed At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "trip_id",
+          "user_id",
+          "version",
+          "hero_title",
+          "composed_at",
+          "updated_at"
+        ],
+        "title": "TripStory",
+        "description": "A composed Trip Story payload."
+      },
+      "TripStoryPhotoSlot": {
+        "properties": {
+          "section_id": {
+            "type": "string",
+            "title": "Section Id"
+          },
+          "prompt": {
+            "type": "string",
+            "title": "Prompt"
+          }
+        },
+        "type": "object",
+        "required": [
+          "section_id",
+          "prompt"
+        ],
+        "title": "TripStoryPhotoSlot",
+        "description": "Placeholder where a photo will land (Phase 4 wires content)."
+      },
+      "TripStorySection": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "body": {
+            "type": "string",
+            "title": "Body"
+          },
+          "anchor_observation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Anchor Observation Id"
+          },
+          "edited_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Edited At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "body"
+        ],
+        "title": "TripStorySection",
+        "description": "A single addressable narrative section of a Trip Story."
+      },
+      "TripStorySectionEdit": {
+        "properties": {
+          "body": {
+            "type": "string",
+            "title": "Body"
+          }
+        },
+        "type": "object",
+        "required": [
+          "body"
+        ],
+        "title": "TripStorySectionEdit",
+        "description": "Body of a PATCH to a single section."
+      },
       "TripSummaryResponse": {
         "properties": {
           "what_worked": {
@@ -28499,6 +29099,20 @@
         ],
         "title": "VoteRequest",
         "description": "Vote on a change proposal."
+      },
+      "_InteractionAck": {
+        "properties": {
+          "interaction_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Interaction Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "interaction_id"
+        ],
+        "title": "_InteractionAck"
       },
       "backend__api__routes__chat__SendMessageRequest": {
         "properties": {
