@@ -5,7 +5,7 @@
 # Each sub-project has its own Makefile with fine-grained targets.
 # This file wires the cross-repo workflows that span both repos.
 
-.PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help
+.PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help ci-review
 .PHONY: contract-check mock-real-parity golden-path-qa offline-qa reliability-report
 
 # ── Development ───────────────────────────────────────────────────────────────
@@ -49,6 +49,9 @@ offline-qa: ## Run the full offline reliability ladder
 
 reliability-report: ## Print a cheap reliability snapshot without running tests
 	@./scripts/reliability-report.sh
+
+ci-review: ## Nightly CI/CD dashboard across all 3 repos (read the same numbers each day; drift becomes visible)
+	@./scripts/ci-review.sh
 
 # ── Tests ─────────────────────────────────────────────────────────────────────
 
