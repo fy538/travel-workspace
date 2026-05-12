@@ -6,7 +6,7 @@
 # This file wires the cross-repo workflows that span both repos.
 
 .PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help ci-review
-.PHONY: contract-check mock-real-parity golden-path-qa offline-qa reliability-report
+.PHONY: contract-check mock-real-parity golden-path-qa offline-qa reliability-report reliability-gate
 
 # ── Development ───────────────────────────────────────────────────────────────
 
@@ -49,6 +49,12 @@ offline-qa: ## Run the full offline reliability ladder
 
 reliability-report: ## Print a cheap reliability snapshot without running tests
 	@./scripts/reliability-report.sh
+
+reliability-gate: ## Gate on eval reliability baseline — exits 1 if any checks are broken (<50% pass rate)
+	@cd "Travel Agent" && PYTHONPATH=. python -m tools.eval.cli reliability \
+		--agent concierge \
+		--exit-code \
+		--verbose
 
 ci-review: ## Nightly CI/CD dashboard across all 3 repos (read the same numbers each day; drift becomes visible)
 	@./scripts/ci-review.sh

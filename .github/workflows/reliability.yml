@@ -77,6 +77,9 @@ jobs:
       - name: Golden path QA
         run: make golden-path-qa
 
+      - name: Reliability gate
+        run: make reliability-gate
+
       - name: Write reliability report
         if: always()
         run: make reliability-report > reliability-report.txt
