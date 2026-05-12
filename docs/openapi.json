@@ -18621,7 +18621,7 @@
           "phase": {
             "type": "string",
             "title": "Phase",
-            "description": "ideation | pre | during | post"
+            "description": "Calendar-relative phase for home copy and ambient framing: ideation | pre | during | post \u2014 from ``compute_phase_info(trip)`` (today vs trip start/end). Intentionally different from ``TripMapState.phase`` on the map read model, which is trip-status-relative (ideation | planning | final_prep | active | completed) and answers lifecycle/booking readiness rather than \u201cwhere are we on the calendar?\u201d."
           }
         },
         "type": "object",
@@ -21032,7 +21032,8 @@
           },
           "status": {
             "type": "string",
-            "title": "Status"
+            "title": "Status",
+            "description": "Commitment fold exposed on the map (booked | tentative | confirmed | cancelled). Plan / itinerary blocks carry richer lifecycle strings (suggested, proposed, handed_off, booking_in_progress, \u2026); the map projection collapses those via ``_map_stop_public_status`` in ``backend/core/map_state/builder.py`` (lines 56\u201368)."
           },
           "role": {
             "type": "string",
@@ -23013,6 +23014,7 @@
             "enum": [
               "planner_generated_version",
               "proposal_accepted",
+              "proposal_apply_failed",
               "proposal_rejected",
               "proposal_reverted",
               "block_updated",
@@ -24237,6 +24239,28 @@
             "type": "boolean",
             "title": "Voting Enabled",
             "default": false
+          },
+          "apply_status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Apply Status"
+          },
+          "apply_error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Apply Error"
           }
         },
         "type": "object",
@@ -26930,7 +26954,8 @@
           },
           "phase": {
             "type": "string",
-            "title": "Phase"
+            "title": "Phase",
+            "description": "Trip-status-relative phase for map UX: ideation | planning | final_prep | active | completed (from ``Trip.status`` via ``_TRIP_STATUS_TO_PHASE`` in the map-state builder). This answers \u201cwhere is the trip in its lifecycle?\u201d \u2014 distinct from ``HomeAnchor.phase`` on the trip-home feed, which is calendar-relative (ideation | pre | during | post) from ``compute_phase_info`` over today's date vs trip dates."
           },
           "destination": {
             "anyOf": [
