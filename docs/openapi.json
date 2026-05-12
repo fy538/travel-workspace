@@ -24261,6 +24261,24 @@
               }
             ],
             "title": "Apply Error"
+          },
+          "revert_mode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Revert Mode"
+          },
+          "revert_conflicts": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Revert Conflicts"
           }
         },
         "type": "object",
