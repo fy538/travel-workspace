@@ -38,6 +38,9 @@ doctor: ## Validate workspace layout and key local tooling
 contract-check: ## Verify OpenAPI snapshot matches generated Travel App types
 	@./scripts/contract-check.sh
 
+api-coverage-check: ## Verify http.ts only calls URLs that exist in docs/openapi.json
+	@python3 ./scripts/api-coverage-check.py
+
 mock-real-parity: ## Check frontend mock/API parity seams without live backend calls
 	@./scripts/mock-real-parity.sh
 

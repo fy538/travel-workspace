@@ -58,6 +58,14 @@ If the backend isn't running, use the committed snapshot:
 3. Use the generated types in Travel App — import from `utils/api/schema.gen.ts`
 4. Commit both `docs/openapi.json` and the updated app code together
 
+**Drift detection** — `make api-coverage-check` (or `python3
+scripts/api-coverage-check.py`) verifies every URL fetched by
+`Travel App/utils/api/http.ts` exists in `docs/openapi.json` at the
+declared method. Fails with exit code 1 on drift, which means either
+(a) the frontend will 404 at runtime, or (b) the openapi snapshot is
+stale. Run after adding a new endpoint or before opening a PR that
+touches the API surface.
+
 ---
 
 ## MCP Tools Available (when Travel Agent backend is running)
