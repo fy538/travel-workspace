@@ -41,6 +41,12 @@ contract-check: ## Verify OpenAPI snapshot matches generated Travel App types
 api-coverage-check: ## Verify http.ts only calls URLs that exist in docs/openapi.json
 	@python3 ./scripts/api-coverage-check.py
 
+smoke: ## Drive the happy path against a backend (default localhost:8000). Override with PRELAUNCH_HOST=https://...
+	@./scripts/smoke-happy-path.sh
+
+pre-launch: offline-qa ## Pre-launch gate: offline QA ladder + happy-path smoke. Override target with PRELAUNCH_HOST.
+	@./scripts/smoke-happy-path.sh
+
 mock-real-parity: ## Check frontend mock/API parity seams without live backend calls
 	@./scripts/mock-real-parity.sh
 
