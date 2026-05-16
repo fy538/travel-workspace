@@ -15,7 +15,7 @@ Status legend:
 ## 🔴 Critical items (fix before TestFlight)
 
 ### 1. R2 storage config not in `.env.example`
-**Where:** [Travel Agent/backend/core/audio_storage.py:202-256](Travel Agent/backend/core/audio_storage.py)
+**Where:** [Travel Agent/backend/voice/storage.py:202-256](Travel Agent/backend/voice/storage.py)
 **What:** the audio storage module reads `R2_ENABLED`, `R2_ACCOUNT_ID`, `R2_BUCKET_NAME`, `R2_CDN_BASE_URL`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY` but none of these appear in `Travel Agent/.env.example`.
 **Impact:** a fresh deploy that enables R2 will silently fail to configure storage — narration audio + uploads break with no clear error.
 **Fix:** add an `# ── Audio Storage (Cloudflare R2) ──` section to `.env.example` documenting all 6 vars + that `R2_ENABLED=false` is the safe default.
