@@ -278,6 +278,47 @@ How do we know it landed:
 
 ---
 
-## Open dependency
+## Pre-flight check (run before Phase 2 Day 4)
 
-This plan assumes you've done the **backend restart + sync-types** that's deferred from the prior session — so the OpenAPI snapshot reflects `reflection_phrases` and the new dispute endpoints. If not, the type-generation path will pick up the wrong shape. Run `./scripts/sync-types.sh` once the backend is on the latest commit before starting Day 4.
+Plan A's frontend phase regenerates `schema.gen.ts` from the live backend's OpenAPI. If the running backend was started before the recent P2/P3 commits, the regen pulls a stale schema and the frontend loses its typed view of `reflection_phrases`, the dispute endpoints, etc.
+
+Verified on 2026-05-16 that the local backend was indeed stale — `/api/me/dna-phrases/dispute` + `/api/me/profile-fact/dispute` were missing from the live schema, `reflection_phrases` was absent from `UserMeResponse`. So you'll almost certainly need to restart before Day 4.
+
+Run these four checks before starting Day 4:
+
+```bash
+# 1. Stop the current backend process (Ctrl-C in its terminal,
+#    or kill the uvicorn PID).
+#    Then restart on the latest commit:
+cd "Travel Agent" && docker compose up -d
+PYTHONPATH=. uvicorn backend.api.main:app --reload
+
+# 2. Verify the P2/P3 endpoints are live:
+curl -s http://localhost:8000/openapi.json \
+  | grep -oE '/api/me/(dna-phrases|profile-fact)/dispute' | sort -u
+#    Expected output: both paths printed.
+
+# 3. Verify reflection_phrases is on UserMeResponse:
+curl -s http://localhost:8000/openapi.json \
+  | grep -c '"reflection_phrases"'
+#    Expected output: ≥ 2 (one in the type def, one in the response example).
+
+# 4. Run sync-types and confirm the generated file picks up the new fields:
+cd "/Users/feihuyan/Documents/Claude/Travel Workspace" && ./scripts/sync-types.sh
+grep -c 'reflection_phrases' "Travel App/utils/api/schema.gen.ts"
+#    Expected output: ≥ 2.
+```
+
+If any check returns the wrong count, **do not start Day 4** — the regenerated `schema.gen.ts` will be missing fields and you'll spend longer debugging type errors than you save by pressing on. Diagnose first.
+
+### Common diagnosis
+
+| Failed check | What it means | Fix |
+|---|---|---|
+| 1 — uvicorn fails to start | Import error from recent backend commits | Check `pytest tests/concierge/ tests/core/ -q -m "not requires_postgres"` first; fix the import |
+| 2 — both paths missing | Backend is on an old commit | `git log -1 --oneline` in `Travel Agent/` to confirm; rebase or pull |
+| 2 — only one path missing | Partial commit landed | Check `git log --oneline` for the missing endpoint's commit |
+| 3 — count is 0 or 1 | UserMeResponse Pydantic model is missing the field | Confirm `backend/core/models/users.py` has `reflection_phrases: list[str]` and the backend has been restarted since |
+| 4 — count is 0 | sync-types ran against stale snapshot, OR ran but couldn't reach localhost:8000 | Re-run `./scripts/sync-types.sh` with `set -x` to see the curl call |
+
+Pass all four checks → proceed to Day 4 with confidence.
