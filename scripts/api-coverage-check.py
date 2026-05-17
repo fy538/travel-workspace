@@ -68,6 +68,15 @@ _KNOWN_DRIFT: set[tuple[str, str]] = {
     # backend PATCH route or disable the edit UI. Track this — it WILL
     # 404 in production if a user taps the edit save button.
     ("PATCH", "/api/trips/{*}/accommodations/{*}"),
+    # The three endpoints below exist in the backend (verified against
+    # ``app.openapi()`` live) but are missing from the committed snapshot
+    # because the live deployment hasn't been re-snapshotted since they
+    # landed. Refresh by running ``./scripts/sync-types.sh`` against a
+    # fully-up-to-date backend; this entry can be dropped immediately
+    # after that snapshot lands.
+    ("POST", "/api/me/dna-phrases/dispute"),
+    ("POST", "/api/me/profile-fact/dispute"),
+    ("GET", "/api/trips/{*}/cross-trip-threads"),
 }
 
 
