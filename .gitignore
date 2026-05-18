@@ -28,3 +28,6 @@ __pycache__/
 .mypy_cache/
 node_modules/
 coverage/
+
+# Local agent/runtime locks
+.claude/*.lock
