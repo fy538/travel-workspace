@@ -74,6 +74,12 @@ jobs:
       - name: Contract check
         run: make contract-check
 
+      - name: API coverage check
+        # Verifies every URL the frontend calls in http.ts exists in
+        # docs/openapi.json at the declared method. Catches stale
+        # snapshots and 404-at-runtime drift before they ship.
+        run: make api-coverage-check
+
       - name: Golden path QA
         run: make golden-path-qa
 

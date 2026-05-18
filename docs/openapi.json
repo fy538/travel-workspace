@@ -77,6 +77,22 @@
               "default": 50,
               "title": "Limit"
             }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
           }
         ],
         "responses": {
@@ -124,6 +140,22 @@
               "type": "string",
               "format": "uuid",
               "title": "User Id"
+            }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
             }
           }
         ],
@@ -190,6 +222,22 @@
               "default": 20,
               "title": "Limit"
             }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
           }
         ],
         "responses": {
@@ -237,6 +285,22 @@
               "type": "string",
               "format": "uuid",
               "title": "User Id"
+            }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
             }
           }
         ],
@@ -291,6 +355,22 @@
               "type": "string",
               "format": "uuid",
               "title": "User Id"
+            }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
             }
           }
         ],
@@ -415,6 +495,22 @@
               "default": 0,
               "title": "Offset"
             }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
           }
         ],
         "responses": {
@@ -463,6 +559,22 @@
               "format": "uuid",
               "title": "User Id"
             }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
           }
         ],
         "responses": {
@@ -508,6 +620,22 @@
               "type": "string",
               "format": "uuid",
               "title": "User Id"
+            }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
             }
           }
         ],
@@ -560,6 +688,22 @@
               "type": "string",
               "format": "uuid",
               "title": "User Id"
+            }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
             }
           }
         ],
@@ -642,6 +786,22 @@
               "title": "Date"
             },
             "description": "ISO date (YYYY-MM-DD). Defaults to the trip's start_date + (day_number - 1)."
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
           }
         ],
         "responses": {
@@ -692,6 +852,22 @@
             "schema": {
               "type": "integer",
               "title": "Day Number"
+            }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
             }
           }
         ],
@@ -745,6 +921,22 @@
               "format": "uuid",
               "title": "Trip Id"
             }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
           }
         ],
         "responses": {
@@ -786,6 +978,22 @@
               "type": "string",
               "format": "uuid",
               "title": "Trip Id"
+            }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
             }
           }
         ],
@@ -839,6 +1047,22 @@
               "format": "uuid",
               "title": "Trip Id"
             }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
           }
         ],
         "responses": {
@@ -886,6 +1110,22 @@
               "type": "string",
               "format": "uuid",
               "title": "Digest Id"
+            }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
             }
           }
         ],
@@ -939,6 +1179,22 @@
               "format": "uuid",
               "title": "Trip Id"
             }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
           }
         ],
         "responses": {
@@ -980,6 +1236,22 @@
               "type": "string",
               "format": "uuid",
               "title": "Trip Id"
+            }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
             }
           }
         ],
@@ -1023,15 +1295,33 @@
         "summary": "Retry Failed Digests",
         "description": "Re-run daily digests for a targeted list of trips.\n\nDesigned for outage recovery: when the background digest loop logs\n``failed_trip_ids``, paste those IDs here to re-run without waiting\nfor the next 6-hour cycle.\n\nEach trip's ``day_number`` is computed from its ``start_date`` and\nthe target date.  Trips with no ``start_date``, or where the target\ndate falls outside ``[start_date, end_date]``, are skipped with\nstatus ``no_date``.\n\nThe endpoint is idempotent \u2014 ``generate_daily_digest`` respects its\ninput-hash skip optimisation, so re-running a trip that already has\nan up-to-date digest returns ``status=\"skipped\"`` without billable LLM\ncalls.",
         "operationId": "retry_failed_digests_admin_digests_retry_post",
+        "parameters": [
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
+          }
+        ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/DigestRetryRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -1075,6 +1365,22 @@
               "format": "uuid",
               "title": "Trip Id"
             }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
           }
         ],
         "responses": {
@@ -1109,6 +1415,24 @@
         "summary": "Ingestion Status",
         "description": "Report ingestion provider configuration and per-source experience counts.\n\nReturns which providers are configured (have valid credentials),\na count of experiences per source, and the most recent ingested_at\ntimestamp for each source.",
         "operationId": "ingestion_status_admin_ingestion_status_get",
+        "parameters": [
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -1116,6 +1440,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/IngestionStatusResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
@@ -1255,6 +1589,22 @@
               "title": "Place Slug"
             },
             "description": "Filter by place slug"
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
           }
         ],
         "responses": {
@@ -1301,6 +1651,22 @@
             "schema": {
               "type": "integer",
               "title": "Angle Id"
+            }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
             }
           }
         ],
@@ -1354,6 +1720,22 @@
             "schema": {
               "type": "integer",
               "title": "Angle Id"
+            }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
             }
           }
         ],
@@ -3595,6 +3977,8 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "maximum": 200,
+              "minimum": 1,
               "default": 100,
               "title": "Limit"
             }
@@ -4011,6 +4395,8 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "maximum": 200,
+              "minimum": 1,
               "default": 50,
               "title": "Limit"
             }
@@ -4349,15 +4735,33 @@
         "summary": "Attach Photo",
         "description": "Rehost ``source_url`` and attach the resulting PhotoRecord to the entity.",
         "operationId": "attach_photo_api_curator_photos_post",
+        "parameters": [
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
+          }
+        ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/AttachPhotoRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "201": {
@@ -4884,15 +5288,33 @@
         "summary": "Log Event",
         "description": "Log a single user event.\n\nCalled by the frontend when a user performs an action (vote, view,\nedit, etc.). Events are read by async pipelines via cursors.\n\nWhen ``event_type == 'discover_session_end'``, a background task fires to\nsynthesize the session's Discover signals into Personal Memory observations.\nThe ``context`` field should contain ``session_start`` (ISO-8601 string) so\nthe synthesizer knows how far back to look.",
         "operationId": "log_event_api_events_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/EventCreate"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "201": {
@@ -4924,17 +5346,35 @@
           "events"
         ],
         "summary": "Log Events Batch",
-        "description": "Log multiple user events at once.\n\nUseful for batching UI events or replaying actions. If any event in the\nbatch is ``discover_session_end``, synthesis is triggered once (using the\nearliest ``session_start`` found in that event's context).",
+        "description": "Log multiple user events at once.\n\nUseful for batching UI events or replaying actions. If any event in the\nbatch is ``discover_session_end``, synthesis is triggered once (using the\nearliest ``session_start`` found in that event's context).\n\nEvery event in the batch must belong to the caller \u2014 a single\ncross-user row rejects the whole batch.",
         "operationId": "log_events_batch_api_events_batch_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/BatchEventCreate"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "201": {
@@ -5032,6 +5472,22 @@
               "minimum": 0,
               "default": 0,
               "title": "Offset"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
             }
           }
         ],
@@ -5427,7 +5883,7 @@
           "expenses"
         ],
         "summary": "Update Expense",
-        "description": "Update an expense. If shares provided, replaces them.",
+        "description": "Update an expense. If shares provided, replaces them.\n\nB7 audit fix: restricted to the original ``paid_by`` (creator) OR a\ntrip organizer. Previously any trip member could mutate any other\nmember's expense \u2014 financial fraud within the trip.",
         "operationId": "update_expense_api_trips__trip_id__expenses__expense_id__put",
         "parameters": [
           {
@@ -5505,7 +5961,7 @@
           "expenses"
         ],
         "summary": "Delete Expense",
-        "description": "Delete an expense (cascades to shares).",
+        "description": "Delete an expense (cascades to shares).\n\nB7 audit fix: restricted to the original ``paid_by`` (creator) OR a\ntrip organizer.",
         "operationId": "delete_expense_api_trips__trip_id__expenses__expense_id__delete",
         "parameters": [
           {
@@ -5568,7 +6024,7 @@
           "expenses"
         ],
         "summary": "Settle Expense Shares",
-        "description": "Mark shares as settled for the given users.",
+        "description": "Mark shares as settled for the given users.\n\nB6 audit fix: settlement is now restricted to either:\n  * The payer (``actor.id == expense.paid_by``) \u2014 confirming \"yes,\n    these members paid me back\", OR\n  * Self-declaration (``body.user_ids == [actor.id]``) \u2014 declaring\n    \"I paid the payer back for my share\".\n\nPreviously any trip member could mark ANY other member's share as\nsettled, falsely zeroing out a debt and effectively defrauding the\npayer (the settlement screen showed the debt as cleared; the payer\nnever got paid).",
         "operationId": "settle_expense_shares_api_trips__trip_id__expenses__expense_id__settle_post",
         "parameters": [
           {
@@ -5625,6 +6081,76 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ExpenseWithShares"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/settle-batch": {
+      "post": {
+        "tags": [
+          "expenses"
+        ],
+        "summary": "Settle Expense Shares Batch",
+        "description": "Settle multiple expense shares in one request.\n\nThe single-expense ``/expenses/{id}/settle`` endpoint is unchanged;\nthis batch path collapses what was N parallel POSTs in\n``Travel App/app/trip-expenses/index.tsx`` (one per expense in a\npayer column) into one round-trip. Authorization is enforced\nper-item \u2014 the same payer-or-self-only gate as the single endpoint\nruns for every batch member, so a malicious caller cannot piggyback\na \"settle someone else's debt\" on top of a legitimate item.\n\nBehaviour: fail-fast on the first unauthorized or missing item; no\npartial commits. On success the response carries every updated\nexpense in request order so the client can refresh its cache in one\npass.",
+        "operationId": "settle_expense_shares_batch_api_trips__trip_id__settle_batch_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SettleBatchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SettleBatchResponse"
                 }
               }
             }
@@ -6249,6 +6775,22 @@
               "format": "uuid",
               "title": "User Id"
             }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
           }
         ],
         "requestBody": {
@@ -6323,6 +6865,22 @@
               "default": 0,
               "title": "Offset"
             }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
           }
         ],
         "responses": {
@@ -6376,6 +6934,22 @@
               "type": "string",
               "format": "uuid",
               "title": "Followed Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
             }
           }
         ],
@@ -6435,6 +7009,22 @@
               "minimum": 0,
               "default": 0,
               "title": "Offset"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
             }
           }
         ],
@@ -6520,6 +7110,22 @@
               "title": "Event Types"
             },
             "description": "Comma-separated event types to filter"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
           }
         ],
         "responses": {
@@ -8266,15 +8872,33 @@
         "summary": "Lookup Query",
         "description": "Handle a lookup query and return a fast answer.",
         "operationId": "lookup_query_api_lookup__post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/LookupRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -9961,15 +10585,33 @@
         "summary": "Quick Research Endpoint",
         "description": "Kick off a quick research pass in the background.\n\nThe instant answer should have already been returned via POST /api/lookup/.\nThis endpoint triggers a short graph run (3 iterations, ~1 minute) that\nproduces a dossier and persists structured data.",
         "operationId": "quick_research_endpoint_api_research_quick_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/QuickResearchRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -10003,15 +10645,33 @@
         "summary": "Deep Research Endpoint",
         "description": "Kick off a deep research pass in the background.\n\nRuns the full research graph (up to 15 iterations by default) with quality\ngate, dossier writing, and persistence. Use profile_overrides for\ncuration-level runs (e.g. {\"quality_threshold\": 0.95, \"max_iterations\": 50}).",
         "operationId": "deep_research_endpoint_api_research_deep_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/DeepResearchRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -10543,17 +11203,35 @@
           "takes"
         ],
         "summary": "Generate Take",
-        "description": "Generate (or fetch cached) a Take for an entity.\n\nPhase 1: venues, researching mode, sync response.\nPhase 2: adds reviewing_plan mode + trip context.",
+        "description": "Generate (or fetch cached) a Take for an entity.\n\nPhase 1: venues, researching mode, sync response.\nPhase 2: adds reviewing_plan mode + trip context.\n\nAny body-supplied ``user_id`` must match the caller. Personal Memory\nis private \u2014 a body-supplied ``user_id`` was an Personal-Memory-leak\nvector pre-auth.",
         "operationId": "generate_take_api_takes_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/TakeGenerationRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -10585,7 +11263,7 @@
           "takes"
         ],
         "summary": "Get Take",
-        "description": "Fetch a Take by ID. Used for reloading a specific cached Take.",
+        "description": "Fetch a Take by ID. Used for reloading a specific cached Take.\n\nPersonal Takes are only visible to their owner. Curator Takes (no\n``user_id``) are visible to any authed user.",
         "operationId": "get_take_api_takes__take_id__get",
         "parameters": [
           {
@@ -10596,6 +11274,22 @@
               "type": "string",
               "format": "uuid",
               "title": "Take Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
             }
           }
         ],
@@ -11177,7 +11871,7 @@
           "trips"
         ],
         "summary": "Patch Trip",
-        "description": "Update user-editable trip settings.\n\nAny combination of ``title``, ``place_id``, ``start_date``, ``end_date``,\n``occasion``, ``budget_band``, and ``voting_enabled`` may be updated.\nOmitted fields are left unchanged (standard PATCH semantics \u2014 only fields\npresent in the request body are applied).\n\nOnly trip organizers may call this endpoint. Members who want to propose\nchanges should do so through the concierge conversation.\n\nInternal fields (``status``, ``trip_summary``, ``planning_brief``) are\nmanaged by background jobs and the concierge, and are not accepted here.",
+        "description": "Update user-editable trip settings.\n\nAny combination of ``title``, ``place_id``, ``start_date``, ``end_date``,\n``occasion``, ``budget_band``, and ``voting_enabled`` may be updated.\nOmitted fields are left unchanged (standard PATCH semantics \u2014 only fields\npresent in the request body are applied).\n\nOnly trip organizers may call this endpoint. Members who want to propose\nchanges should do so through the concierge conversation.\n\nInternal fields (``status``, ``trip_summary``, ``planning_brief``) are\nmanaged by background jobs and the concierge, and are not accepted here.\n\nSide effect: when fields that shape cross-trip threading change\n(``title``, ``start_date``, ``end_date``, ``occasion``, ``budget_band``),\nschedule a background recompute of ``trip_cross_trip_threads`` so the\ntrip-home surface reflects the new context on next read.",
         "operationId": "patch_trip_api_trips__trip_id__patch",
         "parameters": [
           {
@@ -11224,6 +11918,66 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Trip"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/cross-trip-threads": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Cross Trip Threads",
+        "description": "Return the cached cross-trip threads for ``trip_id``.\n\nEach thread carries a short concierge-voice prose string plus 1-2\nreferences to prior trips (hydrated with title at read time so the\nfrontend doesn't need a second fetch per chip).\n\nBehaviour:\n- Cache miss \u2192 schedule background recompute, return empty threads.\n- Cache stale (source_trip_count < current completed-trip count for\n  this user) \u2192 schedule background recompute, return cached threads\n  so the UI doesn't flicker.\n- Cache fresh \u2192 return cached threads directly.\n\nNo threads is the canonical state for users with < 2 prior completed\ntrips. The frontend hides the card when threads is empty.",
+        "operationId": "get_cross_trip_threads_api_trips__trip_id__cross_trip_threads_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripCrossTripThreadsResponse"
                 }
               }
             }
@@ -11628,6 +12382,84 @@
       }
     },
     "/api/trips/{trip_id}/accommodations/{accommodation_row_id}": {
+      "patch": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Update Trip Accommodation",
+        "description": "Patch fields on an active accommodation row.\n\nOnly fields present in the request body are written. A key set to\n``null`` clears that column. Switching ``accommodation_id`` is not\nsupported \u2014 retire and create instead.",
+        "operationId": "update_trip_accommodation_api_trips__trip_id__accommodations__accommodation_row_id__patch",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "accommodation_row_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Accommodation Row Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccommodationPatchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccommodationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
       "delete": {
         "tags": [
           "trips"
@@ -12395,6 +13227,114 @@
                 }
               }
             }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/me/profile-fact/dispute": {
+      "post": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "Dispute Profile Fact",
+        "description": "Record a user-disputed taste-dimension reading or interest noun.\n\nMirrors ``dispute_dna_phrase``: writes a high-importance observation\nand schedules an immediate Personal Memory refresh. The observation\nis tagged ``category=\"taste_dna_feedback\"`` so synthesis treats it\nwith the same weight as a phrase dispute.",
+        "operationId": "dispute_profile_fact_api_me_profile_fact_dispute_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileFactDisputeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/me/dna-phrases/dispute": {
+      "post": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "Dispute Dna Phrase",
+        "description": "Record a user-disputed Travel-DNA phrase as a high-importance signal.\n\nWrites an observation tagged with ``category=\"taste_dna_feedback\"`` and\nschedules an immediate Personal Memory refresh so the next render of\nthe card reflects the correction. The observation is high-importance\n(8) because explicit user correction is the strongest signal we get\nshort of trip outcomes.",
+        "operationId": "dispute_dna_phrase_api_me_dna_phrases_dispute_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DnaPhraseDisputeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Successful Response"
           },
           "422": {
             "description": "Validation Error",
@@ -13931,7 +14871,7 @@
           "voice"
         ],
         "summary": "Create Voice Token",
-        "description": "Generate a LiveKit access token for voice chat.\n\nThe client uses this token to connect to a LiveKit room via WebRTC.\nThe voice agent worker automatically joins when a participant connects.\n\nReturns 503 if voice is not configured (no API keys in .env).",
+        "description": "Generate a LiveKit access token for voice chat.\n\nThe client uses this token to connect to a LiveKit room via WebRTC.\nThe voice agent worker automatically joins when a participant connects.\n\nThe voice session identity is the authenticated actor \u2014 not the\nrequest body \u2014 so a malicious client can't impersonate other users.\n\nReturns 503 if voice is not configured (no API keys in .env).",
         "operationId": "create_voice_token_api_trips__trip_id__voice_token_post",
         "parameters": [
           {
@@ -13942,6 +14882,22 @@
               "type": "string",
               "format": "uuid",
               "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
             }
           }
         ],
@@ -14588,7 +15544,7 @@
           "webhooks"
         ],
         "summary": "Bland Ai Callback",
-        "description": "Webhook from Bland.ai when a voice call completes.\n\nUpdates the restaurant_booking_attempts record with the transcript\nand parsed confirmation details.",
+        "description": "Webhook from Bland.ai when a voice call completes.\n\nUpdates the restaurant_booking_attempts record with the transcript\nand parsed confirmation details. B5: signature-verified.",
         "operationId": "bland_ai_callback_webhooks_bland_ai_call_complete_post",
         "responses": {
           "200": {
@@ -14614,7 +15570,7 @@
           "webhooks"
         ],
         "summary": "Twilio Message Callback",
-        "description": "Webhook from Twilio when a WhatsApp/SMS reply is received.\n\nParses the reply and updates the restaurant_booking_attempts record.",
+        "description": "Webhook from Twilio when a WhatsApp/SMS reply is received.\n\nParses the reply and updates the restaurant_booking_attempts record.\nB5: HMAC-SHA1 signature verified before any state mutation.",
         "operationId": "twilio_message_callback_webhooks_twilio_message_reply_post",
         "responses": {
           "200": {
@@ -14671,6 +15627,27 @@
                   "additionalProperties": true,
                   "type": "object",
                   "title": "Response Readiness Ready Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health/external": {
+      "get": {
+        "summary": "External Health",
+        "description": "Monitoring-only check of external API reachability (B7).\n\nReturns status of outbound dependencies the runtime relies on:\nAnthropic (LLM) and Tavily (web search). Used by dashboards /\nalerting \u2014 NOT wired into the k8s readiness probe because a\ntransient Anthropic blip shouldn't make the pod un-routable\n(cached / non-LLM endpoints would still serve cleanly).\n\nBehaviour:\n\n- Skipped checks (no API key configured) report ``skipped``;\n  not a failure.\n- Reachable checks report ``ok``.\n- Unreachable checks report ``error: <reason>`` but the response\n  still returns 200 \u2014 degraded signal lives in the body, not the\n  HTTP status. Alerting consumes the body.\n\nThe Anthropic check uses a cheap ``count_tokens`` API call when\navailable (no token billing); falls back to a TCP-connect probe\nwhen the SDK doesn't expose count_tokens.",
+        "operationId": "external_health_health_external_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response External Health Health External Get"
                 }
               }
             }
@@ -14766,6 +15743,105 @@
   },
   "components": {
     "schemas": {
+      "AccommodationPatchRequest": {
+        "properties": {
+          "freeform_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Freeform Label"
+          },
+          "freeform_address": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Freeform Address"
+          },
+          "freeform_lat": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Freeform Lat"
+          },
+          "freeform_lng": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Freeform Lng"
+          },
+          "arrival_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Arrival Date"
+          },
+          "departure_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Departure Date"
+          },
+          "is_primary": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Primary"
+          },
+          "confidence": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confidence"
+          }
+        },
+        "type": "object",
+        "title": "AccommodationPatchRequest",
+        "description": "Partial update to a trip accommodation.\n\nAll fields optional; only the keys present in the request body are\nwritten. Use ``null`` to clear a freeform column. Switching\n``accommodation_id`` (changing the typed pointer) isn't supported \u2014\nretire the row and create a new one for that."
+      },
       "AccommodationResponse": {
         "properties": {
           "id": {
@@ -17245,6 +18321,53 @@
         ],
         "title": "CreateTripRequest"
       },
+      "CrossTripThreadPriorTripView": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "title": "CrossTripThreadPriorTripView",
+        "description": "Per-prior-trip chip data hydrated at read time on the API edge."
+      },
+      "CrossTripThreadView": {
+        "properties": {
+          "thread": {
+            "type": "string",
+            "title": "Thread"
+          },
+          "prior_trips": {
+            "items": {
+              "$ref": "#/components/schemas/CrossTripThreadPriorTripView"
+            },
+            "type": "array",
+            "title": "Prior Trips"
+          }
+        },
+        "type": "object",
+        "required": [
+          "thread"
+        ],
+        "title": "CrossTripThreadView",
+        "description": "API response shape \u2014 hydrates prior_trip_ids into title chips\nso the frontend doesn't need a second fetch per chip."
+      },
       "DecommitResponse": {
         "properties": {
           "trip_id": {
@@ -17708,6 +18831,20 @@
         ],
         "title": "DnaConfidence",
         "description": "How sure the agent is about the DNA dimensions. Powers provisional copy."
+      },
+      "DnaPhraseDisputeRequest": {
+        "properties": {
+          "phrase": {
+            "type": "string",
+            "title": "Phrase"
+          }
+        },
+        "type": "object",
+        "required": [
+          "phrase"
+        ],
+        "title": "DnaPhraseDisputeRequest",
+        "description": "Body for ``POST /api/me/dna-phrases/dispute``.\n\nThe user tapped \"not quite\" on a phrase rendered by the Me-tab\nTravel DNA card. ``phrase`` is the exact rendered string so the\nobservation can carry the user-visible text into Personal Memory\nsynthesis verbatim."
       },
       "DossierDetail": {
         "properties": {
@@ -22762,7 +23899,7 @@
             "type": "string",
             "title": "Message Type"
           },
-          "metadata_": {
+          "metadata": {
             "additionalProperties": true,
             "type": "object",
             "title": "Metadata"
@@ -25616,6 +26753,36 @@
         "title": "ProactiveNotification",
         "description": "A proactive in-app notification from the notification intelligence system.\n\nSourced from ``notification_deliveries`` (channel='in_app') joined with\n``notification_outcomes`` so the feed can surface personalised nudges\nalongside conversation unread counts and proposal votes."
       },
+      "ProfileFactDisputeRequest": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "value": {
+            "type": "string",
+            "title": "Value"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "value"
+        ],
+        "title": "ProfileFactDisputeRequest",
+        "description": "Body for ``POST /api/me/profile-fact/dispute``.\n\nRecords a \"not quite\" reaction on a non-phrase profile fact \u2014 a\ntaste-dimension reading or an interest noun. Companion to\n``dispute_dna_phrase``; lives in the \"What I know about you\"\ntransparency surface that disputes multiple facets from one screen.\n\n``kind`` discriminates the observation copy. ``value`` is the\nuser-visible string the user just disputed (e.g. ``\"Planner\"`` or\n``\"seafood\"``). ``label`` is optional context \u2014 for taste dims it\ncarries the dimension name (``\"energy\"`` / ``\"planning\"`` / \u2026) so\nthe observation reads naturally; ignored for interests."
+      },
       "PromoteToTripRequest": {
         "properties": {
           "force": {
@@ -27514,6 +28681,64 @@
         "title": "SetPhoneRequest",
         "description": "E.164 format (e.g. +14155551234). Pass null to clear."
       },
+      "SettleBatchItem": {
+        "properties": {
+          "expense_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Expense Id"
+          },
+          "user_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "User Ids"
+          }
+        },
+        "type": "object",
+        "required": [
+          "expense_id",
+          "user_ids"
+        ],
+        "title": "SettleBatchItem",
+        "description": "One leg of a batch settlement \u2014 settle ``user_ids`` on ``expense_id``."
+      },
+      "SettleBatchRequest": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/SettleBatchItem"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "title": "SettleBatchRequest",
+        "description": "Body for ``POST /api/trips/{trip_id}/settle-batch``.\n\nEach item carries the same authorization contract as the single-expense\nsettle endpoint; the batch path simply replaces N round-trips with one\nwhen the UI settles a payer's whole row at once."
+      },
+      "SettleBatchResponse": {
+        "properties": {
+          "expenses": {
+            "items": {
+              "$ref": "#/components/schemas/ExpenseWithShares"
+            },
+            "type": "array",
+            "title": "Expenses"
+          }
+        },
+        "type": "object",
+        "required": [
+          "expenses"
+        ],
+        "title": "SettleBatchResponse",
+        "description": "All updated expenses, in request order."
+      },
       "SettleRequest": {
         "properties": {
           "user_ids": {
@@ -28360,6 +29585,20 @@
         ],
         "title": "TripContext",
         "description": "Trip-scoped context for filtering and relevance."
+      },
+      "TripCrossTripThreadsResponse": {
+        "properties": {
+          "threads": {
+            "items": {
+              "$ref": "#/components/schemas/CrossTripThreadView"
+            },
+            "type": "array",
+            "title": "Threads"
+          }
+        },
+        "type": "object",
+        "title": "TripCrossTripThreadsResponse",
+        "description": "``GET /api/trips/{trip_id}/cross-trip-threads`` response body."
       },
       "TripDebriefAccepted": {
         "properties": {
@@ -29781,6 +31020,11 @@
             ],
             "title": "Retired Reason"
           },
+          "visibility": {
+            "type": "string",
+            "title": "Visibility",
+            "default": "private"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -29925,6 +31169,13 @@
           },
           "interests": {
             "$ref": "#/components/schemas/UserInterests"
+          },
+          "reflection_phrases": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Reflection Phrases"
           },
           "taste_completion": {
             "type": "integer",
@@ -30453,32 +31704,17 @@
       },
       "VoiceTokenRequest": {
         "properties": {
-          "user_id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "User Id"
-          },
           "user_name": {
             "type": "string",
             "title": "User Name"
-          },
-          "user_role": {
-            "type": "string",
-            "enum": [
-              "organizer",
-              "member"
-            ],
-            "title": "User Role",
-            "default": "member"
           }
         },
         "type": "object",
         "required": [
-          "user_id",
           "user_name"
         ],
         "title": "VoiceTokenRequest",
-        "description": "Request a LiveKit access token for voice chat."
+        "description": "Request a LiveKit access token for voice chat.\n\nB1 audit fix: ``user_id`` and ``user_role`` are no longer accepted\nfrom the request body \u2014 they're sourced from the authenticated\nactor instead. Previously a missing-auth handler let anyone mint a\nLiveKit JWT as any user for any trip by sending arbitrary body\nfields. The request only carries display metadata now."
       },
       "VoiceTokenResponse": {
         "properties": {

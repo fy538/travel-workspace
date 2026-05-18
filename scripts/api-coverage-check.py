@@ -61,22 +61,6 @@ _KNOWN_DRIFT: set[tuple[str, str]] = {
     # must be running). Remove this entry after the next snapshot
     # refresh that includes the venue detail route.
     ("GET", "/api/venues/{*}"),
-    # PATCH /api/trips/{trip_id}/accommodations/{accommodation_id} is
-    # called from the accommodation edit flow at
-    # Travel App/app/trip-accommodations/index.tsx:148 but the backend
-    # only exposes DELETE on this path. Decision pending: either add the
-    # backend PATCH route or disable the edit UI. Track this — it WILL
-    # 404 in production if a user taps the edit save button.
-    ("PATCH", "/api/trips/{*}/accommodations/{*}"),
-    # The three endpoints below exist in the backend (verified against
-    # ``app.openapi()`` live) but are missing from the committed snapshot
-    # because the live deployment hasn't been re-snapshotted since they
-    # landed. Refresh by running ``./scripts/sync-types.sh`` against a
-    # fully-up-to-date backend; this entry can be dropped immediately
-    # after that snapshot lands.
-    ("POST", "/api/me/dna-phrases/dispute"),
-    ("POST", "/api/me/profile-fact/dispute"),
-    ("GET", "/api/trips/{*}/cross-trip-threads"),
 }
 
 
@@ -199,12 +183,68 @@ def load_http_endpoints(http_src: Path) -> set[tuple[str, str]]:
     return out
 
 
+_TRIAGE_ROW = re.compile(
+    r"^\|\s*`?([A-Z]+\s+)?(/[^|`]+?)`?\s*\|\s*(?:`?([A-Z]+)`?\s*\|\s*)?"
+    r"(planned|deprecated|infrastructure|unknown)\b",
+    re.IGNORECASE,
+)
+
+
+def load_triage_ignores(triage_path: Path) -> set[tuple[str, str]]:
+    """Parse a triage markdown doc and return ``{(METHOD, normalized_path)}``
+    for every row whose verdict is ``deprecated`` or ``infrastructure``.
+
+    Expected row format::
+
+        | `/api/some/path/{*}` | GET | infrastructure | Note |
+        | `/health` | GET | infrastructure | Probe |
+
+    Rows with verdict ``planned`` or ``unknown`` are NOT skipped — they
+    stay visible in the coverage check output so they keep getting
+    attention.
+
+    The parser is intentionally lenient: it tolerates extra whitespace,
+    backticks around the path, and a leading ``METHOD `` prefix inside
+    the path cell (legacy format). Rows it can't parse are silently
+    ignored — feeding garbage into the gate should never *break* it.
+    """
+    out: set[tuple[str, str]] = set()
+    if not triage_path.exists():
+        return out
+    for raw_line in triage_path.read_text().splitlines():
+        line = raw_line.strip()
+        if not line.startswith("|"):
+            continue
+        m = _TRIAGE_ROW.match(line)
+        if not m:
+            continue
+        path_method_prefix, path, method_cell, verdict = m.groups()
+        verdict = verdict.lower()
+        if verdict not in {"deprecated", "infrastructure"}:
+            continue
+        method = (method_cell or (path_method_prefix or "").strip()).upper()
+        if not method:
+            continue
+        out.add((method, _normalize_path(path.strip())))
+    return out
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--list-unused",
         action="store_true",
         help="Print backend-only endpoints (informational).",
+    )
+    parser.add_argument(
+        "--ignore",
+        type=Path,
+        default=None,
+        help=(
+            "Path to a triage markdown doc. Rows marked 'deprecated' or "
+            "'infrastructure' are skipped from the backend-only set. "
+            "Opt-in; default behavior is unchanged."
+        ),
     )
     args = parser.parse_args()
 
@@ -222,9 +262,10 @@ def main() -> int:
     new_drift = raw_drift - _KNOWN_DRIFT
     allowlisted_drift = raw_drift & _KNOWN_DRIFT
     stale_allowlist = _KNOWN_DRIFT - raw_drift
+    triage_ignored = load_triage_ignores(args.ignore) if args.ignore else set()
     unused = backend - frontend - {
         tuple(entry.split(" ", 1)) for entry in _INTENTIONAL_BACKEND_ONLY if " " in entry
-    }
+    } - triage_ignored
 
     print(f"Backend OpenAPI endpoints: {len(backend)}")
     print(f"Frontend http.ts call sites (unique): {len(frontend)}")
@@ -235,6 +276,11 @@ def main() -> int:
         f"{len(stale_allowlist)} stale allowlist entries"
     )
     print(f"Backend-only (app does not surface): {len(unused)}")
+    if args.ignore:
+        print(
+            f"Triage-ignored (deprecated/infrastructure per "
+            f"{args.ignore}): {len(triage_ignored)}"
+        )
 
     if new_drift:
         print("\nNEW DRIFT — frontend calls these URLs but they are not in OpenAPI:")
