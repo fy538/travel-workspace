@@ -54,14 +54,7 @@ _INTENTIONAL_BACKEND_ONLY: set[str] = {
 # landed" (needs backend work). Drop entries from this set the moment
 # their root cause is fixed — the whole point is to keep the gate
 # meaningful for new drift.
-_KNOWN_DRIFT: set[tuple[str, str]] = {
-    # GET /api/venues/{venue_id} exists on the backend at
-    # backend/api/routes/venues.py:56 but is missing from the committed
-    # OpenAPI snapshot. Refresh with: ./scripts/sync-types.sh (backend
-    # must be running). Remove this entry after the next snapshot
-    # refresh that includes the venue detail route.
-    ("GET", "/api/venues/{*}"),
-}
+_KNOWN_DRIFT: set[tuple[str, str]] = set()
 
 
 def _strip_ts_substitutions(s: str) -> str:
