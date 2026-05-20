@@ -28,15 +28,20 @@ Restart the backend after editing.
 **Notes:** Apple's CDN re-fetches AASA within ~24h. Force a refresh via `https://app-site-association.cdn-apple.com/a/v1/travelagent.app` once the domain is live.
 
 ### #3 — `eas init` for production builds
-**Status:** 🔴 · **Time est:** 10 min · **Depends on:** Apple Developer account, npm/Expo CLI installed
-**What:**
+**Status:** 🔴 · **Time est:** 5 min · **Depends on:** Apple Developer account, npm/Expo CLI installed
+**What:** `eas.json` is already committed with development / preview / production profiles and the correct run-mode env. You only need `eas init` to bind the Expo project and write the real projectId — **skip `eas build:configure`** (it would clobber the committed profiles).
 ```bash
 cd "Travel App"
-eas init             # writes real projectId to app.json
-eas build:configure  # writes eas.json profiles
+eas init    # writes real projectId to app.json
+
+# The Clerk publishable key is the one production env var NOT committed in
+# eas.json (it's a credential). Set it as an EAS env var for the builds
+# that talk to the real backend:
+eas env:create --environment production --name EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY --value pk_live_... --visibility sensitive
+eas env:create --environment preview    --name EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY --value pk_live_... --visibility sensitive
 ```
-**Verify:** `jq -r '.expo.extra.eas.projectId' Travel\ App/app.json` is NOT `00000000-0000-0000-0000-000000000000`.
-**Notes:** Universal Links only work in real EAS builds, not Expo Go.
+**Verify:** `jq -r '.expo.extra.eas.projectId' Travel\ App/app.json` is NOT `00000000-0000-0000-0000-000000000000`; then `make preflight-eas` passes its step 3 (eas.json profile) green.
+**Notes:** Universal Links only work in real EAS builds, not Expo Go. The `production` profile points at `https://travelagent.app` (needs #5/#6 live first); the `preview` profile points at `https://travel-agent.fly.dev` so you can test on a device before the custom domain is wired.
 
 ### #5 — Own and deploy at `travelagent.app`
 **Status:** 🔴 · **Time est:** 2-4 hours (varies by host) · **Depends on:** purchased domain
@@ -193,7 +198,7 @@ The fastest path to "real user on TestFlight" runs #1 → #3 → #7 → #5 → #
 | # | Item | Status | Time |
 |---|------|--------|------|
 | 1 | Apple Team ID → `.env` | 🔴 | 5 min |
-| 3 | `eas init` | 🔴 | 10 min |
+| 3 | `eas init` (eas.json committed; projectId + Clerk env var remain) | 🔴 | 5 min |
 | 5 | Deploy at `travelagent.app` | 🔴 | 2-4 h |
 | 6 | SSL cert | 🔴 | auto / 15 min |
 | 7 | Clerk application | 🔴 | 30 min |

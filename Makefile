@@ -7,6 +7,7 @@
 
 .PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help ci-review
 .PHONY: contract-check mock-real-parity golden-path-qa offline-qa reliability-report reliability-gate
+.PHONY: preflight-eas fly-secrets
 
 # ── Development ───────────────────────────────────────────────────────────────
 
@@ -46,6 +47,12 @@ smoke: ## Drive the happy path against a backend (default localhost:8000). Overr
 
 pre-launch: offline-qa ## Pre-launch gate: offline QA ladder + happy-path smoke. Override target with PRELAUNCH_HOST.
 	@./scripts/smoke-happy-path.sh
+
+preflight-eas: ## Pre-flight before EAS production build (toolchain + projectId + env + tests). MUST be green before running 'eas build'.
+	@./scripts/preflight-eas-build.sh
+
+fly-secrets: ## Emit a paste-ready 'fly secrets set' template for first-time Fly.io deploy. Pipe to a file and edit.
+	@./scripts/fly-secrets-template.sh
 
 mock-real-parity: ## Check frontend mock/API parity seams without live backend calls
 	@./scripts/mock-real-parity.sh
