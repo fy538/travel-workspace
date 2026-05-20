@@ -1,13 +1,16 @@
-Sync the OpenAPI schema from Travel Agent and regenerate TypeScript types in Travel App.
+Regenerate the OpenAPI snapshot and the Travel App TypeScript types from it.
+
+`docs/openapi.json` (workspace repo) is the single source of truth — every
+type-gen tool reads it. `sync-types.sh` regenerates it OFFLINE (no running
+backend needed) via Travel Agent's `export_openapi.py`.
 
 Steps:
-1. Run `./scripts/sync-types.sh` from the workspace root (`/Users/feihuyan/Documents/Claude/Projects/`)
-2. If the backend isn't running, use `./scripts/sync-types.sh --from-snapshot` instead
-3. Review the diff in `Travel App/utils/api/schema.gen.ts`
-4. Fix any TypeScript errors surfaced by tsc
-5. Commit `docs/openapi.json` and the Travel App changes together
+1. Run `./scripts/sync-types.sh` from the workspace root
+2. Review the diff in `Travel App/utils/api/schema.gen.ts`
+3. Fix any TypeScript errors surfaced by tsc
+4. Commit `docs/openapi.json` and the Travel App changes together
 
-If you're unsure whether the backend is running, check with:
-```bash
-curl --silent http://localhost:8000/health | head -5
-```
+Modes:
+- `./scripts/sync-types.sh` — default; regenerate offline from backend models
+- `./scripts/sync-types.sh --from-snapshot` — use the committed snapshot as-is
+- `./scripts/sync-types.sh --live` — pull from a running backend (curl localhost:8000)

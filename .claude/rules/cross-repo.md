@@ -7,7 +7,12 @@ When working across Travel Agent (backend) and Travel App (frontend):
 - Backend types are canonical. TypeScript types in Travel App that mirror backend
   models must be **generated**, not hand-written.
 - Generated file: `Travel App/utils/api/schema.gen.ts` — never edit this manually.
-- Committed snapshot: `docs/openapi.json` — update by running `./scripts/sync-types.sh`.
+- Committed snapshot: `docs/openapi.json` (workspace repo) — the SINGLE source of
+  truth that every type-gen tool reads (sync-types, contract-check,
+  api-coverage-check, and the Travel App npm scripts via `../docs/openapi.json`).
+  Regenerate by running `./scripts/sync-types.sh`.
+- `Travel Agent/docs/openapi.json` is a local-only artifact (`make export-openapi`);
+  nothing cross-repo consumes it. Don't treat it as the contract.
 
 ## Sync Workflow
 

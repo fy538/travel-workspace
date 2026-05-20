@@ -16,19 +16,31 @@ Read each repo's own `CLAUDE.md` for full context. This file covers the **cross-
 The backend exposes a full OpenAPI 3.1 schema at **`GET /openapi.json`** (when running).
 The frontend consumes it via generated TypeScript types.
 
-```bash
-# Backend base URL (dev)
-http://localhost:8000
+**Single source of truth:** `docs/openapi.json` in THIS workspace repo. Every
+type-generation tool reads this one file — `scripts/sync-types.sh`,
+`scripts/contract-check.sh`, `scripts/api-coverage-check.py`, and the Travel
+App npm scripts (`generate-api-types:snapshot` / `:check`, which read it via
+`../docs/openapi.json`). There is no second snapshot to drift against.
 
+> `Travel Agent/docs/openapi.json` is a **local-only artifact** that
+> `make export-openapi` writes inside the Travel Agent repo. It is NOT the
+> contract — nothing cross-repo reads it. The workspace `docs/openapi.json`
+> is the committed contract.
+
+```bash
 # OpenAPI schema (live, requires backend running)
 http://localhost:8000/openapi.json
 
-# OpenAPI schema (committed snapshot — always available)
+# OpenAPI schema (committed snapshot — the single source of truth)
 ./docs/openapi.json
 ```
 
-The committed snapshot at `docs/openapi.json` is updated by `scripts/sync-types.sh` and
-should be committed whenever backend models change.
+The snapshot is regenerated deterministically and OFFLINE (no running
+backend needed) by `scripts/sync-types.sh`, which wraps Travel Agent's
+`scripts/export_openapi.py` (`app.openapi()`). Commit it whenever backend
+models change. CI (`.github/workflows/reliability.yml`) fails if the
+committed snapshot is stale vs the backend models, or if `schema.gen.ts`
+is stale vs the snapshot.
 
 ---
 
@@ -41,15 +53,16 @@ should be committed whenever backend models change.
 ./scripts/sync-types.sh
 
 # What it does:
-# 1. Pulls fresh openapi.json from the running backend
-# 2. Saves it to docs/openapi.json (commit this)
-# 3. Generates TypeScript types in Travel App/utils/api/schema.gen.ts
-# 4. Runs tsc --noEmit in Travel App to surface any breakage
+# 1. Regenerates docs/openapi.json OFFLINE via Travel Agent's
+#    export_openapi.py (no running backend required)
+# 2. Generates TypeScript types in Travel App/utils/api/schema.gen.ts
+# 3. Runs tsc --noEmit in Travel App to surface any breakage
 ```
 
-If the backend isn't running, use the committed snapshot:
+Other modes:
 ```bash
-./scripts/sync-types.sh --from-snapshot
+./scripts/sync-types.sh --from-snapshot  # use the committed snapshot as-is
+./scripts/sync-types.sh --live           # pull from a running backend (curl)
 ```
 
 **When you add a new API endpoint**, the workflow is:

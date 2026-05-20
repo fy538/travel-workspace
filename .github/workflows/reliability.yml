@@ -71,6 +71,25 @@ jobs:
         run: npm ci
         working-directory: Travel App
 
+      - name: OpenAPI snapshot freshness
+        # Regenerate the snapshot offline from the backend models and fail
+        # if it differs from the committed docs/openapi.json. Catches the
+        # drift that silently broke frontend types on 2026-05-19: backend
+        # models changed (expense category enum, new schemas) but the
+        # committed snapshot was never regenerated. Pairs with the
+        # contract check below (schema.gen.ts vs snapshot) for full
+        # backend → snapshot → types coverage.
+        run: |
+          PYTHONPATH=. python scripts/export_openapi.py --out /tmp/openapi.fresh.json
+          if ! diff -q "$GITHUB_WORKSPACE/docs/openapi.json" /tmp/openapi.fresh.json > /dev/null; then
+            echo "::error::docs/openapi.json is stale vs the backend models."
+            echo "Run ./scripts/sync-types.sh and commit docs/openapi.json + schema.gen.ts together."
+            diff "$GITHUB_WORKSPACE/docs/openapi.json" /tmp/openapi.fresh.json | head -60 || true
+            exit 1
+          fi
+          echo "✓ OpenAPI snapshot matches the backend models"
+        working-directory: Travel Agent
+
       - name: Contract check
         run: make contract-check
 

@@ -1,14 +1,24 @@
 #!/usr/bin/env bash
-# sync-types.sh — Pull the OpenAPI schema from Travel Agent and regenerate
-# TypeScript types in Travel App.
+# sync-types.sh — Regenerate the OpenAPI snapshot and the Travel App
+# TypeScript types from it. Single source of truth: docs/openapi.json
+# (this workspace repo). The Travel App npm scripts read the same file
+# via ../docs/openapi.json, so there is exactly one snapshot every tool
+# generates from.
 #
 # Usage:
-#   ./scripts/sync-types.sh              # fetch live schema from running backend
-#   ./scripts/sync-types.sh --from-snapshot  # use committed docs/openapi.json
+#   ./scripts/sync-types.sh                 # regenerate snapshot OFFLINE
+#                                           # (no running backend needed)
+#   ./scripts/sync-types.sh --from-snapshot # use the committed snapshot as-is
+#   ./scripts/sync-types.sh --live          # pull from a running backend
+#
+# Default (offline) generation runs Travel Agent's deterministic exporter
+# (scripts/export_openapi.py → app.openapi()) so the snapshot can be
+# regenerated without standing up Postgres/Qdrant. Requires the Travel
+# Agent Python deps to be importable (pip install -r requirements-dev.txt).
 #
 # Requirements:
 #   - node/npm available (for openapi-typescript)
-#   - Backend running at localhost:8000 (unless --from-snapshot)
+#   - Default/--live: Travel Agent present as a sibling dir
 
 set -euo pipefail
 
@@ -16,46 +26,62 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
 BACKEND_URL="${BACKEND_URL:-http://localhost:8000}"
 SNAPSHOT_PATH="$WORKSPACE_DIR/docs/openapi.json"
+TRAVEL_AGENT_DIR="$WORKSPACE_DIR/Travel Agent"
 TRAVEL_APP_DIR="$WORKSPACE_DIR/Travel App"
 OUTPUT_FILE="$TRAVEL_APP_DIR/utils/api/schema.gen.ts"
 
 # ── Parse args ─────────────────────────────────────────────────────────────
-FROM_SNAPSHOT=false
+MODE="offline"
 for arg in "$@"; do
   case "$arg" in
-    --from-snapshot) FROM_SNAPSHOT=true ;;
+    --from-snapshot) MODE="snapshot" ;;
+    --live) MODE="live" ;;
     *) echo "Unknown argument: $arg" && exit 1 ;;
   esac
 done
 
-# ── Step 1: Get the schema ──────────────────────────────────────────────────
-if [ "$FROM_SNAPSHOT" = true ]; then
-  echo "→ Using committed snapshot: $SNAPSHOT_PATH"
-  if [ ! -f "$SNAPSHOT_PATH" ]; then
-    echo "✗ Snapshot not found at $SNAPSHOT_PATH"
-    echo "  Run without --from-snapshot to fetch a fresh copy."
-    exit 1
-  fi
-  SCHEMA_SOURCE="$SNAPSHOT_PATH"
-else
-  echo "→ Fetching live schema from $BACKEND_URL/openapi.json ..."
-  mkdir -p "$(dirname "$SNAPSHOT_PATH")"
-  if curl --silent --fail --max-time 5 "$BACKEND_URL/openapi.json" -o "$SNAPSHOT_PATH.tmp"; then
-    mv "$SNAPSHOT_PATH.tmp" "$SNAPSHOT_PATH"
-    echo "  ✓ Saved to $SNAPSHOT_PATH"
-  else
-    echo "✗ Could not reach $BACKEND_URL/openapi.json"
-    echo "  Is the backend running? Try: cd 'Travel Agent' && PYTHONPATH=. uvicorn backend.api.main:app --reload"
-    echo "  Or use --from-snapshot to regenerate from the last committed schema."
-    exit 1
-  fi
-  SCHEMA_SOURCE="$SNAPSHOT_PATH"
-fi
+mkdir -p "$(dirname "$SNAPSHOT_PATH")"
+
+# ── Step 1: Produce docs/openapi.json ───────────────────────────────────────
+case "$MODE" in
+  snapshot)
+    echo "→ Using committed snapshot: $SNAPSHOT_PATH"
+    if [ ! -f "$SNAPSHOT_PATH" ]; then
+      echo "✗ Snapshot not found at $SNAPSHOT_PATH"
+      echo "  Run without --from-snapshot to regenerate it."
+      exit 1
+    fi
+    ;;
+  live)
+    echo "→ Fetching live schema from $BACKEND_URL/openapi.json ..."
+    if curl --silent --fail --max-time 5 "$BACKEND_URL/openapi.json" -o "$SNAPSHOT_PATH.tmp"; then
+      mv "$SNAPSHOT_PATH.tmp" "$SNAPSHOT_PATH"
+      echo "  ✓ Saved to $SNAPSHOT_PATH"
+    else
+      echo "✗ Could not reach $BACKEND_URL/openapi.json"
+      echo "  Is the backend running? Or use the default (offline) mode."
+      exit 1
+    fi
+    ;;
+  offline)
+    echo "→ Generating schema offline via Travel Agent export_openapi.py ..."
+    if [ ! -d "$TRAVEL_AGENT_DIR" ]; then
+      echo "✗ Travel Agent not found at $TRAVEL_AGENT_DIR"
+      echo "  Offline generation needs the backend source. Use --from-snapshot instead."
+      exit 1
+    fi
+    (
+      cd "$TRAVEL_AGENT_DIR"
+      PYTHONPATH=. python scripts/export_openapi.py --out "$SNAPSHOT_PATH"
+    )
+    echo "  ✓ Wrote $SNAPSHOT_PATH"
+    ;;
+esac
 
 # ── Step 2: Generate TypeScript types ──────────────────────────────────────
 echo "→ Generating TypeScript types → $OUTPUT_FILE ..."
 cd "$TRAVEL_APP_DIR"
-npx openapi-typescript "$SCHEMA_SOURCE" --output "$OUTPUT_FILE"
+npx openapi-typescript "$SNAPSHOT_PATH" --output "$OUTPUT_FILE"
 echo "  ✓ Generated $OUTPUT_FILE"
 
 # ── Step 3: Type-check ──────────────────────────────────────────────────────
@@ -74,5 +100,5 @@ fi
 echo ""
 echo "✓ Done. Next steps:"
 echo "  1. Review the diff in utils/api/schema.gen.ts"
-echo "  2. Commit docs/openapi.json alongside any Travel App changes"
-echo "     (keeps the schema snapshot and code changes atomic)"
+echo "  2. Commit docs/openapi.json alongside the Travel App changes"
+echo "     (keeps the schema snapshot and generated types atomic)"
