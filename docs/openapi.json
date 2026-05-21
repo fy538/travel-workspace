@@ -10390,7 +10390,7 @@
           "plan"
         ],
         "summary": "Get Plan State",
-        "description": "Return the Plan v2 shell read-model for a trip.",
+        "description": "Return the Plan v2 shell read-model for a trip.\n\nplan-state is the Plan/Map read model, opened on every trip landing and\npull-to-refresh, and get_trip_plan_state runs 5+ sequential sync queries.\nRun the membership check and the build off the event loop so a handful of\nconcurrent Plan-tab opens don't serialize the whole (single-worker) API.",
         "operationId": "get_plan_state_api_trips__trip_id__plan_state_get",
         "parameters": [
           {
@@ -16857,17 +16857,45 @@
     "/debug/tokens": {
       "get": {
         "summary": "Token Usage",
-        "description": "Return cumulative LLM token usage and estimated cost.",
+        "description": "Return cumulative LLM token usage and estimated cost.\n\nAdmin-gated: this exposes aggregate LLM spend / model mix / usage trends.\nAnyone who can reach the dogfood host must NOT be able to read it\nunauthenticated (mirrors the /metrics/tokens admin gate).",
         "operationId": "token_usage_debug_tokens_get",
+        "parameters": [
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
                   "type": "object",
+                  "additionalProperties": true,
                   "title": "Response Token Usage Debug Tokens Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
@@ -16878,7 +16906,7 @@
     "/debug/cost": {
       "get": {
         "summary": "Cost Breakdown",
-        "description": "Return a per-day LLM cost breakdown for the last ``days`` days.",
+        "description": "Return a per-day LLM cost breakdown for the last ``days`` days.\n\nAdmin-gated (see ``token_usage``) \u2014 operational economics are not public.",
         "operationId": "cost_breakdown_debug_cost_get",
         "parameters": [
           {
@@ -16889,6 +16917,22 @@
               "type": "integer",
               "default": 7,
               "title": "Days"
+            }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
             }
           }
         ],
@@ -19503,6 +19547,19 @@
               }
             ],
             "title": "Title"
+          },
+          "destination": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Destination",
+            "description": "Human-readable destination label captured when a client starts a trip from destination-led UI. Persisted into trip_summary."
           },
           "place_id": {
             "anyOf": [
@@ -26608,7 +26665,7 @@
           "received_at"
         ],
         "title": "PendingInviteAnswer",
-        "description": "An invite the organizer hasn't acknowledged yet, where the recipient\nleft a pre-auth chip answer.\n\nSurfaces \"Sam answered: 'I'm in'\" in the bell. Cleared when the\norganizer opens ``GET /api/trips/{trip_id}/invites`` (the Pending\ninvites surface) \u2014 that endpoint stamps ``intake_seen_at = now()``\non every invite for the trip."
+        "description": "An invite the organizer hasn't acknowledged yet, where the recipient\nleft a pre-auth chip answer.\n\nSurfaces neutral \"Sam answered privately\" momentum in the bell. Cleared when the\norganizer opens ``GET /api/trips/{trip_id}/invites`` (the Pending\ninvites surface) \u2014 that endpoint stamps ``intake_seen_at = now()``\non every invite for the trip."
       },
       "PendingVote": {
         "properties": {
@@ -29887,11 +29944,26 @@
               }
             ],
             "title": "Resolution Note"
+          },
+          "mode": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "diff_safe",
+                  "version_restore"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mode"
           }
         },
         "type": "object",
         "title": "RevertRequest",
-        "description": "Revert an already-accepted proposal, restoring the prior itinerary state.\n\nOnly the trip organizer may revert. The ``resolution_note`` is stored on\nthe proposal row and surfaced in the group chat bridge message so members\nunderstand why the change was undone."
+        "description": "Revert an already-accepted proposal, restoring the prior itinerary state.\n\nOnly the trip organizer may revert. The ``resolution_note`` is stored on\nthe proposal row and surfaced in the group chat bridge message so members\nunderstand why the change was undone.\n\n``mode`` selects the revert strategy. ``None``/``\"diff_safe\"`` keeps the\nsurgical reverse-patch that preserves unrelated later edits (and may return\n``diff_safe_partial`` when some fields were edited since). ``\"version_restore\"``\nis the \"Force full revert\" path the conflict sheet offers \u2014 it snaps the\nitinerary back to the pre-accept version, discarding later edits. Previously\nthis field was silently dropped by FastAPI, so \"Force full revert\" was a\nno-op for any modern (post-Phase-2) proposal."
       },
       "RouteRequest": {
         "properties": {
