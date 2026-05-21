@@ -10281,6 +10281,109 @@
         }
       }
     },
+    "/api/public/stories/{slug}/plan-seed": {
+      "get": {
+        "tags": [
+          "plan-similar"
+        ],
+        "summary": "Public Plan Seed",
+        "description": "Login-free preview of what 'Plan something like this' would start.",
+        "operationId": "public_plan_seed_api_public_stories__slug__plan_seed_get",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Slug"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanSimilarSeed"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/plan-similar": {
+      "post": {
+        "tags": [
+          "plan-similar"
+        ],
+        "summary": "Plan Similar",
+        "description": "Create a draft trip seeded from a shared story, attributed to its source.",
+        "operationId": "plan_similar_api_plan_similar_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlanSimilarRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Trip"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/plan-state": {
       "get": {
         "tags": [
@@ -10324,6 +10427,66 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TripPlanState"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/{user_id}/profile": {
+      "get": {
+        "tags": [
+          "profiles"
+        ],
+        "summary": "Get Public Profile",
+        "description": "Public-safe profile for another traveler. 404 if the target hasn't\nopted into a public profile (caller may always view their own).",
+        "operationId": "get_public_profile_api_users__user_id__profile_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicProfile"
                 }
               }
             }
@@ -11384,6 +11547,513 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NearbyResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/story/share": {
+      "post": {
+        "tags": [
+          "story-shares"
+        ],
+        "summary": "Create Story Share",
+        "description": "Create (or return the existing) share link for the caller's story.\n\nIdempotent: if an active share already exists it is returned as-is, so\na double-tap on \"Share\" never mints duplicate links. To change settings,\nrotate or revoke and re-create.",
+        "operationId": "create_story_share_api_trips__trip_id__story_share_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/CreateShareRequest"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShareView"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "story-shares"
+        ],
+        "summary": "Update Story Share",
+        "description": "Update the caller's active share IN PLACE \u2014 same link.\n\nChanges visibility + redaction toggles without minting a new slug, so\nalready-shared URLs keep working. (Setting a non-openable visibility is a\nreversible pause; revoke remains the permanent stop.)",
+        "operationId": "update_story_share_api_trips__trip_id__story_share_patch",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateShareRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShareView"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "story-shares"
+        ],
+        "summary": "Get Story Share",
+        "description": "Return the caller's current active share for this trip's story.",
+        "operationId": "get_story_share_api_trips__trip_id__story_share_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShareView"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/story/share/preview": {
+      "post": {
+        "tags": [
+          "story-shares"
+        ],
+        "summary": "Preview Story Share Route",
+        "description": "Privacy Preview: show exactly what publishing would expose, plus a\nplain-language summary \u2014 without creating a share. Backs the\n\"preview before publish\" step (defaults to link-only).",
+        "operationId": "preview_story_share_route_api_trips__trip_id__story_share_preview_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/CreateShareRequest"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StorySharePreview"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/story/share/stats": {
+      "get": {
+        "tags": [
+          "story-shares"
+        ],
+        "summary": "Get Story Share Stats",
+        "description": "Aggregate metrics for the caller's active share: opens + conversions.\n\nCounts only \u2014 never viewer identity.",
+        "operationId": "get_story_share_stats_api_trips__trip_id__story_share_stats_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShareStats"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/story/share/revoke": {
+      "post": {
+        "tags": [
+          "story-shares"
+        ],
+        "summary": "Revoke Story Share",
+        "description": "Revoke the caller's active share. The public link stops working at once.",
+        "operationId": "revoke_story_share_api_trips__trip_id__story_share_revoke_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "boolean"
+                  },
+                  "title": "Response Revoke Story Share Api Trips  Trip Id  Story Share Revoke Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/story/share/rotate": {
+      "post": {
+        "tags": [
+          "story-shares"
+        ],
+        "summary": "Rotate Story Share",
+        "description": "Revoke the current link and mint a fresh one with the same settings.",
+        "operationId": "rotate_story_share_api_trips__trip_id__story_share_rotate_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShareView"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/public/stories/{slug}": {
+      "get": {
+        "tags": [
+          "story-landing"
+        ],
+        "summary": "Public Story Json",
+        "description": "Return the redacted public projection for a shared story.",
+        "operationId": "public_story_json_api_public_stories__slug__get",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Slug"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicTripStory"
                 }
               }
             }
@@ -13702,6 +14372,65 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "Delete Account",
+        "description": "Permanently delete the user's account and all personal data.\n\nIrreversible. Shared trips and group conversations the user created are\nreassigned to remaining members (or deleted if the user was alone);\neverything personal to the user \u2014 memory, messages, expenses, receipts,\nphotos, bookings, devices, notifications \u2014 is removed. See\n``backend.core.db.account_deletion.delete_user_data`` for the full\ncascade and the cooperatively-owned-data policy.",
+        "operationId": "delete_account_api_users__user_id__delete",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteAccountResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/api/users/{user_id}/home_conversation": {
@@ -13868,6 +14597,67 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PersonalMemoryPublicResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/{user_id}/export": {
+      "get": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "Export Account Data",
+        "description": "Return a copy of all data we hold about the user (right to access).\n\nCovers the same scope as account deletion \u2014 see\n``backend.core.db.account_export.export_user_data``.",
+        "operationId": "export_account_data_api_users__user_id__export_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataExportResponse"
                 }
               }
             }
@@ -16025,7 +16815,7 @@
     "/health/external": {
       "get": {
         "summary": "External Health",
-        "description": "Monitoring-only check of external API reachability (B7).\n\nReturns status of outbound dependencies the runtime relies on:\nAnthropic (LLM) and Tavily (web search). Used by dashboards /\nalerting \u2014 NOT wired into the k8s readiness probe because a\ntransient Anthropic blip shouldn't make the pod un-routable\n(cached / non-LLM endpoints would still serve cleanly).\n\nBehaviour:\n\n- Skipped checks (no API key configured) report ``skipped``;\n  not a failure.\n- Reachable checks report ``ok``.\n- Unreachable checks report ``error: <reason>`` but the response\n  still returns 200 \u2014 degraded signal lives in the body, not the\n  HTTP status. Alerting consumes the body.\n\nThe Anthropic check uses a cheap ``count_tokens`` API call when\navailable (no token billing); falls back to a TCP-connect probe\nwhen the SDK doesn't expose count_tokens.",
+        "description": "Monitoring-only check of external API reachability (B7).\n\nReturns status of outbound dependencies the runtime relies on:\nAnthropic (LLM), Tavily (web search), and Redis (the arq worker's\njob intake). Used by dashboards / alerting \u2014 NOT wired into the\nreadiness probe because a transient blip in any of these shouldn't\nmake the pod un-routable (cached / non-LLM endpoints still serve,\nand Redis-backed work falls back to inline execution). Redis lives\nhere rather than in /ready precisely because it is a background-only\ndependency: a Redis outage degrades digests / audio prerender /\npre-trip jobs but must not take the synchronous chat path offline.\n\nBehaviour:\n\n- Skipped checks (no API key configured) report ``skipped``;\n  not a failure.\n- Reachable checks report ``ok``.\n- Unreachable checks report ``error: <reason>`` but the response\n  still returns 200 \u2014 degraded signal lives in the body, not the\n  HTTP status. Alerting consumes the body.\n\nThe Anthropic check uses a cheap ``count_tokens`` API call when\navailable (no token billing); falls back to a TCP-connect probe\nwhen the SDK doesn't expose count_tokens.",
         "operationId": "external_health_health_external_get",
         "responses": {
           "200": {
@@ -18619,6 +19409,38 @@
         ],
         "title": "CreateSessionRequest"
       },
+      "CreateShareRequest": {
+        "properties": {
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "private",
+              "group",
+              "link",
+              "public"
+            ],
+            "title": "Visibility",
+            "default": "link"
+          },
+          "redaction_policy": {
+            "$ref": "#/components/schemas/RedactionPolicy"
+          },
+          "followers_visible": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Followers Visible"
+          }
+        },
+        "type": "object",
+        "title": "CreateShareRequest",
+        "description": "Body of ``POST``/``PATCH`` ``/api/trips/{trip_id}/story/share``."
+      },
       "CreateSideChatRequest": {
         "properties": {
           "user_id": {
@@ -18815,6 +19637,37 @@
         "title": "CrossTripThreadView",
         "description": "API response shape \u2014 hydrates prior_trip_ids into title chips\nso the frontend doesn't need a second fetch per chip."
       },
+      "DataExportResponse": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "title": "User Id"
+          },
+          "exported_at": {
+            "type": "string",
+            "title": "Exported At"
+          },
+          "tables": {
+            "additionalProperties": {
+              "items": {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "type": "object",
+            "title": "Tables"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "exported_at",
+          "tables"
+        ],
+        "title": "DataExportResponse",
+        "description": "A DSAR data-access bundle: every row we hold that belongs to the\nuser, grouped by table. Binary fields are summarized, not dumped."
+      },
       "DecommitResponse": {
         "properties": {
           "trip_id": {
@@ -18956,6 +19809,36 @@
         ],
         "title": "DelegationPreferencesUpdate",
         "description": "PUT /api/me/delegation-preferences body."
+      },
+      "DeleteAccountResponse": {
+        "properties": {
+          "deleted": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Deleted"
+          },
+          "reassigned": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Reassigned"
+          },
+          "blobs_unlinked": {
+            "type": "integer",
+            "title": "Blobs Unlinked"
+          }
+        },
+        "type": "object",
+        "required": [
+          "deleted",
+          "reassigned",
+          "blobs_unlinked"
+        ],
+        "title": "DeleteAccountResponse",
+        "description": "Summary of a completed account deletion \u2014 per-table row counts plus\nhow many shared resources were handed off to other members."
       },
       "DeviceResponse": {
         "properties": {
@@ -21135,6 +22018,11 @@
               }
             ],
             "title": "Why For You"
+          },
+          "followed_by_count": {
+            "type": "integer",
+            "title": "Followed By Count",
+            "default": 0
           },
           "angle_id": {
             "anyOf": [
@@ -26988,6 +27876,77 @@
         "title": "PlanNextItem",
         "description": "Next actionable moment on the timeline (best-effort)."
       },
+      "PlanSimilarRequest": {
+        "properties": {
+          "share_slug": {
+            "type": "string",
+            "title": "Share Slug"
+          }
+        },
+        "type": "object",
+        "required": [
+          "share_slug"
+        ],
+        "title": "PlanSimilarRequest",
+        "description": "Body of ``POST /api/plan-similar``."
+      },
+      "PlanSimilarSeed": {
+        "properties": {
+          "source_share_slug": {
+            "type": "string",
+            "title": "Source Share Slug"
+          },
+          "destination": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Destination"
+          },
+          "suggested_title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Suggested Title"
+          },
+          "planning_brief": {
+            "type": "string",
+            "title": "Planning Brief"
+          },
+          "inspiration_hero_title": {
+            "type": "string",
+            "title": "Inspiration Hero Title"
+          },
+          "inspiration_hero_subtitle": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Inspiration Hero Subtitle"
+          }
+        },
+        "type": "object",
+        "required": [
+          "source_share_slug",
+          "planning_brief",
+          "inspiration_hero_title"
+        ],
+        "title": "PlanSimilarSeed",
+        "description": "Public \"plan something like this\" seed derived from a shared story.\n\nPrivacy-safe by construction: built only from the ``PublicTripStory``\nprojection, so it carries no private inputs. A viewer can fetch this\nwithout logging in (to see what they'd be starting) \u2014 account creation\nis only required to actually create the derived trip."
+      },
       "PlanSoftnessSummary": {
         "properties": {
           "open_days": {
@@ -27733,6 +28692,22 @@
             "format": "uuid",
             "title": "Proposed By"
           },
+          "proposed_by_agent": {
+            "type": "boolean",
+            "title": "Proposed By Agent",
+            "default": false
+          },
+          "proposer_display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proposer Display Name"
+          },
           "vote_count": {
             "type": "integer",
             "title": "Vote Count"
@@ -27773,22 +28748,6 @@
           "created_at": {
             "type": "string",
             "title": "Created At"
-          },
-          "proposed_by_agent": {
-            "type": "boolean",
-            "title": "Proposed By Agent",
-            "default": false
-          },
-          "proposer_display_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Proposer Display Name"
           }
         },
         "type": "object",
@@ -27802,7 +28761,7 @@
           "created_at"
         ],
         "title": "ProposalSummary",
-        "description": "Lightweight proposal for list views.\n\nDeliberately omits ``proposed_entity_*`` \u2014 the deep-link affordance\nis a detail-page concern, not a list-row concern.\n\n``my_vote`` is the authenticated viewer's current vote (\"approve\",\n\"reject\", \"neutral\") or ``None`` if they haven't voted yet. The\nmobile client uses this to filter the \"Needs your vote\" digest.\n\n``proposed_by_agent`` is ``True`` when the concierge AI created the\nproposal via the ``propose_change`` tool. The mobile client uses this\nto render \"+ Vesper proposed\" instead of \"by [name]\" in list rows.\n\n``proposer_display_name`` is the display name of the human proposer\n(looked up from the ``users`` table). ``None`` when\n``proposed_by_agent`` is ``True`` or when the proposer row is missing."
+        "description": "Lightweight proposal for list views.\n\nDeliberately omits ``proposed_entity_*`` \u2014 the deep-link affordance\nis a detail-page concern, not a list-row concern.\n\n``my_vote`` is the authenticated viewer's current vote (\"approve\",\n\"reject\", \"neutral\") or ``None`` if they haven't voted yet. The\nmobile client uses this to filter the \"Needs your vote\" digest."
       },
       "ProviderBreakdown": {
         "properties": {
@@ -27855,6 +28814,183 @@
         ],
         "title": "ProviderBreakdown",
         "description": "Per-STT-provider TTFT slice (V-3). Surfaces the latency cost of\nthe on-device fallback (Apple SpeechAnalyzer / Picovoice) vs. the\ncloud baseline (Deepgram). Once the iOS native module ships and\nstarts emitting ``stt_provider != 'deepgram_cloud'``, this is the\nsurface that lights up to compare them."
+      },
+      "PublicProfile": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          },
+          "taste_phrases": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Taste Phrases"
+          },
+          "interests": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Interests"
+          },
+          "stories": {
+            "items": {
+              "$ref": "#/components/schemas/PublicProfileStory"
+            },
+            "type": "array",
+            "title": "Stories"
+          },
+          "followers_count": {
+            "type": "integer",
+            "title": "Followers Count",
+            "default": 0
+          },
+          "following_count": {
+            "type": "integer",
+            "title": "Following Count",
+            "default": 0
+          },
+          "is_following": {
+            "type": "boolean",
+            "title": "Is Following",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "display_name"
+        ],
+        "title": "PublicProfile",
+        "description": "Public-safe view of another traveler \u2014 what a viewer sees before they\nfollow. DEFAULT-DENY: taste_phrases are the display-safe concierge phrases\n(never hard constraints / budget / health), and stories are only the\nowner's follower/link-visible ones."
+      },
+      "PublicProfileStory": {
+        "properties": {
+          "hero_title": {
+            "type": "string",
+            "title": "Hero Title"
+          },
+          "destination": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Destination"
+          },
+          "share_url": {
+            "type": "string",
+            "title": "Share Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "hero_title",
+          "share_url"
+        ],
+        "title": "PublicProfileStory",
+        "description": "A public-safe story summary on a profile \u2014 links to the public page."
+      },
+      "PublicStorySection": {
+        "properties": {
+          "body": {
+            "type": "string",
+            "title": "Body"
+          }
+        },
+        "type": "object",
+        "required": [
+          "body"
+        ],
+        "title": "PublicStorySection",
+        "description": "A public-safe narrative section \u2014 body only, no internal ids."
+      },
+      "PublicTripStory": {
+        "properties": {
+          "hero_title": {
+            "type": "string",
+            "title": "Hero Title"
+          },
+          "hero_subtitle": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hero Subtitle"
+          },
+          "destination": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Destination"
+          },
+          "date_range": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date Range"
+          },
+          "cover_image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cover Image Url"
+          },
+          "sections": {
+            "items": {
+              "$ref": "#/components/schemas/PublicStorySection"
+            },
+            "type": "array",
+            "title": "Sections"
+          },
+          "photo_urls": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Photo Urls"
+          },
+          "planned_with": {
+            "type": "string",
+            "title": "Planned With",
+            "default": "Vesper"
+          }
+        },
+        "type": "object",
+        "required": [
+          "hero_title"
+        ],
+        "title": "PublicTripStory",
+        "description": "The PUBLIC projection of a Trip Story.\n\nDEFAULT-DENY ALLOWLIST. This model is the *complete* set of fields a\nnon-owner may ever see. It deliberately omits ``user_id``, ``trip_id``,\n``version``, section ids, ``anchor_observation_id``, ``edited_at``,\n``composer_model``, and every private input (constraints, budget,\nhealth, fatigue, observations). Build it ONLY via\n``backend.core.story_projection.build_public_story_payload`` so the\nallowlist is enforced in exactly one place."
       },
       "QuickResearchRequest": {
         "properties": {
@@ -28233,6 +29369,30 @@
           "response_type"
         ],
         "title": "RecordResponseRequest"
+      },
+      "RedactionPolicy": {
+        "properties": {
+          "show_dates": {
+            "type": "boolean",
+            "title": "Show Dates",
+            "default": false
+          },
+          "show_destination": {
+            "type": "boolean",
+            "title": "Show Destination",
+            "default": true
+          },
+          "hidden_section_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Hidden Section Ids"
+          }
+        },
+        "type": "object",
+        "title": "RedactionPolicy",
+        "description": "Owner-controlled toggles for what the PUBLIC projection may reveal.\n\nDefault-deny: a viewer sees only what these toggles explicitly allow,\non top of the always-public artifact (hero, narrative, chosen photos).\nExact dates are OFF by default; the destination headline is on (it's\nthe point of the share) but can be turned off."
       },
       "ReflectionLogEntry": {
         "properties": {
@@ -29380,6 +30540,111 @@
         ],
         "title": "SettlementTransfer"
       },
+      "ShareStats": {
+        "properties": {
+          "opens": {
+            "type": "integer",
+            "title": "Opens"
+          },
+          "conversions": {
+            "type": "integer",
+            "title": "Conversions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "opens",
+          "conversions"
+        ],
+        "title": "ShareStats",
+        "description": "Owner-facing share metrics. Aggregate counts only \u2014 never viewer identity."
+      },
+      "ShareView": {
+        "properties": {
+          "share_slug": {
+            "type": "string",
+            "title": "Share Slug"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "private",
+              "group",
+              "link",
+              "public"
+            ],
+            "title": "Visibility"
+          },
+          "share_url": {
+            "type": "string",
+            "title": "Share Url"
+          },
+          "redaction_policy": {
+            "$ref": "#/components/schemas/RedactionPolicy"
+          },
+          "followers_visible": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Followers Visible"
+          },
+          "og_image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Og Image Url"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "revoked_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Revoked At"
+          },
+          "last_opened_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Opened At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "share_slug",
+          "visibility",
+          "share_url",
+          "redaction_policy",
+          "created_at"
+        ],
+        "title": "ShareView",
+        "description": "Owner-facing view of a share \u2014 what the app shows after publishing."
+      },
       "SpeculativeAngle": {
         "properties": {
           "title": {
@@ -29465,6 +30730,60 @@
           "provider"
         ],
         "title": "StartVerificationResponse"
+      },
+      "StorySharePreview": {
+        "properties": {
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "private",
+              "group",
+              "link",
+              "public"
+            ],
+            "title": "Visibility"
+          },
+          "public": {
+            "$ref": "#/components/schemas/PublicTripStory"
+          },
+          "sections_total": {
+            "type": "integer",
+            "title": "Sections Total"
+          },
+          "sections_shown": {
+            "type": "integer",
+            "title": "Sections Shown"
+          },
+          "photos_total": {
+            "type": "integer",
+            "title": "Photos Total"
+          },
+          "photos_shown": {
+            "type": "integer",
+            "title": "Photos Shown"
+          },
+          "dates_visible": {
+            "type": "boolean",
+            "title": "Dates Visible"
+          },
+          "destination_visible": {
+            "type": "boolean",
+            "title": "Destination Visible"
+          }
+        },
+        "type": "object",
+        "required": [
+          "visibility",
+          "public",
+          "sections_total",
+          "sections_shown",
+          "photos_total",
+          "photos_shown",
+          "dates_visible",
+          "destination_visible"
+        ],
+        "title": "StorySharePreview",
+        "description": "Dry-run of a share before publishing (the Privacy Preview payload).\n\n``public`` is exactly what a viewer would see; the counts/flags let the\nUI explain the privacy state in plain language without re-implementing\nthe redaction rules."
       },
       "SuggestCategoryResponse": {
         "properties": {
@@ -31464,6 +32783,16 @@
             ],
             "title": "Phone Verified At"
           },
+          "followers_see_stories": {
+            "type": "boolean",
+            "title": "Followers See Stories",
+            "default": false
+          },
+          "public_profile_enabled": {
+            "type": "boolean",
+            "title": "Public Profile Enabled",
+            "default": false
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -31807,6 +33136,16 @@
             "type": "integer",
             "title": "Trip Count",
             "default": 0
+          },
+          "followers_see_stories": {
+            "type": "boolean",
+            "title": "Followers See Stories",
+            "default": false
+          },
+          "public_profile_enabled": {
+            "type": "boolean",
+            "title": "Public Profile Enabled",
+            "default": false
           }
         },
         "type": "object",
@@ -31977,6 +33316,28 @@
               }
             ],
             "title": "Phone Number"
+          },
+          "followers_see_stories": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Followers See Stories"
+          },
+          "public_profile_enabled": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Public Profile Enabled"
           }
         },
         "type": "object",
