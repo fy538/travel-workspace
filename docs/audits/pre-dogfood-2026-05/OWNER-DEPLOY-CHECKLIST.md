@@ -121,6 +121,25 @@ eas build --platform ios --profile production    # then production → TestFligh
 
 ---
 
+## 9. Re-enable scheduled workflows (at dogfood start)
+
+The maintenance crons were paused pre-dogfood for cost (commit 0b220c49) —
+they had no real work to do without testers and were draining GitHub Actions
+minutes (the every-2h cache refresh alone was ~360 runs/month). Once the
+backend is deployed and real testers exist, turn them back on:
+
+- In `Travel Agent/.github/workflows/cron.yml`, uncomment the `schedule:` block.
+  These jobs need `DATABASE_URL` + `ANTHROPIC_API_KEY` set as repo Actions
+  secrets (see the workflow header) — which only exist post-deploy, so this
+  step belongs here, not earlier.
+- In `Travel Agent/.github/workflows/live-booking-canary.yml`, uncomment the
+  weekly `schedule:` if you want the booking-provider canary running again.
+
+Until then, any job can still be triggered on demand from the Actions tab
+(`workflow_dispatch`).
+
+---
+
 ## Pre-tester verification gate
 
 Run the full reliability ladder against the LIVE host before inviting anyone:
