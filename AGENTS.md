@@ -113,3 +113,46 @@ Recommended git model:
 - `scripts/new-branch.sh` — coordinated child-repo branch helper
 - `scripts/sync-types.sh` — regenerate frontend API types
 - `travel.code-workspace` — editor workspace file
+
+## Cursor Cloud specific instructions
+
+### Prerequisite: child repo access
+
+This workspace coordinates two **private** child repos (`fy538/travel-agent` and `fy538/travel-app`). The Cursor GitHub App installation must be granted access to both repos, otherwise `make bootstrap` and all downstream commands will fail. The repos must be added under **Settings → GitHub Apps → Cursor → Repository access** for the `fy538` GitHub account.
+
+### System dependencies (pre-installed in the VM snapshot)
+
+- **Python 3.13** — installed via `deadsnakes` PPA (`python3.13`, `python3.13-venv`, `python3.13-dev`)
+- **Node.js 20** — managed by `nvm` (pre-installed in the base image)
+- **Docker Engine 28.x** — configured with `fuse-overlayfs` storage driver and `iptables-legacy` for nested-container compatibility
+
+### Starting Docker
+
+Docker daemon is not auto-started. Run before any `docker compose` operation:
+
+```bash
+sudo dockerd &>/tmp/dockerd.log &
+sleep 3
+```
+
+### Bootstrap sequence (once child repos are accessible)
+
+```bash
+make bootstrap                                              # clone child repos
+cd "Travel Agent" && python3.13 -m venv .venv && source .venv/bin/activate && pip install -r requirements-dev.txt
+cd "Travel App" && npm ci
+```
+
+### Running services
+
+See `README.md` and `CLAUDE.md` for the full command reference. Key commands:
+
+- `make dev-backend` — Docker infra (Postgres + Qdrant) + API server (no Expo)
+- `make test-backend` — offline pytest (skips `requires_postgres` and `requires_api_keys`)
+- `make test-frontend` — Jest
+- `make typecheck` — `tsc --noEmit` in Travel App
+- `make contract-check` — verify OpenAPI snapshot ↔ generated types
+
+### Environment variables
+
+The backend requires `ANTHROPIC_API_KEY` for AI features. Set `SKIP_AUTH=true` to bypass Clerk JWT auth in dev. Database and Qdrant URLs are auto-configured by `docker-compose.yml` defaults.
