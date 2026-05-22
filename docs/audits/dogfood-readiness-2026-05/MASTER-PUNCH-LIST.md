@@ -1,8 +1,8 @@
 # Master Punch List — Dogfood Readiness Audit (2026-05)
 
-Date: 2026-05-21
+Date: 2026-05-21 (updated 2026-05-21 with session fixes)
 Synthesis of: `docs/audits/dogfood-readiness-2026-05/areas/01..15`
-Mode: Audit synthesis only. No product code changed.
+Mode: Audit + implementation. All P0-3 code and the full P1 security/cost cluster fixed in-session.
 
 Raw findings across 15 area reports: **60**. After cross-area dedup: **~58 unique** (3 P0, 22 P1, ~33 P2/P3). Two confirmed duplicates merged (photo-learning consent: 07≡10; stale proposal block IDs: 05≡06). Several cost-control findings (04/11/15) are distinct mechanisms in one cluster.
 
@@ -28,7 +28,7 @@ Raw findings across 15 area reports: **60**. After cross-area dedup: **~58 uniqu
 |---|---------|---------------|--------|---------------------|---------------|
 | P0-1 | **EAS production preflight is red** — no EAS CLI on PATH; `app.json` projectId still `00000000-…`; release runtime guard throws on placeholder. | account + workspace | [14](areas/14-release-testflight-deploy-mobile.md) `Travel App/app.json:54`, `app/_layout.tsx:124`, `scripts/preflight-eas-build.sh:88` | `make preflight-eas` → aborts step 1; `jq -r '.expo.extra.eas.projectId' "Travel App/app.json"` → placeholder | `eas init`, commit real projectId, set `pk_live_` Clerk key via `eas env`, re-run preflight (OWNER-DEPLOY-CHECKLIST). |
 | P0-2 | **Documented preview & prod backend hosts are not healthy** — prod profile points at `travelagent.app`; both health curls fail. | account + deploy | [14](areas/14-release-testflight-deploy-mobile.md) `Travel App/eas.json:26,34`, `backend/api/main.py:104` | `curl -fsS https://travel-agent.fly.dev/health` → DNS fail; `…travelagent.app/health` → empty reply | Deploy/repair Fly app + custom domain (or correct `eas.json`/docs to the live host); do not ship a prod build until `/health` is 200 and preflight green. |
-| P0-3 | **Unauthenticated invite accept loses invite context after sign-in** — public `GET /invites/{token}` never 401s, so token is only persisted on a 401 that never happens; accept-time 401 then routes to Trips/onboarding, dropping the join. | frontend | [02](areas/02-invite-join-auth-deeplinks.md) `Travel App/app/invite/[slug].tsx:130,350`, `components/auth/SignInImpl.tsx:137`, `utils/api/http.ts:358` | Real-auth, no session: open invite → enter intake → Join → sign-in → lands in Trips, not the trip. | Persist invite token before any auth-required redirect; make sign-in/up completion consume the pending-invite destination. Add a regression: `viewInvite` 200 then `acceptInvite` 401 ⇒ `setPendingInviteToken` + post-auth return. |
+| P0-3 | ✅ **FIXED** — **Unauthenticated invite accept loses invite context after sign-in** — public `GET /invites/{token}` never 401s, so token is only persisted on a 401 that never happens; accept-time 401 then routes to Trips/onboarding, dropping the join. | frontend | [02](areas/02-invite-join-auth-deeplinks.md) `Travel App/app/invite/[slug].tsx:130,350`, `components/auth/SignInImpl.tsx:137`, `utils/api/http.ts:358` | Real-auth, no session: open invite → enter intake → Join → sign-in → lands in Trips, not the trip. | Persisted invite token on accept-401 in `[slug].tsx`; `resolvePostAuthRoute()` helper in `utils/invitePending.ts` consumed at all sign-in/up completion sites. Tests: `__tests__/utils/invitePending.test.ts` (3), `invite-landing.smoke.test.tsx` (1 new). |
 
 *Note:* P0-1/P0-2 are largely **owner/account** work already captured in `OWNER-DEPLOY-CHECKLIST.md`. P0-3 is the only code P0 and is the cheapest high-leverage fix in the set.
 
@@ -39,8 +39,8 @@ Raw findings across 15 area reports: **60**. After cross-area dedup: **~58 uniqu
 ### Privacy / group-safe synthesis (the catastrophic-in-front-of-a-group cluster)
 - **Proposal redactor misses other members' exact private phrases** — loads only the proposer's private corpus; an organizer/agent proposal can surface another member's exact budget/medical phrase into group-visible proposal cards. [01] `_propose_present.py:225`, `core/privacy_signal.py:59`. *Fix:* load a trip-scoped corpus for all members at the proposal boundary; broaden budget-phrase coverage (`$50 ceiling`, `price cap`).
 - **Private group-interjection targets fall back to group chat** — triage encodes `target` but routing reads `target_audience`, so a private nudge can persist into the group conversation. [08] `group_interjection.py:529`, `triggers.py:75`. *Fix:* normalize interjection metadata to the triage contract (`target_audience`/`target_user_id`/`conversation_id`).
-- **Public angle browse leaks Personal Memory** — `GET /places/{slug}/angles?user_id=<uuid>` is no-auth but personalizes from that user's Personal Memory and spends LLM tokens. [10] `angles.py:254,404`, `angle_rank.py:87`. *Fix:* drop `user_id` from the public route; gate personalization behind auth+self+rate-limit.
-- **Photo-learning opt-in upgrades other members' photos** *(merged 07≡10)* — `opt-in-learning` bulk-updates all `group` photos on the trip, not just the actor's. [07] `trip_photos.py:325,485` / [10] `trip_photos.py:485`. *Fix:* scope update to `uploaded_by_user_id == actor.id`; fix copy/counts.
+- ✅ **FIXED** — **Public angle browse leaks Personal Memory** — `GET /places/{slug}/angles?user_id=<uuid>` is no-auth but personalizes from that user's Personal Memory and spends LLM tokens. [10] `angles.py:254,404`, `angle_rank.py:87`. Public route stripped of `user_id`; new authed `GET /places/{slug}/angles/personalized` rate-limited behind `get_current_user`. Frontend routes to correct endpoint based on auth state. Tests: `test_public_route_never_loads_personal_memory`, `TestPersonalizedPlaceAngles`.
+- ✅ **FIXED** — **Photo-learning opt-in upgrades other members' photos** *(merged 07≡10)* — `opt-in-learning` bulk-updates all `group` photos on the trip, not just the actor's. [07] `trip_photos.py:325,485` / [10] `trip_photos.py:485`. `_bulk_opt_in_learning` now filters to `uploaded_by_user_id == actor.id`. Test: `test_opt_in_learning_is_scoped_to_actor`.
 
 ### Invite / auth / deeplinks
 - **Raw invite tokens flow through home-card IDs, dismissals, logs, provenance** — bearer tokens become durable UI state and appear in one exception log + observation provenance. [02] `home/feed.py:431-461`, `invites.py:1000,1059`. *Fix:* use `_token_fp()`/synthetic card keys everywhere.
@@ -50,7 +50,7 @@ Raw findings across 15 area reports: **60**. After cross-area dedup: **~58 uniqu
 - **Discover/social "Plan similar" can create trips whose destination is a venue/site/recommendation title** — `createTrip({destination: item.name})` leaves `place_id` null while the app shows a string. [03] `discover/index.tsx:463`, `FeedItemRenderer.tsx:215`. *Fix:* separate "plan a destination" from "ask about this entity"; pass canonical place_id/slug.
 
 ### Concierge chat / cost / recovery
-- **Streaming concierge turns bypass the daily chat quota** — the app's primary SSE path skips `check_chat_quota`/`commit_chat_quota`. [04] `session.py:1060,1199`. *Fix:* mirror the non-streaming quota gate + spend commit in `send_message_streaming()`.
+- ✅ **FIXED** — **Streaming concierge turns bypass the daily chat quota** — the app's primary SSE path skips `check_chat_quota`/`commit_chat_quota`. [04] `session.py:1060,1199`. Quota gate + commit mirrored into `send_message_streaming()`; proactive turns skip the gate. Test: `test_streaming_refuses_when_quota_exhausted`.
 
 ### Proposal trust loop
 - **Apply can "succeed" after zero mutations** — forks a version, changes nothing, route reports `succeeded`. [05] `proposal_apply.py:266`, `proposals.py:401`. *Fix:* compute mutation count; fail when non-add proposals affect zero blocks.
@@ -67,15 +67,15 @@ Raw findings across 15 area reports: **60**. After cross-area dedup: **~58 uniqu
 - **Post-seed drift checker can miss real Qdrant/Postgres divergence** — `check_seed_drift.py` reads only Postgres and only direct-city `place_id`, so a wiped/stale Qdrant or child-place content reports "clean." [12] `check_seed_drift.py:50,59`. *Fix:* resolve the full city subtree and verify actual Qdrant point existence/payload for each non-null pointer.
 
 ### Booking / expense trust
-- **Booking routes allow cross-trip session/offer mutations (IDOR)** — nested IDs aren't proven to belong to the path trip; cart-confirm can confirm a foreign session, emit an event on the wrong trip, and auto-create expenses cross-trip. [13] `booking.py:203,314,326`, `expenses/auto_log.py:75`. *Fix:* shared guards loading+validating each parent resource (mirror the proposal route's `proposal.trip_id` check).
-- **Expense create trusts client `paid_by` and share `user_id`s** — a member can attribute payment to others or include non-members. [13] `expenses.py:145,882`. *Fix:* validate `paid_by`/share users are trip members; default to `actor.id`.
+- ✅ **FIXED** — **Booking routes allow cross-trip session/offer mutations (IDOR)** — nested IDs aren't proven to belong to the path trip; cart-confirm can confirm a foreign session, emit an event on the wrong trip, and auto-create expenses cross-trip. [13] `booking.py:203,314,326`, `expenses/auto_log.py:75`. `_require_session_in_trip` / `_require_offer_in_session` guards applied to all booking endpoints; `auto_log.py` defense-in-depth check added. Tests: `test_get_session_cross_trip_is_404`, `test_confirm_cart_cross_trip_is_404_and_no_mutation`.
+- ✅ **FIXED** — **Expense create trusts client `paid_by` and share `user_id`s** — a member can attribute payment to others or include non-members. [13] `expenses.py:145,882`. `_assert_trip_members()` validates `paid_by` + share user IDs against trip membership on create/update/receipt-ocr; `add_comment` enforces `user_id == actor.id`. Tests: `test_rejects_non_member_paid_by`, `test_rejects_non_member_share_user`, `test_rejects_comment_authored_as_another_user`.
 - **Booking UI claims "Booked" / "AI books directly" before any provider order exists** — no provider `book()`/`create_order()` in the ABC yet. [13] `BookingConfirmationCard.tsx:31`, `booking/[sessionId].tsx:322`. *Fix:* reserve "booked/confirmed" for provider-confirmed states; rename to "in progress/handoff ready"; gate behind the live-booking flag.
 
 ### Frontend data contract
 - **Narration audio preflight uses HEAD against a GET-only route (405)** — cached audio silently treated as unavailable. [09] `useNarrationAudio.ts:192`, `narration.py:586`, `docs/openapi.json:7908`. *Fix:* add a backend `HEAD` route or switch the probe to a contract method; extend coverage to raw `fetch()` sites.
 
 ### Async workers / scheduled tasks
-- **`DISABLE_LLM_BACKGROUND_LOOPS=true` misses post-trip LLM work** — summaries/reflections/debrief/memory-refresh/story still spend in "cheap" mode. [11] `lifecycle.py:251,256`, `db/trips.py:198`. *Fix:* centralize a `background_llm_enabled()` gate at every autonomous post-trip entry point.
+- ✅ **FIXED** — **`DISABLE_LLM_BACKGROUND_LOOPS=true` misses post-trip LLM work** — summaries/reflections/debrief/memory-refresh/story still spend in "cheap" mode. [11] `lifecycle.py:251,256`, `db/trips.py:198`. New `backend/core/background_config.py::background_llm_enabled()` helper; gate applied in `_fire_post_trip_tasks`, `post_trip_subscribers._on_trip_completed`+handler, `post_trip_memory_refresh._on_trip_completed`+handler, `trip_story_subscriber._on_trip_completed`+handler, `cross_trip_thread_subscriber._on_trip_completed`. Tests: `tests/core/test_background_config.py` (22 cases).
 - **Claimed scheduled tasks can stick forever after a crash** — only `pending` rows are selected; a process death between claim and `mark_done` strands the row. [11] `scheduled_tasks.py:201,216`. *Fix:* stale-claim reaper resetting old `claimed` rows to `pending` with a cooldown.
 
 ### Release / platform (App Store gating)
@@ -126,9 +126,9 @@ Raw findings across 15 area reports: **60**. After cross-area dedup: **~58 uniqu
 
 **A. Shortest path to first safe *internal* (TestFlight, trusted) dogfood**
 1. P0-1 + P0-2 — owner deploy chain: `eas init` + real projectId + `pk_live_` key; bring up Fly + `travelagent.app`, `/health` green; `make preflight-eas` green. *(account-bound; start now)*
-2. P0-3 — invite-context persistence across sign-in. *(cheapest code P0; unblocks 2nd user)*
-3. The two security P1s most likely to bite even a trusted group: booking cross-trip IDOR (13) and public angle Personal-Memory leak (10) — both are simple auth scoping fixes.
-4. Streaming chat quota (04) + background-LLM pause gate (11) — cap spend before real traffic.
+2. ✅ **DONE** — P0-3 invite-context persistence across sign-in.
+3. ✅ **DONE** — Booking cross-trip IDOR (13) + public angle Personal-Memory leak (10) + photo-learning opt-in scope (07/10).
+4. ✅ **DONE** — Streaming chat quota (04) + background-LLM pause gate (11) + expense payer/share validation (13).
 
 **B. Path to a clean TestFlight submission (App Store review)**
 5. Mic/audio disclosure alignment (14 P1) + finalized privacy policy (14 P1) + AASA smoke shape (14 P2) + Dockerfile `/health` (14 P3).
@@ -162,16 +162,24 @@ Raw findings across 15 area reports: **60**. After cross-area dedup: **~58 uniqu
 | targeted `npm test` suites | **pass** | 01,03,04,06,07,08,09 |
 | `check_seed_drift.py` test | pass (but checker logic gap, 12 P1) | 12 |
 
+**Not run (blocked or out of audit scope):**
+- **Blocked by red gates (14):** `eas build`/`eas submit`, authenticated `make smoke` (`SMOKE_VERIFY_AUTH`), worker smoke (`SMOKE_VERIFY_WORKER`), concierge smoke, Apple-CDN AASA validation (`SMOKE_VERIFY_APPLE_CDN`) — all sit behind `make preflight-eas` + a live `/health`, both red.
+- **Out of scope by audit rule (no live LLM/provider/paid/prod calls):** live LLM/SSE end-to-end (04,15), provider/booking/OCR canaries (13), live Clerk device + Universal-Link CDN flow (02), live Postgres/Qdrant E2E + latency repros (01,03,05,07,12,15), scheduled-task crash/restart + arq-on-Redis repros (11), device performance profile (15).
+- These "not run" items are where residual uncertainty concentrates: the deterministic/static layer is green, but the real-backend, real-auth, and real-provider paths are unverified — itself the argument for sequencing the deploy chain (P0-1/P0-2) before trusting any real-backend phase.
+
 ---
 
 ## Final Recommendation
 
-**Fix now (this/next session — cheap, high-leverage, mostly code):**
-- P0-3 invite-context persistence across sign-in (the only code P0).
-- Booking cross-trip IDOR (13) and public angle `user_id` Personal-Memory leak (10) — small auth-scoping fixes, highest privacy/$$ blast radius.
-- Photo-learning opt-in scoping (07/10) — one-line `uploaded_by_user_id` filter.
-- Streaming chat quota parity (04) + close the `DISABLE_LLM_BACKGROUND_LOOPS` post-trip gap (11) — spend safety before any real traffic.
+**Fixed (in-session):**
+- ✅ P0-3 invite-context persistence across sign-in.
+- ✅ Booking cross-trip IDOR (13) + expense payer/share identity spoofing (13).
+- ✅ Public angle Personal-Memory leak (10) + photo-learning cross-user consent (07/10).
+- ✅ Streaming chat quota parity (04) + `DISABLE_LLM_BACKGROUND_LOOPS` post-trip gap (11).
+
+**Still to fix (next sessions):**
 - Fix the red test `tests/api/test_invites_api.py:440` (02 P3) so the invite suite is green.
+- Remaining privacy-to-group cluster (owner deploy chain — P0-1/P0-2 is account-bound).
 
 **Gate now (add the CI/lint guards so these classes can't regress):**
 - Nested-resource trip-ownership test/lint (IDOR class).
