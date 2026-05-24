@@ -14237,6 +14237,57 @@
         }
       }
     },
+    "/api/me/map": {
+      "get": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "Get My Map",
+        "description": "Every mapped venue across all the user's trips \u2014 the \"Your Map\" surface.\n\nAggregates each trip's itinerary blocks that resolved to coordinates into\na single list tagged by trip, for the Memory-surface map (everywhere\nyou've been, pins colored by trip). The per-trip equivalent is\n``GET /api/trips/{id}/map-state``. Runs the sync aggregation off the\nevent loop via ``to_thread``.",
+        "operationId": "get_my_map_api_me_map_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserMapResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/me/profile-fact/dispute": {
       "post": {
         "tags": [
@@ -32599,6 +32650,17 @@
               }
             ],
             "title": "Latest Sender Type"
+          },
+          "latest_message_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latest Message At"
           }
         },
         "type": "object",
@@ -33154,6 +33216,130 @@
         },
         "type": "object",
         "title": "UserInterests"
+      },
+      "UserMapResponse": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "trips": {
+            "items": {
+              "$ref": "#/components/schemas/UserMapTrip"
+            },
+            "type": "array",
+            "title": "Trips"
+          },
+          "venues": {
+            "items": {
+              "$ref": "#/components/schemas/UserMapVenue"
+            },
+            "type": "array",
+            "title": "Venues"
+          },
+          "trip_count": {
+            "type": "integer",
+            "title": "Trip Count",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id"
+        ],
+        "title": "UserMapResponse",
+        "description": "GET /api/me/map response \u2014 all mapped venues across all trips."
+      },
+      "UserMapTrip": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "start_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start Date"
+          },
+          "end_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Date"
+          },
+          "venue_count": {
+            "type": "integer",
+            "title": "Venue Count",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "title",
+          "status"
+        ],
+        "title": "UserMapTrip",
+        "description": "One trip that contributed at least one mapped venue.\n\nThe frontend keys pin color off ``trip_id`` and looks up trip metadata\n(title, dates, status) here, so the per-venue payload stays small."
+      },
+      "UserMapVenue": {
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Block Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "lat": {
+            "type": "number",
+            "title": "Lat"
+          },
+          "lng": {
+            "type": "number",
+            "title": "Lng"
+          },
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "block_id",
+          "name",
+          "lat",
+          "lng",
+          "trip_id"
+        ],
+        "title": "UserMapVenue",
+        "description": "A single placed stop on the cross-trip map.\n\n``block_id`` is the itinerary block id (stable per stop) \u2014 venues can\nrecur across trips, so the block id is the right de-dup/key handle.\nOnly blocks that resolved to real coordinates appear here."
       },
       "UserMeResponse": {
         "properties": {
