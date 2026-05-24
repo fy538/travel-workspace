@@ -7948,12 +7948,86 @@
       }
     },
     "/api/trips/{trip_id}/narration/audio/{entity_type}/{entity_id}": {
+      "head": {
+        "tags": [
+          "narration"
+        ],
+        "summary": "Guide Audio Head",
+        "description": "HEAD probe for pre-rendered narration audio \u2014 cheap existence check.\n\nReturns 200 with ``Content-Length`` and ``Content-Type`` headers when audio\nis cached and ready, 404 when not.\n\nWhy a dedicated HEAD route rather than relying on FastAPI/Starlette's\nimplicit HEAD-from-GET behaviour:\n- The GET handler returns a ``StreamingResponse`` backed by a generator.\n  Starlette's implicit HEAD strips the body but still executes the handler\n  including the generator, meaning it fetches the full audio blob just to\n  discard it.\n- This explicit HEAD issues a single lightweight COUNT-style query against\n  ``narration_audio_cache``, reading only ``audio_size_bytes`` (no blob).\n- Matches the client contract: ``useNarrationAudio`` does a HEAD check\n  to confirm availability before creating an ``expo-audio`` player;\n  eliminating the GET overhead makes that check ~10\u00d7 cheaper.",
+        "operationId": "guide_audio_head_api_trips__trip_id__narration_audio__entity_type___entity_id__head",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "entity_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Entity Type"
+            }
+          },
+          {
+            "name": "entity_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Entity Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
       "get": {
         "tags": [
           "narration"
         ],
         "summary": "Guide Audio Cached",
-        "description": "Return pre-rendered MP3 audio for a stop, or 404 if not yet cached.\n\nUsed by ``useNarrationAudio`` on the mobile client to play narration audio\nwhen available. The audio cache is populated by the prerender pipeline\n(``backend/guide/prerender.py``) which fires on ``itinerary.committed``\nevents. Cache miss is normal \u2014 the chat narration card silently\nomits the play button when audio isn't ready.",
+        "description": "Return pre-rendered MP3 audio for a stop, or 404 if not yet cached.\n\nUsed by ``useNarrationAudio`` on the mobile client to play narration audio\nwhen available. The audio cache is populated by the prerender pipeline\n(``backend/guide/prerender.py``) which fires on ``itinerary.committed``\nevents. Cache miss is normal \u2014 the chat narration card silently\nomits the play button when audio isn't ready.\n\nFor a lightweight existence check (no blob transfer), use the sibling\n``HEAD /audio/{entity_type}/{entity_id}`` endpoint.",
         "operationId": "guide_audio_cached_api_trips__trip_id__narration_audio__entity_type___entity_id__get",
         "parameters": [
           {
