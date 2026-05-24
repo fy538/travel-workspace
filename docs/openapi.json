@@ -4914,6 +4914,79 @@
         }
       }
     },
+    "/api/dossiers/place/{slug}": {
+      "get": {
+        "tags": [
+          "dossiers"
+        ],
+        "summary": "List Place Dossiers",
+        "description": "List editorial dossiers for a place (Discover feed source).\n\nPowers the Discover blended feed's editorial source. For a city, folds in\nits neighborhood children so the rich neighborhood-level content surfaces\nunder the city slug the app browses by.",
+        "operationId": "list_place_dossiers_api_dossiers_place__slug__get",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Slug"
+            }
+          },
+          {
+            "name": "include_neighborhoods",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Fold in child-neighborhood dossiers (city \u2192 its neighborhoods). Editorial content is authored at neighborhood granularity, so a city-level feed aggregates its children to surface it.",
+              "default": true,
+              "title": "Include Neighborhoods"
+            },
+            "description": "Fold in child-neighborhood dossiers (city \u2192 its neighborhoods). Editorial content is authored at neighborhood granularity, so a city-level feed aggregates its children to surface it."
+          },
+          {
+            "name": "travel_lens",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Filter by travel_lens (why_here/day_in/affinity/insider/tension/ritual)",
+              "title": "Travel Lens"
+            },
+            "description": "Filter by travel_lens (why_here/day_in/affinity/insider/tension/ritual)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlaceDossierListResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/dossiers/venue/{venue_id}": {
       "get": {
         "tags": [
@@ -27163,6 +27236,115 @@
         ],
         "title": "PlaceAnglesByLens",
         "description": "Response for ``GET /api/places/{slug}/angles/by-lens``.\n\n``lens_groups`` contains one entry per lens that has \u2265 1 published angle.\n``unlensed`` holds published angles without a ``travel_lens`` value (older\ncontent or user-query angles that weren't assigned one)."
+      },
+      "PlaceDossierItem": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "place_slug": {
+            "type": "string",
+            "title": "Place Slug"
+          },
+          "place_name": {
+            "type": "string",
+            "title": "Place Name"
+          },
+          "angle": {
+            "type": "string",
+            "title": "Angle"
+          },
+          "travel_lens": {
+            "type": "string",
+            "title": "Travel Lens"
+          },
+          "thesis": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Thesis"
+          },
+          "excerpt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Excerpt"
+          },
+          "thematic_tags": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Thematic Tags"
+          },
+          "word_count": {
+            "type": "integer",
+            "title": "Word Count"
+          },
+          "review_status": {
+            "type": "string",
+            "title": "Review Status"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "place_slug",
+          "place_name",
+          "angle",
+          "travel_lens",
+          "word_count",
+          "review_status",
+          "created_at"
+        ],
+        "title": "PlaceDossierItem",
+        "description": "A place dossier listing item, carrying its source place so a city-level\nfeed can show which neighborhood each dossier came from."
+      },
+      "PlaceDossierListResponse": {
+        "properties": {
+          "place_slug": {
+            "type": "string",
+            "title": "Place Slug"
+          },
+          "place_name": {
+            "type": "string",
+            "title": "Place Name"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/PlaceDossierItem"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "place_slug",
+          "place_name",
+          "items",
+          "count"
+        ],
+        "title": "PlaceDossierListResponse"
       },
       "PlaceRef": {
         "properties": {
