@@ -93,10 +93,10 @@ Design scores updated 2026-05-24 after the design-kit migration (see §4).
 | Venue Card | A | `venue_card` | — | `venue_card` | `VenueCard.tsx` | `post_venue_card` | 4.5 ✅kit |
 | Narration | S | `narration` | — | `narration` | `NarrationCard.tsx` | narrate endpoint (user-triggered) | 4 ✅kit |
 | Travel-DNA Reflection | S | `notification` | `taste_dna_reflection` | `taste_dna_reflection` | `TravelDNACard.tsx` | `first_contact.py` | 4 |
-| Booking Confirmation | A | `booking_confirmation` ⚠️ | `booking_confirmation` | `booking_confirmation` | `BookingConfirmationCard.tsx` | `confirm_booking` | 2 |
-| Booking Proposal | A | `booking_proposal` ⚠️ | — | `booking_proposal` | `BookingProposalCard.tsx` | `propose_booking` (DB row; card path unverified) | 2 |
-| Change Applied | A+S | `change_applied` | `change_applied` | `change_applied` | `ChangeAppliedCard.tsx` | `propose_change` auto_approve · cron resolve · `PATCH /proposals` | 2 |
-| Notification | S | `notification` | `notification` | `notification_card` | `NotificationCard.tsx` | `proactive.py`, `proposal_automation.py` | 2 |
+| Booking Confirmation | A | `booking_confirmation` ⚠️ | `booking_confirmation` | `booking_confirmation` | `BookingConfirmationCard.tsx` | `confirm_booking` | 3.5 ✅kit |
+| Booking Proposal | A | `booking_proposal` ⚠️ | — | `booking_proposal` | `BookingProposalCard.tsx` | `propose_booking` (DB row; card path unverified) | 2 (deferred) |
+| Change Applied | A+S | `change_applied` | `change_applied` | `change_applied` | `ChangeAppliedCard.tsx` | `propose_change` auto_approve · cron resolve · `PATCH /proposals` | 3.5 ✅kit |
+| Notification | S | `notification` | `notification` | `notification_card` | `NotificationCard.tsx` | `proactive.py`, `proposal_automation.py` | 3.5 ✅kit |
 | Lazy-Research badge | S | `text` | (metadata.kind=`lazy_research_answer`) | `lazy_research` | `LazyResearchBadge.tsx` | B-fast research worker | 1 (badge) |
 | Itinerary | F | — | — | `itinerary` | `ItineraryCard.tsx` | none found (mock/legacy) | 2 |
 | Voting | F | — | — | `voting` | `VotingCard.tsx` | none found (mock/legacy; superseded by Vote Widget) | 1 |
@@ -199,11 +199,14 @@ don't re-implement:
 `CardChipRow` for any tappable options. That reproduces the TripShapes bar by
 default — no inline letterpress, no generic purple.
 
-**Migration status:** the chip family + recommendation/narration cards are on the
-kit — TripShapes, ReactionCard, VoteWidgetCard (5), VenueCard (4.5), NarrationCard
-(4), plus TravelDNACard (4, via EditorialCard already). Still utilitarian (no kit):
-the receipt-style cards (Booking Confirmation, Booking Proposal, Change Applied),
-Notification, and the orphan mock cards (Itinerary, Voting, Map).
+**Migration status:** on the kit — TripShapes, ReactionCard, VoteWidgetCard (5),
+VenueCard (4.5), NarrationCard (4), TravelDNACard (4, via EditorialCard already),
+and the receipt/notification cards ChangeApplied, BookingConfirmation, Notification
+(3.5 — `EditorialCard` default-tone letterpress + their *semantic* accents
+olive/slate/type; intentionally not agent-purple, which stays reserved for cards
+where Vesper is actively conversing). Remaining: BookingProposalCard (deferred —
+not backend-emitted, larger fetched accept/reject component) and the orphan mock
+cards (Itinerary, Voting, Map).
 
 **Still missing:** a sanctioned rich-text field for prose-bearing fields (see
 markdown risk in §6) — NarrationCard's body still renders as plain `<Text>`.
@@ -231,13 +234,14 @@ Agent-side guidance is **good but scattered** across the ~2000-line
 
 ## 6. Known contract risks
 
-1. **Booking Confirmation message_type not in CHECK constraint** —
-   `create_booking_confirmation_card` writes `message_type="booking_confirmation"`
-   (`structured_messages.py:450`) but the constraint allows only the 9 values in
-   §1. Insert raises IntegrityError against Postgres. **Fix:** either a migration
-   expanding the CHECK, or reuse an allowed `message_type` + `card_type`
-   discriminator. Verify whether the `confirm_booking` path has run against a real
-   DB. Same applies to **Booking Proposal** (`booking_proposal` also absent).
+1. **Booking Confirmation message_type not in CHECK constraint** — *fix written,
+   commit held.* `create_booking_confirmation_card` writes
+   `message_type="booking_confirmation"`; the insert is wrapped in try/except in
+   `confirm_booking`, so it failed *silently* (booking succeeds, no receipt card).
+   Fix: migration `b1c9a4e7f2d8_add_booking_card_message_types` adds
+   `booking_confirmation` + `booking_proposal` to the CHECK (+ tables.py). Held
+   uncommitted because it chains onto an in-flight uncommitted migration
+   (`a7c3e1b9d2f5_per_person_stays`); lands once that work is committed.
 2. **Booking Proposal has no message creator** — frontend renders it; no backend
    path writes `message_type='booking_proposal'`. Frontend-ready, backend-pending.
 3. **Markdown-leak fields** — these render prose in plain `<Text>` and will show
@@ -254,11 +258,12 @@ Agent-side guidance is **good but scattered** across the ~2000-line
 ## 7. Roadmap (proposed)
 
 1. ✅ This catalog (source of truth).
-2. ✅ **Design kit** — `EditorialCard tone="agent"` (reused) + new `CardEyebrow` /
-   `CardChipRow`; migrated TripShapes, Reaction, Vote, Venue, Narration to the
-   bar. *Remaining:* receipt cards (Booking Confirmation/Proposal, Change
-   Applied), Notification.
+2. ✅ **Design kit** — `EditorialCard` (reused) + new `CardEyebrow` /
+   `CardChipRow`; migrated TripShapes, Reaction, Vote, Venue, Narration, plus the
+   receipt/notification cards ChangeApplied, BookingConfirmation, Notification.
+   *Remaining:* BookingProposalCard (deferred) + orphan mock cards.
 3. **Prompt module** — a unified "expressive surfaces" skill + per-card quality
    bars, kept in sync with §2.
-4. **Resolve §6 risks** — booking message_type migration/discriminator; markdown
-   policy (sanctioned rich-text field for NarrationCard body etc.); orphan cleanup.
+4. **Resolve §6 risks** — booking constraint fix written (held, see §6 #1);
+   markdown policy (sanctioned rich-text field for NarrationCard body etc.);
+   orphan cleanup.
