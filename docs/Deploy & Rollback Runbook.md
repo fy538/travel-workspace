@@ -41,6 +41,43 @@ First-time deploy + secrets: `make fly-secrets` (emits the paste-ready template;
 
 ## 3. Frontend deploy (EAS / TestFlight)
 
+### How EAS Build works (plain English)
+
+Every iOS app has to be compiled into a native binary by Xcode on a Mac. EAS Build rents you a Mac in the cloud so you don't have to run that locally. You push your source code to Expo's servers, they compile it, and hand you a `.ipa` file you can install on a phone.
+
+```
+You change code  →  eas build  →  Expo compiles on a cloud Mac  →  install link / TestFlight
+```
+
+**What requires a full rebuild vs. not:**
+- **Full rebuild required:** adding a new native library, changing permissions, changing the bundle ID or app icon, bumping the SDK version.
+- **No rebuild needed (OTA via `eas update`):** any JavaScript/TypeScript change — screens, components, API calls, copy. `eas update` ships a new JS bundle and users get it on next app launch. *We don't have `expo-updates` wired in yet, so this doesn't apply yet — every change currently needs a rebuild.*
+
+### Build profiles
+
+| Profile | Who installs | Auth | Backend | Use for |
+|---|---|---|---|---|
+| `development` | Simulator only | SKIP_AUTH=true | mock data | Local dev, no phone needed |
+| `dogfood` | Your phone (ad-hoc) | SKIP_AUTH=true | vesper-backend.fly.dev | Personal testing on device |
+| `preview` | Internal testers (ad-hoc) | Clerk required | vesper-backend.fly.dev | Sharing with early testers |
+| `production` | App Store / TestFlight | Clerk required | travelagent.app | Public release |
+
+### Dogfood build (internal, on your phone)
+
+```bash
+cd "Travel App"
+eas build --platform ios --profile dogfood
+# EAS prints an install link when done — open it on your iPhone
+# or it emails you; build takes ~15 min in the free queue
+```
+
+- Installs directly on your phone via an ad-hoc provisioning profile (no App Store).
+- Registered device: your iPhone UDID `00008140-001210CE2013C01C` is in the provisioning profile.
+- Adding a new test device: run `eas device:create` → select "Website" → open the URL on the new phone → re-run the build.
+- Credentials live on Expo's server under `@fyan/travel-app` — no local keychain needed.
+
+### Production build (TestFlight / App Store)
+
 ```bash
 make preflight-eas          # MUST be green — validates eas.json production env, contract, tests
 cd "Travel App"
@@ -48,7 +85,6 @@ eas build --platform ios --profile production
 # then submit from App Store Connect (or `eas submit -p ios --profile production`)
 ```
 
-- `eas.json` profiles: `development` (mock), `preview` (→ `https://travel-agent.fly.dev`), `production` (→ `https://travelagent.app`).
 - The Clerk `pk_live_` key is an EAS env var (not committed) — see Owner Action Items #3.
 - Runtime backstop: `app/_layout.tsx` throws on boot of any release build left in mock / skip-auth mode, or missing the Clerk key.
 
