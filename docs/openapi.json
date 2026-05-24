@@ -1858,8 +1858,51 @@
           "angles"
         ],
         "summary": "List Place Angles",
-        "description": "List published angles for a place, ordered by priority + distinctiveness.\n\nPassing ``user_id`` overlays per-user personalization: each angle\npicks up a ``why_for_you`` hook and ``personalization_rank`` from\nthe reader's Personal Memory, and the list is reordered by that\nrank. Anonymous callers (no ``user_id``) get the editorial order.",
+        "description": "List published angles for a place in editorial order (priority +\ndistinctiveness). No personalization \u2014 signed-in readers should call\n``/angles/personalized`` instead, which derives identity from the Bearer\ntoken rather than a query param.",
         "operationId": "list_place_angles_api_places__slug__angles_get",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Slug"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlaceAngles"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/places/{slug}/angles/personalized": {
+      "get": {
+        "tags": [
+          "angles"
+        ],
+        "summary": "List Place Angles Personalized",
+        "description": "Personalized angle list for the signed-in reader.\n\nThe reader's identity comes from the Bearer token (``actor``), never a\nquery param \u2014 so no user id rides in the URL and a caller can only ever\npersonalize against their own Personal Memory. Falls back to editorial\norder when the reader has no memory yet (200, not 404 \u2014 an empty profile\nis a normal state, not an error). Rate-limited because each call with a\npopulated memory spends a Haiku turn in ``_apply_personalization``.",
+        "operationId": "list_place_angles_personalized_api_places__slug__angles_personalized_get",
         "parameters": [
           {
             "name": "slug",
@@ -1871,20 +1914,19 @@
             }
           },
           {
-            "name": "user_id",
-            "in": "query",
+            "name": "authorization",
+            "in": "header",
             "required": false,
             "schema": {
               "anyOf": [
                 {
-                  "type": "string",
-                  "format": "uuid"
+                  "type": "string"
                 },
                 {
                   "type": "null"
                 }
               ],
-              "title": "User Id"
+              "title": "Authorization"
             }
           }
         ],
