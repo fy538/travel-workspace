@@ -223,12 +223,17 @@ Agent-side guidance is **good but scattered** across the ~2000-line
 - always `post_venue_card` after text — `:766`
 - `generate_trip_shapes` as cold-start move — `:463`
 
-**Gaps:**
-- No single "expressive surfaces" framing — nowhere does the agent see its card
-  vocabulary as a *set* ("here are your rich surfaces, here's when each shines").
-- No per-card **quality bar** — guidance says *when* to emit, rarely *how to fill
-  the fields well* (e.g. trip-shapes: vivid distinct names, 3-4 concrete anchors,
-  no overlap). This is the gap between "emits a card" and "emits a great card."
+**Expressive-surfaces skill** (`backend/concierge/_prompts_skill_cards.py`,
+`SKILL_EXPRESSIVE_SURFACES`) — *written, commit held* (backend blocked by the
+in-flight per-person-stays / OpenAPI state, same as §6 #1). Closes both prior
+gaps: it frames the card vocabulary as a *set* and gives a per-card **quality
+bar** (how to fill each well — e.g. trip-shapes: vivid distinct names, 3-4
+concrete non-overlapping anchors), explicitly deferring *when* to emit to the
+Tools skill so it doesn't duplicate tuned text. Wired in `_prompts_select.py`
+(registered `concierge.skill.expressive_surfaces`), **group-only** + gated on
+recommend-likely, not-ambient (reaction/vote are group-coordination surfaces;
+personal 1:1 keeps venue guidance via `recommending_venues`). The scattered
+when-to-use guidance above still lives in `_prompts_skills.py`.
 
 ---
 
@@ -262,8 +267,8 @@ Agent-side guidance is **good but scattered** across the ~2000-line
    `CardChipRow`; migrated TripShapes, Reaction, Vote, Venue, Narration, plus the
    receipt/notification cards ChangeApplied, BookingConfirmation, Notification.
    *Remaining:* BookingProposalCard (deferred) + orphan mock cards.
-3. **Prompt module** — a unified "expressive surfaces" skill + per-card quality
-   bars, kept in sync with §2.
+3. ✅ **Prompt module** — `SKILL_EXPRESSIVE_SURFACES` (card vocabulary +
+   per-card quality bars), group-gated. Written, commit held (see §5).
 4. **Resolve §6 risks** — booking constraint fix written (held, see §6 #1);
    markdown policy (sanctioned rich-text field for NarrationCard body etc.);
    orphan cleanup.
