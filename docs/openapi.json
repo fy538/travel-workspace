@@ -17286,6 +17286,21 @@
             ],
             "title": "Is Primary"
           },
+          "visibility": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "group",
+                  "private"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Visibility"
+          },
           "confidence": {
             "anyOf": [
               {
@@ -17315,6 +17330,18 @@
             "type": "string",
             "format": "uuid",
             "title": "Trip Id"
+          },
+          "user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "User Id"
           },
           "accommodation_id": {
             "anyOf": [
@@ -17383,6 +17410,15 @@
             "type": "boolean",
             "title": "Is Primary"
           },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "group",
+              "private"
+            ],
+            "title": "Visibility",
+            "default": "group"
+          },
           "source": {
             "type": "string",
             "title": "Source"
@@ -17429,6 +17465,18 @@
       },
       "AccommodationWriteRequest": {
         "properties": {
+          "user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "User Id"
+          },
           "accommodation_id": {
             "anyOf": [
               {
@@ -17498,6 +17546,15 @@
             "type": "boolean",
             "title": "Is Primary",
             "default": true
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "group",
+              "private"
+            ],
+            "title": "Visibility",
+            "default": "group"
           },
           "source": {
             "type": "string",
