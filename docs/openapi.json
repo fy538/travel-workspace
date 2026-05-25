@@ -23530,6 +23530,16 @@
               }
             ],
             "title": "Interaction Id"
+          },
+          "interruption": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/InterruptionAction"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -23593,6 +23603,74 @@
         ],
         "title": "InterruptedNarrationContext",
         "description": "What the client knows about the narration that was interrupted."
+      },
+      "InterruptionAction": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "ignore",
+              "adapt_next_narration",
+              "stop_voice",
+              "open_guidance",
+              "answer_then_resume"
+            ],
+            "title": "Action"
+          },
+          "resume_narration": {
+            "type": "boolean",
+            "title": "Resume Narration",
+            "default": false
+          },
+          "suggested_intent": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Suggested Intent"
+          },
+          "quiet_for_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Quiet For Seconds"
+          },
+          "session_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Session Id"
+          },
+          "reason": {
+            "type": "string",
+            "title": "Reason"
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "action",
+          "reason"
+        ],
+        "title": "InterruptionAction"
       },
       "InviteAcceptResponse": {
         "properties": {
