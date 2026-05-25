@@ -237,6 +237,15 @@ Split by surface, wired in `_prompts_select.py`:
 The scattered when-to-use guidance still lives in `_prompts_skills.py`. Note:
 effectiveness is unverified by eval/dogfood — it passes structural checks only.
 
+**Mode gating is now hard, not just prompt-deep.** The group-coordination cards
+(reaction via `present_options`, vote via `propose_change`, plus
+`compose_group_message`) are dropped from the tool surface on personal turns
+(`_GROUP_ONLY_TOOLS` in `_tools_select.py`), and `_execute_present_options`
+rejects a personal call as defense in depth. So a 1:1 can't emit a reaction/vote
+card even if the prompt slips. Trip-shapes / venue / booking cards remain
+available in both modes. The privacy/compose machinery (`is_group`
+strict-compose) is the separate, already-correct gate.
+
 ---
 
 ## 6. Known contract risks
