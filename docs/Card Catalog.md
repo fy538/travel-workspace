@@ -259,30 +259,18 @@ strict-compose) is the separate, already-correct gate.
    deployed** — the migration must run against prod before the receipt path works.
 2. **Booking Proposal has no message creator** — frontend renders it; no backend
    path writes `message_type='booking_proposal'`. Frontend-ready, backend-pending.
-3. **Markdown-leak fields — DECISION NEEDED.** These render prose in a plain
-   `<Text>` and will show raw `**` / `*` if the backend ever puts markdown there:
-   NarrationCard body (highest risk — it's article-length prose), VoteWidgetCard
-   `description`, BookingProposalCard `notes`, ReactionCard/NotificationCard
-   `content`. Cards are *artifact surfaces* (that's why TripShapes reads clean as
-   structured fields), so the default stance is "no markdown in cards." Two ways
-   to make that true and safe:
-
-   - **Option A — structured-only (recommended for everything except narration).**
-     Keep card fields plain; the backend must send display-ready strings (no
-     markdown). Cheap, preserves the artifact feel. Add a tiny `stripMarkdown()`
-     guard at the mapper boundary (`messageMapping.ts`) so a stray `**` degrades
-     to clean text instead of leaking. Risk: a backend that *wants* emphasis
-     can't get it.
-   - **Option B — one sanctioned rich-text field, narration only.** NarrationCard
-     body is genuinely long-form prose and is the one place markdown earns its
-     keep. Render *only* that field through the existing markdown stack (reuse
-     `PrivateVesperNote`'s article-scale config) and leave every other card
-     field plain. Scoped, low-blast-radius.
-
-   **Recommendation:** A everywhere + B for NarrationCard body. That's "cards are
-   structured, the one prose card reads like prose." Both are ~an afternoon; A's
-   `stripMarkdown` guard is the higher-value half (it closes the leak class for
-   all cards at once). Not yet implemented — this is the open decision.
+3. **Markdown-leak fields — ✅ resolved (structured-only + one rich-text field).**
+   Cards are *artifact surfaces*, so the rule is "no markdown in card fields"
+   except the one genuinely long-form field. Implemented:
+   - **`stripMarkdown()`** (`utils/stripMarkdown.ts`, unit-tested) runs at the
+     mapper boundary on the plain-`<Text>` prose fields — reaction `content`,
+     notification `content`, vote `title`+`description` — and on BookingProposal
+     `notes` in its component (API-fetched, not via the mapper). A stray `**`
+     degrades to clean text. It deliberately ignores underscores so snake_case
+     (`trip_shapes`) isn't mangled.
+   - **NarrationCard body** is the one sanctioned rich-text field — it renders
+     through the markdown stack (bold/italic/bullets format properly).
+   - Trip-shapes fields are left untouched (structured/short, the gold standard).
 4. **Orphan attachment types** — `voting` removed (superseded by the Vote
    Widget; component + union member + mock deleted). `itinerary` and `map_card`
    remain: no backend creator yet, but they read as intended-future features
@@ -301,7 +289,7 @@ strict-compose) is the separate, already-correct gate.
    kept as mock placeholders.
 3. ✅ **Prompt module** — `SKILL_EXPRESSIVE_SURFACES` + `SKILL_GROUP_CARD_SURFACES`
    (card vocabulary + per-card quality bars), surface-split. Shipped (see §5).
-4. **Resolve §6 risks** — booking constraint ✅ fixed (deploy the migration, §6 #1);
-   `voting` orphan ✅ removed; **markdown policy is the open decision** (§6 #3 —
-   recommend structured-only + `stripMarkdown` guard, rich-text for NarrationCard
-   body only).
+4. **§6 risks** — booking constraint ✅ fixed (still needs the migration deployed
+   to prod, §6 #1); `voting` orphan ✅ removed; markdown policy ✅ implemented
+   (`stripMarkdown` guard on card fields + rich-text for the NarrationCard body).
+   Only carryover left: **deploy the booking migration.**
