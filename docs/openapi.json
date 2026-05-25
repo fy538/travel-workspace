@@ -29103,6 +29103,20 @@
             },
             "type": "array",
             "title": "Revert Conflicts"
+          },
+          "applied_block_map": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Applied Block Map"
           }
         },
         "type": "object",
