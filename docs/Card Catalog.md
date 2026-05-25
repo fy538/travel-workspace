@@ -93,7 +93,7 @@ Design scores updated 2026-05-24 after the design-kit migration (see §4).
 | Venue Card | A | `venue_card` | — | `venue_card` | `VenueCard.tsx` | `post_venue_card` | 4.5 ✅kit |
 | Narration | S | `narration` | — | `narration` | `NarrationCard.tsx` | narrate endpoint (user-triggered) | 4 ✅kit |
 | Travel-DNA Reflection | S | `notification` | `taste_dna_reflection` | `taste_dna_reflection` | `TravelDNACard.tsx` | `first_contact.py` | 4 |
-| Booking Confirmation | A | `booking_confirmation` ⚠️ | `booking_confirmation` | `booking_confirmation` | `BookingConfirmationCard.tsx` | `confirm_booking` | 3.5 ✅kit |
+| Booking Confirmation | A | `booking_confirmation` | `booking_confirmation` | `booking_confirmation` | `BookingConfirmationCard.tsx` | `confirm_booking` | 3.5 ✅kit |
 | Booking Proposal | A | `booking_proposal` ⚠️ | — | `booking_proposal` | `BookingProposalCard.tsx` | `propose_booking` (DB row; card path unverified) | 2 (deferred) |
 | Change Applied | A+S | `change_applied` | `change_applied` | `change_applied` | `ChangeAppliedCard.tsx` | `propose_change` auto_approve · cron resolve · `PATCH /proposals` | 3.5 ✅kit |
 | Notification | S | `notification` | `notification` | `notification_card` | `NotificationCard.tsx` | `proactive.py`, `proposal_automation.py` | 3.5 ✅kit |
@@ -141,7 +141,7 @@ Key fields only; the component/creator are the full source of truth.
 
 ### Booking Confirmation — `confirm_booking` → `BookingConfirmationCard.tsx`
 - **Purpose:** receipt after a booking; deep-link / phone / in-progress by
-  autonomy level. **⚠️ message_type not in CHECK constraint — see §6.**
+  autonomy level. **message_type now allowed (fixed §6 #1; deploy the migration).**
 
 ### Booking Proposal — `propose_booking` → `BookingProposalCard.tsx`
 - **Purpose:** pre-commit booking offer; card fetches the proposal by id.
@@ -223,30 +223,32 @@ Agent-side guidance is **good but scattered** across the ~2000-line
 - always `post_venue_card` after text — `:766`
 - `generate_trip_shapes` as cold-start move — `:463`
 
-**Expressive-surfaces skill** (`backend/concierge/_prompts_skill_cards.py`,
-`SKILL_EXPRESSIVE_SURFACES`) — *written, commit held* (backend blocked by the
-in-flight per-person-stays / OpenAPI state, same as §6 #1). Closes both prior
-gaps: it frames the card vocabulary as a *set* and gives a per-card **quality
-bar** (how to fill each well — e.g. trip-shapes: vivid distinct names, 3-4
-concrete non-overlapping anchors), explicitly deferring *when* to emit to the
-Tools skill so it doesn't duplicate tuned text. Wired in `_prompts_select.py`
-(registered `concierge.skill.expressive_surfaces`), **group-only** + gated on
-recommend-likely, not-ambient (reaction/vote are group-coordination surfaces;
-personal 1:1 keeps venue guidance via `recommending_venues`). The scattered
-when-to-use guidance above still lives in `_prompts_skills.py`.
+**Expressive-surfaces skill** (`backend/concierge/_prompts_skill_cards.py`) —
+*shipped.* Closes both prior gaps: it frames the card vocabulary as a *set* and
+gives a per-card **quality bar** (how to fill each well — e.g. trip-shapes:
+vivid distinct names, 3-4 concrete non-overlapping anchors), explicitly
+deferring *when* to emit to the Tools skill so it doesn't duplicate tuned text.
+Split by surface, wired in `_prompts_select.py`:
+- `SKILL_EXPRESSIVE_SURFACES` — trip shapes / venue / booking bars; loads in
+  **any** chat (recommend-likely, not-ambient).
+- `SKILL_GROUP_CARD_SURFACES` — reaction + vote bars; **group-only** (those are
+  coordination surfaces), so a 1:1 prose chat never carries group-tool guidance.
+
+The scattered when-to-use guidance still lives in `_prompts_skills.py`. Note:
+effectiveness is unverified by eval/dogfood — it passes structural checks only.
 
 ---
 
 ## 6. Known contract risks
 
-1. **Booking Confirmation message_type not in CHECK constraint** — *fix written,
-   commit held.* `create_booking_confirmation_card` writes
-   `message_type="booking_confirmation"`; the insert is wrapped in try/except in
-   `confirm_booking`, so it failed *silently* (booking succeeds, no receipt card).
-   Fix: migration `b1c9a4e7f2d8_add_booking_card_message_types` adds
-   `booking_confirmation` + `booking_proposal` to the CHECK (+ tables.py). Held
-   uncommitted because it chains onto an in-flight uncommitted migration
-   (`a7c3e1b9d2f5_per_person_stays`); lands once that work is committed.
+1. **Booking Confirmation message_type not in CHECK constraint** — ✅ *fixed.*
+   `create_booking_confirmation_card` writes `message_type="booking_confirmation"`;
+   the insert is wrapped in try/except in `confirm_booking`, so it failed
+   *silently* (booking succeeds, no receipt card). Migration
+   `b1c9a4e7f2d8_add_booking_card_message_types` adds `booking_confirmation` +
+   `booking_proposal` to the CHECK (+ tables.py), using `ADD CONSTRAINT … NOT
+   VALID` + `VALIDATE CONSTRAINT` to avoid locking `messages`. **Not yet
+   deployed** — the migration must run against prod before the receipt path works.
 2. **Booking Proposal has no message creator** — frontend renders it; no backend
    path writes `message_type='booking_proposal'`. Frontend-ready, backend-pending.
 3. **Markdown-leak fields** — these render prose in plain `<Text>` and will show
@@ -267,8 +269,8 @@ when-to-use guidance above still lives in `_prompts_skills.py`.
    `CardChipRow`; migrated TripShapes, Reaction, Vote, Venue, Narration, plus the
    receipt/notification cards ChangeApplied, BookingConfirmation, Notification.
    *Remaining:* BookingProposalCard (deferred) + orphan mock cards.
-3. ✅ **Prompt module** — `SKILL_EXPRESSIVE_SURFACES` (card vocabulary +
-   per-card quality bars), group-gated. Written, commit held (see §5).
-4. **Resolve §6 risks** — booking constraint fix written (held, see §6 #1);
+3. ✅ **Prompt module** — `SKILL_EXPRESSIVE_SURFACES` + `SKILL_GROUP_CARD_SURFACES`
+   (card vocabulary + per-card quality bars), surface-split. Shipped (see §5).
+4. **Resolve §6 risks** — booking constraint ✅ fixed (deploy the migration, §6 #1);
    markdown policy (sanctioned rich-text field for NarrationCard body etc.);
    orphan cleanup.
