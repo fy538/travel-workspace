@@ -94,7 +94,7 @@ Design scores updated 2026-05-24 after the design-kit migration (see §4).
 | Narration | S | `narration` | — | `narration` | `NarrationCard.tsx` | narrate endpoint (user-triggered) | 4 ✅kit |
 | Travel-DNA Reflection | S | `notification` | `taste_dna_reflection` | `taste_dna_reflection` | `TravelDNACard.tsx` | `first_contact.py` | 4 |
 | Booking Confirmation | A | `booking_confirmation` | `booking_confirmation` | `booking_confirmation` | `BookingConfirmationCard.tsx` | `confirm_booking` | 3.5 ✅kit |
-| Booking Proposal | A | `booking_proposal` ⚠️ | — | `booking_proposal` | `BookingProposalCard.tsx` | `propose_booking` (DB row; no message creator yet, §6 #2) | 4 ✅kit |
+| Booking Proposal | A | `booking_proposal` | — | `booking_proposal` | `BookingProposalCard.tsx` | `propose_booking` (confirm-first ask) | 4 ✅kit |
 | Change Applied | A+S | `change_applied` | `change_applied` | `change_applied` | `ChangeAppliedCard.tsx` | `propose_change` auto_approve · cron resolve · `PATCH /proposals` | 3.5 ✅kit |
 | Notification | S | `notification` | `notification` | `notification_card` | `NotificationCard.tsx` | `proactive.py`, `proposal_automation.py` | 3.5 ✅kit |
 | Lazy-Research badge | S | `text` | (metadata.kind=`lazy_research_answer`) | `lazy_research` | `LazyResearchBadge.tsx` | B-fast research worker | 1 (badge) |
@@ -257,8 +257,13 @@ strict-compose) is the separate, already-correct gate.
    `booking_proposal` to the CHECK (+ tables.py), using `ADD CONSTRAINT … NOT
    VALID` + `VALIDATE CONSTRAINT` to avoid locking `messages`. **Not yet
    deployed** — the migration must run against prod before the receipt path works.
-2. **Booking Proposal has no message creator** — frontend renders it; no backend
-   path writes `message_type='booking_proposal'`. Frontend-ready, backend-pending.
+2. **Booking Proposal emitter — ✅ added.** `propose_booking` now posts the
+   card via `create_booking_proposal_card` (confirm-first path) — the "confirm?"
+   ask, with the receipt following from `confirm_booking`. Like
+   booking_confirmation, the `booking_proposal` message_type needs the §6 #1
+   migration deployed before the insert lands (the emit is fail-open until then).
+   *Follow-on:* the L3 auto-book "attempt-and-inform" path (skip the ask, post a
+   receipt with Undo) is not built — gated by booking autonomy.
 3. **Markdown-leak fields — ✅ resolved (structured-only + one rich-text field).**
    Cards are *artifact surfaces*, so the rule is "no markdown in card fields"
    except the one genuinely long-form field. Implemented:
