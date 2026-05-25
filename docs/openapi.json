@@ -22362,6 +22362,17 @@
             "type": "string",
             "title": "Hook"
           },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          },
           "why_for_you": {
             "anyOf": [
               {
