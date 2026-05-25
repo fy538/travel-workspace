@@ -24998,10 +24998,76 @@
             "type": "boolean",
             "title": "Has Route Geometry",
             "default": false
+          },
+          "has_member_stays": {
+            "type": "boolean",
+            "title": "Has Member Stays",
+            "default": false
           }
         },
         "type": "object",
         "title": "MapLayerAvailability"
+      },
+      "MapMemberStay": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "user_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "User Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "owner_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Owner Name"
+          },
+          "point": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MapPoint"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "is_yours": {
+            "type": "boolean",
+            "title": "Is Yours",
+            "default": false
+          },
+          "visibility": {
+            "type": "string",
+            "title": "Visibility",
+            "default": "group"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name"
+        ],
+        "title": "MapMemberStay",
+        "description": "A per-person stay pin (split-lodging) for the trip map.\n\nDistinct from ``MapBase`` (the trip's single shared base, derived from\nthe itinerary). These come from the ``trip_accommodations`` table \u2014 one\nper member who recorded their own stay. Only stays with coordinates\n(free-form lat/lng) are projected; typed-entity stays without resolved\ncoords are skipped. The route passes a viewer-filtered list, so a\nmember's ``private`` stay never reaches anyone but its owner."
       },
       "MapNearMe": {
         "properties": {
@@ -32243,6 +32309,13 @@
                 "type": "null"
               }
             ]
+          },
+          "member_stays": {
+            "items": {
+              "$ref": "#/components/schemas/MapMemberStay"
+            },
+            "type": "array",
+            "title": "Member Stays"
           },
           "days": {
             "items": {
