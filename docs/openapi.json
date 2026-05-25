@@ -31515,6 +31515,159 @@
         "title": "ShareView",
         "description": "Owner-facing view of a share \u2014 what the app shows after publishing."
       },
+      "SituationAmbientNearby": {
+        "properties": {
+          "candidate": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SituationAmbientNearbyCandidate"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "title": "Reason",
+            "default": "not_evaluated"
+          },
+          "confidence": {
+            "type": "number",
+            "title": "Confidence",
+            "default": 0.0
+          }
+        },
+        "type": "object",
+        "title": "SituationAmbientNearby"
+      },
+      "SituationAmbientNearbyCandidate": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "next_place",
+              "planned_place_nearby",
+              "saved_place_nearby"
+            ],
+            "title": "Kind"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "body": {
+            "type": "string",
+            "title": "Body"
+          },
+          "cta_label": {
+            "type": "string",
+            "title": "Cta Label"
+          },
+          "entity_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Entity Type"
+          },
+          "entity_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Entity Id"
+          },
+          "plan_block_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Plan Block Id"
+          },
+          "day_number": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Day Number"
+          },
+          "distance_m": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Distance M"
+          },
+          "walk_minutes": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Walk Minutes"
+          },
+          "priority": {
+            "type": "integer",
+            "title": "Priority",
+            "default": 0
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "open_day",
+              "open_chat",
+              "open_entity"
+            ],
+            "title": "Action",
+            "default": "open_chat"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "title",
+          "body",
+          "cta_label"
+        ],
+        "title": "SituationAmbientNearbyCandidate",
+        "description": "Backend-authored nearby suggestion for ambient trip surfaces."
+      },
       "SituationAttention": {
         "properties": {
           "top_active_card": {
@@ -33512,6 +33665,9 @@
           },
           "delivery": {
             "$ref": "#/components/schemas/SituationDelivery"
+          },
+          "ambient_nearby": {
+            "$ref": "#/components/schemas/SituationAmbientNearby"
           },
           "generated_at": {
             "type": "string",
