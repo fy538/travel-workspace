@@ -94,12 +94,11 @@ Design scores updated 2026-05-24 after the design-kit migration (see §4).
 | Narration | S | `narration` | — | `narration` | `NarrationCard.tsx` | narrate endpoint (user-triggered) | 4 ✅kit |
 | Travel-DNA Reflection | S | `notification` | `taste_dna_reflection` | `taste_dna_reflection` | `TravelDNACard.tsx` | `first_contact.py` | 4 |
 | Booking Confirmation | A | `booking_confirmation` | `booking_confirmation` | `booking_confirmation` | `BookingConfirmationCard.tsx` | `confirm_booking` | 3.5 ✅kit |
-| Booking Proposal | A | `booking_proposal` ⚠️ | — | `booking_proposal` | `BookingProposalCard.tsx` | `propose_booking` (DB row; card path unverified) | 2 (deferred) |
+| Booking Proposal | A | `booking_proposal` ⚠️ | — | `booking_proposal` | `BookingProposalCard.tsx` | `propose_booking` (DB row; no message creator yet, §6 #2) | 4 ✅kit |
 | Change Applied | A+S | `change_applied` | `change_applied` | `change_applied` | `ChangeAppliedCard.tsx` | `propose_change` auto_approve · cron resolve · `PATCH /proposals` | 3.5 ✅kit |
 | Notification | S | `notification` | `notification` | `notification_card` | `NotificationCard.tsx` | `proactive.py`, `proposal_automation.py` | 3.5 ✅kit |
 | Lazy-Research badge | S | `text` | (metadata.kind=`lazy_research_answer`) | `lazy_research` | `LazyResearchBadge.tsx` | B-fast research worker | 1 (badge) |
 | Itinerary | F | — | — | `itinerary` | `ItineraryCard.tsx` | none found (mock/legacy) | 2 |
-| Voting | F | — | — | `voting` | `VotingCard.tsx` | none found (mock/legacy; superseded by Vote Widget) | 1 |
 | Map | F | — | — | `map_card` | `MapCard.tsx` | none found (mock/legacy) | 2 |
 
 `✅kit` = migrated onto the shared card kit (§4).
@@ -260,26 +259,49 @@ strict-compose) is the separate, already-correct gate.
    deployed** — the migration must run against prod before the receipt path works.
 2. **Booking Proposal has no message creator** — frontend renders it; no backend
    path writes `message_type='booking_proposal'`. Frontend-ready, backend-pending.
-3. **Markdown-leak fields** — these render prose in plain `<Text>` and will show
-   raw `**` if the backend ever puts markdown there: NarrationCard body
-   (highest), VoteWidgetCard `description`, BookingProposalCard `notes`,
-   ReactionCard/NotificationCard `content`. **Policy needed:** structured data
-   only, or one sanctioned rich-text field type.
-4. **Orphan attachment types** — `itinerary`, `voting`, `map_card` have frontend
-   components but no backend creator (mock/legacy). `voting` is superseded by the
-   Vote Widget. Decide: wire, or delete.
+3. **Markdown-leak fields — DECISION NEEDED.** These render prose in a plain
+   `<Text>` and will show raw `**` / `*` if the backend ever puts markdown there:
+   NarrationCard body (highest risk — it's article-length prose), VoteWidgetCard
+   `description`, BookingProposalCard `notes`, ReactionCard/NotificationCard
+   `content`. Cards are *artifact surfaces* (that's why TripShapes reads clean as
+   structured fields), so the default stance is "no markdown in cards." Two ways
+   to make that true and safe:
+
+   - **Option A — structured-only (recommended for everything except narration).**
+     Keep card fields plain; the backend must send display-ready strings (no
+     markdown). Cheap, preserves the artifact feel. Add a tiny `stripMarkdown()`
+     guard at the mapper boundary (`messageMapping.ts`) so a stray `**` degrades
+     to clean text instead of leaking. Risk: a backend that *wants* emphasis
+     can't get it.
+   - **Option B — one sanctioned rich-text field, narration only.** NarrationCard
+     body is genuinely long-form prose and is the one place markdown earns its
+     keep. Render *only* that field through the existing markdown stack (reuse
+     `PrivateVesperNote`'s article-scale config) and leave every other card
+     field plain. Scoped, low-blast-radius.
+
+   **Recommendation:** A everywhere + B for NarrationCard body. That's "cards are
+   structured, the one prose card reads like prose." Both are ~an afternoon; A's
+   `stripMarkdown` guard is the higher-value half (it closes the leak class for
+   all cards at once). Not yet implemented — this is the open decision.
+4. **Orphan attachment types** — `voting` removed (superseded by the Vote
+   Widget; component + union member + mock deleted). `itinerary` and `map_card`
+   remain: no backend creator yet, but they read as intended-future features
+   (`map_card` has a handler + an empty-state test), so kept as mock-only
+   placeholders rather than deleted. Decide later: wire or drop.
 
 ---
 
 ## 7. Roadmap (proposed)
 
 1. ✅ This catalog (source of truth).
-2. ✅ **Design kit** — `EditorialCard` (reused) + new `CardEyebrow` /
-   `CardChipRow`; migrated TripShapes, Reaction, Vote, Venue, Narration, plus the
-   receipt/notification cards ChangeApplied, BookingConfirmation, Notification.
-   *Remaining:* BookingProposalCard (deferred) + orphan mock cards.
+2. ✅ **Design kit** — `EditorialCard` (reused) + `CardEyebrow` / `CardChipRow` +
+   a `receipt` tone (left-accent). All emitted cards migrated: TripShapes,
+   Reaction, Vote, Venue, Narration, ChangeApplied, BookingConfirmation,
+   Notification, BookingProposal. Orphan `voting` removed; `itinerary`/`map_card`
+   kept as mock placeholders.
 3. ✅ **Prompt module** — `SKILL_EXPRESSIVE_SURFACES` + `SKILL_GROUP_CARD_SURFACES`
    (card vocabulary + per-card quality bars), surface-split. Shipped (see §5).
 4. **Resolve §6 risks** — booking constraint ✅ fixed (deploy the migration, §6 #1);
-   markdown policy (sanctioned rich-text field for NarrationCard body etc.);
-   orphan cleanup.
+   `voting` orphan ✅ removed; **markdown policy is the open decision** (§6 #3 —
+   recommend structured-only + `stripMarkdown` guard, rich-text for NarrationCard
+   body only).
