@@ -16439,7 +16439,7 @@
           "voice-guide"
         ],
         "summary": "Record Geofence Event Endpoint",
-        "description": "Record a geofence trigger and (if applicable) open a session.\n\nAuto-session semantics:\n  - On ``entered`` AND no active session \u2192 open one anchored at the\n    triggering entity and bind the new event row to it via session_id.\n  - On any other event type, or when a session is already open \u2192\n    record the event with the current session_id (when present);\n    do not open or close anything.\n\nThe auto-open behavior keeps the client flow tight: a fresh geofence\nenter \u2192 one HTTP call \u2192 client knows both the event id and the\nsession id. Saves the round-trip vs separate \"create session\" + \"record event.\"",
+        "description": "Record a geofence trigger and (if applicable) open a session.\n\nAuto-session semantics:\n  - On ``entered`` AND no active session \u2192 open one anchored at the\n    triggering entity and bind the new event row to it via session_id.\n  - On ``entered`` for a different entity \u2192 open a new session. The\n    CRUD helper closes the prior open row with ``next_place`` first,\n    preserving its arc summary/history while starting a fresh arc.\n  - On any other event type, or when the entered entity matches the\n    active session \u2192 record with the current session_id (when present).\n\nThe auto-open behavior keeps the client flow tight: a fresh geofence\nenter \u2192 one HTTP call \u2192 client knows both the event id and the\nsession id. Saves the round-trip vs separate \"create session\" + \"record event.\"",
         "operationId": "record_geofence_event_endpoint_api_trips__trip_id__geofence_events_post",
         "parameters": [
           {
@@ -30045,7 +30045,7 @@
           "session"
         ],
         "title": "RecordGeofenceEventResponse",
-        "description": "Composite response: the event row + the session it's bound to.\n\nWhen ``event_type='entered'`` and no session is active, the route\nopens one and returns it inline so the client doesn't need a second\nround-trip to learn its session_id. Otherwise ``session`` is null\n(the trigger was recorded but no session changes resulted) or the\nexisting active session."
+        "description": "Composite response: the event row + the session it's bound to.\n\nWhen ``event_type='entered'`` and no session is active, the route\nopens one and returns it inline so the client doesn't need a second\nround-trip to learn its session_id. When the caller enters a different\nentity, the prior session is closed with ``close_reason='next_place'``\nby ``open_session`` and a fresh arc opens. Otherwise ``session`` is\nnull (the trigger was recorded but no session changes resulted) or\nthe existing active session."
       },
       "RecordResponseRequest": {
         "properties": {
