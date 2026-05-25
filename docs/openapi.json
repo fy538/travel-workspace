@@ -27404,6 +27404,17 @@
             ],
             "title": "Excerpt"
           },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          },
           "thematic_tags": {
             "items": {
               "type": "string"
