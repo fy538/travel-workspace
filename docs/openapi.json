@@ -4103,6 +4103,24 @@
             }
           },
           {
+            "name": "reference_id_prefix",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Reference Id Prefix"
+            }
+          },
+          {
             "name": "authorization",
             "in": "header",
             "required": false,
@@ -10634,6 +10652,66 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TripPlanState"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/group-profile": {
+      "get": {
+        "tags": [
+          "plan"
+        ],
+        "summary": "Get Group Profile Surface",
+        "description": "Return only the group-profile sections safe for the shared trip home.\n\nThe persisted group profile can include tensions and private-ish synthesis\nuseful to the agent. This endpoint deliberately exposes only shared\noverlap plus non-attributed constraints.",
+        "operationId": "get_group_profile_surface_api_trips__trip_id__group_profile_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripGroupProfileSurface"
                 }
               }
             }
@@ -22621,6 +22699,24 @@
         "title": "GeofenceEvent",
         "description": "One geofence trigger the server observed.\n\nAppend-only: every row represents a moment in time, immutable after\ninsert. ``manually_narrated`` is the catch-all for cases where the\nuser tapped the entity card without ever entering its geofence \u2014 we\nstill record it so the observability dashboard reflects total\nnarration attempts, geofence-driven or not."
       },
+      "GroupProfileSection": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "body": {
+            "type": "string",
+            "title": "Body"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "body"
+        ],
+        "title": "GroupProfileSection"
+      },
       "HTTPValidationError": {
         "properties": {
           "detail": {
@@ -27775,6 +27871,28 @@
             "type": "string",
             "title": "Summary"
           },
+          "rationale_headline": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rationale Headline"
+          },
+          "group_benefit": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Group Benefit"
+          },
           "affected_block_ids": {
             "items": {
               "type": "string"
@@ -32304,6 +32422,60 @@
         ],
         "title": "TripDigest",
         "description": "A daily, trip-summary, or planning-context structured digest.\n\n`content` is the LLM's structured JSON output; `rendered_markdown` is a\npre-formatted textual view populated at generation time so consumers\n(planner prompt, admin UI) don't need to re-render the payload."
+      },
+      "TripGroupProfileSurface": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "available": {
+            "type": "boolean",
+            "title": "Available"
+          },
+          "version_number": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Version Number"
+          },
+          "intake_count": {
+            "type": "integer",
+            "title": "Intake Count",
+            "default": 0
+          },
+          "generated_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Generated At"
+          },
+          "sections": {
+            "items": {
+              "$ref": "#/components/schemas/GroupProfileSection"
+            },
+            "type": "array",
+            "title": "Sections"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "available"
+        ],
+        "title": "TripGroupProfileSurface"
       },
       "TripHighlightResponse": {
         "properties": {
