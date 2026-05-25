@@ -11849,6 +11849,82 @@
         }
       }
     },
+    "/api/trips/{trip_id}/situation": {
+      "get": {
+        "tags": [
+          "situation"
+        ],
+        "summary": "Get Trip Situation",
+        "description": "Return a compact, public-safe situation read model for this trip.",
+        "operationId": "get_trip_situation_api_trips__trip_id__situation_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "surface",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "home",
+                "chat",
+                "narration",
+                "live_companion"
+              ],
+              "type": "string",
+              "default": "home",
+              "title": "Surface"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripSituation"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/story/share": {
       "post": {
         "tags": [
@@ -31361,6 +31437,344 @@
         "title": "ShareView",
         "description": "Owner-facing view of a share \u2014 what the app shows after publishing."
       },
+      "SituationAttention": {
+        "properties": {
+          "top_active_card": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SituationAttentionCard"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "top_ambient_card": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SituationAttentionCard"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          }
+        },
+        "type": "object",
+        "title": "SituationAttention",
+        "description": "The top attention candidates derivable without running an LLM."
+      },
+      "SituationAttentionCard": {
+        "properties": {
+          "archetype": {
+            "type": "string",
+            "title": "Archetype"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "subtitle": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subtitle"
+          },
+          "ref_id": {
+            "type": "string",
+            "title": "Ref Id"
+          },
+          "tier": {
+            "type": "integer",
+            "title": "Tier"
+          },
+          "zone": {
+            "type": "string",
+            "enum": [
+              "active",
+              "ambient"
+            ],
+            "title": "Zone"
+          }
+        },
+        "type": "object",
+        "required": [
+          "archetype",
+          "title",
+          "ref_id",
+          "tier",
+          "zone"
+        ],
+        "title": "SituationAttentionCard"
+      },
+      "SituationDelivery": {
+        "properties": {
+          "recommended_modality": {
+            "type": "string",
+            "title": "Recommended Modality"
+          },
+          "reason": {
+            "type": "string",
+            "title": "Reason"
+          }
+        },
+        "type": "object",
+        "required": [
+          "recommended_modality",
+          "reason"
+        ],
+        "title": "SituationDelivery"
+      },
+      "SituationGroup": {
+        "properties": {
+          "available": {
+            "type": "boolean",
+            "title": "Available",
+            "default": false
+          },
+          "sections": {
+            "items": {
+              "$ref": "#/components/schemas/SituationGroupSection"
+            },
+            "type": "array",
+            "title": "Sections"
+          },
+          "private_reasoning_available": {
+            "type": "boolean",
+            "title": "Private Reasoning Available",
+            "default": false
+          }
+        },
+        "type": "object",
+        "title": "SituationGroup",
+        "description": "Group context safe for shared/app surfaces."
+      },
+      "SituationGroupSection": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "body": {
+            "type": "string",
+            "title": "Body"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "body"
+        ],
+        "title": "SituationGroupSection"
+      },
+      "SituationPlanBlock": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "day_number": {
+            "type": "integer",
+            "title": "Day Number"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "block_type": {
+            "type": "string",
+            "title": "Block Type"
+          },
+          "time_start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Start"
+          },
+          "time_end": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time End"
+          },
+          "commitment_state": {
+            "type": "string",
+            "title": "Commitment State"
+          },
+          "event_state": {
+            "type": "string",
+            "title": "Event State",
+            "default": "planned"
+          },
+          "flags": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Flags"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "day_number",
+          "title",
+          "block_type",
+          "commitment_state"
+        ],
+        "title": "SituationPlanBlock",
+        "description": "Compact reference to the block most relevant right now."
+      },
+      "SituationTimeline": {
+        "properties": {
+          "phase": {
+            "type": "string",
+            "title": "Phase"
+          },
+          "timezone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timezone"
+          },
+          "current_day_number": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current Day Number"
+          },
+          "current_or_next_block": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SituationPlanBlock"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "open_decision_count": {
+            "type": "integer",
+            "title": "Open Decision Count",
+            "default": 0
+          },
+          "booking_attention_count": {
+            "type": "integer",
+            "title": "Booking Attention Count",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "phase"
+        ],
+        "title": "SituationTimeline",
+        "description": "Where the trip is on its timeline and what is next."
+      },
+      "SituationVoice": {
+        "properties": {
+          "active_session": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SituationVoiceSession"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "title": "SituationVoice"
+      },
+      "SituationVoiceSession": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "entity_type": {
+            "type": "string",
+            "title": "Entity Type"
+          },
+          "entity_id": {
+            "type": "string",
+            "title": "Entity Id"
+          },
+          "persona_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Persona Id"
+          },
+          "arc_summary": {
+            "type": "string",
+            "title": "Arc Summary",
+            "default": ""
+          },
+          "stop_count": {
+            "type": "integer",
+            "title": "Stop Count",
+            "default": 0
+          },
+          "opened_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Opened At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "entity_type",
+          "entity_id",
+          "opened_at"
+        ],
+        "title": "SituationVoiceSession",
+        "description": "Public-safe summary of the active voice-guide arc."
+      },
       "SpeculativeAngle": {
         "properties": {
           "title": {
@@ -32959,6 +33373,60 @@
           "transfers"
         ],
         "title": "TripSettlement"
+      },
+      "TripSituation": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "surface": {
+            "type": "string",
+            "enum": [
+              "home",
+              "chat",
+              "narration",
+              "live_companion"
+            ],
+            "title": "Surface"
+          },
+          "timeline": {
+            "$ref": "#/components/schemas/SituationTimeline"
+          },
+          "voice": {
+            "$ref": "#/components/schemas/SituationVoice"
+          },
+          "group": {
+            "$ref": "#/components/schemas/SituationGroup"
+          },
+          "attention": {
+            "$ref": "#/components/schemas/SituationAttention"
+          },
+          "delivery": {
+            "$ref": "#/components/schemas/SituationDelivery"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "user_id",
+          "surface",
+          "timeline",
+          "delivery",
+          "generated_at"
+        ],
+        "title": "TripSituation"
       },
       "TripStory": {
         "properties": {
