@@ -31532,6 +31532,18 @@
           "reason": {
             "type": "string",
             "title": "Reason"
+          },
+          "ambient_policy": {
+            "type": "string",
+            "enum": [
+              "speak_now",
+              "show_card",
+              "notify",
+              "defer",
+              "silent"
+            ],
+            "title": "Ambient Policy",
+            "default": "show_card"
           }
         },
         "type": "object",
@@ -33395,6 +33407,18 @@
               "live_companion"
             ],
             "title": "Surface"
+          },
+          "is_partial": {
+            "type": "boolean",
+            "title": "Is Partial",
+            "default": false
+          },
+          "unavailable_sources": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Unavailable Sources"
           },
           "timeline": {
             "$ref": "#/components/schemas/SituationTimeline"
