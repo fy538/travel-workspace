@@ -3547,10 +3547,28 @@
                   "type": "null"
                 }
               ],
-              "description": "Filter by place scope",
+              "description": "Filter by a single place id",
               "title": "Place Id"
             },
-            "description": "Filter by place scope"
+            "description": "Filter by a single place id"
+          },
+          {
+            "name": "place_slug",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Scope to a place by slug \u2014 includes the place AND its child neighborhoods (so a city's guides surface under the city slug). Takes precedence over place_id.",
+              "title": "Place Slug"
+            },
+            "description": "Scope to a place by slug \u2014 includes the place AND its child neighborhoods (so a city's guides surface under the city slug). Takes precedence over place_id."
           },
           {
             "name": "kind",
