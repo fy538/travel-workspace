@@ -16620,7 +16620,7 @@
           "trips"
         ],
         "summary": "Mute Leave By Today",
-        "description": "Mute all leave-by nudges for this user + trip for the rest of today.\n\nInserts a leave_by_mutes row keyed on (user_id, trip_id, today_in_utc).\nSuppression rule 4 in the dispatcher checks this table before dispatching.\nIdempotent \u2014 inserting the same mute row twice is a no-op (composite PK).",
+        "description": "Mute all leave-by nudges for this user + trip for the rest of today.\n\nInserts a leave_by_mutes row keyed on (user_id, trip_id, date). The date\nis taken from ``body.local_date`` when provided (the device's local calendar\ndate), falling back to today in UTC. Using the device date prevents timezone\nskew for users ahead of UTC (e.g. UTC+9) who would otherwise mute the wrong\nday.\n\nSuppression rule 1 in the dispatcher checks this table before dispatching.\nIdempotent \u2014 inserting the same mute row twice is a no-op (composite PK).",
         "operationId": "mute_leave_by_today_api_trips__trip_id__notifications_leave_by_mute_today_post",
         "parameters": [
           {
@@ -16650,6 +16650,16 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MuteTodayRequest",
+                "default": {}
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -28935,17 +28945,6 @@
             "title": "Status",
             "default": "soft"
           },
-          "cluster_label": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Cluster Label"
-          },
           "route_quality": {
             "anyOf": [
               {
@@ -30124,6 +30123,25 @@
         ],
         "title": "MoveConflict",
         "description": "A block on the target day that overlaps the proposed time window."
+      },
+      "MuteTodayRequest": {
+        "properties": {
+          "local_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Local Date"
+          }
+        },
+        "type": "object",
+        "title": "MuteTodayRequest",
+        "description": "Optional body for the mute-today endpoint.\n\n``local_date`` is the calendar date in the user's device timezone (ISO-8601,\ne.g. \"2026-05-26\"). When provided, the mute row is keyed on this date rather\nthan today in UTC, preventing the UTC-vs-local skew that caused users in\nfar-ahead timezones (UTC+9+) to mute the wrong day."
       },
       "NarrateCitation": {
         "properties": {
