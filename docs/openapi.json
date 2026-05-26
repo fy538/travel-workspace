@@ -20542,6 +20542,24 @@
               }
             ],
             "title": "Reason"
+          },
+          "reason_signals": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Reason Signals"
+          },
+          "agent_read": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Agent Read"
           }
         },
         "type": "object",
