@@ -16532,6 +16532,136 @@
         }
       }
     },
+    "/api/trips/{trip_id}/notifications/leave-by/{block_id}/dismiss": {
+      "post": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Dismiss Leave By",
+        "description": "Record that the acting user dismissed the leave-by nudge for a block.\n\nSets ``dismissed_at`` on the most-recent leave_by_dispatches row for\n(trip_id, block_id, user_id).  Idempotent \u2014 a second dismiss has no\nvisible effect.  Suppression rule 2 in the dispatcher checks this field.",
+        "operationId": "dismiss_leave_by_api_trips__trip_id__notifications_leave_by__block_id__dismiss_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "block_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Block Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeaveByActionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/notifications/leave-by/mute-today": {
+      "post": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Mute Leave By Today",
+        "description": "Mute all leave-by nudges for this user + trip for the rest of today.\n\nInserts a leave_by_mutes row keyed on (user_id, trip_id, today_in_utc).\nSuppression rule 4 in the dispatcher checks this table before dispatching.\nIdempotent \u2014 inserting the same mute row twice is a no-op (composite PK).",
+        "operationId": "mute_leave_by_today_api_trips__trip_id__notifications_leave_by_mute_today_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeaveByActionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/me": {
       "get": {
         "tags": [
@@ -28444,6 +28574,20 @@
         ],
         "title": "LeaseInfo",
         "description": "Common shape for claim / get_active responses."
+      },
+      "LeaveByActionResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "LeaveByActionResponse",
+        "description": "Confirmation envelope for leave-by dismiss / mute actions."
       },
       "LensGroup": {
         "properties": {
