@@ -2385,6 +2385,57 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Dismiss Candidate Endpoint",
+        "description": "Mark a candidate as dismissed. Idempotent \u2014 repeated calls succeed silently.\n\nDismissed candidates do not re-appear in subsequent scans (the client\nis expected to check the dismiss status before re-submitting candidates\nthat match a previously-dismissed date+place cluster).",
+        "operationId": "dismiss_candidate_endpoint_api_atlas_candidates__candidate_id__delete",
+        "parameters": [
+          {
+            "name": "candidate_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Candidate Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/api/atlas/candidates/{candidate_id}/approve": {
@@ -2563,7 +2614,7 @@
           "atlas"
         ],
         "summary": "Stream Artifact",
-        "description": "SSE stream of artifact generation events.\n\nV0 stub: emits a single ``ready`` event with the final artifact. Real\nsection-by-section streaming lands in week 2 with the LLM composer.",
+        "description": "SSE stream of artifact generation events.\n\nTwo-phase: a ``shell`` event first (title / hero / map / placeholders\nso the UI has something to render immediately), then a ``ready`` event\nwith the full artifact. True section-by-section streaming (yielding\nsections as the LLM produces them) is V1 work \u2014 it needs the composer\nto switch to ``stream_text`` and parse JSON incrementally. Today the\ncomposer is single-shot, so this endpoint reads from the persisted\nartifact and emits the two-phase shape for UI parity.",
         "operationId": "stream_artifact_api_atlas_artifacts__artifact_id__stream_get",
         "parameters": [
           {
@@ -2751,9 +2802,36 @@
           "atlas"
         ],
         "summary": "Get Inbox",
-        "description": "V0: pending candidates + recent artifacts as a flat list.\n\nV1 adds the \"add more photos\" prompts, pattern cards, and artifact\nanniversaries per the V0 plan's Memory Inbox scope.",
+        "description": "Paginated Memory Inbox.\n\nV1.0: pending candidates + recent artifacts, cursor-paginated by\n``created_at DESC``. Pass ``after_id`` of the last item in the previous\npage to get the next.",
         "operationId": "get_inbox_api_atlas_inbox_get",
         "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "after_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "After Id"
+            }
+          },
           {
             "name": "authorization",
             "in": "header",
@@ -2777,7 +2855,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AtlasInboxResponse"
+                  "$ref": "#/components/schemas/AtlasInboxPage"
                 }
               }
             }
@@ -2838,6 +2916,56 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PhotoUploadResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/scan-history": {
+      "get": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Get Scan History Endpoint",
+        "description": "Last-scanned timestamp + lifetime counters for the user.\n\nFrontend calls this on app open to decide whether to trigger an\nincremental rescan. ``last_scanned_at`` null = user has never scanned.",
+        "operationId": "get_scan_history_endpoint_api_atlas_scan_history_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasScanHistory"
                 }
               }
             }
@@ -20767,7 +20895,7 @@
         "title": "AtlasInboxItem",
         "description": "One row in the Memory Inbox.\n\nV0 surfaces only pending candidates and recent artifacts. V1 adds the\n\"add more photos\" prompts, pattern cards, and artifact anniversaries."
       },
-      "AtlasInboxResponse": {
+      "AtlasInboxPage": {
         "properties": {
           "items": {
             "items": {
@@ -20775,13 +20903,84 @@
             },
             "type": "array",
             "title": "Items"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          },
+          "total_pending": {
+            "type": "integer",
+            "title": "Total Pending"
           }
         },
         "type": "object",
         "required": [
-          "items"
+          "items",
+          "total_pending"
         ],
-        "title": "AtlasInboxResponse"
+        "title": "AtlasInboxPage",
+        "description": "Paginated inbox response. ``next_cursor`` is null when no more rows."
+      },
+      "AtlasScanHistory": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "last_scanned_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Scanned At"
+          },
+          "asset_count_at_last_scan": {
+            "type": "integer",
+            "title": "Asset Count At Last Scan"
+          },
+          "candidates_surfaced_total": {
+            "type": "integer",
+            "title": "Candidates Surfaced Total"
+          },
+          "candidates_approved_total": {
+            "type": "integer",
+            "title": "Candidates Approved Total"
+          },
+          "candidates_dismissed_total": {
+            "type": "integer",
+            "title": "Candidates Dismissed Total"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "last_scanned_at",
+          "asset_count_at_last_scan",
+          "candidates_surfaced_total",
+          "candidates_approved_total",
+          "candidates_dismissed_total",
+          "updated_at"
+        ],
+        "title": "AtlasScanHistory",
+        "description": "One-row-per-user scan tracking. Updated after every successful scan."
       },
       "AtlasSignalsResponse": {
         "properties": {
@@ -36917,6 +37116,22 @@
               }
             ],
             "title": "Budget Currency"
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "vesper_planned",
+                  "photos_import",
+                  "manual"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source"
           },
           "created_at": {
             "type": "string",
