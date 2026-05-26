@@ -14374,6 +14374,121 @@
         }
       }
     },
+    "/api/trips/{trip_id}/share": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Trip Map Share",
+        "description": "P4: mint a short-lived (24h) HMAC-signed URL for the interactive map preview page.\n\nThe URL points to a public Mapbox GL JS page that any recipient can open\nwithout logging in. The HMAC token is the only authentication gate; it\nexpires after 24 hours and cannot be refreshed without another authenticated\ncall to this endpoint.\n\nNo DB writes \u2014 the token is a signed payload derived entirely from the\ntrip ID and the current timestamp. ``MAP_SHARE_SECRET`` env var must be\nset in production; falls back to a dev-only string.",
+        "operationId": "get_trip_map_share_api_trips__trip_id__share_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MapShareResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/public/trip-map/{trip_id}": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Trip Map Preview",
+        "description": "P4: public interactive trip map preview page \u2014 no authentication required.\n\nVerifies the HMAC token from ``GET /api/trips/{id}/share``, then renders\na self-contained Mapbox GL JS HTML page with the trip's stops and route\ngeometry embedded as JSON. The page is fully functional without any further\nAPI calls \u2014 the token is a one-time share credential, not a session.",
+        "operationId": "get_trip_map_preview_api_public_trip_map__trip_id__get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "HMAC-signed share token from GET /api/trips/{id}/share",
+              "title": "Token"
+            },
+            "description": "HMAC-signed share token from GET /api/trips/{id}/share"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/itinerary/blocks/{block_id}": {
       "patch": {
         "tags": [
@@ -15041,6 +15156,650 @@
                     }
                   ],
                   "title": "Response Get Trip Summary Endpoint Api Trips  Trip Id  Summary Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/itinerary/blocks/{block_id}/move": {
+      "post": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Move Itinerary Block",
+        "description": "Move a block to a different day and/or time slot.\n\nHandles cross-day moves atomically (single UPDATE on day_id + sort_order +\ntime_start/time_end). Writes a plan_event diff so ``/undo`` can restore the\noriginal position. See itinerary-editing.md \u00a75.2.",
+        "operationId": "move_itinerary_block_api_trips__trip_id__itinerary_blocks__block_id__move_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "block_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Block Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MoveBlockRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItineraryBlockOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/itinerary/blocks/{block_id}/move-check": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Check Itinerary Block Move",
+        "description": "Pre-flight conflict check for the Move sheet's IF YOU MOVE IT section.\n\nReturns:\n- ``overlaps`` \u2014 hard overlaps on the target day (Phase 2)\n- ``travel_*_ok`` \u2014 soft travel-time warnings against adjacent blocks\n- ``would_create`` \u2014 Phase 3 standing-watcher scan run against the target\n  day with the prospective move applied in-memory; surfaces tight_hop,\n  over_packed, dead_gap, budget_overrun BEFORE the user commits (X-CRIT-2)\n\nNothing is written to the DB. The frontend calls this debounced as the\nuser adjusts time/day.",
+        "operationId": "check_itinerary_block_move_api_trips__trip_id__itinerary_blocks__block_id__move_check_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "block_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Block Id"
+            }
+          },
+          {
+            "name": "day_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Day Id"
+            }
+          },
+          {
+            "name": "time_start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Time Start"
+            }
+          },
+          {
+            "name": "time_end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Time End"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MoveCheckResult"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/itinerary/blocks/{block_id}/better-slots": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Itinerary Block Better Slots",
+        "description": "Return 3\u20135 suggested time windows for a block (BETTER SLOTS, \u00a75.2).\n\nScans the block's current day for clear gaps sized to the block's own\nduration; labels each by time of day; estimates walk time to neighbours.",
+        "operationId": "get_itinerary_block_better_slots_api_trips__trip_id__itinerary_blocks__block_id__better_slots_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "block_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Block Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetterSlotsResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/itinerary/days/{day_id}/blocks": {
+      "post": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Add Itinerary Block",
+        "description": "Append a new block to a day.\n\nVenue-backed: supply ``venue_id`` + ``block_type=\"venue\"``.\nFree-time:    supply ``block_type=\"free_time\"`` with no ``venue_id``.\nThe block lands at ``max(sort_order)+1`` on the target day.",
+        "operationId": "add_itinerary_block_api_trips__trip_id__itinerary_days__day_id__blocks_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "day_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Day Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddBlockRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItineraryBlockOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/itinerary/days/{day_id}/gap-suggestions": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Day Gap Suggestions",
+        "description": "Gap-aware venue suggestions for the Add sheet's Suggestions tab.\n\nSearches venues near the midpoint of the adjacent blocks' venues (or the\ntrip's destination centroid when no neighbours have coordinates). Ranked by\ntime-of-day appropriateness, proximity, then price. Returns the same\n``BlockAlternativesResponse`` shape as ``/alternatives`` so the frontend\ncan reuse the candidate card component.",
+        "operationId": "get_day_gap_suggestions_api_trips__trip_id__itinerary_days__day_id__gap_suggestions_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "day_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Day Id"
+            }
+          },
+          {
+            "name": "time_start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Time Start"
+            }
+          },
+          {
+            "name": "time_end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Time End"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockAlternativesResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/itinerary/conflicts": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Trip Conflicts",
+        "description": "Scan all days for \u00a77.2 planning conflicts (standing watcher).\n\nReturns conflicts grouped by day. Clients call this on plan open and\nafter any itinerary edit. No edit-mode gate \u2014 read-only.",
+        "operationId": "get_trip_conflicts_api_trips__trip_id__itinerary_conflicts_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripConflictsResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/budget": {
+      "patch": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Update Trip Budget",
+        "description": "Set or clear the trip's daily / total budget.\n\nOrganizer-only. Passing ``null`` for a field clears it; omitting a field\nleaves it untouched. (PATCH semantics \u2014 distinguished via\n``model_fields_set`` so a request that only sets the daily budget does\nnot silently null out the total budget.) Amounts are in the smallest\ncurrency unit (cents for USD/EUR).",
+        "operationId": "update_trip_budget_api_trips__trip_id__budget_patch",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TripBudgetUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Trip"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/itinerary/days/{day_id}/optimize-route": {
+      "post": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Optimize Day Route",
+        "description": "Suggest a nearest-neighbor reordering of a day's venue blocks.\n\nRead-only preview \u2014 never commits. The client applies (when the user\naccepts the preview) by issuing N ``move_block`` calls in the suggested\norder, which goes through the existing direct-edit gate and Undo spine.\n\nMember-only; no edit-mode gate since this is a read. The destination\nmove_block calls during Apply enforce the gate themselves.",
+        "operationId": "optimize_day_route_api_trips__trip_id__itinerary_days__day_id__optimize_route_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "day_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Day Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OptimizeRouteResponse"
                 }
               }
             }
@@ -18314,6 +19073,69 @@
         "title": "AccommodationWriteRequest",
         "description": "Create or replace a trip accommodation.\n\nExactly one of ``accommodation_id`` or ``(freeform_lat, freeform_lng)``\nmust be provided. The server-side Pydantic validator and DB CHECK\nboth enforce this \u2014 the client gets a 422 or 400 on inconsistency."
       },
+      "AddBlockRequest": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "block_type": {
+            "type": "string",
+            "title": "Block Type",
+            "default": "venue"
+          },
+          "venue_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Venue Id"
+          },
+          "time_start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Start"
+          },
+          "time_end": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time End"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title"
+        ],
+        "title": "AddBlockRequest",
+        "description": "Body for POST /api/trips/{trip_id}/itinerary/days/{day_id}/blocks.\n\nCreates a new block appended at the end of the day.  ``block_type``\ndefaults to ``\"venue\"`` for venue-backed additions; use ``\"free_time\"``\nfor intentional rest blocks."
+      },
       "AddMemberRequest": {
         "properties": {
           "user_id": {
@@ -19124,6 +19946,78 @@
         ],
         "title": "BehavioralEvent"
       },
+      "BetterSlot": {
+        "properties": {
+          "time_start": {
+            "type": "string",
+            "title": "Time Start"
+          },
+          "time_end": {
+            "type": "string",
+            "title": "Time End"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "fit_line": {
+            "type": "string",
+            "title": "Fit Line",
+            "default": ""
+          },
+          "travel_from_prev_min": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Travel From Prev Min"
+          },
+          "travel_to_next_min": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Travel To Next Min"
+          }
+        },
+        "type": "object",
+        "required": [
+          "time_start",
+          "time_end",
+          "label"
+        ],
+        "title": "BetterSlot",
+        "description": "A suggested move target for a block (itinerary-editing.md \u00a75.2 BETTER SLOTS)."
+      },
+      "BetterSlotsResponse": {
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "title": "Block Id"
+          },
+          "slots": {
+            "items": {
+              "$ref": "#/components/schemas/BetterSlot"
+            },
+            "type": "array",
+            "title": "Slots"
+          }
+        },
+        "type": "object",
+        "required": [
+          "block_id"
+        ],
+        "title": "BetterSlotsResponse",
+        "description": "Response for GET /api/trips/{trip_id}/itinerary/blocks/{block_id}/better-slots."
+      },
       "BlockAlternative": {
         "properties": {
           "venue_id": {
@@ -19302,6 +20196,23 @@
               }
             ],
             "title": "Distance Km"
+          },
+          "route_points": {
+            "anyOf": [
+              {
+                "items": {
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Route Points"
           }
         },
         "additionalProperties": true,
@@ -20653,6 +21564,29 @@
         ],
         "title": "ConfirmVerificationRequest"
       },
+      "ConflictSeverity": {
+        "type": "string",
+        "enum": [
+          "hard",
+          "soft",
+          "info"
+        ],
+        "title": "ConflictSeverity"
+      },
+      "ConflictType": {
+        "type": "string",
+        "enum": [
+          "over_packed",
+          "tight_hop",
+          "thin_buffer",
+          "dead_gap",
+          "no_rest_day",
+          "scattered_day",
+          "budget_overrun",
+          "constraint_conflict"
+        ],
+        "title": "ConflictType"
+      },
       "ConstraintDeleteResponse": {
         "properties": {
           "status": {
@@ -21283,6 +22217,64 @@
         ],
         "title": "DataExportResponse",
         "description": "A DSAR data-access bundle: every row we hold that belongs to the\nuser, grouped by table. Binary fields are summarized, not dumped."
+      },
+      "DayConflict": {
+        "properties": {
+          "conflict_type": {
+            "$ref": "#/components/schemas/ConflictType"
+          },
+          "severity": {
+            "$ref": "#/components/schemas/ConflictSeverity"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "block_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Block Ids"
+          }
+        },
+        "type": "object",
+        "required": [
+          "conflict_type",
+          "severity",
+          "title",
+          "description"
+        ],
+        "title": "DayConflict"
+      },
+      "DayConflictsResponse": {
+        "properties": {
+          "day_id": {
+            "type": "string",
+            "title": "Day Id"
+          },
+          "day_number": {
+            "type": "integer",
+            "title": "Day Number"
+          },
+          "conflicts": {
+            "items": {
+              "$ref": "#/components/schemas/DayConflict"
+            },
+            "type": "array",
+            "title": "Conflicts"
+          }
+        },
+        "type": "object",
+        "required": [
+          "day_id",
+          "day_number"
+        ],
+        "title": "DayConflictsResponse"
       },
       "DecommitResponse": {
         "properties": {
@@ -26243,11 +27235,6 @@
         ],
         "title": "MapBounds"
       },
-      "MapContext": {
-        "properties": {},
-        "type": "object",
-        "title": "MapContext"
-      },
       "MapDay": {
         "properties": {
           "day_number": {
@@ -26343,34 +27330,19 @@
             "title": "Has Base",
             "default": false
           },
-          "has_current_location": {
-            "type": "boolean",
-            "title": "Has Current Location",
-            "default": false
-          },
           "has_saved_nearby": {
             "type": "boolean",
             "title": "Has Saved Nearby",
             "default": false
           },
-          "has_recommendations_nearby": {
-            "type": "boolean",
-            "title": "Has Recommendations Nearby",
-            "default": false
-          },
-          "has_place_context": {
-            "type": "boolean",
-            "title": "Has Place Context",
-            "default": false
-          },
-          "has_route_geometry": {
-            "type": "boolean",
-            "title": "Has Route Geometry",
-            "default": false
-          },
           "has_member_stays": {
             "type": "boolean",
             "title": "Has Member Stays",
+            "default": false
+          },
+          "has_photos": {
+            "type": "boolean",
+            "title": "Has Photos",
             "default": false
           }
         },
@@ -26438,17 +27410,6 @@
         "title": "MapMemberStay",
         "description": "A per-person stay pin (split-lodging) for the trip map.\n\nDistinct from ``MapBase`` (the trip's single shared base, derived from\nthe itinerary). These come from the ``trip_accommodations`` table \u2014 one\nper member who recorded their own stay. Only stays with coordinates\n(free-form lat/lng) are projected; typed-entity stays without resolved\ncoords are skipped. The route passes a viewer-filtered list, so a\nmember's ``private`` stay never reaches anyone but its owner."
       },
-      "MapNearMe": {
-        "properties": {
-          "freshness": {
-            "type": "string",
-            "title": "Freshness",
-            "default": "absent"
-          }
-        },
-        "type": "object",
-        "title": "MapNearMe"
-      },
       "MapNeighborhood": {
         "properties": {
           "place_id": {
@@ -26470,20 +27431,66 @@
             ],
             "title": "Character"
           },
-          "geojson": {
-            "type": "string",
-            "title": "Geojson",
-            "description": "Raw ST_AsGeoJSON output \u2014 GeoJSON Polygon or MultiPolygon string."
+          "geometry": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Geometry",
+            "description": "GeoJSON Polygon or MultiPolygon as a structured object."
           }
         },
         "type": "object",
         "required": [
           "place_id",
           "name",
-          "geojson"
+          "geometry"
         ],
         "title": "MapNeighborhood",
-        "description": "A neighborhood/district polygon for the destination city.\n\nSourced from ``places`` rows whose ``place_type`` is one of\nneighborhood | district | quarter | borough and whose ``parent_id``\nmatches the city-level place. Only rows with non-NULL PostGIS geometry\nare included; the ``geojson`` field is the raw ``ST_AsGeoJSON`` output\n(GeoJSON Polygon or MultiPolygon string)."
+        "description": "A neighborhood/district polygon for the destination city.\n\nSourced from ``places`` rows whose ``place_type`` is one of\nneighborhood | district | quarter | borough and whose ``parent_id``\nmatches the city-level place. Only rows with non-NULL PostGIS geometry\nare included.\n\n``geometry`` is a structured GeoJSON Polygon / MultiPolygon dict\n(the ``ST_AsGeoJSON`` output parsed server-side). Earlier versions\nof this contract shipped the raw JSON string under ``geojson``,\nwhich forced clients to ``JSON.parse`` inside an already-JSON\nresponse \u2014 wasteful for large city polygon sets."
+      },
+      "MapPhoto": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "cdn_url": {
+            "type": "string",
+            "title": "Cdn Url"
+          },
+          "point": {
+            "$ref": "#/components/schemas/MapPoint"
+          },
+          "block_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Block Id"
+          },
+          "captured_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Captured At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "cdn_url",
+          "point"
+        ],
+        "title": "MapPhoto",
+        "description": "A geotagged trip photo for the map photo layer (P3).\n\nSourced from ``trip_photos`` rows with non-null ``gps_lat`` / ``gps_lng``.\nThe ``cdn_url`` is extracted from the ``photo_record`` JSONB column.\nOnly group-visible (``visibility \u2208 {group, group_and_learn}``) non-deleted\nphotos are included \u2014 the uploader's own ``private`` photos are excluded\nfrom the shared map layer."
       },
       "MapPlace": {
         "properties": {
@@ -26702,6 +27709,25 @@
           "mode"
         ],
         "title": "MapSegment"
+      },
+      "MapShareResponse": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "Url"
+          },
+          "expires_in_seconds": {
+            "type": "integer",
+            "title": "Expires In Seconds"
+          }
+        },
+        "type": "object",
+        "required": [
+          "url",
+          "expires_in_seconds"
+        ],
+        "title": "MapShareResponse",
+        "description": "Response for the interactive trip map share endpoint (P4).\n\nThe ``url`` is a public Mapbox GL JS preview page protected by an HMAC\ntoken; the token is the only gate, no auth on the preview page itself."
       },
       "MapSpatialNote": {
         "properties": {
@@ -27300,6 +28326,137 @@
         ],
         "title": "MessageResponse",
         "description": "A single message."
+      },
+      "MoveBlockRequest": {
+        "properties": {
+          "day_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Day Id"
+          },
+          "time_start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Start"
+          },
+          "time_end": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time End"
+          }
+        },
+        "type": "object",
+        "required": [
+          "day_id"
+        ],
+        "title": "MoveBlockRequest",
+        "description": "Body for POST /api/trips/{trip_id}/itinerary/blocks/{block_id}/move.\n\n``day_id`` may differ from the block's current day (cross-day move).\n``time_start`` / ``time_end`` are ISO-8601 strings; null clears the slot."
+      },
+      "MoveCheckResult": {
+        "properties": {
+          "overlaps": {
+            "items": {
+              "$ref": "#/components/schemas/MoveConflict"
+            },
+            "type": "array",
+            "title": "Overlaps"
+          },
+          "travel_from_prev_ok": {
+            "type": "boolean",
+            "title": "Travel From Prev Ok",
+            "default": true
+          },
+          "travel_to_next_ok": {
+            "type": "boolean",
+            "title": "Travel To Next Ok",
+            "default": true
+          },
+          "prev_venue_distance_m": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prev Venue Distance M"
+          },
+          "next_venue_distance_m": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Venue Distance M"
+          },
+          "would_create": {
+            "items": {
+              "$ref": "#/components/schemas/DayConflict"
+            },
+            "type": "array",
+            "title": "Would Create"
+          }
+        },
+        "type": "object",
+        "title": "MoveCheckResult",
+        "description": "Response for GET /api/trips/{trip_id}/itinerary/blocks/{block_id}/move-check.\n\n``overlaps`` are hard conflicts; travel-time booleans are soft warnings.\n``would_create`` (X-CRIT-2) is the Phase 3 standing-watcher scan run\nagainst the TARGET DAY's hypothetical post-move state \u2014 so the user sees\ntight_hop / over_packed / dead_gap / budget_overrun warnings BEFORE\ncommitting the move, not after."
+      },
+      "MoveConflict": {
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "title": "Block Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "time_start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Start"
+          },
+          "time_end": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time End"
+          }
+        },
+        "type": "object",
+        "required": [
+          "block_id",
+          "title"
+        ],
+        "title": "MoveConflict",
+        "description": "A block on the target day that overlaps the proposed time window."
       },
       "NarrateCitation": {
         "properties": {
@@ -28173,6 +29330,94 @@
           "created_at"
         ],
         "title": "Observation"
+      },
+      "OptimizeRouteResponse": {
+        "properties": {
+          "day_id": {
+            "type": "string",
+            "title": "Day Id"
+          },
+          "suggestions": {
+            "items": {
+              "$ref": "#/components/schemas/OptimizeRouteSuggestion"
+            },
+            "type": "array",
+            "title": "Suggestions"
+          },
+          "distance_saved_m": {
+            "type": "integer",
+            "title": "Distance Saved M",
+            "default": 0
+          },
+          "is_improvement": {
+            "type": "boolean",
+            "title": "Is Improvement",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "day_id"
+        ],
+        "title": "OptimizeRouteResponse",
+        "description": "Response for POST /api/trips/{trip_id}/itinerary/days/{day_id}/optimize-route."
+      },
+      "OptimizeRouteSuggestion": {
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "title": "Block Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "new_sort_order": {
+            "type": "integer",
+            "title": "New Sort Order"
+          },
+          "new_time_start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "New Time Start"
+          },
+          "new_time_end": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "New Time End"
+          },
+          "distance_from_prev_m": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Distance From Prev M"
+          }
+        },
+        "type": "object",
+        "required": [
+          "block_id",
+          "title",
+          "new_sort_order"
+        ],
+        "title": "OptimizeRouteSuggestion",
+        "description": "One block's new position in the optimized day order.\n\nReturned by the optimize-route endpoint; client applies by issuing N\nmove_block calls in the suggested order. Backend never commits \u2014 this\nis a preview surface only."
       },
       "ParagraphBlock": {
         "properties": {
@@ -29824,6 +31069,17 @@
           "id": {
             "type": "string",
             "title": "Id"
+          },
+          "price_per_person_estimate": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Per Person Estimate"
           }
         },
         "type": "object",
@@ -30174,6 +31430,39 @@
               }
             ],
             "title": "Timezone"
+          },
+          "daily_budget_cents": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Daily Budget Cents"
+          },
+          "total_budget_cents": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Budget Cents"
+          },
+          "budget_currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Budget Currency"
           }
         },
         "type": "object",
@@ -34235,6 +35524,39 @@
             ],
             "title": "Primary Conversation Id"
           },
+          "daily_budget_cents": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Daily Budget Cents"
+          },
+          "total_budget_cents": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Budget Cents"
+          },
+          "budget_currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Budget Currency"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -34254,6 +35576,66 @@
           "updated_at"
         ],
         "title": "Trip"
+      },
+      "TripBudgetUpdate": {
+        "properties": {
+          "daily_budget_cents": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Daily Budget Cents"
+          },
+          "total_budget_cents": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Budget Cents"
+          },
+          "budget_currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Budget Currency"
+          }
+        },
+        "type": "object",
+        "title": "TripBudgetUpdate",
+        "description": "Body for PATCH /api/trips/{trip_id}/budget.\n\nAll fields optional with no default \u2014 the route uses ``model_fields_set``\nto distinguish \"clear it\" (``null``) from \"not provided\" (absent). A\nfield that the caller didn't include is left untouched on the trip."
+      },
+      "TripConflictsResponse": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "title": "Trip Id"
+          },
+          "days": {
+            "items": {
+              "$ref": "#/components/schemas/DayConflictsResponse"
+            },
+            "type": "array",
+            "title": "Days"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id"
+        ],
+        "title": "TripConflictsResponse"
       },
       "TripContext": {
         "properties": {
@@ -34630,6 +36012,14 @@
             "title": "Neighborhoods",
             "description": "Neighborhood/district polygons for the destination city, sourced from ``places`` rows with polygon geometry. Empty list when no destination is set or the destination has no child neighborhood rows. Used by the frontend to render a semi-transparent fill layer (Layer 3)."
           },
+          "photos": {
+            "items": {
+              "$ref": "#/components/schemas/MapPhoto"
+            },
+            "type": "array",
+            "title": "Photos",
+            "description": "Geotagged trip photos with GPS coordinates (P3 photo layer). Empty when no photos have been uploaded and geotagged. Visibility-filtered: only group / group_and_learn photos are returned."
+          },
           "days": {
             "items": {
               "$ref": "#/components/schemas/MapDay"
@@ -34646,26 +36036,6 @@
             },
             "type": "array",
             "title": "Spatial Notes"
-          },
-          "near_me": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/MapNearMe"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "context": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/MapContext"
-              },
-              {
-                "type": "null"
-              }
-            ]
           },
           "generated_at": {
             "type": "string",
