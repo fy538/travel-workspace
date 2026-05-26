@@ -3801,6 +3801,308 @@
         }
       }
     },
+    "/api/concierge/home": {
+      "get": {
+        "tags": [
+          "concierge-home"
+        ],
+        "summary": "Get Concierge Home Feed",
+        "description": "Return the backend-authored general Concierge Home feed.",
+        "operationId": "get_concierge_home_feed_api_concierge_home_get",
+        "parameters": [
+          {
+            "name": "lat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "maximum": 90,
+                  "minimum": -90
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Lat"
+            }
+          },
+          {
+            "name": "lng",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "maximum": 180,
+                  "minimum": -180
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Lng"
+            }
+          },
+          {
+            "name": "weather_condition",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 80
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Weather Condition"
+            }
+          },
+          {
+            "name": "temperature_c",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Temperature C"
+            }
+          },
+          {
+            "name": "precipitation_mm",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Precipitation Mm"
+            }
+          },
+          {
+            "name": "wind_kph",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Wind Kph"
+            }
+          },
+          {
+            "name": "place_label",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 120
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Place Label"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConciergeHomeFeed"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/concierge/home/cards/feedback": {
+      "post": {
+        "tags": [
+          "concierge-home"
+        ],
+        "summary": "Post Concierge Card Feedback",
+        "description": "Persist a structured tuning event for a Concierge Home card.",
+        "operationId": "post_concierge_card_feedback_api_concierge_home_cards_feedback_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConciergeCardFeedbackRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConciergeCardFeedbackResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "concierge-home"
+        ],
+        "summary": "Get Concierge Card Feedback",
+        "description": "Return recent card feedback events for fallback ranking/suppression.",
+        "operationId": "get_concierge_card_feedback_api_concierge_home_cards_feedback_get",
+        "parameters": [
+          {
+            "name": "surface",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80,
+              "default": "concierge_home",
+              "title": "Surface"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 500,
+              "minimum": 1,
+              "default": 200,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConciergeCardFeedbackListResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/discover/trending": {
       "get": {
         "tags": [
@@ -14152,6 +14454,146 @@
         }
       }
     },
+    "/api/trips/{trip_id}/itinerary/blocks/{block_id}/undo": {
+      "post": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Undo Itinerary Block Edit",
+        "description": "Undo the most recent direct edit to a block (the Undo affordance).\n\nReverses the latest ``block_updated`` plan_event for the block by\nre-applying its prior values. Returns 409 when there's nothing to undo.\nSee ``Travel App/docs/page-specs/itinerary-editing.md`` \u00a74 / \u00a711.",
+        "operationId": "undo_itinerary_block_edit_api_trips__trip_id__itinerary_blocks__block_id__undo_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "block_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Block Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItineraryBlockOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/itinerary/blocks/{block_id}/alternatives": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Block Alternatives",
+        "description": "Ranked same-category venues near the block's current venue (Swap).\n\nA pre-reasoned CandidateSet (itinerary-editing.md \u00a76). Returns an empty\nlist with ``reason=\"no_venue\"`` for free-time / experience blocks.",
+        "operationId": "get_block_alternatives_api_trips__trip_id__itinerary_blocks__block_id__alternatives_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "block_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Block Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockAlternativesResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/itinerary/pin-experience": {
       "post": {
         "tags": [
@@ -18682,6 +19124,139 @@
         ],
         "title": "BehavioralEvent"
       },
+      "BlockAlternative": {
+        "properties": {
+          "venue_id": {
+            "type": "integer",
+            "title": "Venue Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "venue_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Venue Type"
+          },
+          "cuisine_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cuisine Type"
+          },
+          "price_per_person_estimate": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Per Person Estimate"
+          },
+          "cost_delta": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cost Delta"
+          },
+          "distance_meters": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Distance Meters"
+          },
+          "neighborhood": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Neighborhood"
+          },
+          "fit_line": {
+            "type": "string",
+            "title": "Fit Line",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "venue_id",
+          "name"
+        ],
+        "title": "BlockAlternative",
+        "description": "One Swap candidate for an itinerary block (itinerary-editing.md \u00a76).\n\nA pre-reasoned recommendation, not a raw search hit: ``fit_line`` and\n``cost_delta`` let the UI explain why it's offered. ``cost_delta`` is the\ncandidate's ``price_per_person_estimate`` minus the current venue's, in the\nsame units the venue stores (signed; negative = cheaper)."
+      },
+      "BlockAlternativesResponse": {
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "title": "Block Id"
+          },
+          "current_venue_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current Venue Id"
+          },
+          "candidates": {
+            "items": {
+              "$ref": "#/components/schemas/BlockAlternative"
+            },
+            "type": "array",
+            "title": "Candidates"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          }
+        },
+        "type": "object",
+        "required": [
+          "block_id"
+        ],
+        "title": "BlockAlternativesResponse",
+        "description": "``GET /api/trips/{trip_id}/itinerary/blocks/{block_id}/alternatives``.\n\nThe CandidateSet for a block's Swap surface. ``reason`` is set (and\n``candidates`` empty) when there's nothing to offer \u2014 e.g. ``no_venue``\nfor a free-time / experience block."
+      },
       "BlockTransition": {
         "properties": {
           "mode": {
@@ -19658,6 +20233,392 @@
         ],
         "title": "CollectionSummary",
         "description": "Guides-row card payload: just what the row needs to render."
+      },
+      "ConciergeCardFeedbackEvent": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "surface": {
+            "type": "string",
+            "title": "Surface"
+          },
+          "zone": {
+            "type": "string",
+            "title": "Zone"
+          },
+          "card_id": {
+            "type": "string",
+            "title": "Card Id"
+          },
+          "card_kind": {
+            "type": "string",
+            "title": "Card Kind"
+          },
+          "action": {
+            "type": "string",
+            "title": "Action"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Metadata"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "user_id",
+          "surface",
+          "zone",
+          "card_id",
+          "card_kind",
+          "action",
+          "created_at"
+        ],
+        "title": "ConciergeCardFeedbackEvent"
+      },
+      "ConciergeCardFeedbackListResponse": {
+        "properties": {
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/ConciergeCardFeedbackEvent"
+            },
+            "type": "array",
+            "title": "Events"
+          }
+        },
+        "type": "object",
+        "title": "ConciergeCardFeedbackListResponse"
+      },
+      "ConciergeCardFeedbackRequest": {
+        "properties": {
+          "surface": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Surface",
+            "default": "concierge_home"
+          },
+          "zone": {
+            "type": "string",
+            "enum": [
+              "now",
+              "next_moves"
+            ],
+            "title": "Zone"
+          },
+          "card_id": {
+            "type": "string",
+            "maxLength": 256,
+            "minLength": 1,
+            "title": "Card Id"
+          },
+          "card_kind": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Card Kind"
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "useful",
+              "not_now",
+              "show_less",
+              "not_relevant",
+              "wrong",
+              "why_this"
+            ],
+            "title": "Action"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Metadata"
+          }
+        },
+        "type": "object",
+        "required": [
+          "zone",
+          "card_id",
+          "card_kind",
+          "action"
+        ],
+        "title": "ConciergeCardFeedbackRequest",
+        "description": "Structured feedback for one Concierge Home card."
+      },
+      "ConciergeCardFeedbackResponse": {
+        "properties": {
+          "accepted": {
+            "type": "boolean",
+            "title": "Accepted",
+            "default": true
+          },
+          "feedback_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Feedback Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "feedback_id"
+        ],
+        "title": "ConciergeCardFeedbackResponse"
+      },
+      "ConciergeHomeAction": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "open_trip",
+              "open_trip_plan",
+              "open_trip_expenses",
+              "open_chat_prefill",
+              "open_memory"
+            ],
+            "title": "Type"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message"
+          },
+          "destination": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Destination"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "title": "ConciergeHomeAction"
+      },
+      "ConciergeHomeCard": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "zone": {
+            "type": "string",
+            "enum": [
+              "now",
+              "next_moves"
+            ],
+            "title": "Zone"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "live_trip",
+              "urgent_trip_action",
+              "daily_brief",
+              "constraint_alert",
+              "capture_nudge",
+              "planning_brief",
+              "trip_retrospective",
+              "settlement_closeout",
+              "imminent_trip",
+              "trip_thread",
+              "saved_cluster",
+              "memory_echo",
+              "weather",
+              "near_you",
+              "starter"
+            ],
+            "title": "Kind"
+          },
+          "eyebrow": {
+            "type": "string",
+            "title": "Eyebrow"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "body": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Body"
+          },
+          "cta_label": {
+            "type": "string",
+            "title": "Cta Label"
+          },
+          "action": {
+            "$ref": "#/components/schemas/ConciergeHomeAction"
+          },
+          "priority": {
+            "type": "integer",
+            "title": "Priority"
+          },
+          "dismissible": {
+            "type": "boolean",
+            "title": "Dismissible",
+            "default": true
+          },
+          "feedback_enabled": {
+            "type": "boolean",
+            "title": "Feedback Enabled",
+            "default": true
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "zone",
+          "kind",
+          "eyebrow",
+          "title",
+          "cta_label",
+          "action",
+          "priority"
+        ],
+        "title": "ConciergeHomeCard"
+      },
+      "ConciergeHomeFeed": {
+        "properties": {
+          "lead_note": {
+            "$ref": "#/components/schemas/ConciergeHomeLeadNote"
+          },
+          "now_card": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ConciergeHomeCard"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "next_moves": {
+            "items": {
+              "$ref": "#/components/schemas/ConciergeHomeCard"
+            },
+            "type": "array",
+            "title": "Next Moves"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "lead_note",
+          "generated_at"
+        ],
+        "title": "ConciergeHomeFeed"
+      },
+      "ConciergeHomeLeadNote": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "action": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ConciergeHomeAction"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source": {
+            "type": "string",
+            "title": "Source",
+            "default": "backend"
+          }
+        },
+        "type": "object",
+        "required": [
+          "text"
+        ],
+        "title": "ConciergeHomeLeadNote"
       },
       "ConfirmVerificationRequest": {
         "properties": {
@@ -27244,6 +28205,22 @@
               }
             ],
             "title": "Autonomy Level"
+          },
+          "plan_editing": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "open",
+                  "review",
+                  "locked"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Plan Editing"
           }
         },
         "type": "object",
@@ -33101,6 +34078,16 @@
             ],
             "title": "Autonomy Level",
             "default": "L2_decide"
+          },
+          "plan_editing": {
+            "type": "string",
+            "enum": [
+              "open",
+              "review",
+              "locked"
+            ],
+            "title": "Plan Editing",
+            "default": "review"
           },
           "trip_summary": {
             "additionalProperties": true,
