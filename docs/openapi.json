@@ -26431,6 +26431,42 @@
         "type": "object",
         "title": "MapNearMe"
       },
+      "MapNeighborhood": {
+        "properties": {
+          "place_id": {
+            "type": "integer",
+            "title": "Place Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "character": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Character"
+          },
+          "geojson": {
+            "type": "string",
+            "title": "Geojson",
+            "description": "Raw ST_AsGeoJSON output \u2014 GeoJSON Polygon or MultiPolygon string."
+          }
+        },
+        "type": "object",
+        "required": [
+          "place_id",
+          "name",
+          "geojson"
+        ],
+        "title": "MapNeighborhood",
+        "description": "A neighborhood/district polygon for the destination city.\n\nSourced from ``places`` rows whose ``place_type`` is one of\nneighborhood | district | quarter | borough and whose ``parent_id``\nmatches the city-level place. Only rows with non-NULL PostGIS geometry\nare included; the ``geojson`` field is the raw ``ST_AsGeoJSON`` output\n(GeoJSON Polygon or MultiPolygon string)."
+      },
       "MapPlace": {
         "properties": {
           "id": {
@@ -26507,6 +26543,61 @@
           "lng"
         ],
         "title": "MapPoint"
+      },
+      "MapSavedPlace": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "entity_type": {
+            "type": "string",
+            "title": "Entity Type"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "point": {
+            "$ref": "#/components/schemas/MapPoint"
+          },
+          "saved_at": {
+            "type": "string",
+            "title": "Saved At"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "category": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "entity_type",
+          "name",
+          "point",
+          "saved_at"
+        ],
+        "title": "MapSavedPlace",
+        "description": "A user-saved venue near the trip destination (Layer 2 context pin).\n\nSourced from ``entity_saves`` joined to ``venues`` via a PostGIS proximity\nquery in ``backend/core/db/saves.py::list_saved_near_place``. Only venue\nsaves within ``radius_km`` of the destination centroid are projected; saves\nfor entities without resolvable geometry are skipped. Used by the map canvas\nto render a soft \"context\" pin layer distinct from itinerary stops."
       },
       "MapSegment": {
         "properties": {
@@ -26760,6 +26851,21 @@
           },
           "action": {
             "$ref": "#/components/schemas/MapStopAction"
+          },
+          "route_geometry": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/MapPoint"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Route Geometry",
+            "description": "GeoJSON-derived walking tour path for experience blocks with a LINESTRING route_geometry stored in PostGIS. Each MapPoint is one vertex of the path. NULL for non-experience stops or experiences without route geometry."
           }
         },
         "type": "object",
@@ -34489,6 +34595,22 @@
             },
             "type": "array",
             "title": "Member Stays"
+          },
+          "saved_nearby": {
+            "items": {
+              "$ref": "#/components/schemas/MapSavedPlace"
+            },
+            "type": "array",
+            "title": "Saved Nearby",
+            "description": "User-saved venues within ~5 km of the destination centroid (Layer 2). Empty when the trip has no destination or the user has no saves near it. Sourced from ``entity_saves`` JOIN ``venues`` via ST_DWithin."
+          },
+          "neighborhoods": {
+            "items": {
+              "$ref": "#/components/schemas/MapNeighborhood"
+            },
+            "type": "array",
+            "title": "Neighborhoods",
+            "description": "Neighborhood/district polygons for the destination city, sourced from ``places`` rows with polygon geometry. Empty list when no destination is set or the destination has no child neighborhood rows. Used by the frontend to render a semi-transparent fill layer (Layer 3)."
           },
           "days": {
             "items": {
