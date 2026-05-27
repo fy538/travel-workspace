@@ -3,8 +3,8 @@
 #
 # Launches three services with prefixed, color-coded output:
 #   [DOCKER]  docker compose up (Postgres + Qdrant)
-#   [API]     uvicorn backend.api.main:app --reload (Travel Agent)
-#   [APP]     npx expo start --ios (Travel App)
+#   [API]     uvicorn backend.api.main:app --reload (travel-agent)
+#   [APP]     npx expo start --ios (travel-app)
 #
 # Usage:
 #   ./scripts/dev.sh              # start all three services
@@ -17,8 +17,8 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
-AGENT_DIR="$WORKSPACE_DIR/Travel Agent"
-APP_DIR="$WORKSPACE_DIR/Travel App"
+AGENT_DIR="$WORKSPACE_DIR/travel-agent"
+APP_DIR="$WORKSPACE_DIR/travel-app"
 
 # ── Flags ────────────────────────────────────────────────────────────────────
 
@@ -99,7 +99,7 @@ die() {
 # ── Preflight checks ──────────────────────────────────────────────────────────
 
 command -v docker >/dev/null 2>&1 || die "docker not found. Install Docker Desktop."
-command -v uvicorn >/dev/null 2>&1 || die "uvicorn not found. Run: pip install -r requirements.txt (inside Travel Agent/)"
+command -v uvicorn >/dev/null 2>&1 || die "uvicorn not found. Run: pip install -r requirements.txt (inside travel-agent/)"
 if $RUN_EXPO; then
   command -v npx >/dev/null 2>&1 || die "npx not found. Install Node.js."
 fi

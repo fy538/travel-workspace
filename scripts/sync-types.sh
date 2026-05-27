@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# sync-types.sh — Regenerate the OpenAPI snapshot and the Travel App
+# sync-types.sh — Regenerate the OpenAPI snapshot and the travel-app
 # TypeScript types from it. Single source of truth: docs/openapi.json
-# (this workspace repo). The Travel App npm scripts read the same file
+# (this workspace repo). The travel-app npm scripts read the same file
 # via ../docs/openapi.json, so there is exactly one snapshot every tool
 # generates from.
 #
@@ -11,14 +11,14 @@
 #   ./scripts/sync-types.sh --from-snapshot # use the committed snapshot as-is
 #   ./scripts/sync-types.sh --live          # pull from a running backend
 #
-# Default (offline) generation runs Travel Agent's deterministic exporter
+# Default (offline) generation runs travel-agent's deterministic exporter
 # (scripts/export_openapi.py → app.openapi()) so the snapshot can be
 # regenerated without standing up Postgres/Qdrant. Requires the Travel
 # Agent Python deps to be importable (pip install -r requirements-dev.txt).
 #
 # Requirements:
 #   - node/npm available (for openapi-typescript)
-#   - Default/--live: Travel Agent present as a sibling dir
+#   - Default/--live: travel-agent present as a sibling dir
 
 set -euo pipefail
 
@@ -26,8 +26,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
 BACKEND_URL="${BACKEND_URL:-http://localhost:8000}"
 SNAPSHOT_PATH="$WORKSPACE_DIR/docs/openapi.json"
-TRAVEL_AGENT_DIR="$WORKSPACE_DIR/Travel Agent"
-TRAVEL_APP_DIR="$WORKSPACE_DIR/Travel App"
+TRAVEL_AGENT_DIR="$WORKSPACE_DIR/travel-agent"
+TRAVEL_APP_DIR="$WORKSPACE_DIR/travel-app"
 OUTPUT_FILE="$TRAVEL_APP_DIR/utils/api/schema.gen.ts"
 
 # ── Parse args ─────────────────────────────────────────────────────────────
@@ -64,9 +64,9 @@ case "$MODE" in
     fi
     ;;
   offline)
-    echo "→ Generating schema offline via Travel Agent export_openapi.py ..."
+    echo "→ Generating schema offline via travel-agent export_openapi.py ..."
     if [ ! -d "$TRAVEL_AGENT_DIR" ]; then
-      echo "✗ Travel Agent not found at $TRAVEL_AGENT_DIR"
+      echo "✗ travel-agent not found at $TRAVEL_AGENT_DIR"
       echo "  Offline generation needs the backend source. Use --from-snapshot instead."
       exit 1
     fi
@@ -90,7 +90,7 @@ if npx tsc --noEmit 2>&1; then
   echo "  ✓ No type errors"
 else
   echo ""
-  echo "  ⚠  Type errors found. These are likely places where Travel App"
+  echo "  ⚠  Type errors found. These are likely places where travel-app"
   echo "     uses a field that changed in the backend."
   echo "  Fix them before committing."
   exit 1
@@ -100,5 +100,5 @@ fi
 echo ""
 echo "✓ Done. Next steps:"
 echo "  1. Review the diff in utils/api/schema.gen.ts"
-echo "  2. Commit docs/openapi.json alongside the Travel App changes"
+echo "  2. Commit docs/openapi.json alongside the travel-app changes"
 echo "     (keeps the schema snapshot and generated types atomic)"
