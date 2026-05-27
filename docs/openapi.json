@@ -20847,6 +20847,17 @@
             ],
             "title": "Place Label"
           },
+          "reflection": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reflection"
+          },
           "signal_state": {
             "type": "string",
             "enum": [
@@ -21008,6 +21019,17 @@
               }
             ],
             "title": "Place Label"
+          },
+          "reflection": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reflection"
           },
           "generation_status": {
             "type": "string",
@@ -25389,6 +25411,65 @@
           "updated_at": {
             "type": "string",
             "title": "Updated At"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          },
+          "image_source": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "authored",
+                  "stock"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Source"
+          },
+          "entity_kind": {
+            "type": "string",
+            "enum": [
+              "site",
+              "venue",
+              "accommodation",
+              "place"
+            ],
+            "title": "Entity Kind",
+            "default": "place"
+          },
+          "place_slug": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Slug"
+          },
+          "place_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Name"
           }
         },
         "type": "object",
@@ -32701,6 +32782,32 @@
               }
             ],
             "title": "Image Url"
+          },
+          "image_source": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "authored",
+                  "stock"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Source"
+          },
+          "entity_kind": {
+            "type": "string",
+            "enum": [
+              "site",
+              "venue",
+              "accommodation",
+              "place"
+            ],
+            "title": "Entity Kind",
+            "default": "place"
           },
           "thematic_tags": {
             "items": {
@@ -40939,11 +41046,23 @@
             ],
             "title": "Style",
             "default": "memory"
+          },
+          "reflection": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 280
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reflection"
           }
         },
         "type": "object",
         "title": "ApproveRequest",
-        "description": "Optional body for ``POST /api/atlas/candidates/{id}/approve``.\n\n``style`` selects the Vesper narrative voice used during artifact\ngeneration. Defaults to ``\"memory\"`` (the warm, literary default).\nOther values: ``\"postcard\"`` (Instagram-native), ``\"journal\"``\n(first-person, introspective), ``\"dispatch\"`` (editorial, thesis-driven)."
+        "description": "Optional body for ``POST /api/atlas/candidates/{id}/approve``.\n\n``style`` selects the Vesper narrative voice used during artifact\ngeneration. Defaults to ``\"memory\"`` (the warm, literary default).\nOther values: ``\"postcard\"`` (Instagram-native), ``\"journal\"``\n(first-person, introspective), ``\"dispatch\"`` (editorial, thesis-driven).\n\n``reflection`` is a short, optional user-authored note (\"what was\nhappening / what did this feel like\") captured at approval time. The\ntyping itself is the load-bearing memory-consolidation moment per the\nphoto-taking-impairment research; persisting it gives the artifact\ndetail a \"back of the postcard\" surface."
       },
       "backend__api__routes__chat__SendMessageRequest": {
         "properties": {
