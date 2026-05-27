@@ -2268,6 +2268,203 @@
         }
       }
     },
+    "/api/atlas/home": {
+      "get": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Get Atlas Home",
+        "description": "Atlas Home read model.\n\nComposes the first dogfood version of the Atlas tab landing surface:\nowner identity, featured Travel DNA line, four room summaries, one\nVesper work card, and latest postcard. This intentionally reuses the\nexisting Atlas tables and Personal Memory read path; broader Inbox item\ntypes can move behind this contract later.",
+        "operationId": "get_atlas_home_api_atlas_home_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasHome"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/artifacts": {
+      "get": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "List Atlas Artifacts",
+        "description": "Paginated postcard/artifact shelf for Atlas.",
+        "operationId": "list_atlas_artifacts_api_atlas_artifacts_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "after_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "After Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasArtifactsPage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/search": {
+      "get": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Search Atlas",
+        "description": "Search Atlas-owned memories, pending candidates, and Travel DNA phrases.",
+        "operationId": "search_atlas_api_atlas_search_get",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Q"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasSearchPage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/atlas/candidates": {
       "post": {
         "tags": [
@@ -2868,6 +3065,83 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AtlasInboxPage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/inbox/review": {
+      "get": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Get Review Inbox",
+        "description": "Backend-authored Atlas review queue.\n\nThis is the broader Atlas Inbox surface: memory candidates, pattern\nchecks, place clusters, postcard-ready rows, memory corrections, and\nsignal reviews. It stays additive next to the existing paginated\n``/api/atlas/inbox`` endpoint while the app migrates.",
+        "operationId": "get_review_inbox_api_atlas_inbox_review_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "after_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "After Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasInboxReviewPage"
                 }
               }
             }
@@ -20669,9 +20943,25 @@
             ],
             "title": "Artifact Type"
           },
+          "style": {
+            "type": "string",
+            "enum": [
+              "memory",
+              "postcard",
+              "journal",
+              "dispatch"
+            ],
+            "title": "Style",
+            "default": "memory"
+          },
           "title": {
             "type": "string",
             "title": "Title"
+          },
+          "one_line_read": {
+            "type": "string",
+            "title": "One Line Read",
+            "default": ""
           },
           "hero_photo_id": {
             "anyOf": [
@@ -20769,6 +21059,38 @@
         "type": "object",
         "title": "AtlasArtifactStateUpdate",
         "description": "PATCH body for ``/api/atlas/artifacts/{id}/state``.\n\nUses ``model_fields_set`` idiom \u2014 only present fields propagate, so a\nPATCH with ``{\"signal_state\": \"signals_off\"}`` only touches that field."
+      },
+      "AtlasArtifactsPage": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasArtifactShell"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "title": "AtlasArtifactsPage"
       },
       "AtlasCandidate": {
         "properties": {
@@ -20997,6 +21319,266 @@
         "title": "AtlasCandidatesResponse",
         "description": "Response for ``POST /api/atlas/candidates`` \u2014 persisted candidates with ids."
       },
+      "AtlasHome": {
+        "properties": {
+          "owner": {
+            "$ref": "#/components/schemas/AtlasHomeOwner"
+          },
+          "status_line": {
+            "type": "string",
+            "title": "Status Line"
+          },
+          "featured_dna_line": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AtlasHomeDnaLine"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "rooms": {
+            "$ref": "#/components/schemas/AtlasHomeRooms"
+          },
+          "featured_work": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AtlasHomeWorkCard"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "latest_postcard": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AtlasArtifactShell"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "postcard_previews": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasArtifactShell"
+            },
+            "type": "array",
+            "title": "Postcard Previews"
+          },
+          "shelves": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasHomeShelf"
+            },
+            "type": "array",
+            "title": "Shelves"
+          }
+        },
+        "type": "object",
+        "required": [
+          "owner",
+          "status_line",
+          "rooms"
+        ],
+        "title": "AtlasHome"
+      },
+      "AtlasHomeDnaLine": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "emerging",
+              "often",
+              "high",
+              "confirmed"
+            ],
+            "title": "Confidence",
+            "default": "emerging"
+          },
+          "source_count": {
+            "type": "integer",
+            "title": "Source Count",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "text"
+        ],
+        "title": "AtlasHomeDnaLine"
+      },
+      "AtlasHomeOwner": {
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "title": "First Name"
+          },
+          "avatar_initial": {
+            "type": "string",
+            "title": "Avatar Initial"
+          }
+        },
+        "type": "object",
+        "required": [
+          "first_name",
+          "avatar_initial"
+        ],
+        "title": "AtlasHomeOwner"
+      },
+      "AtlasHomeRoomSummary": {
+        "properties": {
+          "count": {
+            "type": "integer",
+            "title": "Count",
+            "default": 0
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "body": {
+            "type": "string",
+            "title": "Body"
+          },
+          "cta_label": {
+            "type": "string",
+            "title": "Cta Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "body",
+          "cta_label"
+        ],
+        "title": "AtlasHomeRoomSummary"
+      },
+      "AtlasHomeRooms": {
+        "properties": {
+          "inbox": {
+            "$ref": "#/components/schemas/AtlasHomeRoomSummary"
+          },
+          "map": {
+            "$ref": "#/components/schemas/AtlasHomeRoomSummary"
+          },
+          "dna": {
+            "$ref": "#/components/schemas/AtlasHomeRoomSummary"
+          },
+          "postcards": {
+            "$ref": "#/components/schemas/AtlasHomeRoomSummary"
+          }
+        },
+        "type": "object",
+        "required": [
+          "inbox",
+          "map",
+          "dna",
+          "postcards"
+        ],
+        "title": "AtlasHomeRooms"
+      },
+      "AtlasHomeShelf": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasHomeWorkCard"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "title"
+        ],
+        "title": "AtlasHomeShelf"
+      },
+      "AtlasHomeWorkCard": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "memory_candidate",
+              "pattern_candidate",
+              "place_cluster",
+              "postcard_ready",
+              "signal_review"
+            ],
+            "title": "Kind"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "body": {
+            "type": "string",
+            "title": "Body"
+          },
+          "cta_label": {
+            "type": "string",
+            "title": "Cta Label"
+          },
+          "candidate_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Candidate Id"
+          },
+          "artifact_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Artifact Id"
+          },
+          "surfaced_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Surfaced At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "title",
+          "body",
+          "cta_label",
+          "surfaced_at"
+        ],
+        "title": "AtlasHomeWorkCard",
+        "description": "One active Vesper-authored Atlas work card for the home surface."
+      },
       "AtlasInboxItem": {
         "properties": {
           "kind": {
@@ -21074,6 +21656,172 @@
         "title": "AtlasInboxPage",
         "description": "Paginated inbox response. ``next_cursor`` is null when no more rows."
       },
+      "AtlasInboxReviewAction": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "review_candidate",
+              "open_artifact",
+              "open_dna",
+              "open_map",
+              "open_saved_places",
+              "open_postcards",
+              "dismiss"
+            ],
+            "title": "Action"
+          },
+          "candidate_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Candidate Id"
+          },
+          "artifact_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Artifact Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "label",
+          "action"
+        ],
+        "title": "AtlasInboxReviewAction"
+      },
+      "AtlasInboxReviewItem": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "memory_candidate",
+              "pattern_candidate",
+              "place_cluster",
+              "postcard_ready",
+              "memory_correction",
+              "signal_review"
+            ],
+            "title": "Kind"
+          },
+          "eyebrow": {
+            "type": "string",
+            "title": "Eyebrow"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "body": {
+            "type": "string",
+            "title": "Body"
+          },
+          "meta": {
+            "type": "string",
+            "title": "Meta"
+          },
+          "surfaced_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Surfaced At"
+          },
+          "priority": {
+            "type": "integer",
+            "title": "Priority",
+            "default": 0
+          },
+          "primary_action": {
+            "$ref": "#/components/schemas/AtlasInboxReviewAction"
+          },
+          "secondary_action": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AtlasInboxReviewAction"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "eyebrow",
+          "title",
+          "body",
+          "meta",
+          "surfaced_at",
+          "primary_action"
+        ],
+        "title": "AtlasInboxReviewItem",
+        "description": "Backend-authored Atlas Inbox review item.\n\nThese are the broad Atlas review queue rows: memories, patterns, places,\npostcards, corrections, and signal reviews. The frontend renders these\ndirectly instead of inferring Vesper's queue from unrelated hooks."
+      },
+      "AtlasInboxReviewPage": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasInboxReviewItem"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          },
+          "total_pending": {
+            "type": "integer",
+            "title": "Total Pending",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "total",
+          "generated_at"
+        ],
+        "title": "AtlasInboxReviewPage"
+      },
       "AtlasScanHistory": {
         "properties": {
           "user_id": {
@@ -21127,6 +21875,81 @@
         ],
         "title": "AtlasScanHistory",
         "description": "One-row-per-user scan tracking. Updated after every successful scan."
+      },
+      "AtlasSearchPage": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "title": "Query"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasSearchResult"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "query",
+          "items",
+          "total",
+          "generated_at"
+        ],
+        "title": "AtlasSearchPage"
+      },
+      "AtlasSearchResult": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "artifact",
+              "memory_candidate",
+              "dna_phrase"
+            ],
+            "title": "Kind"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "detail": {
+            "type": "string",
+            "title": "Detail"
+          },
+          "surfaced_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Surfaced At"
+          },
+          "action": {
+            "$ref": "#/components/schemas/AtlasInboxReviewAction"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "title",
+          "detail",
+          "surfaced_at",
+          "action"
+        ],
+        "title": "AtlasSearchResult"
       },
       "AtlasSignalsResponse": {
         "properties": {
