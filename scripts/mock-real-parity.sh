@@ -5,7 +5,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
-APP_DIR="$WORKSPACE_DIR/Travel App"
+APP_DIR="$WORKSPACE_DIR/travel-app"
 
 header() {
   printf "\n== %s ==\n" "$1"

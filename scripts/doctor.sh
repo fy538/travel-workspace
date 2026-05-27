@@ -8,8 +8,8 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
-AGENT_DIR="$WORKSPACE_DIR/Travel Agent"
-APP_DIR="$WORKSPACE_DIR/Travel App"
+AGENT_DIR="$WORKSPACE_DIR/travel-agent"
+APP_DIR="$WORKSPACE_DIR/travel-app"
 SNAPSHOT_PATH="$WORKSPACE_DIR/docs/openapi.json"
 
 ok() {
@@ -51,15 +51,15 @@ check_ignored() {
 
 header "Workspace"
 
-[ -d "$AGENT_DIR" ] || fail "Travel Agent repo missing at $AGENT_DIR"
-[ -d "$APP_DIR" ] || fail "Travel App repo missing at $APP_DIR"
+[ -d "$AGENT_DIR" ] || fail "travel-agent repo missing at $AGENT_DIR"
+[ -d "$APP_DIR" ] || fail "travel-app repo missing at $APP_DIR"
 [ -d "$WORKSPACE_DIR/.git" ] || fail "Workspace repo missing .git at $WORKSPACE_DIR"
 ok "Workspace repo present"
-ok "Travel Agent repo present"
-ok "Travel App repo present"
+ok "travel-agent repo present"
+ok "travel-app repo present"
 
 tracked_child_files="$(
-  git -C "$WORKSPACE_DIR" ls-files -- "Travel Agent" "Travel App" 2>/dev/null || true
+  git -C "$WORKSPACE_DIR" ls-files -- "travel-agent" "travel-app" 2>/dev/null || true
 )"
 if [ -n "$tracked_child_files" ]; then
   fail "Workspace is tracking files inside child repos. Remove them from the parent index."
@@ -67,8 +67,8 @@ else
   ok "Workspace is not tracking child repo source"
 fi
 
-check_ignored "Travel Agent/README.md" "Travel Agent"
-check_ignored "Travel App/README.md" "Travel App"
+check_ignored "travel-agent/README.md" "travel-agent"
+check_ignored "travel-app/README.md" "travel-app"
 
 if [ -f "$SNAPSHOT_PATH" ]; then
   ok "Committed OpenAPI snapshot present"
@@ -81,21 +81,21 @@ header "Git"
 check_command git
 
 if git -C "$AGENT_DIR" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-  ok "Travel Agent git repo healthy"
+  ok "travel-agent git repo healthy"
 else
-  fail "Travel Agent is not a valid git repo"
+  fail "travel-agent is not a valid git repo"
 fi
 
 if git -C "$APP_DIR" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-  ok "Travel App git repo healthy"
+  ok "travel-app git repo healthy"
 else
-  fail "Travel App is not a valid git repo"
+  fail "travel-app is not a valid git repo"
 fi
 
 agent_branch="$(git -C "$AGENT_DIR" branch --show-current || true)"
 app_branch="$(git -C "$APP_DIR" branch --show-current || true)"
-ok "Travel Agent branch: ${agent_branch:-detached HEAD}"
-ok "Travel App branch: ${app_branch:-detached HEAD}"
+ok "travel-agent branch: ${agent_branch:-detached HEAD}"
+ok "travel-app branch: ${app_branch:-detached HEAD}"
 
 header "Tooling"
 
@@ -118,15 +118,15 @@ else
 fi
 
 if [ -n "$agent_remote" ]; then
-  ok "Travel Agent origin: $agent_remote"
+  ok "travel-agent origin: $agent_remote"
 else
-  warn "Travel Agent has no origin remote"
+  warn "travel-agent has no origin remote"
 fi
 
 if [ -n "$app_remote" ]; then
-  ok "Travel App origin: $app_remote"
+  ok "travel-app origin: $app_remote"
 else
-  warn "Travel App has no origin remote"
+  warn "travel-app has no origin remote"
 fi
 
 printf "\n\033[32mWorkspace doctor complete.\033[0m\n"

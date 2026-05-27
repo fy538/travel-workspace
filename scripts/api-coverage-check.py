@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify Travel App/utils/api/http.ts only calls endpoints that exist in
+"""Verify travel-app/utils/api/http.ts only calls endpoints that exist in
 docs/openapi.json (the backend's contract).
 
 Catches drift in either direction:
@@ -34,7 +34,7 @@ from pathlib import Path
 
 WORKSPACE_ROOT = Path(__file__).resolve().parent.parent
 OPENAPI_SNAPSHOT = WORKSPACE_ROOT / "docs" / "openapi.json"
-HTTP_TS = WORKSPACE_ROOT / "Travel App" / "utils" / "api" / "http.ts"
+HTTP_TS = WORKSPACE_ROOT / "travel-app" / "utils" / "api" / "http.ts"
 
 HTTP_METHODS = {"get", "post", "put", "patch", "delete"}
 

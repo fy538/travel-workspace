@@ -5,8 +5,8 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
-AGENT_DIR="$WORKSPACE_DIR/Travel Agent"
-APP_DIR="$WORKSPACE_DIR/Travel App"
+AGENT_DIR="$WORKSPACE_DIR/travel-agent"
+APP_DIR="$WORKSPACE_DIR/travel-app"
 SNAPSHOT_PATH="$WORKSPACE_DIR/docs/openapi.json"
 
 header() {
@@ -72,8 +72,8 @@ printf "Backend pytest files: %s\n" "$backend_tests"
 printf "Frontend test files: %s\n" "$frontend_tests"
 
 status_block "Workspace Git" "$WORKSPACE_DIR"
-status_block "Travel Agent Git" "$AGENT_DIR"
-status_block "Travel App Git" "$APP_DIR"
+status_block "travel-agent Git" "$AGENT_DIR"
+status_block "travel-app Git" "$APP_DIR"
 
 header "Recommended Commands"
 printf "make contract-check      # cheapest schema drift check\n"
