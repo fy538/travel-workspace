@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Display serif — stroke-contrast comparison</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500;1,700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500;1,9..144,700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,700;1,6..72,500;1,6..72,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,500;0,8..60,700;1,8..60,500;1,8..60,700&family=Bitter:ital,wght@0,500;0,700;1,500;1,700&display=swap" rel="stylesheet">
+<style>
+  :root{ --paper:#EFEAE0; --ink:#1B1714; --mute:#86807A; --gold:#8A6628; }
+  *{ box-sizing:border-box; margin:0; }
+  body{ background:var(--paper); color:var(--ink); padding:40px 48px 64px; -webkit-font-smoothing:antialiased; }
+  h1{ font-family:"Source Serif 4",serif; font-weight:700; font-size:26px; margin-bottom:6px; }
+  .sub{ font-family:"Source Serif 4",serif; font-size:15px; color:var(--mute); margin-bottom:36px; max-width:760px; line-height:1.5; }
+  .row{ display:flex; align-items:center; gap:32px; padding:26px 0; border-top:1px solid rgba(27,23,20,0.12); }
+  .meta{ width:230px; flex:0 0 230px; }
+  .name{ font-family:"Source Serif 4",serif; font-weight:700; font-size:17px; }
+  .contrast{ font-family:"Source Serif 4",serif; font-size:12.5px; color:var(--gold); letter-spacing:0.3px; margin-top:3px; text-transform:uppercase; }
+  .note{ font-family:"Source Serif 4",serif; font-size:13px; color:var(--mute); margin-top:8px; line-height:1.45; }
+  .specimen{ flex:1; min-width:0; }
+  .glyph{ font-size:96px; line-height:0.9; font-weight:700; margin-bottom:4px; }
+  .hero{ font-size:44px; line-height:1.0; font-weight:700; letter-spacing:-0.5px; }
+  .hero em{ font-weight:500; }
+  .body2{ font-size:30px; line-height:1.05; font-weight:700; margin-top:8px; }
+  .cormorant .glyph,.cormorant .hero,.cormorant .body2{ font-family:"Cormorant Garamond",serif; }
+  .fraunces .glyph,.fraunces .hero,.fraunces .body2{ font-family:"Fraunces",serif; }
+  .newsreader .glyph,.newsreader .hero,.newsreader .body2{ font-family:"Newsreader",serif; }
+  .source .glyph,.source .hero,.source .body2{ font-family:"Source Serif 4",serif; }
+  .bitter .glyph,.bitter .hero,.bitter .body2{ font-family:"Bitter",serif; }
+</style>
+</head>
+<body>
+  <h1>Display serif — stroke-contrast comparison</h1>
+  <p class="sub">Same text, same weight (Bold 700), same warm paper. Watch the big <b>B</b> and the word “Between”: the higher the contrast, the more the strokes swing thick→thin within one letter. Lower contrast = more even, “solid” letterforms.</p>
+
+  <div class="row cormorant">
+    <div class="meta">
+      <div class="name">Cormorant Garamond</div>
+      <div class="contrast">contrast: very high ← current</div>
+      <div class="note">What you have now. Thick stems, hairline-thin curves. The unevenness you flagged.</div>
+    </div>
+    <div class="specimen">
+      <div class="glyph">Bg</div>
+      <div class="hero">Between <em>trips.</em></div>
+      <div class="body2">an invitee hasn't responded</div>
+    </div>
+  </div>
+
+  <div class="row fraunces">
+    <div class="meta">
+      <div class="name">Fraunces</div>
+      <div class="contrast">contrast: moderate</div>
+      <div class="note">Editorial + soft, but sturdier &amp; more even. The brand's original serif. Still has character.</div>
+    </div>
+    <div class="specimen">
+      <div class="glyph">Bg</div>
+      <div class="hero">Between <em>trips.</em></div>
+      <div class="body2">an invitee hasn't responded</div>
+    </div>
+  </div>
+
+  <div class="row newsreader">
+    <div class="meta">
+      <div class="name">Newsreader</div>
+      <div class="contrast">contrast: moderate-low</div>
+      <div class="note">Warm, made for on-screen reading. Even strokes, friendly, very legible.</div>
+    </div>
+    <div class="specimen">
+      <div class="glyph">Bg</div>
+      <div class="hero">Between <em>trips.</em></div>
+      <div class="body2">an invitee hasn't responded</div>
+    </div>
+  </div>
+
+  <div class="row source">
+    <div class="meta">
+      <div class="name">Source Serif 4</div>
+      <div class="contrast">contrast: low</div>
+      <div class="note">Very even &amp; stable. Neutral-professional, less “characterful,” rock-solid.</div>
+    </div>
+    <div class="specimen">
+      <div class="glyph">Bg</div>
+      <div class="hero">Between <em>trips.</em></div>
+      <div class="body2">an invitee hasn't responded</div>
+    </div>
+  </div>
+
+  <div class="row bitter">
+    <div class="meta">
+      <div class="name">Bitter</div>
+      <div class="contrast">contrast: very low (slab)</div>
+      <div class="note">Slab serif — nearly even strokes, most “solid.” More utilitarian, least editorial.</div>
+    </div>
+    <div class="specimen">
+      <div class="glyph">Bg</div>
+      <div class="hero">Between <em>trips.</em></div>
+      <div class="body2">an invitee hasn't responded</div>
+    </div>
+  </div>
+</body>
+</html>

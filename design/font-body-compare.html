@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Body / reading face — comparison</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,700;1,6..72,400&family=DM+Sans:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{ --paper:#EFEAE0; --ink:#1B1714; --mute:#86807A; --gold:#8A6628; }
+  *{ box-sizing:border-box; margin:0; }
+  body{ background:var(--paper); color:var(--ink); padding:36px 40px 80px; -webkit-font-smoothing:antialiased; }
+  h1.page{ font-family:"DM Sans",sans-serif; font-weight:600; font-size:13px; letter-spacing:1.5px; text-transform:uppercase; color:var(--mute); margin-bottom:8px; }
+  p.pagesub{ font-family:"EB Garamond",serif; font-size:16px; color:var(--mute); margin-bottom:30px; max-width:640px; line-height:1.5; }
+  .card{ border-top:1px solid rgba(27,23,20,0.14); padding:28px 0 8px; }
+  .tag{ display:inline-block; font-family:"DM Sans",sans-serif; font-weight:600; font-size:12px; letter-spacing:0.4px; color:var(--gold); margin-bottom:14px; padding:3px 9px; border:1px solid rgba(138,102,40,0.35); border-radius:999px; }
+  .tag b{ color:var(--ink); }
+  .eyebrow{ font-family:"DM Sans",sans-serif; font-weight:600; font-size:11px; letter-spacing:1.4px; text-transform:uppercase; color:var(--mute); }
+  .eyebrow .dot{ color:var(--gold); }
+  .title{ font-family:"Newsreader",serif; font-weight:700; font-size:34px; line-height:1.0; letter-spacing:-0.4px; margin:6px 0 14px; }
+  .meta{ font-family:"DM Sans",sans-serif; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--mute); margin-bottom:16px; }
+  .bodytext{ font-size:17px; line-height:27px; letter-spacing:-0.1px; max-width:680px; }
+  .bodytext p{ margin-bottom:14px; }
+  /* body faces under test */
+  .cormorant400 .bodytext{ font-family:"Cormorant Garamond",serif; font-weight:400; }
+  .cormorant500 .bodytext{ font-family:"Cormorant Garamond",serif; font-weight:500; }
+  .ebgaramond .bodytext{ font-family:"EB Garamond",serif; font-weight:400; }
+  .newsreader .bodytext{ font-family:"Newsreader",serif; font-weight:400; }
+</style>
+</head>
+<body>
+  <h1 class="page">Body / reading face — same text, same size (17 / 27), warm paper</h1>
+  <p class="pagesub">Title stays Newsreader (fixed). Only the body paragraph changes. Read each one — which feels solid &amp; comfortable, not light? Watch the title→body pairing too.</p>
+
+  <div class="card cormorant400">
+    <span class="tag"><b>Cormorant Garamond 400</b> — current (the light one)</span>
+    <div class="eyebrow"><span class="dot">●</span> FIELD NOTE</div>
+    <div class="title">Lisbon</div>
+    <div class="meta">LISBON · 2 MIN · FOR THE OBSESSED</div>
+    <div class="bodytext">
+      <p>What Lisbon does better than anywhere comparable in Europe is the layering of food cultures at every price point, without the hierarchy that stratifies eating in Paris or the tourist-trap density of Barcelona's center. At one end: a bifana at As Bifanas do Afonso for €3, eaten standing at a counter that has not changed in forty years.</p>
+      <p>At the other: Belcanto's tasting menu, where José Avillez has been mining Portuguese culinary history for two decades with two Michelin stars.</p>
+    </div>
+  </div>
+
+  <div class="card cormorant500">
+    <span class="tag"><b>Cormorant Garamond 500</b> — the "bump" option</span>
+    <div class="eyebrow"><span class="dot">●</span> FIELD NOTE</div>
+    <div class="title">Lisbon</div>
+    <div class="meta">LISBON · 2 MIN · FOR THE OBSESSED</div>
+    <div class="bodytext">
+      <p>What Lisbon does better than anywhere comparable in Europe is the layering of food cultures at every price point, without the hierarchy that stratifies eating in Paris or the tourist-trap density of Barcelona's center. At one end: a bifana at As Bifanas do Afonso for €3, eaten standing at a counter that has not changed in forty years.</p>
+      <p>At the other: Belcanto's tasting menu, where José Avillez has been mining Portuguese culinary history for two decades with two Michelin stars.</p>
+    </div>
+  </div>
+
+  <div class="card ebgaramond">
+    <span class="tag"><b>EB Garamond 400</b> — classic book serif (made for reading)</span>
+    <div class="eyebrow"><span class="dot">●</span> FIELD NOTE</div>
+    <div class="title">Lisbon</div>
+    <div class="meta">LISBON · 2 MIN · FOR THE OBSESSED</div>
+    <div class="bodytext">
+      <p>What Lisbon does better than anywhere comparable in Europe is the layering of food cultures at every price point, without the hierarchy that stratifies eating in Paris or the tourist-trap density of Barcelona's center. At one end: a bifana at As Bifanas do Afonso for €3, eaten standing at a counter that has not changed in forty years.</p>
+      <p>At the other: Belcanto's tasting menu, where José Avillez has been mining Portuguese culinary history for two decades with two Michelin stars.</p>
+    </div>
+  </div>
+
+  <div class="card newsreader">
+    <span class="tag"><b>Newsreader 400</b> — same family as titles (reading-optimized)</span>
+    <div class="eyebrow"><span class="dot">●</span> FIELD NOTE</div>
+    <div class="title">Lisbon</div>
+    <div class="meta">LISBON · 2 MIN · FOR THE OBSESSED</div>
+    <div class="bodytext">
+      <p>What Lisbon does better than anywhere comparable in Europe is the layering of food cultures at every price point, without the hierarchy that stratifies eating in Paris or the tourist-trap density of Barcelona's center. At one end: a bifana at As Bifanas do Afonso for €3, eaten standing at a counter that has not changed in forty years.</p>
+      <p>At the other: Belcanto's tasting menu, where José Avillez has been mining Portuguese culinary history for two decades with two Michelin stars.</p>
+    </div>
+  </div>
+
+</body>
+</html>

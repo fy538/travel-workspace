@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=1600"/>
+  <title>Vesper · Atlas — Direction 03, the full flow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    html, body { margin: 0; padding: 0; background: #DAD3C5; font-family: 'DM Sans', system-ui, sans-serif; color: #1B1714; }
+    *, *::before, *::after { box-sizing: border-box; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="design-canvas.jsx"></script>
+  <script type="text/babel" src="design-system.jsx"></script>
+  <script type="text/babel" src="v3-shared.jsx"></script>
+  <script type="text/babel" src="v3-home.jsx"></script>
+  <script type="text/babel" src="v3-detail-a.jsx"></script>
+  <script type="text/babel" src="v3-detail-b.jsx"></script>
+  <script type="text/babel" src="v3-aux.jsx"></script>
+
+  <script type="text/babel">
+    function Phn({ children }) {
+      return (
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+          {children}
+        </div>
+      );
+    }
+
+    function App() {
+      return (
+        <DesignCanvas defaultZoom={0.55}>
+          <DCSection
+            id="cover"
+            title="Direction 03 · Atlas, the full flow"
+            subtitle="Two home states, the desk opened, four rooms, and everything the top bar can reach."
+          >
+            <DCArtboard id="cover-card" label="Map of this canvas" width={560} height={870} bg="#F1ECE2">
+              <div style={{ padding: '44px 34px', height: '100%', fontFamily: 'DM Sans', color: '#2C2622', fontSize: 13.5, lineHeight: 1.55 }}>
+                <div style={{ fontSize: 10.5, letterSpacing: 2, color: '#B0853A', fontWeight: 600 }}>VESPER · ATLAS · 03</div>
+                <h1 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: 52, lineHeight: 0.98, letterSpacing: -1.3, fontWeight: 500, margin: '8px 0 18px', color: '#1B1714' }}>
+                  Artifact-first,<br/><em>the whole room.</em>
+                </h1>
+                <p style={{ margin: '0 0 16px' }}>
+                  Everything reachable from the Atlas tab — two home states, the desk
+                  opened into a detail, the four destinations, and the three top-bar
+                  destinations (profile, search, add). The Almanac timeline lives
+                  inside Home and Map. One shared set of primitives across all ten
+                  screens.
+                </p>
+                <div style={{ borderTop: '0.5px solid rgba(27,23,20,0.10)', marginTop: 14, paddingTop: 14 }}>
+                  <div style={{ fontSize: 10, letterSpacing: 2, color: '#86807A', fontWeight: 600, marginBottom: 10 }}>WHAT’S IN THIS CANVAS</div>
+                  <div style={{ display: 'grid', gap: 8 }}>
+                    {[
+                      ['HOME · STATES',  'Full state · Cold start (day 1)'],
+                      ['THE DESK',       'The hero artifact opened into a draft detail'],
+                      ['FOUR ROOMS',     '01 Inbox · 02 Map · 03 Travel DNA · 04 Postcards'],
+                      ['TOP BAR',        'Profile (avatar) · Search (magnifier) · Add (+)'],
+                    ].map(([k, v]) => (
+                      <div key={k} style={{ display: 'flex', gap: 12 }}>
+                        <div style={{ width: 130, fontSize: 10, letterSpacing: 1.8, color: '#86807A', fontWeight: 600, paddingTop: 2 }}>{k}</div>
+                        <div style={{ flex: 1, fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: 16, color: '#1B1714' }}>{v}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div style={{ borderTop: '0.5px solid rgba(27,23,20,0.10)', marginTop: 18, paddingTop: 14 }}>
+                  <div style={{ fontSize: 10, letterSpacing: 2, color: '#86807A', fontWeight: 600, marginBottom: 8 }}>BACK TO THE EXPLORATION</div>
+                  <a href="Atlas Redesign.html" style={{
+                    display: 'inline-block', padding: '8px 14px', background: '#FBF7EC',
+                    border: '0.5px solid rgba(27,23,20,0.10)', borderRadius: 999,
+                    color: '#1B1714', textDecoration: 'none', fontSize: 12.5, fontWeight: 500,
+                    letterSpacing: -0.1,
+                  }}>← all six directions</a>
+                </div>
+              </div>
+            </DCArtboard>
+          </DCSection>
+
+          <DCSection
+            id="home"
+            title="Home · two states"
+            subtitle="The Atlas tab itself. Full state and cold start (Day 1)."
+          >
+            <DCArtboard id="home-full" label="Home · full" width={415} height={870} bg="transparent"><Phn><V3HomeFull/></Phn></DCArtboard>
+            <DCArtboard id="home-cold" label="Home · cold start" width={415} height={870} bg="transparent"><Phn><V3HomeCold/></Phn></DCArtboard>
+          </DCSection>
+
+          <DCSection
+            id="desk"
+            title="The desk · opened"
+            subtitle="Tap the hero postcard on the home — Vesper’s draft expands."
+          >
+            <DCArtboard id="desk" label="On your desk" width={415} height={870} bg="transparent"><Phn><V3Desk/></Phn></DCArtboard>
+          </DCSection>
+
+          <DCSection
+            id="rooms"
+            title="The four rooms"
+            subtitle="01 Inbox · 02 Map · 03 Travel DNA · 04 Postcards. The Map carries the vertical Almanac as a sidebar."
+          >
+            <DCArtboard id="inbox"     label="01 · Inbox"      width={415} height={870} bg="transparent"><Phn><V3Inbox/></Phn></DCArtboard>
+            <DCArtboard id="map"       label="02 · Map"        width={415} height={870} bg="transparent"><Phn><V3Map/></Phn></DCArtboard>
+            <DCArtboard id="dna"       label="03 · Travel DNA" width={415} height={870} bg="transparent"><Phn><V3DNA/></Phn></DCArtboard>
+            <DCArtboard id="postcards" label="04 · Postcards"   width={415} height={870} bg="transparent"><Phn><V3Postcards/></Phn></DCArtboard>
+          </DCSection>
+
+          <DCSection
+            id="topbar"
+            title="Top bar · three destinations"
+            subtitle="Profile (avatar) · Search (magnifier) · Add (+). Each rewritten to not look like a settings/search/upload screen."
+          >
+            <DCArtboard id="profile" label="Profile · You" width={415} height={870} bg="transparent"><Phn><V3Profile/></Phn></DCArtboard>
+            <DCArtboard id="search"  label="Search · Find a memory" width={415} height={870} bg="transparent"><Phn><V3Search/></Phn></DCArtboard>
+            <DCArtboard id="add"     label="Add · Save a memory" width={415} height={870} bg="transparent"><Phn><V3Add/></Phn></DCArtboard>
+            <DCArtboard id="topbar-notes" label="Design notes" width={460} height={870} bg="transparent">
+              <div style={{
+                width: 420, padding: '36px 28px', background: '#F1ECE2',
+                borderRadius: 8, color: '#2C2622',
+              }}>
+                <div style={{ fontSize: 10.5, letterSpacing: 2, color: '#B0853A', fontWeight: 600, marginBottom: 10 }}>TOP-BAR LOGIC</div>
+                <h2 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontWeight: 500, fontSize: 30, letterSpacing: -0.7, lineHeight: 1.05, margin: '0 0 16px', color: '#1B1714' }}>
+                  Not settings, search, or upload.
+                </h2>
+                <div style={{ borderTop: '0.5px solid rgba(27,23,20,0.10)', paddingTop: 14 }}>
+                  <p style={{ margin: '0 0 12px', fontSize: 13.5, lineHeight: 1.55 }}>
+                    <b>Profile</b> is rewritten as <i>“Tiger, in their own words.”</i> Big monogram avatar floats inside four place-stamps that have shaped them.
+                    Beneath, Vesper’s read of you (italic prose), a chip-set of taste,
+                    and a quiet rhythm card (“Vesper writes you <i>weekly</i> · SUN · 10 AM”).
+                    Sign out / archive / exported are reduced to a footer caption row.
+                  </p>
+                  <p style={{ margin: '0 0 12px', fontSize: 13.5, lineHeight: 1.55 }}>
+                    <b>Search</b> opens to <i>“Find a memory.”</i> Paper input with a serif italic placeholder
+                    (“a place, a season, a person…”), a row of recent chips with tiny clock glyphs,
+                    a 2×2 of <i>wander-by</i> categories (Place · Season · Ritual · With), and an
+                    “Ask Vesper” natural-language card at the bottom.
+                  </p>
+                  <p style={{ margin: '0 0 12px', fontSize: 13.5, lineHeight: 1.55 }}>
+                    <b>Add</b> opens to <i>“Save a memory.”</i> Five intake objects — photo, place,
+                    note, voice, scrap — each as an object tile with a hand-drawn icon. Photo
+                    is the gold-ruled “quick” path. Below, a dashed-gold prompt lets you skip
+                    intake entirely: “make a postcard from <i>last weekend in Porto</i>.”
+                  </p>
+                  <div style={{ marginTop: 14, padding: 12, background: '#FBF7EC', borderRadius: 8, fontSize: 11.5, color: '#86807A' }}>
+                    <b style={{ color: '#1B1714' }}>Why three sub-screens, not modals</b><br/>
+                    Each of these is its own object in the cabinet. A modal would treat them
+                    as utilities; a full screen lets them keep the same paper, the same type,
+                    the same tab bar — so they read as <i>still in Atlas</i>, just deeper in.
+                  </div>
+                </div>
+              </div>
+            </DCArtboard>
+          </DCSection>
+
+          <DCSection
+            id="flow"
+            title="Tap map"
+            subtitle="Where each screen sits in the navigation graph."
+          >
+            <DCArtboard id="flow-map" label="Navigation graph" width={1080} height={620} bg="#F1ECE2">
+              <div style={{ padding: 36, height: '100%', position: 'relative', fontFamily: 'DM Sans' }}>
+                <div style={{ fontSize: 10.5, letterSpacing: 2, color: '#B0853A', fontWeight: 600 }}>NAVIGATION</div>
+                <h2 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: 36, fontWeight: 500, margin: '8px 0 24px', color: '#1B1714', letterSpacing: -0.8 }}>
+                  Ten screens, three paths in.
+                </h2>
+                <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}>
+                  {[
+                    // hub (Home) → kids
+                    ['M 500 220 Q 380 220 290 280',  '#B0853A'],
+                    ['M 500 240 Q 500 320 500 380',  '#B0853A'],
+                    ['M 540 230 Q 660 240 760 270',  '#86807A'],
+                    ['M 540 240 Q 700 320 820 380', '#86807A'],
+                    ['M 540 230 Q 720 220 900 240', '#86807A'],
+                    // home → desk
+                    ['M 500 200 Q 360 160 280 180', '#B0853A'],
+                    // home → cold start (alt)
+                    ['M 460 220 Q 280 240 180 320', '#86807A'],
+                  ].map(([d, c], i) => (
+                    <path key={i} d={d} stroke={c} strokeWidth="1" strokeDasharray="3 4" fill="none"/>
+                  ))}
+                </svg>
+                <div style={{ position: 'absolute', left: 460, top: 200, padding: '10px 14px', background: '#FBF7EC', border: '0.8px solid #B0853A', borderRadius: 999, fontFamily: '"Cormorant Garamond"', fontSize: 17, fontWeight: 500, letterSpacing: -0.2 }}>
+                  Atlas · Home
+                </div>
+
+                {/* satellites */}
+                {[
+                  { l: 230, t: 270, label: 'Cold start',     eb: 'state'   },
+                  { l: 230, t: 170, label: 'The desk',       eb: 'tap hero', accent: true },
+                  { l: 410, t: 380, label: '01 · Inbox',      eb: 'tile'   },
+                  { l: 600, t: 260, label: '02 · Map',        eb: 'tile'   },
+                  { l: 720, t: 380, label: '03 · Travel DNA', eb: 'tile'   },
+                  { l: 860, t: 230, label: '04 · Postcards',  eb: 'tile'   },
+                  { l: 950, t: 380, label: 'Add  +',           eb: 'top bar', accent: true },
+                  { l: 700, t: 470, label: 'Search ⌕',         eb: 'top bar', accent: true },
+                  { l: 180, t: 470, label: 'Profile ◐',         eb: 'top bar', accent: true },
+                ].map((n, i) => (
+                  <div key={i} style={{
+                    position: 'absolute', left: n.l, top: n.t,
+                    padding: '8px 12px', background: '#FBF7EC',
+                    border: `0.5px solid ${n.accent ? '#B0853A' : 'rgba(27,23,20,0.10)'}`,
+                    borderRadius: 10, transform: 'translate(-50%, -50%)',
+                    textAlign: 'center',
+                  }}>
+                    <div style={{ fontSize: 8.5, letterSpacing: 1.6, color: n.accent ? '#8A6628' : '#86807A', fontWeight: 600 }}>
+                      {n.eb.toUpperCase()}
+                    </div>
+                    <div style={{ fontFamily: '"Cormorant Garamond"', fontSize: 14, fontWeight: 500, color: '#1B1714', letterSpacing: -0.2, marginTop: 2 }}>
+                      {n.label}
+                    </div>
+                  </div>
+                ))}
+
+                <div style={{ position: 'absolute', bottom: 36, left: 36, right: 36, display: 'flex', gap: 22, fontSize: 11, color: '#86807A' }}>
+                  <span><span style={{ display: 'inline-block', width: 10, height: 1, background: '#B0853A', verticalAlign: 'middle', marginRight: 6 }}/>primary path (Vesper-driven)</span>
+                  <span><span style={{ display: 'inline-block', width: 10, height: 1, background: '#86807A', verticalAlign: 'middle', marginRight: 6 }}/>tile / top-bar path (user-driven)</span>
+                </div>
+              </div>
+            </DCArtboard>
+          </DCSection>
+        </DesignCanvas>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  </script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=1600"/>
+  <title>Vesper · Trip surfaces</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    html, body { margin: 0; padding: 0; background: #DAD3C5; font-family: 'DM Sans', system-ui, sans-serif; color: #1B1714; }
+    *, *::before, *::after { box-sizing: border-box; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="design-canvas.jsx"></script>
+  <script type="text/babel" src="design-system.jsx"></script>
+  <script type="text/babel" src="discover-styles.jsx"></script>
+  <script type="text/babel" src="trip-home-kit.jsx"></script>
+  <script type="text/babel" src="trip-itinerary.jsx"></script>
+  <script type="text/babel" src="trip-sheets.jsx"></script>
+  <script type="text/babel" src="trip-map-story.jsx"></script>
+
+  <script type="text/babel">
+    const Phn = ({ children }) => <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>{children}</div>;
+    const EB = ({ children }) => <div style={{ fontSize: 10.5, letterSpacing: 2, color: TH.gold, fontWeight: 600 }}>{children}</div>;
+    const H2 = ({ children }) => <h2 style={{ fontFamily: TH.serif, fontWeight: 500, fontSize: 27, letterSpacing: -0.7, lineHeight: 1.05, color: TH.ink, margin: '8px 0 14px' }}>{children}</h2>;
+    const Note = ({ children }) => <p style={{ margin: '0 0 11px', fontSize: 13.5, lineHeight: 1.55, color: TH.soft }}>{children}</p>;
+    function Spec({ children }) { return <div style={{ marginTop: 12, padding: 12, background: '#FBF7EC', borderRadius: 8, fontSize: 11.5, color: TH.mute, lineHeight: 1.5 }}>{children}</div>; }
+    function Logic({ eyebrow, title, children, w = 440 }) {
+      return <div style={{ width: w, padding: '34px 26px', background: '#F1ECE2', borderRadius: 8, color: TH.soft }}><EB>{eyebrow}</EB><H2>{title}</H2><div style={{ borderTop: `0.5px solid ${TH.hair}`, paddingTop: 14 }}>{children}</div></div>;
+    }
+
+    function App() {
+      return (
+        <DesignCanvas defaultZoom={0.6}>
+          <DCSection id="intro" title="Trip surfaces · two patterns" subtitle="Everything below a trip home resolves into one of two shapes: a light input Sheet, or a full-screen Object. The deep surfaces that the folio tiles open into.">
+            <DCArtboard id="brief" label="The two patterns" width={620} height={560} bg="#F1ECE2">
+              <div style={{ padding: '40px 34px', fontSize: 13.5, lineHeight: 1.55, color: TH.soft }}>
+                <EB>TRIP SURFACES</EB>
+                <H2>Sheets for input, Objects for depth.</H2>
+                <Note>The trip home is the home base; you never get lost in a sub-page. Two reusable patterns carry everything underneath it.</Note>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginTop: 4 }}>
+                  <div style={{ padding: 16, background: '#FBF7EC', borderRadius: 10, border: `0.5px solid ${TH.hair}` }}>
+                    <div style={{ fontSize: 9.5, letterSpacing: 1.6, color: TH.goldDeep, fontWeight: 700, marginBottom: 8 }}>SHEET · INPUT</div>
+                    <Note>Light, one-decision moments rise over the dimmed folio — destination, dates, people, budget. One chrome, four contents. You’re always still looking at the trip.</Note>
+                  </div>
+                  <div style={{ padding: 16, background: '#FBF7EC', borderRadius: 10, border: `0.5px solid ${TH.hair}` }}>
+                    <div style={{ fontSize: 9.5, letterSpacing: 1.6, color: TH.blueDeep, fontWeight: 700, marginBottom: 8 }}>OBJECT · DEPTH</div>
+                    <Note>A tile expands into a full-screen object — itinerary, costs, map, story — each keeping a slim trip-cover header so you know which trip you’re inside.</Note>
+                  </div>
+                </div>
+                <Spec><b>Coherence</b> — every object opens with the same riso/gouache cover motif as a 96px header, and ages by phase just like the home. The itinerary is literally the home journal, expanded.</Spec>
+              </div>
+            </DCArtboard>
+          </DCSection>
+
+          <DCSection id="itin" title="Itinerary object" subtitle="The journal expanded — a continuous day-spine, editorial blocks, Vesper in the margins. Pre-trip fills it; live auto-scrolls Today in.">
+            <DCArtboard id="itin-plan" label="Pre-trip · taking shape" width={415} height={870} bg="transparent"><Phn><ItineraryPlan/></Phn></DCArtboard>
+            <DCArtboard id="itin-live" label="During · today glows" width={415} height={870} bg="transparent"><Phn><ItineraryLive/></Phn></DCArtboard>
+            <DCArtboard id="itin-notes" label="Itinerary · logic" width={430} height={870} bg="transparent">
+              <Logic eyebrow="ITINERARY OBJECT" title="The spine of the trip.">
+                <Note>A <b>continuous day-spine</b> — date numerals (the same ones from the home day-rows, so the expansion reads literally) anchoring blocks that hang off a vertical rail. Not a calendar grid; <b>editorial blocks</b> with soft time hints (morning / day / evening).</Note>
+                <Note><b>Vesper in the margins</b> — a sparse day says “this day is bare — want me to sketch it?” inline; a bottom nudge offers to fill open days from your taste. Group presence shows as a small monogram on blocks others added.</Note>
+                <Note><b>It ages</b> — pre-trip it’s a plan filling up (open days honest); live, Today auto-scrolls in and the now-block glows gold, booked items marked; post-trip it’s the read-only record feeding the Memory arc.</Note>
+                <Spec>Spine node: 7px (10 live) · gap = dashed ring · date numeral Cormorant 26 oldstyle, gold when today · block title 15.5/-0.2 · BOOKED ink-blue, NOW ochre.</Spec>
+              </Logic>
+            </DCArtboard>
+          </DCSection>
+
+          <DCSection id="sheets" title="Input sheets" subtitle="Destination, dates, people, budget — light bottom sheets over the dimmed folio. One component, four contents. Never full-screen forms.">
+            <DCArtboard id="sh-dest" label="Destination" width={415} height={870} bg="transparent"><Phn><SheetDestination/></Phn></DCArtboard>
+            <DCArtboard id="sh-dates" label="Dates" width={415} height={870} bg="transparent"><Phn><SheetDates/></Phn></DCArtboard>
+            <DCArtboard id="sh-people" label="People" width={415} height={870} bg="transparent"><Phn><SheetPeople/></Phn></DCArtboard>
+            <DCArtboard id="sh-budget" label="Budget / tone" width={415} height={870} bg="transparent"><Phn><SheetBudget/></Phn></DCArtboard>
+            <DCArtboard id="sh-notes" label="Sheets · logic" width={430} height={870} bg="transparent">
+              <Logic eyebrow="INPUT SHEETS" title="Decorate the folio, don’t leave it.">
+                <Note>Each setup action is a <b>bottom sheet</b> rising over the dimmed trip cover — so you’re always shaping the artifact in front of you, never dumped in a form.</Note>
+                <Note><b>Destination</b> leads with Vesper’s taste-based suggestions, not a blank search. <b>Dates</b> is a real calendar moment with the range warmly shaded. <b>People</b> is invite-not-manage, with a why ("from Porto, May ’25"). <b>Budget</b> is a <i>feeling</i> (Easy / Comfortable / No ceiling) + the split, never a number grid.</Note>
+                <Spec>Sheet: 26px top radius, grabber, dimmed riso behind, one dark primary pinned bottom. Heights vary by content (420–500). Same component throughout.</Spec>
+              </Logic>
+            </DCArtboard>
+          </DCSection>
+
+          <DCSection id="costs" title="Costs · split ledger" subtitle="A money screen that feels like Vesper, not a spreadsheet. One number that matters, the split, editorial line items.">
+            <DCArtboard id="costs-obj" label="Costs" width={415} height={870} bg="transparent"><Phn><CostsLedger/></Phn></DCArtboard>
+            <DCArtboard id="costs-notes" label="Costs · logic" width={430} height={870} bg="transparent">
+              <Logic eyebrow="COSTS OBJECT" title="Calm money.">
+                <Note>Leads with <b>the one number that matters</b> — your net balance — set in big serif, with “Vesper will settle it when you’re home.” No running totals shouting.</Note>
+                <Note>The <b>split</b> is who-owes-whom in quiet rows (green for owed), and recent spend is <b>editorial line items</b> (“Ramiro · dinner — you — €96”), not a receipt table.</Note>
+                <Spec>Balance Cormorant 44/-1, cents muted · split rows w/ monogram + mono amount · settle handled by Vesper, not a Venmo button.</Spec>
+              </Logic>
+            </DCArtboard>
+          </DCSection>
+
+          <DCSection id="mapstory" title="Map & Story objects" subtitle="Map as an illustrated constellation (never Mapbox). Story as the memory artifact — the future of the trip, not a photo grid.">
+            <DCArtboard id="map-obj" label="Map · constellation" width={415} height={870} bg="transparent"><Phn><TripMap/></Phn></DCArtboard>
+            <DCArtboard id="story-obj" label="Photos / Story" width={415} height={870} bg="transparent"><Phn><TripStory/></Phn></DCArtboard>
+            <DCArtboard id="ms-notes" label="Map & Story · logic" width={430} height={870} bg="transparent">
+              <Logic eyebrow="MAP & STORY" title="Spatial memory, not navigation.">
+                <Note><b>Map</b> is a <b>paper constellation</b> — stay / day / booked / saved pins on tinted contours, a dashed gold route drawn between them. It’s the emotional-spatial picture of the trip; tapping a pin opens the place. Never a literal map utility.</Note>
+                <Note><b>Story</b> is the memory artifact: a <b>gouache cover</b>, Vesper’s opening line, a tilted film-strip of the 12 kept frames, and a save-to-Atlas handoff. Photos are a story being told, not a grid to manage.</Note>
+                <Spec>Map field 420h, contour lines + river band, pin legend. Story: gouache 300h cover, film frames 116×142 white-bordered rotated, Atlas save in ochre.</Spec>
+              </Logic>
+            </DCArtboard>
+          </DCSection>
+        </DesignCanvas>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  </script>
+</body>
+</html>

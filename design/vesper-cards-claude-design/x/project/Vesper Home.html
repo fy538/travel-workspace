@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=1600"/>
+  <title>Vesper · Home — directions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    html, body { margin: 0; padding: 0; background: #DAD3C5; font-family: 'DM Sans', system-ui, sans-serif; color: #1B1714; }
+    *, *::before, *::after { box-sizing: border-box; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="design-canvas.jsx"></script>
+  <script type="text/babel" src="design-system.jsx"></script>
+  <script type="text/babel" src="trips-shared.jsx"></script>
+  <script type="text/babel" src="vesper-shared.jsx"></script>
+  <script type="text/babel" src="vesper-home.jsx"></script>
+  <script type="text/babel" src="vesper-home-2.jsx"></script>
+  <script type="text/babel" src="vesper-modes.jsx"></script>
+  <script type="text/babel" src="vesper-chat.jsx"></script>
+  <script type="text/babel" src="vesper-voice.jsx"></script>
+
+  <script type="text/babel">
+    function Phn({ children }) {
+      return (
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+          {children}
+        </div>
+      );
+    }
+
+    function Note({ children, italic }) {
+      return <p style={{
+        margin: '0 0 10px', fontSize: 13.5, lineHeight: 1.55, color: T.inkSoft,
+        fontStyle: italic ? 'italic' : 'normal',
+        fontFamily: italic ? T.serif : T.sans,
+      }}>{children}</p>;
+    }
+
+    function Logic({ eyebrow, title, children }) {
+      return (
+        <div style={{
+          width: 440, padding: '36px 28px', background: '#F1ECE2', borderRadius: 8, color: T.inkSoft,
+        }}>
+          <div style={{ fontSize: 10.5, letterSpacing: 2, color: T.gold, fontWeight: 600, marginBottom: 10 }}>{eyebrow}</div>
+          <h2 style={{ fontFamily: T.serif, fontWeight: 500, fontSize: 30, lineHeight: 1.05, letterSpacing: -0.7, color: T.ink, margin: '0 0 16px' }}>{title}</h2>
+          <div style={{ borderTop: `0.5px solid ${T.hairline}`, paddingTop: 14 }}>{children}</div>
+        </div>
+      );
+    }
+
+    function App() {
+      return (
+        <DesignCanvas defaultZoom={0.5}>
+          {/* ── COVER ── */}
+          <DCSection
+            id="cover"
+            title="Vesper · the assistant tab"
+            subtitle="Three home directions, three card metaphors, two chat layouts, two voice modes."
+          >
+            <DCArtboard id="brief" label="System & brief" width={620} height={870} bg="#F1ECE2">
+              <div style={{ padding: '44px 34px', fontFamily: T.sans, color: T.inkSoft, fontSize: 13.5, lineHeight: 1.55 }}>
+                <div style={{ fontSize: 10.5, letterSpacing: 2, color: T.gold, fontWeight: 600 }}>VESPER · TAB</div>
+                <h1 style={{ fontFamily: T.serif, fontSize: 50, lineHeight: 0.96, letterSpacing: -1.4, fontWeight: 500, margin: '8px 0 16px', color: T.ink }}>
+                  Not a chatbot.<br/><em>An assistant’s desk.</em>
+                </h1>
+                <p style={{ margin: '0 0 18px', maxWidth: 540 }}>
+                  Atlas asks <i>what have I kept?</i> Trips asks <i>what’s next?</i>
+                  Vesper answers <b>“what is Vesper working on for me right now?”</b>
+                  The current Vesper screen reads as a chat thread plus a few card widgets.
+                  These three directions reframe it as a quiet workspace with a clear posture
+                  for every state.
+                </p>
+                <div style={{ borderTop: `0.5px solid ${T.hairline}`, paddingTop: 14 }}>
+                  <div style={{ fontSize: 10, letterSpacing: 2, color: T.mute, fontWeight: 600, marginBottom: 10 }}>SHARED ACROSS TABS</div>
+                  <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'grid', gap: 6 }}>
+                    <li><b>Paper · Ink</b> shared with Atlas / Trips</li>
+                    <li><b>Ochre</b> stays Vesper’s voice (sparkle mark, eyebrow, dashed accents)</li>
+                    <li><b>Ink-blue</b> stays planning / Open-in-Trips actions</li>
+                    <li><b>Type</b> Cormorant Garamond + DM Sans + JetBrains Mono dates</li>
+                  </ul>
+                </div>
+                <div style={{ borderTop: `0.5px solid ${T.hairline}`, marginTop: 14, paddingTop: 14 }}>
+                  <div style={{ fontSize: 10, letterSpacing: 2, color: T.mute, fontWeight: 600, marginBottom: 8 }}>REMOVED FROM CURRENT SCREEN</div>
+                  <ul style={{ margin: 0, paddingLeft: 18, display: 'grid', gap: 4 }}>
+                    <li>Purple / indigo brand accent (replaced by ochre + ink)</li>
+                    <li>Generic dashboard cards labelled “TRIP DRAFT · Keep shaping your trip”</li>
+                    <li>Conversation list with dev strings like <code>[PROACTIVE: planning_autopilot:plannin…]</code></li>
+                    <li>Vesper voice button as a mic-only circle with no transcript</li>
+                    <li>“NEXT MOVES” section with two identical generic cards</li>
+                  </ul>
+                </div>
+                <div style={{ borderTop: `0.5px solid ${T.hairline}`, marginTop: 14, paddingTop: 14 }}>
+                  <div style={{ fontSize: 10, letterSpacing: 2, color: T.mute, fontWeight: 600, marginBottom: 8 }}>WHAT THIS CANVAS CONTAINS</div>
+                  <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'grid', gap: 6 }}>
+                    <li><b>MODES</b> · Atelier (default) · Logbook (morning) · Whisper (calm)</li>
+                    <li><b>TAKEOVERS</b> · On-a-trip · Time-sensitive</li>
+                    <li><b>CHAT</b> · Editorial Scroll (default) · Document Edit (when there&rsquo;s a draft)</li>
+                    <li><b>VOICE</b> · Calm Listening · Editorial Transcript · long-press the Vesper tab from anywhere</li>
+                  </ul>
+                </div>
+              </div>
+            </DCArtboard>
+          </DCSection>
+
+          {/* ── HOMES — THREE MODES ── */}
+          <DCSection
+            id="modes"
+            title="Three modes · default, morning, calm"
+            subtitle="One default home + two state-driven swaps. Every other previous direction was retired."
+          >
+            <DCArtboard id="home-atelier"  label="Default · Atelier" width={415} height={870} bg="transparent"><Phn><VesperAtelier/></Phn></DCArtboard>
+            <DCArtboard id="home-logbook"  label="Morning · Logbook" width={415} height={870} bg="transparent"><Phn><VesperLogbook/></Phn></DCArtboard>
+            <DCArtboard id="home-whisper"  label="Calm Mode · Whisper" width={415} height={870} bg="transparent"><Phn><VesperWhisper/></Phn></DCArtboard>
+            <DCArtboard id="modes-notes" label="Mode logic" width={460} height={870} bg="transparent">
+              <Logic eyebrow="HOMES · MODES" title="One default, two swaps.">
+                <Note italic>The six earlier directions collapsed into three. A and B were retired in favour of more distinctive cousins (D and E); C was retired entirely.</Note>
+
+                <Note><b>Default · Atelier</b> — what Vesper is doing right now. Hero with a draft <i>in progress</i> (3-of-5 steps), an ordered queue, a dashed Set aside tile, and a Finished today tile. Makes Vesper feel like a real collaborator with their own craft.</Note>
+
+                <Note><b>Morning open · Logbook</b> — your first open of the day shows Vesper's dated letter. Tap-targets are folded into the prose: dotted underline on nouns (<i>Tokyo</i>), solid underline on a recommendation (<i>Sawanoya</i>), ochre highlight on a memory (<i>Williamsburg photos</i>), strike-through on something Vesper offers to take off your desk (<i>Ana confirmed Porto</i>). After you read it, the home flips to Atelier for the rest of the day.</Note>
+
+                <Note><b>Calm Mode · Whisper</b> — user-toggleable, opt-in. One large serif phrase, three lines of context, three actions, plus a quiet <i>“ask something else”</i> exit (dotted underline + tiny mic) so the user is never trapped. A 1/4 position indicator is the only chrome.</Note>
+
+                <div style={{ marginTop: 14, padding: 12, background: '#FBF7EC', borderRadius: 8, fontSize: 11.5, color: T.mute }}>
+                  <b style={{ color: T.ink }}>What changed since the first round</b><br/>
+                  <b>Retired A · Desk</b> — the envelope-flap hero card didn’t read; people thought it was a ticket. Atelier carries the same intent more clearly.<br/>
+                  <b>Retired B · Briefing</b> — too close to Logbook; Logbook is more distinctive because items fold <i>into</i> the prose.<br/>
+                  <b>Retired C · Dialogue</b> — composer-forward read as generic AI chatbot.
+                </div>
+              </Logic>
+            </DCArtboard>
+          </DCSection>
+
+          {/* ── TAKEOVERS · CONTEXTUAL ── */}
+          <DCSection
+            id="takeovers"
+            title="Two takeovers · on a trip, time-sensitive"
+            subtitle="When context demands it, the home is replaced. Same paper, same voice — different posture."
+          >
+            <DCArtboard id="home-ontrip" label="On a trip" width={415} height={870} bg="transparent"><Phn><VesperOnTrip/></Phn></DCArtboard>
+            <DCArtboard id="home-urgent" label="Time-sensitive" width={415} height={870} bg="transparent"><Phn><VesperUrgent/></Phn></DCArtboard>
+            <DCArtboard id="takeovers-notes" label="Takeover logic" width={460} height={870} bg="transparent">
+              <Logic eyebrow="TAKEOVERS · LOGIC" title="When the desk steps back.">
+                <Note italic>Two times Vesper&rsquo;s queue isn&rsquo;t the right thing to show. The home is replaced; Atelier returns automatically when the context clears.</Note>
+
+                <Note><b>On a trip</b> — between depart and return. Hero stops being about Vesper&rsquo;s work and becomes about <i>this hour</i>: one recommendation tied to where you are (<i>Kayaba Coffee · 8 min east</i>) with a paragraph of why-this-now. Voice is the primary affordance — a wide dock at the bottom reading &ldquo;tell me anything — I&rsquo;ll find it&rdquo; with a large mic. Save-a-moment lives as a dashed-gold chip in the top right. Later-today items sit faint below.</Note>
+
+                <Note><b>Time-sensitive</b> — one thing pre-empts everything. Calm ink-red, not screaming. Hero is a single fact, formatted like a flight board (<i>WAS 19:55 → NOW 18:55</i>), followed by Vesper&rsquo;s sit-with-it italic prose. Two actions: <b>I&rsquo;ll handle it</b> (ink primary) and <i>tell me what you want</i> (paper secondary). Below the hero, a single quiet line — <i>&ldquo;and <u>6 other things</u> on the desk&rdquo;</i> — demotes everything else to a tap-away.</Note>
+
+                <Note italic>Both takeovers are time-bounded. On-a-trip lifts when your return date passes. Urgent lifts when the user resolves it (or 24h, whichever first). No takeover stays sticky.</Note>
+
+                <div style={{ marginTop: 14, padding: 12, background: '#FBF7EC', borderRadius: 8, fontSize: 11.5, color: T.mute }}>
+                  <b style={{ color: T.ink }}>Why ink-red, not red</b><br/>
+                  Bright red carries airline-cancellation panic. <code>#A04030</code> is closer to oxblood / tea-stained — urgent but composed. Vesper stays calm even when the news isn&rsquo;t.
+                </div>
+              </Logic>
+            </DCArtboard>
+          </DCSection>
+
+          {/* ── CHAT ── */}
+          <DCSection
+            id="chat"
+            title="Two chat thread layouts"
+            subtitle="Reframing the conversation thread as either a serif column or a shared document."
+          >
+            <DCArtboard id="chat-editorial" label="1 · Editorial Scroll" width={415} height={870} bg="transparent"><Phn><VesperChatEditorial/></Phn></DCArtboard>
+            <DCArtboard id="chat-document"  label="2 · Document Edit"   width={415} height={870} bg="transparent"><Phn><VesperChatDocument/></Phn></DCArtboard>
+            <DCArtboard id="chat-notes" label="Chat logic" width={460} height={870} bg="transparent">
+              <Logic eyebrow="CHAT · LOGIC" title="Two ways to talk to Vesper.">
+                <Note italic>The current thread is bubble-on-bubble. These reshape what the conversation IS.</Note>
+
+                <Note><b>1 · Editorial Scroll</b> — Vesper speaks as full-width <b>serif prose</b>, no bubble, with a <code>+ VESPER</code> eyebrow above. The user speaks as a small dark serif pill, right-aligned. Tool calls render as <i>inline structured cards</i> (the “Found · 3 ryokan” card mid-thread). Suggested next actions appear as italic chips below the latest message — the user picks one or types. Feels like reading and writing letters, not chatting.</Note>
+
+                <Note><b>2 · Document Edit</b> — the conversation IS a shared draft. Vesper’s current itinerary fills the screen with the draft <i>edits highlighted inline</i> (the gold-bg phrase, the underline). The user’s question appears as a <i>margin annotation</i> with an avatar; Vesper’s response is the next draft proposal with three actions — <b>Keep the change</b> / show me both / undo. Most radical of the two; best when conversation produces an artifact.</Note>
+
+                <Note italic>Hybrid: ship Editorial Scroll as the default, switch to Document Edit when the user is iterating on an itinerary, plan, or list (i.e. when there’s a real draft to mutate).</Note>
+
+                <div style={{ marginTop: 14, padding: 12, background: '#FBF7EC', borderRadius: 8, fontSize: 11.5, color: T.mute }}>
+                  <b style={{ color: T.ink }}>Implementation</b><br/>
+                  Editorial body serif 16 / 1.45 lh / -0.1 ls · user pill ink bg, 14 / 8 v-pad / 14 h-pad / 18 radius · tool card 12 radius, 0.5 px hairline border, inline within Vesper turn · Document draft: serif 14 / 1.5 lh · highlight uses 16% ochre bg, 2 px h-pad · margin annotation has a 2 px ink-blue left rule.
+                </div>
+              </Logic>
+            </DCArtboard>
+          </DCSection>
+
+          {/* ── VOICE · access + modes ── */}
+          <DCSection
+            id="voice"
+            title="Voice · access + modes"
+            subtitle="Voice lives in three places, all keyed to the Vesper tab. No floating chrome."
+          >
+            <DCArtboard id="voice-access" label="How voice is invoked" width={760} height={680} bg="transparent">
+              <TabBarLongPress/>
+            </DCArtboard>
+            <DCArtboard id="voice-calm"       label="α · Calm Listening"       width={415} height={870} bg="transparent"><Phn><VesperVoiceCalm/></Phn></DCArtboard>
+            <DCArtboard id="voice-transcript" label="β · Editorial Transcript" width={415} height={870} bg="transparent"><Phn><VesperVoiceTranscript/></Phn></DCArtboard>
+            <DCArtboard id="voice-notes" label="Voice logic" width={460} height={870} bg="transparent">
+              <Logic eyebrow="VOICE · LOGIC" title="Premium, not sci-fi.">
+                <Note italic>Voice mode shouldn’t feel like calling a robot. Two layouts, three entry points, zero floating buttons.</Note>
+
+                <Note><b>α · Calm Listening</b> — a single Vesper sparkle floats inside four concentric ambient rings (paper-toned, not glow). Below it: one short status caption (“I’M HEARING”) and a single italic line of the live transcript. At the bottom: pause · large mic · walk-me-through. Quiet, intimate, almost meditative. Best for short voice prompts and quick capture.</Note>
+
+                <Note><b>β · Editorial Transcript</b> — voice mode IS a typed transcript that paints live. User turns appear as italic serif preceded by a small monogram. Vesper turns appear as serif body with the <code>+ VESPER</code> sparkle. Status pill at top tells you whether Vesper is LISTENING / THINKING / SPEAKING. Bottom dock has an INTERRUPT label, a small waveform, and a pause button. Best for longer back-and-forth planning sessions.</Note>
+
+                <Note italic>Hybrid: tap the mic in the composer → α (Calm) opens for a one-shot prompt. Long-press the mic, or enter “walk me through this” mode → β (Transcript) opens for a real session. Mode switch icon is visible in α’s bottom row.</Note>
+
+                <div style={{ marginTop: 14, padding: 12, background: '#FBF7EC', borderRadius: 8, fontSize: 11.5, color: T.mute }}>
+                  <b style={{ color: T.ink }}>What we’re NOT doing</b><br/>
+                  No purple orb. No animated wave background. No “Hey Vesper.” No “Listening…” with three pulsing dots. No fullscreen black with rainbow gradient. Voice should feel like the desk lamp came on, not like the spaceship landed.
+                </div>
+              </Logic>
+            </DCArtboard>
+          </DCSection>
+
+          {/* ── RECOMMENDATION ── */}
+          <DCSection
+            id="rec"
+            title="Recommendation · ship"
+            subtitle="A small, legible system. Three modes, two takeovers, one voice button."
+          >
+            <DCArtboard id="rec-card" label="Ship" width={960} height={780} bg="#F1ECE2">
+              <div style={{ padding: 44, fontFamily: T.sans, color: T.inkSoft, fontSize: 13.5, lineHeight: 1.55 }}>
+                <div style={{ fontSize: 10.5, letterSpacing: 2, color: T.gold, fontWeight: 600 }}>SHIP</div>
+                <h2 style={{ fontFamily: T.serif, fontSize: 40, fontWeight: 500, letterSpacing: -0.9, lineHeight: 1.04, color: T.ink, margin: '8px 0 12px' }}>
+                  <em>Atelier</em> by default. <em>Logbook</em> for the morning. <em>Whisper</em> when you ask.
+                </h2>
+                <p style={{ maxWidth: 820, margin: '0 0 14px' }}>
+                  One default home, two state-driven swaps, two contextual takeovers,
+                  and one voice button — the Vesper tab itself. Everything else from the
+                  earlier explorations is retired.
+                </p>
+
+                <div style={{
+                  display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14, marginTop: 16,
+                }}>
+                  {[
+                    { tag: 'DEFAULT',        t: 'Atelier',       d: 'Hero in-progress draft, queue, set-aside, finished today. Vesper at work.', accent: true },
+                    { tag: 'MORNING OPEN',   t: 'Logbook',       d: 'Vesper&rsquo;s dated letter, with tap-targets folded into the prose.' },
+                    { tag: 'OPT-IN',         t: 'Whisper',       d: 'Calm Mode. One thing, three actions, an &ldquo;ask something else&rdquo; exit.' },
+                  ].map((c, i) => (
+                    <div key={i} style={{
+                      background: '#FBF7EC', padding: '14px 16px', borderRadius: 12,
+                      border: c.accent ? `0.8px solid ${T.gold}` : `0.5px solid rgba(27,23,20,0.07)`,
+                    }}>
+                      <div style={{ fontSize: 9.5, color: c.accent ? T.goldDeep : T.mute, letterSpacing: 1.6, fontWeight: 700 }}>{c.tag}</div>
+                      <div style={{ fontFamily: T.serif, fontSize: 22, fontWeight: 500, color: T.ink, letterSpacing: -0.4, marginTop: 4 }}>{c.t}</div>
+                      <div dangerouslySetInnerHTML={{ __html: c.d }} style={{ fontSize: 12, color: T.mute, marginTop: 6, lineHeight: 1.5 }}/>
+                    </div>
+                  ))}
+                </div>
+
+                <div style={{
+                  display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginTop: 14,
+                }}>
+                  {[
+                    { tag: 'TAKEOVER · ON A TRIP',  t: 'You\u2019re in Tokyo.',    d: 'Hero swaps to the next-hour. Voice becomes the primary affordance. Lifts at return.' },
+                    { tag: 'TAKEOVER · URGENT',     t: 'One thing first.',          d: 'Ink-red, not screaming. Demotes the desk to a single line until resolved or 24h.' },
+                  ].map((c, i) => (
+                    <div key={i} style={{
+                      background: '#FBF7EC', padding: '14px 16px', borderRadius: 12,
+                      border: `0.5px solid rgba(27,23,20,0.07)`,
+                    }}>
+                      <div style={{ fontSize: 9.5, color: T.mute, letterSpacing: 1.6, fontWeight: 700 }}>{c.tag}</div>
+                      <div style={{ fontFamily: T.serif, fontSize: 20, fontWeight: 500, color: T.ink, letterSpacing: -0.3, marginTop: 4 }}>{c.t}</div>
+                      <div style={{ fontSize: 12, color: T.mute, marginTop: 6, lineHeight: 1.5 }}>{c.d}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <div style={{ borderTop: `0.5px solid ${T.hairline}`, marginTop: 22, paddingTop: 16 }}>
+                  <div style={{ fontSize: 10, letterSpacing: 2, color: T.mute, fontWeight: 600, marginBottom: 10 }}>STATE MACHINE</div>
+                  <p style={{ margin: 0, fontFamily: T.serif, fontSize: 14, color: T.inkSoft, lineHeight: 1.55, letterSpacing: -0.05 }}>
+                    First open of the day → <b style={{ color: T.ink }}>Logbook</b>.
+                    After you read the letter → <b style={{ color: T.ink }}>Atelier</b>.
+                    User toggles Calm → <b style={{ color: T.ink }}>Whisper</b>.
+                    Between depart and return → <b style={{ color: T.ink }}>On-a-trip</b>.
+                    Time-sensitive signal arrives → <b style={{ color: T.ink }}>Urgent</b> pre-empts until cleared.
+                  </p>
+                </div>
+
+                <div style={{ borderTop: `0.5px solid ${T.hairline}`, marginTop: 18, paddingTop: 16 }}>
+                  <div style={{ fontSize: 10, letterSpacing: 2, color: T.mute, fontWeight: 600, marginBottom: 10 }}>CHAT &amp; VOICE</div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 14 }}>
+                    <div>
+                      <div style={{ fontFamily: T.serif, fontSize: 15, fontWeight: 500, color: T.ink }}>Chat</div>
+                      <div style={{ fontSize: 12, color: T.mute, marginTop: 4, lineHeight: 1.5 }}>
+                        Editorial Scroll as the default thread. Document Edit takes over when there&rsquo;s a real draft to mutate (itinerary, plan, list).
+                      </div>
+                    </div>
+                    <div>
+                      <div style={{ fontFamily: T.serif, fontSize: 15, fontWeight: 500, color: T.ink }}>Voice</div>
+                      <div style={{ fontSize: 12, color: T.mute, marginTop: 4, lineHeight: 1.5 }}>
+                        Calm Listening for one-shots. Editorial Transcript for sessions. Long-press the Vesper tab from anywhere to summon Calm.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ borderTop: `0.5px solid ${T.hairline}`, marginTop: 18, paddingTop: 16 }}>
+                  <div style={{ fontSize: 10, letterSpacing: 2, color: T.mute, fontWeight: 600, marginBottom: 10 }}>CROSS-TAB HANDOFFS</div>
+                  <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 6, fontSize: 12 }}>
+                    <li><b>Atelier draft → Trips</b> · open the relevant trip when you tap a finished draft</li>
+                    <li><b>Memory in Logbook → Atlas</b> · highlighted nouns send to a postcard</li>
+                    <li><b>On-a-trip → Atlas</b> · &ldquo;save a moment&rdquo; chip drafts a postcard live</li>
+                    <li><b>Urgent → Trips</b> · &ldquo;I&rsquo;ll handle it&rdquo; opens the underlying trip with the change pre-applied</li>
+                  </ul>
+                </div>
+
+                <div style={{ borderTop: `0.5px solid ${T.hairline}`, marginTop: 18, paddingTop: 14, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                  <a href="Vesper Trips Full.html" style={{ padding: '7px 12px', background: '#FBF7EC', border: '0.5px solid rgba(27,23,20,0.10)', borderRadius: 999, color: T.ink, textDecoration: 'none', fontSize: 12, fontWeight: 500 }}>← Trips · the full system</a>
+                  <a href="Atlas Redesign.html" style={{ padding: '7px 12px', background: '#FBF7EC', border: '0.5px solid rgba(27,23,20,0.10)', borderRadius: 999, color: T.ink, textDecoration: 'none', fontSize: 12, fontWeight: 500 }}>Atlas · six directions →</a>
+                  <a href="Atlas Direction 03.html" style={{ padding: '7px 12px', background: '#FBF7EC', border: `0.5px solid ${T.gold}`, borderRadius: 999, color: T.ink, textDecoration: 'none', fontSize: 12, fontWeight: 500 }}>Atlas · 03 full flow →</a>
+                </div>
+              </div>
+            </DCArtboard>
+          </DCSection>
+        </DesignCanvas>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  </script>
+</body>
+</html>
