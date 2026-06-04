@@ -29,7 +29,7 @@ sync-types-snapshot: ## Sync types from committed snapshot (no backend needed)
 	@./scripts/sync-types.sh --from-snapshot
 
 typecheck: ## Type-check Travel App (tsc --noEmit)
-	@cd "Travel App" && npx tsc --noEmit
+	@cd travel-app && npx tsc --noEmit
 
 doctor: ## Validate workspace layout and key local tooling
 	@./scripts/doctor.sh
@@ -67,7 +67,7 @@ reliability-report: ## Print a cheap reliability snapshot without running tests
 	@./scripts/reliability-report.sh
 
 reliability-gate: ## Gate on eval reliability baseline — exits 1 if any checks are broken (<50% pass rate)
-	@cd "Travel Agent" && PYTHONPATH=. python -m tools.eval.cli reliability \
+	@cd travel-agent && PYTHONPATH=. python -m tools.eval.cli reliability \
 		--agent concierge \
 		--exit-code \
 		--verbose
@@ -78,10 +78,10 @@ ci-review: ## Nightly CI/CD dashboard across all 3 repos (read the same numbers 
 # ── Tests ─────────────────────────────────────────────────────────────────────
 
 test-backend: ## Run offline backend tests
-	@cd "Travel Agent" && PYTHONPATH=. pytest tests/ -q -k "not requires_postgres and not requires_api_keys"
+	@cd travel-agent && PYTHONPATH=. pytest tests/ -q -k "not requires_postgres and not requires_api_keys"
 
 test-frontend: ## Run frontend Jest tests
-	@cd "Travel App" && npx jest --no-coverage
+	@cd travel-app && npx jest --no-coverage
 
 test-all: test-backend test-frontend ## Run all tests (offline)
 
@@ -91,10 +91,10 @@ status: ## Show git status for workspace + child repos
 	@git status --short || true
 	@echo ""
 	@echo "== Travel Agent =="
-	@cd "Travel Agent" && git status --short || true
+	@cd travel-agent && git status --short || true
 	@echo ""
 	@echo "== Travel App =="
-	@cd "Travel App" && git status --short || true
+	@cd travel-app && git status --short || true
 
 # ── Help ──────────────────────────────────────────────────────────────────────
 

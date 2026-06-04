@@ -2318,6 +2318,106 @@
         }
       }
     },
+    "/api/atlas/map": {
+      "get": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Get Atlas Map",
+        "description": "Symbolic Atlas map read model.\n\nThis deliberately returns normalized canvas positions and provenance,\nnot raw mapbox coordinates. The Atlas map is a memory/world artifact\nsurface; literal geography remains the job of trip maps.",
+        "operationId": "get_atlas_map_api_atlas_map_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasMapReadModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/receipt": {
+      "get": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Get Atlas Receipt",
+        "description": "Travel DNA receipt read model for Atlas audit and correction surfaces.",
+        "operationId": "get_atlas_receipt_api_atlas_receipt_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasReceiptReadModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/atlas/artifacts": {
       "get": {
         "tags": [
@@ -2988,6 +3088,76 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AtlasSignalsResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/signals/{signal_id}": {
+      "patch": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Patch Atlas Signal",
+        "description": "Keep, dispute, or forget one Atlas-derived signal.",
+        "operationId": "patch_atlas_signal_api_atlas_signals__signal_id__patch",
+        "parameters": [
+          {
+            "name": "signal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Signal Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AtlasSignalStateUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DerivedSignal"
                 }
               }
             }
@@ -5104,6 +5274,66 @@
         }
       }
     },
+    "/api/concierge/home/cards/lifecycle": {
+      "post": {
+        "tags": [
+          "concierge-home"
+        ],
+        "summary": "Post Concierge Card Lifecycle",
+        "description": "Persist a lifecycle transition for a durable Vesper Home card.\n\nMissing rows are accepted as no-ops so current generated fallback cards can\nemit the same event shape while producers migrate onto durable cards.",
+        "operationId": "post_concierge_card_lifecycle_api_concierge_home_cards_lifecycle_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConciergeCardLifecycleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConciergeCardLifecycleResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/discover/trending": {
       "get": {
         "tags": [
@@ -6304,6 +6534,102 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AttachPhotoResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/dossiers/global": {
+      "get": {
+        "tags": [
+          "dossiers"
+        ],
+        "summary": "List Global Dossiers",
+        "description": "Random sample of approved place dossiers from all seeded cities.\n\nPowers the global Discover feed \u2014 shows editorial variety from all 34\ncities rather than scoping to the active trip's destination. Each item\ncarries ``city_slug`` (root city) so the FE riso suppression fires for\nneighbourhood dossiers exactly as in the per-city endpoint.",
+        "operationId": "list_global_dossiers_api_dossiers_global_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 200,
+              "minimum": 1,
+              "description": "Max dossiers to return (random sample).",
+              "default": 80,
+              "title": "Limit"
+            },
+            "description": "Max dossiers to return (random sample)."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalDossierFeedResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/dossiers/venue-briefs": {
+      "get": {
+        "tags": [
+          "dossiers"
+        ],
+        "summary": "List Venue Briefs",
+        "description": "Random sample of complete venue briefs \u2014 the 20% compact-card slot.",
+        "operationId": "list_venue_briefs_api_dossiers_venue_briefs_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 60,
+              "minimum": 1,
+              "description": "Max briefs to return (random sample).",
+              "default": 20,
+              "title": "Limit"
+            },
+            "description": "Max briefs to return (random sample)."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VenueBriefFeedResponse"
                 }
               }
             }
@@ -14650,7 +14976,7 @@
           "trips"
         ],
         "summary": "Create Trip",
-        "description": "Create a new trip in ideation status.\n\nThe creator is automatically added as an organizer so they have\nauthority to finalize proposals, edit trip shape, etc.\n\nPass ``X-Idempotency-Key`` to prevent duplicate trips on a slow-\nnetwork retry. Audit pass 2026-05-19 P0: pre-fix the route read\nno header and a flaky-network retry created a second trip even\nthough the FE had been threading the key since the prior audit.",
+        "description": "Create a new trip in ideation status.\n\nThe creator is automatically added as an organizer so they have\nauthority to finalize proposals, edit trip shape, etc.\n\n**Blank-trip dedupe (2026-05-27 overhaul):** when the request has no\ntitle, destination, place_id, dates, occasion, or budget_band \u2014 i.e.\nthe user tapped \"+ New trip\" with no intent yet \u2014 the route returns\nthe user's existing blank trip if one exists, rather than creating\na second placeholder. This enforces the \"one draft slot per user\"\nproduct rule and prevents the empty-trip clutter that motivated the\noverhaul. Requests with ANY substantive field (destination, dates,\netc.) always create a new trip \u2014 distinct intent = distinct trip.\n\nPass ``X-Idempotency-Key`` to prevent duplicate trips on a slow-\nnetwork retry. Audit pass 2026-05-19 P0: pre-fix the route read\nno header and a flaky-network retry created a second trip even\nthough the FE had been threading the key since the prior audit.",
         "operationId": "create_trip_api_trips_post",
         "parameters": [
           {
@@ -14698,6 +15024,56 @@
         },
         "responses": {
           "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Trip"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/blank": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Blank Trip",
+        "description": "Return the caller's blank trip, or 404 if none exists.\n\nUsed by the frontend to (a) detect whether a \"Draft trip\" chip\nshould render on the Trips tab, (b) route ``+ New trip`` to the\nexisting draft slot rather than creating a duplicate. See\n``get_blank_trip_for_user`` for the matching definition of \"blank\".",
+        "operationId": "get_blank_trip_api_trips_blank_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
@@ -20748,6 +21124,48 @@
         "title": "ArtifactSection",
         "description": "One section of an artifact's body (Trip Story has 3-7, Day Postcard has 1)."
       },
+      "AtlasAction": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "open_artifact",
+              "open_candidate",
+              "open_signal",
+              "open_saved_place",
+              "open_trip",
+              "open_receipt",
+              "open_privacy",
+              "start_scan"
+            ],
+            "title": "Type"
+          },
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "params": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Params"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "title": "AtlasAction",
+        "description": "Small navigation/action contract for Atlas read models."
+      },
       "AtlasArtifact": {
         "properties": {
           "id": {
@@ -21844,6 +22262,544 @@
         ],
         "title": "AtlasInboxReviewPage"
       },
+      "AtlasMapArc": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "from_node_id": {
+            "type": "string",
+            "title": "From Node Id"
+          },
+          "to_node_id": {
+            "type": "string",
+            "title": "To Node Id"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "chronology",
+              "repeat",
+              "theme"
+            ],
+            "title": "Kind"
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ],
+            "title": "Confidence",
+            "default": "medium"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "from_node_id",
+          "to_node_id",
+          "kind"
+        ],
+        "title": "AtlasMapArc"
+      },
+      "AtlasMapEmptyState": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "body": {
+            "type": "string",
+            "title": "Body"
+          },
+          "action": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AtlasAction"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "body"
+        ],
+        "title": "AtlasMapEmptyState"
+      },
+      "AtlasMapMonthMark": {
+        "properties": {
+          "month": {
+            "type": "integer",
+            "title": "Month"
+          },
+          "node_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Node Id"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "month"
+        ],
+        "title": "AtlasMapMonthMark"
+      },
+      "AtlasMapNode": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "artifact",
+              "candidate",
+              "trip",
+              "saved_place",
+              "cluster"
+            ],
+            "title": "Kind"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "sublabel": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sublabel"
+          },
+          "detail": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Detail"
+          },
+          "approximate_place_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Approximate Place Label"
+          },
+          "month": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Month"
+          },
+          "weight": {
+            "type": "number",
+            "title": "Weight",
+            "default": 1.0
+          },
+          "x": {
+            "type": "number",
+            "title": "X"
+          },
+          "y": {
+            "type": "number",
+            "title": "Y"
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ],
+            "title": "Confidence",
+            "default": "medium"
+          },
+          "provenance": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasProvenanceRef"
+            },
+            "type": "array",
+            "title": "Provenance"
+          },
+          "action": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AtlasAction"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "label",
+          "x",
+          "y"
+        ],
+        "title": "AtlasMapNode"
+      },
+      "AtlasMapReadModel": {
+        "properties": {
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/AtlasMapSummary"
+          },
+          "nodes": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasMapNode"
+            },
+            "type": "array",
+            "title": "Nodes"
+          },
+          "arcs": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasMapArc"
+            },
+            "type": "array",
+            "title": "Arcs"
+          },
+          "month_marks": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasMapMonthMark"
+            },
+            "type": "array",
+            "title": "Month Marks"
+          },
+          "privacy_note": {
+            "type": "string",
+            "title": "Privacy Note"
+          },
+          "empty_state": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AtlasMapEmptyState"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "generated_at",
+          "summary",
+          "privacy_note"
+        ],
+        "title": "AtlasMapReadModel"
+      },
+      "AtlasMapSummary": {
+        "properties": {
+          "place_count": {
+            "type": "integer",
+            "title": "Place Count",
+            "default": 0
+          },
+          "region_count": {
+            "type": "integer",
+            "title": "Region Count",
+            "default": 0
+          },
+          "artifact_count": {
+            "type": "integer",
+            "title": "Artifact Count",
+            "default": 0
+          },
+          "draft_count": {
+            "type": "integer",
+            "title": "Draft Count",
+            "default": 0
+          },
+          "planned_trip_count": {
+            "type": "integer",
+            "title": "Planned Trip Count",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "title": "AtlasMapSummary"
+      },
+      "AtlasProvenanceRef": {
+        "properties": {
+          "source_kind": {
+            "type": "string",
+            "enum": [
+              "artifact",
+              "photo_cluster",
+              "trip",
+              "saved_place",
+              "chat",
+              "manual"
+            ],
+            "title": "Source Kind"
+          },
+          "source_id": {
+            "type": "string",
+            "title": "Source Id"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "source_kind",
+          "source_id",
+          "label",
+          "created_at"
+        ],
+        "title": "AtlasProvenanceRef"
+      },
+      "AtlasReceiptItem": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "body": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Body"
+          },
+          "state": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "active",
+                  "disputed",
+                  "forgotten"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "State"
+          },
+          "confidence": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "high",
+                  "medium",
+                  "low"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confidence"
+          },
+          "provenance": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasProvenanceRef"
+            },
+            "type": "array",
+            "title": "Provenance"
+          },
+          "action": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AtlasAction"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "title"
+        ],
+        "title": "AtlasReceiptItem"
+      },
+      "AtlasReceiptReadModel": {
+        "properties": {
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "memory_version": {
+            "type": "string",
+            "title": "Memory Version"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/AtlasReceiptSummary"
+          },
+          "sections": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasReceiptSection"
+            },
+            "type": "array",
+            "title": "Sections"
+          },
+          "actions": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasAction"
+            },
+            "type": "array",
+            "title": "Actions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "generated_at",
+          "memory_version",
+          "summary"
+        ],
+        "title": "AtlasReceiptReadModel"
+      },
+      "AtlasReceiptSection": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "body": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Body"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "travel_dna",
+              "signals",
+              "sources",
+              "privacy",
+              "audit"
+            ],
+            "title": "Kind"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasReceiptItem"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "kind"
+        ],
+        "title": "AtlasReceiptSection"
+      },
+      "AtlasReceiptSummary": {
+        "properties": {
+          "active_signal_count": {
+            "type": "integer",
+            "title": "Active Signal Count",
+            "default": 0
+          },
+          "disputed_signal_count": {
+            "type": "integer",
+            "title": "Disputed Signal Count",
+            "default": 0
+          },
+          "forgotten_signal_count": {
+            "type": "integer",
+            "title": "Forgotten Signal Count",
+            "default": 0
+          },
+          "artifact_count": {
+            "type": "integer",
+            "title": "Artifact Count",
+            "default": 0
+          },
+          "privacy_dimension_count": {
+            "type": "integer",
+            "title": "Privacy Dimension Count",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "title": "AtlasReceiptSummary"
+      },
       "AtlasScanHistory": {
         "properties": {
           "user_id": {
@@ -21972,6 +22928,49 @@
           "action"
         ],
         "title": "AtlasSearchResult"
+      },
+      "AtlasSignalStateUpdate": {
+        "properties": {
+          "user_state": {
+            "type": "string",
+            "enum": [
+              "active",
+              "disputed",
+              "forgotten"
+            ],
+            "title": "User State"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 280
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_state"
+        ],
+        "title": "AtlasSignalStateUpdate",
+        "description": "PATCH body for user control over a single derived signal."
       },
       "AtlasSignalsResponse": {
         "properties": {
@@ -23718,6 +24717,89 @@
         ],
         "title": "ConciergeCardFeedbackResponse"
       },
+      "ConciergeCardLifecycleRequest": {
+        "properties": {
+          "surface": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Surface",
+            "default": "concierge_home"
+          },
+          "card_id": {
+            "type": "string",
+            "maxLength": 256,
+            "minLength": 1,
+            "title": "Card Id"
+          },
+          "lifecycle_state": {
+            "type": "string",
+            "enum": [
+              "seen",
+              "dismissed",
+              "acted_on"
+            ],
+            "title": "Lifecycle State"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Metadata"
+          }
+        },
+        "type": "object",
+        "required": [
+          "card_id",
+          "lifecycle_state"
+        ],
+        "title": "ConciergeCardLifecycleRequest",
+        "description": "Lifecycle transition for a durable Vesper Home card."
+      },
+      "ConciergeCardLifecycleResponse": {
+        "properties": {
+          "accepted": {
+            "type": "boolean",
+            "title": "Accepted",
+            "default": true
+          },
+          "updated": {
+            "type": "boolean",
+            "title": "Updated"
+          },
+          "card_id": {
+            "type": "string",
+            "title": "Card Id"
+          },
+          "lifecycle_state": {
+            "type": "string",
+            "enum": [
+              "seen",
+              "dismissed",
+              "acted_on"
+            ],
+            "title": "Lifecycle State"
+          }
+        },
+        "type": "object",
+        "required": [
+          "updated",
+          "card_id",
+          "lifecycle_state"
+        ],
+        "title": "ConciergeCardLifecycleResponse"
+      },
       "ConciergeHomeAction": {
         "properties": {
           "type": {
@@ -23727,7 +24809,8 @@
               "open_trip_plan",
               "open_trip_expenses",
               "open_chat_prefill",
-              "open_memory"
+              "open_memory",
+              "open_atlas_artifact"
             ],
             "title": "Type"
           },
@@ -23742,6 +24825,18 @@
               }
             ],
             "title": "Trip Id"
+          },
+          "artifact_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Artifact Id"
           },
           "message": {
             "anyOf": [
@@ -23806,6 +24901,83 @@
               "starter"
             ],
             "title": "Kind"
+          },
+          "family": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "call",
+                  "prepared",
+                  "live",
+                  "signal",
+                  "capture",
+                  "resume",
+                  "starter"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Family"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "present",
+              "preparing",
+              "loading",
+              "absent"
+            ],
+            "title": "State",
+            "default": "present"
+          },
+          "lifecycle_state": {
+            "type": "string",
+            "enum": [
+              "preparing",
+              "ready",
+              "seen",
+              "dismissed",
+              "acted_on",
+              "expired"
+            ],
+            "title": "Lifecycle State",
+            "default": "ready"
+          },
+          "authorship": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "user",
+                  "vesper",
+                  "system"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Authorship"
+          },
+          "open_behavior": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "direct",
+                  "decision_sheet",
+                  "composer",
+                  "voice"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Open Behavior"
           },
           "eyebrow": {
             "type": "string",
@@ -23892,6 +25064,18 @@
       },
       "ConciergeHomeFeed": {
         "properties": {
+          "mode": {
+            "type": "string",
+            "enum": [
+              "atelier",
+              "live",
+              "urgent",
+              "quiet",
+              "starter"
+            ],
+            "title": "Mode",
+            "default": "atelier"
+          },
           "lead_note": {
             "$ref": "#/components/schemas/ConciergeHomeLeadNote"
           },
@@ -25470,6 +26654,17 @@
               }
             ],
             "title": "Place Name"
+          },
+          "city_slug": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "City Slug"
           }
         },
         "type": "object",
@@ -27423,6 +28618,28 @@
         ],
         "title": "GeofenceEvent",
         "description": "One geofence trigger the server observed.\n\nAppend-only: every row represents a moment in time, immutable after\ninsert. ``manually_narrated`` is the catch-all for cases where the\nuser tapped the entity card without ever entering its geofence \u2014 we\nstill record it so the observability dashboard reflects total\nnarration attempts, geofence-driven or not."
+      },
+      "GlobalDossierFeedResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/PlaceDossierItem"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "count"
+        ],
+        "title": "GlobalDossierFeedResponse",
+        "description": "Random cross-city dossier sample for the global Discover feed."
       },
       "GroupProfileSection": {
         "properties": {
@@ -32742,6 +33959,10 @@
             "type": "string",
             "title": "Place Name"
           },
+          "city_slug": {
+            "type": "string",
+            "title": "City Slug"
+          },
           "angle": {
             "type": "string",
             "title": "Angle"
@@ -32834,6 +34055,7 @@
           "id",
           "place_slug",
           "place_name",
+          "city_slug",
           "angle",
           "travel_lens",
           "word_count",
@@ -40496,6 +41718,82 @@
         ],
         "title": "ValidationError"
       },
+      "VenueBriefFeedResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/VenueBriefItem"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "count"
+        ],
+        "title": "VenueBriefFeedResponse"
+      },
+      "VenueBriefItem": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "venue_id": {
+            "type": "integer",
+            "title": "Venue Id"
+          },
+          "venue_name": {
+            "type": "string",
+            "title": "Venue Name"
+          },
+          "venue_type": {
+            "type": "string",
+            "title": "Venue Type"
+          },
+          "place_name": {
+            "type": "string",
+            "title": "Place Name"
+          },
+          "city_slug": {
+            "type": "string",
+            "title": "City Slug"
+          },
+          "excerpt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Excerpt"
+          },
+          "word_count": {
+            "type": "integer",
+            "title": "Word Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "venue_id",
+          "venue_name",
+          "venue_type",
+          "place_name",
+          "city_slug",
+          "word_count"
+        ],
+        "title": "VenueBriefItem",
+        "description": "Compact venue brief \u2014 the 20% slot in the global Discover feed."
+      },
       "VenueDetailResponse": {
         "properties": {
           "id": {
@@ -41329,6 +42627,17 @@
                 "type": "null"
               }
             ]
+          },
+          "promoted_trip_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Promoted Trip Id"
           }
         },
         "type": "object",

@@ -118,7 +118,7 @@ npx jest __tests__/utils/atlasCluster.test.ts
 ### Conventions you MUST follow
 
 - **Python:** snake_case, type hints on every signature, `from __future__ import annotations`, Pydantic BaseModel for contracts, `call_llm()` from `backend/core/llm.py` (never raw Anthropic SDK), `get_connection()` from `backend/core/db/engine.py` for DB.
-- **TypeScript:** strict mode, no `any`, relative imports (no path aliases), Inter for UI / Fraunces for editorial copy, no purple (purple = AI/Vesper only).
+- **TypeScript:** strict mode, no `any`, relative imports (no path aliases), DM Sans for UI / Newsreader for editorial copy, no purple (purple = AI/Vesper only).
 - **Markers on backend tests:** `@pytest.mark.requires_postgres` for DB-touching tests; offline tests need no marker.
 
 ---

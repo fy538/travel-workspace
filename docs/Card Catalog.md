@@ -175,8 +175,8 @@ Key fields only; the component/creator are the full source of truth.
 **Doctrine** (Brand Identity §6-7, Design Language §2-4): cards are *Vesper
 artifacts*. They should wear the **letterpress** card (`letterpress.cardBg` +
 `letterpress.shadow`), the **sacred-purple** `colors.agent.*` palette (reserved
-for Vesper alone), the **fleuron** mark, and the two type scales (Fraunces to
-read, Inter to act). Content is **structured data rendered in styled `<Text>`**,
+for Vesper alone), the **fleuron** mark, and the two type scales (Newsreader to
+read, DM Sans to act). Content is **structured data rendered in styled `<Text>`**,
 *not* markdown — that's why TripShapes reads clean and why stuffing `**bold**`
 into a card leaks raw asterisks.
 
