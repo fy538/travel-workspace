@@ -2318,6 +2318,56 @@
         }
       }
     },
+    "/api/atlas/places": {
+      "get": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Get Atlas Places",
+        "description": "Saved venues and approximate memory clusters for the Atlas places shelf.",
+        "operationId": "get_atlas_places_api_atlas_places_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasPlacesReadModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/atlas/map": {
       "get": {
         "tags": [
@@ -3372,6 +3422,560 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PhotoUploadResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/timeline": {
+      "get": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Get Atlas Timeline",
+        "description": "Flat chronological timeline of a user's travel life.\n\nReturns trips (planned + taken), pending Atlas diary drafts, and\nkept Atlas memories in one normalised contract, sorted by\n``occurred_start`` descending.\n\nPass ``year=YYYY`` to restrict to entries whose date range overlaps\nthat year. Omit ``year`` to get the full timeline (capped at\n``limit``, default 100).\n\nPagination uses keyset cursors (entry UUIDs). Each page may fetch\nextra rows server-side so deduplicated pages still return up to\n``limit`` visible entries.\n\nV1 reads from the persisted ``atlas_timeline_entries`` projection,\nlazily backfilled on first access for legacy users.",
+        "operationId": "get_atlas_timeline_api_atlas_timeline_get",
+        "parameters": [
+          {
+            "name": "year",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Year"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 100,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Opaque pagination cursor \u2014 the ``id`` of the last entry from the previous page. Cursors are scoped to the same ``year`` filter as the request that produced them; reusing a cursor from another year returns 422. Omit on the first page.",
+              "title": "Cursor"
+            },
+            "description": "Opaque pagination cursor \u2014 the ``id`` of the last entry from the previous page. Cursors are scoped to the same ``year`` filter as the request that produced them; reusing a cursor from another year returns 422. Omit on the first page."
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasTimelineReadModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/timeline/removed": {
+      "get": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Get Atlas Timeline Removed",
+        "description": "Hidden and archived timeline rows the user can review or restore.\n\nIncludes user hides (``visibility=hidden``) and archived rows with any\n``archive_reason``. Does not apply trip/memory dedup filters \u2014 this is\nthe audit surface for what left the main Almanac and Timeline views.",
+        "operationId": "get_atlas_timeline_removed_api_atlas_timeline_removed_get",
+        "parameters": [
+          {
+            "name": "year",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Year"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Opaque pagination cursor \u2014 the ``id`` of the last entry from the previous page. Cursors are scoped to the same ``year`` filter as the request that produced them; reusing a cursor from another year returns 422. Omit on the first page.",
+              "title": "Cursor"
+            },
+            "description": "Opaque pagination cursor \u2014 the ``id`` of the last entry from the previous page. Cursors are scoped to the same ``year`` filter as the request that produced them; reusing a cursor from another year returns 422. Omit on the first page."
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasTimelineRemovedReadModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/almanac": {
+      "get": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Get Atlas Almanac",
+        "description": "Almanac view \u2014 entries grouped by month for the given year.\n\nSuitable for the Almanac screen that replaces the frontend-derived\n``buildAtlasAlmanacEntries`` composition.  Entries are bucketed into\nmonth groups, sorted newest-first within each group.  Undated entries\n(trips with no start_date) are omitted from the grouping.\n\nThe ``empty_state`` field is populated when there are no groups so the\nfrontend can render a warm zero-state without conditional logic.",
+        "operationId": "get_atlas_almanac_api_atlas_almanac_get",
+        "parameters": [
+          {
+            "name": "year",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Year"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasAlmanacReadModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/timeline/{entry_id}": {
+      "patch": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Patch Timeline Entry",
+        "description": "User display overrides \u2014 does not mutate canonical trip/candidate/artifact rows.",
+        "operationId": "patch_timeline_entry_api_atlas_timeline__entry_id__patch",
+        "parameters": [
+          {
+            "name": "entry_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Entry Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AtlasTimelineEntryUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasTimelineEntry"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/timeline/{entry_id}/restore": {
+      "post": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Restore Timeline Entry Route",
+        "description": "Return a hidden or archived timeline row to the visible Almanac/Timeline.",
+        "operationId": "restore_timeline_entry_route_api_atlas_timeline__entry_id__restore_post",
+        "parameters": [
+          {
+            "name": "entry_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Entry Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasTimelineEntry"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/timeline/{entry_id}/hide": {
+      "post": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Hide Timeline Entry",
+        "operationId": "hide_timeline_entry_api_atlas_timeline__entry_id__hide_post",
+        "parameters": [
+          {
+            "name": "entry_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Entry Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasTimelineEntry"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/timeline/{entry_id}/pin": {
+      "post": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Pin Timeline Entry",
+        "operationId": "pin_timeline_entry_api_atlas_timeline__entry_id__pin_post",
+        "parameters": [
+          {
+            "name": "entry_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Entry Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasTimelineEntry"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/timeline/{entry_id}/unpin": {
+      "post": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Unpin Timeline Entry",
+        "operationId": "unpin_timeline_entry_api_atlas_timeline__entry_id__unpin_post",
+        "parameters": [
+          {
+            "name": "entry_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Entry Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasTimelineEntry"
                 }
               }
             }
@@ -5317,6 +5921,153 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ConciergeCardLifecycleResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/discover/feed": {
+      "get": {
+        "tags": [
+          "discover"
+        ],
+        "summary": "Discover Feed",
+        "description": "Sectioned Discover feed \u2014 read block + named editorial sections.\n\nPhase B/C: server assigns ``feed_shape_hint`` + rhythm; proximity shape\nfilters the places bucket when ``lat``/``lng`` are provided.",
+        "operationId": "discover_feed_api_discover_feed_get",
+        "parameters": [
+          {
+            "name": "emphasis",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "for_you",
+                "editorial",
+                "friends"
+              ],
+              "type": "string",
+              "default": "for_you",
+              "title": "Emphasis"
+            }
+          },
+          {
+            "name": "place_slug",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Place Slug"
+            }
+          },
+          {
+            "name": "trip_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "exclude_angle_ids",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              },
+              "default": [],
+              "title": "Exclude Angle Ids"
+            }
+          },
+          {
+            "name": "lat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "User latitude for proximity enrichment",
+              "title": "Lat"
+            },
+            "description": "User latitude for proximity enrichment"
+          },
+          {
+            "name": "lng",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "User longitude for proximity enrichment",
+              "title": "Lng"
+            },
+            "description": "User longitude for proximity enrichment"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiscoverFeedResponse"
                 }
               }
             }
@@ -14232,6 +14983,64 @@
         }
       }
     },
+    "/api/takes/stream": {
+      "post": {
+        "tags": [
+          "takes"
+        ],
+        "summary": "Generate Take Stream",
+        "description": "Stream a personalized Take over SSE \u2014 prose appears as the model writes it.\n\nEvents (named to match the shared SSE client in the app's ``utils/sse.ts``\nso it reuses that hardened reader unchanged):\n  - ``text_delta``: ``{\"text\": \"<raw chunk>\"}`` \u2014 raw model output as it streams.\n  - ``metadata``:   ``{\"take\": <EntityTake>, \"was_cached\": bool, \"tier\": \"personal\"}``\n    \u2014 the authoritative parsed Take. Also emitted (with no deltas) on a cache\n    hit or a generation fallback.\n\nStreaming is only for *personalized* Takes (``user_id`` required) \u2014 the\nCurator Take is pre-rendered and instant, so fetch it via ``POST /api/takes``.\nAuth / rate-limit / context assembly mirror the sync endpoint; only the\ngeneration step differs (a token stream instead of one JSON return).",
+        "operationId": "generate_take_stream_api_takes_stream_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TakeGenerationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/takes/{take_id}": {
       "get": {
         "tags": [
@@ -19228,6 +20037,77 @@
         }
       }
     },
+    "/api/users/{user_id}/onboarding-signals": {
+      "post": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "Record Onboarding Signals",
+        "description": "Store non-constraint onboarding taste/pace signals as observations.\n\nThese signals influence personalization but are not treated as hard\nconstraints. They can be overwritten by later real-trip data.\n\nCallers should fire this once after auth completes in the onboarding flow.\nRe-calling is safe \u2014 later observations layer on top of earlier ones;\nold ones remain ``is_active=True`` until the next full memory refresh\nsynthesises them away.",
+        "operationId": "record_onboarding_signals_api_users__user_id__onboarding_signals_post",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OnboardingSignalsCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OnboardingSignalsResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/venues/{venue_id}": {
       "get": {
         "summary": "Get Venue Detail",
@@ -21166,6 +22046,109 @@
         "title": "AtlasAction",
         "description": "Small navigation/action contract for Atlas read models."
       },
+      "AtlasAlmanacReadModel": {
+        "properties": {
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/AtlasTimelineSummary"
+          },
+          "year_summary": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AtlasAlmanacSummary"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "groups": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasTimelineGroup"
+            },
+            "type": "array",
+            "title": "Groups"
+          },
+          "empty_state": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AtlasMapEmptyState"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "truncated": {
+            "type": "boolean",
+            "title": "Truncated",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "generated_at",
+          "summary"
+        ],
+        "title": "AtlasAlmanacReadModel",
+        "description": "Response for ``GET /api/atlas/almanac``.\n\nEntries are pre-grouped into month buckets and sorted newest-first.\nAn ``empty_state`` is included when there are no groups so the\nfrontend can render a warm zero-state without conditional logic."
+      },
+      "AtlasAlmanacSummary": {
+        "properties": {
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "body": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Body"
+          },
+          "generation_status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "generating",
+              "ready",
+              "failed"
+            ],
+            "title": "Generation Status",
+            "default": "pending"
+          },
+          "generated_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Generated At"
+          }
+        },
+        "type": "object",
+        "title": "AtlasAlmanacSummary",
+        "description": "Generated year or month almanac copy \u2014 optional enrichment over factual entries."
+      },
       "AtlasArtifact": {
         "properties": {
           "id": {
@@ -21603,6 +22586,32 @@
             "type": "string",
             "title": "Cluster Reason"
           },
+          "source": {
+            "type": "string",
+            "enum": [
+              "atlas_scan",
+              "onboarding_diary"
+            ],
+            "title": "Source",
+            "default": "atlas_scan"
+          },
+          "onboarding_session_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Onboarding Session Id"
+          },
+          "consent_scope": {
+            "type": "string",
+            "const": "photo_candidate",
+            "title": "Consent Scope",
+            "default": "photo_candidate"
+          },
           "status": {
             "type": "string",
             "enum": [
@@ -21712,6 +22721,32 @@
             "type": "string",
             "title": "Cluster Reason",
             "default": ""
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "atlas_scan",
+              "onboarding_diary"
+            ],
+            "title": "Source",
+            "default": "atlas_scan"
+          },
+          "onboarding_session_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Onboarding Session Id"
+          },
+          "consent_scope": {
+            "type": "string",
+            "const": "photo_candidate",
+            "title": "Consent Scope",
+            "default": "photo_candidate"
           }
         },
         "type": "object",
@@ -21723,7 +22758,7 @@
           "candidate_type"
         ],
         "title": "AtlasCandidateCreate",
-        "description": "Request body for ``POST /api/atlas/candidates`` \u2014 a single candidate\nproduced by the client's local clustering pass.\n\nThe client (Travel App) clusters its selected photos locally and posts\none or more candidates here. Backend validates invariants (date range\nsanity, confidence tier matches stats) and persists."
+        "description": "Request body for ``POST /api/atlas/candidates`` \u2014 a single candidate\nproduced by the client's local clustering pass.\n\nThe client (Travel App) clusters its selected photos locally and posts\none or more candidates here. Backend validates invariants (date range\nsanity, confidence tier matches stats) and persists.\n\n``source`` differentiates candidates submitted via the regular Atlas scan\nflow from those replayed after onboarding's diary branch. V0 infers\n``photo_candidate`` for all candidates \u2014 ``consent_scope`` here is a\nforward-compatible signal, not a gate.\n\n``onboarding_session_id`` links candidates to the onboarding session that\nproduced them, enabling post-auth replay attribution."
       },
       "AtlasCandidatesCreate": {
         "properties": {
@@ -22569,6 +23604,100 @@
         "type": "object",
         "title": "AtlasMapSummary"
       },
+      "AtlasPlaceCluster": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "body": {
+            "type": "string",
+            "title": "Body"
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ],
+            "title": "Confidence"
+          },
+          "artifact_count": {
+            "type": "integer",
+            "title": "Artifact Count",
+            "default": 0
+          },
+          "provenance": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasProvenanceRef"
+            },
+            "type": "array",
+            "title": "Provenance"
+          },
+          "action": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AtlasAction"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "body",
+          "confidence"
+        ],
+        "title": "AtlasPlaceCluster"
+      },
+      "AtlasPlacesReadModel": {
+        "properties": {
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "saved_places": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasSavedPlace"
+            },
+            "type": "array",
+            "title": "Saved Places"
+          },
+          "memory_clusters": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasPlaceCluster"
+            },
+            "type": "array",
+            "title": "Memory Clusters"
+          },
+          "empty_state": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AtlasMapEmptyState"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "generated_at"
+        ],
+        "title": "AtlasPlacesReadModel",
+        "description": "Response for ``GET /api/atlas/places`` \u2014 saved venues + memory clusters."
+      },
       "AtlasProvenanceRef": {
         "properties": {
           "source_kind": {
@@ -22800,6 +23929,69 @@
         "type": "object",
         "title": "AtlasReceiptSummary"
       },
+      "AtlasSavedPlace": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "place_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Label"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "venue",
+              "restaurant",
+              "hotel",
+              "landmark",
+              "other"
+            ],
+            "title": "Kind",
+            "default": "other"
+          },
+          "saved_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Saved At"
+          },
+          "action": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AtlasAction"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name"
+        ],
+        "title": "AtlasSavedPlace"
+      },
       "AtlasScanHistory": {
         "properties": {
           "user_id": {
@@ -22834,6 +24026,11 @@
           "candidates_dismissed_total": {
             "type": "integer",
             "title": "Candidates Dismissed Total"
+          },
+          "timeline_projection_version": {
+            "type": "integer",
+            "title": "Timeline Projection Version",
+            "default": 0
           },
           "updated_at": {
             "type": "string",
@@ -22994,6 +24191,439 @@
         ],
         "title": "AtlasSignalsResponse",
         "description": "Response for ``GET /api/atlas/artifacts/{id}/signals`` \u2014 the audit bridge."
+      },
+      "AtlasTimelineEntry": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "source_type": {
+            "type": "string",
+            "enum": [
+              "trip",
+              "atlas_candidate",
+              "atlas_artifact"
+            ],
+            "title": "Source Type"
+          },
+          "source_id": {
+            "type": "string",
+            "title": "Source Id"
+          },
+          "timeline_kind": {
+            "type": "string",
+            "enum": [
+              "planned_trip",
+              "taken_trip",
+              "diary_draft",
+              "kept_memory"
+            ],
+            "title": "Timeline Kind"
+          },
+          "occurred_start": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occurred Start"
+          },
+          "occurred_end": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occurred End"
+          },
+          "surfaced_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Surfaced At"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "body": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Body"
+          },
+          "place_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Label"
+          },
+          "media_count": {
+            "type": "integer",
+            "title": "Media Count",
+            "default": 0
+          },
+          "confidence": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "high",
+                  "medium",
+                  "low"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confidence"
+          },
+          "consent_scope": {
+            "type": "string",
+            "enum": [
+              "app_trip",
+              "photo_candidate",
+              "user_kept"
+            ],
+            "title": "Consent Scope"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "visible",
+              "hidden",
+              "archived"
+            ],
+            "title": "Visibility",
+            "default": "visible"
+          },
+          "archive_reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "dedup",
+                  "stale",
+                  "user",
+                  "superseded"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Archive Reason",
+            "description": "Why the row is archived when ``visibility`` is ``archived``. ``dedup`` / ``stale`` / ``superseded`` are system-initiated; ``user`` is a direct PATCH to ``archived``. User hides via ``POST \u2026/hide`` set ``visibility=hidden`` and leave this null."
+          },
+          "provenance": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasProvenanceRef"
+            },
+            "type": "array",
+            "title": "Provenance"
+          },
+          "action": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AtlasAction"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "is_pinned": {
+            "type": "boolean",
+            "title": "Is Pinned",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "source_type",
+          "source_id",
+          "timeline_kind",
+          "surfaced_at",
+          "title",
+          "consent_scope"
+        ],
+        "title": "AtlasTimelineEntry",
+        "description": "One normalised row in the Atlas Timeline.\n\n``id`` is the persisted projection row UUID (``atlas_timeline_entries.id``).\n``source_type`` / ``source_id`` link back to the canonical row.\n``occurred_start`` / ``occurred_end`` are when the travel happened;\n``surfaced_at`` is when Vesper noticed or generated it."
+      },
+      "AtlasTimelineEntryUpdate": {
+        "properties": {
+          "user_title": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "User Title"
+          },
+          "user_body": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "User Body"
+          },
+          "visibility": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "visible",
+                  "hidden",
+                  "archived"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Visibility"
+          }
+        },
+        "type": "object",
+        "title": "AtlasTimelineEntryUpdate",
+        "description": "PATCH body for user display overrides on a persisted timeline row."
+      },
+      "AtlasTimelineGroup": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "title": "Key"
+          },
+          "year": {
+            "type": "integer",
+            "title": "Year"
+          },
+          "month": {
+            "type": "integer",
+            "title": "Month"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "month_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Month Name"
+          },
+          "summary": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AtlasAlmanacSummary"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "entries": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasTimelineEntry"
+            },
+            "type": "array",
+            "title": "Entries"
+          }
+        },
+        "type": "object",
+        "required": [
+          "key",
+          "year",
+          "month",
+          "label"
+        ],
+        "title": "AtlasTimelineGroup",
+        "description": "A single month bucket inside the Almanac read model."
+      },
+      "AtlasTimelineReadModel": {
+        "properties": {
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/AtlasTimelineSummary"
+          },
+          "entries": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasTimelineEntry"
+            },
+            "type": "array",
+            "title": "Entries"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          }
+        },
+        "type": "object",
+        "required": [
+          "generated_at",
+          "summary"
+        ],
+        "title": "AtlasTimelineReadModel",
+        "description": "Response for ``GET /api/atlas/timeline``."
+      },
+      "AtlasTimelineRemovedReadModel": {
+        "properties": {
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/AtlasTimelineRemovedSummary"
+          },
+          "entries": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasTimelineEntry"
+            },
+            "type": "array",
+            "title": "Entries"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          }
+        },
+        "type": "object",
+        "required": [
+          "generated_at",
+          "summary"
+        ],
+        "title": "AtlasTimelineRemovedReadModel",
+        "description": "Response for ``GET /api/atlas/timeline/removed``."
+      },
+      "AtlasTimelineRemovedSummary": {
+        "properties": {
+          "entry_count": {
+            "type": "integer",
+            "title": "Entry Count",
+            "default": 0
+          },
+          "hidden_count": {
+            "type": "integer",
+            "title": "Hidden Count",
+            "default": 0
+          },
+          "archived_count": {
+            "type": "integer",
+            "title": "Archived Count",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "title": "AtlasTimelineRemovedSummary",
+        "description": "Counts for hidden and archived projection rows."
+      },
+      "AtlasTimelineSummary": {
+        "properties": {
+          "year": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Year"
+          },
+          "years": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Years"
+          },
+          "entry_count": {
+            "type": "integer",
+            "title": "Entry Count",
+            "default": 0
+          },
+          "planned_trip_count": {
+            "type": "integer",
+            "title": "Planned Trip Count",
+            "default": 0
+          },
+          "taken_trip_count": {
+            "type": "integer",
+            "title": "Taken Trip Count",
+            "default": 0
+          },
+          "diary_draft_count": {
+            "type": "integer",
+            "title": "Diary Draft Count",
+            "default": 0
+          },
+          "kept_memory_count": {
+            "type": "integer",
+            "title": "Kept Memory Count",
+            "default": 0
+          },
+          "place_count": {
+            "type": "integer",
+            "title": "Place Count",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "title": "AtlasTimelineSummary"
       },
       "AttachPhotoRequest": {
         "properties": {
@@ -23165,7 +24795,9 @@
               "narration_played",
               "voice_session_opened",
               "voice_turn_completed",
-              "location_used_for_chat"
+              "location_used_for_chat",
+              "private_detail_redacted",
+              "private_constraint_used"
             ],
             "title": "Kind"
           },
@@ -26360,6 +27992,580 @@
         ],
         "title": "DigestRunResponse",
         "description": "Result of a manual digest run."
+      },
+      "DiscoverFeedItem": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "venue",
+              "event",
+              "guide",
+              "friend",
+              "dossier"
+            ],
+            "title": "Kind"
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "for_you",
+              "editorial",
+              "friends"
+            ],
+            "title": "Source"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "hook": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hook"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          },
+          "city_slug": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "City Slug"
+          },
+          "travel_lens": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Travel Lens"
+          },
+          "entity_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Entity Type"
+          },
+          "image_variant": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Variant"
+          },
+          "target": {
+            "$ref": "#/components/schemas/DiscoverFeedTarget"
+          },
+          "feed_shape_hint": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "hero",
+                  "lead",
+                  "row",
+                  "split",
+                  "captioned",
+                  "quote",
+                  "duo"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Feed Shape Hint"
+          },
+          "meta_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Meta Text"
+          },
+          "meta_icon": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Meta Icon"
+          },
+          "agent_tag": {
+            "type": "boolean",
+            "title": "Agent Tag",
+            "default": false
+          },
+          "eyebrow": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Eyebrow"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "source",
+          "title",
+          "target"
+        ],
+        "title": "DiscoverFeedItem"
+      },
+      "DiscoverFeedMeta": {
+        "properties": {
+          "emphasis": {
+            "type": "string",
+            "enum": [
+              "for_you",
+              "editorial",
+              "friends"
+            ],
+            "title": "Emphasis"
+          },
+          "shape": {
+            "type": "string",
+            "enum": [
+              "dream",
+              "briefing",
+              "proximity",
+              "retrospective",
+              "dual"
+            ],
+            "title": "Shape"
+          },
+          "is_global": {
+            "type": "boolean",
+            "title": "Is Global"
+          },
+          "place_slug": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Slug"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "emphasis",
+          "shape",
+          "is_global",
+          "generated_at"
+        ],
+        "title": "DiscoverFeedMeta"
+      },
+      "DiscoverFeedResponse": {
+        "properties": {
+          "read": {
+            "$ref": "#/components/schemas/DiscoverReadBlock"
+          },
+          "sections": {
+            "items": {
+              "$ref": "#/components/schemas/DiscoverFeedSection"
+            },
+            "type": "array",
+            "title": "Sections"
+          },
+          "rhythm": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DiscoverFeedRhythm"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "meta": {
+            "$ref": "#/components/schemas/DiscoverFeedMeta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "read",
+          "sections",
+          "meta"
+        ],
+        "title": "DiscoverFeedResponse"
+      },
+      "DiscoverFeedRhythm": {
+        "properties": {
+          "interlude": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Interlude"
+          },
+          "punctuation_item_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Punctuation Item Id"
+          }
+        },
+        "type": "object",
+        "title": "DiscoverFeedRhythm"
+      },
+      "DiscoverFeedSection": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "enum": [
+              "places",
+              "debate",
+              "reads",
+              "friends"
+            ],
+            "title": "Id"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "right": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Right"
+          },
+          "layout": {
+            "type": "string",
+            "enum": [
+              "hero",
+              "lead",
+              "rows",
+              "split"
+            ],
+            "title": "Layout"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/DiscoverFeedItem"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "layout",
+          "items"
+        ],
+        "title": "DiscoverFeedSection"
+      },
+      "DiscoverFeedTarget": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "venue",
+              "experience",
+              "guide",
+              "dossier",
+              "plan",
+              "concierge"
+            ],
+            "title": "Kind"
+          },
+          "venue_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Venue Id"
+          },
+          "experience_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Experience Id"
+          },
+          "slug": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Slug"
+          },
+          "dossier_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dossier Id"
+          },
+          "city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "City"
+          },
+          "prompt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prompt"
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind"
+        ],
+        "title": "DiscoverFeedTarget"
+      },
+      "DiscoverReadBlock": {
+        "properties": {
+          "shape": {
+            "type": "string",
+            "enum": [
+              "dream",
+              "briefing",
+              "proximity",
+              "retrospective",
+              "dual"
+            ],
+            "title": "Shape"
+          },
+          "kicker": {
+            "type": "string",
+            "title": "Kicker"
+          },
+          "place_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Name"
+          },
+          "updated_label": {
+            "type": "string",
+            "title": "Updated Label"
+          },
+          "lead": {
+            "type": "string",
+            "title": "Lead"
+          },
+          "hero": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DiscoverReadHero"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "lines": {
+            "items": {
+              "$ref": "#/components/schemas/DiscoverReadLine"
+            },
+            "type": "array",
+            "title": "Lines"
+          }
+        },
+        "type": "object",
+        "required": [
+          "shape",
+          "kicker",
+          "updated_label",
+          "lead"
+        ],
+        "title": "DiscoverReadBlock"
+      },
+      "DiscoverReadHero": {
+        "properties": {
+          "city_slug": {
+            "type": "string",
+            "title": "City Slug"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          },
+          "travel_lens": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Travel Lens"
+          },
+          "variant": {
+            "type": "string",
+            "enum": [
+              "day",
+              "night",
+              "fun",
+              "nature",
+              "site",
+              "hero"
+            ],
+            "title": "Variant",
+            "default": "hero"
+          }
+        },
+        "type": "object",
+        "required": [
+          "city_slug"
+        ],
+        "title": "DiscoverReadHero"
+      },
+      "DiscoverReadLine": {
+        "properties": {
+          "dossier_id": {
+            "type": "integer",
+            "title": "Dossier Id"
+          },
+          "tag": {
+            "type": "string",
+            "title": "Tag"
+          },
+          "tag_tone": {
+            "type": "string",
+            "enum": [
+              "matters",
+              "notice",
+              "timely",
+              "near",
+              "skip"
+            ],
+            "title": "Tag Tone"
+          },
+          "lens": {
+            "type": "string",
+            "title": "Lens"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          }
+        },
+        "type": "object",
+        "required": [
+          "dossier_id",
+          "tag",
+          "tag_tone",
+          "lens",
+          "text"
+        ],
+        "title": "DiscoverReadLine"
       },
       "DismissCardRequest": {
         "properties": {
@@ -33137,6 +35343,112 @@
         ],
         "title": "Observation"
       },
+      "OnboardingSignalsCreate": {
+        "properties": {
+          "branch": {
+            "type": "string",
+            "enum": [
+              "dreaming",
+              "planning",
+              "invite"
+            ],
+            "title": "Branch"
+          },
+          "interest_axis": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Interest Axis"
+          },
+          "pace_axis": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pace Axis"
+          },
+          "source": {
+            "type": "string",
+            "maxLength": 32,
+            "title": "Source",
+            "default": "onboarding_v1"
+          },
+          "session_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Session Id"
+          },
+          "raw_signals": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Raw Signals"
+          }
+        },
+        "type": "object",
+        "required": [
+          "branch"
+        ],
+        "title": "OnboardingSignalsCreate",
+        "description": "Body for ``POST /api/users/{user_id}/onboarding-signals``.\n\nNon-constraint taste/pace signals from the onboarding flow.\n\n``branch`` identifies which onboarding path produced these signals.\n``interest_axis`` and ``pace_axis`` are soft preference labels \u2014 never\ntreated as hard constraints. ``source`` identifies the onboarding version\nso signals can be versioned as the onboarding flow evolves."
+      },
+      "OnboardingSignalsResponse": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "branch": {
+            "type": "string",
+            "enum": [
+              "dreaming",
+              "planning",
+              "invite"
+            ],
+            "title": "Branch"
+          },
+          "observations_created": {
+            "type": "integer",
+            "title": "Observations Created"
+          },
+          "memory_refresh_queued": {
+            "type": "boolean",
+            "title": "Memory Refresh Queued"
+          },
+          "recorded_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Recorded At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "branch",
+          "observations_created",
+          "memory_refresh_queued",
+          "recorded_at"
+        ],
+        "title": "OnboardingSignalsResponse"
+      },
       "OptimizeRouteResponse": {
         "properties": {
           "day_id": {
@@ -35980,6 +38292,18 @@
               }
             ],
             "title": "Applied Block Map"
+          },
+          "receipt_payload": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Receipt Payload"
           }
         },
         "type": "object",
@@ -41531,29 +43855,17 @@
           "quiet_hours_enabled": {
             "type": "boolean",
             "title": "Quiet Hours Enabled",
-            "default": false
+            "default": true
           },
           "quiet_hours_start": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Quiet Hours Start"
+            "type": "integer",
+            "title": "Quiet Hours Start",
+            "default": 22
           },
           "quiet_hours_end": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Quiet Hours End"
+            "type": "integer",
+            "title": "Quiet Hours End",
+            "default": 8
           },
           "quiet_hours_timezone": {
             "anyOf": [
@@ -42563,6 +44875,19 @@
               }
             ],
             "description": "Optional current GPS reading from the client. Stored on the conversation's metadata before the turn runs."
+          },
+          "metadata": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Metadata",
+            "description": "Optional turn metadata from the client. Used for structured entry-point grounding such as metadata.conversation_seed."
           }
         },
         "type": "object",
