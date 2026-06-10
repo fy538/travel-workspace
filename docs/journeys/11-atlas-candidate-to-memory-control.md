@@ -78,7 +78,18 @@ User-initiated hides (`archive_reason=user`) are **not** restored by reconcile �
 
 **Automated spot-check (Postgres):** `tests/atlas/test_projector_integration.py::test_legacy_projection_v4_first_timeline_almanac_access`.
 
-**Manual spot-check (optional):** pick a pre-projection account in staging, open Almanac once, confirm year stepper + month groups populate; open Timeline and Privacy → Removed moments.
+**Manual spot-check (~15 min, optional):** on a **legacy staging account** that predates projection v4 (pre-deploy rows in `atlas_timeline_projection_meta` with version &lt; 4, or no projection row yet). Use a real device or simulator pointed at staging; do not use mock API.
+
+| # | Surface | Pass criteria |
+|---|---|---|
+| 1 | **Atlas Home** | Tab loads without error; year ribbon shows a year; desk shows draft **or** kept postcard (not blank when artifacts exist); shelf map count roughly matches **Map** hero. |
+| 2 | **Almanac** (first open) | Lazy v4 rebuild completes; year stepper lists expected years; month groups populate (not permanently empty for an active account). |
+| 3 | **Timeline** (same year) | Entries match Almanac grouping; no duplicate trip + kept-memory pair for the same trip after dedup. |
+| 4 | **Map** (same year) | Vertical spine + header year stepper agree with Almanac year; pins match backend geography (trips/saves/artifacts); **OPEN ALMANAC** / **FULL TIMELINE** deep-link correctly. |
+| 5 | **Privacy → Removed moments** | Archived rows show reason; restore one user-hidden entry if present; entry reappears on Timeline/Almanac. |
+| 6 | **Candidate loop** (optional) | Approve or dismiss a pending candidate; Home desk + Inbox count update within one focus cycle; artifact/learned routes open. |
+
+Record account id + date in staging notes when complete. If step 2 fails, check API logs for `ensure_timeline_projected` errors before filing a bug.
 
 ## Mock walk (2026-06)
 
@@ -86,11 +97,17 @@ With `EXPO_PUBLIC_USE_MOCK_API=true`, Journey 11 screen coverage:
 
 | Step | Screen | Test |
 |---|---|---|
+| Candidate review | `/atlas/candidate/[id]` | `__tests__/screens/atlas-candidate.smoke.test.tsx` |
+| Artifact detail | `/atlas/artifact/[id]` | `__tests__/screens/atlas-artifact.smoke.test.tsx` |
+| Learned signals | `/atlas/learned/[id]` | `__tests__/screens/atlas-learned.smoke.test.tsx` |
+| Postcards shelf | `/atlas/postcards` | `__tests__/screens/atlas-postcards.smoke.test.tsx` |
 | Inbox review queue | `/atlas/inbox` | `__tests__/screens/atlas-inbox.smoke.test.tsx` |
-| Almanac + Timeline | `/atlas/almanac`, `/atlas/timeline` | `__tests__/screens/atlas-*-smoke.test.tsx` |
+| Atlas Home (desk + ribbon + shelf) | `/(tabs)/atlas` | `__tests__/screens/atlas-home.smoke.test.tsx` |
+| Almanac + Timeline + Map | `/atlas/almanac`, `/atlas/timeline`, `/atlas/map` | `__tests__/screens/atlas-*-smoke.test.tsx` |
+| Timeline entry menu | Almanac/Timeline bottom sheet | `__tests__/components/atlas/AtlasTimelineEntryMenu.test.tsx` |
 | Receipt + privacy | `/atlas/receipt`, `/atlas/privacy` | `__tests__/screens/atlas-receipt.smoke.test.tsx` |
-| Removed moments | `/atlas/removed` | `__tests__/screens/atlas-removed.smoke.test.tsx` |
-| End-to-end mock walk | privacy → almanac → timeline | `__tests__/journeys/journey-11-mock-walk.smoke.test.tsx` |
+| Removed moments | `/atlas/removed` (+ links from Privacy, Almanac, Timeline) | `__tests__/screens/atlas-removed.smoke.test.tsx` |
+| End-to-end mock walk | inbox → candidate → artifact → learned → privacy → almanac → timeline | `__tests__/journeys/journey-11-mock-walk.smoke.test.tsx` |
 
 ## Must Never Happen
 
@@ -104,8 +121,8 @@ With `EXPO_PUBLIC_USE_MOCK_API=true`, Journey 11 screen coverage:
 
 ## Deferred / Later
 
-- **Map year spine** (Direction 03): year ribbon on `/atlas/map` — not built; map still uses arc/month marks without the Home/Almanac year stepper.
-- **Live almanac LLM smoke** (`tests/atlas/test_almanac_llm_live.py`): excluded from CI via `@requires_api_keys`; offline checks in `test_almanac_llm_checks.py` gate mock output.
+- **Live almanac LLM smoke** (`tests/atlas/test_almanac_llm_live.py`): excluded from CI via `@requires_api_keys`; offline checks in `test_almanac_llm_checks.py` gate mock output. Manual run: `cd travel-agent && PYTHONPATH=. pytest tests/atlas/test_almanac_llm_live.py -m requires_api_keys`.
+- **Map region/country count**: backend reports `region_count=0` until a real country signal exists; frontend omits the clause when zero.
 
 ## AI Trace Prompt
 
@@ -125,14 +142,19 @@ Atlas state regression:
 - **overlapping trip + approve memory -> one timeline/almanac entry**
 - **artifact delete -> trip restored in timeline**
 - **almanac horizon section + year stepper + timeline error/empty states**
-- **privacy → removed moments link + restore flow**
-- **inbox + receipt smoke coverage**
+- **map year spine (Direction 03) + almanac deep link**
+- **candidate detail + learned-signal screen tests**
+- **privacy → removed moments link + restore flow** (Privacy, Almanac, Timeline)
+- **inbox + receipt + artifact + postcards smoke coverage**
+- **timeline entry menu hide/pin/rename component tests**
 
 ## Real-backend checklist
 
 | Check | Command / test | CI |
 |---|---|---|
-| Dedup + restore canary | `pytest tests/dogfood/test_atlas_dedup_canary.py -m requires_postgres` | manual / staging |
-| Projection v4 first-access backfill | `pytest tests/atlas/test_projector_integration.py::test_legacy_projection_v4_first_timeline_almanac_access -m requires_postgres` | manual / staging |
+| Dedup + restore canary | `pytest tests/dogfood/test_atlas_dedup_canary.py -m requires_postgres` | yes (`test-db` job + named Atlas canary step) |
+| Projection v4 first-access backfill | `pytest tests/atlas/test_projector_integration.py::test_legacy_projection_v4_first_timeline_almanac_access -m requires_postgres` | yes (`test-db` job + named Atlas canary step) |
+| Map year filter + honest summary | `pytest tests/atlas/test_atlas_map.py` | yes (`test-db` job + named Atlas canary step) |
+| Home read model (pending previews, unified place count) | `pytest tests/atlas/test_atlas_home.py` | yes (`test-db` job + named Atlas canary step) |
 | Almanac LLM output gates (offline) | `pytest tests/atlas/test_almanac_llm_checks.py` | yes |
-| Almanac LLM live smoke | `pytest tests/atlas/test_almanac_llm_live.py -m requires_api_keys` | no — keys required |
+| Almanac LLM live smoke | `pytest tests/atlas/test_almanac_llm_live.py -m requires_api_keys` | no — run manually when keys available |

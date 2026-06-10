@@ -2378,6 +2378,24 @@
         "operationId": "get_atlas_map_api_atlas_map_get",
         "parameters": [
           {
+            "name": "year",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 2100,
+                  "minimum": 1900
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Year"
+            }
+          },
+          {
             "name": "authorization",
             "in": "header",
             "required": false,
@@ -6009,6 +6027,21 @@
             }
           },
           {
+            "name": "exclude_surface_ids",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "For-you surface_ids dismissed this session (events / no angle_id).",
+              "default": [],
+              "title": "Exclude Surface Ids"
+            },
+            "description": "For-you surface_ids dismissed this session (events / no angle_id)."
+          },
+          {
             "name": "lat",
             "in": "query",
             "required": false,
@@ -6043,6 +6076,44 @@
               "title": "Lng"
             },
             "description": "User longitude for proximity enrichment"
+          },
+          {
+            "name": "alt",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "User altitude (m) for uphill walk hints",
+              "title": "Alt"
+            },
+            "description": "User altitude (m) for uphill walk hints"
+          },
+          {
+            "name": "local_hour",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 23,
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "User local hour (0\u201323) for time-of-day section labels",
+              "title": "Local Hour"
+            },
+            "description": "User local hour (0\u201323) for time-of-day section labels"
           },
           {
             "name": "authorization",
@@ -20108,6 +20179,132 @@
         }
       }
     },
+    "/api/users/{user_id}/open-proposals": {
+      "get": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "List User Open Proposals",
+        "description": "List open change proposals across all of the user's active trips.",
+        "operationId": "list_user_open_proposals_api_users__user_id__open_proposals_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserOpenProposalSummary"
+                  },
+                  "title": "Response List User Open Proposals Api Users  User Id  Open Proposals Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/{user_id}/trip-member-board": {
+      "get": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "Get User Trip Member Board",
+        "description": "Batch member rows for all of the user's trips (Trips home avatar stacks).",
+        "operationId": "get_user_trip_member_board_api_users__user_id__trip_member_board_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripMemberBoardResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/venues/{venue_id}": {
       "get": {
         "summary": "Get Venue Detail",
@@ -22843,6 +23040,18 @@
             "type": "array",
             "title": "Postcard Previews"
           },
+          "pending_candidates": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasCandidate"
+            },
+            "type": "array",
+            "title": "Pending Candidates"
+          },
+          "trip_count": {
+            "type": "integer",
+            "title": "Trip Count",
+            "default": 0
+          },
           "shelves": {
             "items": {
               "$ref": "#/components/schemas/AtlasHomeShelf"
@@ -23467,6 +23676,17 @@
               }
             ],
             "title": "Month"
+          },
+          "year": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Year"
           },
           "weight": {
             "type": "number",
@@ -27059,6 +27279,17 @@
             },
             "type": "array",
             "title": "Participant Ids"
+          },
+          "planning_intent_bootstrap": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlanningIntentBootstrap"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Optional onboarding draft to seed intent_state on create. Used by the talk-it-through path so Vesper can promote without re-asking for fields the user already supplied."
           }
         },
         "type": "object",
@@ -28149,6 +28380,28 @@
               }
             ],
             "title": "Eyebrow"
+          },
+          "angle_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Angle Id"
+          },
+          "surface_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Surface Id"
           }
         },
         "type": "object",
@@ -28339,7 +28592,8 @@
               "guide",
               "dossier",
               "plan",
-              "concierge"
+              "concierge",
+              "accommodation"
             ],
             "title": "Kind"
           },
@@ -28386,6 +28640,17 @@
               }
             ],
             "title": "Dossier Id"
+          },
+          "accommodation_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Accommodation Id"
           },
           "city": {
             "anyOf": [
@@ -37665,6 +37930,64 @@
         ],
         "title": "PlanTripHeader"
       },
+      "PlanningIntentBootstrap": {
+        "properties": {
+          "destination": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Destination"
+          },
+          "duration": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration"
+          },
+          "companions": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Companions"
+          },
+          "companion_names": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Companion Names"
+          },
+          "place_slug": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Slug"
+          }
+        },
+        "type": "object",
+        "title": "PlanningIntentBootstrap",
+        "description": "Onboarding trip draft fields mirrored from the mobile client."
+      },
       "PrerenderHintResponse": {
         "properties": {
           "enqueued": {
@@ -39744,9 +40067,16 @@
             "description": "Free-text query"
           },
           "city": {
-            "type": "string",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "City",
-            "description": "Destination slug (e.g. 'lisbon')"
+            "description": "Destination slug scope (e.g. 'lisbon'). Omit for global search."
           },
           "venue_type": {
             "anyOf": [
@@ -39875,7 +40205,7 @@
               }
             ],
             "title": "Entity Types",
-            "description": "Entity types to search: [\"venue\", \"experience\", \"site\", \"accommodation\"]. \"event\" is accepted as a legacy alias for \"experience\" during migration. Defaults to all."
+            "description": "Entity types to search: [\"venue\", \"experience\", \"site\", \"accommodation\", \"angle\", \"dossier\"]. \"event\" is a legacy alias for \"experience\". Defaults to all."
           },
           "limit": {
             "type": "integer",
@@ -39893,8 +40223,7 @@
         },
         "type": "object",
         "required": [
-          "q",
-          "city"
+          "q"
         ],
         "title": "SearchRequest",
         "description": "Unified search request \u2014 drives the Discover tab search bar."
@@ -39940,7 +40269,10 @@
               "venue",
               "experience",
               "site",
-              "accommodation"
+              "accommodation",
+              "place",
+              "angle",
+              "dossier"
             ],
             "title": "Entity Type"
           },
@@ -41777,6 +42109,17 @@
             ],
             "title": "Source"
           },
+          "concierge_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Concierge Note"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -42323,6 +42666,40 @@
           "joined_at"
         ],
         "title": "TripMember"
+      },
+      "TripMemberBoardEntry": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "members": {
+            "items": {
+              "$ref": "#/components/schemas/TripMember"
+            },
+            "type": "array",
+            "title": "Members"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id"
+        ],
+        "title": "TripMemberBoardEntry"
+      },
+      "TripMemberBoardResponse": {
+        "properties": {
+          "trips": {
+            "items": {
+              "$ref": "#/components/schemas/TripMemberBoardEntry"
+            },
+            "type": "array",
+            "title": "Trips"
+          }
+        },
+        "type": "object",
+        "title": "TripMemberBoardResponse"
       },
       "TripPhoto": {
         "properties": {
@@ -43795,6 +44172,28 @@
             "title": "Trip Count",
             "default": 0
           },
+          "home_city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Home City"
+          },
+          "home_neighborhood": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Home Neighborhood"
+          },
           "followers_see_stories": {
             "type": "boolean",
             "title": "Followers See Stories",
@@ -43928,6 +44327,118 @@
         ],
         "title": "UserNotificationPreferences"
       },
+      "UserOpenProposalSummary": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "proposal_type": {
+            "type": "string",
+            "title": "Proposal Type"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "proposed_by": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Proposed By"
+          },
+          "proposed_by_agent": {
+            "type": "boolean",
+            "title": "Proposed By Agent",
+            "default": false
+          },
+          "proposer_display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proposer Display Name"
+          },
+          "vote_count": {
+            "type": "integer",
+            "title": "Vote Count"
+          },
+          "my_vote": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "My Vote"
+          },
+          "approval_mode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Approval Mode"
+          },
+          "deadline": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deadline"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created At"
+          },
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "trip_title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Title"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "proposal_type",
+          "title",
+          "status",
+          "proposed_by",
+          "vote_count",
+          "created_at",
+          "trip_id"
+        ],
+        "title": "UserOpenProposalSummary",
+        "description": "Open proposal row with trip context for the global unresolved bar."
+      },
       "UserUpdate": {
         "properties": {
           "display_name": {
@@ -43984,6 +44495,28 @@
               }
             ],
             "title": "Public Profile Enabled"
+          },
+          "home_city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Home City"
+          },
+          "home_neighborhood": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Home Neighborhood"
           }
         },
         "type": "object",
