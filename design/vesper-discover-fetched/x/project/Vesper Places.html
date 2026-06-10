@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=1600"/>
+  <title>Vesper · Places</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    html, body { margin: 0; padding: 0; background: #DAD3C5; font-family: 'DM Sans', system-ui, sans-serif; color: #1B1714; }
+    *, *::before, *::after { box-sizing: border-box; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="design-canvas.jsx"></script>
+  <script type="text/babel" src="design-system.jsx"></script>
+  <script type="text/babel" src="trips-shared.jsx"></script>
+  <script type="text/babel" src="vesper-shared.jsx"></script>
+  <script type="text/babel" src="discover-kit.jsx"></script>
+  <script type="text/babel" src="places-kit.jsx"></script>
+  <script type="text/babel" src="places-take2.jsx"></script>
+  <script type="text/babel" src="places-spot.jsx"></script>
+  <script type="text/babel" src="places-spot-v2.jsx"></script>
+  <script type="text/babel" src="places-take-states.jsx"></script>
+  <script type="text/babel" src="places-place.jsx"></script>
+  <script type="text/babel" src="places-place-v2.jsx"></script>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    function Phn({ children }) {
+      return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', height: '100%', paddingTop: 14 }}>{children}</div>;
+    }
+    const EB = ({ children }) => <div style={{ fontSize: 10.5, letterSpacing: 2, color: T.gold, fontWeight: 600 }}>{children}</div>;
+    const H2 = ({ children }) => <h2 style={{ fontFamily: T.serif, fontWeight: 500, fontSize: 27, letterSpacing: -0.7, lineHeight: 1.05, color: T.ink, margin: '8px 0 14px' }}>{children}</h2>;
+    function Note({ children }) { return <p style={{ margin: '0 0 11px', fontSize: 13.5, lineHeight: 1.55, color: T.inkSoft }}>{children}</p>; }
+    function Spec({ children }) { return <div style={{ marginTop: 12, padding: 12, background: '#FBF7EC', borderRadius: 8, fontSize: 11.5, color: T.mute, lineHeight: 1.5 }}>{children}</div>; }
+    function Logic({ eyebrow, title, children, w = 450 }) {
+      return <div style={{ width: w, padding: '34px 26px', background: '#F1ECE2', borderRadius: 8, color: T.inkSoft }}><EB>{eyebrow}</EB><H2>{title}</H2><div style={{ borderTop: `0.5px solid ${T.hairline}`, paddingTop: 16 }}>{children}</div></div>;
+    }
+    const AB = (id, label, comp, w = 433, h = 904) => (
+      <DCArtboard id={id} label={label} width={w} height={h} bg="transparent"><Phn>{comp}</Phn></DCArtboard>
+    );
+
+    function App() {
+      return (
+        <DesignCanvas title="Vesper · Places" subtitle="A Take on every place, and a home for places themselves. One spot template (three faces) + the new Place parent surface — both built on the Take primitive.">
+
+          {/* ═══ THE PRIMITIVE ═══ */}
+          <DCSection id="take" title="The Take · the spine of every spot" subtitle="Every spot leads with a Take — Vesper's opinionated verdict, never a star rating. It's structured (verdict chip + caveats + reasoning), mandatory, and honest: when signal is thin it says so. These four are the states; the rich-vs-forming pair below shows confidence modulating the whole page.">
+            {AB('tk-rich', 'Rich · verdict-led', <TakeRich/>)}
+            {AB('tk-cold', 'Curator-only · cold start', <TakeCold/>)}
+            {AB('tk-form', 'Forming · the honest state', <TakeForming/>)}
+            {AB('tk-load', 'Loading · reading you in', <TakeLoadingScreen/>)}
+            <DCArtboard id="tk-notes" label="The Take · logic" width={460} height={904} bg="transparent">
+              <Logic eyebrow="THE TAKE" title="A verdict, never a rating.">
+                <Note><b>Two layers.</b> The <b>Curator Take</b> is the editorial, globally-true read — it renders instantly. The <b>Personal Take</b> is the “for you” overlay, contextual to this user and trip; it’s the hero, in Vesper’s warm gold voice (a verdict line + the reasoning).</Note>
+                <Note><b>Rich</b> — confident personal verdict, a peak-potential pill, the curator read tucked beneath, and the “why” as small reasoning chips. <b>Cold</b> — curator only; the personal layer <i>invites</i> building a read rather than faking one. <b>Forming</b> — the dignified first-class state: “I’m still forming a read,” sage-toned, with an Ask-Vesper nudge — never an error, never invented specifics.</Note>
+                <Note><b>Loading</b> — curator shows instantly while the personal layer streams in (“Vesper is reading you in…”). The Take slot is <i>always</i> present on every surface.</Note>
+                <Spec><b>Colour:</b> gold/ochre #B0853A = Vesper’s authored voice (personal Take); sage #7C8F73 = forming/quiet; ink #1B1714 for the verdict type. Never a number or stars.</Spec>
+              </Logic>
+            </DCArtboard>
+          </DCSection>
+
+          {/* ═══ SPOT ═══ */}
+          <DCSection id="spot" title="Spot detail · verdict-led, selective fields" subtitle="The selection rule: lead with the structured verdict + reasoning + the 1–3 caveats that apply, then only the 2–4 facts that would change a decision — everything else tucks into 'the details'. Fields vary by entity type; never render an empty one.">
+            {AB('sp-venue', 'Venue · order/skip + live caveats', <VenueRich/>)}
+            {AB('sp-exp', 'Experience · the axis is time', <ExperienceV2/>)}
+            {AB('sp-stay', 'Stay · deliberately thin', <StayV2/>)}
+            {AB('sp-site', 'Site · minimal', <SiteV2/>)}
+            {AB('sp-hood', 'Neighborhood · a Take entity', <NeighborhoodTake/>)}
+            <DCArtboard id="sp-notes" label="The selection rule" width={460} height={904} bg="transparent">
+              <Logic eyebrow="SPOT · SELECTION RULE" title="Vesper chose what to tell you.">
+                <Note><b>Lead with the verdict, back it with just-enough evidence.</b> Verdict chip + reasoning + the <b>1–3 caveats that actually apply</b>, then <b>2–4 decision-changing facts</b>. The long tail (dietary grid, hours, accessibility, energy bars, sequencing, group-fit) collapses into <b>“the details.”</b> Never render an empty or unknown field — drop it.</Note>
+                <Note><b>Fields vary by type.</b> <b>Venue</b> leads with what-to-order / what-to-skip + live caveats; pulls a fact up only when the verdict leans on it (“reserve 3 days ahead”). <b>Experience</b>’s axis is <i>time</i> — when (date/time/duration) + who-it’s-for lead; genres/difficulty/venue tuck away. <b>Stay</b> is deliberately thin — the call (location vs comfort) + a small map of where it puts you + check-in→out; <code>is_primary</code> & <code>visibility</code> are chips, not sections. <b>Site</b> is minimal — verdict · the view · access + duration.</Note>
+                <Note><b>Neighborhood is a Take entity too</b> — a verdict on the area + walkability + best-time-of-day + character, then links <i>down</i> to its spots.</Note>
+                <Spec>The action layout is a <b>floating bar</b>: the data-driven decisions (Add to plan · Book · Ask) float as separate buttons — each on its own shadow, no container behind them, like the global nav — pinned at the bottom. Save · Share · Hear live in the top bar. The buttons render from the Take’s <code>suggested_actions</code> (a site has no Book; the forming venue shows only Ask).</Spec>
+              </Logic>
+            </DCArtboard>
+          </DCSection>
+
+          {/* ═══ CONFIDENCE · RICH vs FORMING ═══ */}
+          <DCSection id="confidence" title="Confidence modulates the page · rich vs forming" subtitle="The same venue in two states. A high-confidence Take is bold and fact-rich; a low-confidence one is sparse and tentative — the verdict chip, the field count, and the action rail all visibly shrink with the read.">
+            {AB('cf-rich', 'Venue · RICH (high confidence)', <VenueRich/>)}
+            {AB('cf-form', 'Venue · FORMING (low confidence)', <VenueForming/>)}
+            <DCArtboard id="cf-notes" label="The structured Take" width={460} height={904} bg="transparent">
+              <Logic eyebrow="THE TAKE · STRUCTURED" title="Components, not prose.">
+                <Note><b>Verdict chip</b> — <code>opinion</code> (loved · worth-it · conditional · skip) + <code>confidence</code> (high/medium/low, shown as three bars) + a quiet <code>provenance</code> line (“based on your last 3 trips”). The verdict leads every spot page.</Note>
+                <Note><b>Caveats</b> — typed: <code>severity</code> (warning/note) × <code>reason</code> (dietary · accessibility · logistics · fit · safety · timing), each with a reason-specific icon. Only the 1–3 that apply render; absent ones reserve no space.</Note>
+                <Note><b>Confidence modulates everything.</b> <b>Rich</b> (high): a filled gold “Loved” chip, a bold verdict, order/skip + lead facts, a full rail (add-to-plan · ask · book · save · similar). <b>Forming</b> (low): an outlined “Conditional” chip, an italic tentative verdict, almost no facts, the curator read shown plainly, and a slimmer rail (ask · save · similar). The page literally gets sparser as the read weakens — honesty you can see.</Note>
+                <Spec>This is the “show the rule working” pair: same entity, same template, but the field count and assertiveness shrink with the Take’s confidence.</Spec>
+              </Logic>
+            </DCArtboard>
+          </DCSection>
+
+          {/* ═══ FULL SCROLL ═══ */}
+          <DCSection id="fullscroll" title="Spot detail · the full scroll" subtitle="The whole venue page top-to-bottom. Planning actions float as separate buttons (no container) pinned at the bottom; Save/Share/Hear in the top bar. 'The details' shown expanded here so the complete field set is visible.">
+            <DCArtboard id="fs-venue" label="Venue · entire page" width={455} height={1660} bg="transparent"><div style={{ display: 'flex', justifyContent: 'center', paddingTop: 12 }}><VenueFullScroll/></div></DCArtboard>
+            <DCArtboard id="fs-notes" label="The scroll, read top-down" width={460} height={1660} bg="transparent">
+              <Logic eyebrow="FULL SCROLL" title="Verdict first, evidence after, tail last.">
+                <Note><b>1 · Hero</b> — full-bleed masthead; the top bar carries the utility actions (hear · save · share).</Note>
+                <Note><b>2 · The Take</b> — verdict chip (opinion + confidence + provenance) → the verdict line → the 1–3 caveats that apply → reasoning chips. The dominant block.</Note>
+                <Note><b>3 · Inline actions</b> — the data-driven decisions sit right under the Take, where the choice is made (Add to plan · Book · Ask). No floating bar.</Note>
+                <Note><b>4 · Lead facts</b> — order/skip + the 2–3 facts that change a decision.</Note>
+                <Note><b>5 · The details</b> — the long tail (dietary grid · energy · sequencing · group fit · access · hours), normally collapsed, expanded here.</Note>
+                <Note><b>6 · In Vesper’s world</b> — the lateral links: up to the neighborhood, across to reads & similar spots.</Note>
+              </Logic>
+            </DCArtboard>
+          </DCSection>
+
+          {/* ═══ PLACE ═══ */}
+          <DCSection id="place" title="Place · the new parent surface" subtitle="A place (city or neighborhood) is not another spot — it's the parent spots live inside (City ⊃ Neighborhood ⊃ Spot). Unlike a spot, a city is NOT a Take — its spine is the lensed editorial reads, then the aggregation rooms.">
+            {AB('pl-city', 'City · lens-led (trip, rich)', <PlaceCityV2/>)}
+            {AB('pl-cold', 'City · new to you (cold)', <PlaceCityCold/>)}
+            {AB('pl-hood', 'Neighborhood · the recursion', <PlaceHood/>)}
+            <DCArtboard id="pl-notes" label="Place · logic" width={460} height={904} bg="transparent">
+              <Logic eyebrow="PLACE · THE PARENT" title="Lensed reads, then rooms.">
+                <Note><b>A city is not a Take.</b> Its spine is the <b>lensed editorial reads</b> — <code>travel_lens</code>: why_here · day_in · affinity · insider · tension · ritual, each a dossier thesis. <b>Feature 2–3, never all six</b> (one lead lens with a scene, two stacked beneath, the rest behind a link).</Note>
+                <Note><b>Then the aggregation rooms</b> — your saves · memories (Atlas postcards) · trips here · the map · neighborhoods · what’s happening — as <b>counts and entries</b>, never a fact sheet. Each is a hairline-ruled, horizontally-browsable section.</Note>
+                <Note><b>Two modes, same surface.</b> A <b>trip-city</b> adds the ink-blue “what to lock in” strip; your <b>home-city</b> leans “what’s new, what you keep coming back to.” The <b>recursion</b>: a neighborhood opens the same surface one level down (Alfama ⊂ Lisbon) — and a neighborhood <i>is</i> a Take entity, so it leads with a verdict where the city leads with lenses.</Note>
+                <Spec><b>Cold vs rich:</b> a new city shows curator lenses + a “start a relationship” prompt and empty rooms; a known one shows your saves, memories, and the affinity lens up top.</Spec>
+              </Logic>
+            </DCArtboard>
+          </DCSection>
+
+          {/* ═══ THE MODEL ═══ */}
+          <DCSection id="model" title="The world model" subtitle="">
+            <DCArtboard id="md-1" label="How it all nests" width={470} height={560} bg="transparent">
+              <Logic eyebrow="THE PRIMITIVE & THE NESTING" title="Take everywhere; places nest." w={470}>
+                <Note><b>The Take is the one primitive</b> — the same block renders on a wine bar, a fado night, a guesthouse, a neighborhood, and a whole city. Personal-over-curator, always honest, always present.</Note>
+                <Note><b>City ⊃ Neighborhood ⊃ Spot.</b> A spot’s hero links <i>up</i> to its neighborhood; a place lists its neighborhoods to drill <i>down</i>; both are the same Place surface at different zoom. World-model links (related reads, similar spots) are the lateral edges.</Note>
+                <Spec>Reuses the house kit end-to-end: riso <code>Plate</code> scenes, Cormorant/DM Sans/JetBrains Mono, paper surfaces, gold = Vesper’s voice, ink-blue = planning/Add-to-plan, oxblood = urgency only, sage = forming/quiet.</Spec>
+              </Logic>
+            </DCArtboard>
+            <DCArtboard id="md-2" label="Build order & ship" width={470} height={560} bg="transparent">
+              <Logic eyebrow="SHIP" title="Anchor, then radiate." w={470}>
+                <Note><b>Spot/venue is the reference</b> — its skeleton (hero · Take · details · links · rail) is what experience & stay inherit, so ship it first and let the other faces be config of the middle.</Note>
+                <Note><b>Place is the new surface</b> — it has no home today; introduce it behind the neighborhood link and the Discover tab, in two modes (trip / home) with the cold→rich relationship arc.</Note>
+                <Spec><b>The honest-Take rule is the spine of trust:</b> every surface always has a Take slot, and when Vesper lacks signal it says so. That single discipline is what keeps Places from feeling like a generic listings app.</Spec>
+              </Logic>
+            </DCArtboard>
+          </DCSection>
+
+        </DesignCanvas>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  </script>
+</body>
+</html>

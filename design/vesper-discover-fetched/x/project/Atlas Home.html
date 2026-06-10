@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=1600"/>
+  <title>Atlas Home · hero variations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    html, body { margin: 0; padding: 0; background: #DAD3C5; font-family: 'DM Sans', system-ui, sans-serif; color: #1B1714; }
+    *, *::before, *::after { box-sizing: border-box; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="design-canvas.jsx"></script>
+  <script type="text/babel" src="design-system.jsx"></script>
+  <script type="text/babel" src="v3-shared.jsx"></script>
+  <script type="text/babel" src="v3-home.jsx"></script>
+  <script type="text/babel" src="atlas-home-variations.jsx"></script>
+  <script type="text/babel" src="atlas-home-states.jsx"></script>
+  <script type="text/babel" src="atlas-admin-detail.jsx"></script>
+  <script type="text/babel" src="v3-detail-a.jsx"></script>
+  <script type="text/babel" src="v3-detail-b.jsx"></script>
+  <script type="text/babel" src="variant-4.jsx"></script>
+  <script type="text/babel" src="atlas-rooms-v2.jsx"></script>
+  <script type="text/babel" src="atlas-search-add.jsx"></script>
+  <script type="text/babel" src="atlas-dna-final.jsx"></script>
+  <script type="text/babel" src="atlas-ribbon-tall.jsx"></script>
+
+  <script type="text/babel">
+    function Phn({ children }) {
+      return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', height: '100%', paddingTop: 14 }}>{children}</div>;
+    }
+    const EB = ({ children }) => <div style={{ fontSize: 10.5, letterSpacing: 2, color: T.gold, fontWeight: 600 }}>{children}</div>;
+    const H2 = ({ children }) => <h2 style={{ fontFamily: T.serif, fontWeight: 500, fontSize: 27, letterSpacing: -0.7, lineHeight: 1.05, color: T.ink, margin: '8px 0 14px' }}>{children}</h2>;
+    function Note({ children }) { return <p style={{ margin: '0 0 11px', fontSize: 13.5, lineHeight: 1.55, color: T.inkSoft }}>{children}</p>; }
+    function Spec({ children }) { return <div style={{ marginTop: 12, padding: 12, background: '#FBF7EC', borderRadius: 8, fontSize: 11.5, color: T.mute, lineHeight: 1.5 }}>{children}</div>; }
+    function Logic({ eyebrow, title, children, w = 430 }) {
+      return <div style={{ width: w, padding: '34px 26px', background: '#F1ECE2', borderRadius: 8, color: T.inkSoft }}><EB>{eyebrow}</EB><H2>{title}</H2><div style={{ borderTop: `0.5px solid ${T.hairline}`, paddingTop: 16 }}>{children}</div></div>;
+    }
+    const AB = (id, label, comp) => <DCArtboard id={id} label={label} width={433} height={904} bg="transparent"><Phn>{comp}</Phn></DCArtboard>;
+    const ABtall = (id, label, comp, h) => <DCArtboard id={id} label={label} width={455} height={h} bg="transparent"><div style={{ display: 'flex', justifyContent: 'center', paddingTop: 12 }}>{comp}</div></DCArtboard>;
+
+    function App() {
+      return (
+        <DesignCanvas title="Atlas Home · hero & hierarchy" subtitle="Four variations of the quiet ('nothing new') home. The reframe: report what's TRUE — your relationship with places — not what's NEW. One hero each; the four rooms demoted to a drawer; the hero's top edge kept clear of the header.">
+          <DCSection id="vars" title="The home · letter hero + the personal page" subtitle="V1 (Vesper's Letter) is the home, direction A: a 'For Tiger —' salutation carries the identity as voice, and the gold 'T' monogram top-left is the door into the personal/admin page.">
+            {ABtall('va', 'The home · letter hero (A)', <AtlasA/>, 1180)}
+            {ABtall('profile', 'The personal / admin page', <AtlasProfile/>, 1120)}
+            <DCArtboard id="v-notes" label="Home vs the personal page" width={470} height={1120} bg="transparent">
+              <Logic eyebrow="IDENTITY · TWO JOBS" title="Voice on the home, admin behind the door." w={470}>
+                <Note><b>The home (A)</b> — identity as <i>content</i>: a <i>“For Tiger —”</i> salutation opens Vesper’s letter, so the warmth reads as authored voice, not a profile chip. The header stays calm: just the monogram door + quiet utility.</Note>
+                <Note><b>The door</b> — the gold “T” monogram, top-left. It owns exactly one job: open <b>the personal page</b>. (This is the iOS avatar-to-account pattern; it’d sit consistently across tabs.)</Note>
+                <Note><b>The personal / admin page</b> — a destination, not crammed into the home. A monogram masthead with the librarian framing (“KEEPING SINCE 2021 · Tiger”) + standing stats, then two groups: <b>You</b> (travel identity → DNA, who you travel with, taste & preferences) and <b>Controls</b> (privacy, notifications, account & billing), then sign-out.</Note>
+                <Spec>Holds the system — Cormorant serif, mono eyebrows, single gold accent, hairline-ruled rows. The page reports what’s true and lets you tune what Vesper does; it never becomes a settings dump.</Spec>
+              </Logic>
+            </DCArtboard>
+          </DCSection>
+
+          {/* ═══ THE HOME · across states ═══ */}
+          <DCSection id="states" title="The home · across states" subtitle="The dated letter in Vesper's voice is the spine — in most states the hero is still that letter, it just has more (or different) to say. It reflects your relationship with places; it never manufactures activity or nags.">
+            {ABtall('st-cold', '1 · Cold start (real today)', <HomeCold/>, 1180)}
+            {ABtall('st-draft', '2 · Vesper has a draft (real)', <HomeDraft/>, 1100)}
+            {ABtall('st-kept', '3 · A memory just kept (real)', <HomeKept/>, 1180)}
+            {ABtall('st-power', '4 · Power user (real)', <HomePower/>, 1100)}
+            {ABtall('st-up', '5 · Upcoming trip (new)', <HomeUpcoming/>, 1100)}
+            {ABtall('st-active', '6 · Active trip (new)', <HomeActive/>, 1040)}
+            {ABtall('st-ret', '7 · Just returned (new)', <HomeReturned/>, 1100)}
+            <DCArtboard id="st-notes" label="What each hero says" width={470} height={1100} bg="transparent">
+              <Logic eyebrow="HOME · STATES" title="More to say, never more to nag." w={470}>
+                <Note><b>1 · Cold start</b> — an invitation, not a letter: the blank desk postcard leads, rooms in their “waiting” copy, ribbon “start your year.” Emptiness as a fresh page.</Note>
+                <Note><b>2 · Draft ready</b> — the one state allowed a gentle CTA. Hero: <i>“I drafted something — Sintra needs your eye,”</i> + Review. Inbox shows the draft with the gold badge.</Note>
+                <Note><b>3 · Memory kept</b> — the populated postcard on the shelf (“KEPT · MEMORY”), the counterpart to the blank desk; Postcards ticks to three.</Note>
+                <Note><b>4 · Power user</b> — the letter richer & specific (“your fourth summer of coastlines”), the ribbon full, rooms with big counts — scaling without clutter.</Note>
+                <Note><b>5 · Upcoming</b> — the hero turns forward into quiet anticipation (“Lisbon in three weeks. I’ve been keeping notes”); the ribbon marks the future month. No countdown.</Note>
+                <Note><b>6 · Active trip</b> — a calm companion: today’s shape + the next beat; the four rooms recede to a thin line while the trip is foregrounded.</Note>
+                <Note><b>7 · Just returned</b> — the bridge travel→memory: <i>“Ten days in Portugal. Want me to draft the story?”</i> — an invitation, Inbox holds the trip to keep.</Note>
+              </Logic>
+            </DCArtboard>
+          </DCSection>
+
+          {/* ═══ YEAR RIBBON · TALLER, NAMED ═══ */}
+          <DCSection id="ribbon" title="The home · Year ribbon, taller & named" subtitle="Brainstorm: relax the thin strip so trips carry names and Vesper can add a one-line ‘now read’. Two heights vs the current thin ribbon — does the home want to give the year this much room?">
+            <DCArtboard id="rb-named" label="Named · compact (~62)" width={437} height={220} bg="transparent">
+              <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 20 }}><RibbonNamed/></div>
+            </DCArtboard>
+            <DCArtboard id="rb-full" label="Named · full + now-read (~84)" width={437} height={280} bg="transparent">
+              <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 20 }}><RibbonFull/></div>
+            </DCArtboard>
+            <DCArtboard id="rb-notes" label="How much room?" width={460} height={280} bg="transparent">
+              <Logic eyebrow="HOME · THE RIBBON" title="From sparkline to a named year." w={460}>
+                <Note><b>Named · compact</b> — trips get serif names below the line (Porto · Lisbon · Tokyo); still tight, but no longer anonymous dots.</Note>
+                <Note><b>Named · full</b> — names alternate above/below, and a gold <b>now-read</b> sits beneath (“May · Lisbon and Porto behind you — Tokyo waiting in the autumn”). It becomes a small almanac-teaser, and the tap → full Almanac gesture reads naturally.</Note>
+                <Spec>It’s the shared ribbon (every home state). The home is luxuriously spare today — full height shifts that balance, so use it only if the named year earns the room. My pick: <b>compact</b> on most states, <b>full</b> reserved for the letter-hero home.</Spec>
+              </Logic>
+            </DCArtboard>
+          </DCSection>
+
+          {/* ═══ DESTINATIONS · THE ROOMS + THE ALMANAC ═══ */}
+          <DCSection id="rooms" title="Destinations · the rooms & the Almanac" subtitle="The home's four shelf cards and its Year ribbon are doors. Tap a shelf card → its room (Inbox · Map · DNA · Postcards), rebuilt in the home's editorial language. Tap the ribbon → the Almanac, a scrolling year timeline.">
+            {AB('rm-inbox2', '01 · Inbox', <V3Inbox2/>)}
+            {AB('rm-map2', '02 · Map', <V3Map2/>)}
+            {AB('rm-dna2', '03 · DNA', <DNAPage/>)}
+            {AB('rm-post2', '04 · Postcards', <V3Postcards2/>)}
+            {AB('rm-almanac', 'The Almanac — from the Year ribbon', <VariantAlmanac/>)}
+            <DCArtboard id="rm-notes" label="What opens from where" width={470} height={904} bg="transparent">
+              <Logic eyebrow="ATLAS · DESTINATIONS" title="The shelf and the ribbon are doors." w={470}>
+                <Note><b>The four shelf cards → the four rooms.</b> Each card on the home opens its room: <b>01 · Inbox</b> (what Vesper has drafted), <b>02 · Map</b> (the Atlantic coast you keep returning to, distant trips listed below), <b>03 · DNA</b> (the read on how you travel), <b>04 · Postcards</b> (the shelf of kept memories).</Note>
+                <Note><b>The Year ribbon → the Almanac.</b> The horizontal ribbon on the home is the teaser; tapping it opens the full <b>Almanac</b> — a scrolling year timeline that fades at both ends, each trip carrying a one-line read. Back top-left; no chapter tabs (the rooms have their own doors).</Note>
+              </Logic>
+            </DCArtboard>
+          </DCSection>
+
+          {/* ═══ DNA · DIMENSION PAGES ═══ */}
+          <DCSection id="dnadims" title="Destinations · Travel DNA + its dimension pages" subtitle="The DNA room (in the rooms above) is the archetype nameplate — ‘Coastal soul.’ + one line, four tappable dimension tiles, and a floating Talk-to-Vesper button; no scroll. Each tile opens its own memory page below. Learned signals are contestable (push back → Vesper re-reads), never an editable form.">
+            {AB('dd-energy', 'Tile → Energy', <DimEnergy/>)}
+            {AB('dd-budget', 'Tile → Budget', <DimBudget/>)}
+            {AB('dd-social', 'Tile → Social', <DimSocial/>)}
+            {AB('dd-planning', 'Tile → Planning', <DimPlanning/>)}
+            {AB('dd-declared', 'Declared → editable prefs', <DeclaredEdit/>)}
+            <DCArtboard id="dd-notes" label="DNA page logic" width={470} height={904} bg="transparent">
+              <Logic eyebrow="DNA · PAGE + DIMENSIONS" title="A named portrait; each trait its own door." w={470}>
+                <Note><b>The page (above, in the rooms).</b> Kept <b>B · the archetype nameplate</b> — “Coastal soul.” + one line. No scroll: the four dimension tiles sit in a 2×2, the declared line pins above the tab bar, and a floating <b>Talk to Vesper</b> button sits bottom-right for the open conversation.</Note>
+                <Note><b>Each tile is a door.</b> Tapping a dimension opens its own memory page — the read (“You travel relaxed.”), then <b>what taught Vesper this</b> (the actual trips + a note each), then <b>That’s me / Not quite →</b>.</Note>
+                <Note><b>Contest, don’t edit.</b> The learned signals are read-only but contestable — “Not quite” opens a note to Vesper and it re-reads from your trips; it never silently overwrites. The <b>declared</b> half (dietary, access, languages) is its own directly-editable page — tap “YOU’VE TOLD VESPER” to open it.</Note>
+              </Logic>
+            </DCArtboard>
+          </DCSection>
+
+          {/* ═══ SEARCH + ADD ═══ */}
+          <DCSection id="searchadd" title="Destinations · Search & Add" subtitle="The bare search and + glyphs in the header open these. Search reads as the current screen, held in the editorial system; Add is rebuilt — the do-nothing hero card dropped for two clean, weighted paths (Vesper scan recommended, by hand), bare glyphs instead of a heavy gold circle.">
+            {AB('sa-search', 'Search — find a memory', <AtlasSearch/>)}
+            {AB('sa-add', 'Add — give Vesper a memory', <AtlasAdd/>)}
+            <DCArtboard id="sa-notes" label="Search & Add logic" width={470} height={904} bg="transparent">
+              <Logic eyebrow="DESTINATIONS · SEARCH + ADD" title="One opens what's kept; one starts something new." w={470}>
+                <Note><b>Search → “Find a memory.”</b> A field for the direct query, then <b>wander-by</b> (Cities · Time · Patterns · Postcards) for when you don’t have words, and an <b>Ask Vesper</b> escape (“what places have I been returning to?”). Held as-is — it already reads in the system.</Note>
+                <Note><b>Add → rebuilt.</b> The old screen led with a big “A first draft for the shelf” card that did almost nothing, then demoted the real actions to rows under it, with a heavy filled-gold magnifier. Now: the philosophy folds into one quiet line, and the two real paths get the weight — <b>Vesper scan</b> (recommended, gold-ruled, reads the library and proposes drafts) and <b>by hand</b> (pick one trip / day / place). Bare glyphs, hairline cards, gold only on the recommended path.</Note>
+                <Spec>Both sit below the status bar via Phone’s own padding; the header’s bare <b>+</b> and search glyphs (no circle) are the doors. The two paths read as quiet editorial rows — gold only on the recommended scan.</Spec>
+              </Logic>
+            </DCArtboard>
+          </DCSection>
+
+          {/* ═══ ADMIN DETAIL SCREENS ═══ */}
+          <DCSection id="admin" title="Settings · the personal page, in detail" subtitle="Behind each row. The rule: what Vesper INFERRED reads as prose/observation (read-only portraits); what you DECLARED is editable controls. Grounded in real functionality — nothing implied that isn't built.">
+            {ABtall('ad-id', 'You · Travel Identity (read-only)', <DTravelIdentity/>, 1040)}
+            {ABtall('ad-co', 'You · Who you travel with', <DCompanions/>, 980)}
+            {ABtall('ad-ta', 'You · Taste (learned + declared)', <DTaste/>, 1040)}
+            {ABtall('ad-pr', 'Controls · Privacy', <DPrivacy/>, 1100)}
+            {ABtall('ad-no', 'Controls · Notifications', <DNotifications/>, 1100)}
+            {ABtall('ad-ac', 'Controls · Account', <DAccount/>, 1100)}
+            <DCArtboard id="ad-notes" label="Inferred vs declared" width={470} height={1100} bg="transparent">
+              <Logic eyebrow="ADMIN · THE RULE" title="A reading you don't edit; controls you do." w={470}>
+                <Note><b>YOU = read-only portraits.</b> <b>Travel Identity</b> reads like a letter about yourself — reflection phrases up top, then a quiet evidence ledger (“Energy · Relaxed · learned across 4 trips”) + “what shaped this.” Never a form. <b>Companions</b> is a <i>derived</i> list (who you actually travel with, by frequency) — it drills into shared trips; the only action is inviting someone to a trip.</Note>
+                <Note><b>Taste splits in two.</b> <i>Learned</i> (pace, food, energy, social) is read-only with a soft “learned” feel; <i>Declared</i> (dietary, accessibility, languages) carries real Edit affordances.</Note>
+                <Note><b>CONTROLS = real, editable.</b> <b>Privacy</b> — five private↔shareable toggles each with a consequence line, profile toggles, default photo visibility; the model’s spine (saves private, trips shared) is legible. <b>Notifications</b> — cadence (quiet-by-default = Minimal), quiet hours, channels, critical-always, pause-all. <b>Account</b> — name/email/phone (verified), connected accounts, download/sign-out/delete.</Note>
+                <Spec><b>Honesty fixes:</b> stats reframed to what’s tracked — <b>12 places · 5 trips · 2 kept</b> (no city/country rollups). “Vesper · member” is presented as a quiet <b>identity</b> line — no billing UI, since none exists.</Spec>
+              </Logic>
+            </DCArtboard>
+          </DCSection>
+        </DesignCanvas>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  </script>
+</body>
+</html>
