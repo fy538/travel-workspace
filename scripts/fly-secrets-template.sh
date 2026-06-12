@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Emit a paste-ready ``fly secrets set`` block for first-time deploy.
 #
-# Reads ``Travel Agent/.env.example`` and prints one ``fly secrets set``
+# Reads ``travel-agent/.env.example`` and prints one ``fly secrets set``
 # invocation per category, with placeholder values. Pipe to a file,
 # fill in real values, then paste each block into your terminal.
 #
@@ -69,7 +69,7 @@ cat <<'HEADER'
 #   and infra (Postgres + Qdrant + Redis). The app is non-functional
 #   without Postgres/Qdrant, and the arq worker process needs Redis —
 #   so `required` now includes them (matches the "Minimum" list in
-#   Travel Agent/fly.toml).
+#   travel-agent/fly.toml).
 # Optional: research keys, push, transactional email/SMS.
 
 set -euo pipefail

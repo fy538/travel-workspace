@@ -11,8 +11,8 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
-AGENT_DIR="$WORKSPACE_DIR/Travel Agent"
-APP_DIR="$WORKSPACE_DIR/Travel App"
+AGENT_DIR="$WORKSPACE_DIR/travel-agent"
+APP_DIR="$WORKSPACE_DIR/travel-app"
 
 PREFIX="codex/"
 RUN_AGENT=true

@@ -11,6 +11,19 @@ Read each repo's own `CLAUDE.md` for full context. This file covers the **cross-
 
 ---
 
+## Session Orientation
+
+**At the start of every session**, before reading memory or assuming build state, run:
+
+```bash
+git -C travel-agent log --oneline -5
+git -C travel-app log --oneline -5
+```
+
+Memory entries that describe "current state" are point-in-time snapshots and rot quickly across parallel sessions. Git log is authoritative — what's committed is what's real. The `UserPromptSubmit` hook in `.claude/settings.local.json` injects the last 3 commits from each repo automatically.
+
+---
+
 ## API Contract
 
 The backend exposes a full OpenAPI 3.1 schema at **`GET /openapi.json`** (when running).
@@ -119,10 +132,10 @@ Backend-mirroring types should be generated, not hand-written.
 
 ```bash
 # Start backend
-cd "Travel Agent" && docker compose up -d && PYTHONPATH=. uvicorn backend.api.main:app --reload
+cd travel-agent && docker compose up -d && PYTHONPATH=. uvicorn backend.api.main:app --reload
 
 # Start frontend
-cd "Travel App" && npx expo start --ios
+cd travel-app && npx expo start --ios
 
 # Sync API types (requires backend running)
 ./scripts/sync-types.sh
@@ -131,8 +144,8 @@ cd "Travel App" && npx expo start --ios
 ./scripts/sync-types.sh --from-snapshot
 
 # Run backend tests
-cd "Travel Agent" && PYTHONPATH=. pytest tests/ -q -m "not requires_postgres and not requires_api_keys"
+cd travel-agent && PYTHONPATH=. pytest tests/ -q -m "not requires_postgres and not requires_api_keys"
 
 # Run frontend type check
-cd "Travel App" && npx tsc --noEmit
+cd travel-app && npx tsc --noEmit
 ```

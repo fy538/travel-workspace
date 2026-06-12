@@ -7,7 +7,7 @@
 
 .PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help ci-review
 .PHONY: contract-check mock-real-parity golden-path-qa offline-qa reliability-report reliability-gate
-.PHONY: preflight-eas fly-secrets
+.PHONY: preflight-eas fly-secrets verify
 
 # ── Development ───────────────────────────────────────────────────────────────
 
@@ -84,6 +84,21 @@ test-frontend: ## Run frontend Jest tests
 	@cd travel-app && npx jest --no-coverage
 
 test-all: test-backend test-frontend ## Run all tests (offline)
+
+# ── Composite gate ─────────────────────────────────────────────────────────────
+
+verify: ## Single cross-repo "is it green?" gate: backend CI + frontend typecheck + contract drift + API coverage + frontend tests
+	@echo "▸ Backend CI (travel-agent: ruff + boundaries + gates + mypy + offline tests)..."
+	@$(MAKE) -C travel-agent ci
+	@echo "▸ Frontend typecheck (travel-app: tsc --noEmit)..."
+	@$(MAKE) typecheck
+	@echo "▸ Contract drift (OpenAPI snapshot ↔ generated types)..."
+	@$(MAKE) contract-check
+	@echo "▸ API coverage (http.ts URLs exist in docs/openapi.json)..."
+	@$(MAKE) api-coverage-check
+	@echo "▸ Frontend tests (Jest)..."
+	@$(MAKE) test-frontend
+	@echo "✓ verify: all cross-repo gates green"
 
 status: ## Show git status for workspace + child repos
 	@echo ""

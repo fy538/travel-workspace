@@ -139,8 +139,8 @@ sleep 3
 
 ```bash
 make bootstrap                                              # clone child repos
-cd "Travel Agent" && python3.13 -m venv .venv && source .venv/bin/activate && pip install -r requirements-dev.txt
-cd "Travel App" && npm ci
+cd travel-agent && python3.13 -m venv .venv && source .venv/bin/activate && pip install -r requirements-dev.txt
+cd travel-app && npm ci
 ```
 
 ### Running services

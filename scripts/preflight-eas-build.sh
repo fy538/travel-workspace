@@ -23,8 +23,8 @@ set -uo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
-AGENT_DIR="$WORKSPACE_DIR/Travel Agent"
-APP_DIR="$WORKSPACE_DIR/Travel App"
+AGENT_DIR="$WORKSPACE_DIR/travel-agent"
+APP_DIR="$WORKSPACE_DIR/travel-app"
 
 PASS=0
 FAIL=0
@@ -81,15 +81,15 @@ require_command python3 && pass "python3 $(python3 --version | awk '{print $2}')
 step "2. EAS project identity"
 APP_JSON="$APP_DIR/app.json"
 if [ ! -f "$APP_JSON" ]; then
-  fail "Travel App/app.json missing"
+  fail "travel-app/app.json missing"
   abort
 fi
 
 EAS_PROJECT_ID=$(python3 -c "import json; d=json.load(open('$APP_JSON')); print(d['expo'].get('extra',{}).get('eas',{}).get('projectId',''))" 2>/dev/null)
 if [ -z "$EAS_PROJECT_ID" ]; then
-  fail "expo.extra.eas.projectId missing from app.json — run 'cd Travel\\ App && eas init'"
+  fail "expo.extra.eas.projectId missing from app.json — run 'cd travel-app && eas init'"
 elif [ "$EAS_PROJECT_ID" = "00000000-0000-0000-0000-000000000000" ]; then
-  fail "EAS projectId is still the placeholder UUID — run 'cd Travel\\ App && eas init' (OAI #3)"
+  fail "EAS projectId is still the placeholder UUID — run 'cd travel-app && eas init' (OAI #3)"
 else
   pass "EAS projectId set ($EAS_PROJECT_ID)"
 fi
@@ -125,7 +125,7 @@ step "3. EAS production profile (eas.json)"
 
 EAS_JSON="$APP_DIR/eas.json"
 if [ ! -f "$EAS_JSON" ]; then
-  fail "Travel App/eas.json missing — run 'cd Travel\\ App && eas build:configure' (OAI #3)"
+  fail "travel-app/eas.json missing — run 'cd travel-app && eas build:configure' (OAI #3)"
   abort
 fi
 
@@ -233,7 +233,7 @@ else
   if (cd "$APP_DIR" && npm run test:offline) >/dev/null 2>&1; then
     pass "frontend offline tests pass"
   else
-    fail "frontend offline tests failed — re-run 'npm run test:offline' from Travel App/ to see details"
+    fail "frontend offline tests failed — re-run 'npm run test:offline' from travel-app/ to see details"
   fi
 fi
 
