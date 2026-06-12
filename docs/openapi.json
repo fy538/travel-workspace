@@ -4618,7 +4618,7 @@
           "booking"
         ],
         "summary": "Refresh Offer",
-        "description": "Re-check price/availability for an offer approaching expiration.\n\nRequires provider.search() to accept an existing offer ID for re-pricing.\nNo provider supports this yet \u2014 returns 501 until wired.",
+        "description": "Re-check price/availability for an offer approaching expiration.\n\nProviders that support offer refresh return a full latest offer resource.\nWe normalize and persist that shape, preserving any selected/held state.",
         "operationId": "refresh_offer_api_trips__trip_id__booking_sessions__session_id__offers__offer_id__refresh_post",
         "parameters": [
           {
@@ -4674,11 +4674,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "string"
-                  },
-                  "title": "Response Refresh Offer Api Trips  Trip Id  Booking Sessions  Session Id  Offers  Offer Id  Refresh Post"
+                  "$ref": "#/components/schemas/BookingOffer"
                 }
               }
             }
@@ -4772,7 +4768,7 @@
           "booking"
         ],
         "summary": "Confirm Cart",
-        "description": "Confirm the cart. Marks session as confirmed.",
+        "description": "Confirm the cart, optionally creating provider orders with consent.",
         "operationId": "confirm_cart_api_trips__trip_id__booking_sessions__session_id__cart_confirm_post",
         "parameters": [
           {
@@ -4796,6 +4792,22 @@
             }
           },
           {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Idempotency-Key"
+            }
+          },
+          {
             "name": "authorization",
             "in": "header",
             "required": false,
@@ -4812,6 +4824,23 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/ConfirmCartRequest"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Body"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -5770,7 +5799,7 @@
           "concierge-home"
         ],
         "summary": "Post Concierge Card Feedback",
-        "description": "Persist a structured tuning event for a Concierge Home card.",
+        "description": "Persist a structured tuning event for a Concierge Home card.\n\nH3: when action is 'not_now', also extends the producer's cooldown via\nthe arbiter suppress API so the card doesn't resurface on ANY channel\nfor the configured window.",
         "operationId": "post_concierge_card_feedback_api_concierge_home_cards_feedback_post",
         "parameters": [
           {
@@ -5902,7 +5931,7 @@
           "concierge-home"
         ],
         "summary": "Post Concierge Card Lifecycle",
-        "description": "Persist a lifecycle transition for a durable Vesper Home card.\n\nMissing rows are accepted as no-ops so current generated fallback cards can\nemit the same event shape while producers migrate onto durable cards.",
+        "description": "Persist a lifecycle transition for a durable Vesper Home card.\n\nMissing rows are accepted as no-ops so current generated fallback cards can\nemit the same event shape while producers migrate onto durable cards.\n\nH3 bridge: when the card's source carries an outcome_id, the lifecycle\ntransition also updates the matching notification_outcomes row so the A4\nvalue model learns from home-card engagement automatically.",
         "operationId": "post_concierge_card_lifecycle_api_concierge_home_cards_lifecycle_post",
         "parameters": [
           {
@@ -5939,6 +5968,66 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ConciergeCardLifecycleResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/concierge/home/cards/restore": {
+      "post": {
+        "tags": [
+          "concierge-home"
+        ],
+        "summary": "Post Concierge Card Restore",
+        "description": "Undo a card dismissal \u2014 restore to ready and clear the arbiter suppression.\n\nCalled by the client-side Undo toast. Sets lifecycle_state back to ``ready``\nand deletes any active ``arbiter_suppressions`` row for this candidate so the\narbiter can re-fire it on the next cycle.",
+        "operationId": "post_concierge_card_restore_api_concierge_home_cards_restore_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConciergeCardRestoreRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConciergeCardRestoreResponse"
                 }
               }
             }
@@ -13756,126 +13845,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProposalDetail"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/research/quick": {
-      "post": {
-        "tags": [
-          "research"
-        ],
-        "summary": "Quick Research Endpoint",
-        "description": "Kick off a quick research pass in the background.\n\nThe instant answer should have already been returned via POST /api/lookup/.\nThis endpoint triggers a short graph run (3 iterations, ~1 minute) that\nproduces a dossier and persists structured data.",
-        "operationId": "quick_research_endpoint_api_research_quick_post",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/QuickResearchRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResearchTaskResponse"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/research/deep": {
-      "post": {
-        "tags": [
-          "research"
-        ],
-        "summary": "Deep Research Endpoint",
-        "description": "Kick off a deep research pass in the background.\n\nRuns the full research graph (up to 15 iterations by default) with quality\ngate, dossier writing, and persistence. Use profile_overrides for\ncuration-level runs (e.g. {\"quality_threshold\": 0.95, \"max_iterations\": 50}).",
-        "operationId": "deep_research_endpoint_api_research_deep_post",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DeepResearchRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResearchTaskResponse"
                 }
               }
             }
@@ -25552,6 +25521,20 @@
               }
             ],
             "title": "Attempt Id"
+          },
+          "checkout_results": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/CheckoutOfferResult"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Checkout Results"
           }
         },
         "type": "object",
@@ -26106,6 +26089,174 @@
         "title": "ChatHistoryResponse",
         "description": "Response for GET /messages/history."
       },
+      "CheckoutOfferResult": {
+        "properties": {
+          "offer_id": {
+            "type": "string",
+            "title": "Offer Id"
+          },
+          "provider": {
+            "type": "string",
+            "title": "Provider"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "provider_booking_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider Booking Id"
+          },
+          "confirmation_number": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confirmation Number"
+          },
+          "provider_request_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider Request Id"
+          },
+          "correlation_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Correlation Id"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          }
+        },
+        "type": "object",
+        "required": [
+          "offer_id",
+          "provider",
+          "status"
+        ],
+        "title": "CheckoutOfferResult"
+      },
+      "CheckoutPassenger": {
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "given_name": {
+            "type": "string",
+            "title": "Given Name"
+          },
+          "family_name": {
+            "type": "string",
+            "title": "Family Name"
+          },
+          "born_on": {
+            "type": "string",
+            "title": "Born On"
+          },
+          "gender": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Gender"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "email": {
+            "type": "string",
+            "title": "Email"
+          },
+          "phone_number": {
+            "type": "string",
+            "title": "Phone Number"
+          }
+        },
+        "type": "object",
+        "required": [
+          "given_name",
+          "family_name",
+          "born_on",
+          "email",
+          "phone_number"
+        ],
+        "title": "CheckoutPassenger"
+      },
+      "CheckoutPayment": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "currency": {
+            "type": "string",
+            "title": "Currency"
+          },
+          "amount": {
+            "type": "string",
+            "title": "Amount"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type",
+          "currency",
+          "amount"
+        ],
+        "title": "CheckoutPayment"
+      },
       "ClaimRequest": {
         "properties": {
           "entity_type": {
@@ -26652,6 +26803,54 @@
         ],
         "title": "ConciergeCardLifecycleResponse"
       },
+      "ConciergeCardRestoreRequest": {
+        "properties": {
+          "card_id": {
+            "type": "string",
+            "title": "Card Id"
+          },
+          "surface": {
+            "type": "string",
+            "title": "Surface",
+            "default": "concierge_home"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "card_id"
+        ],
+        "title": "ConciergeCardRestoreRequest"
+      },
+      "ConciergeCardRestoreResponse": {
+        "properties": {
+          "restored": {
+            "type": "boolean",
+            "title": "Restored"
+          },
+          "card_id": {
+            "type": "string",
+            "title": "Card Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "restored",
+          "card_id"
+        ],
+        "title": "ConciergeCardRestoreResponse"
+      },
       "ConciergeHomeAction": {
         "properties": {
           "type": {
@@ -26952,6 +27151,46 @@
             "type": "string",
             "format": "date-time",
             "title": "Generated At"
+          },
+          "home_state": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "urgent",
+                  "dispatch",
+                  "imminent",
+                  "prepared",
+                  "signal",
+                  "capture",
+                  "resume",
+                  "starter"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Home State"
+          },
+          "voice_register": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "verdict",
+                  "letter",
+                  "whisper",
+                  "dispatch",
+                  "standfirst",
+                  "question"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Voice Register"
           }
         },
         "type": "object",
@@ -26988,6 +27227,95 @@
           "text"
         ],
         "title": "ConciergeHomeLeadNote"
+      },
+      "ConfirmCartRequest": {
+        "properties": {
+          "checkout_consent": {
+            "type": "boolean",
+            "title": "Checkout Consent",
+            "default": false
+          },
+          "terms_accepted": {
+            "type": "boolean",
+            "title": "Terms Accepted",
+            "default": false
+          },
+          "passengers": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/CheckoutPassenger"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Passengers"
+          },
+          "payments": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/CheckoutPayment"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Payments"
+          },
+          "passengers_by_offer_id": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "items": {
+                    "$ref": "#/components/schemas/CheckoutPassenger"
+                  },
+                  "type": "array"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Passengers By Offer Id"
+          },
+          "payments_by_offer_id": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "items": {
+                    "$ref": "#/components/schemas/CheckoutPayment"
+                  },
+                  "type": "array"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Payments By Offer Id"
+          },
+          "correlation_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Correlation Id"
+          }
+        },
+        "type": "object",
+        "title": "ConfirmCartRequest"
       },
       "ConfirmVerificationRequest": {
         "properties": {
@@ -27754,66 +28082,6 @@
         ],
         "title": "DecommitResponse"
       },
-      "DeepResearchRequest": {
-        "properties": {
-          "query": {
-            "type": "string",
-            "maxLength": 500,
-            "minLength": 2,
-            "title": "Query"
-          },
-          "target_slug": {
-            "type": "string",
-            "title": "Target Slug"
-          },
-          "target_type": {
-            "type": "string",
-            "title": "Target Type",
-            "default": "venue"
-          },
-          "target_lat": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Target Lat"
-          },
-          "target_lng": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Target Lng"
-          },
-          "profile_overrides": {
-            "anyOf": [
-              {
-                "additionalProperties": true,
-                "type": "object"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Profile Overrides"
-          }
-        },
-        "type": "object",
-        "required": [
-          "query",
-          "target_slug"
-        ],
-        "title": "DeepResearchRequest",
-        "description": "Request to run a deep research pass (background, minutes)."
-      },
       "DelegationPreferences": {
         "properties": {
           "user_id": {
@@ -28490,6 +28758,16 @@
           },
           "meta": {
             "$ref": "#/components/schemas/DiscoverFeedMeta"
+          },
+          "lead": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DossierLeadItem"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -29067,6 +29345,43 @@
             "type": "string",
             "title": "Updated At"
           },
+          "format": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Format"
+          },
+          "structured_blocks": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Structured Blocks"
+          },
+          "related": {
+            "items": {
+              "$ref": "#/components/schemas/RelatedDossierItem"
+            },
+            "type": "array",
+            "title": "Related"
+          },
+          "exemplars": {
+            "items": {
+              "$ref": "#/components/schemas/DossierExemplarItem"
+            },
+            "type": "array",
+            "title": "Exemplars"
+          },
           "image_url": {
             "anyOf": [
               {
@@ -29155,6 +29470,179 @@
         ],
         "title": "DossierDetail",
         "description": "Full dossier content + metadata."
+      },
+      "DossierExemplarItem": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "entity_type": {
+            "type": "string",
+            "title": "Entity Type"
+          },
+          "entity_id": {
+            "type": "integer",
+            "title": "Entity Id"
+          },
+          "role": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Role"
+          },
+          "display_order": {
+            "type": "integer",
+            "title": "Display Order"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "detail": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "entity_type",
+          "entity_id",
+          "display_order"
+        ],
+        "title": "DossierExemplarItem",
+        "description": "A concrete entity (venue/experience) referenced by a format-aware dossier.\n\nUsed to render inline save cards in the spot/experience reader."
+      },
+      "DossierLeadItem": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "angle": {
+            "type": "string",
+            "title": "Angle"
+          },
+          "travel_lens": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Travel Lens"
+          },
+          "thesis": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Thesis"
+          },
+          "place_slug": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Slug"
+          },
+          "place_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Name"
+          },
+          "city_slug": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "City Slug"
+          },
+          "word_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Word Count"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          },
+          "image_source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Source"
+          },
+          "shape": {
+            "type": "string",
+            "title": "Shape",
+            "default": "dream"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "angle"
+        ],
+        "title": "DossierLeadItem"
       },
       "DossierListResponse": {
         "properties": {
@@ -39067,54 +39555,6 @@
         "title": "PublicTripStory",
         "description": "The PUBLIC projection of a Trip Story.\n\nDEFAULT-DENY ALLOWLIST. This model is the *complete* set of fields a\nnon-owner may ever see. It deliberately omits ``user_id``, ``trip_id``,\n``version``, section ids, ``anchor_observation_id``, ``edited_at``,\n``composer_model``, and every private input (constraints, budget,\nhealth, fatigue, observations). Build it ONLY via\n``backend.core.story_projection.build_public_story_payload`` so the\nallowlist is enforced in exactly one place."
       },
-      "QuickResearchRequest": {
-        "properties": {
-          "query": {
-            "type": "string",
-            "maxLength": 500,
-            "minLength": 2,
-            "title": "Query"
-          },
-          "target_slug": {
-            "type": "string",
-            "title": "Target Slug"
-          },
-          "target_type": {
-            "type": "string",
-            "title": "Target Type",
-            "default": "venue"
-          },
-          "target_lat": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Target Lat"
-          },
-          "target_lng": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Target Lng"
-          }
-        },
-        "type": "object",
-        "required": [
-          "query",
-          "target_slug"
-        ],
-        "title": "QuickResearchRequest",
-        "description": "Request to run a quick research pass (~1 minute)."
-      },
       "ReactRequest": {
         "properties": {
           "user_id": {
@@ -39711,6 +40151,58 @@
         ],
         "title": "RejectRequest"
       },
+      "RelatedDossierItem": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "angle": {
+            "type": "string",
+            "title": "Angle"
+          },
+          "travel_lens": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Travel Lens"
+          },
+          "place_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Name"
+          },
+          "word_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Word Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "angle"
+        ],
+        "title": "RelatedDossierItem",
+        "description": "Lightweight dossier stub for the Keep Reading carousel."
+      },
       "ReleaseRequest": {
         "properties": {
           "lease_id": {
@@ -39736,30 +40228,6 @@
           "released"
         ],
         "title": "ReleaseResponse"
-      },
-      "ResearchTaskResponse": {
-        "properties": {
-          "task_id": {
-            "type": "string",
-            "title": "Task Id"
-          },
-          "tier": {
-            "type": "string",
-            "title": "Tier"
-          },
-          "status": {
-            "type": "string",
-            "title": "Status",
-            "default": "started"
-          }
-        },
-        "type": "object",
-        "required": [
-          "task_id",
-          "tier"
-        ],
-        "title": "ResearchTaskResponse",
-        "description": "Acknowledgement that a research task has been enqueued."
       },
       "ResolveOutcomeRequest": {
         "properties": {
@@ -40057,6 +40525,30 @@
         ],
         "title": "RouteResponse"
       },
+      "SearchInterpretation": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "mode": {
+            "type": "string",
+            "title": "Mode"
+          },
+          "entity_focus": {
+            "type": "string",
+            "title": "Entity Focus"
+          }
+        },
+        "type": "object",
+        "required": [
+          "label",
+          "mode",
+          "entity_focus"
+        ],
+        "title": "SearchInterpretation",
+        "description": "Structured interpretation of a search query, generated by Vesper (Haiku).\n\n``label`` is a 3-7 word natural-language restatement of the user's intent\n(suitable for display above results).  ``mode`` distinguishes open-ended\nvibes queries (``\"intent\"``) from specific lookup queries (``\"lookup\"``).\n``entity_focus`` is the primary entity type the query targets."
+      },
       "SearchRequest": {
         "properties": {
           "q": {
@@ -40249,6 +40741,16 @@
           "latency_ms": {
             "type": "number",
             "title": "Latency Ms"
+          },
+          "interpretation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SearchInterpretation"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",

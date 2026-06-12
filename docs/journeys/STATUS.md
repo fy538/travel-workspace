@@ -1,8 +1,8 @@
 # Journey Status Matrix
 
-> Status: draft  
-> Owner: founder / engineering  
-> Last updated: 2026-06-06  
+> Status: draft
+> Owner: founder / engineering
+> Last updated: 2026-06-10
 > Source of truth for: journey readiness, dogfood promotion, and next engineering action
 
 This matrix turns the 12 canonical journeys into an operating board. A journey is not dogfood-ready because the one-pager exists; it becomes dogfood-ready when route/API tracing, mock-mode walking, deterministic tests, and any required real-backend checks have all been made explicit.
@@ -30,8 +30,8 @@ This matrix turns the 12 canonical journeys into an operating board. A journey i
 | 06 | [Home, Plan, Map, Changes Coherence](06-home-plan-map-changes-coherence.md) | ready | partial | partial | optional | Fixed: canonical Lisbon proposal/block ids now align across mock itinerary, plan-state, map-state, home cards, pending-vote notifications, proposals, and recent changes, with regression tests for Plan, Changes, Home, Map, and Notifications. Remaining: non-canonical mock proposals and chat preview invalidation are incomplete. | Expand parity beyond the canonical Lisbon proposal and add chat preview invalidation coverage. | no |
 | 07 | [Discover To Contextual Vesper To Trip Action](07-discover-to-contextual-vesper-to-trip-action.md) | ready | ready | ready | required | Fixed: routing/seed matrix, group-chat venue seed, compose parity (site/accommodation), search editorial index, experience sheet handoff, for-you dismiss/show, `exclude_surface_ids` on feed API, search overlay prefers API reads. Remaining: one live-backend canary for feed dismiss refetch + editorial search on seeded data; no-trip share-with-group still toast-only. | Run live discover feed + search canary on one seeded account; optional no-trip share de-afford. | no |
 | 08 | [Live Trip What-Now Companion](08-live-trip-what-now-companion.md) | partial | partial | partial | required | Fixed: global live NOW/AFTERN./TONIGHT tiles + Save a moment → Memory route; folio + Memory screens ground on route `tripId`; mock Lisbon returns active `TripSituation`; `happening_nearby` opens `ExperienceDetailSheet` on global home; offline LiveHome CTA walk. Remaining: Vesper Home live mode walk, Map-from-live context, location-permission matrix, chat `tripId` drift on some sub-screens. | Extend mock walk to Vesper Home + Map focus; fix remaining workspace sub-routes that still lean on `currentTrip`. | no |
-| 09 | [Notifications And Proactive Routing](09-notifications-and-proactive-routing.md) | ready with gaps | not started | partial | required | Feed tap routing is mostly covered, but OS push tap routing lacks the journey-priority matrix; social route drifts from `/atlas/companions`; proactive read-state invalidation is incomplete. | Add PushRegistrar routing matrix tests and make push routing share feed routing semantics. | no |
-| 10 | [Booking, Stay, And Expense Trust Loop](10-booking-stay-expense-trust-loop.md) | ready | not started | partial | required | Fixed: booking route preserves `tripId`, backend session ownership is enforced, and confirm no longer auto-logs shared expenses. Remaining: stay authorization, stay-write semantics, refresh 501, and thin mocks. | Add organizer/member stay authorization, booking route tests, and opt-in expense UX tests. | no |
+| 09 | [Notifications And Proactive Routing](09-notifications-and-proactive-routing.md) | ready | not started | partial | required | Fixed: push taps and inbox rows now share a destination resolver; `card_id` routes to focused Concierge Home before generic outcome/chat routing; map-view pushes preserve leave-by dismissal; PushRegistrar component matrix covers live taps, cold launch, foreground seen, outcome dedupe, card/proposal/trip/map/conversation/private/missing-target paths. Remaining: proactive read-state invalidation and live-device push canary. | Add proactive read-state invalidation coverage and run one live-device push canary. | no |
+| 10 | [Booking, Stay, And Expense Trust Loop](10-booking-stay-expense-trust-loop.md) | ready | partial | partial | required | Fixed: booking route preserves `tripId`, backend session ownership is enforced, cart confirm no longer auto-logs shared expenses, Duffel checkout has consent/idempotency/reconciliation/receipt proof, offer refresh no longer 501s for Duffel, shared stay writes are organizer-gated, personal stays are self-or-organizer, booking-to-stay semantics are explicit, and expense participants are trip-member validated. Remaining: one full Duffel sandbox order smoke and richer mock/story coverage for organizer/member visibility across booking, stay, and expense. | Run the full sandbox order smoke and promote a Journey 10 mock walk covering receipt-only flight, confirmed hotel writeback, personal stay, shared stay, and opt-in expense. | no |
 | 11 | [Atlas Candidate To Memory Control](11-atlas-candidate-to-memory-control.md) | ready | ready | ready | required | Postgres canary + v4 backfill + map/home read models in CI (`test-db`). Home/map driven by `GET /api/atlas/home` + `GET /api/atlas/map` (unified place count). Mock walk covers home→inbox→candidate→artifact→learned→privacy→removed→almanac→timeline. Remaining: optional ~15 min legacy staging spot-check (checklist in Journey 11); live almanac LLM when keys available. | Run optional staging checklist on one legacy account. | no |
 | 12 | [Returned Trip To Story, Memory, And Settle-Up](12-returned-trip-to-story-memory-settle-up.md) | ready | not started | partial | required | Fixed: settlement closeout preserves `tripId`; Memory sub-screen reads route `tripId` with trips-list fallback. Remaining: mock story/summary/Atlas fixtures drift from real post-trip behavior; date logic mixes local/server/UTC; Story route may still depend on `currentTrip`. | Add Journey 12 route test for Story; align returned-trip mock fixtures. | no |
 
@@ -46,6 +46,11 @@ A journey can move from `no` to dogfood-ready only when:
 - Known blockers are fixed or deliberately de-afforded.
 
 ## Current Priority Order
+
+Use [No-Claude-Design Tightening Sprint](../No-Claude-Design%20Tightening%20Sprint.md)
+as the cross-surface contract for lifecycle semantics, ConversationSeed
+migration, privacy copy, proposal receipts, and notification routing while
+promoting these journeys.
 
 1. **Finish privacy proof end-to-end:** Journey 04 full deterministic leak fixture across group chat, proposal, notification, booking, plan badge, and Atlas/privacy receipt.
 2. **Promote proposal coherence beyond the backend canary:** Journey 05 canary now passes; next is making it a standing dogfood/CI gate and adding an app-level Changes surface walk.

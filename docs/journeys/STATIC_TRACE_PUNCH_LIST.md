@@ -229,14 +229,16 @@ Static trace: partial. Dogfood ready: blocked.
 - Fixed 2026-06-06: `routes.bookingSession(tripId, sessionId)` preserves both params.
 - Fixed 2026-06-06: backend booking session/offer/cart/restaurant-attempt endpoints verify `session.trip_id == trip_id`.
 - Fixed 2026-06-06: cart confirmation no longer auto-logs shared expenses immediately.
-- Stay create/update/delete are UI-gated by organizer, but backend only checks trip membership.
-- Booking confirmation may not write hotel stay state because selected offers are not marked `confirmed`.
-- Refresh offer CTA is wired to a backend 501.
-- Mock accommodations/booking/offers/cart are too empty to test the trust loop.
-- Backend expense create does not validate `paid_by`/share users as trip members.
-- Missing tests: session-trip ownership, opt-in expense semantics, organizer/member stay authorization, booking route preserves `tripId`, booking confirmation writes/does not write stays intentionally.
+- Fixed 2026-06-11: Duffel live checkout path has explicit consent, terms acceptance, exact payment validation, idempotent offer claim, passenger-reference persistence, reconciliation, pending timeout, and provider receipt card proof.
+- Fixed 2026-06-11: offer refresh CTA is backed by provider `get_price`; Duffel uses `GET /air/offers/{id}` and persists the latest normalized offer.
+- Fixed 2026-06-11: shared stay create/update/delete are backend-gated to organizers; personal stay slots are self-or-organizer.
+- Fixed 2026-06-11: booking-to-stay semantics are explicit — flight provider receipts are receipt-only; confirmed hotel offers write `trip_accommodations` only through the hotel writeback hook when normalized stay data is sufficient.
+- Fixed 2026-06-11: manual and receipt-derived expense creation validate `paid_by` and every share user as trip members before writing money rows.
+- Remaining: mock accommodations/booking/offers/cart are still too thin to prove the entire organizer/member trust loop visually.
+- Remaining: one full Duffel sandbox order smoke should verify offer request → persisted passenger ids → checkout confirm → provider receipt → reconciliation/receipt card.
+- Missing tests: app-level Journey 10 mock walk for receipt-only flight, confirmed hotel writeback, shared/personal stay authorization, and opt-in expense UX.
 
-Next action: add organizer/member authorization on stay mutations and confirm the intended booking -> stay/expense opt-in UX.
+Next action: run the sandbox order smoke, then promote a richer Journey 10 mock fixture/walk into the dogfood gate.
 
 ### 11 - Atlas Candidate To Memory Control
 

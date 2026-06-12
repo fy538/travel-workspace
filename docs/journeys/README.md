@@ -1,8 +1,8 @@
 # Canonical Journeys
 
-> Status: draft  
-> Owner: founder / engineering  
-> Last updated: 2026-06-06  
+> Status: draft
+> Owner: founder / engineering
+> Last updated: 2026-06-10
 > Source of truth for: the first production/dogfood journey set for Vesper
 
 These one-pagers define the first 12 canonical journeys we should protect before expanding TestFlight and real dogfood. They sit above the existing reliability traces: a journey describes the user-facing promise across screens; a trace proves specific contracts and invariants underneath it.
@@ -12,6 +12,7 @@ Use these when asking Codex, Claude Code, QA, or a human dogfooder to inspect th
 ## Research Inputs
 
 - [Golden Paths](../reliability/Golden%20Paths.md)
+- [No-Claude-Design Tightening Sprint](../No-Claude-Design%20Tightening%20Sprint.md)
 - [Offline First QA](../../travel-agent/docs/operations/Offline%20First%20QA.md)
 - [Canonical User Flow Map](../../travel-app/docs/user-flows/canonical-flow-map.md)
 - [Mock vs Real Parity](../../travel-app/docs/Mock%20vs%20Real%20Parity.md)
@@ -64,4 +65,3 @@ Launch Travel App in mock mode and walk docs/journeys/<journey>.md. Report broke
 ```
 
 Only after those pass should a journey become a live dogfood canary.
-

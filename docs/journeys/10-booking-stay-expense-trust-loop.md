@@ -1,8 +1,8 @@
 # 10 - Booking, Stay, And Expense Trust Loop
 
-> Status: draft  
-> Owner: founder / engineering  
-> Last updated: 2026-06-06  
+> Status: draft
+> Owner: founder / engineering
+> Last updated: 2026-06-11
 > Primary phase: booking / stay / money
 
 ## Product Promise
@@ -47,7 +47,7 @@ As an organizer, I want Vesper to help choose or confirm a stay, share the usefu
 ## Expected Outcome
 
 - User-visible state: organizer can transact; non-organizer sees appropriate quiet/group state.
-- Data state: booking session, selected offer, confirmation, accommodation, and expense source ids are stable.
+- Data state: booking session, selected offer, provider receipt, optional hotel stay writeback, and opt-in expense source ids are stable.
 - Cross-surface coherence: stays, chat, plan, booking receipt, and expenses agree.
 - Trust state: total paid, payment method, provider confirmation number, and cancellation details remain private until opt-in.
 
@@ -58,6 +58,16 @@ As an organizer, I want Vesper to help choose or confirm a stay, share the usefu
 - Provider/deeplink failure renders as booked.
 - Expense sharing happens automatically without organizer opt-in.
 - Booking proposal leaks private constraints in public justification.
+
+## Current Semantics
+
+- Booking checkout is explicit-consent only. Without `checkout_consent`, cart confirm records an in-app confirmation but does not create a provider order.
+- Duffel flight checkout uses provider order creation only after terms acceptance, idempotency claim, passenger references, and exact payment-total validation.
+- Provider receipts are receipt-only for flights. They do not create trip stays or shared expenses.
+- Confirmed hotel offers may write a `trip_accommodations` row only through the booking accommodation writeback hook, and only when the normalized hotel payload has enough stay/date/location data.
+- Shared trip-base stays are organizer-controlled. Members can manage their own personal stay slot; organizers can manage any stay slot.
+- Expenses remain opt-in. Manual and receipt-derived expenses validate that `paid_by` and every split user are members of the trip before money rows are written.
+- Offer refresh is wired through provider `get_price`; Duffel refresh reads the latest offer before checkout so stale search prices are not treated as bookable truth.
 
 ## AI Trace Prompt
 
@@ -71,6 +81,7 @@ Deterministic tests for:
 
 - booking confirmation route returns to trip
 - organizer/member confirmation visibility differs
-- expense creation is idempotent and opt-in
+- expense creation is idempotent, opt-in, and trip-member validated
 - accommodation Ask/Add routing preserves trip id
-
+- shared stay mutation requires organizer; personal stay mutation requires self or organizer
+- provider refresh updates the persisted offer instead of returning 501
