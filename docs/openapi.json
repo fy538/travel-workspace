@@ -14046,7 +14046,7 @@
           "saves"
         ],
         "summary": "Delete Save",
-        "description": "Remove a save.",
+        "description": "Remove a save.\n\nNo venue_voted_down / tombstone event is emitted \u2014 affinity scores are\nintentionally append-only (a save records genuine interest; withdrawing it\nlater doesn't negate that signal). If explicit downvotes are added in a\nfuture voting mechanic, emit venue_voted_down here.",
         "operationId": "delete_save_api_users__user_id__saves__entity_type___entity_id__delete",
         "parameters": [
           {
@@ -23043,6 +23043,17 @@
             "type": "string",
             "title": "Text"
           },
+          "short_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Short Label"
+          },
           "confidence": {
             "type": "string",
             "enum": [
@@ -27098,6 +27109,16 @@
               }
             ],
             "title": "Agent Read"
+          },
+          "structured": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DeckStructured"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -28054,6 +28075,243 @@
           "day_number"
         ],
         "title": "DayConflictsResponse"
+      },
+      "DeckColumn": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "price": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price"
+          },
+          "rows": {
+            "items": {
+              "prefixItems": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "string"
+                }
+              ],
+              "type": "array",
+              "maxItems": 2,
+              "minItems": 2
+            },
+            "type": "array",
+            "title": "Rows"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "leading": {
+            "type": "boolean",
+            "title": "Leading",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "DeckColumn",
+        "description": "One column in a Comparison deck face."
+      },
+      "DeckOption": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "sub": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sub"
+          },
+          "meta": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Meta"
+          },
+          "leading": {
+            "type": "boolean",
+            "title": "Leading",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "label"
+        ],
+        "title": "DeckOption",
+        "description": "One option in a Vote or Flight deck face."
+      },
+      "DeckPerson": {
+        "properties": {
+          "initial": {
+            "type": "string",
+            "title": "Initial"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "amount": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Amount"
+          },
+          "tint_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tint Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "initial",
+          "label"
+        ],
+        "title": "DeckPerson",
+        "description": "One person row \u2014 voter in Vote/Flight, counterparty in Settle."
+      },
+      "DeckStructured": {
+        "properties": {
+          "layout": {
+            "type": "string",
+            "enum": [
+              "flight",
+              "vote",
+              "proposal",
+              "comparison",
+              "settle"
+            ],
+            "title": "Layout"
+          },
+          "accent": {
+            "type": "string",
+            "enum": [
+              "gold",
+              "oxblood",
+              "blue"
+            ],
+            "title": "Accent",
+            "default": "gold"
+          },
+          "meta": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Meta"
+          },
+          "options": {
+            "items": {
+              "$ref": "#/components/schemas/DeckOption"
+            },
+            "type": "array",
+            "title": "Options"
+          },
+          "people": {
+            "items": {
+              "$ref": "#/components/schemas/DeckPerson"
+            },
+            "type": "array",
+            "title": "People"
+          },
+          "columns": {
+            "items": {
+              "$ref": "#/components/schemas/DeckColumn"
+            },
+            "type": "array",
+            "title": "Columns"
+          },
+          "chips": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Chips"
+          },
+          "price": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price"
+          },
+          "secondary_cta": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Secondary Cta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "layout"
+        ],
+        "title": "DeckStructured",
+        "description": "Discriminated structured payload for rich Deck card faces.\n\nCards without this field render the generic prose face. Cards with it\nswitch on ``layout`` to render the appropriate face component. All\ndisplay values are pre-formatted by the backend (e.g. \"\u20ac128\") so the\nFE never re-derives money or colour hex values."
       },
       "DecommitResponse": {
         "properties": {
@@ -34961,30 +35219,6 @@
         ],
         "title": "MessageCloseResponse",
         "description": "Response for POST /messages/close."
-      },
-      "MessageImage": {
-        "properties": {
-          "base64": {
-            "type": "string",
-            "maxLength": 2500000,
-            "minLength": 1,
-            "title": "Base64",
-            "description": "Base64-encoded image bytes (no data: prefix)."
-          },
-          "mime_type": {
-            "type": "string",
-            "pattern": "^image/(jpeg|jpg|png|webp|gif)$",
-            "title": "Mime Type",
-            "description": "MIME type \u2014 Anthropic vision accepts JPEG, PNG, WebP, GIF."
-          }
-        },
-        "type": "object",
-        "required": [
-          "base64",
-          "mime_type"
-        ],
-        "title": "MessageImage",
-        "description": "Inline image attached to a chat message.\n\nThe Anthropic chat API accepts image content blocks in messages \u2014\nwe forward the base64 + mime type through the agent loop so the\nconcierge can see what the user is asking about (\"what is this\nmonument?\", \"is this dish vegetarian?\", scan a paper menu).\n\nSized for mobile: clients should compress to <=1MB base64 (typical\nJPEG at 1920px wide, quality 0.7 = 150-300KB). Larger images flow\nthrough the existing receipt-upload path instead.\n\nMirrors the receipt-OCR call shape (``backend/expenses/receipt_ocr.py``)\nso the same vision-capable code path serves both surfaces."
       },
       "MessageResponse": {
         "properties": {
@@ -45709,6 +45943,30 @@
         "title": "ApproveRequest",
         "description": "Optional body for ``POST /api/atlas/candidates/{id}/approve``.\n\n``style`` selects the Vesper narrative voice used during artifact\ngeneration. Defaults to ``\"memory\"`` (the warm, literary default).\nOther values: ``\"postcard\"`` (Instagram-native), ``\"journal\"``\n(first-person, introspective), ``\"dispatch\"`` (editorial, thesis-driven).\n\n``reflection`` is a short, optional user-authored note (\"what was\nhappening / what did this feel like\") captured at approval time. The\ntyping itself is the load-bearing memory-consolidation moment per the\nphoto-taking-impairment research; persisting it gives the artifact\ndetail a \"back of the postcard\" surface."
       },
+      "backend__api__routes__chat__MessageImage": {
+        "properties": {
+          "base64": {
+            "type": "string",
+            "maxLength": 2500000,
+            "minLength": 1,
+            "title": "Base64",
+            "description": "Base64-encoded image bytes (no data: prefix)."
+          },
+          "mime_type": {
+            "type": "string",
+            "pattern": "^image/(jpeg|jpg|png|webp|gif)$",
+            "title": "Mime Type",
+            "description": "MIME type \u2014 Anthropic vision accepts JPEG, PNG, WebP, GIF."
+          }
+        },
+        "type": "object",
+        "required": [
+          "base64",
+          "mime_type"
+        ],
+        "title": "MessageImage",
+        "description": "Inline image attached to a chat message.\n\nThe Anthropic chat API accepts image content blocks in messages \u2014\nwe forward the base64 + mime type through the agent loop so the\nconcierge can see what the user is asking about (\"what is this\nmonument?\", \"is this dish vegetarian?\", scan a paper menu).\n\nSized for mobile: clients should compress to <=1MB base64 (typical\nJPEG at 1920px wide, quality 0.7 = 150-300KB). Larger images flow\nthrough the existing receipt-upload path instead.\n\nMirrors the receipt-OCR call shape (``backend/expenses/receipt_ocr.py``)\nso the same vision-capable code path serves both surfaces."
+      },
       "backend__api__routes__chat__SendMessageRequest": {
         "properties": {
           "user_id": {
@@ -45757,7 +46015,7 @@
             "anyOf": [
               {
                 "items": {
-                  "$ref": "#/components/schemas/MessageImage"
+                  "$ref": "#/components/schemas/backend__api__routes__chat__MessageImage"
                 },
                 "type": "array",
                 "maxItems": 4
@@ -45861,6 +46119,30 @@
         "title": "SendMessageResponse",
         "description": "What the concierge returns after processing a message."
       },
+      "backend__api__routes__conversations__MessageImage": {
+        "properties": {
+          "base64": {
+            "type": "string",
+            "maxLength": 2500000,
+            "minLength": 1,
+            "title": "Base64",
+            "description": "Base64-encoded image bytes (no data: prefix)."
+          },
+          "mime_type": {
+            "type": "string",
+            "pattern": "^image/(jpeg|jpg|png|webp|gif)$",
+            "title": "Mime Type",
+            "description": "MIME type accepted by the concierge vision path."
+          }
+        },
+        "type": "object",
+        "required": [
+          "base64",
+          "mime_type"
+        ],
+        "title": "MessageImage",
+        "description": "Inline image attached to a conversation-scoped Vesper turn."
+      },
       "backend__api__routes__conversations__SendMessageRequest": {
         "properties": {
           "user_id": {
@@ -45910,6 +46192,22 @@
               }
             ],
             "description": "Optional current GPS reading from the client. Stored on the conversation's metadata before the turn runs."
+          },
+          "images": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/backend__api__routes__conversations__MessageImage"
+                },
+                "type": "array",
+                "maxItems": 4
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Images",
+            "description": "Optional images to attach to this turn. Mirrors the trip-scoped chat endpoint so private Vesper chats do not silently drop photo context."
           },
           "metadata": {
             "anyOf": [
