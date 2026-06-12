@@ -342,6 +342,26 @@ fake confidence.
 | Trip Map | map-state fetch guard | live map fallback with itinerary guidance | N/A: map state does not show stale markers after hard failure | marker/detail fallback while map remains usable | `Couldn't load map` | `map.smoke` |
 | Atlas Map | year/map read model progress via existing chrome | private-geography empty copy | N/A: private geography does not render stale nodes on hard failure | per-place media/provenance fallback | `Couldn’t load your map` | `atlas-map.smoke` |
 
+### Landed 2026-06-12
+
+- Expanded the shared promoted-journey copy contract so Home, Vesper chat,
+  Dossier, Trip Plan, Expenses, Booking/stays, Trip Story, Trip Map, and
+  Atlas Map each explicitly carry
+  loading, empty, stale, soft-failure, and hard-failure semantics.
+- Concierge Home now has literal screen coverage for empty, loading, stale,
+  soft-failure, hard-failure, current CTA routing, decision-sheet paths, and
+  Deck utility actions.
+- Trip Story now shows a stale refresh banner while keeping a cached composed
+  story visible; Trip Map has visible loading copy; Atlas Map now routes empty
+  and failure copy through the shared state contract.
+- Added literal screen coverage for the previously under-pinned Dossier, Trip
+  Plan, Expenses, and Booking/stays branches. Chat now asserts the blank-thread
+  composer suggestions as its empty path.
+- Booking/stays now has visible loading copy (`Loading booking options`) and
+  routes the successful empty-offers copy through the shared matrix.
+- Expenses routes its filtered-category soft-empty state through the shared
+  matrix, preserving the full ledger while making the scoped empty state clear.
+
 ### Landed 2026-06-11
 
 - Trip Plan now keeps cached plan-state or legacy itinerary days visible when a
