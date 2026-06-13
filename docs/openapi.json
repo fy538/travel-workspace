@@ -5,6 +5,168 @@
     "version": "0.0.1"
   },
   "paths": {
+    "/api/action-receipts": {
+      "get": {
+        "tags": [
+          "action_receipts"
+        ],
+        "summary": "Get Action Receipt",
+        "description": "Fetch the most recent active receipt for a target object.\n\nAuth: the caller must be a member of the trip that owns the receipt.\nReceipts for proposals are scoped by the proposal's trip_id.\nReturns 404 if no receipt exists yet (not an error \u2014 receipts are\nwritten best-effort; older objects may have none).",
+        "operationId": "get_action_receipt_api_action_receipts_get",
+        "parameters": [
+          {
+            "name": "target_type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Type of the target object, e.g. 'proposal'",
+              "title": "Target Type"
+            },
+            "description": "Type of the target object, e.g. 'proposal'"
+          },
+          {
+            "name": "target_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "UUID or string id of the target object",
+              "title": "Target Id"
+            },
+            "description": "UUID or string id of the target object"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionReceiptResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/action-receipts/recent": {
+      "get": {
+        "tags": [
+          "action_receipts"
+        ],
+        "summary": "Get Recent Trip Receipts",
+        "description": "Fetch recent action receipts for a trip.\n\nAuth: caller must be a trip member.\nReturns receipts serialized for the caller's channel (group for group\ntrips, private for solo trips).",
+        "operationId": "get_recent_trip_receipts_api_trips__trip_id__action_receipts_recent_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "surface",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Filter to a specific surface",
+              "title": "Surface"
+            },
+            "description": "Filter to a specific surface"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 20,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionReceiptsListResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/admin/users/{user_id}/observations": {
       "get": {
         "tags": [
@@ -2633,6 +2795,56 @@
         }
       }
     },
+    "/api/atlas/candidates/keep-all": {
+      "post": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Keep All Candidates",
+        "description": "Approve every pending candidate in one shot.\n\nEach candidate is processed with the same atomic claim-first pattern as\nthe individual approve endpoint, so concurrent calls are safe. Candidates\nthat fail composition are skipped (claim reverted); the caller gets a\npartial result. Always uses the mock composer \u2014 running N sequential LLM\ncomposes inside a single request risks the idle-timeout and produces\n~60\u2013120 s latency; the individual approve path uses the LLM.",
+        "operationId": "keep_all_candidates_api_atlas_candidates_keep_all_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasKeepAllResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/atlas/candidates": {
       "post": {
         "tags": [
@@ -2809,7 +3021,7 @@
           "atlas"
         ],
         "summary": "Approve Candidate",
-        "description": "Approve a candidate and kick off artifact generation.\n\nPass ``{\"style\": \"postcard\"}`` in the request body to select a\nnarrative voice. Omit the body entirely for the default Memory style.\n\nV0: synchronous mock composer; returns the full artifact shell. Week 2:\nreal LLM composer behind an async task with the SSE stream populated as\nthe artifact assembles.",
+        "description": "Approve a candidate and kick off artifact generation.\n\nPass ``{\"style\": \"postcard\"}`` in the request body to select a\nnarrative voice. Omit the body entirely for the default Memory style.\n\nUses claim-first ordering (atomic UPDATE WHERE status='pending') to\neliminate the TOCTOU race from the old read-check-then-act pattern.\nDouble-tap returns the existing artifact idempotently.",
         "operationId": "approve_candidate_api_atlas_candidates__candidate_id__approve_post",
         "parameters": [
           {
@@ -3326,7 +3538,7 @@
           "atlas"
         ],
         "summary": "Get Review Inbox",
-        "description": "Backend-authored Atlas review queue.\n\nThis is the broader Atlas Inbox surface: memory candidates, pattern\nchecks, place clusters, postcard-ready rows, memory corrections, and\nsignal reviews. It stays additive next to the existing paginated\n``/api/atlas/inbox`` endpoint while the app migrates.",
+        "description": "Backend-authored Atlas review queue.\n\nReturns only real memory candidates \u2014 no synthetic pattern checks, signal\nreviews, or postcard-ready rows. Those were generated fresh each request\nand dismissed only in client session state, which made them feel like\nphantom noise. V1 will surface real signals here when they accumulate.",
         "operationId": "get_review_inbox_api_atlas_inbox_review_get",
         "parameters": [
           {
@@ -21636,6 +21848,41 @@
         "title": "AccommodationWriteRequest",
         "description": "Create or replace a trip accommodation.\n\nExactly one of ``accommodation_id`` or ``(freeform_lat, freeform_lng)``\nmust be provided. The server-side Pydantic validator and DB CHECK\nboth enforce this \u2014 the client gets a 422 or 400 on inconsistency."
       },
+      "ActionReceiptResponse": {
+        "properties": {
+          "receipt": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SerializedActionReceipt"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "receipt"
+        ],
+        "title": "ActionReceiptResponse"
+      },
+      "ActionReceiptsListResponse": {
+        "properties": {
+          "receipts": {
+            "items": {
+              "$ref": "#/components/schemas/SerializedActionReceipt"
+            },
+            "type": "array",
+            "title": "Receipts"
+          }
+        },
+        "type": "object",
+        "required": [
+          "receipts"
+        ],
+        "title": "ActionReceiptsListResponse"
+      },
       "AddBlockRequest": {
         "properties": {
           "title": {
@@ -22463,6 +22710,26 @@
             ],
             "title": "Generation Status"
           },
+          "composed_by": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Composed By"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "composed",
+              "kept"
+            ],
+            "title": "State",
+            "default": "composed"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -22607,6 +22874,15 @@
               "failed"
             ],
             "title": "Generation Status"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "composed",
+              "kept"
+            ],
+            "title": "State",
+            "default": "composed"
           }
         },
         "type": "object",
@@ -22778,6 +23054,44 @@
             "title": "Consent Scope",
             "default": "photo_candidate"
           },
+          "centroid_lat": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Centroid Lat"
+          },
+          "centroid_lng": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Centroid Lng"
+          },
+          "cluster_fingerprint": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cluster Fingerprint"
+          },
+          "cluster_algo_version": {
+            "type": "integer",
+            "title": "Cluster Algo Version",
+            "default": 1
+          },
           "status": {
             "type": "string",
             "enum": [
@@ -22913,6 +23227,44 @@
             "const": "photo_candidate",
             "title": "Consent Scope",
             "default": "photo_candidate"
+          },
+          "centroid_lat": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Centroid Lat"
+          },
+          "centroid_lng": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Centroid Lng"
+          },
+          "cluster_fingerprint": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cluster Fingerprint"
+          },
+          "cluster_algo_version": {
+            "type": "integer",
+            "title": "Cluster Algo Version",
+            "default": 1
           }
         },
         "type": "object",
@@ -23485,6 +23837,28 @@
           "generated_at"
         ],
         "title": "AtlasInboxReviewPage"
+      },
+      "AtlasKeepAllResponse": {
+        "properties": {
+          "kept": {
+            "type": "integer",
+            "title": "Kept"
+          },
+          "artifacts": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasArtifactShell"
+            },
+            "type": "array",
+            "title": "Artifacts"
+          }
+        },
+        "type": "object",
+        "required": [
+          "kept",
+          "artifacts"
+        ],
+        "title": "AtlasKeepAllResponse",
+        "description": "Response from POST /api/atlas/candidates/keep-all."
       },
       "AtlasMapArc": {
         "properties": {
@@ -39698,6 +40072,47 @@
         "title": "PublicProfileStory",
         "description": "A public-safe story summary on a profile \u2014 links to the public page."
       },
+      "PublicReason": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "source_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Type"
+          },
+          "source_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "label"
+        ],
+        "title": "PublicReason",
+        "description": "A reason that is safe to show in any channel."
+      },
       "PublicStorySection": {
         "properties": {
           "body": {
@@ -41189,6 +41604,103 @@
         "title": "SearchResultItem",
         "description": "A single search result \u2014 venue, experience, site, or accommodation."
       },
+      "SerializedActionReceipt": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "surface": {
+            "type": "string",
+            "title": "Surface"
+          },
+          "action_type": {
+            "type": "string",
+            "title": "Action Type"
+          },
+          "target_type": {
+            "type": "string",
+            "title": "Target Type"
+          },
+          "target_id": {
+            "type": "string",
+            "title": "Target Id"
+          },
+          "public_reasons": {
+            "items": {
+              "$ref": "#/components/schemas/PublicReason"
+            },
+            "type": "array",
+            "title": "Public Reasons"
+          },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/SourceRef"
+            },
+            "type": "array",
+            "title": "Source Refs"
+          },
+          "visibility": {
+            "type": "string",
+            "title": "Visibility"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "undo_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Undo Type"
+          },
+          "undo_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Undo Ref"
+          },
+          "has_degraded_sources": {
+            "type": "boolean",
+            "title": "Has Degraded Sources",
+            "default": false
+          },
+          "had_private_context": {
+            "type": "boolean",
+            "title": "Had Private Context",
+            "default": false
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "surface",
+          "action_type",
+          "target_type",
+          "target_id",
+          "public_reasons",
+          "source_refs",
+          "visibility",
+          "status",
+          "created_at"
+        ],
+        "title": "SerializedActionReceipt",
+        "description": "What the API returns after channel-based filtering.\n\nprivate_influences are never present \u2014 only safe_label values are\nsurfaced via the public_reasons fallback mechanism."
+      },
       "SessionInfoResponse": {
         "properties": {
           "trip_id": {
@@ -41982,6 +42494,41 @@
         ],
         "title": "SituationVoiceSession",
         "description": "Public-safe summary of the active voice-guide arc."
+      },
+      "SourceRef": {
+        "properties": {
+          "source_type": {
+            "type": "string",
+            "title": "Source Type"
+          },
+          "source_id": {
+            "type": "string",
+            "title": "Source Id"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "degraded": {
+            "type": "boolean",
+            "title": "Degraded",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "source_type",
+          "source_id"
+        ],
+        "title": "SourceRef",
+        "description": "A piece of evidence or system event that caused the action."
       },
       "SpeculativeAngle": {
         "properties": {
