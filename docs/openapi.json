@@ -26843,6 +26843,45 @@
         ],
         "title": "CheckoutPayment"
       },
+      "ChipsReceipt": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "chips",
+            "title": "Type",
+            "default": "chips"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "items": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "label",
+          "items"
+        ],
+        "title": "ChipsReceipt",
+        "description": "Chips \u2014 loved/saved place chips (Recall / Tempt)."
+      },
       "ClaimRequest": {
         "properties": {
           "entity_type": {
@@ -27927,6 +27966,52 @@
           "code"
         ],
         "title": "ConfirmVerificationRequest"
+      },
+      "ConflictBlock": {
+        "properties": {
+          "t": {
+            "type": "string",
+            "title": "T"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "t",
+          "label"
+        ],
+        "title": "ConflictBlock"
+      },
+      "ConflictReceipt": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "conflict",
+            "title": "Type",
+            "default": "conflict"
+          },
+          "a": {
+            "$ref": "#/components/schemas/ConflictBlock"
+          },
+          "b": {
+            "$ref": "#/components/schemas/ConflictBlock"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label",
+            "default": "these two overlap"
+          }
+        },
+        "type": "object",
+        "required": [
+          "a",
+          "b"
+        ],
+        "title": "ConflictReceipt",
+        "description": "ConflictRow \u2014 two overlapping blocks (Urgent \u00b7 problem / Orient \u00b7 clash)."
       },
       "ConflictSeverity": {
         "type": "string",
@@ -32730,6 +32815,103 @@
         "type": "object",
         "title": "HeartbeatResponse"
       },
+      "HeroIdentity": {
+        "properties": {
+          "place": {
+            "type": "string",
+            "title": "Place"
+          },
+          "fact": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fact"
+          }
+        },
+        "type": "object",
+        "required": [
+          "place"
+        ],
+        "title": "HeroIdentity",
+        "description": "The one-line identity: place + the single most relevant status fact."
+      },
+      "HeroRead": {
+        "properties": {
+          "prose": {
+            "type": "string",
+            "title": "Prose"
+          },
+          "cited_fact": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cited Fact"
+          },
+          "archetype": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Archetype"
+          }
+        },
+        "type": "object",
+        "required": [
+          "prose"
+        ],
+        "title": "HeroRead",
+        "description": "The one read in Vesper's voice. ``prose`` is the only LLM-authored field."
+      },
+      "HeroStep": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "action": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Action"
+          },
+          "secondary": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Secondary"
+          }
+        },
+        "type": "object",
+        "required": [
+          "label"
+        ],
+        "title": "HeroStep",
+        "description": "The one step \u2014 a door, never a transaction."
+      },
       "HomeAnchor": {
         "properties": {
           "voice_line": {
@@ -32883,6 +33065,37 @@
         ],
         "title": "HomeFeed",
         "description": "Full payload for ``GET /trips/{trip_id}/home_cards``.\n\nThree zones; clients render top-to-bottom: anchor, active, ambient."
+      },
+      "HoodReceipt": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "hood",
+            "title": "Type",
+            "default": "hood"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "HoodReceipt",
+        "description": "Hood \u2014 one coarse neighbourhood character read (Match)."
       },
       "HydratedMember": {
         "properties": {
@@ -34517,6 +34730,61 @@
         ],
         "title": "LeaveByActionResponse",
         "description": "Confirmation envelope for leave-by dismiss / mute actions."
+      },
+      "LedgerReceipt": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "ledger",
+            "title": "Type",
+            "default": "ledger"
+          },
+          "rows": {
+            "items": {
+              "$ref": "#/components/schemas/LedgerRow"
+            },
+            "type": "array",
+            "title": "Rows"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rows"
+        ],
+        "title": "LedgerReceipt",
+        "description": "MiniLedger \u2014 today's blocks (Orient)."
+      },
+      "LedgerRow": {
+        "properties": {
+          "t": {
+            "type": "string",
+            "title": "T"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "done",
+              "now",
+              "soon",
+              "open",
+              "arrive",
+              "depart",
+              "clash"
+            ],
+            "title": "State"
+          }
+        },
+        "type": "object",
+        "required": [
+          "t",
+          "label",
+          "state"
+        ],
+        "title": "LedgerRow"
       },
       "LensGroup": {
         "properties": {
@@ -40528,6 +40796,63 @@
         "title": "ReactionSummary",
         "description": "Aggregated reactions to a message."
       },
+      "ReadyListReceipt": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "ready_list",
+            "title": "Type",
+            "default": "ready_list"
+          },
+          "rows": {
+            "items": {
+              "$ref": "#/components/schemas/ReadyRow"
+            },
+            "type": "array",
+            "title": "Rows"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rows"
+        ],
+        "title": "ReadyListReceipt",
+        "description": "ReadyList \u2014 pre-departure readiness rows (Ready)."
+      },
+      "ReadyRow": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "set",
+              "open",
+              "clash"
+            ],
+            "title": "State"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "label",
+          "state"
+        ],
+        "title": "ReadyRow"
+      },
       "Receipt": {
         "properties": {
           "id": {
@@ -41369,6 +41694,30 @@
         "type": "object",
         "title": "RevertRequest",
         "description": "Revert an already-accepted proposal, restoring the prior itinerary state.\n\nOnly the trip organizer may revert. The ``resolution_note`` is stored on\nthe proposal row and surfaced in the group chat bridge message so members\nunderstand why the change was undone.\n\n``mode`` selects the revert strategy. ``None``/``\"diff_safe\"`` keeps the\nsurgical reverse-patch that preserves unrelated later edits (and may return\n``diff_safe_partial`` when some fields were edited since). ``\"version_restore\"``\nis the \"Force full revert\" path the conflict sheet offers \u2014 it snaps the\nitinerary back to the pre-accept version, discarding later edits. Previously\nthis field was silently dropped by FastAPI, so \"Force full revert\" was a\nno-op for any modern (post-Phase-2) proposal."
+      },
+      "RibbonDay": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "theme",
+              "place",
+              "stops",
+              "empty"
+            ],
+            "title": "Kind"
+          }
+        },
+        "type": "object",
+        "required": [
+          "label",
+          "kind"
+        ],
+        "title": "RibbonDay"
       },
       "RouteRequest": {
         "properties": {
@@ -42857,6 +43206,31 @@
         "title": "SpeculativeAngles",
         "description": "Response for ``GET /api/places/{slug}/angles/speculate?query=...``."
       },
+      "SpineReceipt": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "spine",
+            "title": "Type",
+            "default": "spine"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "filled": {
+            "type": "integer",
+            "title": "Filled"
+          }
+        },
+        "type": "object",
+        "required": [
+          "total",
+          "filled"
+        ],
+        "title": "SpineReceipt",
+        "description": "Spine \u2014 day-shape progress, not a completeness gauge (Standing floor)."
+      },
       "StartVerificationResponse": {
         "properties": {
           "sent": {
@@ -43673,6 +44047,16 @@
             ],
             "title": "Concierge Note"
           },
+          "hero": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TripHero"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -44045,6 +44429,125 @@
           "available"
         ],
         "title": "TripGroupProfileSurface"
+      },
+      "TripHero": {
+        "properties": {
+          "kind": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "cold",
+                  "between",
+                  "planning",
+                  "ready",
+                  "orient",
+                  "urgent",
+                  "returned",
+                  "frequent"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Kind"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "calm",
+              "needs_you",
+              "broken"
+            ],
+            "title": "Severity",
+            "default": "calm"
+          },
+          "identity": {
+            "$ref": "#/components/schemas/HeroIdentity"
+          },
+          "read": {
+            "$ref": "#/components/schemas/HeroRead"
+          },
+          "receipt": {
+            "anyOf": [
+              {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/LedgerReceipt"
+                  },
+                  {
+                    "$ref": "#/components/schemas/ReadyListReceipt"
+                  },
+                  {
+                    "$ref": "#/components/schemas/VoteReceipt"
+                  },
+                  {
+                    "$ref": "#/components/schemas/ConflictReceipt"
+                  },
+                  {
+                    "$ref": "#/components/schemas/WeekRibbonReceipt"
+                  },
+                  {
+                    "$ref": "#/components/schemas/ChipsReceipt"
+                  },
+                  {
+                    "$ref": "#/components/schemas/HoodReceipt"
+                  },
+                  {
+                    "$ref": "#/components/schemas/SpineReceipt"
+                  }
+                ],
+                "discriminator": {
+                  "propertyName": "type",
+                  "mapping": {
+                    "chips": "#/components/schemas/ChipsReceipt",
+                    "conflict": "#/components/schemas/ConflictReceipt",
+                    "hood": "#/components/schemas/HoodReceipt",
+                    "ledger": "#/components/schemas/LedgerReceipt",
+                    "ready_list": "#/components/schemas/ReadyListReceipt",
+                    "spine": "#/components/schemas/SpineReceipt",
+                    "vote": "#/components/schemas/VoteReceipt",
+                    "week_ribbon": "#/components/schemas/WeekRibbonReceipt"
+                  }
+                }
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Receipt"
+          },
+          "step": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/HeroStep"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "generated_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Generated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "identity",
+          "read"
+        ],
+        "title": "TripHero",
+        "description": "The typed hero payload attached to ``Trip.hero`` (not persisted).\n\n``kind``/``severity`` are routing/register hints; ``identity``/``read``/\n``receipt``/``step`` are the renderable content. Live/time-pressure states\n(Orient/Urgent/Ready) override this from their own FE hooks rather than the\ntrips-list field."
       },
       "TripHighlightResponse": {
         "properties": {
@@ -46673,6 +47176,42 @@
         "title": "VoiceTokenResponse",
         "description": "LiveKit connection credentials for the client."
       },
+      "VoteReceipt": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "vote",
+            "title": "Type",
+            "default": "vote"
+          },
+          "in_count": {
+            "type": "integer",
+            "title": "In Count"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "in_count",
+          "total"
+        ],
+        "title": "VoteReceipt",
+        "description": "VoteRow \u2014 group vote tally (Urgent \u00b7 vote)."
+      },
       "VoteRequest": {
         "properties": {
           "vote": {
@@ -46698,6 +47237,43 @@
         ],
         "title": "VoteRequest",
         "description": "Vote on a change proposal."
+      },
+      "WeekRibbonReceipt": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "week_ribbon",
+            "title": "Type",
+            "default": "week_ribbon"
+          },
+          "days": {
+            "items": {
+              "$ref": "#/components/schemas/RibbonDay"
+            },
+            "type": "array",
+            "title": "Days"
+          },
+          "date_range": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date Range"
+          }
+        },
+        "type": "object",
+        "required": [
+          "days"
+        ],
+        "title": "WeekRibbonReceipt",
+        "description": "WeekRibbon \u2014 the lived week, one cell per day (Returned \u00b7 Shape)."
       },
       "_InteractionAck": {
         "properties": {
