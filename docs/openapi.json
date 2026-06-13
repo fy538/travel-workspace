@@ -18497,6 +18497,69 @@
         }
       }
     },
+    "/api/me/narration-history": {
+      "get": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "Get My Narration History",
+        "description": "Narrations the user has heard \u2014 newest-first, deduped per entity.\n\nBacks the Atlas \"narrations you've heard\" replay surface. Each item carries\n``trip_id`` so the client can re-fetch the (trip-scoped) cached audio via\n``GET /api/trips/{trip_id}/narration/audio/{entity_type}/{entity_id}``.",
+        "operationId": "get_my_narration_history_api_me_narration_history_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 200,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NarrationHistoryResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/me/profile-fact/dispute": {
       "post": {
         "tags": [
@@ -23321,6 +23384,16 @@
             "type": "string",
             "title": "Status Line"
           },
+          "letter": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AtlasHomeLetter"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "featured_dna_line": {
             "anyOf": [
               {
@@ -23367,6 +23440,13 @@
             },
             "type": "array",
             "title": "Pending Candidates"
+          },
+          "on_this_day": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasOnThisDayItem"
+            },
+            "type": "array",
+            "title": "On This Day"
           },
           "trip_count": {
             "type": "integer",
@@ -23429,6 +23509,62 @@
         ],
         "title": "AtlasHomeDnaLine"
       },
+      "AtlasHomeLetter": {
+        "properties": {
+          "salutation": {
+            "type": "string",
+            "title": "Salutation"
+          },
+          "body": {
+            "type": "string",
+            "title": "Body"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "active",
+              "returning",
+              "draft",
+              "upcoming",
+              "anniversary",
+              "standing",
+              "cold"
+            ],
+            "title": "State"
+          },
+          "generation_status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "generating",
+              "ready",
+              "failed"
+            ],
+            "title": "Generation Status",
+            "default": "ready"
+          },
+          "generated_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Generated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "salutation",
+          "body",
+          "state"
+        ],
+        "title": "AtlasHomeLetter",
+        "description": "Vesper's dated, first-person reflection \u2014 the hero spine of Atlas Home.\n\nBackend-authored prose (mock or LLM). When present, the client prefers\nthis over its own client-side letter composition. ``state`` is the\nsituation Vesper is writing into; ``generation_status`` lets the client\nshow a \"writing\u2026\" shimmer while the LLM upgrade is in flight (the mock\nbody is served immediately so the hero is never blank)."
+      },
       "AtlasHomeOwner": {
         "properties": {
           "first_name": {
@@ -23465,6 +23601,20 @@
           "cta_label": {
             "type": "string",
             "title": "Cta Label"
+          },
+          "map_points": {
+            "items": {
+              "$ref": "#/components/schemas/GeoPoint"
+            },
+            "type": "array",
+            "title": "Map Points"
+          },
+          "preview_artifacts": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasArtifactShell"
+            },
+            "type": "array",
+            "title": "Preview Artifacts"
           }
         },
         "type": "object",
@@ -24177,6 +24327,57 @@
         },
         "type": "object",
         "title": "AtlasMapSummary"
+      },
+      "AtlasOnThisDayItem": {
+        "properties": {
+          "source_type": {
+            "type": "string",
+            "enum": [
+              "artifact",
+              "candidate",
+              "trip"
+            ],
+            "title": "Source Type"
+          },
+          "source_id": {
+            "type": "string",
+            "title": "Source Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "place_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Label"
+          },
+          "occurred_on": {
+            "type": "string",
+            "format": "date",
+            "title": "Occurred On"
+          },
+          "years_ago": {
+            "type": "integer",
+            "title": "Years Ago"
+          }
+        },
+        "type": "object",
+        "required": [
+          "source_type",
+          "source_id",
+          "title",
+          "occurred_on",
+          "years_ago"
+        ],
+        "title": "AtlasOnThisDayItem",
+        "description": "A memory whose month/day matches today, from a past year.\n\nThe honest, recurring source of \"aliveness\" on quiet days \u2014 no\nmanufactured activity, just real anniversaries of trips/artifacts."
       },
       "AtlasPlaceCluster": {
         "properties": {
@@ -36038,6 +36239,75 @@
         ],
         "title": "NarrationEntity",
         "description": "The place being narrated.\n\n``id`` is a string at the wire level so UUID-keyed entities (experiences)\nand integer-keyed entities (venues, sites, places) can share the\nschema. Server-side coercion to int happens before retrieval \u2014 see\n``_coerce_entity_id`` below."
+      },
+      "NarrationHistoryItem": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "entity_type": {
+            "type": "string",
+            "title": "Entity Type"
+          },
+          "entity_id": {
+            "type": "string",
+            "title": "Entity Id"
+          },
+          "entity_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Entity Name"
+          },
+          "depth": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Depth"
+          },
+          "last_heard_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Last Heard At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "entity_type",
+          "entity_id",
+          "last_heard_at"
+        ],
+        "title": "NarrationHistoryItem",
+        "description": "One distinct narration the user has heard (Atlas replay list)."
+      },
+      "NarrationHistoryResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/NarrationHistoryItem"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "title": "NarrationHistoryResponse"
       },
       "NarrationManifest": {
         "properties": {
