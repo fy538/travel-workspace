@@ -43037,6 +43037,13 @@
             "type": "integer",
             "title": "Booking Attention Count",
             "default": 0
+          },
+          "today_remaining_blocks": {
+            "items": {
+              "$ref": "#/components/schemas/SituationPlanBlock"
+            },
+            "type": "array",
+            "title": "Today Remaining Blocks"
           }
         },
         "type": "object",
