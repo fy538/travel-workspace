@@ -27750,18 +27750,6 @@
       },
       "ConciergeHomeFeed": {
         "properties": {
-          "mode": {
-            "type": "string",
-            "enum": [
-              "atelier",
-              "live",
-              "urgent",
-              "quiet",
-              "starter"
-            ],
-            "title": "Mode",
-            "default": "atelier"
-          },
           "lead_note": {
             "$ref": "#/components/schemas/ConciergeHomeLeadNote"
           },
@@ -27786,27 +27774,6 @@
             "type": "string",
             "format": "date-time",
             "title": "Generated At"
-          },
-          "home_state": {
-            "anyOf": [
-              {
-                "type": "string",
-                "enum": [
-                  "urgent",
-                  "dispatch",
-                  "imminent",
-                  "prepared",
-                  "signal",
-                  "capture",
-                  "resume",
-                  "starter"
-                ]
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Home State"
           },
           "voice_register": {
             "anyOf": [
