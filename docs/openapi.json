@@ -22946,6 +22946,17 @@
             ],
             "title": "State",
             "default": "composed"
+          },
+          "composed_by": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Composed By"
           }
         },
         "type": "object",
@@ -27733,6 +27744,16 @@
                 "type": "null"
               }
             ]
+          },
+          "focus": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DeckFocus"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -28761,6 +28782,61 @@
         "title": "DeckColumn",
         "description": "One column in a Comparison deck face."
       },
+      "DeckFocus": {
+        "properties": {
+          "layout": {
+            "type": "string",
+            "const": "pick",
+            "title": "Layout"
+          },
+          "reasoning": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reasoning"
+          },
+          "tradeoff": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tradeoff"
+          },
+          "candidates": {
+            "items": {
+              "$ref": "#/components/schemas/DeckPickCandidate"
+            },
+            "type": "array",
+            "title": "Candidates"
+          },
+          "primary_cta": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Primary Cta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "layout"
+        ],
+        "title": "DeckFocus",
+        "description": "Level-2 decision substrate \u2014 the \"help me decide\" content behind a card.\n\nDistinct from ``DeckStructured`` (raw options/rows): focus carries Vesper's\nJUDGMENT layer \u2014 the pick, the reasoning, the rejected alternatives, and the\none tradeoff that flips the choice. The home glance presents the decision;\nthis focus payload (rendered full-screen in the Deck) helps make it.\n\n``layout`` is the decision shape (only ``pick`` today; brief/call extend it).\nCo-generated with the glance so the two levels cannot drift. ``reasoning``\nand ``tradeoff`` are populated by a grounded LLM pass; ``candidates`` is the\ndeterministic structure and is safe to populate without generation."
+      },
       "DeckOption": {
         "properties": {
           "id": {
@@ -28847,6 +28923,80 @@
         ],
         "title": "DeckPerson",
         "description": "One person row \u2014 voter in Vote/Flight, counterparty in Settle."
+      },
+      "DeckPickCandidate": {
+        "properties": {
+          "entity_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Entity Ref"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "walk": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Walk"
+          },
+          "price": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price"
+          },
+          "attribute": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attribute"
+          },
+          "why_not": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Why Not"
+          },
+          "leading": {
+            "type": "boolean",
+            "title": "Leading",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "DeckPickCandidate",
+        "description": "One candidate in a Pick decision \u2014 the chosen one or a rejected option.\n\nThe structure (``name``/``walk``/``price``/``attribute``) is DATA \u2014 pulled\nstraight from the ranked venues, never hallucinated. The judgment\n(``why_not``, and the ``leading`` flag's reasoning) is generated grounded in\nthat structure. All display values are pre-formatted by the backend."
       },
       "DeckStructured": {
         "properties": {
@@ -29066,6 +29216,12 @@
           },
           "signal_type": {
             "type": "string",
+            "enum": [
+              "travel_dna_phrase",
+              "preferred_neighborhood",
+              "preferred_pace",
+              "preferred_discovery_mode"
+            ],
             "title": "Signal Type"
           },
           "value": {
@@ -34220,6 +34376,17 @@
               }
             ],
             "title": "Lng"
+          },
+          "neighborhood_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Neighborhood Name"
           },
           "created_at": {
             "type": "string",
