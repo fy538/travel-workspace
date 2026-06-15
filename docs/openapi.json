@@ -16217,6 +16217,76 @@
         }
       }
     },
+    "/api/trips/{trip_id}/venue-commitments": {
+      "post": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Commit Trip Venue Endpoint",
+        "description": "Commit a chosen venue to a trip \u2014 the affirmative of a Pick decision.\n\nIdempotent: committing the same venue again returns the existing row. Only\ntrip members can commit. Feeds place-affinity at a stronger weight than a\nsave.",
+        "operationId": "commit_trip_venue_endpoint_api_trips__trip_id__venue_commitments_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VenueCommitRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VenueCommitResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/digest/email": {
       "post": {
         "tags": [
@@ -27744,6 +27814,16 @@
                 "type": "null"
               }
             ]
+          },
+          "focus": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DeckFocus"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -28772,6 +28852,61 @@
         "title": "DeckColumn",
         "description": "One column in a Comparison deck face."
       },
+      "DeckFocus": {
+        "properties": {
+          "layout": {
+            "type": "string",
+            "const": "pick",
+            "title": "Layout"
+          },
+          "reasoning": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reasoning"
+          },
+          "tradeoff": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tradeoff"
+          },
+          "candidates": {
+            "items": {
+              "$ref": "#/components/schemas/DeckPickCandidate"
+            },
+            "type": "array",
+            "title": "Candidates"
+          },
+          "primary_cta": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Primary Cta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "layout"
+        ],
+        "title": "DeckFocus",
+        "description": "Level-2 decision substrate \u2014 the \"help me decide\" content behind a card.\n\nDistinct from ``DeckStructured`` (raw options/rows): focus carries Vesper's\nJUDGMENT layer \u2014 the pick, the reasoning, the rejected alternatives, and the\none tradeoff that flips the choice. The home glance presents the decision;\nthis focus payload (rendered full-screen in the Deck) helps make it.\n\n``layout`` is the decision shape (only ``pick`` today; brief/call extend it).\nCo-generated with the glance so the two levels cannot drift. ``reasoning``\nand ``tradeoff`` are populated by a grounded LLM pass; ``candidates`` is the\ndeterministic structure and is safe to populate without generation."
+      },
       "DeckOption": {
         "properties": {
           "id": {
@@ -28859,6 +28994,91 @@
         "title": "DeckPerson",
         "description": "One person row \u2014 voter in Vote/Flight, counterparty in Settle."
       },
+      "DeckPickCandidate": {
+        "properties": {
+          "entity_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Entity Ref"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "walk": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Walk"
+          },
+          "price": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price"
+          },
+          "price_tier": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Tier"
+          },
+          "attribute": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attribute"
+          },
+          "why_not": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Why Not"
+          },
+          "leading": {
+            "type": "boolean",
+            "title": "Leading",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "DeckPickCandidate",
+        "description": "One candidate in a Pick decision \u2014 the chosen one or a rejected option.\n\nThe structure (``name``/``walk``/``price``/``attribute``) is DATA \u2014 pulled\nstraight from the ranked venues, never hallucinated. The judgment\n(``why_not``, and the ``leading`` flag's reasoning) is generated grounded in\nthat structure. All display values are pre-formatted by the backend."
+      },
       "DeckStructured": {
         "properties": {
           "layout": {
@@ -28942,6 +29162,13 @@
               }
             ],
             "title": "Secondary Cta"
+          },
+          "expense_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Expense Ids"
           }
         },
         "type": "object",
@@ -32824,6 +33051,31 @@
         "title": "HeroIdentity",
         "description": "The one-line identity: place + the single most relevant status fact."
       },
+      "HeroPill": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "tone": {
+            "type": "string",
+            "enum": [
+              "ink",
+              "sage",
+              "gold",
+              "amber"
+            ],
+            "title": "Tone",
+            "default": "ink"
+          }
+        },
+        "type": "object",
+        "required": [
+          "label"
+        ],
+        "title": "HeroPill",
+        "description": "Top-of-card status pill: a marker (countdown / liveness) + register tone.\n\nFar-out planning + Tempt states carry this; it drives the FE's rich\nFarShell layout. ``tone``: ink = planning/dates \u00b7 sage = dreaming \u00b7\ngold = Vesper pull \u00b7 amber = needs-you."
+      },
       "HeroRead": {
         "properties": {
           "prose": {
@@ -32851,6 +33103,17 @@
               }
             ],
             "title": "Archetype"
+          },
+          "emphasis": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Emphasis"
           }
         },
         "type": "object",
@@ -34237,6 +34500,17 @@
               }
             ],
             "title": "Lng"
+          },
+          "neighborhood_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Neighborhood Name"
           },
           "created_at": {
             "type": "string",
@@ -35998,6 +36272,48 @@
         ],
         "title": "MemoryInteractionCreate",
         "description": "Body of POST /api/memory/interactions (single event)."
+      },
+      "MemoryReceipt": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "memory",
+            "title": "Type",
+            "default": "memory"
+          },
+          "scene": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scene"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "label"
+        ],
+        "title": "MemoryReceipt",
+        "description": "Memory \u2014 a loved past trip the read cites, shown with a place\nillustration thumbnail (Recall). ``scene`` is a destination/illustration\nkey the FE maps to a riso variant."
       },
       "MemoryResetResponse": {
         "properties": {
@@ -38596,6 +38912,17 @@
           "source": {
             "$ref": "#/components/schemas/PlanChangeSource"
           },
+          "author_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Author Id"
+          },
           "created_at": {
             "type": "string",
             "title": "Created At"
@@ -40415,6 +40742,14 @@
               }
             ],
             "title": "My Vote"
+          },
+          "missing_voter_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Missing Voter Ids"
           },
           "approval_mode": {
             "anyOf": [
@@ -44487,6 +44822,9 @@
                   },
                   {
                     "$ref": "#/components/schemas/SpineReceipt"
+                  },
+                  {
+                    "$ref": "#/components/schemas/MemoryReceipt"
                   }
                 ],
                 "discriminator": {
@@ -44496,6 +44834,7 @@
                     "conflict": "#/components/schemas/ConflictReceipt",
                     "hood": "#/components/schemas/HoodReceipt",
                     "ledger": "#/components/schemas/LedgerReceipt",
+                    "memory": "#/components/schemas/MemoryReceipt",
                     "ready_list": "#/components/schemas/ReadyListReceipt",
                     "spine": "#/components/schemas/SpineReceipt",
                     "vote": "#/components/schemas/VoteReceipt",
@@ -44518,6 +44857,49 @@
                 "type": "null"
               }
             ]
+          },
+          "pill": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/HeroPill"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "dates": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dates"
+          },
+          "scene": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scene"
+          },
+          "sub": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sub"
           },
           "generated_at": {
             "anyOf": [
@@ -46429,6 +46811,14 @@
             ],
             "title": "My Vote"
           },
+          "missing_voter_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Missing Voter Ids"
+          },
           "approval_mode": {
             "anyOf": [
               {
@@ -46685,6 +47075,61 @@
         ],
         "title": "VenueBriefItem",
         "description": "Compact venue brief \u2014 the 20% slot in the global Discover feed."
+      },
+      "VenueCommitRequest": {
+        "properties": {
+          "venue_id": {
+            "type": "integer",
+            "title": "Venue Id"
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source",
+            "default": "pick_commit"
+          }
+        },
+        "type": "object",
+        "required": [
+          "venue_id"
+        ],
+        "title": "VenueCommitRequest"
+      },
+      "VenueCommitResponse": {
+        "properties": {
+          "committed": {
+            "type": "boolean",
+            "title": "Committed",
+            "default": true
+          },
+          "commitment_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Commitment Id"
+          },
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "venue_id": {
+            "type": "integer",
+            "title": "Venue Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "commitment_id",
+          "trip_id",
+          "venue_id"
+        ],
+        "title": "VenueCommitResponse"
       },
       "VenueDetailResponse": {
         "properties": {
