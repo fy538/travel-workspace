@@ -1846,216 +1846,6 @@
         }
       }
     },
-    "/admin/angles/pending": {
-      "get": {
-        "tags": [
-          "admin"
-        ],
-        "summary": "List Pending Angles",
-        "description": "Return all angles with status='pending_review', newest first.\n\nOptionally filter to a single place by passing `place_slug`.\nNo pagination \u2014 this is a curator tool intended for dev/admin use.",
-        "operationId": "list_pending_angles_admin_angles_pending_get",
-        "parameters": [
-          {
-            "name": "place_slug",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "description": "Filter by place slug",
-              "title": "Place Slug"
-            },
-            "description": "Filter by place slug"
-          },
-          {
-            "name": "x-service-token",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "X-Service-Token"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PendingAngle"
-                  },
-                  "title": "Response List Pending Angles Admin Angles Pending Get"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/admin/angles/{angle_id}/approve": {
-      "post": {
-        "tags": [
-          "admin"
-        ],
-        "summary": "Approve Angle",
-        "description": "Approve a pending angle, moving it to status='queued'.\n\nSets `reviewed_at` to the current server time and optionally records\n`review_notes`. Returns the angle row as it was at the moment of approval\n(status field is omitted from the response model since it's no longer\npending_review after this call).\n\nRaises 404 if the angle doesn't exist or is not in `pending_review`.",
-        "operationId": "approve_angle_admin_angles__angle_id__approve_post",
-        "parameters": [
-          {
-            "name": "angle_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Angle Id"
-            }
-          },
-          {
-            "name": "x-service-token",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "X-Service-Token"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/backend__api__routes__admin_angles__ApproveRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PendingAngle"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/admin/angles/{angle_id}/reject": {
-      "post": {
-        "tags": [
-          "admin"
-        ],
-        "summary": "Reject Angle",
-        "description": "Reject a pending angle, moving it to status='rejected'.\n\nSets `reviewed_at` to the current server time and records the required\n`review_notes`. Returns the angle row as it was at the moment of rejection\n(status field is omitted from the response model since it's no longer\npending_review after this call).\n\nRaises 404 if the angle doesn't exist or is not in `pending_review`.",
-        "operationId": "reject_angle_admin_angles__angle_id__reject_post",
-        "parameters": [
-          {
-            "name": "angle_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Angle Id"
-            }
-          },
-          {
-            "name": "x-service-token",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "X-Service-Token"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RejectRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PendingAngle"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/places/{slug}/angles/request": {
       "post": {
         "tags": [
@@ -2125,221 +1915,6 @@
         }
       }
     },
-    "/api/places/{slug}/angles": {
-      "get": {
-        "tags": [
-          "angles"
-        ],
-        "summary": "List Place Angles",
-        "description": "List published angles for a place in editorial order (priority +\ndistinctiveness). No personalization \u2014 signed-in readers should call\n``/angles/personalized`` instead, which derives identity from the Bearer\ntoken rather than a query param.",
-        "operationId": "list_place_angles_api_places__slug__angles_get",
-        "parameters": [
-          {
-            "name": "slug",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Slug"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PlaceAngles"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/places/{slug}/angles/personalized": {
-      "get": {
-        "tags": [
-          "angles"
-        ],
-        "summary": "List Place Angles Personalized",
-        "description": "Personalized angle list for the signed-in reader.\n\nThe reader's identity comes from the Bearer token (``actor``), never a\nquery param \u2014 so no user id rides in the URL and a caller can only ever\npersonalize against their own Personal Memory. Falls back to editorial\norder when the reader has no memory yet (200, not 404 \u2014 an empty profile\nis a normal state, not an error). Rate-limited because each call with a\npopulated memory spends a Haiku turn in ``_apply_personalization``.",
-        "operationId": "list_place_angles_personalized_api_places__slug__angles_personalized_get",
-        "parameters": [
-          {
-            "name": "slug",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Slug"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PlaceAngles"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/places/{slug}/angles/by-lens": {
-      "get": {
-        "tags": [
-          "angles"
-        ],
-        "summary": "List Place Angles By Lens",
-        "description": "Editorial index \u2014 published angles grouped by travel lens.\n\nThe ordering within each group follows priority \u2192 distinctiveness (same\nas the flat list endpoint). Groups are ordered by the canonical lens\ntaxonomy: why_here, day_in, affinity, insider, tension, ritual.\n``unlensed`` captures any published angles that predate the lens system.",
-        "operationId": "list_place_angles_by_lens_api_places__slug__angles_by_lens_get",
-        "parameters": [
-          {
-            "name": "slug",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Slug"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PlaceAnglesByLens"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/places/{slug}/angles/speculate": {
-      "get": {
-        "tags": [
-          "angles"
-        ],
-        "summary": "Speculate Place Angles",
-        "description": "Generate speculative sub-angles on the fly from a user query.\n\nReturns 3-5 ephemeral angle suggestions that are complementary to what\nalready exists for the place. These are never persisted \u2014 they are\nfast-start discovery chips for the browse surface.\n\nAuthed + rate-limited \u2014 pre-fix this was anonymous and called Sonnet\nevery request, an LLM-spend amplification surface.\n\nOn failure (LLM error, empty place), returns an empty ``suggestions`` list.",
-        "operationId": "speculate_place_angles_api_places__slug__angles_speculate_get",
-        "parameters": [
-          {
-            "name": "slug",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Slug"
-            }
-          },
-          {
-            "name": "query",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "description": "The reader's exploratory query",
-              "title": "Query"
-            },
-            "description": "The reader's exploratory query"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SpeculativeAngles"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/angles/{angle_id}": {
       "get": {
         "tags": [
@@ -2366,53 +1941,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AngleDetail"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/venues/{venue_id}/angles": {
-      "get": {
-        "tags": [
-          "angles"
-        ],
-        "summary": "List Venue Angles",
-        "description": "Angles this venue is a member of. Powers the breadcrumb chip.",
-        "operationId": "list_venue_angles_api_venues__venue_id__angles_get",
-        "parameters": [
-          {
-            "name": "venue_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Venue Id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AnglePreview"
-                  },
-                  "title": "Response List Venue Angles Api Venues  Venue Id  Angles Get"
                 }
               }
             }
@@ -3055,7 +2583,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/backend__api__routes__atlas__ApproveRequest",
+                "$ref": "#/components/schemas/ApproveRequest",
                 "default": {
                   "style": "memory"
                 }
@@ -4402,6 +3930,286 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/BookingProposal"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/booking/proposals/{proposal_id}/confirm": {
+      "post": {
+        "tags": [
+          "booking"
+        ],
+        "summary": "Confirm Booking Proposal Endpoint",
+        "description": "Confirm a held booking proposal \u2014 the affirmative of a deck Call. Idempotent.\n\nThin transition (status \u2192 confirmed). NOTE: the richer concierge confirm path\n(booking_flow.py \u2014 itinerary block-matching, payee push, handoff stamping) is\nNOT run here; this is a v1 for the held-table case. Revisit if a held stay\nneeds the downstream effects.",
+        "operationId": "confirm_booking_proposal_endpoint_api_trips__trip_id__booking_proposals__proposal_id__confirm_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "proposal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Proposal Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingDecisionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/booking/proposals/{proposal_id}/reject": {
+      "post": {
+        "tags": [
+          "booking"
+        ],
+        "summary": "Reject Booking Proposal Endpoint",
+        "description": "Release a held booking proposal \u2014 the \"Let it go\" of a deck Call. Idempotent.",
+        "operationId": "reject_booking_proposal_endpoint_api_trips__trip_id__booking_proposals__proposal_id__reject_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "proposal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Proposal Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingDecisionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/booking/holds/{offer_id}/settle": {
+      "post": {
+        "tags": [
+          "booking"
+        ],
+        "summary": "Settle Booking Hold Endpoint",
+        "description": "Settle (pay) a held offer before its deadline \u2014 the \"Confirm\" of a deck\nCall-held card backed by a real provider hold. Moves money only when the\nlive-booking engine is enabled; otherwise returns ``unavailable``.",
+        "operationId": "settle_booking_hold_endpoint_api_trips__trip_id__booking_holds__offer_id__settle_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "offer_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Offer Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HoldDecisionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/booking/holds/{offer_id}/release": {
+      "post": {
+        "tags": [
+          "booking"
+        ],
+        "summary": "Release Booking Hold Endpoint",
+        "description": "Let a held offer go \u2014 the \"Let it go\" of a deck Call-held card. Idempotent\n(no-op on an already-settled/expired offer).",
+        "operationId": "release_booking_hold_endpoint_api_trips__trip_id__booking_holds__offer_id__release_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "offer_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Offer Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HoldDecisionResponse"
                 }
               }
             }
@@ -15175,6 +14983,219 @@
         }
       }
     },
+    "/api/atlas/unpacked": {
+      "get": {
+        "summary": "Get Atlas Unpacked",
+        "description": "Atlas Unpacked \u2014 a year-scoped, Wrapped-style recap deck.\n\nAssembles a small swipeable card set (year name, where you went, you this\nyear, your postcard) from existing Atlas reads. Read-only and on-demand;\n``available`` is False for a year with nothing kept yet.",
+        "operationId": "get_atlas_unpacked_api_atlas_unpacked_get",
+        "parameters": [
+          {
+            "name": "year",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Year"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasUnpacked"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/unpacked/share": {
+      "post": {
+        "summary": "Create Atlas Unpacked Share",
+        "description": "Mint a public, unguessable share link for the year's recap.\n\nInserts an ``atlas_unpacked_shares`` row and binds an HMAC token to its id,\nso the link can be revoked durably. The public landing at\n``/unpacked/{token}`` renders the aggregate recap card. 404 when the year\nhas nothing kept (nothing to share).",
+        "operationId": "create_atlas_unpacked_share_api_atlas_unpacked_share_post",
+        "parameters": [
+          {
+            "name": "year",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Year"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasUnpackedShareLink"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/unpacked/shares": {
+      "get": {
+        "summary": "List Atlas Unpacked Shares",
+        "description": "The actor's active (non-revoked) recap share links \u2014 for a manage list.\n\nEach link's URL is re-minted from its row id (a fresh token, same share id \u2014\nso it resolves and revokes identically to the originally-shared one).",
+        "operationId": "list_atlas_unpacked_shares_api_atlas_unpacked_shares_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AtlasUnpackedShareItem"
+                  },
+                  "title": "Response List Atlas Unpacked Shares Api Atlas Unpacked Shares Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/unpacked/share/{share_id}": {
+      "delete": {
+        "summary": "Revoke Atlas Unpacked Share",
+        "description": "Revoke a recap share link (owner-scoped). The public landing + card then\n404/410 immediately. 404 if the link isn't the actor's or is already gone.",
+        "operationId": "revoke_atlas_unpacked_share_api_atlas_unpacked_share__share_id__delete",
+        "parameters": [
+          {
+            "name": "share_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Share Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/takes": {
       "post": {
         "tags": [
@@ -17053,6 +17074,76 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItineraryBlockOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/itinerary/blocks/{block_id}/mark-booked": {
+      "post": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Mark Itinerary Block Booked",
+        "description": "Confirm a handed-off booking \u2014 \"I completed it, it's booked.\"\n\nThe one-tap close to the booking handoff: a block Vesper handed off\n(``booking_ref.state == \"handed_off\"``) is flipped to ``confirmed`` with a\nserver-side MERGE (preserving the rest of the booking_ref). Idempotent; only\nsurfaced on handed-off blocks. Any trip member may confirm \u2014 completing a\nbooking the group is waiting on isn't a structural plan edit, so it's NOT\ngated by the propose-mode flow (unlike status/time changes).",
+        "operationId": "mark_itinerary_block_booked_api_trips__trip_id__itinerary_blocks__block_id__mark_booked_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "block_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Block Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -22518,6 +22609,36 @@
         "title": "AngleRequestResponse",
         "description": "Response returned after a user angle request is queued."
       },
+      "ApproveRequest": {
+        "properties": {
+          "style": {
+            "type": "string",
+            "enum": [
+              "memory",
+              "postcard",
+              "journal",
+              "dispatch"
+            ],
+            "title": "Style",
+            "default": "memory"
+          },
+          "reflection": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 280
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reflection"
+          }
+        },
+        "type": "object",
+        "title": "ApproveRequest",
+        "description": "Optional body for ``POST /api/atlas/candidates/{id}/approve``.\n\n``style`` selects the Vesper narrative voice used during artifact\ngeneration. Defaults to ``\"memory\"`` (the warm, literary default).\nOther values: ``\"postcard\"`` (Instagram-native), ``\"journal\"``\n(first-person, introspective), ``\"dispatch\"`` (editorial, thesis-driven).\n\n``reflection`` is a short, optional user-authored note (\"what was\nhappening / what did this feel like\") captured at approval time. The\ntyping itself is the load-bearing memory-consolidation moment per the\nphoto-taking-impairment research; persisting it gives the artifact\ndetail a \"back of the postcard\" surface."
+      },
       "ArtifactSection": {
         "properties": {
           "heading": {
@@ -25481,6 +25602,198 @@
         "type": "object",
         "title": "AtlasTimelineSummary"
       },
+      "AtlasUnpacked": {
+        "properties": {
+          "year": {
+            "type": "integer",
+            "title": "Year"
+          },
+          "available": {
+            "type": "boolean",
+            "title": "Available"
+          },
+          "headline": {
+            "type": "string",
+            "title": "Headline"
+          },
+          "subhead": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subhead"
+          },
+          "cards": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasUnpackedCard"
+            },
+            "type": "array",
+            "title": "Cards"
+          }
+        },
+        "type": "object",
+        "required": [
+          "year",
+          "available",
+          "headline"
+        ],
+        "title": "AtlasUnpacked",
+        "description": "A year-scoped 'Unpacked' recap \u2014 a small Wrapped-style swipeable deck\nassembled entirely from existing Atlas reads (the generated year name, place\nand trip counts, the Travel-DNA line, and the year's hero postcard). Read-only\nand on-demand; ``available`` is False for a year with nothing kept yet."
+      },
+      "AtlasUnpackedCard": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "year_named",
+              "where",
+              "you",
+              "postcard"
+            ],
+            "title": "Kind"
+          },
+          "eyebrow": {
+            "type": "string",
+            "title": "Eyebrow"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "body": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Body"
+          },
+          "stats": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasUnpackedStat"
+            },
+            "type": "array",
+            "title": "Stats"
+          },
+          "map_points": {
+            "items": {
+              "$ref": "#/components/schemas/GeoPoint"
+            },
+            "type": "array",
+            "title": "Map Points"
+          },
+          "artifact": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AtlasArtifactShell"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "eyebrow",
+          "title"
+        ],
+        "title": "AtlasUnpackedCard",
+        "description": "One swipeable card in the Unpacked deck. Fields are optional by kind: the\nclient renders each ``kind`` distinctly (a big year name, a stat block over a\nmap, a DNA line, a hero postcard)."
+      },
+      "AtlasUnpackedShareItem": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "year": {
+            "type": "integer",
+            "title": "Year"
+          },
+          "url": {
+            "type": "string",
+            "title": "Url"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "open_count": {
+            "type": "integer",
+            "title": "Open Count",
+            "default": 0
+          },
+          "last_opened_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Opened At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "year",
+          "url",
+          "created_at"
+        ],
+        "title": "AtlasUnpackedShareItem",
+        "description": "An active recap share link the owner can revoke \u2014 for a 'shared recaps' list."
+      },
+      "AtlasUnpackedShareLink": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "Url"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "url",
+          "id"
+        ],
+        "title": "AtlasUnpackedShareLink",
+        "description": "The public share URL minted for a year recap (HMAC share token embedded)."
+      },
+      "AtlasUnpackedStat": {
+        "properties": {
+          "value": {
+            "type": "string",
+            "title": "Value"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "value",
+          "label"
+        ],
+        "title": "AtlasUnpackedStat",
+        "description": "One figure on the 'where you went' card \u2014 a value + its unit label."
+      },
       "AttachPhotoRequest": {
         "properties": {
           "entity_type": {
@@ -26211,6 +26524,25 @@
         "title": "BookingActionResponse",
         "description": "Shared response model for booking mutation endpoints."
       },
+      "BookingDecisionResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "proposal_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Proposal Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "proposal_id"
+        ],
+        "title": "BookingDecisionResponse"
+      },
       "BookingOffer": {
         "properties": {
           "id": {
@@ -26322,6 +26654,18 @@
               }
             ],
             "title": "Expires At"
+          },
+          "payment_required_by": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Payment Required By"
           },
           "created_at": {
             "type": "string",
@@ -27933,6 +28277,15 @@
             "title": "Terms Accepted",
             "default": false
           },
+          "intent": {
+            "type": "string",
+            "enum": [
+              "book",
+              "hold"
+            ],
+            "title": "Intent",
+            "default": "book"
+          },
           "passengers": {
             "anyOf": [
               {
@@ -28794,6 +29147,178 @@
         ],
         "title": "DayConflictsResponse"
       },
+      "DeckBriefDay": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "is_open": {
+            "type": "boolean",
+            "title": "Is Open",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "label",
+          "title"
+        ],
+        "title": "DeckBriefDay",
+        "description": "One row in a Brief's artifact preview \u2014 a drafted or open itinerary day."
+      },
+      "DeckBriefSubstrate": {
+        "properties": {
+          "days": {
+            "items": {
+              "$ref": "#/components/schemas/DeckBriefDay"
+            },
+            "type": "array",
+            "title": "Days"
+          },
+          "open_summary": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Open Summary"
+          },
+          "primary_label": {
+            "type": "string",
+            "title": "Primary Label"
+          },
+          "secondary_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Secondary Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "primary_label"
+        ],
+        "title": "DeckBriefSubstrate",
+        "description": "Brief substrate \u2014 review a thing Vesper drafted (a plan). The artifact IS\nthe substrate: a compact day skeleton from real itinerary data, open days\nshown. Actions are review/refine, not a choice among options."
+      },
+      "DeckCallSubstrate": {
+        "properties": {
+          "variant": {
+            "type": "string",
+            "enum": [
+              "held",
+              "conflict",
+              "reschedule"
+            ],
+            "title": "Variant"
+          },
+          "subject": {
+            "type": "string",
+            "title": "Subject"
+          },
+          "subject_meta": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subject Meta"
+          },
+          "chips": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Chips"
+          },
+          "stakes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stakes"
+          },
+          "primary_label": {
+            "type": "string",
+            "title": "Primary Label"
+          },
+          "primary_kind": {
+            "type": "string",
+            "enum": [
+              "confirm_booking",
+              "find_alt",
+              "apply_reschedule"
+            ],
+            "title": "Primary Kind"
+          },
+          "secondary_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Secondary Label"
+          },
+          "secondary_kind": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "reject_booking",
+                  "keep"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Secondary Kind"
+          },
+          "ref_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ref Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "variant",
+          "subject",
+          "primary_label",
+          "primary_kind"
+        ],
+        "title": "DeckCallSubstrate",
+        "description": "Call decision substrate \u2014 one yes/no with a deadline (held booking) or a\nconflict to resolve. ``variant`` picks the face shape; the actions carry a\n``kind`` the FE maps to a real handler (confirm/reject a booking, find an\nalternative, keep). All display values are real card data, never invented."
+      },
       "DeckColumn": {
         "properties": {
           "name": {
@@ -28856,8 +29381,32 @@
         "properties": {
           "layout": {
             "type": "string",
-            "const": "pick",
+            "enum": [
+              "pick",
+              "call",
+              "brief"
+            ],
             "title": "Layout"
+          },
+          "accent": {
+            "type": "string",
+            "enum": [
+              "gold",
+              "oxblood"
+            ],
+            "title": "Accent",
+            "default": "gold"
+          },
+          "meta": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Meta"
           },
           "reasoning": {
             "anyOf": [
@@ -28898,6 +29447,26 @@
               }
             ],
             "title": "Primary Cta"
+          },
+          "call": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DeckCallSubstrate"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "brief": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DeckBriefSubstrate"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -28905,7 +29474,7 @@
           "layout"
         ],
         "title": "DeckFocus",
-        "description": "Level-2 decision substrate \u2014 the \"help me decide\" content behind a card.\n\nDistinct from ``DeckStructured`` (raw options/rows): focus carries Vesper's\nJUDGMENT layer \u2014 the pick, the reasoning, the rejected alternatives, and the\none tradeoff that flips the choice. The home glance presents the decision;\nthis focus payload (rendered full-screen in the Deck) helps make it.\n\n``layout`` is the decision shape (only ``pick`` today; brief/call extend it).\nCo-generated with the glance so the two levels cannot drift. ``reasoning``\nand ``tradeoff`` are populated by a grounded LLM pass; ``candidates`` is the\ndeterministic structure and is safe to populate without generation."
+        "description": "Level-2 decision substrate \u2014 the \"help me decide\" content behind a card.\n\nDistinct from ``DeckStructured`` (raw options/rows): focus carries Vesper's\nJUDGMENT layer rendered full-screen in the Deck. The home glance presents the\ndecision; this helps make it.\n\n``layout`` is the decision SHAPE \u2014 ``pick`` (choose one of N), ``call`` (a\nyes/no with a deadline / a conflict), or ``brief`` (review a drafted thing).\nEach layout fills its own sub-payload; the others stay None. Structure is\nreal data; the Pick's reasoning/tradeoff come from a grounded LLM pass."
       },
       "DeckOption": {
         "properties": {
@@ -30764,6 +31333,16 @@
             "type": "string",
             "title": "Shape",
             "default": "dream"
+          },
+          "personal_frame": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PersonalLeadFrame"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -33159,6 +33738,25 @@
         "title": "HeroStep",
         "description": "The one step \u2014 a door, never a transaction."
       },
+      "HoldDecisionResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "offer_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Offer Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "offer_id"
+        ],
+        "title": "HoldDecisionResponse"
+      },
       "HomeAnchor": {
         "properties": {
           "voice_line": {
@@ -33243,6 +33841,16 @@
             "title": "Tier",
             "description": "Phase 3 urgency tier driving in-zone ranking and dismissal rules. 1 = urgent / blocking (non-dismissable), 2 = this trip, 3 = informational / ambient. Phase 3 sets tier statically per archetype; deadline-driven dynamic promotion arrives in Phase 5.",
             "default": 2
+          },
+          "focus": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DeckFocus"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -35043,38 +35651,6 @@
           "state"
         ],
         "title": "LedgerRow"
-      },
-      "LensGroup": {
-        "properties": {
-          "lens": {
-            "type": "string",
-            "title": "Lens"
-          },
-          "display_name": {
-            "type": "string",
-            "title": "Display Name"
-          },
-          "tagline": {
-            "type": "string",
-            "title": "Tagline"
-          },
-          "angles": {
-            "items": {
-              "$ref": "#/components/schemas/AnglePreview"
-            },
-            "type": "array",
-            "title": "Angles"
-          }
-        },
-        "type": "object",
-        "required": [
-          "lens",
-          "display_name",
-          "tagline",
-          "angles"
-        ],
-        "title": "LensGroup",
-        "description": "All published angles under one travel lens, for the editorial index view."
       },
       "ListBlock": {
         "properties": {
@@ -37913,116 +38489,6 @@
         "title": "PatchTripRequest",
         "description": "User-editable trip fields.\n\nExcludes internal fields (``status``, ``trip_summary``, ``planning_brief``)\nthat are managed by the concierge or background jobs and must not be\noverwritten by direct client mutations."
       },
-      "PendingAngle": {
-        "properties": {
-          "id": {
-            "type": "integer",
-            "title": "Id"
-          },
-          "place_id": {
-            "type": "integer",
-            "title": "Place Id"
-          },
-          "place_slug": {
-            "type": "string",
-            "title": "Place Slug"
-          },
-          "place_name": {
-            "type": "string",
-            "title": "Place Name"
-          },
-          "title": {
-            "type": "string",
-            "title": "Title"
-          },
-          "question": {
-            "type": "string",
-            "title": "Question"
-          },
-          "why_interesting": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Why Interesting"
-          },
-          "travel_lens": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Travel Lens"
-          },
-          "distinctiveness_score": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Distinctiveness Score"
-          },
-          "source_type": {
-            "type": "string",
-            "title": "Source Type"
-          },
-          "source_context": {
-            "anyOf": [
-              {
-                "additionalProperties": true,
-                "type": "object"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Source Context"
-          },
-          "review_notes": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Review Notes"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Created At"
-          }
-        },
-        "type": "object",
-        "required": [
-          "id",
-          "place_id",
-          "place_slug",
-          "place_name",
-          "title",
-          "question",
-          "why_interesting",
-          "travel_lens",
-          "distinctiveness_score",
-          "source_type",
-          "source_context",
-          "review_notes",
-          "created_at"
-        ],
-        "title": "PendingAngle"
-      },
       "PendingInviteAnswer": {
         "properties": {
           "invite_token": {
@@ -38204,6 +38670,30 @@
           "text"
         ],
         "title": "PersonalInsightResponse"
+      },
+      "PersonalLeadFrame": {
+        "properties": {
+          "because": {
+            "type": "string",
+            "title": "Because"
+          },
+          "category": {
+            "type": "string",
+            "title": "Category"
+          },
+          "recalled_from": {
+            "type": "string",
+            "title": "Recalled From"
+          }
+        },
+        "type": "object",
+        "required": [
+          "because",
+          "category",
+          "recalled_from"
+        ],
+        "title": "PersonalLeadFrame",
+        "description": "\"Because you loved X\" \u2014 a cross-city taste recall that personalises the\nlead read. Fires only when the reader loved a *kind of place* (>=2 times,\nin OTHER cities) that the city being read *provably offers* \u2014 a pattern, not\nan anecdote; cross-city, so the recognition is earned, never confabulated.\n\n``because`` is the Vesper-voiced recall phrase (\"the natural-wine rooms you\nkept finding in Lisbon\"); ``category`` is the raw venue_type/site_type (for\nthe FE's lens styling + telemetry); ``recalled_from`` is the prior city.\nNull on the lead = no earned pattern \u2192 render the plain quality lead."
       },
       "PersonalMemory": {
         "properties": {
@@ -38406,56 +38896,6 @@
         ],
         "title": "PinExperienceRequest"
       },
-      "PlaceAngles": {
-        "properties": {
-          "place": {
-            "$ref": "#/components/schemas/PlaceRef"
-          },
-          "angles": {
-            "items": {
-              "$ref": "#/components/schemas/AnglePreview"
-            },
-            "type": "array",
-            "title": "Angles"
-          }
-        },
-        "type": "object",
-        "required": [
-          "place",
-          "angles"
-        ],
-        "title": "PlaceAngles",
-        "description": "Response for ``GET /api/places/{slug}/angles``."
-      },
-      "PlaceAnglesByLens": {
-        "properties": {
-          "place": {
-            "$ref": "#/components/schemas/PlaceRef"
-          },
-          "lens_groups": {
-            "items": {
-              "$ref": "#/components/schemas/LensGroup"
-            },
-            "type": "array",
-            "title": "Lens Groups"
-          },
-          "unlensed": {
-            "items": {
-              "$ref": "#/components/schemas/AnglePreview"
-            },
-            "type": "array",
-            "title": "Unlensed"
-          }
-        },
-        "type": "object",
-        "required": [
-          "place",
-          "lens_groups",
-          "unlensed"
-        ],
-        "title": "PlaceAnglesByLens",
-        "description": "Response for ``GET /api/places/{slug}/angles/by-lens``.\n\n``lens_groups`` contains one entry per lens that has \u2265 1 published angle.\n``unlensed`` holds published angles without a ``travel_lens`` value (older\ncontent or user-query angles that weren't assigned one)."
-      },
       "PlaceDossierItem": {
         "properties": {
           "id": {
@@ -38606,29 +39046,6 @@
           "count"
         ],
         "title": "PlaceDossierListResponse"
-      },
-      "PlaceRef": {
-        "properties": {
-          "id": {
-            "type": "integer",
-            "title": "Id"
-          },
-          "slug": {
-            "type": "string",
-            "title": "Slug"
-          },
-          "name": {
-            "type": "string",
-            "title": "Name"
-          }
-        },
-        "type": "object",
-        "required": [
-          "id",
-          "slug",
-          "name"
-        ],
-        "title": "PlaceRef"
       },
       "PlanBlock": {
         "properties": {
@@ -41701,19 +42118,6 @@
         "title": "RegisterDeviceRequest",
         "description": "Mobile client calls this on login / app start to register its push token."
       },
-      "RejectRequest": {
-        "properties": {
-          "review_notes": {
-            "type": "string",
-            "title": "Review Notes"
-          }
-        },
-        "type": "object",
-        "required": [
-          "review_notes"
-        ],
-        "title": "RejectRequest"
-      },
       "RelatedDossierItem": {
         "properties": {
           "id": {
@@ -43474,63 +43878,6 @@
         ],
         "title": "SourceRef",
         "description": "A piece of evidence or system event that caused the action."
-      },
-      "SpeculativeAngle": {
-        "properties": {
-          "title": {
-            "type": "string",
-            "title": "Title"
-          },
-          "question": {
-            "type": "string",
-            "title": "Question"
-          },
-          "travel_lens": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Travel Lens"
-          }
-        },
-        "type": "object",
-        "required": [
-          "title",
-          "question"
-        ],
-        "title": "SpeculativeAngle",
-        "description": "A non-persisted angle generated on the fly from a user query.\n\nThese are suggestions only \u2014 no ``id``, no dossier.  The frontend can\ndisplay them as fast-start discovery chips (\"Want to explore this angle?\")\nand the user can trigger a proper research run from there."
-      },
-      "SpeculativeAngles": {
-        "properties": {
-          "place_slug": {
-            "type": "string",
-            "title": "Place Slug"
-          },
-          "query": {
-            "type": "string",
-            "title": "Query"
-          },
-          "suggestions": {
-            "items": {
-              "$ref": "#/components/schemas/SpeculativeAngle"
-            },
-            "type": "array",
-            "title": "Suggestions"
-          }
-        },
-        "type": "object",
-        "required": [
-          "place_slug",
-          "query",
-          "suggestions"
-        ],
-        "title": "SpeculativeAngles",
-        "description": "Response for ``GET /api/places/{slug}/angles/speculate?query=...``."
       },
       "SpineReceipt": {
         "properties": {
@@ -47724,53 +48071,6 @@
           "interaction_id"
         ],
         "title": "_InteractionAck"
-      },
-      "backend__api__routes__admin_angles__ApproveRequest": {
-        "properties": {
-          "review_notes": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Review Notes"
-          }
-        },
-        "type": "object",
-        "title": "ApproveRequest"
-      },
-      "backend__api__routes__atlas__ApproveRequest": {
-        "properties": {
-          "style": {
-            "type": "string",
-            "enum": [
-              "memory",
-              "postcard",
-              "journal",
-              "dispatch"
-            ],
-            "title": "Style",
-            "default": "memory"
-          },
-          "reflection": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 280
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Reflection"
-          }
-        },
-        "type": "object",
-        "title": "ApproveRequest",
-        "description": "Optional body for ``POST /api/atlas/candidates/{id}/approve``.\n\n``style`` selects the Vesper narrative voice used during artifact\ngeneration. Defaults to ``\"memory\"`` (the warm, literary default).\nOther values: ``\"postcard\"`` (Instagram-native), ``\"journal\"``\n(first-person, introspective), ``\"dispatch\"`` (editorial, thesis-driven).\n\n``reflection`` is a short, optional user-authored note (\"what was\nhappening / what did this feel like\") captured at approval time. The\ntyping itself is the load-bearing memory-consolidation moment per the\nphoto-taking-impairment research; persisting it gives the artifact\ndetail a \"back of the postcard\" surface."
       },
       "backend__api__routes__chat__MessageImage": {
         "properties": {
