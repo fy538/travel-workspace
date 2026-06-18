@@ -3142,9 +3142,9 @@
         "tags": [
           "atlas"
         ],
-        "summary": "Request Photo Upload",
-        "description": "V0 stub for presigned upload URL.\n\nReal R2/S3 wiring lands alongside the artifact-photo upload flow when\nwe move from PHAsset-id-only to actually persisting selected photos.\nToday the route exists so the frontend contract is stable.",
-        "operationId": "request_photo_upload_api_atlas_photos_upload_post",
+        "summary": "Upload Artifact Photo",
+        "description": "Persist a real artifact photo: multipart bytes \u2192 CDN (rehosted).\n\nReplaces the old presigned-URL stub (it returned ``example.invalid``).\nReuses the working media pipeline (``rehost_from_bytes`` \u2192 EXIF/variants/CDN,\nthe same path trip photos use). When ``artifact_id`` is supplied and owned by\nthe caller, the CDN url is stamped as the artifact's ``hero_photo_url`` \u2014 the\nsource the img2img postcard render reads.",
+        "operationId": "upload_artifact_photo_api_atlas_photos_upload_post",
         "parameters": [
           {
             "name": "authorization",
@@ -3166,9 +3166,9 @@
         "requestBody": {
           "required": true,
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/PhotoUploadRequest"
+                "$ref": "#/components/schemas/Body_upload_artifact_photo_api_atlas_photos_upload_post"
               }
             }
           }
@@ -3179,7 +3179,67 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PhotoUploadResponse"
+                  "$ref": "#/components/schemas/ArtifactPhotoUploadResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/artifacts/{artifact_id}/postcard": {
+      "post": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Render Artifact Postcard",
+        "description": "Render an artifact's uploaded hero photo into a riso postcard (img2img).\n\nReads the artifact's CDN ``hero_photo_url`` (set by the upload route) as the\nsource, applies the flag \u2192 daily-cap \u2192 quality-floor guard rails in\n``render_postcard``, and on success stamps ``rendered_image_url`` onto the\nartifact (the postcards shelf prefers it). SHIPS DARK: with the feature flag\noff this returns ``feature_disabled`` without ever calling a provider.",
+        "operationId": "render_artifact_postcard_api_atlas_artifacts__artifact_id__postcard_post",
+        "parameters": [
+          {
+            "name": "artifact_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Artifact Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostcardRenderResponse"
                 }
               }
             }
@@ -12543,6 +12603,124 @@
           },
           "202": {
             "description": "Story composition is in progress \u2014 poll again shortly"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/story/narration": {
+      "get": {
+        "tags": [
+          "memory"
+        ],
+        "summary": "Get Trip Story Narration",
+        "description": "Vesper's read-aloud of the Trip Story \u2014 ensures audio, returns metadata.\n\nSynthesises on first call (lazy: TTS is paid + slow) and caches; later calls\nreturn instantly on a cache hit. The audio itself streams from the sibling\n``/narration/audio`` endpoint once ``status == 'ready'``.",
+        "operationId": "get_trip_story_narration_api_trips__trip_id__story_narration_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripStoryAudio"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/story/narration/audio": {
+      "get": {
+        "tags": [
+          "memory"
+        ],
+        "summary": "Get Trip Story Narration Audio",
+        "description": "Stream the MP3 of Vesper reading the Trip Story, or 404 if not ready.\n\nCall ``GET /narration`` first to ensure synthesis; this endpoint only serves\nalready-ready audio (it never triggers a paid synth, so a stray prefetch\ncan't run up TTS cost).",
+        "operationId": "get_trip_story_narration_audio_api_trips__trip_id__story_narration_audio_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -22639,6 +22817,37 @@
         "title": "ApproveRequest",
         "description": "Optional body for ``POST /api/atlas/candidates/{id}/approve``.\n\n``style`` selects the Vesper narrative voice used during artifact\ngeneration. Defaults to ``\"memory\"`` (the warm, literary default).\nOther values: ``\"postcard\"`` (Instagram-native), ``\"journal\"``\n(first-person, introspective), ``\"dispatch\"`` (editorial, thesis-driven).\n\n``reflection`` is a short, optional user-authored note (\"what was\nhappening / what did this feel like\") captured at approval time. The\ntyping itself is the load-bearing memory-consolidation moment per the\nphoto-taking-impairment research; persisting it gives the artifact\ndetail a \"back of the postcard\" surface."
       },
+      "ArtifactPhotoUploadResponse": {
+        "properties": {
+          "photo_id": {
+            "type": "string",
+            "title": "Photo Id"
+          },
+          "cdn_url": {
+            "type": "string",
+            "title": "Cdn Url"
+          },
+          "artifact_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Artifact Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "photo_id",
+          "cdn_url"
+        ],
+        "title": "ArtifactPhotoUploadResponse",
+        "description": "Result of a real multipart artifact-photo upload (rehosted to the CDN).\n\nSupersedes the presigned-URL stub: the client POSTs the image bytes, the\nbackend rehosts through the media pipeline (EXIF/variants/CDN), and \u2014 when\nan ``artifact_id`` is supplied \u2014 stamps the CDN url as the artifact's\n``hero_photo_url`` (the img2img postcard source)."
+      },
       "ArtifactSection": {
         "properties": {
           "heading": {
@@ -22880,6 +23089,22 @@
             ],
             "title": "Hero Photo Id"
           },
+          "rendered_image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rendered Image Url"
+          },
+          "render_status": {
+            "type": "string",
+            "title": "Render Status",
+            "default": "none"
+          },
           "photo_ids": {
             "items": {
               "type": "string"
@@ -23072,6 +23297,22 @@
               }
             ],
             "title": "Hero Photo Id"
+          },
+          "rendered_image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rendered Image Url"
+          },
+          "render_status": {
+            "type": "string",
+            "title": "Render Status",
+            "default": "none"
           },
           "photo_ids": {
             "items": {
@@ -25831,7 +26072,8 @@
               "google_places",
               "dmo",
               "curator_upload",
-              "user_upload"
+              "user_upload",
+              "generated"
             ],
             "title": "Source Type",
             "default": "curator_upload"
@@ -26423,6 +26665,32 @@
         "type": "object",
         "title": "BlockTransition",
         "description": "How the group moves from this block to the next.\n\n``mode`` + ``minutes`` are the canonical pair; ``rationale`` is the\none-line \"why this way\" that lets the UI explain pacing choices.\n``distance_km`` is optional \u2014 the planner emits it when it's useful\ncontext (long taxi, cross-city train). Booking-specific keys\n(``origin``, ``destination``, ``pickup_location``) still live here as\nextras so the booking agent's existing readers keep working."
+      },
+      "Body_upload_artifact_photo_api_atlas_photos_upload_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          },
+          "artifact_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Artifact Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_upload_artifact_photo_api_atlas_photos_upload_post"
       },
       "Body_upload_receipt_api_trips__trip_id__receipts_upload_post": {
         "properties": {
@@ -27716,6 +27984,7 @@
             "enum": [
               "useful",
               "not_now",
+              "keep",
               "show_less",
               "not_relevant",
               "wrong",
@@ -27911,6 +28180,7 @@
               "open_trip_expenses",
               "open_chat_prefill",
               "open_memory",
+              "open_story",
               "open_atlas_artifact"
             ],
             "title": "Type"
@@ -29319,64 +29589,6 @@
         "title": "DeckCallSubstrate",
         "description": "Call decision substrate \u2014 one yes/no with a deadline (held booking) or a\nconflict to resolve. ``variant`` picks the face shape; the actions carry a\n``kind`` the FE maps to a real handler (confirm/reject a booking, find an\nalternative, keep). All display values are real card data, never invented."
       },
-      "DeckColumn": {
-        "properties": {
-          "name": {
-            "type": "string",
-            "title": "Name"
-          },
-          "price": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Price"
-          },
-          "rows": {
-            "items": {
-              "prefixItems": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "string"
-                }
-              ],
-              "type": "array",
-              "maxItems": 2,
-              "minItems": 2
-            },
-            "type": "array",
-            "title": "Rows"
-          },
-          "note": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Note"
-          },
-          "leading": {
-            "type": "boolean",
-            "title": "Leading",
-            "default": false
-          }
-        },
-        "type": "object",
-        "required": [
-          "name"
-        ],
-        "title": "DeckColumn",
-        "description": "One column in a Comparison deck face."
-      },
       "DeckFocus": {
         "properties": {
           "layout": {
@@ -29648,16 +29860,38 @@
         "title": "DeckPickCandidate",
         "description": "One candidate in a Pick decision \u2014 the chosen one or a rejected option.\n\nThe structure (``name``/``walk``/``price``/``attribute``) is DATA \u2014 pulled\nstraight from the ranked venues, never hallucinated. The judgment\n(``why_not``, and the ``leading`` flag's reasoning) is generated grounded in\nthat structure. All display values are pre-formatted by the backend."
       },
+      "DeckReadinessRow": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "detail": {
+            "type": "string",
+            "title": "Detail"
+          },
+          "resolved": {
+            "type": "boolean",
+            "title": "Resolved",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "label",
+          "detail"
+        ],
+        "title": "DeckReadinessRow",
+        "description": "One open-loop row in a departure-readiness deck face.\n\nA resolvable pre-departure gap (stay not booked, open days, a decision\nwaiting). ``resolved`` rows render checked; open rows render highlighted.\nStatus-only \u2014 the deck's single primary action routes to where they're\nclosed (no per-row buttons, so nothing looks tappable that isn't)."
+      },
       "DeckStructured": {
         "properties": {
           "layout": {
             "type": "string",
             "enum": [
-              "flight",
               "vote",
-              "proposal",
-              "comparison",
-              "settle"
+              "settle",
+              "readiness"
             ],
             "title": "Layout"
           },
@@ -29696,31 +29930,6 @@
             "type": "array",
             "title": "People"
           },
-          "columns": {
-            "items": {
-              "$ref": "#/components/schemas/DeckColumn"
-            },
-            "type": "array",
-            "title": "Columns"
-          },
-          "chips": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array",
-            "title": "Chips"
-          },
-          "price": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Price"
-          },
           "secondary_cta": {
             "anyOf": [
               {
@@ -29738,6 +29947,13 @@
             },
             "type": "array",
             "title": "Expense Ids"
+          },
+          "readiness_rows": {
+            "items": {
+              "$ref": "#/components/schemas/DeckReadinessRow"
+            },
+            "type": "array",
+            "title": "Readiness Rows"
           }
         },
         "type": "object",
@@ -35051,6 +35267,18 @@
             ],
             "title": "Energy Rationale"
           },
+          "feasibility_warning": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Feasibility Warning"
+          },
           "notes": {
             "anyOf": [
               {
@@ -38812,49 +39040,6 @@
         ],
         "title": "PhoneResponse"
       },
-      "PhotoUploadRequest": {
-        "properties": {
-          "photo_id": {
-            "type": "string",
-            "title": "Photo Id"
-          },
-          "content_type": {
-            "type": "string",
-            "title": "Content Type",
-            "default": "image/jpeg"
-          }
-        },
-        "type": "object",
-        "required": [
-          "photo_id"
-        ],
-        "title": "PhotoUploadRequest",
-        "description": "Client requests a presigned URL for an approved photo."
-      },
-      "PhotoUploadResponse": {
-        "properties": {
-          "upload_url": {
-            "type": "string",
-            "title": "Upload Url"
-          },
-          "storage_key": {
-            "type": "string",
-            "title": "Storage Key"
-          },
-          "expires_at": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Expires At"
-          }
-        },
-        "type": "object",
-        "required": [
-          "upload_url",
-          "storage_key",
-          "expires_at"
-        ],
-        "title": "PhotoUploadResponse"
-      },
       "PinExperienceRequest": {
         "properties": {
           "experience_id": {
@@ -39144,6 +39329,18 @@
               }
             ],
             "title": "Energy Rationale"
+          },
+          "feasibility_warning": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Feasibility Warning"
           },
           "notes": {
             "anyOf": [
@@ -40349,6 +40546,42 @@
         "type": "object",
         "title": "PlanningIntentBootstrap",
         "description": "Onboarding trip draft fields mirrored from the mobile client."
+      },
+      "PostcardRenderResponse": {
+        "properties": {
+          "render_status": {
+            "type": "string",
+            "title": "Render Status"
+          },
+          "rendered_image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rendered Image Url"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          }
+        },
+        "type": "object",
+        "required": [
+          "render_status"
+        ],
+        "title": "PostcardRenderResponse",
+        "description": "Outcome of a postcard render request.\n\n``render_status`` is ``ready`` (rendered_image_url set), ``failed`` (a stable\n``error`` token explains why \u2014 e.g. ``feature_disabled``, ``daily_cap_reached``,\n``no_source_image``, ``below_quality_floor``), or ``none``."
       },
       "PrerenderHintResponse": {
         "properties": {
@@ -45937,6 +46170,81 @@
         ],
         "title": "TripStory",
         "description": "A composed Trip Story payload."
+      },
+      "TripStoryAudio": {
+        "properties": {
+          "story_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Story Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "source_hash": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Hash"
+          },
+          "narration_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Narration Text"
+          },
+          "audio_size_bytes": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Audio Size Bytes"
+          },
+          "audio_duration_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Audio Duration Ms"
+          },
+          "tts_voice_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tts Voice Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "story_id",
+          "status"
+        ],
+        "title": "TripStoryAudio",
+        "description": "Metadata for Vesper's read-aloud of a Trip Story (homecoming v2).\n\nAudio bytes are never carried in this model \u2014 they stream from the audio\nendpoint. ``status`` is one of pending / ready / failed."
       },
       "TripStoryPhotoSlot": {
         "properties": {
