@@ -29261,6 +29261,7 @@
           "no_rest_day",
           "scattered_day",
           "budget_overrun",
+          "hours_closed",
           "constraint_conflict"
         ],
         "title": "ConflictType"
@@ -38955,6 +38956,11 @@
             "format": "date-time",
             "title": "Created At"
           },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          },
           "expires_at": {
             "anyOf": [
               {
@@ -38988,7 +38994,8 @@
           "id",
           "user_id",
           "content",
-          "created_at"
+          "created_at",
+          "updated_at"
         ],
         "title": "Observation"
       },
