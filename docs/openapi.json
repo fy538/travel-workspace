@@ -13355,6 +13355,76 @@
         }
       }
     },
+    "/api/trips/{trip_id}/plan/edit-commit": {
+      "post": {
+        "tags": [
+          "plan"
+        ],
+        "summary": "Plan Edit Commit",
+        "description": "Apply a previewed itinerary change or stage it as a group proposal.\n\nThe caller MUST have received a preview first (via POST /plan/edit-preview)\nand pass back the ``idempotency_token`` from that response.",
+        "operationId": "plan_edit_commit_api_trips__trip_id__plan_edit_commit_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlanEditCommitRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanEditCommitResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/plan/edit-preview": {
       "post": {
         "tags": [
@@ -40386,6 +40456,120 @@
         },
         "type": "object",
         "title": "PlanDecisionVotes"
+      },
+      "PlanEditCommitRequest": {
+        "properties": {
+          "intent": {
+            "type": "string",
+            "title": "Intent"
+          },
+          "block_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Block Id"
+          },
+          "idempotency_token": {
+            "type": "string",
+            "title": "Idempotency Token"
+          },
+          "day_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Day Id"
+          },
+          "time_start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Start"
+          },
+          "time_end": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time End"
+          },
+          "new_title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "New Title"
+          },
+          "plan_version": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Plan Version"
+          }
+        },
+        "type": "object",
+        "required": [
+          "intent",
+          "block_id",
+          "idempotency_token"
+        ],
+        "title": "PlanEditCommitRequest"
+      },
+      "PlanEditCommitResponse": {
+        "properties": {
+          "applied": {
+            "type": "boolean",
+            "title": "Applied"
+          },
+          "edit_mode": {
+            "type": "string",
+            "title": "Edit Mode"
+          },
+          "proposal_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proposal Id"
+          },
+          "block_id": {
+            "type": "string",
+            "title": "Block Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "applied",
+          "edit_mode",
+          "block_id"
+        ],
+        "title": "PlanEditCommitResponse"
       },
       "PlanEditPreviewOut": {
         "properties": {
