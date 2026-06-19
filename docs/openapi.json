@@ -29257,7 +29257,7 @@
               "maxLength": 36
             },
             "type": "array",
-            "maxItems": 20,
+            "maxItems": 64,
             "title": "Block Ids"
           },
           "day_number": {
@@ -29277,7 +29277,7 @@
           "conflict_type"
         ],
         "title": "ConflictDismissalRequest",
-        "description": "Identify a conflict instance to dismiss/restore. ``block_ids`` are the\nconflict's affected blocks (the FE echoes them from the DayConflict).\n\n``conflict_type`` is validated against the known conflict enum so an\narbitrary free-text string cannot be stored as a dismissal key.\n``block_ids`` is capped at 20 entries \u00d7 36-char UUIDs to prevent unbounded\nwrites from a malformed or adversarial payload."
+        "description": "Identify a conflict instance to dismiss/restore. ``block_ids`` are the\nconflict's affected blocks (the FE echoes them from the DayConflict).\n\n``conflict_type`` is validated against the known conflict enum so an\narbitrary free-text string cannot be stored as a dismissal key.\n``block_ids`` is capped at 64 entries \u00d7 36-char UUIDs to bound writes from a\nmalformed or adversarial payload while still covering a realistically busy\nday: day-scoped conflicts (``budget_overrun``, ``over_packed``,\n``scattered_day``) emit one block id PER block in the day, so a 20+ block day\noverflowed the old cap of 20 \u2192 422 \u2192 the optimistic dismiss rolled back and\nthe conflict re-fired forever. 64 covers any plausible single day. The cap\nonly bounds the list length; the stored ``conflict_key`` (sorted+joined ids)\nstays stable and still matches what the scanner produces, so existing\ndismissals keep suppressing."
       },
       "ConflictDismissalResponse": {
         "properties": {
