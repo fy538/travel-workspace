@@ -40378,6 +40378,11 @@
               }
             ]
           },
+          "proposed_by_me": {
+            "type": "boolean",
+            "title": "Proposed By Me",
+            "default": false
+          },
           "created_at": {
             "type": "string",
             "title": "Created At"
