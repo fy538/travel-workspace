@@ -40201,6 +40201,68 @@
         "title": "PlanNextItem",
         "description": "Next actionable moment on the timeline (best-effort)."
       },
+      "PlanReasoning": {
+        "properties": {
+          "hard_constraint_filtering": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hard Constraint Filtering"
+          },
+          "budget_analysis": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Budget Analysis"
+          },
+          "logistics_reasoning": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Logistics Reasoning"
+          },
+          "interest_matching": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Interest Matching"
+          },
+          "final_selection_reasoning": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Final Selection Reasoning"
+          }
+        },
+        "type": "object",
+        "title": "PlanReasoning",
+        "description": "Trip-level planner reasoning \u2014 the \"How Vesper planned this\" disclosure.\n\nEach field is one stage of the planner's thinking; only non-empty stages are\npopulated (the builder drops blanks). Version-immutable. None when the\nitinerary wasn't agent-generated (e.g. a manual/older version)."
+      },
       "PlanSimilarRequest": {
         "properties": {
           "share_slug": {
@@ -45968,6 +46030,16 @@
           },
           "cross_trip": {
             "$ref": "#/components/schemas/PlanCrossTrip"
+          },
+          "reasoning": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlanReasoning"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "generated_at": {
             "type": "string",
