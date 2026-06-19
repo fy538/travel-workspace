@@ -13495,6 +13495,76 @@
         }
       }
     },
+    "/api/trips/{trip_id}/plan/blocks/{block_id}/mark-happened": {
+      "post": {
+        "tags": [
+          "plan"
+        ],
+        "summary": "Mark Block Happened",
+        "description": "Mark an itinerary block as visited during an active trip.\n\nAny trip member may call this \u2014 no edit-policy gate applies. Idempotent:\ncalling twice returns 200 both times with event_state=\"happened\".",
+        "operationId": "mark_block_happened_api_trips__trip_id__plan_blocks__block_id__mark_happened_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "block_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Block Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MarkHappenedResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/itinerary/conflicts/dismiss": {
       "post": {
         "tags": [
@@ -29168,13 +29238,26 @@
         "properties": {
           "conflict_type": {
             "type": "string",
+            "enum": [
+              "tight_hop",
+              "thin_buffer",
+              "over_packed",
+              "budget_overrun",
+              "hours_closed",
+              "dead_gap",
+              "scattered_day",
+              "no_rest_day",
+              "constraint_conflict"
+            ],
             "title": "Conflict Type"
           },
           "block_ids": {
             "items": {
-              "type": "string"
+              "type": "string",
+              "maxLength": 36
             },
             "type": "array",
+            "maxItems": 20,
             "title": "Block Ids"
           },
           "day_number": {
@@ -29194,7 +29277,7 @@
           "conflict_type"
         ],
         "title": "ConflictDismissalRequest",
-        "description": "Identify a conflict instance to dismiss/restore. ``block_ids`` are the\nconflict's affected blocks (the FE echoes them from the DayConflict)."
+        "description": "Identify a conflict instance to dismiss/restore. ``block_ids`` are the\nconflict's affected blocks (the FE echoes them from the DayConflict).\n\n``conflict_type`` is validated against the known conflict enum so an\narbitrary free-text string cannot be stored as a dismissal key.\n``block_ids`` is capped at 20 entries \u00d7 36-char UUIDs to prevent unbounded\nwrites from a malformed or adversarial payload."
       },
       "ConflictDismissalResponse": {
         "properties": {
@@ -37512,6 +37595,24 @@
         "type": "object",
         "title": "MapStopAction"
       },
+      "MarkHappenedResponse": {
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "title": "Block Id"
+          },
+          "event_state": {
+            "type": "string",
+            "title": "Event State"
+          }
+        },
+        "type": "object",
+        "required": [
+          "block_id",
+          "event_state"
+        ],
+        "title": "MarkHappenedResponse"
+      },
       "MarkReadRequest": {
         "properties": {
           "user_id": {
@@ -40062,6 +40163,28 @@
             },
             "type": "array",
             "title": "Flags"
+          },
+          "venue_lat": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Venue Lat"
+          },
+          "venue_lng": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Venue Lng"
           }
         },
         "type": "object",
