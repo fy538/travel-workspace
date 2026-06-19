@@ -13495,6 +13495,146 @@
         }
       }
     },
+    "/api/trips/{trip_id}/itinerary/conflicts/dismiss": {
+      "post": {
+        "tags": [
+          "plan"
+        ],
+        "summary": "Dismiss Trip Conflict",
+        "description": "Keystone Q \u2014 \"Keep as is\": record that the actor accepts this conflict so\nit stops surfacing. Idempotent. No severity gate \u2014 a re-scan simply won't\nre-raise a conflict the user actually resolved.",
+        "operationId": "dismiss_trip_conflict_api_trips__trip_id__itinerary_conflicts_dismiss_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConflictDismissalRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictDismissalResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/itinerary/conflicts/undismiss": {
+      "post": {
+        "tags": [
+          "plan"
+        ],
+        "summary": "Undismiss Trip Conflict",
+        "description": "Reverse a dismissal \u2014 the FE's undo flow. ``no_op`` when nothing matched\n(already restored, or re-dismissed elsewhere).",
+        "operationId": "undismiss_trip_conflict_api_trips__trip_id__itinerary_conflicts_undismiss_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConflictDismissalRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictDismissalResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/public/stories/{slug}/plan-seed": {
       "get": {
         "tags": [
@@ -29023,6 +29163,56 @@
           "label"
         ],
         "title": "ConflictBlock"
+      },
+      "ConflictDismissalRequest": {
+        "properties": {
+          "conflict_type": {
+            "type": "string",
+            "title": "Conflict Type"
+          },
+          "block_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Block Ids"
+          },
+          "day_number": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Day Number"
+          }
+        },
+        "type": "object",
+        "required": [
+          "conflict_type"
+        ],
+        "title": "ConflictDismissalRequest",
+        "description": "Identify a conflict instance to dismiss/restore. ``block_ids`` are the\nconflict's affected blocks (the FE echoes them from the DayConflict)."
+      },
+      "ConflictDismissalResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "conflict_type": {
+            "type": "string",
+            "title": "Conflict Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "conflict_type"
+        ],
+        "title": "ConflictDismissalResponse"
       },
       "ConflictReceipt": {
         "properties": {
