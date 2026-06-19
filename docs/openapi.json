@@ -40608,6 +40608,17 @@
               }
             ],
             "title": "Expected Updated At"
+          },
+          "prefer_mode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prefer Mode"
           }
         },
         "type": "object",
