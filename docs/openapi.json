@@ -14120,6 +14120,76 @@
         }
       }
     },
+    "/api/trips/{trip_id}/proposals/{proposal_id}/withdraw": {
+      "post": {
+        "tags": [
+          "proposals"
+        ],
+        "summary": "Withdraw Proposal",
+        "description": "Withdraw one's own still-open suggestion (Phase 2 D3, author-scoped).\n\nDistinct from ``/resolve`` (organizer-only): the *proposer* retracts their\nown open proposal. Clean guard \u2014 ``actor == proposed_by AND status ==\nopen`` \u2014 rather than carving a self-withdraw special case into the\norganizer-gated resolve path. Reuses the same ``withdrawn`` transition +\nledger/receipt as resolve.",
+        "operationId": "withdraw_proposal_api_trips__trip_id__proposals__proposal_id__withdraw_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "proposal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Proposal Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProposalDetail"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/proposals/{proposal_id}/revert": {
       "post": {
         "tags": [
@@ -39679,6 +39749,17 @@
             "type": "string",
             "title": "Raw Status"
           },
+          "updated_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At"
+          },
           "event_state": {
             "type": "string",
             "title": "Event State",
@@ -40517,16 +40598,16 @@
             ],
             "title": "New Title"
           },
-          "plan_version": {
+          "expected_updated_at": {
             "anyOf": [
               {
-                "type": "integer"
+                "type": "string"
               },
               {
                 "type": "null"
               }
             ],
-            "title": "Plan Version"
+            "title": "Expected Updated At"
           }
         },
         "type": "object",
