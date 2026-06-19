@@ -13355,6 +13355,76 @@
         }
       }
     },
+    "/api/trips/{trip_id}/plan/edit-preview": {
+      "post": {
+        "tags": [
+          "plan-edit-preview"
+        ],
+        "summary": "Plan Edit Preview",
+        "description": "Compute a before/after diff for a proposed plan change without writing.\n\nAll intents except ``fill`` are fully deterministic (no LLM calls). The\nfrontend renders the diff in the Change Studio preview pane.",
+        "operationId": "plan_edit_preview_api_trips__trip_id__plan_edit_preview_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlanEditPreviewRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanEditPreviewOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/public/stories/{slug}/plan-seed": {
       "get": {
         "tags": [
@@ -18577,6 +18647,66 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/OptimizeRouteResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/notifications/leave-by": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Leave By",
+        "description": "The in-app leave-by hint for this user + trip's imminent next stop.\n\nComputed fresh (the READ twin of the push dispatcher), so it works even for\nusers with push disabled \u2014 the whole point of surfacing it in-app. Returns\n``{\"hint\": null}`` when there's no qualifying stop or the user muted/dismissed\nit; the client hides the strip rather than showing an empty one.",
+        "operationId": "get_leave_by_api_trips__trip_id__notifications_leave_by_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeaveByHintResponse"
                 }
               }
             }
@@ -23891,6 +24021,13 @@
             "type": "array",
             "title": "On This Day"
           },
+          "loved_places": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasLovedPlace"
+            },
+            "type": "array",
+            "title": "Loved Places"
+          },
           "trip_count": {
             "type": "integer",
             "title": "Trip Count",
@@ -24452,6 +24589,52 @@
         ],
         "title": "AtlasKeepAllResponse",
         "description": "Response from POST /api/atlas/candidates/keep-all."
+      },
+      "AtlasLovedPlace": {
+        "properties": {
+          "entity_type": {
+            "type": "string",
+            "title": "Entity Type"
+          },
+          "entity_id": {
+            "type": "string",
+            "title": "Entity Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "place_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Label"
+          },
+          "category": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_type",
+          "entity_id",
+          "name"
+        ],
+        "title": "AtlasLovedPlace",
+        "description": "A place this traveler has genuinely loved across trips \u2014 the durable\n\"you loved {name} in {city}\" recall, read from traveler_place_affinity.\n\nThis is memory, not pending work: no CTA, no candidate, nothing to do. The\nAtlas home renders it as a quiet recall strip alongside On-This-Day. Only\nweight\u2265LOVED rows reach here, so \"loved\" is honest, never an inflated single\nsave. Best-effort and never load-bearing \u2014 an empty list just hides the\nstrip rather than manufacturing personalization."
       },
       "AtlasMapArc": {
         "properties": {
@@ -26596,6 +26779,40 @@
         ],
         "title": "BlockAlternativesResponse",
         "description": "``GET /api/trips/{trip_id}/itinerary/blocks/{block_id}/alternatives``.\n\nThe CandidateSet for a block's Swap surface. ``reason`` is set (and\n``candidates`` empty) when there's nothing to offer \u2014 e.g. ``no_venue``\nfor a free-time / experience block."
+      },
+      "BlockSummary": {
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "title": "Block Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "time_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Label"
+          },
+          "changed": {
+            "type": "boolean",
+            "title": "Changed",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "block_id",
+          "title"
+        ],
+        "title": "BlockSummary"
       },
       "BlockTransition": {
         "properties": {
@@ -29417,6 +29634,40 @@
           "day_number"
         ],
         "title": "DayConflictsResponse"
+      },
+      "DayDiff": {
+        "properties": {
+          "day_id": {
+            "type": "string",
+            "title": "Day Id"
+          },
+          "day_label": {
+            "type": "string",
+            "title": "Day Label"
+          },
+          "before": {
+            "items": {
+              "$ref": "#/components/schemas/BlockSummary"
+            },
+            "type": "array",
+            "title": "Before"
+          },
+          "after": {
+            "items": {
+              "$ref": "#/components/schemas/BlockSummary"
+            },
+            "type": "array",
+            "title": "After"
+          }
+        },
+        "type": "object",
+        "required": [
+          "day_id",
+          "day_label",
+          "before",
+          "after"
+        ],
+        "title": "DayDiff"
       },
       "DeckBriefDay": {
         "properties": {
@@ -35826,6 +36077,70 @@
         "title": "LeaveByActionResponse",
         "description": "Confirmation envelope for leave-by dismiss / mute actions."
       },
+      "LeaveByHint": {
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Block Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "time_start": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Start"
+          },
+          "recommended_depart_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Recommended Depart At"
+          },
+          "travel_minutes": {
+            "type": "integer",
+            "title": "Travel Minutes"
+          },
+          "mode": {
+            "type": "string",
+            "title": "Mode"
+          },
+          "is_overdue": {
+            "type": "boolean",
+            "title": "Is Overdue"
+          }
+        },
+        "type": "object",
+        "required": [
+          "block_id",
+          "title",
+          "time_start",
+          "recommended_depart_at",
+          "travel_minutes",
+          "mode",
+          "is_overdue"
+        ],
+        "title": "LeaveByHint",
+        "description": "In-app leave-by hint for a trip's imminent next stop.\n\nThe READ twin of the push payload \u2014 same fields the push body encodes, but\nstructured for the client to render (\"Leave by 14:45 \u00b7 12 min walk\"). See\n``get_leave_by_hint`` for how it's computed."
+      },
+      "LeaveByHintResponse": {
+        "properties": {
+          "hint": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LeaveByHint"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "title": "LeaveByHintResponse",
+        "description": "The current leave-by hint for a trip, or null when there's nothing to show."
+      },
       "LedgerReceipt": {
         "properties": {
           "type": {
@@ -40071,6 +40386,135 @@
         },
         "type": "object",
         "title": "PlanDecisionVotes"
+      },
+      "PlanEditPreviewOut": {
+        "properties": {
+          "intent": {
+            "type": "string",
+            "title": "Intent"
+          },
+          "recommendation": {
+            "type": "string",
+            "title": "Recommendation"
+          },
+          "day_diffs": {
+            "items": {
+              "$ref": "#/components/schemas/DayDiff"
+            },
+            "type": "array",
+            "title": "Day Diffs"
+          },
+          "risks": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Risks"
+          },
+          "commit_mode": {
+            "type": "string",
+            "enum": [
+              "auto",
+              "confirm"
+            ],
+            "title": "Commit Mode"
+          },
+          "idempotency_token": {
+            "type": "string",
+            "title": "Idempotency Token"
+          }
+        },
+        "type": "object",
+        "required": [
+          "intent",
+          "recommendation",
+          "day_diffs",
+          "commit_mode",
+          "idempotency_token"
+        ],
+        "title": "PlanEditPreviewOut"
+      },
+      "PlanEditPreviewRequest": {
+        "properties": {
+          "intent": {
+            "type": "string",
+            "enum": [
+              "move",
+              "swap",
+              "remove",
+              "fill"
+            ],
+            "title": "Intent"
+          },
+          "block_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Block Id"
+          },
+          "target_day_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Day Id"
+          },
+          "target_time_start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Time Start"
+          },
+          "target_time_end": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Time End"
+          },
+          "swap_with_block_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Swap With Block Id"
+          },
+          "plan_version": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Plan Version"
+          }
+        },
+        "type": "object",
+        "required": [
+          "intent",
+          "block_id"
+        ],
+        "title": "PlanEditPreviewRequest"
       },
       "PlanEntityRef": {
         "properties": {
