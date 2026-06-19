@@ -13361,7 +13361,7 @@
           "plan-edit-preview"
         ],
         "summary": "Plan Edit Preview",
-        "description": "Compute a before/after diff for a proposed plan change without writing.\n\nAll intents except ``fill`` are fully deterministic (no LLM calls). The\nfrontend renders the diff in the Change Studio preview pane.",
+        "description": "Compute a before/after diff for a proposed plan change without writing.",
         "operationId": "plan_edit_preview_api_trips__trip_id__plan_edit_preview_post",
         "parameters": [
           {
@@ -40397,6 +40397,50 @@
             "type": "string",
             "title": "Recommendation"
           },
+          "action": {
+            "type": "string",
+            "enum": [
+              "move",
+              "swap",
+              "remove",
+              "fill",
+              "none"
+            ],
+            "title": "Action",
+            "default": "move"
+          },
+          "rationale": {
+            "type": "string",
+            "title": "Rationale",
+            "default": ""
+          },
+          "rationale_group_safe": {
+            "type": "boolean",
+            "title": "Rationale Group Safe",
+            "default": true
+          },
+          "apply_time_start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Apply Time Start"
+          },
+          "apply_time_end": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Apply Time End"
+          },
           "day_diffs": {
             "items": {
               "$ref": "#/components/schemas/DayDiff"
@@ -40415,9 +40459,21 @@
             "type": "string",
             "enum": [
               "auto",
-              "confirm"
+              "confirm",
+              "proposal"
             ],
             "title": "Commit Mode"
+          },
+          "plan_version": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Plan Version"
           },
           "idempotency_token": {
             "type": "string",
@@ -40496,6 +40552,17 @@
               }
             ],
             "title": "Swap With Block Id"
+          },
+          "nl_instruction": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Nl Instruction"
           },
           "plan_version": {
             "anyOf": [
