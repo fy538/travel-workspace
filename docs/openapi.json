@@ -48394,6 +48394,28 @@
             ],
             "title": "Wheelchair Accessible"
           },
+          "lat": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lat"
+          },
+          "lng": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lng"
+          },
           "brief": {
             "anyOf": [
               {
@@ -48430,6 +48452,8 @@
           "avg_duration_minutes",
           "reservation_required",
           "wheelchair_accessible",
+          "lat",
+          "lng",
           "brief",
           "dossier_snippet"
         ],
