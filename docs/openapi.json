@@ -40848,6 +40848,11 @@
             "title": "Total",
             "default": 0
           },
+          "outstanding": {
+            "type": "integer",
+            "title": "Outstanding",
+            "default": 0
+          },
           "my_vote": {
             "anyOf": [
               {
