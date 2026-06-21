@@ -4153,7 +4153,7 @@
           "booking"
         ],
         "summary": "Settle Booking Hold Endpoint",
-        "description": "Settle (pay) a held offer before its deadline \u2014 the \"Confirm\" of a deck\nCall-held card backed by a real provider hold. Moves money only when the\nlive-booking engine is enabled; otherwise returns ``unavailable``.",
+        "description": "Settle (pay) a held offer before its deadline \u2014 the \"Confirm\" of a deck\nCall-held card backed by a real provider hold. Moves money only when the\nlive-booking engine is enabled; otherwise returns ``unavailable``.\n\nReturns 410 when the hold deadline has passed (H1 pre-check returns None).\nReturns 503-equivalent ``unavailable`` status when the provider call fails.",
         "operationId": "settle_booking_hold_endpoint_api_trips__trip_id__booking_holds__offer_id__settle_post",
         "parameters": [
           {
@@ -16526,7 +16526,7 @@
           "trips"
         ],
         "summary": "Patch Trip",
-        "description": "Update user-editable trip settings.\n\nAny combination of ``title``, ``place_id``, ``start_date``, ``end_date``,\n``occasion``, ``budget_band``, and ``voting_enabled`` may be updated.\nOmitted fields are left unchanged (standard PATCH semantics \u2014 only fields\npresent in the request body are applied).\n\nOnly trip organizers may call this endpoint. Members who want to propose\nchanges should do so through the concierge conversation.\n\nInternal fields (``status``, ``trip_summary``, ``planning_brief``) are\nmanaged by background jobs and the concierge, and are not accepted here.\n\nSide effect: when fields that shape cross-trip threading change\n(``title``, ``start_date``, ``end_date``, ``occasion``, ``budget_band``),\nschedule a background recompute of ``trip_cross_trip_threads`` so the\ntrip-home surface reflects the new context on next read.",
+        "description": "Update user-editable trip settings (organizer-only PATCH).",
         "operationId": "patch_trip_api_trips__trip_id__patch",
         "parameters": [
           {
@@ -17319,8 +17319,9 @@
           "trips"
         ],
         "summary": "Get Trip Itinerary",
-        "description": "Get the latest itinerary with all days and blocks.\n\nReturns a flat list of days, each with embedded blocks, matching\nthe mobile app's expected shape.",
+        "description": "DEPRECATED (use ``GET /api/trips/{trip_id}/plan-state``) \u2014 latest itinerary, days+blocks.\n\nRetained only so old deployed app builds that still call it keep working;\ndo not point new clients here. Behavior unchanged. Returns a flat list of\ndays, each with embedded blocks, matching the mobile app's expected shape.",
         "operationId": "get_trip_itinerary_api_trips__trip_id__itinerary_get",
+        "deprecated": true,
         "parameters": [
           {
             "name": "trip_id",
@@ -18568,7 +18569,7 @@
           "trips"
         ],
         "summary": "Get Itinerary Block Better Slots",
-        "description": "Return 3\u20135 suggested time windows for a block (BETTER SLOTS, \u00a75.2).\n\nScans the block's current day for clear gaps sized to the block's own\nduration; labels each by time of day; estimates walk time to neighbours.",
+        "description": "Return 3\u20135 suggested time windows for a block (BETTER SLOTS, \u00a75.2).\n\nScans the block's day (or ``target_day_id`` for cross-day move previews)\nfor clear gaps; labels each by time of day; estimates walk time.",
         "operationId": "get_itinerary_block_better_slots_api_trips__trip_id__itinerary_blocks__block_id__better_slots_get",
         "parameters": [
           {
@@ -18589,6 +18590,23 @@
               "type": "string",
               "format": "uuid",
               "title": "Block Id"
+            }
+          },
+          {
+            "name": "target_day_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Target Day Id"
             }
           },
           {
@@ -28797,6 +28815,17 @@
               }
             ],
             "title": "Destination"
+          },
+          "day_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Day Id"
           }
         },
         "type": "object",
@@ -30243,6 +30272,18 @@
               }
             ],
             "title": "Ref Id"
+          },
+          "deadline_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deadline At"
           }
         },
         "type": "object",
@@ -35945,6 +35986,17 @@
             ],
             "title": "Feasibility Warning"
           },
+          "price_cents": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Cents"
+          },
           "notes": {
             "anyOf": [
               {
@@ -40185,6 +40237,33 @@
               }
             ],
             "title": "Venue Lng"
+          },
+          "actor_type": {
+            "type": "string",
+            "title": "Actor Type",
+            "default": "vesper"
+          },
+          "price_cents": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Cents"
+          },
+          "neighborhood_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Neighborhood Name"
           }
         },
         "type": "object",
@@ -40561,6 +40640,17 @@
               }
             ],
             "title": "Closing"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
           },
           "state": {
             "type": "string",
@@ -47163,6 +47253,11 @@
             "type": "string",
             "format": "date-time",
             "title": "Generated At"
+          },
+          "generating": {
+            "type": "boolean",
+            "title": "Generating",
+            "default": false
           }
         },
         "type": "object",
