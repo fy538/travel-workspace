@@ -568,6 +568,166 @@
         }
       }
     },
+    "/admin/atlas/users/{user_id}/precompute-boards": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Precompute Atlas Boards",
+        "description": "Build this user's proactive Atlas gift pool.\n\nAdmin-only activation for the lean-back \"Vesper made you this\" flow. The job\nstores only board queries in ``precomputed_boards``; serving still recomposes\nlive via ``GET /api/atlas/gift``. Safe to re-run: the write path is\nidempotent on ``(user_id, facet_set)``.",
+        "operationId": "precompute_atlas_boards_admin_atlas_users__user_id__precompute_boards_post",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasPrecomputeBoardsResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/atlas/entity-facets/project": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Project Atlas Entity Facets",
+        "description": "Project deterministic catalog facets for Atlas/Discover composition.\n\nZero-LLM index hygiene: upserts facets from existing catalog columns such as\nvenue cuisine, experience genre/type, and place hierarchy neighborhood. This\ngives search/compose a finer axis than ``entity_category`` without inventing\nenrichment.",
+        "operationId": "project_atlas_entity_facets_admin_atlas_entity_facets_project_post",
+        "parameters": [
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityFacetProjectionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/ops/ai-status": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Get Ai Ops Status",
+        "description": "Return effective AI/search provider policy without exposing secrets.",
+        "operationId": "get_ai_ops_status_admin_ops_ai_status_get",
+        "parameters": [
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AIOpsStatusResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/admin/users/{user_id}/events": {
       "get": {
         "tags": [
@@ -2159,6 +2319,554 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AtlasReceiptReadModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/discovery-reflection": {
+      "get": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Get Atlas Discovery Reflection",
+        "description": "The Discover\u2192Atlas reflection \u2014 the flywheel's other visible half.\n\nReturns the places the traveler DISCOVERED + SAVED (saves whose\n``signal_source`` originated in Discover) tied to a destination \u2014 the trip's\ncity when ``trip_id`` is given, or an explicit ``destination`` string. Atlas\nrenders it as \"places you saved before {destination} that became part of the\ntrip\". Grounded in real saves/affinity; empty (``headline`` null) when there\nis nothing to reflect \u2014 honest, never fabricated.",
+        "operationId": "get_atlas_discovery_reflection_api_atlas_discovery_reflection_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "destination",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Destination"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiscoveryReflection"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/board": {
+      "get": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Get Atlas Board",
+        "description": "Compose a taste board from the traveler's loved-place substrate.\n\nLean-back when ``dimension``/``value`` are omitted (Vesper picks the\nstrongest taste); steer when they're given. Always returns a\nCompositionResult \u2014 board, list, or honest empty-state.",
+        "operationId": "get_atlas_board_api_atlas_board_get",
+        "parameters": [
+          {
+            "name": "dimension",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Dimension"
+            }
+          },
+          {
+            "name": "value",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Value"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompositionResult"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/compose": {
+      "post": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Compose Atlas Board",
+        "description": "Compose a board from the full query object.\n\nThis is the canonical composition path for search/chips/saved boards:\n``raw_text`` + ``facet_set`` + ``residual_phrase`` are preserved on the\nreturned result. The older GET board route remains a scalar shortcut.",
+        "operationId": "compose_atlas_board_api_atlas_compose_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComposeBoardRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompositionResult"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/gift": {
+      "get": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Get Atlas Gift",
+        "description": "Serve the lean-back \"Vesper made you this\" gift.\n\nPicks the best UNSHOWN precomputed board from the traveler's per-user pool\n(ranked anniversary > taste > recency, then freshness), marks it shown so the\nnext open returns a DIFFERENT board (anti-repetition), and recomposes it LIVE\noff the stored facet_set \u2014 the pool row is only the query, never the frozen\nboard. Falls back to the on-demand strongest-taste compose (and its honest\nempty-state) when the pool is empty or all-shown. Always returns a\nCompositionResult \u2014 the same shape the home board renders.",
+        "operationId": "get_atlas_gift_api_atlas_gift_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompositionResult"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/parse": {
+      "post": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Parse Atlas Query",
+        "description": "Parse a natural-language taste query into known facets + an honest residual.\n\nMaps the query to ONLY the live dimension vocabulary\n(cuisine / category / neighborhood / experience_type / genre); each recognized\nfacet's ``dimension``+``value`` are directly usable as ``GET /api/atlas/board``\nsteer params. Anything the engine has no dimension for (weather, companion,\nmood, free text) is left verbatim in ``residual_phrase`` \u2014 never forced into a\nfabricated dimension.\n\nLLM-backed when credits are available; degrades to a deterministic keyword\nmatch against the traveler's known loved facet values otherwise. Never raises.",
+        "operationId": "parse_atlas_query_api_atlas_parse_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ParseQueryRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParseQueryResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/board/save": {
+      "post": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Save Atlas Board",
+        "description": "Save (keep) a composed board so the traveler can re-open it later.\n\nThe saved row is just the query: raw ask + facet_set + residual phrase, plus\na cached display title. When ``title`` is omitted the board is recomposed\nonce to cache its real title. Idempotent \u2014 saving the same query twice (and\na re-save of a previously-dismissed one) returns the same row id.",
+        "operationId": "save_atlas_board_api_atlas_board_save_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveBoardRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SaveBoardResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/boards": {
+      "get": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "List Atlas Boards",
+        "description": "List the traveler's non-dismissed kept boards, newest first.\n\nEach board carries its ``facet_set`` (re-open recomposes live via\n``GET /api/atlas/board``), cached ``title``, and ``created_at``.",
+        "operationId": "list_atlas_boards_api_atlas_boards_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KeptBoardsResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/board/save/{board_id}": {
+      "delete": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Delete Atlas Board",
+        "description": "Soft-delete (dismiss) a kept board, scoped to its owner.\n\nIdempotent from the client's view: dismissing an already-dismissed or\nunknown board still returns 204 (the board is gone either way).",
+        "operationId": "delete_atlas_board_api_atlas_board_save__board_id__delete",
+        "parameters": [
+          {
+            "name": "board_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Board Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/facets": {
+      "get": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Get Atlas Facets",
+        "description": "List the traveler's strongest composable facets for the compose surface.\n\nRecognition-first: aggregates ``get_loved_facets`` across the projected\ndimensions (cuisine / experience_type / neighborhood / genre) plus\n``get_loved_categories`` as the ``category`` dimension, ranks by loved-entity\ncount (weight as tie-break), dedupes on ``(dimension, value)``, and caps to a\nhandful. Each suggestion's ``dimension``+``value`` are the exact steer params\nfor ``GET /api/atlas/board`` \u2014 a tap composes that board directly.\n\nGrounded only: every facet here is one the affinity substrate already carries;\nan empty substrate yields an empty list (no fabrication).",
+        "operationId": "get_atlas_facets_api_atlas_facets_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasFacetSuggestions"
                 }
               }
             }
@@ -6308,6 +7016,66 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DiscoverFeedResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/discover/compose": {
+      "post": {
+        "tags": [
+          "discover"
+        ],
+        "summary": "Discover Compose",
+        "description": "Compose a Discover board over the WORLD corpus (the shared engine).\n\nThe Discover twin of ``GET /api/atlas/board``: same composition ASSEMBLY\n(candidates \u2192 shape brain \u2192 register/template \u2192 visual_slots \u2192 copy \u2192\nCompositionResult), but fed from the WORLD corpus (catalog venues/sites +\ndossiers) ranked by relevance/quality instead of the traveler's affinity.\n\nBody is either ``{ text }`` (a freeform query, parsed to facets) or\n``{ dimension, value }`` (an explicit steer). The result is the **Discover\nvariant** \u2014 each moment carries ``provenance`` (who is vouching: Vesper\neditorial / a dossier).\n\nP4 \u2014 taste tilt: the board is PERSONALIZED by the authed user's own loved\nfacets. World notability/quality stays the base; a matched loved facet\n(cuisine / neighborhood / category) boosts a candidate and re-orders the set.\nWhen the board is genuinely shaped, the result carries a grounded ``because``\nline (\"Because you love pizza\"). No taste signal \u2192 world-only, ``because``\nnull (honest \u2014 never fabricated).",
+        "operationId": "discover_compose_api_discover_compose_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DiscoverComposeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompositionResult"
                 }
               }
             }
@@ -12899,7 +13667,7 @@
           "memory"
         ],
         "summary": "Log Interaction",
-        "description": "Log one behavioral event from a Memory surface. Fire-and-forget.",
+        "description": "Log one behavioral event from a Memory surface. Fire-and-forget.\n\nmemory_interactions table was dropped 2026-06-20 (insert-only, no consumers).\nHigh-signal engagements (save/share) still produce an observation so the\nPersonal Memory synthesizer folds them in.",
         "operationId": "log_interaction_api_memory_interactions_post",
         "parameters": [
           {
@@ -22364,6 +23132,95 @@
   },
   "components": {
     "schemas": {
+      "AIOpsAllowedStatus": {
+        "properties": {
+          "ai_live_provider_calls": {
+            "type": "boolean",
+            "title": "Ai Live Provider Calls"
+          },
+          "ai_replay_calls": {
+            "type": "boolean",
+            "title": "Ai Replay Calls"
+          },
+          "ai_cheap_allowlisted_calls": {
+            "type": "boolean",
+            "title": "Ai Cheap Allowlisted Calls"
+          },
+          "ai_streaming": {
+            "type": "boolean",
+            "title": "Ai Streaming"
+          },
+          "web_search_live_provider_calls": {
+            "type": "boolean",
+            "title": "Web Search Live Provider Calls"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ai_live_provider_calls",
+          "ai_replay_calls",
+          "ai_cheap_allowlisted_calls",
+          "ai_streaming",
+          "web_search_live_provider_calls"
+        ],
+        "title": "AIOpsAllowedStatus"
+      },
+      "AIOpsStatusResponse": {
+        "properties": {
+          "ai_mode": {
+            "type": "string",
+            "title": "Ai Mode"
+          },
+          "web_search_mode": {
+            "type": "string",
+            "title": "Web Search Mode"
+          },
+          "llm_vcr_mode": {
+            "type": "string",
+            "title": "Llm Vcr Mode"
+          },
+          "background_llm_loops_disabled": {
+            "type": "boolean",
+            "title": "Background Llm Loops Disabled"
+          },
+          "providers": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ProviderKeyStatus"
+            },
+            "type": "object",
+            "title": "Providers"
+          },
+          "allowed": {
+            "$ref": "#/components/schemas/AIOpsAllowedStatus"
+          },
+          "cheap_surface_caps": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Cheap Surface Caps"
+          },
+          "notes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Notes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ai_mode",
+          "web_search_mode",
+          "llm_vcr_mode",
+          "background_llm_loops_disabled",
+          "providers",
+          "allowed",
+          "cheap_surface_caps",
+          "notes"
+        ],
+        "title": "AIOpsStatusResponse"
+      },
       "AccommodationPatchRequest": {
         "properties": {
           "freeform_label": {
@@ -24316,6 +25173,57 @@
         "title": "AtlasCandidatesResponse",
         "description": "Response for ``POST /api/atlas/candidates`` \u2014 persisted candidates with ids."
       },
+      "AtlasFacetSuggestion": {
+        "properties": {
+          "dimension": {
+            "type": "string",
+            "title": "Dimension"
+          },
+          "value": {
+            "type": "string",
+            "title": "Value"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "dimension",
+          "value",
+          "count",
+          "label"
+        ],
+        "title": "AtlasFacetSuggestion",
+        "description": "One composable facet the traveler can hand to the board endpoint.\n\nRecognition-first: each is a taste the substrate already knows\n(``dimension``/``value`` come straight off the loved-facet aggregation \u2014\nnothing is invented). ``dimension`` + ``value`` are the exact steer params\n``GET /api/atlas/board`` accepts, so a tap composes that board directly.\n``label`` is the short human phrase to show (\"pizza\", \"museums\", \"Alfama\")."
+      },
+      "AtlasFacetSuggestions": {
+        "properties": {
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "suggestions": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasFacetSuggestion"
+            },
+            "type": "array",
+            "title": "Suggestions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "generated_at"
+        ],
+        "title": "AtlasFacetSuggestions",
+        "description": "The traveler's strongest composable facets across dimensions, ranked.\n\nPowers the compose-entry surface: ``suggestions`` is already capped, deduped,\nand ordered strongest-first so the FE renders them verbatim."
+      },
       "AtlasHome": {
         "properties": {
           "owner": {
@@ -24395,6 +25303,17 @@
             },
             "type": "array",
             "title": "Loved Places"
+          },
+          "intended_destination": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Intended Destination"
           },
           "trip_count": {
             "type": "integer",
@@ -25466,6 +26385,32 @@
         ],
         "title": "AtlasPlacesReadModel",
         "description": "Response for ``GET /api/atlas/places`` \u2014 saved venues + memory clusters."
+      },
+      "AtlasPrecomputeBoardsResponse": {
+        "properties": {
+          "stored_count": {
+            "type": "integer",
+            "title": "Stored Count"
+          },
+          "unshown_count": {
+            "type": "integer",
+            "title": "Unshown Count"
+          },
+          "stored_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Stored Ids"
+          }
+        },
+        "type": "object",
+        "required": [
+          "stored_count",
+          "unshown_count",
+          "stored_ids"
+        ],
+        "title": "AtlasPrecomputeBoardsResponse"
       },
       "AtlasProvenanceRef": {
         "properties": {
@@ -28454,6 +29399,310 @@
         "title": "CollectionSummary",
         "description": "Guides-row card payload: just what the row needs to render."
       },
+      "ComposeBoardRequest": {
+        "properties": {
+          "raw_text": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 400
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Raw Text"
+          },
+          "facet_set": {
+            "items": {
+              "$ref": "#/components/schemas/FacetChip"
+            },
+            "type": "array",
+            "title": "Facet Set"
+          },
+          "residual_phrase": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 400
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Residual Phrase"
+          },
+          "dimension": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dimension"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value"
+          }
+        },
+        "type": "object",
+        "title": "ComposeBoardRequest",
+        "description": "Body for ``POST /api/atlas/compose`` \u2014 compose from a full query object."
+      },
+      "CompositionResult": {
+        "properties": {
+          "query": {
+            "$ref": "#/components/schemas/Query"
+          },
+          "chips": {
+            "items": {
+              "$ref": "#/components/schemas/FacetChip"
+            },
+            "type": "array",
+            "title": "Chips"
+          },
+          "register": {
+            "type": "string",
+            "enum": [
+              "board",
+              "list",
+              "empty"
+            ],
+            "title": "Register"
+          },
+          "format": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "board",
+                  "timeline",
+                  "map",
+                  "reel",
+                  "list",
+                  "empty"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Format"
+          },
+          "template": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "spread",
+                  "mosaic",
+                  "single",
+                  "lineage",
+                  "year",
+                  "reel"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Template"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "read": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Read"
+          },
+          "copy_status": {
+            "type": "string",
+            "enum": [
+              "deterministic",
+              "upgraded",
+              "pending",
+              "failed"
+            ],
+            "title": "Copy Status",
+            "default": "deterministic"
+          },
+          "moments": {
+            "items": {
+              "$ref": "#/components/schemas/Moment"
+            },
+            "type": "array",
+            "title": "Moments"
+          },
+          "visual_slots": {
+            "items": {
+              "$ref": "#/components/schemas/VisualSlot"
+            },
+            "type": "array",
+            "title": "Visual Slots"
+          },
+          "actions": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "dive",
+                "steer",
+                "save",
+                "play",
+                "share"
+              ]
+            },
+            "type": "array",
+            "title": "Actions"
+          },
+          "privacy": {
+            "$ref": "#/components/schemas/Privacy"
+          },
+          "register_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Register Note"
+          },
+          "understanding": {
+            "$ref": "#/components/schemas/CompositionUnderstanding"
+          },
+          "fallback": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fallback"
+          },
+          "provenance": {
+            "items": {
+              "$ref": "#/components/schemas/Provenance"
+            },
+            "type": "array",
+            "title": "Provenance"
+          },
+          "sponsor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sponsor"
+          },
+          "trust": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trust"
+          },
+          "because": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Because"
+          }
+        },
+        "type": "object",
+        "required": [
+          "query",
+          "register",
+          "title"
+        ],
+        "title": "CompositionResult",
+        "description": "The assembled board / list / empty-state for one taste query."
+      },
+      "CompositionUnderstanding": {
+        "properties": {
+          "used_facets": {
+            "items": {
+              "$ref": "#/components/schemas/FacetChip"
+            },
+            "type": "array",
+            "title": "Used Facets"
+          },
+          "unused_facets": {
+            "items": {
+              "$ref": "#/components/schemas/FacetChip"
+            },
+            "type": "array",
+            "title": "Unused Facets"
+          },
+          "unsupported_phrase": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unsupported Phrase"
+          },
+          "source_counts": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Source Counts"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          }
+        },
+        "type": "object",
+        "title": "CompositionUnderstanding",
+        "description": "What the engine understood and actually used.\n\nThis powers the board's quiet trust affordance (\"Built from\u2026\") and product\ntelemetry. It is intentionally plain: no raw private prose beyond the\nalready-returned residual phrase, and no invented reasoning."
+      },
       "ConciergeCardFeedbackEvent": {
         "properties": {
           "id": {
@@ -30042,6 +31291,30 @@
             },
             "type": "array",
             "title": "Block Ids"
+          },
+          "gap_start": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Gap Start"
+          },
+          "gap_end": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Gap End"
           }
         },
         "type": "object",
@@ -31113,6 +32386,47 @@
         "title": "DigestRunResponse",
         "description": "Result of a manual digest run."
       },
+      "DiscoverComposeRequest": {
+        "properties": {
+          "text": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 400
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Text"
+          },
+          "dimension": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dimension"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value"
+          }
+        },
+        "type": "object",
+        "title": "DiscoverComposeRequest",
+        "description": "Body for ``POST /api/discover/compose``.\n\nEither a freeform ``text`` query (parsed to facets) OR an explicit\n``dimension``/``value`` steer (mirrors the Atlas board endpoint's steer\nparams). The board composes over the WORLD corpus, not the user's affinity.\n\n``text`` is bounded to the same ``max_length`` as ``ParseQueryRequest.text``\n(400) so an oversized query can't flow unbounded into the LLM parse. It stays\nOPTIONAL (no ``min_length``) \u2014 ``/compose`` supports dimension/value-only\nsteers with no text, and an empty/None ``text`` still degrades honestly to\nthe empty-state."
+      },
       "DiscoverFeedItem": {
         "properties": {
           "id": {
@@ -31730,6 +33044,123 @@
           "text"
         ],
         "title": "DiscoverReadLine"
+      },
+      "DiscoveryReflection": {
+        "properties": {
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "destination_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Destination Name"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "headline": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Headline"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/DiscoveryReflectionItem"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "type": "object",
+        "required": [
+          "generated_at"
+        ],
+        "title": "DiscoveryReflection",
+        "description": "Response for ``GET /api/atlas/discovery-reflection``.\n\nThe Discover\u2192Atlas half of the flywheel: \"places you saved before\n{destination} that became part of the trip.\" Atlas renders the reflection\nfrom ``items`` (the Discover-sourced saves tied to the destination) under\n``headline``. ``destination_name`` echoes the resolved destination; ``items``\nis empty (and ``headline`` null) when there is nothing real to reflect \u2014\nhonest, never fabricated."
+      },
+      "DiscoveryReflectionItem": {
+        "properties": {
+          "entity_type": {
+            "type": "string",
+            "title": "Entity Type"
+          },
+          "entity_id": {
+            "type": "string",
+            "title": "Entity Id"
+          },
+          "entity_name": {
+            "type": "string",
+            "title": "Entity Name"
+          },
+          "entity_category": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Entity Category"
+          },
+          "destination_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Destination Name"
+          },
+          "saved_via": {
+            "type": "string",
+            "title": "Saved Via"
+          },
+          "follow_through": {
+            "type": "string",
+            "title": "Follow Through",
+            "default": "saved"
+          },
+          "weight": {
+            "type": "number",
+            "title": "Weight",
+            "default": 0.0
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_type",
+          "entity_id",
+          "entity_name",
+          "saved_via"
+        ],
+        "title": "DiscoveryReflectionItem",
+        "description": "One place the traveler DISCOVERED + SAVED in Discover that became part of\na trip / destination.\n\nGrounded in a real ``traveler_place_affinity`` row whose save carried a\nDiscover ``signal_source`` (``evidence[].source`` contains ``discover``) \u2014 so\nevery item is a genuine \"I found this in Discover, before the trip\" save,\nnever inferred. ``destination_name`` is the entity's enclosing city (the\nreflection's grouping key); ``entity_category`` the kind-of-place."
       },
       "DismissCardRequest": {
         "properties": {
@@ -32351,6 +33782,27 @@
         ],
         "title": "DossierSummary",
         "description": "Lightweight dossier listing item."
+      },
+      "EntityFacetProjectionResponse": {
+        "properties": {
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "counts": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Counts"
+          }
+        },
+        "type": "object",
+        "required": [
+          "total",
+          "counts"
+        ],
+        "title": "EntityFacetProjectionResponse"
       },
       "EntitySave": {
         "properties": {
@@ -33623,6 +35075,50 @@
           "new_expires_at"
         ],
         "title": "ExtendResponse"
+      },
+      "FacetChip": {
+        "properties": {
+          "dimension": {
+            "type": "string",
+            "title": "Dimension"
+          },
+          "op": {
+            "type": "string",
+            "enum": [
+              "eq",
+              "contains",
+              "range"
+            ],
+            "title": "Op",
+            "default": "eq"
+          },
+          "value": {
+            "type": "string",
+            "title": "Value"
+          },
+          "confidence": {
+            "type": "number",
+            "title": "Confidence",
+            "default": 1.0
+          },
+          "editable": {
+            "type": "boolean",
+            "title": "Editable",
+            "default": true
+          },
+          "sensitive": {
+            "type": "boolean",
+            "title": "Sensitive",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "dimension",
+          "value"
+        ],
+        "title": "FacetChip",
+        "description": "One visible, editable parse term. ``sensitive`` chips (companion/person)\nforce ``visibility: private`` and never serialize into a shareable board."
       },
       "FeedItem": {
         "properties": {
@@ -36433,6 +37929,74 @@
         ],
         "title": "ItineraryEditLog"
       },
+      "KeptBoard": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "raw_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Raw Text"
+          },
+          "facet_set": {
+            "items": {
+              "$ref": "#/components/schemas/FacetChip"
+            },
+            "type": "array",
+            "title": "Facet Set"
+          },
+          "residual_phrase": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Residual Phrase"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "created_at"
+        ],
+        "title": "KeptBoard",
+        "description": "One saved board in the traveler's library.\n\nThe saved row is just the *query* \u2014 ``facet_set`` re-composes the board live\nvia the board endpoint, so a kept board is never frozen. ``title`` is the\ncached display title for the list; ``created_at`` orders the library."
+      },
+      "KeptBoardsResponse": {
+        "properties": {
+          "boards": {
+            "items": {
+              "$ref": "#/components/schemas/KeptBoard"
+            },
+            "type": "array",
+            "title": "Boards"
+          }
+        },
+        "type": "object",
+        "title": "KeptBoardsResponse",
+        "description": "The traveler's non-dismissed kept boards, newest first."
+      },
       "LatencyDistribution": {
         "properties": {
           "p50": {
@@ -38054,6 +39618,70 @@
         "title": "MessageResponse",
         "description": "A single message."
       },
+      "Moment": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "place": {
+            "type": "string",
+            "title": "Place"
+          },
+          "context_line": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Context Line"
+          },
+          "date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "entity_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Entity Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "place"
+        ],
+        "title": "Moment",
+        "description": "One ranked item in the result. ``place`` + ``context_line`` are grounded\nin real affinity fields \u2014 never invented."
+      },
       "MoveBlockRequest": {
         "properties": {
           "day_id": {
@@ -39365,6 +40993,71 @@
         ],
         "title": "ParagraphBlock",
         "description": "A prose paragraph. Supports inline markdown in ``text``."
+      },
+      "ParseQueryRequest": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "maxLength": 400,
+            "minLength": 1,
+            "title": "Text"
+          }
+        },
+        "type": "object",
+        "required": [
+          "text"
+        ],
+        "title": "ParseQueryRequest",
+        "description": "Body for ``POST /api/atlas/parse`` \u2014 a freeform natural-language taste query."
+      },
+      "ParseQueryResponse": {
+        "properties": {
+          "facet_set": {
+            "items": {
+              "$ref": "#/components/schemas/ParsedFacet"
+            },
+            "type": "array",
+            "title": "Facet Set"
+          },
+          "residual_phrase": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Residual Phrase"
+          }
+        },
+        "type": "object",
+        "title": "ParseQueryResponse",
+        "description": "The structured reading of a natural-language taste query.\n\n``facet_set`` are the recognized (dimension, value) facets. Only supported\ntaste dimensions steer retrieval today; bound-but-unsupported facets are\nsurfaced and then reported as unused by the composition understanding.\n``residual_phrase`` holds everything the parser could NOT bind at all\n(companion names, budget, free text), kept verbatim rather than forced into\na fabricated dimension \u2014 the honesty discipline."
+      },
+      "ParsedFacet": {
+        "properties": {
+          "dimension": {
+            "type": "string",
+            "title": "Dimension"
+          },
+          "value": {
+            "type": "string",
+            "title": "Value"
+          },
+          "confidence": {
+            "type": "number",
+            "title": "Confidence",
+            "default": 1.0
+          }
+        },
+        "type": "object",
+        "required": [
+          "dimension",
+          "value"
+        ],
+        "title": "ParsedFacet",
+        "description": "One facet the parser recognized in the query.\n\nCore taste facets map to the live retrieval vocabulary (cuisine / category /\nneighborhood / experience_type / genre). A few common residual phrases may\nalso be bound to explicit *unsupported* dimensions (weather, time_of_day,\ntravel_mode, occasion, mood) so the UI can show what Vesper understood\nwithout pretending retrieval can use it yet. ``confidence`` is the parser's\ncertainty for this one mapping."
       },
       "ParticipantResponse": {
         "properties": {
@@ -41883,6 +43576,42 @@
         "title": "PrerenderHintResponse",
         "description": "Response shape for the speculative pre-render endpoint."
       },
+      "Privacy": {
+        "properties": {
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "private",
+              "shareable"
+            ],
+            "title": "Visibility",
+            "default": "shareable"
+          },
+          "has_people": {
+            "type": "boolean",
+            "title": "Has People",
+            "default": false
+          },
+          "sensitive_excluded": {
+            "type": "boolean",
+            "title": "Sensitive Excluded",
+            "default": false
+          },
+          "share_blocked_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Share Blocked Reason"
+          }
+        },
+        "type": "object",
+        "title": "Privacy"
+      },
       "PrivacyLevelBody": {
         "properties": {
           "level": {
@@ -42711,6 +44440,47 @@
         "title": "ProposalSummary",
         "description": "Lightweight proposal for list views.\n\nDeliberately omits ``proposed_entity_*`` \u2014 the deep-link affordance\nis a detail-page concern, not a list-row concern.\n\n``my_vote`` is the authenticated viewer's current vote (\"approve\",\n\"reject\", \"neutral\") or ``None`` if they haven't voted yet. The\nmobile client uses this to filter the \"Needs your vote\" digest."
       },
+      "Provenance": {
+        "properties": {
+          "moment_id": {
+            "type": "string",
+            "title": "Moment Id"
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "vesper",
+              "dossier",
+              "creator",
+              "friend"
+            ],
+            "title": "Source"
+          },
+          "byline": {
+            "type": "string",
+            "title": "Byline"
+          },
+          "face": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Face"
+          }
+        },
+        "type": "object",
+        "required": [
+          "moment_id",
+          "source",
+          "byline"
+        ],
+        "title": "Provenance",
+        "description": "Where one moment came from \u2014 the **Discover variant** trust signal.\n\nThe Atlas variant composes the traveler's OWN past, which is inherently\ntrusted, so it never populates provenance. The Discover variant composes the\nWORLD corpus \u2014 venues/sites the engine is *pointing at*, not recalling \u2014 so\neach moment carries who is vouching for it: ``source`` is the trust-ladder\nrung (Vesper editorial / a dossier / a creator / a friend), ``byline`` is the\nhuman attribution string, ``face`` an optional avatar/illustration ref.\n``moment_id`` pins it to the matching ``Moment.id`` so the FE renders the\nbyline on the right card."
+      },
       "ProviderBreakdown": {
         "properties": {
           "stt_provider": {
@@ -42762,6 +44532,19 @@
         ],
         "title": "ProviderBreakdown",
         "description": "Per-STT-provider TTFT slice (V-3). Surfaces the latency cost of\nthe on-device fallback (Apple SpeechAnalyzer / Picovoice) vs. the\ncloud baseline (Deepgram). Once the iOS native module ships and\nstarts emitting ``stt_provider != 'deepgram_cloud'``, this is the\nsurface that lights up to compare them."
+      },
+      "ProviderKeyStatus": {
+        "properties": {
+          "key_present": {
+            "type": "boolean",
+            "title": "Key Present"
+          }
+        },
+        "type": "object",
+        "required": [
+          "key_present"
+        ],
+        "title": "ProviderKeyStatus"
       },
       "PublicProfile": {
         "properties": {
@@ -42980,6 +44763,41 @@
         ],
         "title": "PublicTripStory",
         "description": "The PUBLIC projection of a Trip Story.\n\nDEFAULT-DENY ALLOWLIST. This model is the *complete* set of fields a\nnon-owner may ever see. It deliberately omits ``user_id``, ``trip_id``,\n``version``, section ids, ``anchor_observation_id``, ``edited_at``,\n``composer_model``, and every private input (constraints, budget,\nhealth, fatigue, observations). Build it ONLY via\n``backend.core.story_projection.build_public_story_payload`` so the\nallowlist is enforced in exactly one place."
+      },
+      "Query": {
+        "properties": {
+          "raw_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Raw Text"
+          },
+          "facet_set": {
+            "items": {
+              "$ref": "#/components/schemas/FacetChip"
+            },
+            "type": "array",
+            "title": "Facet Set"
+          },
+          "residual_phrase": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Residual Phrase"
+          }
+        },
+        "type": "object",
+        "title": "Query"
       },
       "ReactRequest": {
         "properties": {
@@ -44018,6 +45836,94 @@
           "reason"
         ],
         "title": "RouteResponse"
+      },
+      "SaveBoardRequest": {
+        "properties": {
+          "raw_text": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 400
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Raw Text"
+          },
+          "facet_set": {
+            "items": {
+              "$ref": "#/components/schemas/FacetChip"
+            },
+            "type": "array",
+            "title": "Facet Set"
+          },
+          "residual_phrase": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 400
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Residual Phrase"
+          },
+          "dimension": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dimension"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          }
+        },
+        "type": "object",
+        "title": "SaveBoardRequest",
+        "description": "Body for ``POST /api/atlas/board/save``.\n\nA kept board is addressed by the full query shape the engine composed:\n``raw_text`` (if typed), ``facet_set`` (possibly empty for the whole-board\ngift), and ``residual_phrase``. ``dimension``/``value`` remain as a\ncompatibility shortcut for older one-chip callers."
+      },
+      "SaveBoardResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "title": "SaveBoardResponse",
+        "description": "The id of the saved (or revived) kept board. Saves are idempotent on\n(user, facet_set), so a repeat save returns the same id."
       },
       "SearchInterpretation": {
         "properties": {
@@ -49264,6 +51170,70 @@
         ],
         "title": "Verdict",
         "description": "Opinion layer. Derived from signals, not free LLM judgment.\n\n`derived_from` lists the signal categories the verdict is grounded in,\nfor traceability and debugging."
+      },
+      "VisualSlot": {
+        "properties": {
+          "slot_id": {
+            "type": "string",
+            "title": "Slot Id"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "hero",
+              "grid",
+              "accent",
+              "background"
+            ],
+            "title": "Role"
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "photo",
+              "riso",
+              "img2img"
+            ],
+            "title": "Source"
+          },
+          "asset_ref": {
+            "type": "string",
+            "title": "Asset Ref"
+          },
+          "crop": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Crop"
+          },
+          "aspect": {
+            "type": "string",
+            "enum": [
+              "1:1",
+              "4:5",
+              "3:4",
+              "9:16",
+              "full"
+            ],
+            "title": "Aspect"
+          }
+        },
+        "type": "object",
+        "required": [
+          "slot_id",
+          "role",
+          "source",
+          "asset_ref",
+          "aspect"
+        ],
+        "title": "VisualSlot",
+        "description": "One image slot the engine fully resolves; the FE renders it verbatim and\nnever picks a material (see ``Atlas \u2014 Board Visual Elements.md`` \u2192 the\n``visual_slots`` contract).\n\nPre-launch: every slot is ``source: \"riso\"`` with an ``asset_ref`` of the\nform ``riso:<dimension>/<value>`` (e.g. ``riso:cuisine/pizza``,\n``riso:category/viewpoint``); ``crop`` is null (riso is drawn to fit). The\n``photo`` / ``img2img`` sources are production materials."
       },
       "VoiceGuideSession": {
         "properties": {
