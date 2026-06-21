@@ -23150,6 +23150,18 @@
             "type": "boolean",
             "title": "Ai Streaming"
           },
+          "ai_live_streaming": {
+            "type": "boolean",
+            "title": "Ai Live Streaming"
+          },
+          "ai_local_fixture_streaming": {
+            "type": "boolean",
+            "title": "Ai Local Fixture Streaming"
+          },
+          "ai_replay_streaming": {
+            "type": "boolean",
+            "title": "Ai Replay Streaming"
+          },
           "web_search_live_provider_calls": {
             "type": "boolean",
             "title": "Web Search Live Provider Calls"
@@ -23161,6 +23173,9 @@
           "ai_replay_calls",
           "ai_cheap_allowlisted_calls",
           "ai_streaming",
+          "ai_live_streaming",
+          "ai_local_fixture_streaming",
+          "ai_replay_streaming",
           "web_search_live_provider_calls"
         ],
         "title": "AIOpsAllowedStatus"
