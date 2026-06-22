@@ -728,6 +728,110 @@
         }
       }
     },
+    "/admin/dogfood/audit": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Get Dogfood Audit",
+        "description": "Return read-only substrate counts for a dogfood cohort.\n\nCounts only: no message, memory, note, or trip content is returned. This is\nintended as the operational truth surface before/after dogfood seeding.",
+        "operationId": "get_dogfood_audit_admin_dogfood_audit_get",
+        "parameters": [
+          {
+            "name": "email_suffix",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 80,
+              "default": "@dogfood.local",
+              "title": "Email Suffix"
+            }
+          },
+          {
+            "name": "persona_email",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 3,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Persona Email"
+            }
+          },
+          {
+            "name": "cohort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80,
+              "default": "canonical_dogfood",
+              "title": "Cohort"
+            }
+          },
+          {
+            "name": "max_users",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 500,
+              "minimum": 1,
+              "default": 100,
+              "title": "Max Users"
+            }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DogfoodCohortAuditResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/admin/users/{user_id}/events": {
       "get": {
         "tags": [
@@ -10508,6 +10612,66 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/FeedbackResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/folio": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Trip Folio",
+        "description": "Return the backend-authored diagnosis for the single-trip Folio.\n\nV1 owns mode, ranked facets, attention, discovery, group consensus,\npre-trip prep, live leave-by, readiness, the compact itinerary spine,\npost-trip memory facets, and the completed-trip keepsake band. Deeper\nsurfaces such as full itinerary editing still keep their specialist read\nmodels.",
+        "operationId": "get_trip_folio_api_trips__trip_id__folio_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripFolioReadModel"
                 }
               }
             }
@@ -23180,6 +23344,24 @@
         ],
         "title": "AIOpsAllowedStatus"
       },
+      "AIOpsCheapCallBudget": {
+        "properties": {
+          "per_context": {
+            "type": "integer",
+            "title": "Per Context"
+          },
+          "used_in_context": {
+            "type": "integer",
+            "title": "Used In Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "per_context",
+          "used_in_context"
+        ],
+        "title": "AIOpsCheapCallBudget"
+      },
       "AIOpsStatusResponse": {
         "properties": {
           "ai_mode": {
@@ -23215,6 +23397,9 @@
             "type": "object",
             "title": "Cheap Surface Caps"
           },
+          "cheap_call_budget": {
+            "$ref": "#/components/schemas/AIOpsCheapCallBudget"
+          },
           "notes": {
             "items": {
               "type": "string"
@@ -23232,6 +23417,7 @@
           "providers",
           "allowed",
           "cheap_surface_caps",
+          "cheap_call_budget",
           "notes"
         ],
         "title": "AIOpsStatusResponse"
@@ -33257,6 +33443,134 @@
         "title": "DnaPhraseDisputeRequest",
         "description": "Body for ``POST /api/me/dna-phrases/dispute``.\n\nThe user tapped \"not quite\" on a phrase rendered by the Me-tab\nTravel DNA card. ``phrase`` is the exact rendered string so the\nobservation can carry the user-visible text into Personal Memory\nsynthesis verbatim."
       },
+      "DogfoodCohortAuditResponse": {
+        "properties": {
+          "cohort": {
+            "type": "string",
+            "title": "Cohort"
+          },
+          "email_suffix": {
+            "type": "string",
+            "title": "Email Suffix"
+          },
+          "persona_email": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Persona Email"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "persona_count": {
+            "type": "integer",
+            "title": "Persona Count"
+          },
+          "totals": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Totals"
+          },
+          "readiness_totals": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Readiness Totals"
+          },
+          "personas": {
+            "items": {
+              "$ref": "#/components/schemas/DogfoodPersonaAuditResponse"
+            },
+            "type": "array",
+            "title": "Personas"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Warnings"
+          }
+        },
+        "type": "object",
+        "required": [
+          "cohort",
+          "email_suffix",
+          "persona_email",
+          "generated_at",
+          "persona_count",
+          "totals",
+          "readiness_totals",
+          "personas",
+          "warnings"
+        ],
+        "title": "DogfoodCohortAuditResponse"
+      },
+      "DogfoodPersonaAuditResponse": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "email": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Email"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          },
+          "counts": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Counts"
+          },
+          "readiness": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Readiness"
+          },
+          "missing_areas": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Missing Areas"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "email",
+          "display_name",
+          "counts",
+          "readiness",
+          "missing_areas"
+        ],
+        "title": "DogfoodPersonaAuditResponse"
+      },
       "DossierDetail": {
         "properties": {
           "id": {
@@ -35309,6 +35623,834 @@
         },
         "type": "object",
         "title": "FeedbackResponse"
+      },
+      "FolioAction": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "open_stay",
+              "open_decisions",
+              "review_proposal",
+              "open_timeline",
+              "open_transport",
+              "open_route",
+              "open_costs",
+              "open_story",
+              "open_atlas"
+            ],
+            "title": "Type"
+          },
+          "ref_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ref Id"
+          },
+          "day_number": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Day Number"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "title": "FolioAction"
+      },
+      "FolioDiscoveryAction": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "open_saved_places",
+              "open_event"
+            ],
+            "title": "Type"
+          },
+          "ref_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ref Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "title": "FolioDiscoveryAction"
+      },
+      "FolioDiscoveryBand": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "saved_places",
+              "dated_events"
+            ],
+            "title": "Kind"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/FolioDiscoveryItem"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "empty_state": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Empty State"
+          },
+          "add_action": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FolioDiscoveryAction"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "title"
+        ],
+        "title": "FolioDiscoveryBand"
+      },
+      "FolioDiscoveryItem": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "saved_place",
+              "dated_event"
+            ],
+            "title": "Kind"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "meta": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Meta"
+          },
+          "venue_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Venue Type"
+          },
+          "starts_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Starts At"
+          },
+          "action": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FolioDiscoveryAction"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "id",
+          "name"
+        ],
+        "title": "FolioDiscoveryItem"
+      },
+      "FolioEvidenceChip": {
+        "properties": {
+          "time": {
+            "type": "string",
+            "title": "Time"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "time",
+          "label"
+        ],
+        "title": "FolioEvidenceChip"
+      },
+      "FolioFacetEvidence": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "vote",
+              "next",
+              "ribbon",
+              "booking",
+              "clash",
+              "budget"
+            ],
+            "title": "Kind"
+          },
+          "in_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "In Count"
+          },
+          "total": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total"
+          },
+          "time": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "tail": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tail"
+          },
+          "to_book": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "To Book"
+          },
+          "days": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Days"
+          },
+          "a": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FolioEvidenceChip"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "b": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FolioEvidenceChip"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind"
+        ],
+        "title": "FolioFacetEvidence"
+      },
+      "FolioKeepsakeBand": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "count_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Count Label"
+          },
+          "empty_title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Empty Title"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/FolioKeepsakeItem"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "primary_action": {
+            "$ref": "#/components/schemas/FolioAction"
+          },
+          "secondary_action": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FolioAction"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "primary_action"
+        ],
+        "title": "FolioKeepsakeBand"
+      },
+      "FolioKeepsakeItem": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "meta": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Meta"
+          },
+          "day_number": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Day Number"
+          },
+          "action": {
+            "$ref": "#/components/schemas/FolioAction"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "action"
+        ],
+        "title": "FolioKeepsakeItem"
+      },
+      "FolioPrepBand": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "countdown": {
+            "type": "string",
+            "title": "Countdown"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/FolioPrepMessage"
+            },
+            "type": "array",
+            "title": "Messages"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "countdown"
+        ],
+        "title": "FolioPrepBand"
+      },
+      "FolioPrepMessage": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "content": {
+            "type": "string",
+            "title": "Content"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "content",
+          "created_at"
+        ],
+        "title": "FolioPrepMessage"
+      },
+      "FolioReadinessBand": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "rows": {
+            "items": {
+              "$ref": "#/components/schemas/FolioReadinessRow"
+            },
+            "type": "array",
+            "title": "Rows"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title"
+        ],
+        "title": "FolioReadinessBand"
+      },
+      "FolioReadinessRow": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "title": "Key"
+          },
+          "mo": {
+            "type": "string",
+            "title": "Mo"
+          },
+          "d": {
+            "type": "string",
+            "title": "D"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "sub": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sub"
+          },
+          "meta": {
+            "type": "string",
+            "title": "Meta"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "clash",
+              "open",
+              "set"
+            ],
+            "title": "State"
+          },
+          "action": {
+            "$ref": "#/components/schemas/FolioAction"
+          }
+        },
+        "type": "object",
+        "required": [
+          "key",
+          "mo",
+          "d",
+          "label",
+          "meta",
+          "state",
+          "action"
+        ],
+        "title": "FolioReadinessRow"
+      },
+      "FolioSourceStatus": {
+        "properties": {
+          "plan_state": {
+            "type": "boolean",
+            "title": "Plan State",
+            "default": true
+          },
+          "proposals": {
+            "type": "boolean",
+            "title": "Proposals",
+            "default": true
+          },
+          "accommodations": {
+            "type": "boolean",
+            "title": "Accommodations",
+            "default": true
+          },
+          "conflicts": {
+            "type": "boolean",
+            "title": "Conflicts",
+            "default": true
+          },
+          "transport_gaps": {
+            "type": "boolean",
+            "title": "Transport Gaps",
+            "default": true
+          },
+          "home_cards": {
+            "type": "boolean",
+            "title": "Home Cards",
+            "default": true
+          },
+          "discovery": {
+            "type": "boolean",
+            "title": "Discovery",
+            "default": true
+          },
+          "group_profile": {
+            "type": "boolean",
+            "title": "Group Profile",
+            "default": true
+          },
+          "prep": {
+            "type": "boolean",
+            "title": "Prep",
+            "default": true
+          },
+          "leave_by": {
+            "type": "boolean",
+            "title": "Leave By",
+            "default": true
+          },
+          "readiness": {
+            "type": "boolean",
+            "title": "Readiness",
+            "default": true
+          },
+          "settlement": {
+            "type": "boolean",
+            "title": "Settlement",
+            "default": true
+          },
+          "keepsake": {
+            "type": "boolean",
+            "title": "Keepsake",
+            "default": true
+          }
+        },
+        "type": "object",
+        "title": "FolioSourceStatus"
+      },
+      "FolioSpine": {
+        "properties": {
+          "current_day_number": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current Day Number"
+          },
+          "total_days": {
+            "type": "integer",
+            "title": "Total Days",
+            "default": 0
+          },
+          "days": {
+            "items": {
+              "$ref": "#/components/schemas/FolioSpineDay"
+            },
+            "type": "array",
+            "title": "Days"
+          }
+        },
+        "type": "object",
+        "title": "FolioSpine"
+      },
+      "FolioSpineBlock": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "block_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Block Type"
+          },
+          "status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Status"
+          },
+          "event_state": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Event State"
+          },
+          "time": {
+            "type": "string",
+            "title": "Time"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "detail": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Detail"
+          },
+          "neighborhood_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Neighborhood Name"
+          },
+          "travel_to_next": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FolioTravelSegment"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "time",
+          "title"
+        ],
+        "title": "FolioSpineBlock"
+      },
+      "FolioSpineDay": {
+        "properties": {
+          "day_number": {
+            "type": "integer",
+            "title": "Day Number"
+          },
+          "date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date"
+          },
+          "theme": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Theme"
+          },
+          "blocks": {
+            "items": {
+              "$ref": "#/components/schemas/FolioSpineBlock"
+            },
+            "type": "array",
+            "title": "Blocks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "day_number"
+        ],
+        "title": "FolioSpineDay"
+      },
+      "FolioTravelSegment": {
+        "properties": {
+          "mode": {
+            "type": "string",
+            "title": "Mode"
+          },
+          "duration_minutes": {
+            "type": "integer",
+            "title": "Duration Minutes"
+          },
+          "distance_km": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Distance Km"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "mode",
+          "duration_minutes"
+        ],
+        "title": "FolioTravelSegment"
       },
       "Follow": {
         "properties": {
@@ -40753,8 +41895,15 @@
             "title": "Created At"
           },
           "updated_at": {
-            "type": "string",
-            "format": "date-time",
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Updated At"
           },
           "expires_at": {
@@ -40790,8 +41939,7 @@
           "id",
           "user_id",
           "content",
-          "created_at",
-          "updated_at"
+          "created_at"
         ],
         "title": "Observation"
       },
@@ -48472,6 +49620,277 @@
         ],
         "title": "TripDigest",
         "description": "A daily, trip-summary, or planning-context structured digest.\n\n`content` is the LLM's structured JSON output; `rendered_markdown` is a\npre-formatted textual view populated at generation time so consumers\n(planner prompt, admin UI) don't need to re-render the payload."
+      },
+      "TripFolioFacet": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "enum": [
+              "stay",
+              "decisions",
+              "plan",
+              "route"
+            ],
+            "title": "Key"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "broken",
+              "needs",
+              "cta",
+              "clear",
+              "ok"
+            ],
+            "title": "State"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "column_value": {
+            "type": "string",
+            "title": "Column Value"
+          },
+          "column_sub": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Column Sub"
+          },
+          "hero_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hero Label"
+          },
+          "hero_title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hero Title"
+          },
+          "hero_sub": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hero Sub"
+          },
+          "hero_cta": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hero Cta"
+          },
+          "evidence": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FolioFacetEvidence"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "action": {
+            "$ref": "#/components/schemas/FolioAction"
+          },
+          "a11y": {
+            "type": "string",
+            "title": "A11Y"
+          }
+        },
+        "type": "object",
+        "required": [
+          "key",
+          "state",
+          "label",
+          "column_value",
+          "action",
+          "a11y"
+        ],
+        "title": "TripFolioFacet"
+      },
+      "TripFolioFacets": {
+        "properties": {
+          "hero_key": {
+            "type": "string",
+            "enum": [
+              "stay",
+              "decisions",
+              "plan",
+              "route"
+            ],
+            "title": "Hero Key"
+          },
+          "hero": {
+            "$ref": "#/components/schemas/TripFolioFacet"
+          },
+          "supporting": {
+            "items": {
+              "$ref": "#/components/schemas/TripFolioFacet"
+            },
+            "type": "array",
+            "title": "Supporting"
+          },
+          "all": {
+            "items": {
+              "$ref": "#/components/schemas/TripFolioFacet"
+            },
+            "type": "array",
+            "title": "All"
+          }
+        },
+        "type": "object",
+        "required": [
+          "hero_key",
+          "hero"
+        ],
+        "title": "TripFolioFacets"
+      },
+      "TripFolioReadModel": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "cold",
+              "pre",
+              "imminent",
+              "live",
+              "post"
+            ],
+            "title": "Mode"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "facets": {
+            "$ref": "#/components/schemas/TripFolioFacets"
+          },
+          "attention": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/HomeFeed"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "discovery": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FolioDiscoveryBand"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "group_consensus": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TripGroupProfileSurface"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "prep": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FolioPrepBand"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "leave_by": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LeaveByHint"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "readiness": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FolioReadinessBand"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "keepsake": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FolioKeepsakeBand"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "spine": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FolioSpine"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source_status": {
+            "$ref": "#/components/schemas/FolioSourceStatus"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "mode",
+          "generated_at",
+          "facets"
+        ],
+        "title": "TripFolioReadModel"
       },
       "TripGroupProfileSurface": {
         "properties": {
