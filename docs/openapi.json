@@ -30718,6 +30718,7 @@
           "conflict_type": {
             "type": "string",
             "enum": [
+              "overlap",
               "tight_hop",
               "thin_buffer",
               "over_packed",
@@ -30817,6 +30818,7 @@
         "type": "string",
         "enum": [
           "over_packed",
+          "overlap",
           "tight_hop",
           "thin_buffer",
           "dead_gap",
