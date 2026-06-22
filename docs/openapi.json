@@ -2004,6 +2004,56 @@
         }
       }
     },
+    "/admin/entity-facets-status": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Entity Facets Status",
+        "description": "Freshness of the catalog facet index (``entity_facets``).\n\nThe nightly ``project_catalog_facets`` cron stamps ``updated_at = now()`` on\nevery row. If the index goes empty or stale (the cron stopped running),\nDiscover/Atlas compose silently degrade to world-only personalization with\nno other signal \u2014 so poll this and alert on ``stale``. ``stale`` is True when\nthe index is empty or older than the staleness threshold (>48h = \u22652 missed\nnightly runs).",
+        "operationId": "entity_facets_status_admin_entity_facets_status_get",
+        "parameters": [
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityFacetsStatusResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/me/delegation-preferences": {
       "get": {
         "tags": [
@@ -34134,6 +34184,48 @@
           "counts"
         ],
         "title": "EntityFacetProjectionResponse"
+      },
+      "EntityFacetsStatusResponse": {
+        "properties": {
+          "row_count": {
+            "type": "integer",
+            "title": "Row Count"
+          },
+          "latest_updated_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latest Updated At"
+          },
+          "age_hours": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Age Hours"
+          },
+          "stale": {
+            "type": "boolean",
+            "title": "Stale"
+          }
+        },
+        "type": "object",
+        "required": [
+          "row_count",
+          "latest_updated_at",
+          "age_hours",
+          "stale"
+        ],
+        "title": "EntityFacetsStatusResponse"
       },
       "EntitySave": {
         "properties": {
