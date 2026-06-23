@@ -4799,6 +4799,126 @@
         }
       }
     },
+    "/api/trips/{trip_id}/booking/readiness": {
+      "get": {
+        "tags": [
+          "booking"
+        ],
+        "summary": "Get Booking Readiness",
+        "description": "Return the booking launch-readiness report for this trip surface.",
+        "operationId": "get_booking_readiness_api_trips__trip_id__booking_readiness_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingReadinessResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/booking/affiliate-links/travel-insurance": {
+      "get": {
+        "tags": [
+          "booking"
+        ],
+        "summary": "Get Travel Insurance Affiliate Link",
+        "description": "Return the configured travel-insurance referral link for a committed trip surface.",
+        "operationId": "get_travel_insurance_affiliate_link_api_trips__trip_id__booking_affiliate_links_travel_insurance_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AffiliateLinkResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/booking/proposals/{proposal_id}": {
       "get": {
         "tags": [
@@ -5055,6 +5175,23 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/SettleHoldRequest"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Body"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -23973,6 +24110,35 @@
         ],
         "title": "AddMemberRequest"
       },
+      "AffiliateLinkResponse": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "configured": {
+            "type": "boolean",
+            "title": "Configured"
+          },
+          "url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "configured"
+        ],
+        "title": "AffiliateLinkResponse"
+      },
       "AlternativeOption": {
         "properties": {
           "label": {
@@ -28874,6 +29040,86 @@
         ],
         "title": "BookingProposal"
       },
+      "BookingReadinessCheckResponse": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "title": "Key"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ready",
+              "configured",
+              "dark",
+              "blocked",
+              "deferred"
+            ],
+            "title": "Status"
+          },
+          "summary": {
+            "type": "string",
+            "title": "Summary"
+          },
+          "blocking": {
+            "type": "boolean",
+            "title": "Blocking"
+          },
+          "details": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Details"
+          }
+        },
+        "type": "object",
+        "required": [
+          "key",
+          "status",
+          "summary",
+          "blocking",
+          "details"
+        ],
+        "title": "BookingReadinessCheckResponse"
+      },
+      "BookingReadinessResponse": {
+        "properties": {
+          "overall_status": {
+            "type": "string",
+            "enum": [
+              "ready",
+              "blocked"
+            ],
+            "title": "Overall Status"
+          },
+          "blockers": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Blockers"
+          },
+          "policy": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Policy"
+          },
+          "checks": {
+            "items": {
+              "$ref": "#/components/schemas/BookingReadinessCheckResponse"
+            },
+            "type": "array",
+            "title": "Checks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "overall_status",
+          "blockers",
+          "policy",
+          "checks"
+        ],
+        "title": "BookingReadinessResponse"
+      },
       "BookingSession": {
         "properties": {
           "id": {
@@ -30642,6 +30888,11 @@
           "terms_accepted": {
             "type": "boolean",
             "title": "Terms Accepted",
+            "default": false
+          },
+          "final_human_approval": {
+            "type": "boolean",
+            "title": "Final Human Approval",
             "default": false
           },
           "intent": {
@@ -47837,6 +48088,33 @@
         ],
         "title": "SettleBatchResponse",
         "description": "All updated expenses, in request order."
+      },
+      "SettleHoldRequest": {
+        "properties": {
+          "final_human_approval": {
+            "type": "boolean",
+            "title": "Final Human Approval",
+            "default": false
+          },
+          "terms_accepted": {
+            "type": "boolean",
+            "title": "Terms Accepted",
+            "default": false
+          },
+          "correlation_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Correlation Id"
+          }
+        },
+        "type": "object",
+        "title": "SettleHoldRequest"
       },
       "SettleRequest": {
         "properties": {
