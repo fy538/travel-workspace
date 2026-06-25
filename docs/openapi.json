@@ -4799,6 +4799,126 @@
         }
       }
     },
+    "/api/trips/{trip_id}/booking/readiness": {
+      "get": {
+        "tags": [
+          "booking"
+        ],
+        "summary": "Get Booking Readiness",
+        "description": "Return the booking launch-readiness report for this trip surface.",
+        "operationId": "get_booking_readiness_api_trips__trip_id__booking_readiness_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingReadinessResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/booking/affiliate-links/travel-insurance": {
+      "get": {
+        "tags": [
+          "booking"
+        ],
+        "summary": "Get Travel Insurance Affiliate Link",
+        "description": "Return the configured travel-insurance referral link for a committed trip surface.",
+        "operationId": "get_travel_insurance_affiliate_link_api_trips__trip_id__booking_affiliate_links_travel_insurance_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AffiliateLinkResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/booking/proposals/{proposal_id}": {
       "get": {
         "tags": [
@@ -5055,6 +5175,23 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/SettleHoldRequest"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Body"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -5617,6 +5754,86 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/BookingOffer"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/booking/sessions/{session_id}/offers/{offer_id}/cancel": {
+      "post": {
+        "tags": [
+          "booking"
+        ],
+        "summary": "Cancel Offer",
+        "description": "Cancel a confirmed booking offer.\n\nFor API-bookable providers (Duffel) this calls the provider's cancellation\nAPI and marks the offer ``cancelled``. For non-API providers the offer is\nmarked ``cancelled`` locally with a message directing the user to the\nprovider's own cancel flow.",
+        "operationId": "cancel_offer_api_trips__trip_id__booking_sessions__session_id__offers__offer_id__cancel_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Session Id"
+            }
+          },
+          {
+            "name": "offer_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Offer Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancelOfferResponse"
                 }
               }
             }
@@ -6735,6 +6952,58 @@
         }
       }
     },
+    "/api/concierge/home/urgent-count": {
+      "get": {
+        "tags": [
+          "concierge-home"
+        ],
+        "summary": "Get Urgent Alert Count",
+        "description": "Count of active urgent-trip-action cards for the concierge tab badge.",
+        "operationId": "get_urgent_alert_count_api_concierge_home_urgent_count_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Get Urgent Alert Count Api Concierge Home Urgent Count Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/concierge/home/cards/feedback": {
       "post": {
         "tags": [
@@ -7170,6 +7439,136 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DiscoverFeedResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/discover/map": {
+      "get": {
+        "tags": [
+          "discover"
+        ],
+        "summary": "Discover Map",
+        "description": "Discover spatial-browse pins \u2014 venues with coordinates, each carrying the\njudgment layer that makes the map a browse surface: a curator Take preview\n(Vesper's stance) and the viewer's own affinity ('loved here').\n\nTwo scopes. ``place_slug`` plots the city subtree; ``lat``/``lng`` plots\nwhat's within ``radius_m``. With neither, returns an empty pin set (honest\nabsence) rather than guessing a location. The full Take is a tap-time fetch\non the client peek card \u2014 pins carry only the cheap preview.",
+        "operationId": "discover_map_api_discover_map_get",
+        "parameters": [
+          {
+            "name": "place_slug",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Scope pins to this city/place subtree (city + neighborhoods).",
+              "title": "Place Slug"
+            },
+            "description": "Scope pins to this city/place subtree (city + neighborhoods)."
+          },
+          {
+            "name": "lat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Viewer latitude \u2014 'what's around me' scope.",
+              "title": "Lat"
+            },
+            "description": "Viewer latitude \u2014 'what's around me' scope."
+          },
+          {
+            "name": "lng",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Viewer longitude \u2014 'what's around me' scope.",
+              "title": "Lng"
+            },
+            "description": "Viewer longitude \u2014 'what's around me' scope."
+          },
+          {
+            "name": "radius_m",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "maximum": 20000,
+              "exclusiveMinimum": 0,
+              "description": "Nearby-scope radius (metres).",
+              "default": 2500.0,
+              "title": "Radius M"
+            },
+            "description": "Nearby-scope radius (metres)."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 200,
+              "exclusiveMinimum": 0,
+              "default": 60,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiscoverMapResponse"
                 }
               }
             }
@@ -12522,6 +12921,66 @@
         }
       }
     },
+    "/api/trips/{trip_id}/invites/eligibility": {
+      "get": {
+        "tags": [
+          "trip-invites"
+        ],
+        "summary": "Invite Eligibility",
+        "description": "Read-only mirror of the mint-time substance gate.\n\nLets a surface decide whether to *offer* an invite before the user taps\n(and hits the 409 ``trip_needs_substance``). Organizer-only, matching\n``mint_invite`` \u2014 the affordance is the organizer's.",
+        "operationId": "invite_eligibility_api_trips__trip_id__invites_eligibility_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InviteEligibilityResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/invites/{token}": {
       "delete": {
         "tags": [
@@ -16039,6 +16498,477 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TripSituation"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/stay-candidates": {
+      "get": {
+        "tags": [
+          "stay-candidates"
+        ],
+        "summary": "Get Stay Decision",
+        "description": "The compare/vote read model: active candidates + the resolved vote arc.",
+        "operationId": "get_stay_decision_api_trips__trip_id__stay_candidates_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StayDecisionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "stay-candidates"
+        ],
+        "summary": "Add Stay Candidate",
+        "description": "Save a candidate stay for the group to compare/vote on.",
+        "operationId": "add_stay_candidate_api_trips__trip_id__stay_candidates_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StayCandidateCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StayCandidate"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/stay-candidates/{candidate_id}": {
+      "delete": {
+        "tags": [
+          "stay-candidates"
+        ],
+        "summary": "Remove Stay Candidate",
+        "description": "Withdraw a candidate. The member who added it or an organizer can remove it.",
+        "operationId": "remove_stay_candidate_api_trips__trip_id__stay_candidates__candidate_id__delete",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "candidate_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Candidate Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/stay-candidates/{candidate_id}/vote": {
+      "post": {
+        "tags": [
+          "stay-candidates"
+        ],
+        "summary": "Vote For Candidate",
+        "description": "Cast (or move) the caller's vote, then return the fresh decision.",
+        "operationId": "vote_for_candidate_api_trips__trip_id__stay_candidates__candidate_id__vote_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "candidate_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Candidate Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StayDecisionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/stay-vote": {
+      "delete": {
+        "tags": [
+          "stay-candidates"
+        ],
+        "summary": "Clear My Vote",
+        "description": "Retract the caller's vote.",
+        "operationId": "clear_my_vote_api_trips__trip_id__stay_vote_delete",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StayDecisionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/stay-candidates/{candidate_id}/hold": {
+      "post": {
+        "tags": [
+          "stay-candidates"
+        ],
+        "summary": "Hold Candidate",
+        "description": "Place or clear a soft hold (``held_until=null`` clears). Organizer-gated \u2014\na hold is a group commitment.",
+        "operationId": "hold_candidate_api_trips__trip_id__stay_candidates__candidate_id__hold_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "candidate_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Candidate Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HoldRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StayCandidate"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/stay-candidates/{candidate_id}/choose": {
+      "post": {
+        "tags": [
+          "stay-candidates"
+        ],
+        "summary": "Choose Stay Candidate",
+        "description": "Lock a candidate in as the trip's stay \u2014 the vote\u2192booking handoff.\n\nCreates a ``trip_accommodations`` row from the candidate (typed entity or\nits geocoded coords), carries the candidate's stated cost as display\ncontext, then marks the candidate ``chosen`` and links the two.\nOrganizer-gated.",
+        "operationId": "choose_stay_candidate_api_trips__trip_id__stay_candidates__candidate_id__choose_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "candidate_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Candidate Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StayChosenResponse"
                 }
               }
             }
@@ -22178,7 +23108,7 @@
           "users"
         ],
         "summary": "Record Onboarding Signals",
-        "description": "Store non-constraint onboarding taste/pace signals as observations.\n\nThese signals influence personalization but are not treated as hard\nconstraints. They can be overwritten by later real-trip data.\n\nCallers should fire this once after auth completes in the onboarding flow.\nRe-calling is safe \u2014 later observations layer on top of earlier ones;\nold ones remain ``is_active=True`` until the next full memory refresh\nsynthesises them away.",
+        "description": "Store non-constraint onboarding taste/pace signals as observations.\n\nThese signals influence personalization but are not treated as hard\nconstraints. They expire after a bounded TTL so later real-trip data wins.\n\nCallers should fire this once after auth completes in the onboarding flow.\nRe-calling is safe \u2014 later observations layer on top of earlier ones. The\nmemory refresh that synthesises them runs in the background so this endpoint\n(the user's first post-auth call) returns immediately instead of blocking on\na multi-second synthesis + Haiku pass.",
         "operationId": "record_onboarding_signals_api_users__user_id__onboarding_signals_post",
         "parameters": [
           {
@@ -23542,6 +24472,30 @@
             ],
             "title": "Departure Date"
           },
+          "check_in_time": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Check In Time"
+          },
+          "check_out_time": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Check Out Time"
+          },
           "is_primary": {
             "anyOf": [
               {
@@ -23552,6 +24506,81 @@
               }
             ],
             "title": "Is Primary"
+          },
+          "booking_reference": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Booking Reference"
+          },
+          "cancellation_policy": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cancellation Policy"
+          },
+          "scene": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "river",
+                  "alfama",
+                  "modern",
+                  "guest",
+                  "coast"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scene"
+          },
+          "total_cost_amount": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Cost Amount"
+          },
+          "total_cost_currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Cost Currency"
+          },
+          "cost_paid_by": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cost Paid By"
           },
           "visibility": {
             "anyOf": [
@@ -23673,9 +24702,98 @@
             "type": "string",
             "title": "Departure Date"
           },
+          "check_in_time": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Check In Time"
+          },
+          "check_out_time": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Check Out Time"
+          },
           "is_primary": {
             "type": "boolean",
             "title": "Is Primary"
+          },
+          "booking_reference": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Booking Reference"
+          },
+          "cancellation_policy": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cancellation Policy"
+          },
+          "scene": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scene"
+          },
+          "total_cost_amount": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Cost Amount"
+          },
+          "total_cost_currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Cost Currency"
+          },
+          "cost_paid_by": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cost Paid By"
           },
           "visibility": {
             "type": "string",
@@ -23809,10 +24927,109 @@
             "format": "date",
             "title": "Departure Date"
           },
+          "check_in_time": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Check In Time"
+          },
+          "check_out_time": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Check Out Time"
+          },
           "is_primary": {
             "type": "boolean",
             "title": "Is Primary",
             "default": true
+          },
+          "booking_reference": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Booking Reference"
+          },
+          "cancellation_policy": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cancellation Policy"
+          },
+          "scene": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "river",
+                  "alfama",
+                  "modern",
+                  "guest",
+                  "coast"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scene"
+          },
+          "total_cost_amount": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Cost Amount"
+          },
+          "total_cost_currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Cost Currency"
+          },
+          "cost_paid_by": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cost Paid By"
           },
           "visibility": {
             "type": "string",
@@ -23963,6 +25180,10 @@
           },
           "role": {
             "type": "string",
+            "enum": [
+              "organizer",
+              "member"
+            ],
             "title": "Role",
             "default": "member"
           }
@@ -23972,6 +25193,35 @@
           "user_id"
         ],
         "title": "AddMemberRequest"
+      },
+      "AffiliateLinkResponse": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "configured": {
+            "type": "boolean",
+            "title": "Configured"
+          },
+          "url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "configured"
+        ],
+        "title": "AffiliateLinkResponse"
       },
       "AlternativeOption": {
         "properties": {
@@ -28874,6 +30124,86 @@
         ],
         "title": "BookingProposal"
       },
+      "BookingReadinessCheckResponse": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "title": "Key"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ready",
+              "configured",
+              "dark",
+              "blocked",
+              "deferred"
+            ],
+            "title": "Status"
+          },
+          "summary": {
+            "type": "string",
+            "title": "Summary"
+          },
+          "blocking": {
+            "type": "boolean",
+            "title": "Blocking"
+          },
+          "details": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Details"
+          }
+        },
+        "type": "object",
+        "required": [
+          "key",
+          "status",
+          "summary",
+          "blocking",
+          "details"
+        ],
+        "title": "BookingReadinessCheckResponse"
+      },
+      "BookingReadinessResponse": {
+        "properties": {
+          "overall_status": {
+            "type": "string",
+            "enum": [
+              "ready",
+              "blocked"
+            ],
+            "title": "Overall Status"
+          },
+          "blockers": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Blockers"
+          },
+          "policy": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Policy"
+          },
+          "checks": {
+            "items": {
+              "$ref": "#/components/schemas/BookingReadinessCheckResponse"
+            },
+            "type": "array",
+            "title": "Checks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "overall_status",
+          "blockers",
+          "policy",
+          "checks"
+        ],
+        "title": "BookingReadinessResponse"
+      },
       "BookingSession": {
         "properties": {
           "id": {
@@ -29008,6 +30338,51 @@
         ],
         "title": "BridgeRenderResponse",
         "description": "Inline base64 audio data URL for the bridge.\n\nPhase 6b.3 v1 returns the audio inline so the client can hand\nit directly to ``adapter.setSource()`` without an extra round-trip.\nPhase 8 can switch to CDN URLs once R2 is wired and bridge audio\nstarts being cached server-side."
+      },
+      "CancelOfferResponse": {
+        "properties": {
+          "offer_id": {
+            "type": "string",
+            "title": "Offer Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "refund_amount": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Refund Amount"
+          },
+          "refund_currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Refund Currency"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "offer_id",
+          "status",
+          "message"
+        ],
+        "title": "CancelOfferResponse"
       },
       "CaptureMomentRequest": {
         "properties": {
@@ -30642,6 +32017,11 @@
           "terms_accepted": {
             "type": "boolean",
             "title": "Terms Accepted",
+            "default": false
+          },
+          "final_human_approval": {
+            "type": "boolean",
+            "title": "Final Human Approval",
             "default": false
           },
           "intent": {
@@ -33146,6 +34526,175 @@
           "kind"
         ],
         "title": "DiscoverFeedTarget"
+      },
+      "DiscoverMapPin": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "const": "venue",
+            "title": "Kind",
+            "default": "venue"
+          },
+          "venue_id": {
+            "type": "integer",
+            "title": "Venue Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "venue_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Venue Type"
+          },
+          "lat": {
+            "type": "number",
+            "title": "Lat"
+          },
+          "lng": {
+            "type": "number",
+            "title": "Lng"
+          },
+          "take": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DiscoverMapTakePreview"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "affinity": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "loved",
+                  "liked",
+                  "noticed"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Affinity"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "venue_id",
+          "title",
+          "lat",
+          "lng"
+        ],
+        "title": "DiscoverMapPin",
+        "description": "One placeable Discover entity. ``lat``/``lng`` are always finite (the\nbuilder drops null-geometry rows). ``take`` / ``affinity`` are the\ndifferentiating judgment layer \u2014 both optional (honest absence)."
+      },
+      "DiscoverMapResponse": {
+        "properties": {
+          "scope": {
+            "type": "string",
+            "enum": [
+              "place",
+              "nearby"
+            ],
+            "title": "Scope"
+          },
+          "place_slug": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Slug"
+          },
+          "place_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Name"
+          },
+          "center": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MapPoint"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "pins": {
+            "items": {
+              "$ref": "#/components/schemas/DiscoverMapPin"
+            },
+            "type": "array",
+            "title": "Pins"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "scope"
+        ],
+        "title": "DiscoverMapResponse"
+      },
+      "DiscoverMapTakePreview": {
+        "properties": {
+          "opinion": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "loved",
+                  "worth-it",
+                  "conditional",
+                  "skip"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Opinion"
+          },
+          "headline": {
+            "type": "string",
+            "title": "Headline"
+          }
+        },
+        "type": "object",
+        "required": [
+          "headline"
+        ],
+        "title": "DiscoverMapTakePreview",
+        "description": "The judgment-on-the-pin: a curator's verdict + one-line headline.\n\nThis is what makes the map a BROWSE surface rather than a lookup \u2014 the pin\ncarries Vesper's stance, not just a dot. Sourced from the shared\n``entity_takes`` curator tier (no per-pin LLM call); the full Take is a\ntap-time fetch on the peek card."
       },
       "DiscoverReadBlock": {
         "properties": {
@@ -35931,6 +37480,99 @@
         ],
         "title": "FolioEvidenceChip"
       },
+      "FolioEvidenceOption": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "meta": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Meta"
+          },
+          "votes": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Votes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "label"
+        ],
+        "title": "FolioEvidenceOption"
+      },
+      "FolioEvidenceSwapSide": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "meta": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Meta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "label"
+        ],
+        "title": "FolioEvidenceSwapSide"
+      },
+      "FolioEvidenceVoter": {
+        "properties": {
+          "initial": {
+            "type": "string",
+            "title": "Initial"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "in",
+              "waiting",
+              "you"
+            ],
+            "title": "Status",
+            "default": "in"
+          }
+        },
+        "type": "object",
+        "required": [
+          "initial"
+        ],
+        "title": "FolioEvidenceVoter"
+      },
       "FolioFacetEvidence": {
         "properties": {
           "kind": {
@@ -35941,7 +37583,12 @@
               "ribbon",
               "booking",
               "clash",
-              "budget"
+              "budget",
+              "swap",
+              "lazy",
+              "readiness",
+              "reaction",
+              "applied"
             ],
             "title": "Kind"
           },
@@ -36011,6 +37658,39 @@
             ],
             "title": "To Book"
           },
+          "venue_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Venue Name"
+          },
+          "venue_meta": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Venue Meta"
+          },
+          "hold_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hold Label"
+          },
           "days": {
             "anyOf": [
               {
@@ -36041,6 +37721,51 @@
                 "type": "null"
               }
             ]
+          },
+          "options": {
+            "items": {
+              "$ref": "#/components/schemas/FolioEvidenceOption"
+            },
+            "type": "array",
+            "title": "Options"
+          },
+          "voters": {
+            "items": {
+              "$ref": "#/components/schemas/FolioEvidenceVoter"
+            },
+            "type": "array",
+            "title": "Voters"
+          },
+          "was": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FolioEvidenceSwapSide"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "now": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FolioEvidenceSwapSide"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "overlap_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Overlap Label"
           }
         },
         "type": "object",
@@ -37427,6 +39152,24 @@
         ],
         "title": "HoldDecisionResponse"
       },
+      "HoldRequest": {
+        "properties": {
+          "held_until": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Held Until"
+          }
+        },
+        "type": "object",
+        "title": "HoldRequest"
+      },
       "HomeAnchor": {
         "properties": {
           "voice_line": {
@@ -38293,6 +40036,19 @@
           "max_uses"
         ],
         "title": "InviteCreateResponse"
+      },
+      "InviteEligibilityResponse": {
+        "properties": {
+          "can_invite": {
+            "type": "boolean",
+            "title": "Can Invite"
+          }
+        },
+        "type": "object",
+        "required": [
+          "can_invite"
+        ],
+        "title": "InviteEligibilityResponse"
       },
       "InviteIntakeRequest": {
         "properties": {
@@ -42977,6 +44733,33 @@
           "count": {
             "type": "integer",
             "title": "Count"
+          },
+          "point": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MapPoint"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "bounds": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MapBounds"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "neighborhoods": {
+            "items": {
+              "$ref": "#/components/schemas/PlaceMapNeighborhood"
+            },
+            "type": "array",
+            "title": "Neighborhoods"
           }
         },
         "type": "object",
@@ -42987,6 +44770,34 @@
           "count"
         ],
         "title": "PlaceDossierListResponse"
+      },
+      "PlaceMapNeighborhood": {
+        "properties": {
+          "slug": {
+            "type": "string",
+            "title": "Slug"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "point": {
+            "$ref": "#/components/schemas/MapPoint"
+          },
+          "dossier_count": {
+            "type": "integer",
+            "title": "Dossier Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "slug",
+          "name",
+          "point",
+          "dossier_count"
+        ],
+        "title": "PlaceMapNeighborhood",
+        "description": "A child neighborhood that has editorial content, as a drill-in map pin.\n\nOnly neighborhoods that (a) contributed at least one dossier to this feed\nand (b) carry a centroid are surfaced \u2014 a pin therefore always corresponds\nto browsable content, never a bare administrative boundary."
       },
       "PlanBlock": {
         "properties": {
@@ -44761,11 +46572,130 @@
               }
             ],
             "title": "Place Slug"
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source"
+          },
+          "starter_shape": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Starter Shape"
+          },
+          "vibe": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Vibe"
+          },
+          "saved_places": {
+            "items": {
+              "$ref": "#/components/schemas/PlanningSavedPlaceBootstrap"
+            },
+            "type": "array",
+            "title": "Saved Places"
+          },
+          "friend_trip_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Friend Trip Id"
+          },
+          "friend_trip_title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Friend Trip Title"
+          },
+          "anchors": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Anchors"
           }
         },
         "type": "object",
         "title": "PlanningIntentBootstrap",
         "description": "Onboarding trip draft fields mirrored from the mobile client."
+      },
+      "PlanningSavedPlaceBootstrap": {
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "City"
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "PlanningSavedPlaceBootstrap",
+        "description": "A saved place the client used as a trip-draft starting point."
       },
       "PostcardRenderResponse": {
         "properties": {
@@ -47838,6 +49768,33 @@
         "title": "SettleBatchResponse",
         "description": "All updated expenses, in request order."
       },
+      "SettleHoldRequest": {
+        "properties": {
+          "final_human_approval": {
+            "type": "boolean",
+            "title": "Final Human Approval",
+            "default": false
+          },
+          "terms_accepted": {
+            "type": "boolean",
+            "title": "Terms Accepted",
+            "default": false
+          },
+          "correlation_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Correlation Id"
+          }
+        },
+        "type": "object",
+        "title": "SettleHoldRequest"
+      },
       "SettleRequest": {
         "properties": {
           "user_ids": {
@@ -48598,6 +50555,545 @@
           "provider"
         ],
         "title": "StartVerificationResponse"
+      },
+      "StayCandidate": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "added_by": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Added By"
+          },
+          "accommodation_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Accommodation Id"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "area": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Area"
+          },
+          "scene": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "river",
+                  "alfama",
+                  "modern",
+                  "guest",
+                  "coast"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scene"
+          },
+          "freeform_lat": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Freeform Lat"
+          },
+          "freeform_lng": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Freeform Lng"
+          },
+          "price_per_night": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Per Night"
+          },
+          "total_price": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Price"
+          },
+          "currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Currency"
+          },
+          "cancellation_terms": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cancellation Terms"
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "arrival_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Arrival Date"
+          },
+          "departure_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Departure Date"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "withdrawn",
+              "chosen"
+            ],
+            "title": "Status",
+            "default": "active"
+          },
+          "held_until": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Held Until"
+          },
+          "held_by": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Held By"
+          },
+          "chosen_accommodation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Chosen Accommodation Id"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "trip_id",
+          "label",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "StayCandidate",
+        "description": "One saved stay option for a trip."
+      },
+      "StayCandidateCreateRequest": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Label"
+          },
+          "accommodation_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Accommodation Id"
+          },
+          "area": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Area"
+          },
+          "scene": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "river",
+                  "alfama",
+                  "modern",
+                  "guest",
+                  "coast"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scene"
+          },
+          "price_per_night": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Per Night"
+          },
+          "total_price": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Price"
+          },
+          "currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Currency"
+          },
+          "cancellation_terms": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cancellation Terms"
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "arrival_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Arrival Date"
+          },
+          "departure_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Departure Date"
+          }
+        },
+        "type": "object",
+        "required": [
+          "label"
+        ],
+        "title": "StayCandidateCreateRequest"
+      },
+      "StayChosenResponse": {
+        "properties": {
+          "candidate_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Candidate Id"
+          },
+          "candidate_label": {
+            "type": "string",
+            "title": "Candidate Label"
+          },
+          "chosen_accommodation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Chosen Accommodation Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "candidate_id",
+          "candidate_label",
+          "chosen_accommodation_id"
+        ],
+        "title": "StayChosenResponse",
+        "description": "Result of choosing a candidate \u2014 the stay it became."
+      },
+      "StayDecisionResponse": {
+        "properties": {
+          "candidates": {
+            "items": {
+              "$ref": "#/components/schemas/StayCandidate"
+            },
+            "type": "array",
+            "title": "Candidates"
+          },
+          "vote": {
+            "$ref": "#/components/schemas/StayVoteState"
+          },
+          "my_candidate_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "My Candidate Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "candidates",
+          "vote"
+        ],
+        "title": "StayDecisionResponse",
+        "description": "Everything the compare/vote surfaces need in one read."
+      },
+      "StayVoteState": {
+        "properties": {
+          "phase": {
+            "type": "string",
+            "enum": [
+              "not_started",
+              "open",
+              "tie",
+              "decided"
+            ],
+            "title": "Phase"
+          },
+          "leader_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Leader Id"
+          },
+          "tallies": {
+            "items": {
+              "$ref": "#/components/schemas/StayVoteTally"
+            },
+            "type": "array",
+            "title": "Tallies"
+          },
+          "total_voters": {
+            "type": "integer",
+            "title": "Total Voters",
+            "default": 0
+          },
+          "votes_cast": {
+            "type": "integer",
+            "title": "Votes Cast",
+            "default": 0
+          },
+          "missing_voter_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Missing Voter Ids"
+          }
+        },
+        "type": "object",
+        "required": [
+          "phase"
+        ],
+        "title": "StayVoteState",
+        "description": "The resolved group-vote position.\n\n``phase`` is the design's vote arc; ``leader_id`` is the front-runner (None\non a tie or before any vote); ``missing_voter_ids`` are members who haven't\nvoted yet. ``decided`` means a majority is locked OR everyone voted and one\ncandidate leads outright."
+      },
+      "StayVoteTally": {
+        "properties": {
+          "candidate_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Candidate Id"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count",
+            "default": 0
+          },
+          "voter_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Voter Ids"
+          }
+        },
+        "type": "object",
+        "required": [
+          "candidate_id"
+        ],
+        "title": "StayVoteTally",
+        "description": "Per-candidate vote count + who voted (for the compare/vote modules)."
       },
       "StorySharePreview": {
         "properties": {
@@ -51256,7 +53752,11 @@
           "role": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "organizer",
+                  "member"
+                ]
               },
               {
                 "type": "null"
