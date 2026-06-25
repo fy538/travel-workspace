@@ -2,7 +2,7 @@
 
 > Status: draft  
 > Owner: founder / engineering  
-> Last updated: 2026-06-06  
+> Last updated: 2026-06-24  
 > Source of truth for: consolidated findings from 12 parallel journey traces
 
 This report consolidates read-only static traces for all 12 canonical journeys. Agents traced each journey through app routes, components, hooks, API methods, mock fallbacks, and backend endpoints. No live LLM-backed product endpoints, push sends, provider calls, or photo-library actions were used.
@@ -272,6 +272,74 @@ Static trace: ready. Dogfood ready: no.
 
 Next action: fix trip-scoped CTAs and route-param handling before live returned-trip dogfood.
 
+## Fix Pass - 2026-06-24 (Journey Tracer, all 12 re-traced + verified)
+
+All 12 journeys were re-traced through real code across both repos, each finding
+adversarially verified (refuted findings dropped), and **19 confirmed bugs were
+fixed with regression tests**. Verification: FE `tsc` 0 errors + 13 new jest
+suites (77 tests) green; BE targeted + DB-gated suites green against local
+Postgres; `make typecheck` clean on all touched files. J11 traced clean (0 bugs).
+
+Highest-impact fixes:
+
+- Journey 02 (**high**): `revoke_invite()` 500'd on every invite revoke — a same-day
+  "fix vulture" commit (`0118e0bd`) renamed the param to `_by_user_id` while both
+  call sites still passed `by_user_id=`. Dropped the dead param; revoke works again.
+  Regression: an **un-mocked** route test that patches only the DB layer (the old
+  test mocked the function itself, which is exactly why the 500 slipped through) +
+  a signature-bind guard.
+- Journey 04 (**high**): a server-generated proposal that redacts a private signal
+  now writes a `private_detail_redacted` privacy-audit event, **attributed to the
+  member whose private phrase actually appeared** (not the proposer), naming the
+  proposal as entity, with no raw value persisted. Keyword-only redactions record
+  nothing (no attributable owner).
+- Journey 01: thread promotion now invalidates the conversation-list cache (promoted
+  thread no longer shows as unlinked / opens chat with no trip context).
+- Journey 03: cold-Folio place setup can now write `trip.place_id` — added `place_id`
+  to the patch allow-list + `trip_patch` tool schema, and the `trip-place` screen
+  resolves the destination id and PATCHes it deterministically (mirrors `trip-dates`).
+- Journey 05: FE vote zod type corrected to `{vote, comment}`; mock resolve/revert now
+  stamps `apply_status` so the accept→apply trust loop is reachable in mock mode.
+- Journey 06: the Changes-screen Undo on `block_updated` rows (a silent no-op — the
+  `onUndoBlock` prop was never wired) now works; the `invalidateTripReadModels` 'core'
+  guard test reconciled to 3 keys.
+- Journey 07: in-trip venue "Add to plan" now passes a grounded venue seed instead of
+  a prefill-only handoff, so Vesper can act on the specific venue.
+- Journey 08: mock plan-state/itinerary/situation now activate Now Mode for the live
+  persona (were frozen at `pre_trip`), so the mock walkthrough can reach live mode.
+- Journey 09: proposal pushes now carry `proposal_id` (and `card_id`) so taps deep-link
+  to the review sheet instead of falling back to group chat.
+- Journey 10 (all behind the dark live-booking gate, fixed without un-gating): a
+  pay-later HOLD no longer shows a "Booking confirmed!" toast; live checkout sends
+  `final_human_approval`/`intent` (was 422-ing); a confirmed hotel now writes a
+  `trip_accommodations` row (the writeback hook was bypassed on the checkout path).
+- Journey 12: story-regenerate poll now waits for the version to advance instead of
+  latching on the stale prior version; the memory consent banner uses tz-safe
+  `computeTripPhase` instead of `new Date(end_date)`.
+
+Also fixed in passing (surfaced during verification, pre-existing, not from a journey
+trace):
+
+- `trip_management.py` proposal-summary builder referenced `proposal.deadline_at`
+  (the model field is `deadline`) — a latent `AttributeError`; fixed the attribute,
+  kept the `deadline_at` output key.
+- `tests/concierge/test_change_proposals.py::test_vote_on_proposal` was stale against
+  the committed B3 vote hardening (voter = authenticated actor, `require_trip_member`,
+  proposal pre-load) — updated the test to the current contract.
+
+Convention adopted (recommended to standardize): **on route tests, mock at the DB
+layer, not the function layer**, so call-site/signature contracts stay exercised — the
+J02 500 was invisible precisely because the revoke test mocked the function with a
+MagicMock that swallowed the bad kwarg.
+
+Deferred by design: J12 keeps the FE-only poll-guard (server-authoritative `composing`
+202 remains available); J03 `place_id` resolution works in real-auth mode only (mock
+falls back to the Vesper handoff), no destination autocomplete dropdown yet.
+
+Known pre-existing item NOT from this pass: nothing currently red after the vote-test
+fix. (One real known bug outside the journey set: `einops` missing in prod blocks GREEN
+dossiers from Qdrant indexing — semantic Discover search.)
+
 ## Recommended Engineering Sequence
 
 1. Fix P0 context/contract blockers:
@@ -294,17 +362,20 @@ Next action: fix trip-scoped CTAs and route-param handling before live returned-
 
 ## Status Matrix Deltas
 
+Updated 2026-06-24 — "Static trace" reflects the journey-tracer pass (all confirmed
+bugs fixed + regression-tested). "Mock walk" / "Dogfood" still pending live device runs.
+
 | Journey | Static trace | Mock walk | Dogfood |
 |---|---|---|---|
-| 01 | ready | not started | no |
-| 02 | ready | not started | no |
-| 03 | partial | not started | no |
-| 04 | ready | not started / blocked by fixture gap | no |
-| 05 | ready | not started | no |
-| 06 | ready | blocked by mock ID drift | no |
-| 07 | blocked | not started | no |
-| 08 | partial | not started | blocked |
-| 09 | ready with gaps | not started | no |
-| 10 | partial | not started | blocked |
-| 11 | ready | not started | blocked |
-| 12 | ready | not started | no |
+| 01 | clean (was: 1 cache bug) | not started | no |
+| 02 | clean (was: revoke 500) | not started | no |
+| 03 | clean on lit path; place_id real-auth only | not started | no |
+| 04 | clean (redaction audit wired) | not started | no |
+| 05 | clean (zod + mock apply_status) | not started | no |
+| 06 | clean (Undo wired) | not started | no |
+| 07 | clean (grounded venue seed) | not started | no |
+| 08 | clean; mock Now Mode activates | not started | blocked |
+| 09 | clean (push proposal_id/card_id) | not started | no |
+| 10 | clean on lit path; 3 live-booking pre-flight gates | not started | blocked (dark live booking) |
+| 11 | clean | not started | blocked |
+| 12 | clean (poll-guard + tz banner) | not started | no |
