@@ -2166,7 +2166,7 @@
           "angles"
         ],
         "summary": "Request a speculative angle for a place",
-        "description": "Persist a user-requested angle to the research queue. Inserts a ``place_angles`` row with ``source_type='user_query'`` and ``status='queued'``. No LLM call is made \u2014 this is a pure queue insert. Requires authentication.",
+        "description": "Persist a user-requested angle for curator review. Inserts a ``place_angles`` row with ``source_type='user_query'`` and ``status='pending_review'`` (user requests are review-gated). No LLM call is made \u2014 this is a pure queue insert. Requires authentication.",
         "operationId": "request_place_angle_api_places__slug__angles_request_post",
         "parameters": [
           {
@@ -17368,11 +17368,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "boolean"
-                  },
-                  "title": "Response Revoke Story Share Api Trips  Trip Id  Story Share Revoke Post"
+                  "$ref": "#/components/schemas/RevokeShareResponse"
                 }
               }
             }
@@ -25627,8 +25623,7 @@
           },
           "status": {
             "type": "string",
-            "title": "Status",
-            "default": "queued"
+            "title": "Status"
           },
           "message": {
             "type": "string",
@@ -25638,10 +25633,11 @@
         "type": "object",
         "required": [
           "id",
+          "status",
           "message"
         ],
         "title": "AngleRequestResponse",
-        "description": "Response returned after a user angle request is queued."
+        "description": "Response returned after a user angle request is persisted.\n\n``status`` reflects the actual DB status assigned by the source-type\npolicy: ``user_query`` inserts resolve to ``pending_review``, not\n``queued``.  Do not hardcode the value \u2014 it is filled by the route."
       },
       "ApproveRequest": {
         "properties": {
@@ -29252,7 +29248,7 @@
           "data_source": {
             "type": "string",
             "title": "Data Source",
-            "default": "v1_stub"
+            "default": "warehouse"
           }
         },
         "type": "object",
@@ -33050,6 +33046,17 @@
             },
             "type": "array",
             "title": "Days"
+          },
+          "memory_cue": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Memory Cue"
           },
           "open_summary": {
             "anyOf": [
@@ -40340,6 +40347,7 @@
           },
           "status": {
             "type": "string",
+            "const": "active",
             "title": "Status"
           }
         },
@@ -48925,6 +48933,19 @@
         "type": "object",
         "title": "RevertRequest",
         "description": "Revert an already-accepted proposal, restoring the prior itinerary state.\n\nOnly the trip organizer may revert. The ``resolution_note`` is stored on\nthe proposal row and surfaced in the group chat bridge message so members\nunderstand why the change was undone.\n\n``mode`` selects the revert strategy. ``None``/``\"diff_safe\"`` keeps the\nsurgical reverse-patch that preserves unrelated later edits (and may return\n``diff_safe_partial`` when some fields were edited since). ``\"version_restore\"``\nis the \"Force full revert\" path the conflict sheet offers \u2014 it snaps the\nitinerary back to the pre-accept version, discarding later edits. Previously\nthis field was silently dropped by FastAPI, so \"Force full revert\" was a\nno-op for any modern (post-Phase-2) proposal."
+      },
+      "RevokeShareResponse": {
+        "properties": {
+          "revoked": {
+            "type": "boolean",
+            "title": "Revoked"
+          }
+        },
+        "type": "object",
+        "required": [
+          "revoked"
+        ],
+        "title": "RevokeShareResponse"
       },
       "RibbonDay": {
         "properties": {
