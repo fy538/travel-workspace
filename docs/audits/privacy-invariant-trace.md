@@ -1,5 +1,22 @@
 # Privacy-Invariant Trace — Consolidated Audit
 
+> **RESOLVED 2026-06-27 (verified against HEAD `f698d228`).** All TIER 1/2/3 fixes
+> and clusters A–F/H below landed in main via commit `5c46a47b`
+> (*feat(privacy+group+core): egress guard, group profile, compose privacy fixes*).
+> Spot-verified in code: `check_proposal_privacy(alternative_options=...)`
+> (`backend/concierge/privacy_redactor.py:86,118`); `resolution_note` redacted at the
+> resolve choke point (`backend/core/db/change_proposals.py:658-665`); `new_time` now in
+> `_IMPACT_TEXT_FIELDS` (`privacy_redactor.py:77`); `strip_private_group_sections`
+> exists and is wired (`backend/core/group_profile.py:33`); digest path strips group
+> profile + corpus-scrubs (`backend/digest/engine/daily.py:81-83,159-164`); `_shapes.py`
+> group-card guard (`_shapes.py:188-200`); Atlas Unpacked DNA filter
+> (`backend/atlas/unpacked.py:128`); Discover hook scan (`backend/discover/compose.py:508-509`);
+> planning telemetry uses `safe_event_context` (`planning_agent/agent.py:262`).
+> Cluster G (booking writeback) remains product-gated/operator-only by design. The
+> "Coverage gaps still open" footer (notifications/SMS/email, Discover personalization,
+> Atlas share artifacts, logs/telemetry) is still unverified — not cleared. Findings below
+> are kept as the historical record.
+
 **Runs:** 2026-06-24 (proposal subsystem, 21 surfaces) + 2026-06-25 (full sweep, 114 surfaces)
 **Method:** static egress tracing → adversarial verify → human spot-check (this doc)
 **Caveat:** both runs hit heavy *server-side* rate limiting (not usage limit). Many trace/verify

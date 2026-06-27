@@ -133,37 +133,34 @@ cd "Travel Workspace"      # workspace root
 | SSE streaming (shell + ready phases) | ✓ Shipped |
 | `expo-media-library` photo picker (manual-pick path) | ✓ Shipped |
 | True incremental section-by-section SSE | Deferred (V1) |
-| Multi-head Alembic merge | ⚠ Blocked on external bug — see note below |
+| Multi-head Alembic merge | ✓ Resolved 2026-06-27 — single head (`sma26expimmut`); see note below |
 | Full-library auto-scan (V1) | Deferred |
 | `JournalingSuggestions` integration (V1) | Deferred |
 | Custom Expo Module for burst grouping + `PHPersistentChangeToken` (V1) | Deferred |
 | Broader DNA-provenance hardening | Follow-up (see V0 plan §Follow-up) |
 
-## Note: multi-head Alembic warning
+## Note: multi-head Alembic warning — RESOLVED 2026-06-27
 
-`alembic heads` currently shows two heads:
+`alembic heads` now shows a **single head** (`sma26expimmut`). The
+collision is gone:
 
-```
-a1b2c3d4e5f6           ← uncommitted budget-columns WIP (broken)
-a7b4c1d8e5f2 (head)    ← atlas chain + source column
-```
+- The budget WIP got a clean, unique revision ID
+  (`d5f9b3a1e2c4_add_budget_columns_to_trips.py`) and was merged into the
+  mainline via `d6a2c4e8f1b3_merge_budget_columns_into_main.py`.
+- The file that originally collided on `a1b2c3d4e5f6` (the old
+  `add_booking_tables` migration) was moved to
+  `alembic/versions/_archive/`, which is outside `version_locations`
+  (recursive scanning is off), so `a1b2c3d4e5f6` resolves uniquely to
+  `a1b2c3d4e5f6_add_delegation_preferences.py`.
 
-The merge cannot be written cleanly because the budget WIP picked a
-revision ID (`a1b2c3d4e5f6`) that collides with the already-committed
-`a1b2c3d4e5f6_add_delegation_preferences.py`. Alembic emits
-`UserWarning: Revision a1b2c3d4e5f6 is present more than once` and any
-merge migration referencing that ID resolves to the wrong ancestor.
+The atlas chain (`a7b4c1d8e5f2`) is folded into the single mainline head.
+No `UserWarning: Revision … present more than once` remains.
 
-Fix sequence (whoever owns the budget WIP):
+<details><summary>Original (resolved) issue, for history</summary>
 
-1. Pick a new unique revision ID for `add_budget_columns_to_trips.py`
-   (e.g. `d4e1c8b2a9f6`) and update `revision = ...` in that file.
-2. Rename the file to match: `<new_id>_add_budget_columns_to_trips.py`.
-3. Verify `alembic heads` shows two heads (atlas, budget) with distinct
-   IDs.
-4. Generate the merge: `PYTHONPATH=. alembic merge -m
-   "merge atlas + budget heads" <atlas_head> <budget_head>`.
-5. Commit. `alembic heads` should now show a single head.
+`alembic heads` showed two heads (`a1b2c3d4e5f6` uncommitted budget WIP,
+`a7b4c1d8e5f2` atlas chain). The budget WIP had reused a revision ID that
+collided with `a1b2c3d4e5f6_add_delegation_preferences.py`, so any merge
+migration referencing that ID resolved to the wrong ancestor.
 
-The Atlas chain works correctly in isolation — `alembic upgrade
-a7b4c1d8e5f2` applies cleanly today.
+</details>

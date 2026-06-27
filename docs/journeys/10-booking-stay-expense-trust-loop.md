@@ -2,7 +2,7 @@
 
 > Status: draft
 > Owner: founder / engineering
-> Last updated: 2026-06-11
+> Last updated: 2026-06-26  
 > Primary phase: booking / stay / money
 
 ## Product Promise
@@ -43,6 +43,17 @@ As an organizer, I want Vesper to help choose or confirm a stay, share the usefu
 7. Member sees public stay state, not private payment details.
 8. Organizer optionally shares total for expense settling.
 9. Expense ledger entry appears with booking source.
+10. **Hold path:** confirm pay-later hold with `terms_accepted` + `final_human_approval` in request body (`POST /booking/holds/{offer_id}/settle`) — verify `http.ts` sends body matching OpenAPI `SettleHoldRequest`.
+11. **Hold expired:** 410 surfaces actionable copy, not generic toast.
+
+## Cross-repo seam checks (2026-06-25 audit)
+
+| Check | Risk if broken |
+|---|---|
+| `settleBookingHold` sends `SettleHoldRequest` body | Every hold confirm → HTTP 422 |
+| Booking nested ids scoped to path `trip_id` | Cross-trip IDOR |
+| Expense `paid_by` / share `user_id` validated | Financial identity spoofing |
+| UI "Booked" only after provider-confirmed state | Overclaimed trust |
 
 ## Expected Outcome
 
@@ -72,7 +83,7 @@ As an organizer, I want Vesper to help choose or confirm a stay, share the usefu
 ## AI Trace Prompt
 
 ```text
-Trace booking/stay flow from trip accommodations through accommodation detail, group/private chat handoff, booking session, confirmation, trip return, and expense sharing. Identify provider-session assumptions, privacy serializer boundaries, redactor use, organizer/member UI differences, and mock-real drift.
+Trace booking/stay flow from trip accommodations through accommodation detail, group/private chat handoff, booking session, cart confirm, hold settle (verify request body against openapi.json), confirmation, trip return, stay writeback, and opt-in expense sharing. Identify provider-session assumptions, privacy serializer boundaries, organizer/member UI differences, and mock-real drift. Flag any UI state that claims booked before provider confirmation.
 ```
 
 ## First Automation Target

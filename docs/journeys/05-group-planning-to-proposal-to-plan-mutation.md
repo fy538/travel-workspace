@@ -2,8 +2,8 @@
 
 > Status: draft  
 > Owner: founder / engineering  
-> Last updated: 2026-06-06  
-> Primary phase: collaborative planning
+> Last updated: 2026-06-26  
+> Primary phase: collaborative planning + direct itinerary edit
 
 ## Product Promise
 
@@ -28,12 +28,14 @@ As a group planning a trip, we want to ask for a change, review Vesper's proposa
 
 ## Primary Surfaces
 
-- Routes: `/(tabs)/trips/[tripId]/chat`, `/(tabs)/trips/[tripId]/plan`, `/(tabs)/trips/[tripId]/changes`, `/notifications`.
+- Routes: `/(tabs)/trips/[tripId]/chat`, `/(tabs)/trips/[tripId]/plan`, `/(tabs)/trips/[tripId]/changes`, `/notifications`, Change Studio sheets on Plan rows.
 - App docs: [Change Proposals](../../travel-app/docs/page-specs/change-proposals.md), [Trip Group Chat](../../travel-app/docs/page-specs/trip-group-chat.md), [Trip Plan](../../travel-app/docs/page-specs/trip-plan.md).
 - Reliability trace: [Proposal Review And Plan Mutation](../reliability/traces/proposal-review-and-plan-mutation.md).
 - Existing anchors: `__tests__/data/proposals.test.ts`, `__tests__/components/plan/ProposalReviewSheet.test.tsx`, `__tests__/components/chat/VoteWidgetCardEmpty.test.tsx`, backend proposal API/apply tests.
 
 ## Canonical Steps
+
+### Track A — Vesper proposal (group Advise → Propose → Act)
 
 1. Open group chat for a planning trip.
 2. Ask Vesper to change a dinner, time, activity, or route.
@@ -43,6 +45,17 @@ As a group planning a trip, we want to ask for a change, review Vesper's proposa
 6. Plan reflects the accepted mutation or reassures that rejected plan stayed.
 7. Changes screen shows recent change with undo/revert when safe.
 8. Notification/activity receipt routes back to the right object.
+
+### Track B — Direct edit (Change Studio, no proposal)
+
+9. Open Plan; tap a block row (edit-first).
+10. Use Change Studio: move, swap, edit time, or edit-preview/commit flow.
+11. Resolve a conflict via keep/dismiss or unified conflict sheet.
+12. Use Now Mode: skip/reorder current block; confirm reversible state.
+13. Changes screen and proposal receipts distinguish human edit vs Vesper proposal where applicable.
+14. Run Journey 06 coherence pass after the edit.
+
+Both tracks must send idempotency keys on mutating calls where the API requires them.
 
 ## Expected Outcome
 
@@ -58,11 +71,13 @@ As a group planning a trip, we want to ask for a change, review Vesper's proposa
 - Proposal detail leaks private source context.
 - Retry creates duplicate votes or duplicate applied changes.
 - Revert says success but Plan/Map still show the changed state.
+- Direct edit-preview succeeds in UI but commit fails without surfacing conflict or stale `expected_updated_at`.
+- Chat-created proposals bypass shared `build_and_persist_proposal` (drift risk).
 
 ## AI Trace Prompt
 
 ```text
-Trace the proposal lifecycle from group chat intent through proposal creation, vote, resolve, plan mutation, change history, notification routing, and revert. Report API methods, mock behavior, backend endpoints, idempotency protections, and read-model invalidation.
+Trace BOTH tracks: (A) proposal lifecycle from group chat through vote, resolve, apply, revert, notifications; (B) direct Plan edit-preview/commit, conflict dismiss/keep, Now Mode skip, withdraw/supersede. Report API methods, mock behavior, backend endpoints, idempotency, and read-model invalidation. After each mutation, note whether Journey 06 surfaces would agree.
 ```
 
 ## First Automation Target

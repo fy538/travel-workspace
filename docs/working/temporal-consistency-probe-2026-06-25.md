@@ -1,5 +1,24 @@
 # Temporal & Consistency Probe — Bug Report
 
+> **RESOLVED 2026-06-26 — all three confirmed/latent findings below are now fixed; historical record.**
+> Spot-verified at HEAD:
+> - **`anchor-voice-cache-key-omits-user` (HIGH, "ship first")** — FIXED. The cache key now folds in
+>   a per-user segment: `cache_key = f"{_user_segment}|{trip_id}|{phase}|{temporal_anchor}"` where
+>   `_user_segment = str(user_id)` for personalized lines and `"cold"` for empty Tier-1 state
+>   (`travel-agent/backend/home/compose.py:271-272`). Matches the doc's recommended fix; cross-user
+>   leak on the shared trip-home surface is closed.
+> - **`tz-3` settle-time race** — FIXED. `settle_hold` now atomically claims the hold
+>   (`held_for_payment` → intermediate state) *before* `pay_for_order`, so the expire sweep can't
+>   strand an in-flight charge (`travel-agent/backend/booking_agent/holds.py:116-158`,
+>   commit `ef6c52f7`).
+> - **`plan_events` `since`-exclusive cursor (LOW latent §6)** — FIXED. The reader now supports a
+>   compound `(created_at, id) > (since, since_id)` cursor so same-`created_at` siblings are no longer
+>   skipped (`travel-agent/backend/core/db/plan_events.py:93-116`).
+> - **`tz-1` spring-forward day-count (MEDIUM, frontend)** — verify against `travel-app/utils/helpers.ts`
+>   (`computeLiveDay`); the structural `diffCalendarDays` helper was the recommended fix.
+>
+> Read the findings below as the diagnostic record behind those fixes, not an open list.
+
 **Date:** 2026-06-25
 **Repos:** `travel-agent` (backend), `travel-app` (frontend)
 **Scope:** Timezone/date arithmetic, cache-key correctness, settle-time races.

@@ -2,8 +2,8 @@
 
 > Status: draft  
 > Owner: founder / engineering  
-> Last updated: 2026-06-06  
-> Primary phase: memory / identity control
+> Last updated: 2026-06-26  
+> Primary phase: memory / identity control / trust hub
 
 ## Product Promise
 
@@ -28,8 +28,8 @@ As a traveler, I want to review a memory candidate, turn it into an artifact if 
 
 ## Primary Surfaces
 
-- Routes: `/(tabs)/atlas`, `/atlas/inbox`, `/atlas/candidate/[id]`, `/atlas/artifact/[id]`, `/atlas/learned/[id]`, `/atlas/receipt`, `/atlas/dna`, `/atlas/privacy`, `/atlas/map`, `/atlas/postcards`, **`/atlas/almanac`**, **`/atlas/timeline`**.
-- App docs: [Atlas Home](../../travel-app/docs/page-specs/atlas-home.md), [Atlas Backend Contracts](../../travel-app/docs/page-specs/atlas-backend-contracts.md), [Atlas Signal Controls](../../travel-app/docs/page-specs/atlas-signal-controls.md).
+- Routes: `/(tabs)/atlas`, `/atlas/inbox`, `/atlas/candidate/[id]`, `/atlas/artifact/[id]`, `/atlas/learned/[id]`, `/atlas/receipt`, `/atlas/dna`, `/atlas/privacy`, `/atlas/map`, `/atlas/postcards`, `/atlas/almanac`, `/atlas/timeline`, **`/atlas/profile`**, **`/atlas/account`**, **`/atlas/constraints`**, **`/atlas/data-receipt`**, **`/atlas/delegation`**, **`/atlas/following`**, `/atlas/removed`.
+- App docs: [Atlas Home](../../travel-app/docs/page-specs/atlas-home.md), [Atlas Backend Contracts](../../travel-app/docs/page-specs/atlas-backend-contracts.md), [Atlas Signal Controls](../../travel-app/docs/page-specs/atlas-signal-controls.md), [Me/Account → Atlas trust investigation](../audits/me-account-atlas-trust-investigation-2026-06-25.md).
 - Existing anchors: `__tests__/utils/atlasCluster.test.ts`, `__tests__/data/memory.test.ts`, `__tests__/components/memory/DNAStrip.test.tsx`, `__tests__/screens/personal-memory.smoke.test.tsx`, **`__tests__/screens/atlas-almanac.smoke.test.tsx`**, **`__tests__/screens/atlas-timeline.smoke.test.tsx`**, **`__tests__/components/atlas/AtlasYearStepper.test.tsx`**.
 
 ## Canonical Steps
@@ -44,6 +44,11 @@ As a traveler, I want to review a memory candidate, turn it into an artifact if 
 8. Open full receipt and privacy controls.
 9. Open **Almanac** or **Timeline** and confirm entries, year stepper, hide/pin/rename controls.
 10. Return to Atlas Home/Postcards/Map and confirm state updates.
+11. **Trust hub:** from Atlas monogram → `/atlas/profile` → exercise constraints, data-receipt (privacy audit), delegation, account/export, and following/people — Me tab is removed; these routes are canonical.
+
+### Journey 12 boundary
+
+Post-trip **story compose, settlement closeout, and returned-phase Folio** live in Journey 12. This journey owns memory **control and provenance**, not the narrative arc.
 
 ## Expected Outcome
 
@@ -127,7 +132,7 @@ With `EXPO_PUBLIC_USE_MOCK_API=true`, Journey 11 screen coverage:
 ## AI Trace Prompt
 
 ```text
-Trace Atlas candidate approval and signal control from home/inbox through candidate, artifact, learned signals, receipt, DNA, almanac, timeline, map, and privacy. Identify local derivations versus backend contract endpoints, polling behavior, mutation persistence, dedup/restore on overlapping trip+memory, and orphan/self-loop routes.
+Trace Atlas candidate approval and signal control from home/inbox through candidate, artifact, learned signals, receipt, DNA, almanac, timeline, map, privacy, and trust hub routes (profile, account, constraints, data-receipt, delegation, following). Verify GET /api/atlas/facets returns `suggestions` (not `facets`) end-to-end. Identify local derivations versus backend contract endpoints, dedup/restore on overlapping trip+memory, and orphan routes.
 ```
 
 ## First Automation Target

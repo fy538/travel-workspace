@@ -2,8 +2,8 @@
 
 > Status: draft  
 > Owner: founder / engineering  
-> Last updated: 2026-06-06  
-> Primary phase: pre-trip / live-trip truth
+> Last updated: 2026-06-26  
+> Primary phase: pre-trip / live-trip truth (projection invariant layer)
 
 ## Product Promise
 
@@ -18,6 +18,8 @@ As a traveler, I want the trip dashboard, itinerary, map, and change history to 
 - The app is deceptively complex because every surface is a different projection of the same trip state.
 - Read-model drift is one of the easiest ways to lose trust.
 - Dogfooders may report "something feels off" without knowing which model is stale.
+
+This journey is the **invariant checker** that runs after any mutation from Journey 05 (proposal apply/revert **or** direct edit-preview/commit), Journey 08 live actions, or Journey 10 booking writeback. It does not own the mutation workflow — only whether all read models agree afterward.
 
 ## Starting State
 
@@ -39,9 +41,10 @@ As a traveler, I want the trip dashboard, itinerary, map, and change history to 
 2. Open Plan and inspect the affected day/block.
 3. Open Map and inspect the corresponding spatial pin or unplaced state.
 4. Open Changes and inspect recent/open changes.
-5. Apply or revert a change.
-6. Revisit Home, Plan, Map, Chat, and Changes.
-7. Confirm all surfaces agree after invalidation/refetch.
+5. Apply or revert a change **or** complete a direct edit commit (Journey 05 Track B).
+6. Revisit Trip Folio Home, Plan, Map, Chat, and Changes.
+7. Confirm all surfaces agree after invalidation/refetch — including `applied_block_map` id transitions after proposal apply.
+8. Dismiss a non-critical home card and confirm Tier 1 trip truth remains visible.
 
 ## Expected Outcome
 
@@ -61,7 +64,7 @@ As a traveler, I want the trip dashboard, itinerary, map, and change history to 
 ## AI Trace Prompt
 
 ```text
-Trace the trip read models feeding Home, Plan, Map, Chat, and Changes. Pick one itinerary block and one proposal/change id and follow them across hooks, API calls, mock data, backend endpoints, and invalidation paths. Report mismatched ids, optional params, stale caches, and missing tests.
+Trace the trip read models feeding Trip Folio Home, Plan, Map, Chat, and Changes. Pick one block id and follow it across hooks, API calls, mock data, backend endpoints, invalidation paths, and backend home-feed cache behavior. Run after BOTH proposal apply/revert AND direct edit-commit. Report mismatched ids, applied_block_map drift, stale caches, and missing tests.
 ```
 
 ## First Automation Target

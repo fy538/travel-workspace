@@ -1,5 +1,31 @@
 # Backend Endpoint Triage
 
+> **UPDATE 2026-06-27: headline count PARTIALLY STALE — ~62 → ~54.**
+> Cross-referencing the [cross-repo seam audit (2026-06-25)](../audits/cross-repo-seam-audit-2026-06-25.md)
+> and the 2026-06-24..26 fix sprint, **8 endpoints this doc lists as
+> uncalled now have a confirmed FE client** in `travel-app/utils/api/http.ts`:
+>
+> | Path | Method | Old verdict | FE client |
+> |---|---|---|---|
+> | `/api/me` | GET | unknown | `http.ts:546` |
+> | `/api/users/{*}/intake` | POST | planned | `http.ts:553` |
+> | `/api/users/{*}/devices` | GET | planned | `http.ts:918` |
+> | `/api/trips/{*}/booking/sessions` | POST | unknown | `http.ts:1007` |
+> | `/api/trips/{*}/geofence-events` | POST | planned | `http.ts:1847` (GET still uncalled) |
+> | `/api/trips/{*}/voice-guide/session` | GET | unknown | `http.ts:1861` |
+> | `/api/trips/{*}/voice-guide/session/close` | POST | unknown | `http.ts:1865` |
+> | `/api/trips/{*}/debrief` | POST | unknown | `http.ts:2080` |
+>
+> Most of the **action-items** table below is now answered: `/api/me`,
+> booking sessions, both voice-guide endpoints, and debrief are wired.
+> Still genuinely uncalled (per seam-audit §4 "missing clients"):
+> `/api/trips/{*}/expenses/{*}/comments` GET (#23), `/api/takes/{*}` GET,
+> `/api/trips/{*}/geofence-events` GET (#20), `/api/research/*`,
+> `/api/lookup/`, `/api/curator/photos`, plus `plan-similar`/`plan-seed`/
+> `action-receipts/recent` (not in the count below). **Re-run
+> `python3 scripts/api-coverage-check.py --list-unused` to regenerate
+> the authoritative list before acting on the count.**
+
 Audit of the 62 endpoints exposed by the Travel Agent backend (per
 `docs/openapi.json`) that the Travel App frontend does **not** call.
 

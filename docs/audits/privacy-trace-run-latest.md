@@ -2,6 +2,17 @@
 
 **40 confirmed / 3 needs-human / 105 scanned / 0 errored**
 
+> **PARTIALLY STALE — SUPERSEDED 2026-06-27 (HEAD `f698d228`).** The "40 confirmed" raw count
+> below has since been triaged in `privacy-triage-plan.md`, which is the live status-of-record.
+> Of the 40: the 40 collapse to ~34 unique findings → **18 real-user-leaks, ALL FIXED** in main
+> (commit `5c46a47b`), plus 5 operator-only (open by design), 8 dismissed (mitigated /
+> false-positive), and 3 needs-human (open). Notably, findings #12 (`vote-comment`), #13
+> (`feasibility-catch` proposal), #20 (`invitee_note` SMS), and #24 (public-story
+> dietary-outside-regex) were re-adjudicated in the triage plan as false-positive / mitigated /
+> needs-human — NOT all 40 are real leaks. Do not treat the raw findings below as the current
+> open list. **Status of record:** `privacy-triage-plan.md` (real-user) + `privacy-invariant-trace.md`
+> (consolidated). This raw machine output is kept verbatim and is safe to overwrite on the next run.
+
 > This is the **machine run-output** file. It is safe to overwrite on every run.
 > A human merges confirmed findings into the curated `privacy-invariant-trace.md` (do not edit that here).
 

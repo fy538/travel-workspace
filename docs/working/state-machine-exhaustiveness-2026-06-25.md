@@ -1,5 +1,20 @@
 # State-Machine Exhaustiveness Audit — 2026-06-25
 
+> **RESOLVED 2026-06-26 — findings below are a historical record; most are now fixed.**
+> The fix sprint of 2026-06-24..26 closed the defects in this audit via `travel-agent` commits
+> `e9c9abe1` (*fix(state-machine): close 36 lifecycle defects from exhaustiveness audit*),
+> `20ff2168` / `31d2544b` (deferred hardening + 3 DB-validated migrations), and
+> `09bce74c` (two drift guards for the status-write class). Spot-verified at HEAD:
+> - **Critical scheduled-task stale-claim reaper** — FIXED: `reap_stale_claims()` exists in
+>   `backend/core/scheduled_tasks.py:293` and runs on a supervised loop wired in
+>   `backend/api/lifecycle.py` (`_run_scheduled_tasks_loop`, `scheduled_tasks` supervised_task).
+>   `claimed_at` is now load-bearing.
+> - The systemic root cause (unguarded status UPDATEs) is now guarded; the two structural drift
+>   detectors (`check_status_dead_gates`, dead-gate detector) are committed.
+>
+> Read the rest of this document as the diagnostic record that drove those fixes, **not** as an
+> open punch list. Any residual items should be reconciled against HEAD before acting.
+
 ## Summary
 
 Twelve state machines were audited across the travel-AI backend. **Thirteen defects were confirmed** (1 critical, 6 high, 3 medium, 3 low); 11 candidate findings were refuted because real guards already exist, and none remain in an uncertain/unprovable state. The single highest-severity issue is a **critical orphan-state bug in the scheduled/async task lifecycle**: a task that is `claimed` by a worker that then dies is stranded forever — no reaper exists, and the `UNIQUE(task_kind, scope_id)` constraint blocks any re-schedule, so deferred work (trip-story prewarm, post-trip debriefs) is silently and permanently lost — the exact regression the table was built to prevent. Overall health read: the **money path (expenses/settle) and the invite-slot path are the two weakest machines** — together they hold 1 critical-adjacent and 5 high defects, all on terminal-state mutation, atomicity, and idempotency. These are the systemic gaps: state transitions that commit in independent transactions without a guard, a lock, or a per-actor idempotency key. The content/conversation machines are healthier (mostly low/medium, mostly metric/staleness harm rather than money or lockout).

@@ -1,5 +1,19 @@
 # State-Machine Exhaustiveness Audit — Part 2: Core Lifecycles — 2026-06-25
 
+> **RESOLVED 2026-06-26 — findings below are a historical record; the criticals are now fixed.**
+> Closed in the 2026-06-24..26 fix sprint via `travel-agent` commits `e9c9abe1`
+> (*close 36 lifecycle defects from exhaustiveness audit*), `20ff2168` (stay-saga atomicity),
+> `31d2544b` (3 migrations), and `ef6c52f7` (booking-hold + plan-event-cursor hardening).
+> Spot-verified at HEAD:
+> - **Booking/change proposal terminal-escape (the headline critical)** — FIXED: confirm/reject
+>   and revert paths now carry conditional `from_status=` guards
+>   (`backend/api/routes/proposals.py:631,752`); unconditional terminal-state UPDATEs are gone.
+> - Invite atomicity — `consume_and_add_trip_member` now wraps consume + membership in one
+>   transaction with a redemption-ledger INSERT (`travel-agent` commit `01c84afa`).
+>
+> Treat this as the diagnostic record behind those fixes, not an open backlog. Reconcile any
+> remaining "Recommended Sequence" item against HEAD before acting.
+
 ## Summary
 
 This audit covers five core lifecycle machines: Change proposal lifecycle, Booking proposal + booking agent, Trip phase + conversation→trip promotion, Stay candidates & votes, and Plan commitment + block state. Across these machines, 20 defects were confirmed from the adversarial verification pass: 5 critical, 8 high, 5 medium, and 2 medium/high. The single worst issue is the booking proposal terminal escape pair — any authenticated trip member can call `POST /proposals/{id}/confirm` or `/reject` on a terminal-status row and the unconditional `UPDATE` succeeds, because neither route nor DB function carries a `WHERE status='pending'` guard. The change proposal and booking proposal machines are both materially defective; the stay candidates machine has two critical and two non-trivial defects; the plan commitment machine has three confirmed defects including a booking resurrection bug via delayed webhooks. No machine in this batch is clean.

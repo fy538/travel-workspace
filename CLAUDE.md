@@ -35,10 +35,11 @@ type-generation tool reads this one file — `scripts/sync-types.sh`,
 App npm scripts (`generate-api-types:snapshot` / `:check`, which read it via
 `../docs/openapi.json`). There is no second snapshot to drift against.
 
-> `Travel Agent/docs/openapi.json` is a **local-only artifact** that
-> `make export-openapi` writes inside the Travel Agent repo. It is NOT the
-> contract — nothing cross-repo reads it. The workspace `docs/openapi.json`
-> is the committed contract.
+> `make export-openapi` (in Travel Agent) writes directly to the workspace
+> `docs/openapi.json` — the single canonical snapshot. There is no in-repo
+> `Travel Agent/docs/openapi.json` artifact anymore; the old dead copy was
+> removed so `make export-openapi` can't recreate drift
+> (see `travel-agent/scripts/export_openapi.py` header + `_DEFAULT_OUT`).
 
 ```bash
 # OpenAPI schema (live, requires backend running)

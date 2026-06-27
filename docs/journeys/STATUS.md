@@ -2,10 +2,10 @@
 
 > Status: draft
 > Owner: founder / engineering
-> Last updated: 2026-06-10
+> Last updated: 2026-06-26 (post full adversarial trace)
 > Source of truth for: journey readiness, dogfood promotion, and next engineering action
 
-This matrix turns the 12 canonical journeys into an operating board. A journey is not dogfood-ready because the one-pager exists; it becomes dogfood-ready when route/API tracing, mock-mode walking, deterministic tests, and any required real-backend checks have all been made explicit.
+Evidence: [STATIC_TRACE_PUNCH_LIST.md](STATIC_TRACE_PUNCH_LIST.md) — 2026-06-26 four-agent re-trace of all 12 journeys.
 
 ## Status Legend
 
@@ -15,68 +15,60 @@ This matrix turns the 12 canonical journeys into an operating board. A journey i
 | `partial` | Some existing tests/docs cover the journey, but not the full user flow. |
 | `blocked` | A known issue prevents credible dogfood validation. |
 | `ready` | Good enough for the next promotion step. |
-| `required` | This journey needs a real-backend or live canary pass before dogfood confidence. |
-| `optional` | Real-backend pass is useful, but mock/static validation can cover most risk. |
+| `required` | Real-backend or live canary needed before dogfood confidence. |
+| `optional` | Real-backend pass useful; mock/static can cover most risk. |
 
 ## Matrix
 
 | # | Journey | Static trace | Mock walk | Deterministic tests | Real backend | Known blockers / risks | Next action | Dogfood ready |
 |---|---|---|---|---|---|---|---|---|
-| 01 | [Vague Idea To Vesper-Shaped Trip](01-vague-idea-to-vesper-shaped-trip.md) | ready | not started | partial | required | Fixed: forced home-conversation promotion path, prefill wait, `conciergeSeed` on trip-begin, and mock/real `PromoteToTripResponse` alignment + offline promotion tests. Remaining: screen-level prefill-wait regression test and live-backend promotion canary. | Add concierge-chat prefill-wait screen test; run one live promotion canary. | no |
-| 02 | [Concrete Trip Creation And Invite](02-concrete-trip-creation-and-invite.md) | ready | not started | partial | optional | Fixed: pending invite follow-up preserves `tripId`. Remaining: mock invite tokens are not bound to created trip; invite mint does not refresh organizer pending list. | Fix mock token/member mutation and add screen-level mock walkthrough. | no |
-| 03 | [Cold Trip Setup To Useful Workspace](03-cold-trip-setup-to-useful-workspace.md) | partial | not started | partial | optional | Fixed: known trip-home info/expenses CTAs preserve `tripId`. Remaining: place setup is chat/LLM-mediated; patched dates/place can drift from TripContext-backed Folio mode in mock mode; mock accommodation persistence is non-real. | Add deterministic blank -> patch dates/place -> reload -> pre workspace test, or mark place resolution as live canary. | no |
-| 04 | [Private Constraint To Group-Safe Plan](04-private-constraint-to-group-safe-plan.md) | ready | not started / blocked by fixture gap | partial | required | Fixed: booking notes and notification fan-out copy now pass deterministic private-signal redaction, and privacy audit renders redaction/private-constraint-use proof events without raw private values. Remaining: plan private-influence flag exists but is not emitted; no full deterministic group-chat/proposal leak fixture yet. | Add deterministic private-constraint fixture across group chat, proposal, notification, booking, plan badge, and Atlas/privacy receipt. | no |
-| 05 | [Group Planning To Proposal To Plan Mutation](05-group-planning-to-proposal-to-plan-mutation.md) | ready | partial | partial | ready | Fixed: pending-vote notifications route to proposal review; proposal writes send idempotency keys; backend proposal detail and plan-event ledger now carry structured receipt payloads; canonical mock accept/revert mutates visible read models; real-backend canary now accepts/applies/reverts and verifies proposal detail, Plan/Changes source read model, Home, Map, Notifications, and chat receipts agree. Remaining: app-level UI walk still needs to prove the visible Changes surface against the backend canary fixture. | Promote the proposal canary into the dogfood/CI gate and add an app-level Changes surface walk on top of the backend recent-changes assertion. | no |
-| 06 | [Home, Plan, Map, Changes Coherence](06-home-plan-map-changes-coherence.md) | ready | partial | partial | optional | Fixed: canonical Lisbon proposal/block ids now align across mock itinerary, plan-state, map-state, home cards, pending-vote notifications, proposals, and recent changes, with regression tests for Plan, Changes, Home, Map, and Notifications. Remaining: non-canonical mock proposals and chat preview invalidation are incomplete. | Expand parity beyond the canonical Lisbon proposal and add chat preview invalidation coverage. | no |
-| 07 | [Discover To Contextual Vesper To Trip Action](07-discover-to-contextual-vesper-to-trip-action.md) | ready | ready | ready | required | Fixed: routing/seed matrix, group-chat venue seed, compose parity (site/accommodation), search editorial index, experience sheet handoff, for-you dismiss/show, `exclude_surface_ids` on feed API, search overlay prefers API reads. Remaining: one live-backend canary for feed dismiss refetch + editorial search on seeded data; no-trip share-with-group still toast-only. | Run live discover feed + search canary on one seeded account; optional no-trip share de-afford. | no |
-| 08 | [Live Trip What-Now Companion](08-live-trip-what-now-companion.md) | partial | partial | partial | required | Fixed: global live NOW/AFTERN./TONIGHT tiles + Save a moment → Memory route; folio + Memory screens ground on route `tripId`; mock Lisbon returns active `TripSituation`; `happening_nearby` opens `ExperienceDetailSheet` on global home; offline LiveHome CTA walk. Remaining: Vesper Home live mode walk, Map-from-live context, location-permission matrix, chat `tripId` drift on some sub-screens. | Extend mock walk to Vesper Home + Map focus; fix remaining workspace sub-routes that still lean on `currentTrip`. | no |
-| 09 | [Notifications And Proactive Routing](09-notifications-and-proactive-routing.md) | ready | not started | partial | required | Fixed: push taps and inbox rows now share a destination resolver; `card_id` routes to focused Concierge Home before generic outcome/chat routing; map-view pushes preserve leave-by dismissal; PushRegistrar component matrix covers live taps, cold launch, foreground seen, outcome dedupe, card/proposal/trip/map/conversation/private/missing-target paths. Remaining: proactive read-state invalidation and live-device push canary. | Add proactive read-state invalidation coverage and run one live-device push canary. | no |
-| 10 | [Booking, Stay, And Expense Trust Loop](10-booking-stay-expense-trust-loop.md) | ready | partial | partial | required | Fixed: booking route preserves `tripId`, backend session ownership is enforced, cart confirm no longer auto-logs shared expenses, Duffel checkout has consent/idempotency/reconciliation/receipt proof, offer refresh no longer 501s for Duffel, shared stay writes are organizer-gated, personal stays are self-or-organizer, booking-to-stay semantics are explicit, and expense participants are trip-member validated. Remaining: one full Duffel sandbox order smoke and richer mock/story coverage for organizer/member visibility across booking, stay, and expense. | Run the full sandbox order smoke and promote a Journey 10 mock walk covering receipt-only flight, confirmed hotel writeback, personal stay, shared stay, and opt-in expense. | no |
-| 11 | [Atlas Candidate To Memory Control](11-atlas-candidate-to-memory-control.md) | ready | ready | ready | required | Postgres canary + v4 backfill + map/home read models in CI (`test-db`). Home/map driven by `GET /api/atlas/home` + `GET /api/atlas/map` (unified place count). Mock walk covers home→inbox→candidate→artifact→learned→privacy→removed→almanac→timeline. Remaining: optional ~15 min legacy staging spot-check (checklist in Journey 11); live almanac LLM when keys available. | Run optional staging checklist on one legacy account. | no |
-| 12 | [Returned Trip To Story, Memory, And Settle-Up](12-returned-trip-to-story-memory-settle-up.md) | ready | not started | partial | required | Fixed: settlement closeout preserves `tripId`; Memory sub-screen reads route `tripId` with trips-list fallback. Remaining: mock story/summary/Atlas fixtures drift from real post-trip behavior; date logic mixes local/server/UTC; Story route may still depend on `currentTrip`. | Add Journey 12 route test for Story; align returned-trip mock fixtures. | no |
+| 01 | [Vague Idea](01-vague-idea-to-vesper-shaped-trip.md) | ready | not started | partial | required | Trips Home phases + Phase 0 push only on group chat; mock stream may not emit `promoted_trip_id`; legacy `handleNewChat` eager-creates trip. | Prefill-wait screen test; promotion mock stream; live promotion canary. | no |
+| 02 | [Create + Invite](02-concrete-trip-creation-and-invite.md) | ready | partial | partial | optional | Mock token + invite list refresh **fixed**. Accept lands on trip folio **fixed**. | Mock walk for full invite loop. | no |
+| 03 | [Cold Setup](03-cold-trip-setup-to-useful-workspace.md) | ready | partial | partial | optional | PATCH → folio coherence **fixed** (`invalidateTripReadModels` + `useTrip` on folio landing). `trip-info` deep link **fixed**. | Blank → patch → reload integration test. | no |
+| 04 | [Private → Group-Safe](04-private-constraint-to-group-safe-plan.md) | ready | partial | partial | required | Card egress guards **fixed**. `PRIVATE_PHRASE` fixture test added. | Live dogfood leak walk. | no |
+| 05 | [Proposal → Plan](05-group-planning-to-proposal-to-plan-mutation.md) | ready | partial | partial | ready | Backend canary passes. Idempotency **fixed**. `journey-05-mock-walk` test added. | CI gate canary; live revert walk. | no |
+| 06 | [Coherence](06-home-plan-map-changes-coherence.md) | ready | partial | partial | optional | `invalidateTripReadModels` exists. Home dismiss invalidates server feed cache **fixed**. Folio vs home_cards dual model; no unified block-id parity test. | Cross-surface parity test. | no |
+| 07 | [Discover → Vesper](07-discover-to-contextual-vesper-to-trip-action.md) | ready | partial | partial | required | Experience seed + mock social event types **fixed**. Me-tab maps `story_published`. | Live discover canary. | no |
+| 08 | [Live Companion](08-live-trip-what-now-companion.md) | ready | partial | partial | required | Composer preserves live trip scope **fixed** 2026-06-26. Plan/map/tiles OK. Heartbeat body missing presence fields. | Extend mock walk to Vesper Home composer. | no |
+| 09 | [Notifications](09-notifications-and-proactive-routing.md) | ready | not started | partial | required | Feed routing + `story_ready` fixed. Push unresolvable payload falls back to Vesper chat **fixed**. Quiet hours E2E unverified. | Live device canary. | no |
+| 10 | [Booking / Stay / Expense](10-booking-stay-expense-trust-loop.md) | ready | partial | partial | required | Hold-settle body + IDOR **fixed**. Auto expense on confirm **removed** 2026-06-26 (opt-in only). Pending provider may still success-navigate. | Honest pending UX; explicit expense opt-in endpoint. | no |
+| 11 | [Atlas Memory](11-atlas-candidate-to-memory-control.md) | ready | partial | ready | required | Core loop + dedup canary strong; facets seam **fixed**. Trust hub routes indirect (profile → DNA → constraints). | Optional staging checklist; profile TOC polish. | no |
+| 12 | [Post-Trip](12-returned-trip-to-story-memory-settle-up.md) | ready | not started | partial | required | Surfaces wired; no `journey-12-mock-walk` test. | J12 mock walk; align returned-trip fixtures. | no |
+
+## Summary (2026-06-26 trace)
+
+| Metric | Count |
+|---|---|
+| Static trace ready | 12 / 12 |
+| Mock walk ready | 0 / 12 |
+| Blocked on mock walk | 0 (P0s fixed 2026-06-26) |
+| Dogfood ready | **0 / 12** |
+
+### P0 fix order — **completed 2026-06-26**
+
+1. ~~**J08** — stop `clearTrip()` on Vesper Home composer during live trip~~
+2. ~~**J02** — mock invite token → trip mapping~~
+3. ~~**J10** — reconcile auto expense log with opt-in semantics~~
+
+### P1 fix order — **mostly completed 2026-06-26**
+
+4. ~~**J04** — close card egress bypass paths (venue/shapes/plan-ready)~~
+5. ~~**J02/J03** — `trip-info` works with `?tripId=` only~~
+6. ~~**J06** — home feed cache invalidation on dismiss~~
+7. ~~**J05** — stable idempotency in ProposalReviewSheet~~
+8. ~~**J09** — push destination fallback when payload incomplete~~
+9. ~~**J07** — experience Ask Vesper carries `tripId`~~
+
+**Remaining P1:** None — static-trace blockers addressed. Next: mock walks + live dogfood.
 
 ## Promotion Rules
 
-A journey can move from `no` to dogfood-ready only when:
+Unchanged — see [README.md](README.md). None of the 12 meet all gates.
 
-- Static trace is `ready`.
-- Mock walk is `ready`.
-- Deterministic tests are `ready` or the missing coverage is explicitly accepted.
-- `required` real-backend checks have a pass/fail rubric and at least one clean run.
-- Known blockers are fixed or deliberately de-afforded.
+## Open Questions (resolved for this pass)
 
-## Current Priority Order
-
-Use [No-Claude-Design Tightening Sprint](../No-Claude-Design%20Tightening%20Sprint.md)
-as the cross-surface contract for lifecycle semantics, ConversationSeed
-migration, privacy copy, proposal receipts, and notification routing while
-promoting these journeys.
-
-1. **Finish privacy proof end-to-end:** Journey 04 full deterministic leak fixture across group chat, proposal, notification, booking, plan badge, and Atlas/privacy receipt.
-2. **Promote proposal coherence beyond the backend canary:** Journey 05 canary now passes; next is making it a standing dogfood/CI gate and adding an app-level Changes surface walk.
-3. **Make mock mode useful instead of flattering:** Journey 08 Vesper Home + Map live walks, Journey 10 booking/stay/expense mocks, Journey 12 returned-trip Story fixtures, plus non-canonical Journey 06 proposal parity.
-4. **Fix or de-afford remaining misleading CTAs:** Journey 07 no-trip share action, workspace chat/map sub-routes that still lean on `currentTrip`, and Atlas routes beyond the fixed self-loop.
-5. **Backfill deterministic route/API tests for the P0 fixes:** Journey 01 prefill-wait screen test, Journey 07 CTA seed matrix, Journey 10 booking route/ownership/expense opt-in.
-6. **Promote to mock UI walks only after deterministic route/API tests land.**
-
-## First Static Trace Batch
-
-Run these three first because they carry the largest trust and dogfood risk:
-
-```text
-Read docs/journeys/04-private-constraint-to-group-safe-plan.md and trace the journey through Travel App and Travel Agent. Report route wiring, components, hooks, API calls, mock behavior, backend endpoints, redactor boundaries, missing tests, and likely real-backend drift. Do not call live LLM-backed endpoints.
-```
-
-```text
-Read docs/journeys/05-group-planning-to-proposal-to-plan-mutation.md and trace the proposal lifecycle through Travel App and Travel Agent. Report route wiring, components, hooks, API calls, mock behavior, backend endpoints, idempotency, read-model invalidation, missing tests, and likely real-backend drift. Do not call live LLM-backed endpoints.
-```
-
-```text
-Read docs/journeys/09-notifications-and-proactive-routing.md and trace feed rendering, push/deep-link handling, read state, badge counts, routing priority, notification preferences, privacy-safe copy, missing tests, and likely real-backend drift. Do not send real notifications.
-```
-
-## Open Questions
-
-- Should Journey 08 include voice/narration in the first dogfood pass, or keep voice as a later specialized journey?
-- Should booking dogfood use real provider deeplinks immediately, or first validate a fake-provider confirmation payload against real backend serialization?
-- Should Atlas photo scan be in Journey 11 now, or split into its own journey once real photo-library dogfood starts?
+| Question | Answer |
+|---|---|
+| J08 include voice? | Defer — optional smoke only |
+| J10 real provider deeplinks? | Fix expense opt-in + pending UX first; sandbox smoke second |
+| Atlas photo scan in J11? | Yes — manual-pick in scope |

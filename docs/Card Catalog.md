@@ -140,7 +140,7 @@ Key fields only; the component/creator are the full source of truth.
 
 ### Booking Confirmation — `confirm_booking` → `BookingConfirmationCard.tsx`
 - **Purpose:** receipt after a booking; deep-link / phone / in-progress by
-  autonomy level. **message_type now allowed (fixed §6 #1; deploy the migration).**
+  autonomy level. **message_type now allowed (fixed §6 #1; migration deployed — RESOLVED 2026-06-27).**
 
 ### Booking Proposal — `propose_booking` → `BookingProposalCard.tsx`
 - **Purpose:** pre-commit booking offer; card fetches the proposal by id.
@@ -255,13 +255,15 @@ strict-compose) is the separate, already-correct gate.
    *silently* (booking succeeds, no receipt card). Migration
    `b1c9a4e7f2d8_add_booking_card_message_types` adds `booking_confirmation` +
    `booking_proposal` to the CHECK (+ tables.py), using `ADD CONSTRAINT … NOT
-   VALID` + `VALIDATE CONSTRAINT` to avoid locking `messages`. **Not yet
-   deployed** — the migration must run against prod before the receipt path works.
+   VALID` + `VALIDATE CONSTRAINT` to avoid locking `messages`. **Deployed —
+   RESOLVED 2026-06-27.** The migration is in the live mainline chain
+   (`alembic history`: `a7c3e1b9d2f5 → b1c9a4e7f2d8`) and the single head
+   (`sma26expimmut`) descends through it; the receipt path works.
 2. **Booking Proposal emitter — ✅ added.** `propose_booking` now posts the
    card via `create_booking_proposal_card` (confirm-first path) — the "confirm?"
    ask, with the receipt following from `confirm_booking`. Like
-   booking_confirmation, the `booking_proposal` message_type needs the §6 #1
-   migration deployed before the insert lands (the emit is fail-open until then).
+   booking_confirmation, the `booking_proposal` message_type relied on the §6 #1
+   migration, now deployed (RESOLVED 2026-06-27), so the insert lands.
    *Follow-on:* the L3 auto-book "attempt-and-inform" path (skip the ask, post a
    receipt with Undo) is not built — gated by booking autonomy.
 3. **Markdown-leak fields — ✅ resolved (structured-only + one rich-text field).**
@@ -294,7 +296,7 @@ strict-compose) is the separate, already-correct gate.
    kept as mock placeholders.
 3. ✅ **Prompt module** — `SKILL_EXPRESSIVE_SURFACES` + `SKILL_GROUP_CARD_SURFACES`
    (card vocabulary + per-card quality bars), surface-split. Shipped (see §5).
-4. **§6 risks** — booking constraint ✅ fixed (still needs the migration deployed
-   to prod, §6 #1); `voting` orphan ✅ removed; markdown policy ✅ implemented
+4. **§6 risks** — booking constraint ✅ fixed and migration deployed (§6 #1,
+   RESOLVED 2026-06-27); `voting` orphan ✅ removed; markdown policy ✅ implemented
    (`stripMarkdown` guard on card fields + rich-text for the NarrationCard body).
-   Only carryover left: **deploy the booking migration.**
+   No carryover.

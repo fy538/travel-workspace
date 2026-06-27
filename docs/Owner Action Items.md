@@ -133,7 +133,11 @@ curl -fsS https://travelagent.app/api/me
 
 ---
 
-### A4 — `eas init` and EAS env vars 🔴
+### A4 — `eas init` and EAS env vars ✅ (projectId bound) / 🟠 (EAS Clerk secrets)
+
+> **DONE 2026-06-26:** `eas init` complete — real `extra.eas.projectId` (`1cd69dac-…`),
+> `updates.url`, and `owner: "fyan"` are committed in `travel-app/app.json`. Residual: confirm
+> EAS-side Clerk env secrets for cloud builds.
 
 **Time est:** 10 min  
 **Depends on:** Expo account, Clerk publishable key (from A3)
@@ -239,7 +243,12 @@ fly ssh console --app vesper-backend --command \
 
 ---
 
-### A10 — Foursquare API key 🟠
+### A10 — Foursquare API key ✅ (local) / 🟠 (verify Fly secret)
+
+> **DONE 2026-06-26 (local):** real `FOURSQUARE_API_KEY` is set in `travel-agent/.env`. Note the
+> var name: code reads the **unprefixed** `FOURSQUARE_API_KEY` (`backend/core/settings_base.py:50`,
+> `backend/places/settings.py:23` — "no PLACES_FOURSQUARE_API_KEY needed"), not `PLACES_FOURSQUARE_API_KEY`.
+> Residual: confirm the Fly secret is set (can't verify from repo).
 
 **Time est:** 5 min  
 **Why:** Primary live-ops venue provider (cheaper than Google). Powers cache fan-out. Default daily limit 500 — free tier covers dogfood comfortably.
@@ -247,7 +256,7 @@ fly ssh console --app vesper-backend --command \
 1. foursquare.com/developers → Create API key
 2. Set in Fly secrets:
 ```bash
-fly secrets set PLACES_FOURSQUARE_API_KEY=fsq3... --app vesper-backend
+fly secrets set FOURSQUARE_API_KEY=fsq3... --app vesper-backend  # unprefixed shared key — code reads this, not PLACES_*
 ```
 
 ---
@@ -455,13 +464,13 @@ Run this before `eas build --profile production --platform ios`. Every box must 
 | A1 | Apple Team ID → local `.env` | 🔴 | 2 min |
 | A2 | Custom domain `travelagent.app` → Fly | 🔴 | 15 min + DNS wait |
 | A3 | Clerk application | 🔴 | 30 min |
-| A4 | `eas init` + EAS env vars | 🔴 | 10 min |
+| A4 | `eas init` + EAS env vars | ✅ projectId bound | — |
 | A5 | App Store Connect listing | 🟠 | 30 min |
 | A6 | APNs key | 🟠 | 15 min |
 | A7 | Production iOS EAS build + TestFlight | 🟠 | 30 min + queue |
 | A8 | Expo push token | ✅ | — |
 | A9 | Google Places API key | ✅ | — |
-| A10 | Foursquare API key | 🟠 | 5 min |
+| A10 | Foursquare API key | ✅ local / verify Fly | — |
 | B1 | Rotate API keys before first external share | 🔴 | 15 min |
 | B2 | Privacy policy finalized | 🔴 | 1–2 h |
 | B3 | Microphone posture decision + strings | 🟠 | 30 min decision |

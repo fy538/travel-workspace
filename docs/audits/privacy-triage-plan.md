@@ -1,5 +1,18 @@
 # Privacy Triage Fix Plan
 
+> **RESOLVED 2026-06-27 (verified against HEAD `f698d228`).** The "ALL 18/18 real-user-leaks
+> FIXED" progress line below is STILL TRUE — all P0–P8 fixes shipped in main via commit
+> `5c46a47b`. Spot-verified: P0 `safe_hero_title` helper + bypass-path routing
+> (`backend/core/story_projection.py:70,182`, `backend/core/db/trip_story_shares.py:49,452`);
+> P1 proactive scrub (`backend/concierge/triggers.py:288-292`) + ingest strip
+> (`backend/notifications/group_interjection.py:293`); P2a present_options guard
+> (`backend/concierge/tool_handlers/planning/_propose_present.py:334-353`); P2c shapes guard
+> (`_shapes.py:188-200`); P3 take fallback (`content.py:268-271`); P5 Atlas DNA filter
+> (`backend/atlas/unpacked.py:128`); P6 Discover hook (`backend/discover/compose.py:508-509`);
+> P7 destination policy honored in profile list (`trip_story_shares.py:446-447`); P8 planning
+> telemetry `safe_event_context` (`planning_agent/agent.py:262`). The 5 operator-only items
+> (§3) and 3 needs-human items (§5) remain OPEN by design — not regressions. Plan kept for record.
+
 **18 real user leaks / 5 operator-only / 8 dismissed (mitigated + false-positive) / 3 needs-human, out of 34 triaged.** (Cluster C already fixed in a prior pass.)
 
 > **Progress (2026-06-25):** ✅ **P0** (hero_title projection guard, 4) · ✅ **P1** (proactive system-message scrub + social_state strip + system-row filter, 3) · ✅ **P2a** (present_options `check_proposal_privacy` guard, 2) · ✅ **P2b** (`why_for_person` dropped in group, 1) · ✅ **P2c** (shapes pitch/best_for scrubbed, 1) · ✅ **P3** (personal take falls back to curator in group, 1) · ✅ **P4** (DNA card skipped in group conversations, 1) · ✅ **P5** (Atlas Unpacked DNA, 2) · ✅ **P6** (Discover friends hook, 1) · ✅ **P7** (destination RedactionPolicy, 1) · ✅ **P8** (planning telemetry private fields stripped, 1) — **ALL 18/18 real-user-leaks FIXED, tested, boundary-clean.** 240 privacy-related tests pass. 0 new failures.

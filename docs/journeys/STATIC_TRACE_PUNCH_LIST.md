@@ -2,8 +2,8 @@
 
 > Status: draft  
 > Owner: founder / engineering  
-> Last updated: 2026-06-24  
-> Source of truth for: consolidated findings from 12 parallel journey traces
+> Last updated: 2026-06-26
+> Source of truth for: consolidated findings from journey tracer passes
 
 This report consolidates read-only static traces for all 12 canonical journeys. Agents traced each journey through app routes, components, hooks, API methods, mock fallbacks, and backend endpoints. No live LLM-backed product endpoints, push sends, provider calls, or photo-library actions were used.
 
@@ -360,22 +360,68 @@ dossiers from Qdrant indexing — semantic Discover search.)
    - Journey 07 no-trip `share_with_group`.
 5. Add journey-level deterministic tests before mock UI walks.
 
+## Fix Pass - 2026-06-26 (Full adversarial re-trace, all 12 journeys)
+
+Four parallel read-only agent traces (J01–03, J04–06, J07–09, J10–12). Default verdict: BROKEN until proven.
+
+### P0 — fix before mock walks — **fixed 2026-06-26**
+
+| Journey | Finding | Fix |
+|---|---|---|
+| 02 | Mock `viewInvite` / `acceptInvite` ignored token → always `mockTrips[0]` | Token registry + prefix resolver in `social.ts` |
+| 08 | Vesper Home composer called `clearTrip()` before chat — live trip context lost | Preserve active trip on composer send in `concierge/index.tsx` |
+| 10 | Auto expense creation on booking confirm contradicted opt-in semantics | Removed from `checkout_reconciliation.py`; `auto_log.py` kept for explicit opt-in |
+
+### P1 — high trust / coherence — **fixed 2026-06-26** (except noted)
+
+| Journey | Finding | Fix |
+|---|---|---|
+| 02 | `trip-info` required `currentTrip` | `useTrip(tripId)` + loading shell in `trip-info/index.tsx` |
+| 02 | Invite list not refreshed after mint | `useCreateInvite` invalidates `tripInvites` on success |
+| 05 | Unstable vote idempotency keys | Stable `useRef` keys per proposal in `ProposalReviewSheet.tsx` |
+| 06 | Dismiss didn't invalidate 60s server feed cache | `invalidate_home_feed_cache` in `home.py` dismiss/undismiss |
+| 07 | Experience Ask Vesper omitted `tripId` | Pass `tripId` in `ExperienceDetailSheet.tsx` seed |
+| 09 | Push tap with bad payload silently no-oped | Fallback to `conciergeChat()` + toast in `PushRegistrar.tsx` |
+| 04 | Card egress bypassed privacy spine | `group_card_privacy_check` on venue/shapes/plan-ready cards |
+
+**Still open:** Live dogfood walks; promotion to dogfood-ready still 0/12.
+
+### Remaining journey work — **addressed 2026-06-26**
+
+| Journey | Fix |
+|---|---|
+| J02 | Accept invite → `tripDetail` (folio) |
+| J03 | `invalidateTripReadModels` on PATCH; folio reads `_tripStore()`; folio landing uses `useTrip` |
+| J04 | `test_private_phrase_fixture.py` parametrized egress checks |
+| J05 | `journey-05-mock-walk.smoke.test.tsx` |
+| J07 | Mock feed event types + `story_published` in Me-tab mapper |
+
+### Fixed since 2026-06-25 seam audit (verify in STATUS)
+
+- J10 `settleBookingHold` now sends `SettleHoldRequest` body (`http.ts`)
+- J11 `getAtlasFacets` reads `suggestions` not `facets`
+- J07 `getVenueDossier` prod chain fetches list then detail (`http.ts`)
+- J09 `story_ready` in `homeCardRoutes.ts`
+
+### Per-journey verdict (2026-06-26)
+
+| Journey | Verdict | Mock walk ready? |
+|---|---|---|
+| 01 | Mostly working; promotion mock stream gap | Partial |
+| 02 | Real path OK; mock token mapping **fixed** | Partial |
+| 03 | UI wired; cache coherence unverified | No |
+| 04 | Spine OK; bypass paths remain | No |
+| 05 | Backend canary strong; FE idempotency + Changes UI gap | Partial |
+| 06 | Invalidation infra good; home cache + no unified parity test | Partial |
+| 07 | Routing OK; mock social sparse + experience seed gap | Partial |
+| 08 | Composer preserves live trip **fixed** | Partial |
+| 09 | Routing OK; push silent failure | Partial |
+| 10 | Hold/IDOR fixed; expense opt-in **fixed** | Partial |
+| 11 | Mostly working; trust hub IA indirect | Partial |
+| 12 | Surfaces exist; no mock walk | No |
+
+**Dogfood ready: 0 / 12**
+
 ## Status Matrix Deltas
 
-Updated 2026-06-24 — "Static trace" reflects the journey-tracer pass (all confirmed
-bugs fixed + regression-tested). "Mock walk" / "Dogfood" still pending live device runs.
-
-| Journey | Static trace | Mock walk | Dogfood |
-|---|---|---|---|
-| 01 | clean (was: 1 cache bug) | not started | no |
-| 02 | clean (was: revoke 500) | not started | no |
-| 03 | clean on lit path; place_id real-auth only | not started | no |
-| 04 | clean (redaction audit wired) | not started | no |
-| 05 | clean (zod + mock apply_status) | not started | no |
-| 06 | clean (Undo wired) | not started | no |
-| 07 | clean (grounded venue seed) | not started | no |
-| 08 | clean; mock Now Mode activates | not started | blocked |
-| 09 | clean (push proposal_id/card_id) | not started | no |
-| 10 | clean on lit path; 3 live-booking pre-flight gates | not started | blocked (dark live booking) |
-| 11 | clean | not started | blocked |
-| 12 | clean (poll-guard + tz banner) | not started | no |
+Updated 2026-06-26 — see [STATUS.md](STATUS.md) for the full promotion board. Static trace reflects the 2026-06-24 journey-tracer pass (confirmed bugs fixed + regression-tested). Mock walks and dogfood promotion remain open for most journeys.

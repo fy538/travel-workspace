@@ -1,5 +1,18 @@
 # Cross-Repo Seam / Contract Audit — 2026-06-25 v2
 
+> **PARTIALLY RESOLVED 2026-06-26 — the production-breaking HIGH findings are fixed; findings table below is a historical record.**
+> Spot-verified at HEAD against `travel-app/utils/api/http.ts` / `travel-app/data/atlas.ts`:
+> - **#1 `settleBookingHold` sends no body → always 422** — FIXED. `settleBookingHold(tripId, offerId, body)`
+>   now sends `body: JSON.stringify(body)` (`utils/api/http.ts:1631-1635`). Pay-later hold confirmation works.
+> - **#2 `getAtlasFacets` `suggestions`/`facets` drift** — FIXED. FE type is now `suggestions: AtlasFacet[]`
+>   and the reader uses `data?.suggestions` (`types/atlas.ts:408`, `data/atlas.ts:434`). Compose chips render.
+> - **#3/#4 `getVenueDossier` list-vs-detail** — FIXED via Option B: the client fetches the list, takes
+>   `items[0].id`, then fetches `/api/dossiers/{id}` for the detail (`utils/api/http.ts:2035-2041`). Editorial block renders.
+>
+> The 9 med / 11 low findings (mock-drift, missing-client, observability/dev-experience debt) were **not**
+> individually re-verified here — reconcile each against HEAD before acting. NOTE the BE shapes (`suggestions`,
+> `DossierListResponse`) are unchanged and canonical; the fixes were all FE-side.
+
 Repos: `travel-agent` (Python/FastAPI backend) ↔ `travel-app` (Expo/React Native frontend)
 Seam chain: **BE handlers → `docs/openapi.json` → `schema.gen.ts` (generated) → `types.ts` (hand-written) → `interface.ts` (typed client) → `http.ts` → `mock/*.ts`**
 Verification posture: every confirmed finding cleared an adversarial stage whose default verdict was **refute**.

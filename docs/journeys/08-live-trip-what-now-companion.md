@@ -2,8 +2,8 @@
 
 > Status: draft  
 > Owner: founder / engineering  
-> Last updated: 2026-06-06  
-> Primary phase: live trip
+> Last updated: 2026-06-26  
+> Primary phase: live trip + Vesper Home live mode
 
 ## Product Promise
 
@@ -34,14 +34,22 @@ As a traveler already on the trip, I want Vesper to help me understand the next 
 
 ## Canonical Steps
 
-1. Open Vesper Home during an active trip.
-2. Inspect live/urgent card and its primary action.
-3. Open Trip Folio live mode.
-4. Open the active day in Plan.
-5. Open Map focused on current/next stop.
-6. Ask Vesper "what should we do now?" from Map or live card.
-7. Handle location permission allowed/denied.
-8. Dismiss or act on a nudge and confirm state updates.
+1. Open Vesper Home (concierge tab) during an active trip — live/urgent cards, capture nudges, and trip-less fallback must not appear.
+2. Open Trips Home global tab — live tile / NOW / TONIGHT routing when persona is on-trip.
+3. Open Trip Folio live mode for the active `tripId` (route param, not `currentTrip` alone).
+4. Inspect live/urgent card and its primary action.
+5. Open the active day in Plan; confirm Now Mode reflects in-progress vs upcoming block.
+6. Open Map focused on current/next stop.
+7. Ask Vesper "what should we do now?" from Map or live card.
+8. Handle location permission allowed/denied/undetermined.
+9. Dismiss or act on a nudge and confirm state updates.
+
+### Deferred in this journey (see README deferrals)
+
+- On-location voice guide walk (`/guide/[slug]`) — smoke only unless voice enters dogfood scope.
+- Full narration/geofence loop — optional hook tests, not a promotion gate.
+
+Journey 06 owns read-model agreement after a live-trip mutation; this journey owns live UX usefulness.
 
 ## Expected Outcome
 
