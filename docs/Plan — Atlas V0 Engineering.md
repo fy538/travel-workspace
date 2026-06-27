@@ -158,7 +158,7 @@ New screens under `app/atlas/`:
 | `app/atlas/candidates.tsx` | Screen 4 — candidate results list. |
 | `app/atlas/candidate/[id].tsx` | Screen 5 — candidate preview. |
 | `app/atlas/artifact/[id].tsx` | Screen 6 — artifact shell + final rendered artifact. |
-| `app/atlas/learned/[artifactId].tsx` | The audit-bridge target. May redirect to existing `app/(tabs)/me/what-vesper-knows.tsx` with a filter query param. |
+| `app/atlas/learned/[artifactId].tsx` | The audit-bridge target. Links to Travel DNA / memory receipt surfaces for provenance context. |
 
 **Atlas tab is new.** Add a fourth tab to `app/(tabs)/_layout.tsx`. The brief commits to Atlas as the surface.
 

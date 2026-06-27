@@ -1,13 +1,27 @@
 # Me / Account → Atlas Profile & Trust Investigation
 
-**Date:** 2026-06-25  
-**Repo:** `travel-app`  
-**Scope:** Legacy `app/(tabs)/me/*` vs newer `app/atlas/*` trust surfaces  
-**Status:** Investigation only — no implementation
+**Date:** 2026-06-25
+**Repo:** `travel-app`
+**Scope:** Legacy `app/(tabs)/me/*` vs newer `app/atlas/*` trust surfaces
+**Status:** **Phase 1 engineering complete** (2026-06-25). Phase 2 design extensions: see [`trust-design-extensions-2026-06-25.md`](trust-design-extensions-2026-06-25.md).
+
+### Implementation snapshot (2026-06-25)
+
+| Item | Status |
+|------|--------|
+| Me tab + `app/(tabs)/me/*` deleted | ✅ |
+| `routes.constraints()` → `/atlas/constraints` | ✅ |
+| `routes.people()` → `/atlas/following` | ✅ |
+| `routes.privacyAudit()` → `/atlas/data-receipt` | ✅ |
+| Trust surfaces on TrustControlsKit + AtlasNativeScaffold | ✅ (constraints/following interiors pending design) |
+| Profile + Account live delegation summary | ✅ |
+| Export deduped (Account only) | ✅ |
+| Memory receipt link → data receipt | ✅ |
+| Design extensions (memory receipt, constraints, people IA) | 📋 Phase 2 |
 
 ---
 
-## Executive summary
+## Executive summary (original investigation)
 
 The **Me tab is dead** (removed from the tab bar on 2026-06-05; Atlas supersedes it). Four tabs remain: **Trips · Vesper · Discover · Atlas**. Profile and trust controls now enter through **Atlas home → monogram → `/atlas/profile`**.
 
