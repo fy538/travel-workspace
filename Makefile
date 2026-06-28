@@ -7,7 +7,7 @@
 
 .PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help ci-review
 .PHONY: contract-check mock-real-parity golden-path-qa offline-qa reliability-report reliability-gate
-.PHONY: certify-fast certify-logic certify-visual certify-live dogfood-status seed-s4-local seed-s4-fly
+.PHONY: certify-fast certify-logic certify-visual certify-live dogfood-status seed-s4-local seed-s4-fly corpus-check dogfood-city
 .PHONY: preflight-eas fly-secrets verify
 
 # ── Development ───────────────────────────────────────────────────────────────
@@ -86,7 +86,8 @@ test-frontend: ## Run frontend Jest tests
 
 test-all: test-backend test-frontend ## Run all tests (offline)
 
-certify-fast: ## Tier-1 certify ladder: contract + journey Jest + offline backend pytest
+certify-fast: ## Tier-1 certify ladder: corpus-check + contract + journey Jest + offline backend pytest
+	@$(MAKE) corpus-check
 	@$(MAKE) contract-check
 	@cd travel-app && npm test -- __tests__/journeys/ --runInBand
 	@$(MAKE) test-backend
@@ -104,6 +105,14 @@ certify-visual: ## Tier-3 certify ladder: wedge Maestro flows (needs simulator +
 certify-live: ## Tier-4 dogfood preflight + live-walk checklist (human: two Clerk accounts)
 	@chmod +x ./scripts/certify-live.sh ./scripts/seed-s4-fly.sh
 	@./scripts/certify-live.sh
+
+corpus-check: ## Gate: every dogfood manifest slug resolves in DB or staging (wedge by default)
+	@chmod +x ./scripts/corpus-check.sh
+	@./scripts/corpus-check.sh
+
+dogfood-city: ## Connect corpus + seed a city. Usage: make dogfood-city CITY=lisbon [APPLY=1] [ENRICH=1]
+	@chmod +x ./scripts/dogfood-city.sh
+	@APPLY="$(APPLY)" ENRICH="$(ENRICH)" ./scripts/dogfood-city.sh CITY=$(CITY)
 
 dogfood-status: ## Validate dogfood manifests and print scenario/pack readiness
 	@chmod +x ./scripts/dogfood-status.sh ./scripts/seed-s4-local.sh ./scripts/seed-s4-fly.sh
