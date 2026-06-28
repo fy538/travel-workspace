@@ -96,7 +96,9 @@ The cleanup goal in one table — every layer has exactly **one** canonical sour
 | Discover queries | seeded or regression-tested | ❌ log-only | Doc 4 §discover fix |
 | Mock = backend slugs | one namespace | ❌ mock compose Lisbon-only | Doc 4 Phase 4 |
 | Content governance | catalog/fixture explicit | 🟡 documented (Doc 4) | Adopt tier field |
-| Broken gates | none | ❌ `offline-qa`/`mock-real-parity` broken | Doc 1 P0-1 (Stream A) |
+| Broken gates | none | ✅ **fixed** — `itinerary.test.ts` refs removed from `test:offline` + `mock-real-parity.sh` | Doc 1 P0-1 (Stream A) ✅ |
+| `mara.ts` + mock fidelity | exists | ✅ **done** (Stream D) | — |
+| Wedge E2E retired → `test_j05` | one path | ✅ **done** (Stream B) | — |
 | Image coverage | referenced cities bundled | 🟡 6 cities missing | Stream E (handed off) |
 
 **Net:** the *machine* (ladder, seed, status) is largely built; the *world connection*, *decommissions*, and *governance adoption* are the remaining run.
@@ -113,7 +115,7 @@ The single checklist that makes "no parallel systems" real. Each item = one para
 - [ ] **Triple scenario docs** → `scenarios.yaml` sole source; generate or drop `Dogfood Scenario Matrix.md` *(Doc 1)*
 - [ ] **Mock compose Lisbon-only** → city-scoped to trip; slug parity with manifests *(Doc 4 Phase 4)*
 - [ ] **`import_staged_refs` as the only importer** → full import (promote + dossiers + embed) is default for launch-candidate cities *(Doc 4)*
-- [ ] **Broken `offline-qa` / `mock-real-parity`** (missing `itinerary.test.ts`) → fix refs; fold into certify ladder *(Doc 1 P0-1)*
+- [x] **Broken `offline-qa` / `mock-real-parity`** (missing `itinerary.test.ts`) → ✅ refs removed (Stream A, committed 2026-06-28) *(Doc 1 P0-1)*
 - [ ] **Image tier drift** → provision `seed_place_illustrations` for backend/CDN parity OR accept bundle-only + document *(Doc 3)*
 
 > Track completion here so the kill-list dies in one place instead of being re-discovered per session.
@@ -166,17 +168,25 @@ This is what ties "rich world" to "how we QA holistically with AI": the same slu
 
 | Step | Work | Status | Source |
 |------|------|--------|--------|
-| 0 | Certify ladder + dogfood-status + seed-s4 | ✅ built (commit pending) | Makefile |
-| 1 | Fix broken gates (`itinerary.test.ts`) | ⬜ Stream A | Doc 1 P0-1 |
-| 2 | Lisbon corpus connection (Phase 1) | ⬜ Stream F | Doc 4 |
-| 3 | Wedge substrate (proposals/home cards) | ⬜ Stream B | Doc 2 |
-| 4 | `mara.ts` + mock slug parity (Phase 4) | ⬜ Stream D | Doc 4 |
-| 5 | Rome corpus connection (Phase 2) | ⬜ Stream F | Doc 4 |
-| 6 | Decommission tracker items | ⬜ ongoing | this doc |
-| 7 | `make dogfood-city` + `corpus-check` | ⬜ engineering | this doc |
-| 8 | Place illustrations (6 cities) | ⏳ handed off | Doc 3 / Stream E |
+| 0 | Certify ladder + dogfood-status + seed-s4 | ✅ built + committed (`eddd26a`) | Makefile |
+| 1 | Fix broken gates (`itinerary.test.ts`) | ✅ done (Stream A) | Doc 1 P0-1 |
+| 2 | `mara.ts` + mock fidelity (Jest dedupe) | ✅ done (Stream D) | Doc 4 / Doc 2 |
+| 3 | Wedge E2E retired → `test_j05_plan_edit_commit` | ✅ done (Stream B) | Doc 1 |
+| 4 | Lisbon corpus connection (Phase 1) | ⬜ Stream F | Doc 4 |
+| 5 | Wedge substrate richness (proposals/home cards in manifest) | ⬜ verify vs Stream B | Doc 2 |
+| 6 | Mock slug parity (compose city-scope, place angles) | ⬜ Stream D follow-up | Doc 4 Phase 4 |
+| 7 | Rome corpus connection (Phase 2) | ⬜ Stream F | Doc 4 |
+| 8 | Decommission tracker (remaining 7 items) | ⬜ ongoing | this doc |
+| 9 | `make dogfood-city` + `corpus-check` | ⬜ engineering | this doc |
+| 10 | Place illustrations (6 cities) | ⏳ handed off | Doc 3 / Stream E |
 
 Discipline (unchanged): **Lisbon wedge to W3 before broadening.** Don't connect editorial city #7 or split the backend until a trigger fires.
+
+> **Reality check (verified 2026-06-28):** Streams A, B, and D have substantially landed
+> (certify ladder, gate fix, wedge-E2E retirement, `mara.ts`, mock fidelity, Jest dedupe).
+> The remaining run is **corpus connection (Stream F)**, **mock slug parity**, the
+> **decommission tracker**, and the **`dogfood-city`/`corpus-check` engineering** — i.e. the
+> integration layer, not the streams.
 
 ---
 
