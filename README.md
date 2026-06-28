@@ -59,6 +59,10 @@ make doctor
 make contract-check
 make mock-real-parity
 make golden-path-qa
+make certify-fast
+make certify-logic
+make certify-visual
+make dogfood-status
 make offline-qa
 make reliability-report
 make test-backend

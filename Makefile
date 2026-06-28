@@ -7,6 +7,7 @@
 
 .PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help ci-review
 .PHONY: contract-check mock-real-parity golden-path-qa offline-qa reliability-report reliability-gate
+.PHONY: certify-fast certify-logic certify-visual dogfood-status
 .PHONY: preflight-eas fly-secrets verify
 
 # ── Development ───────────────────────────────────────────────────────────────
@@ -78,12 +79,32 @@ ci-review: ## Nightly CI/CD dashboard across all 3 repos (read the same numbers 
 # ── Tests ─────────────────────────────────────────────────────────────────────
 
 test-backend: ## Run offline backend tests
-	@cd travel-agent && PYTHONPATH=. pytest tests/ -q -k "not requires_postgres and not requires_api_keys"
+	@cd travel-agent && SKIP_AUTH=true PYTHONPATH=. pytest tests/ -q -k "not requires_postgres and not requires_api_keys"
 
 test-frontend: ## Run frontend Jest tests
 	@cd travel-app && npx jest --no-coverage
 
 test-all: test-backend test-frontend ## Run all tests (offline)
+
+certify-fast: ## Tier-1 certify ladder: contract + journey Jest + offline backend pytest
+	@$(MAKE) contract-check
+	@cd travel-app && npm test -- __tests__/journeys/ --runInBand
+	@$(MAKE) test-backend
+
+certify-logic: ## Tier-2 certify ladder: journey scenario pytest (requires Postgres)
+	@cd travel-agent && SKIP_AUTH=true PYTHONPATH=. pytest tests/scenarios/ -m requires_postgres -q
+
+certify-visual: ## Tier-3 certify ladder: wedge Maestro flows (needs simulator + Metro)
+	@cd travel-app && maestro test \
+		.maestro/24-journey-02-create-invite.yaml \
+		.maestro/25-journey-05-proposal-mutation.yaml
+
+dogfood-status: ## Validate dogfood manifests and print scenario/pack readiness
+	@chmod +x ./scripts/dogfood-status.sh ./scripts/seed-s4-local.sh
+	@./scripts/dogfood-status.sh
+
+seed-s4-local: ## Seed S4 lisbon-phase1 to local Postgres (requires vesper DB)
+	@./scripts/seed-s4-local.sh
 
 # ── Composite gate ─────────────────────────────────────────────────────────────
 

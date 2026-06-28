@@ -93,6 +93,10 @@ jobs:
       - name: Contract check
         run: make contract-check
 
+      - name: Journey mock-walk (tier 1)
+        run: npm test -- __tests__/journeys/ --runInBand
+        working-directory: Travel App
+
       - name: API coverage check
         # Verifies every URL the frontend calls in http.ts exists in
         # docs/openapi.json at the declared method. Catches stale

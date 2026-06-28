@@ -5,6 +5,7 @@
 > Created: 2026-06-28  
 > Last updated: 2026-06-28  
 > Scope: substrate quality, persona richness, FE contract coverage, what to generate next  
+> Verified: 2026-06-28 — counts re-checked against manifests/schema/seed pipeline; corrections applied (8→7 trips, ~141→~146 photo_ids)  
 
 **Question this doc answers:** How rich is our dogfood world today, how well does it match what the frontend actually renders, and what should we generate to make dogfood feel *alive* instead of *structurally correct*?
 
@@ -37,8 +38,8 @@
 Backend dogfood substrate is **authorially rich at W2** for five city slices — not sparse YAML. You have:
 
 - **159 staged media assets** (40 Lisbon + 119 Elif-canonical corpus)
-- **~141 Atlas photo_ids** across 5 artifacts
-- **35 observations**, **29 discover query fixtures**, **33 itinerary blocks** across 8 trips
+- **~146 Atlas photo_ids** across 5 artifacts
+- **35 observations**, **29 discover query fixtures**, **33 itinerary blocks** across 7 trips
 - Deep persona dossiers, product-moment maps, and display-copy budgets tied to real renderers
 
 **But it does not yet feel lively on device** because:
@@ -94,7 +95,7 @@ From `trip_realism_audit.py`, `packs.yaml`, and pack status docs.
 | Entity type | Count | Notes |
 |-------------|------:|-------|
 | Unique personas | ~8 | mara, dao, reza, elif, sarah, mike |
-| Trips | 8 | 1 Lisbon group + 2 Rome + 2 Istanbul + 1 Tokyo + 1 Brooklyn + 0 profile |
+| Trips | 7 | 1 Lisbon group + 2 Rome + 2 Istanbul + 1 Tokyo + 1 Brooklyn + 0 profile |
 | Itinerary blocks | 33 | Avg ~2–3 blocks/day on seeded days |
 | Observations | 35 | Lisbon highest (10) |
 | Hard constraints | 4+ | dao hills, reza shellfish, etc. |
@@ -103,7 +104,7 @@ From `trip_realism_audit.py`, `packs.yaml`, and pack status docs.
 | Conversations | 10 | |
 | Messages | ~32 | Lisbon deepest (10) |
 | Atlas artifacts | 5 | 1 per city pack |
-| Atlas photo_ids (declared) | ~141 | |
+| Atlas photo_ids (declared) | ~146 | |
 | Expenses (demo rows) | 10 | Brooklyn: 0 |
 | Trip photos | 38 | |
 | Staged media assets | 159 | All `local://dogfood/...` |
