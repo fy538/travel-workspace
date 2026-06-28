@@ -2,14 +2,14 @@
 
 > Status: draft
 > Owner: founder / engineering
-> Last updated: 2026-06-26
+> Last updated: 2026-06-28
 > Source of truth for: the first production/dogfood journey set for Vesper
 
 These one-pagers define the first 12 canonical journeys we should protect before expanding TestFlight and real dogfood. They sit above the existing reliability traces: a journey describes the user-facing promise across screens; a trace proves specific contracts and invariants underneath it.
 
 Use these when asking Codex, Claude Code, QA, or a human dogfooder to inspect the app. The goal is to catch the boring deterministic failures first: broken routes, stale read models, mock/real drift, no-op CTAs, privacy leaks, and fake-success states.
 
-**Promotion board:** [STATUS.md](STATUS.md) · **Consolidated findings:** [STATIC_TRACE_PUNCH_LIST.md](STATIC_TRACE_PUNCH_LIST.md)
+**Promotion board:** [STATUS.md](STATUS.md) · **Consolidated findings:** [STATIC_TRACE_PUNCH_LIST.md](STATIC_TRACE_PUNCH_LIST.md) · **Logic QA:** [travel-app/docs/logic-qa/README.md](../../travel-app/docs/logic-qa/README.md)
 
 ## Research Inputs
 

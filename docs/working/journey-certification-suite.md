@@ -1,9 +1,10 @@
 # Journey Certification Suite — Full Specification
 
-> Status: planned — not yet built
+> Status: MVP built — 12 deterministic journey slices running
 > Owner: founder / engineering
 > Created: 2026-06-28
-> Purpose: complete context for a new agent session to build this system from scratch
+> Last updated: 2026-06-28
+> Purpose: implementation spec and operating guide for deterministic journey certification
 
 ---
 
@@ -17,7 +18,90 @@ The two systems together produce a per-journey verdict:
 logic: PASS + visual: PASS = journey CERTIFIED
 ```
 
-No journey is currently certified. All 12 journeys are mock-walk green and static-trace ready (as of 2026-06-27), but zero are dogfood-ready because no journey has been verified end-to-end against a real backend with real data under all its invariants.
+The MVP infrastructure now exists. All 12 canonical journeys have deterministic backend scenario coverage wired through `travel-app/scripts/logic-qa/run-logic-qa.mjs`. All 12 journeys are mock-walk green and static-trace ready (as of 2026-06-27), but zero are fully dogfood-ready until visual QA and live-device gates also pass.
+
+Current MVP coverage:
+
+| Journey | Backend scenario | Logic status | Notes |
+|---|---|---|---|
+| `J01` | `tests/scenarios/test_j01_vague_idea_to_trip.py` | PASS | Blank draft dedupe, planning-intent bootstrap, explicit promotion, no fake itinerary |
+| `J02` | `tests/scenarios/test_j02_invite_acceptance.py` | PASS | Invite acceptance, membership, consumed-token behavior |
+| `J03` | `tests/scenarios/test_j03_cold_trip_setup.py` | PASS | Blank setup honesty, place/date/title PATCH hydration, cold→pre Folio coherence, non-organizer setup guard |
+| `J04` | `tests/scenarios/test_j04_private_constraint.py` | PASS | Private phrase redaction and audit event |
+| `J05` | `tests/scenarios/test_j05_proposal_plan_mutation.py` | PASS | Proposal accept/apply/revert, reject preservation, vote idempotency |
+| `J06` | `tests/scenarios/test_j06_home_plan_map_changes_coherence.py` | PASS | Cross-surface block-id parity, unplaced map visibility, home dismissal safety, proposal apply invalidation |
+| `J07` | `tests/scenarios/test_j07_discover_context_to_trip_action.py` | PASS | Discover context → Vesper seed → private save / trip venue commit |
+| `J08` | `tests/scenarios/test_j08_live_trip_what_now.py` | PASS | Live trip phase, active day, map/Folio parity, grounded Vesper seed |
+| `J09` | `tests/scenarios/test_j09_notifications_proactive_routing.py` | PASS | Proactive feed payloads, read state, ownership, quiet-hours channel gating |
+| `J10` | `tests/scenarios/test_j10_booking_stay_expense_trust_loop.py` | PASS | Stay privacy, explicit expense opt-in, booking approval boundaries, no fabricated checkout success |
+| `J11` | `tests/scenarios/test_j11_atlas_candidate_memory_control.py` | PASS | Candidate approval, artifact provenance, timeline/almanac projection, hide/restore, signal controls |
+| `J12` | `tests/scenarios/test_j12_returned_trip_closeout.py` | PASS | Cached story, settlement transfer, returned-trip home cards |
+
+---
+
+## Industry Precedent
+
+This system is not invented from scratch. It combines several established QA and design-system practices into one product-specific certification layer.
+
+### Journey-based end-to-end testing
+
+The core idea is closest to **journey-based E2E testing**: drive a real user sequence across API, database, and product state, then assert that the whole workflow ended correctly. Traditional E2E testing validates that complete workflows work across system boundaries; this suite makes that idea more explicit by naming each workflow as a canonical product journey (`J01` through `J12`) and certifying it against the journey docs.
+
+In this repo, that means:
+
+```
+journey doc → real backend scenario test → state/invariant assertions → verdict
+```
+
+### Business process testing
+
+Enterprise QA often calls the same shape **business process testing**: rather than testing isolated endpoints, it tests meaningful business outcomes. For Vesper, the business outcomes are things like:
+
+- a private constraint changes the plan without leaking to the group
+- an invite produces the correct member state and permissions
+- a proposal vote mutates the plan only when it should
+- a returned trip becomes memory/story/settle-up state without keeping live-trip affordances
+
+This is why each scenario should assert product meaning, not only HTTP status codes.
+
+### Model-based and stateful testing
+
+The suite also borrows from **model-based testing** and **stateful property testing**. Those disciplines define expected states, allowed transitions, and invariants, then check that real execution never violates them.
+
+For Vesper, useful state transitions include:
+
+```
+draft → planned → live → returned
+invited → accepted → active member
+proposal created → voted → resolved → plan mutation
+private input → redacted group output → safe plan state
+```
+
+The `## Must Never Happen` sections in `docs/journeys/` are effectively invariant specs. Treat them as first-class test assertions.
+
+### Visual regression and design-system QA
+
+This suite intentionally parallels the existing Maestro polish QA system. Maestro and screenshot review are the visual-regression side of the house: they answer whether the interface still looks aligned with the design contract. Journey Certification answers whether the underlying behavior still matches the product contract.
+
+Together:
+
+```
+Maestro visual QA      → surface fidelity
+Journey logic QA       → backend/product truth
+Both PASS              → journey certified
+```
+
+### Canonical design source of truth
+
+The canonical Claude design file currently being consolidated in parallel should be treated as **design intent**, not as the only source of truth. The durable stack should be:
+
+1. Claude design board — screen families, visual intent, edge states, examples
+2. Design tokens in code — type, spacing, color, radius, shadows, surfaces
+3. Implemented component primitives — cards, rows, chrome buttons, receipt blocks
+4. Maestro visual QA — screenshots prove the implementation still matches intent
+5. Journey Certification — scenario tests prove the product state still behaves correctly
+
+The key idea: design artifacts and journey artifacts should both be canonical, but they certify different dimensions of product quality.
 
 ---
 
@@ -30,7 +114,7 @@ The current test pyramid has a gap:
 | Maestro polish flows (61 flows) | Does the UI render correctly? | Is the data real? Did the right DB state result? |
 | Backend API tests (84 files) | Do individual endpoints return correct responses? | Does a full multi-step user scenario produce the right state? |
 | FE mock-walk tests (97 tests) | Does the UI behave correctly against mocked data? | Does real backend data match the mock's assumptions? |
-| `test_wedge_journey_e2e.py` (6 tests) | I5/I6/I7/I8 for J02+J05 only | 10 of 12 journeys have zero server-side scenario coverage |
+| `test_wedge_journey_e2e.py` (6 tests) + `tests/scenarios/` MVP | I5/I6/I7/I8 plus all 12 journey slices | Visual/live-device gates still need promotion-level certification |
 
 The gap: no layer says "given this user sequence, is the entire system — data + state + presentation — correct?"
 
@@ -53,14 +137,15 @@ docs/surfaces/<surface>/accepted/*.png   ← accepted screenshots
 verdict.md per run                       ← PASS / MIXED / FAIL
 ```
 
-### Journey Certification (to build)
+### Journey Certification (MVP built)
 
 ```
-docs/journeys/<id>-<name>.md             ← already exists: the behavioral spec
-scripts/logic-qa/scenarios.mjs           ← registry of journeys + tests + personas  ← TO BUILD
-tests/scenarios/test_j<id>_<name>.py     ← generated by agents from journey doc     ← TO BUILD
-scripts/logic-qa/run-logic-qa.mjs        ← orchestrator                             ← TO BUILD
-docs/logic-qa/runs/<date>/verdict.json   ← PASS / MIXED / FAIL per journey          ← TO BUILD
+docs/journeys/<id>-<name>.md             ← behavioral spec
+travel-app/scripts/logic-qa/scenarios.mjs
+travel-app/scripts/logic-qa/run-logic-qa.mjs
+travel-app/docs/logic-qa/visual-certification-matrix.md
+travel-app/docs/logic-qa/runs/<date>/verdict.json
+travel-agent/tests/scenarios/test_j<id>_<name>.py
 ```
 
 The **journey docs** (`docs/journeys/`) already contain everything the agent needs to generate the test:
@@ -107,20 +192,20 @@ travel-agent/                  (backend repo — git@github.com:fy538/travel-age
 │   ├── conftest.py            ← shared fixtures, requires_postgres marker
 │   ├── api/
 │   │   └── test_wedge_journey_e2e.py   ← THE PATTERN TO FOLLOW (read this first)
-│   └── scenarios/             ← TO BUILD: one file per journey
+│   └── scenarios/             ← deterministic journey scenario tests
 │
 travel-app/                    (frontend repo — git@github.com:fy538/travel-app.git)
 ├── scripts/
 │   ├── polish-qa/             ← existing Maestro orchestration (study this pattern)
 │   │   ├── surfaces.mjs       ← surface registry
 │   │   └── run-polish-qa.mjs  ← orchestrator
-│   └── logic-qa/              ← TO BUILD: mirrors polish-qa
+│   └── logic-qa/              ← mirrors polish-qa for backend scenario verdicts
 │       ├── scenarios.mjs
 │       ├── run-logic-qa.mjs
 │       └── verdict.mjs
 └── docs/
     ├── surfaces/              ← visual contracts (study for the pattern)
-    └── logic-qa/              ← TO BUILD: verdict outputs
+    └── logic-qa/              ← verdict outputs
         └── runs/
 ```
 
@@ -183,7 +268,7 @@ def persona_ben(db_conn):
     """Loose planner. Has Copenhagen trip. Used for cold-start + expense scenarios."""
     ...
 
-@pytest.fixture  
+@pytest.fixture
 def persona_carmen(db_conn):
     """Budget-conscious. Has Mexico trip. Used for expense + settlement scenarios."""
     ...
@@ -241,10 +326,10 @@ For each journey: what the scenario test must seed, drive, and assert. These are
 
 ### J01 — Vague Idea to Vesper-Shaped Trip
 
-**Journey doc**: `docs/journeys/01-vague-idea-to-vesper-shaped-trip.md`  
-**System charter**: `docs/systems/concierge-vesper.md`, `docs/systems/trips-folio.md`  
-**Test file**: `tests/scenarios/test_j01_shape_trip.py`  
-**Persona fixture**: `persona_ana` (first-time user, no trips)  
+**Journey doc**: `docs/journeys/01-vague-idea-to-vesper-shaped-trip.md`
+**System charter**: `docs/systems/concierge-vesper.md`, `docs/systems/trips-folio.md`
+**Test file**: `tests/scenarios/test_j01_shape_trip.py`
+**Persona fixture**: `persona_ana` (first-time user, no trips)
 **Key risk**: cold start, Trips Home phases, first-session concierge handoff
 
 **Scenario to certify:**
@@ -268,11 +353,11 @@ For each journey: what the scenario test must seed, drive, and assert. These are
 
 ### J02 — Concrete Trip Creation and Invite
 
-**Journey doc**: `docs/journeys/02-concrete-trip-creation-and-invite.md`  
-**System charter**: `docs/systems/group-social.md`  
-**Test file**: `tests/scenarios/test_j02_invite.py`  
-**Existing coverage**: `tests/api/test_wedge_journey_e2e.py` (partial), `tests/api/test_invites_api.py`  
-**Persona fixtures**: `persona_elif` (organizer), `persona_ben` (invitee)  
+**Journey doc**: `docs/journeys/02-concrete-trip-creation-and-invite.md`
+**System charter**: `docs/systems/group-social.md`
+**Test file**: `tests/scenarios/test_j02_invite.py`
+**Existing coverage**: `tests/api/test_wedge_journey_e2e.py` (partial), `tests/api/test_invites_api.py`
+**Persona fixtures**: `persona_elif` (organizer), `persona_ben` (invitee)
 **Key risk**: invite token maps to exactly one trip; auth detour preserves token; consumed invite is not reusable
 
 **Scenarios to certify:**
@@ -309,10 +394,10 @@ For each journey: what the scenario test must seed, drive, and assert. These are
 
 ### J04 — Private Constraint to Group-Safe Plan
 
-**Journey doc**: `docs/journeys/04-private-constraint-to-group-safe-plan.md`  
-**System charter**: `docs/systems/concierge-vesper.md`, `docs/systems/memory-preference.md`  
-**Test file**: `tests/scenarios/test_j04_privacy.py`  
-**Persona fixtures**: `two_persona_trip` (elif=organizer, ben=member)  
+**Journey doc**: `docs/journeys/04-private-constraint-to-group-safe-plan.md`
+**System charter**: `docs/systems/concierge-vesper.md`, `docs/systems/memory-preference.md`
+**Test file**: `tests/scenarios/test_j04_private_constraint.py`
+**Persona fixtures**: `two_persona_trip` (elif=organizer, ben=member)
 **Key risk**: **unrecoverable trust event** — highest priority test in the suite
 
 **What this tests:** The privacy egress invariant. `group_compose.py` is the only sanctioned path for group-bound text. Every path that can route private signal to the group must be tested.
@@ -365,11 +450,11 @@ PRIVATE_CONSTRAINT_PHRASES = [
 
 ### J05 — Group Planning to Proposal to Plan Mutation
 
-**Journey doc**: `docs/journeys/05-group-planning-to-proposal-to-plan-mutation.md`  
-**System charter**: `docs/systems/proposals-change-studio.md`  
-**Test file**: `tests/scenarios/test_j05_proposals.py`  
-**Existing coverage**: `tests/api/test_wedge_journey_e2e.py` (I5/I6/I7/I8 certified)  
-**Persona fixtures**: `two_persona_trip`  
+**Journey doc**: `docs/journeys/05-group-planning-to-proposal-to-plan-mutation.md`
+**System charter**: `docs/systems/proposals-change-studio.md`
+**Test file**: `tests/scenarios/test_j05_proposals.py`
+**Existing coverage**: `tests/api/test_wedge_journey_e2e.py` (I5/I6/I7/I8 certified)
+**Persona fixtures**: `two_persona_trip`
 **Key risk**: state machine completeness, idempotency, revert truthfulness
 
 **This is the most-tested journey. The wedge E2E already covers I5/I6/I7/I8.** Expand it here to cover:
@@ -398,24 +483,27 @@ PRIVATE_CONSTRAINT_PHRASES = [
 
 ### J06 — Home/Plan/Map/Changes Coherence
 
-**Journey doc**: `docs/journeys/06-home-plan-map-changes-coherence.md`  
-**System charter**: `docs/systems/trips-folio.md`  
-**Test file**: `tests/scenarios/test_j06_coherence.py`  
-**Persona fixtures**: `two_persona_trip`  
+**Journey doc**: `docs/journeys/06-home-plan-map-changes-coherence.md`
+**System charter**: `docs/systems/trips-folio.md`
+**Test file**: `tests/scenarios/test_j06_home_plan_map_changes_coherence.py`
+**Persona fixtures**: `scenario_user`, `scenario_trip`, `scenario_client`
 **Key risk**: after any mutation, all read models agree on block IDs and state
 
-**Scenario to certify:**
-1. Seed trip with 3 itinerary blocks (known IDs)
-2. Accept a proposal that mutates one block
-3. Fetch Plan read model → verify block IDs
-4. Fetch Folio read model → verify same block IDs
-5. Fetch Changes feed → verify the mutation appears with correct block reference
-6. Fetch Trip Home cards → verify no card references a stale/ghost block ID
+**Implemented scenario:**
+1. Seed trip with one mapped block and one unplaced block
+2. Create an open proposal affecting the unplaced block
+3. Fetch Plan and Map → verify block-id parity and unplaced map visibility
+4. Fetch Folio read model → verify the spine points at the same block
+5. Dismiss an unrelated ambient Home key → verify the open decision still appears in Home and Plan
+6. Accept/apply the proposal through the real route
+7. Fetch Plan, Map, Folio, and recent Changes → verify the current block id, updated time, and source proposal all agree
 
 **State assertions:**
-- All four read-model endpoints return the same canonical set of block IDs
-- No block ID appears in one read model but not another after mutation
+- Plan and Map return the same canonical block IDs before mutation
+- Map keeps unplaced blocks visible as `point: null` plus a day-level spatial note
+- After mutation, Plan/Map/Folio point at the forked-forward current block id
 - Folio spine day count matches Plan day count
+- Plan recent_changes routes back to the source proposal and the current affected block
 
 **Must Never Happen checks:**
 - Stale block ID appears in any read model after proposal accept → **Blocker**
@@ -426,10 +514,10 @@ PRIVATE_CONSTRAINT_PHRASES = [
 
 ### J08 — Live Trip What-Now Companion
 
-**Journey doc**: `docs/journeys/08-live-trip-what-now-companion.md`  
-**System charter**: `docs/systems/concierge-vesper.md`  
-**Test file**: `tests/scenarios/test_j08_live_trip.py`  
-**Persona fixtures**: `persona_elif` with trip in `live` status  
+**Journey doc**: `docs/journeys/08-live-trip-what-now-companion.md`
+**System charter**: `docs/systems/concierge-vesper.md`
+**Test file**: `tests/scenarios/test_j08_live_trip.py`
+**Persona fixtures**: `persona_elif` with trip in `live` status
 **Key risk**: Vesper Home live mode, situation read model, context freshness
 
 **Scenario to certify:**
@@ -452,10 +540,10 @@ PRIVATE_CONSTRAINT_PHRASES = [
 
 ### J12 — Returned Trip to Story, Memory, Settle-Up
 
-**Journey doc**: `docs/journeys/12-returned-trip-to-story-memory-settle-up.md`  
-**System charter**: `docs/systems/expenses-settlement.md`, `docs/systems/memory-preference.md`  
-**Test file**: `tests/scenarios/test_j12_return.py`  
-**Persona fixtures**: `two_persona_trip` with trip transitioned to `returned` status  
+**Journey doc**: `docs/journeys/12-returned-trip-to-story-memory-settle-up.md`
+**System charter**: `docs/systems/expenses-settlement.md`, `docs/systems/memory-preference.md`
+**Test file**: `tests/scenarios/test_j12_returned_trip_closeout.py`
+**Persona fixtures**: `two_persona_trip` with trip transitioned to `returned` status
 **Key risk**: post-trip closure loop, settlement computation, memory promotion
 
 **Scenario to certify:**
@@ -479,21 +567,14 @@ PRIVATE_CONSTRAINT_PHRASES = [
 
 ---
 
-### Remaining journeys (J01, J03, J07, J09, J10, J11)
+### Canonical scenario set complete
 
-These are generated by agents in a second pass. For each, feed the agent:
-1. The full journey doc (`docs/journeys/0X-*.md`)
-2. `tests/scenarios/conftest.py` (persona fixtures)
-3. `tests/api/test_wedge_journey_e2e.py` (the pattern to follow)
-4. The relevant system charter(s) from `docs/systems/`
+The second-pass gaps are now covered:
 
-The agent's task: write `tests/scenarios/test_jXX_<name>.py` following the wedge E2E pattern, covering every `## Must Never Happen` condition as an explicit assertion.
-
-**J03 — Cold Trip Setup**: Focus on trip info PATCH + folio coherence after cold start  
-**J07 — Discover → Vesper**: ConversationSeed carries place context into concierge; `tripId` not dropped  
-**J09 — Notifications**: Correct routing, quiet hours respected, no private signal in push body  
-**J10 — Booking/Stay/Expense**: Hold-order semantics, opt-in expense (never auto-log), IDOR guard  
-**J11 — Atlas Memory**: Memory provenance, dedup, trust receipt wired to Atlas row  
+- `J01` certifies blank draft → private planning intent → promotion into a structured draft trip.
+- `J07` certifies Discover context grounding, private saves, trip venue commits, and membership enforcement.
+- `J08` certifies live trip plan/map/Folio/seed parity.
+- `J11` certifies Atlas candidate approval, artifact provenance, timeline/almanac projection, hide/restore, signal-state control, and ownership isolation.
 
 ---
 
@@ -501,75 +582,50 @@ The agent's task: write `tests/scenarios/test_jXX_<name>.py` following the wedge
 
 ### `scripts/logic-qa/scenarios.mjs`
 
-Mirrors `scripts/polish-qa/surfaces.mjs`. One entry per journey:
-
-```js
-export const JOURNEYS = {
-  'j04-privacy': {
-    title: 'Private Constraint → Group-Safe',
-    priority: 1,
-    testFile: 'tests/scenarios/test_j04_privacy.py',
-    persona: 'elif+ben',
-    riskLevel: 'critical',        // unrecoverable trust event
-    invariants: ['no-leak-to-group', 'group-compose-path', 'notification-body-clean'],
-    maestroFlow: 'polish/single-trip-home-elif-rome',   // paired visual flow
-  },
-  'j02-invite': {
-    title: 'Create Trip + Invite',
-    priority: 2,
-    testFile: 'tests/scenarios/test_j02_invite.py',
-    persona: 'elif+ben',
-    riskLevel: 'high',
-    invariants: ['token-one-trip', 'consumed-410', 'non-member-403'],
-    maestroFlow: '.maestro/24-journey-02-create-invite.yaml',
-  },
-  // ... all 12
-};
-```
+Mirrors `scripts/polish-qa/surfaces.mjs`. The source of truth is
+`travel-app/scripts/logic-qa/scenarios.mjs`, which now lists all 12 journeys
+in canonical order (`J01` through `J12`) with their pytest targets and journey
+docs.
 
 ### `scripts/logic-qa/run-logic-qa.mjs`
 
 ```js
 // Usage:
 //   node scripts/logic-qa/run-logic-qa.mjs              # run all
-//   node scripts/logic-qa/run-logic-qa.mjs j04-privacy  # run one
+//   node scripts/logic-qa/run-logic-qa.mjs J04          # run one
+//   node scripts/logic-qa/run-logic-qa.mjs --list       # list registered journeys
+//   node scripts/logic-qa/run-logic-qa.mjs --no-write   # CI-style, no artifacts
 //
 // Outputs:
-//   docs/logic-qa/runs/<date>/<journey-id>/verdict.json
-//   docs/logic-qa/runs/<date>/summary.json
+//   docs/logic-qa/runs/<date>/<journey-id>.json
+//   docs/logic-qa/runs/<date>/verdict.json
 ```
 
 The orchestrator:
-1. Runs `PYTHONPATH=. pytest tests/scenarios/test_jXX_*.py --json-report` (install `pytest-json-report`)
-2. Parses the JSON report to extract per-test pass/fail + failure message
-3. Maps test results back to invariant names using the scenarios registry
-4. Writes `verdict.json` per journey: `{ journey, verdict, gates, failedInvariants, blockers, majors, minors }`
-5. Writes `summary.json`: overall certification status across all 12 journeys
+1. Runs `python -m pytest <pytestTarget> -q -p no:cacheprovider`
+2. Captures stdout/stderr and exit code per journey
+3. Writes per-journey JSON plus a run-level `verdict.json`
+4. Exits non-zero if any selected journey fails
 
-### `docs/logic-qa/runs/<date>/<journey>/verdict.json` structure
+### `docs/logic-qa/runs/<date>/verdict.json` structure
 
 ```json
 {
-  "journey": "j04-privacy",
-  "runDate": "2026-07-01",
-  "verdict": "FAIL",
-  "gates": {
-    "scenario": "PASS",
-    "state": "PASS",
-    "invariant": "FAIL"
-  },
-  "failedInvariants": [
+  "startedAt": "2026-06-28T17:20:57.393Z",
+  "finishedAt": "2026-06-28T17:21:09.359Z",
+  "agentRoot": "/Users/feihuyan/travel-workspace/travel-agent",
+  "status": "FAIL",
+  "results": [
     {
-      "name": "no-leak-to-group",
-      "severity": "Blocker",
-      "detail": "Message with content 'ankle injury' found in group conversation"
+      "id": "J04",
+      "name": "Private Constraint to Group-Safe Plan",
+      "status": "FAIL",
+      "exitCode": 1,
+      "durationMs": 1420,
+      "pytestTarget": "tests/scenarios/test_j04_private_constraint.py",
+      "doc": "../docs/journeys/04-private-constraint-to-group-safe-plan.md"
     }
-  ],
-  "blockers": 1,
-  "majors": 0,
-  "minors": 0,
-  "testFile": "tests/scenarios/test_j04_privacy.py",
-  "pairedMaestroFlow": "polish/single-trip-home-elif-rome"
+  ]
 }
 ```
 
@@ -577,38 +633,41 @@ The orchestrator:
 
 ## Build Sequence
 
-### Phase 0 — Infrastructure (one session)
+### Phase 0 — Infrastructure (complete)
 
-1. Create `tests/scenarios/__init__.py` (empty)
-2. Create `tests/scenarios/conftest.py` with the 5 persona fixtures (`persona_elif`, `persona_ben`, `persona_carmen`, `persona_ana`, `two_persona_trip`)
-3. Create `scripts/logic-qa/scenarios.mjs` — registry skeleton with all 12 journey entries (test files marked `null` until built)
-4. Create `docs/logic-qa/README.md` — the acceptance ladder (copy the structure from `docs/surfaces/_quality-baseline.md`, adapted for logic)
-5. Verify: `PYTHONPATH=. pytest tests/scenarios/ -q` should collect 0 tests and exit 0
+Built:
 
-**Key constraint on conftest.py**: persona fixtures must use `uuid4()` email addresses (same pattern as `test_wedge_journey_e2e.py`) so tests never collide. Each fixture creates fresh DB rows — no global seeds.
+- `travel-agent/tests/scenarios/__init__.py`
+- `travel-agent/tests/scenarios/conftest.py`
+- `travel-app/scripts/logic-qa/scenarios.mjs`
+- `travel-app/scripts/logic-qa/run-logic-qa.mjs`
+- `travel-app/docs/logic-qa/README.md`
+- ignored verdict output under `travel-app/docs/logic-qa/runs/`
 
-### Phase 1 — First two scenario tests (one session)
+The current `tests/scenarios/conftest.py` intentionally starts with generic `scenario_user`, `scenario_trip`, and `scenario_client` helpers instead of named persona fixtures. Keep using uuid4-backed fresh DB rows so tests never collide; add named persona fixtures only when a journey genuinely needs richer reusable dogfood state.
 
-Build J04 privacy test first (highest risk), then expand J02.
+### Phase 1 — First deterministic scenarios (complete)
 
-For J04:
-- Read `docs/journeys/04-private-constraint-to-group-safe-plan.md` fully
-- Read `docs/systems/concierge-vesper.md` invariants
-- Read `backend/concierge/group_compose.py` to understand the egress path
-- Write `tests/scenarios/test_j04_privacy.py` following the wedge E2E pattern
-- The hardest part: seeding a realistic private constraint into Personal Memory without going through the LLM. Look at `backend/preference_engine/` for direct DB helpers.
+Built and green through `npm run qa:logic`:
 
-For J02 expansion:
-- Read existing `tests/api/test_invites_api.py` — do NOT duplicate; add missing scenario coverage
-- Write `tests/scenarios/test_j02_invite.py` covering Scenario B (auth detour) and Scenario C (invalid tokens) which are NOT in the existing invite tests
+- `J02` invite acceptance and consumed-token behavior
+- `J03` blank setup, place/date/title hydration, cold→pre Folio coherence, and non-organizer setup guard
+- `J04` private phrase redaction and audit event
+- `J05` proposal apply/revert/reject/vote idempotency
+- `J12` returned trip story, memory, and settlement closeout
+- `J06` Home/Plan/Map/Folio/Changes coherence after proposal apply
 
-Also build `scripts/logic-qa/run-logic-qa.mjs` MVP in this phase (enough to run a single journey and write a verdict.json).
+### Phase 2 — Remaining deterministic journeys (complete)
 
-### Phase 2 — High-value journeys (one session)
+Added and wired:
 
-Generate J01, J12, J08 using coding agents:
+- `J01` Vague Idea to Vesper-Shaped Trip
+- `J07` Discover to Contextual Vesper to Trip Action
+- `J08` Live Trip What-Now Companion
+- `J11` Atlas Candidate to Memory Control
 
 Agent prompt template:
+
 ```
 Build a backend scenario test for Journey XX following this exact pattern:
   - Pattern file: tests/api/test_wedge_journey_e2e.py
@@ -626,11 +685,21 @@ The test must:
 7. Be self-contained: no shared state between tests, uuid4 namespacing
 ```
 
-### Phase 3 — Remaining journeys + full verdict integration (two sessions)
+### Phase 3 — Runner hardening + richer verdict integration
 
-Generate J03, J05-expand, J06, J07, J09, J10, J11 via agents.
+Completed runner hardening:
 
-Build `scripts/logic-qa/verdict.mjs` — full verdict aggregation and summary output.
+- `--help` / `-h`
+- `--list`
+- `--json`
+- `--no-write`
+- clean unknown-option / unknown-journey exit code 2
+- app-side CI job that checks out `travel-agent`, migrates Postgres, and runs `npm run qa:logic -- --no-write`
+
+Optional future hardening:
+
+- add `scripts/logic-qa/verdict.mjs` if the JSON summary needs richer severity aggregation
+- add per-invariant severity aggregation once the scenario tests expose named invariant metadata
 
 Update `docs/journeys/STATUS.md` after each journey is certified.
 
@@ -644,24 +713,28 @@ cd ~/travel-workspace/travel-agent
 PYTHONPATH=. pytest tests/scenarios/ -q
 
 # Run a single journey
-PYTHONPATH=. pytest tests/scenarios/test_j04_privacy.py -q -p no:cacheprovider
+PYTHONPATH=. pytest tests/scenarios/test_j04_private_constraint.py -q -p no:cacheprovider
 
 # Run with verbose output for debugging
-PYTHONPATH=. pytest tests/scenarios/test_j04_privacy.py -v
+PYTHONPATH=. pytest tests/scenarios/test_j04_private_constraint.py -v
 
-# Run logic QA orchestrator (after building scripts/logic-qa/)
+# Run logic QA orchestrator
 cd ~/travel-workspace/travel-app
-node scripts/logic-qa/run-logic-qa.mjs
+npm run qa:logic
+npm run qa:logic:ci
 
 # Run for a single journey
-node scripts/logic-qa/run-logic-qa.mjs j04-privacy
+npm run qa:logic -- J04
+
+# List registered journeys
+npm run qa:logic:list
 ```
 
 **Prerequisites:**
 - Docker running with `research-agent-postgres` container (the local dev DB)
 - `PYTHONPATH=.` from `travel-agent/` root
 - DB at head: `cd travel-agent && alembic upgrade head`
-- Install `pytest-json-report` for verdict output: `pip install pytest-json-report`
+- Node/npm dependencies installed in `travel-app`
 
 ---
 
@@ -688,6 +761,18 @@ These are already built and passing — new scenario tests should ADD coverage, 
 
 | Existing test | What it covers | Journal |
 |---|---|---|
+| `tests/scenarios/test_j01_vague_idea_to_trip.py` | Blank draft dedupe, planning-intent bootstrap, explicit promotion, no fake itinerary | J01 MVP |
+| `tests/scenarios/test_j02_invite_acceptance.py` | Invite acceptance, member creation, consumed-token behavior | J02 MVP |
+| `tests/scenarios/test_j03_cold_trip_setup.py` | Blank setup honesty, place/date/title hydration, cold→pre Folio coherence | J03 MVP |
+| `tests/scenarios/test_j04_private_constraint.py` | Group-safe proposal copy and privacy audit | J04 MVP |
+| `tests/scenarios/test_j05_proposal_plan_mutation.py` | Proposal apply/revert/reject/vote idempotency | J05 MVP |
+| `tests/scenarios/test_j06_home_plan_map_changes_coherence.py` | Cross-surface block-id parity and proposal apply invalidation | J06 MVP |
+| `tests/scenarios/test_j07_discover_context_to_trip_action.py` | Discover context grounding, private saves, trip venue commits | J07 MVP |
+| `tests/scenarios/test_j08_live_trip_what_now.py` | Live trip phase, active day, map/Folio parity, grounded seed | J08 MVP |
+| `tests/scenarios/test_j09_notifications_proactive_routing.py` | Proactive payloads, read state, ownership, cadence, quiet-hours gating | J09 MVP |
+| `tests/scenarios/test_j10_booking_stay_expense_trust_loop.py` | Stay privacy, expense opt-in, booking approval boundaries | J10 MVP |
+| `tests/scenarios/test_j11_atlas_candidate_memory_control.py` | Atlas candidate approval, artifact provenance, hide/restore, signal controls | J11 MVP |
+| `tests/scenarios/test_j12_returned_trip_closeout.py` | Returned-trip cached story, settlement, memory/home-card closeout | J12 MVP |
 | `tests/api/test_invites_api.py` | Invite CRUD, accept/reject/expire | J02 partial |
 | `tests/api/test_wedge_journey_e2e.py` | I5/I6/I7/I8 for proposals + plan edit | J05 partial |
 | `tests/api/test_proposals_api.py` | Proposal lifecycle unit tests | J05 partial |
@@ -796,9 +881,13 @@ assert ghost_block_id not in block_ids
 
 Each journey moves from `partial` to `deterministic tests: PASS` in `docs/journeys/STATUS.md` when its scenario test is green. The promotion rules (from `docs/journeys/README.md`) require deterministic tests to pass before a live device canary is meaningful.
 
-Current status of all 12 journeys: `static trace: ready` + `mock walk: ready` + `deterministic tests: partial` + `real backend: required`.
+Current status of all 12 journeys: `static trace: ready` + `mock walk: ready` + deterministic backend slices green.
 
-The scenario tests close the `deterministic tests` column. Once that column is green for J02+J04+J05, the live two-account walk (DoD 5/6 from `docs/working/wedge-journey-02-05-path-to-dogfood.md`) becomes the final gate before first real users.
+The scenario tests close the `deterministic tests` column. Once the wedge journeys are green, the live two-account walk (DoD 5/6 from `docs/working/wedge-journey-02-05-path-to-dogfood.md`) becomes the final gate before first real users.
+
+Pair backend Logic QA with `travel-app/docs/logic-qa/visual-certification-matrix.md`.
+The matrix defines the screenshot/device checks for each journey; dogfood-ready
+requires both rails to pass.
 
 **The order that matters most for dogfood:**
 1. J04 privacy — ship safety gate; must pass before any external user
