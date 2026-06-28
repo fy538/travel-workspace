@@ -7,7 +7,7 @@
 
 .PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help ci-review
 .PHONY: contract-check mock-real-parity golden-path-qa offline-qa reliability-report reliability-gate
-.PHONY: certify-fast certify-logic certify-visual dogfood-status
+.PHONY: certify-fast certify-logic certify-visual certify-live dogfood-status seed-s4-local seed-s4-fly
 .PHONY: preflight-eas fly-secrets verify
 
 # ── Development ───────────────────────────────────────────────────────────────
@@ -95,16 +95,26 @@ certify-logic: ## Tier-2 certify ladder: journey scenario pytest (requires Postg
 	@cd travel-agent && SKIP_AUTH=true PYTHONPATH=. pytest tests/scenarios/ -m requires_postgres -q
 
 certify-visual: ## Tier-3 certify ladder: wedge Maestro flows (needs simulator + Metro)
-	@cd travel-app && maestro test \
+	@export JAVA_HOME="$${JAVA_HOME:-/opt/homebrew/opt/openjdk}" && \
+	 export PATH="$$JAVA_HOME/bin:$$HOME/.maestro/bin:$$PATH" && \
+	 cd travel-app && maestro test \
 		.maestro/24-journey-02-create-invite.yaml \
 		.maestro/25-journey-05-proposal-mutation.yaml
 
+certify-live: ## Tier-4 dogfood preflight + live-walk checklist (human: two Clerk accounts)
+	@chmod +x ./scripts/certify-live.sh ./scripts/seed-s4-fly.sh
+	@./scripts/certify-live.sh
+
 dogfood-status: ## Validate dogfood manifests and print scenario/pack readiness
-	@chmod +x ./scripts/dogfood-status.sh ./scripts/seed-s4-local.sh
+	@chmod +x ./scripts/dogfood-status.sh ./scripts/seed-s4-local.sh ./scripts/seed-s4-fly.sh
 	@./scripts/dogfood-status.sh
 
 seed-s4-local: ## Seed S4 lisbon-phase1 to local Postgres (requires vesper DB)
+	@chmod +x ./scripts/seed-s4-local.sh
 	@./scripts/seed-s4-local.sh
+
+seed-s4-fly: ## Seed S4 to Fly Postgres (dry-run; SEED_S4_FLY_APPLY=1 to write)
+	@./scripts/seed-s4-fly.sh
 
 # ── Composite gate ─────────────────────────────────────────────────────────────
 

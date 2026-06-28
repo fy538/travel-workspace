@@ -130,7 +130,7 @@ log "Starting Docker infrastructure (Postgres + Qdrant)..."
 
 log "Waiting for Postgres..."
 attempts=0
-until (cd "$AGENT_DIR" && docker compose exec -T postgres pg_isready -U research_agent > /dev/null 2>&1); do
+until (cd "$AGENT_DIR" && docker compose exec -T postgres pg_isready -U vesper > /dev/null 2>&1); do
   attempts=$((attempts + 1))
   if [ $attempts -ge 30 ]; then
     die "Postgres did not become ready after 30s. Check 'docker compose logs postgres'."
