@@ -1,6 +1,6 @@
 # Dogfood Place-Illustration Coverage Gap — Image Generation Spec
 
-> Status: execution spec (standalone)
+> Status: **closed** (Stream E merged — PR #29, `bc24595` on travel-app `main`, 2026-06-29)
 > Owner: founder / engineering
 > Created: 2026-06-28
 > Scope: `travel-app` bundled place art (`assets/ai/places/`), `constants/placeIllustrations.ts`, backend `photo_resolve.py` parity
@@ -14,8 +14,7 @@
 ## TL;DR
 
 - Images **never 404** — there is a graceful 3-tier resolver. This is a **city-authenticity** gap, not a broken-image bug.
-- **38 cities** have bundled per-city "place riso" art today. **6 referenced cities are missing it.**
-- Missing: **Istanbul, Vienna, Bangkok, Oaxaca, Brooklyn, Humlebæk.**
+- **38 cities** had bundled per-city "place riso" art. **6 referenced cities were missing it** — **closed 2026-06-29** (istanbul, brooklyn, vienna, bangkok, oaxaca + humlebaek→copenhagen alias).
 - It disproportionately hits the **flagship persona `elif`** (4 of her 5 cities) and creates a **mock-vs-backend asymmetry** for **Istanbul** and **Brooklyn** (both are backend dogfood packs with real photos, but go generic in mock/Maestro/screenshot mode).
 - Fix = generate **6 variants per city** (`day/night/site/fun/nature/hero`), drop into `assets/ai/places/<slug>/`, add one entry to `constants/placeIllustrations.ts`. ~36 images.
 - This is **not wedge-blocking** (Lisbon is fully covered). It is an optional richness lane, gated by the dogfood authoring discipline.

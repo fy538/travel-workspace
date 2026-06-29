@@ -1,6 +1,6 @@
 # Dogfood & World System — Go-Forward Execution Plan
 
-> Status: **mostly complete** (Phases 0–3 + Tier B done; Phase 4 partial — Stream E FE in flight)
+> Status: **mostly complete** (Phases 0–3 + Tier B + Stream E done; Phase 4 doc housekeeping remains)
 > Owner: founder / engineering
 > Created: 2026-06-28
 > Last updated: 2026-06-29
@@ -408,7 +408,7 @@ make certify-live    # Fly profile — EAS + AI QA
 ### QA + cleanup
 - [x] Decommission tracker: Phase 3 items closed (see `docs/journeys/STATUS.md`)
 - [x] Certify ladder: fast/logic on local; five-pack agent gates on Fly (`dogfood-five-pack-verify` + simulator)
-- [ ] **Stream E** (travel-app `stream-e-place-illustration-media`): place illustration + UI empty states — PR #29 open; uncommitted assets on branch
+- [x] **Stream E** (travel-app `stream-e-place-illustration-media`): place illustration + UI empty states — **merged PR #29** 2026-06-29 (`bc24595` on `main`)
 - [ ] AI QA agents documented to target Fly profile
 - [ ] Target-state doc scorecard reconciled
 - [ ] `confeitaria-nacional-baixa` editorial brief — **done** 2026-06-29 (`content/staging/lisbon/confeitaria-nacional-baixa.md`)
