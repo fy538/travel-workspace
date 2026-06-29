@@ -98,15 +98,36 @@ get_qdrant_client().get_collections()
       fi
       PYTHONPATH=. python -c "from backend.core.vector.collections import ensure_collections; ensure_collections()"
     fi
-    PYTHONPATH=. python scripts/import_cursor_dossiers.py --city "$CITY"
+    if [ -d "content/staging/$CITY" ]; then
+      PYTHONPATH=. python scripts/import_cursor_dossiers.py --city "$CITY"
+    else
+      echo "  (no content/staging/$CITY — skipping MD dossier import)"
+    fi
+    case "$CITY" in
+      tokyo|brooklyn)
+        echo ""
+        echo "== 2b1. Staging JSON briefs for manifest slugs =="
+        PYTHONPATH=. python -m tools.dogfood.content.import_staged_briefs \
+          "$MANIFEST" --apply $(dogfood_allow_prod_flag)
+        ;;
+    esac
+    if [ "$CITY" = "istanbul" ]; then
+      echo ""
+      echo "== 2b2. Istanbul experience briefs from staging MD =="
+      PYTHONPATH=. python -m tools.dogfood.content.import_experience_briefs \
+        --city istanbul --apply $(dogfood_allow_prod_flag)
+    fi
     if [ "$CITY" = "rome" ] && [ -f "$SLUG_BRIDGE" ]; then
       echo ""
       echo "== 2c. Rome manifest ↔ editorial slug bridge =="
       PYTHONPATH=. python -m tools.dogfood.content.slug_bridge "$SLUG_BRIDGE" --apply --re-embed $(dogfood_allow_prod_flag)
     fi
     case "$CITY" in
-      lisbon|brooklyn|rome)
+      lisbon|rome|istanbul|tokyo)
         PYTHONPATH=. python scripts/embed_eval_briefs.py --city "$CITY"
+        ;;
+      brooklyn)
+        PYTHONPATH=. python -m tools.dogfood.content.embed_manifest_briefs "$MANIFEST"
         ;;
       *)
         echo "  (embed_eval_briefs: no city config for $CITY — import_cursor_dossiers inline embed only)"
@@ -116,8 +137,10 @@ get_qdrant_client().get_collections()
     PYTHONPATH=. python scripts/embed_place_angles_staging.py || \
       echo "  (place angles embed skipped — see errors above; often non-$CITY slugs in staging JSON)"
   else
-    echo "  (dry-run: would run import_cursor_dossiers --city $CITY + slug_bridge + embed_*; needs network/keys)"
-    PYTHONPATH=. python scripts/import_cursor_dossiers.py --city "$CITY" --dry-run | tail -5
+    echo "  (dry-run: would run import_cursor_dossiers + slug_bridge + embed_*; needs network/keys)"
+    if [ -d "content/staging/$CITY" ]; then
+      PYTHONPATH=. python scripts/import_cursor_dossiers.py --city "$CITY" --dry-run | tail -5
+    fi
     if [ "$CITY" = "rome" ] && [ -f "$SLUG_BRIDGE" ]; then
       PYTHONPATH=. python -m tools.dogfood.content.slug_bridge "$SLUG_BRIDGE"
     fi

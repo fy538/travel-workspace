@@ -3,7 +3,7 @@
 > Status: **in progress** (Phases 0–2 partially executed; environment consolidation added 2026-06-28)
 > Owner: founder / engineering
 > Created: 2026-06-28
-> Last updated: 2026-06-28
+> Last updated: 2026-06-29
 > Companion to: `dogfood-world-system-target-state-2026-06-28.md` (north-star)
 > Scope: the ordered run that takes us from "structurally connected" to **two deliberate dogfood worlds** (local workbench + Fly/EAS) with one promotion path, rich corpus, and holistic QA
 
@@ -138,7 +138,7 @@ These are **dogfood-safe stand-ins**: real enough for planning UX, deliberately 
 | **1** | ✅ Done | Lisbon ENRICH on local PG; go/no-go **GO** (brief retrieval works on local stack) |
 | **2** | 🟡 Partial | Rome editorial enriched; **canonical slug bridge open** |
 | **2a** | ⬜ Blocker | Rome manifest ↔ editorial slug bridge |
-| **2b** | ⬜ Gated | Istanbul / Tokyo / Brooklyn |
+| **2b** | 🟡 In progress | Istanbul cartographer done; Brooklyn + Tokyo local enrich done |
 | **2c** | ⬜ Gated | Latent corpus — **blocked until 0.5 + 2a** |
 | **3** | ⬜ Parallel | Decommission parallel systems |
 | **4** | ⬜ Payoff | QA wiring + Fly promotion in certify ladder |
@@ -216,7 +216,7 @@ Ordered by dependency. Discipline rule: **Lisbon wedge to W3 before broadening**
 | **Tokyo** | `tokyo-phase1` | JSON-only or thin editorial | 18 |
 | **Brooklyn** | `brooklyn-phase1` | JSON promote + embed | 19 |
 
-17. **Istanbul cartographer (P1):** pipeline B from scratch → `import_cursor_dossiers.py --city istanbul`.
+17. **Istanbul cartographer (P1):** targeted manifest pass (19 entities) → `import_cursor_dossiers.py --city istanbul` + `import_experience_briefs --city istanbul`. Task files: `cartographer-istanbul-dogfood.md`, `batch-research-istanbul-dogfood.md`.
 18. **Tokyo thin editorial (P2):** JSON promote minimum for manifest slugs; full cartographer optional.
 19. **Brooklyn promote + embed (P2):** promote from `tools/seed/staging/brooklyn-briefs-*.json`.
 
@@ -297,9 +297,9 @@ Two enrichment gaps — each city falls into exactly one bucket:
 |------|----------|---------------|------------|--------------|----------|--------|
 | **Lisbon** | `lisbon-phase1` | ✅ 10/10 | ✅ 312 | ✅ ~249 | Import | ✅ Phase 1 done; re-embed local Qdrant pending 0.5 |
 | **Rome** | `elif-rome` | ✅ 11/11 | ✅ 322 | 🟡 ~207 editorial; **0 on canonical slugs** | Import + **slug bridge** | 🟡 Phase 2 partial |
-| **Istanbul** | `istanbul-phase1` | ✅ 19/19 | ❌ none | 0 | Authoring | ⬜ Phase 2b |
-| **Tokyo** | `tokyo-phase1` | ✅ 12/12 | ❌ none | 0 | Authoring (optional thin) | ⬜ Phase 2b |
-| **Brooklyn** | `brooklyn-phase1` | ✅ 7/7 | ❌ none | 0* | Promote+embed | ⬜ Phase 2b |
+| **Istanbul** | `istanbul-phase1` | ✅ 19/19 | ❌ none | 0 | Authoring (cartographer done) | 🟡 batch research next |
+| **Tokyo** | `tokyo-phase1` | ✅ 12/12 | ❌ none | 7 venue + 1 exp briefs (JSON) | JSON promote | ✅ local enrich |
+| **Brooklyn** | `brooklyn-phase1` | ✅ 7/7 | ❌ none | 3 venue + 2 exp briefs (JSON) | Promote+embed | ✅ local enrich |
 
 ### Latent corpus (Phase 2c)
 
@@ -345,8 +345,8 @@ Phase 3 (decommissions) — parallel, gated by child-repo streams
 |---|----------|----------------|--------|
 | 1 | Dual env vs single | **Dual:** local workbench + Fly certified | ✅ decided |
 | 2 | Rome slug bridge option | **A:** alias map canonical → editorial | ⬜ pick + implement |
-| 3 | Istanbul cartographer scope | Full ~250–300 vs targeted 19-slug pass | ⬜ open |
-| 4 | Tokyo editorial depth | JSON briefs only vs thin cartographer | ⬜ open |
+| 3 | Istanbul cartographer scope | Full ~250–300 vs targeted 19-slug pass | ✅ **targeted 19-slug pass** (see `.cursor/tasks/cartographer-istanbul-dogfood.md`) |
+| 4 | Tokyo editorial depth | JSON briefs only vs thin cartographer | ✅ **JSON briefs only** (6 venue + experience description in tokyo-dogfood-corpus-001.json) |
 | 5 | Tier B timing | After Tier A spot-check + Fly promote | ⬜ open |
 | 6 | Embeddings on Fly promote | Always re-embed from Fly PG (never copy vectors) | ✅ decided |
 
