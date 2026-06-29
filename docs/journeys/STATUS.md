@@ -2,11 +2,31 @@
 
 > Status: draft
 > Owner: founder / engineering
-> Last updated: 2026-06-28 (QA streamlining: merged J02/J06 tests, certify-visual, dogfood-status)
-> Source of truth for: journey readiness, dogfood promotion, and next engineering action
+> Last updated: 2026-06-29 (Phase 2b Fly promotes + Istanbul dossiers)
 
 Evidence: [STATIC_TRACE_PUNCH_LIST.md](STATIC_TRACE_PUNCH_LIST.md) — 2026-06-26 four-agent re-trace of all 12 journeys.
 Visual gate: [visual-certification-matrix.md](../../travel-app/docs/logic-qa/visual-certification-matrix.md) pairs screenshots/device checks with the Logic QA journeys.
+
+## Dogfood five-pack (Fly/EAS)
+
+Automated Fly smoke: `make dogfood-fly-smoke` — **PASSED** 2026-06-29 (Brooklyn, Tokyo, Istanbul promoted; Rome bridge 9/9; elif ready).
+
+| Pack | Fly promote | Local briefs | Phone walk |
+|------|-------------|--------------|------------|
+| Lisbon | ✅ | ✅ ~249 | mara — **pending** |
+| Rome | ✅ | ✅ + slug bridge | elif — **pending** |
+| Istanbul | ✅ | ✅ 19 entities | elif — **pending** |
+| Tokyo | ✅ | ✅ JSON (6v+1exp) | elif — **pending** |
+| Brooklyn | ✅ | ✅ JSON (3v+2exp) | elif — **pending** |
+
+**Manual phone walk (EAS)** — record pass/fail in Live column below:
+
+- [ ] **elif Rome** — "Rome return planning" trip; Testaccio block; Vesper cites corpus
+- [ ] **elif Istanbul** — pending Atlas candidate trip; ferry/Kadıköy beats
+- [ ] **elif Tokyo / Brooklyn** — counter / market trips if in EAS build
+- [ ] **mara Lisbon** — S4 group trip; Discover/Vesper enriched (note: mara Fly audit `partial; missing=atlas` — lisbon manifest atlas is elif-only today)
+
+Login: `elif@dogfood.local` / `mara@dogfood.local` · API: `https://vesper-backend.fly.dev`
 
 ## Status Legend
 
