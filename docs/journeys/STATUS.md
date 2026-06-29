@@ -2,14 +2,14 @@
 
 > Status: draft
 > Owner: founder / engineering
-> Last updated: 2026-06-29 (Phase 2b Fly promotes + Istanbul dossiers)
+> Last updated: 2026-06-29 (Tier A import + Mara atlas + Fly promote batch)
 
 Evidence: [STATIC_TRACE_PUNCH_LIST.md](STATIC_TRACE_PUNCH_LIST.md) — 2026-06-26 four-agent re-trace of all 12 journeys.
 Visual gate: [visual-certification-matrix.md](../../travel-app/docs/logic-qa/visual-certification-matrix.md) pairs screenshots/device checks with the Logic QA journeys.
 
 ## Dogfood five-pack (Fly/EAS)
 
-Automated Fly smoke: `make dogfood-fly-smoke` — **PASSED** 2026-06-29 (Brooklyn, Tokyo, Istanbul promoted; Rome bridge 9/9; elif ready).
+Automated Fly smoke: `make dogfood-fly-smoke` — **PASSED** 2026-06-29.
 
 | Pack | Fly promote | Local briefs | Phone walk |
 |------|-------------|--------------|------------|
@@ -19,14 +19,44 @@ Automated Fly smoke: `make dogfood-fly-smoke` — **PASSED** 2026-06-29 (Brookly
 | Tokyo | ✅ | ✅ JSON (6v+1exp) | elif — **pending** |
 | Brooklyn | ✅ | ✅ JSON (3v+2exp) | elif — **pending** |
 
-**Manual phone walk (EAS)** — record pass/fail in Live column below:
+**Mara atlas (2026-06-29):** `mara-lisbon-group-arrival` artifact seeded local + Fly — `mara@dogfood.local` audit **ready** (was `partial; missing=atlas`).
 
+**Lisbon Fly promote fix:** Mara atlas `map_points` no longer references `lisbon-exp-walking-baixa-story` as a venue slug (experience-only ref); full `dogfood-promote CITY=lisbon` unblocked.
+
+## Tier A latent corpus (`proof_only`)
+
+Automated spot-check: `make tier-a-spot-check` — **PASSED** 2026-06-29 (local PG + local Qdrant).
+
+| City | Local import | Spot-check | Fly catalog | MOCK_DESTINATIONS |
+|------|--------------|------------|-------------|-------------------|
+| Paris | ✅ 254 MD | ✅ | 🟡 batch in progress | ✅ |
+| Barcelona | ✅ 271 MD | ✅ | 🟡 batch in progress | ✅ |
+| Venice | ✅ 310 MD | ✅ | 🟡 batch in progress | ✅ |
+| Amalfi Coast | ✅ 214 MD | ✅ | 🟡 batch in progress | ✅ |
+| Nice | ✅ 119 MD | ✅ | 🟡 batch in progress | ✅ |
+
+Import: `make import-latent-corpus TIER=a APPLY=1 PROFILE=local` (complete).  
+Fly promote: `make import-latent-corpus TIER=a APPLY=1 PROFILE=fly` (catalog-only, no fixtures).
+
+## Manual phone walk (EAS)
+
+Record pass/fail in Live column below. Login: `elif@dogfood.local` / `mara@dogfood.local` · API: `https://vesper-backend.fly.dev`
+
+### Five-pack (required)
+
+- [ ] **mara Lisbon** — S4 group trip; Discover/Vesper enriched; Atlas shows hosted-arrival story
 - [ ] **elif Rome** — "Rome return planning" trip; Testaccio block; Vesper cites corpus
 - [ ] **elif Istanbul** — pending Atlas candidate trip; ferry/Kadıköy beats
-- [ ] **elif Tokyo / Brooklyn** — counter / market trips if in EAS build
-- [ ] **mara Lisbon** — S4 group trip; Discover/Vesper enriched (note: mara Fly audit `partial; missing=atlas` — lisbon manifest atlas is elif-only today)
+- [ ] **elif Tokyo** — counter / market trip if in EAS build
+- [ ] **elif Brooklyn** — counter / market trip if in EAS build
 
-Login: `elif@dogfood.local` / `mara@dogfood.local` · API: `https://vesper-backend.fly.dev`
+### Tier A ad-hoc (optional spot-check on EAS after Fly promote)
+
+- [ ] **Paris** — create ad-hoc trip; search "natural wine bistro"
+- [ ] **Barcelona** — ad-hoc trip; search "vermouth bar tapas"
+- [ ] **Venice** — ad-hoc trip; search "cicchetti bacaro"
+- [ ] **Amalfi Coast** — ad-hoc trip; search "limoncello terrace"
+- [ ] **Nice** — ad-hoc trip; search "socca old town"
 
 ## Status Legend
 
@@ -77,6 +107,7 @@ Login: `elif@dogfood.local` / `mara@dogfood.local` · API: `https://vesper-backe
 | Logic (pre-merge) | `make certify-logic` | `pytest tests/scenarios/ -m requires_postgres` (J01–J12 + J05 plan-edit) |
 | Visual (wedge) | `make certify-visual` | Maestro 24 + 25 |
 | Substrate | `make dogfood-status` | Manifest validate + scenario/pack summary |
+| Tier A catalog | `make tier-a-spot-check` | Local PG + Qdrant search per Tier A city |
 | Full offline | `make offline-qa` | doctor, contract, api-coverage, boundaries, backend, journeys, typecheck, test:offline |
 
 Live dogfood (S4 seed + two-account walk) is human/ops — see `docs/working/wedge-journey-02-05-path-to-dogfood.md`.

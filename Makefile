@@ -7,7 +7,7 @@
 
 .PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help ci-review
 .PHONY: contract-check mock-real-parity golden-path-qa offline-qa reliability-report reliability-gate
-.PHONY: certify-fast certify-logic certify-visual certify-live dogfood-status seed-s4-local seed-s4-fly corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-fly-smoke
+.PHONY: certify-fast certify-logic certify-visual certify-live dogfood-status seed-s4-local seed-s4-fly corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-fly-smoke import-latent-corpus tier-a-spot-check
 .PHONY: preflight-eas fly-secrets verify
 
 # ── Development ───────────────────────────────────────────────────────────────
@@ -113,6 +113,14 @@ corpus-check: ## Gate: every dogfood manifest slug resolves in DB or staging (we
 dogfood-city: ## Connect corpus + seed a city. Usage: make dogfood-city CITY=lisbon [APPLY=1] [ENRICH=1] [PROFILE=local|fly]
 	@chmod +x ./scripts/dogfood-city.sh ./scripts/dogfood-env.sh
 	@APPLY="$(APPLY)" ENRICH="$(ENRICH)" PROFILE="$(PROFILE)" ./scripts/dogfood-city.sh CITY=$(CITY)
+
+import-latent-corpus: ## Phase 2c catalog import. Usage: make import-latent-corpus TIER=a [APPLY=1] [CITY=paris] [PROFILE=local|fly]
+	@chmod +x ./scripts/import-latent-corpus.sh ./scripts/dogfood-env.sh
+	@APPLY="$(APPLY)" PROFILE="$(PROFILE)" ./scripts/import-latent-corpus.sh TIER=$(or $(TIER),a) $(if $(CITY),CITY=$(CITY),)
+
+tier-a-spot-check: ## Verify Tier A cities resolve in local PG + Qdrant search
+	@chmod +x ./scripts/tier-a-spot-check.sh
+	@./scripts/tier-a-spot-check.sh
 
 dogfood-promote: ## Promote city pack to Fly + cloud Qdrant. Usage: make dogfood-promote CITY=lisbon [APPLY=1]
 	@chmod +x ./scripts/dogfood-promote.sh ./scripts/dogfood-env.sh
