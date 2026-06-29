@@ -138,7 +138,8 @@ Login (if running): `elif@dogfood.local` / `mara@dogfood.local` · API: `https:/
 **Certified** ladder:
 
 - **`agent`** — static + mock-walk + logic + Maestro (when not `optional`) all green on automated gates.
-- **`full`** — `agent` plus live green where the Live column is `required` (none yet; J04/J05/J10 still need two-device live walks).
+- **`live-api`** — two-persona HTTP (`make dogfood-journey-live-api`) green for J02/J04/J05/J10.
+- **`full`** — `live-api` plus device walk where Live is `required` — see [journey-live-full-cert-04-05-10.md](../working/journey-live-full-cert-04-05-10.md).
 
 ## Summary
 
@@ -150,7 +151,8 @@ Login (if running): `elif@dogfood.local` / `mara@dogfood.local` · API: `https:/
 | Maestro wedge flows (24/25) | **green** 2026-06-29 (`make certify-visual`) |
 | Five-pack dogfood (agent gates) | **certified** 2026-06-29 (`dogfood-five-pack-verify` + `dogfood-five-pack-simulator`) |
 | Journey agent-certified (12) | **12 / 12** — automated ladder green (mock-walk + logic + Maestro where required) |
-| Journey full-certified (12) | **0 / 12** — live two-device gates still open for J04/J05/J10 |
+| Journey live-api (J02/J04/J05/J10) | **15/15** — `make dogfood-journey-live-api` (2026-06-29, TestClient) |
+| Journey full-certified (12) | **0 / 12** — device walks for J04/J05/J10 (runbook linked above) |
 
 ## Certify ladder (workspace)
 
@@ -163,6 +165,8 @@ Login (if running): `elif@dogfood.local` / `mara@dogfood.local` · API: `https:/
 | Five-pack DB | `make dogfood-five-pack-verify PROFILE=fly` | Trips, itinerary venues, discover compose (DB) |
 | Five-pack live API | `make dogfood-five-pack-live-api` | HTTP routes via TestClient (local) or Fly + JWT |
 | Simulator | `make dogfood-five-pack-simulator` | TestClient + optional Maestro 24/25 on real API |
+| Journey live API | `make dogfood-journey-live-api` | Two-persona J02/J04/J05/J10 on full FastAPI app |
+| Device full cert | `make certify-live` | Preflight + [J04/J05/J10 device runbook](../working/journey-live-full-cert-04-05-10.md) |
 | Tier A catalog | `make tier-a-spot-check` | Local PG + Qdrant search per Tier A city |
 | Tier B catalog | `make tier-b-spot-check` | Local/Fly PG + Qdrant search per Tier B city (27) |
 | Full offline | `make offline-qa` | doctor, contract, api-coverage, boundaries, backend, journeys, typecheck, test:offline |

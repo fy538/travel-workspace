@@ -17,14 +17,14 @@ step() { printf "\n  %s\n" "$1"; }
 
 bold "Certify-live preflight (automated)"
 
-step "1/5 Fly backend reachable"
+step "1/6 Fly backend reachable"
 if curl -sf "$FLY_HOST/ready" >/dev/null; then
   ok "$FLY_HOST/ready"
 else
   warn "$FLY_HOST/ready failed — is vesper-backend deployed?"
 fi
 
-step "2/5 Fly dogfood substrate (mara + elif)"
+step "2/6 Fly dogfood substrate (mara + elif)"
 if [[ -f "$AGENT_DIR/.env.prod" ]]; then
   if "$SCRIPT_DIR/dogfood-fly-smoke.sh" 2>&1 | tee /tmp/certify-live-fly-smoke.txt; then
     ok "dogfood-fly-smoke passed"
@@ -35,32 +35,32 @@ else
   warn "No .env.prod — skip Fly substrate smoke"
 fi
 
-step "3/5 Maestro wedge (DoD gate 4)"
+step "3/6 Journey live API (J02/J04/J05/J10 two-persona)"
+if "$SCRIPT_DIR/dogfood-journey-live-api.sh" 2>&1 | tee /tmp/certify-live-journey-api.txt; then
+  ok "dogfood-journey-live-api passed"
+else
+  warn "dogfood-journey-live-api failed — fix API gates before device walk"
+fi
+
+step "4/6 Maestro wedge (DoD gate 4)"
 if [[ "${CERTIFY_VISUAL_OK:-}" == "1" ]]; then
   ok "Maestro 24/25 reported green this session"
 else
   warn "Run: make certify-visual (needs simulator + Metro dev client)"
 fi
 
-step "4/5 Human live walk (DoD gates 5–8) — two Clerk accounts on EAS dogfood build"
+step "5/6 Device live walk — J04/J05/J10 (two Clerk accounts on EAS)"
 cat <<'EOF'
 
+  Runbook: docs/working/journey-live-full-cert-04-05-10.md
+
   Prerequisites:
-    • EAS dogfood build installed (USE_MOCK=false, API=https://vesper-backend.fly.dev)
-    • Device A: organizer (your founder account)
-    • Device B: invitee (second Clerk account — test user or second phone)
-    • Lisbon + Rome promoted on Fly (APPLY=1 make dogfood-promote CITY=lisbon|rome)
-    • Automated preflight: make dogfood-fly-smoke
+    • make dogfood-journey-live-api green (15/15 TestClient)
+    • make certify-visual green (Maestro 24/25)
+    • EAS dogfood build; mara@dogfood.local + dao@dogfood.local
+    • S4 Lisbon promoted on Fly
 
-  Walk J02 → J05 (docs/working/wedge-journey-02-05-path-to-dogfood.md):
-
-  J02 — Create + invite
-    [ ] I1 Organizer creates trip → single workspace
-    [ ] I1 Mint invite → token maps to exactly one trip
-    [ ] I2 Invitee signs in mid-flow → token survives auth detour
-    [ ] I1/I3 Accept → invitee lands in organizer's trip; non-member saw nothing pre-accept
-
-  J05 — Propose + mutate
+  J05 — Propose + mutate (two devices)
     [ ] Ask Vesper (group) for a plan change → proposal appears
     [ ] I5 Accept → receipt visible; plan block updates
     [ ] I5 Reject alternate → original remains; receipt confirms
@@ -71,8 +71,11 @@ cat <<'EOF'
   J06 — Coherence (I9)
     [ ] After mutation: Home, Plan, Changes, Map agree on block ids / titles
 
-  Privacy (I4 — critical)
-    [ ] DM a private constraint → group thread never shows raw private text
+  Privacy (I4 — critical, J04)
+    [ ] DM private constraint on Device B → group thread never shows raw text
+
+  J10 — Stay / expense trust (two devices)
+    [ ] Organizer stay + expense opt-in; member sees public-safe state only
 
   Dark sweep (DoD 7)
     [ ] No booking checkout, voice mic, or postcard surfaces leak into slice
