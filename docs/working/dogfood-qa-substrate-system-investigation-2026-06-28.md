@@ -5,7 +5,8 @@
 > Created: 2026-06-28  
 > Last updated: 2026-06-28  
 > Scope: `travel-agent`, `travel-app`, workspace `docs/`  
-> Method: git history, system charters, journey matrix, substrate tooling, QA scripts, CI configs, code verification
+> Method: git history, system charters, journey matrix, substrate tooling, QA scripts, CI configs, code verification  
+> Verified: 2026-06-28 — claims re-checked against code/git; corrections applied (frontend test count ~1,005→~274, routers 54→63, P0-2 logic-qa now committed)
 
 This document consolidates three deep investigations:
 
@@ -50,10 +51,10 @@ In **78 calendar days** (2026-04-12 → 2026-06-28, 2026), Vesper went from empt
 | Peak month | May 2026 — 1,364 commits |
 | OpenAPI surface | 310 paths · 345 operations · 588 schemas |
 | Backend test files | 707 |
-| Frontend test files | ~1,005 |
+| Frontend test files | ~274 |
 | Maestro flows | 62 (committed YAML, excluding `config.yaml`) |
 | Postgres tables | 142 |
-| API routers | 54 |
+| API routers | 63 |
 
 **Product headline:** The hard part is largely done — thesis, backend spine, typed contracts, 14 system charters, 12 canonical journeys, serious reliability gates.
 
@@ -271,8 +272,8 @@ From `docs/systems/README.md`. **MVP-required** systems must reach `wired+valida
 | **2026-06-24** | Dogfood bootstrap tooling, remote user bootstrap, costs/settlement redesign, stay system, trust controls screens. **Scenario matrix + packs.yaml landed.** |
 | **2026-06-25** | **State-machine hardening:** 36 lifecycle defects closed. Privacy egress guard. Journey fixes J01–J12. Cross-repo seam audits. |
 | **2026-06-26** | Booking holds hardened, invite redemptions wired, drift guards, Discover/Atlas polish, dogfood media readiness. |
-| **2026-06-27** | **Wedge certification:** 307 backend tests green, mock-walk tests J01–J12 committed, wedge E2E test (I5/I6/I7/I8), 14 system charters written, Maestro flows 24/25 authored. |
-| **2026-06-28** | CI: tool contract + journey scenario tests. VCR skeleton for agent loop. Journey Certification Suite spec. Release polish. |
+| **2026-06-27** | **Wedge certification:** 307 backend tests green, mock-walk tests J01–J12 committed, J05 scenario + plan-edit tests (I5/I6/I7/I8), 14 system charters written, Maestro flows 24/25 authored. |
+| **2026-06-28** | **Stream A/B/D:** certify ladder (`certify-fast/logic/visual`), S4 local seed script, wedge E2E retired → `test_j05_plan_edit_commit.py`, J02/J05/J06 Jest dedupe, Mara persona + mock fidelity, `make dogfood-status`. CI: tool contract + journey scenario tests. Journey Certification Suite spec. Release polish. |
 
 ### Monthly commit volume
 
@@ -333,8 +334,8 @@ Together: **create → invite → plan → propose → mutate → see-it-everywh
 | # | Gate | State |
 |---|------|-------|
 | 1 | Charters current for every system in the slice | ✅ |
-| 2 | Backend deterministic tests (307 green + wedge E2E) | ✅ |
-| 3 | Frontend mock-walk (J02: 8 cases, J05: 11 cases, J06: 8 cases) | ✅ |
+| 2 | Backend deterministic tests (scenario pytest incl. J05 I5–I8) | ✅ |
+| 3 | Frontend mock-walk (J02/J05/J06 consolidated; 88 journey tests) | ✅ |
 | 4 | Maestro on-device (flows 24 + 25) | 🔶 Authored, run pending |
 | 5 | Live two-account walk (real Clerk + Fly) | ❌ |
 | 6 | Invariants I1–I10 spot-checked live | ❌ |
@@ -356,7 +357,7 @@ Together: **create → invite → plan → propose → mutate → see-it-everywh
 | I9 | Cross-surface coherence after mutation (Home/Plan/Changes/Map agree) | Folio | High |
 | I10 | One proposal-creation path (`build_and_persist_proposal`) | Proposals | Medium |
 
-**Server-side logic for I5–I8 is certified** by automated backend tests (307 + `tests/api/test_wedge_journey_e2e.py`). Live walk verifies **frontend wiring/surfacing** — receipt rendering, 409 conflict UI, double-apply prevention, revert display.
+**Server-side logic for I5–I8 is certified** by `tests/scenarios/test_j05_proposal_plan_mutation.py` and `tests/scenarios/test_j05_plan_edit_commit.py`. Live walk verifies **frontend wiring/surfacing** — receipt rendering, 409 conflict UI, double-apply prevention, revert display.
 
 ### TestFlight success signals (first 10 testers)
 
@@ -496,21 +497,16 @@ From `travel-app/constants/personas/index.ts`:
 | `omar` | M9-omar-fresh-find | No |
 | `torture` | M10-torture-edge | No |
 | `elif` | M11-elif-frequent-traveler | **Yes** — `elif@dogfood.local` |
+| `mara` | M12-mara-lisbon-group (S4 wedge) | **Yes** — `mara@dogfood.local` |
 
-**Backend-only dogfood users (no frontend persona file):**
+**Backend-only dogfood users (no dedicated frontend persona file):**
 
-- `mara@dogfood.local`, `dao@dogfood.local`, `reza@dogfood.local` — **S4 wedge**
+- `dao@dogfood.local`, `reza@dogfood.local` — S4 companions (seeded via `lisbon-phase1.yaml`)
 - `sarah@dogfood.local`, `mike@dogfood.local` — Elif companions
 
-**Wedge gap:** No `mara.ts` frontend persona — group wedge mock-walks use `trip-lisbon-26` / `user-1`, not Mara's backend world.
+**S4 alignment (2026-06-28):** `constants/personas/mara.ts` + `make seed-s4-local` seed the same Lisbon group world for mock-walk, logic QA, and Maestro wedge flows.
 
-### Legacy seed paths (deprecation candidates)
-
-| Script | Issue |
-|--------|-------|
-| `scripts/seed_group_trip.py` | Creates mara/dao/reza with **fixed UUIDs** differing from canonical `lisbon-phase1.yaml` (`stable_uuid()`). Running both → identity drift. Not in Makefile or tests. |
-| `scripts/seed_brooklyn_demo.py` | Eval/demo identity layer; separate from `brooklyn-phase1.yaml` manifest. |
-| `tools/dogfood/seed_*_offline.py` | Thin wrappers delegating to canonical `seed.py` — safe to fold into Makefile targets. |
+**Other legacy seed paths:** `scripts/seed_brooklyn_demo.py` (eval demo, separate from manifest); thin `tools/dogfood/seed_*_offline.py` wrappers. **Retired:** `scripts/seed_group_trip.py` — use `make seed-s4-local` instead.
 
 **Canonical seeder:** `tools/dogfood/content/seed.py` — idempotent, cohort-scoped, `_dogfood` metadata on all rows.
 
@@ -534,7 +530,7 @@ ATLAS_LLM_ENABLED=false
 | Layer | Question | Tooling | Status (2026-06-28) |
 |-------|----------|---------|----------------------|
 | **Static trace** | Do routes, contracts, docs align? | Journey docs + AI trace prompts | 12/12 ✅ |
-| **Logic QA** | Did the backend do the right thing? | `npm run qa:logic` → `tests/scenarios/test_j*.py` | 12/12 ✅ (runner uncommitted — see §12) |
+| **Logic QA** | Did the backend do the right thing? | `npm run qa:logic` → `tests/scenarios/test_j*.py` | 12/12 ✅ (CI: `travel-app` `logic-qa` job + agent `test-db` scenarios step) |
 | **Mock-walk** | Does the frontend contract + render hold? | `__tests__/journeys/*.test.ts(x)` | 12/12 ✅ |
 | **Visual QA** | Does it look and navigate right on device? | Maestro + `qa:polish` | Wedge 🔶 pending |
 
@@ -558,7 +554,7 @@ None of the 12 are certified yet.
 | J02 | `tests/scenarios/test_j02_invite_acceptance.py` |
 | J03 | `tests/scenarios/test_j03_cold_trip_setup.py` |
 | J04 | `tests/scenarios/test_j04_private_constraint.py` |
-| J05 | `tests/scenarios/test_j05_proposal_plan_mutation.py` |
+| J05 | `tests/scenarios/test_j05_proposal_plan_mutation.py`, `test_j05_plan_edit_commit.py` |
 | J06 | `tests/scenarios/test_j06_home_plan_map_changes_coherence.py` |
 | J07 | `tests/scenarios/test_j07_discover_context_to_trip_action.py` |
 | J08 | `tests/scenarios/test_j08_live_trip_what_now.py` |
@@ -567,27 +563,25 @@ None of the 12 are certified yet.
 | J11 | `tests/scenarios/test_j11_atlas_candidate_memory_control.py` |
 | J12 | `tests/scenarios/test_j12_returned_trip_closeout.py` |
 
-**Wedge E2E (additional):** `tests/api/test_wedge_journey_e2e.py` — 6 tests certifying I5/I6/I7/I8 at HTTP route layer. Largely overlaps `test_j05`; candidate for merge/retirement.
+**Wedge E2E:** **Retired 2026-06-28.** Unique plan-edit cases live in `test_j05_plan_edit_commit.py`; proposal lifecycle in `test_j05_proposal_plan_mutation.py`.
 
-**CI:** Agent `test-db` job runs scenarios + wedge E2E (`@requires_postgres`). Logic-qa npm wrapper not in CI.
+**CI:** Agent `test-db` job runs all `requires_postgres` tests including `tests/scenarios/`. App `logic-qa` job runs `npm run qa:logic -- --no-write` against a sibling checkout of travel-agent.
 
-### Layer B: Mock-walk Jest (15 files)
+### Layer B: Mock-walk Jest (consolidated)
 
-**Location:** `travel-app/__tests__/journeys/`
+**Location:** `travel-app/__tests__/journeys/` (88 tests, `--runInBand` in CI)
 
-**Wedge data-layer tests** (pure `mockApi`, no React):
+**Wedge journeys:**
 
-| File | Journey | Cases |
+| File | Journey | Notes |
 |------|---------|-------|
-| `02-create-trip-and-invite.test.ts` | J02 | 8 |
-| `05-group-planning-proposal-mutation.test.ts` | J05 | 11 |
-| `06-cross-surface-coherence.test.ts` | J06 | 8 |
+| `journey-02-mock-walk.smoke.test.tsx` | J02 | Merged create+invite data walk + smoke |
+| `05-group-planning-proposal-mutation.test.ts` | J05 | 11 data-layer cases |
+| `journey-05-mock-walk.smoke.test.tsx` | J05 | Render smoke |
+| `06-cross-surface-coherence.test.ts` | J06 | 8 data-layer cases |
+| `journey-06-mock-walk.smoke.test.tsx` | J06 | Render smoke |
 
-**Smoke render tests** (12 files): `journey-01-mock-walk.smoke.test.tsx` through `journey-12-mock-walk.smoke.test.tsx`
-
-**Not in `test:offline`** — run separately: `npm test -- __tests__/journeys/`
-
-**Included in full `npm test`** (278 files, travel-app CI).
+**Removed duplicates (2026-06-28):** `02-create-trip-and-invite.test.ts`, redundant `journey-06-mock-walk.smoke.test.tsx` subset.
 
 ### Layer C: Maestro visual (62 flows)
 
@@ -644,12 +638,13 @@ Visual fidelity for Elif canonical persona — **orthogonal to wedge J02/J05 cer
 
 Cheapest first:
 
-1. `make doctor`
+1. `make doctor` (includes Postgres / DATABASE_URL alignment)
 2. `make contract-check`
-3. `make mock-real-parity` ← **broken** (see §12)
-4. `make golden-path-qa` ← old 6-path, not journeys
-5. `make offline-qa` ← **broken** (see §12)
-6. Manual live canary (5 scenarios per release)
+3. `make mock-real-parity` ← green (itinerary ref removed 2026-06-28)
+4. `make golden-path-qa` ← wedge J02/J05/J06 scenario + Jest
+5. `make offline-qa` ← green (includes journey Jest + backend pytest)
+6. `make certify-fast` / `certify-logic` / `certify-visual` ← certify ladder
+7. Manual live canary (5 scenarios per release)
 
 ### CI coverage map
 
@@ -658,11 +653,10 @@ Cheapest first:
 | Full Jest (incl. journeys) | ✅ | — | — |
 | tsc + contract-types | ✅ | — | contract-check |
 | Agent offline pytest | — | ✅ | offline-qa (partial) |
-| `tests/scenarios/` | — | ✅ test-db | — |
-| `test_wedge_journey_e2e.py` | — | ✅ test-db | — |
-| Logic QA npm wrapper | — | — | ❌ |
-| Maestro / polish QA | — | — | ❌ |
-| `test:offline` | — | — | ❌ broken |
+| `tests/scenarios/` | — | ✅ test-db | certify-logic |
+| Logic QA npm wrapper | ✅ logic-qa job | — | certify-logic |
+| Maestro wedge (24/25) | — | — | `make certify-visual` (local) |
+| `test:offline` | ✅ subset | — | offline-qa |
 
 ---
 
@@ -686,7 +680,7 @@ Source: wedge doc (2026-06-27) cross-checked against code (2026-06-28).
 
 | Gap | Evidence |
 |-----|----------|
-| `getTripMembers` not reading `addTripMember` / `acceptInvite` | `mock/trips.ts` layers `_addedTripMembers`; `mock/social.ts` writes on accept. Documented closed in `02-create-trip-and-invite.test.ts` header. |
+| `getTripMembers` not reading `addTripMember` / `acceptInvite` | `mock/trips.ts` layers `_addedTripMembers`; `mock/social.ts` writes on accept. Closed in J02 mock-walk. |
 | `viewInvite` can't see `createTrip` trips | `mock/social.ts` searches `_createdTrips`. Documented closed in same file. |
 | Folio spine diverges from Plan/Map | `getTripFolio → _getMockItinerarySync`. Documented closed in `06-cross-surface-coherence.test.ts` header. |
 
@@ -694,12 +688,12 @@ Source: wedge doc (2026-06-27) cross-checked against code (2026-06-28).
 
 #### Still mock-blind (fixable in mock once)
 
-| Gap | File | Fix effort |
-|-----|------|------------|
-| `getActionReceipt` always `{ receipt: null }` | `mock/social.ts` ~1080 | Low — derive from `recent_changes` |
-| `postEditCommit` no `expected_updated_at` 409 | `mock/profile.ts` ~927 | Medium |
-| `postEditCommit` no idempotency token cache | `mock/profile.ts` | Medium |
-| Plan mutation keyed on global `MOCK_PROPOSAL_A` only | `mock/trips.ts`, `mock/state.ts` | Medium — per-trip ledger |
+| Gap | File | Fix effort | Status |
+|-----|------|------------|--------|
+| ~~`getActionReceipt` always `{ receipt: null }`~~ | ~~`mock/social.ts`~~ | — | **Closed 2026-06-28** — `trips.ts` derives from `recent_changes` |
+| ~~`postEditCommit` no `expected_updated_at` 409~~ | ~~`mock/profile.ts`~~ | — | **Closed 2026-06-28** — throws 409 on stale stamp |
+| ~~`postEditCommit` no idempotency token cache~~ | ~~`mock/profile.ts`~~ | — | **Closed 2026-06-28** — `_mockEditCommitCache` |
+| Plan mutation keyed on global `MOCK_PROPOSAL_A` only | `mock/trips.ts`, `mock/state.ts` | Medium — per-trip ledger | **Closed 2026-06-28** — `_ledgerProposalIdForTrip` |
 
 #### Requires live walk forever
 
@@ -777,66 +771,39 @@ From `Environments Dogfood and Data Substrate.md`:
 
 Verified in code as of 2026-06-28.
 
-### P0-1: `test:offline` references missing file
+### P0-1: `test:offline` references missing file — **RESOLVED 2026-06-28**
 
-`travel-app/package.json` `test:offline` and `scripts/mock-real-parity.sh` both reference:
+Removed stale `__tests__/data/itinerary.test.ts` from `travel-app/package.json` `test:offline` and from `scripts/mock-real-parity.sh`. `npm run test:offline` and `make mock-real-parity` are green again.
 
-```
-__tests__/data/itinerary.test.ts
-```
+### P0-2: Logic QA runner — **RESOLVED 2026-06-28**
 
-**File does not exist** (glob returns 0 matches).
+Committed runner: `travel-app/scripts/logic-qa/run-logic-qa.mjs` + `scenarios.mjs`; `package.json` ships `qa:logic`, `qa:logic:ci`, `qa:logic:list`. Workspace `make certify-logic` wraps agent scenario pytest.
 
-**Breaks:**
+**CI wired:** `travel-app/.github/workflows/ci.yml` `logic-qa` job (Postgres service + `npm run qa:logic -- --no-write`); `travel-agent/.github/workflows/ci.yml` `test-db` job runs `pytest tests/scenarios/ -m requires_postgres`.
 
-- `make offline-qa` (runs `npm run test:offline`)
-- `make mock-real-parity`
-- `scripts/preflight-eas-build.sh` (unless `SKIP_TESTS=1`)
+### P0-3: Wedge doc lists closed mock gaps — **RESOLVED 2026-06-28**
 
-**Fix:** Remove reference or restore file.
-
-### P0-2: Logic QA uncommitted but docs claim MVP-green
-
-Git status:
-
-```
- M package.json
-?? docs/logic-qa/
-?? scripts/logic-qa/
-```
-
-`docs/journeys/STATUS.md` and `journey-certification-suite.md` claim Logic QA 12/12 green.
-
-**Fix:** Commit logic-qa tooling, or move orchestration to `travel-agent/Makefile` as `make journey-logic-qa`.
-
-### P0-3: Wedge doc lists closed mock gaps
-
-`docs/working/wedge-journey-02-05-path-to-dogfood.md` §"Mock-layer fidelity gaps" still documents GAP 1, GAP 2, and Folio spine divergence as open — **code and test headers say closed**.
-
-**Fix:** Trim wedge doc to only open gaps (receipt stub, postEditCommit 409/token cache).
+`docs/working/wedge-journey-02-05-path-to-dogfood.md` §"Mock-layer fidelity gaps" trimmed; all original wedge mock gaps (receipt, 409/idempotency, per-trip proposal ledger) marked closed in code.
 
 ---
 
 ## Streamlining audit — duplication to collapse
 
-### J02/J05/J06 tested 3–4 ways each
+### J02/J05/J06 tested multiple ways — **partially collapsed 2026-06-28**
 
 | Journey | Data walk | Smoke | Backend scenario | Maestro | Wedge E2E |
 |---------|-----------|-------|------------------|---------|-----------|
-| J02 | ✅ | ✅ overlaps | ✅ | Flow 24 | — |
-| J05 | ✅ | ✅ overlaps | ✅ | Flow 25 | ✅ mostly duplicates J05 |
-| J06 | ✅ | ✅ likely redundant | ✅ | partial in 25 | — |
+| J02 | merged into smoke | ✅ | ✅ | Flow 24 | — (retired) |
+| J05 | ✅ | ✅ | ✅ (+ plan-edit) | Flow 25 | — (retired → J05 scenarios) |
+| J06 | ✅ | ✅ | ✅ | partial in 25 | — |
 
-**Recommendation:**
+**Done:** J02 duplicate Jest removed; wedge E2E retired; `test_j05_plan_edit_commit.py` holds I7/I8.
 
-- Merge data walk + smoke into one file per journey
-- Retire `test_wedge_journey_e2e.py` after porting unique route tests to `test_j05`
-
-**Savings:** 3–4 files, one mental model.
+**Remaining:** Maestro consolidation (~15–20 flows); optional further J05/J06 smoke merge.
 
 ### Golden Paths vs Journeys — two parallel lists
 
-`golden-path-qa.sh` runs legacy anchors, not journey tests. Full Jest (CI) runs journeys but `offline-qa` does not.
+`golden-path-qa.sh` now runs wedge journey scenario pytest (J02/J05/J06) + matching journey Jest files. Full journey Jest suite runs in workspace `reliability.yml` and `make certify-fast`.
 
 **Recommendation:** `docs/journeys/STATUS.md` as sole index; update `golden-path-qa.sh` to run scenario pytest + journey Jest for same IDs.
 
@@ -860,12 +827,14 @@ Git status:
 ### Seven QA commands today (no single entry point)
 
 ```
-make offline-qa          # broken
-make golden-path-qa      # old 6-path
-make mock-real-parity    # broken
-npm test                 # full 278 files
-npm run test:offline     # broken subset
-npm run qa:logic         # uncommitted
+make offline-qa          # green (itinerary ref fixed)
+make golden-path-qa      # wedge J02/J05/J06 scenario + Jest
+make mock-real-parity    # green (itinerary ref removed)
+make certify-fast        # contract + journey Jest + offline backend pytest
+make certify-logic       # scenario pytest (needs local vesper Postgres)
+npm test                 # full Jest
+npm run test:offline     # focused offline subset (58 tests)
+npm run qa:logic         # local logic QA (also in CI)
 npm run qa:polish        # visual
 maestro test .maestro    # runs everything
 ```
@@ -884,15 +853,15 @@ maestro test .maestro    # runs everything
 
 Polish QA is M11-heavy; backend dogfood is S*. Visual QA never exercises backend-real substrate.
 
-**Recommendation:** Add `mara.ts` for S4 wedge; stop expanding `elif.ts`; long-term manifest → PersonaBundle codegen.
+**Recommendation:** Add more S*-aligned personas as needed; stop expanding `elif.ts`; long-term manifest → PersonaBundle codegen.
 
-### No Mara frontend persona for wedge
+### ~~No Mara frontend persona for wedge~~ — **RESOLVED 2026-06-28**
 
-`S4-lisbon-group-planning` uses `mara@dogfood.local` but no `constants/personas/mara.ts`. Mock wedge uses `trip-lisbon-26` / `user-1`.
+`constants/personas/mara.ts` + `M12-mara-lisbon-group` in `scenarios.yaml` / polish-qa surfaces.
 
-### Legacy `seed_group_trip.py` identity drift
+### ~~Legacy `seed_group_trip.py` identity drift~~ — **RESOLVED 2026-06-28**
 
-Fixed UUIDs conflict with `lisbon-phase1.yaml` `stable_uuid()` namespace. **Deprecate/delete.**
+Deleted. Use `make seed-s4-local` (`scripts/seed-s4-local.sh` + `lisbon-phase1.yaml`).
 
 ### Triple scenario documentation
 
@@ -960,11 +929,11 @@ Replace parallel claims in Golden Paths, wedge DoD, certification suite.
 
 | Stop | Why |
 |------|-----|
-| Treating `offline-qa` green as meaningful | Broken until `itinerary.test.ts` fixed |
+| Treating `offline-qa` green as full certify | Use `certify-logic` / `certify-visual` for Postgres + device gates |
 | Maintaining Golden Paths as separate journey set | Duplicates J02/J04/J05/J06/J09/J11–J12 |
 | Running `visual-qa` (full tree) as smoke | Mixes polish + audit; slow, redundant |
 | Using `npm run generate-api-types` (live curl) | Drifts from committed snapshot |
-| Expanding mock personas before backend promotion | 12 mocks; only Elif has backend parity |
+| Expanding mock personas before backend promotion | 12 mocks; Elif + Mara have backend parity paths |
 | Re-fixing wedge mock gaps from stale doc | GAP 1, 2, Folio spine closed in code |
 | Building more substrate packs before S4 on Fly | Wedge DoD 5–8 need one backend-real world |
 | Starting new product substrate | Wedge doc: wait until slice dogfood-ready |
@@ -985,21 +954,26 @@ Until then: shared backend + cohort boundaries + `dogfood_audit.py`.
 
 | Priority | Action | Impact | Effort |
 |----------|--------|--------|--------|
-| **P0** | Fix/remove `itinerary.test.ts` refs in `test:offline` + `mock-real-parity.sh` | Unbreaks offline-qa, preflight | ~30 min |
-| **P0** | Commit logic-qa or move to agent `make journey-logic-qa` | Stops doc/tool drift | ~1 hr |
-| **P0** | Update wedge doc mock-gaps section (remove closed items) | Stops duplicate fix work | ~30 min |
-| **P1** | Add `make certify-fast` / `certify-logic` workspace targets | One human ritual | ~2 hr |
-| **P1** | Merge J02/J05/J06 duplicate Jest files | −3 files, clearer model | ~2 hr |
-| **P1** | Retire `test_wedge_journey_e2e.py` → fold into J05 scenario | −1 redundant suite | ~2 hr |
-| **P1** | Split Maestro smoke vs polish npm scripts | Faster runs | ~1 hr |
-| **P1** | Deprecate `scripts/seed_group_trip.py` | Stops UUID drift | ~30 min |
-| **P2** | Add `mara.ts` persona aligned with S4 | Wedge mock/backend parity | ~4 hr |
-| **P2** | Fix 3 mock stubs (receipt, 409, token cache) | Shrinks live-walk scope | ~4 hr |
-| **P2** | Point `golden-path-qa.sh` at journey tests | One vocabulary | ~2 hr |
-| **P2** | Seed S4 to Fly with documented bootstrap | Closes mock/Fly world gap | ~2 hr |
-| **P3** | Maestro flow consolidation (−15–20 flows) | Maintenance reduction | ongoing |
+| **P0** | Run Maestro flows 24/25 (`make certify-visual`) | Closes wedge DoD gate 4 | ~1 hr (+ Java/simulator) |
+| **P0** | Seed S4 to Fly with documented bootstrap | Closes mock/Fly world gap for live walk | ~2 hr |
+| **P1** | Live two-account walk on Fly (DoD 5/6) | First real external-ready proof | ~4 hr |
+| **P2** | Maestro flow consolidation (−15–20 flows) | Maintenance reduction | ongoing |
+| **P2** | Split Maestro smoke vs polish npm scripts | Faster runs | ~1 hr |
 | **P3** | Manifest → PersonaBundle codegen | Long-term mock/backend unity | project |
-| **P3** | `make dogfood-status` wrapping validate + pack readiness | One substrate CLI | ~2 hr |
+
+### Completed 2026-06-28 (Stream A/B/D)
+
+| Action | Status |
+|--------|--------|
+| Fix `itinerary.test.ts` refs | ✅ |
+| Wire logic-qa + certify ladder | ✅ |
+| Merge J02/J05/J06 duplicate Jest | ✅ |
+| Retire wedge E2E → `test_j05_plan_edit_commit.py` | ✅ |
+| Delete `seed_group_trip.py`; add `make seed-s4-local` | ✅ |
+| Add `mara.ts` + S4 mock fidelity | ✅ |
+| Mock stubs (receipt, 409, idempotency, per-trip ledger) | ✅ |
+| `make dogfood-status` | ✅ |
+| Align docker-compose + doctor Postgres story | ✅ |
 
 ---
 
@@ -1027,7 +1001,7 @@ Until then: shared backend + cohort boundaries + `dogfood_audit.py`.
 | Manifests | `travel-agent/tools/dogfood/content/manifests/` |
 | Canonical seeder | `travel-agent/tools/dogfood/content/seed.py` |
 | Bootstrap users | `travel-agent/tools/dogfood/content/bootstrap_users.py` |
-| Legacy group seed (deprecate) | `travel-agent/scripts/seed_group_trip.py` |
+| Legacy group seed | **Deleted** — use `tools/dogfood/content/seed.py` + `lisbon-phase1.yaml` |
 | Dogfood audit | `travel-agent/scripts/dogfood_audit.py` |
 | AI safe mode | `travel-agent/scripts/dogfood_ai_safe_mode.sh` |
 
@@ -1036,16 +1010,16 @@ Until then: shared backend + cohort boundaries + `dogfood_audit.py`.
 | Topic | Path |
 |-------|------|
 | Journey mock-walk tests | `travel-app/__tests__/journeys/` |
-| Logic QA runner (uncommitted) | `travel-app/scripts/logic-qa/run-logic-qa.mjs` |
+| Logic QA runner | `travel-app/scripts/logic-qa/run-logic-qa.mjs` |
 | Logic QA scenarios map | `travel-app/scripts/logic-qa/scenarios.mjs` |
 | Polish QA runner | `travel-app/scripts/polish-qa/run-polish-qa.mjs` |
 | Elif dogfood QA lane | `travel-app/scripts/polish-qa/run-elif-dogfood-qa.mjs` |
 | Maestro wedge flows | `travel-app/.maestro/24-journey-02-create-invite.yaml`, `25-journey-05-proposal-mutation.yaml` |
 | Backend journey scenarios | `travel-agent/tests/scenarios/test_j*.py` |
-| Wedge E2E (candidate retire) | `travel-agent/tests/api/test_wedge_journey_e2e.py` |
+| Wedge E2E | **Retired 2026-06-28** — I7/I8 plan-edit ported to `tests/scenarios/test_j05_plan_edit_commit.py`; remainder covered by J05 scenarios |
 | Golden path script (legacy) | `scripts/golden-path-qa.sh` |
 | Offline QA ladder | `scripts/offline-qa.sh` |
-| Mock/real parity (broken ref) | `scripts/mock-real-parity.sh` |
+| Mock/real parity | `scripts/mock-real-parity.sh` (green) |
 
 ### Frontend mock & dev
 
@@ -1076,9 +1050,9 @@ Investigation performed 2026-06-28 with:
 
 - Git log aggregation across `travel-agent`, `travel-app`, workspace (Apr 12 – Jun 28)
 - Read of system charters, journey STATUS, wedge doc, certification suite, environments doc
-- Code verification of mock fidelity gap claims (`02-create-trip-and-invite.test.ts`, `06-cross-surface-coherence.test.ts`, `mock/social.ts`, `mock/trips.ts`)
+- Code verification of mock fidelity gap claims (`journey-02-mock-walk.smoke.test.tsx`, `06-cross-surface-coherence.test.ts`, `mock/social.ts`, `mock/trips.ts`)
 - Glob confirming `itinerary.test.ts` absence
-- `git status` confirming logic-qa uncommitted state
+- `git ls-files` confirming logic-qa now committed (was uncommitted at the original investigation snapshot)
 - Maestro flow count: 62 YAML files under `.maestro/`
 - OpenAPI counts from `docs/openapi.json`: 310 paths, 345 operations, 588 schemas
 
@@ -1098,10 +1072,10 @@ Subagent explorations informed this document:
 
 ## Bottom line
 
-**Product:** In 11 weeks, Vesper went from zero to a place-aware travel concierge with sharp thesis, 142 tables, 54 routers, 5 agents, four polished surfaces, 14 system charters, and 12 canonical journeys. Against vision: strong on architecture and breadth; gap is proof, not construction.
+**Product:** In 11 weeks, Vesper went from zero to a place-aware travel concierge with sharp thesis, 142 tables, 63 routers, 5 agents, four polished surfaces, 14 system charters, and 12 canonical journeys. Against vision: strong on architecture and breadth; gap is proof, not construction.
 
-**Dogfood:** Wedge (J02→J05) is the only slice that matters until one external user completes it. Backend logic is certified; frontend mock-walk is green; Maestro and live walk remain.
+**Dogfood:** Wedge (J02→J05) backend + mock layers are certified; S4 seeds locally via `make seed-s4-local`. Remaining gates: Maestro 24/25, Fly seed, live two-account walk, one TestFlight friend.
 
-**QA system:** Right layers, too much surface area. Fix broken gates first, then collapse duplicate tests and vocabularies, then seed S4 once so mock-certified and dogfood-certified describe the same world.
+**QA system:** Certify ladder landed; wedge duplicates retired. Next: device visual gate, then collapse Maestro overlap.
 
-**Next human action:** Run Maestro 24/25 green → seed S4 to Fly → two-account live walk → one TestFlight friend.
+**Next human action:** Install Java if needed → `make certify-visual` → seed S4 to Fly → two-account live walk → one TestFlight friend.

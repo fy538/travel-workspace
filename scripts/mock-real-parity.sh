@@ -29,7 +29,6 @@ header "Mock and HTTP seam tests"
   npx jest --runInBand \
     __tests__/utils/api/mock.test.ts \
     __tests__/utils/api/http.test.ts \
-    __tests__/data/itinerary.test.ts \
     __tests__/data/notifications.test.ts \
     __tests__/data/proposals.test.ts \
     __tests__/data/privacy.test.ts \

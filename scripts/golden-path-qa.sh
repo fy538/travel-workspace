@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
-# Run focused deterministic checks for the MVP golden paths.
+# Journey wedge QA — focused J02/J05/J06 scenario + mock-walk checks.
+#
+# Legacy name: golden-path-qa (Makefile target kept for CI link stability).
+# Canonical index: docs/journeys/STATUS.md
+# Full backend scenarios: make certify-logic
 
 set -euo pipefail
 
@@ -16,34 +20,24 @@ export DISABLE_LLM_BACKGROUND_LOOPS="${DISABLE_LLM_BACKGROUND_LOOPS:-true}"
 export EXPO_PUBLIC_USE_MOCK_API="${EXPO_PUBLIC_USE_MOCK_API:-true}"
 export EXPO_PUBLIC_SKIP_AUTH="${EXPO_PUBLIC_SKIP_AUTH:-true}"
 
-header "Backend golden-path invariants"
+header "Backend journey scenarios (J02, J05, J06)"
 (
   cd "$AGENT_DIR"
   PYTHONPATH=. pytest \
-    tests/api/test_home.py \
-    tests/api/test_home_group_state.py \
-    tests/api/test_plan_state.py \
-    tests/api/test_proposals_api.py \
-    tests/api/test_proposal_apply.py \
-    tests/api/test_privacy_audit.py \
-    tests/eval/test_concierge_checks.py \
-    tests/eval/test_planning_checks.py \
-    tests/eval/test_restaurant_checks.py \
+    tests/scenarios/test_j02_invite_acceptance.py \
+    tests/scenarios/test_j05_proposal_plan_mutation.py \
+    tests/scenarios/test_j06_home_plan_map_changes_coherence.py \
     -q \
-    -k "not requires_postgres and not requires_api_keys"
+    -m requires_postgres
 )
 
-header "Frontend offline golden path"
+header "Frontend journey mock-walks (J02, J05, J06)"
 (
   cd "$APP_DIR"
   npx jest --runInBand \
-    __tests__/offline/goldenPath.test.ts \
-    __tests__/data/planState.test.ts \
-    __tests__/data/proposals.test.ts \
-    __tests__/data/privacy.test.ts \
-    __tests__/utils/tripMapStateParity.test.ts \
-    __tests__/screens/plan.smoke.test.tsx \
-    __tests__/screens/map.smoke.test.tsx
+    __tests__/journeys/journey-02-mock-walk.smoke.test.tsx \
+    __tests__/journeys/05-group-planning-proposal-mutation.test.ts \
+    __tests__/journeys/06-cross-surface-coherence.test.ts
 )
 
-printf "\nGolden-path QA passed.\n"
+printf "\nJourney wedge QA passed (legacy: golden-path-qa).\n"

@@ -114,11 +114,11 @@ The current test pyramid has a gap:
 | Maestro polish flows (61 flows) | Does the UI render correctly? | Is the data real? Did the right DB state result? |
 | Backend API tests (84 files) | Do individual endpoints return correct responses? | Does a full multi-step user scenario produce the right state? |
 | FE mock-walk tests (97 tests) | Does the UI behave correctly against mocked data? | Does real backend data match the mock's assumptions? |
-| `test_wedge_journey_e2e.py` (6 tests) + `tests/scenarios/` MVP | I5/I6/I7/I8 plus all 12 journey slices | Visual/live-device gates still need promotion-level certification |
+| `tests/scenarios/test_j*.py` (12 journeys + J05 plan-edit) | Full journey slices incl. I5/I6/I7/I8 | Visual/live-device gates still need promotion-level certification |
 
 The gap: no layer says "given this user sequence, is the entire system — data + state + presentation — correct?"
 
-This system closes that gap by adding **backend scenario tests** for all 12 journeys, using the same real-DB + TestClient approach as `test_wedge_journey_e2e.py`.
+This system closes that gap with **backend scenario tests** for all 12 journeys, using the same real-DB + TestClient approach as `tests/scenarios/conftest.py` and the J05 suite (`test_j05_proposal_plan_mutation.py`, `test_j05_plan_edit_commit.py`).
 
 ---
 
@@ -190,9 +190,10 @@ travel-agent/                  (backend repo — git@github.com:fy538/travel-age
 │   └── notifications/         ← proactive system
 ├── tests/
 │   ├── conftest.py            ← shared fixtures, requires_postgres marker
-│   ├── api/
-│   │   └── test_wedge_journey_e2e.py   ← THE PATTERN TO FOLLOW (read this first)
-│   └── scenarios/             ← deterministic journey scenario tests
+│   └── scenarios/             ← deterministic journey scenario tests (THE PATTERN)
+│       ├── conftest.py        ← persona fixtures, scenario_client (read this first)
+│       ├── test_j05_proposal_plan_mutation.py  ← proposal lifecycle (I5/I6)
+│       └── test_j05_plan_edit_commit.py          ← plan-edit I7/I8 (ported from retired wedge E2E)
 │
 travel-app/                    (frontend repo — git@github.com:fy538/travel-app.git)
 ├── scripts/
@@ -213,9 +214,9 @@ travel-app/                    (frontend repo — git@github.com:fy538/travel-ap
 
 ## The Test Pattern
 
-**Read `travel-agent/tests/api/test_wedge_journey_e2e.py` before writing any scenario test.** Every new test must follow this pattern exactly.
+**Read `travel-agent/tests/scenarios/conftest.py` and an existing `test_j*.py` before writing any scenario test.** Every new test must follow this pattern exactly.
 
-### Key conventions from the wedge E2E test
+### Key conventions from the scenario tests
 
 ```python
 # 1. Module docstring explains the journey and which invariants are certified
@@ -355,8 +356,8 @@ For each journey: what the scenario test must seed, drive, and assert. These are
 
 **Journey doc**: `docs/journeys/02-concrete-trip-creation-and-invite.md`
 **System charter**: `docs/systems/group-social.md`
-**Test file**: `tests/scenarios/test_j02_invite.py`
-**Existing coverage**: `tests/api/test_wedge_journey_e2e.py` (partial), `tests/api/test_invites_api.py`
+**Test file**: `tests/scenarios/test_j02_invite_acceptance.py`
+**Existing coverage**: `tests/api/test_invites_api.py`
 **Persona fixtures**: `persona_elif` (organizer), `persona_ben` (invitee)
 **Key risk**: invite token maps to exactly one trip; auth detour preserves token; consumed invite is not reusable
 
@@ -452,15 +453,15 @@ PRIVATE_CONSTRAINT_PHRASES = [
 
 **Journey doc**: `docs/journeys/05-group-planning-to-proposal-to-plan-mutation.md`
 **System charter**: `docs/systems/proposals-change-studio.md`
-**Test file**: `tests/scenarios/test_j05_proposals.py`
-**Existing coverage**: `tests/api/test_wedge_journey_e2e.py` (I5/I6/I7/I8 certified)
+**Test file**: `tests/scenarios/test_j05_proposal_plan_mutation.py`, `tests/scenarios/test_j05_plan_edit_commit.py`
+**Existing coverage**: `tests/api/test_proposals_api.py`, `tests/api/test_plan_edit_commit.py`
 **Persona fixtures**: `two_persona_trip`
 **Key risk**: state machine completeness, idempotency, revert truthfulness
 
-**This is the most-tested journey. The wedge E2E already covers I5/I6/I7/I8.** Expand it here to cover:
+**J05 is the most-tested journey.** Scenario tests cover I5/I6 (proposals) and I7/I8 (plan-edit commit). Expand only where gaps remain:
 
-*Scenario A — full proposal lifecycle (extend wedge E2E):*
-- Same as wedge E2E I5/I6 but also verify: rejected proposal leaves plan unchanged, receipt event emitted for rejection
+*Scenario A — full proposal lifecycle:*
+- Verify: rejected proposal leaves plan unchanged, receipt event emitted for rejection (extend `test_j05_proposal_plan_mutation.py` if not already asserted)
 
 *Scenario B — direct Change Studio edit (Track B):*
 1. Ben previews a direct edit (`POST /api/trips/{id}/plan-edit-preview`)
@@ -473,6 +474,8 @@ PRIVATE_CONSTRAINT_PHRASES = [
 2. Elif commits first → succeeds
 3. Ben commits with stale `expected_updated_at=T` → 409
 4. Assert: block has Elif's edit, not Ben's; `plan_events` has one entry
+
+(`test_j05_plan_edit_commit.py` certifies B and C today.)
 
 **State assertions:**
 - Accepted proposal: `change_proposals.status='accepted'`, block mutation applied, `plan_events` entry
@@ -670,7 +673,7 @@ Agent prompt template:
 
 ```
 Build a backend scenario test for Journey XX following this exact pattern:
-  - Pattern file: tests/api/test_wedge_journey_e2e.py
+  - Pattern files: tests/scenarios/conftest.py, tests/scenarios/test_j05_proposal_plan_mutation.py
   - Persona fixtures: tests/scenarios/conftest.py
   - Journey spec: docs/journeys/XX-<name>.md  ← READ THIS FULLY
   - System charter: docs/systems/<relevant>.md  ← READ THE INVARIANTS SECTION
@@ -731,7 +734,8 @@ npm run qa:logic:list
 ```
 
 **Prerequisites:**
-- Docker running with `research-agent-postgres` container (the local dev DB)
+- Docker running with `research-agent-postgres` container (local dev DB — user/db `vesper`)
+- Canonical DSN: `postgresql://vesper:localdev@localhost:5432/vesper` (see `travel-agent/.env.example`)
 - `PYTHONPATH=.` from `travel-agent/` root
 - DB at head: `cd travel-agent && alembic upgrade head`
 - Node/npm dependencies installed in `travel-app`
@@ -742,16 +746,17 @@ npm run qa:logic:list
 
 In order of importance:
 
-1. **`tests/api/test_wedge_journey_e2e.py`** — the pattern every scenario test must follow
-2. **`tests/conftest.py`** — shared infrastructure, `requires_postgres` marker
-3. **`docs/journeys/04-private-constraint-to-group-safe-plan.md`** — first test to build
-4. **`docs/systems/concierge-vesper.md`** — privacy egress invariant
-5. **`backend/concierge/group_compose.py`** — the only sanctioned group text path
-6. **`scripts/polish-qa/surfaces.mjs`** — the registry pattern to mirror
-7. **`scripts/polish-qa/run-polish-qa.mjs`** — the orchestrator pattern to mirror
-8. **`docs/surfaces/_quality-baseline.md`** — the quality framework to mirror for logic
-9. **`docs/journeys/STATUS.md`** — current certification status across all 12 journeys
-10. **`docs/working/wedge-journey-02-05-path-to-dogfood.md`** — the wedge plan context
+1. **`tests/scenarios/conftest.py`** — persona fixtures and `scenario_client` helper
+2. **`tests/scenarios/test_j05_proposal_plan_mutation.py`** — reference scenario for multi-step HTTP + DB asserts
+3. **`tests/conftest.py`** — shared infrastructure, `requires_postgres` marker
+4. **`docs/journeys/04-private-constraint-to-group-safe-plan.md`** — privacy journey spec
+5. **`docs/systems/concierge-vesper.md`** — privacy egress invariant
+6. **`backend/concierge/group_compose.py`** — the only sanctioned group text path
+7. **`scripts/polish-qa/surfaces.mjs`** — the registry pattern to mirror
+8. **`scripts/polish-qa/run-polish-qa.mjs`** — the orchestrator pattern to mirror
+9. **`docs/surfaces/_quality-baseline.md`** — the quality framework to mirror for logic
+10. **`docs/journeys/STATUS.md`** — current certification status across all 12 journeys
+11. **`docs/working/wedge-journey-02-05-path-to-dogfood.md`** — the wedge plan context
 
 ---
 
@@ -765,7 +770,8 @@ These are already built and passing — new scenario tests should ADD coverage, 
 | `tests/scenarios/test_j02_invite_acceptance.py` | Invite acceptance, member creation, consumed-token behavior | J02 MVP |
 | `tests/scenarios/test_j03_cold_trip_setup.py` | Blank setup honesty, place/date/title hydration, cold→pre Folio coherence | J03 MVP |
 | `tests/scenarios/test_j04_private_constraint.py` | Group-safe proposal copy and privacy audit | J04 MVP |
-| `tests/scenarios/test_j05_proposal_plan_mutation.py` | Proposal apply/revert/reject/vote idempotency | J05 MVP |
+| `tests/scenarios/test_j05_proposal_plan_mutation.py` | Proposal apply/revert/reject/vote idempotency (I5/I6) | J05 MVP |
+| `tests/scenarios/test_j05_plan_edit_commit.py` | Plan-edit commit I7 409 + I8 idempotency | J05 MVP |
 | `tests/scenarios/test_j06_home_plan_map_changes_coherence.py` | Cross-surface block-id parity and proposal apply invalidation | J06 MVP |
 | `tests/scenarios/test_j07_discover_context_to_trip_action.py` | Discover context grounding, private saves, trip venue commits | J07 MVP |
 | `tests/scenarios/test_j08_live_trip_what_now.py` | Live trip phase, active day, map/Folio parity, grounded seed | J08 MVP |
@@ -774,7 +780,6 @@ These are already built and passing — new scenario tests should ADD coverage, 
 | `tests/scenarios/test_j11_atlas_candidate_memory_control.py` | Atlas candidate approval, artifact provenance, hide/restore, signal controls | J11 MVP |
 | `tests/scenarios/test_j12_returned_trip_closeout.py` | Returned-trip cached story, settlement, memory/home-card closeout | J12 MVP |
 | `tests/api/test_invites_api.py` | Invite CRUD, accept/reject/expire | J02 partial |
-| `tests/api/test_wedge_journey_e2e.py` | I5/I6/I7/I8 for proposals + plan edit | J05 partial |
 | `tests/api/test_proposals_api.py` | Proposal lifecycle unit tests | J05 partial |
 | `tests/api/test_plan_edit_commit.py` | Plan edit commit unit tests | J05 partial |
 | `tests/api/test_expenses_api.py` | Expense CRUD | J12 partial |

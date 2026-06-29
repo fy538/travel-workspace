@@ -6,7 +6,8 @@
 # This file wires the cross-repo workflows that span both repos.
 
 .PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help ci-review
-.PHONY: contract-check mock-real-parity golden-path-qa offline-qa reliability-report reliability-gate
+.PHONY: contract-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate mock-slug-parity
+.PHONY: certify-fast certify-logic certify-visual certify-live dogfood-status seed-s4-local seed-s4-fly corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-fly-smoke dogfood-five-pack-verify dogfood-five-pack-live-api dogfood-five-pack-simulator import-latent-corpus tier-a-spot-check tier-b-spot-check
 .PHONY: preflight-eas fly-secrets verify
 
 # ── Development ───────────────────────────────────────────────────────────────
@@ -57,8 +58,15 @@ fly-secrets: ## Emit a paste-ready 'fly secrets set' template for first-time Fly
 mock-real-parity: ## Check frontend mock/API parity seams without live backend calls
 	@./scripts/mock-real-parity.sh
 
-golden-path-qa: ## Run focused deterministic MVP golden-path checks
+golden-path-qa: journey-wedge-qa ## Deprecated alias — use journey-wedge-qa or certify-logic
+
+journey-wedge-qa: ## Journey wedge gate: J02/J05/J06 scenario pytest + mock-walk Jest
+	@chmod +x ./scripts/golden-path-qa.sh
 	@./scripts/golden-path-qa.sh
+
+mock-slug-parity: ## Gate: dogfood corpus city slugs have mock angle + destination fixtures
+	@chmod +x ./scripts/mock-slug-parity-check.sh
+	@./scripts/mock-slug-parity-check.sh
 
 offline-qa: ## Run the full offline reliability ladder
 	@./scripts/offline-qa.sh
@@ -78,12 +86,87 @@ ci-review: ## Nightly CI/CD dashboard across all 3 repos (read the same numbers 
 # ── Tests ─────────────────────────────────────────────────────────────────────
 
 test-backend: ## Run offline backend tests
-	@cd travel-agent && PYTHONPATH=. pytest tests/ -q -k "not requires_postgres and not requires_api_keys"
+	@cd travel-agent && SKIP_AUTH=true PYTHONPATH=. pytest tests/ -q -k "not requires_postgres and not requires_api_keys"
 
 test-frontend: ## Run frontend Jest tests
 	@cd travel-app && npx jest --no-coverage
 
 test-all: test-backend test-frontend ## Run all tests (offline)
+
+certify-fast: ## Tier-1 certify ladder: corpus-check + contract + journey Jest + offline backend pytest
+	@$(MAKE) corpus-check
+	@$(MAKE) contract-check
+	@cd travel-app && npm test -- __tests__/journeys/ --runInBand
+	@$(MAKE) test-backend
+
+certify-logic: ## Tier-2 certify ladder: journey scenario pytest (requires Postgres)
+	@cd travel-agent && SKIP_AUTH=true PYTHONPATH=. pytest tests/scenarios/ -m requires_postgres -q
+
+certify-visual: ## Tier-3 certify ladder: wedge Maestro flows (needs simulator + Metro)
+	@export JAVA_HOME="$${JAVA_HOME:-/opt/homebrew/opt/openjdk}" && \
+	 export PATH="$$JAVA_HOME/bin:$$HOME/.maestro/bin:$$PATH" && \
+	 cd travel-app && maestro test \
+		.maestro/24-journey-02-create-invite.yaml \
+		.maestro/25-journey-05-proposal-mutation.yaml
+
+certify-live: ## Tier-4 dogfood preflight + live-walk checklist (human: two Clerk accounts)
+	@chmod +x ./scripts/certify-live.sh ./scripts/seed-s4-fly.sh
+	@./scripts/certify-live.sh
+
+corpus-check: ## Gate: every dogfood manifest slug resolves in DB or staging (wedge by default)
+	@chmod +x ./scripts/corpus-check.sh
+	@./scripts/corpus-check.sh
+
+dogfood-city: ## Connect corpus + seed a city. Usage: make dogfood-city CITY=lisbon [APPLY=1] [ENRICH=1] [PROFILE=local|fly]
+	@chmod +x ./scripts/dogfood-city.sh ./scripts/dogfood-env.sh
+	@APPLY="$(APPLY)" ENRICH="$(ENRICH)" PROFILE="$(PROFILE)" ./scripts/dogfood-city.sh CITY=$(CITY)
+
+import-latent-corpus: ## Phase 2c catalog import. Usage: make import-latent-corpus TIER=a|b [APPLY=1] [CITY=paris] [PROFILE=local|fly] [GLOBAL_EMBED_ONLY=1]
+	@chmod +x ./scripts/import-latent-corpus.sh ./scripts/dogfood-env.sh
+	@APPLY="$(APPLY)" PROFILE="$(PROFILE)" GLOBAL_EMBED_ONLY="$(GLOBAL_EMBED_ONLY)" ./scripts/import-latent-corpus.sh TIER=$(or $(TIER),a) $(if $(CITY),CITY=$(CITY),)
+
+tier-a-spot-check: ## Verify Tier A cities in PG + Qdrant. Usage: make tier-a-spot-check [PROFILE=local|fly]
+	@chmod +x ./scripts/tier-a-spot-check.sh ./scripts/dogfood-env.sh
+	@PROFILE="$(PROFILE)" ./scripts/tier-a-spot-check.sh
+
+tier-b-spot-check: ## Verify Tier B cities in PG + Qdrant. Usage: make tier-b-spot-check [PROFILE=local|fly]
+	@chmod +x ./scripts/tier-b-spot-check.sh ./scripts/dogfood-env.sh
+	@PROFILE="$(PROFILE)" ./scripts/tier-b-spot-check.sh
+
+dogfood-promote: ## Promote city pack to Fly + cloud Qdrant. Usage: make dogfood-promote CITY=lisbon [APPLY=1]
+	@chmod +x ./scripts/dogfood-promote.sh ./scripts/dogfood-env.sh
+	@APPLY="$(APPLY)" ./scripts/dogfood-promote.sh CITY=$(CITY)
+
+dogfood-env-check: ## Print dogfood Postgres+Qdrant stack pairing for PROFILE=local|fly
+	@chmod +x ./scripts/dogfood-env-check.sh ./scripts/dogfood-env.sh
+	@PROFILE="$(PROFILE)" APPLY="$(APPLY)" ./scripts/dogfood-env-check.sh
+
+dogfood-fly-smoke: ## Automated Fly substrate smoke after dogfood-promote (API + Fly DB + Rome bridge)
+	@chmod +x ./scripts/dogfood-fly-smoke.sh ./scripts/dogfood-env.sh ./scripts/dogfood-five-pack-verify.sh
+	@./scripts/dogfood-fly-smoke.sh
+
+dogfood-five-pack-verify: ## Five-pack substrate checks (trips, itinerary venues, discover compose) on PROFILE=fly|local
+	@chmod +x ./scripts/dogfood-five-pack-verify.sh ./scripts/dogfood-env.sh
+	@PROFILE="$(PROFILE)" ./scripts/dogfood-five-pack-verify.sh
+
+dogfood-five-pack-live-api: ## Five-pack live HTTP checks (TestClient local or Fly with PRELAUNCH_JWT)
+	@chmod +x ./scripts/dogfood-five-pack-live-api.sh ./scripts/dogfood-env.sh
+	@PROFILE="$(PROFILE)" TRANSPORT="$(TRANSPORT)" PRELAUNCH_HOST="$(PRELAUNCH_HOST)" ./scripts/dogfood-five-pack-live-api.sh
+
+dogfood-five-pack-simulator: ## Local TestClient API + optional Maestro wedge (RUN_MAESTRO=0 to skip UI)
+	@chmod +x ./scripts/dogfood-five-pack-simulator.sh ./scripts/dogfood-five-pack-live-api.sh ./scripts/dogfood-env.sh
+	@RUN_MAESTRO="$(RUN_MAESTRO)" ./scripts/dogfood-five-pack-simulator.sh
+
+dogfood-status: ## Validate dogfood manifests and print scenario/pack readiness
+	@chmod +x ./scripts/dogfood-status.sh ./scripts/seed-s4-local.sh ./scripts/seed-s4-fly.sh
+	@./scripts/dogfood-status.sh
+
+seed-s4-local: ## Seed S4 lisbon-phase1 to local Postgres (requires vesper DB)
+	@chmod +x ./scripts/seed-s4-local.sh
+	@./scripts/seed-s4-local.sh
+
+seed-s4-fly: ## Seed S4 to Fly Postgres (dry-run; SEED_S4_FLY_APPLY=1 to write)
+	@./scripts/seed-s4-fly.sh
 
 # ── Composite gate ─────────────────────────────────────────────────────────────
 

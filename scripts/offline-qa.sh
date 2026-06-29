@@ -34,7 +34,13 @@ header "Backend import boundaries"
 header "Backend offline tests"
 (
   cd "$AGENT_DIR"
-  PYTHONPATH=. pytest tests/ -q -k "not requires_postgres and not requires_api_keys"
+  SKIP_AUTH=true PYTHONPATH=. pytest tests/ -q -k "not requires_postgres and not requires_api_keys"
+)
+
+header "Journey mock-walk (tier 1)"
+(
+  cd "$APP_DIR"
+  npm test -- __tests__/journeys/
 )
 
 header "Frontend typecheck"
