@@ -22,6 +22,7 @@ header "Manifest validation"
 (
   cd "$AGENT_DIR"
   PYTHONPATH=. python -m tools.dogfood.content.validate
+  PYTHONPATH=. python -m tools.dogfood.content.validate_scenarios
 )
 
 header "Scenario registry summary"

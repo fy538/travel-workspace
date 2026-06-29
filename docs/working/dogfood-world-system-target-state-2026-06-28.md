@@ -115,11 +115,11 @@ The cleanup goal in one table — every layer has exactly **one** canonical sour
 
 The single checklist that makes "no parallel systems" real. Each item = one parallel system retired.
 
-- [ ] **`seed_group_trip.py`** → delete; canonical `tools/dogfood/content/seed.py` only *(Doc 1, Doc 2)*
+- [x] **`seed_group_trip.py`** → deleted 2026-06-28; canonical `tools/dogfood/content/seed.py` only
 - [ ] **`discover_queries` log-only fiction** → compose regression for wedge queries OR rename to `discover_query_contracts` *(Doc 4)*
-- [ ] **Golden Paths as separate QA set** → collapse into journeys; `golden-path-qa.sh` points at journey tests *(Doc 1)*
-- [ ] **Triple scenario docs** → `scenarios.yaml` sole source; generate or drop `Dogfood Scenario Matrix.md` *(Doc 1)*
-- [ ] **Mock compose Lisbon-only** → city-scoped to trip; slug parity with manifests *(Doc 4 Phase 4)*
+- [x] **Golden Paths as separate QA set** → collapsed into journeys; `journey-wedge-qa` + `golden-path-qa` alias *(2026-06-29)*
+- [x] **Triple scenario docs** → `validate_scenarios` in `dogfood-status`; `scenarios.yaml` sole machine source *(2026-06-29)*
+- [x] **Mock compose Lisbon-only** → `resolveMockAnchorSlug` + dogfood corpus angle fixtures *(2026-06-29)*
 - [ ] **`import_staged_refs` (thin) as the de-facto importer** → structural import works (slugs resolve); make full enrichment (promote + dossiers + embed, `ENRICH=1`) the default for launch-candidate cities *(Doc 4, Doc 5 Phase 1–2)*
 - [x] **Broken `offline-qa` / `mock-real-parity`** (missing `itinerary.test.ts`) → ✅ refs removed (Stream A, committed 2026-06-28) *(Doc 1 P0-1)*
 - [ ] **Image tier drift** → provision `seed_place_illustrations` for backend/CDN parity OR accept bundle-only + document *(Doc 3)*
@@ -138,7 +138,7 @@ make corpus-check                # gate: slugs resolve + governance
 make dogfood-city CITY=lisbon    # connect + seed (APPLY=1 ENRICH=1 for full enrich)
 make dogfood-promote CITY=lisbon # Fly promote (Phase 0.5 — PROFILE=fly)
 make seed-s4-local               # legacy narrow S4 local seed
-make seed-s4-fly                 # legacy narrow S4 Fly seed → superseded by dogfood-promote
+- [ ] **`seed-s4-fly`** → deprecated; use `dogfood-promote CITY=lisbon` for full promote *(2026-06-29: wrapper retained with deprecation banner)*
 make certify-fast                # Tier 1: local profile
 make certify-logic               # Tier 2: journey scenario pytest (Postgres)
 make certify-visual              # Tier 3: wedge Maestro flows

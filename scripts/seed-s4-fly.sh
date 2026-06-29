@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
-# Seed S4 (Lisbon group planning) to Fly Postgres — no LLM calls.
+# DEPRECATED — prefer: APPLY=1 make dogfood-promote CITY=lisbon
 #
-# Requires travel-agent/.env.prod with PROD_DATABASE_URL (Neon/Fly postgres).
-# Uses --allow-prod guard on bootstrap_users + seed (cohort @dogfood.local only).
+# Narrow S4 fixture seed to Fly Postgres (bootstrap + seed only, no corpus ENRICH).
+# Full city promotion (corpus import + embed + fixtures): dogfood-promote.
 #
 # Usage:
-#   ./scripts/seed-s4-fly.sh              # dry-run (default)
+#   ./scripts/seed-s4-fly.sh              # dry-run
 #   SEED_S4_FLY_APPLY=1 ./scripts/seed-s4-fly.sh   # write to Fly DB
 set -euo pipefail
+
+echo "▸ seed-s4-fly is deprecated — for full promote use: APPLY=1 make dogfood-promote CITY=lisbon" >&2
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
@@ -52,9 +54,6 @@ if [[ "$APPLY" == "1" ]]; then
 else
   echo "== Dry-run mode — pass SEED_S4_FLY_APPLY=1 to write =="
 fi
-
-# Prod DB should already have Lisbon catalog rows; dogfood seed creates venue stubs as needed.
-# Do NOT run load_eval_fixtures here — it targets eval harness data, not dogfood cohort writes.
 
 echo "== Validate manifest =="
 PYTHONPATH=. python -m tools.dogfood.content.validate "$MANIFEST"

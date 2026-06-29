@@ -27,6 +27,7 @@ TIER="${TIER:-${TIER_ENV:-a}}"
 CITY="${CITY:-${CITY_ENV:-}}"
 PROFILE="${PROFILE:-${PROFILE_ENV:-local}}"
 APPLY="${APPLY:-0}"
+GLOBAL_EMBED_ONLY="${GLOBAL_EMBED_ONLY:-0}"
 
 # shellcheck source=scripts/dogfood-env.sh
 source "$SCRIPT_DIR/dogfood-env.sh"
@@ -67,6 +68,15 @@ get_qdrant_client().get_collections()
       exit 1
     fi
     PYTHONPATH=. python -c "from backend.core.vector.collections import ensure_collections; ensure_collections()"
+  else
+    if ! PYTHONPATH=. python -c "
+from backend.core.vector.client import get_qdrant_client
+get_qdrant_client().get_collections()
+" 2>/dev/null; then
+      echo "ERROR: Fly Qdrant unreachable at $QDRANT_URL" >&2
+      exit 1
+    fi
+    PYTHONPATH=. python -c "from backend.core.vector.collections import ensure_collections; ensure_collections()"
   fi
 else
   echo "Would import: ${CITIES[*]}"
@@ -74,6 +84,17 @@ else
     count=$(ls "content/staging/$city"/*.md 2>/dev/null | wc -l | tr -d ' ')
     echo "  $city: ~$count MD files"
   done
+  exit 0
+fi
+
+if [ "$GLOBAL_EMBED_ONLY" = "1" ]; then
+  echo ""
+  echo "== Global embed passes only (GLOBAL_EMBED_ONLY=1) =="
+  PYTHONPATH=. python scripts/embed_experience_briefs.py
+  PYTHONPATH=. python scripts/embed_place_angles_staging.py || \
+    echo "  (place angles embed skipped — non-fatal)"
+  echo ""
+  echo "✓ global embed complete (profile=$PROFILE qdrant=$DOGFOOD_QDRANT_HOST)."
   exit 0
 fi
 

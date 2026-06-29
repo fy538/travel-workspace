@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
-# Run focused deterministic checks for the MVP golden paths.
+# Journey wedge QA — focused J02/J05/J06 scenario + mock-walk checks.
+#
+# Legacy name: golden-path-qa (Makefile target kept for CI link stability).
+# Canonical index: docs/journeys/STATUS.md
+# Full backend scenarios: make certify-logic
 
 set -euo pipefail
 
@@ -36,4 +40,4 @@ header "Frontend journey mock-walks (J02, J05, J06)"
     __tests__/journeys/06-cross-surface-coherence.test.ts
 )
 
-printf "\nGolden-path QA passed.\n"
+printf "\nJourney wedge QA passed (legacy: golden-path-qa).\n"

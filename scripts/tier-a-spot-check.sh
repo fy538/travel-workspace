@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
-# tier-a-spot-check — verify Tier A catalog availability on local stack.
+# tier-a-spot-check — verify Tier A catalog availability (PG + Qdrant search).
+#
+# Usage:
+#   make tier-a-spot-check                  # local profile (default)
+#   make tier-a-spot-check PROFILE=fly    # Fly Postgres + cloud Qdrant
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -7,9 +11,14 @@ WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
 AGENT_DIR="$WORKSPACE_DIR/travel-agent"
 
 PROFILE="${PROFILE:-local}"
+APPLY="${APPLY:-1}"
+export APPLY
 # shellcheck source=scripts/dogfood-env.sh
 source "$SCRIPT_DIR/dogfood-env.sh"
-AGENT_DIR="$AGENT_DIR" dogfood_apply_profile
+dogfood_apply_profile
+
+echo "▸ tier-a-spot-check profile=$PROFILE"
+dogfood_print_stack
 
 cd "$AGENT_DIR"
 # shellcheck disable=SC1091

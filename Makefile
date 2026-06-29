@@ -6,7 +6,7 @@
 # This file wires the cross-repo workflows that span both repos.
 
 .PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help ci-review
-.PHONY: contract-check mock-real-parity golden-path-qa offline-qa reliability-report reliability-gate
+.PHONY: contract-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate mock-slug-parity
 .PHONY: certify-fast certify-logic certify-visual certify-live dogfood-status seed-s4-local seed-s4-fly corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-fly-smoke import-latent-corpus tier-a-spot-check
 .PHONY: preflight-eas fly-secrets verify
 
@@ -58,8 +58,15 @@ fly-secrets: ## Emit a paste-ready 'fly secrets set' template for first-time Fly
 mock-real-parity: ## Check frontend mock/API parity seams without live backend calls
 	@./scripts/mock-real-parity.sh
 
-golden-path-qa: ## Run focused deterministic MVP golden-path checks
+golden-path-qa: journey-wedge-qa ## Deprecated alias — use journey-wedge-qa or certify-logic
+
+journey-wedge-qa: ## Journey wedge gate: J02/J05/J06 scenario pytest + mock-walk Jest
+	@chmod +x ./scripts/golden-path-qa.sh
 	@./scripts/golden-path-qa.sh
+
+mock-slug-parity: ## Gate: dogfood corpus city slugs have mock angle + destination fixtures
+	@chmod +x ./scripts/mock-slug-parity-check.sh
+	@./scripts/mock-slug-parity-check.sh
 
 offline-qa: ## Run the full offline reliability ladder
 	@./scripts/offline-qa.sh
@@ -114,13 +121,13 @@ dogfood-city: ## Connect corpus + seed a city. Usage: make dogfood-city CITY=lis
 	@chmod +x ./scripts/dogfood-city.sh ./scripts/dogfood-env.sh
 	@APPLY="$(APPLY)" ENRICH="$(ENRICH)" PROFILE="$(PROFILE)" ./scripts/dogfood-city.sh CITY=$(CITY)
 
-import-latent-corpus: ## Phase 2c catalog import. Usage: make import-latent-corpus TIER=a [APPLY=1] [CITY=paris] [PROFILE=local|fly]
+import-latent-corpus: ## Phase 2c catalog import. Usage: make import-latent-corpus TIER=a [APPLY=1] [CITY=paris] [PROFILE=local|fly] [GLOBAL_EMBED_ONLY=1]
 	@chmod +x ./scripts/import-latent-corpus.sh ./scripts/dogfood-env.sh
-	@APPLY="$(APPLY)" PROFILE="$(PROFILE)" ./scripts/import-latent-corpus.sh TIER=$(or $(TIER),a) $(if $(CITY),CITY=$(CITY),)
+	@APPLY="$(APPLY)" PROFILE="$(PROFILE)" GLOBAL_EMBED_ONLY="$(GLOBAL_EMBED_ONLY)" ./scripts/import-latent-corpus.sh TIER=$(or $(TIER),a) $(if $(CITY),CITY=$(CITY),)
 
-tier-a-spot-check: ## Verify Tier A cities resolve in local PG + Qdrant search
-	@chmod +x ./scripts/tier-a-spot-check.sh
-	@./scripts/tier-a-spot-check.sh
+tier-a-spot-check: ## Verify Tier A cities in PG + Qdrant. Usage: make tier-a-spot-check [PROFILE=local|fly]
+	@chmod +x ./scripts/tier-a-spot-check.sh ./scripts/dogfood-env.sh
+	@PROFILE="$(PROFILE)" ./scripts/tier-a-spot-check.sh
 
 dogfood-promote: ## Promote city pack to Fly + cloud Qdrant. Usage: make dogfood-promote CITY=lisbon [APPLY=1]
 	@chmod +x ./scripts/dogfood-promote.sh ./scripts/dogfood-env.sh
