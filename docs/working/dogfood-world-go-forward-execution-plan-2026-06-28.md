@@ -138,10 +138,10 @@ These are **dogfood-safe stand-ins**: real enough for planning UX, deliberately 
 | **1** | ✅ Done | Lisbon ENRICH on local PG; go/no-go **GO** |
 | **2** | ✅ Done | Rome editorial enriched |
 | **2a** | ✅ Done | Rome slug bridge — 9/9 canonical briefs (local + Fly) |
-| **2b** | 🟡 Nearly done | Istanbul dossiers + Fly promote ✅; Brooklyn/Tokyo Fly ✅; phone walk pending |
-| **2c** | ⬜ Gated | Latent corpus — **blocked until 0.5 + 2a** |
-| **3** | ⬜ Parallel | Decommission parallel systems |
-| **4** | ⬜ Payoff | QA wiring + Fly promotion in certify ladder |
+| **2b** | ✅ Done | Five packs promoted Fly; agent certification complete |
+| **2c** | ✅ Done | Tier A + B latent corpus local + Fly spot-check |
+| **3** | ✅ Done | Decommission tracker (seed paths, discover regression, mock parity) |
+| **4** | 🟡 Partial | Certify ladder wired; five-pack agent gates green; per-journey live pending |
 
 ---
 

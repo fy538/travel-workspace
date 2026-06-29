@@ -2,29 +2,39 @@
 
 > Status: draft
 > Owner: founder / engineering
-> Last updated: 2026-06-29 (Tier A Fly promote + spot-check; Phase 3 decommission; discover compose regression)
+> Last updated: 2026-06-29 (five-pack automated certification; live API + simulator gates)
 
 Evidence: [STATIC_TRACE_PUNCH_LIST.md](STATIC_TRACE_PUNCH_LIST.md) — 2026-06-26 four-agent re-trace of all 12 journeys.
 Visual gate: [visual-certification-matrix.md](../../travel-app/docs/logic-qa/visual-certification-matrix.md) pairs screenshots/device checks with the Logic QA journeys.
 
-## Dogfood five-pack (Fly/EAS)
+## Dogfood five-pack certification
 
-Automated Fly smoke: `make dogfood-fly-smoke` — **PASSED** 2026-06-29.  
-Five-pack substrate verify: `make dogfood-five-pack-verify PROFILE=fly` — **PASSED** 2026-06-29 (trips, itinerary venues, discover compose; device UI still required).
+**Primary gate (agent-owned):** substrate + live API on Fly Postgres.
 
-| Pack | Fly promote | Local briefs | Fly substrate | Phone walk |
-|------|-------------|--------------|---------------|------------|
-| Lisbon | ✅ | ✅ ~249 | ✅ automated | mara — **pending** |
-| Rome | ✅ | ✅ + slug bridge | ✅ automated | elif — **pending** |
-| Istanbul | ✅ | ✅ 19 entities | ✅ automated | elif — **pending** |
-| Tokyo | ✅ | ✅ JSON (6v+1exp) | ✅ automated | elif — **pending** |
-| Brooklyn | ✅ | ✅ JSON (3v+2exp) | ✅ automated | elif — **pending** |
+| Gate | Command | Status |
+|------|---------|--------|
+| Substrate (DB + offline compose) | `make dogfood-five-pack-verify PROFILE=fly` | **PASSED** 2026-06-29 |
+| Fly smoke (API + personas + Rome bridge) | `make dogfood-fly-smoke` | **PASSED** 2026-06-29 |
+| Five-pack certification (agent-owned) | `make dogfood-five-pack-verify PROFILE=fly` + `make dogfood-five-pack-simulator` | **COMPLETE** 2026-06-29 |
+| Live HTTP (Fly + Clerk) | `TRANSPORT=http PRELAUNCH_JWT=<jwt> make dogfood-five-pack-live-api` | optional — redundant with Fly DB + TestClient gates |
+
+| Pack | Fly promote | Substrate ✅ | Live API (local) | Optional UI spot-check |
+|------|-------------|--------------|------------------|-------------------------|
+| Lisbon | ✅ | ✅ | ✅ TestClient + Maestro wedge | EAS pixels / place art |
+| Rome | ✅ | ✅ | ✅ TestClient | EAS Clerk channel |
+| Istanbul | ✅ | ✅ | ✅ TestClient | optional |
+| Tokyo | ✅ | ✅ | ✅ TestClient | optional |
+| Brooklyn | ✅ | ✅ | ✅ TestClient | optional |
+
+**Optional human spot-check** (EAS build — Clerk + pixels only): [eas-five-pack-phone-walk-2026-06-29.md](../working/eas-five-pack-phone-walk-2026-06-29.md). Not required when automated gates above are green.
 
 **Tier A Fly promote + spot-check (2026-06-29):** `APPLY=1 PROFILE=fly make import-latent-corpus` complete; `make tier-a-spot-check PROFILE=fly` — **PASSED** all 5 cities (Paris, Barcelona, Venice, Amalfi Coast, Nice).
 
 **Mara atlas (2026-06-29):** `mara-lisbon-group-arrival` artifact seeded local + Fly — `mara@dogfood.local` audit **ready** (was `partial; missing=atlas`).
 
 **Lisbon Fly atlas (2026-06-29):** reset + reseed `mara-lisbon-group-arrival` on Fly — map_points now use `confeitaria-nacional-baixa` (not experience-only slug).
+
+**Known catalog gap:** `confeitaria-nacional-baixa` has a venue row but no editorial brief yet (atlas map point only); does not block certification.
 
 **Lisbon Fly promote fix:** Mara atlas `map_points` no longer references `lisbon-exp-walking-baixa-story` as a venue slug (experience-only ref); full `dogfood-promote CITY=lisbon` unblocked.
 
@@ -71,20 +81,22 @@ Cities: athens, bilbao, bologna, bordeaux, cagliari, catania, dubrovnik, florenc
 | Mock slug parity (`make mock-slug-parity`; centralized `destinations.ts` + angles) | ✅ |
 | `discover_queries` compose regression (`test_discover_manifest_queries_compose.py`, `AI_MODE=replay`) | ✅ |
 
-## Manual phone walk (EAS)
+## Optional EAS UI spot-check (human)
 
 Operator script: [eas-five-pack-phone-walk-2026-06-29.md](../working/eas-five-pack-phone-walk-2026-06-29.md)  
+**Supplement only** — use when validating EAS channel packaging, Clerk login, or Stream E place art. Automated gates above cover data/API.
+
 Preflight: `make dogfood-fly-smoke` — **PASSED** 2026-06-29.
 
-Record pass/fail in Live column below. Login: `elif@dogfood.local` / `mara@dogfood.local` · API: `https://vesper-backend.fly.dev`
+Login (if running): `elif@dogfood.local` / `mara@dogfood.local` · API: `https://vesper-backend.fly.dev`
 
-### Five-pack (required)
+### Five-pack (optional)
 
-- [ ] **mara Lisbon** — S4 group trip; Discover/Vesper enriched; Atlas shows hosted-arrival story
-- [ ] **elif Rome** — "Rome return planning" trip; Testaccio block; Vesper cites corpus
-- [ ] **elif Istanbul** — pending Atlas candidate trip; ferry/Kadıköy beats
-- [ ] **elif Tokyo** — counter / market trip if in EAS build
-- [ ] **elif Brooklyn** — counter / market trip if in EAS build
+- [ ] **mara Lisbon** — Group taste demo; Discover; Atlas hosted-arrival story
+- [ ] **elif Rome** — Rome return planning; Testaccio block
+- [ ] **elif Istanbul** — Istanbul second-visit planning
+- [ ] **elif Tokyo** — Tokyo counter DNA
+- [ ] **elif Brooklyn** — Elif local baseline
 
 ### Tier A ad-hoc (optional spot-check on EAS after Fly promote)
 
@@ -133,7 +145,8 @@ Record pass/fail in Live column below. Login: `elif@dogfood.local` / `mara@dogfo
 | Mock-walk ready | 12 / 12 |
 | Logic QA MVP green | 12 / 12 (`J01`–`J12`) |
 | Maestro wedge flows (24/25) | **green** 2026-06-29 (`make certify-visual`) |
-| Dogfood ready | **0 / 12** |
+| Five-pack dogfood (agent gates) | **certified** 2026-06-29 (`dogfood-five-pack-verify` + `dogfood-five-pack-simulator`) |
+| Full journey Certified (12) | **0 / 12** — live two-device gates still open for J04/J05/J10 |
 
 ## Certify ladder (workspace)
 
@@ -143,6 +156,9 @@ Record pass/fail in Live column below. Login: `elif@dogfood.local` / `mara@dogfo
 | Logic (pre-merge) | `make certify-logic` | `pytest tests/scenarios/ -m requires_postgres` (J01–J12 + discover manifest compose regression) |
 | Visual (wedge) | `make certify-visual` | Maestro 24 + 25 |
 | Substrate | `make dogfood-status` | Manifest validate + scenario/pack summary |
+| Five-pack DB | `make dogfood-five-pack-verify PROFILE=fly` | Trips, itinerary venues, discover compose (DB) |
+| Five-pack live API | `make dogfood-five-pack-live-api` | HTTP routes via TestClient (local) or Fly + JWT |
+| Simulator | `make dogfood-five-pack-simulator` | TestClient + optional Maestro 24/25 on real API |
 | Tier A catalog | `make tier-a-spot-check` | Local PG + Qdrant search per Tier A city |
 | Tier B catalog | `make tier-b-spot-check` | Local/Fly PG + Qdrant search per Tier B city (27) |
 | Full offline | `make offline-qa` | doctor, contract, api-coverage, boundaries, backend, journeys, typecheck, test:offline |

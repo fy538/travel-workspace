@@ -1,34 +1,39 @@
 # EAS Five-Pack Phone Walk — Operator Script
 
-> Status: ready to run  
+> Status: **optional supplement** (automated gates are primary)  
 > Created: 2026-06-29  
-> Preflight: `make dogfood-fly-smoke` **PASSED** (mara + elif audit, Rome slug bridge 9/9)
+> Primary gate: `make dogfood-five-pack-verify PROFILE=fly` + `make dogfood-five-pack-live-api`
+
+**When to run:** EAS channel packaging, Clerk login, or Stream E place-art spot-check only.  
+**When to skip:** automated substrate + live API + simulator gates are green.
 
 **Build:** EAS dogfood profile — `EXPO_PUBLIC_USE_MOCK_API=false`, API `https://vesper-backend.fly.dev`  
-**Accounts:** `mara@dogfood.local` (Lisbon) · `elif@dogfood.local` (Rome, Istanbul, Tokyo, Brooklyn)  
-**Record:** Check boxes in [docs/journeys/STATUS.md](../journeys/STATUS.md) Manual phone walk section.
+**Accounts:** `mara@dogfood.local` (Lisbon) · `elif@dogfood.local` (Rome, Istanbul, Tokyo, Brooklyn)
 
 ---
 
-## Preflight (5 min)
+## Automated preflight (agent-owned)
 
 ```bash
-make dogfood-fly-smoke          # Fly API + persona audit + Rome bridge + five-pack verify
-make dogfood-five-pack-verify PROFILE=fly   # trips, itinerary venues, discover compose only
+make dogfood-fly-smoke                              # Fly API + DB substrate + five-pack verify
+make dogfood-five-pack-verify PROFILE=fly           # DB + offline discover compose
+make dogfood-five-pack-live-api                     # TestClient on local PG (all personas)
+TRANSPORT=http PRELAUNCH_JWT=<jwt> make dogfood-five-pack-live-api   # Fly HTTP (Clerk JWT)
+make dogfood-five-pack-simulator                    # TestClient + optional Maestro wedge
 curl -sf https://vesper-backend.fly.dev/ready
 ```
 
-Confirm EAS build is the **dogfood** channel (not mock). Sign in with Clerk dogfood cohort.
+For Fly HTTP: sign into the EAS dogfood build, copy Clerk session JWT into `PRELAUNCH_JWT` (or `PRELAUNCH_JWT_MARA` / `PRELAUNCH_JWT_ELIF`).
 
 ---
 
 ## 1. Mara — Lisbon (S4 flagship) · ~15 min
 
-**Trip:** `mara-lisbon` manifest — title **"Lisbon"**, Oct 3–6 2026, members Mara / Dao / Reza.
+**Trip:** `mara-lisbon` manifest — title **"Group taste demo"** (not "Lisbon"), Oct 3–6 2026, members Mara / Dao / Reza.
 
 | Step | Action | Pass if |
 |------|--------|---------|
-| L1 | Trips → open **Lisbon** group trip | Hero, dates, 3 members visible |
+| L1 | Trips → open **Group taste demo** (Lisbon group trip) | Hero, dates, 3 members visible |
 | L2 | **Plan** → Day 1 | "Casa do Alentejo — first dinner" block with real venue name (not stub) |
 | L3 | **Discover** → search *"first night Lisbon dinner close by, not touristy"* | Board returns ≥3 venue cards (Casa do Alentejo, Mouraria, etc.) |
 | L4 | Open a venue card → **Ask Vesper** | Seed cites venue + Lisbon context |
@@ -58,7 +63,7 @@ Confirm EAS build is the **dogfood** channel (not mock). Sign in with Clerk dogf
 
 | Step | Action | Pass if |
 |------|--------|---------|
-| I1 | Open Istanbul trip | Kadıköy / ferry context in plan or Vesper read |
+| I1 | Open **Istanbul second-visit planning** trip | Kadıköy / ferry context in plan or Vesper read |
 | I2 | Discover: *"ferry food classic"* or *"skip the obvious"* | Board with Istanbul venues (not generic pool) |
 | I3 | Atlas candidate (if surfaced) | Ferry / water-base beats feel authored |
 
@@ -70,7 +75,7 @@ Confirm EAS build is the **dogfood** channel (not mock). Sign in with Clerk dogf
 
 | Step | Action | Pass if |
 |------|--------|---------|
-| T1 | Open Tokyo trip | Counter / market framing in plan or home |
+| T1 | Open **Tokyo counter DNA** trip | Counter / market framing in plan or home |
 | T2 | Discover: *"Tokyo counters"* or *"early morning market"* | Venue cards from promoted JSON corpus |
 | T3 | Venue detail | Brief text present (not empty shell) |
 
@@ -82,7 +87,7 @@ Confirm EAS build is the **dogfood** channel (not mock). Sign in with Clerk dogf
 
 | Step | Action | Pass if |
 |------|--------|---------|
-| B1 | Open Brooklyn trip | Counter / neighborhood week visible |
+| B1 | Open **Elif local baseline** (Brooklyn week) | Counter / neighborhood week visible |
 | B2 | Discover: *"Brooklyn mornings"* or *"lived-in neighborhoods"* | Board with Brooklyn venue cards |
 | B3 | Visual | Place art or backend photo (not generic category pool only) |
 
@@ -102,4 +107,4 @@ If validating certify-live human gates, see [wedge-journey-02-05-path-to-dogfood
 
 ## When done
 
-Update [STATUS.md](../journeys/STATUS.md) five-pack checkboxes and Maestro row (J02/J05) if `make certify-visual` green.
+Record optional UI spot-check in [STATUS.md](../journeys/STATUS.md). Automated certification does not require this walk.

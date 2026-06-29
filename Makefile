@@ -7,7 +7,7 @@
 
 .PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help ci-review
 .PHONY: contract-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate mock-slug-parity
-.PHONY: certify-fast certify-logic certify-visual certify-live dogfood-status seed-s4-local seed-s4-fly corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-fly-smoke dogfood-five-pack-verify import-latent-corpus tier-a-spot-check tier-b-spot-check
+.PHONY: certify-fast certify-logic certify-visual certify-live dogfood-status seed-s4-local seed-s4-fly corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-fly-smoke dogfood-five-pack-verify dogfood-five-pack-live-api dogfood-five-pack-simulator import-latent-corpus tier-a-spot-check tier-b-spot-check
 .PHONY: preflight-eas fly-secrets verify
 
 # ── Development ───────────────────────────────────────────────────────────────
@@ -148,6 +148,14 @@ dogfood-fly-smoke: ## Automated Fly substrate smoke after dogfood-promote (API +
 dogfood-five-pack-verify: ## Five-pack substrate checks (trips, itinerary venues, discover compose) on PROFILE=fly|local
 	@chmod +x ./scripts/dogfood-five-pack-verify.sh ./scripts/dogfood-env.sh
 	@PROFILE="$(PROFILE)" ./scripts/dogfood-five-pack-verify.sh
+
+dogfood-five-pack-live-api: ## Five-pack live HTTP checks (TestClient local or Fly with PRELAUNCH_JWT)
+	@chmod +x ./scripts/dogfood-five-pack-live-api.sh ./scripts/dogfood-env.sh
+	@PROFILE="$(PROFILE)" TRANSPORT="$(TRANSPORT)" PRELAUNCH_HOST="$(PRELAUNCH_HOST)" ./scripts/dogfood-five-pack-live-api.sh
+
+dogfood-five-pack-simulator: ## Local TestClient API + optional Maestro wedge (RUN_MAESTRO=0 to skip UI)
+	@chmod +x ./scripts/dogfood-five-pack-simulator.sh ./scripts/dogfood-five-pack-live-api.sh ./scripts/dogfood-env.sh
+	@RUN_MAESTRO="$(RUN_MAESTRO)" ./scripts/dogfood-five-pack-simulator.sh
 
 dogfood-status: ## Validate dogfood manifests and print scenario/pack readiness
 	@chmod +x ./scripts/dogfood-status.sh ./scripts/seed-s4-local.sh ./scripts/seed-s4-fly.sh

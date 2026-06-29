@@ -39,14 +39,14 @@ jobs:
         uses: actions/checkout@v6
         with:
           repository: ${{ github.repository_owner }}/travel-agent
-          path: Travel Agent
+          path: travel-agent
           token: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN || github.token }}
 
       - name: Check out Travel App
         uses: actions/checkout@v6
         with:
           repository: ${{ github.repository_owner }}/travel-app
-          path: Travel App
+          path: travel-app
           token: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN || github.token }}
 
       - name: Set up Python
@@ -54,22 +54,22 @@ jobs:
         with:
           python-version: "3.13"
           cache: pip
-          cache-dependency-path: Travel Agent/requirements-dev.txt
+          cache-dependency-path: travel-agent/requirements-dev.txt
 
       - name: Install backend dependencies
         run: pip install -r requirements-dev.txt
-        working-directory: Travel Agent
+        working-directory: travel-agent
 
       - name: Set up Node
         uses: actions/setup-node@v6
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: Travel App/package-lock.json
+          cache-dependency-path: travel-app/package-lock.json
 
       - name: Install frontend dependencies
         run: npm ci
-        working-directory: Travel App
+        working-directory: travel-app
 
       - name: OpenAPI snapshot freshness
         # Regenerate the snapshot offline from the backend models and fail
@@ -88,14 +88,14 @@ jobs:
             exit 1
           fi
           echo "✓ OpenAPI snapshot matches the backend models"
-        working-directory: Travel Agent
+        working-directory: travel-agent
 
       - name: Contract check
         run: make contract-check
 
       - name: Journey mock-walk (tier 1)
         run: npm test -- __tests__/journeys/ --runInBand
-        working-directory: Travel App
+        working-directory: travel-app
 
       - name: API coverage check
         # Verifies every URL the frontend calls in http.ts exists in
