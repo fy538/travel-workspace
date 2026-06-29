@@ -108,10 +108,10 @@ Record pass/fail in Live column below. Login: `elif@dogfood.local` / `mara@dogfo
 | # | Journey | Static | Mock-walk | Logic | Maestro | Live | Certified |
 |---|---|---|---|---|---|---|---|
 | 01 | [Vague Idea](01-vague-idea-to-vesper-shaped-trip.md) | ready | ready | ready | optional | optional | no |
-| 02 | [Create + Invite](02-concrete-trip-creation-and-invite.md) | ready | ready | ready | pending (24) | optional | no |
+| 02 | [Create + Invite](02-concrete-trip-creation-and-invite.md) | ready | ready | ready | ready | optional | no |
 | 03 | [Cold Setup](03-cold-trip-setup-to-useful-workspace.md) | ready | ready | ready | optional | optional | no |
 | 04 | [Private → Group-Safe](04-private-constraint-to-group-safe-plan.md) | ready | ready | ready | optional | required | no |
-| 05 | [Proposal → Plan](05-group-planning-to-proposal-to-plan-mutation.md) | ready | ready | ready | pending (25) | required | no |
+| 05 | [Proposal → Plan](05-group-planning-to-proposal-to-plan-mutation.md) | ready | ready | ready | ready | required | no |
 | 06 | [Coherence](06-home-plan-map-changes-coherence.md) | ready | ready | ready | partial (25) | optional | no |
 | 07 | [Discover → Vesper](07-discover-to-contextual-vesper-to-trip-action.md) | ready | ready | ready | optional | optional | no |
 | 08 | [Live Companion](08-live-trip-what-now-companion.md) | ready | ready | ready | optional | optional | no |
