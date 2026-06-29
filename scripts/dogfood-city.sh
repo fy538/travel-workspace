@@ -8,10 +8,15 @@
 # Dossier/Qdrant enrichment (import_cursor_dossiers + embed) is intentionally a
 # SEPARATE opt-in step (needs network/keys) — pass ENRICH=1 to include it.
 #
+# Environment profiles (Phase 0.5):
+#   PROFILE=local  — Docker Postgres + Docker Qdrant (default workbench)
+#   PROFILE=fly    — PROD_DATABASE_URL + cloud Qdrant (EAS / AI QA)
+#
 # Usage:
-#   scripts/dogfood-city.sh CITY=lisbon                 # dry-run (no writes)
-#   APPLY=1 scripts/dogfood-city.sh CITY=rome           # write to local Postgres
-#   APPLY=1 ENRICH=1 scripts/dogfood-city.sh CITY=rome  # also import dossiers + embed
+#   scripts/dogfood-city.sh CITY=lisbon                         # dry-run (local profile)
+#   APPLY=1 scripts/dogfood-city.sh CITY=rome                   # write to local Postgres
+#   APPLY=1 ENRICH=1 PROFILE=local make dogfood-city CITY=rome  # full enrich on local stack
+#   APPLY=1 scripts/dogfood-promote.sh CITY=lisbon              # Fly promotion wrapper
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -23,11 +28,13 @@ CITY=""
 for arg in "$@"; do
   case "$arg" in
     CITY=*) CITY="${arg#CITY=}" ;;
+    PROFILE=*) PROFILE="${arg#PROFILE=}" ;;
   esac
 done
 CITY="${CITY:-${CITY_ENV:-}}"
+PROFILE="${PROFILE:-${PROFILE_ENV:-local}}"
 if [ -z "$CITY" ]; then
-  echo "usage: scripts/dogfood-city.sh CITY=<lisbon|rome|tokyo|istanbul|brooklyn>" >&2
+  echo "usage: scripts/dogfood-city.sh CITY=<lisbon|rome|tokyo|istanbul|brooklyn> [PROFILE=local|fly]" >&2
   exit 2
 fi
 
@@ -42,13 +49,24 @@ case "$CITY" in
 esac
 
 MANIFEST="tools/dogfood/content/manifests/$STEM.yaml"
+SLUG_BRIDGE="tools/dogfood/content/manifests/elif-rome-slug-bridge.yaml"
 APPLY="${APPLY:-0}"
 ENRICH="${ENRICH:-0}"
-export DATABASE_URL="${DATABASE_URL:-postgresql://vesper:localdev@localhost:5432/vesper}"
 
-if [ "$APPLY" = "1" ]; then WRITE="--apply"; MODE="APPLY (writes to $DATABASE_URL)"; else WRITE=""; MODE="DRY-RUN (no writes)"; fi
+# shellcheck source=scripts/dogfood-env.sh
+source "$SCRIPT_DIR/dogfood-env.sh"
+dogfood_apply_profile
+
+if [ "$APPLY" = "1" ]; then
+  WRITE="--apply"
+  MODE="APPLY (profile=$PROFILE postgres=$DOGFOOD_PG_HOST qdrant=$DOGFOOD_QDRANT_HOST)"
+else
+  WRITE=""
+  MODE="DRY-RUN (profile=$PROFILE)"
+fi
 
 echo "▸ dogfood-city CITY=$CITY  manifest=$STEM  mode=$MODE"
+dogfood_print_stack
 cd "$AGENT_DIR"
 # shellcheck disable=SC1091
 [ -f .venv/bin/activate ] && source .venv/bin/activate
@@ -59,17 +77,50 @@ PYTHONPATH=. python -m tools.dogfood.content.corpus_refs "$MANIFEST" | tail -1
 
 echo ""
 echo "== 2. Import staged corpus refs $WRITE =="
-PYTHONPATH=. python -m tools.dogfood.content.import_staged_refs "$MANIFEST" $WRITE
+PYTHONPATH=. python -m tools.dogfood.content.import_staged_refs "$MANIFEST" $WRITE $(dogfood_allow_prod_flag)
 
 if [ "$ENRICH" = "1" ]; then
   echo ""
   echo "== 2b. Editorial dossiers + embed (ENRICH) =="
   if [ "$APPLY" = "1" ]; then
-    PYTHONPATH=. python scripts/import_cursor_dossiers.py --city "$CITY" || echo "  (dossier import skipped/failed — see output)"
-    PYTHONPATH=. python scripts/embed_eval_briefs.py || true
-    PYTHONPATH=. python scripts/embed_experience_briefs.py || true
+    if ! PYTHONPATH=. python -c "import sentence_transformers, einops" 2>/dev/null; then
+      echo "ERROR: ENRICH requires sentence-transformers and einops in travel-agent .venv." >&2
+      echo "  Run: cd travel-agent && .venv/bin/pip install sentence-transformers einops" >&2
+      exit 1
+    fi
+    if [ "$PROFILE" = "local" ]; then
+      if ! PYTHONPATH=. python -c "
+from backend.core.vector.client import get_qdrant_client
+get_qdrant_client().get_collections()
+" 2>/dev/null; then
+        echo "ERROR: local Qdrant unreachable at $QDRANT_URL — start with: cd travel-agent && docker compose up -d qdrant" >&2
+        exit 1
+      fi
+      PYTHONPATH=. python -c "from backend.core.vector.collections import ensure_collections; ensure_collections()"
+    fi
+    PYTHONPATH=. python scripts/import_cursor_dossiers.py --city "$CITY"
+    if [ "$CITY" = "rome" ] && [ -f "$SLUG_BRIDGE" ]; then
+      echo ""
+      echo "== 2c. Rome manifest ↔ editorial slug bridge =="
+      PYTHONPATH=. python -m tools.dogfood.content.slug_bridge "$SLUG_BRIDGE" --apply --re-embed $(dogfood_allow_prod_flag)
+    fi
+    case "$CITY" in
+      lisbon|brooklyn|rome)
+        PYTHONPATH=. python scripts/embed_eval_briefs.py --city "$CITY"
+        ;;
+      *)
+        echo "  (embed_eval_briefs: no city config for $CITY — import_cursor_dossiers inline embed only)"
+        ;;
+    esac
+    PYTHONPATH=. python scripts/embed_experience_briefs.py
+    PYTHONPATH=. python scripts/embed_place_angles_staging.py || \
+      echo "  (place angles embed skipped — see errors above; often non-$CITY slugs in staging JSON)"
   else
-    echo "  (dry-run: would run import_cursor_dossiers --city $CITY + embed_*; needs network/keys)"
+    echo "  (dry-run: would run import_cursor_dossiers --city $CITY + slug_bridge + embed_*; needs network/keys)"
+    PYTHONPATH=. python scripts/import_cursor_dossiers.py --city "$CITY" --dry-run | tail -5
+    if [ "$CITY" = "rome" ] && [ -f "$SLUG_BRIDGE" ]; then
+      PYTHONPATH=. python -m tools.dogfood.content.slug_bridge "$SLUG_BRIDGE"
+    fi
   fi
 fi
 
@@ -80,11 +131,11 @@ PYTHONPATH=. python -m tools.dogfood.content.validate "$MANIFEST"
 if [ "$APPLY" = "1" ]; then
   echo ""
   echo "== 4. Bootstrap dogfood users =="
-  PYTHONPATH=. python -m tools.dogfood.content.bootstrap_users --apply "$MANIFEST"
+  PYTHONPATH=. python -m tools.dogfood.content.bootstrap_users --apply "$MANIFEST" $(dogfood_allow_prod_flag)
 
   echo ""
   echo "== 5. Seed fixtures =="
-  PYTHONPATH=. python -m tools.dogfood.content.seed "$MANIFEST" --apply
+  PYTHONPATH=. python -m tools.dogfood.content.seed "$MANIFEST" --apply $(dogfood_allow_prod_flag)
 else
   echo ""
   echo "== 4-5. Bootstrap + seed (dry-run preview) =="

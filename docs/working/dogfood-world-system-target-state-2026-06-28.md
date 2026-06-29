@@ -3,7 +3,7 @@
 > Status: north-star / canonical index
 > Owner: founder / engineering
 > Created: 2026-06-28
-> Last updated: 2026-06-28
+> Last updated: 2026-06-28 (dual-environment model added)
 > Scope: the **one system** dogfood, world content, QA, and environments converge to
 > Role: front door + decommission tracker for the four investigation/plan docs below
 
@@ -83,7 +83,7 @@ The cleanup goal in one table — every layer has exactly **one** canonical sour
 | **Scenarios** | `scenarios.yaml` | `Dogfood Scenario Matrix.md` (manual mirror) |
 | **QA** | `docs/journeys/STATUS.md` + certify ladder | Golden Paths; 7 fragmented QA commands; `discover_queries` log-only fiction |
 | **Images** | backend `photo_resolve` + place-riso bundle | unprovisioned CDN vs bundle drift |
-| **Environments** | shared Fly + cohort guards (until split trigger) | (none yet — keep until trigger) |
+| **Environments** | **two deliberate profiles:** local workbench (Docker PG + Docker Qdrant) + Fly certified (Fly PG + cloud Qdrant); promote explicitly | split-brain (local PG → cloud Qdrant); `seed-s4-fly` as only Fly path |
 
 ---
 
@@ -95,8 +95,10 @@ The cleanup goal in one table — every layer has exactly **one** canonical sour
 | Dogfood status CLI | one command | ✅ **Exists** (`make dogfood-status`) | — |
 | S4 seed | one command local + Fly | ✅ **Exists** (`seed-s4-local`, `seed-s4-fly`) | Per-city generalization missing |
 | Itinerary → real places (FK) | all blocks resolve | ✅ **verified** (59/59 slugs, elif Rome FKs) | — |
-| Itinerary blocks have briefs/dossiers | rich, not stub | ❌ Rome 0/0; Lisbon 110 briefs/0 dossiers | Doc 5 Phase 1–2 (enrichment) |
-| World corpus connected | full A+B import | 🟡 structural ✅; **editorial+embeddings not run** | Doc 5 enrichment (`ENRICH=1`) |
+| Itinerary blocks have briefs/dossiers | rich, not stub | 🟡 Lisbon ✅; Rome editorial ✅ but **canonical slugs 0 briefs** | Doc 5 Phase 2a (slug bridge) |
+| World corpus connected | full A+B import | 🟡 structural ✅; Lisbon/Rome editorial imported locally | Doc 5 Phase 0.5 (env profiles) + promote |
+| Environment pairing | atomic PG + Qdrant per profile | ❌ split-brain (local PG, cloud Qdrant) | Doc 5 Phase 0.5 |
+| Fly dogfood world | promoted corpus + fixtures on Fly | ❌ S4 Lisbon cohort only via `seed-s4-fly` | Doc 5 `dogfood-promote` |
 | Discover queries | seeded or regression-tested | ❌ log-only | Doc 4 §discover fix |
 | Mock = backend slugs | one namespace | ❌ mock compose Lisbon-only | Doc 4 Phase 4 |
 | Content governance | catalog/fixture explicit | 🟡 documented (Doc 4) | Adopt tier field |
@@ -132,24 +134,26 @@ The single checklist that makes "no parallel systems" real. Each item = one para
 
 ```bash
 make dogfood-status              # validate manifests + scenario/pack readiness
-make seed-s4-local               # seed S4 lisbon fixtures → local Postgres
-make seed-s4-fly                 # seed S4 → Fly (dry-run; SEED_S4_FLY_APPLY=1 to write)
-make certify-fast                # Tier 1: contract + journey Jest + offline backend
+make corpus-check                # gate: slugs resolve + governance
+make dogfood-city CITY=lisbon    # connect + seed (APPLY=1 ENRICH=1 for full enrich)
+make dogfood-promote CITY=lisbon # Fly promote (Phase 0.5 — PROFILE=fly)
+make seed-s4-local               # legacy narrow S4 local seed
+make seed-s4-fly                 # legacy narrow S4 Fly seed → superseded by dogfood-promote
+make certify-fast                # Tier 1: local profile
 make certify-logic               # Tier 2: journey scenario pytest (Postgres)
 make certify-visual              # Tier 3: wedge Maestro flows
-make certify-live                # Tier 4: dogfood preflight + live-walk checklist
+make certify-live                # Tier 4: Fly profile — EAS + AI QA
 ```
 
-### Proposed addition — one-command city connection
+### Dual environment workflow
 
-Generalize the S4-specific seed into a per-city orchestrator that runs the full A+B+fixture connection (Doc 4's 5 steps) behind one target:
+**Local (workbench):** iterate corpus, run go/no-go, desk dogfood with `make dev-backend`.
 
-```bash
-make dogfood-city CITY=lisbon    # audit → import A → import B → embed → seed → readiness
-make corpus-check                # NEW gate: every manifest slug resolves in corpus
-```
+**Fly (certified):** EAS phone builds + AI-enabled QA hit Fly API + Fly Postgres + cloud Qdrant.
 
-`make corpus-check` joins the certify ladder (Tier 1 or a pre-seed gate) so a manifest can never reference an unstaged slug without CI catching it. **It also enforces governance** (Doc 5 Phase 0): fails on manifest-embedded entity metadata or a missing corpus tier tag, so the parallel systems killed below cannot grow back silently.
+Promotion is one-way: local validate → `make dogfood-promote CITY=` → `certify-live` green.
+
+`make corpus-check` joins the certify ladder so manifests never reference unstaged slugs. **Governance enforcement** (Doc 5 Phase 0): fails on manifest-embedded entities or missing corpus tier tags.
 
 ---
 
@@ -162,7 +166,7 @@ The payoff: once the world is connected, the certify ladder must **exercise it**
 | **fast** | contract + journey Jest + offline pytest | + `corpus-check` (slugs resolve) |
 | **logic** | journey scenario pytest | + discover compose regression on manifest queries (`AI_MODE=replay`) |
 | **visual** | wedge Maestro | run against seeded corpus (real venue cards, not stubs) |
-| **live** | two-account walk checklist | + Vesper retrieval spot-check (cites real dossiers) |
+| **live** | two-account walk checklist | **Fly profile** + Vesper retrieval spot-check (cites real dossiers on promoted corpus) |
 
 This is what ties "rich world" to "how we QA holistically with AI": the same slug graph that makes dogfood feel real is the graph QA asserts against.
 
@@ -176,30 +180,29 @@ This is what ties "rich world" to "how we QA holistically with AI": the same slu
 | 1 | Fix broken gates (`itinerary.test.ts`) | ✅ done (Stream A) | Doc 1 P0-1 |
 | 2 | `mara.ts` + mock fidelity (Jest dedupe) | ✅ done (Stream D) | Doc 4 / Doc 2 |
 | 3 | Wedge E2E retired → `test_j05_plan_edit_commit` | ✅ done (Stream B) | Doc 1 |
-| 4 | Lisbon **enrichment** (`ENRICH=1`: dossiers + embeddings) + go/no-go | ⬜ Doc 5 Phase 1 | Doc 5 |
+| 4 | Lisbon **enrichment** + go/no-go | ✅ Doc 5 Phase 1 GO | Doc 5 |
+| 4b | **Environment profiles** (`PROFILE=local|fly`, `dogfood-promote`, split-brain fix) | ⬜ Doc 5 Phase 0.5 | Doc 5 |
 | 5 | Wedge substrate richness (proposals/home cards in manifest) | ⬜ verify vs Stream B | Doc 2 |
 | 6 | Mock slug parity (compose city-scope, place angles) | ⬜ Stream D follow-up | Doc 4 Phase 4 |
-| 7 | Rome **enrichment** (Phase 2, after go/no-go) | ⬜ Doc 5 Phase 2 | Doc 5 |
-| 7b | Istanbul/Tokyo/Brooklyn (Phase 2b — cartographer or promote) | ⬜ Doc 5 Phase 2b | Doc 5 §cartographer gap registry |
-| 7c | Latent corpus Tier A + B (Phase 2c — persona-accessible cities) | ⬜ Doc 5 Phase 2c | Doc 5 §latent corpus |
+| 7 | Rome **enrichment** | 🟡 Doc 5 Phase 2 partial | Doc 5 |
+| 7a | Rome **slug bridge** (canonical ↔ editorial) | ⬜ Doc 5 Phase 2a blocker | Doc 5 |
+| 7b | Istanbul/Tokyo/Brooklyn (Phase 2b) | ⬜ gated on 0.5 + 2a | Doc 5 |
+| 7c | Latent corpus Tier A + B (Phase 2c) | ⬜ gated on 0.5 | Doc 5 |
 | 8 | Decommission tracker (remaining 7 items) | ⬜ ongoing | this doc |
-| 9 | `make dogfood-city` + `corpus-check` (incl. governance enforcement) | ⬜ engineering | this doc / Doc 5 Phase 0 |
+| 9 | `make dogfood-city` + `make corpus-check` | ✅ Doc 5 Phase 0 | this doc |
 | 10 | Place illustrations (6 cities) | ⏳ handed off | Doc 3 / Stream E |
 
-> **Sequence note (Doc 5):** structural connection (old "Stream F") is **done** — slugs
-> resolve, FKs wired. Steps 4 and 7 are now **enrichment** runs, gated by the Phase 1
-> go/no-go ("does enriched Lisbon feel real?"). Step 7c adds **latent corpus** (32 cities,
-> ~5.2k MD files) as `proof_only` catalog — persona-accessible on real backend, not
-> dogfood-certified. If NO-GO, stop broadening and open a retrieval/composition-quality
-> investigation before enriching Rome or importing latent cities.
+> **Sequence note (Doc 5):** structural connection is **done**. Phase 1 Lisbon GO ✅.
+> Phase 0.5 (dual env profiles) is now the gate before bulk import or Fly EAS dogfood.
+> Phase 2a (Rome slug bridge) gates calling elif Rome rich on the manifest path.
+> Phase 2c latent corpus remains gated on 0.5 — do not import ~5.2k MD files into
+> split-brain stack.
 
-Discipline (unchanged): **Lisbon wedge to W3 before broadening.** Don't connect editorial city #7 or split the backend until a trigger fires.
+Discipline (unchanged): **Lisbon wedge to W3 before broadening.** Each city: local profile first → promote → certify on Fly.
 
-> **Reality check (verified 2026-06-28):** Streams A, B, and D have substantially landed
-> (certify ladder, gate fix, wedge-E2E retirement, `mara.ts`, mock fidelity, Jest dedupe).
-> The remaining run is **corpus connection (Stream F)**, **mock slug parity**, the
-> **decommission tracker**, and the **`dogfood-city`/`corpus-check` engineering** — i.e. the
-> integration layer, not the streams.
+> **Reality check (2026-06-28):** Streams A, B, D landed. Phase 0–1 executed locally.
+> Remaining integration: **env profiles**, **Rome slug bridge**, **Fly promotion path**,
+> latent corpus, decommissions, mock slug parity.
 
 ---
 
@@ -208,9 +211,11 @@ Discipline (unchanged): **Lisbon wedge to W3 before broadening.** Don't connect 
 This run is complete when:
 
 - [ ] `make corpus-check` green for lisbon-phase1 + elif-rome (0 unresolved slugs) **and enforcing governance** (no manifest-embedded entities; tier tag required)
-- [ ] `make dogfood-city CITY=lisbon` runs the full connection **incl. `ENRICH=1`** end-to-end
-- [ ] **Phase 1 go/no-go passed:** enriched Lisbon cites real dossiers in Vesper/Discover (not stubs)
-- [ ] **Phase 2c Tier A:** latent persona-adjacent cities (paris, venice, …) imported as `proof_only`
+- [ ] **Dual env:** `PROFILE=local|fly` + `make dogfood-promote`; no split-brain (local PG + local Qdrant; Fly PG + cloud Qdrant)
+- [ ] **Phase 1 go/no-go passed:** enriched Lisbon cites real dossiers on local profile ✅
+- [ ] **Phase 2a:** Rome canonical manifest slugs have briefs/retrieval (slug bridge)
+- [ ] **Fly promoted:** Lisbon + Rome corpus + fixtures on Fly for EAS + AI QA
+- [ ] **Phase 2c Tier A:** latent persona-adjacent cities imported as `proof_only` (local then promote)
 - [ ] Decommission tracker: all 8 items closed
 - [ ] Certify ladder tiers exercise the connected world (corpus-check + compose regression wired)
 - [ ] Catalog/fixture governance adopted (corpus tier tagged; analytics-exclusion + egress + reset guardrails in place)
@@ -219,11 +224,20 @@ This run is complete when:
 
 ---
 
-## Environment model (recap — see Doc 4 for detail)
+## Environment model (dual profiles — see Doc 5 Phase 0.5)
 
-- **Catalog** (world corpus) → production, quality-gated. Importing to Fly is correct, not a violation.
-- **Fixtures** (lived substrate) → cohort-isolated (`@dogfood.local`, `_dogfood`), `--allow-prod` gated, resettable.
-- **Split a dedicated `vesper-backend-dogfood`** only when: external testers create real data, OR real users need clean analytics, OR destructive reseed is frequent. Until then: shared Fly + cohort guards.
+Two deliberate dogfood worlds, not one split stack:
+
+| Profile | Postgres | Qdrant | Use |
+|---------|----------|--------|-----|
+| **`local`** | Docker local | Docker local | Workbench: iterate corpus, desk dev, go/no-go |
+| **`fly`** | Fly/Neon (`PROD_DATABASE_URL`) | Qdrant Cloud | EAS phone dogfood + AI-enabled QA |
+
+**Invariant:** embed always from the **same** Postgres the API reads. Promotion (`make dogfood-promote CITY=`) is explicit local → Fly.
+
+- **Catalog** (world corpus) → quality-gated; promote to Fly after local spot-check.
+- **Fixtures** (lived substrate) → cohort-isolated (`@dogfood.local`), `--allow-prod` gated on Fly promote.
+- **Split a dedicated `vesper-backend-dogfood` Fly app** only when: external testers, analytics isolation, or frequent destructive reseed. Until then: shared Fly + cohort guards.
 
 ---
 
@@ -231,4 +245,4 @@ This run is complete when:
 
 You're closer than the four docs imply: the **certify ladder, dogfood-status, and S4 seed already exist**. What converts "substantially cleaner" into "one clean system" is finishing three things this doc now owns: **connect the world** (Doc 4 execution), **kill the 8 parallel systems** (decommission tracker), and **wire the connected world into the certify ladder** (QA loop closure) — plus a single `make dogfood-city` so the whole thing is one command.
 
-**Next action (see Doc 5 for the sequenced run):** commit the existing Makefile/script work + governance enforcement (Phase 0), then run Lisbon **enrichment** (`ENRICH=1`) and hit the go/no-go gate before broadening to Rome.
+**Next action (see Doc 5):** Phase **0.5** — wire `PROFILE=local|fly`, fix split-brain (re-embed local Qdrant), add `make dogfood-promote`. Then Phase **2a** Rome slug bridge before Fly promote or Phase 2b/2c.

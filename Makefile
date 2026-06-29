@@ -7,7 +7,7 @@
 
 .PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help ci-review
 .PHONY: contract-check mock-real-parity golden-path-qa offline-qa reliability-report reliability-gate
-.PHONY: certify-fast certify-logic certify-visual certify-live dogfood-status seed-s4-local seed-s4-fly corpus-check dogfood-city
+.PHONY: certify-fast certify-logic certify-visual certify-live dogfood-status seed-s4-local seed-s4-fly corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-fly-smoke
 .PHONY: preflight-eas fly-secrets verify
 
 # ── Development ───────────────────────────────────────────────────────────────
@@ -110,9 +110,21 @@ corpus-check: ## Gate: every dogfood manifest slug resolves in DB or staging (we
 	@chmod +x ./scripts/corpus-check.sh
 	@./scripts/corpus-check.sh
 
-dogfood-city: ## Connect corpus + seed a city. Usage: make dogfood-city CITY=lisbon [APPLY=1] [ENRICH=1]
-	@chmod +x ./scripts/dogfood-city.sh
-	@APPLY="$(APPLY)" ENRICH="$(ENRICH)" ./scripts/dogfood-city.sh CITY=$(CITY)
+dogfood-city: ## Connect corpus + seed a city. Usage: make dogfood-city CITY=lisbon [APPLY=1] [ENRICH=1] [PROFILE=local|fly]
+	@chmod +x ./scripts/dogfood-city.sh ./scripts/dogfood-env.sh
+	@APPLY="$(APPLY)" ENRICH="$(ENRICH)" PROFILE="$(PROFILE)" ./scripts/dogfood-city.sh CITY=$(CITY)
+
+dogfood-promote: ## Promote city pack to Fly + cloud Qdrant. Usage: make dogfood-promote CITY=lisbon [APPLY=1]
+	@chmod +x ./scripts/dogfood-promote.sh ./scripts/dogfood-env.sh
+	@APPLY="$(APPLY)" ./scripts/dogfood-promote.sh CITY=$(CITY)
+
+dogfood-env-check: ## Print dogfood Postgres+Qdrant stack pairing for PROFILE=local|fly
+	@chmod +x ./scripts/dogfood-env-check.sh ./scripts/dogfood-env.sh
+	@PROFILE="$(PROFILE)" APPLY="$(APPLY)" ./scripts/dogfood-env-check.sh
+
+dogfood-fly-smoke: ## Automated Fly substrate smoke after dogfood-promote (API + Fly DB + Rome bridge)
+	@chmod +x ./scripts/dogfood-fly-smoke.sh ./scripts/dogfood-env.sh
+	@./scripts/dogfood-fly-smoke.sh
 
 dogfood-status: ## Validate dogfood manifests and print scenario/pack readiness
 	@chmod +x ./scripts/dogfood-status.sh ./scripts/seed-s4-local.sh ./scripts/seed-s4-fly.sh

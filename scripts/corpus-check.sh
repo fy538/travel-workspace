@@ -47,7 +47,11 @@ if [ -n "$GOVERNANCE_MANIFESTS" ]; then
 else
   gov_stems=""
   for f in "$MANIFEST_DIR"/*.yaml; do
-    gov_stems="$gov_stems $(basename "$f" .yaml)"
+    base="$(basename "$f" .yaml)"
+    case "$base" in
+      *-slug-bridge) continue ;;
+    esac
+    gov_stems="$gov_stems $base"
   done
 fi
 for stem in $gov_stems; do
@@ -58,8 +62,22 @@ for stem in $gov_stems; do
   fi
 done
 
+echo "== corpus-check: Rome canonical brief bridge (elif-rome) =="
+SLUG_BRIDGE="$MANIFEST_DIR/elif-rome-slug-bridge.yaml"
+if [ -f "$SLUG_BRIDGE" ]; then
+  if PYTHONPATH=. python -m tools.dogfood.content.slug_bridge "$SLUG_BRIDGE" --verify; then
+    echo "  ✓ elif-rome: canonical manifest slugs have briefs"
+  else
+    echo "  ✗ elif-rome: canonical slugs missing briefs — run slug_bridge --apply after ENRICH" >&2
+    fail=1
+  fi
+else
+  echo "  (skip: $SLUG_BRIDGE not found)"
+fi
+echo ""
+
 if [ "$fail" -ne 0 ]; then
   echo "corpus-check FAILED." >&2
   exit 1
 fi
-echo "corpus-check PASSED: slugs resolve and manifest governance is clean."
+echo "corpus-check PASSED: slugs resolve, governance clean, elif-rome brief bridge ok."

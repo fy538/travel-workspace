@@ -17,58 +17,40 @@ step() { printf "\n  %s\n" "$1"; }
 
 bold "Certify-live preflight (automated)"
 
-step "1/4 Fly backend reachable"
+step "1/5 Fly backend reachable"
 if curl -sf "$FLY_HOST/ready" >/dev/null; then
   ok "$FLY_HOST/ready"
 else
   warn "$FLY_HOST/ready failed — is vesper-backend deployed?"
 fi
 
-step "2/4 S4 substrate on Fly (mara@dogfood.local)"
+step "2/5 Fly dogfood substrate (mara + elif)"
 if [[ -f "$AGENT_DIR/.env.prod" ]]; then
-  cd "$AGENT_DIR"
-  source .venv/bin/activate
-  PROD_DATABASE_URL="$(
-    PYTHONPATH=. python - <<'PY'
-from dotenv import load_dotenv
-from pathlib import Path
-import os
-load_dotenv(Path(".env.prod"), override=False)
-print(os.environ.get("PROD_DATABASE_URL", ""))
-PY
-  )"
-  if [[ -n "$PROD_DATABASE_URL" ]]; then
-    export DATABASE_URL="$PROD_DATABASE_URL"
-    export ENVIRONMENT=production
-    if PYTHONPATH=. python scripts/dogfood_audit.py \
-      --summary --persona mara@dogfood.local --no-target-banner 2>&1 | tee /tmp/certify-live-audit.txt | grep -q "Persona readiness"; then
-      ok "dogfood audit ran against Fly DB"
-      grep -E "mara@|trips=|proposals=" /tmp/certify-live-audit.txt 2>/dev/null || true
-    else
-      warn "S4 not seeded on Fly yet — run: SEED_S4_FLY_APPLY=1 make seed-s4-fly"
-    fi
+  if "$SCRIPT_DIR/dogfood-fly-smoke.sh" 2>&1 | tee /tmp/certify-live-fly-smoke.txt; then
+    ok "dogfood-fly-smoke passed"
   else
-    warn "PROD_DATABASE_URL missing in .env.prod — skip Fly audit"
+    warn "dogfood-fly-smoke failed — see output above (promote with: APPLY=1 make dogfood-promote CITY=lisbon)"
   fi
 else
-  warn "No .env.prod — skip Fly substrate audit"
+  warn "No .env.prod — skip Fly substrate smoke"
 fi
 
-step "3/4 Maestro wedge (DoD gate 4)"
+step "3/5 Maestro wedge (DoD gate 4)"
 if [[ "${CERTIFY_VISUAL_OK:-}" == "1" ]]; then
   ok "Maestro 24/25 reported green this session"
 else
   warn "Run: make certify-visual (needs simulator + Metro dev client)"
 fi
 
-step "4/4 Human live walk (DoD gates 5–8) — two Clerk accounts on EAS dogfood build"
+step "4/5 Human live walk (DoD gates 5–8) — two Clerk accounts on EAS dogfood build"
 cat <<'EOF'
 
   Prerequisites:
     • EAS dogfood build installed (USE_MOCK=false, API=https://vesper-backend.fly.dev)
     • Device A: organizer (your founder account)
     • Device B: invitee (second Clerk account — test user or second phone)
-    • S4 seeded on Fly (make seed-s4-fly with SEED_S4_FLY_APPLY=1) OR create fresh trip live
+    • Lisbon + Rome promoted on Fly (APPLY=1 make dogfood-promote CITY=lisbon|rome)
+    • Automated preflight: make dogfood-fly-smoke
 
   Walk J02 → J05 (docs/working/wedge-journey-02-05-path-to-dogfood.md):
 

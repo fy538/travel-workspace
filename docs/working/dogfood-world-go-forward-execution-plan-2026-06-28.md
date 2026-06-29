@@ -1,12 +1,13 @@
 # Dogfood & World System — Go-Forward Execution Plan
 
-> Status: execution plan (sequenced, not yet run)
+> Status: **in progress** (Phases 0–2 partially executed; environment consolidation added 2026-06-28)
 > Owner: founder / engineering
 > Created: 2026-06-28
+> Last updated: 2026-06-28
 > Companion to: `dogfood-world-system-target-state-2026-06-28.md` (north-star)
-> Scope: the ordered run that takes us from "structurally connected" to "one rich, clean, QA'd world"
+> Scope: the ordered run that takes us from "structurally connected" to **two deliberate dogfood worlds** (local workbench + Fly/EAS) with one promotion path, rich corpus, and holistic QA
 
-**Question this doc answers:** Given everything verified in the 2026-06-28 substrate investigation, what is the *optimal order of operations* to reach one clean system — and does that order actually solve every stated problem?
+**Question this doc answers:** Given everything verified in the 2026-06-28 substrate investigation — including the cloud/local split-brain — what is the *optimal order of operations* to reach one clean system you can dogfood on **both** local and Fly/EAS?
 
 ---
 
@@ -14,29 +15,106 @@
 
 The substrate investigation (2026-06-28) verified a result that **changes the priority order** vs the original corpus-connection plan:
 
-**Structural connection is already done. Enrichment is the real remaining gap.**
+**Structural connection is already done. Enrichment + environment pairing are the real remaining gaps.**
 
 Evidence (local Postgres, after `APPLY=1 make dogfood-city` for all 5 packs):
 
-| Check | Result |
-|-------|--------|
+| Check | Result (2026-06-28) |
+|-------|---------------------|
 | Manifest slugs resolve in DB (`corpus_refs`) | ✅ 59/59, 0 missing |
 | Itinerary block → `venue_id` / `experience_id` FK | ✅ verified on elif Rome (8 blocks, all entity blocks resolve) |
 | Canonical entity metadata (name, type, coords, tags) | ✅ present |
-| **Editorial briefs in DB** | ❌ Rome **0** / Lisbon 110 |
-| **Editorial dossiers in DB** | ❌ Rome **0** / Lisbon **0** |
-| **Editorial MD on disk, unimported** | ⚠️ Rome 322 / Lisbon 312 |
-| **Qdrant embeddings (`ENRICH=1`)** | ❌ never run |
+| **Lisbon editorial import + briefs** | ✅ Phase 1 run: 312 files, ~249 briefs in DB |
+| **Rome editorial import + briefs** | 🟡 Phase 2 run: ~207 briefs in DB — **but manifest canonical slugs still have 0 briefs** (slug namespace split) |
+| **Qdrant embeddings** | ⚠️ ran to **cloud Qdrant** from **local Postgres** — split-brain; local Docker Qdrant empty |
+| **Fly Postgres corpus + fixtures** | ❌ not promoted; `seed-s4-fly` is Lisbon S4 cohort only |
 
-**Implication:** "Stream F / corpus connection" must be **re-scoped**. The gap is *not* "make slugs resolve" (solved by `import_staged_refs`). The gap is "run editorial import + embeddings so Discover/Vesper are actually rich." Elif's restaurants are real seeded canonical entities — but they're structural stubs (no briefs, no dossiers, no vectors) until enrichment runs.
+**Implication:** "Stream F / corpus connection" is **re-scoped**. The gap is not "make slugs resolve" (solved by `import_staged_refs`). The gaps are:
 
-This re-scoping is the spine of the sequence below.
+1. **Enrichment** — editorial import + embeddings so Discover/Vesper are rich (partially done for Lisbon/Rome editorial namespace).
+2. **Environment pairing** — each dogfood world is an atomic **Postgres + Qdrant** pair; never mix local PG with cloud vectors (or vice versa).
+3. **Promotion** — explicit one-way path from local workbench → Fly certified world for EAS + AI QA.
+4. **Rome slug bridge** — manifest canonical slugs vs editorial slugs are two namespaces in the same DB.
+
+---
+
+## Dual environment model (new spine — Phase 0.5)
+
+We dogfood in **two deliberate worlds**, not one accidentally split stack.
+
+| | **Local (workbench)** | **Fly + EAS (certified)** |
+|---|----------------------|---------------------------|
+| **Primary use** | Fast iteration — corpus, manifests, slug fixes, desk dev | Phone dogfood (EAS builds) + AI-enabled QA (`certify-live`, eval agents) |
+| **Postgres** | Docker `postgresql://vesper:localdev@localhost:5432/vesper` | Fly/Neon via `PROD_DATABASE_URL` in `.env.prod` |
+| **Qdrant** | Docker `http://localhost:6333` | Qdrant Cloud (`QDRANT_URL` in Fly secrets / `.env`) |
+| **Personas** | `@dogfood.local` seeded by `dogfood-city` (default) | Same emails; seeded only via **explicit Fly promotion** |
+| **Can be ahead of Fly?** | ✅ yes — that's the point | ❌ should never be ahead without knowing |
+
+### The invariant (non-negotiable)
+
+```text
+One environment = one Postgres + one Qdrant, embedded FROM that same Postgres.
+
+Local:  local PG  → import + embed → local Qdrant
+Fly:    Fly PG    → import + embed → cloud Qdrant
+
+NEVER: local PG → embed → cloud Qdrant   ← current split-brain (venue_id mismatch on Fly)
+NEVER: Fly PG  → embed → local Qdrant
+```
+
+Qdrant payloads carry **`venue_id` integers from the Postgres used at embed time**. Fly API + Fly Postgres + cloud Qdrant that was embedded from local Postgres = broken retrieval.
+
+### Environment profiles
+
+| Profile | `DATABASE_URL` | `QDRANT_URL` | When to use |
+|---------|----------------|--------------|-------------|
+| **`local`** (default) | local Docker Postgres | local Docker Qdrant | Desk dev, `make dev-backend`, fast corpus iteration |
+| **`fly`** | `PROD_DATABASE_URL` | cloud Qdrant | EAS dogfood, AI QA, `certify-live` against real stack |
+
+**Engineering (Phase 0.5):**
+
+- Extend `dogfood-city.sh` with `PROFILE=local|fly` (default `local`).
+- `PROFILE=local` → set both URLs to Docker defaults; fail if `.env` overrides Qdrant to cloud without `ALLOW_MIXED=1`.
+- `PROFILE=fly` → load `.env.prod`, require `--allow-prod` on seed/bootstrap, print target DSNs before writes.
+- Add `make dogfood-promote CITY=<city>` → `PROFILE=fly APPLY=1 ENRICH=1 make dogfood-city CITY=...` (wrapper).
+- Document profiles in `travel-agent/.env.example` and README.
+
+### Content flow (promotion, not continuous sync)
+
+```text
+content/staging/*.md
+        │
+        ▼
+  ┌─────────────────┐
+  │ PROFILE=local   │  workbench: iterate, spot-check, go/no-go
+  │ import + enrich │
+  └────────┬────────┘
+           │ validate locally (corpus-check, Vesper/Discover spot-check)
+           ▼
+  ┌─────────────────┐
+  │ PROFILE=fly     │  promote: same city pack to Fly PG + cloud Qdrant
+  │ dogfood-promote │
+  └────────┬────────┘
+           │ certify on Fly (AI QA + EAS)
+           ▼
+     phone + eval agents hit certified world
+```
+
+Local can be ahead of Fly. Fly is **what we trust** for phone + QA. Promotion is intentional, not accidental via `.env` defaults.
+
+### Remediation (do before Phase 2c bulk import)
+
+**Split-brain fix (executed once after Phase 0.5 lands):**
+
+1. Re-run Lisbon + Rome embed with `PROFILE=local` so local Docker Qdrant is populated from local Postgres.
+2. Do **not** treat existing cloud Qdrant vectors (embedded from local PG) as Fly-safe until `dogfood-promote` re-embeds from Fly Postgres.
+3. Optional: add `scripts/dogfood-env-check.sh` — prints PG host + Qdrant host + warns on mismatch.
 
 ---
 
 ## Identity of the seeded entities (so "legit restaurant" is unambiguous)
 
-A clarifying note that governs how we talk about dogfood content, to prevent future confusion:
+A clarifying note that governs how we talk about dogfood content:
 
 | Slug | DB name | What it actually is |
 |------|---------|---------------------|
@@ -45,274 +123,232 @@ A clarifying note that governs how we talk about dogfood content, to prevent fut
 | `rome-venue-suppli-counter` | Suppli Standing Counter | Generic Roman street-food archetype |
 | `rome-venue-da-enzo-warm-room` | Da Enzo-Style Warm Trattoria | Composite, inspired-by Da Enzo |
 
-These are **dogfood-safe stand-ins**: real enough for planning UX, deliberately *not* claims of a specific bookable business. The `-style` suffix is the governance signal. This is correct for fixtures and should be preserved, not "fixed."
+These are **dogfood-safe stand-ins**: real enough for planning UX, deliberately *not* claims of a specific bookable business. The `-style` suffix is the governance signal. Preserve, not "fix."
+
+**Separate from cloud/local:** Rome also has an **editorial slug namespace** (`toastaccio`, `trippa`, `piazza-testaccio`, …) that does not match manifest canonical slugs. Itinerary FKs resolve to canonical stubs; Vesper retrieves editorial venues by editorial slug — not via manifest IDs. See Phase 2a below.
 
 ---
 
-## The phased run (0 → 4, plus 2b and 2c)
+## Execution status snapshot
 
-Ordered by dependency and by the discipline rule: **Lisbon wedge to W3 before broadening.**
+| Phase | Status | Notes |
+|-------|--------|-------|
+| **0** | ✅ Done | `corpus-check`, `dogfood-city`, Makefile wired; governance in travel-agent |
+| **0.5** | ⬜ Next | Environment profiles + split-brain remediation |
+| **1** | ✅ Done | Lisbon ENRICH on local PG; go/no-go **GO** (brief retrieval works on local stack) |
+| **2** | 🟡 Partial | Rome editorial enriched; **canonical slug bridge open** |
+| **2a** | ⬜ Blocker | Rome manifest ↔ editorial slug bridge |
+| **2b** | ⬜ Gated | Istanbul / Tokyo / Brooklyn |
+| **2c** | ⬜ Gated | Latent corpus — **blocked until 0.5 + 2a** |
+| **3** | ⬜ Parallel | Decommission parallel systems |
+| **4** | ⬜ Payoff | QA wiring + Fly promotion in certify ladder |
 
-### Phase 0 — Lock in what's built (workspace-only, zero coordination)
+---
 
-1. Commit uncommitted workspace work:
+## The phased run (0 → 4, plus 0.5, 2a, 2b, 2c)
+
+Ordered by dependency. Discipline rule: **Lisbon wedge to W3 before broadening** — now extended with **local profile before Fly promote**.
+
+### Phase 0 — Lock in what's built ✅
+
+1. Commit workspace tooling:
    - `scripts/corpus-check.sh`
    - `scripts/dogfood-city.sh`
    - `Makefile` (`make corpus-check`, `make dogfood-city`, `certify-fast` → runs `corpus-check` first)
-2. **Governance enforcement (close goal 4's hole):** extend `corpus-check` so governance is *self-enforcing*, not just documented. It should fail when:
-   - a manifest embeds venue/place metadata inline instead of referencing a corpus slug (no manifest-duplicated entity copies), and
-   - a corpus entity is missing its tier tag (`proof_only` vs `launch_candidate`) or a fixture-only entity lacks its dogfood-safe signal (e.g. the `-style` suffix convention).
+2. **Governance enforcement:** `corpus-check` fails on manifest-embedded entities and missing `corpus_tier` tags.
 
-   *Rationale:* without a check, the parallel systems killed in Phase 3 grow back. A doc cannot stop the next contributor; a failing gate can.
+*Status: committed on workspace branch; travel-agent governance committed.*
 
-*Why first:* no dependencies, makes `corpus-check` a live gate immediately, and everything downstream references these scripts.
+### Phase 0.5 — Environment profiles (before bulk enrich or Fly dogfood)
 
-### Phase 1 — Prove enrichment end-to-end on **Lisbon only**
+3. **`PROFILE=local|fly` in `dogfood-city.sh`** — atomic PG+Qdrant binding; mismatch warning/error.
+4. **`make dogfood-promote CITY=`** — Fly promotion wrapper (`PROFILE=fly APPLY=1 ENRICH=1`).
+5. **`scripts/dogfood-env-check.sh`** — print active stack; wired into `certify-live` preflight.
+6. **Split-brain remediation:**
+   - Re-embed Lisbon + Rome with `PROFILE=local` → local Docker Qdrant.
+   - Document that cloud Qdrant state from pre-0.5 local embeds is **not Fly-authoritative**.
+7. **`.env.example` update** — document `local` vs `fly` profile env vars side by side.
 
-2. Run `APPLY=1 ENRICH=1 make dogfood-city CITY=lisbon` locally — import 312 Lisbon dossiers + embeddings to Qdrant.
-3. Resolve the prerequisites this surfaces (the real unknowns):
-   - Nominatim / network access for dossier import
-   - API keys for the embed step
-4. Patch `dogfood-city.sh` for any `ENRICH=1` friction (this path has never been exercised).
-5. **GO/NO-GO GATE — "does it feel real?" (the one unproven goal):**
-   Spot-check the payoff and make this an explicit decision, not a checkbox:
-   - **GO** if Vesper cites real Lisbon dossiers *and* Discover composes from real venues (not stubs/fallbacks). → proceed to Phase 2.
-   - **NO-GO** if enriched Lisbon still feels thin. → **stop broadening.** The problem is not import; it is retrieval/composition quality. Branch to a *new* investigation (embedding quality, retrieval ranking, board composition) before spending enrichment cost on Rome or any other city.
+*Gate: Phase 2c and any Fly EAS dogfood depend on this.*
 
-   *Rationale:* "feels real" is the only one of the five goals that is still a hypothesis. Proving or disproving it cheaply on one city — before paying the five-city cost — is the highest-leverage decision in the whole run.
+### Phase 1 — Prove enrichment end-to-end on **Lisbon only** ✅
 
-*Why Lisbon-only:* already has 110 briefs → closest to rich → lowest-effort proof the enrichment path works before paying the cost on five cities. Honors the wedge rule.
+8. Run `APPLY=1 ENRICH=1 make dogfood-city CITY=lisbon` locally.
+9. Resolve prerequisites (sentence-transformers, einops, network for embed).
+10. **GO/NO-GO GATE — passed:** Vesper/Discover cite real Lisbon dossiers on **local stack**.
 
-### Phase 2 — Generalize, then **Rome**
+*Follow-up under 0.5: re-embed to local Qdrant (was cloud during first run).*
 
-6. Run `APPLY=1 ENRICH=1 make dogfood-city CITY=rome` — fills Rome's 0-brief / 0-dossier gap from the 322 MD files.
-7. Add an **enrichment-depth check** (briefs/dossiers per city) so "connected" now asserts *rich*, not just *resolves*.
+### Phase 2 — Rome enrichment + canonical bridge
 
-*Why second:* Rome is the second canonical wedge (elif/Sarah/Mike) and the subject of the substrate question that started this — closing it makes the flagship-persona dogfood story whole.
+11. Run `APPLY=1 ENRICH=1 make dogfood-city CITY=rome` — ✅ editorial import done (~322 files, ~207 briefs).
+12. Add **enrichment-depth check** (briefs/dossiers per city; assert rich, not just resolves).
 
-### Phase 2b — Remaining dogfood cities (after go/no-go + Rome)
+#### Phase 2a — Rome manifest ↔ editorial slug bridge (blocker before calling elif Rome "rich")
 
-**Gate:** Do not start until Phase 1 go/no-go is **GO** and Phase 2 (Rome import) is complete. Doc 4 wedge discipline also applies: **do not start Istanbul cartographer until Lisbon W3 passes.**
+**Problem:** Manifest canonical slugs (`rome-market-testaccio`, `rome-venue-roscioli-style-reservation`, …) exist as stub rows from `import_staged_refs` with **0 briefs**. Editorial MD uses different slugs (`toastaccio`, `trippa`, …) with full briefs. Itinerary FKs resolve to canonical stubs; Vesper cannot retrieve manifest-slug venues via editorial corpus.
 
-The five active dogfood manifests do **not** share the same enrichment path. See [Cartographer gap registry](#cartographer-gap-registry) below.
+**Pick one fix (founder decision — default recommendation: alias map):**
 
-| City | Manifest | Path | Phase 2b step |
-|------|----------|------|---------------|
-| **Istanbul** | `istanbul-phase1` | **New cartographer pass** (no MD on disk) | 8 — authoring project |
-| **Tokyo** | `tokyo-phase1` | Optional thin editorial OR JSON-only | 9 — light pass |
-| **Brooklyn** | `brooklyn-phase1` | JSON promote + embed (not cartographer MD) | 10 — verify promote |
+| Option | Approach | Pros | Cons |
+|--------|----------|------|------|
+| **A (recommended)** | Slug alias map: canonical → editorial; copy or join briefs at read time | Preserves `-style` governance on manifests | Requires alias table or seed-time mapping |
+| **B** | Copy briefs onto canonical slug rows at import | Simple retrieval by manifest ID | Duplicates editorial content |
+| **C** | Re-align manifest slugs to editorial slugs | One namespace | Breaks `-style` fixture semantics; manifest churn |
 
-8. **Istanbul cartographer pass (P1):** Run pipeline B from scratch — cartographer → scout → angles → write → `import_cursor_dossiers.py --city istanbul`. Richest elif narrative surface (14 entity saves, 6 experiences, pending Atlas artifact) with **zero editorial depth** today. Expect 3–5 days of authoring work before import is possible. Structural connection (19/19 slugs) is already done via `istanbul-elif-canonical-001.json`.
+13. Implement chosen bridge; verify elif Rome blocks cite dossiers **by manifest slug path**.
+14. Re-run enrichment-depth check for Rome canonical slugs specifically.
 
-9. **Tokyo thin editorial (P2):** Memory-beat pack by design — generic venue anchors may be acceptable. Minimum: ensure Pipeline A briefs are promoted + embedded for manifest slugs (12 refs). Full cartographer pass is **optional**, not required for W2.
+*Gate: Phase 2b and Fly promote for Rome blocked until 2a passes on local profile.*
 
-10. **Brooklyn promote + embed (P2):** Has JSON briefs in `tools/seed/staging/brooklyn-briefs-*.json` (99% brief coverage per seed README) but **no** `content/staging/brooklyn/`. Run promote + embed for manifest venues (`bakeri-williamsburg`, `hotel-delmano`, `paulie-gees-greenpoint`); verify briefs land in DB. Full cartographer dossiers only if home-city Discover/Vesper still feels thin after JSON briefs.
+#### Phase 2 — engineering debt surfaced by enrichment
 
-*Why after Rome:* Istanbul/Tokyo/Brooklyn are W2 dogfood packs, not wedge cities. Istanbul is the highest-risk "feels fake" surface after Rome because it has the richest manifest narrative with no editorial layer — but proving the import path on Lisbon/Rome first avoids authoring 300 MD files into a broken retrieval stack.
+15. **Dossier parser:** venue importer expects `## Dossier`; MD uses `## Dossier: {lens}` → most place dossiers skipped (~24 imported). Fix parser to accept lens suffix.
+16. **Place angles embed:** filter by city or fix Brooklyn slug refs in global staging JSON (non-fatal skip today).
+
+### Phase 2b — Remaining dogfood cities (after go/no-go + Rome 2a)
+
+**Gate:** Phase 1 GO ✅, Phase 2a complete, Phase 0.5 complete.
+
+| City | Manifest | Path | Step |
+|------|----------|------|------|
+| **Istanbul** | `istanbul-phase1` | New cartographer pass | 17 |
+| **Tokyo** | `tokyo-phase1` | JSON-only or thin editorial | 18 |
+| **Brooklyn** | `brooklyn-phase1` | JSON promote + embed | 19 |
+
+17. **Istanbul cartographer (P1):** pipeline B from scratch → `import_cursor_dossiers.py --city istanbul`.
+18. **Tokyo thin editorial (P2):** JSON promote minimum for manifest slugs; full cartographer optional.
+19. **Brooklyn promote + embed (P2):** promote from `tools/seed/staging/brooklyn-briefs-*.json`.
+
+Each city: **`PROFILE=local` first** → spot-check → **`make dogfood-promote CITY=`** when ready for EAS/QA.
 
 ### Phase 2c — Latent corpus rollout (persona-accessible cities beyond manifests)
 
-**Gate:** Do not start until Phase 1 go/no-go is **GO** and Phase 2 (Rome import) is complete. Same retrieval stack that makes Lisbon feel real must be proven before importing ~5,200 additional MD files.
+**Gate:** Phase 0.5 ✅, Phase 2a ✅, Phase 1 go/no-go ✅. Same retrieval stack proven on local profile before importing ~5,200 additional MD files.
 
-**Goal:** Dogfood personas can create ad-hoc trips to European cities beyond the five manifest packs — trip destination resolves, search/Discover/Vesper return real corpus — without expanding the certify ladder or dogfood manifest QA surface to 39 cities.
+**Do not bulk-import until environment profiles are wired** — importing 34 cities into local Postgres while embeddings accidentally target shared cloud Qdrant deepens split-brain.
 
-**Key distinction:**
+**Goal:** Dogfood personas can create ad-hoc trips to European cities beyond the five manifest packs — trip destination resolves, search/Discover/Vesper return real corpus — without expanding certify ladder to 39 cities.
 
 | Concept | Meaning |
 |---------|---------|
-| **Catalog availability** | City in Postgres + Qdrant; trip-create, search, Vesper work on real backend |
-| **Dogfood-ready** | Manifest, fixtures, certify ladder, mock parity — still only the 5 packs |
+| **Catalog availability** | City in Postgres + Qdrant (matched profile); trip-create, search, Vesper work |
+| **Dogfood-ready** | Manifest, fixtures, certify ladder — still only the 5 packs |
 
-Latent cities get **`corpus_tier: proof_only`**. Lisbon/Rome (and eventually Istanbul post-cartographer) stay **`launch_candidate`**. Dogfood manifests must only reference `launch_candidate` slugs unless explicitly tagged `proof_only` (enforced by `corpus-check` in Phase 0).
+Latent cities get **`corpus_tier: proof_only`**. Tier A + B import runs on **`PROFILE=local`**; Fly promote is a **separate batch** after Tier A spot-check.
 
-**Scale (verified 2026-06-28):** 34 cities in `content/staging/`, **~5,869 MD files** total. Lisbon + Rome = ~634; remaining **32 cities ≈ 5,235 files**. All are **import gap only** (cartographer already ran) — no new authoring.
+#### Tier A — Persona-adjacent (~5 cities)
 
-#### Tier A — Persona-adjacent (import first, ~5 cities)
+`paris`, `barcelona`, `venice`, `amalfi-coast`, `nice`
 
-Cities personas and mocks already *imply* but that have **zero Postgres presence** today:
+20. Tier A import + embed (`PROFILE=local`).
+21. Tier A frontend parity: `MOCK_DESTINATIONS` in travel-app.
+22. Tier A spot-check: one ad-hoc trip per city on **local profile**; then optional Fly promote batch.
 
-| City | MD on disk | Why Tier A |
-|------|------------|------------|
-| `paris` | 254 | Mock autocomplete + cross-city memory framing |
-| `barcelona` | 271 | M0 default fixture memories |
-| `venice` | 310 | Common ad-hoc elif exploration city |
-| `amalfi-coast` | 217 | M0 default fixture memories |
-| `nice` | 119 | Compact Riviera second-visit candidate |
+#### Tier B — Full latent European corpus (~27 cities)
 
-11. **Tier A import + embed:** For each Tier A city:
-    ```bash
-    cd travel-agent
-    PYTHONPATH=. python scripts/import_cursor_dossiers.py --city {city} --dry-run
-    PYTHONPATH=. python scripts/import_cursor_dossiers.py --city {city}
-    # then shared embed pass (idempotent)
-    PYTHONPATH=. python scripts/embed_eval_briefs.py
-    PYTHONPATH=. python scripts/embed_experience_briefs.py
-    PYTHONPATH=. python scripts/embed_place_angles_staging.py
-    ```
-    Tag imported entities `corpus_tier: proof_only` (via import metadata or post-import audit).
+23. Batch import script (`scripts/import_latent_corpus.sh` or extend `dogfood-city`) — `PROFILE=local`, all `proof_only`.
+24. Single idempotent embed pass per profile (not per-city).
+25. **Fly promotion:** catalog-only batch promote after local spot-check; fixtures remain scoped to five packs.
 
-12. **Tier A frontend parity (travel-app):** Add Tier A slugs to `MOCK_DESTINATIONS` in `data/search.ts` so mock-mode dogfood can pick Paris/Venice/etc. Place illustrations (Stream E) for Tier A cities if visual QA needs them.
+#### Tier C — Defer
 
-13. **Tier A spot-check (sample, not full certify):** One ad-hoc trip per Tier A city on real backend — destination resolves (`place_id` non-null), search returns ≥3 venues, Vesper cites a dossier. Failures block Tier B, not the five-pack ladder.
-
-#### Tier B — Full latent European corpus (batch, proof_only)
-
-Remaining **27 cities** in `content/staging/` excluding Lisbon, Rome, and Tier A:
-
-`athens`, `bilbao`, `bologna`, `bordeaux`, `cagliari`, `catania`, `dubrovnik`, `florence`, `genoa`, `granada`, `ibiza`, `lecce`, `lyon`, `madrid`, `malaga`, `mallorca`, `marseille`, `milan`, `naples`, `palermo`, `porto`, `san-sebastian`, `seville`, `split`, `thessaloniki`, `valencia`, `valletta`
-
-(Tier C cities in this list are skipped by the batch script unless explicitly opted in.)
-
-14. **Batch import script:** Add `scripts/import_latent_corpus.sh` (or extend `dogfood-city.sh`) — iterates Tier B cities, dry-run summary first, `--apply` writes, logs per-city entity counts. All imports tagged `proof_only`.
-
-15. **Batch embed:** Single idempotent embed pass after all imports (not per-city — embed scripts are global).
-
-16. **Fly promotion:** Catalog import to Fly is correct per governance model (quality-gated, not fixture seed). Promote Tier A + B corpus after local spot-check; fixtures (`seed.py --allow-prod`) remain scoped to the five packs.
-
-*Do not add Tier B cities to certify ladder or dogfood manifests until a scenario is authored.*
-
-#### Tier C — Defer (below minimum richness or no persona hook)
-
-| City | MD count | Policy |
-|------|----------|--------|
-| `genoa` | 9 | Defer until cartographer backfill |
-| `catania` | 32 | Defer |
-| `malaga` | 35 | Defer |
-| `cagliari` | 36 | Defer |
-| `granada` | 45 | Defer |
-
-Import only when a scenario manifest references them or cartographer expands the slice.
-
-#### What Phase 2c unlocks for dogfood personas
-
-| Capability | Before 2c | After Tier A | After Tier B |
-|------------|-----------|--------------|--------------|
-| Create trip to Venice (real backend) | ❌ no `place_id` | ✅ | ✅ |
-| Search / Discover in Venice | ❌ | ✅ (if embedded) | ✅ |
-| Vesper cites Venice dossiers | ❌ | ✅ (if go/no-go passed) | ✅ |
-| Mock mode Venice trip | ❌ not in autocomplete | ✅ after step 12 | ✅ for Tier A only |
-| Certify ladder coverage | 5 packs | 5 packs (unchanged) | 5 packs (unchanged) |
-| Dogfood manifest QA | 5 packs | 5 packs (unchanged) | 5 packs (unchanged) |
-
-*Why after 2b:* Manifest cities (Istanbul cartographer, Tokyo, Brooklyn) are higher priority for the elif/Mara dogfood story. Tier A closes the gap between "persona remembers Barcelona" and "backend has no Barcelona." Tier B makes the full authored corpus reachable without pretending each city is dogfood-certified.
+`genoa`, `catania`, `malaga`, `cagliari`, `granada` — import only when scenario references them.
 
 ### Phase 3 — Kill parallel systems (coordination-gated)
 
-Decommission tracker, sequenced by repo owner to avoid colliding with active branches:
+26. Collapse Golden Paths into journeys; `scenarios.yaml` sole source.
+27. **travel-agent:** delete `seed_group_trip.py`; fix `discover_queries` log-only fiction.
+28. **travel-app:** mock slug parity after Stream E lands.
+29. **Deprecate narrow `seed-s4-fly`** in favor of `dogfood-promote CITY=lisbon` (keep as alias during transition).
+30. Image tier decision (Stream E).
 
-17. **Workspace-safe now:** collapse Golden Paths into journeys; make `scenarios.yaml` the sole source (drop/generate `Dogfood Scenario Matrix.md`).
-18. **travel-agent — coordinate with `stream-b`:** delete `seed_group_trip.py`; fix `discover_queries` log-only fiction (compose regression or rename to contracts); make full import the default for launch-candidate cities.
-19. **travel-app — after Stream E lands:** mock slug parity (city-scope compose, mirror manifest slugs).
-20. **Image tier (Stream E / Doc 3):** decide provision-CDN vs bundle-only and document.
+### Phase 4 — Wire connected world into QA + Fly certification
 
-*Why later:* cleanup, not capability; also most likely to conflict with `stream-b/lisbon-proposal-substrate` and `stream-e-place-illustration-media`.
+**Fly is the certification target for EAS + AI QA.** Local is the workbench; certify ladder tiers assert against the **Fly profile** for live/AI tiers.
 
-### Phase 4 — Wire the connected world into QA (the payoff)
+| Tier | Target stack | Connected-world assertion |
+|------|--------------|---------------------------|
+| **fast** | local or CI | `corpus-check` + `dogfood-env-check` (local profile) |
+| **logic** | local Postgres | discover compose regression on manifest queries (`AI_MODE=replay`) |
+| **visual** | local or device + local API | Maestro against seeded corpus (real venue cards) |
+| **live** | **Fly API + Fly PG + cloud Qdrant** | Vesper retrieval spot-check; two-account walk on EAS build |
 
-21. Add connected-world assertions to the certify ladder:
-    - **fast:** `corpus-check` (slugs resolve)
-    - **logic:** discover compose regression on manifest queries (`AI_MODE=replay`)
-    - **visual:** Maestro against seeded corpus (real venue cards)
-    - **live:** Vesper retrieval spot-check (cites real dossiers)
-22. Single Fly promotion path: `dogfood-city ... --allow-prod` for the EAS dogfood build; latent corpus promote separately (catalog-only, no fixture seed).
+31. Add connected-world assertions to certify ladder (above).
+32. **`certify-live` preflight:** verify Fly stack has promoted corpus for wedge cities (not just S4 Lisbon cohort).
+33. **AI QA agents:** run against Fly profile by default; local profile for debugging only.
+34. Document promotion cadence: local iterate → promote city pack → certify-live green → EAS build.
 
 ---
 
 ## Cartographer gap registry
 
-Two enrichment gaps that are easy to conflate — each city falls into exactly one bucket:
+Two enrichment gaps — each city falls into exactly one bucket:
 
 | Gap type | Meaning | Fix |
 |----------|---------|-----|
-| **Import gap** | Cartographer already ran; MD files exist in `content/staging/{city}/` | `ENRICH=1` / `import_cursor_dossiers.py --city {city}` |
-| **Authoring gap** | Cartographer **never ran**; no `content/staging/{city}/` directory | New cartographer pass (cartographer → scout → angles → write), then import |
+| **Import gap** | MD in `content/staging/{city}/` | `ENRICH=1` / `import_cursor_dossiers.py --city {city}` |
+| **Authoring gap** | No `content/staging/{city}/` | Cartographer pass, then import |
+| **Slug bridge gap** | Editorial slugs ≠ manifest canonical slugs | Phase 2a (Rome only today) |
 
-**Cartographer** = stage 1 of pipeline B (`scripts/import_cursor_dossiers.py` header): cartographer → scout → angles → write → import. Not a separate tool.
+### Dogfood manifest cities
 
-### Dogfood manifest cities (active packs)
+| City | Manifest | Slugs resolve | MD on disk | Briefs in DB | Gap type | Status |
+|------|----------|---------------|------------|--------------|----------|--------|
+| **Lisbon** | `lisbon-phase1` | ✅ 10/10 | ✅ 312 | ✅ ~249 | Import | ✅ Phase 1 done; re-embed local Qdrant pending 0.5 |
+| **Rome** | `elif-rome` | ✅ 11/11 | ✅ 322 | 🟡 ~207 editorial; **0 on canonical slugs** | Import + **slug bridge** | 🟡 Phase 2 partial |
+| **Istanbul** | `istanbul-phase1` | ✅ 19/19 | ❌ none | 0 | Authoring | ⬜ Phase 2b |
+| **Tokyo** | `tokyo-phase1` | ✅ 12/12 | ❌ none | 0 | Authoring (optional thin) | ⬜ Phase 2b |
+| **Brooklyn** | `brooklyn-phase1` | ✅ 7/7 | ❌ none | 0* | Promote+embed | ⬜ Phase 2b |
 
-Verified 2026-06-28 against `content/staging/`, local Postgres, and `corpus_refs` audits.
+### Latent corpus (Phase 2c)
 
-| City | Manifest | Slugs resolve | `content/staging/` MD | Pipeline A (JSON) | Briefs in DB | Dossiers in DB | Gap type | Priority |
-|------|----------|---------------|----------------------|-------------------|--------------|----------------|----------|----------|
-| **Lisbon** | `lisbon-phase1` | ✅ 10/10 | ✅ **312** | ✅ promoted (~104 venues) | 110 | 0 | **Import** | P0 — Phase 1 |
-| **Rome** | `elif-rome` | ✅ 11/11 | ✅ **322** | ✅ canonical bundle | 0 | 0 | **Import** | P0 — Phase 2 |
-| **Istanbul** | `istanbul-phase1` | ✅ 19/19 | ❌ **none** | ✅ `istanbul-elif-canonical-001.json` | 0 | 0 | **Authoring** | P1 — Phase 2b |
-| **Tokyo** | `tokyo-phase1` | ✅ 12/12 | ❌ **none** | ✅ `tokyo-dogfood-corpus-001.json` | 0 | 0 | **Authoring** (optional thin) | P2 — Phase 2b |
-| **Brooklyn** | `brooklyn-phase1` | ✅ 7/7 | ❌ **none** | ✅ JSON briefs in `tools/seed/staging/` | 0* | 0 | **Promote+embed** (not cartographer MD) | P2 — Phase 2b |
-
-\* Brooklyn manifest venues show 0 briefs locally; seed README claims 99% brief coverage on promoted Brooklyn corpus — likely promote/embed not run for manifest slice. Verify before assuming authoring gap.
-
-**Istanbul detail (highest authoring risk):** 3 venues, 6 experiences, 3 sites, 5 neighborhoods in DB — all structural stubs from canonical JSON. Richest dogfood narrative surface (14 entity saves, pending Atlas artifact with 29 photos) with nothing for Vesper/Discover to retrieve. `ENRICH=1` cannot help until cartographer writes MD files.
-
-**Tokyo detail:** Memory-beat pack — generic venue anchors acceptable by design. Full 300-dossier cartographer pass is optional.
-
-**Brooklyn detail:** Home-city control sample (W1 by design). Editorial depth comes from JSON promote pipeline (`brooklyn-briefs-williamsburg-mopup-001.json`, etc.), not cartographer MD. Different fix path than Istanbul.
-
-### Latent corpus cities (32 beyond Lisbon/Rome — Phase 2c)
-
-**32 cities** have cartographer output in `content/staging/` but **zero Postgres presence** today (~5,235 MD files). All are **import gap only**.
-
-| Tier | Cities | MD range | Action | QA |
-|------|--------|----------|--------|-----|
-| **A** | paris, barcelona, venice, amalfi-coast, nice | 119–310 | Import + embed first; mock autocomplete | Sample spot-check (1 trip/city) |
-| **B** | athens, bilbao, bologna, bordeaux, dubrovnik, florence, ibiza, lecce, lyon, madrid, mallorca, marseille, milan, naples, palermo, porto, san-sebastian, seville, split, thessaloniki, valencia, valletta, … | 45–305 | Batch import + embed; `proof_only` | None until scenario authored |
-| **C** | genoa, catania, malaga, cagliari, granada | 9–45 | Defer | — |
-
-**Ad-hoc trip policy:** Dogfood personas (`@dogfood.local`) are not API-blocked from creating trips to any destination. Before Phase 2c, latent cities fail at `place_id` resolution and return empty search. After Phase 2c Tier A, personas can explore Paris/Venice/etc. on real backend. Catalog availability ≠ dogfood manifest coverage — certify ladder stays on the five packs.
-
-See [Phase 2c](#phase-2c--latent-corpus-rollout-persona-accessible-cities-beyond-manifests) for execution steps.
-
-### How to check a city's gap type
-
-```bash
-cd travel-agent
-
-# 1. Does editorial staging exist?
-ls content/staging/{city}/ 2>/dev/null | wc -l   # >0 → import gap; 0 → authoring gap
-
-# 2. Do manifest slugs resolve?
-PYTHONPATH=. python -m tools.dogfood.content.corpus_refs \
-    tools/dogfood/content/manifests/{pack}.yaml
-
-# 3. Enrichment depth (after import)
-# briefs + dossiers per city slug prefix in Postgres
-```
+32 cities, ~5,235 MD files — all **import gap only**. Blocked until Phase 0.5.
 
 ---
 
 ## Dependency graph (critical path)
 
 ```text
-Phase 0 (commit scripts) ──► everything
+Phase 0 (scripts) ✅
         │
         ▼
-Phase 1 (Lisbon ENRICH, prove path) ──► Phase 2 (Rome ENRICH)
-        │                                      │
-        │         GO/NO-GO gate                │
-        └──────────────┬───────────────────────┘
-                       ▼
-            Phase 2b (Istanbul cartographer → Tokyo thin → Brooklyn promote)
-                       │
-                       ▼
-            Phase 2c (Tier A latent → Tier B batch, proof_only)
-                       │
-                       ▼
-            Phase 4 (QA wiring) — five packs only; Tier A sample spot-check
+Phase 0.5 (env profiles + split-brain fix) ──► Fly-safe promotion path
+        │
+        ├──────────────────────────────────────┐
+        ▼                                      ▼
+Phase 1 (Lisbon ENRICH) ✅              re-embed local Qdrant
+        │
+        ▼
+Phase 2 (Rome ENRICH) 🟡
+        │
+        ▼
+Phase 2a (Rome slug bridge) ──► elif Rome "rich" on manifest path
+        │
+        ▼
+Phase 2b (Istanbul → Tokyo → Brooklyn)     each: local → promote → certify
+        │
+        ▼
+Phase 2c (Tier A → Tier B latent)            PROFILE=local import; batch Fly promote
+        │
+        ▼
+Phase 4 (QA on Fly profile) ◄── EAS + AI QA
 
-Phase 3 (decommissions) runs in parallel, gated by child-repo streams
+Phase 3 (decommissions) — parallel, gated by child-repo streams
 ```
 
 ---
 
-## Open decisions (founder forks — not auto-resolved)
+## Open decisions (founder forks)
 
-1. **First enrichment scope:** Lisbon-only wedge proof first (recommended, honors discipline) vs Lisbon + Rome together (both flagship personas)?
-2. **Embeddings cost/keys:** run embed locally with your keys now, vs briefs/dossiers-only first (offline, free, Discover/Vesper stay semi-thin)?
-3. **Istanbul cartographer scope:** full ~250–300 dossier pass (matches Lisbon/Rome depth) vs targeted pass covering only the 19 manifest slugs (faster, may feel thin on open Discover queries)?
-4. **Tokyo editorial depth:** JSON briefs only (memory-beat acceptable) vs thin cartographer pass (~30–50 dossiers for key manifest anchors)?
-5. **Tier B timing:** Run immediately after Tier A spot-check passes, vs defer until a persona explicitly needs a Tier B city in dogfood?
-6. **Tier C threshold:** Import cities with <50 MD files anyway (completeness) vs strict defer (quality signal)?
+| # | Decision | Recommendation | Status |
+|---|----------|----------------|--------|
+| 1 | Dual env vs single | **Dual:** local workbench + Fly certified | ✅ decided |
+| 2 | Rome slug bridge option | **A:** alias map canonical → editorial | ⬜ pick + implement |
+| 3 | Istanbul cartographer scope | Full ~250–300 vs targeted 19-slug pass | ⬜ open |
+| 4 | Tokyo editorial depth | JSON briefs only vs thin cartographer | ⬜ open |
+| 5 | Tier B timing | After Tier A spot-check + Fly promote | ⬜ open |
+| 6 | Embeddings on Fly promote | Always re-embed from Fly PG (never copy vectors) | ✅ decided |
 
 ---
 
@@ -321,29 +357,56 @@ Phase 3 (decommissions) runs in parallel, gated by child-repo streams
 | Tier | Cities | Import | Certify ladder | Manifest refs |
 |------|--------|--------|----------------|---------------|
 | `launch_candidate` | Lisbon, Rome (+ Istanbul post-cartographer) | Full ENRICH + W3 spot-check | ✅ exercised | Required for dogfood packs |
-| `proof_only` | Tier A + B latent corpus | Import + embed | ❌ sample spot-check only | Allowed if explicitly tagged |
+| `proof_only` | Tier A + B latent corpus | Import + embed (`PROFILE=local` first) | ❌ sample spot-check only | Allowed if explicitly tagged |
 | `fixture_only` | `-style` composite entities in manifests | `import_staged_refs` | Via manifest QA | Dogfood fixtures only |
 
-`corpus-check` (Phase 0) must enforce: dogfood manifest slugs reference `launch_candidate` or explicitly tagged `proof_only` entities — never untagged stubs or inline manifest copies.
+`corpus-check` enforces: dogfood manifest slugs reference `launch_candidate` or explicitly tagged `proof_only` — never untagged stubs or inline manifest copies.
+
+---
+
+## Commands reference
+
+```bash
+# Local workbench (default)
+APPLY=1 ENRICH=1 make dogfood-city CITY=lisbon
+APPLY=1 ENRICH=1 PROFILE=local make dogfood-city CITY=rome   # after Phase 0.5
+
+# Fly promotion (EAS + AI QA)
+make dogfood-promote CITY=lisbon                                # after Phase 0.5
+SEED_S4_FLY_APPLY=1 make seed-s4-fly                            # legacy; superseded by promote
+
+# Gates
+make corpus-check
+make dogfood-env-check                                          # after Phase 0.5
+make certify-fast    # local profile
+make certify-live    # Fly profile — EAS + AI QA
+```
 
 ---
 
 ## Definition of done (this run)
 
-- [ ] Phase 0 committed; `make corpus-check` is a live gate
-- [ ] `corpus-check` enforces governance (no manifest-embedded entities; corpus tier tag required)
-- [ ] `APPLY=1 ENRICH=1 make dogfood-city CITY=lisbon` produces real dossiers + embeddings
-- [ ] **Phase 1 GO/NO-GO passed:** Vesper/Discover spot-check on Lisbon cites real corpus, not stubs
-- [ ] Rome enrichment fills 0-brief/0-dossier gap
-- [ ] Enrichment-depth check exists (asserts rich, not just resolves)
-- [ ] **Phase 2b — Istanbul:** cartographer pass complete; `content/staging/istanbul/` exists; import + embed run
-- [ ] **Phase 2b — Tokyo:** manifest slugs have briefs (JSON promote minimum; cartographer optional)
-- [ ] **Phase 2b — Brooklyn:** manifest venues have briefs in DB (promote + embed verified)
-- [ ] **Phase 2c — Tier A:** paris, barcelona, venice, amalfi-coast, nice imported + embedded; `proof_only` tagged
-- [ ] **Phase 2c — Tier A:** mock autocomplete includes Tier A slugs; ad-hoc trip spot-check passes (1/city)
-- [ ] **Phase 2c — Tier B:** batch import script run; ~27 cities in Postgres + Qdrant as `proof_only`
-- [ ] **Phase 2c — Tier C:** genoa/catania/malaga/cagliari/granada explicitly deferred or backfilled
+### Environment
+- [ ] `PROFILE=local|fly` in `dogfood-city.sh`; mismatch guard active
+- [ ] `make dogfood-promote CITY=` works end-to-end
+- [ ] Local Docker Qdrant populated from local Postgres (Lisbon + Rome)
+- [ ] Fly Postgres + cloud Qdrant populated via explicit promote (at least Lisbon + Rome)
+
+### Corpus + enrichment
+- [ ] Phase 0 committed; `make corpus-check` is a live gate with governance
+- [ ] Phase 1 GO/NO-GO passed (Lisbon rich on local profile)
+- [ ] Phase 2a Rome slug bridge complete — canonical manifest slugs have briefs/retrieval
+- [ ] Enrichment-depth check exists
+- [ ] Dossier parser accepts `## Dossier: {lens}`
+
+### Remaining cities
+- [ ] Phase 2b: Istanbul cartographer + import; Tokyo + Brooklyn briefs verified
+- [ ] Phase 2c Tier A: paris, barcelona, venice, amalfi-coast, nice (`proof_only`, local then promote)
+- [ ] Phase 2c Tier B: batch import; Fly promote batch
+- [ ] Tier C cities explicitly deferred
+
+### QA + cleanup
 - [ ] Decommission tracker: all 8 items closed
-- [ ] Certify ladder tiers exercise the connected world
-- [ ] Catalog/fixture governance adopted (tier tag + guardrails)
-- [ ] Target-state doc scorecard reconciled with the enrichment finding
+- [ ] Certify ladder: fast/logic on local; **live on Fly profile** with corpus assertions
+- [ ] AI QA agents documented to target Fly profile
+- [ ] Target-state doc scorecard reconciled
