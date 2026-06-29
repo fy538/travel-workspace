@@ -1,0 +1,5 @@
+{
+  "travel-agent": "stream-b/lisbon-proposal-substrate",
+  "travel-app": "stream-e-place-illustration-media",
+  "_comment": "Pins sibling repos for workspace reliability CI. Use main (or remove keys) after coordinated PRs merge."
+}

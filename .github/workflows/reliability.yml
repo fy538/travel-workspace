@@ -35,11 +35,26 @@ jobs:
       - name: Check out workspace
         uses: actions/checkout@v6
 
+      - name: Resolve child repo refs
+        id: child_refs
+        run: |
+          LOCK="${GITHUB_WORKSPACE}/docs/child-repos.ci-lock.json"
+          AGENT_REF=main
+          APP_REF=main
+          if [ -f "$LOCK" ]; then
+            AGENT_REF=$(python3 -c "import json; print(json.load(open('$LOCK')).get('travel-agent') or 'main')")
+            APP_REF=$(python3 -c "import json; print(json.load(open('$LOCK')).get('travel-app') or 'main')")
+          fi
+          echo "agent_ref=$AGENT_REF" >> "$GITHUB_OUTPUT"
+          echo "app_ref=$APP_REF" >> "$GITHUB_OUTPUT"
+          echo "Child repo pins: travel-agent@$AGENT_REF travel-app@$APP_REF"
+
       - name: Check out Travel Agent
         uses: actions/checkout@v6
         with:
           repository: ${{ github.repository_owner }}/travel-agent
           path: travel-agent
+          ref: ${{ steps.child_refs.outputs.agent_ref }}
           token: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN || github.token }}
 
       - name: Check out Travel App
@@ -47,6 +62,7 @@ jobs:
         with:
           repository: ${{ github.repository_owner }}/travel-app
           path: travel-app
+          ref: ${{ steps.child_refs.outputs.app_ref }}
           token: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN || github.token }}
 
       - name: Set up Python

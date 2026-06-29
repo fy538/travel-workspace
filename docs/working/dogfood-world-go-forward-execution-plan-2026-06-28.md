@@ -1,6 +1,6 @@
 # Dogfood & World System — Go-Forward Execution Plan
 
-> Status: **in progress** (Phases 0–2 partially executed; environment consolidation added 2026-06-28)
+> Status: **mostly complete** (Phases 0–3 + Tier B done; Phase 4 partial — Stream E FE in flight)
 > Owner: founder / engineering
 > Created: 2026-06-28
 > Last updated: 2026-06-29
@@ -387,26 +387,28 @@ make certify-live    # Fly profile — EAS + AI QA
 ## Definition of done (this run)
 
 ### Environment
-- [ ] `PROFILE=local|fly` in `dogfood-city.sh`; mismatch guard active
-- [ ] `make dogfood-promote CITY=` works end-to-end
-- [ ] Local Docker Qdrant populated from local Postgres (Lisbon + Rome)
-- [ ] Fly Postgres + cloud Qdrant populated via explicit promote (at least Lisbon + Rome)
+- [x] `PROFILE=local|fly` in `dogfood-city.sh`; mismatch guard active
+- [x] `make dogfood-promote CITY=` works end-to-end
+- [x] Local Docker Qdrant populated from local Postgres (five packs + Tier A/B)
+- [x] Fly Postgres + cloud Qdrant populated via explicit promote (five packs + Tier A/B)
 
 ### Corpus + enrichment
-- [ ] Phase 0 committed; `make corpus-check` is a live gate with governance
-- [ ] Phase 1 GO/NO-GO passed (Lisbon rich on local profile)
-- [ ] Phase 2a Rome slug bridge complete — canonical manifest slugs have briefs/retrieval
-- [ ] Enrichment-depth check exists
-- [ ] Dossier parser accepts `## Dossier: {lens}`
+- [x] Phase 0 committed; `make corpus-check` is a live gate with governance
+- [x] Phase 1 GO/NO-GO passed (Lisbon rich on local + Fly)
+- [x] Phase 2a Rome slug bridge complete — canonical manifest slugs have briefs/retrieval
+- [x] Enrichment-depth check exists (`dogfood-five-pack-verify`)
+- [x] Dossier parser accepts `## Dossier: {lens}`
 
 ### Remaining cities
-- [ ] Phase 2b: Istanbul cartographer + import; Tokyo + Brooklyn briefs verified
-- [ ] Phase 2c Tier A: paris, barcelona, venice, amalfi-coast, nice (`proof_only`, local then promote)
+- [x] Phase 2b: Istanbul cartographer + import; Tokyo + Brooklyn briefs verified
+- [x] Phase 2c Tier A: paris, barcelona, venice, amalfi-coast, nice (`proof_only`, local then promote)
 - [x] Phase 2c Tier B: batch import; Fly promote batch *(2026-06-29 — 27 cities, local + Fly spot-check green)*
 - [ ] Tier C cities explicitly deferred
 
 ### QA + cleanup
-- [ ] Decommission tracker: all 8 items closed
-- [ ] Certify ladder: fast/logic on local; **live on Fly profile** with corpus assertions
+- [x] Decommission tracker: Phase 3 items closed (see `docs/journeys/STATUS.md`)
+- [x] Certify ladder: fast/logic on local; five-pack agent gates on Fly (`dogfood-five-pack-verify` + simulator)
+- [ ] **Stream E** (travel-app `stream-e-place-illustration-media`): place illustration + UI empty states — PR #29 open; uncommitted assets on branch
 - [ ] AI QA agents documented to target Fly profile
 - [ ] Target-state doc scorecard reconciled
+- [ ] `confeitaria-nacional-baixa` editorial brief (venue row exists; atlas map point only — non-blocking)

@@ -122,20 +122,23 @@ Login (if running): `elif@dogfood.local` / `mara@dogfood.local` · API: `https:/
 
 | # | Journey | Static | Mock-walk | Logic | Maestro | Live | Certified |
 |---|---|---|---|---|---|---|---|
-| 01 | [Vague Idea](01-vague-idea-to-vesper-shaped-trip.md) | ready | ready | ready | optional | optional | no |
-| 02 | [Create + Invite](02-concrete-trip-creation-and-invite.md) | ready | ready | ready | ready | optional | no |
-| 03 | [Cold Setup](03-cold-trip-setup-to-useful-workspace.md) | ready | ready | ready | optional | optional | no |
-| 04 | [Private → Group-Safe](04-private-constraint-to-group-safe-plan.md) | ready | ready | ready | optional | required | no |
-| 05 | [Proposal → Plan](05-group-planning-to-proposal-to-plan-mutation.md) | ready | ready | ready | ready | required | no |
-| 06 | [Coherence](06-home-plan-map-changes-coherence.md) | ready | ready | ready | partial (25) | optional | no |
-| 07 | [Discover → Vesper](07-discover-to-contextual-vesper-to-trip-action.md) | ready | ready | ready | optional | optional | no |
-| 08 | [Live Companion](08-live-trip-what-now-companion.md) | ready | ready | ready | optional | optional | no |
-| 09 | [Notifications](09-notifications-and-proactive-routing.md) | ready | ready | ready | optional | optional | no |
-| 10 | [Booking / Stay / Expense](10-booking-stay-expense-trust-loop.md) | ready | ready | ready | optional | required | no |
-| 11 | [Atlas Memory](11-atlas-candidate-to-memory-control.md) | ready | ready | ready | optional | optional | no |
-| 12 | [Post-Trip](12-returned-trip-to-story-memory-settle-up.md) | ready | ready | ready | optional | optional | no |
+| 01 | [Vague Idea](01-vague-idea-to-vesper-shaped-trip.md) | ready | ready | ready | optional | optional | agent |
+| 02 | [Create + Invite](02-concrete-trip-creation-and-invite.md) | ready | ready | ready | ready | optional | agent |
+| 03 | [Cold Setup](03-cold-trip-setup-to-useful-workspace.md) | ready | ready | ready | optional | optional | agent |
+| 04 | [Private → Group-Safe](04-private-constraint-to-group-safe-plan.md) | ready | ready | ready | optional | required | agent · live pending |
+| 05 | [Proposal → Plan](05-group-planning-to-proposal-to-plan-mutation.md) | ready | ready | ready | ready | required | agent · live pending |
+| 06 | [Coherence](06-home-plan-map-changes-coherence.md) | ready | ready | ready | ready | optional | agent |
+| 07 | [Discover → Vesper](07-discover-to-contextual-vesper-to-trip-action.md) | ready | ready | ready | optional | optional | agent |
+| 08 | [Live Companion](08-live-trip-what-now-companion.md) | ready | ready | ready | optional | optional | agent |
+| 09 | [Notifications](09-notifications-and-proactive-routing.md) | ready | ready | ready | optional | optional | agent |
+| 10 | [Booking / Stay / Expense](10-booking-stay-expense-trust-loop.md) | ready | ready | ready | optional | required | agent · live pending |
+| 11 | [Atlas Memory](11-atlas-candidate-to-memory-control.md) | ready | ready | ready | optional | optional | agent |
+| 12 | [Post-Trip](12-returned-trip-to-story-memory-settle-up.md) | ready | ready | ready | optional | optional | agent |
 
-**Certified** = mock-walk + logic + Maestro + live all green for that journey (none yet).
+**Certified** ladder:
+
+- **`agent`** — static + mock-walk + logic + Maestro (when not `optional`) all green on automated gates.
+- **`full`** — `agent` plus live green where the Live column is `required` (none yet; J04/J05/J10 still need two-device live walks).
 
 ## Summary
 
@@ -146,7 +149,8 @@ Login (if running): `elif@dogfood.local` / `mara@dogfood.local` · API: `https:/
 | Logic QA MVP green | 12 / 12 (`J01`–`J12`) |
 | Maestro wedge flows (24/25) | **green** 2026-06-29 (`make certify-visual`) |
 | Five-pack dogfood (agent gates) | **certified** 2026-06-29 (`dogfood-five-pack-verify` + `dogfood-five-pack-simulator`) |
-| Full journey Certified (12) | **0 / 12** — live two-device gates still open for J04/J05/J10 |
+| Journey agent-certified (12) | **12 / 12** — automated ladder green (mock-walk + logic + Maestro where required) |
+| Journey full-certified (12) | **0 / 12** — live two-device gates still open for J04/J05/J10 |
 
 ## Certify ladder (workspace)
 
@@ -167,4 +171,4 @@ Live dogfood (S4 seed + two-account walk) is human/ops — see `docs/working/wed
 
 ## Promotion Rules
 
-Unchanged — see [README.md](README.md). None of the 12 meet all gates.
+Unchanged — see [README.md](README.md). **12 / 12** meet agent-certified; **0 / 12** meet full-certified (live pending on J04/J05/J10).
