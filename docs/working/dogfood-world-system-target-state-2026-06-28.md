@@ -99,7 +99,7 @@ The cleanup goal in one table — every layer has exactly **one** canonical sour
 | World corpus connected | full A+B import | 🟡 structural ✅; Lisbon/Rome editorial imported locally | Doc 5 Phase 0.5 (env profiles) + promote |
 | Environment pairing | atomic PG + Qdrant per profile | ❌ split-brain (local PG, cloud Qdrant) | Doc 5 Phase 0.5 |
 | Fly dogfood world | promoted corpus + fixtures on Fly | ❌ S4 Lisbon cohort only via `seed-s4-fly` | Doc 5 `dogfood-promote` |
-| Discover queries | seeded or regression-tested | ❌ log-only | Doc 4 §discover fix |
+| Discover queries | seeded or regression-tested | ✅ compose regression (`certify-logic`, `AI_MODE=replay`) | Doc 4 §discover fix |
 | Mock = backend slugs | one namespace | ❌ mock compose Lisbon-only | Doc 4 Phase 4 |
 | Content governance | catalog/fixture explicit | 🟡 documented (Doc 4) | Adopt tier field |
 | Broken gates | none | ✅ **fixed** — `itinerary.test.ts` refs removed from `test:offline` + `mock-real-parity.sh` | Doc 1 P0-1 (Stream A) ✅ |
@@ -116,7 +116,7 @@ The cleanup goal in one table — every layer has exactly **one** canonical sour
 The single checklist that makes "no parallel systems" real. Each item = one parallel system retired.
 
 - [x] **`seed_group_trip.py`** → deleted 2026-06-28; canonical `tools/dogfood/content/seed.py` only
-- [ ] **`discover_queries` log-only fiction** → compose regression for wedge queries OR rename to `discover_query_contracts` *(Doc 4)*
+- [x] **`discover_queries` log-only fiction** → compose regression for wedge queries in `test_discover_manifest_queries_compose.py` (`AI_MODE=replay`, `make certify-logic`) *(2026-06-29)*
 - [x] **Golden Paths as separate QA set** → collapsed into journeys; `journey-wedge-qa` + `golden-path-qa` alias *(2026-06-29)*
 - [x] **Triple scenario docs** → `validate_scenarios` in `dogfood-status`; `scenarios.yaml` sole machine source *(2026-06-29)*
 - [x] **Mock compose Lisbon-only** → `resolveMockAnchorSlug` + dogfood corpus angle fixtures *(2026-06-29)*

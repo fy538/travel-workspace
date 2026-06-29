@@ -37,8 +37,14 @@ if [ -n "$CITY" ]; then
   CITIES=("$CITY")
 elif [ "$TIER" = "a" ]; then
   CITIES=(paris barcelona venice amalfi-coast nice)
+elif [ "$TIER" = "b" ]; then
+  CITIES=(
+    athens bilbao bologna bordeaux cagliari catania dubrovnik florence genoa
+    granada ibiza lecce lyon madrid malaga mallorca marseille milan naples
+    palermo porto san-sebastian seville split thessaloniki valencia valletta
+  )
 else
-  echo "usage: import-latent-corpus.sh [TIER=a] [CITY=paris] [PROFILE=local|fly]" >&2
+  echo "usage: import-latent-corpus.sh [TIER=a|b] [CITY=paris] [PROFILE=local|fly]" >&2
   exit 2
 fi
 
@@ -98,11 +104,12 @@ if [ "$GLOBAL_EMBED_ONLY" = "1" ]; then
   exit 0
 fi
 
-echo ""
 echo "== 1. Ensure city place rows =="
-for city in "${CITIES[@]}"; do
-  PYTHONPATH=. python scripts/ensure_corpus_cities.py --city "$city"
-done
+if [ -n "$CITY" ]; then
+  PYTHONPATH=. python scripts/ensure_corpus_cities.py --city "$CITY"
+else
+  PYTHONPATH=. python scripts/ensure_corpus_cities.py --tier "${TIER:-a}"
+fi
 
 for city in "${CITIES[@]}"; do
   echo ""

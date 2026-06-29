@@ -347,7 +347,7 @@ Phase 3 (decommissions) — parallel, gated by child-repo streams
 | 2 | Rome slug bridge option | **A:** alias map canonical → editorial | ✅ implemented |
 | 3 | Istanbul cartographer scope | Full ~250–300 vs targeted 19-slug pass | ✅ **targeted 19-slug pass** (see `.cursor/tasks/cartographer-istanbul-dogfood.md`) |
 | 4 | Tokyo editorial depth | JSON briefs only vs thin cartographer | ✅ **JSON briefs only** (6 venue + experience description in tokyo-dogfood-corpus-001.json) |
-| 5 | Tier B timing | After Tier A spot-check + Fly promote | ⬜ open |
+| 5 | Tier B timing | After Tier A spot-check + Fly promote | ✅ done 2026-06-29 |
 | 6 | Embeddings on Fly promote | Always re-embed from Fly PG (never copy vectors) | ✅ decided |
 
 ---
@@ -402,7 +402,7 @@ make certify-live    # Fly profile — EAS + AI QA
 ### Remaining cities
 - [ ] Phase 2b: Istanbul cartographer + import; Tokyo + Brooklyn briefs verified
 - [ ] Phase 2c Tier A: paris, barcelona, venice, amalfi-coast, nice (`proof_only`, local then promote)
-- [ ] Phase 2c Tier B: batch import; Fly promote batch
+- [x] Phase 2c Tier B: batch import; Fly promote batch *(2026-06-29 — 27 cities, local + Fly spot-check green)*
 - [ ] Tier C cities explicitly deferred
 
 ### QA + cleanup

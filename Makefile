@@ -7,7 +7,7 @@
 
 .PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help ci-review
 .PHONY: contract-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate mock-slug-parity
-.PHONY: certify-fast certify-logic certify-visual certify-live dogfood-status seed-s4-local seed-s4-fly corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-fly-smoke import-latent-corpus tier-a-spot-check
+.PHONY: certify-fast certify-logic certify-visual certify-live dogfood-status seed-s4-local seed-s4-fly corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-fly-smoke import-latent-corpus tier-a-spot-check tier-b-spot-check
 .PHONY: preflight-eas fly-secrets verify
 
 # ── Development ───────────────────────────────────────────────────────────────
@@ -121,13 +121,17 @@ dogfood-city: ## Connect corpus + seed a city. Usage: make dogfood-city CITY=lis
 	@chmod +x ./scripts/dogfood-city.sh ./scripts/dogfood-env.sh
 	@APPLY="$(APPLY)" ENRICH="$(ENRICH)" PROFILE="$(PROFILE)" ./scripts/dogfood-city.sh CITY=$(CITY)
 
-import-latent-corpus: ## Phase 2c catalog import. Usage: make import-latent-corpus TIER=a [APPLY=1] [CITY=paris] [PROFILE=local|fly] [GLOBAL_EMBED_ONLY=1]
+import-latent-corpus: ## Phase 2c catalog import. Usage: make import-latent-corpus TIER=a|b [APPLY=1] [CITY=paris] [PROFILE=local|fly] [GLOBAL_EMBED_ONLY=1]
 	@chmod +x ./scripts/import-latent-corpus.sh ./scripts/dogfood-env.sh
 	@APPLY="$(APPLY)" PROFILE="$(PROFILE)" GLOBAL_EMBED_ONLY="$(GLOBAL_EMBED_ONLY)" ./scripts/import-latent-corpus.sh TIER=$(or $(TIER),a) $(if $(CITY),CITY=$(CITY),)
 
 tier-a-spot-check: ## Verify Tier A cities in PG + Qdrant. Usage: make tier-a-spot-check [PROFILE=local|fly]
 	@chmod +x ./scripts/tier-a-spot-check.sh ./scripts/dogfood-env.sh
 	@PROFILE="$(PROFILE)" ./scripts/tier-a-spot-check.sh
+
+tier-b-spot-check: ## Verify Tier B cities in PG + Qdrant. Usage: make tier-b-spot-check [PROFILE=local|fly]
+	@chmod +x ./scripts/tier-b-spot-check.sh ./scripts/dogfood-env.sh
+	@PROFILE="$(PROFILE)" ./scripts/tier-b-spot-check.sh
 
 dogfood-promote: ## Promote city pack to Fly + cloud Qdrant. Usage: make dogfood-promote CITY=lisbon [APPLY=1]
 	@chmod +x ./scripts/dogfood-promote.sh ./scripts/dogfood-env.sh
