@@ -16,7 +16,7 @@ Visual gate: [visual-certification-matrix.md](../../travel-app/docs/logic-qa/vis
 | Substrate (DB + offline compose) | `make dogfood-five-pack-verify PROFILE=fly` | **PASSED** 2026-06-29 |
 | Fly smoke (API + personas + Rome bridge) | `make dogfood-fly-smoke` | **PASSED** 2026-06-29 |
 | Five-pack certification (agent-owned) | `make dogfood-five-pack-verify PROFILE=fly` + `make dogfood-five-pack-simulator` | **COMPLETE** 2026-06-29 |
-| Live HTTP (Fly + Clerk) | `TRANSPORT=http PRELAUNCH_JWT=<jwt> make dogfood-five-pack-live-api` | optional — redundant with Fly DB + TestClient gates |
+| Live HTTP (Fly + Clerk) | `TRANSPORT=http PRELAUNCH_JWT_MARA=… PRELAUNCH_JWT_DAO=… make dogfood-journey-live-api PROFILE=fly` | **pending JWTs** — TestClient 15/15 green; set Clerk JWTs in env to close transport gap |
 
 | Pack | Fly promote | Substrate ✅ | Live API (local) | Optional UI spot-check |
 |------|-------------|--------------|------------------|-------------------------|
@@ -32,9 +32,15 @@ Visual gate: [visual-certification-matrix.md](../../travel-app/docs/logic-qa/vis
 
 **Mara atlas (2026-06-29):** `mara-lisbon-group-arrival` artifact seeded local + Fly — `mara@dogfood.local` audit **ready** (was `partial; missing=atlas`).
 
+**S4 companions (2026-06-29):** `dao-lisbon-arrival-reset` + `reza-lisbon-tiles-tram` artifacts, entity saves, affinity — `dao@dogfood.local` and `reza@dogfood.local` audit **ready** (was `partial; missing=taste_affinity, atlas`). J04 device phrase seeded: `dao-quiet-mornings` observation (`shared: false`). Promote: `APPLY=1 PROFILE=fly make dogfood-promote CITY=lisbon`.
+
+**Elif companions (2026-06-29):** `sarah-rome-table-memory` + `mike-rome-classic-beat` in `elif-rome` — personal memories, observations, saves, affinity, atlas. Promote: `APPLY=1 PROFILE=fly make dogfood-promote CITY=rome`.
+
+**Lisbon catalog (2026-06-29):** `confeitaria-nacional-baixa` editorial brief added (`content/staging/lisbon/confeitaria-nacional-baixa.md`); import via `import_cursor_dossiers --file`.
+
 **Lisbon Fly atlas (2026-06-29):** reset + reseed `mara-lisbon-group-arrival` on Fly — map_points now use `confeitaria-nacional-baixa` (not experience-only slug).
 
-**Known catalog gap:** `confeitaria-nacional-baixa` has a venue row but no editorial brief yet (atlas map point only); does not block certification.
+**Known catalog gap:** none blocking S4/Lisbon atlas map points (Confeitaria Nacional brief added 2026-06-29).
 
 **Lisbon Fly promote fix:** Mara atlas `map_points` no longer references `lisbon-exp-walking-baixa-story` as a venue slug (experience-only ref); full `dogfood-promote CITY=lisbon` unblocked.
 
@@ -123,15 +129,15 @@ Login (if running): `elif@dogfood.local` / `mara@dogfood.local` · API: `https:/
 | # | Journey | Static | Mock-walk | Logic | Maestro | Live | Certified |
 |---|---|---|---|---|---|---|---|
 | 01 | [Vague Idea](01-vague-idea-to-vesper-shaped-trip.md) | ready | ready | ready | optional | optional | agent |
-| 02 | [Create + Invite](02-concrete-trip-creation-and-invite.md) | ready | ready | ready | ready | optional | agent |
+| 02 | [Create + Invite](02-concrete-trip-creation-and-invite.md) | ready | ready | ready | ready | optional | live-api |
 | 03 | [Cold Setup](03-cold-trip-setup-to-useful-workspace.md) | ready | ready | ready | optional | optional | agent |
-| 04 | [Private → Group-Safe](04-private-constraint-to-group-safe-plan.md) | ready | ready | ready | optional | required | agent · live pending |
-| 05 | [Proposal → Plan](05-group-planning-to-proposal-to-plan-mutation.md) | ready | ready | ready | ready | required | agent · live pending |
+| 04 | [Private → Group-Safe](04-private-constraint-to-group-safe-plan.md) | ready | ready | ready | optional | required | live-api · device pending |
+| 05 | [Proposal → Plan](05-group-planning-to-proposal-to-plan-mutation.md) | ready | ready | ready | ready | required | live-api · device pending |
 | 06 | [Coherence](06-home-plan-map-changes-coherence.md) | ready | ready | ready | ready | optional | agent |
 | 07 | [Discover → Vesper](07-discover-to-contextual-vesper-to-trip-action.md) | ready | ready | ready | optional | optional | agent |
 | 08 | [Live Companion](08-live-trip-what-now-companion.md) | ready | ready | ready | optional | optional | agent |
 | 09 | [Notifications](09-notifications-and-proactive-routing.md) | ready | ready | ready | optional | optional | agent |
-| 10 | [Booking / Stay / Expense](10-booking-stay-expense-trust-loop.md) | ready | ready | ready | optional | required | agent · live pending |
+| 10 | [Booking / Stay / Expense](10-booking-stay-expense-trust-loop.md) | ready | ready | ready | optional | required | live-api · device pending |
 | 11 | [Atlas Memory](11-atlas-candidate-to-memory-control.md) | ready | ready | ready | optional | optional | agent |
 | 12 | [Post-Trip](12-returned-trip-to-story-memory-settle-up.md) | ready | ready | ready | optional | optional | agent |
 
@@ -151,7 +157,7 @@ Login (if running): `elif@dogfood.local` / `mara@dogfood.local` · API: `https:/
 | Maestro wedge flows (24/25) | **green** 2026-06-29 (`make certify-visual`) |
 | Five-pack dogfood (agent gates) | **certified** 2026-06-29 (`dogfood-five-pack-verify` + `dogfood-five-pack-simulator`) |
 | Journey agent-certified (12) | **12 / 12** — automated ladder green (mock-walk + logic + Maestro where required) |
-| Journey live-api (J02/J04/J05/J10) | **15/15** — `make dogfood-journey-live-api` (2026-06-29, TestClient) |
+| Journey live-api (J02/J04/J05/J10) | **4/4** — `make dogfood-journey-live-api` 15/15 TestClient (2026-06-29); Fly HTTP pending Clerk JWTs |
 | Journey full-certified (12) | **0 / 12** — device walks for J04/J05/J10 (runbook linked above) |
 
 ## Certify ladder (workspace)
@@ -175,4 +181,4 @@ Live dogfood (S4 seed + two-account walk) is human/ops — see `docs/working/wed
 
 ## Promotion Rules
 
-Unchanged — see [README.md](README.md). **12 / 12** meet agent-certified; **0 / 12** meet full-certified (live pending on J04/J05/J10).
+Unchanged — see [README.md](README.md). **12 / 12** meet agent-certified; **4 / 4** meet live-api (J02/J04/J05/J10 TestClient); **0 / 12** meet full-certified (device pending on J04/J05/J10).

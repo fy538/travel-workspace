@@ -58,7 +58,7 @@ else
 fi
 
 bold "2/4 Persona substrate on Fly DB"
-for persona in mara@dogfood.local elif@dogfood.local; do
+for persona in mara@dogfood.local dao@dogfood.local elif@dogfood.local; do
   if PYTHONPATH=. python scripts/dogfood_audit.py --summary --persona "$persona" --no-target-banner 2>&1 | tee "/tmp/dogfood-smoke-${persona//@/_}.txt" | grep -q "Persona readiness"; then
     line="$(grep -E "Persona readiness:" -A1 "/tmp/dogfood-smoke-${persona//@/_}.txt" | tail -1 || true)"
     ok "$persona — $line"

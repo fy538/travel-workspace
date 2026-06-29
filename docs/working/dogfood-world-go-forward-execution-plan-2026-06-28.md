@@ -411,4 +411,4 @@ make certify-live    # Fly profile — EAS + AI QA
 - [ ] **Stream E** (travel-app `stream-e-place-illustration-media`): place illustration + UI empty states — PR #29 open; uncommitted assets on branch
 - [ ] AI QA agents documented to target Fly profile
 - [ ] Target-state doc scorecard reconciled
-- [ ] `confeitaria-nacional-baixa` editorial brief (venue row exists; atlas map point only — non-blocking)
+- [ ] `confeitaria-nacional-baixa` editorial brief — **done** 2026-06-29 (`content/staging/lisbon/confeitaria-nacional-baixa.md`)

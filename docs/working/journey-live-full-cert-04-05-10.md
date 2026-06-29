@@ -73,7 +73,7 @@ Record: `docs/journeys/STATUS.md` — set J05 **Live** → `ready` when device w
 **Device (two-account) — I4 is the trust event:**
 
 1. **Device B (member)** — private Vesper chat for the trip (not group thread).
-2. Send a **specific private phrase** you can grep for (e.g. “I need quiet mornings before long days”).
+2. Send a **specific private phrase** you can grep for: **"I need quiet mornings before long days"** (seeded on `dao-quiet-mornings` observation).
 3. **Device A (organizer)** — group chat: ask Vesper to adjust plan using group context.
 4. **Device A + B** — group thread must **never** show the raw private phrase or name the member.
 5. Proposal / plan copy uses public-safe language only.

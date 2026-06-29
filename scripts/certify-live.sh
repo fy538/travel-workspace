@@ -24,7 +24,7 @@ else
   warn "$FLY_HOST/ready failed — is vesper-backend deployed?"
 fi
 
-step "2/6 Fly dogfood substrate (mara + elif)"
+step "2/7 Fly dogfood substrate (mara + dao + elif)"
 if [[ -f "$AGENT_DIR/.env.prod" ]]; then
   if "$SCRIPT_DIR/dogfood-fly-smoke.sh" 2>&1 | tee /tmp/certify-live-fly-smoke.txt; then
     ok "dogfood-fly-smoke passed"
@@ -35,21 +35,45 @@ else
   warn "No .env.prod — skip Fly substrate smoke"
 fi
 
-step "3/6 Journey live API (J02/J04/J05/J10 two-persona)"
+step "3/7 Journey live API (J02/J04/J05/J10 two-persona)"
 if "$SCRIPT_DIR/dogfood-journey-live-api.sh" 2>&1 | tee /tmp/certify-live-journey-api.txt; then
   ok "dogfood-journey-live-api passed"
 else
   warn "dogfood-journey-live-api failed — fix API gates before device walk"
 fi
 
-step "4/6 Maestro wedge (DoD gate 4)"
+step "4/7 S4 companion personas (dao + reza readiness)"
+if [[ -f "$AGENT_DIR/.env.prod" ]]; then
+  cd "$AGENT_DIR"
+  # shellcheck disable=SC1091
+  source .venv/bin/activate 2>/dev/null || true
+  AGENT_DIR="$AGENT_DIR" source "$SCRIPT_DIR/dogfood-env.sh"
+  dogfood_apply_profile 2>/dev/null || true
+  for persona in dao@dogfood.local reza@dogfood.local; do
+    if PYTHONPATH=. python scripts/dogfood_audit.py --summary --persona "$persona" --no-target-banner 2>&1 | tee "/tmp/certify-live-${persona//@/_}.txt" | grep -q "Persona readiness"; then
+      line="$(grep -E "ready|partial|gap" "/tmp/certify-live-${persona//@/_}.txt" | head -1 || true)"
+      if echo "$line" | grep -q "ready"; then
+        ok "$persona — $line"
+      else
+        warn "$persona — $line (re-promote: APPLY=1 make dogfood-promote CITY=lisbon)"
+      fi
+    else
+      warn "$persona audit failed"
+    fi
+  done
+  cd "$WORKSPACE_DIR"
+else
+  warn "No .env.prod — skip Fly companion persona audit"
+fi
+
+step "5/7 Maestro wedge (DoD gate 4)"
 if [[ "${CERTIFY_VISUAL_OK:-}" == "1" ]]; then
   ok "Maestro 24/25 reported green this session"
 else
   warn "Run: make certify-visual (needs simulator + Metro dev client)"
 fi
 
-step "5/6 Device live walk — J04/J05/J10 (two Clerk accounts on EAS)"
+step "6/7 Device live walk — J04/J05/J10 (two Clerk accounts on EAS)"
 cat <<'EOF'
 
   Runbook: docs/working/journey-live-full-cert-04-05-10.md
@@ -72,7 +96,8 @@ cat <<'EOF'
     [ ] After mutation: Home, Plan, Changes, Map agree on block ids / titles
 
   Privacy (I4 — critical, J04)
-    [ ] DM private constraint on Device B → group thread never shows raw text
+    [ ] Device B (Dao) private Vesper DM: "I need quiet mornings before long days"
+    [ ] Device A group thread must never show that exact phrase or name Dao
 
   J10 — Stay / expense trust (two devices)
     [ ] Organizer stay + expense opt-in; member sees public-safe state only
