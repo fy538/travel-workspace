@@ -76,7 +76,7 @@ else
   failures=$((failures + 1))
 fi
 
-bold "4/4 Canonical venue brief sample (Fly Postgres)"
+bold "4/5 Canonical venue brief sample (Fly Postgres)"
 if PYTHONPATH=. python - <<'PY'
 from sqlalchemy import text
 from backend.core.db.engine import get_connection
@@ -106,6 +106,14 @@ then
   ok "Manifest canonical venues have brief text on Fly"
 else
   fail "Canonical venue brief check failed"
+  failures=$((failures + 1))
+fi
+
+bold "5/5 Five-pack substrate verify (trips + discover compose)"
+if "$SCRIPT_DIR/dogfood-five-pack-verify.sh" 2>&1 | tee /tmp/dogfood-five-pack-verify.txt; then
+  ok "Five-pack substrate verify passed (see make dogfood-five-pack-verify)"
+else
+  fail "Five-pack substrate verify failed — see /tmp/dogfood-five-pack-verify.txt"
   failures=$((failures + 1))
 fi
 

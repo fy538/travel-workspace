@@ -7,7 +7,7 @@
 
 .PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help ci-review
 .PHONY: contract-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate mock-slug-parity
-.PHONY: certify-fast certify-logic certify-visual certify-live dogfood-status seed-s4-local seed-s4-fly corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-fly-smoke import-latent-corpus tier-a-spot-check tier-b-spot-check
+.PHONY: certify-fast certify-logic certify-visual certify-live dogfood-status seed-s4-local seed-s4-fly corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-fly-smoke dogfood-five-pack-verify import-latent-corpus tier-a-spot-check tier-b-spot-check
 .PHONY: preflight-eas fly-secrets verify
 
 # ── Development ───────────────────────────────────────────────────────────────
@@ -142,8 +142,12 @@ dogfood-env-check: ## Print dogfood Postgres+Qdrant stack pairing for PROFILE=lo
 	@PROFILE="$(PROFILE)" APPLY="$(APPLY)" ./scripts/dogfood-env-check.sh
 
 dogfood-fly-smoke: ## Automated Fly substrate smoke after dogfood-promote (API + Fly DB + Rome bridge)
-	@chmod +x ./scripts/dogfood-fly-smoke.sh ./scripts/dogfood-env.sh
+	@chmod +x ./scripts/dogfood-fly-smoke.sh ./scripts/dogfood-env.sh ./scripts/dogfood-five-pack-verify.sh
 	@./scripts/dogfood-fly-smoke.sh
+
+dogfood-five-pack-verify: ## Five-pack substrate checks (trips, itinerary venues, discover compose) on PROFILE=fly|local
+	@chmod +x ./scripts/dogfood-five-pack-verify.sh ./scripts/dogfood-env.sh
+	@PROFILE="$(PROFILE)" ./scripts/dogfood-five-pack-verify.sh
 
 dogfood-status: ## Validate dogfood manifests and print scenario/pack readiness
 	@chmod +x ./scripts/dogfood-status.sh ./scripts/seed-s4-local.sh ./scripts/seed-s4-fly.sh

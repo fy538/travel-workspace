@@ -13,7 +13,8 @@
 ## Preflight (5 min)
 
 ```bash
-make dogfood-fly-smoke          # Fly API + persona audit + Rome bridge
+make dogfood-fly-smoke          # Fly API + persona audit + Rome bridge + five-pack verify
+make dogfood-five-pack-verify PROFILE=fly   # trips, itinerary venues, discover compose only
 curl -sf https://vesper-backend.fly.dev/ready
 ```
 

@@ -9,19 +9,22 @@ Visual gate: [visual-certification-matrix.md](../../travel-app/docs/logic-qa/vis
 
 ## Dogfood five-pack (Fly/EAS)
 
-Automated Fly smoke: `make dogfood-fly-smoke` — **PASSED** 2026-06-29.
+Automated Fly smoke: `make dogfood-fly-smoke` — **PASSED** 2026-06-29.  
+Five-pack substrate verify: `make dogfood-five-pack-verify PROFILE=fly` — **PASSED** 2026-06-29 (trips, itinerary venues, discover compose; device UI still required).
 
-| Pack | Fly promote | Local briefs | Phone walk |
-|------|-------------|--------------|------------|
-| Lisbon | ✅ | ✅ ~249 | mara — **pending** |
-| Rome | ✅ | ✅ + slug bridge | elif — **pending** |
-| Istanbul | ✅ | ✅ 19 entities | elif — **pending** |
-| Tokyo | ✅ | ✅ JSON (6v+1exp) | elif — **pending** |
-| Brooklyn | ✅ | ✅ JSON (3v+2exp) | elif — **pending** |
+| Pack | Fly promote | Local briefs | Fly substrate | Phone walk |
+|------|-------------|--------------|---------------|------------|
+| Lisbon | ✅ | ✅ ~249 | ✅ automated | mara — **pending** |
+| Rome | ✅ | ✅ + slug bridge | ✅ automated | elif — **pending** |
+| Istanbul | ✅ | ✅ 19 entities | ✅ automated | elif — **pending** |
+| Tokyo | ✅ | ✅ JSON (6v+1exp) | ✅ automated | elif — **pending** |
+| Brooklyn | ✅ | ✅ JSON (3v+2exp) | ✅ automated | elif — **pending** |
 
 **Tier A Fly promote + spot-check (2026-06-29):** `APPLY=1 PROFILE=fly make import-latent-corpus` complete; `make tier-a-spot-check PROFILE=fly` — **PASSED** all 5 cities (Paris, Barcelona, Venice, Amalfi Coast, Nice).
 
 **Mara atlas (2026-06-29):** `mara-lisbon-group-arrival` artifact seeded local + Fly — `mara@dogfood.local` audit **ready** (was `partial; missing=atlas`).
+
+**Lisbon Fly atlas (2026-06-29):** reset + reseed `mara-lisbon-group-arrival` on Fly — map_points now use `confeitaria-nacional-baixa` (not experience-only slug).
 
 **Lisbon Fly promote fix:** Mara atlas `map_points` no longer references `lisbon-exp-walking-baixa-story` as a venue slug (experience-only ref); full `dogfood-promote CITY=lisbon` unblocked.
 
