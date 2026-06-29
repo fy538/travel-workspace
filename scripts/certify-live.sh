@@ -35,14 +35,21 @@ else
   warn "No .env.prod — skip Fly substrate smoke"
 fi
 
-step "3/7 Journey live API (J02/J04/J05/J10 two-persona)"
+step "3/8 Journey live API (J02/J04/J05/J10 two-persona)"
 if "$SCRIPT_DIR/dogfood-journey-live-api.sh" 2>&1 | tee /tmp/certify-live-journey-api.txt; then
   ok "dogfood-journey-live-api passed"
 else
   warn "dogfood-journey-live-api failed — fix API gates before device walk"
 fi
 
-step "4/7 S4 companion personas (dao + reza readiness)"
+step "4/8 J04 chat eval (S4 substrate + group-history egress)"
+if "$SCRIPT_DIR/dogfood-journey-j04-chat-eval.sh" 2>&1 | tee /tmp/certify-live-j04-chat-eval.txt; then
+  ok "dogfood-journey-j04-chat-eval passed"
+else
+  warn "J04 chat eval failed — seed dao-quiet-mornings: APPLY=1 make dogfood-promote CITY=lisbon"
+fi
+
+step "5/8 S4 companion personas (dao + reza readiness)"
 if [[ -f "$AGENT_DIR/.env.prod" ]]; then
   cd "$AGENT_DIR"
   # shellcheck disable=SC1091
@@ -66,14 +73,27 @@ else
   warn "No .env.prod — skip Fly companion persona audit"
 fi
 
-step "5/7 Maestro wedge (DoD gate 4)"
+step "6/8 Maestro wedge (DoD gate 4)"
 if [[ "${CERTIFY_VISUAL_OK:-}" == "1" ]]; then
   ok "Maestro 24/25 reported green this session"
+elif [[ "${CERTIFY_S4_MAESTRO_OK:-}" == "1" ]]; then
+  ok "Maestro 26 (S4 real API) reported green this session"
 else
-  warn "Run: make certify-visual (needs simulator + Metro dev client)"
+  warn "Run: make certify-visual (mock 24/25) or make dogfood-maestro-s4-local (S4 real API 26)"
 fi
 
-step "6/7 Device live walk — J04/J05/J10 (two Clerk accounts on EAS)"
+step "7/8 Fly Maestro (optional — needs PRELAUNCH_JWT_MARA)"
+if [[ -n "${PRELAUNCH_JWT_MARA:-}" ]]; then
+  if RUN_MAESTRO=0 "$SCRIPT_DIR/dogfood-maestro-fly.sh" 2>&1 | tee /tmp/certify-live-fly-maestro.txt; then
+    ok "Fly J04 HTTP eval passed (set RUN_MAESTRO=1 make dogfood-maestro-fly for UI)"
+  else
+    warn "Fly Maestro HTTP eval failed — see /tmp/certify-live-fly-maestro.txt"
+  fi
+else
+  warn "Set PRELAUNCH_JWT_MARA to run Fly HTTP eval (make dogfood-maestro-fly)"
+fi
+
+step "8/8 Device live walk — J04/J05/J10 (two Clerk accounts on EAS)"
 cat <<'EOF'
 
   Runbook: docs/working/journey-live-full-cert-04-05-10.md
@@ -96,6 +116,8 @@ cat <<'EOF'
     [ ] After mutation: Home, Plan, Changes, Map agree on block ids / titles
 
   Privacy (I4 — critical, J04)
+    [ ] Automated: make dogfood-journey-j04-chat-eval (substrate + group history)
+    [ ] Optional UI: make dogfood-maestro-s4-local (Maestro 26 grep guard)
     [ ] Device B (Dao) private Vesper DM: "I need quiet mornings before long days"
     [ ] Device A group thread must never show that exact phrase or name Dao
 

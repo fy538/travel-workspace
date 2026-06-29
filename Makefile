@@ -7,7 +7,7 @@
 
 .PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help ci-review
 .PHONY: contract-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate mock-slug-parity
-.PHONY: certify-fast certify-logic certify-visual certify-live dogfood-status seed-s4-local seed-s4-fly corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-fly-smoke dogfood-five-pack-verify dogfood-five-pack-live-api dogfood-five-pack-simulator dogfood-journey-live-api import-latent-corpus tier-a-spot-check tier-b-spot-check
+.PHONY: certify-fast certify-logic certify-visual certify-live dogfood-status seed-s4-local seed-s4-fly corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-fly-smoke dogfood-five-pack-verify dogfood-five-pack-live-api dogfood-five-pack-simulator dogfood-journey-live-api dogfood-journey-j04-chat-eval dogfood-maestro-s4-local dogfood-maestro-fly import-latent-corpus tier-a-spot-check tier-b-spot-check
 .PHONY: preflight-eas fly-secrets verify
 
 # ── Development ───────────────────────────────────────────────────────────────
@@ -160,6 +160,18 @@ dogfood-five-pack-simulator: ## Local TestClient API + optional Maestro wedge (R
 dogfood-journey-live-api: ## Two-persona live API cert for J02/J04/J05/J10 (TestClient or Fly+JWT)
 	@chmod +x ./scripts/dogfood-journey-live-api.sh ./scripts/dogfood-env.sh
 	@PROFILE="$(PROFILE)" TRANSPORT="$(TRANSPORT)" PRELAUNCH_HOST="$(PRELAUNCH_HOST)" ./scripts/dogfood-journey-live-api.sh
+
+dogfood-journey-j04-chat-eval: ## J04 I4 egress eval on S4 trip (substrate + group history)
+	@chmod +x ./scripts/dogfood-journey-j04-chat-eval.sh ./scripts/dogfood-env.sh
+	@PROFILE="$(PROFILE)" TRANSPORT="$(TRANSPORT)" PRELAUNCH_HOST="$(PRELAUNCH_HOST)" ./scripts/dogfood-journey-j04-chat-eval.sh
+
+dogfood-maestro-s4-local: ## Maestro 26 + J04 eval on local real API (SKIP_AUTH as Mara)
+	@chmod +x ./scripts/dogfood-maestro-s4-local.sh ./scripts/dogfood-journey-j04-chat-eval.sh ./scripts/dogfood-env.sh
+	@RUN_MAESTRO="$(RUN_MAESTRO)" ./scripts/dogfood-maestro-s4-local.sh
+
+dogfood-maestro-fly: ## Maestro 26 + J04 eval on Fly (needs PRELAUNCH_JWT_MARA)
+	@chmod +x ./scripts/dogfood-maestro-fly.sh ./scripts/dogfood-journey-j04-chat-eval.sh ./scripts/dogfood-journey-live-api.sh ./scripts/dogfood-env.sh
+	@RUN_MAESTRO="$(RUN_MAESTRO)" PRELAUNCH_JWT_MARA="$(PRELAUNCH_JWT_MARA)" PRELAUNCH_HOST="$(PRELAUNCH_HOST)" ./scripts/dogfood-maestro-fly.sh
 
 dogfood-status: ## Validate dogfood manifests and print scenario/pack readiness
 	@chmod +x ./scripts/dogfood-status.sh ./scripts/seed-s4-local.sh ./scripts/seed-s4-fly.sh
