@@ -113,6 +113,14 @@ jobs:
         run: npm test -- __tests__/journeys/ --runInBand
         working-directory: travel-app
 
+      - name: Journey-list drift guard
+        # Pure file-glob (no DB): fails if scenarios.mjs and tests/scenarios/
+        # test_j*.py have drifted, so a new BE journey can't silently fall out
+        # of the qa:logic runner. Both child repos are checked out as siblings,
+        # so the runner resolves ../travel-agent.
+        run: npm run qa:logic:check-drift
+        working-directory: travel-app
+
       - name: API coverage check
         # Verifies every URL the frontend calls in http.ts exists in
         # docs/openapi.json at the declared method. Catches stale
