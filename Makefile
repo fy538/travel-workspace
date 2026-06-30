@@ -7,7 +7,7 @@
 
 .PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help ci-review
 .PHONY: contract-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate mock-slug-parity
-.PHONY: certify-fast certify-logic certify-visual certify-live dogfood-status seed-s4-local seed-s4-fly corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-fly-smoke dogfood-five-pack-verify dogfood-five-pack-live-api dogfood-five-pack-simulator dogfood-journey-live-api dogfood-journey-j04-chat-eval dogfood-maestro-s4-local dogfood-maestro-fly import-latent-corpus tier-a-spot-check tier-b-spot-check qa-persona
+.PHONY: certify-fast certify-logic certify-visual certify-live dogfood-status seed-s4-local seed-s4-fly corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-fly-smoke dogfood-five-pack-verify dogfood-five-pack-live-api dogfood-five-pack-simulator dogfood-journey-live-api dogfood-journey-j04-chat-eval dogfood-maestro-s4-local dogfood-maestro-fly import-latent-corpus tier-a-spot-check tier-b-spot-check qa-persona dogfood-status-sync
 .PHONY: preflight-eas fly-secrets verify
 
 # ── Development ───────────────────────────────────────────────────────────────
@@ -179,6 +179,9 @@ dogfood-status: ## Validate dogfood manifests and print scenario/pack readiness
 
 qa-persona: ## Full per-persona QA spine: content gates + journeys + visual walk plan (token-free). Usage: make qa-persona PERSONA=mara [GATE=1]
 	@python scripts/qa_persona.py --persona $(PERSONA) $(if $(GATE),--gate,)
+
+dogfood-status-sync: ## Regenerate the auto:persona-cert block in docs/journeys/STATUS.md from the seeded world (token-free). CHECK=1 = CI drift guard.
+	@python scripts/sync_journey_status.py $(if $(CHECK),--check,)
 
 seed-s4-local: ## Seed S4 lisbon-phase1 to local Postgres (requires vesper DB)
 	@chmod +x ./scripts/seed-s4-local.sh

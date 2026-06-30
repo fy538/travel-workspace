@@ -31,5 +31,9 @@ __pycache__/
 node_modules/
 coverage/
 
-# Local agent/runtime locks
+# Local agent/runtime locks and session files
 .claude/*.lock
+.claude/launch.json
+
+# Design-tool export bundles (HTML/PNG mockups — reference locally, not versioned)
+design/vesper-discover-search-claude-design/
