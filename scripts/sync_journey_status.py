@@ -126,6 +126,8 @@ def _collect(personas: tuple[str, ...]) -> dict[str, dict]:
     for jid in _ALL_JOURNEYS:
         if jid in merged:
             continue
+        if not personas:
+            continue
         try:
             rows = _run_persona_cert(personas[0], journey=jid)
         except CertError:
