@@ -1,0 +1,93 @@
+name: Visual QA (Maestro Cloud — PR gate)
+
+# PR-gating version of the wedge visual run, using Maestro Cloud
+# (mobile-dev-inc/action-maestro-cloud) instead of an in-runner simulator.
+# Maestro Cloud runs the flows on managed devices, so this is the robust path
+# for blocking PRs on visual QA — unlike the in-runner macOS nightly
+# (visual-qa.yml), which is slower and flakier.
+#
+# DORMANT UNTIL CONFIGURED: the job only runs when the `MAESTRO_CLOUD_API_KEY`
+# secret is present (checked by the `guard` job below), so adding this file does
+# NOT turn PRs red before you've set it up. To activate:
+#   1. Add repo secrets:  MAESTRO_CLOUD_API_KEY  (from console.maestro.dev)
+#                         EXPO_TOKEN             (for `eas build --local`)
+#   2. Ensure eas.json has an iOS *simulator* build profile (`development`
+#      already compiles with EXPO_PUBLIC_USE_MOCK_API=true + SKIP_AUTH=true —
+#      see .maestro/config.yaml).
+# It runs only the two wedge flows via `include-tags: wedge` (tagged on
+# .maestro/24-… and .maestro/25-…).
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: visual-qa-cloud-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    name: Check Maestro Cloud configured
+    runs-on: ubuntu-latest
+    outputs:
+      enabled: ${{ steps.check.outputs.enabled }}
+    steps:
+      - id: check
+        # Only the PRESENCE of the secret is exposed (never its value), so this
+        # is safe to branch on. Absent secret → job tree is skipped, PR stays green.
+        env:
+          KEY: ${{ secrets.MAESTRO_CLOUD_API_KEY }}
+        run: |
+          if [ -n "$KEY" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+            echo "Maestro Cloud configured — wedge flows will run."
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "MAESTRO_CLOUD_API_KEY not set — skipping (PR not gated on visual QA yet)."
+          fi
+
+  maestro-cloud:
+    name: Maestro Cloud wedge flows
+    needs: guard
+    if: needs.guard.outputs.enabled == 'true'
+    runs-on: macos-15
+    timeout-minutes: 45
+    steps:
+      - name: Check out Travel App
+        uses: actions/checkout@v6
+        with:
+          repository: ${{ github.repository_owner }}/travel-app
+          path: travel-app
+          token: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN || github.token }}
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: travel-app/package-lock.json
+
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: travel-app
+
+      - name: Build iOS simulator app (mock mode)
+        # `development` profile bakes EXPO_PUBLIC_USE_MOCK_API=true + SKIP_AUTH=true
+        # (see eas.json / .maestro/config.yaml) so the wedge surfaces render with
+        # no backend/Clerk. Produces a simulator .app/.tar.gz for Maestro Cloud.
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: npx eas-cli build --platform ios --profile development --local --non-interactive --output "$RUNNER_TEMP/vesper-sim.tar.gz"
+        working-directory: travel-app
+
+      - name: Run wedge flows on Maestro Cloud
+        uses: mobile-dev-inc/action-maestro-cloud@v1
+        with:
+          api-key: ${{ secrets.MAESTRO_CLOUD_API_KEY }}
+          app-file: ${{ runner.temp }}/vesper-sim.tar.gz
+          workspace: travel-app/.maestro
+          include-tags: wedge

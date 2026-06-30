@@ -113,6 +113,15 @@ jobs:
         run: npm test -- __tests__/journeys/ --runInBand
         working-directory: travel-app
 
+      - name: Maestro flow validation
+        # Offline visual-gate guard: every .maestro flow parses + every flow
+        # referenced by a package.json visual-qa* script exists. The full
+        # Maestro run needs a macOS runner + simulator (see visual-qa.yml,
+        # nightly/dispatch), so this cheap check is the PR-blocking foothold
+        # that stops a renamed/deleted flow from silently breaking the wedge
+        # visual gate (certify-visual / visual-qa:wedge).
+        run: make maestro-flow-check
+
       - name: Journey-list drift guard
         # Pure file-glob (no DB): fails if scenarios.mjs and tests/scenarios/
         # test_j*.py have drifted, so a new BE journey can't silently fall out

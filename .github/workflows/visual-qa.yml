@@ -1,0 +1,110 @@
+name: Visual QA (Maestro wedge)
+
+# Tier-3 of the certify ladder — the real wedge Maestro flows
+# (24-journey-02-create-invite + 25-journey-05-proposal-mutation) against a
+# booted iOS simulator running the app in mock mode. This needs a macOS
+# runner + Xcode simulator + a built app, which is too slow/expensive to gate
+# every PR — so it runs nightly and on demand, NOT on pull_request. The cheap,
+# PR-blocking foothold (every flow parses + visual-qa script refs resolve) lives
+# in reliability.yml via `make maestro-flow-check`.
+#
+# NOTE: first run must be triggered manually (workflow_dispatch) to validate the
+# simulator/build wiring on the runner — the iOS build step depends on the
+# Expo/prebuild config and may need one round of iteration. For a per-PR
+# blocking visual gate, the robust path is Maestro Cloud (upload flows + a
+# prebuilt EAS artifact) rather than building in-runner.
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 07:00 UTC nightly (after most of a day's merges have landed on main).
+    - cron: "0 7 * * *"
+
+concurrency:
+  group: visual-qa-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  maestro-wedge:
+    name: Maestro wedge flows (iOS simulator)
+    runs-on: macos-15
+    timeout-minutes: 60
+    steps:
+      - name: Check out workspace
+        uses: actions/checkout@v6
+
+      - name: Resolve child repo refs
+        id: child_refs
+        run: |
+          LOCK="${GITHUB_WORKSPACE}/docs/child-repos.ci-lock.json"
+          APP_REF=main
+          if [ -f "$LOCK" ]; then
+            APP_REF=$(python3 -c "import json; print(json.load(open('$LOCK')).get('travel-app') or 'main')")
+          fi
+          echo "app_ref=$APP_REF" >> "$GITHUB_OUTPUT"
+          echo "Child repo pin: travel-app@$APP_REF"
+
+      - name: Check out Travel App
+        uses: actions/checkout@v6
+        with:
+          repository: ${{ github.repository_owner }}/travel-app
+          path: travel-app
+          ref: ${{ steps.child_refs.outputs.app_ref }}
+          token: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN || github.token }}
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: travel-app/package-lock.json
+
+      - name: Set up Java (Maestro JVM)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: travel-app
+
+      - name: Install Maestro CLI
+        run: |
+          curl -fsSL "https://get.maestro.mobile.dev" | bash
+          echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
+
+      - name: Boot iOS simulator
+        run: |
+          # Pick the first available iPhone simulator and boot it.
+          UDID=$(xcrun simctl list devices available | grep -Eo '\(([0-9A-F-]{36})\)' | head -1 | tr -d '()')
+          if [ -z "$UDID" ]; then echo "::error::No iOS simulator available"; exit 1; fi
+          echo "SIM_UDID=$UDID" >> "$GITHUB_ENV"
+          xcrun simctl boot "$UDID" || true
+          xcrun simctl bootstatus "$UDID" -b
+
+      - name: Build + install app on simulator (mock mode)
+        # Mock mode + SKIP_AUTH boots straight to Trips (see .maestro/config.yaml),
+        # so no backend/Clerk is needed for the wedge surface walk.
+        env:
+          EXPO_PUBLIC_USE_MOCK_API: "true"
+          SKIP_AUTH: "true"
+          EXPO_PUBLIC_IS_INTERNAL_BUILD: "true"
+        run: npx expo run:ios --device "$SIM_UDID" --no-bundler
+        working-directory: travel-app
+
+      - name: Run wedge Maestro flows
+        run: make certify-visual
+
+      - name: Upload Maestro artifacts
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: maestro-visual-qa-${{ github.run_id }}
+          path: |
+            ~/.maestro/tests/**
+          retention-days: 14
+          if-no-files-found: ignore
