@@ -154,20 +154,20 @@ Source: `dogfood_journey_persona_cert.py --json` for mara + elif (seeded world, 
 
 | # | Persona | Trip | Status | Invariant |
 |---|---|---|---|---|
-| J01 | — | — | not run | not mapped to a seeded persona — covered by logic + mock-walk gates |
+| J01 | mara |  | ✅ pass | vague idea promotes into a structured draft trip linked to the exploration |
 | J02 | mara | mara-lisbon | ✅ pass | invite accept adds member exactly once |
-| J03 | — | — | not run | not mapped to a seeded persona — covered by logic + mock-walk gates |
+| J03 | mara |  | ✅ pass | blank trip lands one pre-trip workspace slot without fake itinerary |
 | J04 | mara | mara-lisbon | ✅ pass | private phrase redacted from group proposal + audited |
 | J05 | mara | mara-lisbon | ✅ pass | accepted member proposal mutates the itinerary |
 | J06 | mara | mara-lisbon | ✅ pass | plan + map expose same block ids; open proposal attaches |
 | J07 | elif | elif-rome-return-2026 | ✅ pass | discover venue saves + commits to trip idempotently |
-| J08 | — | — | not run | not mapped to a seeded persona — covered by logic + mock-walk gates |
+| J08 | mara |  | ✅ pass | live plan + map agree on the next stop |
 | J09 | elif | elif-rome-return-2026 | ✅ pass | proactive notification routes + badge updates after read |
 | J10 | mara | mara-lisbon | ✅ pass | group stay cost becomes expense only after payer opt-in |
 | J11 | elif | elif-tokyo-2025 | ✅ pass | memory candidate approves into a kept-memory artifact |
 | J12 | elif | elif-brooklyn-local-week | ✅ pass | returned trip returns its story; expenses settle |
 
-**Persona-cert summary:** 9 / 9 mapped journeys pass · 3 unmapped (J01, J03, J08).
+**Persona-cert summary:** 12 / 12 mapped journeys pass.
 <!-- END auto:persona-cert -->
 
 ## Summary
