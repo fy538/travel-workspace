@@ -5,7 +5,7 @@
 > Last updated: 2026-06-28
 > Source of truth for: the first production/dogfood journey set for Vesper
 
-These one-pagers define the first 12 canonical journeys we should protect before expanding TestFlight and real dogfood. They sit above the existing reliability traces: a journey describes the user-facing promise across screens; a trace proves specific contracts and invariants underneath it.
+These one-pagers define the canonical journeys we should protect before expanding TestFlight and real dogfood: **J01–J12** are the lifecycle golden path; **J13–J19** extend coverage to the dimensions the golden path misses (failure, solo, destructive, account/data, cross-trip, distribution, social/search). They sit above the existing reliability traces: a journey describes the user-facing promise across screens; a trace proves specific contracts and invariants underneath it.
 
 Use these when asking Codex, Claude Code, QA, or a human dogfooder to inspect the app. The goal is to catch the boring deterministic failures first: broken routes, stale read models, mock/real drift, no-op CTAs, privacy leaks, and fake-success states.
 
@@ -43,6 +43,20 @@ Use these when asking Codex, Claude Code, QA, or a human dogfooder to inspect th
 | 10 | [Booking, Stay, And Expense Trust Loop](10-booking-stay-expense-trust-loop.md) | Provider/session drift, hold-settle contracts, opt-in expense sharing |
 | 11 | [Atlas Candidate To Memory Control](11-atlas-candidate-to-memory-control.md) | Memory provenance, trust hub, and Atlas navigation |
 | 12 | [Returned Trip To Story, Memory, And Settle-Up](12-returned-trip-to-story-memory-settle-up.md) | Post-trip loop, durable memory, story, and settlement |
+
+### Holistic-coverage extension (J13–J19)
+
+J01–J12 are the lifecycle golden path. These cover the *dimensions* the golden path doesn't: failure, the non-group user, destructive mutations, account/data rights, the repeat-user loop, distribution, and breadth surfaces. See [STATUS.md](STATUS.md) for which are certified vs visible-skip (each has a real blocker noted in its doc's First Automation Target).
+
+| # | Journey | Main risk protected |
+|---|---|---|
+| 13 | [Failure And Recovery](13-failure-and-recovery.md) | Unhappy path — honest errors + recovery, never fake success |
+| 14 | [Solo Trip End-to-End](14-solo-trip-end-to-end.md) | Single-member trip never drops into group chrome/routing |
+| 15 | [Destructive And Reversible Actions](15-destructive-and-reversible-actions.md) | Leave/remove/delete/cancel cascade correctly; undo restores |
+| 16 | [Account And Data Lifecycle](16-account-and-data-lifecycle.md) | Privacy controls take effect; deletion purges private data |
+| 17 | [Returning Traveler (Cross-Trip Recall)](17-returning-traveler-cross-trip.md) | Second trip recalls taste without leaking another trip's context |
+| 18 | [Signed-Out Join-By-Invite](18-signed-out-join-by-invite.md) | Invite token survives the auth detour → correct membership |
+| 19 | [Social Loop And Cross-Entity Discovery](19-social-loop-and-discovery.md) | Search/profiles route live; public taste leaks no private data |
 
 ### Phase 0 (cross-journey, not numbered)
 
