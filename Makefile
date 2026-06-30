@@ -96,6 +96,7 @@ test-all: test-backend test-frontend ## Run all tests (offline)
 certify-fast: ## Tier-1 certify ladder: corpus-check + contract + journey Jest + offline backend pytest
 	@$(MAKE) corpus-check
 	@$(MAKE) contract-check
+	@cd travel-app && npm run --silent qa:logic:check-drift
 	@cd travel-app && npm test -- __tests__/journeys/ --runInBand
 	@$(MAKE) test-backend
 
@@ -105,9 +106,7 @@ certify-logic: ## Tier-2 certify ladder: journey scenario pytest (requires Postg
 certify-visual: ## Tier-3 certify ladder: wedge Maestro flows (needs simulator + Metro)
 	@export JAVA_HOME="$${JAVA_HOME:-/opt/homebrew/opt/openjdk}" && \
 	 export PATH="$$JAVA_HOME/bin:$$HOME/.maestro/bin:$$PATH" && \
-	 cd travel-app && maestro test \
-		.maestro/24-journey-02-create-invite.yaml \
-		.maestro/25-journey-05-proposal-mutation.yaml
+	 cd travel-app && npm run --silent visual-qa:wedge
 
 certify-live: ## Tier-4 dogfood preflight + live-walk checklist (human: two Clerk accounts)
 	@chmod +x ./scripts/certify-live.sh ./scripts/seed-s4-fly.sh
