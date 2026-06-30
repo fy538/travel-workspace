@@ -40,7 +40,7 @@ def _agent_python() -> str:
     venv = _AGENT_ROOT / ".venv" / "bin" / "python"
     return str(venv) if venv.exists() else sys.executable
 
-_ALL_JOURNEYS = [f"J{n:02d}" for n in range(1, 13)]
+_ALL_JOURNEYS = [f"J{n:02d}" for n in range(1, 20)]
 _UNMAPPED_REASON = "not mapped to a seeded persona — covered by logic + mock-walk gates"
 _STATUS_GLYPH = {"pass": "✅ pass", "fail": "🔴 fail", "skip": "⤵️ skip"}
 
@@ -52,7 +52,7 @@ class CertError(RuntimeError):
     """A persona certifier did not produce a clean, parseable result."""
 
 
-def _run_persona_cert(persona: str) -> list[dict]:
+def _run_persona_cert(persona: str, journey: str = "all") -> list[dict]:
     """Run the certifier for one persona and return its journey rows.
 
     Raises CertError on missing script, subprocess failure, non-zero exit, or
@@ -69,7 +69,7 @@ def _run_persona_cert(persona: str) -> list[dict]:
         "--persona",
         persona,
         "--journey",
-        "all",
+        journey,
         "--json",
     ]
     env = {**os.environ, "AI_MODE": _AI_MODE, "PYTHONPATH": "."}
@@ -102,7 +102,10 @@ def _run_persona_cert(persona: str) -> list[dict]:
 
 
 def _collect(personas: tuple[str, ...]) -> dict[str, dict]:
-    """Merge each persona's journeys into one {id: row} map. Aborts on overlap."""
+    """Merge each persona's runnable journeys into one {id: row} map, then fetch
+    the real skip status+reason for any journey no persona ran (so STATUS.md
+    shows the certifier's actual skip_reason, not a generic placeholder).
+    Aborts on cross-persona overlap."""
     merged: dict[str, dict] = {}
     for persona in personas:
         for row in _run_persona_cert(persona):
@@ -113,6 +116,18 @@ def _collect(personas: tuple[str, ...]) -> dict[str, dict]:
                     f"({merged[jid]['persona']} + {persona}) — fix the persona map"
                 )
             merged[jid] = {**row, "persona": persona}
+
+    # Non-runnable / unmapped journeys surface only under an explicit --journey.
+    # Fetch each one's real skip row (persona-agnostic — runs under any persona).
+    for jid in _ALL_JOURNEYS:
+        if jid in merged:
+            continue
+        try:
+            rows = _run_persona_cert(personas[0], journey=jid)
+        except CertError:
+            continue  # leave it absent → build_block renders "not run"
+        if rows:
+            merged[jid] = {**rows[0], "persona": "—"}
     return merged
 
 
@@ -121,7 +136,8 @@ def build_block(personas: tuple[str, ...], by_id: dict[str, dict]) -> str:
         "| # | Persona | Trip | Status | Invariant |",
         "|---|---|---|---|---|",
     ]
-    ran = passed = 0
+    ran = passed = 0  # ran = lived-certified (pass|fail); skips are not "ran"
+    skipped: list[str] = []
     unmapped: list[str] = []
     for jid in _ALL_JOURNEYS:
         row = by_id.get(jid)
@@ -129,10 +145,7 @@ def build_block(personas: tuple[str, ...], by_id: dict[str, dict]) -> str:
             rows.append(f"| {jid} | — | — | not run | {_UNMAPPED_REASON} |")
             unmapped.append(jid)
             continue
-        ran += 1
         status = row.get("status", "fail")
-        if status == "pass":
-            passed += 1
         glyph = _STATUS_GLYPH.get(status, status)
         reason = row.get("reason") or ""
         invariant = row.get("invariant", "")
@@ -140,12 +153,21 @@ def build_block(personas: tuple[str, ...], by_id: dict[str, dict]) -> str:
         rows.append(
             f"| {jid} | {row['persona']} | {row.get('trip', '')} | {glyph} | {detail} |"
         )
+        if status == "skip":
+            skipped.append(jid)
+        else:
+            ran += 1
+            if status == "pass":
+                passed += 1
 
     table = "\n".join(rows)
     persona_list = " + ".join(personas)
-    unmapped_note = (
-        f" · {len(unmapped)} unmapped ({', '.join(unmapped)})" if unmapped else ""
-    )
+    notes = []
+    if skipped:
+        notes.append(f"{len(skipped)} skipped ({', '.join(skipped)})")
+    if unmapped:
+        notes.append(f"{len(unmapped)} unmapped ({', '.join(unmapped)})")
+    note_suffix = (" · " + " · ".join(notes)) if notes else ""
     return (
         f"{_BEGIN}\n"
         "### Persona journey certification (auto-generated)\n\n"
@@ -153,7 +175,7 @@ def build_block(personas: tuple[str, ...], by_id: dict[str, dict]) -> str:
         "(seeded world, `AI_MODE=replay`, token-free). Regenerate: "
         "`make dogfood-status-sync`. Drift guard: `make dogfood-status-sync CHECK=1`.\n\n"
         f"{table}\n\n"
-        f"**Persona-cert summary:** {passed} / {ran} mapped journeys pass{unmapped_note}.\n"
+        f"**Persona-cert summary:** {passed} / {ran} lived-certified journeys pass{note_suffix}.\n"
         f"{_END}"
     )
 

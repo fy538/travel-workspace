@@ -166,8 +166,15 @@ Source: `dogfood_journey_persona_cert.py --json` for mara + elif (seeded world, 
 | J10 | mara | mara-lisbon | ✅ pass | group stay cost becomes expense only after payer opt-in |
 | J11 | elif | elif-tokyo-2025 | ✅ pass | memory candidate approves into a kept-memory artifact |
 | J12 | elif | elif-brooklyn-local-week | ✅ pass | returned trip returns its story; expenses settle |
+| J13 | — | - | ⤵️ skip | every failure surfaces recovery + never fakes success — Failure-injection harness not built. Individual failure invariants are partially covered by J02 (expired invite) / J05 (stale-write conflict) / J10 (hold-expiry 410) edges; J13 owns the end-to-end recovery cert — wire a fault-injection runner next. |
+| J14 | mara |  | ✅ pass | single-member trip stays solo — 1 member, no group profile |
+| J15 | mara |  | ✅ pass | member removal cascades — off roster + access revoked, no ghost |
+| J16 | — | - | ⤵️ skip | privacy controls take effect; deletion purges private data — Account deletion is DESTRUCTIVE on the shared seeded persona — deleting mara/elif would break every other cert. Certify against an ephemeral user in BE pytest (tests/scenarios), not the lived persona. |
+| J17 | — | - | ⤵️ skip | cross-trip affinity recall without private-context leak — Cross-trip recall substrate is DARK (ATLAS_SIGNALS_TO_MEMORY gated; traveler_place_affinity recall quiet). Lit it would assert recall surfaces in a second trip; until enabled this is a visible gap. |
+| J18 | — | - | ⤵️ skip | invite token survives the auth detour → correct membership — The signed-out auth detour is a FE/Clerk flow not exercised by the in-process certifier. Cert the token→membership contract in BE (invite accept) + the public-field shape in the FE mock-walk. |
+| J19 | — | - | ⤵️ skip | search/profiles route live; public taste leaks no private data — Social loop is a deferred initiative and universal search is built-but-unpushed. Cert search-routing as a BE/FE contract test and public-profile privacy as a persona-cert leak check once in scope. |
 
-**Persona-cert summary:** 12 / 12 mapped journeys pass.
+**Persona-cert summary:** 14 / 14 lived-certified journeys pass · 5 skipped (J13, J16, J17, J18, J19).
 <!-- END auto:persona-cert -->
 
 ## Summary
