@@ -1,0 +1,91 @@
+# Canonical journey registry — the SINGLE SOURCE OF TRUTH for the journey set.
+#
+# Every other journey registry is checked against this list by
+# scripts/check_journey_registry.py (no DB, runs in CI):
+#   - docs/journeys/<doc>            (one-pager per journey)
+#   - README.md                      (index table)
+#   - travel-agent .../dogfood_journey_persona_cert.py  (lived persona-cert specs)
+# And scripts/sync_journey_status.py generates the STATUS.md fidelity Matrix
+# from this list + derived per-fidelity coverage.
+#
+# Adding a journey = add it HERE first, then the guard tells you which
+# registries still need it. tier: golden-path (J01–J12, the lifecycle spine)
+# vs holistic-extension (J13–J19, the dimensions the spine misses).
+
+journeys:
+  - id: J01
+    title: Vague Idea to Vesper-Shaped Trip
+    doc: 01-vague-idea-to-vesper-shaped-trip.md
+    tier: golden-path
+  - id: J02
+    title: Concrete Trip Creation and Invite
+    doc: 02-concrete-trip-creation-and-invite.md
+    tier: golden-path
+  - id: J03
+    title: Cold Trip Setup to Useful Workspace
+    doc: 03-cold-trip-setup-to-useful-workspace.md
+    tier: golden-path
+  - id: J04
+    title: Private Constraint to Group-Safe Plan
+    doc: 04-private-constraint-to-group-safe-plan.md
+    tier: golden-path
+  - id: J05
+    title: Group Planning to Proposal to Plan Mutation
+    doc: 05-group-planning-to-proposal-to-plan-mutation.md
+    tier: golden-path
+  - id: J06
+    title: Home, Plan, Map, Changes Coherence
+    doc: 06-home-plan-map-changes-coherence.md
+    tier: golden-path
+  - id: J07
+    title: Discover to Contextual Vesper to Trip Action
+    doc: 07-discover-to-contextual-vesper-to-trip-action.md
+    tier: golden-path
+  - id: J08
+    title: Live Trip What-Now Companion
+    doc: 08-live-trip-what-now-companion.md
+    tier: golden-path
+  - id: J09
+    title: Notifications and Proactive Routing
+    doc: 09-notifications-and-proactive-routing.md
+    tier: golden-path
+  - id: J10
+    title: Booking, Stay, and Expense Trust Loop
+    doc: 10-booking-stay-expense-trust-loop.md
+    tier: golden-path
+  - id: J11
+    title: Atlas Candidate to Memory Control
+    doc: 11-atlas-candidate-to-memory-control.md
+    tier: golden-path
+  - id: J12
+    title: Returned Trip to Story, Memory, and Settle-Up
+    doc: 12-returned-trip-to-story-memory-settle-up.md
+    tier: golden-path
+  - id: J13
+    title: Failure and Recovery
+    doc: 13-failure-and-recovery.md
+    tier: holistic-extension
+  - id: J14
+    title: Solo Trip End-to-End
+    doc: 14-solo-trip-end-to-end.md
+    tier: holistic-extension
+  - id: J15
+    title: Destructive and Reversible Actions
+    doc: 15-destructive-and-reversible-actions.md
+    tier: holistic-extension
+  - id: J16
+    title: Account and Data Lifecycle
+    doc: 16-account-and-data-lifecycle.md
+    tier: holistic-extension
+  - id: J17
+    title: Returning Traveler (Cross-Trip Recall)
+    doc: 17-returning-traveler-cross-trip.md
+    tier: holistic-extension
+  - id: J18
+    title: Signed-Out Join-By-Invite
+    doc: 18-signed-out-join-by-invite.md
+    tier: holistic-extension
+  - id: J19
+    title: Social Loop and Cross-Entity Discovery
+    doc: 19-social-loop-and-discovery.md
+    tier: holistic-extension

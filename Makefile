@@ -7,7 +7,7 @@
 
 .PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help ci-review
 .PHONY: contract-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate mock-slug-parity
-.PHONY: certify-fast certify-logic certify-visual certify-live maestro-flow-check dogfood-status seed-s4-local seed-s4-fly corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-fly-smoke dogfood-five-pack-verify dogfood-five-pack-live-api dogfood-five-pack-simulator dogfood-journey-live-api dogfood-journey-j04-chat-eval dogfood-maestro-s4-local dogfood-maestro-fly import-latent-corpus tier-a-spot-check tier-b-spot-check qa-persona dogfood-status-sync
+.PHONY: certify-fast certify-logic certify-visual certify-live maestro-flow-check journey-registry-check dogfood-status seed-s4-local seed-s4-fly corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-fly-smoke dogfood-five-pack-verify dogfood-five-pack-live-api dogfood-five-pack-simulator dogfood-journey-live-api dogfood-journey-j04-chat-eval dogfood-maestro-s4-local dogfood-maestro-fly import-latent-corpus tier-a-spot-check tier-b-spot-check qa-persona dogfood-status-sync
 .PHONY: preflight-eas fly-secrets verify
 
 # ── Development ───────────────────────────────────────────────────────────────
@@ -96,10 +96,14 @@ test-all: test-backend test-frontend ## Run all tests (offline)
 certify-fast: ## Tier-1 certify ladder: corpus-check + contract + journey Jest + maestro-flow-check + offline backend pytest
 	@$(MAKE) corpus-check
 	@$(MAKE) contract-check
+	@$(MAKE) journey-registry-check
 	@cd travel-app && npm run --silent qa:logic:check-drift
 	@cd travel-app && npm test -- __tests__/journeys/ --runInBand
 	@$(MAKE) maestro-flow-check
 	@$(MAKE) test-backend
+
+journey-registry-check: ## Gate: journeys.yaml ↔ docs ↔ README ↔ persona-cert agree on the journey set (offline, no DB)
+	@python3 scripts/check_journey_registry.py
 
 maestro-flow-check: ## Gate: every .maestro flow parses + visual-qa script refs resolve (offline, no simulator)
 	@python3 scripts/validate-maestro-flows.py --app-dir travel-app

@@ -130,6 +130,13 @@ jobs:
         run: npm run qa:logic:check-drift
         working-directory: travel-app
 
+      - name: Journey-set registry guard
+        # Pure file-parse (no DB): journeys.yaml ↔ docs ↔ README ↔ persona-cert
+        # must agree on the journey SET, so a journey added to one definition
+        # registry but forgotten in another fails CI. Reports (non-fatally) the
+        # contract/logic fidelity gap for the holistic-extension journeys.
+        run: make journey-registry-check
+
       - name: API coverage check
         # Verifies every URL the frontend calls in http.ts exists in
         # docs/openapi.json at the declared method. Catches stale
