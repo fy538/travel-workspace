@@ -16515,6 +16515,66 @@
         }
       }
     },
+    "/api/universal-search": {
+      "post": {
+        "tags": [
+          "search"
+        ],
+        "summary": "Universal Search",
+        "description": "Grouped cross-entity search scoped to the current user.\n\nPrivate groups (trips, atlas, conversations) are always filtered by\n``actor.id``. Public places come from the Discover venue index. Each\ngroup runs in parallel; empty groups are dropped from the response.\n\nTrip scopes (``this_trip`` / ``receipts``) require ``trip_id`` and verify\nthe actor is a member of that trip before reading any trip-scoped data \u2014\nplaces are filtered to the trip's destination, Atlas to memories imported\nfrom the trip, and conversations to the trip's threads.",
+        "operationId": "universal_search_api_universal_search_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UniversalSearchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UniversalSearchResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/stay-candidates": {
       "get": {
         "tags": [
@@ -38728,6 +38788,33 @@
         ],
         "title": "GroupProfileSection"
       },
+      "GroupedResults": {
+        "properties": {
+          "group": {
+            "$ref": "#/components/schemas/ResultGroup"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label",
+            "description": "Section header, e.g. 'Trips', 'Saved in Atlas'"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/UniversalSearchItem"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "type": "object",
+        "required": [
+          "group",
+          "label",
+          "items"
+        ],
+        "title": "GroupedResults",
+        "description": "One typed section: a header label plus its ranked items."
+      },
       "HTTPValidationError": {
         "properties": {
           "detail": {
@@ -48878,6 +48965,23 @@
         ],
         "title": "RestaurantBookingAttempt"
       },
+      "ResultGroup": {
+        "type": "string",
+        "enum": [
+          "trips",
+          "places",
+          "atlas",
+          "conversations",
+          "discover",
+          "people",
+          "receipts",
+          "costs",
+          "actions",
+          "ask"
+        ],
+        "title": "ResultGroup",
+        "description": "The typed sections a result can land in. Each maps to a section header\nin the overlay and to a destination surface when tapped."
+      },
       "RetireFactResponse": {
         "properties": {
           "status": {
@@ -49133,6 +49237,19 @@
         "title": "SaveBoardResponse",
         "description": "The id of the saved (or revived) kept board. Saves are idempotent on\n(user, facet_set), so a repeat save returns the same id."
       },
+      "Scope": {
+        "type": "string",
+        "enum": [
+          "all_vesper",
+          "places",
+          "atlas",
+          "nearby",
+          "this_trip",
+          "receipts"
+        ],
+        "title": "Scope",
+        "description": "The active search scope \u2014 drives which groups are searched and how\nthey are filtered. Mirrors the chip rail in the overlay.\n\n``all_vesper``  \u2014 everything this user can see (default, no trip).\n``places``      \u2014 public + saved places only.\n``atlas``       \u2014 the user's Atlas memories only.\n``nearby``      \u2014 places near the user's current location (home-city use).\n``this_trip``   \u2014 scoped to ``trip_id`` (default when launched on a trip).\n``receipts``    \u2014 bookings / reservations / receipts for the trip."
+      },
       "SearchInterpretation": {
         "properties": {
           "label": {
@@ -49156,6 +49273,30 @@
         ],
         "title": "SearchInterpretation",
         "description": "Structured interpretation of a search query, generated by Vesper (Haiku).\n\n``label`` is a 3-7 word natural-language restatement of the user's intent\n(suitable for display above results).  ``mode`` distinguishes open-ended\nvibes queries (``\"intent\"``) from specific lookup queries (``\"lookup\"``).\n``entity_focus`` is the primary entity type the query targets."
+      },
+      "SearchProvenance": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "privacy": {
+            "type": "string",
+            "enum": [
+              "private",
+              "group",
+              "public"
+            ],
+            "title": "Privacy"
+          }
+        },
+        "type": "object",
+        "required": [
+          "label",
+          "privacy"
+        ],
+        "title": "SearchProvenance",
+        "description": "Where a result came from and how sensitive it is.\n\n``label`` is the short, ALL-CAPS-in-UI string the row displays\n(e.g. \"FROM YOUR ATLAS\", \"YOUR TRIP\", \"SHARED BY ANA\", \"DISCOVER GUIDE\").\n``privacy`` gates rendering: a ``private`` row must always show its label."
       },
       "SearchRequest": {
         "properties": {
@@ -53647,6 +53788,162 @@
         "type": "object",
         "title": "TripSummaryResponse",
         "description": "AI-generated retrospective for a completed trip."
+      },
+      "UniversalSearchItem": {
+        "properties": {
+          "group": {
+            "$ref": "#/components/schemas/ResultGroup"
+          },
+          "entity_type": {
+            "type": "string",
+            "title": "Entity Type"
+          },
+          "entity_id": {
+            "type": "string",
+            "title": "Entity Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "subtitle": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subtitle"
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/SearchProvenance"
+          },
+          "meta": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Meta",
+            "description": "Trailing metadata (date, distance, count)"
+          },
+          "route": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Route",
+            "description": "Destination hint, e.g. 'trip:<uuid>'"
+          },
+          "is_action": {
+            "type": "boolean",
+            "title": "Is Action",
+            "default": false
+          },
+          "score": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Score",
+            "description": "Within-group rank score",
+            "default": 0.0
+          }
+        },
+        "type": "object",
+        "required": [
+          "group",
+          "entity_type",
+          "entity_id",
+          "title",
+          "provenance"
+        ],
+        "title": "UniversalSearchItem",
+        "description": "A single grouped result row.\n\n``route`` is a client-resolvable destination hint (e.g. ``trip:<id>``,\n``place:<slug>``, ``atlas:<id>``, ``conversation:<id>``) \u2014 the frontend\nmaps it to a navigation target. ``is_action`` marks command rows\n(rendered with the Vesper spark, not a nav chevron)."
+      },
+      "UniversalSearchRequest": {
+        "properties": {
+          "q": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Q",
+            "description": "Free-text query"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/Scope",
+            "default": "all_vesper"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id",
+            "description": "Active trip UUID; required for trip scopes"
+          },
+          "per_group_limit": {
+            "type": "integer",
+            "maximum": 20.0,
+            "minimum": 1.0,
+            "title": "Per Group Limit",
+            "default": 5
+          }
+        },
+        "type": "object",
+        "required": [
+          "q"
+        ],
+        "title": "UniversalSearchRequest",
+        "description": "A Universal Search query.\n\n``trip_id`` is required when ``scope`` is ``this_trip`` or ``receipts``;\nignored otherwise. ``per_group_limit`` caps each section so no single\ngroup floods the overlay."
+      },
+      "UniversalSearchResponse": {
+        "properties": {
+          "q": {
+            "type": "string",
+            "title": "Q"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/Scope"
+          },
+          "groups": {
+            "items": {
+              "$ref": "#/components/schemas/GroupedResults"
+            },
+            "type": "array",
+            "title": "Groups"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total",
+            "description": "Total items across all groups"
+          },
+          "latency_ms": {
+            "type": "number",
+            "title": "Latency Ms"
+          }
+        },
+        "type": "object",
+        "required": [
+          "q",
+          "scope",
+          "groups",
+          "total",
+          "latency_ms"
+        ],
+        "title": "UniversalSearchResponse",
+        "description": "Grouped results for a query.\n\n``groups`` is ordered most-relevant-first; empty groups are omitted.\n\nNote: the overlay's elevated Ask-Vesper card is currently driven by a\nclient-side intent heuristic. A server-side ``interpretation`` field could\ndrive it instead \u2014 intentionally not part of this contract yet."
       },
       "UnreadConversation": {
         "properties": {
