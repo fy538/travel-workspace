@@ -84,10 +84,20 @@ jobs:
         run: npx eas-cli build --platform ios --profile development --local --non-interactive --output "$RUNNER_TEMP/vesper-sim.tar.gz"
         working-directory: travel-app
 
+      - name: Extract .app for Maestro Cloud
+        # EAS local simulator builds emit a .tar.gz; Maestro Cloud's app-file
+        # wants the .app bundle itself. Extract and locate it.
+        run: |
+          mkdir -p "$RUNNER_TEMP/app"
+          tar -xzf "$RUNNER_TEMP/vesper-sim.tar.gz" -C "$RUNNER_TEMP/app"
+          APP=$(find "$RUNNER_TEMP/app" -maxdepth 4 -name "*.app" | head -1)
+          if [ -z "$APP" ]; then echo "::error::No .app found in EAS build output"; exit 1; fi
+          echo "APP_FILE=$APP" >> "$GITHUB_ENV"
+
       - name: Run wedge flows on Maestro Cloud
         uses: mobile-dev-inc/action-maestro-cloud@v1
         with:
           api-key: ${{ secrets.MAESTRO_CLOUD_API_KEY }}
-          app-file: ${{ runner.temp }}/vesper-sim.tar.gz
+          app-file: ${{ env.APP_FILE }}
           workspace: travel-app/.maestro
           include-tags: wedge
