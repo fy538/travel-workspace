@@ -184,21 +184,43 @@ def build_block(personas: tuple[str, ...], by_id: dict[str, dict]) -> str:
     )
 
 
+def _visual_ids() -> set[str]:
+    """Journey IDs that have a dedicated Maestro flow.
+
+    Convention: `.maestro/NN-journey-JJ-*.yaml` where NN is the flow number
+    and JJ is the two-digit journey number (e.g. `24-journey-02-create-invite.yaml` → J02).
+    Only flows whose filename contains `journey-NN` are counted; generic surface
+    flows (trips-home, plan, discover …) are not journey-labelled and not counted.
+    """
+    maestro_dir = _REPO_ROOT / "travel-app" / ".maestro"
+    if not maestro_dir.exists():
+        return set()
+    import re
+
+    visual: set[str] = set()
+    for p in maestro_dir.glob("*-journey-*.yaml"):
+        m = re.search(r"journey-(\d{2})", p.name)
+        if m:
+            visual.add(f"J{m.group(1)}")
+    return visual
+
+
 def build_matrix_block(by_id: dict[str, dict]) -> str:
     """Generated fidelity Matrix for the WHOLE journey set (from journeys.yaml):
     rows = every journey; columns = contract(FE)/logic(BE) derived from which
-    test files exist, + lived from the persona-cert results in ``by_id``. This
-    replaces the old hand-typed Matrix — always accurate, covers J13–J19."""
+    test files exist, + visual (Maestro dedicated flow) + lived from the
+    persona-cert results in ``by_id``. This replaces the old hand-typed Matrix —
+    always accurate, covers J13–J19."""
     from check_journey_registry import _be_test_ids, _fe_mockwalk_ids
 
     manifest = yaml.safe_load((_REPO_ROOT / "docs" / "journeys" / "journeys.yaml").read_text())
     journeys = manifest.get("journeys", [])
-    fe, be = _fe_mockwalk_ids(), _be_test_ids()
+    fe, be, visual = _fe_mockwalk_ids(), _be_test_ids(), _visual_ids()
     lived_glyph = {"pass": "✅", "fail": "🔴", "skip": "⤵️"}
 
     rows = [
-        "| # | Journey | Tier | Contract (FE) | Logic (BE) | Lived (persona-cert) |",
-        "|---|---|---|---|---|---|",
+        "| # | Journey | Tier | Contract (FE) | Logic (BE) | Visual (Maestro) | Lived (persona-cert) |",
+        "|---|---|---|---|---|---|---|",
     ]
     for j in journeys:
         jid = j["id"]
@@ -210,15 +232,16 @@ def build_matrix_block(by_id: dict[str, dict]) -> str:
         tier = "golden" if j.get("tier") == "golden-path" else "holistic"
         rows.append(
             f"| {jid} | {j['title']} | {tier} | "
-            f"{'✅' if jid in fe else '—'} | {'✅' if jid in be else '—'} | {lived} |"
+            f"{'✅' if jid in fe else '—'} | {'✅' if jid in be else '—'} | "
+            f"{'✅' if jid in visual else '—'} | {lived} |"
         )
     table = "\n".join(rows)
     return (
         f"{_MX_BEGIN}\n"
         "### Journey fidelity matrix (auto-generated)\n\n"
         "Source: `docs/journeys/journeys.yaml` × derived coverage (FE mock-walk / "
-        "BE pytest file presence) × live persona-cert. Regenerate: "
-        "`make dogfood-status-sync`. Set integrity: `make journey-registry-check`. "
+        "BE pytest file presence / Maestro dedicated flow) × live persona-cert. "
+        "Regenerate: `make dogfood-status-sync`. Set integrity: `make journey-registry-check`. "
         "Legend: ✅ present/pass · ⤵️ skip · 🔴 fail · — none.\n\n"
         f"{table}\n"
         f"{_MX_END}"
