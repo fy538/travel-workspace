@@ -6,20 +6,22 @@ name: Visual QA (Maestro Cloud — PR gate)
 # for blocking PRs on visual QA — unlike the in-runner macOS nightly
 # (visual-qa.yml), which is slower and flakier.
 #
-# DORMANT UNTIL CONFIGURED: the job only runs when the `MAESTRO_CLOUD_API_KEY`
-# secret is present (checked by the `guard` job below), so adding this file does
-# NOT turn PRs red before you've set it up. To activate:
-#   1. Add repo secrets:  MAESTRO_CLOUD_API_KEY  (from console.maestro.dev)
-#                         EXPO_TOKEN             (for `eas build --local`)
-#   2. Ensure eas.json has an iOS *simulator* build profile (`development`
-#      already compiles with EXPO_PUBLIC_USE_MOCK_API=true + SKIP_AUTH=true —
-#      see .maestro/config.yaml).
+# Ready to activate — add two repo secrets to turn PRs green:
+#   MAESTRO_CLOUD_API_KEY  (from console.maestro.dev)
+#   EXPO_TOKEN             (for `eas build --local`)
+# The `guard` job checks for the secret and skips gracefully when absent,
+# so this workflow never turns PRs red before it's configured.
 # It runs only the two wedge flows via `include-tags: wedge` (tagged on
 # .maestro/24-… and .maestro/25-…).
+#
+# Also fires via repository_dispatch (event: travel-app-ci-success) so the
+# workspace can trigger a post-merge cloud run after travel-app CI passes.
 
 on:
   pull_request:
     branches: [main]
+  repository_dispatch:
+    types: [travel-app-ci-success]
   workflow_dispatch:
 
 concurrency:

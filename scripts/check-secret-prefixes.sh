@@ -2,6 +2,11 @@
 #
 # check-secret-prefixes.sh — guard against real credentials slipping into git.
 #
+# CANONICAL SOURCE: ~/travel-workspace/scripts/check-secret-prefixes.sh
+# Child repos (travel-agent, travel-app) reference this via their
+# pre-commit entry: ../scripts/check-secret-prefixes.sh — never copy it.
+# If you find a copy in a child repo's scripts/, delete it and re-point.
+#
 # Why this exists:
 #   `detect-secrets` (the pre-commit hook in Travel Agent) does NOT have
 #   detectors for the credential shapes WE actually use:
