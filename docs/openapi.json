@@ -832,6 +832,328 @@
         }
       }
     },
+    "/admin/dogfood/preflight": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Get Dogfood Preflight",
+        "description": "Return a unified read-only preflight report for a dogfood session.",
+        "operationId": "get_dogfood_preflight_admin_dogfood_preflight_get",
+        "parameters": [
+          {
+            "name": "email_suffix",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 80,
+              "default": "@dogfood.local",
+              "title": "Email Suffix"
+            }
+          },
+          {
+            "name": "persona_email",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 3,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Persona Email"
+            }
+          },
+          {
+            "name": "cohort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80,
+              "default": "canonical_dogfood",
+              "title": "Cohort"
+            }
+          },
+          {
+            "name": "max_users",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 500,
+              "minimum": 1,
+              "default": 100,
+              "title": "Max Users"
+            }
+          },
+          {
+            "name": "expect_voice",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Expect Voice"
+            }
+          },
+          {
+            "name": "app_channel",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "App Channel"
+            }
+          },
+          {
+            "name": "app_api_url",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 300
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "App Api Url"
+            }
+          },
+          {
+            "name": "app_mock_api",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "App Mock Api"
+            }
+          },
+          {
+            "name": "app_skip_auth",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "App Skip Auth"
+            }
+          },
+          {
+            "name": "app_voice_enabled",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "App Voice Enabled"
+            }
+          },
+          {
+            "name": "app_internal_build",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "App Internal Build"
+            }
+          },
+          {
+            "name": "app_platform",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "App Platform"
+            }
+          },
+          {
+            "name": "app_version",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "App Version"
+            }
+          },
+          {
+            "name": "app_build_number",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "App Build Number"
+            }
+          },
+          {
+            "name": "app_runtime_version",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "App Runtime Version"
+            }
+          },
+          {
+            "name": "app_update_channel",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "App Update Channel"
+            }
+          },
+          {
+            "name": "app_update_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "App Update Id"
+            }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DogfoodPreflightResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/admin/users/{user_id}/events": {
       "get": {
         "tags": [
@@ -7993,6 +8315,134 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ConversationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/conversations/{conversation_id}/agency": {
+      "get": {
+        "tags": [
+          "conversations"
+        ],
+        "summary": "Get Conversation Agency",
+        "description": "Return the conversation-scoped controls for Vesper's group presence.",
+        "operationId": "get_conversation_agency_api_conversations__conversation_id__agency_get",
+        "parameters": [
+          {
+            "name": "conversation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Conversation Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConversationAgencyResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "conversations"
+        ],
+        "summary": "Update Conversation Agency",
+        "description": "Patch Vesper's group-room agency controls.\n\nMember-operable by design: any participant can choose the room's\nreactive/proactive posture and mute Vesper for themselves. ``room_muted``\nis also member-operable for the W3 launch; if product later wants\norganizer-only room mute, keep the metadata shape and tighten auth here.",
+        "operationId": "update_conversation_agency_api_conversations__conversation_id__agency_patch",
+        "parameters": [
+          {
+            "name": "conversation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Conversation Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateConversationAgencyRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConversationAgencyResponse"
                 }
               }
             }
@@ -20339,6 +20789,204 @@
         }
       }
     },
+    "/api/trips/{trip_id}/group-memory": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Group Memory",
+        "description": "Group-safe profile legibility surface for trip members.",
+        "operationId": "get_group_memory_api_trips__trip_id__group_memory_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupMemoryResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Patch Group Memory",
+        "description": "Replace the group-safe memory surface with edited member-visible notes.",
+        "operationId": "patch_group_memory_api_trips__trip_id__group_memory_patch",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GroupMemoryPatchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupMemoryResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/group-memory/forget": {
+      "post": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Forget Group Memory Item",
+        "description": "Forget one group-safe memory item by creating a new version without it.",
+        "operationId": "forget_group_memory_item_api_trips__trip_id__group_memory_forget_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GroupMemoryForgetRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupMemoryResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/itinerary/blocks/{block_id}/move": {
       "post": {
         "tags": [
@@ -31287,7 +31935,7 @@
           },
           "provenance": {
             "items": {
-              "$ref": "#/components/schemas/Provenance"
+              "$ref": "#/components/schemas/backend__core__models__composition__Provenance"
             },
             "type": "array",
             "title": "Provenance"
@@ -32351,6 +32999,56 @@
           "value"
         ],
         "title": "ConstraintRequest"
+      },
+      "ConversationAgencyResponse": {
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": [
+              "reactive",
+              "proactive"
+            ],
+            "title": "Mode"
+          },
+          "proactivity_threshold": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "title": "Proactivity Threshold"
+          },
+          "room_muted": {
+            "type": "boolean",
+            "title": "Room Muted",
+            "default": false
+          },
+          "muted_for_self": {
+            "type": "boolean",
+            "title": "Muted For Self",
+            "default": false
+          },
+          "autonomy_scope": {
+            "type": "string",
+            "const": "booking_depth",
+            "title": "Autonomy Scope",
+            "default": "booking_depth"
+          },
+          "cadence_scope": {
+            "type": "string",
+            "const": "notification_volume",
+            "title": "Cadence Scope",
+            "default": "notification_volume"
+          }
+        },
+        "type": "object",
+        "required": [
+          "mode",
+          "proactivity_threshold"
+        ],
+        "title": "ConversationAgencyResponse",
+        "description": "How Vesper is allowed to participate in this group room."
       },
       "ConversationListItem": {
         "properties": {
@@ -35238,6 +35936,617 @@
           "missing_areas"
         ],
         "title": "DogfoodPersonaAuditResponse"
+      },
+      "DogfoodPreflightAppContextResponse": {
+        "properties": {
+          "channel": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Channel"
+          },
+          "api_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Api Url"
+          },
+          "mock_api": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mock Api"
+          },
+          "skip_auth": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Skip Auth"
+          },
+          "voice_enabled": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Voice Enabled"
+          },
+          "internal_build": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Internal Build"
+          },
+          "platform": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Platform"
+          },
+          "app_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "App Version"
+          },
+          "build_number": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Build Number"
+          },
+          "runtime_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Runtime Version"
+          },
+          "update_channel": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Update Channel"
+          },
+          "update_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Update Id"
+          }
+        },
+        "type": "object",
+        "title": "DogfoodPreflightAppContextResponse"
+      },
+      "DogfoodPreflightBackgroundResponse": {
+        "properties": {
+          "available": {
+            "type": "boolean",
+            "title": "Available"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "running": {
+            "type": "integer",
+            "title": "Running"
+          },
+          "disabled": {
+            "type": "integer",
+            "title": "Disabled"
+          },
+          "done": {
+            "type": "integer",
+            "title": "Done"
+          },
+          "cancelled": {
+            "type": "integer",
+            "title": "Cancelled"
+          },
+          "errored": {
+            "type": "integer",
+            "title": "Errored"
+          },
+          "in_flight": {
+            "type": "integer",
+            "title": "In Flight"
+          },
+          "supervised_loops": {
+            "type": "integer",
+            "title": "Supervised Loops"
+          },
+          "tasks": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Tasks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "available",
+          "total",
+          "running",
+          "disabled",
+          "done",
+          "cancelled",
+          "errored",
+          "in_flight",
+          "supervised_loops",
+          "tasks"
+        ],
+        "title": "DogfoodPreflightBackgroundResponse"
+      },
+      "DogfoodPreflightCheckResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "info",
+              "warning",
+              "blocked"
+            ],
+            "title": "Severity"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "detail": {
+            "type": "string",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "severity",
+          "label",
+          "detail"
+        ],
+        "title": "DogfoodPreflightCheckResponse"
+      },
+      "DogfoodPreflightCohortResponse": {
+        "properties": {
+          "cohort": {
+            "type": "string",
+            "title": "Cohort"
+          },
+          "email_suffix": {
+            "type": "string",
+            "title": "Email Suffix"
+          },
+          "persona_email": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Persona Email"
+          },
+          "persona_count": {
+            "type": "integer",
+            "title": "Persona Count"
+          },
+          "totals": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Totals"
+          },
+          "readiness_totals": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Readiness Totals"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Warnings"
+          },
+          "audit_available": {
+            "type": "boolean",
+            "title": "Audit Available"
+          }
+        },
+        "type": "object",
+        "required": [
+          "cohort",
+          "email_suffix",
+          "persona_email",
+          "persona_count",
+          "totals",
+          "readiness_totals",
+          "warnings",
+          "audit_available"
+        ],
+        "title": "DogfoodPreflightCohortResponse"
+      },
+      "DogfoodPreflightDeployResponse": {
+        "properties": {
+          "app_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "App Name"
+          },
+          "region": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Region"
+          },
+          "machine_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Machine Id"
+          },
+          "process_group": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Process Group"
+          },
+          "release_sha": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Release Sha"
+          },
+          "image_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Ref"
+          }
+        },
+        "type": "object",
+        "required": [
+          "app_name",
+          "region",
+          "machine_id",
+          "process_group",
+          "release_sha",
+          "image_ref"
+        ],
+        "title": "DogfoodPreflightDeployResponse"
+      },
+      "DogfoodPreflightProvidersResponse": {
+        "properties": {
+          "anthropic": {
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "type": "object",
+            "title": "Anthropic"
+          },
+          "tavily": {
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "type": "object",
+            "title": "Tavily"
+          },
+          "livekit": {
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "type": "object",
+            "title": "Livekit"
+          }
+        },
+        "type": "object",
+        "required": [
+          "anthropic",
+          "tavily",
+          "livekit"
+        ],
+        "title": "DogfoodPreflightProvidersResponse"
+      },
+      "DogfoodPreflightResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "ready",
+              "warning",
+              "blocked"
+            ],
+            "title": "Status"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "target": {
+            "$ref": "#/components/schemas/DogfoodPreflightTargetResponse"
+          },
+          "app": {
+            "$ref": "#/components/schemas/DogfoodPreflightAppContextResponse"
+          },
+          "runtime": {
+            "$ref": "#/components/schemas/DogfoodPreflightRuntimeResponse"
+          },
+          "providers": {
+            "$ref": "#/components/schemas/DogfoodPreflightProvidersResponse"
+          },
+          "deploy": {
+            "$ref": "#/components/schemas/DogfoodPreflightDeployResponse"
+          },
+          "background": {
+            "$ref": "#/components/schemas/DogfoodPreflightBackgroundResponse"
+          },
+          "voice": {
+            "$ref": "#/components/schemas/DogfoodPreflightVoiceResponse"
+          },
+          "dogfood": {
+            "$ref": "#/components/schemas/DogfoodPreflightCohortResponse"
+          },
+          "checks": {
+            "items": {
+              "$ref": "#/components/schemas/DogfoodPreflightCheckResponse"
+            },
+            "type": "array",
+            "title": "Checks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "generated_at",
+          "target",
+          "app",
+          "runtime",
+          "providers",
+          "deploy",
+          "background",
+          "voice",
+          "dogfood",
+          "checks"
+        ],
+        "title": "DogfoodPreflightResponse"
+      },
+      "DogfoodPreflightRuntimeResponse": {
+        "properties": {
+          "ai_mode": {
+            "type": "string",
+            "title": "Ai Mode"
+          },
+          "web_search_mode": {
+            "type": "string",
+            "title": "Web Search Mode"
+          },
+          "llm_vcr_mode": {
+            "type": "string",
+            "title": "Llm Vcr Mode"
+          },
+          "background_llm_loops_disabled": {
+            "type": "boolean",
+            "title": "Background Llm Loops Disabled"
+          },
+          "allowed": {
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "type": "object",
+            "title": "Allowed"
+          },
+          "cheap_surface_caps": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Cheap Surface Caps"
+          },
+          "cheap_call_budget": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Cheap Call Budget"
+          },
+          "notes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Notes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ai_mode",
+          "web_search_mode",
+          "llm_vcr_mode",
+          "background_llm_loops_disabled",
+          "allowed",
+          "cheap_surface_caps",
+          "cheap_call_budget",
+          "notes"
+        ],
+        "title": "DogfoodPreflightRuntimeResponse"
+      },
+      "DogfoodPreflightTargetResponse": {
+        "properties": {
+          "environment": {
+            "type": "string",
+            "title": "Environment"
+          },
+          "database": {
+            "type": "string",
+            "title": "Database"
+          },
+          "host": {
+            "type": "string",
+            "title": "Host"
+          },
+          "safe_dsn": {
+            "type": "string",
+            "title": "Safe Dsn"
+          },
+          "prod_like": {
+            "type": "boolean",
+            "title": "Prod Like"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Warnings"
+          }
+        },
+        "type": "object",
+        "required": [
+          "environment",
+          "database",
+          "host",
+          "safe_dsn",
+          "prod_like",
+          "warnings"
+        ],
+        "title": "DogfoodPreflightTargetResponse"
+      },
+      "DogfoodPreflightVoiceResponse": {
+        "properties": {
+          "configured": {
+            "type": "boolean",
+            "title": "Configured"
+          },
+          "process_group": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Process Group"
+          },
+          "worker_process_observable": {
+            "type": "boolean",
+            "title": "Worker Process Observable"
+          },
+          "keys_present": {
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "type": "object",
+            "title": "Keys Present"
+          }
+        },
+        "type": "object",
+        "required": [
+          "configured",
+          "process_group",
+          "worker_process_observable",
+          "keys_present"
+        ],
+        "title": "DogfoodPreflightVoiceResponse"
       },
       "DossierDetail": {
         "properties": {
@@ -38770,6 +40079,105 @@
         "title": "GlobalDossierFeedResponse",
         "description": "Random cross-city dossier sample for the global Discover feed."
       },
+      "GroupMemoryForgetRequest": {
+        "properties": {
+          "item_id": {
+            "type": "string",
+            "title": "Item Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "item_id"
+        ],
+        "title": "GroupMemoryForgetRequest"
+      },
+      "GroupMemoryItem": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "detail": {
+            "type": "string",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "detail"
+        ],
+        "title": "GroupMemoryItem"
+      },
+      "GroupMemoryPatchRequest": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/GroupMemoryItem"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "title": "GroupMemoryPatchRequest"
+      },
+      "GroupMemoryResponse": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "title": "Trip Id"
+          },
+          "version_number": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Version Number"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/GroupMemoryItem"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At"
+          },
+          "empty": {
+            "type": "boolean",
+            "title": "Empty",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id"
+        ],
+        "title": "GroupMemoryResponse"
+      },
       "GroupProfileSection": {
         "properties": {
           "title": {
@@ -41069,6 +42477,16 @@
           "title": {
             "type": "string",
             "title": "Title"
+          },
+          "cover": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SavedBoardCover"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "created_at": {
             "type": "string",
@@ -47722,47 +49140,6 @@
         "title": "ProposalSummary",
         "description": "Lightweight proposal for list views.\n\nDeliberately omits ``proposed_entity_*`` \u2014 the deep-link affordance\nis a detail-page concern, not a list-row concern.\n\n``my_vote`` is the authenticated viewer's current vote (\"approve\",\n\"reject\", \"neutral\") or ``None`` if they haven't voted yet. The\nmobile client uses this to filter the \"Needs your vote\" digest."
       },
-      "Provenance": {
-        "properties": {
-          "moment_id": {
-            "type": "string",
-            "title": "Moment Id"
-          },
-          "source": {
-            "type": "string",
-            "enum": [
-              "vesper",
-              "dossier",
-              "creator",
-              "friend"
-            ],
-            "title": "Source"
-          },
-          "byline": {
-            "type": "string",
-            "title": "Byline"
-          },
-          "face": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Face"
-          }
-        },
-        "type": "object",
-        "required": [
-          "moment_id",
-          "source",
-          "byline"
-        ],
-        "title": "Provenance",
-        "description": "Where one moment came from \u2014 the **Discover variant** trust signal.\n\nThe Atlas variant composes the traveler's OWN past, which is inherently\ntrusted, so it never populates provenance. The Discover variant composes the\nWORLD corpus \u2014 venues/sites the engine is *pointing at*, not recalling \u2014 so\neach moment carries who is vouching for it: ``source`` is the trust-ladder\nrung (Vesper editorial / a dossier / a creator / a friend), ``byline`` is the\nhuman attribution string, ``face`` an optional avatar/illustration ref.\n``moment_id`` pins it to the matching ``Moment.id`` so the FE renders the\nbyline on the right card."
-      },
       "ProviderBreakdown": {
         "properties": {
           "stt_provider": {
@@ -49217,6 +50594,16 @@
               }
             ],
             "title": "Title"
+          },
+          "cover": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SavedBoardCover"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -49236,6 +50623,102 @@
         ],
         "title": "SaveBoardResponse",
         "description": "The id of the saved (or revived) kept board. Saves are idempotent on\n(user, facet_set), so a repeat save returns the same id."
+      },
+      "SavedBoardCover": {
+        "properties": {
+          "source": {
+            "type": "string",
+            "enum": [
+              "photo",
+              "riso",
+              "img2img"
+            ],
+            "title": "Source"
+          },
+          "asset_ref": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 1,
+            "title": "Asset Ref"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "hero",
+              "grid",
+              "accent",
+              "background"
+            ],
+            "title": "Role",
+            "default": "hero"
+          },
+          "aspect": {
+            "type": "string",
+            "enum": [
+              "1:1",
+              "4:5",
+              "3:4",
+              "9:16",
+              "full"
+            ],
+            "title": "Aspect",
+            "default": "1:1"
+          },
+          "crop": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SavedBoardCoverCrop"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "source",
+          "asset_ref"
+        ],
+        "title": "SavedBoardCover",
+        "description": "Lightweight visual hint for a kept-board row.\n\nThe board itself is still never frozen: saved rows store the query that\nre-composes live. This descriptor only lets the library render a small\nthumbnail without recomposing every row."
+      },
+      "SavedBoardCoverCrop": {
+        "properties": {
+          "x": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "X"
+          },
+          "y": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Y"
+          },
+          "width": {
+            "type": "number",
+            "maximum": 1.0,
+            "exclusiveMinimum": 0.0,
+            "title": "Width"
+          },
+          "height": {
+            "type": "number",
+            "maximum": 1.0,
+            "exclusiveMinimum": 0.0,
+            "title": "Height"
+          }
+        },
+        "type": "object",
+        "required": [
+          "x",
+          "y",
+          "width",
+          "height"
+        ],
+        "title": "SavedBoardCoverCrop",
+        "description": "Normalized saliency crop for a saved-board cover thumbnail."
       },
       "Scope": {
         "type": "string",
@@ -49273,30 +50756,6 @@
         ],
         "title": "SearchInterpretation",
         "description": "Structured interpretation of a search query, generated by Vesper (Haiku).\n\n``label`` is a 3-7 word natural-language restatement of the user's intent\n(suitable for display above results).  ``mode`` distinguishes open-ended\nvibes queries (``\"intent\"``) from specific lookup queries (``\"lookup\"``).\n``entity_focus`` is the primary entity type the query targets."
-      },
-      "SearchProvenance": {
-        "properties": {
-          "label": {
-            "type": "string",
-            "title": "Label"
-          },
-          "privacy": {
-            "type": "string",
-            "enum": [
-              "private",
-              "group",
-              "public"
-            ],
-            "title": "Privacy"
-          }
-        },
-        "type": "object",
-        "required": [
-          "label",
-          "privacy"
-        ],
-        "title": "SearchProvenance",
-        "description": "Where a result came from and how sensitive it is.\n\n``label`` is the short, ALL-CAPS-in-UI string the row displays\n(e.g. \"FROM YOUR ATLAS\", \"YOUR TRIP\", \"SHARED BY ANA\", \"DISCOVER GUIDE\").\n``privacy`` gates rendering: a ``private`` row must always show its label."
       },
       "SearchRequest": {
         "properties": {
@@ -53818,7 +55277,7 @@
             "title": "Subtitle"
           },
           "provenance": {
-            "$ref": "#/components/schemas/SearchProvenance"
+            "$ref": "#/components/schemas/backend__core__models__universal_search__Provenance"
           },
           "meta": {
             "anyOf": [
@@ -54023,6 +55482,66 @@
         ],
         "title": "UnreadConversation",
         "description": "A conversation with unread messages."
+      },
+      "UpdateConversationAgencyRequest": {
+        "properties": {
+          "mode": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "reactive",
+                  "proactive"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mode"
+          },
+          "proactivity_threshold": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "low",
+                  "medium",
+                  "high"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proactivity Threshold"
+          },
+          "room_muted": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Room Muted"
+          },
+          "muted_for_self": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Muted For Self"
+          }
+        },
+        "type": "object",
+        "title": "UpdateConversationAgencyRequest",
+        "description": "Patch the group room's Vesper agency settings."
       },
       "UpdateConversationRequest": {
         "properties": {
@@ -56367,6 +57886,71 @@
         ],
         "title": "SendMessageResponse",
         "description": "Agent reply after processing a message."
+      },
+      "backend__core__models__composition__Provenance": {
+        "properties": {
+          "moment_id": {
+            "type": "string",
+            "title": "Moment Id"
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "vesper",
+              "dossier",
+              "creator",
+              "friend"
+            ],
+            "title": "Source"
+          },
+          "byline": {
+            "type": "string",
+            "title": "Byline"
+          },
+          "face": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Face"
+          }
+        },
+        "type": "object",
+        "required": [
+          "moment_id",
+          "source",
+          "byline"
+        ],
+        "title": "Provenance",
+        "description": "Where one moment came from \u2014 the **Discover variant** trust signal.\n\nThe Atlas variant composes the traveler's OWN past, which is inherently\ntrusted, so it never populates provenance. The Discover variant composes the\nWORLD corpus \u2014 venues/sites the engine is *pointing at*, not recalling \u2014 so\neach moment carries who is vouching for it: ``source`` is the trust-ladder\nrung (Vesper editorial / a dossier / a creator / a friend), ``byline`` is the\nhuman attribution string, ``face`` an optional avatar/illustration ref.\n``moment_id`` pins it to the matching ``Moment.id`` so the FE renders the\nbyline on the right card."
+      },
+      "backend__core__models__universal_search__Provenance": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "privacy": {
+            "type": "string",
+            "enum": [
+              "private",
+              "group",
+              "public"
+            ],
+            "title": "Privacy"
+          }
+        },
+        "type": "object",
+        "required": [
+          "label",
+          "privacy"
+        ],
+        "title": "Provenance",
+        "description": "Where a result came from and how sensitive it is.\n\n``label`` is the short, ALL-CAPS-in-UI string the row displays\n(e.g. \"FROM YOUR ATLAS\", \"YOUR TRIP\", \"SHARED BY ANA\", \"DISCOVER GUIDE\").\n``privacy`` gates rendering: a ``private`` row must always show its label."
       }
     }
   }
