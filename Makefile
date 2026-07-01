@@ -7,7 +7,7 @@
 
 .PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help ci-review
 .PHONY: contract-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate mock-slug-parity
-.PHONY: certify-fast certify-logic certify-visual certify-live maestro-flow-check journey-registry-check dogfood-status seed-s4-local seed-s4-fly corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-fly-smoke dogfood-five-pack-verify dogfood-five-pack-live-api dogfood-five-pack-simulator dogfood-journey-live-api dogfood-journey-j04-chat-eval dogfood-maestro-s4-local dogfood-maestro-fly import-latent-corpus tier-a-spot-check tier-b-spot-check qa-persona dogfood-status-sync
+.PHONY: certify-fast certify-logic certify-corpus certify-visual certify-visual-cloud certify-live maestro-flow-check journey-registry-check dogfood-status seed-s4-local seed-s4-fly corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-fly-smoke dogfood-five-pack-verify dogfood-five-pack-live-api dogfood-five-pack-simulator dogfood-journey-live-api dogfood-journey-j04-chat-eval dogfood-maestro-s4-local dogfood-maestro-fly import-latent-corpus tier-a-spot-check tier-b-spot-check qa-persona dogfood-status-sync
 .PHONY: preflight-eas fly-secrets verify
 
 # ── Development ───────────────────────────────────────────────────────────────
@@ -108,13 +108,27 @@ journey-registry-check: ## Gate: journeys.yaml ↔ docs ↔ README ↔ persona-c
 maestro-flow-check: ## Gate: every .maestro flow parses + visual-qa script refs resolve (offline, no simulator)
 	@python3 scripts/validate-maestro-flows.py --app-dir travel-app
 
-certify-logic: ## Tier-2 certify ladder: journey scenario pytest (requires Postgres)
-	@cd travel-agent && SKIP_AUTH=true PYTHONPATH=. pytest tests/scenarios/ -m requires_postgres -q
+certify-logic: ## Tier-2 certify ladder: journey scenario pytest (requires Postgres, excludes corpus-dependent tests)
+	@cd travel-agent && SKIP_AUTH=true PYTHONPATH=. pytest tests/scenarios/ \
+	  -m "requires_postgres and not requires_dogfood_wedge" -q
+
+certify-corpus: ## Tier-2b certify ladder: discover_queries compose tests (requires seeded wedge corpus)
+	@echo "Running corpus-dependent discover tests (requires 'make dogfood-city CITY=lisbon APPLY=1 ENRICH=1')..."
+	@cd travel-agent && SKIP_AUTH=true PYTHONPATH=. pytest tests/scenarios/ \
+	  -m requires_dogfood_wedge -v --tb=short
 
 certify-visual: ## Tier-3 certify ladder: wedge Maestro flows (needs simulator + Metro)
 	@export JAVA_HOME="$${JAVA_HOME:-/opt/homebrew/opt/openjdk}" && \
 	 export PATH="$$JAVA_HOME/bin:$$HOME/.maestro/bin:$$PATH" && \
 	 cd travel-app && npm run --silent visual-qa:wedge
+
+certify-visual-cloud: ## Activate Maestro Cloud PR gate: add secrets to GitHub repo settings
+	@echo "Visual QA cloud gate (.github/workflows/visual-qa-cloud.yml) is ready."
+	@echo "Add two secrets to the fy538/travel-app GitHub repo settings → Secrets and variables → Actions:"
+	@echo "  MAESTRO_CLOUD_API_KEY  — from console.maestro.dev (create a project, copy the API key)"
+	@echo "  EXPO_TOKEN             — from expo.dev → account settings → access tokens"
+	@echo "Once set, PRs will auto-gate on wedge flows 24+25 via Maestro Cloud managed devices."
+	@echo "The workflow skips gracefully if the secret is absent, so it never blocks PRs before configured."
 
 certify-live: ## Tier-4 dogfood preflight + live-walk checklist (human: two Clerk accounts)
 	@chmod +x ./scripts/certify-live.sh ./scripts/seed-s4-fly.sh
