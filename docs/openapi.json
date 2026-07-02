@@ -55705,7 +55705,7 @@
           "latency_ms"
         ],
         "title": "UniversalSearchResponse",
-        "description": "Grouped results for a query.\n\n``groups`` is ordered most-relevant-first; empty groups are omitted.\n\nNote: the overlay's elevated Ask-Vesper card is currently driven by a\nclient-side intent heuristic. A server-side ``interpretation`` field could\ndrive it instead \u2014 intentionally not part of this contract yet."
+        "description": "Grouped results for a query.\n\n``groups`` appears in a FIXED order determined by ``scope`` (see\n``SCOPE_GROUPS`` in dispatch.py) \u2014 groups are never reordered by\nrelevance, since retrieval sources use incommensurable score scales\n(pg_trgm similarity vs Qdrant cosine/RRF) that can't be compared\nmeaningfully across groups. Within each group, ``items`` IS ordered\nmost-relevant-first by that group's own score. Empty groups are omitted.\n\nNote: the overlay's elevated Ask-Vesper card is currently driven by a\nclient-side intent heuristic. A server-side ``interpretation`` field could\ndrive it instead \u2014 intentionally not part of this contract yet."
       },
       "UnreadConversation": {
         "properties": {
