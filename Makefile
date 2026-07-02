@@ -6,6 +6,7 @@
 # This file wires the cross-repo workflows that span both repos.
 
 .PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help ci-review
+.PHONY: new-worktree land-worktree worktrees
 .PHONY: contract-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate mock-slug-parity
 .PHONY: certify-fast certify-logic certify-corpus certify-visual certify-visual-cloud certify-live maestro-flow-check journey-registry-check dogfood-status seed-s4-local seed-s4-fly corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-fly-smoke dogfood-five-pack-verify dogfood-five-pack-live-api dogfood-five-pack-simulator dogfood-journey-live-api dogfood-journey-j04-chat-eval dogfood-maestro-s4-local dogfood-maestro-fly import-latent-corpus tier-a-spot-check tier-b-spot-check qa-persona dogfood-status-sync
 .PHONY: preflight-eas fly-secrets verify
@@ -34,6 +35,21 @@ typecheck: ## Type-check Travel App (tsc --noEmit)
 
 doctor: ## Validate workspace layout and key local tooling
 	@./scripts/doctor.sh
+
+# ── Concurrent agent lanes ──────────────────────────────────────────────────────
+
+new-worktree: ## Create an isolated worktree lane in both repos: make new-worktree NAME=my-feature
+	@./scripts/new-worktree.sh $(NAME)
+
+land-worktree: ## Rebase, push to main, and tear down a worktree lane: make land-worktree NAME=my-feature
+	@./scripts/land-worktree.sh $(NAME)
+
+worktrees: ## List active worktree lanes for both child repos
+	@echo "== Travel Agent =="
+	@cd travel-agent && git worktree list
+	@echo ""
+	@echo "== Travel App =="
+	@cd travel-app && git worktree list
 
 # ── Reliability ───────────────────────────────────────────────────────────────
 
