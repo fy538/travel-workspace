@@ -6592,7 +6592,7 @@
           "chat"
         ],
         "summary": "Send Message Stream",
-        "description": "Send a message and stream the response via Server-Sent Events.\n\nStreams text deltas as they arrive from the LLM, then sends a final\nevent with metadata (tool calls, token counts, etc.).\n\nEvent types:\n    - ``text_delta``: partial text chunk (``{\"text\": \"...\"}``).\n    - ``metadata``: final turn metadata, sent once after the reply completes.\n    - ``error``: if an exception occurs during processing.\n\nOptional ``X-Idempotency-Key`` header deduplicates retries. A repeat\nrequest with the same key whose original is still streaming returns\nHTTP 409 (before the SSE stream begins); a repeat whose original\ncompleted returns the cached response as a single metadata event.",
+        "description": "Send a message and stream the response via Server-Sent Events.\n\nStreams text deltas as they arrive from the LLM, then sends a final\nevent with metadata (tool calls, token counts, etc.).\n\nEvent types:\n    - ``text_delta``: partial text chunk (``{\"text\": \"...\"}``).\n    - ``metadata``: final turn metadata, sent once after the reply completes.\n    - ``error``: if an exception occurs during processing.\n\nOptional ``X-Idempotency-Key`` header deduplicates retries. A repeat\nrequest with the same key whose original is still streaming emits an\n``error`` SSE event with ``kind=\"in_flight\"``; a repeat whose original\ncompleted emits the cached reply as ``text_delta`` followed by metadata.",
         "operationId": "send_message_stream_api_trips__trip_id__messages_stream_post",
         "parameters": [
           {
@@ -8669,7 +8669,7 @@
           "conversations"
         ],
         "summary": "Send Message Stream",
-        "description": "Send a message and stream the response via Server-Sent Events.\n\nStreams text deltas as they arrive from the LLM, then sends a final\nevent with metadata (tool calls, token counts, etc.).\n\nIf ``trigger_agent`` is False, returns a single SSE event with the\npersisted message ID (no streaming needed).\n\nEvent types:\n    - ``text_delta``: partial text chunk (``{\"text\": \"...\"}``).\n    - ``metadata``: final turn metadata, sent once after the reply completes.\n    - ``user_message``: when trigger_agent=False, the persisted message.\n    - ``error``: if an exception occurs during processing.",
+        "description": "Send a message and stream the response via Server-Sent Events.\n\nStreams text deltas as they arrive from the LLM, then sends a final\nevent with metadata (tool calls, token counts, etc.).\n\nIf ``trigger_agent`` is False, returns a single SSE event with the\npersisted message ID (no streaming needed).\n\nEvent types:\n    - ``text_delta``: partial text chunk (``{\"text\": \"...\"}``).\n    - ``metadata``: final turn metadata, sent once after the reply completes.\n    - ``user_message``: when trigger_agent=False, the persisted message.\n    - ``error``: if an exception occurs during processing.\n\nOptional ``X-Idempotency-Key`` header deduplicates retries. A repeat\nrequest with the same key whose original is still streaming emits an\n``error`` SSE event with ``kind=\"in_flight\"``; a repeat whose original\ncompleted emits the cached reply as ``text_delta`` followed by metadata.",
         "operationId": "send_message_stream_api_conversations__conversation_id__messages_stream_post",
         "parameters": [
           {
@@ -14508,6 +14508,66 @@
         }
       }
     },
+    "/api/trips/{trip_id}/story/handoff": {
+      "get": {
+        "tags": [
+          "memory"
+        ],
+        "summary": "Get Trip Story Handoff",
+        "description": "Return the trip-scoped Story \u2192 Atlas handoff receipt.\n\nThis is a read-only derived model over existing story, digest, and photo\nrows. It deliberately does not pretend a signal-level consent table exists:\nthe only current mutable consent is per-uploader photo learning via\n``trip_photos.visibility = group_and_learn``.",
+        "operationId": "get_trip_story_handoff_api_trips__trip_id__story_handoff_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripStoryAtlasHandoff"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/story/narration": {
       "get": {
         "tags": [
@@ -16971,7 +17031,7 @@
           "search"
         ],
         "summary": "Universal Search",
-        "description": "Grouped cross-entity search scoped to the current user.\n\nPrivate groups (trips, atlas, conversations) are always filtered by\n``actor.id``. Public places come from the Discover venue index. Each\ngroup runs in parallel; empty groups are dropped from the response.\n\nTrip scopes (``this_trip`` / ``receipts``) require ``trip_id`` and verify\nthe actor is a member of that trip before reading any trip-scoped data \u2014\nplaces are filtered to the trip's destination, Atlas to memories imported\nfrom the trip, and conversations to the trip's threads.",
+        "description": "Grouped cross-entity search scoped to the current user.\n\nPrivate groups (trips, atlas, conversations) are filtered by ``actor.id``.\nPublic places use the Qdrant hybrid index. Each group runs concurrently;\nempty groups are dropped from the response.",
         "operationId": "universal_search_api_universal_search_post",
         "parameters": [
           {
@@ -18762,7 +18822,7 @@
           "photos"
         ],
         "summary": "Opt In Trip Photos Learning",
-        "description": "Bulk-upgrade all group-visible photos for this trip to group_and_learn.\n\nCalled when a user consents to letting Vesper derive taste signals from\ntheir trip album. Only upgrades photos already at 'group' visibility \u2014\nprivate photos stay private, and group_and_learn photos are already opted\nin and are unaffected.",
+        "description": "Bulk-upgrade the caller's group-visible photos to group_and_learn.\n\nCalled when a user consents to letting Vesper derive taste signals from\ntheir own trip album photos. Only upgrades photos the caller uploaded and\nalready marked ``group`` \u2014 private photos stay private, other travelers'\nphotos keep their own consent state, and group_and_learn photos are already\nopted in and are unaffected.",
         "operationId": "opt_in_trip_photos_learning_api_trips__trip_id__photos_opt_in_learning_post",
         "parameters": [
           {
@@ -31195,6 +31255,76 @@
         "title": "Caveat",
         "description": "Structured because caveats get special UI treatment on the phone \u2014\nthey can't be buried in the body (allergen warnings, accessibility, etc.)."
       },
+      "ChatHistoryMessage": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "sender_type": {
+            "type": "string",
+            "title": "Sender Type"
+          },
+          "sender_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sender Id"
+          },
+          "content": {
+            "type": "string",
+            "title": "Content"
+          },
+          "message_type": {
+            "type": "string",
+            "title": "Message Type"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Metadata"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created At"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "error_details": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Details"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "sender_type",
+          "sender_id",
+          "content",
+          "message_type",
+          "metadata",
+          "created_at",
+          "status",
+          "error_details"
+        ],
+        "title": "ChatHistoryMessage",
+        "description": "A single message in the chat history."
+      },
       "ChatHistoryResponse": {
         "properties": {
           "trip_id": {
@@ -31207,8 +31337,7 @@
           },
           "messages": {
             "items": {
-              "additionalProperties": true,
-              "type": "object"
+              "$ref": "#/components/schemas/ChatHistoryMessage"
             },
             "type": "array",
             "title": "Messages"
@@ -50357,7 +50486,7 @@
           "ask"
         ],
         "title": "ResultGroup",
-        "description": "The typed sections a result can land in. Each maps to a section header\nin the overlay and to a destination surface when tapped."
+        "description": "The typed sections a result can land in. Each maps to a section header\nin the overlay and to a destination surface when tapped.\n\nValues marked DEFERRED are defined here so the frontend can build against\nthe final contract, but no backend reader currently populates them."
       },
       "RetireFactResponse": {
         "properties": {
@@ -54670,6 +54799,11 @@
           "updated_count": {
             "type": "integer",
             "title": "Updated Count"
+          },
+          "pending_count": {
+            "type": "integer",
+            "title": "Pending Count",
+            "default": 0
           }
         },
         "type": "object",
@@ -55007,6 +55141,54 @@
         "title": "TripStory",
         "description": "A composed Trip Story payload."
       },
+      "TripStoryAtlasHandoff": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "story_only",
+              "ask_first",
+              "receipt"
+            ],
+            "title": "Status"
+          },
+          "story": {
+            "$ref": "#/components/schemas/TripStoryHandoffSignal"
+          },
+          "day_evidence": {
+            "$ref": "#/components/schemas/TripStoryHandoffSignal"
+          },
+          "photo_learning": {
+            "$ref": "#/components/schemas/TripStoryHandoffSignal"
+          },
+          "controls": {
+            "$ref": "#/components/schemas/TripStoryHandoffSignal"
+          },
+          "group_consent": {
+            "items": {
+              "$ref": "#/components/schemas/TripStoryGroupConsent"
+            },
+            "type": "array",
+            "title": "Group Consent"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "status",
+          "story",
+          "day_evidence",
+          "photo_learning",
+          "controls"
+        ],
+        "title": "TripStoryAtlasHandoff",
+        "description": "GET /api/trips/{trip_id}/story/handoff response.\n\nA factual, trip-scoped receipt of what can feed Atlas. Saving a story,\nsharing a story, and learning from photos are deliberately separate."
+      },
       "TripStoryAudio": {
         "properties": {
           "story_id": {
@@ -55081,6 +55263,99 @@
         ],
         "title": "TripStoryAudio",
         "description": "Metadata for Vesper's read-aloud of a Trip Story (homecoming v2).\n\nAudio bytes are never carried in this model \u2014 they stream from the audio\nendpoint. ``status`` is one of pending / ready / failed."
+      },
+      "TripStoryGroupConsent": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Name"
+          },
+          "uploaded_count": {
+            "type": "integer",
+            "title": "Uploaded Count",
+            "default": 0
+          },
+          "included_count": {
+            "type": "integer",
+            "title": "Included Count",
+            "default": 0
+          },
+          "pending_count": {
+            "type": "integer",
+            "title": "Pending Count",
+            "default": 0
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "included",
+              "pending",
+              "mixed",
+              "none"
+            ],
+            "title": "Status",
+            "default": "none"
+          },
+          "is_current_user": {
+            "type": "boolean",
+            "title": "Is Current User",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id"
+        ],
+        "title": "TripStoryGroupConsent",
+        "description": "Per-uploader photo-learning state for group trips.\n\nThis is a derived read model over ``trip_photos.visibility``. It is not a\nnew consent table: ``group_and_learn`` means included, ``group`` means the\nuploader has not opted those photos into learning yet."
+      },
+      "TripStoryHandoffSignal": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "title": "Key"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "detail": {
+            "type": "string",
+            "title": "Detail"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "available",
+              "pending",
+              "included",
+              "not_included",
+              "review"
+            ],
+            "title": "State"
+          }
+        },
+        "type": "object",
+        "required": [
+          "key",
+          "label",
+          "detail",
+          "state"
+        ],
+        "title": "TripStoryHandoffSignal",
+        "description": "One evidence/control row in the trip-scoped Atlas handoff receipt."
       },
       "TripStoryPhotoSlot": {
         "properties": {
@@ -55352,6 +55627,34 @@
             "title": "Trip Id",
             "description": "Active trip UUID; required for trip scopes"
           },
+          "lat": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 90.0,
+                "minimum": -90.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lat",
+            "description": "User latitude; required for nearby scope"
+          },
+          "lng": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 180.0,
+                "minimum": -180.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lng",
+            "description": "User longitude; required for nearby scope"
+          },
           "per_group_limit": {
             "type": "integer",
             "maximum": 20.0,
@@ -55365,7 +55668,7 @@
           "q"
         ],
         "title": "UniversalSearchRequest",
-        "description": "A Universal Search query.\n\n``trip_id`` is required when ``scope`` is ``this_trip`` or ``receipts``;\nignored otherwise. ``per_group_limit`` caps each section so no single\ngroup floods the overlay."
+        "description": "A Universal Search query.\n\n``trip_id`` is required when ``scope`` is ``this_trip`` or ``receipts``;\nignored otherwise.  ``lat`` / ``lng`` are required when ``scope`` is\n``nearby`` \u2014 they set the centre of the geo-radius search over personal\nAtlas memories.  ``per_group_limit`` caps each section so no single\ngroup floods the overlay."
       },
       "UniversalSearchResponse": {
         "properties": {
