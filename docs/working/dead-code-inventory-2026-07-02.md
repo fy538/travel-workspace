@@ -3,6 +3,14 @@
 > Status: phase 1 (automated tooling) complete — needs triage
 > Owner: founder / engineering
 > Created: 2026-07-02
+> **Correction (2026-07-02, later same day):** the "Unused files" list below flagged the
+> `components/ui/state/*` cluster (12 files) as dead legacy code superseded by something newer.
+> That was backwards — those files were the *new*, in-progress state-system migration, sitting
+> uncommitted at scan time (knip saw them on disk but their consumer wiring wasn't committed
+> yet, so nothing resolved as "used"). They've since been reviewed and committed
+> (`feat(design): app-wide state-system migration`, travel-app). Treat every "unused" finding
+> below with the same caution — this repo has multiple concurrent agent sessions landing large
+> uncommitted diffs; a knip/vulture snapshot is a point-in-time read, not a verdict.
 > Tools: knip 5.x (travel-app), vulture 2.16 (travel-agent), custom import-graph + reverse API-coverage scripts, `gh run list`/`gh run view`
 > Raw outputs: session scratchpad (`vulture-60.txt`, `knip.txt`)
 
