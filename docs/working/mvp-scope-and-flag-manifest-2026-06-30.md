@@ -1,9 +1,80 @@
 # Vesper v1 — MVP Scope & Flag Manifest
 
-> Status: scope locked (2026-06-30) — ready to execute
+> Status: scope locked — flag gating LIVE as of 2026-07-01
 > Owner: founder / engineering
-> Created: 2026-06-30
+> Created: 2026-06-30 · Last updated: 2026-07-01
 > Source of truth for: what ships in the first production release, what is hidden, and how
+
+## Implementation status (2026-07-01)
+
+### Phase A — FE flag layer ✅ COMPLETE
+
+`travel-app/constants/featureFlags.ts` rebuilt as the single import point:
+- `VOICE_ENABLED` re-exported from `utils/voiceEnabled.ts` (env-driven `EXPO_PUBLIC_VOICE_ENABLED`)
+- `POSTCARDS_ENABLED = false`
+- `AMBIENT_ENABLED = false`
+- `STORY_SHARE_ENABLED = false`
+- `DOSSIER_VOICE_STUB = false`
+
+**Route redirect guards** (`<Redirect href="/atlas" />` wrapper pattern): `atlas/voice-logs`,
+`atlas/narration-history`, `atlas/postcards`, `atlas/shared-links`, `atlas/unpacked-card`.
+
+**CTAs hidden** (10 touch points): account voice trust-rows; Atlas-home postcards shelf cards
+(warm + cold grid); `AtlasTripState` postcards ThinRoom; `MakePostcardButton` (artifact
+screen); atlas/unpacked "SHARE YOUR YEAR"; trip-story "Share story" header action; live-trip
+`liveAmbientCards`; mic `onVoice` at both concierge call sites.
+
+**Voice gated at source**: `NarrationListenButton` + `StoryListenButton` return null when
+`!VOICE_ENABLED` — covers venue detail, NowModeStrip, PlanBlockRow, story.
+
+**Verification:** `tsc --noEmit` exit 0. Zero TS errors.
+
+### Phase B — BE story-share guard ✅ COMPLETE
+
+`story_sharing_enabled()` + `venue_disruption_proposals_enabled()` added to
+`backend/core/feature_flags.py`. Guards on `create_story_share` (`story_shares.py`) and
+`create_atlas_unpacked_share` (`atlas_unpacked.py`) → 403 when off. No new unauthenticated
+public share links can be minted. Tests: 19 passed incl. `test_create_403_when_sharing_disabled`.
+
+### Phase 7 — Proactive proposals: venue-disruption producer ✅ SHIPPED DARK
+
+New producer: closed venue → swap proposal → existing Propose UX. Ships dark
+(`VENUE_DISRUPTION_PROPOSALS_ENABLED=false`).
+
+- `backend/core/venue_disruption.py` — pure precision-first detector (8/8 unit tests)
+- `backend/concierge/proactive.py` — `_produce_venue_disruption` producer + registration in
+  `collect_legacy_candidates`
+- `backend/notifications/arbiter.py` — `CandidateType.VENUE_DISRUPTION`
+- `tests/core/test_venue_disruption.py` (8 tests) + `tests/concierge/test_venue_disruption_producer.py` (5 Postgres-gated tests)
+- Flag: flip `VENUE_DISRUPTION_PROPOSALS_ENABLED=true` in a seeded env to activate; requires
+  eval pass before prod.
+
+**Audit corrections vs original manifest** (grounded in code):
+- `atlas/scan` (Add entry) and `atlas/reel` (board player) are **IN** — not postcards.
+- The concierge "notices strip" is error/lifecycle recovery UI, not ambient — untouched.
+- **Booking**: transaction engine already gated by `EXPO_PUBLIC_LIVE_BOOKING_ENABLED` (FE)
+  + `live_booking_enabled` (BE); the "mark as booked" record path remains IN. No new code
+  needed.
+- **Expenses `rate=1.0`** already fixed in `auto_log.py:124`.
+
+**Uncommitted in working tree** (~12 BE files, ~23 FE files). Branch/commit before next build.
+
+### Remaining to close v1 DoD
+
+| Item | Status |
+|---|---|
+| Flag layer live + typecheck green | ✅ done 2026-07-01 |
+| BE story-share guard | ✅ done 2026-07-01 |
+| Expenses `rate=1.0` fixed | ✅ already fixed |
+| Booking record stub works with engine off | ✅ no code needed (pre-existing gate) |
+| Commit Phase A/B/7 work to branch | 🔲 not yet |
+| Reachability audit (device walk, release flags) | 🔲 needs EAS build |
+| J01–J12 device-walked on a real build | 🔲 0/12 full-cert (logic 12/12) |
+| Live-transport gap: Clerk JWTs for dogfood HTTP | 🔲 Clerk external_auth_id gap |
+| App Store review assets current | 🔲 |
+| Proactive proposals flag-on eval (seeded env) | 🔲 venue-disruption ships dark |
+
+---
 
 ## Purpose
 
@@ -148,10 +219,11 @@ transaction + voice routes as defense-in-depth (low priority).
 
 ## Definition of done — "v1 in production"
 
-- [ ] FE flag layer live; OUT set unreachable in a release build; zero dead/OUT CTAs
-- [ ] Booking record stub works with transaction engine off
-- [ ] Expenses `rate=1.0` bug fixed
-- [ ] Reachability audit clean (no OUT reachable; no IN broken)
+- [x] FE flag layer live; OUT set unreachable in a release build; zero dead/OUT CTAs — ✅ 2026-07-01
+- [x] Booking record stub works with transaction engine off — ✅ pre-existing gate confirmed
+- [x] Expenses `rate=1.0` bug fixed — ✅ already fixed in `auto_log.py:124`
+- [ ] **Commit Phase A/B/7 work to a branch** (working tree currently dirty ~35 files)
+- [ ] Reachability audit clean (no OUT reachable; no IN broken) — needs EAS build + device
 - [ ] Golden path J01–J12 device-walked green on a real build (booking-transaction excepted)
 - [ ] Live-transport gap closed (Clerk JWTs) — `make dogfood-journey-live-api` green over HTTP
 - [ ] App Store review assets current (privacy, review notes, mic-permission copy)
