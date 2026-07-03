@@ -7908,66 +7908,6 @@
         }
       }
     },
-    "/api/discover/compose": {
-      "post": {
-        "tags": [
-          "discover"
-        ],
-        "summary": "Discover Compose",
-        "description": "Compose a Discover board over the WORLD corpus (the shared engine).\n\nThe Discover twin of ``GET /api/atlas/board``: same composition ASSEMBLY\n(candidates \u2192 shape brain \u2192 register/template \u2192 visual_slots \u2192 copy \u2192\nCompositionResult), but fed from the WORLD corpus (catalog venues/sites +\ndossiers) ranked by relevance/quality instead of the traveler's affinity.\n\nBody is either ``{ text }`` (a freeform query, parsed to facets) or\n``{ dimension, value }`` (an explicit steer). The result is the **Discover\nvariant** \u2014 each moment carries ``provenance`` (who is vouching: Vesper\neditorial / a dossier).\n\nP4 \u2014 taste tilt: the board is PERSONALIZED by the authed user's own loved\nfacets. World notability/quality stays the base; a matched loved facet\n(cuisine / neighborhood / category) boosts a candidate and re-orders the set.\nWhen the board is genuinely shaped, the result carries a grounded ``because``\nline (\"Because you love pizza\"). No taste signal \u2192 world-only, ``because``\nnull (honest \u2014 never fabricated).",
-        "operationId": "discover_compose_api_discover_compose_post",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DiscoverComposeRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CompositionResult"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/discover/trending": {
       "get": {
         "tags": [
@@ -34913,47 +34853,6 @@
         "title": "DigestRunResponse",
         "description": "Result of a manual digest run."
       },
-      "DiscoverComposeRequest": {
-        "properties": {
-          "text": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 400
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Text"
-          },
-          "dimension": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Dimension"
-          },
-          "value": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Value"
-          }
-        },
-        "type": "object",
-        "title": "DiscoverComposeRequest",
-        "description": "Body for ``POST /api/discover/compose``.\n\nEither a freeform ``text`` query (parsed to facets) OR an explicit\n``dimension``/``value`` steer (mirrors the Atlas board endpoint's steer\nparams). The board composes over the WORLD corpus, not the user's affinity.\n\n``text`` is bounded to the same ``max_length`` as ``ParseQueryRequest.text``\n(400) so an oversized query can't flow unbounded into the LLM parse. It stays\nOPTIONAL (no ``min_length``) \u2014 ``/compose`` supports dimension/value-only\nsteers with no text, and an empty/None ``text`` still degrades honestly to\nthe empty-state."
-      },
       "DiscoverFeedItem": {
         "properties": {
           "id": {
@@ -50486,7 +50385,7 @@
           "ask"
         ],
         "title": "ResultGroup",
-        "description": "The typed sections a result can land in. Each maps to a section header\nin the overlay and to a destination surface when tapped.\n\nValues marked DEFERRED are defined here so the frontend can build against\nthe final contract, but no backend reader currently populates them."
+        "description": "The typed sections a result can land in. Each maps to a section header\nin the overlay and to a destination surface when tapped.\n\nValues marked DEFERRED are defined here so the frontend can build against\nthe final contract. ``RECEIPTS``, ``COSTS``, and ``ACTIONS`` now have\ntrip-scoped readers; ``ASK`` remains client-owned/deferred."
       },
       "RetireFactResponse": {
         "properties": {
@@ -50857,10 +50756,12 @@
           "atlas",
           "nearby",
           "this_trip",
-          "receipts"
+          "receipts",
+          "costs",
+          "actions"
         ],
         "title": "Scope",
-        "description": "The active search scope \u2014 drives which groups are searched and how\nthey are filtered. Mirrors the chip rail in the overlay.\n\n``all_vesper``  \u2014 everything this user can see (default, no trip).\n``places``      \u2014 public + saved places only.\n``atlas``       \u2014 the user's Atlas memories only.\n``nearby``      \u2014 places near the user's current location (home-city use).\n``this_trip``   \u2014 scoped to ``trip_id`` (default when launched on a trip).\n``receipts``    \u2014 bookings / reservations / receipts for the trip."
+        "description": "The active search scope \u2014 drives which groups are searched and how\nthey are filtered. Mirrors the chip rail in the overlay.\n\n``all_vesper``  \u2014 everything this user can see (default, no trip).\n``places``      \u2014 public + saved places only.\n``atlas``       \u2014 the user's Atlas memories only.\n``nearby``      \u2014 places near the user's current location (home-city use).\n``this_trip``   \u2014 scoped to ``trip_id`` (default when launched on a trip).\n``receipts``    \u2014 bookings / reservations / receipts for the trip.\n``costs``       \u2014 trip expenses / settlement shares.\n``actions``     \u2014 non-executing Vesper action/audit rows for the trip."
       },
       "SearchInterpretation": {
         "properties": {
@@ -55668,7 +55569,7 @@
           "q"
         ],
         "title": "UniversalSearchRequest",
-        "description": "A Universal Search query.\n\n``trip_id`` is required when ``scope`` is ``this_trip`` or ``receipts``;\nignored otherwise.  ``lat`` / ``lng`` are required when ``scope`` is\n``nearby`` \u2014 they set the centre of the geo-radius search over personal\nAtlas memories.  ``per_group_limit`` caps each section so no single\ngroup floods the overlay."
+        "description": "A Universal Search query.\n\n``trip_id`` is required when ``scope`` is ``this_trip``, ``receipts``,\n``costs``, or ``actions``;\nignored otherwise.  ``lat`` / ``lng`` are required when ``scope`` is\n``nearby`` \u2014 they set the centre of the geo-radius search over personal\nAtlas memories.  ``per_group_limit`` caps each section so no single\ngroup floods the overlay."
       },
       "UniversalSearchResponse": {
         "properties": {
