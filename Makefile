@@ -150,6 +150,23 @@ certify-live: ## Tier-4 dogfood preflight + live-walk checklist (human: two Cler
 	@chmod +x ./scripts/certify-live.sh ./scripts/seed-s4-fly.sh
 	@./scripts/certify-live.sh
 
+design-refresh: ## Close the design-alignment freshness loop: fingerprint canon, list stale surfaces, re-capture + auto-carry/queue-for-judging (needs simulator + Metro)
+	@cd travel-app && npm run --silent design:fingerprint
+	@cd travel-app && npm run --silent design:routes
+	@cd travel-app && npm run --silent design:stale
+	@cd travel-app && npm run --silent qa:refresh
+	@cd travel-app && npm run --silent design:status
+	@echo ""
+	@echo "STATUS.md regenerated. Open the judge queue printed above (if any) — see"
+	@echo "docs/surfaces/_agent-verdict-protocol.md 'Batch judging a refresh queue' for the ritual."
+
+design-refresh-dry: ## Same as design-refresh but with no simulator/Maestro (--dry-run) — verifies the pipeline wiring only
+	@cd travel-app && npm run --silent design:fingerprint
+	@cd travel-app && npm run --silent design:routes
+	@cd travel-app && npm run --silent design:stale
+	@cd travel-app && node scripts/design-alignment/refresh-stale.mjs --dry-run
+	@cd travel-app && npm run --silent design:status
+
 corpus-check: ## Gate: every dogfood manifest slug resolves in DB or staging (wedge by default)
 	@chmod +x ./scripts/corpus-check.sh
 	@./scripts/corpus-check.sh
