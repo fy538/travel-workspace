@@ -36,7 +36,10 @@ coverage/
 .claude/launch.json
 
 # Concurrent agent worktree lanes (scripts/new-worktree.sh / land-worktree.sh)
-.worktrees/
+# Siblings of travel-agent/ and travel-app/ so their pre-commit hooks'
+# "../scripts/..." references still resolve — see scripts/new-worktree.sh.
+travel-agent--*/
+travel-app--*/
 
 # Design-tool export bundles (HTML/PNG mockups — reference locally, not versioned)
 design/vesper-discover-search-claude-design/

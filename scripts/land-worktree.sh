@@ -24,7 +24,10 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
 AGENT_DIR="$WORKSPACE_DIR/travel-agent"
 APP_DIR="$WORKSPACE_DIR/travel-app"
-WORKTREES_DIR="$WORKSPACE_DIR/.worktrees"
+# Must match new-worktree.sh: worktrees are direct siblings of travel-agent/
+# and travel-app/, not nested — see the comment there for why.
+WORKTREES_DIR="$WORKSPACE_DIR"
+WT_SEP="--"
 
 PREFIX="codex/"
 RUN_AGENT=true
@@ -50,7 +53,7 @@ land_one() {
   local repo_dir="$1"
   local repo_short="$2"
   local branch_name="$3"
-  local wt_path="$WORKTREES_DIR/${repo_short}-${NAME}"
+  local wt_path="$WORKTREES_DIR/${repo_short}${WT_SEP}${NAME}"
 
   if [ ! -d "$wt_path" ]; then
     printf "  \033[33m!\033[0m %s — no worktree at %s, skipping\n" "$repo_short" "$wt_path"

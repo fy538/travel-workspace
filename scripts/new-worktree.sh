@@ -21,7 +21,14 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
 AGENT_DIR="$WORKSPACE_DIR/travel-agent"
 APP_DIR="$WORKSPACE_DIR/travel-app"
-WORKTREES_DIR="$WORKSPACE_DIR/.worktrees"
+# Worktrees live as DIRECT siblings of travel-agent/ and travel-app/ (not
+# nested one level deeper, e.g. under .worktrees/) because both repos'
+# .pre-commit-config.yaml hooks reference workspace scripts via a hardcoded
+# "../scripts/..." — that only resolves correctly when the checkout is
+# exactly one directory below the workspace root. Nesting worktrees deeper
+# silently breaks the secret-prefix pre-commit hook (found the hard way).
+WORKTREES_DIR="$WORKSPACE_DIR"
+WT_SEP="--"
 
 PREFIX="codex/"
 RUN_AGENT=true
@@ -39,8 +46,8 @@ Examples:
   ./scripts/new-worktree.sh --base origin/main home-routing-audit
 
 Creates a sibling working directory per repo at:
-  .worktrees/travel-agent-<name>/
-  .worktrees/travel-app-<name>/
+  travel-agent--<name>/
+  travel-app--<name>/
 each on its own branch (default prefix "codex/"), so a second agent
 session can point at it without sharing files with any other session.
 
@@ -53,7 +60,7 @@ create_worktree() {
   local repo_dir="$1"
   local repo_short="$2"   # "travel-agent" | "travel-app"
   local branch_name="$3"
-  local wt_path="$WORKTREES_DIR/${repo_short}-${NAME}"
+  local wt_path="$WORKTREES_DIR/${repo_short}${WT_SEP}${NAME}"
 
   if [ -d "$wt_path" ]; then
     printf "  \033[33m!\033[0m %s worktree already exists at %s — skipping\n" "$repo_short" "$wt_path"
@@ -116,8 +123,6 @@ BRANCH_NAME="${PREFIX}${NAME}"
 [ -d "$AGENT_DIR/.git" ] || { echo "Travel Agent repo missing at $AGENT_DIR" >&2; exit 1; }
 [ -d "$APP_DIR/.git" ] || { echo "Travel App repo missing at $APP_DIR" >&2; exit 1; }
 
-mkdir -p "$WORKTREES_DIR"
-
 printf "\n\033[1mIsolated worktree lane\033[0m\n"
 printf "  Branch: %s\n" "$BRANCH_NAME"
 printf "  Base:   %s\n\n" "${BASE_REF:-current HEAD of each repo}"
@@ -131,6 +136,6 @@ if [ "$RUN_APP" = true ]; then
 fi
 
 printf "\n\033[32mDone.\033[0m Point your next agent session at:\n"
-[ "$RUN_AGENT" = true ] && printf "  %s\n" "$WORKTREES_DIR/travel-agent-${NAME}"
-[ "$RUN_APP" = true ] && printf "  %s\n" "$WORKTREES_DIR/travel-app-${NAME}"
+[ "$RUN_AGENT" = true ] && printf "  %s\n" "$WORKTREES_DIR/travel-agent${WT_SEP}${NAME}"
+[ "$RUN_APP" = true ] && printf "  %s\n" "$WORKTREES_DIR/travel-app${WT_SEP}${NAME}"
 printf "\nWhen the work is ready to merge: ./scripts/land-worktree.sh %s\n" "$NAME"
