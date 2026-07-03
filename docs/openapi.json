@@ -14711,7 +14711,7 @@
           "memory"
         ],
         "summary": "Patch Trip Story Photo Slot",
-        "description": "Set or clear the photo_url on a single story photo slot.",
+        "description": "Set, clear, or explicitly suppress a photo on one story photo slot.",
         "operationId": "patch_trip_story_photo_slot_api_trips__trip_id__story_sections__section_id__photo_patch",
         "parameters": [
           {
@@ -55278,6 +55278,16 @@
               }
             ],
             "title": "Photo Url"
+          },
+          "photo_state": {
+            "type": "string",
+            "enum": [
+              "empty",
+              "filled",
+              "none"
+            ],
+            "title": "Photo State",
+            "default": "empty"
           }
         },
         "type": "object",
@@ -55300,14 +55310,27 @@
               }
             ],
             "title": "Photo Url"
+          },
+          "photo_state": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "empty",
+                  "filled",
+                  "none"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Photo State"
           }
         },
         "type": "object",
-        "required": [
-          "photo_url"
-        ],
         "title": "TripStoryPhotoSlotEdit",
-        "description": "Body of a PATCH to a single photo slot. Pass null to clear."
+        "description": "Body of a PATCH to a single photo slot.\n\n``photo_state='none'`` means the user explicitly wants no photo here.\n``photo_url=null`` without a state is the older clear-to-empty behavior."
       },
       "TripStorySection": {
         "properties": {
