@@ -1,5 +1,7 @@
 # Plan - Vesper Trust Receipts
 
+> **Outcome (as of 2026-07-03):** 🔶 Partial — step 1 (receipts table + wiring + FE component) shipped 2026-06-12; Atlas/Discover provenance steps 2–5 deferred.
+
 > Status: proposal
 > Owner: founder / engineering
 > Last updated: 2026-06-12

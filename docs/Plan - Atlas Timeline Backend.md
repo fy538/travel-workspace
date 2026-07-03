@@ -1,5 +1,7 @@
 # Plan - Atlas Timeline Backend
 
+> **Outcome (as of 2026-07-03):** ✅ Shipped — persisted timeline/almanac projection with hide/pin/rename + dedup/restore (journey 11 built & canaried).
+
 Status: planning handoff  
 Date: 2026-06-06  
 Audience: future implementation session working across `travel-agent` and `travel-app`

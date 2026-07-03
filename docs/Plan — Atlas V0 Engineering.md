@@ -1,5 +1,7 @@
 # Plan — Atlas V0 Engineering
 
+> **Outcome (as of 2026-07-03):** ✅ Shipped — V0 photo backfill, manual picker, LLM composer, and DNA provenance columns are all live.
+
 Engineering plan for V0 of the Atlas Photo Backfill feature. Companion to `Travel App/docs/Brief - Atlas Photo Backfill.md`, which carries the product decisions this plan implements. Read the brief first; this document does not re-derive its decisions.
 
 ## Scope

@@ -1,5 +1,7 @@
 # Plan — Atlas V1 Engineering
 
+> **Outcome (as of 2026-07-03):** 🔶 Partial — V1 core shipped; V1.1 (custom Expo module, burst grouping, Vision dedup, JournalingSuggestions) deferred pending a dev-client cutover decision.
+
 Engineering plan for V1 of Atlas Photo Backfill. Companion to
 `Travel App/docs/Brief - Atlas Photo Backfill.md` (product decisions) and
 `docs/Plan — Atlas V0 Engineering.md` (what V0 shipped). Read both first;

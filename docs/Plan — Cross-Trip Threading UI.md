@@ -1,5 +1,7 @@
 # Plan — Cross-Trip Threading UI
 
+> **Outcome (as of 2026-07-03):** 🔲 Not started (UI) — agent-side cross-trip recall IS live (SKILL_CROSS_TRIP_THREADING); the trip-home 'from your Lisbon trip' surface remains unbuilt.
+
 **Status:** approved scope, not started
 **Goal:** A visible "from your Lisbon trip" surface on the trip-home, mirroring what the agent now does in conversation via SKILL_CROSS_TRIP_THREADING. Closes the moat-legibility loop on both sides.
 **Estimate:** ~1 week focused (3 backend days, 3 frontend days, 1-2 iteration).

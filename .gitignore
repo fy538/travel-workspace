@@ -43,3 +43,7 @@ travel-app--*/
 
 # Design-tool export bundles (HTML/PNG mockups — reference locally, not versioned)
 design/vesper-discover-search-claude-design/
+
+# docs: never commit python bytecode
+docs/**/__pycache__/
+*.pyc
