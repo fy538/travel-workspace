@@ -35384,6 +35384,16 @@
               }
             ],
             "title": "Affinity"
+          },
+          "saved": {
+            "type": "boolean",
+            "title": "Saved",
+            "default": false
+          },
+          "in_trip": {
+            "type": "boolean",
+            "title": "In Trip",
+            "default": false
           }
         },
         "type": "object",
@@ -35395,7 +35405,7 @@
           "lng"
         ],
         "title": "DiscoverMapPin",
-        "description": "One placeable Discover entity. ``lat``/``lng`` are always finite (the\nbuilder drops null-geometry rows). ``take`` / ``affinity`` are the\ndifferentiating judgment layer \u2014 both optional (honest absence)."
+        "description": "One placeable Discover entity. ``lat``/``lng`` are always finite (the\nbuilder drops null-geometry rows). ``take`` / ``affinity`` are the\ndifferentiating judgment layer \u2014 both optional (honest absence).\n\n``saved`` / ``in_trip`` are the viewer's own EXPLICIT relationship with the\nplace, kept as their own channel: they never change the pin's verdict fill\n(that would fabricate a Vesper stance), only its form/label. ``in_trip`` is\nonly ever true in the ``place`` scope \u2014 a live trip to this city \u2014 since the\n``nearby`` scope has no destination to match a plan against."
       },
       "DiscoverMapResponse": {
         "properties": {
