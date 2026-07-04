@@ -156,8 +156,9 @@ design-refresh: ## Close the design-alignment freshness loop: fingerprint canon,
 	@cd travel-app && npm run --silent design:stale
 	@cd travel-app && npm run --silent qa:refresh
 	@cd travel-app && npm run --silent design:status
+	@cd travel-app && npm run --silent design:briefs
 	@echo ""
-	@echo "STATUS.md regenerated. Open the judge queue printed above (if any) — see"
+	@echo "STATUS.md + design-briefs/ regenerated. Open the judge queue printed above (if any) — see"
 	@echo "docs/surfaces/_agent-verdict-protocol.md 'Batch judging a refresh queue' for the ritual."
 
 design-refresh-dry: ## Same as design-refresh but with no simulator/Maestro (--dry-run) — verifies the pipeline wiring only
@@ -166,6 +167,7 @@ design-refresh-dry: ## Same as design-refresh but with no simulator/Maestro (--d
 	@cd travel-app && npm run --silent design:stale
 	@cd travel-app && node scripts/design-alignment/refresh-stale.mjs --dry-run
 	@cd travel-app && npm run --silent design:status
+	@cd travel-app && npm run --silent design:briefs
 
 corpus-check: ## Gate: every dogfood manifest slug resolves in DB or staging (wedge by default)
 	@chmod +x ./scripts/corpus-check.sh
