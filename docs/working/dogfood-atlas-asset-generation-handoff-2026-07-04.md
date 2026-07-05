@@ -1,7 +1,7 @@
 # Dogfood Atlas — asset generation + substrate fill-in (handoff)
 
 **Date:** 2026-07-04
-**Purpose:** self-contained brief for a *separate* agent (e.g. GPT image generation in Codex) to make the **new Atlas** demo richly across most/all dogfood personas — not just `elif`. Assumes no prior context.
+**Purpose:** self-contained brief for a *separate* agent (e.g. GPT image generation in Codex) to make the **new Atlas** demo richly across several dogfood personas — not just `elif`. Assumes no prior context.
 
 ---
 
@@ -11,19 +11,43 @@ Make the new Atlas surfaces (**taste boards, timeline, Unpacked year-recap, map,
 
 This is **two paired halves**:
 1. **Generated image assets** — illustrations (riso/gouache) + photorealistic "fake photos".
-2. **DB substrate** — affinity, artifacts, facets, almanac summaries via the dogfood seed manifests.
+2. **DB substrate** — affinity, artifacts, trip photos, and almanac summaries via the dogfood seed manifests; facets via the existing `entity_facets` projection or a new explicit facet-seed/projection step if the chosen places do not already project enough diversity.
 
 An artifact is only "real" when its **DB row AND its image files (with matching ids)** both exist. Do them together.
 
+Recommended scope: do this in phases, not as one giant asset dump.
+1. **Phase 0 — unblock wiring:** add the missing DB seed support and photo/riso resolver support described below. **Implemented 2026-07-04.**
+2. **Phase 1 — prove the pattern:** enrich `mike` + `sarah` end-to-end and verify all Atlas surfaces. **Implemented locally in `travel-agent/tools/dogfood/content/manifests/atlas-phase1.yaml`.**
+3. **Phase 2 — broaden coverage:** add `mara`, `dao`, and `reza` if the first two personas validate cleanly.
+4. **Lane 1 riso pool can be partial at first:** cover the facets actually emitted by Phase 1 before producing the full ~113-image pool.
+
+### Implementation status
+
+- Phase 0 wiring is in place:
+  - `AlmanacSummarySeed` validates and seeds/resets `atlas_almanac_summaries` through `--kind almanac`.
+  - `EntityFacetSeed` validates and seeds/resets `entity_facets` through `--kind facets`.
+  - Lane-aware `dogfood-<manifest>-atlas-<slug>` and `dogfood-<manifest>-trips-<slug>` ids resolve to `/dogfood-media/<manifest>/<lane>/<slug>.jpg`.
+  - The riso resolver now prefers bundled raster entries and falls back to generated SVG swatches when no PNG is registered.
+- Phase 1 is applied locally:
+  - Manifest: `travel-agent/tools/dogfood/content/manifests/atlas-phase1.yaml`.
+  - Media inventory: `travel-agent/tools/dogfood/content/media/atlas-phase1/inventory.yaml`.
+  - Current substrate: 5 kept Atlas artifacts, 6 trip photos, 19 media-inventory assets, 16 explicit facets, 9 affinity rows, 4 almanac summaries.
+  - Primary hero images have generated-photo replacements for the two original trip-photo heroes and the three cross-city artifact heroes. Supporting section photos and riso illustrations are still staged placeholders unless noted in the inventory.
+  - Lane 1 has the first bundled abstract riso PNGs registered for `category/{restaurant,wine_bar,bar,market}.png`.
+- Composer verification against the live local DB:
+  - `mike`: `board/year`, selected chip `occasion=shared_table`, 3 moments / 3 visual slots, 2026 Unpacked available with year title "One table, then the city". Live DB currently has 3 kept/ready Mike artifacts in 2026: 2 from Phase 1 plus one existing Rome row.
+  - `sarah`: `board/year`, selected chip `occasion=standing_counter`, 4 moments / 4 visual slots, 2026 Unpacked available with year title "Mornings as the control surface". Live DB currently has 3 kept/ready Sarah artifacts in 2026 from Phase 1, plus one older 2025 Rome artifact.
+- Scope note: this proves the manifest/media/resolver pattern and gives Mike/Sarah credible Atlas demos. It is still not the full long-term target of polished final art for every staged support asset.
+
 ---
 
-## Current per-persona state (verified in the live local DB, 2026-07-04)
+## Current per-persona state (latest local verification)
 
 | persona | board register | real Atlas artifacts | trip_photos | timeline | verdict |
 |---|---|---|---|---|---|
 | **elif** | `board` / `lineage` — "market lineage", 4 cities | 5 (2024 Lisbon; 2025 Rome/Tokyo/Istanbul/Brooklyn) | 32 | 16 | **DONE — reference example, do not touch** |
-| mike | `board` but **monotone** (32× `cuisine=portuguese`, all weight 5.0) | 0 | 0 | 0 | needs everything |
-| sarah | `board` thin (3 portuguese) | 0 | 0 | 0 | needs everything |
+| mike | `board/year` — `occasion=shared_table` | 3 in 2026 (2 Phase 1 + 1 existing Rome) | 3 Phase 1 | verified through Atlas/Unpacked composer | **Phase 1 DONE — support art can be polished further** |
+| sarah | `board/year` — `occasion=standing_counter` | 3 in 2026 Phase 1 (+1 older 2025 Rome) | 3 Phase 1 | verified through Atlas/Unpacked composer | **Phase 1 DONE — support art can be polished further** |
 | mara | `empty` (2 saves; has 8 trips) | 0 | 3 | 3 | needs everything |
 | dao | `empty` (4 saves) | 0 | 1 | 0 | needs everything |
 | reza | `list` (2 — below board threshold) | 0 | 2 | 0 | needs everything |
@@ -43,12 +67,17 @@ These are wired **differently** — do not conflate them.
 | **3. Trip / section photos** | the "fake photos" (`trip_photos`, artifact section `photo_ids`) | per persona / trip | `/dogfood-media/` URL + DB row | **photorealistic** (may include people) |
 
 ### Why Lane 1 exists (the SVG question)
-Board visual slots today render as **deterministic riso-style SVG swatches synthesized in code** (`travel-app/components/atlas/risoManifest.ts` → `RisoSlotImage.tsx`). These are **temporary placeholders**, on-palette (Atlas gold + rust/olive/blue-green, never Discover violet), so a board reads as *imagery not a text list* without faking a photo. The real riso pool is deferred to *this* asset task.
+Board visual slots today render as **deterministic riso-style SVG swatches synthesized in code** (`travel-app/components/atlas/risoManifest.ts` → `RisoSlotImage.tsx`). These are **temporary placeholders**, on-palette (Atlas gold + rust/olive/blue-green, never Discover violet), so a board reads as *imagery not a text list* without faking a photo. The generated placeholders now paint through `react-native-svg`'s `<SvgXml>` path, not through raster `<Image>`.
 
-**The swap seam is already wired:** `RisoSlotImage` calls `resolveSlotSvg`; if a real raster exists it returns null and falls through to `<AppImage>`. To swap in real assets (per `risoManifest.ts` header):
-1. Drop assets into `travel-app/assets/atlas/riso/<dimension>/<value>.png` (+ one `<dimension>/_default.png` per dimension).
-2. Build a static `require()` registry mapping keys → module ids (RN can't `require()` a dynamic path — must be an explicit object map).
-3. In `resolveRisoAsset`, look up the registry FIRST; fall back to the generated swatch only when a key is missing. **Nothing in `AtlasTasteBoard` changes** — it already consumes `{ uri }`.
+The real riso pool is now partially wired. Current behavior:
+- `RisoSlotImage` calls `resolveSlotSvg(slot)` first.
+- For `source: "riso"`, `resolveSlotSvg` returns `null` when the static registry has a bundled raster for that key, so the renderer falls through to `<AppImage>`.
+- When no bundled raster exists, the resolver returns generated SVG XML and keeps the no-empty-slot guarantee.
+
+To expand real bundled riso assets safely:
+1. Drop assets into `travel-app/assets/atlas/riso/<dimension>/<value>.png` (+ one `<dimension>/_default.png` per dimension when the pool is broader).
+2. Add each asset to the static `require()` registry in `travel-app/components/atlas/risoManifest.ts` (RN can't `require()` a dynamic path — must be an explicit object map).
+3. Keep `AtlasTasteBoard` unchanged. The renderer should still consume `visual_slots`; only the asset resolver/rendering seam changes.
 
 **Brand boundary:** Lane 1 must stay *abstract riso*, never photorealistic (`risoManifest.ts`: *"NOT photographs and must never be mistaken for one"*). Prompt GPT for **flat 2-color riso illustration** for Lane 1. Photorealistic GPT output goes in Lanes 2/3 only.
 
@@ -58,7 +87,9 @@ Board visual slots today render as **deterministic riso-style SVG swatches synth
 
 - **Files live at** `travel-agent/tools/dogfood/content/media/<manifest>/` with `atlas/` and `trips/` subfolders. Each is registered in that folder's `inventory.yaml` (`asset_id`, `status: staged`, `priority`, dimensions ~**1448×1086**, `dominant_color`, `surfaces`). Use the existing `lisbon-phase1/` and `elif-canonical/<city>/` folders as templates.
 - **URL scheme:** DB stores `local://dogfood/<path>`; the app resolves it to `{API_URL}/dogfood-media/<path>` (`travel-app/utils/dogfoodMedia.ts`; served by `travel-agent/backend/api/dogfood_media.py`, ON locally, OFF on prod-like unless `DOGFOOD_MEDIA_STATIC_ALLOW_PROD_LIKE=true`).
-- **HARD CONSTRAINT on photo ids:** must match the resolvable patterns `dogfood-<manifest>-<slug>` or `dogfood-<persona>-<city>-<slug>`. **Any other id renders blank on every phone except the one that scanned it** (`ph://`). Candidate `sample_photo_ids` have no fallback at all.
+- **HARD CONSTRAINT on photo ids:** artifact section photos currently resolve through `travel-app/utils/dogfoodMedia.ts` and then fall back to `ph://<photo_id>`. Use the explicit lane-aware patterns `dogfood-<manifest>-atlas-<slug>` and `dogfood-<manifest>-trips-<slug>` for new media; these map to `/dogfood-media/<manifest>/atlas/<slug>.jpg` and `/dogfood-media/<manifest>/trips/<slug>.jpg`. Existing special cases still support `dogfood-lisbon-phase1-*` and `dogfood-elif-(rome|tokyo|istanbul|brooklyn)-*`.
+
+  Any id outside the supported patterns may render blank on phones that do not have the corresponding local `ph://` asset. Candidate `sample_photo_ids` have no fallback at all.
 - **Do NOT:** put anything in `_review_archive/` (guard-rejected discard pile), use fake CDN URLs (`example.com`, `cdn.example`, …), or non-`local://dogfood/` local URLs. `travel-agent/tools/dogfood/content/schemas.py` validators reject all of these.
 
 ---
@@ -72,37 +103,49 @@ Board visual slots today render as **deterministic riso-style SVG swatches synth
 - `AffinitySeed` — `weight` (≥3.0 = "loved"), `entity`, `evidence`.
 - `EntitySaveSeed`, `TripPhotoSeed` (`photo_id`, `cdn_url: local://dogfood/...`, gps, `dominant_color`).
 
-**Likely need to create** (same pattern as recent seed types): an `AlmanacSummarySeed` → `atlas_almanac_summaries` (for Unpacked year-names, currently 0 rows for dogfood personas), and possibly a saved-board seed.
+**Implemented:** `AlmanacSummarySeed` → `atlas_almanac_summaries` supports Unpacked year/month names, with dry-run/apply/reset in `seed.py` under `--kind almanac`.
+
+**Implemented:** `EntityFacetSeed` → `entity_facets` supports explicit catalog facet enrichment, with dry-run/apply/reset in `seed.py` under `--kind facets`.
+
+**Possible implementation gap:** a saved-board seed may be useful if the demo needs persisted saved boards. Do not add it unless a target surface actually reads persisted saved-board rows; the core taste board can be produced from affinity + facets.
 
 Validate: `PYTHONPATH=. python -m tools.dogfood.content.validate`. Apply: `PYTHONPATH=. python -m tools.dogfood.content.seed <manifest> --kind <k> --apply` (dry-run by default).
 
-### The board-diversity lever (why mike is monotone)
-The board composer (`travel-agent/backend/atlas/taste_board.py` + `story_shape.py`) joins `traveler_place_affinity` (weight≥3.0) to `entity_facets` on `(entity_type, entity_id)`. mike's board is flat because all 32 loved entities carry the **same** facet (`cuisine=portuguese`). A rich board needs the loved places to span **multiple facet dimensions** (occasion, experience_type, cuisine, neighborhood) across **≥2 cities**. Give each persona a distinct *taste identity* and pick loved entities whose `entity_facets` are varied (or seed the facets).
+### The board-diversity lever
+The board composer (`travel-agent/backend/atlas/taste_board.py` + `story_shape.py`) joins `traveler_place_affinity` (weight≥3.0) to `entity_facets` on `(entity_type, entity_id)`. The Phase 1 fix lets the lean-back board selector choose the strongest loved facet across dimensions, not just `cuisine`. A rich board still needs loved places to span **multiple facet dimensions** (occasion, experience_type, cuisine, neighborhood) across **>=2 cities**. Give each persona a distinct *taste identity* and pick loved entities whose `entity_facets` are already varied. If the catalog projection cannot supply that, use `EntityFacetSeed` in the manifest for deliberate facet coverage.
 
 ---
 
 ## What "rich" requires (thresholds — from `story_shape.py`)
 
-- **Board register:** `_BOARD_MIN=3` loved places. `lineage` = ≥2 cities; `year` = ≥3 dated clustered; `mosaic` = ≥6 diverse; `hero` = a significance peak. Below 3 → honest `list`/`empty`.
+- **Board register:** `_BOARD_MIN=3` loved places. Below 3 → honest `list`/`empty`.
+  - `lineage` requires ≥2 cities **and** category coherence (currently `_LINEAGE_MIN_COHERENCE=0.6`), not just city spread.
+  - `year` requires ≥3 dated moments with bounded span/clustering (currently `_YEAR_MIN_DATED=3`, `_YEAR_MAX_SPAN_DAYS=550`, `_YEAR_MIN_CLUSTERING=0.55`).
+  - `mosaic` requires ≥6 moments and high city diversity (currently at least half the moments in distinct cities).
+  - `single`/hero wins when one moment is a real significance peak; avoid accidental outlier weights if the target is lineage/mosaic/year.
 - **Unpacked (year recap):** `available` if ≥1 `kept`+`ready` artifact dated in that year; **rich = 3-4 kept artifacts across ≥2 cities in one demo year**. Pick ONE demo year per persona (elif's is 2025).
 - **Timeline / Map:** ~6-10 entries across ≥2 years; artifacts need `map_points` to appear on the map.
 - **Almanac year-name:** one `atlas_almanac_summaries` row per (user, year).
 
 ---
 
-## Per-persona deliverable (repeat for mike, sarah, + optionally mara/dao/reza)
+## Per-persona deliverable (Phase 1: mike + sarah; Phase 2: optionally mara/dao/reza)
 
 1. A **coherent taste identity/theme** distinct from elif's "counters & markets across cities."
 2. **~6-10 loved places** (`AffinitySeed` weight≥3.0) across ≥2 cities with **diverse facets** → non-monotone board.
 3. **3-5 kept/ready Atlas artifacts** in one demo year across ≥2 cities → Unpacked + timeline + map.
 4. **Assets per artifact:** 1 hero illustration (Lane 2) + 2-3 fake photos (Lane 3), named with the resolvable `dogfood-*` pattern, ~1448×1086, registered in `inventory.yaml`.
 5. One **almanac summary** for the demo year (Lane: DB only).
-6. **Shared, once:** the Lane-1 board riso pool (~113 facet-keyed abstract-riso images, app-bundled).
+6. **Shared, once:** the Lane-1 board riso pool. Start with the Phase 1 emitted facets; expand toward the full ~113 facet-keyed abstract-riso images after resolver wiring is proven.
 
 ---
 
 ## Definition of done (per persona, verified against the live DB / composer)
 
+- Wiring prerequisites are done once:
+  - generated riso SVGs still render, but bundled riso PNGs win when present;
+  - new lane-aware dogfood `photo_id` patterns resolve to `/dogfood-media/` instead of falling through to `ph://`;
+  - `AlmanacSummarySeed` can validate, seed, reset, and dry-run/apply via `tools.dogfood.content.seed`.
 - `compose_taste_board(uid)` → `register='board'`, `template ∈ {lineage, mosaic, year}`, a non-monotone title.
 - `build_unpacked(uid, <year>)` → `available: True`, ≥3 artifacts across ≥2 cities.
 - Every artifact `hero_photo_url` + section `photo_ids` resolve via `/dogfood-media/` (matching-pattern ids, files present in `inventory.yaml`).
@@ -110,4 +153,6 @@ The board composer (`travel-agent/backend/atlas/taste_board.py` + `story_shape.p
 
 ## Scale estimate
 
-Lane 1 ≈ **113** abstract-riso images (shared, one-time). Lanes 2/3 ≈ 5 artifacts × (1 hero + ~2 photos) × ~4 personas ≈ **50-60** images + inventory entries + the paired seed manifests.
+Full target: Lane 1 ≈ **113** abstract-riso images (shared, one-time). Lanes 2/3 ≈ 5 artifacts × (1 hero + ~2 photos) × ~4 personas ≈ **50-60** images + inventory entries + the paired seed manifests.
+
+Recommended next slice: polish the remaining staged Phase 1 support assets, then expand Phase 2 to `mara`, `dao`, and `reza` only after their intended taste identities and facet coverage are written down first. This remains a good idea only if it stays phased: DB substrate, media files, inventory rows, and live composer verification should land together each time.
