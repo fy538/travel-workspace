@@ -32,12 +32,26 @@ Recommended scope: do this in phases, not as one giant asset dump.
   - Manifest: `travel-agent/tools/dogfood/content/manifests/atlas-phase1.yaml`.
   - Media inventory: `travel-agent/tools/dogfood/content/media/atlas-phase1/inventory.yaml`.
   - Current substrate: 5 kept Atlas artifacts, 6 trip photos, 19 media-inventory assets, 16 explicit facets, 9 affinity rows, 4 almanac summaries.
-  - Primary hero images have generated-photo replacements for the two original trip-photo heroes and the three cross-city artifact heroes. Supporting section photos and riso illustrations are still staged placeholders unless noted in the inventory.
-  - Lane 1 has the first bundled abstract riso PNGs registered for `category/{restaurant,wine_bar,bar,market}.png`.
+  - Primary hero images, supporting section photos, and artifact rendered-image illustrations now have generated/polished replacements at the stable inventory paths.
+  - Lane 1 has bundled abstract riso PNGs registered for the Phase 1 category/cuisine/occasion facet pool, including `category/_default`.
+- Phase 2 is applied locally:
+  - Manifest: `travel-agent/tools/dogfood/content/manifests/atlas-phase2.yaml`.
+  - Media inventory: `travel-agent/tools/dogfood/content/media/atlas-phase2/inventory.yaml`.
+  - Current substrate: 9 kept Atlas artifacts, 18 media-inventory assets, 9 explicit facets, 9 affinity rows, 3 almanac summaries.
+  - Lane 1 has bundled abstract riso PNGs for the Phase 2 emitted categories and facets: `hosted_table`, `flat_reset`, `built_route`, `courtyard`, `garden`, `museum`, `station`, `transit`, and `architecture`.
+  - Lane 1 was broadened again on 2026-07-05 to the full first-pass target of 113 bundled rasters, adding common category/cuisine/occasion/experience-type keys such as `cafe`, `viewpoint`, `ramen`, `seafood`, `reunion`, `walkable_neighborhood`, `tile_route`, and `arrival_dinner`.
 - Composer verification against the live local DB:
   - `mike`: `board/year`, selected chip `occasion=shared_table`, 3 moments / 3 visual slots, 2026 Unpacked available with year title "One table, then the city". Live DB currently has 3 kept/ready Mike artifacts in 2026: 2 from Phase 1 plus one existing Rome row.
   - `sarah`: `board/year`, selected chip `occasion=standing_counter`, 4 moments / 4 visual slots, 2026 Unpacked available with year title "Mornings as the control surface". Live DB currently has 3 kept/ready Sarah artifacts in 2026 from Phase 1, plus one older 2025 Rome artifact.
-- Scope note: this proves the manifest/media/resolver pattern and gives Mike/Sarah credible Atlas demos. It is still not the full long-term target of polished final art for every staged support asset.
+  - `mara`: `board/year`, selected chip `occasion=hosted_table`, 3 moments / 3 visual slots, 2026 Unpacked available with year title "The year the table hosted first".
+  - `dao`: `board/year`, selected chip `experience_type=flat_reset`, 3 moments / 3 visual slots, 2026 Unpacked available with year title "A year of level first hours".
+  - `reza`: `board/year`, selected chip `experience_type=built_route`, 3 moments / 3 visual slots, 2026 Unpacked available with year title "Routes made of tile and transit".
+- Visual QA:
+  - `atlas-home` captured successfully through the polish QA flow (`20260705T082639Z-atlas-home`); the flow now hides the floating nav for content-polish captures, and riso imagery was visible/nonblank.
+  - `atlas-board` captured successfully through the polish QA flow (`20260705T082330Z-atlas-board`) with full screenshot plus read-panel and context-strip crops. The opened reading now uses the full editorial grid instead of the earlier narrow left-column composition.
+- Media review:
+  - Contact-sheet review on 2026-07-05 found the Phase 1/Phase 2 generated media coherent and nonblank, and the 113 Lane 1 rasters stayed abstract/riso rather than photorealistic.
+- Scope note: this proves the manifest/media/resolver pattern for all current dogfood personas. Remaining work is ongoing review/sign-off and future refinements, not missing Mike/Sarah/Mara/Dao/Reza substrate.
 
 ---
 
@@ -46,11 +60,11 @@ Recommended scope: do this in phases, not as one giant asset dump.
 | persona | board register | real Atlas artifacts | trip_photos | timeline | verdict |
 |---|---|---|---|---|---|
 | **elif** | `board` / `lineage` — "market lineage", 4 cities | 5 (2024 Lisbon; 2025 Rome/Tokyo/Istanbul/Brooklyn) | 32 | 16 | **DONE — reference example, do not touch** |
-| mike | `board/year` — `occasion=shared_table` | 3 in 2026 (2 Phase 1 + 1 existing Rome) | 3 Phase 1 | verified through Atlas/Unpacked composer | **Phase 1 DONE — support art can be polished further** |
-| sarah | `board/year` — `occasion=standing_counter` | 3 in 2026 Phase 1 (+1 older 2025 Rome) | 3 Phase 1 | verified through Atlas/Unpacked composer | **Phase 1 DONE — support art can be polished further** |
-| mara | `empty` (2 saves; has 8 trips) | 0 | 3 | 3 | needs everything |
-| dao | `empty` (4 saves) | 0 | 1 | 0 | needs everything |
-| reza | `list` (2 — below board threshold) | 0 | 2 | 0 | needs everything |
+| mike | `board/year` — `occasion=shared_table` | 3 in 2026 (2 Phase 1 + 1 existing Rome) | 3 Phase 1 | verified through Atlas/Unpacked composer | **Phase 1 DONE** |
+| sarah | `board/year` — `occasion=standing_counter` | 3 in 2026 Phase 1 (+1 older 2025 Rome) | 3 Phase 1 | verified through Atlas/Unpacked composer | **Phase 1 DONE** |
+| mara | `board/year` — `occasion=hosted_table` | 3 in 2026 Phase 2 (+ existing Lisbon context) | media via atlas-phase2 artifacts | verified through Atlas/Unpacked composer | **Phase 2 DONE** |
+| dao | `board/year` — `experience_type=flat_reset` | 3 in 2026 Phase 2 (+ existing Lisbon context) | media via atlas-phase2 artifacts | verified through Atlas/Unpacked composer | **Phase 2 DONE** |
+| reza | `board/year` — `experience_type=built_route` | 3 in 2026 Phase 2 (+ existing Lisbon context) | media via atlas-phase2 artifacts | verified through Atlas/Unpacked composer | **Phase 2 DONE** |
 
 `elif` is the "rich, done right" template — **mirror her shape.** Do **not** reintroduce `j11c-*` / "Days in Tokyo" artifacts (that was eval residue; purged 2026-07-04, and the J11 cert teardown was fixed so it won't recur).
 
@@ -69,7 +83,7 @@ These are wired **differently** — do not conflate them.
 ### Why Lane 1 exists (the SVG question)
 Board visual slots today render as **deterministic riso-style SVG swatches synthesized in code** (`travel-app/components/atlas/risoManifest.ts` → `RisoSlotImage.tsx`). These are **temporary placeholders**, on-palette (Atlas gold + rust/olive/blue-green, never Discover violet), so a board reads as *imagery not a text list* without faking a photo. The generated placeholders now paint through `react-native-svg`'s `<SvgXml>` path, not through raster `<Image>`.
 
-The real riso pool is now partially wired. Current behavior:
+The real riso pool is now partially wired and expanded through Phase 2 plus a common shared tranche. Current behavior:
 - `RisoSlotImage` calls `resolveSlotSvg(slot)` first.
 - For `source: "riso"`, `resolveSlotSvg` returns `null` when the static registry has a bundled raster for that key, so the renderer falls through to `<AppImage>`.
 - When no bundled raster exists, the resolver returns generated SVG XML and keeps the no-empty-slot guarantee.
@@ -155,4 +169,4 @@ The board composer (`travel-agent/backend/atlas/taste_board.py` + `story_shape.p
 
 Full target: Lane 1 ≈ **113** abstract-riso images (shared, one-time). Lanes 2/3 ≈ 5 artifacts × (1 hero + ~2 photos) × ~4 personas ≈ **50-60** images + inventory entries + the paired seed manifests.
 
-Recommended next slice: polish the remaining staged Phase 1 support assets, then expand Phase 2 to `mara`, `dao`, and `reza` only after their intended taste identities and facet coverage are written down first. This remains a good idea only if it stays phased: DB substrate, media files, inventory rows, and live composer verification should land together each time.
+Recommended next slice: merge the current phased substrate/media/app work, then handle any future dogfood refinements as small reviewed batches. This remains a good idea only if it stays phased: DB substrate, media files, inventory rows, and live composer verification should land together each time.
