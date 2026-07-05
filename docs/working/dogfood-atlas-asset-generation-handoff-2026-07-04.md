@@ -53,6 +53,38 @@ Recommended scope: do this in phases, not as one giant asset dump.
   - Contact-sheet review on 2026-07-05 found the Phase 1/Phase 2 generated media coherent and nonblank, and the 113 Lane 1 rasters stayed abstract/riso rather than photorealistic.
 - Scope note: this proves the manifest/media/resolver pattern for all current dogfood personas. Remaining work is ongoing review/sign-off and future refinements, not missing Mike/Sarah/Mara/Dao/Reza substrate.
 
+### Fresh environment runbook
+
+The assets are committed in `travel-agent` / `travel-app`, but the Atlas persona substrate still has to be seeded into each fresh DB. Run these from `travel-agent` against the target database:
+
+```bash
+PYTHONPATH=. python -m tools.dogfood.content.seed tools/dogfood/content/manifests/atlas-phase1.yaml --kind all --apply
+PYTHONPATH=. python -m tools.dogfood.content.seed tools/dogfood/content/manifests/atlas-phase2.yaml --kind all --apply
+```
+
+For a brand-new local DB, start infra and migrate first:
+
+```bash
+docker compose up -d
+PYTHONPATH=. alembic upgrade head
+```
+
+Verification status on 2026-07-05:
+- Phase 1 dry-run plans `facets=16`, `affinity=9`, `atlas=5`, `almanac=4`, `photos=6`.
+- Phase 2 dry-run plans `facets=9`, `affinity=9`, `atlas=9`, `almanac=3`, `photos=0`.
+- Live `--apply` could not be re-run in this shell because local Postgres was not listening on `localhost:5432` and the Docker daemon was stopped. The commands above are the required fresh-env step once DB infra is up.
+
+### Concrete follow-ups / sign-off
+
+This remains a good idea if it stays disciplined: each future batch must keep DB substrate, manifest ids, inventory rows, and media files landing together. Do not accept a media-only or DB-only batch as "done."
+
+Before sign-off or promotion to another environment:
+1. Re-run both Atlas seed dry-runs, then apply both manifests against the target DB.
+2. Re-run manifest/media inventory validation for `atlas-phase1` and `atlas-phase2`; accept only zero missing files, zero unreferenced inventory assets, and zero bad `manifest_targets`.
+3. Re-run the persona hookup report; accept only zero `missing_inventory`, zero `bad_files`, and zero unused inventory ids for each phase.
+4. Review the latest contact sheet and visual QA captures, including `atlas-home` and `atlas-board`; replace any weak asset through the manifest/inventory path, not ad hoc filenames.
+5. If adding another persona or asset tranche, keep it small enough to review in one contact sheet and require the same live composer checks (`compose_taste_board` and `build_unpacked`) before merge.
+
 ---
 
 ## Current per-persona state (latest local verification)
