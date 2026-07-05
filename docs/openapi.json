@@ -32732,7 +32732,6 @@
                 "enum": [
                   "verdict",
                   "letter",
-                  "whisper",
                   "dispatch",
                   "standfirst",
                   "question"
