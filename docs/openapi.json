@@ -4535,6 +4535,69 @@
         }
       }
     },
+    "/api/atlas/timeline/summary": {
+      "get": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Get Atlas Timeline Summary",
+        "description": "Long View's index counts \u2014 the same ``atlas_timeline_entries``\nprojection the timeline/almanac endpoints read, grouped by year (Time\nmode's year chapters) or by normalized city (Places mode's whole-corpus\nnode counts). Not the taste/composition engine \u2014 this indexes memories,\nit doesn't compose a reading from place-affinity signals.",
+        "operationId": "get_atlas_timeline_summary_api_atlas_timeline_summary_get",
+        "parameters": [
+          {
+            "name": "group_by",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "enum": [
+                "year",
+                "city"
+              ],
+              "type": "string",
+              "title": "Group By"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasTimelineGroupedReadModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/atlas/timeline/removed": {
       "get": {
         "tags": [
@@ -29111,6 +29174,25 @@
         "title": "AtlasSignalsResponse",
         "description": "Response for ``GET /api/atlas/artifacts/{id}/signals`` \u2014 the audit bridge."
       },
+      "AtlasTimelineBucket": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "title": "Key"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "key",
+          "count"
+        ],
+        "title": "AtlasTimelineBucket",
+        "description": "One grouped-count row for the Long View index (a year or a city)."
+      },
       "AtlasTimelineEntry": {
         "properties": {
           "id": {
@@ -29393,6 +29475,47 @@
         ],
         "title": "AtlasTimelineGroup",
         "description": "A single month bucket inside the Almanac read model."
+      },
+      "AtlasTimelineGroupedReadModel": {
+        "properties": {
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "group_by": {
+            "type": "string",
+            "enum": [
+              "year",
+              "city"
+            ],
+            "title": "Group By"
+          },
+          "total_count": {
+            "type": "integer",
+            "title": "Total Count",
+            "default": 0
+          },
+          "buckets": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasTimelineBucket"
+            },
+            "type": "array",
+            "title": "Buckets"
+          },
+          "truncated": {
+            "type": "boolean",
+            "title": "Truncated",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "generated_at",
+          "group_by"
+        ],
+        "title": "AtlasTimelineGroupedReadModel",
+        "description": "Response for ``GET /api/atlas/timeline/summary`` \u2014 Long View's\nyear-chapter and whole-corpus-places counts. Aggregates the same\n``atlas_timeline_entries`` projection the timeline/almanac endpoints\nalready read; not a new pipeline."
       },
       "AtlasTimelineReadModel": {
         "properties": {
