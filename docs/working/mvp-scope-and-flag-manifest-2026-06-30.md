@@ -2,8 +2,18 @@
 
 > Status: scope locked — flag gating LIVE as of 2026-07-01
 > Owner: founder / engineering
-> Created: 2026-06-30 · Last updated: 2026-07-01
+> Created: 2026-06-30 · Last updated: 2026-07-06 (Clerk/live-transport rows corrected — see note below)
 > Source of truth for: what ships in the first production release, what is hidden, and how
+
+> **2026-07-06 correction:** every "Clerk JWTs" / "live-transport gap" row below previously
+> read as an external Clerk blocker. It isn't. Per [STATUS.md](../journeys/STATUS.md)'s
+> 2026-07-05 correction: it's ~3-5h of unbuilt *internal* glue (test Clerk accounts + SQL
+> backfill of `external_auth_id` + a JWT-mint script) for one automated CI harness
+> (`dogfood-journey-live-api` over HTTP), and it's a CI-automation nice-to-have, **not a
+> shipping blocker** — the actual device-certification gate for J04/J05/J10 runs on real
+> Clerk accounts on two physical devices and never touches this harness at all. Rows below
+> are annotated inline; treat "🔲" on these specific rows as "not built, not urgent," not
+> "blocked."
 
 ## Implementation status (2026-07-01)
 
@@ -70,7 +80,7 @@ New producer: closed venue → swap proposal → existing Propose UX. Ships dark
 | Commit Phase A/B/7 work to branch | 🔲 not yet |
 | Reachability audit (device walk, release flags) | 🔲 needs EAS build |
 | J01–J12 device-walked on a real build | 🔲 0/12 full-cert (logic 12/12) |
-| Live-transport gap: Clerk JWTs for dogfood HTTP | 🔲 Clerk external_auth_id gap |
+| Live-transport gap: Clerk JWTs for dogfood HTTP | 🔲 not blocked, not built — internal glue only (~3-5h); does not gate device-cert (see 07-06 note above) |
 | App Store review assets current | 🔲 |
 | Proactive proposals flag-on eval (seeded env) | 🔲 venue-disruption ships dark |
 
@@ -128,7 +138,7 @@ paths remain).
 
 | Surface | Systems | Notes |
 |---|---|---|
-| Auth (Clerk) + onboarding | — | Live-transport JWT gap must close (see DoD) |
+| Auth (Clerk) + onboarding | — | Real Clerk auth already live; the automated persona-JWT harness gap (see DoD) is a CI nice-to-have and does not block this surface |
 | Trips: create, **full group invite + membership + roles** | Trips/Folio, Group/Social | Heaviest QA surface |
 | Group chat + facilitator | Group/Social | Merged to main 2026-06-30 |
 | Planning / itinerary generation | Planning/Itinerary | Grounded in world model (the moat) |
@@ -207,8 +217,11 @@ transaction + voice routes as defense-in-depth (low priority).
    Search→profiles). *(travel-app)*
 6. **Optional BE route guards** on booking-transaction/voice. *(travel-agent)*
 7. **Harden the IN path to production** — the real work:
-   - Close the live-transport gap (Clerk JWTs for `dogfood-journey-live-api`).
+   - *(non-blocking, CI nice-to-have — not required for the items below)* Build the
+     live-transport JWT harness (`dogfood-journey-live-api` over HTTP): test Clerk
+     accounts + JWT-mint script, ~3-5h.
    - Device full-cert J04/J05/J10(-minus-booking-transaction) — the `0/12 full` gap.
+     Runs on real Clerk accounts on two physical devices; does not depend on the item above.
    - Proactive proposal generation (the named launch gap — agent drives the shipped
      Propose UX from trip events).
    - Full-group multi-user QA pass.
@@ -225,6 +238,9 @@ transaction + voice routes as defense-in-depth (low priority).
 - [ ] **Commit Phase A/B/7 work to a branch** (working tree currently dirty ~35 files)
 - [ ] Reachability audit clean (no OUT reachable; no IN broken) — needs EAS build + device
 - [ ] Golden path J01–J12 device-walked green on a real build (booking-transaction excepted)
-- [ ] Live-transport gap closed (Clerk JWTs) — `make dogfood-journey-live-api` green over HTTP
+- [ ] *(non-blocking — not required for v1)* Live-transport JWT harness built —
+      `make dogfood-journey-live-api` green over HTTP. TestClient path is already
+      15/15 green; this only automates the persona-JWT CI path and does not gate
+      device-cert above.
 - [ ] App Store review assets current (privacy, review notes, mic-permission copy)
 - [ ] This doc `Status: active` and linked from `docs/systems/README.md`

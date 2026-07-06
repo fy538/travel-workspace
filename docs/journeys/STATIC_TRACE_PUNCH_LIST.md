@@ -2,7 +2,8 @@
 
 > Status: draft  
 > Owner: founder / engineering  
-> Last updated: 2026-06-26
+> Last updated: 2026-06-26 (2026-07-06: added a cross-reference note on the
+> "dogfood ready" verdict below — see STATUS.md's certified ladder)
 > Source of truth for: consolidated findings from journey tracer passes
 
 This report consolidates read-only static traces for all 12 canonical journeys. Agents traced each journey through app routes, components, hooks, API methods, mock fallbacks, and backend endpoints. No live LLM-backed product endpoints, push sends, provider calls, or photo-library actions were used.
@@ -421,6 +422,17 @@ Four parallel read-only agent traces (J01–03, J04–06, J07–09, J10–12). D
 | 12 | Surfaces exist; no mock walk | No |
 
 **Dogfood ready: 0 / 12**
+
+> **2026-07-06 note:** this "dogfood ready" bar (as of 2026-06-26) is a real device
+> walk, not a mock/replay pass. STATUS.md later formalized this as the **`full`**
+> tier in its certified ladder — as of STATUS.md's 2026-07-05 update it is *still*
+> **0 / 12** (device walks for J04/J05/J10 pending), so this figure is not stale, it's
+> unchanged. It is easy to misread against two newer, lighter-weight tiers that *have*
+> moved: **`agent`-certified is 12/12** (mock-walk + logic + Maestro, all automated)
+> and **persona-cert / "lived-certified" is 15/15** (in-process replay against a
+> seeded persona, `AI_MODE=replay`, no real device or token). Neither of those
+> satisfies "dogfood ready" here — see STATUS.md's "Certified ladder" section for
+> the authoritative tier definitions and current counts.
 
 ## Status Matrix Deltas
 

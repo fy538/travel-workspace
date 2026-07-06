@@ -1,0 +1,292 @@
+# Feature-flag registry — canonical owner/expiry source for both repos.
+#
+# Why this exists: as of 2026-07-06, 26 flags across travel-agent and
+# travel-app had zero owner or expiration metadata anywhere in the code.
+# Untracked flags are exactly how "shipped dark for now" becomes permanent
+# debt (see docs/working/ research notes on flag-lifecycle management).
+# This file is the single source of truth; scripts/check_flag_registry.py
+# enforces it at pre-push (see workspace .pre-commit-config.yaml).
+#
+# Fields:
+#   name      - env var / const name as it appears in code
+#   repo      - travel-agent | travel-app
+#   location  - file:line or symbol where the flag is defined
+#   default   - the flag's default value today
+#   category  - release   = a feature rollout, expected to go away once shipped
+#               experiment = a trial/eval gate, expected to resolve one way or another
+#               ops        = a permanent operational kill-switch/toggle, not a
+#                            feature rollout — `expires` reads as "review by",
+#                            not "must remove by"
+#   owner     - accountable person (fy538 for all, per 2026-07-06 decision)
+#   expires   - review/removal-by date. Fixed 90-day convention from creation
+#               of this registry (2026-07-06 -> 2026-10-04) for every flag,
+#               applied uniformly per instruction; category above tells you
+#               how to *read* a blown date, not whether the check fires.
+#   status    - active | resolved. check_flag_registry.py only fails on
+#               `active` entries whose `expires` has passed. Once a flag is
+#               actually removed or permanently flipped, set status: resolved
+#               rather than deleting the row (keeps a historical record).
+#   notes     - short context, e.g. what has to happen before flip/removal
+
+flags:
+  # ── travel-agent (backend) ──────────────────────────────────────────────
+  - name: ATLAS_LLM_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:20
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Gates the Atlas real-LLM composer; flip once validated against the eval framework.
+
+  - name: ANNIVERSARY_PUSH_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:30
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Gates the "On this day" anniversary push loop; flip once anniversary content validated at scale.
+
+  - name: UNPACKED_SEASONAL_PUSH_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:40
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Gates the year-end "unpack your year" seasonal push loop; only acts within the year-end window regardless.
+
+  - name: ATLAS_AUTO_CANDIDATE_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:50
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Trip-to-Atlas-candidate backfill safety net for missed trip.completed events.
+
+  - name: ATLAS_SIGNALS_TO_MEMORY
+    repo: travel-agent
+    location: backend/core/feature_flags.py:60
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Feeds Atlas derived_signals into concierge taste model; gates cross-trip affinity recall (J17 depends on this).
+
+  - name: AUTO_PUBLISH_GREEN_DOSSIERS
+    repo: travel-agent
+    location: backend/core/feature_flags.py:70
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Auto-promotes green-quality research dossiers to approved; decide publish posture (see project_research_pipeline_pilot memory).
+
+  - name: STORY_SHARING_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:96
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Gates outward story/Unpacked share-link minting; flip once J19 public-taste privacy checks certified.
+
+  - name: VENUE_DISRUPTION_PROPOSALS_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:112
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Proactive venue-closed swap-proposal producer; ships dark pending eval pass against seeded trips.
+
+  - name: DOSSIER_APPROVED_FILTER_CHAT
+    repo: travel-agent
+    location: backend/core/settings.py:158
+    default: true
+    category: release
+    owner: fy538
+    expires: 2026-10-04
+    status: resolved
+    notes: Flipped on 2026-07-06, prod coverage ~99.8%. Marked resolved; keep the row for history.
+
+  - name: POSTCARD_RENDER_ENABLED
+    repo: travel-agent
+    location: backend/core/settings.py:170
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Riso postcard rendering (homecoming v3) — ships dark, wired end-to-end, pending social-distribution cert.
+
+  - name: CONTENT_GRAPH_GEOFENCE_ENABLED
+    repo: travel-agent
+    location: backend/concierge/config.py:121
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Off-itinerary geofence lookup for the content graph (Phase 3A); off by default for per-turn DB cost.
+
+  - name: CONCIERGE_SEARCH_TRANSPORT_ENABLED
+    repo: travel-agent
+    location: backend/concierge/config.py:132
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Layer 3 of the transport product (live Amadeus/Duffel/Rome2Rio); tool stays wired but returns a polite stub when off.
+
+  - name: BOOKING_DUFFEL_LIVE_BOOKING_ENABLED
+    repo: travel-agent
+    location: backend/booking_agent/config/settings.py:15
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Gates live Duffel transaction execution; MVP-blocking flag per docs/working/mvp-scope-and-flag-manifest-2026-06-30.md.
+
+  - name: BOOKING_MONETIZATION_MODE
+    repo: travel-agent
+    location: backend/booking_agent/config/settings.py:37
+    default: free_affiliate
+    category: ops
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Not a bool toggle — a mode string. Review whether affiliate config (pid/mcid) should be populated before MVP.
+
+  - name: LOOKUP_SYNTHESIS_ENABLED
+    repo: travel-agent
+    location: backend/lookup_agent/config/settings.py:36
+    default: true
+    category: ops
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: On by default; review whether this should stay a flag or be hard-wired.
+
+  - name: DISABLE_LLM_BACKGROUND_LOOPS
+    repo: travel-agent
+    location: backend/background_config.py:46
+    default: false
+    category: ops
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Kill switch (background loops run unless disabled). Permanent by design — expires date is a review checkpoint, not a removal deadline.
+
+  - name: DISABLE_API_BACKGROUND_TASKS
+    repo: travel-agent
+    location: backend/background_config.py:56
+    default: false
+    category: ops
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Kill switch, same shape as DISABLE_LLM_BACKGROUND_LOOPS. Permanent by design.
+
+  - name: TELEMETRY_DISABLED
+    repo: travel-agent
+    location: backend/telemetry.py:221
+    default: false
+    category: ops
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Telemetry kill switch. Permanent by design — expires date is a review checkpoint.
+
+  - name: LANGFUSE_ENABLED
+    repo: travel-agent
+    location: backend/langfuse_tracing.py:144
+    default: true (if keys present)
+    category: ops
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Tracing toggle, effectively on whenever keys are configured. Permanent by design.
+
+  - name: LANGFUSE_CAPTURE_USER_CONTENT
+    repo: travel-agent
+    location: backend/langfuse_tracing.py:58
+    default: false
+    category: ops
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Privacy-sensitive — controls whether raw user content is captured in traces. Review before ever flipping true.
+
+  - name: EXPO_PUSH_ENABLED
+    repo: travel-agent
+    location: backend/notifications/receipt_reaper.py:39
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Gates outbound Expo push sends from the receipt reaper loop.
+
+  # ── travel-app (frontend) ───────────────────────────────────────────────
+  - name: VOICE_ENABLED
+    repo: travel-app
+    location: utils/voiceEnabled.ts:12
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Gates voice/LiveKit UI entry points; needs backend voice secrets configured first (returns 503 otherwise).
+
+  - name: POSTCARDS_ENABLED
+    repo: travel-app
+    location: constants/featureFlags.ts:11
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Ships after social-distribution cert. Paired with backend POSTCARD_RENDER_ENABLED.
+
+  - name: AMBIENT_ENABLED
+    repo: travel-app
+    location: constants/featureFlags.ts:14
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Live-ambient feed cards on trips home. Ships after ambient eval.
+
+  - name: STORY_SHARE_ENABLED
+    repo: travel-app
+    location: constants/featureFlags.ts:17
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Story + Atlas Unpacked share links. Paired with backend STORY_SHARING_ENABLED. Ships after J19 privacy cert.
+
+  - name: DOSSIER_VOICE_STUB
+    repo: travel-app
+    location: constants/featureFlags.ts:20
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: 'The "Hear the read" icon in dossier chrome — stub until TTS ships.'

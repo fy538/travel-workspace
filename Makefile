@@ -121,6 +121,9 @@ certify-fast: ## Tier-1 certify ladder: corpus-check + contract + journey Jest +
 journey-registry-check: ## Gate: journeys.yaml ↔ docs ↔ README ↔ persona-cert agree on the journey set (offline, no DB)
 	@python3 scripts/check_journey_registry.py
 
+flag-registry-check: ## Gate: no feature flag in docs/flags/registry.yaml is past its review/removal date (offline, no DB)
+	@python3 scripts/check_flag_registry.py
+
 maestro-flow-check: ## Gate: every .maestro flow parses + visual-qa script refs resolve (offline, no simulator)
 	@python3 scripts/validate-maestro-flows.py --app-dir travel-app
 

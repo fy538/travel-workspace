@@ -6,11 +6,13 @@
 # docs occasionally paste real-looking keys as examples. This config
 # runs the same secret-prefix guard the sub-repos use.
 #
-# Install once:
-#   pre-commit install
+# Install once (both hook types — the flag-registry check below runs at
+# pre-push, not on every commit):
+#   pre-commit install --hook-type pre-commit --hook-type pre-push
 #
 # Manual whole-tree scan:
 #   scripts/check-secret-prefixes.sh --all
+#   python3 scripts/check_flag_registry.py
 
 repos:
   - repo: local
@@ -22,3 +24,10 @@ repos:
         pass_filenames: true
         files: \.(env|env\..*|md|yml|yaml|ts|tsx|py|sh|json|txt)$
         exclude: 'node_modules/|\.venv/|\.git/'
+
+      - id: check-flag-registry
+        name: Check no feature flag is past its review/removal date
+        entry: python3 scripts/check_flag_registry.py
+        language: system
+        pass_filenames: false
+        stages: [pre-push]

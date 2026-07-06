@@ -137,6 +137,15 @@ jobs:
         # contract/logic fidelity gap for the holistic-extension journeys.
         run: make journey-registry-check
 
+      - name: Flag registry guard
+        # Pure file-parse (no DB): fails if any `active` flag in
+        # docs/flags/registry.yaml is past its review/removal date. This is
+        # the enforcement floor for flag hygiene — the local pre-commit hook
+        # (workspace .pre-commit-config.yaml, pre-push stage) catches this
+        # first, but a skipped hook or an un-configured clone must not let a
+        # stale dark flag go unnoticed indefinitely.
+        run: make flag-registry-check
+
       - name: API coverage check
         # Verifies every URL the frontend calls in http.ts exists in
         # docs/openapi.json at the declared method. Catches stale
