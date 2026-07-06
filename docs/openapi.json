@@ -4450,6 +4450,136 @@
         }
       }
     },
+    "/api/atlas/artifacts/{artifact_id}/photos/upload": {
+      "post": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Upload Artifact Photo Permanence",
+        "description": "Rehost one photo from a KEPT artifact to a durable CDN url.\n\n``source_photo_id`` is the on-device PHAsset id (the same id the\nartifact's ``photo_ids``/``hero_photo_id`` already carry) \u2014 the client\nresolves it to bytes locally (e.g. via expo-media-library) and posts\nthem here. Idempotent: re-uploading the same ``source_photo_id`` for\nthe same artifact replaces the existing rehost rather than duplicating.\n404s for an artifact the caller doesn't own \u2014 never a hint about\nanother user's artifacts existing.",
+        "operationId": "upload_artifact_photo_permanence_api_atlas_artifacts__artifact_id__photos_upload_post",
+        "parameters": [
+          {
+            "name": "artifact_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Artifact Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_artifact_photo_permanence_api_atlas_artifacts__artifact_id__photos_upload_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasArtifactPhotoUploadResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/artifacts/{artifact_id}/photos": {
+      "get": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Get Artifact Photo Permanence",
+        "description": "The rehosted-photo map for a kept artifact: source PHAsset id -> CDN url.\n\nA photo absent from ``urls`` has no durable fallback yet \u2014 the client\nkeeps rendering it via ``ph://`` (with D4's honest-unavailable state as\nthe final fallback). 404s for an artifact the caller doesn't own.",
+        "operationId": "get_artifact_photo_permanence_api_atlas_artifacts__artifact_id__photos_get",
+        "parameters": [
+          {
+            "name": "artifact_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Artifact Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasArtifactPhotosResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/atlas/artifacts/{artifact_id}/postcard": {
       "post": {
         "tags": [
@@ -4516,7 +4646,7 @@
           "atlas"
         ],
         "summary": "Get Atlas Timeline",
-        "description": "Flat chronological timeline of a user's travel life.\n\nReturns trips (planned + taken), pending Atlas diary drafts, and\nkept Atlas memories in one normalised contract, sorted by\n``occurred_start`` descending.\n\nPass ``year=YYYY`` to restrict to entries whose date range overlaps\nthat year. Omit ``year`` to get the full timeline (capped at\n``limit``, default 100).\n\nPagination uses keyset cursors (entry UUIDs). Each page may fetch\nextra rows server-side so deduplicated pages still return up to\n``limit`` visible entries.\n\nV1 reads from the persisted ``atlas_timeline_entries`` projection,\nlazily backfilled on first access for legacy users.",
+        "description": "Flat chronological timeline of a user's travel life.\n\nReturns trips (planned + taken), pending Atlas diary drafts, and\nkept Atlas memories in one normalised contract, sorted by\n``occurred_start`` descending.\n\nPass ``year=YYYY`` to restrict to entries whose date range overlaps\nthat year, or ``undated=true`` for entries with no ``occurred_start``\nat all (D2, 2026-07-06 \u2014 Long View's \"Undated\" chapter; previously\nunreachable since ``year=0`` 422'd). Mutually exclusive: ``undated=true``\nignores any ``year`` also passed. Omit both to get the full timeline\n(capped at ``limit``, default 100).\n\nPagination uses keyset cursors (entry UUIDs). Each page may fetch\nextra rows server-side so deduplicated pages still return up to\n``limit`` visible entries.\n\nV1 reads from the persisted ``atlas_timeline_entries`` projection,\nlazily backfilled on first access for legacy users.",
         "operationId": "get_atlas_timeline_api_atlas_timeline_get",
         "parameters": [
           {
@@ -4533,6 +4663,16 @@
                 }
               ],
               "title": "Year"
+            }
+          },
+          {
+            "name": "undated",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Undated"
             }
           },
           {
@@ -4558,10 +4698,10 @@
                   "type": "null"
                 }
               ],
-              "description": "Opaque pagination cursor \u2014 the ``id`` of the last entry from the previous page. Cursors are scoped to the same ``year`` filter as the request that produced them; reusing a cursor from another year returns 422. Omit on the first page.",
+              "description": "Opaque pagination cursor \u2014 the ``id`` of the last entry from the previous page. Cursors are scoped to the same ``year``/``undated`` filter as the request that produced them; reusing a cursor from another scope returns 422. Omit on the first page.",
               "title": "Cursor"
             },
-            "description": "Opaque pagination cursor \u2014 the ``id`` of the last entry from the previous page. Cursors are scoped to the same ``year`` filter as the request that produced them; reusing a cursor from another year returns 422. Omit on the first page."
+            "description": "Opaque pagination cursor \u2014 the ``id`` of the last entry from the previous page. Cursors are scoped to the same ``year``/``undated`` filter as the request that produced them; reusing a cursor from another scope returns 422. Omit on the first page."
           },
           {
             "name": "authorization",
@@ -27007,6 +27147,59 @@
         "title": "AtlasArtifact",
         "description": "A generated artifact \u2014 the gift the user sees in Atlas."
       },
+      "AtlasArtifactPhotoUploadResponse": {
+        "properties": {
+          "photo_id": {
+            "type": "string",
+            "title": "Photo Id"
+          },
+          "source_photo_id": {
+            "type": "string",
+            "title": "Source Photo Id"
+          },
+          "cdn_url": {
+            "type": "string",
+            "title": "Cdn Url"
+          },
+          "artifact_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Artifact Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "photo_id",
+          "source_photo_id",
+          "cdn_url",
+          "artifact_id"
+        ],
+        "title": "AtlasArtifactPhotoUploadResponse",
+        "description": "Response for ``POST /api/atlas/artifacts/{artifact_id}/photos/upload``."
+      },
+      "AtlasArtifactPhotosResponse": {
+        "properties": {
+          "artifact_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Artifact Id"
+          },
+          "urls": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Urls"
+          }
+        },
+        "type": "object",
+        "required": [
+          "artifact_id",
+          "urls"
+        ],
+        "title": "AtlasArtifactPhotosResponse",
+        "description": "Response for ``GET /api/atlas/artifacts/{artifact_id}/photos``.\n\n``urls`` maps a source PHAsset id (the same id ``photo_ids``/\n``hero_photo_id`` already carry) to its durable CDN url \u2014 absent keys\nmean that photo has no rehosted fallback yet (still ``ph://`` only)."
+      },
       "AtlasArtifactShell": {
         "properties": {
           "id": {
@@ -30712,6 +30905,25 @@
           "file"
         ],
         "title": "Body_upload_artifact_photo_api_atlas_photos_upload_post"
+      },
+      "Body_upload_artifact_photo_permanence_api_atlas_artifacts__artifact_id__photos_upload_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          },
+          "source_photo_id": {
+            "type": "string",
+            "title": "Source Photo Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file",
+          "source_photo_id"
+        ],
+        "title": "Body_upload_artifact_photo_permanence_api_atlas_artifacts__artifact_id__photos_upload_post"
       },
       "Body_upload_receipt_api_trips__trip_id__receipts_upload_post": {
         "properties": {
@@ -37940,6 +38152,11 @@
             "type": "object",
             "title": "Metadata"
           },
+          "masked": {
+            "type": "boolean",
+            "title": "Masked",
+            "default": false
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -38132,6 +38349,11 @@
             "additionalProperties": true,
             "type": "object",
             "title": "Metadata"
+          },
+          "masked": {
+            "type": "boolean",
+            "title": "Masked",
+            "default": false
           }
         },
         "type": "object",
@@ -38395,6 +38617,17 @@
               }
             ],
             "title": "Metadata"
+          },
+          "masked": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Masked"
           }
         },
         "type": "object",
@@ -49856,6 +50089,80 @@
               }
             ],
             "title": "Date Range"
+          },
+          "visible_destination_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Visible Destination Label"
+          },
+          "visible_date_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Visible Date Label"
+          },
+          "visible_places": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Visible Places"
+          },
+          "generalized_place_chips": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Generalized Place Chips"
+          },
+          "route_cue": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Route Cue"
+          },
+          "route_cue_is_geographic": {
+            "type": "boolean",
+            "title": "Route Cue Is Geographic",
+            "default": false
+          },
+          "privacy_note": {
+            "type": "string",
+            "title": "Privacy Note",
+            "default": "A real trip memory, shared intentionally - private details removed."
+          },
+          "attribution": {
+            "type": "string",
+            "title": "Attribution",
+            "default": "Made with Vesper"
+          },
+          "redaction_summary": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Redaction Summary"
+          },
+          "plan_similar_seed_available": {
+            "type": "boolean",
+            "title": "Plan Similar Seed Available",
+            "default": true
           },
           "cover_image_url": {
             "anyOf": [
