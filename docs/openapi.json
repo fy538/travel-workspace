@@ -3443,7 +3443,7 @@
           "atlas"
         ],
         "summary": "Search Atlas",
-        "description": "Search Atlas-owned memories, pending candidates, and Travel DNA phrases.",
+        "description": "Search Atlas-owned memories, pending candidates, and Travel DNA phrases.\n\nThe artifact leg uses the same Qdrant hybrid (dense + BM25) lane Universal\nSearch's Atlas group already queries \u2014 see\n``backend.core.db.atlas.async_search_artifacts_semantic`` \u2014 gated behind\n``ATLAS_SEMANTIC_READ``; off (or on Qdrant/embedding failure), it degrades\nto the same pg_trgm-scored keyword match this endpoint always used, so\nprod behavior is unchanged until the flag flips. The candidates leg stays\nplain SQL (candidates aren't embedded) and the phrase-suggestion leg's\nin-memory match is untouched.",
         "operationId": "search_atlas_api_atlas_search_get",
         "parameters": [
           {
@@ -4150,6 +4150,75 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DerivedSignal"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/atlas/moments/{entity_id}": {
+      "patch": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Patch Atlas Moment",
+        "description": "Moment Actions \"This isn't right\" \u2014 dispute/forget/re-activate one\ncomposed moment.\n\nA Moment's id IS its source ``traveler_place_affinity.entity_id`` (see\n``backend.core.models.composition.Moment``), a different id space from the\nderived-signal dispute above \u2014 this writes to the affinity row directly.\nThe read-side effect is intentionally scoped to Atlas composition (see\n``backend.atlas.taste_board._drop_disputed``): the traveler stops seeing\nthis place in Atlas readings, but Discover/home/notifications, which read\nthe same affinity table for their own personalization, are unaffected.",
+        "operationId": "patch_atlas_moment_api_atlas_moments__entity_id__patch",
+        "parameters": [
+          {
+            "name": "entity_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Entity Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AtlasSignalStateUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasMomentStateUpdateResponse"
                 }
               }
             }
@@ -28509,6 +28578,30 @@
         "type": "object",
         "title": "AtlasMapSummary"
       },
+      "AtlasMomentStateUpdateResponse": {
+        "properties": {
+          "entity_id": {
+            "type": "string",
+            "title": "Entity Id"
+          },
+          "user_state": {
+            "type": "string",
+            "enum": [
+              "active",
+              "disputed",
+              "forgotten"
+            ],
+            "title": "User State"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_id",
+          "user_state"
+        ],
+        "title": "AtlasMomentStateUpdateResponse",
+        "description": "Response for ``PATCH /api/atlas/moments/{entity_id}`` \u2014 confirms the\nwrite; the caller re-composes (or optimistically removes the moment\nlocally) rather than this endpoint returning a whole board."
+      },
       "AtlasOnThisDayItem": {
         "properties": {
           "source_type": {
@@ -29149,7 +29242,7 @@
           "user_state"
         ],
         "title": "AtlasSignalStateUpdate",
-        "description": "PATCH body for user control over a single derived signal."
+        "description": "PATCH body for user control over a single derived signal.\n\nReused verbatim (same body shape) for the Moment Actions \"This isn't\nright\" dispute \u2014 see ``PATCH /api/atlas/moments/{entity_id}`` \u2014 even\nthough it mutates ``traveler_place_affinity.user_state`` rather than a\nderived signal; the two systems share no id space to join through (see\n``PlaceAffinity.user_state``'s doc comment), so the wire CONTRACT is\nshared for a consistent client experience while the write targets differ."
       },
       "AtlasSignalsResponse": {
         "properties": {
@@ -31977,6 +32070,20 @@
               }
             ],
             "title": "Value"
+          },
+          "exclude_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Exclude Ids"
+          },
+          "pin_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Pin Ids"
           }
         },
         "type": "object",
@@ -32124,6 +32231,13 @@
               }
             ],
             "title": "Fallback"
+          },
+          "dropped_pins": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Dropped Pins"
           },
           "provenance": {
             "items": {
@@ -42652,6 +42766,20 @@
             "type": "string",
             "format": "date-time",
             "title": "Created At"
+          },
+          "exclude_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Exclude Ids"
+          },
+          "pin_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Pin Ids"
           }
         },
         "type": "object",
@@ -44352,6 +44480,28 @@
               }
             ],
             "title": "Entity Type"
+          },
+          "matched_facet": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Matched Facet"
+          },
+          "evidence_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evidence Label"
           }
         },
         "type": "object",
@@ -50764,6 +50914,20 @@
                 "type": "null"
               }
             ]
+          },
+          "exclude_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Exclude Ids"
+          },
+          "pin_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Pin Ids"
           }
         },
         "type": "object",
