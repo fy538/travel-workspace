@@ -3733,7 +3733,7 @@
           "atlas"
         ],
         "summary": "Approve Candidate",
-        "description": "Approve a candidate and kick off artifact generation.\n\nPass ``{\"style\": \"postcard\"}`` in the request body to select a\nnarrative voice. Omit the body entirely for the default Memory style.\n\nUses claim-first ordering (atomic UPDATE WHERE status='pending') to\neliminate the TOCTOU race from the old read-check-then-act pattern.\nDouble-tap returns the existing artifact idempotently.",
+        "description": "Approve a candidate and kick off artifact generation.\n\nPass ``{\"style\": \"postcard\"}`` in the request body to select a\nnarrative voice. Omit the body entirely for the default Memory style.\n\nUses claim-first ordering (atomic UPDATE WHERE status='pending') to\neliminate the TOCTOU race from the old read-check-then-act pattern.\nDouble-tap returns the existing artifact idempotently.\n\nPersists with ``state=\"kept\"`` \u2014 approving IS keeping, same as keep-all\n(B1, 2026-07-06). ``state`` is the user's intent (did they keep it);\n``composed_by``/``generation_status`` track authorship/compose progress\nseparately and are orthogonal \u2014 a kept artifact can start as mock copy\nand be upgraded to LLM prose in place without ever changing ``state``.",
         "operationId": "approve_candidate_api_atlas_candidates__candidate_id__approve_post",
         "parameters": [
           {
@@ -21980,6 +21980,76 @@
         }
       }
     },
+    "/api/trips/{trip_id}/nudge": {
+      "post": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Nudge Trip Member",
+        "description": "Nudge one or more trip members about a stay vote or a settle-up.\n\nAny trip member can nudge any other trip member \u2014 this is peer\ncoordination, not an organizer power. Each target is processed\nindependently (one cooled-down or gated target doesn't block the others\nin the same request); see ``NudgeTargetResult.skipped_reason`` for why a\ngiven target didn't get a fresh send.",
+        "operationId": "nudge_trip_member_api_trips__trip_id__nudge_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NudgeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NudgeResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/me": {
       "get": {
         "tags": [
@@ -24941,7 +25011,7 @@
     "/ready": {
       "get": {
         "summary": "Readiness",
-        "description": "Readiness check \u2014 verifies Postgres and Qdrant are reachable.",
+        "description": "Readiness check \u2014 Postgres gates routing; Qdrant is reported, not gated.\n\nPostgres is a hard dependency for nearly every endpoint (auth, trips,\nchat persistence, ...), so an outage genuinely means \"this machine\ncan't serve traffic\" \u2014 Fly should mark it unhealthy and restart.\n\nQdrant is NOT: only the vector-search-touching paths need it, and\nmost of the app (auth, trip management, most of chat) works fine\nwithout it. Pre-fix, a Qdrant outage 503'd this whole check, so Fly\ncycled every machine and took down the entire API over a dependency\nonly some endpoints actually need. Qdrant's status is still surfaced\nin the response body for dashboards/alerting \u2014 it just doesn't gate\nthe HTTP status.",
         "operationId": "readiness_ready_get",
         "responses": {
           "200": {
@@ -24962,7 +25032,7 @@
     "/health/external": {
       "get": {
         "summary": "External Health",
-        "description": "Monitoring-only check of external API reachability (B7).\n\nReturns status of outbound dependencies the runtime relies on:\nAnthropic (LLM), Tavily (web search), and Redis (the arq worker's\njob intake). Used by dashboards / alerting \u2014 NOT wired into the\nreadiness probe because a transient blip in any of these shouldn't\nmake the pod un-routable (cached / non-LLM endpoints still serve,\nand Redis-backed work falls back to inline execution). Redis lives\nhere rather than in /ready precisely because it is a background-only\ndependency: a Redis outage degrades digests / audio prerender /\npre-trip jobs but must not take the synchronous chat path offline.\n\nBehaviour:\n\n- Skipped checks (no API key configured) report ``skipped``;\n  not a failure.\n- Reachable checks report ``ok``.\n- Unreachable checks report ``error: <reason>`` but the response\n  still returns 200 \u2014 degraded signal lives in the body, not the\n  HTTP status. Alerting consumes the body.\n\nThe Anthropic check uses a cheap ``count_tokens`` API call when\navailable (no token billing); falls back to a TCP-connect probe\nwhen the SDK doesn't expose count_tokens.",
+        "description": "Monitoring-only check of external API reachability (B7).\n\nReturns status of outbound dependencies the runtime relies on:\nAnthropic (LLM), Tavily (web search), and Redis (the arq worker's\njob intake). Used by dashboards / alerting \u2014 NOT wired into the\nreadiness probe because a transient blip in any of these shouldn't\nmake the pod un-routable (cached / non-LLM endpoints still serve,\nand Redis-backed work falls back to inline execution). Redis lives\nhere rather than in /ready precisely because it is a background-only\ndependency: a Redis outage degrades digests / audio prerender /\npre-trip jobs but must not take the synchronous chat path offline.\n\nBehaviour:\n\n- Skipped checks (no API key configured) report ``skipped``;\n  not a failure.\n- Reachable checks report ``ok``.\n- Unreachable checks report ``error: <reason>`` but the response\n  still returns 200 \u2014 degraded signal lives in the body, not the\n  HTTP status. Alerting consumes the body.\n\nThe Anthropic check uses a cheap ``count_tokens`` API call when\navailable (no token billing); falls back to a TCP-connect probe\nwhen the SDK doesn't expose count_tokens.\n\nIP-rate-limited (not token-gated \u2014 legitimate uptime monitors rarely\ncarry a service token). Each hit fires a real Anthropic call AND a\nreal Tavily search, and Tavily's circuit breaker counts probe\nfailures as real signal \u2014 an unthrottled loop here can burn Tavily\nquota and trip the shared web-search breaker, failing real user\nsearches while every dashboard still reads green.",
         "operationId": "external_health_health_external_get",
         "responses": {
           "200": {
@@ -45490,6 +45560,98 @@
         ],
         "title": "NotificationUrgencyStats"
       },
+      "NudgeRequest": {
+        "properties": {
+          "target_user_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "maxItems": 20,
+            "minItems": 1,
+            "title": "Target User Ids"
+          },
+          "reason": {
+            "type": "string",
+            "enum": [
+              "stay_vote",
+              "settle_up"
+            ],
+            "title": "Reason"
+          },
+          "reference_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reference Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "target_user_ids",
+          "reason"
+        ],
+        "title": "NudgeRequest"
+      },
+      "NudgeResponse": {
+        "properties": {
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/NudgeTargetResult"
+            },
+            "type": "array",
+            "title": "Results"
+          }
+        },
+        "type": "object",
+        "required": [
+          "results"
+        ],
+        "title": "NudgeResponse"
+      },
+      "NudgeTargetResult": {
+        "properties": {
+          "target_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Target User Id"
+          },
+          "sent": {
+            "type": "boolean",
+            "title": "Sent"
+          },
+          "skipped_reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "cooldown",
+                  "gated",
+                  "error",
+                  "self",
+                  "not_a_member"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Skipped Reason"
+          }
+        },
+        "type": "object",
+        "required": [
+          "target_user_id",
+          "sent"
+        ],
+        "title": "NudgeTargetResult"
+      },
       "Observation": {
         "properties": {
           "id": {
@@ -52965,7 +53127,8 @@
               "not_started",
               "open",
               "tie",
-              "decided"
+              "decided",
+              "blocking"
             ],
             "title": "Phase"
           },
@@ -53005,6 +53168,14 @@
             },
             "type": "array",
             "title": "Missing Voter Ids"
+          },
+          "blocking_member_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Blocking Member Ids"
           }
         },
         "type": "object",
@@ -53012,7 +53183,7 @@
           "phase"
         ],
         "title": "StayVoteState",
-        "description": "The resolved group-vote position.\n\n``phase`` is the design's vote arc; ``leader_id`` is the front-runner (None\non a tie or before any vote); ``missing_voter_ids`` are members who haven't\nvoted yet. ``decided`` means a majority is locked OR everyone voted and one\ncandidate leads outright."
+        "description": "The resolved group-vote position.\n\n``phase`` is the design's vote arc; ``leader_id`` is the front-runner (None\non a tie or before any vote); ``missing_voter_ids`` are members who haven't\nvoted yet. ``decided`` means a majority is locked OR everyone voted and one\ncandidate leads outright. ``blocking`` is the narrower \"everyone voted, one\nholdout\" case \u2014 see ``resolve_stay_vote`` for the exact boundary with\n``decided``. ``blocking_member_ids`` is only populated in that phase."
       },
       "StayVoteTally": {
         "properties": {
