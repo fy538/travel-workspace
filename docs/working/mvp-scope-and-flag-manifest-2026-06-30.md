@@ -2,7 +2,8 @@
 
 > Status: scope locked — flag gating LIVE as of 2026-07-01
 > Owner: founder / engineering
-> Created: 2026-06-30 · Last updated: 2026-07-06 (Clerk/live-transport rows corrected — see note below)
+> Created: 2026-06-30 · Last updated: 2026-07-06 (Clerk/live-transport rows corrected;
+> booking + venue-disruption gates explicitly reaffirmed — see notes below)
 > Source of truth for: what ships in the first production release, what is hidden, and how
 
 > **2026-07-06 correction:** every "Clerk JWTs" / "live-transport gap" row below previously
@@ -14,6 +15,22 @@
 > Clerk accounts on two physical devices and never touches this harness at all. Rows below
 > are annotated inline; treat "🔲" on these specific rows as "not built, not urgent," not
 > "blocked."
+
+> **2026-07-06 decision — the two remaining MVP gates:** reviewed whether the booking
+> transaction engine or proactive proposal generation need to flip before the dogfood
+> cohort launches. Neither does:
+> - **Booking (`BOOKING_DUFFEL_LIVE_BOOKING_ENABLED` + `EXPO_PUBLIC_LIVE_BOOKING_ENABLED`):**
+>   this was already decided 2026-06-30 (see decision record below) — transaction engine
+>   OUT/flagged, non-transacting stub IN. Reaffirmed, not reopened.
+> - **Proactive proposal generation (`VENUE_DISRUPTION_PROPOSALS_ENABLED`):** genuinely open
+>   until now. Decision: stays dark for dogfood cohort 1. The cohort's job is to validate the
+>   invite/group-planning loop (belief #14) via explicit propose/vote/revert, which is already
+>   agent-certified — it doesn't need the agent proactively drafting proposals from trip
+>   events. Flipping an unevaluated proactive surface on for a real friend group's first
+>   impression carries the same fake-personalization risk the design-canon audits keep
+>   flagging elsewhere. **Next explicit decision, not an open gap:** evaluate this producer
+>   against real cohort-1 usage data, then decide whether to flip it for cohort 2.
+> See `docs/flags/registry.yaml` for the flag-level record of both.
 
 ## Implementation status (2026-07-01)
 
@@ -82,7 +99,7 @@ New producer: closed venue → swap proposal → existing Propose UX. Ships dark
 | J01–J12 device-walked on a real build | 🔲 0/12 full-cert (logic 12/12) |
 | Live-transport gap: Clerk JWTs for dogfood HTTP | 🔲 not blocked, not built — internal glue only (~3-5h); does not gate device-cert (see 07-06 note above) |
 | App Store review assets current | 🔲 |
-| Proactive proposals flag-on eval (seeded env) | 🔲 venue-disruption ships dark |
+| Proactive proposals flag-on eval (seeded env) | 🔲 *(deliberately deferred to post-cohort-1 — see 07-06 decision note above, not an open gap for v1 launch)* |
 
 ---
 

@@ -108,7 +108,19 @@ flags:
     owner: fy538
     expires: 2026-10-04
     status: active
-    notes: Proactive venue-closed swap-proposal producer; ships dark pending eval pass against seeded trips.
+    notes: >
+      Proactive venue-closed swap-proposal producer — the concrete
+      Advise-vs-Act gap: the agent still only proposes (human
+      approves/reverts), but this is the first step toward the agent
+      initiating that proposal itself rather than waiting on a user tool
+      call. Explicit decision 2026-07-06: stays dark for dogfood cohort 1.
+      The cohort validates the invite/group-planning loop (belief #14),
+      which doesn't need proactive agent-initiated proposals — flipping an
+      unevaluated proactive surface on for a real friend group's first
+      impression risks the same fake-personalization failure mode design
+      canon audits keep flagging. Evaluate against real cohort-1 usage
+      data, then flip for cohort 2 if the eval passes — that evaluation is
+      the next explicit decision, not this flag staying dark indefinitely.
 
   - name: DOSSIER_APPROVED_FILTER_CHAT
     repo: travel-agent
@@ -158,7 +170,33 @@ flags:
     owner: fy538
     expires: 2026-10-04
     status: active
-    notes: Gates live Duffel transaction execution; MVP-blocking flag per docs/working/mvp-scope-and-flag-manifest-2026-06-30.md.
+    notes: >
+      Gates live Duffel transaction execution (BE half of the booking gate;
+      see EXPO_PUBLIC_LIVE_BOOKING_ENABLED for the FE half). NOT an open
+      decision — deliberately deferred per the 2026-06-30 decision record in
+      mvp-scope-and-flag-manifest-2026-06-30.md: "Booking: transaction engine
+      (Duffel/cart/hold) OUT/flagged; keep a non-transacting 'mark as
+      booked' + external deep-link stub IN." Reaffirmed 2026-07-06 — no
+      product need to flip this before the dogfood cohort, which validates
+      the invite/group-planning loop, not the booking completion path.
+
+  - name: EXPO_PUBLIC_LIVE_BOOKING_ENABLED
+    repo: travel-app
+    location: "app/booking/[sessionId].tsx:656 (isLiveBookingEnabled())"
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: >
+      FE half of the booking gate (paired with backend
+      BOOKING_DUFFEL_LIVE_BOOKING_ENABLED). Added to this trust-loop fix
+      2026-05 so the "AI books directly" label doesn't imply a committed
+      order before one exists — shows the honest "handoff ready" label
+      while off. Missed in the original 2026-07-06 flag inventory because
+      it's an inline process.env read, not in constants/featureFlags.ts;
+      added retroactively when reconciling the booking-flag decision. Same
+      deliberate-defer reasoning as the BE flag above.
 
   - name: BOOKING_MONETIZATION_MODE
     repo: travel-agent
