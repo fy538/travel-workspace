@@ -92,6 +92,29 @@ Recommended git model:
 - one branch in `Travel App` per frontend change
 - this parent repo changes only when shared tooling/docs/workspace config changes
 
+### Concurrent sessions
+
+Multiple agent sessions are routinely active across both child repos at once
+(parallel branches, review worktrees like `travel-agent-review/`,
+`travel-app-fixes/`). There's no shared lock or task board today, so the only
+protection against silently colliding is discipline:
+
+- **Before starting substantive work**, check `git branch -a` and `git status`
+  in the repo(s) you're about to touch — another session's uncommitted or
+  unmerged work on the same surface is the most common source of confusion,
+  not a merge conflict you'll see coming.
+- **Name branches descriptively** (`<surface>-<short-desc>`, e.g.
+  `fix/discover-order-trips-refetch`) so a human or another session scanning
+  `git branch -a` can tell what's in flight without opening each one.
+- **Stage commits explicitly by filename — never `git add -A` or `git add .`.**
+  This is the single most effective guard: it means a concurrent session's
+  unrelated, uncommitted changes in the same working tree never get swept
+  into your commit by accident, whichever branch happens to be checked out.
+- **Whatever branch is checked out when you commit is where the commit
+  lands** — there's no automatic routing to `main`. If your work needs to be
+  on `main`, check the current branch first and say so explicitly if it
+  isn't, rather than assuming.
+
 ## Suggested Local Setup
 
 - Open this parent folder as a Codex project for cross-repo work.
