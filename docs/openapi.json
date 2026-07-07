@@ -3213,7 +3213,7 @@
           "atlas"
         ],
         "summary": "List Atlas Boards",
-        "description": "List the traveler's non-dismissed kept boards, newest first.\n\nEach board carries its ``facet_set`` (re-open recomposes live via\n``GET /api/atlas/board``), cached ``title``, ``created_at``, and its Ways\nBack In ``freshness`` state (live/updated/active/thin \u2014 canon \u00a76),\ncomputed fresh on every list call.",
+        "description": "List the traveler's non-dismissed kept boards, newest first.\n\nEach board carries its ``facet_set`` (re-open recomposes live via\n``GET /api/atlas/board``), cached ``title``, and ``created_at``.",
         "operationId": "list_atlas_boards_api_atlas_boards_get",
         "parameters": [
           {
@@ -3243,59 +3243,6 @@
                 }
               }
             }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/atlas/boards/{board_id}/opened": {
-      "post": {
-        "tags": [
-          "atlas"
-        ],
-        "summary": "Mark Atlas Board Opened",
-        "description": "Snapshot this kept board's current moments as \"seen\" \u2014 the baseline\nthe NEXT ``GET /api/atlas/boards`` freshness diff runs against.\n\nCall this the moment a kept row is tapped open, fire-and-forget (never\nblock navigation on it). Recomposes once server-side so the FE doesn't\nneed to know/pass moment ids. Idempotent from the client's view: an\nunknown/foreign board_id is a silent no-op, never a 404/403 the FE has\nto handle mid-navigation.",
-        "operationId": "mark_atlas_board_opened_api_atlas_boards__board_id__opened_post",
-        "parameters": [
-          {
-            "name": "board_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Board Id"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Successful Response"
           },
           "422": {
             "description": "Validation Error",
@@ -15030,154 +14977,6 @@
         }
       }
     },
-    "/api/trips/{trip_id}/story/sections/{section_id}/provenance": {
-      "get": {
-        "tags": [
-          "memory"
-        ],
-        "summary": "Get Trip Story Section Provenance Route",
-        "description": "Owner-only provenance for one story section.",
-        "operationId": "get_trip_story_section_provenance_route_api_trips__trip_id__story_sections__section_id__provenance_get",
-        "parameters": [
-          {
-            "name": "trip_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Trip Id"
-            }
-          },
-          {
-            "name": "section_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Section Id"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TripStorySectionProvenance"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/trips/{trip_id}/story/sections/{section_id}/corrections": {
-      "post": {
-        "tags": [
-          "memory"
-        ],
-        "summary": "Correct Trip Story Section Route",
-        "description": "Mark a story section wrong/removed, or restore Vesper's version.",
-        "operationId": "correct_trip_story_section_route_api_trips__trip_id__story_sections__section_id__corrections_post",
-        "parameters": [
-          {
-            "name": "trip_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Trip Id"
-            }
-          },
-          {
-            "name": "section_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Section Id"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TripStorySectionCorrectionRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TripStory"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/trips/{trip_id}/story/sections/{section_id}/photo": {
       "patch": {
         "tags": [
@@ -18455,65 +18254,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PublicTripStory"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/public/stories/{slug}/viewer-context": {
-      "get": {
-        "tags": [
-          "story-landing"
-        ],
-        "summary": "Public Story Viewer Context",
-        "description": "Authenticated routing hint for \"Open in Vesper\".\n\nAnonymous callers use the public projection above. This endpoint only tells\na signed-in viewer whether they are the owner and can be sent to private\nstory/share management. Non-owners get no owner id or trip id.",
-        "operationId": "public_story_viewer_context_api_public_stories__slug__viewer_context_get",
-        "parameters": [
-          {
-            "name": "slug",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Slug"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicStoryViewerContext"
                 }
               }
             }
@@ -43343,23 +43083,6 @@
             },
             "type": "array",
             "title": "Pin Ids"
-          },
-          "freshness": {
-            "anyOf": [
-              {
-                "type": "string",
-                "enum": [
-                  "live",
-                  "updated",
-                  "active",
-                  "thin"
-                ]
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Freshness"
           }
         },
         "type": "object",
@@ -45082,23 +44805,6 @@
               }
             ],
             "title": "Evidence Label"
-          },
-          "evidence_state": {
-            "anyOf": [
-              {
-                "type": "string",
-                "enum": [
-                  "first",
-                  "returned",
-                  "kept",
-                  "now"
-                ]
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Evidence State"
           }
         },
         "type": "object",
@@ -48851,12 +48557,7 @@
           "source_attribution": {
             "type": "string",
             "title": "Source Attribution",
-            "default": "Inspired by a public Vesper story."
-          },
-          "source_title_public": {
-            "type": "string",
-            "title": "Source Title Public",
-            "default": "A public Vesper story"
+            "default": "Based on a shared Vesper story."
           },
           "generated_from_public_projection": {
             "type": "boolean",
@@ -50437,42 +50138,6 @@
         ],
         "title": "PublicStorySection",
         "description": "A public-safe narrative section \u2014 body only, no internal ids."
-      },
-      "PublicStoryViewerContext": {
-        "properties": {
-          "share_slug": {
-            "type": "string",
-            "title": "Share Slug"
-          },
-          "is_available": {
-            "type": "boolean",
-            "title": "Is Available"
-          },
-          "is_owner": {
-            "type": "boolean",
-            "title": "Is Owner",
-            "default": false
-          },
-          "trip_id": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "uuid"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Trip Id"
-          }
-        },
-        "type": "object",
-        "required": [
-          "share_slug",
-          "is_available"
-        ],
-        "title": "PublicStoryViewerContext",
-        "description": "Authenticated open-in-app routing hint for a public story slug.\n\nThis is deliberately separate from ``PublicTripStory`` so anonymous public\nprojection payloads never expose owner identity or trip ids."
       },
       "PublicTripStory": {
         "properties": {
@@ -53948,53 +53613,6 @@
         "title": "StayVoteTally",
         "description": "Per-candidate vote count + who voted (for the compare/vote modules)."
       },
-      "StoryCorrection": {
-        "properties": {
-          "type": {
-            "type": "string",
-            "enum": [
-              "wrong",
-              "removed",
-              "edited",
-              "restored"
-            ],
-            "title": "Type"
-          },
-          "note": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Note"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Created At"
-          },
-          "affects_public_projection": {
-            "type": "boolean",
-            "title": "Affects Public Projection",
-            "default": true
-          },
-          "affects_atlas_learning": {
-            "type": "boolean",
-            "title": "Affects Atlas Learning",
-            "default": true
-          }
-        },
-        "type": "object",
-        "required": [
-          "type",
-          "created_at"
-        ],
-        "title": "StoryCorrection",
-        "description": "Owner correction applied to a generated story section."
-      },
       "StorySharePreview": {
         "properties": {
           "visibility": {
@@ -54048,47 +53666,6 @@
         ],
         "title": "StorySharePreview",
         "description": "Dry-run of a share before publishing (the Privacy Preview payload).\n\n``public`` is exactly what a viewer would see; the counts/flags let the\nUI explain the privacy state in plain language without re-implementing\nthe redaction rules."
-      },
-      "StorySourceSignal": {
-        "properties": {
-          "label": {
-            "type": "string",
-            "title": "Label"
-          },
-          "detail": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Detail"
-          },
-          "source_type": {
-            "type": "string",
-            "title": "Source Type",
-            "default": "memory_signal"
-          },
-          "source_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Source Id"
-          }
-        },
-        "type": "object",
-        "required": [
-          "label"
-        ],
-        "title": "StorySourceSignal",
-        "description": "Human-readable provenance for a story section."
       },
       "SuggestCategoryResponse": {
         "properties": {
@@ -56655,47 +56232,6 @@
               }
             ],
             "title": "Edited At"
-          },
-          "source_signals": {
-            "items": {
-              "$ref": "#/components/schemas/StorySourceSignal"
-            },
-            "type": "array",
-            "title": "Source Signals"
-          },
-          "confidence": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Confidence"
-          },
-          "removed_by_user": {
-            "type": "boolean",
-            "title": "Removed By User",
-            "default": false
-          },
-          "vesper_body": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Vesper Body"
-          },
-          "corrections": {
-            "items": {
-              "$ref": "#/components/schemas/StoryCorrection"
-            },
-            "type": "array",
-            "title": "Corrections"
           }
         },
         "type": "object",
@@ -56705,36 +56241,6 @@
         ],
         "title": "TripStorySection",
         "description": "A single addressable narrative section of a Trip Story."
-      },
-      "TripStorySectionCorrectionRequest": {
-        "properties": {
-          "type": {
-            "type": "string",
-            "enum": [
-              "wrong",
-              "removed",
-              "restored"
-            ],
-            "title": "Type"
-          },
-          "note": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Note"
-          }
-        },
-        "type": "object",
-        "required": [
-          "type"
-        ],
-        "title": "TripStorySectionCorrectionRequest",
-        "description": "Body for owner correction actions on a story section."
       },
       "TripStorySectionEdit": {
         "properties": {
@@ -56749,65 +56255,6 @@
         ],
         "title": "TripStorySectionEdit",
         "description": "Body of a PATCH to a single section."
-      },
-      "TripStorySectionProvenance": {
-        "properties": {
-          "section_id": {
-            "type": "string",
-            "title": "Section Id"
-          },
-          "body": {
-            "type": "string",
-            "title": "Body"
-          },
-          "source_signals": {
-            "items": {
-              "$ref": "#/components/schemas/StorySourceSignal"
-            },
-            "type": "array",
-            "title": "Source Signals"
-          },
-          "confidence": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Confidence"
-          },
-          "removed_by_user": {
-            "type": "boolean",
-            "title": "Removed By User",
-            "default": false
-          },
-          "corrections": {
-            "items": {
-              "$ref": "#/components/schemas/StoryCorrection"
-            },
-            "type": "array",
-            "title": "Corrections"
-          },
-          "affects_public_projection": {
-            "type": "boolean",
-            "title": "Affects Public Projection",
-            "default": true
-          },
-          "affects_atlas_learning": {
-            "type": "boolean",
-            "title": "Affects Atlas Learning",
-            "default": true
-          }
-        },
-        "type": "object",
-        "required": [
-          "section_id",
-          "body"
-        ],
-        "title": "TripStorySectionProvenance",
-        "description": "Owner-facing provenance and correction state for one section."
       },
       "TripSummaryResponse": {
         "properties": {
