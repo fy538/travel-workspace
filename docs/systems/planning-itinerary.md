@@ -46,6 +46,9 @@ The itinerary structure (days/blocks) and edit log. **Generation** produces it;
 - why → `product/Planning Philosophy.md` · how → `architecture/Planning Agent Problem Definition.md` · what(be) → `backend/planning_agent/FEATURE.md` · what(fe) → `page-specs/itinerary-editing.md` · `trip-plan.md`.
 - Tests: `tests/planning_agent/*`, eval `configs/planning/*`.
 
+## Cross-cutting constraints
+- **Graph legibility**: context signals injected into `trip_context` (planning_brief, loved_places, returning_traveler, upcoming_events, weather_forecast) shape the plan silently — they must never be echoed back to the user as labels. See [graph-legibility-doctrine.md](graph-legibility-doctrine.md).
+
 ## Open risks / known gaps
 - The dual read-model collapse (06-20) retired legacy `useItinerary` → plan-state adapter; confirm no surface still reads the old model (feeds journey 06 coherence).
 - Replan/edit-inference wiring lives in `concierge/tool_handlers/planning/_plan.py`, **not** in this package — the seam between "agent decides to replan" and "planner replans" is the likely break point.

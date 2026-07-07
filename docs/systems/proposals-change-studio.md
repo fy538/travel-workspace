@@ -50,6 +50,9 @@ Planning/Itinerary — this system is their only sanctioned mutation path.
 - why → `product/Interaction Design and Social Dynamics.md` · how → `architecture/Trip State Architecture.md` · `architecture/deck-faces/Card-Deck-Action-Audit-2026-06.md` · what(fe) → `page-specs/change-proposals.md`.
 - Tests: `tests/api/test_proposals*`, `__tests__/data/proposals.test.ts`, `__tests__/components/plan/ProposalReviewSheet.test.tsx`.
 
+## Cross-cutting constraints
+- **Graph legibility**: proposal rationale that cites taste history must follow [graph-legibility-doctrine.md](graph-legibility-doctrine.md) — reveal on tap ("Why this?") only, never by default in the proposal card.
+
 ## Open risks / known gaps
 - This is the **#1 named drift hotspot** for the wedge ("real acceptance/apply behavior is a known drift hotspot"). The revert-truthfulness and cross-surface-coherence invariants must be proven by a live walk + a Journey-06 parity pass after every mutation.
 - Two edit-preview implementations were reconciled into one spine (06-19) — verify nothing still calls the retired path.

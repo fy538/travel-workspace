@@ -68,6 +68,18 @@ Wedge journeys = the group-trip path (journeys 02 → 05). "Serves" cites
 
 ---
 
+## Cross-cutting doctrines
+
+Doctrines are not system charters — they own no tables, no routes, no UI component.
+They answer one recurring judgment call that every charter faces, so individual
+features don't re-derive the answer from scratch.
+
+| Doctrine | Governs | Applies to |
+|---|---|---|
+| [Graph Legibility](graph-legibility-doctrine.md) | *"The model knows X — should we show that?"* Show vs. tell, keep-silent list, Atlas as the one mirror room, write-back tiers | Concierge, Memory & Preference, Planning, Proposals, Discover, Atlas — any surface that reads or writes the traveler/group world model |
+
+---
+
 ## Charter template
 
 Copy this for a new system. Keep it to one page; link, don't restate.

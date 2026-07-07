@@ -48,6 +48,9 @@ vectors.
 - why → `product/Content as Infrastructure.md` · how → `architecture/Memory Architecture.md` · `architecture/Unified Context Graph.md` · what(be) → `backend/preference_engine/FEATURE.md` · `backend/core/FEATURE.md`.
 - Tests: `tests/preference_engine/*`, eval fixtures via `scripts/load_eval_fixtures.py`.
 
+## Cross-cutting constraints
+- **Graph legibility**: every new signal this system surfaces back to the user (or injects into other surfaces) must be evaluated against [graph-legibility-doctrine.md](graph-legibility-doctrine.md). Memory is the primary source of graph signals — it is also the highest-risk system for violating show-don't-tell.
+
 ## Open risks / known gaps
 - **Artifact quality is unvalidated** — the memory surface "is it worth keeping?" claim has no eval gate yet (flagged 🔶 in the vision ledger).
 - The group-profile merge is the upstream half of the privacy-egress invariant; a leak here propagates everywhere. Verify alongside Concierge journey 04.
