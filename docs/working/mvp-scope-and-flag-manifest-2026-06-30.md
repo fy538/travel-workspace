@@ -94,7 +94,7 @@ New producer: closed venue → swap proposal → existing Propose UX. Ships dark
 | BE story-share guard | ✅ done 2026-07-01 |
 | Expenses `rate=1.0` fixed | ✅ already fixed |
 | Booking record stub works with engine off | ✅ no code needed (pre-existing gate) |
-| Commit Phase A/B/7 work to branch | 🔲 not yet |
+| Commit Phase A/B/7 work to branch | ✅ merged to origin/main (Phase A: `6a5177d4`, Phase B: `a2489737`, Phase 7: `1251fc0d`) |
 | Reachability audit (device walk, release flags) | 🔲 needs EAS build |
 | J01–J12 device-walked on a real build | 🔲 0/12 full-cert (logic 12/12) |
 | Live-transport gap: Clerk JWTs for dogfood HTTP | 🔲 not blocked, not built — internal glue only (~3-5h); does not gate device-cert (see 07-06 note above) |
