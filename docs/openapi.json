@@ -48481,6 +48481,94 @@
             ],
             "title": "Destination"
           },
+          "destination_seed": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Destination Seed"
+          },
+          "destination_seed_is_exact": {
+            "type": "boolean",
+            "title": "Destination Seed Is Exact",
+            "default": false
+          },
+          "date_seed": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date Seed"
+          },
+          "date_seed_is_exact": {
+            "type": "boolean",
+            "title": "Date Seed Is Exact",
+            "default": false
+          },
+          "vibe_seed": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Vibe Seed"
+          },
+          "carried_places": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Carried Places"
+          },
+          "generalized_place_chips": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Generalized Place Chips"
+          },
+          "route_seed": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Route Seed"
+          },
+          "route_seed_is_geographic": {
+            "type": "boolean",
+            "title": "Route Seed Is Geographic",
+            "default": false
+          },
+          "source_attribution": {
+            "type": "string",
+            "title": "Source Attribution",
+            "default": "Based on a shared Vesper story."
+          },
+          "generated_from_public_projection": {
+            "type": "boolean",
+            "title": "Generated From Public Projection",
+            "default": true
+          },
+          "requires_login_to_save": {
+            "type": "boolean",
+            "title": "Requires Login To Save",
+            "default": true
+          },
           "suggested_title": {
             "anyOf": [
               {
@@ -50100,6 +50188,11 @@
               }
             ],
             "title": "Visible Destination Label"
+          },
+          "visible_destination_is_exact": {
+            "type": "boolean",
+            "title": "Visible Destination Is Exact",
+            "default": false
           },
           "visible_date_label": {
             "anyOf": [
