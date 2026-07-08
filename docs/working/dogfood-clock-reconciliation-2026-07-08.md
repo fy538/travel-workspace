@@ -1,6 +1,6 @@
 # Dogfood Clock Reconciliation
 
-> Status: FIXED 2026-07-08 — steps 1-3 executed and verified; step 4 (FE) deferred
+> Status: FIXED 2026-07-08 — all 4 steps executed and verified (BE + FE agree)
 > Owner: founder / engineering
 > Created: 2026-07-08
 > Relates to: [Persona cast consolidation](persona-cast-consolidation-2026-07-08.md) —
@@ -208,11 +208,54 @@ pass (non-breaking); ruff clean on all 3 edited files; mypy clean on all 3
 `backend/core/db/plan_similar.py`, last touched 2026-07-06, unrelated to this
 change).
 
-**Not done — step 4 (FE reads the same field) remains deferred**, as originally
-scoped ("fast-follow, not blocking"). The FE's global manual time-travel clock
-is unaffected by this fix; it's a separate mechanism for a separate job
-(arbitrary manual exploration for screenshots/demos).
+## Step 4 — FE reads the same field (executed)
 
-**Not committed yet** — these edits touch `backend/core/trip_phase.py`
-(voice quotas, notification triage, lifecycle) and are grouped with the
-persona-cast-consolidation branch pending founder review.
+**Turned out to matter more than "fast-follow."** Investigation surfaced that
+the FE's own `computeTripPhase()` (`travel-app/utils/helpers.ts`) has the
+*same* `status === 'live'` shortcut pattern Defect #14 already proved
+dangerous on the backend — and the FE's own doc-comment lists valid statuses
+as `ideation / planning / confirmed / archived`, `'live'` isn't among them
+either. That meant fixing only the backend (steps 1-3) would have **replaced
+one 3-way mismatch with a different one**: pre-fix, the FE's `status==='live'`
+shortcut accidentally *agreed* with `concierge_feed._phase()`'s wrong answer
+(`'active'`); post-fix (manifest now `status: planning`), the FE would fall
+through to real wall time and compute `'pre'` — a *fourth* distinct answer,
+disagreeing with both backend surfaces.
+
+**Fix:** `travel-app/utils/helpers.ts` — added `dogfoodTodayOverride()`,
+mirroring `backend/core/dogfood_dates.dogfood_today_override()` exactly
+(reads `trip_summary.dogfood_today`, validates, returns `null` on
+absent/malformed). `computeTripPhase()` takes an optional `trip_summary` field
+and uses the override to compute `today` in place of real wall time, with the
+same precedence as the backend. Purely additive: `trip_summary` was already
+**required** on the FE's canonical `APITrip` type (used by `isBlankTrip()`
+already), so all ~24 existing call sites needed zero changes.
+
+**Verified:**
+- All 6 pre-existing `computeTripPhase.test.ts` tests pass unchanged.
+- 5 new tests added: pinned-date phase transitions (pre/active/completed), a
+  direct mara-lisbon regression check, fallback-to-real-time when the field is
+  absent or malformed, and a non-string-value doesn't-throw guard. 11/11 pass.
+- `npx tsc --noEmit` — 0 errors across the whole app (confirms the optional
+  field addition doesn't break any consumer).
+- `eslint` clean on both changed files.
+- 5 broader indirect test suites (journey-12 mock walk, trip-workspace smoke,
+  trips-home smoke, Atlas starting-points, timezone consent-phase) — 35/35
+  pass, zero regressions.
+
+The FE's global manual time-travel clock (`utils/now.ts`) is intentionally
+untouched — it remains a separate mechanism for a separate job (arbitrary
+manual exploration for screenshots/demos), not reconciled with the per-trip
+authored pin.
+
+## Commits
+
+- **travel-agent** `a651738b` (steps 1-3: BE wiring) — pushed to
+  `persona-cast-consolidation`.
+- **travel-app** `55ea65ee` (step 4: FE wiring) — pushed to
+  `persona-cast-consolidation` (new branch, matching name).
+- **workspace** — this doc — pushed to `persona-cast-consolidation`.
+
+All three repos now have a matching `persona-cast-consolidation` branch
+carrying both the persona-registry work and this clock-drift fix, ready for
+review as one coherent change set ahead of the two-device wedge walk.
