@@ -4226,7 +4226,7 @@
           "atlas"
         ],
         "summary": "Patch Atlas Moment",
-        "description": "Moment Actions \"This isn't right\" \u2014 dispute/forget/re-activate one\ncomposed moment.\n\nA Moment's id IS its source ``traveler_place_affinity.entity_id`` (see\n``backend.core.models.composition.Moment``), a different id space from the\nderived-signal dispute above \u2014 this writes to the affinity row directly.\nThe read-side effect is intentionally scoped to Atlas composition (see\n``backend.atlas.taste_board._drop_disputed``): the traveler stops seeing\nthis place in Atlas readings, but Discover/home/notifications, which read\nthe same affinity table for their own personalization, are unaffected.",
+        "description": "Moment Actions \"This isn't right\" \u2014 dispute/forget/re-activate one\ncomposed moment.\n\nA Moment's id IS its source ``traveler_place_affinity.entity_id`` (see\n``backend.core.models.composition.Moment``), a different id space from the\nderived-signal dispute above \u2014 this writes to the affinity row directly.\n\nC3 (2026-07-06): the read-side effect is now GLOBAL, not Atlas-only \u2014 the\nshared reader (``get_loved_places``, and everything built on it:\n``get_loved_facets``/``get_loved_categories``, plus ``get_intended_\ndestination`` and ``get_affinity_labels``) filters ``user_state='active'``\nat the SQL layer, so Discover recs, home nudges, and any other consumer of\nthis table stop surfacing the disputed/forgotten place too. Before this\nfix, the suppression was Atlas-composition-only (``taste_board._drop_\ndisputed``) and every other subsystem still read the raw row.",
         "operationId": "patch_atlas_moment_api_atlas_moments__entity_id__patch",
         "parameters": [
           {
