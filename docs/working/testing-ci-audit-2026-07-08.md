@@ -1,7 +1,9 @@
 # Testing & CI Audit — 2026-07-08
 
-> Status: findings confirmed; fixes 2/6 shipped (needs-chain flatten,
-> pytest-timeout, --durations), remainder tracked below
+> Status: 4/7 findings fixed (needs-chain flatten, pytest-timeout,
+> --durations, 21 FE test failures); Finding 6 investigated and
+> deliberately NOT changed (empirically confirmed real DB contention risk);
+> coverage-floor (7) remains open
 > Owner: founder / engineering
 > Created: 2026-07-08
 > Relates to: [Dogfood clock reconciliation](dogfood-clock-reconciliation-2026-07-08.md)
@@ -86,15 +88,50 @@ not CI/env flakiness:
 These map onto the 07-05/06 landing wave (F-series proposals, story-share,
 Changes redesign). **J11 (Atlas candidate → memory control) mock-walk
 certification is currently red** and nobody has seen it, because CI hasn't
-executed since before these changes landed. Needs a bounded re-pin sweep —
-same shape as the historical stale-test sweeps in this repo's git history.
+executed since before these changes landed.
 
-## Finding 6 (not yet fixed) — `test-db`'s bulk step runs serially
+**FIXED 2026-07-08** (travel-app branch `fe-test-fixes`, PR #64) — all 19,
+plus 2 more (`ProposalReceipt.test.tsx`) that only surfaced on a full-suite
+run, for 21 total. Two root causes, none real regressions, each confirmed
+against current component/hook source before any assertion was touched:
+stale copy/labels (`'Today'`→`'TODAY'`, `'Keep'`→`'Decline'`, a removed
+generic label), and stale prop/mock interfaces (`RevertConflictSheet`
+became a 3-state machine with a required `sheetState` prop the tests never
+passed; several screens gained new `data` hooks the tests' mocks were never
+extended to cover). Verified: `npm test` — 351/351 suites, 2701/2701 tests,
+all green.
 
-`test-db`'s "Run DB-backed tests" step has no `-n auto` (unlike `test`'s
-equivalent step). Found while editing the `needs:` chain; not itself audited
-for why (may be deliberate — DB test isolation across xdist workers is a real
-concern) — flag before changing.
+## Finding 6 — `test-db`'s bulk step runs serially — INVESTIGATED, NOT CHANGED
+
+Initially flagged as a likely quick win (parallelize to match `test`'s `-n
+auto`). **Tested empirically before changing anything, and the result
+overturned that assumption.**
+
+Comparing `pytest tests/core/ tests/scenarios/` serial vs `-n auto` against
+the *same* local DB state:
+
+| Mode | Result |
+|---|---|
+| Serial | 36 failed, 2097 passed, **0 errors** |
+| `-n auto` | 43 failed, 2000 passed, **90 errors** |
+
+The 90 errors are new under parallel — `test_world_model.py` in particular
+fails only in combination with the rest of the DB-touching suite (27/27 pass
+when run alone under `-n auto`). This points to genuine connection/resource
+contention when many xdist workers hit **one shared Postgres instance**
+simultaneously — the same class of confound documented in the "Full-suite
+failure count" section above, but now shown to be a property of the
+parallelism itself, not just a dirty local dev DB.
+
+**Conclusion: do not parallelize `test-db`'s bulk step.** The serial
+execution looks like an oversight in isolation but is very plausibly the
+correct call once DB contention is accounted for — flip it and CI's `test-db`
+job would likely become measurably flakier, the opposite of the intended
+speedup. No code change made. If DB parallelism is wanted later, it needs
+either connection-pool tuning (e.g. a larger `max_connections` + pool size
+on the CI Postgres service) or splitting the DB-touching suite across
+multiple isolated database instances, not just adding `-n auto` to the
+existing single-instance setup.
 
 ## Finding 7 (not yet fixed) — coverage has no threshold
 
