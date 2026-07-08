@@ -40,6 +40,11 @@ coverage/
 # "../scripts/..." references still resolve — see scripts/new-worktree.sh.
 travel-agent--*/
 travel-app--*/
+# Some lanes were hand-created without the scripts/new-worktree.sh double-dash
+# convention (single dash) — ignore those too so they don't show as untracked.
+travel-agent-*/
+travel-app-*/
+scratch/
 
 # Design-tool export bundles (HTML/PNG mockups — reference locally, not versioned)
 design/vesper-discover-search-claude-design/
@@ -47,3 +52,4 @@ design/vesper-discover-search-claude-design/
 # docs: never commit python bytecode
 docs/**/__pycache__/
 *.pyc
+design/vesper-canon-anchor/

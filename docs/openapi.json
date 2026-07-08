@@ -48851,7 +48851,7 @@
           "source_attribution": {
             "type": "string",
             "title": "Source Attribution",
-            "default": "Inspired by a public Vesper story."
+            "default": "Based on a shared Vesper story."
           },
           "source_title_public": {
             "type": "string",

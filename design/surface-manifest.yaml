@@ -1,0 +1,369 @@
+# Surface manifest — canon ↔ code correspondence ledger.
+#
+# One row per product surface. Maps the design canon files that define it to
+# the travel-app code that implements it, plus the handoff number it was last
+# verified aligned against. `scripts/canon-drift-check.py` reads this file:
+# when a new handoff changes a `canon` path, every surface referencing that
+# path gets flagged stale — regardless of what `status` says — so staleness
+# is never hand-tracked, only hand-cleared after a real re-verify.
+#
+# Repo root for `code` paths: ~/travel-workspace/travel-app, unless a path is
+# prefixed "travel-agent:" — some surfaces (e.g. Universal Search) have real
+# backend work too; the prefix disambiguates which repo to open.
+# Repo root for `canon` paths: ~/travel-workspace/design/vesper-canon-anchor/project
+#
+# status values:
+#   aligned   — verified against `aligned_at`, no known gaps
+#   partial   — verified, but a specific known gap/bug is open (see notes)
+#   gap       — a real design/code disagreement exists, needs adjudication
+#   deferred  — deliberately not aligning right now (off-wedge / not built)
+#   unmapped  — canon surface exists; code correspondence not yet established
+#     this session. NOT the same as "gap" — just means nobody's looked yet.
+#
+# `aligned_at: null` means never formally verified (unmapped/deferred rows).
+# Editing rule: when you re-verify a surface, bump `aligned_at` to the
+# handoff you checked it against and clear/update `notes` — don't just
+# flip status without recording what you checked it against.
+
+surfaces:
+
+  # ── Verified this session (canon frozen at 108; two later handoffs
+  #    touched a few of these — see aligned_at per row) ──────────────
+
+  - surface: Stay
+    canon: ["Vesper Stay.html", "stay-screens.jsx", "stay-system.jsx"]
+    code: ["app/accommodation/[accommodationId].tsx", "components/stay/", "app/trip-accommodations/"]
+    aligned_at: 108
+    status: partial
+    notes: "G1 shipped (PR #51), 5/5 tasks confirmed. VESPER PICK recommendation correctly flagged as backend-gated, not faked — see code-alignment-brief-G1-stay-state-space.md."
+
+  - surface: Costs
+    canon: ["Vesper Costs.html", "costs-screens.jsx", "costs-system.jsx"]
+    code: ["app/trip-expenses/", "components/expense/", "utils/costsViewModel.ts"]
+    aligned_at: 108
+    status: partial
+    notes: "G2 shipped (PR #53), 4/5 confirmed. KNOWN BUG: utils/costsViewModel.ts:375 hardcodes masked:false despite data/expenses.ts:110 threading the real field — task chip task_436ee090 dispatched to fix."
+
+  - surface: Proposal & Decision Detail
+    canon: ["Vesper Proposal & Decision Detail.html", "vesper-proposal-detail-app.jsx", "revert-conflict-sheet.jsx"]
+    code: ["components/trip/proposal-detail/"]
+    aligned_at: 108
+    status: aligned
+    notes: "Batch F1, all 5 tasks confirmed (ProposalVoteRows, RevertConflictSheet 3-states, receipt states, closed/recovery)."
+
+  - surface: Changes
+    canon: ["Vesper Changes System.html", "changes-kit.jsx", "changes-screen.jsx", "changes-states-board.jsx", "ask-organizer-pattern.jsx"]
+    code: ["components/trip-plan/ChangeTimelineRow.tsx", "app/(tabs)/trips/[tripId]/changes.tsx", "components/trip/BlockedActionRow.tsx"]
+    aligned_at: 108
+    status: aligned
+    notes: "Batch F2, all 5 tasks confirmed incl. Ask-the-Organizer pattern (net-new)."
+
+  - surface: Trip Settings & Admin
+    canon: ["Vesper Trip Settings & Admin.html", "vesper-trip-settings-app.jsx"]
+    code: ["app/trip-settings/", "app/trip-info/", "app/trip-dates/"]
+    aligned_at: 108
+    status: aligned
+    notes: "Batch F3, all 4 tasks confirmed (delete/cancel via typedConfirmation, name-edit, role-gating fix)."
+
+  - surface: Trips Home
+    canon: ["Vesper Trips Home.html", "trips-home-canon.jsx", "trips-home-canon-screens.jsx", "trips-home-system.jsx", "trips-all-board.jsx"]
+    code: ["app/(tabs)/trips/index.tsx", "components/trips/"]
+    aligned_at: 110
+    status: aligned
+    notes: "Front-door decision-promotion fix (promoteHeroIfNeedsYourVote) + Batch I's CreateEntry card + joiner trail-row retirement, all verified."
+
+  - surface: Trip Creation
+    canon: ["Vesper Trip Creation.html", "create-kit.jsx", "create-screens.jsx"]
+    code: ["app/trip-begin.tsx"]
+    aligned_at: 110
+    status: aligned
+    notes: "Batch I (loop-closure): CreateEntry joiner-context card + trip-begin joiner receipt, verified against canon 109/110 §01b."
+
+  - surface: State System
+    canon: ["Vesper State System.html", "vesper-state-system-app.jsx"]
+    code: ["components/ui/state/"]
+    aligned_at: 108
+    status: aligned
+    notes: "Batch H1, all 5 tasks confirmed. ErrorState correctly kept as a distinct full-page tier (peer of EmptyHero), NOT merged into ErrorRecovery — see the H1 taxonomy correction in project_batch_efgh_alignment memory."
+
+  - surface: Interaction Surfaces
+    canon: ["Vesper Interaction Surfaces.html"]
+    code: ["components/ui/BottomSheet.tsx", "components/ui/ConfirmDialog.tsx"]
+    aligned_at: 108
+    status: partial
+    notes: "Batch H2, real Gesture.Pan() swipe-to-dismiss + snap presets + dirty-dismiss confirmed. GAP: components/focus-home/Deck.tsx raw <Modal> silently skipped in the H2-5 Modal audit — neither migrated nor blessed."
+
+  - surface: Motion
+    canon: ["Vesper Productive Type & Material.html"]  # motion stance lives in Session-W notes, no dedicated canon .html yet
+    code: ["constants/motion.ts", "utils/motion.ts"]
+    aligned_at: 108
+    status: aligned
+    notes: "E6 (values/shimmer) + Batch H3 (reduce-motion guards, spring retune, token sweep) both confirmed. canon field is a placeholder — motion stance has no dedicated canon page, flag if one gets added."
+
+  # ── Header system: recon done, code NOT yet aligned (J1 brief written,
+  #    not executed) ──────────────────────────────────────────────────
+
+  - surface: Header system
+    canon: ["Vesper Header Audit.html", "header-audit-app.jsx", "productive-header.jsx"]
+    code:
+      - "components/ui/ScreenHeader.tsx"
+      - "components/ui/EditorialMasthead.tsx"
+      - "components/ui/CollapsingHeader.tsx"        # CompactHeaderBar
+      - "components/chat/FloatingChatHeader.tsx"
+      - "app/(tabs)/trips/[tripId]/story.tsx"        # MemoryStoryHeader — the one real fork
+    aligned_at: null
+    status: gap
+    notes: "New in handoff 119. J1 brief (code-alignment-brief-J1-header-consolidation.md) written but not executed. Recon found the audit's premise partly wrong: Notifications/People/Chat already on shared primitives under different names; ONLY Trip Story's MemoryStoryHeader is a genuine fork. Two adjudications open: Places header divergence, and whether canon accepts the code's 3-register Family-A split or wants one merged component."
+
+  # ── Notifications/People/Places/Trip Story: touched by handoff 119,
+  #    graded via the J1 header recon, not a full surface re-verify ────
+
+  - surface: Notifications
+    canon: ["Vesper Notifications and Alerts.html", "notifications-app.jsx"]
+    code: ["app/notifications/index.tsx"]
+    aligned_at: 108
+    status: aligned
+    notes: "J1 recon (119) confirms already on shared EditorialMasthead — the 119 diff to this surface is 1-line adoption of productive-header.jsx script tag + 19-line jsx tweak, not a code-relevant change."
+
+  - surface: People & Collaboration
+    canon: ["Vesper People and Collaboration.html", "people-collab-app.jsx"]
+    code: ["app/atlas/companions.tsx"]
+    aligned_at: 108
+    status: aligned
+    notes: "J1 recon (119) confirms already on shared CompactHeaderBar via AtlasNativeScaffold."
+
+  - surface: Places
+    canon: ["Vesper Places.html", "places-canon-app.jsx"]
+    code: ["app/place/[placeSlug].tsx"]
+    aligned_at: 108
+    status: gap
+    notes: "J1 recon: canon draws a slim productive-header reader chrome; code ships hero-first with FloatingGlassIconButton glass overlays and NO top bar. Real design/code disagreement, not a code bug — recommend code is right (consistent with Discover Detail's hero-first lineage) and the canon mock is the stale side, but needs a design ruling, not a silent fix."
+
+  - surface: Trip Story
+    canon: ["Vesper Trip Story and Memory Handoff.html", "trip-story-app-a.jsx", "trip-story-app-b.jsx", "trip-story-app-c.jsx"]
+    code:
+      - "app/(tabs)/trips/[tripId]/story.tsx"
+      - "app/stories/[slug].tsx"                          # public viewer
+      - "components/memory/ShareStorySheet.tsx"           # OwnerShareControls
+      - "components/external-share/PublicUnavailableState.tsx"
+      - "components/external-share/ShareLinkStateNotice.tsx"
+      - "travel-agent: backend/core/story_projection.py"  # projection builder
+      - "travel-agent: backend/core/story_card.py"         # 9:16 card
+      - "travel-agent: backend/api/routes/story_landing.py"
+      - "travel-agent: backend/api/routes/story_shares.py"
+      - "travel-agent: backend/api/routes/plan_similar.py"
+      - "travel-agent: backend/core/db/trip_story_shares.py"
+      - "travel-agent: backend/core/db/plan_similar.py"
+    aligned_at: 118
+    status: partial
+    notes: >
+      STATUS CHANGE 2026-07-07: was `deferred` (off-wedge, no code existed).
+      Overtaken by events — "Implement MVP public story sharing" shipped real
+      FE+BE code same day the freeze was recommended (concurrent session,
+      unaware of the recommendation). The FREEZE call still stands for NEW
+      investment here (per project_vision_alignment_assessment — Atlas/Story
+      remain off the dogfood-critical path) — but what already shipped needed
+      a real audit regardless of the freeze, since privacy bugs in live code
+      don't wait for a roadmap decision. Full audit done 2026-07-07 against
+      handoff 118/119's 19 decisions / 8 redaction rules / 26-item checklist /
+      26 events — see product-contract-audit-trip-story-sharing-2026-07-07.md
+      and surface-inventory-diff-trip-story-sharing-2026-07-07.md.
+      TWO REAL PRIVACY LEAKS found (fix regardless of freeze): (1) story
+      title can name a hidden destination — safe_hero_title() only filters
+      private-signal/names, not destination-in-title, spans JSON/OG/PNG-card;
+      (2) 9:16 card's map thumbnail queries raw place coordinates directly,
+      bypassing RedactionPolicy entirely — a second, projection-blind code
+      path. THREE canon-decision violations: #19 (owner's own link doesn't
+      route to Share/Manage — BE endpoint built, zero FE consumer, cheap fix),
+      #16 (Plan Similar's "conversation" is static hardcoded text, never
+      reaches real concierge chat), #17 (Inspired Trip attribution written to
+      DB, never rendered post-save). Analytics: all 13 canon-named events
+      MISSING by name; underlying persistence table was dropped 2026-06-20,
+      most events write to nothing. Several things ARE clean: decisions
+      #03/#05/#11/#18, public-viewer architecture, photo allowlist hardening,
+      unavailable-state genericism (all confirmed). Header (MemoryStoryHeader
+      fork, per Header-system row) still not migrated — fold in whenever this
+      surface's next real work happens.
+
+      FIX PASS 2026-07-07 (same day, "fix all identified"): both LEAKs fixed
+      — safe_hero_title() now takes hidden_destination and falls back off any
+      hidden-destination name-match; story_card.py's map-thumbnail block now
+      gated behind `if public.destination is not None`. Attribution copy
+      corrected to canon ("Based on a shared Vesper story.", was "Inspired
+      by..."). #19 fixed: new GET viewer-context wired end-to-end (schema
+      regen + data/http layers + a useEffect in app/stories/[slug].tsx that
+      redirects a signed-in owner to Share/Manage). #16 PARTIAL fix only: the
+      static "conversation" no longer visually poses as a live Vesper chat
+      turn (title "Talk it through with Vesper" → "Your starting point",
+      fake speaker label → "WHAT WE'LL START WITH" caption) — this is an
+      honesty fix, not the real fix; a true conversational entry needs new
+      pre-auth stash-and-resume infra mirroring utils/invitePending.ts and is
+      explicitly deferred as separate scoped work. #17 fixed: trip_summary
+      .public_story_source.source_attribution now renders as a quiet caption
+      in TripFolioHome's cold-start panel (mirrors the destination-read
+      pattern), cleared once the trip leaves cold mode. Deliberately NOT
+      built in this pass (flagged as follow-up, not silently done): 8-field
+      RedactionPolicy expansion (photos/places/route toggles), ShareLink
+      lifecycle fields (paused_at/rotated_at/expires_at/unique_viewers),
+      a distinct full pre-publish preview screen, and the analytics
+      pipe rebuild (13 events still write to nothing — table dropped
+      2026-06-20). Tests: 35/35 backend (test_story_projection.py +
+      test_story_card.py), 7/7 + 2/2 new frontend (public-story.smoke +
+      TripFolioHome.storySourceNote), full tsc --noEmit clean both passes.
+
+  # ── Known canon surfaces with no code-mapping work done this session.
+  #    Listed explicitly so the manifest doesn't silently look complete. ──
+
+  - surface: Itinerary
+    canon: ["Vesper Itinerary.html", "itinerary-canon.jsx"]
+    code: []
+    aligned_at: null
+    status: unmapped
+    notes: "Referenced in passing (F1/G1 briefs point at date-rail conflict-dot gap) but never formally mapped or verified this session."
+
+  - surface: Chat
+    canon: ["Vesper Chat.html", "chat-narration-band.jsx", "vesper-composer.jsx"]
+    code: []
+    aligned_at: null
+    status: unmapped
+    notes: "chat-invite-nudge.jsx (OrganizerInviteNudge) was verified as part of the loop-closure work, but the surface as a whole is unmapped."
+
+  - surface: Route & Transport
+    canon: ["Vesper Route & Transport.html"]
+    code: []
+    aligned_at: null
+    status: unmapped
+
+  - surface: Universal Search
+    canon: ["Vesper Universal Search.html", "universal-search-app.jsx"]
+    code:
+      - "components/search/UniversalSearchOverlay.tsx"
+      - "app/search.tsx"
+      - "hooks/useUniversalSearch.ts"
+      - "utils/universalSearchRouting.ts"
+      - "utils/universalSearchTelemetry.ts"
+      - "utils/api/universalSearch.ts"
+      - "travel-agent: backend/search/dispatch.py"
+      - "travel-agent: backend/core/db/search.py"
+      - "travel-agent: backend/core/vector/atlas.py"
+    aligned_at: 108
+    status: partial
+    notes: >
+      Backfilled from project_universal_search memory (real verification
+      2026-06-29 through 07-02, not a fresh audit): 6-group cross-entity
+      overlay (trips/places/Atlas/conversations/Discover-guides/people),
+      merged to main both repos, 3-lens code review + Tiers 0-3 shipped
+      07-02 (return_exceptions safety, privacy log redaction, real per-group
+      scoring, 3 previously-invisible prod SQL bugs found+fixed), separate
+      10-finding code-review pass all fixed same day.
+      KNOWN DEVIATION (confirmed live 2026-07-06, not a bug): the current
+      canon mockup (universal-search-app.jsx) still specifies amber
+      (US.amber='#B0853A') throughout — the shipped FE deliberately uses
+      violet (colors.discover.vesper) instead. Matches the already-adjudicated
+      "gold Vesper vs violet Vesper — don't fix" pattern (see
+      project_places_take_system memory). Do not "fix" this to match the mockup.
+      DEFERRED (not built): Receipts/Costs/Actions result groups (booking
+      gated dark), Atlas 3-way engine convergence (investigated, confirmed
+      NOT a merge candidate — different jobs), Phase-4 semantic conversations,
+      FE Nearby chip (backend capability real, UI exposure deliberately left
+      for product sign-off), backend interpretation-field wiring (cheap but
+      adds an LLM call to the search hot path — do after instrumentation
+      shows it's worth it).
+
+  - surface: Booking & Reservation
+    canon: ["Vesper Booking & Reservation.html", "booking-app.jsx", "booking-kit.jsx"]
+    code: []
+    aligned_at: null
+    status: unmapped
+
+  - surface: Trust & Controls
+    canon: ["Vesper Trust & Controls.html", "trust-kit.jsx"]
+    code: []
+    aligned_at: null
+    status: unmapped
+
+  - surface: Onboarding
+    canon: ["Vesper Onboarding.html"]
+    code: []
+    aligned_at: null
+    status: unmapped
+    notes: "onboarding-canon-invite.jsx (InvGift/OnboardingResume) verified as part of loop-closure work; the surface as a whole is unmapped."
+
+  - surface: Auth and Invite
+    canon: ["Vesper Auth and Invite.html", "auth-invite-app.jsx", "onboarding-canon-invite.jsx"]
+    code:
+      - "app/invite/[slug].tsx"
+      - "app/invite-code.tsx"
+      - "utils/inviteToken.ts"
+      - "utils/invitePending.ts"
+      - "utils/inviteErrorTaxonomy.ts"
+      - "hooks/useCreateInvite.ts"
+      - "hooks/useTripInvites.ts"
+      - "data/invites.ts"
+      - "components/onboarding/DeferredDiaryGiftSheet.tsx"
+    aligned_at: 108
+    status: partial
+    notes: >
+      Backfilled from this session's loop-closure investigation (Drill 2,
+      2026-07-06) — a real verification, not a fresh audit. Scope actually
+      checked: the invite-landing/peek → pre-auth signal chips → auth-to-join
+      → accept flow, the 8-kind error taxonomy with reason-disclosure
+      privacy, and the post-join diary-gift upsell (InvGift). All confirmed
+      first-class and faithful to canon — this is one of the best-built
+      surfaces in the app.
+      NOT covered by that verification (real gap in THIS row, not a code
+      gap): plain sign-in/sign-up (app/(auth)/sign-in.tsx, sign-up.tsx,
+      session-recovery.tsx) were never checked against canon's OTP/safety-chip
+      states this session — the code paths are listed above from a
+      repo-search, not a verify pass. Treat those specific files as
+      effectively unmapped until someone actually reads them against canon.
+      KNOWN GAP (see project_batch_efgh_alignment / project_vision_alignment_assessment):
+      the outbound half of the invite loop (joiner→organizer conversion) was
+      completely absent as of this morning — FIXED same day via
+      ACTIVATION_LOOP_CLOSED telemetry + Batch I, not part of this canon
+      page's original scope but tightly coupled to it.
+
+  - surface: Photo & Media Intake
+    canon: ["Vesper Photo & Media Intake.html"]
+    code: []
+    aligned_at: null
+    status: unmapped
+
+  - surface: External Sharing & Public Entry Points
+    canon: ["Vesper External Sharing & Public Entry Points.html", "vesper-external-sharing-app.jsx"]
+    code: []
+    aligned_at: null
+    status: unmapped
+
+  - surface: Guide & Collection Reader
+    canon: ["Vesper Guide & Collection Reader.html", "vesper-guide-reader-app.jsx"]
+    code: []
+    aligned_at: null
+    status: unmapped
+
+  - surface: Saved & Collections System
+    canon: ["Vesper Saved & Collections System.html"]
+    code: []
+    aligned_at: null
+    status: unmapped
+
+  - surface: Global Chrome
+    canon: ["Vesper Global Chrome.html", "vesper-global-chrome-app.jsx"]
+    code: ["components/nav/FloatingTabBar.tsx", "app/(tabs)/_layout.tsx"]
+    aligned_at: 108
+    status: partial
+    notes: "Tab-bar badge removal (Batch E) confirmed. Center-slot geometry question from project_vision_alignment_assessment (Vesper tab occupies the ergonomic center slot) unresolved — P2, not urgent."
+
+  - surface: Discover (+ Detail/Reader, Map & Spatial Browse)
+    canon: ["Vesper Discover.html", "Vesper Discover Detail & Reader System.html", "Vesper Discover Map & Spatial Browse.html"]
+    code: []
+    aligned_at: null
+    status: deferred
+    notes: "Off-wedge per project_vision_alignment_assessment — part of the ~35-45% off-wedge surface the Atlas-freeze decision covers. Do not spend alignment effort here until that decision is made."
+
+  - surface: Atlas (all)
+    canon: []  # no .html pages in the mirror — Atlas runs its own separate canon campaign, see project_atlas_canon_state
+    code: ["app/atlas/", "components/atlas/"]
+    aligned_at: null
+    status: deferred
+    notes: "~34 screens / ~22k LOC, own canon campaign outside this mirror. Atlas-freeze decision from project_vision_alignment_assessment is STILL OPEN — re-raise before spending alignment effort on this cluster."
