@@ -3,7 +3,8 @@
 > Surface: Discover
 > Maturity (for MVP): Should-have
 > Status: wired
-> Last updated: 2026-06-27
+> Last updated: 2026-07-08 (corrected stale references to the retired Discover
+> Compose board/search — see `docs/working/discover-cruft-cleanup-2026-07-08.md`)
 
 ## Purpose
 The server-side feed composer for the single blended Discover surface — it
@@ -14,12 +15,12 @@ of the funnel** — find a place → ask Vesper with context → turn discovery 
 trip action, and trust comes from **a face, not anonymous editorial**.
 
 ## Spans (cross-repo)
-- Backend: [`travel-agent/backend/discover/`](../../travel-agent/backend/discover/FEATURE.md) (`compose.py::compose_discover_feed` — the feed layout brain; `compose_board.py` — the WORLD-corpus board engine over [`backend/composition/`](../../travel-agent/backend/composition/FEATURE.md)) + [`backend/research_agent/`](../../travel-agent/backend/research_agent/FEATURE.md) (dossier generation). Routes: `api/routes/discover.py`.
-- Frontend: `app/(tabs)/discover/index.tsx`, `utils/discoverFeedApi.ts`, `utils/discoverSections.ts`, `utils/discoverContext.ts`, `components/discover/ReadingRoomLayout.tsx`, detail routes (`venue/`, `place/`, `dossier/`, `guide/`, `angle/`).
-- Tables read: dossiers, collections (guides), follows, trips, catalog venues/sites. **Discover owns no content tables** (layout/board brain only).
+- Backend: [`travel-agent/backend/discover/`](../../travel-agent/backend/discover/FEATURE.md) (`compose.py::compose_discover_feed` — the feed layout brain) + [`backend/research_agent/`](../../travel-agent/backend/research_agent/FEATURE.md) (dossier generation). Routes: `api/routes/discover.py`. The WORLD-corpus board engine (`compose_board.py`, over [`backend/composition/`](../../travel-agent/backend/composition/FEATURE.md)) was retired 2026-07-03 in favor of Universal Search — `compose_board` (the function) now serves Atlas only, see `docs/systems/atlas.md`.
+- Frontend: `app/(tabs)/discover/index.tsx`, `utils/discoverFeedApi.ts`, `utils/discoverSections.ts`, `utils/discoverContext.ts`, `components/discover/DiscoverCoverHome.tsx`, detail routes (`venue/`, `place/`, `dossier/`, `guide/`, `angle/`).
+- Tables read: dossiers, collections (guides), follows, trips, catalog venues/sites. **Discover owns no content tables** (layout brain only).
 
 ## Public interface (what other systems may call / read)
-- **Inbound (FE → BE):** `GET /api/discover/feed` → `DiscoverFeedResponse` (`read` masthead + 4 `sections` + `rhythm` + top-level `lead`) · `POST /api/discover/compose` → WORLD-corpus board (`CompositionResult`, Discover variant).
+- **Inbound (FE → BE):** `GET /api/discover/feed` → `DiscoverFeedResponse` (`read` masthead + 4 `sections` + `rhythm` + top-level `lead`). **`POST /api/discover/compose` was retired 2026-07-03** — in-Discover search is now served by the cross-entity Universal Search overlay (`components/search/UniversalSearchOverlay.tsx`, `api/routes/search.py`), scoped to Discover; do not implement against the retired endpoint.
 - **Entry points:** `compose_discover_feed` (the only public feed entry, async, keyword-only) · `resolve_feed_shape(...)` → `dream`/`briefing`/`proximity`/`retrospective`/`dual`.
 - **Consumes:** `get_for_you` (insights), `list_collections`, `get_social_feed`, dossiers — read-only; ConversationSeed handoff into Concierge.
 - **Never:** treat a bare catalog venue (md5-ordered) as a vetted editorial pick; desync the server composer from its client mock mirror without changing both.
@@ -33,7 +34,7 @@ resolution.
 ## Invariants (must always be true)
 - **Honest provenance over decoration** — only dossiers carry a real byline (`source='dossier'`); a bare catalog venue carries `provenance=None` and is surfaced honestly unattributed (a listing, not a vouch). `because` is set ONLY when a real loved facet actually matched.
 - **Parse honesty** — a freeform query maps to KNOWN-dimension facets only; unrecognized terms are dropped, never forced into a fabricated dimension.
-- **No false peak** — the board score lifecycle puts flat catalog scores in a tight synthetic band so md5-ordering never fakes a `single` hero; re-normalization only fires on genuine spread.
+- **No false peak** — the lead read (`_select_lead_read`) is the highest real `quality_score` approved dossier for the place; never a fabricated or arbitrarily-ordered hero. (The md5-ordered/synthetic-band score lifecycle described here previously belonged to the retired `compose_board.py` WORLD-corpus board, not this feed.)
 - **ConversationSeed always carries context** (journey 07) — Ask Vesper from a detail page never opens an empty/generic chat; trip context routes group-only for social actions, no-trip context routes private.
 - **Real empty state never reads as broken plumbing** — honest absence, not a fabricated feed.
 - **Dual-implementation parity** — server composer and client mock mirror (`discoverSections.ts` / `discoverContext.ts` / the rhythm planner) must change together.
