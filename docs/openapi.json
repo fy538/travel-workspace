@@ -33372,11 +33372,27 @@
               {
                 "type": "string",
                 "enum": [
-                  "call",
-                  "prepared",
+                  "surface",
+                  "decide",
+                  "transact",
+                  "explain",
+                  "keep",
+                  "trust"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Family"
+          },
+          "variant": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
                   "live",
                   "signal",
-                  "capture",
                   "resume",
                   "starter"
                 ]
@@ -33385,7 +33401,7 @@
                 "type": "null"
               }
             ],
-            "title": "Family"
+            "title": "Variant"
           },
           "state": {
             "type": "string",
