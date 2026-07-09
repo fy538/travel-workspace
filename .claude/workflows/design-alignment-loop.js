@@ -86,10 +86,19 @@ const REVIEW_SCHEMA = {
 // ---- Preflight: the shared checkout is real infrastructure (Fix stage needs the
 // live Metro/simulator environment, so it can't be moved into an isolated worktree
 // the way Consolidate can). The one thing that already burned us is silently
-// inheriting someone else's uncommitted work on a stray branch — so refuse to start
-// at all unless the checkout is clean and on main. ----
-phase('Preflight')
-const preflight = await agent(`
+// inheriting someone else's uncommitted work on a stray branch — so refuse to
+// proceed at all unless the checkout is clean and on main.
+//
+// This check runs twice: once here at the top of the whole batch, and again (see
+// checkClean() below) immediately before EACH surface's Fix stage — not just once.
+// A real run showed the gap in checking only once: Fix can run 15+ minutes, and a
+// concurrent session wrote uncommitted work into this same shared checkout mid-run.
+// The left_clean postcondition on Fix caught it that time, but only after the whole
+// Fix agent had already run — burning ~15 minutes of work before the collision was
+// even detected. Checking again right before each Fix starts catches it earlier and
+// cheaper, before that surface's work begins at all. ----
+async function checkClean(label) {
+  const result = await agent(`
 Run, in ${APP}:
   git status --porcelain
   git branch --show-current
@@ -97,20 +106,25 @@ Report back: is the working tree completely clean (no modified/untracked files),
 is the current branch "main"? Return JSON: {"clean": boolean, "branch": "<name>",
 "detail": "<git status output verbatim if not clean>"}.
 `, {
-  schema: {
-    type: 'object',
-    required: ['clean', 'branch', 'detail'],
-    properties: { clean: { type: 'boolean' }, branch: { type: 'string' }, detail: { type: 'string' } },
-  },
-  label: 'preflight-clean-check',
-})
+    schema: {
+      type: 'object',
+      required: ['clean', 'branch', 'detail'],
+      properties: { clean: { type: 'boolean' }, branch: { type: 'string' }, detail: { type: 'string' } },
+    },
+    label,
+  })
+  return result && result.clean && result.branch === 'main' ? { ok: true, result } : { ok: false, result }
+}
 
-if (!preflight || !preflight.clean || preflight.branch !== 'main') {
-  log(`ABORTING — ${APP} is not clean on main (branch=${preflight && preflight.branch}, clean=${preflight && preflight.clean}). This almost certainly means real in-progress work is sitting in the shared checkout. Not touching it. Detail:\n${preflight && preflight.detail}`)
+phase('Preflight')
+const preflightCheck = await checkClean('preflight-clean-check')
+if (!preflightCheck.ok) {
+  const r = preflightCheck.result
+  log(`ABORTING — ${APP} is not clean on main (branch=${r && r.branch}, clean=${r && r.clean}). This almost certainly means real in-progress work is sitting in the shared checkout. Not touching it. Detail:\n${r && r.detail}`)
   return {
     aborted: true,
     reason: 'shared checkout was not clean on main at preflight',
-    detail: preflight,
+    detail: r,
   }
 }
 log('Preflight OK — shared checkout is clean and on main.')
@@ -198,6 +212,24 @@ Return has_gap, brief_markdown, and a one-paragraph summary.
     log(`${surface.surface}: no gap found, nothing to fix.`)
     auditedAndFixed.push({ surface, audit, fix: null })
     continue
+  }
+
+  // Re-check right before mutating — Audit itself is read-only and can take several
+  // minutes (screenshots, canon comparison), so time has passed since the top-level
+  // Preflight and a concurrent session could have written into this shared checkout
+  // since then. Catch it here, before this surface's Fix work begins, not 15 minutes
+  // into it.
+  const preFixCheck = await checkClean(`pre-fix-clean-check:${surface.surface}`)
+  if (!preFixCheck.ok) {
+    const r = preFixCheck.result
+    log(`ABORTING BATCH — ${APP} is no longer clean on main before starting ${surface.surface}'s fix (branch=${r && r.branch}, clean=${r && r.clean}). Something wrote to the shared checkout mid-batch. Not touching it — stopping here rather than starting new work against an unknown state.`)
+    auditedAndFixed.push({ surface, audit, fix: null })
+    return {
+      aborted: true,
+      reason: `shared checkout was no longer clean on main right before ${surface.surface}'s fix stage`,
+      detail: r,
+      auditedAndFixed,
+    }
   }
 
   const branchSlug = slugify(surface.surface)
