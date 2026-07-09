@@ -3037,6 +3037,76 @@
         }
       }
     },
+    "/api/atlas/artifacts/{artifact_id}/one-line-read": {
+      "patch": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Edit Artifact One Line Read",
+        "description": "Owner-edit the shareable artifact's one-line read (item 2 / R11).\n\nMakes the postcard headline correctable rather than delete-only. Editing\nflips ``composed_by`` to ``\"user\"`` so the honesty badge reads \"edited by\nyou\". 404 if the caller doesn't own the artifact (ownership is enforced in\nthe DB WHERE clause).",
+        "operationId": "edit_artifact_one_line_read_api_atlas_artifacts__artifact_id__one_line_read_patch",
+        "parameters": [
+          {
+            "name": "artifact_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Artifact Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateOneLineReadRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OneLineReadResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/atlas/gift": {
       "get": {
         "tags": [
@@ -34177,14 +34247,8 @@
             "title": "Title"
           },
           "amount": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "number",
+            "exclusiveMinimum": 0.0,
             "title": "Amount"
           },
           "currency": {
@@ -34203,7 +34267,8 @@
         "required": [
           "paid_by",
           "category",
-          "shares"
+          "shares",
+          "amount"
         ],
         "title": "CreateExpenseFromReceiptRequest"
       },
@@ -46411,6 +46476,43 @@
         ],
         "title": "OnboardingSignalsResponse"
       },
+      "OneLineReadResponse": {
+        "properties": {
+          "artifact_id": {
+            "type": "string",
+            "title": "Artifact Id"
+          },
+          "one_line_read": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "One Line Read"
+          },
+          "composed_by": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Composed By"
+          }
+        },
+        "type": "object",
+        "required": [
+          "artifact_id",
+          "one_line_read",
+          "composed_by"
+        ],
+        "title": "OneLineReadResponse"
+      },
       "OptimizeRouteResponse": {
         "properties": {
           "day_id": {
@@ -57251,6 +57353,20 @@
         },
         "type": "object",
         "title": "UpdateMemberRequest"
+      },
+      "UpdateOneLineReadRequest": {
+        "properties": {
+          "one_line_read": {
+            "type": "string",
+            "minLength": 1,
+            "title": "One Line Read"
+          }
+        },
+        "type": "object",
+        "required": [
+          "one_line_read"
+        ],
+        "title": "UpdateOneLineReadRequest"
       },
       "UpdatePreferencesRequest": {
         "properties": {
