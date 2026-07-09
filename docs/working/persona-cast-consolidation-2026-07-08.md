@@ -1,7 +1,9 @@
 # Persona Cast Consolidation Plan
 
-> Status: accepted 2026-07-08 — Cut 1 done; Cut 2 partial (resolver + ledger built;
-> derive-from-seed + test repointing deferred, need live seeded stack)
+> Status: Cut 1 done; Cut 2 partial (resolver + ledger built; derive-from-seed
+> --apply still unimplemented — now the blocker for the rest of Cut 3, see
+> below); Cut 3 partial (3/11 deleted — nadia/omar/theo, travel-app PR #65;
+> remaining 8 held on real dependencies, not just caution)
 > Owner: founder / engineering
 > Created: 2026-07-08
 > Source of truth: `travel-agent/tools/dogfood/content/scenarios.yaml`
@@ -159,6 +161,30 @@ Nothing is deleted until its coverage lands somewhere. Delete by **coverage**, n
 Result: almost everything re-homes onto **elif** (solo / archive / returned / between /
 discovery) and **mara** (planning / live / group-decision, as phases of her real trip).
 The solo trio `dao/reza/mike/sarah` cover solo-taste variety + Mara's group members.
+
+### Cut 3 execution correction (2026-07-08) — this table was optimistic
+
+Executing Cut 3 meant actually checking each persona's real usage (imports, not just
+string-literal grep) before deleting anything — travel-app PR #65. The table above did
+not survive contact with the codebase:
+
+| Persona | Table said | Actually found |
+|---|---|---|
+| `nadia`, `omar` | delete → elif | **Confirmed correct.** Zero references anywhere. Deleted. |
+| `theo` | delete → dao/reza | **Confirmed correct**, different reason: `'theo'` appears in 5 files as a coincidental group-member-name string (mara's own mock data already lists a member named theo), none import the persona bundle. Deleted. |
+| `ben` planning | → `mara, phase=planning` | **Wrong.** `ben` is the *only* FE-mock solo-trip fixture, load-bearing for Journey 14 (needs "exactly 1 traveler" — mara is a group trip, cannot substitute). Correct re-home is a solo identity (dao/reza/mike/sarah), but **none have FE mocks yet** (Cut 2's derive-from-seed `--apply` is still unimplemented). **Held, not deleted.** |
+| `carmen` live-trip | → `mara, phase=live` | **Not re-homeable yet for the same reason** — no `force_state` mechanism exists to actually produce a `phase=live` fixture from mara's seed. Also has its own regression test (`situation-phase.test.ts`) and is part of the "card-carrying personas" trio with ben/dev. **Held.** |
+| `dev` just-returned | → `elif, phase=returned` | Same gap — no `force_state` mechanism built. Also part of the card-carrying trio. **Held.** |
+| `M0 default` | retire or keep 1 | **Wrong — not a legacy fixture at all.** `setActivePersonaId('default')` is the standard test-reset baseline used across **9 real test files**. Genuinely load-bearing infrastructure. **Held, not retired.** |
+| `torture` | move to UI-vector lane | Two real tests explicitly loop the `PERSONAS` registry targeting torture as "the ONE intentional contract violator" for card stress-testing. Moving it means updating real test infra for zero functional gain. **Held as-is.** |
+| `ready`, `urgent`, `between` | phase of mara/elif | No automated-test dependency found (only reachable via the interactive dev persona-switcher's dynamic lookup) — **lower risk than the others**, but still no `force_state` replacement exists. **Held**, per "delete by coverage, not by name." |
+| `ana` cold-start | not a person, UI-empty fixture | No automated-test dependency found either. **Held** for the same reason — the reclassification is directionally right but the replacement fixture doesn't exist yet. |
+
+**The actual blocker underneath all six "held" items is the same one**: Cut 2's
+derive-from-seed script (`--apply`) was never implemented, so there is no mechanism to
+produce a `force_state` fixture from a real seed. Every phase-based re-home in the
+original table depends on that mechanism existing. **Finishing Cut 2's derive script is
+now the prerequisite for the rest of Cut 3**, not an independent, later-priority item.
 
 ## Journey coverage after consolidation (proof nothing is lost)
 
