@@ -4,7 +4,7 @@ Single source of truth for everything that requires a human decision, account ac
 calendar time between today and first TestFlight. Delegable code work is broken out in
 Section 3; founder-console work no agent can do is in Section 2.
 
-**Last verified:** 2026-07-09 (against git logs in all three repos + live probes of
+**Last verified:** 2026-07-10 (against git logs in all three repos, GitHub Actions annotations, and live probes of
 `vesper-backend.fly.dev` + the launch/ docs). Supersedes the 2026-05-22 version, most of
 which is now done or was misdiagnosed.
 
@@ -46,6 +46,7 @@ The critical path only. `(A)` = founder-only ops · `(B)` = delegable engineerin
 
 | # | Item | A/B | Status |
 |---|------|-----|--------|
+| 0 | **Restore GitHub Actions billing/spend capacity for the child repos.** Every Travel Agent CI job currently fails before step 1 with GitHub's annotation: “recent account payments have failed or your spending limit needs to be increased.” Workspace Reliability is green and proves the code/docs gates can run, but child-repo branch signal remains unavailable until the account billing setting is fixed. | **A** | 🔴 FOUNDER-MUST-FIX — [Billing & plans](https://github.com/settings/billing); then rerun Travel Agent CI run `29069359543` |
 | 1 | **Fix `/privacy` 503 in prod** — route exists but returns 503 on Fly; `docs/legal/privacy.md` isn't in the deployed image (or image predates the 06-28 commit). Apple requires a working privacy-policy URL; the App Store copy points at it. | **B** | 🔴 open — small (ensure file ships in Docker context / redeploy; then verify `curl vesper-backend.fly.dev/privacy` → 200) |
 | 2 | **Reconcile mic-permission posture** — `app.json` ships a `microphonePermission` string, but Apple Review Notes + App Privacy Disclosures both say "no microphone requested / no audio recorded." A reviewer will see the mismatch. Voice is flag-OFF for v1, so the clean fix is to **remove the mic string** (and any mic entitlement) from the v1 build. | **B** | 🔴 open — small (decision is trivial: voice is OUT in v1, so drop the string) |
 | 3 | **Confirm App Store Connect app exists** (bundle `com.fyan.vesper`, iOS 17+) + set `INVITE_IOS_APP_STORE_ID` / `INVITE_APP_STORE_URL` in Fly secrets. Old A5. | **A** | ❓ FOUNDER-MUST-CONFIRM (external console) |
@@ -66,6 +67,7 @@ Play — all deferred (Section 5). Eval baselines — done (Section 4). Secret h
 
 | Item | Status | Evidence / note |
 |------|--------|-----------------|
+| GitHub Actions billing / spending limit | 🔴 FOUNDER-MUST-FIX | Travel Agent run `29069359543`: all seven independent jobs failed in 2–3 seconds with zero steps; check-run annotations explicitly name failed account payments or an insufficient spending limit. Workspace run `29069383856` passed, so this is not workflow syntax or the docs commit. |
 | Custom domain `travelagent.app` → Fly | ❓ OPEN but **OFF critical path** | Live probe: apex serves a marketing lander (`/lander` redirect), not the backend; AASA/health there fail. App uses Fly host directly — see scope correction above. Deferred to Section 5. |
 | App Store Connect app + listing | ❓ FOUNDER-MUST-CONFIRM | Copy ready in `docs/launch/App Store Connect Copy.md`. **Bundle must be `com.fyan.vesper`** (matches app.json + live AASA) — the launch docs' `com.travelagent.app` is stale; use the app.json value. |
 | APNs auth key (.p8) → Expo | ❓ FOUNDER-MUST-CONFIRM | `EXPO_ACCESS_TOKEN` is set in Fly; `EXPO_PUSH_ENABLED` default is `false` (registry.yaml) — confirm the Fly secret is `true` for real push. |
