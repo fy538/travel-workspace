@@ -2,8 +2,53 @@
 
 > Status: active runbook  
 > Owner: founder / engineering  
-> Last updated: 2026-06-29  
+> Last updated: 2026-07-09 (added Automation status)  
 > Goal: close **full-certified** for journeys that require live gates (J04, J05, J10)
+
+## Automation status (2026-07-09)
+
+Device-tier walks below are now encoded as Maestro flows + an orchestrator,
+not just a manual checklist:
+
+- `travel-app/.maestro/29-journey-04-device-member-private-phrase.yaml` +
+  `30-journey-04-device-organizer-group-safe-check.yaml` — I4 two-account
+  proof (Dao sends the private phrase in 1:1 concierge chat; Mara asks
+  Vesper to adjust the plan in GROUP chat; asserts the phrase and Dao's
+  name never appear in the group thread or Plan).
+- `travel-app/.maestro/31-journey-10-device-organizer-stay-expense.yaml` +
+  `32-journey-10-device-member-stay-visibility-check.yaml` — I10 two-account
+  proof (Mara creates a `visibility: private` stay; Dao's accommodations
+  list must show the group stay but not Mara's private one — this is a
+  whole-row exclusion, not per-field redaction; verified against
+  `travel-agent/tests/scenarios/test_j10_booking_stay_expense_trust_loop.py`).
+- `travel-app/.maestro/33-journey-05-device-two-account-proposal-loop.yaml`
+  — the two-account propose/resolve/receipt loop for the MOCK-BLIND checks
+  25's own header names (I5 receipt, I6 revert, I7/I8 conflict semantics).
+  I6 revert and I7/I8 concurrent-conflict assertions remain a **manual**
+  checklist item inside that flow (no stable revert-control testID found;
+  fabricating a race condition against shared dogfood infra was out of
+  scope for this pass).
+- `scripts/dogfood-device-cert-live.sh` — orchestrates all five flows in
+  the required order, defaults to a **dry** validate+preflight run
+  (`validate-maestro-flows.py` + Fly reachability + prerequisite API
+  gates), and only drives Maestro against real devices/simulators when
+  `RUN_LIVE=1` is set explicitly by whoever is physically running it.
+
+**Investigated and ruled out:** a simulator running the `development` EAS
+profile cannot reach this tier even with the runtime `guide://dev/
+screenshot-mode?realApi=1` override — that override flips `USE_MOCK` to
+`false` (real HTTP) but the profile's `EXPO_PUBLIC_SKIP_AUTH=true` is baked
+in at build time and is **not** touched by the runtime override, so it
+never presents real Clerk sign-in (see `travel-app/app/_layout.tsx`:
+`if (USE_MOCK || SKIP_AUTH) { /* skip Clerk */ }`). Only the
+`dogfood`/`preview` EAS profiles (`simulator: false`, real Clerk key,
+`SKIP_AUTH=false`) exercise real Clerk — those are device-only builds.
+There is also no fixed/bypassable Clerk test OTP for `@dogfood.local`
+accounts in this codebase (no "424242"-style code found in `travel-agent`
+docs or `backend/api/auth.py`) — every real sign-in needs a human to read
+a real inbox and key in the code once. See
+`travel-app/.maestro/_signin-dogfood-account.yaml` for the reusable
+sign-in fragment and its explicit human-in-the-loop OTP gap.
 
 ## Certification ladder (these journeys)
 
