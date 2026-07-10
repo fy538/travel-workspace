@@ -97,6 +97,16 @@ Do not duplicate the full workspace contract check inside `travel-app` CI unless
 there is a specific release reason. Duplicating it requires private sibling repo
 checkout and tends to become more fragile than the parent coordination gate.
 
+Independent signals must not be hidden behind unrelated `needs:` chains: lint,
+deterministic tests, migration checks, and contract checks run independently unless
+one result is a genuine prerequisite for the next. Every test process has a timeout
+and reports its slow tail. Coverage thresholds hold the established baseline and
+rise deliberately; they are a regression floor, not a proxy for journey quality.
+
+Backend-only API counts are generated evidence, never a maintained spreadsheet.
+Use `python3 scripts/api-coverage-check.py --list-unused`; classify an endpoint from
+current callers and ownership before deprecating it.
+
 ## Promotion Path
 
 Start with:

@@ -4,7 +4,7 @@
 > Owner: founder / engineering
 > Last updated: 2026-07-05 (Live HTTP row corrected — never blocked on Clerk; it's unbuilt internal glue, and device cert for J04/J05/J10 doesn't depend on it anyway)
 
-Evidence: [STATIC_TRACE_PUNCH_LIST.md](STATIC_TRACE_PUNCH_LIST.md) — 2026-06-26 four-agent re-trace of all 12 journeys.
+Historical evidence: [STATIC_TRACE_PUNCH_LIST.md](../archive/2026-07/retired-live/STATIC_TRACE_PUNCH_LIST.md) — 2026-06-26 four-agent re-trace of all 12 journeys.
 Visual gate: [visual-certification-matrix.md](../../travel-app/docs/logic-qa/visual-certification-matrix.md) pairs screenshots/device checks with the Logic QA journeys.
 
 ## Dogfood five-pack certification
@@ -28,7 +28,7 @@ Visual gate: [visual-certification-matrix.md](../../travel-app/docs/logic-qa/vis
 | Tokyo | ✅ | ✅ | ✅ TestClient | optional |
 | Brooklyn | ✅ | ✅ | ✅ TestClient | optional |
 
-**Optional human spot-check** (EAS build — Clerk + pixels only): [eas-five-pack-phone-walk-2026-06-29.md](../working/eas-five-pack-phone-walk-2026-06-29.md). Not required when automated gates above are green.
+**Optional human spot-check** (EAS build — Clerk + pixels only): see the optional five-city section in [journey-live-full-cert-04-05-10.md](../working/journey-live-full-cert-04-05-10.md). Not required when automated gates above are green.
 
 **Tier A Fly promote + spot-check (2026-06-29):** `APPLY=1 PROFILE=fly make import-latent-corpus` complete; `make tier-a-spot-check PROFILE=fly` — **PASSED** all 5 cities (Paris, Barcelona, Venice, Amalfi Coast, Nice).
 
@@ -91,7 +91,7 @@ Cities: athens, bilbao, bologna, bordeaux, cagliari, catania, dubrovnik, florenc
 
 ## Optional EAS UI spot-check (human)
 
-Operator script: [eas-five-pack-phone-walk-2026-06-29.md](../working/eas-five-pack-phone-walk-2026-06-29.md)  
+Operator script: [journey-live-full-cert-04-05-10.md](../working/journey-live-full-cert-04-05-10.md)
 **Supplement only** — use when validating EAS channel packaging, Clerk login, or Stream E place art. Automated gates above cover data/API.
 
 Preflight: `make dogfood-fly-smoke` — **PASSED** 2026-06-29.
@@ -229,7 +229,7 @@ Source: `docs/journeys/journeys.yaml` × derived coverage (FE mock-walk / BE pyt
 | Tier B catalog | `make tier-b-spot-check` | Local/Fly PG + Qdrant search per Tier B city (27) |
 | Full offline | `make offline-qa` | doctor, contract, api-coverage, boundaries, backend, journeys, typecheck, test:offline |
 
-Live dogfood (S4 seed + two-account walk) is human/ops — see `docs/working/wedge-journey-02-05-path-to-dogfood.md`.
+Live dogfood (S4 seed + two-account walk) is human/ops — see `docs/working/dogfood-loop-validation-2026-07-04.md`.
 
 ## Promotion Rules
 

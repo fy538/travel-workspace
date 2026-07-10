@@ -9,12 +9,11 @@ These one-pagers define the canonical journeys we should protect before expandin
 
 Use these when asking Codex, Claude Code, QA, or a human dogfooder to inspect the app. The goal is to catch the boring deterministic failures first: broken routes, stale read models, mock/real drift, no-op CTAs, privacy leaks, and fake-success states.
 
-**Promotion board:** [STATUS.md](STATUS.md) · **Consolidated findings:** [STATIC_TRACE_PUNCH_LIST.md](STATIC_TRACE_PUNCH_LIST.md) · **Logic QA:** [travel-app/docs/logic-qa/README.md](../../travel-app/docs/logic-qa/README.md)
+**Promotion board:** [STATUS.md](STATUS.md) · **Archived static findings:** [STATIC_TRACE_PUNCH_LIST.md](../archive/2026-07/retired-live/STATIC_TRACE_PUNCH_LIST.md) · **Logic QA:** [travel-app/docs/logic-qa/README.md](../../travel-app/docs/logic-qa/README.md)
 
 ## Research Inputs
 
-- [Golden Paths](../reliability/Golden%20Paths.md)
-- [No-Claude-Design Tightening Sprint](../No-Claude-Design%20Tightening%20Sprint.md)
+- [Interaction Surfaces Doctrine](../../travel-app/docs/design/interaction-surfaces-doctrine.md)
 - [Offline First QA](../../travel-agent/docs/operations/Offline%20First%20QA.md)
 - [Canonical User Flow Map](../../travel-app/docs/user-flows/canonical-flow-map.md)
 - [Mock vs Real Parity](../../travel-app/docs/Mock%20vs%20Real%20Parity.md)
@@ -24,8 +23,8 @@ Use these when asking Codex, Claude Code, QA, or a human dogfooder to inspect th
 - [Discover Spec](../../travel-app/docs/page-specs/discover.md)
 - [Atlas Home Spec](../../travel-app/docs/page-specs/atlas-home.md)
 - [Booking Group Semantics](../../travel-app/docs/page-specs/booking-group-semantics.md)
-- [Me/Account → Atlas trust investigation](../audits/me-account-atlas-trust-investigation-2026-06-25.md)
-- [Cross-repo seam audit](../audits/cross-repo-seam-audit-2026-06-25.md)
+- [Me/Account → Atlas trust investigation](../archive/2026-07/retired-live/me-account-atlas-trust-investigation-2026-06-25.md)
+- [Cross-repo seam audit](../archive/2026-07/retired-live/cross-repo-seam-audit-2026-06-25.md)
 
 ## Journey Set
 
@@ -86,7 +85,7 @@ Do **not** add numbered journeys for these until they enter dogfood scope. Track
 | Surface | Why deferred | Where to smoke-check today |
 |---|---|---|
 | Voice / on-location guide / narration | Experimental; Domain Status marks unstable contract | Optional steps in Journey 07 (guide cards), Journey 08 (narration strip) |
-| Cross-trip threading UI | Backend/UI plan approved, not shipped | [Plan — Cross-Trip Threading UI](../Plan%20—%20Cross-Trip%20Threading%20UI.md) |
+| Cross-trip explanation card | Deferred from V1; backend/client substrate exists | [Decision](../decisions/2026-07-10-defer-cross-trip-explanation-card.md) |
 | Social graph (follow, profiles, story share) | Secondary to group-trip wedge | Journey 07 friend cards; Journey 09 social notification routing |
 | Content graph search quality | Eval/canary domain, not a UX journey | Seeded-city live canary under Journey 07 |
 | Maestro / screenshot visual QA | Owned by separate agent loop | Complements static trace; does not replace it |
@@ -129,15 +128,29 @@ Run or extend the journey's real-backend checklist / dogfood canary tests.
 Report pass/fail with fixture ids.
 ```
 
+## Certification ladder
+
+Certification is cumulative; a higher layer never substitutes for a lower one:
+
+1. Registry and static-contract checks prove the journey is named and traceable.
+2. Mock walks prove navigation, surface states, and deterministic client behavior.
+3. Backend scenario tests prove persistence, privacy, idempotency, and reversal.
+4. Live API checks prove deployed transport and environment wiring.
+5. On-device walks prove the real auth, pixels, and multi-device interaction.
+
+Verdicts are `pass`, `fail`, or `blocked` with named evidence. “Implemented” is not
+a certification result. `STATUS.md` is the promotion board; individual run logs are
+dated evidence and belong in the archive when superseded.
+
 **Layer 4 — live dogfood** (Maestro, device, real providers):
 
 Only after Layers 1–3 are green or risks are explicitly de-afforded.
 
 **Orthogonal slice tracers** (run on PRs touching API seams, not instead of journeys):
 
-- [Cross-repo seam audit](../audits/cross-repo-seam-audit-2026-06-25.md) — `openapi.json` → `http.ts` → mock shape drift
-- [State-machine exhaustiveness](../working/state-machine-exhaustiveness-2026-06-25.md) — lifecycle transitions, idempotency, orphans
-- [Privacy invariant trace](../audits/privacy-trace-run-latest.md) — private egress boundaries
+- [Cross-repo seam audit](../archive/2026-07/retired-live/cross-repo-seam-audit-2026-06-25.md) — `openapi.json` → `http.ts` → mock shape drift
+- Backend scenario tests — lifecycle transitions, idempotency, and orphan detection
+- [Privacy invariant trace](../archive/2026-07/retired-live/privacy-trace-run-latest.md) — private egress boundaries
 - [Mock-real parity auditor](../reliability/prompts/mock-real-parity-auditor.md)
 
 Only after static and mock layers pass should a journey become a live dogfood canary.

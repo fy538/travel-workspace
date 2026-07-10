@@ -1,0 +1,12 @@
+version: 1
+repos:
+  travel-agent:
+    baseline: dfcdb89d1a948589908fd4484aa5c550b7b56901
+    docs_root: docs
+  travel-app:
+    baseline: f7a11e3218785b6b7789335907e1120d5a364e98
+    docs_root: docs
+
+# Files present in each baseline are grandfathered. Markdown paths added after
+# the baseline must satisfy the workspace lifecycle metadata policy. Baselines
+# are historical boundaries: do not advance them to make a failing document pass.

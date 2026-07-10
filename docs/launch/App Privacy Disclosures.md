@@ -2,7 +2,7 @@
 
 Pre-fill for **App Store Connect → App Privacy** (the per-app data
 collection questionnaire). Answers are derived from a real audit of
-`Travel Agent/backend/core/db/_tables/` — what tables exist, what
+[`travel-agent/backend/core/db/_tables/`](../../travel-agent/backend/core/db/_tables/) — what tables exist, what
 fields they hold, and how the backend uses them.
 
 Apple's questionnaire is structured as: for each data category that
@@ -256,7 +256,7 @@ This doc must be revisited whenever **either** of two things changes:
 
 1. **Backend schema** — new tables may collect new data categories.
    Authoritative inventory:
-   [`Travel Agent/backend/core/db/_tables/`](../Travel Agent/backend/core/db/_tables/).
+   [`travel-agent/backend/core/db/_tables/`](../../travel-agent/backend/core/db/_tables/).
 2. **iOS permissions in app.json** — adding a permission usually means
    activating a new collection path. Specifically:
    - **NSMicrophoneUsageDescription / microphone permission** would

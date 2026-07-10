@@ -163,3 +163,10 @@ make certify-live   # preflight + prints this checklist
 - Duffel live checkout (money-moving) — verify hold/confirm **UI** only; provider stays dark unless explicitly enabled.
 - Push notification delivery — in-app notification feed is enough for first cert.
 - Third external TestFlight user (wedge doc DoD 8) — optional after founder two-device pass.
+### Optional five-city phone walk
+
+After the required J04/J05/J10 certification is green, an EAS walk may spot-check
+Lisbon, Rome, Istanbul, Tokyo, and Brooklyn for seeded-world richness and pixels.
+Run automated substrate/API preflight first. This walk is observational—not a
+replacement for deterministic certification—and failures must be recorded against
+the owning journey or system rather than maintained as a second readiness scorecard.

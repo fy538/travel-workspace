@@ -31,7 +31,7 @@ As a traveler, I want to privately tell Vesper about my budget, dietary needs, a
 - Routes: `/(tabs)/concierge/chat`, `/(tabs)/trips/[tripId]/chat`, `/(tabs)/trips/[tripId]/plan`, `/notifications`, `/atlas/privacy`.
 - App docs: [Agent Chat](../../travel-app/docs/page-specs/agent-chat.md), [Change Proposals](../../travel-app/docs/page-specs/change-proposals.md), [Booking Group Semantics](../../travel-app/docs/page-specs/booking-group-semantics.md).
 - Reliability trace: [Private Input To Group-Safe Context](../reliability/traces/private-input-to-group-safe-context.md).
-- Existing anchors: `__tests__/data/privacy.test.ts`, `__tests__/utils/chatDestination.test.ts`, `__tests__/components/chat/MessageBubbleCompositionSkipped.test.tsx`, backend eval tests listed in [Golden Paths](../reliability/Golden%20Paths.md).
+- Existing anchors: `__tests__/data/privacy.test.ts`, `__tests__/utils/chatDestination.test.ts`, `__tests__/components/chat/MessageBubbleCompositionSkipped.test.tsx`, and the backend journey scenario tests described in the [journey index](README.md).
 
 ## Canonical Steps
 
@@ -73,4 +73,3 @@ Create a deterministic privacy fixture trace that checks leak phrases across:
 - notification title/body
 - booking proposal summary
 - memory/Atlas receipt wording
-

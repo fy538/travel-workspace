@@ -58,6 +58,7 @@ jobs:
           path: travel-agent
           ref: ${{ steps.child_refs.outputs.agent_ref }}
           token: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN || github.token }}
+          fetch-depth: 0
 
       - name: Check out Travel App
         uses: actions/checkout@v6
@@ -66,6 +67,7 @@ jobs:
           path: travel-app
           ref: ${{ steps.child_refs.outputs.app_ref }}
           token: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN || github.token }}
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v6
@@ -161,6 +163,16 @@ jobs:
             BASE_SHA="HEAD^"
           fi
           python3 scripts/check_doc_governance.py --new-since "$BASE_SHA"
+
+      - name: Documentation inventory coverage
+        # Phase 2 gate: a new file may carry valid metadata but it must also
+        # receive an explicit disposition in the living inventory.
+        run: make docs-inventory-check
+
+      - name: Canonical documentation spine and current-state drift
+        # Phase 3: navigation is bounded to eight entry points and the
+        # current-state summary is derived from committed registries.
+        run: make docs-spine-check docs-status-check docs-links-check docs-child-governance-check
 
       - name: API coverage check
         # Verifies every URL the frontend calls in http.ts exists in

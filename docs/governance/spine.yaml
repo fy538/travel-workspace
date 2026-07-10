@@ -1,0 +1,34 @@
+version: 1
+entries:
+  - id: product-thesis
+    title: Product Thesis
+    path: travel-agent/docs/product/Product Thesis.md
+    owns: The product's core promise and strategic thesis.
+  - id: beliefs
+    title: What We Believe
+    path: travel-agent/docs/product/What We Believe.md
+    owns: Durable product principles used to make tradeoffs.
+  - id: v1-scope
+    title: V1 Scope
+    path: docs/working/mvp-scope-and-flag-manifest-2026-06-30.md
+    owns: The bounded first-release scope and flag posture.
+  - id: current-state
+    title: Current State
+    path: docs/status/current-state.md
+    owns: A generated snapshot of executable implementation registries.
+  - id: journey-status
+    title: Journey Status
+    path: docs/journeys/STATUS.md
+    owns: User-journey certification evidence and gaps.
+  - id: systems
+    title: Systems Index
+    path: docs/systems/README.md
+    owns: Cross-repo system contracts and maturity.
+  - id: owner-actions
+    title: Owner Actions
+    path: docs/Owner Action Items.md
+    owns: Release-critical work requiring the founder or an external account.
+  - id: decisions
+    title: Decision Index
+    path: docs/decisions/README.md
+    owns: Durable decisions and their supersession chain.

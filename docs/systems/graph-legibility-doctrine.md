@@ -1,6 +1,17 @@
+---
+doc_type: contract
+status: active
+owner: founder / engineering
+created: 2026-07-06
+last_verified: 2026-07-10
+why_new: Establish one cross-cutting boundary for when the world model may explain itself to users.
+supersedes: []
+source_of_truth_for: [graph-legibility-and-model-reveal-policy]
+---
+
 # Graph Legibility — Cross-Cutting Doctrine
 
-> Status: proposed (drafted 2026-07-06, not yet ratified into `docs/systems/README.md` index)
+> Status: ratified 2026-07-10
 > Applies to: Concierge, Memory & Preference, Trips/Folio, Proposals/Change Studio, Discover, Atlas — any surface that reads or writes the traveler/group world model
 > Consumed by: all system charters above should cite this doc when adding a "does the model know this" moment
 > Last updated: 2026-07-06
@@ -72,6 +83,5 @@ Not every user action that teaches the model deserves the same treatment:
 
 ## Open risks / known gaps
 
-- **No governance link yet.** This doc isn't cited from `docs/systems/README.md` or from the individual system charters (`concierge-vesper.md`, `memory-preference.md`, `proposals-change-studio.md`) that it should constrain. Until it's linked, a new feature can violate it without anyone noticing — same cross-linking failure mode already found with the Atlas design canon itself.
 - **"Rare/earned" is not yet a measurable rule.** The write-back acknowledgment tier (`ConsequenceBanner`'s "Remembered you prefer window seats") currently has no defined cadence — nothing stops an engineer from wiring it to fire on every save. Needs a concrete frequency cap (e.g., at most once per session, or only on the first instance of a new pattern) before it's actually enforceable.
 - **A correction path for Atlas reveals is needed, but a dedicated confirm/dispute chip is not the requirement.** The real safeguard against a wrong reveal is *upstream* — the evidence threshold that gates whether a reveal fires at all (recurrence across trips/contexts), plus the existing Trust & Controls "× forget" / "reset learned preferences" front door. The minimum viable correction for a reveal is a plain dismiss (swipe/X) that quietly suppresses that pattern, not a bespoke "Is this right? — yes/no" interaction. The heavier chip is optional polish, justified only if Atlas reveals ship frequently enough that dismiss-and-forget proves too blunt — it is **not** a dependency for this doctrine or for Atlas shipping.

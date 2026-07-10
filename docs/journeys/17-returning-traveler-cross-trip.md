@@ -56,3 +56,8 @@ Trace cross-trip recall: prior-trip affinity/taste/saved-places into a second tr
 ## First Automation Target
 
 > NOTE: cross-trip recall substrate is currently DARK (signals→memory gated). Until lit, this certifies as a visible skip. When enabled: persona-cert (lived) — seed/confirm a prior kept trip + a second trip for the same persona; assert prior-trip affinity surfaces in the second trip's context, and that no other trip's private fields appear.
+
+The cached cross-trip-thread backend and typed app client exist, but a dedicated
+Trip Home “from your prior trip” card is deferred until cohort evidence shows that
+silent personalization is insufficient. J17 certifies the recall and privacy loop;
+it does not require that extra explanatory surface for V1.

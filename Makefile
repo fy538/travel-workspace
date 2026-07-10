@@ -9,7 +9,7 @@
 .PHONY: new-worktree land-worktree worktrees
 .PHONY: contract-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate mock-slug-parity
 .PHONY: certify-fast certify-logic certify-corpus certify-visual certify-visual-cloud certify-live maestro-flow-check journey-registry-check dogfood-status seed-s4-local seed-s4-fly corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-fly-smoke dogfood-five-pack-verify dogfood-five-pack-live-api dogfood-five-pack-simulator dogfood-journey-live-api dogfood-journey-j04-chat-eval dogfood-maestro-s4-local dogfood-maestro-fly import-latent-corpus tier-a-spot-check tier-b-spot-check qa-persona dogfood-status-sync
-.PHONY: preflight-eas fly-secrets verify docs-governance-check
+.PHONY: preflight-eas fly-secrets verify docs-governance-check docs-child-governance-check docs-inventory-check docs-inventory-report docs-spine-check docs-status-check docs-status-sync docs-links-check docs-check
 
 # ── Development ───────────────────────────────────────────────────────────────
 
@@ -126,6 +126,29 @@ flag-registry-check: ## Gate: no feature flag in docs/flags/registry.yaml is pas
 
 docs-governance-check: ## Gate: new workspace Markdown files carry lifecycle metadata
 	@python3 scripts/check_doc_governance.py --local-new
+
+docs-inventory-check: ## Gate: every workspace Markdown file has one reviewed disposition
+	@python3 scripts/check_doc_inventory.py --steady
+
+docs-inventory-report: ## Print the complete documentation disposition report
+	@python3 scripts/check_doc_inventory.py --details
+
+docs-spine-check: ## Gate: the eight canonical documentation entry points exist and are indexed
+	@python3 scripts/check_docs_spine.py
+
+docs-status-check: ## Gate: generated current-state signals match executable registries
+	@python3 scripts/render_current_state.py
+
+docs-status-sync: ## Refresh the generated current-state signal table
+	@python3 scripts/render_current_state.py --write
+
+docs-child-governance-check: ## Gate: new child-repo docs satisfy workspace lifecycle metadata
+	@python3 scripts/check_child_doc_governance.py
+
+docs-links-check: ## Gate: relative links in living workspace docs resolve
+	@python3 scripts/check_living_doc_links.py
+
+docs-check: docs-governance-check docs-child-governance-check docs-inventory-check docs-spine-check docs-status-check docs-links-check ## Run all documentation governance gates
 
 maestro-flow-check: ## Gate: every .maestro flow parses + visual-qa script refs resolve (offline, no simulator)
 	@python3 scripts/validate-maestro-flows.py --app-dir travel-app

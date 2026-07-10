@@ -38,6 +38,18 @@ is owned by [Memory & Preference](memory-preference.md); this system supplies th
 - **Membership coherence:** Trips list, Trip Info, Group Chat, and Notifications agree on who's in.
 - **Social state is rebuilt from signals**, not stored as a static doc; extraction is Haiku.
 - **Fairness:** equity-imbalance signals feed the concierge (vote-absence friction, quiet-member detection).
+- **Vote privacy:** group surfaces show tallies and the viewer's own vote, never
+  voter names; missing-voter identity is organizer/agent-side only.
+- **Quiet propagation:** ordinary group-visible mutations converge on focus/refetch;
+  only existing arbiter-gated event classes receive push.
+- **Wiki-mode V1:** committed plan state is shared immediately; curator/selective
+  draft propagation is deferred.
+- **Organizer authority is explicit:** the organizer resolves proposals in V1;
+  unanimous yes among at least two voters may auto-accept, with no timeout automation.
+- **Membership dignity:** join gets a group line and organizer notice; leave is a
+  quiet line; removal and role change update the roster without group announcement.
+- **Room mute honesty:** any member may mute Vesper for the room, but the change
+  requires an unattributed group line plus organizer-visible who/when audit data.
 
 ## Failure modes
 - Stale social state → background re-synthesis on staleness threshold; last good doc served meanwhile.
@@ -54,3 +66,7 @@ is owned by [Memory & Preference](memory-preference.md); this system supplies th
 ## Open risks / known gaps
 - Invite flows are "easy to break with auth detours, stale tokens, and current-user assumptions" — the **stale `currentTripId`** assumption is the classic failure (sends an invitee to the wrong workspace). Trace it explicitly.
 - This is the only MVP-required system needing a genuine **two-account, two-device** live walk (everything else can be walked solo).
+- Remaining propagation backlog is honest-but-quiet rather than a privacy blocker:
+  vote history, direct-edit receipts, stay decision events, booking path symmetry,
+  mark-booked chat bridge, trip-genesis audit, room-mute audit, and pin idempotency.
+  Extend the second-observer certifier as each lands.

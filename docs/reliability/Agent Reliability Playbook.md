@@ -104,7 +104,7 @@ The workspace reliability layer should keep those failures cheap to catch.
 
 ## Related Artifacts
 
-- [Golden Paths](./Golden%20Paths.md)
+- [Canonical Journeys](../journeys/README.md)
 - [Golden Path Traces](./traces/README.md)
 - [Agent Prompt Templates](./prompts/README.md)
 - [Tiny Live Canary Plan](./Live%20Canary%20Plan.md)

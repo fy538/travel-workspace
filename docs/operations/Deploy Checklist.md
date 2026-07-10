@@ -1,6 +1,6 @@
 # Deploy Checklist
 
-**Companion to** [`docs/Deploy & Rollback Runbook.md`](../Deploy%20&%20Rollback%20Runbook.md).
+**Companion to** [Deploy & Rollback Runbook](Deploy%20%26%20Rollback%20Runbook.md).
 That doc covers *how* to deploy. This one covers *what to verify before, during, and
 after* — the sanity checks that catch state mismatches and env drift before they
 become 30-minute debugging sessions.

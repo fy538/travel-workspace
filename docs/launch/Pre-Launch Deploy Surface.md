@@ -15,14 +15,14 @@ Status legend:
 ## 🔴 Critical items (fix before TestFlight)
 
 ### 1. R2 storage config not in `.env.example`
-**Where:** [Travel Agent/backend/voice/storage.py:202-256](Travel Agent/backend/voice/storage.py)
+**Where:** [travel-agent/backend/voice/storage.py](../../travel-agent/backend/voice/storage.py)
 **What:** the audio storage module reads `R2_ENABLED`, `R2_ACCOUNT_ID`, `R2_BUCKET_NAME`, `R2_CDN_BASE_URL`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY` but none of these appear in `Travel Agent/.env.example`.
 **Impact:** a fresh deploy that enables R2 will silently fail to configure storage — narration audio + uploads break with no clear error.
 **Fix:** add an `# ── Audio Storage (Cloudflare R2) ──` section to `.env.example` documenting all 6 vars + that `R2_ENABLED=false` is the safe default.
 **Verify:** `grep R2_ Travel\ Agent/.env.example | wc -l` returns 6.
 
 ### 2. `EXPO_PUBLIC_CONTENT_GRAPH_GEOFENCE` not in frontend `.env.example`
-**Where:** [Travel App/utils/api/index.ts:30](Travel App/utils/api/index.ts)
+**Where:** [travel-app/utils/api/index.ts](../../travel-app/utils/api/index.ts)
 **What:** frontend toggle read but not documented. Backend has the matching `CONTENT_GRAPH_GEOFENCE_ENABLED` and that one IS also undocumented.
 **Impact:** developers don't know the toggle exists; QA can't reproduce the feature without spelunking source.
 **Fix:** add to `Travel App/.env.example` AND `Travel Agent/.env.example` under a "Feature flags" section.
@@ -40,19 +40,19 @@ Status legend:
 ## 🟠 Moderate (fix before public traffic)
 
 ### 4. `REDIS_URL` is silently optional
-**Where:** [Travel Agent/backend/core/job_queue.py:106](Travel Agent/backend/core/job_queue.py)
+**Where:** [travel-agent/backend/core/job_queue.py](../../travel-agent/backend/core/job_queue.py)
 **What:** Redis backs the arq job queue used for audio jobs, digest scheduling, and background pre-trip work. Missing `REDIS_URL` doesn't error — those features just don't run.
 **Fix:** mark `REDIS_URL` as required in `.env.example` (`# Required for production: audio jobs, digests, pre-trip`). Add a startup check that warns when `REDIS_URL` is unset AND `DISABLE_LLM_BACKGROUND_LOOPS=false`.
 **Verify:** booting with no `REDIS_URL` and `DISABLE_LLM_BACKGROUND_LOOPS=false` logs a clear warning.
 
 ### 5. `SKIP_AUTH=false` + missing `CLERK_JWKS_URL` fails silently
-**Where:** [Travel Agent/backend/api/auth.py:36-42](Travel Agent/backend/api/auth.py)
+**Where:** [travel-agent/backend/api/auth.py](../../travel-agent/backend/api/auth.py)
 **What:** if `SKIP_AUTH=false` (the production setting) and `CLERK_JWKS_URL` is empty, JWT validation can't happen. Today the code path's behavior depends on what `clerk-backend-api` does with an empty URL — likely fails on first request, not at boot.
 **Fix:** add an explicit startup check: `if not skip_auth and not clerk_jwks_url: raise RuntimeError(...)`. This converts a runtime 500 into a fast-fail boot error.
 **Verify:** booting with `SKIP_AUTH=false` and `CLERK_JWKS_URL=` exits with a non-zero code and a clear message.
 
 ### 6. Booking sandbox defaults are safe but un-toggled
-**Where:** [Travel Agent/backend/booking_agent/config/settings.py:10,14](Travel Agent/backend/booking_agent/config/settings.py)
+**Where:** [travel-agent/backend/booking_agent/config/settings.py](../../travel-agent/backend/booking_agent/config/settings.py)
 **What:** `BOOKING_AMADEUS_SANDBOX=true` and `BOOKING_DUFFEL_SANDBOX=true` are safe defaults but production deploys MUST flip them. Currently no documented mechanism makes that visible.
 **Fix:** add a "Production toggles" section to `.env.example` listing every flag that defaults to dev-safe but must change in prod. Reference this section in the OAI checklist for item #4 (`eas build` production).
 **Verify:** ops can grep `.env.example` for "PRODUCTION:" and see the full list.
@@ -72,12 +72,12 @@ Status legend:
 **Fix:** add a `## Key rotation schedule` section to this doc once you decide a policy. Annual is conventional; quarterly is paranoid; never is the current de-facto policy.
 
 ### 9. `LLM_VCR_*` not in `.env.example`
-**Where:** [Travel Agent/backend/core/llm_vcr.py:79-252](Travel Agent/backend/core/llm_vcr.py)
+**Where:** [travel-agent/backend/core/llm_vcr.py](../../travel-agent/backend/core/llm_vcr.py)
 **What:** test-only env vars that control cassette recording. Acceptable to leave out of `.env.example` — they're CI/eval concerns, not deploy.
 **Fix:** none, but mention in `tools/eval/` README if the eval docs aren't already covering them.
 
 ### 10. `CONCIERGE_OUTPUT_GUARD_MODE` not in `.env.example`
-**Where:** [Travel Agent/backend/concierge/output_guards.py:59](Travel Agent/backend/concierge/output_guards.py)
+**Where:** [travel-agent/backend/concierge/output_guards.py](../../travel-agent/backend/concierge/output_guards.py)
 **What:** the guard mode flag introduced in `Travel Agent/CLAUDE.md`. Default is `log` which is the right pre-launch setting.
 **Fix:** add to `.env.example` with the full mode table from `CLAUDE.md` so ops can see it without grepping.
 
@@ -89,8 +89,8 @@ Status legend:
 |---|---|---|---|
 | Anthropic prompt cache | 5 min default, 1h ephemeral | Per-call | Standard SDK behavior |
 | Clerk JWT session | Clerk default | Clerk dashboard | Not overridden in code |
-| Invite tokens | **14 days, hardcoded** | No | [TripInvite.expires_in_days](Travel Agent/backend/core/db/_tables/trip_invites.py) — if invite reuse becomes a problem, parameterize |
-| Amadeus OAuth | Auto-refresh 60s before expiry | Auto | [backend/core/oauth.py:64](Travel Agent/backend/core/oauth.py:64) |
+| Invite tokens | **14 days, hardcoded** | No | [TripInvite model](../../travel-agent/backend/core/models/trip_invites.py) — if invite reuse becomes a problem, parameterize |
+| Amadeus OAuth | Auto-refresh 60s before expiry | Auto | [backend/core/oauth.py](../../travel-agent/backend/core/oauth.py) |
 | Booking offer expiration | 60s configurable | `offer_expiry_check_interval_seconds` | Fine |
 
 ---

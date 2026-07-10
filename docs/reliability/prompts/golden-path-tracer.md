@@ -13,7 +13,7 @@ Trace target:
 - Concern: [CONCERN]
 
 Steps:
-1. Read docs/reliability/Golden Paths.md.
+1. Read docs/journeys/README.md and docs/journeys/STATUS.md.
 2. Read the relevant file in docs/reliability/traces/.
 3. Inspect backend models/routes, frontend hooks, mock API data, and tests.
 4. Write or update the trace with:

@@ -132,3 +132,11 @@ Goal = a read strong enough to de-risk a raise or force a pivot, plus the qualit
   humans.)
 - The real gating items for real humans are build/secrets/TestFlight (see
   `project_dogfood_phase`) — Clerk on Fly, dogfood EAS build, APNs — NOT auth code.
+### Wedge contract (J02 → J05)
+
+The first dogfood-ready slice begins with a concrete trip and invite, then ends only
+after a group-safe proposal is accepted and every plan read model agrees. It must
+prove: membership survives the auth detour; private inputs never enter group copy;
+proposal creation is idempotent; accept/reject/revert are truthful; and Home, Plan,
+Map, and Changes converge after mutation. Mock success alone does not satisfy the
+wedge. Current readiness belongs in Journey Status, not in this cohort plan.

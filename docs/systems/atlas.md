@@ -53,7 +53,24 @@ register/copy + the projection rows**.
 - why → `product/One Engine, Two Corpora.md` · what(be) → `backend/atlas/FEATURE.md` · `backend/composition/FEATURE.md` · what(fe) → `page-specs/atlas-home.md` · `page-specs/atlas-backend-contracts.md` · `page-specs/atlas-signal-controls.md`.
 - Tests: `tests/atlas/*`, `tests/dogfood/test_atlas_dedup_canary.py`, `__tests__/journeys/journey-11-mock-walk.smoke.test.tsx`.
 
+## Operator entry points
+
+- Mock UI: enable screenshot mode, choose an Atlas-capable persona, then open
+  `/atlas`, `/atlas/inbox`, or `/atlas/artifact/<id>`.
+- Real backend: run the backend with `ATLAS_LLM_ENABLED=false` for deterministic
+  composition; enabling the LLM path additionally requires the provider key.
+- Candidate lifecycle: scan creates a candidate, review is read-only, and only an
+  explicit approval may create the kept artifact. Re-run approval must be idempotent.
+- Contract changes begin in backend schemas, flow through the workspace OpenAPI
+  snapshot, then regenerate frontend types; handwritten parallel types are forbidden.
+
+The original setup/build ledger is retained in the dated workspace archive.
+
 ## Open risks / known gaps
 - **Dedup/restore is the headline risk** — the two "must never happen" cases (overlapping trip + memory both visible; deleting a kept memory leaving the trip permanently archived) are correctness-critical and rely on the projector + reconcile staying in sync. Covered by the canary; verify after any projection-version bump.
 - Memory **artifact quality is unvalidated** upstream (shared with Memory & Preference) — the "is it worth keeping?" claim has no eval gate yet.
 - Trust-hub routes (profile/account/constraints/data-receipt/delegation/following) became canonical when Me tab was removed — confirm none are orphaned and privacy controls stay memory-specific, not generic account settings.
+- Native PhotoKit expansion (burst identifiers, Vision dedup, persistent change
+  tokens, Journaling Suggestions, background catch-up) is deferred until cohort
+  evidence justifies a custom Expo module/dev-client cutover. Managed-Expo scanning
+  remains the supported boundary; see the decision index.

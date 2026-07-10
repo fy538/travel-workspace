@@ -36,6 +36,12 @@ Planning/Itinerary — this system is their only sanctioned mutation path.
 - **Revert truthfulness:** if revert says success, Plan **and** Map reflect it (no ghost state) — the ledger makes this deterministic and diff-safe.
 - **No private source leak:** proposal detail shows a public-safe reason; never the private constraint behind it.
 - **One creation path:** chat-created and UI-created proposals both go through `build_and_persist_proposal`.
+- **Receipts separate public reason from private influence:** group-visible copy may
+  explain the decision but must never identify who supplied a private constraint.
+- **Receipts carry stable source references:** the visible result must be traceable
+  to proposal, plan-event, or provider identifiers without exposing raw prompts.
+- **Correction propagates:** reverting or disputing the source invalidates every
+  derived receipt/read model; a green toast over stale state is a contract failure.
 
 ## Failure modes
 - Commit conflict / stale timestamp → 409-style surface to the UI (recovery banner), never a silent overwrite.

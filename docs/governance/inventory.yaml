@@ -1,0 +1,99 @@
+version: 1
+scope: workspace-docs
+root: docs
+
+dispositions:
+  keep_authoritative: Current source of truth; retain in the living documentation spine.
+  keep_reference: Useful supporting material that is not a source of current truth.
+  merge: Preserve named durable content in the target, then archive the source.
+  archive: Historical or completed work; move to the dated archive without rewriting it.
+  delete_candidate: Likely redundant and safe to remove after link/uniqueness confirmation.
+  investigate: Active, ambiguous, or insufficiently verified; resolve before moving it.
+
+# Overrides win over rules. Rules deliberately cover stable folder conventions;
+# top-level and working documents are classified one by one below.
+rules:
+  - glob: docs/archive/**/*.md
+    disposition: archive
+    rationale: Already lives in the non-authoritative historical tree.
+
+  - glob: docs/templates/*.md
+    disposition: keep_reference
+    rationale: Reusable authoring scaffolds, not product or implementation truth.
+
+  - glob: docs/governance/*.md
+    disposition: keep_authoritative
+    rationale: Governs documentation admission and lifecycle.
+
+  - glob: docs/systems/*.md
+    disposition: keep_authoritative
+    rationale: Cross-repo system charters are the canonical contract layer.
+
+  - glob: docs/journeys/*.md
+    disposition: keep_authoritative
+    rationale: Canonical journey contracts and their generated certification status.
+
+  - glob: docs/operations/*.md
+    disposition: keep_authoritative
+    rationale: Current cross-repo operational procedures.
+
+  - glob: docs/launch/*.md
+    disposition: keep_authoritative
+    rationale: Current first-release submission and tester material until launch completes.
+
+  - glob: docs/reliability/prompts/*.md
+    disposition: keep_reference
+    rationale: Reusable audit prompts supporting, but not defining, reliability truth.
+
+  - glob: docs/reliability/traces/*.md
+    disposition: keep_reference
+    rationale: Worked evidence traces supporting the canonical journey contracts.
+
+  - glob: docs/reliability/*.md
+    disposition: keep_authoritative
+    rationale: Living reliability policy and operating plans.
+
+  - glob: docs/audits/*.md
+    disposition: archive
+    rationale: Point-in-time investigations; resolved and stale findings are historical evidence.
+
+  - glob: docs/decisions/*.md
+    disposition: keep_authoritative
+    rationale: Accepted decisions and their supersession index are durable governance records.
+
+overrides:
+  docs/README.md:
+    disposition: keep_authoritative
+    rationale: Entry point and lifecycle map for the workspace documentation.
+
+  docs/status/current-state.md:
+    disposition: keep_authoritative
+    rationale: Generated orientation snapshot derived from executable registries.
+
+  docs/Workspace Repo Setup.md:
+    disposition: keep_authoritative
+    rationale: Current human setup reference for the cross-repo workspace.
+
+  docs/Owner Action Items.md:
+    disposition: keep_authoritative
+    rationale: Current release-critical human and founder action list.
+
+  docs/Card Catalog.md:
+    disposition: keep_authoritative
+    rationale: Living structured-message vocabulary and card taxonomy.
+
+  docs/journeys/TEMPLATE.md:
+    disposition: keep_reference
+    rationale: Reusable journey authoring template, not a journey contract.
+
+  docs/working/dogfood-loop-validation-2026-07-04.md:
+    disposition: keep_authoritative
+    rationale: Active pre-flight and external-cohort validation plan.
+
+  docs/working/journey-live-full-cert-04-05-10.md:
+    disposition: keep_authoritative
+    rationale: Active device-certification runbook for the current release gate.
+
+  docs/working/mvp-scope-and-flag-manifest-2026-06-30.md:
+    disposition: keep_authoritative
+    rationale: Current source of truth for V1 scope and dark surfaces.

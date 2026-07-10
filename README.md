@@ -6,8 +6,8 @@ It contains two independent repositories plus the cross-repo tooling that ties t
 
 ## Repositories
 
-- [Travel Agent](./Travel%20Agent/) — backend API, agent systems, database, OpenAPI source
-- [Travel App](./Travel%20App/) — React Native app, UI, generated API types
+- [Travel Agent](./travel-agent/) — backend API, agent systems, database, OpenAPI source
+- [Travel App](./travel-app/) — React Native app, UI, generated API types
 
 ## Why this folder exists
 
@@ -102,7 +102,7 @@ make reliability-report  # cheap status snapshot
 ```
 
 See [Agent Reliability Playbook](./docs/reliability/Agent%20Reliability%20Playbook.md)
-and [Golden Paths](./docs/reliability/Golden%20Paths.md) for the testing model.
+and the [canonical journey index](./docs/journeys/README.md) for the testing model.
 The reliability folder also includes [trace artifacts](./docs/reliability/traces/README.md),
 [agent prompt templates](./docs/reliability/prompts/README.md), a
 [manual live canary plan](./docs/reliability/Live%20Canary%20Plan.md), and the

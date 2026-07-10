@@ -288,6 +288,21 @@ strict-compose) is the separate, already-correct gate.
 
 ## 7. Roadmap (proposed)
 
+## 8. Family and governance rules
+
+The complete surface census is historical; new work uses these durable rules:
+
+- Prefer the shared card shell when hierarchy, padding, attribution, and action
+  placement are the same. Fork only when interaction semantics differ.
+- Every card declares one family: focus/home, conversational artifact, receipt,
+  place/booking, memory/story, or system state. A component that spans families is
+  a signal to split the content model, not add variants indefinitely.
+- Generated fields must bind to a named content contract and expose provenance when
+  a user could mistake prose for an operational fact.
+- Each family covers loading, empty, partial, failure, stale, and completed states.
+- A new one-off container requires an explicit reason in this catalog and a review
+  of whether an existing shell can absorb it.
+
 1. ✅ This catalog (source of truth).
 2. ✅ **Design kit** — `EditorialCard` (reused) + `CardEyebrow` / `CardChipRow` +
    a `receipt` tone (left-accent). All emitted cards migrated: TripShapes,

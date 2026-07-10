@@ -38,3 +38,38 @@ repos:
         language: system
         pass_filenames: false
         always_run: true
+
+      - id: check-doc-inventory
+        name: Check every workspace doc has an inventory disposition
+        entry: python3 scripts/check_doc_inventory.py --steady
+        language: system
+        pass_filenames: false
+        stages: [pre-push]
+
+      - id: check-doc-spine
+        name: Check canonical documentation spine
+        entry: python3 scripts/check_docs_spine.py
+        language: system
+        pass_filenames: false
+        stages: [pre-push]
+
+      - id: check-doc-current-state
+        name: Check generated documentation current state
+        entry: python3 scripts/render_current_state.py
+        language: system
+        pass_filenames: false
+        stages: [pre-push]
+
+      - id: check-child-doc-governance
+        name: Check new child-repo documentation admission
+        entry: python3 scripts/check_child_doc_governance.py
+        language: system
+        pass_filenames: false
+        stages: [pre-push]
+
+      - id: check-living-doc-links
+        name: Check links in living workspace documentation
+        entry: python3 scripts/check_living_doc_links.py
+        language: system
+        pass_filenames: false
+        stages: [pre-push]

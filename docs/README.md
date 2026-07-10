@@ -1,66 +1,44 @@
-# Workspace Docs — Index & Lifecycle
+---
+doc_type: contract
+status: active
+owner: founder / engineering
+created: 2026-05-01
+last_verified: 2026-07-09
+why_new: Promote the existing workspace index into the canonical documentation entry point.
+supersedes: []
+source_of_truth_for: [workspace-docs-navigation]
+---
 
-Orientation for the `travel-workspace` documentation. This coordinates two repos:
-**Travel Agent** (backend — Python/FastAPI, LLM orchestration) and **Travel App**
-(frontend — React Native/Expo). The product is **Vesper**, an AI concierge for group
-trips; **Atlas** is its memory/trust subsystem, not a separate product.
+# Workspace Documentation
 
-> **Start here:** read `systems/` (the contracts) and `journeys/` (what a user does).
-> Everything else is planning, ledger, or history.
+This workspace coordinates **Travel Agent** (backend and orchestration) and
+**Travel App** (Expo client) for Vesper. Start with the eight documents below;
+everything else is a contract, supporting reference, active working note, or history.
 
-## Lifecycle model
+## Canonical spine
 
-New documents follow the full admission and metadata policy in
-[`governance/README.md`](governance/README.md). The seven document types are
-`canon`, `contract`, `runbook`, `decision`, `current_status`, `working`, and
-`archive`.
-
-The existing folder model remains the migration map for grandfathered docs:
-
-| State | Meaning | Folders |
+| Question | Entry point | Owns |
 |---|---|---|
-| **Canon** | Living contracts. Kept current, never archived. | `systems/`, `journeys/` |
-| **Active** | In-flight plans & investigations. Graduates out when done. | `working/`, top-level `Plan …` docs |
-| **Ledger / History** | Completed audits, shipped plans, finished sprints. Kept for the record, not maintained. | `audits/`, `archive/` |
+| Why this product? | [Product Thesis](../travel-agent/docs/product/Product%20Thesis.md) | `travel-agent/docs/product/Product Thesis.md` — core promise and strategy |
+| What principles guide it? | [What We Believe](../travel-agent/docs/product/What%20We%20Believe.md) | `travel-agent/docs/product/What We Believe.md` — durable product beliefs |
+| What ships first? | [V1 Scope](working/mvp-scope-and-flag-manifest-2026-06-30.md) | `docs/working/mvp-scope-and-flag-manifest-2026-06-30.md` — bounded release scope |
+| What exists now? | [Current State](status/current-state.md) | `docs/status/current-state.md` — derived implementation signals |
+| Can users complete the journeys? | [Journey Status](journeys/STATUS.md) | `docs/journeys/STATUS.md` — certification evidence |
+| What must each system guarantee? | [Systems Index](systems/README.md) | `docs/systems/README.md` — cross-repo contracts |
+| What needs a human or external account? | [Owner Actions](Owner%20Action%20Items.md) | `docs/Owner Action Items.md` — founder/external blockers |
+| Why was a durable choice made? | [Decision Index](decisions/README.md) | `docs/decisions/README.md` — decisions and supersession |
 
-**Hygiene rule:** when a `working/` investigation's header says `RESOLVED` /
-`SUPERSEDED` / `COMPLETE`, move it to `archive/YYYY-MM/`. `working/` should only ever
-hold what is genuinely live. Completed multi-file audit *sprints* live in `archive/`;
-recent standalone audits live in `audits/`.
+The machine-readable catalog is `docs/governance/spine.yaml`. A document outside
+this spine may be useful, but it must not silently become a competing source of truth.
 
-**Phase 1 admission rule:** every newly added Markdown file under `docs/` must
-use a template from `docs/templates/` and pass `make docs-governance-check`.
-Existing files and edits to existing files are grandfathered until the
-classification phase.
+## Supporting layers
 
-## Folder map
+- `systems/`, `journeys/`, and `operations/` hold living contracts and runbooks.
+- `working/` holds expiring investigations and execution plans.
+- `launch/`, `reliability/`, and `flags/` support specific operational concerns.
+- `audits/` and `archive/` are evidence and history, not current truth.
+- `openapi.json` and `child-repos.ci-lock.json` are machine artifacts; do not hand-edit them.
 
-| Folder | Files | State | Purpose |
-|---|---:|---|---|
-| `systems/` | 15 | Canon | System Charters — the contract layer (Purpose / Interface / Invariants / Failure modes) for each core system. Has its own `README.md`. |
-| `journeys/` | 23 | Canon | Canonical user journeys + the certification `STATUS.md` matrix. `journeys.yaml` is the machine index. Has its own `README.md`. |
-| `working/` | 13 | Active | Current investigations & execution plans. The dogfood-readiness cluster + `mvp-scope-and-flag-manifest` (the live "what ships" SSOT) live here. |
-| `reliability/` | 18 | Canon/Active | Agent Reliability Playbook, CI Plan, Live Canary Plan. `Golden Paths.md` is a **deprecated redirect** → `journeys/`. |
-| `operations/` | 2 | Canon | Deploy Checklist + Deploy & Rollback Runbook (co-located here as of 2026-07-03). |
-| `launch/` | 5 | Active | App Store / Apple review / TestFlight / privacy-disclosure copy for the first release. |
-| `audits/` | 7 | Ledger | Recent standalone audits (privacy trace, cross-repo seam, trust/account). Mostly `RESOLVED`. |
-| `archive/` | 64 | History | Completed audit sprints (`2026-05/…`) and graduated investigations (`2026-06/…`). Reference only. |
-
-**Top-level files** (11) are active planning + reference: the `Plan …` docs (each now
-carries a dated **Outcome** banner showing shipped-vs-planned), `Owner Action Items.md`,
-`Card Catalog.md`, `Atlas — README.md`, `No-Claude-Design Tightening Sprint.md`,
-`Workspace Repo Setup.md`, and the `Handoff …` build record.
-
-## Machine artifacts (not prose — do not hand-edit)
-
-- `openapi.json` — backend contract snapshot; frontend types are generated from it, drift-checked in CI.
-- `child-repos.ci-lock.json` — cross-repo CI pin.
-
-## Known follow-ups (deferred, optional)
-
-- **Naming:** top-level docs use `Title Case With Spaces` and mixed separators
-  (`Plan -` vs `Plan —`), unlike the `kebab-case-YYYY-MM-DD` convention in subfolders.
-  A rename pass would improve scannability but touches cross-references in
-  `memory/MEMORY.md` and inter-doc links — do it deliberately, not casually.
-- The 7 `audits/` files are all `RESOLVED`; fold into `archive/2026-06/` once you're
-  sure nothing links to them as live reference.
+Lifecycle and admission rules live in [Documentation Governance](governance/README.md).
+Run `make docs-check` before pushing; use `make docs-status-sync` after changing a
+registry represented in Current State.

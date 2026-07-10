@@ -26,7 +26,7 @@ As a user, I want real control over my account and data, so that I can trust the
 ## Primary Surfaces
 
 - Routes: `/(auth)/sign-up`, `/atlas/account`, `/atlas/privacy`, `/atlas/constraints`, `/atlas/delegation`, `/atlas/data-receipt`, `/atlas/shared-links`, `/atlas/receipt`.
-- App docs: [Me/Account → Atlas trust investigation](../audits/me-account-atlas-trust-investigation-2026-06-25.md).
+- App docs: [archived Me/Account → Atlas trust investigation](../archive/2026-07/retired-live/me-account-atlas-trust-investigation-2026-06-25.md).
 
 ## Canonical Steps
 

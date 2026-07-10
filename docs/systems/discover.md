@@ -4,7 +4,7 @@
 > Maturity (for MVP): Should-have
 > Status: wired
 > Last updated: 2026-07-08 (corrected stale references to the retired Discover
-> Compose board/search — see `docs/working/discover-cruft-cleanup-2026-07-08.md`)
+> Compose board/search cleanup is complete; historical evidence lives in `docs/archive/2026-07/retired-live/discover-cruft-cleanup-2026-07-08.md`.)
 
 ## Purpose
 The server-side feed composer for the single blended Discover surface — it

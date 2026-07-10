@@ -29,7 +29,7 @@ As a traveler, I want to review a memory candidate, turn it into an artifact if 
 ## Primary Surfaces
 
 - Routes: `/(tabs)/atlas`, `/atlas/inbox`, `/atlas/candidate/[id]`, `/atlas/artifact/[id]`, `/atlas/learned/[id]`, `/atlas/receipt`, `/atlas/dna`, `/atlas/privacy`, `/atlas/map`, `/atlas/postcards`, `/atlas/almanac`, `/atlas/timeline`, **`/atlas/profile`**, **`/atlas/account`**, **`/atlas/constraints`**, **`/atlas/data-receipt`**, **`/atlas/delegation`**, **`/atlas/following`**, `/atlas/removed`.
-- App docs: [Atlas Home](../../travel-app/docs/page-specs/atlas-home.md), [Atlas Backend Contracts](../../travel-app/docs/page-specs/atlas-backend-contracts.md), [Atlas Signal Controls](../../travel-app/docs/page-specs/atlas-signal-controls.md), [Me/Account → Atlas trust investigation](../audits/me-account-atlas-trust-investigation-2026-06-25.md).
+- App docs: [Atlas Home](../../travel-app/docs/page-specs/atlas-home.md), [Atlas Backend Contracts](../../travel-app/docs/page-specs/atlas-backend-contracts.md), [Atlas Signal Controls](../../travel-app/docs/page-specs/atlas-signal-controls.md), [archived Me/Account → Atlas trust investigation](../archive/2026-07/retired-live/me-account-atlas-trust-investigation-2026-06-25.md).
 - Existing anchors: `__tests__/utils/atlasCluster.test.ts`, `__tests__/data/memory.test.ts`, `__tests__/components/memory/DNAStrip.test.tsx`, `__tests__/screens/personal-memory.smoke.test.tsx`, **`__tests__/screens/atlas-almanac.smoke.test.tsx`**, **`__tests__/screens/atlas-timeline.smoke.test.tsx`**, **`__tests__/components/atlas/AtlasYearStepper.test.tsx`**.
 
 ## Canonical Steps
@@ -163,3 +163,16 @@ Atlas state regression:
 | Home read model (pending previews, unified place count) | `pytest tests/atlas/test_atlas_home.py` | yes (`test-db` job + named Atlas canary step) |
 | Almanac LLM output gates (offline) | `pytest tests/atlas/test_almanac_llm_checks.py` | yes |
 | Almanac LLM live smoke | `pytest tests/atlas/test_almanac_llm_live.py -m requires_api_keys` | no — run manually when keys available |
+### Atlas subjourneys protected by J11
+
+J11 contains two connected spines rather than a second journey registry:
+
+1. **Read spine:** cold/empty Atlas → lean-back board → compose/steer → save and
+   return through Ways Back In.
+2. **Memory spine:** manual or eligible automatic scan → candidate review → explicit
+   keep → provenance/correction/privacy controls.
+
+Long View, recap, re-engagement, and immersive playback are supporting surfaces.
+They do not pass J11 if candidate approval, provenance, dispute, forget, or restore
+is broken. Auto-candidate creation remains dark until its privacy and exactly-once
+contracts are certified.

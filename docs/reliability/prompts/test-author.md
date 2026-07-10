@@ -23,7 +23,7 @@ Target:
 
 Steps:
 1. Read AGENTS.md and the relevant child repo CLAUDE.md.
-2. Read docs/reliability/Golden Paths.md and the matching trace file.
+2. Read docs/journeys/README.md, docs/journeys/STATUS.md, and the matching journey file.
 3. Inspect existing tests before adding new ones.
 4. Add or update one deterministic test.
 5. Run the smallest targeted command first.

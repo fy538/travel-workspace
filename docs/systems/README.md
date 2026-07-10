@@ -66,6 +66,14 @@ Wedge journeys = the group-trip path (journeys 02 → 05). "Serves" cites
 > First users only require the **MVP-required** rows to be `wired+validated`.
 > Everything else is `should`, `dark`, or `future` for launch.
 
+## Cross-cutting doctrines
+
+- [Graph Legibility](graph-legibility-doctrine.md) governs when the traveler/group
+  world model may explain itself. Outside Atlas or an explicit “Why this?” action,
+  personalization should be felt through fit rather than narrated as surveillance.
+- [Content Generation](content-generation.md) governs grounding, confidence,
+  correction, and privacy boundaries for model-authored output.
+
 ---
 
 ## Release scope

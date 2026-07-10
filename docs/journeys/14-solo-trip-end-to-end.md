@@ -27,7 +27,7 @@ As a solo traveler, I want the app to feel built for one, so that group-coordina
 ## Primary Surfaces
 
 - Routes: `/(tabs)/trips/[tripId]` (Folio), `/plan`, `/map`, `/(tabs)/concierge/chat`, `/notifications`, `/(tabs)/atlas`.
-- App docs: [Trip Folio](../../travel-app/docs/page-specs/single-trip-home.md), [Concierge Home](../../travel-app/docs/page-specs/concierge-home.md).
+- App docs: [Single Trip Home](../../travel-app/docs/surfaces/single-trip-home/contract.md), [Concierge Home](../../travel-app/docs/page-specs/concierge-home.md).
 
 ## Canonical Steps
 
