@@ -1,6 +1,6 @@
 # Atlas — User Journeys (2026-07-06)
 
-Traced from live code (`main`, both repos) + the design canon (`atlas-memory-composition-vision 21`). Companion to the full-stack architecture trace in memory (`atlas-canon-state`).
+Traced from live code (`main`, both repos) + the design canon (`atlas-memory-composition-vision 23`). Companion to the full-stack architecture trace in memory (`atlas-canon-state`).
 
 ## The vision (grounding)
 

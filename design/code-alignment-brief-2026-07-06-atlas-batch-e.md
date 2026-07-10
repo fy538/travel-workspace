@@ -2,7 +2,7 @@
 
 Repos: `~/travel-workspace/travel-app` (FE mostly; one BE contract change in E1). Branch main. Follows A+B+C+D. Theme: the code catches up to the Atlas design-polish rulings (handoffs 18–21) that never reached implementation, plus the P2 FE-perf backlog. From the PM journey audit (docs/atlas/atlas-user-journeys-2026-07-06.md).
 
-Process: `git status` first. Branch from main. One commit per logical group. No push without approval. After each: `tsc` + FULL `TZ=UTC npx jest` / BE `pytest`+`mypy` (E1 only). Ground in the design canon `~/Downloads/atlas-memory-composition-vision 21`.
+Process: `git status` first. Branch from main. One commit per logical group. No push without approval. After each: `tsc` + FULL `TZ=UTC npx jest` / BE `pytest`+`mypy` (E1 only). Ground in the design canon `~/Downloads/atlas-memory-composition-vision 23`.
 
 ---
 

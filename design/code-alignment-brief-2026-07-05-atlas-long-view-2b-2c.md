@@ -4,7 +4,7 @@ You are working in `~/travel-workspace/travel-app` (React Native / Expo, expo-ro
 
 ## Context
 
-The Atlas design canon (bundle: `~/Downloads/atlas-memory-composition-vision 21`, Canonical Experience Board, "Long View — the unfiltered Atlas (Phase 2, 2026-07-05)" section + Phase 2 rulings in §13) established Long View: the whole-corpus browse surface. Doctrine: "the unfiltered Atlas — browse without asking… year chapters, city nodes, memory counts. Not a search. Not the featured reading. An atlas index."
+The Atlas design canon (bundle: `~/Downloads/atlas-memory-composition-vision 23`, Canonical Experience Board, "Long View — the unfiltered Atlas (Phase 2, 2026-07-05)" section + Phase 2 rulings in §13) established Long View: the whole-corpus browse surface. Doctrine: "the unfiltered Atlas — browse without asking… year chapters, city nodes, memory counts. Not a search. Not the featured reading. An atlas index."
 
 The canon rulings you are implementing (these are settled — do not re-litigate):
 1. **One time-browsing surface, not three**: Long View's Time mode absorbs Almanac's year-chapter structure; the flat Timeline list is retired as redundant.
