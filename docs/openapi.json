@@ -49784,6 +49784,10 @@
             "type": "string",
             "title": "Urgency"
           },
+          "requires_action": {
+            "type": "boolean",
+            "title": "Requires Action"
+          },
           "target_audience": {
             "type": "string",
             "title": "Target Audience"
@@ -49826,6 +49830,7 @@
           "title",
           "body",
           "urgency",
+          "requires_action",
           "target_audience",
           "is_read",
           "created_at"
