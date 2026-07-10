@@ -33,9 +33,9 @@ surfaces:
   - surface: Stay
     canon: ["Vesper Stay.html", "stay-screens.jsx", "stay-system.jsx"]
     code: ["app/accommodation/[accommodationId].tsx", "components/stay/", "app/trip-accommodations/"]
-    aligned_at: 108
+    aligned_at: 127
     status: partial
-    notes: "G1 shipped (PR #51), 5/5 tasks confirmed. VESPER PICK recommendation correctly flagged as backend-gated, not faked — see code-alignment-brief-G1-stay-state-space.md."
+    notes: "G1 shipped (PR #51), 5/5 tasks confirmed. VESPER PICK recommendation correctly flagged as backend-gated, not faked — see code-alignment-brief-G1-stay-state-space.md. Canon 127: stay-system.jsx's SBtn specimen updated to compose VBtn (buttons.jsx) — this is canon CATCHING UP to code's StayButton fold (CC1.1d, commit 4272b385), not new drift. No code action needed, confirms alignment."
 
   - surface: Costs
     canon: ["Vesper Costs.html", "costs-screens.jsx", "costs-system.jsx"]
@@ -111,9 +111,9 @@ surfaces:
       - "components/ui/CollapsingHeader.tsx"        # CompactHeaderBar
       - "components/chat/FloatingChatHeader.tsx"
       - "app/(tabs)/trips/[tripId]/story.tsx"        # MemoryStoryHeader — the one real fork
-    aligned_at: null
-    status: gap
-    notes: "New in handoff 119. J1 brief (code-alignment-brief-J1-header-consolidation.md) written but not executed. Recon found the audit's premise partly wrong: Notifications/People/Chat already on shared primitives under different names; ONLY Trip Story's MemoryStoryHeader is a genuine fork. Two adjudications open: Places header divergence, and whether canon accepts the code's 3-register Family-A split or wants one merged component."
+    aligned_at: 129
+    status: aligned
+    notes: "RESOLVED (canon 129, header-audit-app.jsx). Trip Story RULING: stays Family A — TSPageHeader is already a thin ProductiveHeader wrapper, no bespoke Story masthead ('earns identity through content, not chrome') — NO CODE CHANGE. Family A RATIFIED: one component (productive-header.jsx) with three prop-driven registers (A1 one-row / A2 two-row / A3 reader) — code already does this. Places moved OUT of Family A to Family B (see Places row). No open code work — all three rulings match shipped code. (The J1 brief's premise was mostly stale; only real forks were already unified.)"
 
   # ── Notifications/People/Places/Trip Story: touched by handoff 119,
   #    graded via the J1 header recon, not a full surface re-verify ────
@@ -133,11 +133,11 @@ surfaces:
     notes: "J1 recon (119) confirms already on shared CompactHeaderBar via AtlasNativeScaffold."
 
   - surface: Places
-    canon: ["Vesper Places.html", "places-canon-app.jsx"]
+    canon: ["Vesper Places.html", "places-canon-app.jsx", "hero-chrome.jsx"]
     code: ["app/place/[placeSlug].tsx"]
-    aligned_at: 108
-    status: gap
-    notes: "J1 recon: canon draws a slim productive-header reader chrome; code ships hero-first with FloatingGlassIconButton glass overlays and NO top bar. Real design/code disagreement, not a code bug — recommend code is right (consistent with Discover Detail's hero-first lineage) and the canon mock is the stale side, but needs a design ruling, not a silent fix."
+    aligned_at: 129
+    status: aligned
+    notes: "RESOLVED (canon 129 header ruling): CODE IS CANONICAL. Places detail ships hero-first (full-bleed photo + floating GlassButton icons, no top bar) — ruled Family B (HeroChrome), consistent with Discover detail lineage. The old slim-reader-bar mock was the STALE side and is retired. No code change — the design ruling caught canon up to what shipped. (The header divergence, the only real gap on this surface, is now closed.)"
 
   - surface: Trip Story
     canon: ["Vesper Trip Story and Memory Handoff.html", "trip-story-app-a.jsx", "trip-story-app-b.jsx", "trip-story-app-c.jsx"]
@@ -348,11 +348,11 @@ surfaces:
     status: unmapped
 
   - surface: Global Chrome
-    canon: ["Vesper Global Chrome.html", "vesper-global-chrome-app.jsx"]
+    canon: ["Vesper Global Chrome.html", "vesper-global-chrome-app.jsx", "tab-bar.jsx"]
     code: ["components/nav/FloatingTabBar.tsx", "app/(tabs)/_layout.tsx"]
-    aligned_at: 108
+    aligned_at: 127
     status: partial
-    notes: "Tab-bar badge removal (Batch E) confirmed. Center-slot geometry question from project_vision_alignment_assessment (Vesper tab occupies the ergonomic center slot) unresolved — P2, not urgent."
+    notes: "Tab-bar badge removal (Batch E) confirmed; canon 127 (D2) independently re-confirms NO badge — tab-bar.jsx's vesperBadge prop deleted entirely (was a dead-but-present default contradicting the standing ruling), reconciled to Global Chrome's radius 30/blur 12px/rgba(249,245,237,0.92). NOT yet verified: whether FloatingTabBar.tsx's own radius/blur/bg values match those exact reconciled numbers — flag for a quick token check next time this file is touched. Center-slot geometry question from project_vision_alignment_assessment unresolved — P2, not urgent."
 
   - surface: Discover (+ Detail/Reader, Map & Spatial Browse)
     canon: ["Vesper Discover.html", "Vesper Discover Detail & Reader System.html", "Vesper Discover Map & Spatial Browse.html", "discover-cover.jsx", "discover-cover-polished.jsx", "discover-cover-polished-v2.jsx", "Vesper Discover Cover - Polish.html", "Vesper Discover Cover - Polish v2.html"]
@@ -389,41 +389,42 @@ surfaces:
   - surface: Row System (family)
     canon: ["Vesper Row System.html", "row-spec.jsx", "row-system.jsx", "row-system-sections.jsx", "action-grammar-rows.jsx", "action-grammar.jsx"]
     code: ["components/ui/rows/"]
-    aligned_at: 125
-    status: partial
-    notes: "Healthiest family — RowCore + wrappers + rowTokens genuinely adopted on the golden path. Open: D1 (itinerary row has 3 competing canon dialects — needs one owner) blocks TimelineObjectRow; People roster row awaits the K2 UtilityRow ruling landing in both People canon + MemberRosterRow."
+    aligned_at: 127
+    status: gap
+    notes: "D1 RESOLVED (canon 127): SpineRow (itinerary-canon) blessed as the ONE canonical timeline row — no more competing dialect. Rich new state grammar drawn concretely in row-system.jsx TimelineRow: planned·booked·held·proposed·now·done·skipped, each with its own node fill/border, + conflict (oxblood left-border + node), + attribution line (italic serif), + status chips (HELD/PROPOSED/BOOKED, mono). Code's PlanBlockRow/TimelineObjectRow do NOT yet implement this grammar (Batch F, needs its own brief) — status gap until code catches up. K2 UtilityRow citation RESOLVED (canon 129): the blessed 'dense sans-led management/reader row' is now cited in BOTH the People canon page (MemberRosterRow → UtilityRow variant) and row-spec/row-system-sections (§06 UtilityRow: saved mgmt · member roster · collection reader) — the pages no longer contradict the ruling. Residual code-side (optional): rebase MemberRosterRow onto RowCore + fix micro-drift (avatar 36→38, name 13→14, pad 8→10)."
 
   - surface: Cards kit (family)
     canon: ["Vesper Cards.html", "Vesper Action Card Ownership.html", "vesper-cards-kit.jsx", "vesper-cards-system.jsx", "vesper-cards-families.jsx", "vesper-cards-fam.jsx"]
     code: ["components/vesper-cards/", "components/ui/CardSurface.tsx", "utils/vesperCardFamilies.ts", "components/focus-home/", "components/takes/"]
-    aligned_at: 125
-    status: partial
-    notes: "Six-mechanics core clean (CardShell/CardHead/ActionRow on CardSurface r14+letterpress). Open: D4 (Transact/Trust have no face), D5 (vesper-cards-kit.jsx specimen predates the r14 ruling); ChatCardFrame + StayCard/CostsEstimateCard/TripLogCard/FolioReceiptCard + 5 deck faces bypass CardSurface — CC2."
+    aligned_at: 127
+    status: aligned
+    notes: "D5 RESOLVED (canon 127): vesper-cards-kit.jsx CardShell now r14 + solid warm paper + real letterpress boxShadow (glass blur removed) — canon catching up to code's CardSurface, which already had this right (confirms, no code action). D4 RESOLVED: Transact + Trust are now real families (FAM entries: transact spine #2E4A63/receipt glyph, trust spine #5E7355/seal glyph) drawing a new shared ReceiptFace component — 4-part anatomy (header · vesper-line · status · source), demoed live in vesper-cards-app.jsx. Batch B SHIPPED 07-10: CC2.2 (StayCard 6444f6a9, CostsEstimateCard 183ad84a folded onto CardSurface; TripLogCard held back — zero consumers, dead code; FolioReceiptCard held back — transparent clip-container around 11 distinct receipt sub-widgets, not a unifiable shell), CC2.3 (fe3664c9 — DeckPickFace/DeckBriefFace/DeckCompareFace/DeckStructuredFace onto CardSurface, r20→r14; Deck.tsx/DeckCallFace excluded, concurrent-session WIP), CC2.5 (6f66ce27 — label/glyph/color/authored metadata de-triplicated from glyphs.tsx/KindTag.tsx/VesperCardKit.tsx into one VESPER_FAMILY_META in utils/vesperCardFamilies.ts). Batch C SHIPPED 07-10: CC2.4 (44bc3be6 — new components/vesper-cards/ReceiptFace.tsx (4-part anatomy) + CardTransact/CardTrust faces wired into FocusHome's dispatch; also fixed transact/trust FAM label/icon/color to canon's exact D4 values, replacing pre-D4 placeholders; added surface.transactInk token, reused surface.sageDeep for trust). Remaining code gap: status/source fields don't exist on ConciergeHomeCard yet (no backend wiring for transact/trust card kinds) — both faces currently render header+vesper-line only; not this batch's scope (data-gated, deferred). All Batch A-C Cards-kit code work is now DONE — status flipped to aligned."
 
   - surface: Sheets (family)
-    canon: ["Vesper Interaction Surfaces.html", "sheet-atoms.jsx", "sheet-header.jsx", "sheet-field.jsx", "section-edit-sheet.jsx", "revert-conflict-sheet.jsx", "trip-record-sheet.jsx"]
+    canon: ["Vesper Interaction Surfaces.html", "sheet-atoms.jsx", "sheet-header.jsx", "sheet-field.jsx", "field.jsx", "section-edit-sheet.jsx", "revert-conflict-sheet.jsx", "trip-record-sheet.jsx"]
     code: ["components/ui/BottomSheet.tsx", "components/ui/SheetHeader.tsx", "components/ui/SheetField.tsx", "components/ui/ActionListSheet.tsx", "components/ui/ConfirmDialog.tsx"]
-    aligned_at: 125
+    aligned_at: 127
     status: partial
-    notes: "~87% adoption (66/76 call sites). Open: D3 (VSheetField borderless-row vs Field bordered-box for the same add/edit sheets — no canonical target); ~10 stragglers (costs/people hand-rolled headers, sheet-radius token misuse, sans-vs-mono kicker) — CC4."
+    notes: "~87% adoption (66/76 call sites). D3 RESOLVED (canon 127): bordered VField (field.jsx) is canonical for add/edit sheet DATA ENTRY (clearer on-device tap target); VSheetField (sheet-field.jsx) rescoped to READ-ONLY display rows (stay/costs summaries) — both files' headers now state the scope split explicitly. NEW code work unblocked: CC4.2 (stay/costs add-edit fields onto VField) can now run. Also open: ~10 stragglers (costs/people hand-rolled headers, sheet-radius token misuse, sans-vs-mono kicker) — CC4.1."
 
   - surface: State System (family)
     canon: ["Vesper State System.html", "discover-feed-states.jsx", "reader-states-board.jsx", "trip-edge-states.jsx", "changes-states-board.jsx", "session-recovery.jsx"]
     code: ["components/ui/state/"]
-    aligned_at: 125
+    aligned_at: 129
     status: partial
-    notes: "H1 migration stuck — one kit, legacy EmptyState deleted, 57 importers. Open: D6 (canon State System page still frames ErrorState as legacy debt though the H1 ruling blessed a full-page failure tier — page + ImplMapping need updating). Low: LoadingTrips shows AI framing over a non-AI fetch — CC-later."
+    notes: "H1 migration stuck — one kit, legacy EmptyState deleted, 57 importers. D6 RESOLVED (canon 129): ErrorState/StateScreen full-page hard-failure tier now BLESSED (specimen added, ImplMapping row fixed 'Not debt') — code already ships both, so this was canon catching up, no code action. Low residual: LoadingTrips shows AI framing over a non-AI fetch — CC-later."
 
   - surface: Tokens (family)
     canon: ["Vesper Design Tokens.html", "Vesper Productive Type & Material.html", "vesper-tokens.jsx", "token-reference-app.jsx", "design-system.jsx", "gouache.jsx"]
     code: ["constants/colors.ts", "constants/typography.ts", "constants/layout.ts", "constants/motion.ts", "constants/fonts.ts", "constants/cardSurface.ts"]
-    aligned_at: 125
+    aligned_at: 127
     status: partial
-    notes: "Primitive tier 1:1 with canon (paper/ink/gold, 3 typefaces). Leaky at semantic tier: status-hue tokens have canon names/wrong values (CC4.3); vesperSemanticTokens mis-mapped+dead; ink80/muteSoft carry real text on ~215 sites; D7 sub-9pt floor. WARNING: fontSize + border-radius CI ratchets were RED on main at audit — re-green (CC0) before alignment work."
+    notes: "CC4.3 DONE (671a3d7d): status-hue trio snapped to canon ox60/sage60 — colors.danger + colors.surface.oxblood unified to #7A2E2E (were 2 different reds); olive[600] (the text-weight tone, not the fill-base olive[400]) → #2E5A3A; colors.success now references olive[600] directly. CC4.4 DONE (52da717a): 104 genuine-body-text sites migrated muteSoft→mute across 60 on-wedge files (30 correctly left as decorative, 5 flagged UNCLEAR) via a classification workflow reading actual JSX render sites, not just style-key names.
+      D7 RESOLVED (canon 129): sub-9pt floor answered — a scoped `fsStamp: 8` exception is now canonized in vesper-tokens.jsx, permitted ONLY for mono/uppercase/letter-spaced(≥1.2) stamps (folio/trip date stamps, auth/receipt micro-labels). Code should add an fsStamp equivalent + point the sanctioned sub-9 sites at it, and the fontSize ratchet's PENDING sub-9 exemptions can be reclassified as canon-sanctioned rather than debt. OPEN: colors.surface.sage is OVERLOADED (status-affirmative in some places — InlineChip fill — pure editorial decoration in others — Places/Discover Fleuron/VesperSignature tints) — needs the same file-by-file judgment CC4.4 used before its value can move; do NOT blind-snap it. vesperSemanticTokens still mis-mapped/dead (zero consumers found — confirm delete vs revive). oxbloodDeep (#7C2F22) near-identical to the snapped oxblood — ramp-collapse question, out of scope. The 5 UNCLEAR CC4.4 sites + its 30 LEAVE calls could use a second human skim."
 
   - surface: Voice registers (family)
     canon: ["vesper-voice-registers.jsx", "immersion-register.jsx", "vesper-shared.jsx", "Vesper Productive Type & Material.html"]
     code: ["components/brand/VesperSignature.tsx", "components/brand/VesperAttribution.tsx", "components/brand/VesperNote.tsx"]
-    aligned_at: 125
+    aligned_at: 129
     status: partial
-    notes: "Core right (5 registers, Whisper killed, VesperSignature 13 adopters). Law: italic serif = Vesper voice ONLY. Frays: faux-italic DM Sans on status text (chat/proposals/changes/plan), markdown em drops serif in some Vesper prose, 4 hand-rolled attribution eyebrows (TripHeroCard's is a sanctioned local exception) — CC3. Open: D8 (one glyph among ~4), D9 (dismissal-register italic), D10 (costs voice-line budget)."
+    notes: "Core right (5 registers, Whisper killed, VesperSignature 13 adopters). Law: italic serif = Vesper voice ONLY. ALL THREE gating decisions now RESOLVED (canon 129) — CC3 fully unblocked: D8 = the 2-point VesperMark spark is THE one canonical glyph (bare + and all other sparkles retired/alias to it; +-eyebrow → spark); D9 = dismissal secondary is DM Sans mute + no underline, NEVER italic (register follows intent not position; specimen regenerated with a classifier); D10 = the one VesperVoiceLine is permitted ONLY in empty/invite/fully-settled costs states — zero italic the instant a real expense is listed. Batch D SHIPPED 07-10: CC3.1 (c39101bd — 20 fontStyle:'italic' sites across 16 files classified & fixed: 16 dropped to roman as plain status/UI text, 4 converted to real serif-italic voice tokens as genuine Vesper prose), CC3.2 (d4bfd900 — markdown em fixed in MessageBubble+TakeBlocks, the 2 genuine serif-prose paths where it had dropped to a faux sans/roman slant), CC3.4 (1a67140d — VesperSignature adopted in TripMapRouteLens; TripHeroCard confirmed exempt per its own canon board; onboarding.tsx/SeamDecline.tsx Fleuron eyebrows deliberately left per the brief's own 'may want an exception, don't silently convert' caution — needs a design call, not a codemod). CC3.1/CC3.2 mop-up (91fe2d41 + fix-up e51832ba): the sites excluded from the first pass as concurrent WIP at the time — changes.tsx masthead (CC3.3: split summaryLine into roman count-chrome vs a new mastheadVoiceLine using readingItalic for the genuine 'Vesper will record edits here' empty state; voteSub's third-person attribution dropped to roman), ProposalReceipt.tsx (mechanical revert-conflict note dropped to roman), PlanBlockRow.tsx (redundant fontStyle:'italic' on top of an already-serif_italic token removed). One correction along the way: NarrationCard.tsx and GroupVesperNote.tsx compact-variant markdown `em` were initially (wrongly) converted to serif_italic in 91fe2d41, then reverted to roman in e51832ba — both bodies are DM Sans, not serif Vesper prose, so per c39101bd/d4bfd900's own reasoning a mid-paragraph font-family swap for one emphasized word isn't the serif-preservation case CC3.2 covers; same disposition as every other sans status-text site. CC3.3 now DONE. REMAINING OPEN (now unblocked by D8-D10, not yet scheduled): CC3.5 (port the one canonical glyph into components/brand + retire ~4-5 code glyph variants across ~36 files — the biggest remaining voice task), CC3.6 (convert/bless the 3 Costs populated-state voice-line sites per D10)."
