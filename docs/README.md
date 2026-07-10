@@ -10,7 +10,12 @@ trips; **Atlas** is its memory/trust subsystem, not a separate product.
 
 ## Lifecycle model
 
-Every doc has one of three lifecycle states, and **folder = state**:
+New documents follow the full admission and metadata policy in
+[`governance/README.md`](governance/README.md). The seven document types are
+`canon`, `contract`, `runbook`, `decision`, `current_status`, `working`, and
+`archive`.
+
+The existing folder model remains the migration map for grandfathered docs:
 
 | State | Meaning | Folders |
 |---|---|---|
@@ -22,6 +27,11 @@ Every doc has one of three lifecycle states, and **folder = state**:
 `SUPERSEDED` / `COMPLETE`, move it to `archive/YYYY-MM/`. `working/` should only ever
 hold what is genuinely live. Completed multi-file audit *sprints* live in `archive/`;
 recent standalone audits live in `audits/`.
+
+**Phase 1 admission rule:** every newly added Markdown file under `docs/` must
+use a template from `docs/templates/` and pass `make docs-governance-check`.
+Existing files and edits to existing files are grandfathered until the
+classification phase.
 
 ## Folder map
 

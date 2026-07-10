@@ -64,5 +64,49 @@ Canon has two marks (`vesper-shared.jsx`: `VesperMark` 4+8-point spark SVG vs `V
 
 ---
 
+## BUTTON VARIANT TAXONOMY — surfaced during CC1.1 execution (2026-07-09)
+
+Different origin from D1–D11 above: these weren't found by the canon audit — they surfaced while actually converting ~25 hand-rolled CTAs onto the shared `ui/Button` component (Bucket 1, 11 commits, `e5d39291..d4da4157` on `cc1-atom-adoption`). Every item below has a concrete file:line and, where relevant, an exact hex value — verified by reading the code, not inferred from a screenshot. **These don't block CC2–CC4** (card chrome / voice / sheets — unrelated surfaces); they block finishing the CTA-conversion work and future Button call sites.
+
+### D12 — Button variant taxonomy — **RESOLVED, recorded for the audit trail**
+**Decision (made 2026-07-09, fast-tracked against existing canon rather than a full session):** the canon (`buttons.jsx` VBtn: r22 pill, h44/h36) already disagreed with code's `ui/Button` (was r12 rounded-rect). Adopted canon: Button's `sm`/`md` sizes are now the r22 stadium pill; `auth` (r14/h52) stays the sanctioned exception. Added a `tint` variant (subtle espresso-tint fill + action text) for low-emphasis fill CTAs that previously had no home. Shipped in `a0a7c657`. No further action — this entry exists so a reader of this doc doesn't wonder why Button's shape changed mid-project.
+
+### D13 — Solid-emphasis destructive/urgency fill  ·  affects 4+ sites
+**The gap:** Button's `danger` variant is text-only (red text, transparent background) — but several real CTAs use a **solid** warning/danger fill, and one wants a specific text color Button can't currently express at all:
+- `components/trip-plan/ChangeStudioSheet.tsx:329` "I understand — see alternatives" — solid `terracotta[600]` fill, white text (booked-block risk acknowledge gate).
+- `components/trip-plan/MoveBlockSheet.tsx:488` "I understand — continue" — identical solid `terracotta[600]` treatment (same species, different sheet).
+- `components/focus-home/DeckCallFace.tsx:159` — dynamic accent fill (`oxblood` for urgency, muted when `isExpired`), disabled wiring on `isExpired||isPending`. Not solid-color-fixed like the other two — accent-driven.
+- `components/expense/ExpenseDetail.tsx` "Delete expense" — text-only `terracotta[400]` (a **different**, lighter terracotta than the above — softer, restrained, deliberately less alarming for an inline scroll action). **Button has no mechanism to override just the label text color** — only a container-level `style` prop. Left hand-rolled; could not convert even if the color were approved, without an API change.
+
+**Two separable questions:**
+1. Should Button get a **solid-fill danger/warning variant** for hard-gate acknowledge patterns (terracotta[600]/white)? Recommend yes — this is a real, recurring pattern (2 near-identical sites already, DeckCallFace is a close cousin).
+2. Should Button expose a way to **override just the label color** (a `textColor` prop), so cases like the softer inline `terracotta[400]` delete don't require forking the whole component? Recommend yes, low-risk addition — many design systems have this as an escape hatch precisely for restrained/soft destructive actions.
+
+### D14 — Per-surface button primitives  ·  affects 2 local component families, real counts below
+**The gap:** two areas of the app built their own local button system before `ui/Button` existed, and now Button and these primitives both exist with overlapping purpose:
+- **`CostsReceiptButton`** (`components/expense/CostsPrimitives.tsx:44`) — `{tone, ghost, full}` props, a receipt-shaped visual family. **3 call sites**: `CostsHeader.tsx`, `CostsEmptyState.tsx:57` ("Add first expense"), `CostsBalanceSheet.tsx`. Low count, and distinct enough visually (ticket/receipt framing) that it reads as a deliberately different species, not debt.
+- **`StayButton`/`SBtn`** (`components/stay/StayCard.tsx:31`) — `{tone, ghost}` props. **10 call sites**: `StayCard.tsx` (2), `StayCompare.tsx` (2), `StayHome.tsx` (6, incl. `:144` "+ Add somewhere to stay"). Meaningfully more reused than the receipt button.
+- **Precedent that consolidation is tractable:** `DeckBtn` in `components/focus-home/DeckStructuredFace.tsx` was exactly this kind of local wrapper and got folded into `Button` cleanly during CC1.1c (now composes `Button` internally, call sites unchanged) — worth looking at as the template if the decision is "fold in."
+- **Also gated on this decision:** `components/trip-plan/ConflictResolutionSheet.tsx` "Keep it" — a flat `#F5F4EF` (`colors.background.secondary`) fill that matches neither `tint` (6% alpha) nor `secondary` (outline). Not a named primitive like the two above, but the same underlying question: does the app want a **soft neutral-fill** button species, and if so what's its token?
+
+**The decision, now with real numbers:** StayButton's 10-site reuse favors folding into Button (one edit fixes 10 places, following the DeckBtn precedent) — add whatever props are missing (likely a `tone`-equivalent). CostsReceiptButton's 3 sites and distinct ticket-shaped visual identity favor blessing it as a sanctioned local species instead — low leverage to fold in, and it may be deliberately not a generic button. Recommend confirming both calls in the design session, not just accepting this read.
+
+### D15 — On-dark button treatment  ·  affects 3 sites, 1 file
+**The gap:** `components/trips/TripsHomeViews.tsx` has cream (`#F2EAD9`) and ink pills ("Tell Vesper a place" at line 116, "Walk me there" at lines 581/614) that sit on **dark scene overlay photography**, not the paper/cardWarm surfaces Button's `tint`/`primary` tokens assume. A blind snap to `tint` (6% alpha espresso) would be closer to invisible than the current opaque cream. Also: these pills have a trailing icon (arrow-forward); Button only supports a **leading** icon.
+
+**The decision:** does Button need an `onDark` treatment (inverted contrast for photo/dark backgrounds), or do these three stay as a documented exception? Given it's isolated to one file/pattern (the hero photo overlay), a documented local exception may be more proportionate than a new Button variant used in exactly one place — but flagging both options since the trailing-icon gap would need solving either way.
+
+### D16 (new, unnumbered in the original DESIGN-GAP list) — Dense inline row-chip species  ·  recurring pattern, not a one-off
+**The gap:** `components/trip-plan/PlanBlockRow.tsx` has two small affordances embedded in a dense, indented (`paddingLeft: 56`) itinerary row — "Change" (`changeButton`: r8, `paddingVertical: spacing.xxs`, `paddingHorizontal: spacing.sm`) and "Done" (`doneChip`, checkmark + text, no fill at all). The "Done" affordance carries an explicit in-code design comment: *"Light affordance — secondary text, no filled bg."* Button's floor is a **44px-minimum, card/sheet-footer-scaled pill** — forcing either of these onto it would make a small, glanceable inline chip suddenly dominate a dense list row.
+
+**This isn't isolated to PlanBlockRow.** A repo-wide grep for the same "small radius + xxs/xs padding" combination also turns up `NowModeStrip.tsx` and `BlockProposedBanner.tsx` — both of which the original component-consistency audit already separately flagged as "distinct species, LEAVE" (segmented/toggle-over-dark-card). Between these, there's a real, recurring pattern: **compact, low-emphasis affordances embedded inside dense list/timeline rows are a different UI species from card-footer CTAs**, and right now the app has no shared primitive for them — every instance is a bespoke local `Tap` + styles.
+
+**The decision:** worth a small `InlineChip`/`RowAction` primitive (compact, no 44px floor, optional fill) as a sibling to `Button` rather than an extension of it? This is lower urgency than D13–D15 (nothing is actively broken; these are all correctly still hand-rolled) but worth resolving before more of these accumulate — it's exactly the kind of "same thing re-typed per surface" pattern this whole audit exists to catch before it does.
+
+### Priority for the design session
+Recommend this order, roughly by leverage/urgency: **D14** (highest call-site count, unblocks the Costs and Stay surfaces broadly) → **D13** (small site count but touches trust/destructive-action correctness) → **D16** (define the primitive now, before more dense-row chips accumulate) → **D15** (isolated, lowest urgency, may resolve to "leave as documented exception" with no code change at all).
+
+---
+
 ## After you re-export
 Run `python3 scripts/canon-drift-check.py` — it will flag every surface whose canon files you touched as stale. That's expected; it's the signal telling the code batches below which surfaces to re-verify against the new handoff.

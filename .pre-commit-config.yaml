@@ -31,3 +31,10 @@ repos:
         language: system
         pass_filenames: false
         stages: [pre-push]
+
+      - id: check-doc-governance
+        name: Check new docs carry lifecycle metadata
+        entry: python3 scripts/check_doc_governance.py --staged-new
+        language: system
+        pass_filenames: false
+        always_run: true

@@ -1,506 +1,167 @@
 # Owner Action Items
 
-Single source of truth for everything that requires a human decision, account access, or calendar time. Code tasks live in GitHub issues; this file is the owner-only punch list.
+Single source of truth for everything that requires a human decision, account access, or
+calendar time between today and first TestFlight. Delegable code work is broken out in
+Section 3; founder-console work no agent can do is in Section 2.
 
-**Last updated:** 2026-05-22
+**Last verified:** 2026-07-09 (against git logs in all three repos + live probes of
+`vesper-backend.fly.dev` + the launch/ docs). Supersedes the 2026-05-22 version, most of
+which is now done or was misdiagnosed.
 
-**Status legend:** 🔴 do now · 🟠 before TestFlight · 🟡 before public launch · ✅ done
-
-**Reference docs (don't need to read unless you want the detail):**
-- `docs/Pre-Launch Deploy Surface.md` — full secret/env-var security audit
-- `docs/Deploy & Rollback Runbook.md` — ops procedures
-- `docs/TestFlight Tester Onboarding.md` — tester copy, welcome email
-- `docs/App Store Connect Copy.md` — listing text
-- `docs/Apple Review Notes.md` — review guidance
-
----
-
-## Where we are right now
-
-```
-Backend:   ✅ LIVE at https://vesper-backend.fly.dev
-           /health → ok  /ready (Postgres + Qdrant) → ok
-           /health/external (Anthropic + Tavily + Redis) → ok
-           19/19 background tasks running  •  arq worker connected
-
-Custom domain:  ✗  travelagent.app not yet pointed at Fly
-TestFlight:     ✗  no production build yet
-Clerk:          ✓  configured  (CLERK_JWKS_URL set in Fly secrets)
-```
+**Status legend:** 🔴 blocks first TestFlight · 🟠 before external cohort · 🟡 before public
+launch · ✅ done (evidence cited) · ❓ FOUNDER-MUST-CONFIRM (external console — not visible
+from the repo)
 
 ---
 
-## Phase 1 — Platform & accounts (pre-TestFlight)
+## Honest status (one paragraph)
 
-Roughly sequential. Most items take < 30 min of actual work; calendar time is dominated by Apple propagation and DNS TTLs.
+Backend is **live and healthy** at `https://vesper-backend.fly.dev` (`/health`, `/ready` →
+Postgres+Qdrant ok). Real Clerk auth is **verified active** (garbage token → 401; Step 0 of
+the dogfood runbook confirmed `SKIP_AUTH=false` + JWKS reachable on Fly, 2026-07-04). The v1
+scope is **locked and flag-gated** (`mvp-scope-and-flag-manifest-2026-06-30.md`; FE flag layer
++ BE story-share guard merged 2026-07-01). Journeys are **12/12 agent-certified but 0/12
+device-certified on a real build** — that device walk is the headline gate. Of the original
+A0–A10 owner list, **most is done**: EAS projectId bound, AASA live on Fly, Google/Foursquare
+keys set, eval baselines filled, secret hooks installed. The genuinely open critical-path items
+are few: **(1)** cut a production EAS/TestFlight build (A) + device-walk J01–J12 on it (B);
+**(2)** fix the `/privacy` 503 in prod and reconcile the mic-permission contradiction, both of
+which will fail App Review as-is (B); **(3)** confirm the founder-console prerequisites
+(App Store Connect app, APNs key, key rotation) that no agent can see (A). The **single biggest
+blocker is the production EAS build** — nothing downstream (device cert, TestFlight submit,
+Apple review) can start without it, and it needs a founder Apple/Expo login.
 
----
-
-### A0 — Install secret-prefix pre-commit hook 🔴
-
-**Time est:** 5 min  
-**Why:** The built-in `detect-secrets` hook covers AWS/Stripe/GitHub/Slack/Twilio/OpenAI. This layer adds OUR stack — `sk-ant-…`, `pk_live_…`, `AIzaSy…`, `phc_…`, `tvly-…`, `pk-lf-…`, `sk-lf-…`, `fsq3…`, and JWTs. Install once per repo; runs automatically on every `git commit`.
-
-```bash
-# From workspace root (requires: pip install pre-commit)
-cd "Travel Agent" && pre-commit install && cd ..
-cd "Travel App"   && pre-commit install && cd ..
-pre-commit install   # workspace repo
-```
-
-See `Travel Agent/docs/operations/Secret Rotation Runbook.md` for what to do when it fires.
-
----
-
-### A1 — Apple Team ID into local `.env` ✅ (Fly) / 🔴 (local)
-
-**Time est:** 2 min  
-**Done in Fly secrets:** `INVITE_APPLE_TEAM_ID=QNZ5K23A74`  
-**Still needed:** paste the same value into `Travel Agent/.env` so local dev serves a valid AASA.
-
-```bash
-# Travel Agent/.env
-INVITE_APPLE_TEAM_ID=QNZ5K23A74
-```
-
-**Verify (local):**
-```bash
-curl -s http://localhost:8000/.well-known/apple-app-site-association | grep -q QNZ5K23A74 && echo ok
-```
-**Verify (prod, once custom domain is live):**
-```bash
-curl -s https://travelagent.app/.well-known/apple-app-site-association | grep -q QNZ5K23A74 && echo ok
-```
-**Notes:** Apple's CDN re-fetches AASA within ~24h after domain goes live. Force a refresh at `https://app-site-association.cdn-apple.com/a/v1/travelagent.app`.
+**Scope correction that shrinks this list:** the app's `associatedDomains` is
+`applinks:vesper-backend.fly.dev` and the live, valid AASA is served **from the Fly host**
+(`QNZ5K23A74.com.fyan.vesper`, components `/invite/*` + `/stories/*`). Universal links work on
+the Fly domain **today**. The `travelagent.app` custom domain (old A2) is therefore **NOT on
+the TestFlight critical path** — it's a nice-to-have for the marketing lander + email sender,
+deferred to Section 5.
 
 ---
 
-### A2 — Custom domain: point `travelagent.app` at Fly 🔴
+## Section 1 — What actually blocks first TestFlight (ordered)
 
-**Time est:** 15 min + DNS propagation (~1–24h)  
-**Depends on:** own the domain, Fly app is live (✅ done)
+The critical path only. `(A)` = founder-only ops · `(B)` = delegable engineering.
 
-```bash
-# 1. Add cert to the Fly app
-fly certs add travelagent.app --app vesper-backend
+| # | Item | A/B | Status |
+|---|------|-----|--------|
+| 1 | **Fix `/privacy` 503 in prod** — route exists but returns 503 on Fly; `docs/legal/privacy.md` isn't in the deployed image (or image predates the 06-28 commit). Apple requires a working privacy-policy URL; the App Store copy points at it. | **B** | 🔴 open — small (ensure file ships in Docker context / redeploy; then verify `curl vesper-backend.fly.dev/privacy` → 200) |
+| 2 | **Reconcile mic-permission posture** — `app.json` ships a `microphonePermission` string, but Apple Review Notes + App Privacy Disclosures both say "no microphone requested / no audio recorded." A reviewer will see the mismatch. Voice is flag-OFF for v1, so the clean fix is to **remove the mic string** (and any mic entitlement) from the v1 build. | **B** | 🔴 open — small (decision is trivial: voice is OUT in v1, so drop the string) |
+| 3 | **Confirm App Store Connect app exists** (bundle `com.fyan.vesper`, iOS 17+) + set `INVITE_IOS_APP_STORE_ID` / `INVITE_APP_STORE_URL` in Fly secrets. Old A5. | **A** | ❓ FOUNDER-MUST-CONFIRM (external console) |
+| 4 | **Confirm APNs auth key uploaded to Expo** (old A6) — required for push on a physical device. | **A** | ❓ FOUNDER-MUST-CONFIRM (external console) |
+| 5 | **Rotate Anthropic + Tavily keys** before any build leaves the machine, set fresh keys in Fly secrets, revoke old (old B1 / deploy-surface #3). | **A** | ❓ FOUNDER-MUST-CONFIRM (external console) |
+| 6 | **Add Clerk review-only test phone** `+15555555555` / OTP `424242` (per Apple Review Notes) so the reviewer doesn't hit a real OTP send. | **A** | ❓ FOUNDER-MUST-CONFIRM (Clerk dashboard) |
+| 7 | **Cut production iOS build** — `eas build --platform ios --profile production`. Needs founder Apple/Expo auth. Note: the `production` EAS profile currently has **no Clerk key** (dogfood profile uses `pk_test` on the `picked-firefly-95` dev tenant) — either wire a `pk_live` prod tenant or point the first build at the working dogfood config. | **A** | 🔴 open |
+| 8 | **Device-walk J01–J12 on that build** — the `0/12 full-cert` gap. Runbook exists (`docs/working/journey-live-full-cert-04-05-10.md`); J04/J05/J10 need two real Clerk accounts on two devices. This is also the dogfood two-device pre-flight walk. | **B** (founder-assisted on-device taps) | 🔴 open — medium |
+| 9 | **Submit to TestFlight** from App Store Connect once the build passes the device walk. | **A** | 🔴 open |
 
-# 2. Get the IP to create the A record
-fly ips list --app vesper-backend
-
-# 3. In your DNS registrar: add A record  travelagent.app → <Fly IPv4>
-#    (and AAAA for the IPv6 if you want dual-stack)
-
-# 4. Update CORS_ORIGINS in Fly to accept the new domain
-fly secrets set CORS_ORIGINS="https://travelagent.app,https://vesper-backend.fly.dev" --app vesper-backend
-```
-
-**Verify:**
-```bash
-curl -fsS https://travelagent.app/health   # once DNS propagates
-```
-**Notes:** Fly auto-provisions the Let's Encrypt cert once the DNS record is live. The cert may take a few minutes after propagation.
+**Not blockers (verified done or off-path):** custom domain / DNS, SendGrid, Twilio, Google
+Play — all deferred (Section 5). Eval baselines — done (Section 4). Secret hooks — installed
+(Section 4).
 
 ---
 
-### A3 — Clerk application 🔴
+## Section 2 — Founder-only ops checklist (no agent can do these)
 
-**Time est:** 30 min (incl. phone OTP testing)  
-**Depends on:** none (run in parallel with A2)
-
-- dashboard.clerk.com → Create application → enable **Phone Number** sign-in
-- Copy credentials into Fly secrets (CLERK_JWKS_URL and CLERK_ISSUER are already set; you may need to update them if creating a new Clerk application):
-  ```bash
-  fly secrets set \
-    CLERK_JWKS_URL=https://<your-instance>.clerk.accounts.dev/.well-known/jwks.json \
-    CLERK_ISSUER=https://<your-instance>.clerk.accounts.dev \
-    --app vesper-backend
-  ```
-- In `Travel App/.env` (local dev):
-  ```
-  EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_live_...
-  EXPO_PUBLIC_SKIP_AUTH=false
-  ```
-
-**Verify:**
-```bash
-# With valid JWT → 200
-curl -fsS -H "Authorization: Bearer $TEST_JWT" https://travelagent.app/api/me
-
-# Without JWT → 401
-curl -fsS https://travelagent.app/api/me
-```
-**Notes:** Test with phone+OTP flow (production path) and the Clerk dashboard's "Impersonate user" feature (dev iteration).
+| Item | Status | Evidence / note |
+|------|--------|-----------------|
+| Custom domain `travelagent.app` → Fly | ❓ OPEN but **OFF critical path** | Live probe: apex serves a marketing lander (`/lander` redirect), not the backend; AASA/health there fail. App uses Fly host directly — see scope correction above. Deferred to Section 5. |
+| App Store Connect app + listing | ❓ FOUNDER-MUST-CONFIRM | Copy ready in `docs/launch/App Store Connect Copy.md`. **Bundle must be `com.fyan.vesper`** (matches app.json + live AASA) — the launch docs' `com.travelagent.app` is stale; use the app.json value. |
+| APNs auth key (.p8) → Expo | ❓ FOUNDER-MUST-CONFIRM | `EXPO_ACCESS_TOKEN` is set in Fly; `EXPO_PUSH_ENABLED` default is `false` (registry.yaml) — confirm the Fly secret is `true` for real push. |
+| Clerk prod config | ⚠️ PARTLY DONE / decision needed | Clerk verified live on Fly (401 on garbage token, Step 0 2026-07-04). **But that's the `picked-firefly-95` dev tenant (`pk_test`).** Fine for the dogfood cohort; a real public launch needs a `pk_live` prod tenant wired into the `production` EAS profile. Also add the review test-phone (Section 1 #6). |
+| Rotate live API keys (Anthropic, Tavily) | ❓ FOUNDER-MUST-CONFIRM | Deploy-surface #3. Do before any build ships. |
+| Final privacy policy published + reachable | 🔴 OPEN | `docs/legal/privacy.md` exists in repo (06-28) but `/privacy` 503s in prod (Section 1 #1 — that's the delegable fix; confirming it's live after redeploy is the founder's tick). |
+| EAS / TestFlight build submission | 🔴 OPEN | Section 1 #7/#9. Requires Apple Developer + Expo login. |
+| Cohort recruitment (first 10 testers) | 🟠 OPEN | Plan is written: `docs/launch/TestFlight Tester Onboarding.md` §C/§D + `dogfood-loop-validation-2026-07-04.md` Part 2. Do NOT self-seed groups (that contaminates the re-invite signal — the one bet being measured). |
+| Anthropic monthly spend cap set in console | ❓ FOUNDER-MUST-CONFIRM | Pre-flight sanity checklist item. |
 
 ---
 
-### A4 — `eas init` and EAS env vars ✅ (projectId bound) / 🟠 (EAS Clerk secrets)
+## Section 3 — Delegable engineering (an agent / you-with-an-agent can close)
 
-> **DONE 2026-06-26:** `eas init` complete — real `extra.eas.projectId` (`1cd69dac-…`),
-> `updates.url`, and `owner: "fyan"` are committed in `travel-app/app.json`. Residual: confirm
-> EAS-side Clerk env secrets for cloud builds.
-
-**Time est:** 10 min  
-**Depends on:** Expo account, Clerk publishable key (from A3)
-
-`eas.json` is already committed with correct profiles — **do NOT run `eas build:configure`** (it would overwrite the committed profiles). Only run `eas init` to bind the real projectId:
-
-```bash
-cd "Travel App"
-eas init   # writes real projectId into app.json — commit this change
-
-# Set Clerk key as an EAS secret (not committed to eas.json)
-eas env:create --environment production --name EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY \
-    --value pk_live_... --visibility sensitive
-eas env:create --environment preview --name EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY \
-    --value pk_live_... --visibility sensitive
-```
-
-**Verify:**
-```bash
-jq -r '.expo.extra.eas.projectId' "Travel App/app.json"
-# must NOT be: 00000000-0000-0000-0000-000000000000
-```
+| Item | Size | Note |
+|------|------|------|
+| **Fix `/privacy` 503** (Section 1 #1) | S | Ensure `docs/legal/privacy.md` is in the deployed image; redeploy; verify 200. Likely a Dockerfile copy / build-context gap. |
+| **Strip mic-permission string** from v1 `app.json` (Section 1 #2) | S | Voice is flag-OFF for v1; the string invites an App Review question. Confirm no residual mic entitlement in the config plugin. |
+| **Device-cert automation / runbook execution** (Section 1 #8) | M | The taps are on-device (founder), but the agent preps the seed data, the two-account setup, the funnel-event assertions, and triages any break (deeplink → AASA; 401 → JWKS; missing `invite.consumed` → event emission). |
+| **Reachability audit on a release build** | M | v1 DoD open item: walk every entry point on the actual EAS build, confirm no OUT surface (voice/booking-txn/postcards/ambient/story-share) is reachable and no IN surface lost a load-bearing dep (Discover→trip-create, Atlas→Story, Search→profiles). Needs the build from Section 1 #7. |
+| **App Store asset finalization** | S–M | Copy is written; remaining is capturing 5 real-device screenshots (list in App Store Connect Copy §Screenshots) — needs the build. Text fields are paste-ready. |
+| **Deploy-surface `.env.example` hygiene** (items #1/#2/#4/#5/#6/#10) | S | ~30–45 min of doc/config: R2 vars, geofence toggle, mark `REDIS_URL` required, boot-fail on `SKIP_AUTH=false`+empty JWKS, "Production toggles" section, guard-mode table. Non-blocking but cheap. |
+| **Commit the dirty working trees** | S | `travel-agent` has ~9 modified BE files uncommitted; `travel-app` is on branch `cc1-atom-adoption` (not main). Branch/commit/merge before cutting the build so the build is reproducible. |
 
 ---
 
-### A5 — App Store Connect listing 🟠
+## Section 4 — Verified-done since 2026-05-22 (bank these)
 
-**Time est:** 30 min  
-**Depends on:** Apple Developer account
+Cross-checked against git logs + live probes. The founder is further along than the old doc reads.
 
-appstoreconnect.apple.com → Apps → New App
-- Bundle ID: `com.travelagent.app`
-- Minimum iOS: 17.0
-- App name / category / description: see `docs/App Store Connect Copy.md`
-
-After creating:
-```bash
-# Travel Agent/.env  +  Fly secrets
-INVITE_IOS_APP_STORE_ID=1234567890
-INVITE_APP_STORE_URL=https://apps.apple.com/app/id1234567890
-```
-
-```bash
-fly secrets set \
-  INVITE_IOS_APP_STORE_ID=1234567890 \
-  INVITE_APP_STORE_URL=https://apps.apple.com/app/id1234567890 \
-  --app vesper-backend
-```
-
-**Verify:** `open https://apps.apple.com/app/id<your-id>` loads (shows "not yet available" until published).
-
----
-
-### A6 — APNs key for production push 🟠
-
-**Time est:** 15 min  
-**Depends on:** Apple Developer, A5
-
-developer.apple.com → Certificates, Identifiers & Profiles → Keys → New Key → APNs  
-Download the `.p8` file → upload via expo.dev dashboard.
-
-**Verify:** trigger push from backend to a physical device running the TestFlight build → notification arrives within 10s. (Simulator does NOT prove this.)
+- ✅ **EAS init / projectId bound** — `app.json` has real `projectId 1cd69dac-…`, `owner: fyan`,
+  `updates.url` set. (old A4)
+- ✅ **AASA live + valid on the Fly host** — `GET vesper-backend.fly.dev/.well-known/apple-app-site-association`
+  → `QNZ5K23A74.com.fyan.vesper`, `/invite/*` + `/stories/*`. Team ID is real (not `REPLACE_ME`).
+  (old A1/A2 — the load-bearing half)
+- ✅ **Clerk auth active in prod** — garbage token → 401; `SKIP_AUTH=false` on Fly; JWKS reachable
+  (dogfood runbook Step 0, 2026-07-04). (old A3, on the dev tenant)
+- ✅ **Google Places + Foursquare keys** — set in Fly (old A9/A10; code reads unprefixed
+  `FOURSQUARE_API_KEY`).
+- ✅ **Eval baselines complete** — all 11 previously-missing scenarios are committed under
+  `tools/eval/baselines/` (the `20260522_16…` batch: cold_start, voice_quick_dinner_pick,
+  solo_emergency_lost_phone, accessibility_wheelchair_dumbo, bushwick, dev_budget_direct_conflict,
+  group_disagreement, time_critical, large_group_reunion, handoff_multi_day, family_generational).
+  (old B4 — DONE)
+- ✅ **Secret-prefix pre-commit hook installed** in all three repos (`.git/hooks/pre-commit`
+  present; `.pre-commit-config.yaml` references the check). (old A0 — DONE)
+- ✅ **v1 flag layer live + typecheck green** — FE `featureFlags.ts` gates voice/booking-txn/
+  postcards/ambient/story-share; merged to main (Phase A `6a5177d4`, Phase B `a2489737`,
+  Phase 7 `1251fc0d`). BE story-share + venue-disruption guards added.
+- ✅ **Expenses `rate=1.0` cross-currency bug fixed** (`auto_log.py:124`) — unblocks Expenses IN.
+- ✅ **Booking record stub confirmed** to work with the transaction engine flagged off
+  (pre-existing gate; no new code).
+- ✅ **Account deletion route wired** (`backend/api/routes/users/me.py:546 delete_account`) —
+  satisfies Apple 5.1.1(v).
+- ✅ **Multi-vendor LLM portability + planning cost/latency + AI-suite P0/P1 hardening** shipped
+  (large body of `travel-agent` commits 05-22→07-08) — not launch-blocking but banks reliability.
 
 ---
 
-### A7 — Production iOS build via EAS 🟠
+## Section 5 — Explicitly deferred / post-cohort (NOT blocking)
 
-**Time est:** ~30 min build + queue  
-**Depends on:** A1 (local .env), A3, A4, A5
-
-```bash
-cd "Travel App"
-eas build --platform ios --profile production
-# When finished: submit to TestFlight from App Store Connect
-```
-
-**Verify:** TestFlight shows build in "Internal Testing"; install on a real device; tap an invite link from outside the app → deep-link opens the app at the correct screen.
-
----
-
-### A8 — Expo push token ✅
-
-**Done.** `EXPO_ACCESS_TOKEN` is set in Fly secrets. `EXPO_PUSH_ENABLED` is not explicitly set — verify:
-
-```bash
-fly secrets list --app vesper-backend | grep EXPO
-# If EXPO_PUSH_ENABLED is missing:
-fly secrets set EXPO_PUSH_ENABLED=true --app vesper-backend
-```
-
----
-
-### A9 — Google Places API key ✅
-
-**Done.** `GOOGLE_PLACES_API_KEY` is set in Fly secrets.
-
-**Verify (live):**
-```bash
-fly ssh console --app vesper-backend --command \
-  "curl -fsS 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=coffee+brooklyn&key=$GOOGLE_PLACES_API_KEY' | python3 -c \"import sys,json; print(json.load(sys.stdin)['status'])\""
-# Should print: OK
-```
+- **Custom domain `travelagent.app` → Fly** (old A2) — off critical path (universal links use the
+  Fly host). Needed only to (a) serve the marketing lander at a branded URL and (b) verify the
+  SendGrid sender domain. Do before public launch, not before TestFlight.
+- **SendGrid (email invites)** (old C1) — depends on the custom domain; in-app iMessage share
+  covers the cohort. 🟡
+- **Twilio (SMS invites)** (old C2) — 🟡, independent, defer.
+- **Google Play Console / Android** (old C3) — 🟡, TestFlight is iOS-only.
+- **Ops crons** (old B5) — pre-warm/purge places cache, quality sampling/drift — run manually at
+  first; wire after there's real traffic. 🟡
+- **`DISABLE_LLM_BACKGROUND_LOOPS=true` for first 48h**, then flip — operational tuning, not a
+  gate. Confirm at build time.
+- **Booking transaction engine, live voice, postcards, ambient, story-sharing** — deliberately
+  flag-OFF for v1 per the 2026-06-30 decision record; each flips only after its own certify pass.
+- **`VENUE_DISRUPTION_PROPOSALS_ENABLED`** — stays dark for cohort 1 by decision (2026-07-06);
+  evaluate against real cohort-1 data, then decide for cohort 2. Not a v1 gap.
+- **Live-transport JWT harness** (`dogfood-journey-live-api` over HTTP) — CI-automation
+  nice-to-have (~3–5h internal glue); does NOT gate device-cert and real humans never hit it.
+- **Prod Clerk tenant (`pk_live`)** — the dogfood cohort runs fine on the dev tenant; a `pk_live`
+  tenant + `production` EAS profile wiring is a public-launch item.
+- **Monetization paywall / place-relationship scoping / Fly auto-stop policy** (old D1–D3) —
+  decisions to make *after* dogfood data exists, not tasks.
 
 ---
 
-### A10 — Foursquare API key ✅ (local) / 🟠 (verify Fly secret)
-
-> **DONE 2026-06-26 (local):** real `FOURSQUARE_API_KEY` is set in `travel-agent/.env`. Note the
-> var name: code reads the **unprefixed** `FOURSQUARE_API_KEY` (`backend/core/settings_base.py:50`,
-> `backend/places/settings.py:23` — "no PLACES_FOURSQUARE_API_KEY needed"), not `PLACES_FOURSQUARE_API_KEY`.
-> Residual: confirm the Fly secret is set (can't verify from repo).
-
-**Time est:** 5 min  
-**Why:** Primary live-ops venue provider (cheaper than Google). Powers cache fan-out. Default daily limit 500 — free tier covers dogfood comfortably.
-
-1. foursquare.com/developers → Create API key
-2. Set in Fly secrets:
-```bash
-fly secrets set FOURSQUARE_API_KEY=fsq3... --app vesper-backend  # unprefixed shared key — code reads this, not PLACES_*
-```
-
----
-
-## Phase 2 — Pre-external-dogfood hardening
-
-Items to clear before handing out invite links to people outside your immediate circle.
-
----
-
-### B1 — Rotate live API keys before sharing any TestFlight build 🔴
-
-**Time est:** 15 min  
-**Why:** your `.env` has working keys from dev. Any build that ships with `ANTHROPIC_API_KEY` embedded (or any log/crash report that leaks it) exposes production credits. Rotate first, then share.
-
-- Anthropic: console.anthropic.com → API Keys → Create new → copy into Fly secrets → revoke old one
-- Tavily: app.tavily.com → API → Regenerate
-
-```bash
-fly secrets set ANTHROPIC_API_KEY=sk-ant-... --app vesper-backend
-# (Tavily similarly)
-```
-
----
-
-### B2 — Privacy policy finalized 🔴
-
-**Status:** draft/placeholder is in the app.  
-**Time est:** 1–2 h (write) + legal review if you want it
-
-The current privacy policy text needs to match the actual build (voice recording, photo analysis, location, group data sharing). See `docs/App Privacy Disclosures.md` for the inventory of what the app collects. Apple requires a valid privacy policy URL before TestFlight submission.
-
-**Verify:** navigate to the privacy policy URL in the app → content accurately describes actual data practices.
-
----
-
-### B3 — Microphone/audio privacy disclosure aligned 🟠
-
-**Time est:** 30 min (decision) + 1h (code)  
-**What:** the app has two conflicting postures — "voice companion for narration" vs "voice input for concierge". The App Store privacy nutrition label and NSMicrophoneUsageDescription string need to pick one posture and be consistent.  
-**Decision:** which use case is primary in the initial TestFlight build?  
-**Then:** Claude Code can update the strings and Info.plist entries to match.
-
----
-
-### B4 — Eval baselines (11 missing) 🟠
-
-**Time est:** ~70 min sequential / ~25 min parallel | ~$0.33 total API cost  
-**What:** 11 of 33 concierge eval scenarios have no committed baseline. CI's `check-baseline-coverage` gate fails, and the pre-push hook tier can't be installed until they're filled.  
-**How:** use the prompt in [separate thread — see session 2026-05-22].
-
-Missing scenarios:
-```
-accessibility_wheelchair_dumbo    bushwick_tired_group_dinner
-cold_start_first_turn             dev_budget_direct_conflict
-family_generational_balance       group_disagreement_afternoon
-handoff_multi_day_weekend         large_group_reunion_dinner
-solo_emergency_lost_phone         time_critical_dinner_before_show
-voice_quick_dinner_pick
-```
-
-After all 11 are promoted: `PYTHONPATH=. python -m tools.eval.cli replay --all --strict --results-dir tools/eval/baselines` should show 0 regressions across all 33.
-
----
-
-### B5 — Wire ops crons 🟡
-
-**Time est:** 30 min  
-**Depends on:** backend stable + at least one active trip
-
-Two scripts need to be scheduled (or run manually at first):
-
-```bash
-# Pre-warm places cache — daily at 04:00 UTC
-PYTHONPATH=. python scripts/refresh_upcoming_venues.py
-
-# Purge stale places cache entries — weekly
-PYTHONPATH=. python scripts/purge_places_cache.py
-
-# Quality sampling — weekly (after you have real traffic)
-PYTHONPATH=. python scripts/run_quality_samples.py
-
-# Quality drift check — daily (after quality samples exist)
-PYTHONPATH=. python scripts/check_quality_drift.py
-```
-
-For now: add these to a `crontab` on any machine that stays on, or schedule via `fly console` once you have a dedicated ops machine. Cron lines are documented in `Travel Agent/CLAUDE.md` → "Quality sampling cron" and "Places cache cron".
-
----
-
-## Phase 3 — Invite delivery & distribution
-
-Defer until you're actively sending external invites.
-
----
-
-### C1 — SendGrid (email invites) 🟡
-
-**Time est:** 30 min (incl. DNS TXT verification)  
-**Depends on:** custom domain (A2)
-
-sendgrid.com → API Keys → Create (Mail Send permission) → verify `invites@travelagent.app` as sender via DNS TXT record.
-
-```bash
-fly secrets set \
-  SENDGRID_API_KEY=SG.... \
-  SENDGRID_FROM_EMAIL=invites@travelagent.app \
-  SENDGRID_FROM_NAME=Vesper \
-  --app vesper-backend
-```
-
-**Verify:** invite flow sends email to a real address.
-
----
-
-### C2 — Twilio (SMS invites) 🟡
-
-**Time est:** 20 min
-
-twilio.com → Console → Phone Numbers → Buy a number.
-
-```bash
-fly secrets set \
-  TWILIO_ACCOUNT_SID=AC... \
-  TWILIO_AUTH_TOKEN=... \
-  TWILIO_FROM_NUMBER=+15555550123 \
-  --app vesper-backend
-```
-
-**Verify:** trigger SMS invite to your own phone → message arrives.
-
----
-
-### C3 — Google Play Console (Android) 🟡
-
-**Time est:** 1–2 h  
-**Depends on:** none (can start anytime)
-
-play.google.com/console → Create app → Package: `com.travelagent.app` → grab SHA-256 cert fingerprint for Digital Asset Links.
-
-```bash
-fly secrets set \
-  INVITE_PLAY_STORE_URL=https://play.google.com/store/apps/details?id=com.travelagent.app \
-  --app vesper-backend
-```
-
-**Verify:** `assetlinks.json` at `https://travelagent.app/.well-known/assetlinks.json` includes the SHA-256.
-
----
-
-## Phase 4 — Post-dogfood strategy (discuss, don't schedule yet)
-
-These are decisions, not tasks. File them as "decide when dogfood data exists."
-
----
-
-### D1 — Monetization paywall design
-
-**Current thinking (2026-05-20):** paywall the *depth* (live concierge, planning, group coordination, deeper memory) — NOT the shareable artifact, which would strangle the distribution loop. Low-frequency travel reframe: the moat is the personal asset (trip history, taste graph) users won't abandon, not daily engagement.
-
-**Decision gate:** after first 10 paying users — what are they actually paying for?
-
----
-
-### D2 — Place-relationship vision scoping
-
-**Current thinking (2026-05-20):** Vesper is ultimately about a person's relationship with *places in general*, not just travel. "I live in Brooklyn but spending a day in Williamsburg" — same concierge applies. This resolves the low-frequency tension (home city = authentically high-frequency use).
-
-**Decision gate:** after dogfood data shows how often users engage between trips.
-
----
-
-### D3 — Auto-stop policy for Fly machines
-
-**Current setting:** `auto_stop_machines = false` (machines stay warm). Fine for dogfood (cold starts are 8s+, painful for first morning message). Revisit once you have enough traffic that the cost of always-on exceeds the UX penalty of cold starts.
-
-**Fly config:** `Travel Agent/fly.toml` → `[http_service]` → flip `auto_stop_machines = true` when ready.
-
----
-
-## Pre-TestFlight sanity checklist
-
-Run this before `eas build --profile production --platform ios`. Every box must be checked or the build will silently degrade.
-
-- [ ] `ANTHROPIC_API_KEY` is a production key with a monthly spend cap set in the Anthropic console.
-- [ ] `CLERK_JWKS_URL` + `CLERK_ISSUER` point at a real Clerk tenant (not the placeholder).
-- [ ] `EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY` is the matching `pk_live_…`.
-- [ ] `SKIP_AUTH=false` in backend `.env` **and** `EXPO_PUBLIC_SKIP_AUTH=false` in `Travel App/.env`.
-- [ ] `EXPO_PUBLIC_API_URL` is HTTPS pointing at the managed backend (not localhost).
-- [ ] `INVITE_APPLE_TEAM_ID` is your real Team ID (not `REPLACE_ME`). ✅ set in Fly as `QNZ5K23A74`.
-- [ ] `eas.projectId` in `app.json` is not the all-zeros placeholder.
-- [ ] AASA file at `https://travelagent.app/.well-known/apple-app-site-association` returns valid JSON.
-- [ ] Managed Postgres / Qdrant / Redis are reachable from the backend host. ✅ (Fly.io)
-- [ ] Google Places + Foursquare API keys set, with a GCP daily budget alert configured.
-- [ ] `ENVIRONMENT=production` is set on the backend.
-- [ ] `DISABLE_LLM_BACKGROUND_LOOPS=true` for the first 48h of dogfood; flip to `false` after foreground turn budget calibrates.
-
----
-
-## Status board (one-glance)
-
-| # | Item | Status | Est. time |
-|---|------|--------|-----------|
-| A0 | Install secret-prefix pre-commit hook | 🔴 | 5 min |
-| A1 | Apple Team ID → local `.env` | 🔴 | 2 min |
-| A2 | Custom domain `travelagent.app` → Fly | 🔴 | 15 min + DNS wait |
-| A3 | Clerk application | 🔴 | 30 min |
-| A4 | `eas init` + EAS env vars | ✅ projectId bound | — |
-| A5 | App Store Connect listing | 🟠 | 30 min |
-| A6 | APNs key | 🟠 | 15 min |
-| A7 | Production iOS EAS build + TestFlight | 🟠 | 30 min + queue |
-| A8 | Expo push token | ✅ | — |
-| A9 | Google Places API key | ✅ | — |
-| A10 | Foursquare API key | ✅ local / verify Fly | — |
-| B1 | Rotate API keys before first external share | 🔴 | 15 min |
-| B2 | Privacy policy finalized | 🔴 | 1–2 h |
-| B3 | Microphone posture decision + strings | 🟠 | 30 min decision |
-| B4 | Eval baselines (11 missing) | 🟠 | 70 min / $0.33 |
-| B5 | Ops crons wired | 🟡 | 30 min |
-| C1 | SendGrid (email invites) | 🟡 | 30 min |
-| C2 | Twilio (SMS invites) | 🟡 | 20 min |
-| C3 | Google Play Console | 🟡 | 1–2 h |
-
-**Estimated calendar time to "first external user on TestFlight":** 1–2 focused days. Most items are < 30 min of actual work; the blockers are Apple propagation and DNS TTLs.
-
----
-
-## Dependency graph
-
-```
-Phase 1 critical path:
-
-  Clerk (A3) ──────────────────────────────────┐
-  Apple Dev → Team ID (A1, local .env) ────────┤
-             → App Store listing (A5) ──────────┤──→ EAS build (A7) → TestFlight
-             → APNs key (A6) ───────────────────┘
-  EAS init (A4) ──────────────────────────────→ build (A7)
-  Domain (A2) → travelagent.app live ──────────→ AASA + SSL
-
-Before first external share:
-  B1 (key rotation)  B2 (privacy policy)  B3 (mic disclosure)
-
-Invite delivery (defer):
-  C1 SendGrid ← needs domain (A2)
-  C2 Twilio   ← independent
-  C3 Play Console ← independent
-```
+## Pre-build sanity checklist (run before `eas build --profile production`)
+
+- [ ] `ANTHROPIC_API_KEY` is a rotated production key with a monthly spend cap set. *(§2)*
+- [ ] `CLERK_JWKS_URL` + `CLERK_ISSUER` point at the intended tenant; `EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY`
+      matches. *(dev tenant OK for cohort; §2)*
+- [ ] `SKIP_AUTH=false` (BE) **and** `EXPO_PUBLIC_SKIP_AUTH=false` (app). ✅ verified on Fly.
+- [ ] `EXPO_PUBLIC_API_URL` is HTTPS → `vesper-backend.fly.dev` (not localhost).
+- [ ] AASA returns valid JSON on the Fly host. ✅ verified.
+- [ ] `curl vesper-backend.fly.dev/privacy` → **200** (currently 503 — §1 #1).
+- [ ] `app.json` mic string removed for v1 (voice OUT). *(§1 #2)*
+- [ ] Bundle ID `com.fyan.vesper` matches App Store Connect. *(§2)*
+- [ ] `EXPO_PUSH_ENABLED=true` in Fly + APNs key uploaded. *(§2)*
+- [ ] Working trees committed / merged to main so the build is reproducible. *(§3)*
+- [ ] `DISABLE_LLM_BACKGROUND_LOOPS=true` for the first 48h.

@@ -34,6 +34,8 @@ jobs:
 
       - name: Check out workspace
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
 
       - name: Resolve child repo refs
         id: child_refs
@@ -145,6 +147,20 @@ jobs:
         # first, but a skipped hook or an un-configured clone must not let a
         # stale dark flag go unnoticed indefinitely.
         run: make flag-registry-check
+
+      - name: New-document governance guard
+        # Phase 1 is intentionally non-retroactive: only Markdown files added
+        # by this workspace change need lifecycle metadata. Existing docs and
+        # edits to existing docs remain grandfathered until classification.
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PUSH_BASE_SHA: ${{ github.event.before }}
+        run: |
+          BASE_SHA="${PR_BASE_SHA:-$PUSH_BASE_SHA}"
+          if [ -z "$BASE_SHA" ] || [ "$BASE_SHA" = "0000000000000000000000000000000000000000" ]; then
+            BASE_SHA="HEAD^"
+          fi
+          python3 scripts/check_doc_governance.py --new-since "$BASE_SHA"
 
       - name: API coverage check
         # Verifies every URL the frontend calls in http.ts exists in

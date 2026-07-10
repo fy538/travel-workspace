@@ -367,3 +367,54 @@ surfaces:
     aligned_at: null
     status: deferred
     notes: "~34 screens / ~22k LOC, own canon campaign outside this mirror. Atlas-freeze decision from project_vision_alignment_assessment is STILL OPEN — re-raise before spending alignment effort on this cluster."
+
+  # ── Shared-element FAMILIES (cross-cutting primitives, not screens) ──────
+  #    Added 2026-07-09 from the component-consistency audit. These rows exist
+  #    so canon-drift-check.py flags the shared primitives stale when a handoff
+  #    touches their canon files — the gap that made every prior component audit
+  #    re-derive these from scratch. Evidence + full findings:
+  #    design/component-consistency-audit-2026-07-09.md. Open DESIGN-GAPs (D#)
+  #    are adjudicated in adjudication-brief-2026-07-09-component-consistency.md;
+  #    code work in code-alignment-brief-CC1..CC4.
+
+  - surface: Row System (family)
+    canon: ["Vesper Row System.html", "row-spec.jsx", "row-system.jsx", "row-system-sections.jsx", "action-grammar-rows.jsx", "action-grammar.jsx"]
+    code: ["components/ui/rows/"]
+    aligned_at: 125
+    status: partial
+    notes: "Healthiest family — RowCore + wrappers + rowTokens genuinely adopted on the golden path. Open: D1 (itinerary row has 3 competing canon dialects — needs one owner) blocks TimelineObjectRow; People roster row awaits the K2 UtilityRow ruling landing in both People canon + MemberRosterRow."
+
+  - surface: Cards kit (family)
+    canon: ["Vesper Cards.html", "Vesper Action Card Ownership.html", "vesper-cards-kit.jsx", "vesper-cards-system.jsx", "vesper-cards-families.jsx", "vesper-cards-fam.jsx"]
+    code: ["components/vesper-cards/", "components/ui/CardSurface.tsx", "utils/vesperCardFamilies.ts", "components/focus-home/", "components/takes/"]
+    aligned_at: 125
+    status: partial
+    notes: "Six-mechanics core clean (CardShell/CardHead/ActionRow on CardSurface r14+letterpress). Open: D4 (Transact/Trust have no face), D5 (vesper-cards-kit.jsx specimen predates the r14 ruling); ChatCardFrame + StayCard/CostsEstimateCard/TripLogCard/FolioReceiptCard + 5 deck faces bypass CardSurface — CC2."
+
+  - surface: Sheets (family)
+    canon: ["Vesper Interaction Surfaces.html", "sheet-atoms.jsx", "sheet-header.jsx", "sheet-field.jsx", "section-edit-sheet.jsx", "revert-conflict-sheet.jsx", "trip-record-sheet.jsx"]
+    code: ["components/ui/BottomSheet.tsx", "components/ui/SheetHeader.tsx", "components/ui/SheetField.tsx", "components/ui/ActionListSheet.tsx", "components/ui/ConfirmDialog.tsx"]
+    aligned_at: 125
+    status: partial
+    notes: "~87% adoption (66/76 call sites). Open: D3 (VSheetField borderless-row vs Field bordered-box for the same add/edit sheets — no canonical target); ~10 stragglers (costs/people hand-rolled headers, sheet-radius token misuse, sans-vs-mono kicker) — CC4."
+
+  - surface: State System (family)
+    canon: ["Vesper State System.html", "discover-feed-states.jsx", "reader-states-board.jsx", "trip-edge-states.jsx", "changes-states-board.jsx", "session-recovery.jsx"]
+    code: ["components/ui/state/"]
+    aligned_at: 125
+    status: partial
+    notes: "H1 migration stuck — one kit, legacy EmptyState deleted, 57 importers. Open: D6 (canon State System page still frames ErrorState as legacy debt though the H1 ruling blessed a full-page failure tier — page + ImplMapping need updating). Low: LoadingTrips shows AI framing over a non-AI fetch — CC-later."
+
+  - surface: Tokens (family)
+    canon: ["Vesper Design Tokens.html", "Vesper Productive Type & Material.html", "vesper-tokens.jsx", "token-reference-app.jsx", "design-system.jsx", "gouache.jsx"]
+    code: ["constants/colors.ts", "constants/typography.ts", "constants/layout.ts", "constants/motion.ts", "constants/fonts.ts", "constants/cardSurface.ts"]
+    aligned_at: 125
+    status: partial
+    notes: "Primitive tier 1:1 with canon (paper/ink/gold, 3 typefaces). Leaky at semantic tier: status-hue tokens have canon names/wrong values (CC4.3); vesperSemanticTokens mis-mapped+dead; ink80/muteSoft carry real text on ~215 sites; D7 sub-9pt floor. WARNING: fontSize + border-radius CI ratchets were RED on main at audit — re-green (CC0) before alignment work."
+
+  - surface: Voice registers (family)
+    canon: ["vesper-voice-registers.jsx", "immersion-register.jsx", "vesper-shared.jsx", "Vesper Productive Type & Material.html"]
+    code: ["components/brand/VesperSignature.tsx", "components/brand/VesperAttribution.tsx", "components/brand/VesperNote.tsx"]
+    aligned_at: 125
+    status: partial
+    notes: "Core right (5 registers, Whisper killed, VesperSignature 13 adopters). Law: italic serif = Vesper voice ONLY. Frays: faux-italic DM Sans on status text (chat/proposals/changes/plan), markdown em drops serif in some Vesper prose, 4 hand-rolled attribution eyebrows (TripHeroCard's is a sanctioned local exception) — CC3. Open: D8 (one glyph among ~4), D9 (dismissal-register italic), D10 (costs voice-line budget)."

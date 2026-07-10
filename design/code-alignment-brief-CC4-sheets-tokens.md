@@ -29,7 +29,7 @@ Canon: product surfaces should read from a semantic tier, not raw primitives. Co
 
 ## Task CC4.5 — DURABILITY: manifest family rows + adoption ratchets  ·  severity HIGH (do not skip)
 This is why the batch exists — make the next audit start from a ledger, not from zero.
-1. **Add family rows to `design/surface-manifest.yaml`** so `scripts/canon-drift-check.py` flags them stale on future handoffs: `Row System`, `Cards kit`, `Sheets`, `State System`, `Tokens`, `Voice registers` — each mapping its canon files → code dirs (see the ledger's per-family evidence for the file lists). Set `aligned_at: 125`.
+1. ✅ **DONE 2026-07-09** — the 6 family rows (`Row System`, `Cards kit`, `Sheets`, `State System`, `Tokens`, `Voice registers`) are already in `design/surface-manifest.yaml` under the "Shared-element FAMILIES" section, `aligned_at: 125`, YAML validated + drift-check green. When you finish CC1–CC4, bump each family's `aligned_at` to the then-current handoff and clear the resolved open-items from its `notes`.
 2. **Add adoption ratchets** (mirror `check-typography-budget.mjs`): "files defining local `btn`/`button` styles may only decrease" (baseline = CC1.1's after-count), "sheet call sites bypassing BottomSheet/SheetHeader may only decrease," "`ink80`-as-text sites may only decrease" (baseline = post-CC4.4 count). Wire into `ci.yml` next to the existing six ratchets.
 3. **`ink80` lint:** add the backlog's proposed ratchet so the 215→ count can't climb again.
 
