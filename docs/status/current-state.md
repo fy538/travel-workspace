@@ -18,7 +18,7 @@ from committed registries; follow the linked authority for evidence and detail.
 <!-- Run `make docs-status-sync` to update this block. -->
 | Signal | Current value | Authority |
 |---|---:|---|
-| API contract | 325 paths / 363 operations / 632 schemas | [`docs/openapi.json`](../openapi.json) |
+| API contract | 326 paths / 364 operations / 634 schemas | [`docs/openapi.json`](../openapi.json) |
 | Canonical journeys | 19 total / 12 golden path / 7 holistic extension | [`journeys.yaml`](../journeys/journeys.yaml) |
 | Feature flags | 27 registered / 26 active / 1 resolved | [`registry.yaml`](../flags/registry.yaml) |
 | System charters | 17 Markdown documents | [`systems/`](../systems/) |

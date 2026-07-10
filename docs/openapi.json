@@ -20857,6 +20857,85 @@
         }
       }
     },
+    "/api/trips/{trip_id}/itinerary/revisions/{revision_version_number}/undo": {
+      "post": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Undo Planning Revision",
+        "description": "Restore the pre-revision version only while the revision is current.",
+        "operationId": "undo_planning_revision_api_trips__trip_id__itinerary_revisions__revision_version_number__undo_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "revision_version_number",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Revision Version Number"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UndoPlanningRevisionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UndoPlanningRevisionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/itinerary/blocks/{block_id}/alternatives": {
       "get": {
         "tags": [
@@ -54601,6 +54680,39 @@
           "to_day_number": {
             "type": "integer",
             "title": "To Day Number"
+          },
+          "from_city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "From City"
+          },
+          "to_city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "To City"
+          },
+          "transition_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Transition Date"
           }
         },
         "type": "object",
@@ -57000,6 +57112,56 @@
         "type": "object",
         "title": "TripSummaryResponse",
         "description": "AI-generated retrospective for a completed trip."
+      },
+      "UndoPlanningRevisionRequest": {
+        "properties": {
+          "restore_version_number": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Restore Version Number"
+          },
+          "request_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 16,
+            "title": "Request Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "restore_version_number",
+          "request_key"
+        ],
+        "title": "UndoPlanningRevisionRequest"
+      },
+      "UndoPlanningRevisionResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "reverted",
+            "title": "Status",
+            "default": "reverted"
+          },
+          "revision_version_number": {
+            "type": "integer",
+            "title": "Revision Version Number"
+          },
+          "restored_from_version_number": {
+            "type": "integer",
+            "title": "Restored From Version Number"
+          },
+          "version_number": {
+            "type": "integer",
+            "title": "Version Number"
+          }
+        },
+        "type": "object",
+        "required": [
+          "revision_version_number",
+          "restored_from_version_number",
+          "version_number"
+        ],
+        "title": "UndoPlanningRevisionResponse"
       },
       "UniversalSearchItem": {
         "properties": {
