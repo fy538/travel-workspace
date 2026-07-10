@@ -74,10 +74,10 @@ surfaces:
 
   - surface: Trip Creation
     canon: ["Vesper Trip Creation.html", "create-kit.jsx", "create-screens.jsx"]
-    code: ["app/trip-begin.tsx"]
-    aligned_at: 110
-    status: aligned
-    notes: "Batch I (loop-closure): CreateEntry joiner-context card + trip-begin joiner receipt, verified against canon 109/110 §01b."
+    code: ["app/trip-begin.tsx", "components/trip-creation/TripCreationPrimitives.tsx"]
+    aligned_at: 126
+    status: partial
+    notes: "Canon-126 start-choice drift CLOSED (commit dabd7918): StartRow gained the 42px raised-paper tinted icon plate (goldDeep/sage/slate[400]) + the closing VesperLine reassurance. Scoped via optional `tint` so only the start-choice screen changed; other TripCreationStages StartRows keep bare icons (not in the 126 diff). KNOWN pre-existing gap (predates 126, not this drift): StartRow title/subtitle are serif_semibold 18 / serif_italic 14, canon Opt is sans 15.5 / serif 13.5 — separate re-alignment if ever wanted."
 
   - surface: State System
     canon: ["Vesper State System.html", "vesper-state-system-app.jsx"]
@@ -355,11 +355,11 @@ surfaces:
     notes: "Tab-bar badge removal (Batch E) confirmed. Center-slot geometry question from project_vision_alignment_assessment (Vesper tab occupies the ergonomic center slot) unresolved — P2, not urgent."
 
   - surface: Discover (+ Detail/Reader, Map & Spatial Browse)
-    canon: ["Vesper Discover.html", "Vesper Discover Detail & Reader System.html", "Vesper Discover Map & Spatial Browse.html"]
+    canon: ["Vesper Discover.html", "Vesper Discover Detail & Reader System.html", "Vesper Discover Map & Spatial Browse.html", "discover-cover.jsx", "discover-cover-polished.jsx", "discover-cover-polished-v2.jsx", "Vesper Discover Cover - Polish.html", "Vesper Discover Cover - Polish v2.html"]
     code: []
     aligned_at: null
     status: deferred
-    notes: "Off-wedge per project_vision_alignment_assessment — part of the ~35-45% off-wedge surface the Atlas-freeze decision covers. Do not spend alignment effort here until that decision is made."
+    notes: "Off-wedge per project_vision_alignment_assessment — part of the ~35-45% off-wedge surface the Atlas-freeze decision covers. Do not spend alignment effort here until that decision is made. Canon 126 added a Discover Cover polish v2 (discover-cover.jsx +261 lines, 2 new polished variants + 2 pages) — a whole design workstream landed here; still DEFERRED, do not build."
 
   - surface: Atlas (all)
     canon: []  # no .html pages in the mirror — Atlas runs its own separate canon campaign, see project_atlas_canon_state
@@ -376,6 +376,15 @@ surfaces:
   #    design/component-consistency-audit-2026-07-09.md. Open DESIGN-GAPs (D#)
   #    are adjudicated in adjudication-brief-2026-07-09-component-consistency.md;
   #    code work in code-alignment-brief-CC1..CC4.
+
+  - surface: Buttons (family)
+    canon: ["buttons.jsx", "Vesper Button Decisions.html"]
+    code: ["components/ui/Button.tsx", "components/ui/InlineChip.tsx", "components/stay/StayCard.tsx", "components/expense/CostsPrimitives.tsx"]
+    aligned_at: 126
+    status: partial
+    notes: "CC1.1d (07-09, commits 9038fef2..4272b385 on main) shipped canon 126's full taxonomy — 'adopt canon for all' directive. ✅ `warning` variant (solid colors.warning #B0563C + white) → booked-block acknowledge gates (ChangeStudioSheet + MoveBlockSheet). ✅ `labelColor` prop (active-label-only override) → ExpenseDetail 'Delete expense' (ghost+labelColor=terracotta[400]). ✅ InlineChip primitive built (components/ui/InlineChip.tsx: h27/r8/pad10/12px-semibold/gap5, sage-tint fill, 44px touch via hitSlop). ✅ danger→destructive ADOPTED: variant renamed + treatment changed to SOLID oxblood (colors.surface.oxblood) + white per canon; applied by hard-vs-soft rule — ConfirmDialog destructive-confirm + RevertConflictSheet 'Force full revert' → destructive (solid); ProposalDetail 'Decline' (reversible vote reject) → ghost+labelColor=oxblood (canon's soft treatment). ✅ StayButton FOLDED (D14): now a thin wrapper composing Button; the 10 sites' arbitrary/dynamic tones ride through Button's existing style+labelColor props (NOT a new Button API — keeps the fixed-variant model). CostsReceiptButton left separate (canon-BLESSED, ticket silhouette). D15 on-dark = local exception, not built (correct — canon: no variant until 2nd use).
+      ✅ InlineChip ADOPTED in PlanBlockRow (commit ae33a76e): Change → bare InlineChip, Done → fill (sage-tint affirmative, supersedes the old 'no filled bg' note). The primitive is now used where it was designed for.
+      Radius ratchet 374→370 across CC1.1d. All commits: tsc 0, ratchets green, tests pass. Buttons family is fully aligned to canon 126."
 
   - surface: Row System (family)
     canon: ["Vesper Row System.html", "row-spec.jsx", "row-system.jsx", "row-system-sections.jsx", "action-grammar-rows.jsx", "action-grammar.jsx"]
