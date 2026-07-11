@@ -101,3 +101,11 @@ overrides:
   docs/working/mvp-scope-and-flag-manifest-2026-06-30.md:
     disposition: keep_authoritative
     rationale: Current source of truth for V1 scope and dark surfaces.
+
+  docs/audits/charter-invariant-checkers-2026-07.md:
+    disposition: keep_reference
+    rationale: Durable evidence for the executable charter-invariant regression net.
+
+  docs/working/phone-auth-plan-2026-07-11.md:
+    disposition: keep_authoritative
+    rationale: Active implementation plan for the phone-auth rollout through 2026-08-10.
