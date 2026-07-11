@@ -28,11 +28,13 @@ A `stale` row returns to `aligned`/`partial` only via a fresh audit pass that:
 
 ## Waves
 
-**Wave 0 — instrumentation + complete the map** (prerequisite; everything else operates on a complete map)
-- Inverse-sweep script: diff `app/` routes + `components/` dirs against all manifest `code:` paths → orphan list (shipped UI with no canon row — how Planning-Progress Cards and Deck.tsx were caught only by accident). Standing command, sibling to `canon-drift-check.py`. Must check **reachability** (imported AND rendered), not just existence — the standing version of arch-simp's one-off orphan hunt, built to catch the DeckCompareFace class.
-- Consume the arch-simp FE deletion list (`docs/working/architecture-simplification-2026-07.md`, FE finding 5 + Tier 0): DeckCompareFace, AtlasRoomArt, AtlasYearStepper, DNAStrip, StoryArchiveCard, TripLogCard, VerdictChip, Atlas tombstone routes. These are flagged-for-deletion — exclude from all audit scope; if any manifest row's `code:` paths reference them, note it.
-- Code-movement check: flag rows whose `code:` paths have commits after `code_verified_at` (symmetric counterpart to canon drift).
-- Backfill the three falsely-unmapped rows (Chat / Itinerary / Onboarding — all had real audit work this week) and map the 7 true blanks (Route & Transport, Booking & Reservation, Trust & Controls, Photo & Media Intake, External Sharing, Guide & Collection Reader, Saved & Collections — all have real code dirs).
+**Wave 0 — instrumentation + complete the map** ✅ DONE 2026-07-11 (commit `30e3f8d`)
+- `scripts/canon-surface-orphans.py` — inverse sweep, sibling to `canon-drift-check.py`. Buckets MAPPED/PARTIAL/ORPHAN/EXCLUDED with a reachability grep on orphan files (catches the DeckCompareFace class: imported nowhere ≠ a real audit target).
+- Consumed the arch-simp FE deletion list as an EXCLUDED bucket (0 hit this run — those files still live at top-level under already-partial dirs, will re-check once arch-simp's Tier 0 lands).
+- **First run found 45 orphans, not the estimated 7** — most "unmapped" surface code was simply missing from existing rows' `code:` lists. Backfilled Chat/Itinerary/Onboarding (falsely unmapped — real audit work already happened this week), expanded 11 existing rows, mapped all 7 originally-scoped blanks, and surfaced one nobody had scoped at all: **Voice (narration + live mic)** — real, shipped, dark-subsystem code with zero manifest presence, not even a blank row.
+- Trust & Controls and Saved & Collections came back Atlas-adjacent (only call sites are `app/atlas/*`); Guide & Collection Reader came back Discover-adjacent (`components/discover/reader/`, dossier/angle routes) — noted in-row so their audit fate follows those freeze decisions rather than running independently.
+- Final state: **0 orphans**, 39 rows (28 stale / 8 unmapped-now-mapped / 1 pending-canon / 2 deferred).
+- **Not yet built**: the code-movement check (flag rows whose `code:` paths moved since `code_verified_at`) — no row has a `code_verified_at` stamp yet since none has been re-verified this campaign. Build this once Wave 1 starts producing verified rows.
 
 **Wave 1 — families first (8 surfaces).** Tokens · Buttons · Row System · Sheets · State System (family) · Header system · Voice registers · Cards kit. Product surfaces compose from these; family verdicts become citable downstream ("title uses `typography.h1Dense` — verified Wave 1") instead of re-derived per screen.
 
