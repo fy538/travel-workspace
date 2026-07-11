@@ -86,6 +86,10 @@ overrides:
     disposition: keep_reference
     rationale: Reusable journey authoring template, not a journey contract.
 
+  docs/working/architecture-simplification-2026-07.md:
+    disposition: keep_authoritative
+    rationale: Active cross-repo simplification backlog; expires 2026-08-10, archive on close.
+
   docs/working/dogfood-loop-validation-2026-07-04.md:
     disposition: keep_authoritative
     rationale: Active pre-flight and external-cohort validation plan.

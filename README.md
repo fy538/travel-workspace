@@ -80,13 +80,13 @@ make status
 3. Work in `Travel App`
 4. Commit backend and frontend changes in their own repos
 
-### Coordinated branch setup
+### Coordinated worktree lane
 
 ```bash
-./scripts/new-branch.sh trip-group-chat
+./scripts/new-worktree.sh trip-group-chat
 ```
 
-That creates or switches the same branch name in both child repos using the default `codex/` prefix.
+That creates a paired worktree lane (siblings of `travel-agent/` and `travel-app/`) on the same branch name in both child repos, for parallel implementation threads. Use `./scripts/land-worktree.sh` to land and clean up the lane.
 
 ### Offline reliability workflow
 

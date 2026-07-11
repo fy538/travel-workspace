@@ -133,7 +133,7 @@ protection against silently colliding is discipline:
 - `docs/openapi.json` — committed API snapshot
 - `scripts/dev.sh` — start local stack
 - `scripts/doctor.sh` — validate workspace/tooling setup
-- `scripts/new-branch.sh` — coordinated child-repo branch helper
+- `scripts/new-worktree.sh` / `scripts/land-worktree.sh` — coordinated cross-repo worktree lane (create/land)
 - `scripts/sync-types.sh` — regenerate frontend API types
 - `travel.code-workspace` — editor workspace file
 
