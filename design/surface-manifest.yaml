@@ -275,11 +275,11 @@ surfaces:
 
   - surface: Chat
     canon: ["Vesper Chat.html", "chat-narration-band.jsx", "vesper-composer.jsx", "vesper-chat-canon.jsx"]
-    code: ["app/(tabs)/concierge/chat.tsx", "app/(tabs)/concierge/history.tsx", "app/conversations/create.tsx", "components/chat/"]
+    code: ["app/(tabs)/concierge/chat.tsx", "app/(tabs)/concierge/history.tsx", "app/conversations/create.tsx", "components/chat/", "components/voice/NarrationLeaseConflict.tsx", "utils/narrationBandStack.ts"]
     aligned_at: 134
     code_verified_at: 543e2bbf    # travel-app HEAD, Wave 2 re-audit 2026-07-11
     status: partial    # trending toward aligned — fastest-improving row this wave
-    notes: "Wave 2 re-audit (2026-07-11): D17/D20 both re-confirmed correctly shipped. Spot-checked the 07-10 ledger (design/chat-surface-audit-2026-07-10.md) and found it partially self-stale — its own Resolution Log (top of doc) already knew 4 batches were fixed 07-10, but the detailed per-finding sections further down still presented those same items as open with no cross-reference; a reader following the brief's instruction to check the detailed findings would be misled into re-flagging fixed issues. 6 of the ledger's ~20 findings are now fixed, 2 dated literally the same day as this audit (privacy-seam divider now built and wired — components/chat/group/PrivacySeamDivider.tsx, matches People & Collaboration row's finding; TripShapes' emoji/purple-action drift fixed). New, previously-unflagged: history.tsx's ThreadHistoryRow shows the thread's own title-initial where canon's ThreadRow always shows a fixed serif 'V' Vesper monogram — every history row should visually read as 'a conversation with Vesper', this doesn't. Minor: composer literal '...' vs canon's true ellipsis, one more hyphen-vs-middle-dot site. Still genuinely open (re-confirmed, not new): ChatActionRow secondary-action register, GroupEventLine italic misuse on system/join lines, GroupVesperNote's compact-variant register swap, offline cached-thread signal, PrivacyHandoffCard still orphaned outside the dev gallery."
+    notes: "Wave 2 re-audit (2026-07-11): D17/D20 both re-confirmed correctly shipped. Spot-checked the 07-10 ledger (design/chat-surface-audit-2026-07-10.md) and found it partially self-stale — its own Resolution Log (top of doc) already knew 4 batches were fixed 07-10, but the detailed per-finding sections further down still presented those same items as open with no cross-reference; a reader following the brief's instruction to check the detailed findings would be misled into re-flagging fixed issues. 6 of the ledger's ~20 findings are now fixed, 2 dated literally the same day as this audit (privacy-seam divider now built and wired — components/chat/group/PrivacySeamDivider.tsx, matches People & Collaboration row's finding; TripShapes' emoji/purple-action drift fixed). New, previously-unflagged: history.tsx's ThreadHistoryRow shows the thread's own title-initial where canon's ThreadRow always shows a fixed serif 'V' Vesper monogram — every history row should visually read as 'a conversation with Vesper', this doesn't. Minor: composer literal '...' vs canon's true ellipsis, one more hyphen-vs-middle-dot site. Still genuinely open (re-confirmed, not new): ChatActionRow secondary-action register, GroupEventLine italic misuse on system/join lines, GroupVesperNote's compact-variant register swap, offline cached-thread signal, PrivacyHandoffCard still orphaned outside the dev gallery. Voice-surface audit (2026-07-11): added components/voice/NarrationLeaseConflict.tsx and utils/narrationBandStack.ts — the narration-arrival-banner system (GeofenceBanner/LiveCompanionBanner/NarrationLeaseConflict, stacked+prioritized by narrationBandStack.ts) is genuinely this row's territory (chat-narration-band.jsx already listed here) and CONFIRMED-ALIGNED, in one place improving on canon with a documented reasoned deviation (a geofence hit for the same companion session's next stop gets its own row instead of collapsing, since canon's collapse rule targeted only unrelated sessions). NarrationLeaseConflict.tsx physically lives under components/voice/ but is conceptually Chat's narration system, not live-mic — see the Voice row for that split."
 
   - surface: Chat — Planning-Progress Cards (TripShapes / ResearchCard / PlanReadyCard)
     canon: ["proposals/planning-progress-cards-canon-proposal.md", "planning-progress-cards-canon.jsx"]
@@ -464,12 +464,51 @@ surfaces:
     status: deferred
     notes: "~34 screens / ~22k LOC, own canon campaign outside this mirror. Atlas-freeze decision from project_vision_alignment_assessment is STILL OPEN — re-raise before spending alignment effort on this cluster. Wave 0: added components/me/ (TravelDNACard — taste-profile card, see project_taste_store_reconciliation memory) found by the orphan sweep."
 
-  - surface: Voice (narration + live mic)
-    canon: []  # no dedicated .html page in the mirror — audio voice ≠ "Voice registers (family)" (that's typographic/attribution voice, VesperMark etc.)
-    code: ["components/voice/", "components/narration/"]
-    aligned_at: null
-    status: unmapped
-    notes: "Wave 0: new surface, found by the orphan sweep — no manifest row existed at all (not even a blank one). components/voice/ (VoiceOrb, VoiceOverlay, mic privacy/status) + components/narration/ (NarrationListenButton). Dark subsystem per project_dogfood_phase memory: 'narration SHIPS + live mic BUILT+GATED (VOICE_ENABLED=off)'. Real, shipped, credential-gated code — not off-wedge, just dark. No canon page found in the mirror; may need a Claude Design ask rather than a code audit."
+  - surface: Voice (live mic / voice chat)
+    canon: ["vesper-home-voice.jsx", "vesper-modes.jsx"]    # audio voice ≠ "Voice registers (family)" (typographic/attribution voice, VesperMark etc.) — narration-arrival banners re-homed to the Chat row (chat-narration-band.jsx)
+    code: ["components/voice/VoiceOrb.tsx", "components/voice/VoiceOverlay.tsx", "components/voice/VoiceOverlayProvider.tsx", "components/voice/MicPrivacyDisclosure.tsx", "components/voice/MicStatusIndicator.tsx", "context/MicSessionContext.tsx", "hooks/useVoiceSession.ts", "hooks/useNarrationWithInterruption.ts", "components/narration/NarrationListenButton.tsx"]
+    aligned_at: 134
+    code_verified_at: 543e2bbf    # travel-app HEAD, 2026-07-11
+    status: gap
+    notes: >
+      2026-07-11 audit CORRECTS Wave 0's "no canon page found" —
+      that was wrong, a grep sweep with narrower terms missed it.
+      Real, substantial, non-archived canon exists:
+      vesper-home-voice.jsx (234 lines) specs a full-screen dark
+      "Calm Listening" takeover (tap mic → breathing gold ring, live
+      waveform, serif transcript, promotes into the thread as text
+      with "SPOKEN · timestamp" tags on continued exchange) plus a
+      separate hold-to-talk "walk-and-talk" Editorial Transcript
+      mode; vesper-modes.jsx specs exactly 3 entry points (composer
+      mic tap / long-press the Vesper tab icon / tap the proactive
+      dot) with explicit anti-goals ("no floating mic button, no
+      wake-word, no Siri-style takeover"). Shipped code diverges
+      structurally: a bottom-sheet LiveKit modal, not a full-screen
+      takeover; no hold-to-talk gesture anywhere; purple accent
+      color (VoiceOrb/VoiceOverlay) where canon is consistently
+      amber/gold AND where the app's own color-system doc says
+      purple is legacy/agent-presence-only, out of scope for voice
+      either way.
+      Reachability is mostly dark, self-documented: VOICE_ENABLED
+      defaults false, gated consistently at every entry point
+      (verified, no bypasses). Even with the flag on, useVoiceSession's
+      _connectToRoom is a documented no-op stub — no real audio
+      connects. MicStatusIndicator is fully built, tested, and
+      documented but never mounted anywhere (dead code).
+      useNarrationWithInterruption is a fully-built, ~1000-line-tested
+      hook with zero production callers.
+      Real bug, independent of the canon gap: MicPrivacyDisclosure's
+      shown copy ("mic stays on during narration... VAD runs
+      on-device... you'll always see a clear indicator") describes
+      the never-wired interruption flow and the never-mounted status
+      indicator — users see a privacy disclosure for a feature that
+      cannot currently happen, before opening the (also-incomplete)
+      live voice chat.
+      This is real, substantial design work sitting unbuilt (not "off
+      wedge") — a Claude Design ask is NOT what's needed here; a
+      build decision is: is vesper-home-voice.jsx's full-screen model
+      still the target before investing further in the current
+      bottom-sheet shell?
 
   # ── Shared-element FAMILIES (cross-cutting primitives, not screens) ──────
   #    Added 2026-07-09 from the component-consistency audit. These rows exist
