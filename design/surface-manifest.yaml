@@ -228,6 +228,13 @@ surfaces:
     status: unmapped
     notes: "chat-invite-nudge.jsx (OrganizerInviteNudge) was verified as part of the loop-closure work, but the surface as a whole is unmapped."
 
+  - surface: Chat — Planning-Progress Cards (TripShapes / ResearchCard / PlanReadyCard)
+    canon: ["proposals/planning-progress-cards-canon-proposal.md", "planning-progress-cards-canon.jsx"]
+    code: ["components/chat/TripShapes.tsx", "components/chat/ResearchCard.tsx", "components/chat/PlanReadyCard.tsx"]
+    aligned_at: null
+    status: pending-canon
+    notes: "Shipped (31d58f46) with no canon specimen — flagged in chat-surface-audit-2026-07-10.md. 2026-07-10/11: two live violations fixed in code (TripShapes' colors.agent.action purple CTA -> colors.vesper.goldDeep; literal emoji shape badge -> typographic monogram) and visually verified live (rgb(138,102,40) = exact goldDeep hex, browser-confirmed). planning-progress-cards-canon.jsx is a code-first interactive board (phone-shell + CH tokens, matching vesper-chat-canon.jsx's format) covering TripShapes (unselected/selected+CTA), ResearchCard (4 step statuses — confirmed ink/paper palette, not a stoplight system), and PlanReadyCard (whole/partial-progress-line/revision-editor states). Still status: pending-canon — a designer needs to formally ratify/adjust, this session authored it but isn't the design owner."
+
   - surface: Route & Transport
     canon: ["Vesper Route & Transport.html"]
     code: []
