@@ -79,3 +79,15 @@ Recommend this order: **D17** (offline chat) and **D20** (message action sheet) 
 
 ## After you re-export
 Run `python3 scripts/canon-drift-check.py` — it will flag every surface whose canon files you touched as stale, which is the signal for which code batch(es) to re-verify against the new handoff.
+
+---
+
+## D21 FOLLOW-UP — a naming collision surfaced while verifying the fix (2026-07-11, handoff 133)
+
+**Status of D17–D22:** all six resolved in canon 130 (handoff 133), each confirmed against the shipped code. D17, D18, D19, D20, D22 needed no further adjustment — code either already matched or got a small, clean follow-up (D20's Copy action and D22's onboarding conversion are both shipped, `54e33d19` and `28bd85ee`). D21 is the one exception: the fix as specified can't land as-is.
+
+**The collision:** `sheet-header.jsx`'s new size ladder blesses `large = 20px` (matches shipped code) and adds `compact = 17px/600` for dense sheets like `CostsBalanceSheet`'s title+Done row — exactly the case D21 was meant to unblock. But code's `ui/SheetHeader.tsx` **already has a `size="compact"` value, already adopted at 17 call sites**, and it currently means something different: 14pt DM Sans medium (`typography.h3`), not 17pt/600. Canon reused an already-spoken-for name for a new, different spec. Landing the new spec under the existing name would silently bump the title size at all 17 sites that already use `compact` for something else — not the intended fix, and not something to do without a decision.
+
+**Decide:** give the new 17px/600 dense-sheet spec its own name in `sheet-header.jsx` (e.g. `dense`, or whatever reads best against the existing `large`/`compact`/`edit` set) so the 17 already-adopted `compact` call sites are unaffected, and `CostsBalanceSheet`'s title+Done row gets the new size instead. If there's a reason all 17 existing `compact` sites *should* actually move from 14→17pt, that's a real, visible, cross-app change — worth stating explicitly rather than as a side effect of an unrelated naming choice.
+
+**Regenerate:** rename the new size in `sheet-header.jsx`'s ladder (keep `compact` pointed at the existing 14pt spec, unchanged); update the D21 comment block to reflect the final three (or four) size names.
