@@ -2,7 +2,9 @@
 
 Every unresolved finding from Waves 0–3 + the handoff-135 re-check, pulled out of `design/surface-manifest.yaml`'s per-row `notes:` fields into one prioritized list. Source of truth is still the manifest — this doc is a synthesis for planning, not a replacement. File:line citations are preserved where the original audit gave one; re-verify before acting, since code keeps moving.
 
-**Already fixed this session** (do not re-open): Row System's failed-booking halo bug, Buttons' `ghost` variant border, Cards kit's Trust spine color, Trip Settings' ungated Vesper-autonomy permissions, Voice registers' D8 mechanical follow-ups (6 sites), Trip Story's 2 privacy leaks + 3 of 4 canon-decision violations (07-07 fix pass). See git log in `travel-app`/`travel-agent` for commits.
+**Already fixed and independently re-verified** (do not re-open — checked against actual current code, not just claim text, on 2026-07-11): Row System's failed-booking halo bug; Buttons' `ghost` variant border; Cards kit's Trust spine color; Trip Settings' ungated Vesper-autonomy permissions; Places' `PlaceHome` naming collision (D23); Voice registers' D8 mechanical follow-ups (6 sites); Voice's purple→amber/gold + `MicPrivacyDisclosure` copy narrowing (D24); People & Collaboration's pending-invite `MemberActionSheet`; Universal Search's saved-venue provenance, 4-chip scope rail, and empty-state sections; and **Trip Story in full** — all 8 P1 items (place chips, landing/card brand pass, Trip-group visibility, owner attribution, ShareLink lifecycle, analytics funnel, Plan Similar resume, `MemoryStoryHeader` fork) — now `status: aligned`. See git log in `travel-app`/`travel-agent` for commits; `design/surface-manifest.yaml` has full per-claim verification notes.
+
+**One claim in circulation was checked and found FALSE**: Universal Search's "Actions group re-enabled" (see P1 below) — the frontend routing was updated but the backend never wires a route, so action rows are still fully non-tappable in the shipped app.
 
 ---
 
@@ -16,34 +18,17 @@ No other P0s found.
 
 ## P1 — Structural (breaks a real user-facing promise)
 
-### Trip Story (`status: gap`, the most severe open finding of the campaign)
-- `visible_places` / `generalized_place_chips` / `route_cue` are hardcoded to `[]`/`None` throughout the entire backend projection builder (`story_projection.py`) despite full schema support and heavy canon spec — the "compute chips from story" step was apparently never written, no flag/TODO marks it deferred.
-- The 9:16 share-card and public landing page use a completely different visual language than canon (indigo accent, system sans, no EB Garamond) — `story_landing.py`'s CSS and placeholder env vars are **byte-identical** to the unrelated `invite_landing.py`, strong evidence the invite surface's generic template was copied wholesale without a Vesper brand pass.
-- Canon's "Trip group" visibility tier (sign-in-gated viewing by named members) doesn't functionally work — falls back to link/public-only server-side.
-- Owner attribution line ("Shared by X") missing from the public viewer.
-- `ShareLink` lifecycle/analytics fields unimplemented: `expires_at`, `replaced_by_share_id`, `unique_viewers`; all 13 canon-named analytics events still write to nothing (persistence table dropped 2026-06-20).
-- #16 (Plan Similar's "conversation") only partially fixed — an honesty fix (no longer poses as a live chat turn), not the real fix; a true conversational entry needs new pre-auth stash-and-resume infra, explicitly deferred as separate scoped work.
-- `MemoryStoryHeader` fork (`app/(tabs)/trips/[tripId]/story.tsx`) still unmigrated — tracked jointly with Header system below.
+Trip Story's 8 items are fully resolved (see the summary above) — the surface is dropped from this list entirely, `status: aligned`.
 
-### Voice — live mic / voice chat (`status: gap`)
-- Structural mismatch: canon specs a full-screen dark "Calm Listening" takeover with a tap/hold gesture split (`vesper-home-voice.jsx`); code ships a bottom-sheet LiveKit modal with no hold-to-talk gesture anywhere, and a purple accent color where canon is consistently amber/gold (and the app's own color doctrine says purple is legacy/agent-presence-only).
-- `useVoiceSession`'s `_connectToRoom` is a documented no-op stub — no real audio connects even with the feature flag on.
-- `MicStatusIndicator` is fully built and tested but never mounted anywhere (dead code).
-- `useNarrationWithInterruption` is a fully-built, ~1000-line-tested hook with zero production callers.
-- `MicPrivacyDisclosure`'s shown copy describes the never-wired interruption flow and the never-mounted status indicator — users see a privacy disclosure for a feature that can't currently happen.
-- Open product/design question underneath all of this: is the full-screen "Calm Listening" model still the target before investing further in the bottom-sheet shell?
-
-### People & Collaboration
-- Canon's pending-invite `MemberActionSheet` variant (Resend / Copy link / Revoke) was never wired — pending invites get only an inline revoke icon.
-- Group-chat vote widget is missing canon's per-voter-avatar/tally grammar **both in UI and in the underlying data model** (`VoteWidgetData` has no voter/count fields at all, unlike the itinerary-side `PlanDecision` which does).
-- Self-profile has no "Edit profile" affordance canon specifies.
-- Unfollow has no long-press friction guard canon's caption calls for.
-- Co-organizer role is half-built — present in component props/visual markers, absent from the live `TripContext` role type (unreachable in practice); even the scaffolding is internally inconsistent (`RolePill` and `PeopleAvatar` disagree on its color).
+### Voice — live mic / voice chat (`status: partial`, handoff 137 D24)
+- D24 carve-out: bottom-sheet `VoiceOverlay` blessed as v1; full-screen Calm Listening + hold-to-talk **deferred, not cancelled** — this is the correct, intended state, not a gap.
+- `useVoiceSession`'s `_connectToRoom` is a documented no-op stub — intentionally not enabling real audio yet (`VOICE_ENABLED` stays off).
+- `useNarrationWithInterruption` still has zero production callers.
+- (Color + disclosure-copy fixes verified done — see summary above.)
 
 ### Universal Search
-- The "Actions" result group ships as a read-only, non-tappable audit log where canon specifies executable command rows ("must be executable... never decorative") — a deliberate, self-documented architectural pivot that was never reconciled with canon. Needs a product call.
-- Places results never distinguish the user's own saved places from public Discover venues — provenance is hardcoded to "DISCOVER"/public always; the personal-saves table is never consulted, contradicting canon's explicit `saved_by` contract.
-- On-trip scope-chip rail grew to 7 chips against canon's explicit "max 4–5" rule — a direct side effect of shipping Receipts/Costs/Actions without folding them back under "This trip."
+- **The "Actions group" is still NOT navigable, despite a claim to the contrary in circulation.** `routeForUniversalItem`'s frontend logic was updated to interpret a route hint (`routeFromHint`), but `backend/search/dispatch.py`'s `_action_items()` (line ~655) still hardcodes `route=None` unconditionally — every other result-group builder in the same file (trips/places/atlas/conversations/receipts/costs/people, 7 of 8) populates a real route string; only Actions doesn't. The FE gates `disabled={!href}` purely on that field, so action rows are still fully non-tappable in the shipped app. This is a one-function backend fix (thread `action_type`/`target_id` into a `route=` string, matching the pattern the other 7 builders already use) — mechanical, not a design question; D25 already ruled what the UX should be.
+- (Saved-venue provenance, the 4-chip scope rail, and the empty-state sections verified done — see summary above.)
 
 ### Saved & Collections System
 - Trip-relevance state grammar (In plan / Stale / Unavailable) is fully built in the row component, but the screen's data-mapping function never sets the `state` field at all — structurally unreachable, not just unstyled.
@@ -125,7 +110,7 @@ No other P0s found.
 - The row's own canon-file mapping was wrong (assigned file has zero motion content; real content lives in `vesper-canon-consolidation-app.jsx` §06c, uncited by any manifest row).
 
 **Header system**
-- `story.tsx`'s `MemoryStoryHeader` is a real, still-unmigrated fork — parked pending the Trip Story rework per the J1 brief's own recommendation (do not migrate standalone). Same item as Trip Story above.
+- ~~`story.tsx`'s `MemoryStoryHeader` fork~~ — **RESOLVED**, now a thin `ProductiveHeader` wrapper (see Trip Story resolution in the summary above). Note predates the fix.
 
 **Notifications**
 - TODAY/YESTERDAY/EARLIER sectioning is fully implemented but never wired into 3 of 4 canon screen modes (only Trip-Updates mode sections its rows).
@@ -218,4 +203,4 @@ No other P0s found.
 
 - Rows not listed above (`Interaction Surfaces` sub-items already folded into P2, family rows, etc.) either had zero open findings after this session's fixes, or are `deferred`/`pending-canon` and intentionally untouched (Discover, Atlas, Planning-Progress Cards).
 - Several items above are explicitly **substrate-gated** (real backend data/flags don't exist yet) rather than code bugs — noted inline where the original audit called that out. Don't "fix" those without the backing data model.
-- A few items name a real product/design decision needed before code can move (Onboarding's taste-collection lane, Universal Search's Actions inversion, Voice's full-screen-vs-bottom-sheet question, Guide Reader's Ask-bar redesign) — these may want their own D-numbered adjudication brief, same pattern as D23.
+- A few items name a real product/design decision needed before code can move (Onboarding's taste-collection lane, Guide Reader's Ask-bar redesign) — these may want their own D-numbered adjudication brief, same pattern as D23. Universal Search's Actions routing and Voice's full-screen-vs-bottom-sheet question are **not** in this bucket anymore — D25 and D24 already ruled on both; what's left in each case is mechanical code follow-up (see P1 above), not an open design question.
