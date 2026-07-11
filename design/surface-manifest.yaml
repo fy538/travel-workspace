@@ -15,6 +15,14 @@
 # status values:
 #   aligned   — verified against `aligned_at`, no known gaps
 #   partial   — verified, but a specific known gap/bug is open (see notes)
+#   stale     — verification RESET 2026-07-11 (zero-trust re-audit campaign —
+#     see design/reaudit-2026-07-plan.md). The canon↔code MAPPING is still
+#     trusted; the VERDICT is not: aligned_at values accumulated across
+#     handoffs 108→134 while code moved underneath them (concurrent
+#     sessions, batches A-H, CC1-4). `aligned_at` preserved as history
+#     ("last verified at"); notes preserved (partial-row residuals are
+#     still real leads). A stale row exits ONLY via a fresh audit pass at
+#     handoff ≥134 — which must also stamp `code_verified_at`.
 #   gap       — a real design/code disagreement exists, needs adjudication
 #   deferred  — deliberately not aligning right now (off-wedge / not built)
 #   unmapped  — canon surface exists; code correspondence not yet established
@@ -22,8 +30,10 @@
 #
 # `aligned_at: null` means never formally verified (unmapped/deferred rows).
 # Editing rule: when you re-verify a surface, bump `aligned_at` to the
-# handoff you checked it against and clear/update `notes` — don't just
-# flip status without recording what you checked it against.
+# handoff you checked it against, stamp `code_verified_at` with travel-app's
+# HEAD short sha (so code-side movement is trackable, not just canon-side),
+# and clear/update `notes` — don't just flip status without recording what
+# you checked it against.
 
 surfaces:
 
@@ -34,70 +44,70 @@ surfaces:
     canon: ["Vesper Stay.html", "stay-screens.jsx", "stay-system.jsx"]
     code: ["app/accommodation/[accommodationId].tsx", "components/stay/", "app/trip-accommodations/"]
     aligned_at: 127
-    status: partial
+    status: stale    # was: partial — verdict reset 2026-07-11 (residuals in notes still live)
     notes: "G1 shipped (PR #51), 5/5 tasks confirmed. VESPER PICK recommendation correctly flagged as backend-gated, not faked — see code-alignment-brief-G1-stay-state-space.md. Canon 127: stay-system.jsx's SBtn specimen updated to compose VBtn (buttons.jsx) — this is canon CATCHING UP to code's StayButton fold (CC1.1d, commit 4272b385), not new drift. No code action needed, confirms alignment."
 
   - surface: Costs
     canon: ["Vesper Costs.html", "costs-screens.jsx", "costs-system.jsx"]
     code: ["app/trip-expenses/", "components/expense/", "utils/costsViewModel.ts"]
     aligned_at: 108
-    status: partial
+    status: stale    # was: partial — verdict reset 2026-07-11 (residuals in notes still live)
     notes: "G2 shipped (PR #53), 4/5 confirmed. KNOWN BUG: utils/costsViewModel.ts:375 hardcodes masked:false despite data/expenses.ts:110 threading the real field — task chip task_436ee090 dispatched to fix."
 
   - surface: Proposal & Decision Detail
     canon: ["Vesper Proposal & Decision Detail.html", "vesper-proposal-detail-app.jsx", "revert-conflict-sheet.jsx"]
     code: ["components/trip/proposal-detail/"]
     aligned_at: 108
-    status: aligned
+    status: stale    # was: aligned — verdict reset 2026-07-11
     notes: "Batch F1, all 5 tasks confirmed (ProposalVoteRows, RevertConflictSheet 3-states, receipt states, closed/recovery)."
 
   - surface: Changes
     canon: ["Vesper Changes System.html", "changes-kit.jsx", "changes-screen.jsx", "changes-states-board.jsx", "ask-organizer-pattern.jsx"]
     code: ["components/trip-plan/ChangeTimelineRow.tsx", "app/(tabs)/trips/[tripId]/changes.tsx", "components/trip/BlockedActionRow.tsx"]
     aligned_at: 108
-    status: aligned
+    status: stale    # was: aligned — verdict reset 2026-07-11
     notes: "Batch F2, all 5 tasks confirmed incl. Ask-the-Organizer pattern (net-new)."
 
   - surface: Trip Settings & Admin
     canon: ["Vesper Trip Settings & Admin.html", "vesper-trip-settings-app.jsx"]
     code: ["app/trip-settings/", "app/trip-info/", "app/trip-dates/"]
     aligned_at: 108
-    status: aligned
+    status: stale    # was: aligned — verdict reset 2026-07-11
     notes: "Batch F3, all 4 tasks confirmed (delete/cancel via typedConfirmation, name-edit, role-gating fix)."
 
   - surface: Trips Home
     canon: ["Vesper Trips Home.html", "trips-home-canon.jsx", "trips-home-canon-screens.jsx", "trips-home-system.jsx", "trips-all-board.jsx"]
     code: ["app/(tabs)/trips/index.tsx", "components/trips/"]
     aligned_at: 110
-    status: aligned
+    status: stale    # was: aligned — verdict reset 2026-07-11
     notes: "Front-door decision-promotion fix (promoteHeroIfNeedsYourVote) + Batch I's CreateEntry card + joiner trail-row retirement, all verified."
 
   - surface: Trip Creation
     canon: ["Vesper Trip Creation.html", "create-kit.jsx", "create-screens.jsx"]
     code: ["app/trip-begin.tsx", "components/trip-creation/TripCreationPrimitives.tsx"]
     aligned_at: 126
-    status: partial
+    status: stale    # was: partial — verdict reset 2026-07-11 (residuals in notes still live)
     notes: "Canon-126 start-choice drift CLOSED (commit dabd7918): StartRow gained the 42px raised-paper tinted icon plate (goldDeep/sage/slate[400]) + the closing VesperLine reassurance. Scoped via optional `tint` so only the start-choice screen changed; other TripCreationStages StartRows keep bare icons (not in the 126 diff). KNOWN pre-existing gap (predates 126, not this drift): StartRow title/subtitle are serif_semibold 18 / serif_italic 14, canon Opt is sans 15.5 / serif 13.5 — separate re-alignment if ever wanted."
 
   - surface: State System
     canon: ["Vesper State System.html", "vesper-state-system-app.jsx"]
     code: ["components/ui/state/"]
     aligned_at: 108
-    status: aligned
+    status: stale    # was: aligned — verdict reset 2026-07-11
     notes: "Batch H1, all 5 tasks confirmed. ErrorState correctly kept as a distinct full-page tier (peer of EmptyHero), NOT merged into ErrorRecovery — see the H1 taxonomy correction in project_batch_efgh_alignment memory."
 
   - surface: Interaction Surfaces
     canon: ["Vesper Interaction Surfaces.html"]
     code: ["components/ui/BottomSheet.tsx", "components/ui/ConfirmDialog.tsx"]
     aligned_at: 108
-    status: partial
+    status: stale    # was: partial — verdict reset 2026-07-11 (residuals in notes still live)
     notes: "Batch H2, real Gesture.Pan() swipe-to-dismiss + snap presets + dirty-dismiss confirmed. GAP: components/focus-home/Deck.tsx raw <Modal> silently skipped in the H2-5 Modal audit — neither migrated nor blessed."
 
   - surface: Motion
     canon: ["Vesper Productive Type & Material.html"]  # motion stance lives in Session-W notes, no dedicated canon .html yet
     code: ["constants/motion.ts", "utils/motion.ts"]
     aligned_at: 108
-    status: aligned
+    status: stale    # was: aligned — verdict reset 2026-07-11
     notes: "E6 (values/shimmer) + Batch H3 (reduce-motion guards, spring retune, token sweep) both confirmed. canon field is a placeholder — motion stance has no dedicated canon page, flag if one gets added."
 
   # ── Header system: recon done, code NOT yet aligned (J1 brief written,
@@ -112,7 +122,7 @@ surfaces:
       - "components/chat/FloatingChatHeader.tsx"
       - "app/(tabs)/trips/[tripId]/story.tsx"        # MemoryStoryHeader — the one real fork
     aligned_at: 129
-    status: aligned
+    status: stale    # was: aligned — verdict reset 2026-07-11
     notes: "RESOLVED (canon 129, header-audit-app.jsx). Trip Story RULING: stays Family A — TSPageHeader is already a thin ProductiveHeader wrapper, no bespoke Story masthead ('earns identity through content, not chrome') — NO CODE CHANGE. Family A RATIFIED: one component (productive-header.jsx) with three prop-driven registers (A1 one-row / A2 two-row / A3 reader) — code already does this. Places moved OUT of Family A to Family B (see Places row). No open code work — all three rulings match shipped code. (The J1 brief's premise was mostly stale; only real forks were already unified.)"
 
   # ── Notifications/People/Places/Trip Story: touched by handoff 119,
@@ -122,21 +132,21 @@ surfaces:
     canon: ["Vesper Notifications and Alerts.html", "notifications-app.jsx"]
     code: ["app/notifications/index.tsx"]
     aligned_at: 108
-    status: aligned
+    status: stale    # was: aligned — verdict reset 2026-07-11
     notes: "J1 recon (119) confirms already on shared EditorialMasthead — the 119 diff to this surface is 1-line adoption of productive-header.jsx script tag + 19-line jsx tweak, not a code-relevant change."
 
   - surface: People & Collaboration
     canon: ["Vesper People and Collaboration.html", "people-collab-app.jsx"]
     code: ["app/atlas/companions.tsx"]
     aligned_at: 108
-    status: aligned
+    status: stale    # was: aligned — verdict reset 2026-07-11
     notes: "J1 recon (119) confirms already on shared CompactHeaderBar via AtlasNativeScaffold."
 
   - surface: Places
     canon: ["Vesper Places.html", "places-canon-app.jsx", "hero-chrome.jsx"]
     code: ["app/place/[placeSlug].tsx"]
     aligned_at: 129
-    status: aligned
+    status: stale    # was: aligned — verdict reset 2026-07-11
     notes: "RESOLVED (canon 129 header ruling): CODE IS CANONICAL. Places detail ships hero-first (full-bleed photo + floating GlassButton icons, no top bar) — ruled Family B (HeroChrome), consistent with Discover detail lineage. The old slim-reader-bar mock was the STALE side and is retired. No code change — the design ruling caught canon up to what shipped. (The header divergence, the only real gap on this surface, is now closed.)"
 
   - surface: Trip Story
@@ -155,7 +165,7 @@ surfaces:
       - "travel-agent: backend/core/db/trip_story_shares.py"
       - "travel-agent: backend/core/db/plan_similar.py"
     aligned_at: 118
-    status: partial
+    status: stale    # was: partial — verdict reset 2026-07-11 (residuals in notes still live)
     notes: >
       STATUS CHANGE 2026-07-07: was `deferred` (off-wedge, no code existed).
       Overtaken by events — "Implement MVP public story sharing" shipped real
@@ -254,7 +264,7 @@ surfaces:
       - "travel-agent: backend/core/db/search.py"
       - "travel-agent: backend/core/vector/atlas.py"
     aligned_at: 108
-    status: partial
+    status: stale    # was: partial — verdict reset 2026-07-11 (residuals in notes still live)
     notes: >
       Backfilled from project_universal_search memory (real verification
       2026-06-29 through 07-02, not a fresh audit): 6-group cross-entity
@@ -309,7 +319,7 @@ surfaces:
       - "data/invites.ts"
       - "components/onboarding/DeferredDiaryGiftSheet.tsx"
     aligned_at: 108
-    status: partial
+    status: stale    # was: partial — verdict reset 2026-07-11 (residuals in notes still live)
     notes: >
       Backfilled from this session's loop-closure investigation (Drill 2,
       2026-07-06) — a real verification, not a fresh audit. Scope actually
@@ -358,7 +368,7 @@ surfaces:
     canon: ["Vesper Global Chrome.html", "vesper-global-chrome-app.jsx", "tab-bar.jsx"]
     code: ["components/nav/FloatingTabBar.tsx", "app/(tabs)/_layout.tsx"]
     aligned_at: 127
-    status: partial
+    status: stale    # was: partial — verdict reset 2026-07-11 (residuals in notes still live)
     notes: "Tab-bar badge removal (Batch E) confirmed; canon 127 (D2) independently re-confirms NO badge — tab-bar.jsx's vesperBadge prop deleted entirely (was a dead-but-present default contradicting the standing ruling), reconciled to Global Chrome's radius 30/blur 12px/rgba(249,245,237,0.92). NOT yet verified: whether FloatingTabBar.tsx's own radius/blur/bg values match those exact reconciled numbers — flag for a quick token check next time this file is touched. Center-slot geometry question from project_vision_alignment_assessment unresolved — P2, not urgent."
 
   - surface: Discover (+ Detail/Reader, Map & Spatial Browse)
@@ -388,7 +398,7 @@ surfaces:
     canon: ["buttons.jsx", "Vesper Button Decisions.html"]
     code: ["components/ui/Button.tsx", "components/ui/InlineChip.tsx", "components/stay/StayCard.tsx", "components/expense/CostsPrimitives.tsx"]
     aligned_at: 126
-    status: partial
+    status: stale    # was: partial — verdict reset 2026-07-11 (residuals in notes still live)
     notes: "CC1.1d (07-09, commits 9038fef2..4272b385 on main) shipped canon 126's full taxonomy — 'adopt canon for all' directive. ✅ `warning` variant (solid colors.warning #B0563C + white) → booked-block acknowledge gates (ChangeStudioSheet + MoveBlockSheet). ✅ `labelColor` prop (active-label-only override) → ExpenseDetail 'Delete expense' (ghost+labelColor=terracotta[400]). ✅ InlineChip primitive built (components/ui/InlineChip.tsx: h27/r8/pad10/12px-semibold/gap5, sage-tint fill, 44px touch via hitSlop). ✅ danger→destructive ADOPTED: variant renamed + treatment changed to SOLID oxblood (colors.surface.oxblood) + white per canon; applied by hard-vs-soft rule — ConfirmDialog destructive-confirm + RevertConflictSheet 'Force full revert' → destructive (solid); ProposalDetail 'Decline' (reversible vote reject) → ghost+labelColor=oxblood (canon's soft treatment). ✅ StayButton FOLDED (D14): now a thin wrapper composing Button; the 10 sites' arbitrary/dynamic tones ride through Button's existing style+labelColor props (NOT a new Button API — keeps the fixed-variant model). CostsReceiptButton left separate (canon-BLESSED, ticket silhouette). D15 on-dark = local exception, not built (correct — canon: no variant until 2nd use).
       ✅ InlineChip ADOPTED in PlanBlockRow (commit ae33a76e): Change → bare InlineChip, Done → fill (sage-tint affirmative, supersedes the old 'no filled bg' note). The primitive is now used where it was designed for.
       Radius ratchet 374→370 across CC1.1d. All commits: tsc 0, ratchets green, tests pass. Buttons family is fully aligned to canon 126."
@@ -397,40 +407,40 @@ surfaces:
     canon: ["Vesper Row System.html", "row-spec.jsx", "row-system.jsx", "row-system-sections.jsx", "action-grammar-rows.jsx", "action-grammar.jsx"]
     code: ["components/ui/rows/", "components/trip-plan/PlanBlockRow.tsx"]
     aligned_at: 127
-    status: partial
+    status: stale    # was: partial — verdict reset 2026-07-11 (residuals in notes still live)
     notes: "D1 RESOLVED (canon 127): SpineRow (itinerary-canon) blessed as the ONE canonical timeline row — no more competing dialect. Rich new state grammar drawn concretely in row-system.jsx TimelineRow: planned·booked·held·proposed·now·done·skipped, each with its own node fill/border, + conflict (oxblood left-border + node), + attribution line (italic serif), + status chips (HELD/PROPOSED/BOOKED, mono). Batch F SHIPPED 07-10 (19896162): PlanBlockRow.tsx (the real, golden-path adopter — day-view itinerary row) now derives this exact 7-state grammar from its 5 backend fields via derivePlanBlockCanonState, with the node/title/chip treatment matching canon; scoped with a research pass first since it surfaced 4 real product calls (all made, see commit): the two proposed-ish signals collapse into one `proposed`; the old happened-triggers-gold-border removed (collided with conflict's oxblood semantics); the new HELD/PROPOSED/BOOKED chip added alongside — not instead of — PlanCommitmentBadge/PlanBookingState; `now` implemented via new client-side time derivation (no backend signal exists). held_for_payment/expired/failed booking outcomes and the isExperience planned-tint were kept as overlays on top of the canon states rather than dropped (real information canon's 7 states don't cover). REMAINING GAP: TimelineObjectRow.tsx (components/ui/rows/) still does NOT implement this grammar — deliberately deferred, it has exactly one call site (TripFolioHome.tsx, against mock data) and its own open scope question (deprecate in favor of PlanBlockRow vs. become a second real adopter) not yet decided. K2 UtilityRow citation RESOLVED (canon 129): the blessed 'dense sans-led management/reader row' is now cited in BOTH the People canon page (MemberRosterRow → UtilityRow variant) and row-spec/row-system-sections (§06 UtilityRow: saved mgmt · member roster · collection reader) — the pages no longer contradict the ruling. Residual code-side (optional): rebase MemberRosterRow onto RowCore + fix micro-drift (avatar 36→38, name 13→14, pad 8→10)."
 
   - surface: Cards kit (family)
     canon: ["Vesper Cards.html", "Vesper Action Card Ownership.html", "vesper-cards-kit.jsx", "vesper-cards-system.jsx", "vesper-cards-families.jsx", "vesper-cards-fam.jsx"]
     code: ["components/vesper-cards/", "components/ui/CardSurface.tsx", "utils/vesperCardFamilies.ts", "components/focus-home/", "components/takes/"]
     aligned_at: 127
-    status: aligned
+    status: stale    # was: aligned — verdict reset 2026-07-11
     notes: "D5 RESOLVED (canon 127): vesper-cards-kit.jsx CardShell now r14 + solid warm paper + real letterpress boxShadow (glass blur removed) — canon catching up to code's CardSurface, which already had this right (confirms, no code action). D4 RESOLVED: Transact + Trust are now real families (FAM entries: transact spine #2E4A63/receipt glyph, trust spine #5E7355/seal glyph) drawing a new shared ReceiptFace component — 4-part anatomy (header · vesper-line · status · source), demoed live in vesper-cards-app.jsx. Batch B SHIPPED 07-10: CC2.2 (StayCard 6444f6a9, CostsEstimateCard 183ad84a folded onto CardSurface; TripLogCard held back — zero consumers, dead code; FolioReceiptCard held back — transparent clip-container around 11 distinct receipt sub-widgets, not a unifiable shell), CC2.3 (fe3664c9 — DeckPickFace/DeckBriefFace/DeckCompareFace/DeckStructuredFace onto CardSurface, r20→r14; Deck.tsx/DeckCallFace excluded, concurrent-session WIP), CC2.5 (6f66ce27 — label/glyph/color/authored metadata de-triplicated from glyphs.tsx/KindTag.tsx/VesperCardKit.tsx into one VESPER_FAMILY_META in utils/vesperCardFamilies.ts). Batch C SHIPPED 07-10: CC2.4 (44bc3be6 — new components/vesper-cards/ReceiptFace.tsx (4-part anatomy) + CardTransact/CardTrust faces wired into FocusHome's dispatch; also fixed transact/trust FAM label/icon/color to canon's exact D4 values, replacing pre-D4 placeholders; added surface.transactInk token, reused surface.sageDeep for trust). Remaining code gap: status/source fields don't exist on ConciergeHomeCard yet (no backend wiring for transact/trust card kinds) — both faces currently render header+vesper-line only; not this batch's scope (data-gated, deferred). All Batch A-C Cards-kit code work is now DONE — status flipped to aligned."
 
   - surface: Sheets (family)
     canon: ["Vesper Interaction Surfaces.html", "sheet-atoms.jsx", "sheet-header.jsx", "sheet-field.jsx", "field.jsx", "section-edit-sheet.jsx", "revert-conflict-sheet.jsx", "trip-record-sheet.jsx"]
     code: ["components/ui/BottomSheet.tsx", "components/ui/SheetHeader.tsx", "components/ui/SheetField.tsx", "components/ui/ActionListSheet.tsx", "components/ui/ConfirmDialog.tsx"]
     aligned_at: 127
-    status: partial
+    status: stale    # was: partial — verdict reset 2026-07-11 (residuals in notes still live)
     notes: "~87% adoption (66/76 call sites). D3 RESOLVED (canon 127): bordered VField (field.jsx) is canonical for add/edit sheet DATA ENTRY (clearer on-device tap target); VSheetField (sheet-field.jsx) rescoped to READ-ONLY display rows (stay/costs summaries) — both files' headers now state the scope split explicitly. Batch E SHIPPED 07-10: CC4.1 (25185aac — trip-accommodations' two cornerRadius={radius.input} overrides on BottomSheet dropped, redundant with the snap-aware default; SheetHeader's kicker style pointed at typography.kicker (mono) instead of typography.capsLabel (sans), all 24 adopters inherit; CostsBalanceSheet + MemberActionSheet's wrong-token SheetHandle color overrides dropped, falling back to the atom's correct default. Held back: CostsBalanceSheet's title/Done row NOT forced onto SheetHeader's title slot — no size variant matches its existing serif_semibold/17px without a real visual regression, and the general sheet-title-size question is separately flagged as needing a design ruling; MemberActionSheet's avatar+name identity block doesn't fit SheetHeader's title/kicker anatomy; GroupAgencySheet's discard-confirm dialog was NOT routed to ui/ConfirmDialog — the code carries an explicit, cited comment that this flow's bottom-anchored dialog matches its own canon board (group-agency-board.jsx 1e) deliberately, distinct from the centered ConfirmDialog — converting it would be a regression, not an alignment). CC4.2 (715e93f6 — all 11 text-entry fields in trip-accommodations' Add/Edit-Stay and Add-Candidate forms migrated from bare TextInput onto ui/SheetField, using its required prop instead of a baked-in '*'; check-in/check-out date-picker Pressables and the visibility segmented toggle correctly left alone as different species). CC4.5 DONE (Batch H, ff6d6eaa): scripts/check-sheet-bypass-budget.mjs wired into CI — raw <Modal> outside BottomSheet.tsx/ConfirmDialog.tsx may only decrease (baseline 14/12 files); Deck.tsx's known H2-5 gap deliberately left un-exempted so it stays visible, not silently grandfathered."
 
   - surface: State System (family)
     canon: ["Vesper State System.html", "discover-feed-states.jsx", "reader-states-board.jsx", "trip-edge-states.jsx", "changes-states-board.jsx", "session-recovery.jsx"]
     code: ["components/ui/state/"]
     aligned_at: 129
-    status: partial
+    status: stale    # was: partial — verdict reset 2026-07-11 (residuals in notes still live)
     notes: "H1 migration stuck — one kit, legacy EmptyState deleted, 57 importers. D6 RESOLVED (canon 129): ErrorState/StateScreen full-page hard-failure tier now BLESSED (specimen added, ImplMapping row fixed 'Not debt') — code already ships both, so this was canon catching up, no code action. Low residual: LoadingTrips shows AI framing over a non-AI fetch — CC-later."
 
   - surface: Tokens (family)
     canon: ["Vesper Design Tokens.html", "Vesper Productive Type & Material.html", "vesper-tokens.jsx", "token-reference-app.jsx", "design-system.jsx", "gouache.jsx"]
     code: ["constants/colors.ts", "constants/typography.ts", "constants/layout.ts", "constants/motion.ts", "constants/fonts.ts", "constants/cardSurface.ts"]
     aligned_at: 127
-    status: partial
+    status: stale    # was: partial — verdict reset 2026-07-11 (residuals in notes still live)
     notes: "CC4.3 DONE (671a3d7d): status-hue trio snapped to canon ox60/sage60 — colors.danger + colors.surface.oxblood unified to #7A2E2E (were 2 different reds); olive[600] (the text-weight tone, not the fill-base olive[400]) → #2E5A3A; colors.success now references olive[600] directly. CC4.4 DONE (52da717a): 104 genuine-body-text sites migrated muteSoft→mute across 60 on-wedge files (30 correctly left as decorative, 5 flagged UNCLEAR) via a classification workflow reading actual JSX render sites, not just style-key names. CC4.5 DONE (Batch H, ff6d6eaa): scripts/check-muteSoft-budget.mjs wired into CI (baseline locked post-CC4.4, only ever decreases) so muteSoft-as-text can't silently regrow — caught Batch F's PlanBlockRow.tsx introducing 2 new muteSoft-as-text sites the same day (287→288), fixed same-session (6f6792c3, baseline retightened to 286). Durability now structural, not just a one-time count. D7 RESOLVED (canon 129): sub-9pt floor answered — a scoped fsStamp:8 exception is now canonized in vesper-tokens.jsx, permitted ONLY for mono/uppercase/letter-spaced(≥1.2) stamps (folio/trip date stamps, auth/receipt micro-labels). Code should add an fsStamp equivalent + point the sanctioned sub-9 sites at it, and the fontSize ratchet's PENDING sub-9 exemptions can be reclassified as canon-sanctioned rather than debt. OPEN: colors.surface.sage is OVERLOADED (status-affirmative in some places — InlineChip fill — pure editorial decoration in others — Places/Discover Fleuron/VesperSignature tints) — needs the same file-by-file judgment CC4.4 used before its value can move; do NOT blind-snap it. vesperSemanticTokens still mis-mapped/dead (zero consumers found — confirm delete vs revive). oxbloodDeep (#7C2F22) near-identical to the snapped oxblood — ramp-collapse question, out of scope. The 5 UNCLEAR CC4.4 sites + its 30 LEAVE calls could use a second human skim. CC4.5 durability SHIPPED 07-10 (ff6d6eaa): 3 adoption ratchets wired into ci.yml alongside the existing 6 — muteSoft-budget (287, locks in CC4.4's post-migration count so ink80-as-text can't regrow silently), sheet-bypass-budget (14 raw <Modal call sites outside BottomSheet/ConfirmDialog — Deck.tsx's known H2-5 gap deliberately left unexempted so it keeps surfacing), local-button-budget (7 files with a hand-rolled btn/button style that don't import ui/Button — verified by hand that files composing Button via a style-prop override, the sanctioned CC1.1 pattern, are excluded by construction, not miscounted as violations). This is CC4.5 tasks 2+3 from code-alignment-brief-CC4-sheets-tokens.md; task 1 (the 6 family rows themselves) was already done 07-09."
 
   - surface: Voice registers (family)
     canon: ["vesper-voice-registers.jsx", "immersion-register.jsx", "vesper-shared.jsx", "Vesper Productive Type & Material.html"]
     code: ["components/brand/VesperSignature.tsx", "components/brand/VesperAttribution.tsx", "components/brand/VesperNote.tsx", "components/brand/VesperMark.tsx"]
     aligned_at: 129
-    status: aligned
+    status: stale    # was: aligned — verdict reset 2026-07-11
     notes: "Core right (5 registers, Whisper killed, VesperSignature 13 adopters). Law: italic serif = Vesper voice ONLY. ALL THREE gating decisions RESOLVED (canon 129) and CC3 (voice hygiene) is now FULLY SHIPPED 07-10, all 6 tasks done: CC3.1 (c39101bd + mop-up 91fe2d41/e51832ba — every fontStyle:'italic' site app-wide classified & fixed), CC3.2 (d4bfd900 + mop-up — markdown em keeps the serif face only where the surrounding paragraph is genuinely serif, matching PrivateVesperNote's pattern; NarrationCard/GroupVesperNote compact em confirmed roman, DM Sans body ≠ serif Vesper prose), CC3.3 (changes.tsx masthead split into roman count-chrome vs a genuine serif-italic empty-state voice line), CC3.4 (1a67140d — VesperSignature adopted in TripMapRouteLens; TripHeroCard exempt per its own canon board; onboarding.tsx/SeamDecline.tsx Fleuron eyebrows flagged, need a design call not a codemod), CC3.5 (8dff50c5 — new components/brand/VesperMark.tsx ports canon's exact two-point spark SVG; vesper-cards/VesperMark.tsx's existing VesperSparkle now wraps it instead of Ionicons; two parallel research passes classified all 77 sparkles/sparkles-outline occurrences + 4 local hand-rolled variants app-wide by actual render context — 19 genuine Vesper-attribution sites across 14 files converted, everything decorative/functional/Atlas-voice left alone, including ComposerBar's VSparkle per its own 'decorative' doc comment), CC3.6 (77b5d78b — D10's costs italic budget applied to the 3 known sites: CostsEmptyState blessed as the true empty-state case; CostsEstimateCard's note dropped to roman, confirmed via app/trip-expenses/index.tsx it only renders in the populated-ledger branch; CostsBalanceSheet's 'copy' turned out to be a computed tally sentence, not Vesper voice at all, also dropped to roman). D8/D9/D10 all verified applied in code, not just ruled in canon. Voice registers family now fully ALIGNED — no known code gaps remain."
