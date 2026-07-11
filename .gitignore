@@ -48,6 +48,12 @@ scratch/
 
 # Design-tool export bundles (HTML/PNG mockups — reference locally, not versioned)
 design/vesper-discover-search-claude-design/
+design/vesper-home-claude-design/
+design/vesper-cards-claude-design/
+design/vesper-discover-fetched/
+design/vesper-discover-claude-design/
+design/trips-full-anthropic/
+design/atlas-direction-03-claude-design/
 
 # docs: never commit python bytecode
 docs/**/__pycache__/
