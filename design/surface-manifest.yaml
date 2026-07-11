@@ -59,7 +59,7 @@ surfaces:
   - surface: Proposal & Decision Detail
     canon: ["Vesper Proposal & Decision Detail.html", "vesper-proposal-detail-app.jsx", "revert-conflict-sheet.jsx"]
     code: ["components/trip/proposal-detail/", "app/trip-proposal/[proposalId].tsx", "components/receipts/"]
-    aligned_at: 134
+    aligned_at: 135    # handoff 135 checked 2026-07-11: vesper-proposal-detail-app.jsx's only diff is Phone→VPhoneFrame (canon-internal demo-shell extraction), zero content change — no re-verification needed
     code_verified_at: 543e2bbf    # travel-app HEAD, Wave 2 re-audit 2026-07-11
     status: partial
     notes: "Wave 2 re-audit (2026-07-11) REFUTES the old 'all 5 tasks confirmed' claim on 2 of 4 identifiable items (a 5th was never named, can't verify). ProposalVoteRows and the receipt-dispatch system genuinely hold up — voter avatars, leading/tie logic, and kind-based receipt routing all confirmed exact. But 'RevertConflictSheet 3-states' does not: its 'summary' state is dead code (defined, tested, never invoked from any production call site), and the live 'conflict' state has quietly diverged from canon's per-item Keep/Discard interaction into a backend-resolved binary Force/Keep choice — a real, reasoned redesign (cited K1, 2026-07-06) that canon was never updated to reflect. 'Closed/recovery' also doesn't hold: rejected and plain-withdrawn (non-revert) proposals render NO closed-state banner at all — ProposalClosedState only fires for 'superseded', TrustStatusBanner only for accepted/withdrawn-with-revert. Recovery actions themselves are fine. Also: the Sheets-family audit's `dense` SheetHeader finding is still unresolved here — all 3 RevertConflictSheet title calls still default to `size='large'`. Minor: ProposalDetailScreen hand-rolls its own header chrome instead of reusing the shared ProductiveHeader canon's Chrome wrapper specifies."
@@ -75,7 +75,7 @@ surfaces:
   - surface: Trip Settings & Admin
     canon: ["Vesper Trip Settings & Admin.html", "vesper-trip-settings-app.jsx", "ask-organizer-pattern.jsx"]
     code: ["app/trip-settings/", "app/trip-info/", "app/trip-dates/", "components/trip-settings/", "components/trip/BlockedActionRow.tsx"]
-    aligned_at: 134
+    aligned_at: 135    # handoff 135 checked 2026-07-11: vesper-trip-settings-app.jsx's diff is Phone→VPhoneFrame + Sheet→VSheet extraction (canon-internal demo-shell consolidation), zero content change — no re-verification needed
     code_verified_at: 543e2bbf    # travel-app HEAD, Wave 3 re-audit 2026-07-11
     status: partial
     notes: >
@@ -120,7 +120,7 @@ surfaces:
   - surface: Trip Creation
     canon: ["Vesper Trip Creation.html", "create-kit.jsx", "create-screens.jsx"]
     code: ["app/trip-begin.tsx", "components/trip-creation/TripCreationPrimitives.tsx"]
-    aligned_at: 134
+    aligned_at: 135    # handoff 135 checked 2026-07-11: create-kit.jsx's diff is Phone→VPhoneHeader extraction (canon-internal demo-shell consolidation), zero content change — no re-verification needed
     code_verified_at: 543e2bbf    # travel-app HEAD, Wave 2 re-audit 2026-07-11
     status: partial
     notes: "Wave 2 re-audit (2026-07-11): icon-plate fix re-confirmed pixel-exact. The known serif-vs-sans typography gap is CONFIRMED still open, still deliberately deferred (matches the commit's own note verbatim). New findings on the closing VesperLine claim: the line is present with correct copy/position, but canon's actual pattern for THIS specific line (create-screens.jsx:112) is a distinct muted-italic-no-kicker 'aside' treatment, not the shared VLine/VesperLine primitive (which always carries a 'VESPER' kicker canon specifies but code's shared component never renders, in ANY of its usages app-wide). The fix commit's own description ('italic serif — the right register') is also factually wrong: the shipped style is non-italic serif_semibold. Separately found: the joiner-variant screen (returning users who've only joined trips) never swaps to canon's distinct NewTripJoiner headline ('Your turn to start one.') — it keeps the default headline and adds an extra StateNotice canon's joiner screen doesn't show; this predates and was untouched by the 126 alignment pass. Minor: ShapeCard's selected-check badge is styled inverted from canon (filled-gold vs canon's outline-on-cream) plus a small size delta."
@@ -128,7 +128,7 @@ surfaces:
   - surface: Interaction Surfaces
     canon: ["Vesper Interaction Surfaces.html", "vesper-interaction-surfaces-app.jsx", "consequence-banner.jsx"]
     code: ["components/ui/BottomSheet.tsx", "components/ui/ConfirmDialog.tsx", "components/ui/ConsequenceBanner.tsx"]
-    aligned_at: 134
+    aligned_at: 135    # handoff 135 checked 2026-07-11: Sheet→VSheet extraction, zero content change. BONUS: sheet-atoms.jsx's new VSheet primitive explicitly documents SHEET_R=20 as canonical (Trip Settings/Interaction Surfaces/Discover Map "no drift there") — spot-verified BottomSheet.tsx:137 (`snap ? 20 : 16`) already matches exactly, confirmed-aligned
     code_verified_at: 543e2bbf    # travel-app HEAD, Wave 3 re-audit 2026-07-11
     status: partial
     notes: "Wave 3 re-audit (2026-07-11): this row's real canon content was NEVER READ before — the HTML is a loader shell pulling in 6 scripts, only 1 of which (buttons.jsx) had ever been checked by any prior audit. Added vesper-interaction-surfaces-app.jsx and consequence-banner.jsx as the real canon sources; sheet-atoms.jsx and field.jsx are also loaded (Handle/Field are thin wrappers over them) but still unread — flag for a follow-up. Against real content: BottomSheet's own cited scrim-weight numbers for peek/chooser/form (0.20/0.28/0.28) are exact matches. But ConfirmDialog's scrim value is a real miss — 0.45 vs canon's 0.40 — and its justifying code comment is factually backwards (claims Center Dialog is canon's 'heaviest' scrim; canon has two heavier: voice overlay 0.50, photo lightbox 0.85). Peek/chooser snap-height caps run ~1.3-1.4x past canon's stated envelope (max-height ceilings, not fixed heights, so short content is unaffected). ConsequenceBanner (added to code: list) implements canon's anatomy correctly but violates canon's explicit 'no circular icon containers' rule with a literal circular icon wrap. Deck.tsx's raw <Modal> gap (previously flagged) is CONFIRMED STILL OPEN, unchanged. BottomSheet's dirty-dismiss/swipe machinery (Batch H2) reconfirmed real and working, though its own doc comment on disableSwipeDismiss is stale (says 'no drag dismiss yet' next to fully-implemented swipe code)."
@@ -160,7 +160,7 @@ surfaces:
   - surface: Notifications
     canon: ["Vesper Notifications and Alerts.html", "notifications-app.jsx"]
     code: ["app/notifications/index.tsx"]
-    aligned_at: 134
+    aligned_at: 135    # handoff 135 checked 2026-07-11: notifications-app.jsx's diff is Phone→VPhone extraction (canon-internal demo-shell consolidation), zero content change — no re-verification needed
     code_verified_at: 543e2bbf    # travel-app HEAD, Wave 2 re-audit 2026-07-11
     status: partial
     notes: "Wave 2 re-audit (2026-07-11) — effectively a first real audit, prior note was header-plumbing only. Filter pills, severity taxonomy/chip colors, mark-read action, and the data-contract fields all confirmed aligned — in places (severity derivation, optional future-fields already modeled) code is ahead of what canon's doc frames as not-yet-available. Two real structural gaps: TODAY/YESTERDAY/EARLIER sectioning is fully implemented (`notificationSectionLabel()`, spot-verified as having zero call sites anywhere outside its own test) but never wired into 3 of 4 canon screen modes — only Trip-Updates mode sections its rows, Global/Trip-Scoped/Personal ship as one flat scroll. The priority/time-sensitive strip has reverted to a bordered, tinted card — exactly the 'NeedsEye card' pattern canon's own doctrine explicitly killed ('no card background', notifications-app.jsx:166-183). Minor: destination-label can diverge from actual tap-navigation target (substrate-gated, canon itself flags this derivation as fragile); kicker isn't always the spec'd muteSoft; loading skeleton doesn't mirror the (mostly avatar-less) row shape; push-denied CTA says 'Turn on' instead of canon's state-dependent 'Open Settings'; stale banner drops the last-synced timestamp and list-dimming."
@@ -168,7 +168,7 @@ surfaces:
   - surface: People & Collaboration
     canon: ["Vesper People and Collaboration.html", "people-collab-app.jsx"]
     code: ["app/atlas/companions.tsx", "components/people/", "components/collaboration/", "app/profile/[userId].tsx"]
-    aligned_at: 134
+    aligned_at: 135    # handoff 135 checked 2026-07-11: people-collab-app.jsx's diff is Phone→VPhone extraction (canon-internal demo-shell consolidation), zero content change — no re-verification needed
     code_verified_at: 543e2bbf    # travel-app HEAD, Wave 2 re-audit 2026-07-11
     status: partial
     notes: "Wave 2 re-audit (2026-07-11): the prior brief's PrivateSeam finding ('needs to be BUILT, not adjudicated') is STALE — spot-verified directly. components/chat/group/PrivacySeamDivider.tsx (dated 2026-07-11) is a faithful, unusually well-documented implementation of canon's DignifiedPrivateSeam, explicitly self-citing people-collab-app.jsx:213-220,1041, wired live via DignifiedExceptionCard→GroupThreadItem. Core visual tokens (avatar marker/stack, pill status taxonomy, roster row) confirmed near-exact. But the interaction layer has real gaps: canon's pending-invite MemberActionSheet variant (Resend/Copy link/Revoke) was never wired — pending invites get only an inline revoke icon; the group-chat vote widget is missing canon's per-voter-avatar/tally grammar both in UI AND in its underlying data model (VoteWidgetData has no voter/count fields at all, unlike the itinerary-side PlanDecision which does); self-profile has no 'Edit profile' affordance canon specifies; unfollow has no long-press friction guard canon's caption calls for; the co-organizer role is half-built (present in component props/visual markers, absent from the live TripContext role type, so unreachable in practice — and even the scaffolding is internally inconsistent, RolePill and PeopleAvatar disagree on its color). DecisionInlineRow renders a chevron canon explicitly says the inline itinerary variant shouldn't have. PrivacyMarker is dead code (built, exported, zero consumers)."
@@ -197,7 +197,7 @@ surfaces:
       - "travel-agent: backend/api/routes/plan_similar.py"
       - "travel-agent: backend/core/db/trip_story_shares.py"
       - "travel-agent: backend/core/db/plan_similar.py"
-    aligned_at: 134
+    aligned_at: 135    # handoff 135 checked 2026-07-11: trip-story-app-a/b.jsx's diffs are 5x table-header→VTableHead extractions (canon-internal demo consolidation) — every column label/data byte-identical, zero content change — no re-verification needed
     code_verified_at: 543e2bbf    # travel-app + travel-agent HEAD, Wave 2 re-audit 2026-07-11
     status: gap    # most severe Wave-2 verdict — see below
     notes: >
@@ -308,7 +308,7 @@ surfaces:
       - "travel-agent: backend/search/dispatch.py"
       - "travel-agent: backend/core/db/search.py"
       - "travel-agent: backend/core/vector/atlas.py"
-    aligned_at: 134
+    aligned_at: 135    # handoff 135 checked 2026-07-11: universal-search-app.jsx's diff is Phone→VPhone extraction (canon-internal demo-shell consolidation), zero content change — no re-verification needed
     code_verified_at: 543e2bbf    # travel-app + travel-agent HEAD, Wave 3 re-audit 2026-07-11
     status: partial
     notes: >
@@ -337,17 +337,17 @@ surfaces:
       solid.
 
   - surface: Booking & Reservation
-    canon: ["Vesper Booking & Reservation.html", "booking-app.jsx", "booking-kit.jsx", "booking-canon-proposal.jsx", "booking-canon-receipt.jsx", "booking-canon-states.jsx"]    # booking-screens-1/2/3.jsx renamed to these 3 in handoff 135 (canon's own pending-rename item, now done) — the Wave 3 audit's citations (e.g. booking-screens-2.jsx:99-111) point at content that moved, not necessarily changed; not yet re-diffed against the new files
+    canon: ["Vesper Booking & Reservation.html", "booking-app.jsx", "booking-kit.jsx", "booking-canon-proposal.jsx", "booking-canon-receipt.jsx", "booking-canon-states.jsx"]    # booking-screens-1/2/3.jsx renamed to these 3 in handoff 135 (canon's own pending-rename item) — CONFIRMED byte-identical content via direct diff (0 lines changed, all 3 files) — pure rename, Wave 3's citations (e.g. old booking-screens-2.jsx:99-111 → booking-canon-receipt.jsx:99-111) still accurate at the same line numbers
     code: ["components/booking/", "app/booking/[sessionId].tsx"]
-    aligned_at: 134
+    aligned_at: 135
     code_verified_at: 543e2bbf    # travel-app HEAD, Wave 3 re-audit 2026-07-11
-    status: stale    # was: partial — canon file rename (handoff 135) invalidates this row's exact citations; content likely unchanged but not re-verified
+    status: partial    # was: stale — handoff 135's rename confirmed content-identical, reverted to Wave 3's real verdict
     notes: "Wave 3 — first real audit (2026-07-11). Removed app/experience/[experienceId].tsx from code: — confirmed disconnected from the booking component family (its 'Book' CTA is a bare external-URL open, no session/receipt tracking, own header comment cites Discover as its real canon); re-homed to the Discover row. The core trust architecture is faithfully ported, in places verbatim: category vocabulary (6 types), state/color language, and the 'hold ≠ booked, never overclaim confirmed' discipline all match canon closely; live-checkout's dark-flag gating (EXPO_PUBLIC_LIVE_BOOKING_ENABLED) is a 1:1 match to canon's own stated v1-dark framing. Real gaps, read as intentional first-slice narrowing rather than drift: no manual/phone-only handoff branch in the session screen (canon specs one); hold states show a static deadline, not canon's live mm:ss countdown; confirmed-booking receipt drops 'View in plan'/'Contact provider' actions down to Cancel-only; group/shared-booking states (organizer-books-for-group, waiting-on-approval) entirely absent, no flag found gating them. canon-owes-code: BookingOfferRow's trade-off pills are a real feature ahead of canon's single static reason-string spec — worth folding back if considered final."
 
   - surface: Trust & Controls
     canon: ["Vesper Trust & Controls.html", "trust-kit.jsx"]
     code: ["components/trust/TrustControlsKit.tsx"]
-    aligned_at: 134
+    aligned_at: 135    # handoff 135 checked 2026-07-11: trust-kit.jsx's diff is Phone→VPhoneHeader extraction (canon-internal demo-shell consolidation), zero content change — no re-verification needed
     code_verified_at: 543e2bbf    # travel-app HEAD, Wave 3 re-audit 2026-07-11
     status: partial    # Atlas-coupled, but real live bugs found — see below
     notes: "Wave 3 — first real audit (2026-07-11), ATLAS-ADJACENT as previously noted (all 11 call sites are app/atlas/*), but current-state findings hold regardless of the freeze decision — these are live bugs in shipped screens today. Real: canon explicitly flags a 'post-deletion goodbye' terminal screen as one of two remaining gaps to close — still missing; account deletion drops the user cold onto generic sign-in with zero acknowledgment. Default toggle-ON fill is a diluted gray (trust.mute/ink60) not canon's near-black ink — affects the app's 4 most common toggle rows (notification prefs). One state (PHONE NEEDED) bypasses the shared TrustStatePill component entirely, rendering as a chrome-less raw label inconsistent with its sibling states in the same row. Confirmed dead code (4 exported primitives, verified via direct repo-wide grep, zero call sites) — one of them, TrustGroup, has also structurally drifted from canon's Zone-alias behavior. Core geometry/tokens/typography (toggle size, row heights, Zone/Stamp structure, roman-by-default Contract typography) all confirmed precise. NOT verified this pass: trust-screens.jsx and account-lifecycle.jsx (2 of 4 sibling canon files, define the actual screen bodies) were out of scope — a genuine follow-up needed for full screen-composition fidelity."
@@ -377,7 +377,7 @@ surfaces:
       - "components/onboarding/AuthProviderStack.tsx"      # Wave 2: load-bearing for SignInImpl/SignUpImpl
       - "components/onboarding/ContextualAuthShell.tsx"     # Wave 2: load-bearing
       - "components/onboarding/OtpCodeInput.tsx"            # Wave 2: load-bearing
-    aligned_at: 134
+    aligned_at: 135    # handoff 135 checked 2026-07-11: auth-invite-app.jsx's diff is Phone→VPhone extraction (canon-internal demo-shell consolidation), zero content change — no re-verification needed
     code_verified_at: 543e2bbf    # travel-app HEAD, Wave 2 re-audit 2026-07-11
     status: partial
     notes: >
@@ -531,7 +531,7 @@ surfaces:
   - surface: Row System (family)
     canon: ["Vesper Row System.html", "row-spec.jsx", "row-system.jsx", "row-system-sections.jsx", "action-grammar-rows.jsx", "action-grammar.jsx"]
     code: ["components/ui/rows/", "components/trip-plan/PlanBlockRow.tsx", "components/ui/LedgerRow.tsx", "components/ui/ActivityLedgerRow.tsx"]
-    aligned_at: 134
+    aligned_at: 135    # handoff 135 checked 2026-07-11: row-system-sections.jsx's diff extracts a shared `microLabel` style token (canon-internal consolidation), zero content/value change — no re-verification needed
     code_verified_at: c7f20ada    # travel-app HEAD, Wave 1 re-audit 2026-07-11 (post-fix)
     status: partial
     notes: "Wave 1 re-audit (2026-07-11): D18 and D19 CONFIRMED closed with faithful canon documentation (row-system.jsx now carries explicit 'OVERLAYS (D18, canon 130)' and 'proposed (D19, canon 130) is deliberately the MERGE POINT' comment blocks) and matching code comments in PlanBlockRow.tsx. But the D18 implementation had a real bug: `failed` booking outcomes rendered a halo, contradicting canon's explicit 'expired/failed — NO halo' spec (only held_for_payment gets the urgency halo). FIXED same day, commit c7f20ada. Also: canon's 5-wrapper family (row-spec.jsx:196 — EditorialListRow/DateRailRow/TimelineObjectRow/ChangesLedgerRow/SettingsRow) has real RN implementations of the ledger-row wrappers living OUTSIDE this row's code: list (components/ui/LedgerRow.tsx, components/ui/ActivityLedgerRow.tsx, both correctly composing RowCore) — added above, mapping completeness fix, not a code defect. TimelineObjectRow.tsx's reduced 4-state grammar (vs the rich 8-state spec) remains a known, deliberately-deferred gap — 1 call site, mock data, open scope question. Token fidelity (leading-slot widths, row min-heights, divider-inset formula) confirmed exact against row-spec.jsx/row-system.jsx."
@@ -547,7 +547,7 @@ surfaces:
   - surface: Sheets (family)
     canon: ["Vesper Interaction Surfaces.html", "sheet-atoms.jsx", "sheet-header.jsx", "sheet-field.jsx", "field.jsx", "section-edit-sheet.jsx", "revert-conflict-sheet.jsx", "trip-record-sheet.jsx"]
     code: ["components/ui/BottomSheet.tsx", "components/ui/SheetHeader.tsx", "components/ui/SheetField.tsx", "components/ui/ActionListSheet.tsx", "components/ui/ConfirmDialog.tsx"]
-    aligned_at: 134
+    aligned_at: 135    # handoff 135 checked 2026-07-11: sheet-atoms.jsx gained a new VSheet primitive (canon-internal consolidation of Trip Settings/Interaction Surfaces/Discover Map's inline sheet-shell copies). BONUS: it explicitly documents SHEET_R=20 as canonical and consistent across those 3 surfaces — spot-verified BottomSheet.tsx:137 (`snap ? 20 : 16`) already matches exactly, confirmed-aligned. No re-verification needed beyond this.
     code_verified_at: c7f20ada    # travel-app HEAD, Wave 1 re-audit 2026-07-11
     status: partial
     notes: "Wave 1 re-audit (2026-07-11): D21 (dense-size collision) CONFIRMED fully correct — SheetHeader.tsx's dense size (17px, typography.h1Dense = sans_semibold) and CostsBalanceSheet's migration (serif→sans title, verified via commit 5a875c2d diff) both match canon's sheet-header.jsx exactly. ~87% adoption figure sanity-checked, still roughly right. New findings beyond D21's scope: (1) canon's own reference implementation, SectionEditSheet.tsx, does NOT use SheetHeader's `edit` mode built specifically for it — instead stacks a default-anatomy SheetHeader (handle+20px title) on top of a second, hand-rolled Cancel/Save row, and routes its dirty-dismiss through the heavier centered ConfirmDialog rather than canon's bottom-sheet-anchored discard panel. `<SheetHeader edit` has zero call sites anywhere in the app — the edit chrome exists but was never adopted, not even by its namesake surface. (2) `large`/`edit` title sizes render at Medium weight (sans_medium/500) against canon's executable spec of SemiBold (600) for both — flagged for adjudication, not auto-fixed, since `edit` is currently unused and canon's own `large=600` blessing-comment never actually checked weight. (3) RevertConflictSheet.tsx is a ready, un-migrated `dense` candidate (specs 17px/600 titles, currently defaults to `large`/20px) — same pattern CostsBalanceSheet just fixed. (4) no code equivalent of canon's VSheetField (borderless read-only display atom, D3's other half) — read-only rows are hand-rolled per surface. Prior Batch E (CC4.1/4.2/4.5) work reconfirmed intact, not re-detailed here."
@@ -558,7 +558,7 @@ surfaces:
     # 2026-07-11) — its non-dev fallback path defers to ErrorState, which is
     # this row's territory, not Global Chrome's (no canon coverage there).
     code: ["components/ui/state/", "components/ErrorBoundary.tsx"]
-    aligned_at: 134
+    aligned_at: 135    # handoff 135 checked 2026-07-11: vesper-state-system-app.jsx's diff is Btn→VBtn + Phone→VPhoneFrame extraction (canon-internal demo-shell consolidation), zero content change — no re-verification needed
     code_verified_at: c7f20ada    # travel-app HEAD, Wave 1 re-audit 2026-07-11
     status: partial
     notes: "Wave 1 re-audit (2026-07-11): removed trip-edge-states.jsx from this row's canon list — its content (Trip-Home hero/margin ranking, DT.* tokens) is unrelated to the empty/loading/error/offline taxonomy the rest of this row's files share (SS.*/T.*/DD.* tokens); its real home is the Trips-Home-hero surface, already tracked separately (project_trips_home_hero memory). Legacy EmptyState deletion and the ~57-importer figure CONFIRMED. D6's full-page hard-failure blessing is real in canon, but the 'one kit, code already had this right' framing was wrong: ErrorState.tsx and StateScreen.tsx(tone='failure') are two VISUALLY DIFFERENT implementations of the same blessed tier, live simultaneously — ErrorState (64px circular oxblood badge, pill CTA) at 34 call sites, StateScreen at 13+ (bare icon, no badge, StateAction CTA) — exactly the 'local state treatment' drift canon's own doc warns against. Two canon-specified experiences have zero code counterpart: Discover's cold-start chip-picker (discover-feed-states.jsx ScreenFeedColdStart — 'Tell Vesper what you're drawn to' + interest chips; DiscoverCoverHome collapses this into a generic empty state) and the reader's sparse-section InlineAbsence panel (reader-states-board.jsx ReaderStateSparse; the dossier reader has no such treatment). Substrate-gated: StateNotice's queued/syncFailed tones are fully built with zero call sites — no offline-write feature exists yet to trigger them. SessionRecovery and the Changes board both CONFIRMED near-verbatim matches, including a well-disclosed deliberate deviation (SessionRecoveryStaleNotice's icon+auto-dismiss vs canon's bare-dot mockup). Wave 3 housekeeping (2026-07-11): merged the standalone 'State System' row (duplicate — same code:, canon citing vesper-state-system-app.jsx, which this Wave-1 audit had already read and cited extensively, e.g. D6 at vesper-state-system-app.jsx:143) into this row and deleted the duplicate. No new content, just reconciling the manifest to match what was actually already verified."
@@ -566,7 +566,7 @@ surfaces:
   - surface: Tokens (family)
     canon: ["Vesper Design Tokens.html", "Vesper Productive Type & Material.html", "vesper-tokens.jsx", "token-reference-app.jsx", "design-system.jsx", "gouache.jsx"]
     code: ["constants/colors.ts", "constants/typography.ts", "constants/layout.ts", "constants/motion.ts", "constants/fonts.ts", "constants/cardSurface.ts"]
-    aligned_at: 134
+    aligned_at: 135    # handoff 135 checked 2026-07-11: design-system.jsx gained a new `microLabel` style-token export (canon-internal — a documented mono/8.5px/1.4-tracking eyebrow token for future find-and-align consolidation across ~20 canon demo files) — additive tooling, not a new design-rule value, no code impact
     code_verified_at: c7f20ada    # travel-app HEAD, Wave 1 re-audit 2026-07-11
     status: partial
     notes: "Wave 1 re-audit (2026-07-11) CONFIRMS the foundation: primitive paper/ink/gold hex values match canon byte-for-byte, motion durations/easing match exactly (canon's own header claims this and it checks out), font-family assets correct, base 4px spacing scale exact. The CC4.3/4.4/4.5 history below is real and holds up. Two live gaps survive despite that history: (1) muteSoft/ink80 is still used as real TEXT color at ~292 sites (discoverMeta metadata rows, trip-accommodations provider/confirmation text, tab-bar inactive label) despite canon's explicit 'DECORATIVE ONLY, never text' rule and FAIL-rated contrast — the muteSoft-budget ratchet caps growth but never drove this to zero. (2) `blue60`/`planningInk` (#3D5066, feeding Stay/Costs 'productive' surfaces) was never reconciled to canon's #2A5A8A the way its sibling status hues were — no CC4.3-style comment, the one primitive in the trio left unreconciled. Also found: `green60` primitive and most of `vesperSemanticTokens` are dead code (zero consumers) — hygiene, not a rendering bug. Prior CC4.3-4.5 history retained below:
