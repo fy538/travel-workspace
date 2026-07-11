@@ -5,10 +5,12 @@
 # Each sub-project has its own Makefile with fine-grained targets.
 # This file wires the cross-repo workflows that span both repos.
 
+include dogfood.mk
+
 .PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help ci-review
 .PHONY: new-worktree land-worktree worktrees
 .PHONY: contract-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate mock-slug-parity
-.PHONY: certify-fast certify-logic certify-corpus certify-visual certify-visual-cloud certify-live maestro-flow-check journey-registry-check dogfood-status seed-s4-local seed-s4-fly corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-fly-smoke dogfood-five-pack-verify dogfood-five-pack-live-api dogfood-five-pack-simulator dogfood-journey-live-api dogfood-journey-j04-chat-eval dogfood-maestro-s4-local dogfood-maestro-fly import-latent-corpus tier-a-spot-check tier-b-spot-check qa-persona dogfood-status-sync
+.PHONY: certify-fast certify-logic certify-corpus certify-visual certify-visual-cloud certify-live maestro-flow-check journey-registry-check dogfood-status corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-journey-live-api qa-persona dogfood-status-sync
 .PHONY: preflight-eas fly-secrets verify docs-governance-check docs-child-governance-check docs-inventory-check docs-inventory-report docs-spine-check docs-status-check docs-status-sync docs-links-check docs-check
 
 # ── Development ───────────────────────────────────────────────────────────────
@@ -206,18 +208,6 @@ dogfood-city: ## Connect corpus + seed a city. Usage: make dogfood-city CITY=lis
 	@chmod +x ./scripts/dogfood-city.sh ./scripts/dogfood-env.sh
 	@APPLY="$(APPLY)" ENRICH="$(ENRICH)" PROFILE="$(PROFILE)" ./scripts/dogfood-city.sh CITY=$(CITY)
 
-import-latent-corpus: ## Phase 2c catalog import. Usage: make import-latent-corpus TIER=a|b [APPLY=1] [CITY=paris] [PROFILE=local|fly] [GLOBAL_EMBED_ONLY=1]
-	@chmod +x ./scripts/import-latent-corpus.sh ./scripts/dogfood-env.sh
-	@APPLY="$(APPLY)" PROFILE="$(PROFILE)" GLOBAL_EMBED_ONLY="$(GLOBAL_EMBED_ONLY)" ./scripts/import-latent-corpus.sh TIER=$(or $(TIER),a) $(if $(CITY),CITY=$(CITY),)
-
-tier-a-spot-check: ## Verify Tier A cities in PG + Qdrant. Usage: make tier-a-spot-check [PROFILE=local|fly]
-	@chmod +x ./scripts/tier-a-spot-check.sh ./scripts/dogfood-env.sh
-	@PROFILE="$(PROFILE)" ./scripts/tier-a-spot-check.sh
-
-tier-b-spot-check: ## Verify Tier B cities in PG + Qdrant. Usage: make tier-b-spot-check [PROFILE=local|fly]
-	@chmod +x ./scripts/tier-b-spot-check.sh ./scripts/dogfood-env.sh
-	@PROFILE="$(PROFILE)" ./scripts/tier-b-spot-check.sh
-
 dogfood-promote: ## Promote city pack to Fly + cloud Qdrant. Usage: make dogfood-promote CITY=lisbon [APPLY=1]
 	@chmod +x ./scripts/dogfood-promote.sh ./scripts/dogfood-env.sh
 	@APPLY="$(APPLY)" ./scripts/dogfood-promote.sh CITY=$(CITY)
@@ -226,37 +216,9 @@ dogfood-env-check: ## Print dogfood Postgres+Qdrant stack pairing for PROFILE=lo
 	@chmod +x ./scripts/dogfood-env-check.sh ./scripts/dogfood-env.sh
 	@PROFILE="$(PROFILE)" APPLY="$(APPLY)" ./scripts/dogfood-env-check.sh
 
-dogfood-fly-smoke: ## Automated Fly substrate smoke after dogfood-promote (API + Fly DB + Rome bridge)
-	@chmod +x ./scripts/dogfood-fly-smoke.sh ./scripts/dogfood-env.sh ./scripts/dogfood-five-pack-verify.sh
-	@./scripts/dogfood-fly-smoke.sh
-
-dogfood-five-pack-verify: ## Five-pack substrate checks (trips, itinerary venues, discover compose) on PROFILE=fly|local
-	@chmod +x ./scripts/dogfood-five-pack-verify.sh ./scripts/dogfood-env.sh
-	@PROFILE="$(PROFILE)" ./scripts/dogfood-five-pack-verify.sh
-
-dogfood-five-pack-live-api: ## Five-pack live HTTP checks (TestClient local or Fly with PRELAUNCH_JWT)
-	@chmod +x ./scripts/dogfood-five-pack-live-api.sh ./scripts/dogfood-env.sh
-	@PROFILE="$(PROFILE)" TRANSPORT="$(TRANSPORT)" PRELAUNCH_HOST="$(PRELAUNCH_HOST)" ./scripts/dogfood-five-pack-live-api.sh
-
-dogfood-five-pack-simulator: ## Local TestClient API + optional Maestro wedge (RUN_MAESTRO=0 to skip UI)
-	@chmod +x ./scripts/dogfood-five-pack-simulator.sh ./scripts/dogfood-five-pack-live-api.sh ./scripts/dogfood-env.sh
-	@RUN_MAESTRO="$(RUN_MAESTRO)" ./scripts/dogfood-five-pack-simulator.sh
-
-dogfood-journey-live-api: ## Two-persona live API cert for J02/J04/J05/J10 (TestClient or Fly+JWT)
+dogfood-journey-live-api: ## Two-persona live API cert for J02/J04/J05/J10 (TestClient or Fly+JWT) — active toward the live-transport gap
 	@chmod +x ./scripts/dogfood-journey-live-api.sh ./scripts/dogfood-env.sh
 	@PROFILE="$(PROFILE)" TRANSPORT="$(TRANSPORT)" PRELAUNCH_HOST="$(PRELAUNCH_HOST)" ./scripts/dogfood-journey-live-api.sh
-
-dogfood-journey-j04-chat-eval: ## J04 I4 egress eval on S4 trip (substrate + group history)
-	@chmod +x ./scripts/dogfood-journey-j04-chat-eval.sh ./scripts/dogfood-env.sh
-	@PROFILE="$(PROFILE)" TRANSPORT="$(TRANSPORT)" PRELAUNCH_HOST="$(PRELAUNCH_HOST)" ./scripts/dogfood-journey-j04-chat-eval.sh
-
-dogfood-maestro-s4-local: ## Maestro 26 + J04 eval on local real API (SKIP_AUTH as Mara)
-	@chmod +x ./scripts/dogfood-maestro-s4-local.sh ./scripts/dogfood-journey-j04-chat-eval.sh ./scripts/dogfood-env.sh
-	@RUN_MAESTRO="$(RUN_MAESTRO)" ./scripts/dogfood-maestro-s4-local.sh
-
-dogfood-maestro-fly: ## Maestro 26 + J04 eval on Fly (needs PRELAUNCH_JWT_MARA)
-	@chmod +x ./scripts/dogfood-maestro-fly.sh ./scripts/dogfood-journey-j04-chat-eval.sh ./scripts/dogfood-journey-live-api.sh ./scripts/dogfood-env.sh
-	@RUN_MAESTRO="$(RUN_MAESTRO)" PRELAUNCH_JWT_MARA="$(PRELAUNCH_JWT_MARA)" PRELAUNCH_HOST="$(PRELAUNCH_HOST)" ./scripts/dogfood-maestro-fly.sh
 
 dogfood-status: ## Validate dogfood manifests and print scenario/pack readiness
 	@chmod +x ./scripts/dogfood-status.sh ./scripts/seed-s4-local.sh ./scripts/seed-s4-fly.sh
@@ -267,13 +229,6 @@ qa-persona: ## Full per-persona QA spine: content gates + journeys + visual walk
 
 dogfood-status-sync: ## Regenerate the auto:persona-cert block in docs/journeys/STATUS.md from the seeded world (token-free). CHECK=1 = CI drift guard.
 	@python scripts/sync_journey_status.py $(if $(CHECK),--check,)
-
-seed-s4-local: ## Seed S4 lisbon-phase1 to local Postgres (requires vesper DB)
-	@chmod +x ./scripts/seed-s4-local.sh
-	@./scripts/seed-s4-local.sh
-
-seed-s4-fly: ## Seed S4 to Fly Postgres (dry-run; SEED_S4_FLY_APPLY=1 to write)
-	@./scripts/seed-s4-fly.sh
 
 # ── Composite gate ─────────────────────────────────────────────────────────────
 
@@ -304,7 +259,7 @@ status: ## Show git status for workspace + child repos
 # ── Help ──────────────────────────────────────────────────────────────────────
 
 help: ## Show this help
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | \
+	@grep -hE '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | \
 		awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-22s\033[0m %s\n", $$1, $$2}'
 
 .DEFAULT_GOAL := help
