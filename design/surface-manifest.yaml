@@ -139,7 +139,7 @@ surfaces:
     aligned_at: 134
     code_verified_at: 543e2bbf    # travel-app HEAD, Wave 3 re-audit 2026-07-11
     status: partial
-    notes: "Wave 3 re-audit (2026-07-11) confirms the assigned canon file has ZERO motion/animation content (grepped directly: 0 hits for duration/easing/spring/animat) — it's entirely about Stay/Costs type-and-material treatment. The Tokens-family audit (Wave 1) actually cited a DIFFERENT file, vesper-tokens.jsx, for the duration/easing values it confirmed — this row's manifest mapping has likely been wrong since it was created. The real motion-philosophy content (reduce-motion stance, named animation patterns like press/dismiss/toasts) lives in vesper-canon-consolidation-app.jsx §06c, not referenced by ANY row in the manifest. Against that real content: a genuine, systemic gap exists — several components running legacy-Animated-API loops/timings (VoiceOrb, CardStates, CardLive, CardLift, Deck.tsx, OrganizerInviteNudge, ErrorBanner, AtlasMemoryReel, NavChromeContext) have NO reduce-motion check of any kind, contradicting canon's explicit 'disables all nonessential animation, app-wide' rule — while the two sanctioned mechanisms (utils/motion.ts + Reanimated's useReducedMotion) are well-built and correctly used elsewhere. Minor: press-scale drifted 0.98→0.97; press feedback uses a spring where canon specifies a fixed-duration timing collapse. Duration/easing token values themselves remain confirmed-exact per the Tokens audit — not re-derived here."
+    notes: "Wave 3 re-audit (2026-07-11) confirms the assigned canon file has ZERO motion/animation content (grepped directly: 0 hits for duration/easing/spring/animat) — it's entirely about Stay/Costs type-and-material treatment. The Tokens-family audit (Wave 1) actually cited a DIFFERENT file, vesper-tokens.jsx, for the duration/easing values it confirmed — this row's manifest mapping has likely been wrong since it was created. The real motion-philosophy content (reduce-motion stance, named animation patterns like press/dismiss/toasts) lives in vesper-canon-consolidation-app.jsx §06c, not referenced by ANY row in the manifest. Against that real content: a genuine, systemic gap exists — several components running legacy-Animated-API loops/timings (CardStates, CardLive, CardLift, Deck.tsx, OrganizerInviteNudge, ErrorBanner, AtlasMemoryReel, NavChromeContext) have NO reduce-motion check of any kind, contradicting canon's explicit 'disables all nonessential animation, app-wide' rule. UPDATE 2026-07-11 (found incidentally during the Voice-row re-check, not re-audited here in full): VoiceOrb.tsx now correctly gates its pulse on useReducedMotion() — drop it from the offender list, the other 7 files not re-verified — while the two sanctioned mechanisms (utils/motion.ts + Reanimated's useReducedMotion) are well-built and correctly used elsewhere. Minor: press-scale drifted 0.98→0.97; press feedback uses a spring where canon specifies a fixed-duration timing collapse. Duration/easing token values themselves remain confirmed-exact per the Tokens audit — not re-derived here."
 
   - surface: Header system
     canon: ["Vesper Header Audit.html", "header-audit-app.jsx", "productive-header.jsx"]
@@ -169,9 +169,9 @@ surfaces:
     canon: ["Vesper People and Collaboration.html", "people-collab-app.jsx"]
     code: ["app/atlas/companions.tsx", "components/people/", "components/collaboration/", "app/profile/[userId].tsx"]
     aligned_at: 135    # handoff 135 checked 2026-07-11: people-collab-app.jsx's diff is Phone→VPhone extraction (canon-internal demo-shell consolidation), zero content change — no re-verification needed
-    code_verified_at: 543e2bbf    # travel-app HEAD, Wave 2 re-audit 2026-07-11
+    code_verified_at: bd9e3bd6    # travel-app HEAD — independently re-verified 2026-07-11
     status: partial
-    notes: "Wave 2 re-audit (2026-07-11): the prior brief's PrivateSeam finding ('needs to be BUILT, not adjudicated') is STALE — spot-verified directly. components/chat/group/PrivacySeamDivider.tsx (dated 2026-07-11) is a faithful, unusually well-documented implementation of canon's DignifiedPrivateSeam, explicitly self-citing people-collab-app.jsx:213-220,1041, wired live via DignifiedExceptionCard→GroupThreadItem. Core visual tokens (avatar marker/stack, pill status taxonomy, roster row) confirmed near-exact. But the interaction layer has real gaps: canon's pending-invite MemberActionSheet variant (Resend/Copy link/Revoke) was never wired — pending invites get only an inline revoke icon; the group-chat vote widget is missing canon's per-voter-avatar/tally grammar both in UI AND in its underlying data model (VoteWidgetData has no voter/count fields at all, unlike the itinerary-side PlanDecision which does); self-profile has no 'Edit profile' affordance canon specifies; unfollow has no long-press friction guard canon's caption calls for; the co-organizer role is half-built (present in component props/visual markers, absent from the live TripContext role type, so unreachable in practice — and even the scaffolding is internally inconsistent, RolePill and PeopleAvatar disagree on its color). DecisionInlineRow renders a chevron canon explicitly says the inline itinerary variant shouldn't have. PrivacyMarker is dead code (built, exported, zero consumers)."
+    notes: "Wave 2 re-audit (2026-07-11): the prior brief's PrivateSeam finding ('needs to be BUILT, not adjudicated') is STALE — spot-verified directly. components/chat/group/PrivacySeamDivider.tsx (dated 2026-07-11) is a faithful, unusually well-documented implementation of canon's DignifiedPrivateSeam, explicitly self-citing people-collab-app.jsx:213-220,1041, wired live via DignifiedExceptionCard→GroupThreadItem. Core visual tokens (avatar marker/stack, pill status taxonomy, roster row) confirmed near-exact. RESOLVED 2026-07-11, independently re-verified: canon's pending-invite MemberActionSheet variant (Resend/Copy link/Revoke) IS now wired in app/trip-info/index.tsx — real handlers (native Share for resend, Clipboard for copy, the existing revoke mutation), a second MemberActionSheet instance keyed off selectedInvite state that's genuinely set from a real row tap (line ~528). Remaining interaction-layer gaps, not yet fixed: the group-chat vote widget is missing canon's per-voter-avatar/tally grammar both in UI AND in its underlying data model (VoteWidgetData has no voter/count fields at all, unlike the itinerary-side PlanDecision which does); self-profile has no 'Edit profile' affordance canon specifies; unfollow has no long-press friction guard canon's caption calls for; the co-organizer role is half-built (present in component props/visual markers, absent from the live TripContext role type, so unreachable in practice — and even the scaffolding is internally inconsistent, RolePill and PeopleAvatar disagree on its color). DecisionInlineRow renders a chevron canon explicitly says the inline itinerary variant shouldn't have. PrivacyMarker is dead code (built, exported, zero consumers)."
 
   - surface: Places
     canon: ["Vesper Places.html", "places-canon-app.jsx", "hero-chrome.jsx"]
@@ -196,71 +196,38 @@ surfaces:
       - "travel-agent: backend/api/routes/story_shares.py"
       - "travel-agent: backend/api/routes/plan_similar.py"
       - "travel-agent: backend/core/db/trip_story_shares.py"
-      - "travel-agent: backend/core/db/plan_similar.py"
-    aligned_at: 135    # handoff 135 checked 2026-07-11: trip-story-app-a/b.jsx's diffs are 5x table-header→VTableHead extractions (canon-internal demo consolidation) — every column label/data byte-identical, zero content change — no re-verification needed
-    code_verified_at: 543e2bbf    # travel-app + travel-agent HEAD, Wave 2 re-audit 2026-07-11
-    status: gap    # most severe Wave-2 verdict — see below
+      - "travel-app/utils/planSimilarPending.ts"
+      - "travel-app/utils/planSimilarResume.ts"
+      - "travel-app/utils/planSimilarSeed.ts"
+    aligned_at: 137    # handoff 137 + P1 remediation 2026-07-11
+    code_verified_at: bd9e3bd6    # travel-app HEAD, travel-agent d6f37ce3 — independently re-verified 2026-07-11 (all 8 claims read against actual current code, not just diffed against the claim list)
+    status: aligned
     notes: >
-      Wave 2 re-audit (2026-07-11), read against canon fully (not the prior
-      07-07 audit's checklist): the lifecycle scaffolding, disclosure-safety
-      (unknown/revoked/expired/private all collapse to one generic message,
-      matching canon's rule exactly), and provenance/correction UX are
-      genuinely high-fidelity — in places exceeding canon (owner-vs-recipient
-      routing, "Restore Vesper's version" flow). But the surface's headline
-      CONTENT feature is silently broken: visible_places/generalized_place_chips/
-      route_cue are hardcoded to []/None throughout the entire backend
-      projection builder (story_projection.py — confirmed by direct read, not
-      just the agent's citation) despite full schema support and heavy canon
-      specification (StoryCardPreview chips, PublicStoryViewer place pills,
-      Plan Similar's carried-places seed) — reads as a feature that was
-      modeled and scaffolded but the actual "compute chips from story" step
-      was never written, no flag/TODO marking it deferred. Canon's "Trip
-      group" visibility tier (sign-in-gated viewing by named members) doesn't
-      functionally work — falls back to link/public-only behavior server-side.
-      MOST NOTABLE: the shipped 9:16 share-card and OG landing page use a
-      completely different visual language than canon (indigo accent, system
-      sans, no EB Garamond) — and story_landing.py's CSS/placeholder env vars
-      are BYTE-IDENTICAL to the unrelated invite_landing.py, strongly
-      suggesting the invite surface's generic template was copied wholesale
-      without a Vesper brand pass. Owner attribution line ("Shared by X")
-      missing from the public viewer. Several ShareLink lifecycle/analytics
-      fields (expires_at, replaced_by_share_id, unique_viewers) unimplemented.
-      #19 (owner-link routing) IS now fixed — this wave directly confirmed
-      "Open in Vesper" owner-vs-recipient routing matches canon exactly
-      (app/stories/[slug].tsx:416-450). PRE-EXISTING, NOT RE-VERIFIED THIS
-      WAVE (from the 07-07 audit, status unconfirmed on these specific items
-      — flag for the next pass): 2 privacy leaks (hidden destination leaking
-      via story title; map-thumbnail bypassing RedactionPolicy), 2 remaining
-      canon-decision violations (#16 Plan Similar hardcoded, #17 Inspired-Trip
-      attribution never rendered), and all 13 canon-named analytics events
-      missing (persistence table dropped 2026-06-20). MemoryStoryHeader fork
-      (Header-system row) still unmigrated, as previously tracked.
-
-      FIX PASS 2026-07-07 (same day, "fix all identified"): both LEAKs fixed
-      — safe_hero_title() now takes hidden_destination and falls back off any
-      hidden-destination name-match; story_card.py's map-thumbnail block now
-      gated behind `if public.destination is not None`. Attribution copy
-      corrected to canon ("Based on a shared Vesper story.", was "Inspired
-      by..."). #19 fixed: new GET viewer-context wired end-to-end (schema
-      regen + data/http layers + a useEffect in app/stories/[slug].tsx that
-      redirects a signed-in owner to Share/Manage). #16 PARTIAL fix only: the
-      static "conversation" no longer visually poses as a live Vesper chat
-      turn (title "Talk it through with Vesper" → "Your starting point",
-      fake speaker label → "WHAT WE'LL START WITH" caption) — this is an
-      honesty fix, not the real fix; a true conversational entry needs new
-      pre-auth stash-and-resume infra mirroring utils/invitePending.ts and is
-      explicitly deferred as separate scoped work. #17 fixed: trip_summary
-      .public_story_source.source_attribution now renders as a quiet caption
-      in TripFolioHome's cold-start panel (mirrors the destination-read
-      pattern), cleared once the trip leaves cold mode. Deliberately NOT
-      built in this pass (flagged as follow-up, not silently done): 8-field
-      RedactionPolicy expansion (photos/places/route toggles), ShareLink
-      lifecycle fields (paused_at/rotated_at/expires_at/unique_viewers),
-      a distinct full pre-publish preview screen, and the analytics
-      pipe rebuild (13 events still write to nothing — table dropped
-      2026-06-20). Tests: 35/35 backend (test_story_projection.py +
-      test_story_card.py), 7/7 + 2/2 new frontend (public-story.smoke +
-      TripFolioHome.storySourceNote), full tsc --noEmit clean both passes.
+      P1 remediation verified 2026-07-11 (backend wired, not schema-only)
+      — independently re-checked line-by-line, all 8 claims hold:
+      place chips/route cues genuinely computed (story_place_names.py's
+      load_story_place_names pulls confirmed-happened itinerary blocks +
+      loved places, threaded into story_projection.py's
+      _compute_place_projection, not just renamed placeholders);
+      story_landing.py's palette/fonts confirmed real Vesper paper/ink/
+      gold + EB Garamond (old #4338ca indigo confirmed gone, still
+      present in the unrelated invite_landing.py it was copied from —
+      confirms this was a genuine divergent fix, not a shared-file
+      accident); _share_viewer_access genuinely gates on real
+      is_trip_member() for the 'group' visibility tier; public_byline
+      computed server-side + rendered in the public viewer; ShareLink
+      lifecycle columns confirmed via migration file (ssharelife01, all
+      4 fields) + consumed in _row_to_share; analytics funnel migration
+      (stshareevt02) + funnel event types + viewer_user_id distinct-count
+      all present; Plan Similar resume genuinely wired as the FIRST check
+      inside both SignInImpl and SignUpImpl's finishAuth (via
+      resumePlanSimilarAfterAuth — note: the lower-level
+      getPlanSimilarPending isn't called directly from the auth files,
+      it's wrapped one layer up in planSimilarResume.ts, so a naive grep
+      for the wrong symbol would have false-negatived this); MemoryStoryHeader
+      confirmed now a thin ProductiveHeader wrapper (canon: back='Memory',
+      kicker=status), closing the Header-system row's tracked fork too.
+      Remaining deferred: full 26-event owner taxonomy; voice enablement.
 
   # ── Known canon surfaces with no code-mapping work done this session.
   #    Listed explicitly so the manifest doesn't silently look complete. ──
@@ -303,38 +270,43 @@ surfaces:
       - "app/search.tsx"
       - "hooks/useUniversalSearch.ts"
       - "utils/universalSearchRouting.ts"
-      - "utils/universalSearchTelemetry.ts"
+      - "hooks/useUniversalSearchEmptyState.ts"
+      - "utils/universalSearchOpened.ts"
+      - "utils/universalSearchRecents.ts"
       - "utils/api/universalSearch.ts"
       - "travel-agent: backend/search/dispatch.py"
       - "travel-agent: backend/core/db/search.py"
       - "travel-agent: backend/core/vector/atlas.py"
-    aligned_at: 135    # handoff 135 checked 2026-07-11: universal-search-app.jsx's diff is Phone→VPhone extraction (canon-internal demo-shell consolidation), zero content change — no re-verification needed
-    code_verified_at: 543e2bbf    # travel-app + travel-agent HEAD, Wave 3 re-audit 2026-07-11
+    aligned_at: 137    # handoff 137 D25: navigable receipts (Option 3) — action rows route to context, never re-execute
+    code_verified_at: bd9e3bd6    # travel-app HEAD, travel-agent d6f37ce3 — independently re-verified 2026-07-11 (not just claim-checked)
     status: partial
     notes: >
-      Wave 3 re-audit (2026-07-11): the amber-vs-violet adjudication and
-      3 of 5 deferred items (Atlas 3-way convergence, Phase-4 semantic
-      conversations, backend interpretation-field) spot-checked and still
-      accurately described. TWO deferred items were SILENTLY BUILT since
-      the prior verification and had never been checked against canon:
-      Receipts/Costs/Actions groups, and the Nearby chip. Checking them
-      surfaced real, previously-unreviewed drift. The Actions group ships
-      as a read-only, non-tappable audit log (route always null, disabled
-      in the UI) where canon specifies executable command rows ("must be
-      executable... never decorative") — a self-documented, deliberate
-      architectural pivot, but never reconciled with canon, needs a
-      product call. Places results never distinguish the user's own saved
-      places from public Discover venues — provenance is hardcoded to
-      "DISCOVER"/public always, the personal-saves table is never
-      consulted, contradicting canon's explicit saved_by contract. The
-      on-trip scope-chip rail grew to 7 chips (one per newly-shipped
-      group) against canon's explicit "max 4-5" rule — a direct side
-      effect of shipping Receipts/Costs/Actions without folding them back
-      under "This trip." Empty-state's "Recently Opened"/"In Progress"
-      sections are missing — substrate-gated, no recently-viewed-entity
-      tracking infra exists yet. Core architecture (10-group taxonomy,
-      provenance-required doctrine, fixed group ordering) still confirmed
-      solid.
+      Handoff 137 (D25, Option 3 — navigable receipts): "executable" =
+      actionable navigation to proposal/expense/changes context, not
+      re-running the mutation. Canon updated in universal-search-app.jsx.
+      Independently re-verified 2026-07-11 (a prior note claimed this
+      surface's remaining gap was Places provenance — that's backwards,
+      see below): CONFIRMED landed — Places provenance for saved venues
+      (backend/search/dispatch.py:355-361, `get_saved_entity_ids` wired,
+      "SAVED BY YOU" label), on-trip scope rail correctly folded to 4
+      chips (`ON_TRIP_CHIPS` in UniversalSearchOverlay.tsx:97-102, D25
+      comment cited), and the empty-state In Progress / Recently Opened /
+      Recent Searches-age work (useUniversalSearchEmptyState.ts,
+      universalSearchOpened.ts, queried_at rendering — all real, wired in).
+      STILL BROKEN, contrary to the prior note's claim of "re-enabled
+      action-row taps": `routeForUniversalItem`'s frontend logic was
+      updated to interpret a route hint (`routeFromHint`), but
+      `backend/search/dispatch.py:655`'s `_action_items()` still hardcodes
+      `route=None` unconditionally — every other result-group builder in
+      the same file populates a real route (lines 329/371/405/431/455/
+      504/529/585), only Actions doesn't. Since the FE gates
+      `disabled={!href}` purely on that field, action rows are still
+      fully non-tappable in the shipped app despite the D25 ruling and
+      the FE-side plumbing both being ready. This is the real remaining
+      gap — a one-function backend fix (thread action_type/target_id into
+      a route= string, matching the pattern the other 7 builders use),
+      not a design question. Core architecture (10-group taxonomy,
+      provenance doctrine, fixed group ordering) still solid.
 
   - surface: Booking & Reservation
     canon: ["Vesper Booking & Reservation.html", "booking-app.jsx", "booking-kit.jsx", "booking-canon-proposal.jsx", "booking-canon-receipt.jsx", "booking-canon-states.jsx"]    # booking-screens-1/2/3.jsx renamed to these 3 in handoff 135 (canon's own pending-rename item) — CONFIRMED byte-identical content via direct diff (0 lines changed, all 3 files) — pure rename, Wave 3's citations (e.g. old booking-screens-2.jsx:99-111 → booking-canon-receipt.jsx:99-111) still accurate at the same line numbers
@@ -444,7 +416,7 @@ surfaces:
 
   - surface: Global Chrome
     canon: ["Vesper Global Chrome.html", "vesper-global-chrome-app.jsx", "tab-bar.jsx"]
-    code: ["components/nav/FloatingTabBar.tsx", "app/(tabs)/_layout.tsx", "app/_layout.tsx", "app/index.tsx", "components/PushAskHost.tsx"]
+    code: ["components/nav/FloatingTabBar.tsx", "app/(tabs)/_layout.tsx", "app/_layout.tsx", "app/index.tsx", "components/PushAskHost.tsx", "components/telemetry/MobilePerformanceFlusher.tsx"]
     aligned_at: 134
     code_verified_at: 543e2bbf    # travel-app HEAD, Wave 2 re-audit 2026-07-11
     status: partial
@@ -466,49 +438,30 @@ surfaces:
 
   - surface: Voice (live mic / voice chat)
     canon: ["vesper-home-voice.jsx", "vesper-modes.jsx"]    # audio voice ≠ "Voice registers (family)" (typographic/attribution voice, VesperMark etc.) — narration-arrival banners re-homed to the Chat row (chat-narration-band.jsx)
-    code: ["components/voice/VoiceOrb.tsx", "components/voice/VoiceOverlay.tsx", "components/voice/VoiceOverlayProvider.tsx", "components/voice/MicPrivacyDisclosure.tsx", "components/voice/MicStatusIndicator.tsx", "context/MicSessionContext.tsx", "hooks/useVoiceSession.ts", "hooks/useNarrationWithInterruption.ts", "components/narration/NarrationListenButton.tsx"]
-    aligned_at: 134
-    code_verified_at: 543e2bbf    # travel-app HEAD, 2026-07-11
-    status: gap
+    code: ["components/voice/VoiceOrb.tsx", "components/voice/VoiceOverlay.tsx", "components/voice/VoiceOverlayProvider.tsx", "components/voice/MicPrivacyDisclosure.tsx", "context/MicSessionContext.tsx", "hooks/useVoiceSession.ts", "hooks/useNarrationWithInterruption.ts", "components/narration/NarrationListenButton.tsx"]
+    aligned_at: 137    # handoff 137 D24: bottom-sheet blessed as v1; full-screen + hold-to-talk deferred not cancelled
+    code_verified_at: bd9e3bd6    # travel-app HEAD — independently re-verified 2026-07-11
+    status: partial
     notes: >
-      2026-07-11 audit CORRECTS Wave 0's "no canon page found" —
-      that was wrong, a grep sweep with narrower terms missed it.
-      Real, substantial, non-archived canon exists:
-      vesper-home-voice.jsx (234 lines) specs a full-screen dark
-      "Calm Listening" takeover (tap mic → breathing gold ring, live
-      waveform, serif transcript, promotes into the thread as text
-      with "SPOKEN · timestamp" tags on continued exchange) plus a
-      separate hold-to-talk "walk-and-talk" Editorial Transcript
-      mode; vesper-modes.jsx specs exactly 3 entry points (composer
-      mic tap / long-press the Vesper tab icon / tap the proactive
-      dot) with explicit anti-goals ("no floating mic button, no
-      wake-word, no Siri-style takeover"). Shipped code diverges
-      structurally: a bottom-sheet LiveKit modal, not a full-screen
-      takeover; no hold-to-talk gesture anywhere; purple accent
-      color (VoiceOrb/VoiceOverlay) where canon is consistently
-      amber/gold AND where the app's own color-system doc says
-      purple is legacy/agent-presence-only, out of scope for voice
-      either way.
-      Reachability is mostly dark, self-documented: VOICE_ENABLED
-      defaults false, gated consistently at every entry point
-      (verified, no bypasses). Even with the flag on, useVoiceSession's
-      _connectToRoom is a documented no-op stub — no real audio
-      connects. MicStatusIndicator is fully built, tested, and
-      documented but never mounted anywhere (dead code).
-      useNarrationWithInterruption is a fully-built, ~1000-line-tested
-      hook with zero production callers.
-      Real bug, independent of the canon gap: MicPrivacyDisclosure's
-      shown copy ("mic stays on during narration... VAD runs
-      on-device... you'll always see a clear indicator") describes
-      the never-wired interruption flow and the never-mounted status
-      indicator — users see a privacy disclosure for a feature that
-      cannot currently happen, before opening the (also-incomplete)
-      live voice chat.
-      This is real, substantial design work sitting unbuilt (not "off
-      wedge") — a Claude Design ask is NOT what's needed here; a
-      build decision is: is vesper-home-voice.jsx's full-screen model
-      still the target before investing further in the current
-      bottom-sheet shell?
+      Handoff 137 (D24 carve-out): VoiceOverlay bottom-sheet is blessed
+      as v1 live-mic chrome; full-screen Calm Listening + hold-to-talk
+      remain the eventual target (deferred, not cancelled). Independently
+      re-verified 2026-07-11, both mechanical fixes hold: VoiceOrb.tsx
+      confirmed fully gold now (goldSoft glow + gold[400] orb, zero
+      "purple" hits in either VoiceOrb.tsx or VoiceOverlay.tsx);
+      MicPrivacyDisclosure's body copy read directly — narrowed to
+      exactly "audio only sent while a session is open" + "Ghost Mode
+      keeps the mic off," the old narration-interrupt/status-indicator
+      promises are gone. MicStatusIndicator.tsx confirmed actually
+      deleted (file no longer exists). Bonus, unprompted: VoiceOrb.tsx
+      now correctly gates its pulse loop on useReducedMotion() — the
+      Motion-family audit's "no reduce-motion check" finding for this
+      specific file no longer applies (Motion row not yet updated to
+      reflect this, still lists VoiceOrb as an offender — stale, flag
+      for next Motion pass). Still correctly incomplete, as claimed:
+      VOICE_ENABLED defaults false; useVoiceSession's _connectToRoom is
+      a documented no-op stub; useNarrationWithInterruption has zero
+      production callers.
 
   # ── Shared-element FAMILIES (cross-cutting primitives, not screens) ──────
   #    Added 2026-07-09 from the component-consistency audit. These rows exist
