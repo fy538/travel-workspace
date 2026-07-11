@@ -16216,6 +16216,22 @@
               "type": "string",
               "title": "Slug"
             }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
           }
         ],
         "responses": {
@@ -18576,6 +18592,22 @@
               "type": "string",
               "title": "Slug"
             }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
           }
         ],
         "responses": {
@@ -18588,6 +18620,68 @@
                 }
               }
             }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/public/stories/{slug}/share-events": {
+      "post": {
+        "tags": [
+          "story-landing"
+        ],
+        "summary": "Public Share Event",
+        "description": "Record a recipient-funnel analytics event for an openable share slug.",
+        "operationId": "public_share_event_api_public_stories__slug__share_events_post",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Slug"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShareEventCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Successful Response"
           },
           "422": {
             "description": "Validation Error",
@@ -43865,6 +43959,17 @@
           "is_overdue": {
             "type": "boolean",
             "title": "Is Overdue"
+          },
+          "timezone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timezone"
           }
         },
         "type": "object",
@@ -51019,6 +51124,11 @@
             ],
             "title": "Visible Date Label"
           },
+          "public_byline": {
+            "type": "string",
+            "title": "Public Byline",
+            "default": "Shared via Vesper"
+          },
           "visible_places": {
             "items": {
               "type": "string"
@@ -51541,6 +51651,11 @@
           "show_destination": {
             "type": "boolean",
             "title": "Show Destination",
+            "default": true
+          },
+          "show_sharer_name": {
+            "type": "boolean",
+            "title": "Show Sharer Name",
             "default": true
           },
           "hidden_section_ids": {
@@ -53175,15 +53290,48 @@
         ],
         "title": "SettlementTransfer"
       },
+      "ShareEventCreate": {
+        "properties": {
+          "event_type": {
+            "type": "string",
+            "enum": [
+              "plan_similar_tapped",
+              "plan_similar_seed_started"
+            ],
+            "title": "Event Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "event_type"
+        ],
+        "title": "ShareEventCreate",
+        "description": "Body of ``POST /api/public/stories/{slug}/share-events``."
+      },
       "ShareStats": {
         "properties": {
           "opens": {
             "type": "integer",
             "title": "Opens"
           },
+          "unique_viewers": {
+            "type": "integer",
+            "title": "Unique Viewers",
+            "default": 0
+          },
           "conversions": {
             "type": "integer",
             "title": "Conversions"
+          },
+          "plan_similar_taps": {
+            "type": "integer",
+            "title": "Plan Similar Taps",
+            "default": 0
+          },
+          "plan_similar_seeds_started": {
+            "type": "integer",
+            "title": "Plan Similar Seeds Started",
+            "default": 0
           }
         },
         "type": "object",
@@ -53267,6 +53415,54 @@
               }
             ],
             "title": "Last Opened At"
+          },
+          "paused_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Paused At"
+          },
+          "rotated_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rotated At"
+          },
+          "replaced_by_share_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Replaced By Share Id"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
           }
         },
         "type": "object",
@@ -56214,6 +56410,17 @@
                 "type": "null"
               }
             ]
+          },
+          "timezone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timezone"
           },
           "base": {
             "anyOf": [

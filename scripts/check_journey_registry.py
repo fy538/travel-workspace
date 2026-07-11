@@ -48,7 +48,9 @@ def _readme_ids() -> set[str]:
 
 
 def _persona_cert_ids() -> set[str]:
-    p = _AGENT / "scripts" / "dogfood_journey_persona_cert.py"
+    # The legacy script is now only a CLI compatibility shim. Keep this check
+    # pointed at the module that owns JOURNEY_PERSONA_MAP.
+    p = _AGENT / "scripts" / "journey_cert" / "persona.py"
     return set(re.findall(r'id="(J\d{2})"', p.read_text())) if p.exists() else set()
 
 
