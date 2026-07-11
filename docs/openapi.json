@@ -15387,6 +15387,66 @@
         }
       }
     },
+    "/api/messages/report": {
+      "post": {
+        "tags": [
+          "messages"
+        ],
+        "summary": "Post Message Report",
+        "description": "Accept a flagged message. Logs unconditionally; pages Slack if configured.",
+        "operationId": "post_message_report_api_messages_report_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MessageReportRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageReportResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/notifications/{outcome_id}/response": {
       "post": {
         "tags": [
@@ -21454,6 +21514,124 @@
                   ],
                   "title": "Response Get Trip Summary Endpoint Api Trips  Trip Id  Summary Get"
                 }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/presence": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Trip Presence",
+        "description": "Cheap poll endpoint: is a group turn with Vesper in flight right now?\n\nBacked by a short-TTL shared cache entry (backend/core/group_presence.py),\nnot a database read \u2014 this is meant to be polled every few seconds from\nthe group chat screen. Returns ``active=False`` on any miss (no turn in\nflight, cache unavailable, or malformed entry) \u2014 never raises, since a\npresence failure must never break the chat screen.",
+        "operationId": "get_trip_presence_api_trips__trip_id__presence_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripPresenceResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/presence/stream": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Stream Trip Presence",
+        "description": "Tier 1 group live-presence (docs/working/Chat Waiting Experience\nPlan.md, Workstream A) \u2014 read-only SSE observer stream.\n\nOther group members open this to see the SAME progress events\n(thinking/tool_started/tool_complete/step_started) the turn owner's own\nstream gets \u2014 never the reply's actual text_delta tokens (see\nbackend/core/group_turn_broadcast.py's module doc for why). This is an\nadditive enhancement on top of Tier 0's poll (still the correct\n\"who's asking\" answer even if this stream drops); a client that never\nopens it, or whose Redis is unconfigured, only loses the live-progress\ndetail, never the underlying feature.",
+        "operationId": "stream_trip_presence_api_trips__trip_id__presence_stream_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
               }
             }
           },
@@ -45079,6 +45257,68 @@
         "title": "MessageCloseResponse",
         "description": "Response for POST /messages/close."
       },
+      "MessageReportRequest": {
+        "properties": {
+          "message_id": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Message Id",
+            "description": "The flagged message's id (server or client-generated)."
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 4000,
+            "minLength": 1,
+            "title": "Text",
+            "description": "The flagged message's content, for triage context."
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id",
+            "description": "Trip the thread belongs to, if any. Helps reproduce."
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason",
+            "description": "Optional free-text reason the user gave for flagging it."
+          }
+        },
+        "type": "object",
+        "required": [
+          "message_id",
+          "text"
+        ],
+        "title": "MessageReportRequest",
+        "description": "One user-flagged chat message."
+      },
+      "MessageReportResponse": {
+        "properties": {
+          "accepted": {
+            "type": "boolean",
+            "title": "Accepted",
+            "default": true
+          }
+        },
+        "type": "object",
+        "title": "MessageReportResponse"
+      },
       "MessageResponse": {
         "properties": {
           "id": {
@@ -47758,7 +47998,8 @@
           "weather_sensitive",
           "private_constraint_influenced",
           "subgroup",
-          "cancelled"
+          "cancelled",
+          "unverified_venue"
         ],
         "title": "PlanBlockFlag",
         "description": "UI hints derived server-side for blocks."
@@ -48121,6 +48362,17 @@
               }
             ],
             "title": "Notes"
+          },
+          "fidelity": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fidelity"
           },
           "state": {
             "type": "string",
@@ -50058,6 +50310,26 @@
             "type": "object",
             "title": "Votes"
           },
+          "approve_count": {
+            "type": "integer",
+            "title": "Approve Count",
+            "default": 0
+          },
+          "reject_count": {
+            "type": "integer",
+            "title": "Reject Count",
+            "default": 0
+          },
+          "neutral_count": {
+            "type": "integer",
+            "title": "Neutral Count",
+            "default": 0
+          },
+          "can_view_individual_votes": {
+            "type": "boolean",
+            "title": "Can View Individual Votes",
+            "default": false
+          },
           "resolution_note": {
             "anyOf": [
               {
@@ -50215,6 +50487,11 @@
               }
             ],
             "title": "Receipt Payload"
+          },
+          "just_reached_full_consensus": {
+            "type": "boolean",
+            "title": "Just Reached Full Consensus",
+            "default": false
           }
         },
         "type": "object",
@@ -56394,6 +56671,42 @@
           "generated_at"
         ],
         "title": "TripPlanState"
+      },
+      "TripPresenceResponse": {
+        "properties": {
+          "active": {
+            "type": "boolean",
+            "title": "Active"
+          },
+          "user_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "User Id"
+          },
+          "user_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "User Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "active"
+        ],
+        "title": "TripPresenceResponse",
+        "description": "Tier 0 group live-presence (docs/working/Chat Waiting Experience Plan.md,\nWorkstream A) \u2014 is anyone's turn with Vesper in flight on this trip right\nnow? Polled by other group members' chat screen so they can render\n\"{name} is asking Vesper\u2026\" without any new streaming/websocket infra."
       },
       "TripSettlement": {
         "properties": {

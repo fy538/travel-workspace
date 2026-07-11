@@ -278,6 +278,98 @@ flags:
     status: active
     notes: Gates outbound Expo push sends from the receipt reaper loop.
 
+  # ── Found unregistered by scripts/check_flag_registry.py's ad-hoc-lever
+  # scan (2026-07-10, simplification audit). All 8 are read via
+  # truthy_env/falsy_env rather than the Pydantic-Settings convention the
+  # rest of this file mostly documents — see that script's module
+  # docstring for why this convention was the blind spot.
+  - name: ATLAS_SEMANTIC_READ
+    repo: travel-agent
+    location: backend/search/dispatch.py:672
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Gates Qdrant dense-semantic Atlas search vs the pg_trgm fallback. Paired with ATLAS_SEMANTIC_WRITE.
+
+  - name: ATLAS_SEMANTIC_WRITE
+    repo: travel-agent
+    location: backend/core/db/atlas.py:276
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Gates fire-and-forget Qdrant upsert/delete on Atlas writes. Paired with ATLAS_SEMANTIC_READ — must ship together (write without read never gets exercised; read without write serves a stale/empty index).
+
+  - name: FACTS_WRAPPER_ENFORCE
+    repo: travel-agent
+    location: backend/core/llm.py:313
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: M1 facts-wrapper ships dark (scan + log only); this escalates to inject/clamp. Data-gated M2 rollout per design canon, never a launch flip — see project_facts_primitive memory.
+
+  - name: PLANNING_ITINERARY_FIRST
+    repo: travel-agent
+    location: backend/planning_agent/schemas.py:179 (schema default); production default set via backend/concierge/tool_handlers/planning/_plan.py:74
+    default: true
+    category: ops
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: >
+      Planning-cost lever 4 (itinerary-first synthesis split). Schema
+      default is OFF (truthy_env) so eval/notebook/direct-construction
+      callers are unaffected; production defaults it ON via a separate
+      falsy_env derivation in _plan.py — the real prod value is "on unless
+      explicitly killed." Live-validated 2026-07-09 (privacy hold + quality
+      floor pass, docs/audits/planning-cost-latency-2026-07.md). Kill
+      switch: PLANNING_ITINERARY_FIRST=false.
+
+  - name: PLANNING_PREFETCH
+    repo: travel-agent
+    location: backend/planning_agent/schemas.py:199 (schema default); production default set via backend/concierge/tool_handlers/planning/_plan.py:84
+    default: true
+    category: ops
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Planning-cost lever 1 (deterministic prefetch sweep). Same schema-off/prod-on shape as PLANNING_ITINERARY_FIRST. Live A/B trending positive but noisy (n=2) — revisit with more reps. Kill switch — PLANNING_PREFETCH=false.
+
+  - name: PLANNING_REPLAN_DIFF
+    repo: travel-agent
+    location: backend/planning_agent/schemas.py:190 (schema default); production default set via backend/concierge/tool_handlers/planning/_plan.py:69
+    default: true
+    category: ops
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Planning-cost lever 3 (diff-only replan). Same schema-off/prod-on shape as PLANNING_ITINERARY_FIRST. Live A/B measured 2026-07-09 at -82% wall-clock, -84% cost — the cleanest win of the six levers. Kill switch — PLANNING_REPLAN_DIFF=false.
+
+  - name: PLANNING_STRUCTURED_OUTPUT
+    repo: travel-agent
+    location: backend/planning_agent/schemas.py:213 (schema default); production default set via backend/concierge/tool_handlers/planning/_plan.py:79
+    default: true
+    category: ops
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Planning-cost lever 2 (schema-constrained synthesis call). Same schema-off/prod-on shape as PLANNING_ITINERARY_FIRST. Live A/B measured 2026-07-09 at -16% cost but +16% wall-clock; flipped on anyway by explicit product decision. Kill switch — PLANNING_STRUCTURED_OUTPUT=false.
+
+  - name: PLANNING_TERSE_REASONING
+    repo: travel-agent
+    location: backend/planning_agent/schemas.py:163
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Latency prototype — shrinks the final synthesis reasoning_trace (the slowest single call, ~50% of wall-clock). Off by default; env-flippable for A/B measurement only, not yet a product decision.
+
   # ── travel-app (frontend) ───────────────────────────────────────────────
   - name: VOICE_ENABLED
     repo: travel-app
