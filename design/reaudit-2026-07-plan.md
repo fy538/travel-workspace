@@ -36,7 +36,13 @@ A `stale` row returns to `aligned`/`partial` only via a fresh audit pass that:
 - Final state: **0 orphans**, 39 rows (28 stale / 8 unmapped-now-mapped / 1 pending-canon / 2 deferred).
 - **Not yet built**: the code-movement check (flag rows whose `code:` paths moved since `code_verified_at`) — no row has a `code_verified_at` stamp yet since none has been re-verified this campaign. Build this once Wave 1 starts producing verified rows.
 
-**Wave 1 — families first (8 surfaces).** Tokens · Buttons · Row System · Sheets · State System (family) · Header system · Voice registers · Cards kit. Product surfaces compose from these; family verdicts become citable downstream ("title uses `typography.h1Dense` — verified Wave 1") instead of re-derived per screen.
+**Wave 1 — families first (8 surfaces)** ✅ DONE 2026-07-11 (commit `f65ddf2`, workspace; `c7f20ada`, travel-app)
+- Tokens · Buttons · Row System · Sheets · State System (family) · Header system · Voice registers · Cards kit — each audited by a parallel agent (full canon+code reads, file:line-cited findings), with 3 of the most consequential claims spot-verified directly before trusting: all confirmed accurate.
+- Result: **7 partial, 1 gap** (Voice registers). Every row now carries a real `aligned_at:134` + `code_verified_at` (travel-app HEAD sha) stamp — the first genuinely re-earned verdicts in this campaign.
+- **Two prior "aligned" verdicts were wrong**, caught only by re-reading the actual files: Header system's "no code change" claim (story.tsx's `MemoryStoryHeader` is a real unmigrated fork, deliberately deferred by the J1 brief, closed anyway by a later session without re-checking); Voice registers' "fully ALIGNED, no known code gaps" (VesperSignature — the primitive behind ~30 chat/notes/Discover/Places consumers — renders a bare `+`, which canon's D8 explicitly names as NOT the brand mark).
+- **Fixed live**: Row System's `failed` booking overlay had a halo canon explicitly rules out (travel-app `c7f20ada`).
+- **Not fixed yet, flagged as fix-batch candidates**: Buttons' missing ghost-variant border + never-built CostsReceiptButton notch silhouette; Cards kit's Trust spine color off by one hex digit; Sheets' unused `edit` chrome (canon's own SectionEditSheet doesn't use it); State System's ErrorState/StateScreen fork (two visual treatments of one blessed tier, live simultaneously).
+- Code-movement check: still not built — now has real `code_verified_at` stamps to check against, this is unblocked for whenever it's worth building.
 
 **Wave 2 — wedge-core product surfaces (~13).** The multiplayer-coordination wedge (J02→J05→J12 order of importance): Auth & Invite · People & Collaboration · Chat · Itinerary · Changes · Proposal & Decision Detail · Trips Home · Trip Creation · Global Chrome · Notifications · Costs · External Sharing · Trip Story.
 
