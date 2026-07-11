@@ -50,44 +50,49 @@ surfaces:
   - surface: Costs
     canon: ["Vesper Costs.html", "costs-screens.jsx", "costs-system.jsx"]
     code: ["app/trip-expenses/", "components/expense/", "utils/costsViewModel.ts"]
-    aligned_at: 108
-    status: stale    # was: partial — verdict reset 2026-07-11 (residuals in notes still live)
-    notes: "G2 shipped (PR #53), 4/5 confirmed. KNOWN BUG: utils/costsViewModel.ts:375 hardcodes masked:false despite data/expenses.ts:110 threading the real field — task chip task_436ee090 dispatched to fix."
+    aligned_at: 134
+    code_verified_at: 543e2bbf    # travel-app HEAD, Wave 2 re-audit 2026-07-11
+    status: partial
+    notes: "Wave 2 re-audit (2026-07-11): the masked:false bug is CONFIRMED FIXED — costsViewModel.ts:393 now threads the real field, with a full fix-arc (fcdb0dbf fix + 30b8f9f6 regression test + df002d62 doc cleanup), spot-verified directly. CostsBalanceSheet's dense-size SheetHeader migration (D21) confirmed correct in this context too. Balance-footer semantics (send-nudges/settle-up/review-balances, never universal 'settle everything'), sheet-vs-drill-in density routing, and settled-state suppression all confirmed exact matches. New gaps found: (1) no trip-day field on Add/Edit expense — hardcoded to `new Date()`, so users can never log a past-day expense even though the ledger is day-grouped; a real functional gap, not cosmetic. (2) ExpenseDetail.tsx has structurally diverged from canon's dashed-card/color-coded-split receipt grammar — it grew real, canon-undocumented features instead (comments thread, 'mark my share as settled', source-proof badge, itinerary link). (3) masked rows show the lock icon but not canon's 'PRIVATE' split-label swap. Also surfaced: the Buttons-family audit's CostsReceiptButton 'notch silhouette' finding may rest on the wrong canon file — Costs' own RBtn spec (costs-system.jsx:171) just says plain pill, matching what's shipped; worth re-checking that finding's source citation."
 
   - surface: Proposal & Decision Detail
     canon: ["Vesper Proposal & Decision Detail.html", "vesper-proposal-detail-app.jsx", "revert-conflict-sheet.jsx"]
     code: ["components/trip/proposal-detail/", "app/trip-proposal/[proposalId].tsx", "components/receipts/"]
-    aligned_at: 108
-    status: stale    # was: aligned — verdict reset 2026-07-11
-    notes: "Batch F1, all 5 tasks confirmed (ProposalVoteRows, RevertConflictSheet 3-states, receipt states, closed/recovery). Wave 0: added app/trip-proposal/ route and components/receipts/ (VesperReceipt, also consumed by PlanBlockRow) found by the orphan sweep — expands mapping only, not re-verified."
+    aligned_at: 134
+    code_verified_at: 543e2bbf    # travel-app HEAD, Wave 2 re-audit 2026-07-11
+    status: partial
+    notes: "Wave 2 re-audit (2026-07-11) REFUTES the old 'all 5 tasks confirmed' claim on 2 of 4 identifiable items (a 5th was never named, can't verify). ProposalVoteRows and the receipt-dispatch system genuinely hold up — voter avatars, leading/tie logic, and kind-based receipt routing all confirmed exact. But 'RevertConflictSheet 3-states' does not: its 'summary' state is dead code (defined, tested, never invoked from any production call site), and the live 'conflict' state has quietly diverged from canon's per-item Keep/Discard interaction into a backend-resolved binary Force/Keep choice — a real, reasoned redesign (cited K1, 2026-07-06) that canon was never updated to reflect. 'Closed/recovery' also doesn't hold: rejected and plain-withdrawn (non-revert) proposals render NO closed-state banner at all — ProposalClosedState only fires for 'superseded', TrustStatusBanner only for accepted/withdrawn-with-revert. Recovery actions themselves are fine. Also: the Sheets-family audit's `dense` SheetHeader finding is still unresolved here — all 3 RevertConflictSheet title calls still default to `size='large'`. Minor: ProposalDetailScreen hand-rolls its own header chrome instead of reusing the shared ProductiveHeader canon's Chrome wrapper specifies."
 
   - surface: Changes
-    canon: ["Vesper Changes System.html", "changes-kit.jsx", "changes-screen.jsx", "changes-states-board.jsx", "ask-organizer-pattern.jsx"]
-    code: ["components/trip-plan/ChangeTimelineRow.tsx", "app/(tabs)/trips/[tripId]/changes.tsx", "components/trip/BlockedActionRow.tsx"]
-    aligned_at: 108
-    status: stale    # was: aligned — verdict reset 2026-07-11
-    notes: "Batch F2, all 5 tasks confirmed incl. Ask-the-Organizer pattern (net-new)."
+    canon: ["Vesper Changes System.html", "changes-kit.jsx", "changes-screen.jsx", "changes-states-board.jsx"]
+    code: ["components/trip-plan/ChangeTimelineRow.tsx", "app/(tabs)/trips/[tripId]/changes.tsx"]
+    aligned_at: 134
+    code_verified_at: 543e2bbf    # travel-app HEAD, Wave 2 re-audit 2026-07-11
+    status: partial
+    notes: "Wave 2 re-audit (2026-07-11) REFUTES 'Ask-the-Organizer (net-new)' as a Changes-surface claim — spot-verified directly. BlockedActionRow.tsx has zero references inside changes.tsx or ChangeTimelineRow.tsx (grep confirmed); the pattern actually lives in trip-dates/trip-settings/chat-agency-sheet (permissions surfaces). Its canon source, ask-organizer-pattern.jsx, isn't even loaded by Vesper Changes System.html's own script list (confirmed by reading the HTML directly) — moved off this row's canon: and code: lists to components/trip/ (see People & Collaboration / a future permissions-surface row for its real home). One real spec violation found in the pattern itself: GroupAgencySheet's 'change Vesper autonomy' uses Ask (intensity c) where canon's mapping table says Locked-visible-explained (intensity b, no Ask) — worth a follow-up regardless of which row owns it. What IS genuinely Changes-surface and holds up: row anatomy (SourceChip + serif title + read/unread dot), TODAY/EARLIER sectioning, delegation-as-nudge, votes-in-place with urgent banner, and the masthead headline all confirmed exact matches. Minor: resolved-row 'Undo' renders as a full secondary Button labeled 'Revert', heavier than canon's subtle inline mono-text toggle."
 
   - surface: Trip Settings & Admin
-    canon: ["Vesper Trip Settings & Admin.html", "vesper-trip-settings-app.jsx"]
-    code: ["app/trip-settings/", "app/trip-info/", "app/trip-dates/", "components/trip-settings/"]
+    canon: ["Vesper Trip Settings & Admin.html", "vesper-trip-settings-app.jsx", "ask-organizer-pattern.jsx"]
+    code: ["app/trip-settings/", "app/trip-info/", "app/trip-dates/", "components/trip-settings/", "components/trip/BlockedActionRow.tsx"]
     aligned_at: 108
     status: stale    # was: aligned — verdict reset 2026-07-11
-    notes: "Batch F3, all 4 tasks confirmed (delete/cancel via typedConfirmation, name-edit, role-gating fix). Wave 0: added components/trip-settings/ found by the orphan sweep — expands mapping only."
+    notes: "Batch F3, all 4 tasks confirmed (delete/cancel via typedConfirmation, name-edit, role-gating fix). Wave 0: added components/trip-settings/ found by the orphan sweep — expands mapping only. Wave 2 (2026-07-11): re-homed ask-organizer-pattern.jsx + BlockedActionRow.tsx here from the Changes row — the Ask-the-Organizer permission-gating pattern actually lives in trip-dates/trip-settings/chat-agency-sheet, not Changes (was misattributed there); its canon source wasn't even loaded by Changes' own HTML bundle. The Changes-surface audit found one real mapping-table violation in this pattern worth a follow-up: GroupAgencySheet's 'change Vesper autonomy' uses Ask (intensity c) where canon's table specifies Locked-visible-explained (intensity b, no Ask) — components/chat/GroupAgencySheet.tsx:134-140 vs ask-organizer-pattern.jsx:47. This row itself not independently re-audited this wave — still owes its own Wave-2/3 pass."
 
   - surface: Trips Home
     canon: ["Vesper Trips Home.html", "trips-home-canon.jsx", "trips-home-canon-screens.jsx", "trips-home-system.jsx", "trips-all-board.jsx"]
     code: ["app/(tabs)/trips/index.tsx", "components/trips/"]
-    aligned_at: 110
-    status: stale    # was: aligned — verdict reset 2026-07-11
-    notes: "Front-door decision-promotion fix (promoteHeroIfNeedsYourVote) + Batch I's CreateEntry card + joiner trail-row retirement, all verified."
+    aligned_at: 134
+    code_verified_at: 543e2bbf    # travel-app HEAD, Wave 2 re-audit 2026-07-11
+    status: partial
+    notes: "Wave 2 re-audit (2026-07-11): masthead-vs-hero separation, group-posture detection, OnTheTable's ≤2-card/list threshold, /trips/all's Planning+Dreaming sectioning, and urgent dismissal-for-session all CONFIRMED — in a couple places (cascade evaluation order, group-vote-hero escalation) code improves on a literal canon rule with documented in-code reasoning, not drift. Real structural gaps in the trail/section system: TripsHomeTrail collapses canon's 8 independently-labeled sections (Friends/Saved-no-trip/Vesper-noticed/Dream-seeds/etc, each with its own fixed label per canon's Rule 6) into one list under a single rotating shared label ('WHILE YOU'RE HERE' or 'OR START FROM' chosen heuristically) — a Friends row and a Vesper-noticed row can render side-by-side under the same generic eyebrow. Cold-state additionally shows two sections both labeled 'OR START FROM' with Dreams sandwiched between them, breaking canon's specified Hero→Dreams→StartFrom order. TripsFooter renders unconditionally where canon shows it only on some hero states (omitted on Ready/Between/Group). Top-bar shows Search+Bell where the canon file on hand shows Plus+Bell — the code comment claims canon backing but cites a mismatch, plausibly because Universal Search shipped after this canon page was authored (canon may just be stale, not code wrong)."
 
   - surface: Trip Creation
     canon: ["Vesper Trip Creation.html", "create-kit.jsx", "create-screens.jsx"]
     code: ["app/trip-begin.tsx", "components/trip-creation/TripCreationPrimitives.tsx"]
-    aligned_at: 126
-    status: stale    # was: partial — verdict reset 2026-07-11 (residuals in notes still live)
-    notes: "Canon-126 start-choice drift CLOSED (commit dabd7918): StartRow gained the 42px raised-paper tinted icon plate (goldDeep/sage/slate[400]) + the closing VesperLine reassurance. Scoped via optional `tint` so only the start-choice screen changed; other TripCreationStages StartRows keep bare icons (not in the 126 diff). KNOWN pre-existing gap (predates 126, not this drift): StartRow title/subtitle are serif_semibold 18 / serif_italic 14, canon Opt is sans 15.5 / serif 13.5 — separate re-alignment if ever wanted."
+    aligned_at: 134
+    code_verified_at: 543e2bbf    # travel-app HEAD, Wave 2 re-audit 2026-07-11
+    status: partial
+    notes: "Wave 2 re-audit (2026-07-11): icon-plate fix re-confirmed pixel-exact. The known serif-vs-sans typography gap is CONFIRMED still open, still deliberately deferred (matches the commit's own note verbatim). New findings on the closing VesperLine claim: the line is present with correct copy/position, but canon's actual pattern for THIS specific line (create-screens.jsx:112) is a distinct muted-italic-no-kicker 'aside' treatment, not the shared VLine/VesperLine primitive (which always carries a 'VESPER' kicker canon specifies but code's shared component never renders, in ANY of its usages app-wide). The fix commit's own description ('italic serif — the right register') is also factually wrong: the shipped style is non-italic serif_semibold. Separately found: the joiner-variant screen (returning users who've only joined trips) never swaps to canon's distinct NewTripJoiner headline ('Your turn to start one.') — it keeps the default headline and adds an extra StateNotice canon's joiner screen doesn't show; this predates and was untouched by the 126 alignment pass. Minor: ShapeCard's selected-check badge is styled inverted from canon (filled-gold vs canon's outline-on-cream) plus a small size delta."
 
   - surface: State System
     canon: ["Vesper State System.html", "vesper-state-system-app.jsx"]
@@ -129,16 +134,18 @@ surfaces:
   - surface: Notifications
     canon: ["Vesper Notifications and Alerts.html", "notifications-app.jsx"]
     code: ["app/notifications/index.tsx"]
-    aligned_at: 108
-    status: stale    # was: aligned — verdict reset 2026-07-11
-    notes: "J1 recon (119) confirms already on shared EditorialMasthead — the 119 diff to this surface is 1-line adoption of productive-header.jsx script tag + 19-line jsx tweak, not a code-relevant change."
+    aligned_at: 134
+    code_verified_at: 543e2bbf    # travel-app HEAD, Wave 2 re-audit 2026-07-11
+    status: partial
+    notes: "Wave 2 re-audit (2026-07-11) — effectively a first real audit, prior note was header-plumbing only. Filter pills, severity taxonomy/chip colors, mark-read action, and the data-contract fields all confirmed aligned — in places (severity derivation, optional future-fields already modeled) code is ahead of what canon's doc frames as not-yet-available. Two real structural gaps: TODAY/YESTERDAY/EARLIER sectioning is fully implemented (`notificationSectionLabel()`, spot-verified as having zero call sites anywhere outside its own test) but never wired into 3 of 4 canon screen modes — only Trip-Updates mode sections its rows, Global/Trip-Scoped/Personal ship as one flat scroll. The priority/time-sensitive strip has reverted to a bordered, tinted card — exactly the 'NeedsEye card' pattern canon's own doctrine explicitly killed ('no card background', notifications-app.jsx:166-183). Minor: destination-label can diverge from actual tap-navigation target (substrate-gated, canon itself flags this derivation as fragile); kicker isn't always the spec'd muteSoft; loading skeleton doesn't mirror the (mostly avatar-less) row shape; push-denied CTA says 'Turn on' instead of canon's state-dependent 'Open Settings'; stale banner drops the last-synced timestamp and list-dimming."
 
   - surface: People & Collaboration
     canon: ["Vesper People and Collaboration.html", "people-collab-app.jsx"]
     code: ["app/atlas/companions.tsx", "components/people/", "components/collaboration/", "app/profile/[userId].tsx"]
-    aligned_at: 108
-    status: stale    # was: aligned — verdict reset 2026-07-11
-    notes: "J1 recon (119) confirms already on shared CompactHeaderBar via AtlasNativeScaffold. Wave 0: added components/people/ (MemberActionSheet, MemberRows, PeopleAvatar/Pills), components/collaboration/ (DecisionPrimitives), app/profile/ found by the orphan sweep — expands mapping only, not re-verified."
+    aligned_at: 134
+    code_verified_at: 543e2bbf    # travel-app HEAD, Wave 2 re-audit 2026-07-11
+    status: partial
+    notes: "Wave 2 re-audit (2026-07-11): the prior brief's PrivateSeam finding ('needs to be BUILT, not adjudicated') is STALE — spot-verified directly. components/chat/group/PrivacySeamDivider.tsx (dated 2026-07-11) is a faithful, unusually well-documented implementation of canon's DignifiedPrivateSeam, explicitly self-citing people-collab-app.jsx:213-220,1041, wired live via DignifiedExceptionCard→GroupThreadItem. Core visual tokens (avatar marker/stack, pill status taxonomy, roster row) confirmed near-exact. But the interaction layer has real gaps: canon's pending-invite MemberActionSheet variant (Resend/Copy link/Revoke) was never wired — pending invites get only an inline revoke icon; the group-chat vote widget is missing canon's per-voter-avatar/tally grammar both in UI AND in its underlying data model (VoteWidgetData has no voter/count fields at all, unlike the itinerary-side PlanDecision which does); self-profile has no 'Edit profile' affordance canon specifies; unfollow has no long-press friction guard canon's caption calls for; the co-organizer role is half-built (present in component props/visual markers, absent from the live TripContext role type, so unreachable in practice — and even the scaffolding is internally inconsistent, RolePill and PeopleAvatar disagree on its color). DecisionInlineRow renders a chevron canon explicitly says the inline itinerary variant shouldn't have. PrivacyMarker is dead code (built, exported, zero consumers)."
 
   - surface: Places
     canon: ["Vesper Places.html", "places-canon-app.jsx", "hero-chrome.jsx"]
@@ -163,36 +170,44 @@ surfaces:
       - "travel-agent: backend/api/routes/plan_similar.py"
       - "travel-agent: backend/core/db/trip_story_shares.py"
       - "travel-agent: backend/core/db/plan_similar.py"
-    aligned_at: 118
-    status: stale    # was: partial — verdict reset 2026-07-11 (residuals in notes still live)
+    aligned_at: 134
+    code_verified_at: 543e2bbf    # travel-app + travel-agent HEAD, Wave 2 re-audit 2026-07-11
+    status: gap    # most severe Wave-2 verdict — see below
     notes: >
-      STATUS CHANGE 2026-07-07: was `deferred` (off-wedge, no code existed).
-      Overtaken by events — "Implement MVP public story sharing" shipped real
-      FE+BE code same day the freeze was recommended (concurrent session,
-      unaware of the recommendation). The FREEZE call still stands for NEW
-      investment here (per project_vision_alignment_assessment — Atlas/Story
-      remain off the dogfood-critical path) — but what already shipped needed
-      a real audit regardless of the freeze, since privacy bugs in live code
-      don't wait for a roadmap decision. Full audit done 2026-07-07 against
-      handoff 118/119's 19 decisions / 8 redaction rules / 26-item checklist /
-      26 events — see product-contract-audit-trip-story-sharing-2026-07-07.md
-      and surface-inventory-diff-trip-story-sharing-2026-07-07.md.
-      TWO REAL PRIVACY LEAKS found (fix regardless of freeze): (1) story
-      title can name a hidden destination — safe_hero_title() only filters
-      private-signal/names, not destination-in-title, spans JSON/OG/PNG-card;
-      (2) 9:16 card's map thumbnail queries raw place coordinates directly,
-      bypassing RedactionPolicy entirely — a second, projection-blind code
-      path. THREE canon-decision violations: #19 (owner's own link doesn't
-      route to Share/Manage — BE endpoint built, zero FE consumer, cheap fix),
-      #16 (Plan Similar's "conversation" is static hardcoded text, never
-      reaches real concierge chat), #17 (Inspired Trip attribution written to
-      DB, never rendered post-save). Analytics: all 13 canon-named events
-      MISSING by name; underlying persistence table was dropped 2026-06-20,
-      most events write to nothing. Several things ARE clean: decisions
-      #03/#05/#11/#18, public-viewer architecture, photo allowlist hardening,
-      unavailable-state genericism (all confirmed). Header (MemoryStoryHeader
-      fork, per Header-system row) still not migrated — fold in whenever this
-      surface's next real work happens.
+      Wave 2 re-audit (2026-07-11), read against canon fully (not the prior
+      07-07 audit's checklist): the lifecycle scaffolding, disclosure-safety
+      (unknown/revoked/expired/private all collapse to one generic message,
+      matching canon's rule exactly), and provenance/correction UX are
+      genuinely high-fidelity — in places exceeding canon (owner-vs-recipient
+      routing, "Restore Vesper's version" flow). But the surface's headline
+      CONTENT feature is silently broken: visible_places/generalized_place_chips/
+      route_cue are hardcoded to []/None throughout the entire backend
+      projection builder (story_projection.py — confirmed by direct read, not
+      just the agent's citation) despite full schema support and heavy canon
+      specification (StoryCardPreview chips, PublicStoryViewer place pills,
+      Plan Similar's carried-places seed) — reads as a feature that was
+      modeled and scaffolded but the actual "compute chips from story" step
+      was never written, no flag/TODO marking it deferred. Canon's "Trip
+      group" visibility tier (sign-in-gated viewing by named members) doesn't
+      functionally work — falls back to link/public-only behavior server-side.
+      MOST NOTABLE: the shipped 9:16 share-card and OG landing page use a
+      completely different visual language than canon (indigo accent, system
+      sans, no EB Garamond) — and story_landing.py's CSS/placeholder env vars
+      are BYTE-IDENTICAL to the unrelated invite_landing.py, strongly
+      suggesting the invite surface's generic template was copied wholesale
+      without a Vesper brand pass. Owner attribution line ("Shared by X")
+      missing from the public viewer. Several ShareLink lifecycle/analytics
+      fields (expires_at, replaced_by_share_id, unique_viewers) unimplemented.
+      #19 (owner-link routing) IS now fixed — this wave directly confirmed
+      "Open in Vesper" owner-vs-recipient routing matches canon exactly
+      (app/stories/[slug].tsx:416-450). PRE-EXISTING, NOT RE-VERIFIED THIS
+      WAVE (from the 07-07 audit, status unconfirmed on these specific items
+      — flag for the next pass): 2 privacy leaks (hidden destination leaking
+      via story title; map-thumbnail bypassing RedactionPolicy), 2 remaining
+      canon-decision violations (#16 Plan Similar hardcoded, #17 Inspired-Trip
+      attribution never rendered), and all 13 canon-named analytics events
+      missing (persistence table dropped 2026-06-20). MemoryStoryHeader fork
+      (Header-system row) still unmigrated, as previously tracked.
 
       FIX PASS 2026-07-07 (same day, "fix all identified"): both LEAKs fixed
       — safe_hero_title() now takes hidden_destination and falls back off any
@@ -226,16 +241,18 @@ surfaces:
   - surface: Itinerary
     canon: ["Vesper Itinerary.html", "itinerary-canon.jsx", "row-system.jsx"]
     code: ["app/(tabs)/trips/[tripId]/plan.tsx", "components/trip-plan/PlanBlockRow.tsx", "components/trip-plan/ChangeStudioSheet.tsx", "components/trip-plan/ReviewStackSheet.tsx"]
-    aligned_at: 129
-    status: stale    # backfilled 2026-07-11 (Wave 0) — mapping only, not yet re-verified this campaign
-    notes: "Wave 0 backfill: was falsely 'unmapped' — D18/D19 (canon 130, resolved handoff 133) covered PlanBlockRow's rail-node overlays and the proposed-state collapse, both real audit work against this surface. F1/G1 briefs also point at a date-rail conflict-dot gap, never closed. Real mapping now recorded; still owes a full Wave-2 re-audit like every other row."
+    aligned_at: 134
+    code_verified_at: 543e2bbf    # travel-app HEAD, Wave 2 re-audit 2026-07-11
+    status: partial
+    notes: "Wave 2 re-audit (2026-07-11), scoped to the screen/sheet layer only — PlanBlockRow's row-grammar was already fully covered by the Row System family audit, not re-derived here. The long-tracked date-rail conflict-dot gap is CONFIRMED STILL OPEN: conflictsByDayId is in scope in plan.tsx and used elsewhere (review-badge, conflict count) but never threaded into the date-rail's own dot computation, so a conflicted day and a day with a benign recent edit render the identical generic dot — no rail-level shortcut exists to find which day has a conflict. NEW: ReviewStackSheet.tsx uses colors.purple for its 'GROUP DECISION' kicker and 'why flagged' rule — a real violation of BOTH the itinerary canon's explicit 4-tone-only rule ('No purple, pink, or novelty accents') AND the app-wide color doctrine that reserves violet for sanctioned Discover/agent/privacy contexts only; canon's own reference board uses blue for this exact kicker. Two lower-severity, self-documented-as-deliberate gaps: ChangeStudioSheet's flat action list vs. canon's sectioned PLAN/MARK/VIEW/REMOVE hierarchy (explicitly flagged in-file as Phase-0 scope, Phase-2 pending), and no held-booking warning banner (capability exists, canon's explanatory framing doesn't). Screen chrome (PlanFocusedHeader, map/list face-toggle, no-bottom-bar doctrine) all confirmed aligned, including well-documented deliberate departures from canon's literal prose."
 
   - surface: Chat
     canon: ["Vesper Chat.html", "chat-narration-band.jsx", "vesper-composer.jsx", "vesper-chat-canon.jsx"]
     code: ["app/(tabs)/concierge/chat.tsx", "app/(tabs)/concierge/history.tsx", "app/conversations/create.tsx", "components/chat/"]
-    aligned_at: 133
-    status: stale    # backfilled 2026-07-11 (Wave 0) — mapping only, not yet re-verified this campaign
-    notes: "Wave 0 backfill: was falsely 'unmapped' — the 07-10 chat-surface-audit-2026-07-10.md ledger (384 lines) plus D17 (offline send) and D20 (message action sheet + Copy) are all real, recent, file:line-cited audit work against this exact surface. Real mapping now recorded; still owes a full Wave-2 re-audit to fold that prior work into a fresh verdict rather than resting on it."
+    aligned_at: 134
+    code_verified_at: 543e2bbf    # travel-app HEAD, Wave 2 re-audit 2026-07-11
+    status: partial    # trending toward aligned — fastest-improving row this wave
+    notes: "Wave 2 re-audit (2026-07-11): D17/D20 both re-confirmed correctly shipped. Spot-checked the 07-10 ledger (design/chat-surface-audit-2026-07-10.md) and found it partially self-stale — its own Resolution Log (top of doc) already knew 4 batches were fixed 07-10, but the detailed per-finding sections further down still presented those same items as open with no cross-reference; a reader following the brief's instruction to check the detailed findings would be misled into re-flagging fixed issues. 6 of the ledger's ~20 findings are now fixed, 2 dated literally the same day as this audit (privacy-seam divider now built and wired — components/chat/group/PrivacySeamDivider.tsx, matches People & Collaboration row's finding; TripShapes' emoji/purple-action drift fixed). New, previously-unflagged: history.tsx's ThreadHistoryRow shows the thread's own title-initial where canon's ThreadRow always shows a fixed serif 'V' Vesper monogram — every history row should visually read as 'a conversation with Vesper', this doesn't. Minor: composer literal '...' vs canon's true ellipsis, one more hyphen-vs-middle-dot site. Still genuinely open (re-confirmed, not new): ChatActionRow secondary-action register, GroupEventLine italic misuse on system/join lines, GroupVesperNote's compact-variant register swap, offline cached-thread signal, PrivacyHandoffCard still orphaned outside the dev gallery."
 
   - surface: Chat — Planning-Progress Cards (TripShapes / ResearchCard / PlanReadyCard)
     canon: ["proposals/planning-progress-cards-canon-proposal.md", "planning-progress-cards-canon.jsx"]
@@ -322,25 +339,39 @@ surfaces:
       - "hooks/useTripInvites.ts"
       - "data/invites.ts"
       - "components/onboarding/DeferredDiaryGiftSheet.tsx"
-    aligned_at: 108
-    status: stale    # was: partial — verdict reset 2026-07-11 (residuals in notes still live)
+      - "components/onboarding/AuthProviderStack.tsx"      # Wave 2: load-bearing for SignInImpl/SignUpImpl
+      - "components/onboarding/ContextualAuthShell.tsx"     # Wave 2: load-bearing
+      - "components/onboarding/OtpCodeInput.tsx"            # Wave 2: load-bearing
+    aligned_at: 134
+    code_verified_at: 543e2bbf    # travel-app HEAD, Wave 2 re-audit 2026-07-11
+    status: partial
     notes: >
-      Backfilled from this session's loop-closure investigation (Drill 2,
-      2026-07-06) — a real verification, not a fresh audit. Scope actually
-      checked: the invite-landing/peek → pre-auth signal chips → auth-to-join
-      → accept flow, the 8-kind error taxonomy with reason-disclosure
-      privacy, and the post-join diary-gift upsell (InvGift). All confirmed
-      first-class and faithful to canon — this is one of the best-built
-      surfaces in the app.
-      NOT covered by that verification (real gap in THIS row, not a code
-      gap): plain sign-in/sign-up (app/(auth)/sign-in.tsx, sign-up.tsx,
-      session-recovery.tsx) were never checked against canon's OTP/safety-chip
-      states this session — the code paths are listed above from a
-      repo-search, not a verify pass. Treat those specific files as
-      effectively unmapped until someone actually reads them against canon.
+      Wave 2 re-audit (2026-07-11) FINALLY checked the sign-in/sign-up/OTP
+      code this row's own prior note flagged as never verified — this is
+      genuinely one of the best-built surfaces in the app, but the first
+      real look found real gaps. OTP wrong-code/expired inline visual states
+      (red digit boxes, inline banner) are fully built into OtpCodeInput.tsx
+      but neither SignInImpl nor SignUpImpl ever passes the error prop —
+      errors surface via toast only, canon's copy ("Code expired.") is lost.
+      Safety-chip vocabulary has drifted from canon's specific 6+5 list
+      (constants/intake-chips.ts ships a different 8+3 set, missing 3
+      accessibility chips canon names, adding one it doesn't). Canon's
+      dedicated "Picking up where you left off" pending-handoff restoration
+      screen was never built — the OTP screen's own loading spinner is the
+      only continuity signal during post-auth resolution. Pre-auth signal
+      chips shifted from canon's multi-select taste-tag model to single-choice
+      (plausibly a deliberate backend redesign — question_prompt/chip_answer
+      are both singular — canon just wasn't updated). GOOD NEWS: the
+      reason-disclosure privacy model (collapsing revoked/expired/trip-gone to
+      identical copy for untrusted pre-auth viewers) is real, well-reasoned,
+      and undocumented in canon — a genuine uncredited hardening, not a gap.
+      The apparent "8th invite-error code" mismatch resolved cleanly on
+      investigation — it belongs to a different (organizer-side) flow, not a
+      taxonomy gap. Core OTP state machine, resend cooldown, OAuth tail, and
+      value-before-auth ordering all confirmed solid.
       KNOWN GAP (see project_batch_efgh_alignment / project_vision_alignment_assessment):
       the outbound half of the invite loop (joiner→organizer conversion) was
-      completely absent as of this morning — FIXED same day via
+      completely absent as of 07-06 — FIXED same day via
       ACTIVATION_LOOP_CLOSED telemetry + Batch I, not part of this canon
       page's original scope but tightly coupled to it.
 
@@ -354,9 +385,10 @@ surfaces:
   - surface: External Sharing & Public Entry Points
     canon: ["Vesper External Sharing & Public Entry Points.html", "vesper-external-sharing-app.jsx"]
     code: ["components/external-share/", "app/public/place/", "app/public/venue/"]
-    aligned_at: null
-    status: unmapped
-    notes: "Wave 0: mapped by the orphan sweep. Two files here (PublicUnavailableState.tsx, ShareLinkStateNotice.tsx) are ALSO listed under Trip Story's code: — genuinely shared components across both surfaces, not a mapping error. Mapping only — never verified against canon."
+    aligned_at: 134
+    code_verified_at: 543e2bbf    # travel-app HEAD, Wave 2 re-audit 2026-07-11
+    status: partial
+    notes: "Wave 2 — first real audit of this surface (2026-07-11). The privacy-critical spine is implemented with unusual precision, in places exceeding canon: reason-disclosure taxonomy matches word-for-word (including the exact generic-collapse copy), owner-CTA suppression, brand-light no-bottom-nav chrome, and 'not found never confirms/denies existence' are all confirmed exact. Two files here (PublicUnavailableState.tsx, ShareLinkStateNotice.tsx) are genuinely shared with Trip Story's code: list, not a mapping error. Real gaps: PrivateSurfaceGate — canon's dedicated answer to protecting costs/decisions/itinerary from link-walkers — is fully built to spec but wired into ZERO app screens (orphaned, likely an anticipated follow-up PR that never landed); the 'Ask Vesper' secondary CTA canon specifies for place entries is absent from both public place/venue routes even though the underlying PublicOpenInAppCTA component supports it and the pattern is used elsewhere in the app; only 1 of canon's 3 place-entry recipient modes (plain public) is implemented — no person-attribution mode, no trip-scoped-hidden mode, even though the route already threads an optional tripId the receiving screen ignores. Minor: privacy-note copy runs 2 sentences against canon's explicit one-sentence rule; no dedicated tests exist for the two public route files despite being unauthenticated and privacy-sensitive. One doc-catchup item: ExternalShareShell deliberately dropped canon's linkState/disclosureLevel props in favor of routing those through PublicUnavailableState/ShareLinkStateNotice directly — a documented, sensible redesign; canon's component table should be updated to match, not the other way around."
 
   - surface: Guide & Collection Reader
     canon: ["Vesper Guide & Collection Reader.html", "vesper-guide-reader-app.jsx"]
@@ -374,10 +406,11 @@ surfaces:
 
   - surface: Global Chrome
     canon: ["Vesper Global Chrome.html", "vesper-global-chrome-app.jsx", "tab-bar.jsx"]
-    code: ["components/nav/FloatingTabBar.tsx", "app/(tabs)/_layout.tsx", "app/_layout.tsx", "app/index.tsx", "components/ErrorBoundary.tsx", "components/PushAskHost.tsx"]
-    aligned_at: 127
-    status: stale    # was: partial — verdict reset 2026-07-11 (residuals in notes still live)
-    notes: "Tab-bar badge removal (Batch E) confirmed; canon 127 (D2) independently re-confirms NO badge — tab-bar.jsx's vesperBadge prop deleted entirely (was a dead-but-present default contradicting the standing ruling), reconciled to Global Chrome's radius 30/blur 12px/rgba(249,245,237,0.92). NOT yet verified: whether FloatingTabBar.tsx's own radius/blur/bg values match those exact reconciled numbers — flag for a quick token check next time this file is touched. Center-slot geometry question from project_vision_alignment_assessment unresolved — P2, not urgent. Wave 0: added root layout/boot chrome (app/_layout, app/index, ErrorBoundary, PushAskHost) found by the orphan sweep — app-shell infra, closest fit is this surface; expands mapping only."
+    code: ["components/nav/FloatingTabBar.tsx", "app/(tabs)/_layout.tsx", "app/_layout.tsx", "app/index.tsx", "components/PushAskHost.tsx"]
+    aligned_at: 134
+    code_verified_at: 543e2bbf    # travel-app HEAD, Wave 2 re-audit 2026-07-11
+    status: partial
+    notes: "Wave 2 re-audit (2026-07-11) did the token check the prior note flagged as never done: radius (30) confirmed exact; border confirmed aligned; blur is deliberately absent app-wide (expo-blur isn't in the build — consistently rgba-substituted in CollapsingHeader/GlassSurface too, substrate-gated not an oversight). But background alpha is a REAL miss — code's colors.tint.parchmentGlass is 0.78 opacity vs canon's specified 0.92 (a visibly more see-through pill), and that token's own inline comment says it was authored for a different surface entirely ('trip card postcard'), borrowed here rather than the nav bar owning its own reconciled token. Also found: collapsed-circle size is 56 vs canon's 52 (previously unflagged). Badge policy re-confirmed NO badge (correct), but the badge-count computation + styles are dead code that actively contradicts its own file's doc comment claiming '4 bottom tabs with badge dots' — a badge feature was clearly built then pulled per the D2 ruling without cleanup. STRUCTURAL FINDING: this canon file set has ZERO content about app-shell/boot/root-layout concerns — every line of app/_layout.tsx, app/index.tsx, PushAskHost.tsx (Clerk gating, splash timeout, push-permission-ask flow) is unfalsifiable against Global Chrome specifically; the Wave-0 'closest fit' mapping was weak. ErrorBoundary.tsx re-homed to State System (family) this wave — its non-dev fallback explicitly defers to ErrorState, which is that row's real territory. app/_layout.tsx/app/index.tsx/PushAskHost.tsx have no better canon home found yet; left here as the least-wrong fit, flagged as effectively unmapped-in-spirit."
 
   - surface: Discover (+ Detail/Reader, Map & Spatial Browse)
     canon: ["Vesper Discover.html", "Vesper Discover Detail & Reader System.html", "Vesper Discover Map & Spatial Browse.html", "discover-cover.jsx", "discover-cover-polished.jsx", "discover-cover-polished-v2.jsx", "Vesper Discover Cover - Polish.html", "Vesper Discover Cover - Polish v2.html"]
@@ -444,7 +477,10 @@ surfaces:
 
   - surface: State System (family)
     canon: ["Vesper State System.html", "discover-feed-states.jsx", "reader-states-board.jsx", "changes-states-board.jsx", "session-recovery.jsx"]
-    code: ["components/ui/state/"]
+    # components/ErrorBoundary.tsx re-homed here from Global Chrome (Wave 2,
+    # 2026-07-11) — its non-dev fallback path defers to ErrorState, which is
+    # this row's territory, not Global Chrome's (no canon coverage there).
+    code: ["components/ui/state/", "components/ErrorBoundary.tsx"]
     aligned_at: 134
     code_verified_at: c7f20ada    # travel-app HEAD, Wave 1 re-audit 2026-07-11
     status: partial
