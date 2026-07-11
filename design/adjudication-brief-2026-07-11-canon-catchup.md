@@ -91,3 +91,11 @@ Run `python3 scripts/canon-drift-check.py` — it will flag every surface whose 
 **Decide:** give the new 17px/600 dense-sheet spec its own name in `sheet-header.jsx` (e.g. `dense`, or whatever reads best against the existing `large`/`compact`/`edit` set) so the 17 already-adopted `compact` call sites are unaffected, and `CostsBalanceSheet`'s title+Done row gets the new size instead. If there's a reason all 17 existing `compact` sites *should* actually move from 14→17pt, that's a real, visible, cross-app change — worth stating explicitly rather than as a side effect of an unrelated naming choice.
 
 **Regenerate:** rename the new size in `sheet-header.jsx`'s ladder (keep `compact` pointed at the existing 14pt spec, unchanged); update the D21 comment block to reflect the final three (or four) size names.
+
+---
+
+## D21 — code-side status (2026-07-11, handoff 134)
+
+Handoff 134 resolved the naming collision cleanly (verified via diff): `sheet-header.jsx` now names the new size `dense` — `compact` is left untouched at 14px/500. Shipped in code: `ui/SheetHeader.tsx`'s `SheetHeaderSize` gained `'dense'`, mapped to a new `typography.h1Dense` role (17px, DM Sans semibold) — `constants/typography.ts`.
+
+**`CostsBalanceSheet` migration held back — not a clean drop-in after all.** Checked its actual current header (`components/expense/CostsBalanceSheet.tsx:94-98`) before forcing the swap: its title is `fontFamily.serif_semibold` at 17px, not sans — canon's `dense` spec is sans-only, so adopting it would silently change the title's font family, not just its size (the mismatch D21 was scoped to fix). It also hand-rolls a text "Done" link in place of `SheetHeader`'s default bare close-X. Rather than force a migration that trades one visual regression for another, left `CostsBalanceSheet` as its own hand-rolled header for now. `dense` is real and available in code for the sheets it was actually written for (sans-titled dense sheets); whether `CostsBalanceSheet`'s serif title is itself a deliberate register worth documenting, or should convert to sans to use `dense`, is a small follow-up question, not resolved by this pass.
