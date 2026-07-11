@@ -7,7 +7,7 @@
 
 include dogfood.mk
 
-.PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help ci-review
+.PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help
 .PHONY: new-worktree land-worktree worktrees
 .PHONY: contract-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate mock-slug-parity
 .PHONY: certify-fast certify-logic certify-corpus certify-visual certify-visual-cloud certify-live maestro-flow-check journey-registry-check dogfood-status corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-journey-live-api qa-persona dogfood-status-sync
@@ -98,9 +98,6 @@ reliability-gate: ## Gate on eval reliability baseline — exits 1 if any checks
 		--exit-code \
 		--verbose
 
-ci-review: ## Nightly CI/CD dashboard across all 3 repos (read the same numbers each day; drift becomes visible)
-	@./scripts/ci-review.sh
-
 # ── Tests ─────────────────────────────────────────────────────────────────────
 
 test-backend: ## Run offline backend tests
@@ -178,7 +175,7 @@ certify-visual-cloud: ## Activate Maestro Cloud PR gate: add secrets to GitHub r
 	@echo "The workflow skips gracefully if the secret is absent, so it never blocks PRs before configured."
 
 certify-live: ## Tier-4 dogfood preflight + live-walk checklist (human: two Clerk accounts)
-	@chmod +x ./scripts/certify-live.sh ./scripts/seed-s4-fly.sh
+	@chmod +x ./scripts/certify-live.sh ./scripts/attic/seed-s4-fly.sh
 	@./scripts/certify-live.sh
 
 design-refresh: ## Close the design-alignment freshness loop: fingerprint canon, list stale surfaces, re-capture + auto-carry/queue-for-judging (needs simulator + Metro)
@@ -221,7 +218,7 @@ dogfood-journey-live-api: ## Two-persona live API cert for J02/J04/J05/J10 (Test
 	@PROFILE="$(PROFILE)" TRANSPORT="$(TRANSPORT)" PRELAUNCH_HOST="$(PRELAUNCH_HOST)" ./scripts/dogfood-journey-live-api.sh
 
 dogfood-status: ## Validate dogfood manifests and print scenario/pack readiness
-	@chmod +x ./scripts/dogfood-status.sh ./scripts/seed-s4-local.sh ./scripts/seed-s4-fly.sh
+	@chmod +x ./scripts/dogfood-status.sh ./scripts/attic/seed-s4-local.sh ./scripts/attic/seed-s4-fly.sh
 	@./scripts/dogfood-status.sh
 
 qa-persona: ## Full per-persona QA spine: content gates + journeys + visual walk plan (token-free). Usage: make qa-persona PERSONA=mara [GATE=1]

@@ -11,8 +11,9 @@ set -euo pipefail
 
 echo "▸ seed-s4-fly is deprecated — for full promote use: APPLY=1 make dogfood-promote CITY=lisbon" >&2
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
+ATTIC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPTS_DIR="$(dirname "$ATTIC_DIR")"
+WORKSPACE_DIR="$(dirname "$SCRIPTS_DIR")"
 AGENT_DIR="$WORKSPACE_DIR/travel-agent"
 ENV_PROD="$AGENT_DIR/.env.prod"
 MANIFEST="$AGENT_DIR/tools/dogfood/content/manifests/lisbon-phase1.yaml"

@@ -8,12 +8,13 @@
 #   PROFILE=local scripts/dogfood-five-pack-verify.sh
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
+ATTIC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPTS_DIR="$(dirname "$ATTIC_DIR")"
+WORKSPACE_DIR="$(dirname "$SCRIPTS_DIR")"
 AGENT_DIR="$WORKSPACE_DIR/travel-agent"
 PROFILE="${PROFILE:-fly}"
 
-AGENT_DIR="$AGENT_DIR" source "$SCRIPT_DIR/dogfood-env.sh"
+AGENT_DIR="$AGENT_DIR" source "$SCRIPTS_DIR/dogfood-env.sh"
 dogfood_apply_profile || exit 1
 
 cd "$AGENT_DIR"

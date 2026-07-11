@@ -79,7 +79,7 @@ else
   record "prereq-live-api" "WARN" "re-run with PRELAUNCH_JWT_MARA/DAO set"
 fi
 
-if "$SCRIPT_DIR/dogfood-journey-j04-chat-eval.sh" 2>&1 | tee /tmp/dogfood-device-cert-j04-chat-eval.txt; then
+if "$SCRIPT_DIR/attic/dogfood-journey-j04-chat-eval.sh" 2>&1 | tee /tmp/dogfood-device-cert-j04-chat-eval.txt; then
   ok "J04 chat eval passed"
   record "prereq-j04-chat-eval" "PASS" "substrate + group-history egress gate green"
 else

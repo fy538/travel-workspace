@@ -6,15 +6,16 @@
 #   make tier-a-spot-check PROFILE=fly    # Fly Postgres + cloud Qdrant
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
+ATTIC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPTS_DIR="$(dirname "$ATTIC_DIR")"
+WORKSPACE_DIR="$(dirname "$SCRIPTS_DIR")"
 AGENT_DIR="$WORKSPACE_DIR/travel-agent"
 
 PROFILE="${PROFILE:-local}"
 APPLY="${APPLY:-1}"
 export APPLY
 # shellcheck source=scripts/dogfood-env.sh
-source "$SCRIPT_DIR/dogfood-env.sh"
+source "$SCRIPTS_DIR/dogfood-env.sh"
 dogfood_apply_profile
 
 echo "▸ tier-a-spot-check profile=$PROFILE"

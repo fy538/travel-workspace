@@ -10,8 +10,9 @@
 #   RUN_MAESTRO=0 scripts/dogfood-five-pack-simulator.sh   # skip Maestro
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
+ATTIC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPTS_DIR="$(dirname "$ATTIC_DIR")"
+WORKSPACE_DIR="$(dirname "$SCRIPTS_DIR")"
 AGENT_DIR="$WORKSPACE_DIR/travel-agent"
 APP_DIR="$WORKSPACE_DIR/travel-app"
 RUN_MAESTRO="${RUN_MAESTRO:-1}"
@@ -33,7 +34,7 @@ else
 fi
 
 bold "2/3 Live API (TestClient → local Postgres)"
-if PROFILE=local TRANSPORT=testclient "$SCRIPT_DIR/dogfood-five-pack-live-api.sh"; then
+if PROFILE=local TRANSPORT=testclient "$ATTIC_DIR/dogfood-five-pack-live-api.sh"; then
   ok "live API testclient passed"
 else
   fail "live API testclient failed — seed with: APPLY=1 make dogfood-city CITY=lisbon"

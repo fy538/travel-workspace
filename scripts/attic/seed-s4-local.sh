@@ -2,8 +2,9 @@
 # Seed S4 (Lisbon group planning) to local Postgres — no LLM calls.
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
+ATTIC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPTS_DIR="$(dirname "$ATTIC_DIR")"
+WORKSPACE_DIR="$(dirname "$SCRIPTS_DIR")"
 AGENT_DIR="$WORKSPACE_DIR/travel-agent"
 MANIFEST="$AGENT_DIR/tools/dogfood/content/manifests/lisbon-phase1.yaml"
 

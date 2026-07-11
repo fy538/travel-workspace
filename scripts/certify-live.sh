@@ -26,7 +26,7 @@ fi
 
 step "2/7 Fly dogfood substrate (mara + dao + elif)"
 if [[ -f "$AGENT_DIR/.env.prod" ]]; then
-  if "$SCRIPT_DIR/dogfood-fly-smoke.sh" 2>&1 | tee /tmp/certify-live-fly-smoke.txt; then
+  if "$SCRIPT_DIR/attic/dogfood-fly-smoke.sh" 2>&1 | tee /tmp/certify-live-fly-smoke.txt; then
     ok "dogfood-fly-smoke passed"
   else
     warn "dogfood-fly-smoke failed — see output above (promote with: APPLY=1 make dogfood-promote CITY=lisbon)"
@@ -43,7 +43,7 @@ else
 fi
 
 step "4/8 J04 chat eval (S4 substrate + group-history egress)"
-if "$SCRIPT_DIR/dogfood-journey-j04-chat-eval.sh" 2>&1 | tee /tmp/certify-live-j04-chat-eval.txt; then
+if "$SCRIPT_DIR/attic/dogfood-journey-j04-chat-eval.sh" 2>&1 | tee /tmp/certify-live-j04-chat-eval.txt; then
   ok "dogfood-journey-j04-chat-eval passed"
 else
   warn "J04 chat eval failed — seed dao-quiet-mornings: APPLY=1 make dogfood-promote CITY=lisbon"
@@ -84,7 +84,7 @@ fi
 
 step "7/8 Fly Maestro (optional — needs PRELAUNCH_JWT_MARA)"
 if [[ -n "${PRELAUNCH_JWT_MARA:-}" ]]; then
-  if RUN_MAESTRO=0 "$SCRIPT_DIR/dogfood-maestro-fly.sh" 2>&1 | tee /tmp/certify-live-fly-maestro.txt; then
+  if RUN_MAESTRO=0 "$SCRIPT_DIR/attic/dogfood-maestro-fly.sh" 2>&1 | tee /tmp/certify-live-fly-maestro.txt; then
     ok "Fly J04 HTTP eval passed (set RUN_MAESTRO=1 make dogfood-maestro-fly for UI)"
   else
     warn "Fly Maestro HTTP eval failed — see /tmp/certify-live-fly-maestro.txt"

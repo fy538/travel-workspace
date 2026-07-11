@@ -9,8 +9,9 @@
 #   RUN_MAESTRO=0 scripts/dogfood-maestro-s4-local.sh   # API eval only
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
+ATTIC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPTS_DIR="$(dirname "$ATTIC_DIR")"
+WORKSPACE_DIR="$(dirname "$SCRIPTS_DIR")"
 AGENT_DIR="$WORKSPACE_DIR/travel-agent"
 APP_DIR="$WORKSPACE_DIR/travel-app"
 RUN_MAESTRO="${RUN_MAESTRO:-1}"
@@ -23,7 +24,7 @@ warn() { printf "  \033[33m⚠\033[0m %s\n" "$1"; }
 bold "S4 Maestro (local real API)"
 
 bold "1/3 J04 chat eval (TestClient)"
-if PROFILE=local TRANSPORT=testclient "$SCRIPT_DIR/dogfood-journey-j04-chat-eval.sh"; then
+if PROFILE=local TRANSPORT=testclient "$ATTIC_DIR/dogfood-journey-j04-chat-eval.sh"; then
   ok "J04 chat eval passed"
 else
   fail "J04 chat eval failed — seed: APPLY=1 make dogfood-city CITY=lisbon"
@@ -45,7 +46,7 @@ bold "2/3 Docker + local API (SKIP_AUTH as Mara)"
 cd "$AGENT_DIR"
 
 export PROFILE=local
-AGENT_DIR="$AGENT_DIR" source "$SCRIPT_DIR/dogfood-env.sh"
+AGENT_DIR="$AGENT_DIR" source "$SCRIPTS_DIR/dogfood-env.sh"
 dogfood_apply_profile || exit 1
 
 if ! docker compose ps --status running 2>/dev/null | grep -q postgres; then

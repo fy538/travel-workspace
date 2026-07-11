@@ -10,8 +10,9 @@
 #   APPLY=1 PROFILE=local make import-latent-corpus CITY=paris
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
+ATTIC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPTS_DIR="$(dirname "$ATTIC_DIR")"
+WORKSPACE_DIR="$(dirname "$SCRIPTS_DIR")"
 AGENT_DIR="$WORKSPACE_DIR/travel-agent"
 
 TIER=""
@@ -30,7 +31,7 @@ APPLY="${APPLY:-0}"
 GLOBAL_EMBED_ONLY="${GLOBAL_EMBED_ONLY:-0}"
 
 # shellcheck source=scripts/dogfood-env.sh
-source "$SCRIPT_DIR/dogfood-env.sh"
+source "$SCRIPTS_DIR/dogfood-env.sh"
 dogfood_apply_profile
 
 if [ -n "$CITY" ]; then

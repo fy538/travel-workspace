@@ -8,8 +8,9 @@
 #   FLY_HOST=https://vesper-backend.fly.dev scripts/dogfood-fly-smoke.sh
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
+ATTIC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPTS_DIR="$(dirname "$ATTIC_DIR")"
+WORKSPACE_DIR="$(dirname "$SCRIPTS_DIR")"
 AGENT_DIR="$WORKSPACE_DIR/travel-agent"
 FLY_HOST="${FLY_HOST:-https://vesper-backend.fly.dev}"
 SLUG_BRIDGE="tools/dogfood/content/manifests/elif-rome-slug-bridge.yaml"
@@ -21,7 +22,7 @@ ok() { printf "  \033[32m✓\033[0m %s\n" "$1"; }
 fail() { printf "  \033[31m✗\033[0m %s\n" "$1"; }
 warn() { printf "  \033[33m⚠\033[0m %s\n" "$1"; }
 
-AGENT_DIR="$AGENT_DIR" source "$SCRIPT_DIR/dogfood-env.sh"
+AGENT_DIR="$AGENT_DIR" source "$SCRIPTS_DIR/dogfood-env.sh"
 dogfood_apply_profile || exit 1
 
 cd "$AGENT_DIR"
@@ -110,7 +111,7 @@ else
 fi
 
 bold "5/5 Five-pack substrate verify (trips + discover compose)"
-if "$SCRIPT_DIR/dogfood-five-pack-verify.sh" 2>&1 | tee /tmp/dogfood-five-pack-verify.txt; then
+if "$ATTIC_DIR/dogfood-five-pack-verify.sh" 2>&1 | tee /tmp/dogfood-five-pack-verify.txt; then
   ok "Five-pack substrate verify passed (see make dogfood-five-pack-verify)"
 else
   fail "Five-pack substrate verify failed — see /tmp/dogfood-five-pack-verify.txt"

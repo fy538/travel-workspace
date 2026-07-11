@@ -11,8 +11,9 @@
 #   RUN_MAESTRO=0 PRELAUNCH_JWT_MARA=... scripts/dogfood-maestro-fly.sh  # HTTP eval only
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
+ATTIC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPTS_DIR="$(dirname "$ATTIC_DIR")"
+WORKSPACE_DIR="$(dirname "$SCRIPTS_DIR")"
 AGENT_DIR="$WORKSPACE_DIR/travel-agent"
 APP_DIR="$WORKSPACE_DIR/travel-app"
 FLY_HOST="${PRELAUNCH_HOST:-https://vesper-backend.fly.dev}"
@@ -41,7 +42,7 @@ fi
 
 bold "2/4 J04 chat eval (HTTP)"
 if PROFILE=fly TRANSPORT=http PRELAUNCH_JWT_MARA="$JWT" PRELAUNCH_HOST="$FLY_HOST" \
-  "$SCRIPT_DIR/dogfood-journey-j04-chat-eval.sh"; then
+  "$ATTIC_DIR/dogfood-journey-j04-chat-eval.sh"; then
   ok "J04 chat eval on Fly"
 else
   fail "J04 chat eval failed — promote substrate: APPLY=1 make dogfood-promote CITY=lisbon"
@@ -50,7 +51,7 @@ fi
 
 bold "3/4 Journey live API read-only on S4 (HTTP)"
 if PROFILE=fly TRANSPORT=http PRELAUNCH_JWT_MARA="$JWT" PRELAUNCH_HOST="$FLY_HOST" \
-  "$SCRIPT_DIR/dogfood-journey-live-api.sh" 2>&1 | tee /tmp/dogfood-maestro-fly-journey-api.txt; then
+  "$SCRIPTS_DIR/dogfood-journey-live-api.sh" 2>&1 | tee /tmp/dogfood-maestro-fly-journey-api.txt; then
   ok "journey live API HTTP"
 else
   warn "journey live API HTTP had failures — see /tmp/dogfood-maestro-fly-journey-api.txt"
