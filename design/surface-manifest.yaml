@@ -56,10 +56,10 @@ surfaces:
 
   - surface: Proposal & Decision Detail
     canon: ["Vesper Proposal & Decision Detail.html", "vesper-proposal-detail-app.jsx", "revert-conflict-sheet.jsx"]
-    code: ["components/trip/proposal-detail/"]
+    code: ["components/trip/proposal-detail/", "app/trip-proposal/[proposalId].tsx", "components/receipts/"]
     aligned_at: 108
     status: stale    # was: aligned — verdict reset 2026-07-11
-    notes: "Batch F1, all 5 tasks confirmed (ProposalVoteRows, RevertConflictSheet 3-states, receipt states, closed/recovery)."
+    notes: "Batch F1, all 5 tasks confirmed (ProposalVoteRows, RevertConflictSheet 3-states, receipt states, closed/recovery). Wave 0: added app/trip-proposal/ route and components/receipts/ (VesperReceipt, also consumed by PlanBlockRow) found by the orphan sweep — expands mapping only, not re-verified."
 
   - surface: Changes
     canon: ["Vesper Changes System.html", "changes-kit.jsx", "changes-screen.jsx", "changes-states-board.jsx", "ask-organizer-pattern.jsx"]
@@ -70,10 +70,10 @@ surfaces:
 
   - surface: Trip Settings & Admin
     canon: ["Vesper Trip Settings & Admin.html", "vesper-trip-settings-app.jsx"]
-    code: ["app/trip-settings/", "app/trip-info/", "app/trip-dates/"]
+    code: ["app/trip-settings/", "app/trip-info/", "app/trip-dates/", "components/trip-settings/"]
     aligned_at: 108
     status: stale    # was: aligned — verdict reset 2026-07-11
-    notes: "Batch F3, all 4 tasks confirmed (delete/cancel via typedConfirmation, name-edit, role-gating fix)."
+    notes: "Batch F3, all 4 tasks confirmed (delete/cancel via typedConfirmation, name-edit, role-gating fix). Wave 0: added components/trip-settings/ found by the orphan sweep — expands mapping only."
 
   - surface: Trips Home
     canon: ["Vesper Trips Home.html", "trips-home-canon.jsx", "trips-home-canon-screens.jsx", "trips-home-system.jsx", "trips-all-board.jsx"]
@@ -137,23 +137,24 @@ surfaces:
 
   - surface: People & Collaboration
     canon: ["Vesper People and Collaboration.html", "people-collab-app.jsx"]
-    code: ["app/atlas/companions.tsx"]
+    code: ["app/atlas/companions.tsx", "components/people/", "components/collaboration/", "app/profile/[userId].tsx"]
     aligned_at: 108
     status: stale    # was: aligned — verdict reset 2026-07-11
-    notes: "J1 recon (119) confirms already on shared CompactHeaderBar via AtlasNativeScaffold."
+    notes: "J1 recon (119) confirms already on shared CompactHeaderBar via AtlasNativeScaffold. Wave 0: added components/people/ (MemberActionSheet, MemberRows, PeopleAvatar/Pills), components/collaboration/ (DecisionPrimitives), app/profile/ found by the orphan sweep — expands mapping only, not re-verified."
 
   - surface: Places
     canon: ["Vesper Places.html", "places-canon-app.jsx", "hero-chrome.jsx"]
-    code: ["app/place/[placeSlug].tsx"]
+    code: ["app/place/[placeSlug].tsx", "app/venue/[venueId]/index.tsx", "app/trip-place/index.tsx", "components/places/"]
     aligned_at: 129
     status: stale    # was: aligned — verdict reset 2026-07-11
-    notes: "RESOLVED (canon 129 header ruling): CODE IS CANONICAL. Places detail ships hero-first (full-bleed photo + floating GlassButton icons, no top bar) — ruled Family B (HeroChrome), consistent with Discover detail lineage. The old slim-reader-bar mock was the STALE side and is retired. No code change — the design ruling caught canon up to what shipped. (The header divergence, the only real gap on this surface, is now closed.)"
+    notes: "RESOLVED (canon 129 header ruling): CODE IS CANONICAL. Places detail ships hero-first (full-bleed photo + floating GlassButton icons, no top bar) — ruled Family B (HeroChrome), consistent with Discover detail lineage. The old slim-reader-bar mock was the STALE side and is retired. No code change — the design ruling caught canon up to what shipped. (The header divergence, the only real gap on this surface, is now closed.) Wave 0: added app/venue/ and app/trip-place/ (same hero-detail pattern) found by the orphan sweep — expands mapping only, not re-verified."
 
   - surface: Trip Story
     canon: ["Vesper Trip Story and Memory Handoff.html", "trip-story-app-a.jsx", "trip-story-app-b.jsx", "trip-story-app-c.jsx"]
     code:
       - "app/(tabs)/trips/[tripId]/story.tsx"
       - "app/stories/[slug].tsx"                          # public viewer
+      - "app/trip-story/share.tsx"                        # Wave 0: orphan sweep
       - "components/memory/ShareStorySheet.tsx"           # OwnerShareControls
       - "components/external-share/PublicUnavailableState.tsx"
       - "components/external-share/ShareLinkStateNotice.tsx"
@@ -225,18 +226,18 @@ surfaces:
   #    Listed explicitly so the manifest doesn't silently look complete. ──
 
   - surface: Itinerary
-    canon: ["Vesper Itinerary.html", "itinerary-canon.jsx"]
-    code: []
-    aligned_at: null
-    status: unmapped
-    notes: "Referenced in passing (F1/G1 briefs point at date-rail conflict-dot gap) but never formally mapped or verified this session."
+    canon: ["Vesper Itinerary.html", "itinerary-canon.jsx", "row-system.jsx"]
+    code: ["app/(tabs)/trips/[tripId]/plan.tsx", "components/trip-plan/PlanBlockRow.tsx", "components/trip-plan/ChangeStudioSheet.tsx", "components/trip-plan/ReviewStackSheet.tsx"]
+    aligned_at: 129
+    status: stale    # backfilled 2026-07-11 (Wave 0) — mapping only, not yet re-verified this campaign
+    notes: "Wave 0 backfill: was falsely 'unmapped' — D18/D19 (canon 130, resolved handoff 133) covered PlanBlockRow's rail-node overlays and the proposed-state collapse, both real audit work against this surface. F1/G1 briefs also point at a date-rail conflict-dot gap, never closed. Real mapping now recorded; still owes a full Wave-2 re-audit like every other row."
 
   - surface: Chat
-    canon: ["Vesper Chat.html", "chat-narration-band.jsx", "vesper-composer.jsx"]
-    code: []
-    aligned_at: null
-    status: unmapped
-    notes: "chat-invite-nudge.jsx (OrganizerInviteNudge) was verified as part of the loop-closure work, but the surface as a whole is unmapped."
+    canon: ["Vesper Chat.html", "chat-narration-band.jsx", "vesper-composer.jsx", "vesper-chat-canon.jsx"]
+    code: ["app/(tabs)/concierge/chat.tsx", "app/(tabs)/concierge/history.tsx", "app/conversations/create.tsx", "components/chat/"]
+    aligned_at: 133
+    status: stale    # backfilled 2026-07-11 (Wave 0) — mapping only, not yet re-verified this campaign
+    notes: "Wave 0 backfill: was falsely 'unmapped' — the 07-10 chat-surface-audit-2026-07-10.md ledger (384 lines) plus D17 (offline send) and D20 (message action sheet + Copy) are all real, recent, file:line-cited audit work against this exact surface. Real mapping now recorded; still owes a full Wave-2 re-audit to fold that prior work into a fresh verdict rather than resting on it."
 
   - surface: Chat — Planning-Progress Cards (TripShapes / ResearchCard / PlanReadyCard)
     canon: ["proposals/planning-progress-cards-canon-proposal.md", "planning-progress-cards-canon.jsx"]
@@ -247,9 +248,10 @@ surfaces:
 
   - surface: Route & Transport
     canon: ["Vesper Route & Transport.html"]
-    code: []
+    code: ["components/trip-map/", "hooks/useOptimizeDayRoute.ts", "hooks/useRouteTrip.ts", "data/transportGaps.ts", "app/your-map.tsx"]
     aligned_at: null
     status: unmapped
+    notes: "Wave 0: mapped by the orphan sweep — components/trip-map/ (19 files) is real, production-grade code per project_maps_state memory ('trip map production-grade, zero maps in Discover/venue funnel; dead map_card; no directions handoff'). Mapping only — never verified against canon."
 
   - surface: Universal Search
     canon: ["Vesper Universal Search.html", "universal-search-app.jsx"]
@@ -289,28 +291,32 @@ surfaces:
 
   - surface: Booking & Reservation
     canon: ["Vesper Booking & Reservation.html", "booking-app.jsx", "booking-kit.jsx"]
-    code: []
+    code: ["components/booking/", "app/booking/[sessionId].tsx", "app/experience/[experienceId].tsx"]
     aligned_at: null
     status: unmapped
+    notes: "Wave 0: mapped by the orphan sweep — components/booking/ (5 files: checkout panels, offer row, proposal card, receipt primitives, session surfaces) is live code, not off-wedge (see project_booking_state memory: 'live-checkout BUILT+GATED DARK; Duffel hold-order E2E BUILT'). Mapping only — never verified against canon."
 
   - surface: Trust & Controls
     canon: ["Vesper Trust & Controls.html", "trust-kit.jsx"]
-    code: []
+    code: ["components/trust/TrustControlsKit.tsx"]
     aligned_at: null
     status: unmapped
+    notes: "Wave 0: mapped by the orphan sweep. ATLAS-ADJACENT — TrustControlsKit.tsx's only 11 call sites are all app/atlas/* screens (account, privacy, data-receipt, receipt, constraints, notifications, profile, phone, feedback, companions, delegation). No non-Atlas usage found. Per the plan's own wave ordering ('Guide Reader / Saved last — Discover-adjacent, likely inherits the deferral'), the same logic applies here: this surface's fate is coupled to the open Atlas freeze decision, not independent. Consider auditing alongside Atlas rather than in Wave 2/3 isolation."
 
   - surface: Onboarding
-    canon: ["Vesper Onboarding.html"]
-    code: []
-    aligned_at: null
-    status: unmapped
-    notes: "onboarding-canon-invite.jsx (InvGift/OnboardingResume) verified as part of loop-closure work; the surface as a whole is unmapped."
+    canon: ["Vesper Onboarding.html", "onboarding-canon-invite.jsx"]
+    code: ["app/onboarding.tsx", "app/onboarding-safety.tsx", "components/onboarding/"]
+    aligned_at: 129
+    status: stale    # backfilled 2026-07-11 (Wave 0) — mapping only, not yet re-verified this campaign
+    notes: "Wave 0 backfill: was falsely 'unmapped' — onboarding-canon-invite.jsx (InvGift/OnboardingResume) verified as part of loop-closure work, and D22 (canon 130) resolved the Fleuron->VesperMark attribution question this week (commit 28bd85ee, travel-app). Real mapping now recorded; still owes a full Wave-2/3 re-audit."
 
   - surface: Auth and Invite
     canon: ["Vesper Auth and Invite.html", "auth-invite-app.jsx", "onboarding-canon-invite.jsx"]
     code:
       - "app/invite/[slug].tsx"
       - "app/invite-code.tsx"
+      - "app/(auth)/"                                     # Wave 0: orphan sweep
+      - "components/auth/"                                # Wave 0: orphan sweep
       - "utils/inviteToken.ts"
       - "utils/invitePending.ts"
       - "utils/inviteErrorTaxonomy.ts"
@@ -342,48 +348,59 @@ surfaces:
 
   - surface: Photo & Media Intake
     canon: ["Vesper Photo & Media Intake.html"]
-    code: []
+    code: ["components/photo-intake/", "app/trip-photos/find.tsx"]
     aligned_at: null
     status: unmapped
+    notes: "Wave 0: mapped by the orphan sweep — components/photo-intake/ (controls, sheets, states) is live code. Mapping only — never verified against canon."
 
   - surface: External Sharing & Public Entry Points
     canon: ["Vesper External Sharing & Public Entry Points.html", "vesper-external-sharing-app.jsx"]
-    code: []
+    code: ["components/external-share/", "app/public/place/", "app/public/venue/"]
     aligned_at: null
     status: unmapped
+    notes: "Wave 0: mapped by the orphan sweep. Two files here (PublicUnavailableState.tsx, ShareLinkStateNotice.tsx) are ALSO listed under Trip Story's code: — genuinely shared components across both surfaces, not a mapping error. Mapping only — never verified against canon."
 
   - surface: Guide & Collection Reader
     canon: ["Vesper Guide & Collection Reader.html", "vesper-guide-reader-app.jsx"]
-    code: []
+    code: ["components/guides/", "app/guide/[slug].tsx", "components/discover/reader/ReaderChrome.tsx", "app/dossier/[dossierId].tsx", "app/angle/[angleId].tsx"]
     aligned_at: null
     status: unmapped
+    notes: "Wave 0: mapped by the orphan sweep. DISCOVER-ADJACENT — the reader chrome lives under components/discover/reader/ and the dossier/angle routes are Discover's content pipeline (see project_discover_reading_room, project_research_pipeline_pilot memories). Per the plan's own wave ordering, this surface's fate is coupled to Discover's deferred status, not independent — audit alongside Discover, not in isolation."
 
   - surface: Saved & Collections System
     canon: ["Vesper Saved & Collections System.html"]
-    code: []
+    code: ["components/saved/SavedObjectRow.tsx", "app/atlas/saved-places.tsx"]
     aligned_at: null
     status: unmapped
+    notes: "Wave 0: mapped by the orphan sweep. ATLAS-ADJACENT — SavedObjectRow's only usage found is app/atlas/saved-places.tsx. Same logic as Trust & Controls: coupled to the Atlas freeze decision, not independent. Audit alongside Atlas, not in isolation."
 
   - surface: Global Chrome
     canon: ["Vesper Global Chrome.html", "vesper-global-chrome-app.jsx", "tab-bar.jsx"]
-    code: ["components/nav/FloatingTabBar.tsx", "app/(tabs)/_layout.tsx"]
+    code: ["components/nav/FloatingTabBar.tsx", "app/(tabs)/_layout.tsx", "app/_layout.tsx", "app/index.tsx", "components/ErrorBoundary.tsx", "components/PushAskHost.tsx"]
     aligned_at: 127
     status: stale    # was: partial — verdict reset 2026-07-11 (residuals in notes still live)
-    notes: "Tab-bar badge removal (Batch E) confirmed; canon 127 (D2) independently re-confirms NO badge — tab-bar.jsx's vesperBadge prop deleted entirely (was a dead-but-present default contradicting the standing ruling), reconciled to Global Chrome's radius 30/blur 12px/rgba(249,245,237,0.92). NOT yet verified: whether FloatingTabBar.tsx's own radius/blur/bg values match those exact reconciled numbers — flag for a quick token check next time this file is touched. Center-slot geometry question from project_vision_alignment_assessment unresolved — P2, not urgent."
+    notes: "Tab-bar badge removal (Batch E) confirmed; canon 127 (D2) independently re-confirms NO badge — tab-bar.jsx's vesperBadge prop deleted entirely (was a dead-but-present default contradicting the standing ruling), reconciled to Global Chrome's radius 30/blur 12px/rgba(249,245,237,0.92). NOT yet verified: whether FloatingTabBar.tsx's own radius/blur/bg values match those exact reconciled numbers — flag for a quick token check next time this file is touched. Center-slot geometry question from project_vision_alignment_assessment unresolved — P2, not urgent. Wave 0: added root layout/boot chrome (app/_layout, app/index, ErrorBoundary, PushAskHost) found by the orphan sweep — app-shell infra, closest fit is this surface; expands mapping only."
 
   - surface: Discover (+ Detail/Reader, Map & Spatial Browse)
     canon: ["Vesper Discover.html", "Vesper Discover Detail & Reader System.html", "Vesper Discover Map & Spatial Browse.html", "discover-cover.jsx", "discover-cover-polished.jsx", "discover-cover-polished-v2.jsx", "Vesper Discover Cover - Polish.html", "Vesper Discover Cover - Polish v2.html"]
-    code: []
+    code: ["components/discover/"]
     aligned_at: null
     status: deferred
     notes: "Off-wedge per project_vision_alignment_assessment — part of the ~35-45% off-wedge surface the Atlas-freeze decision covers. Do not spend alignment effort here until that decision is made. Canon 126 added a Discover Cover polish v2 (discover-cover.jsx +261 lines, 2 new polished variants + 2 pages) — a whole design workstream landed here; still DEFERRED, do not build."
 
   - surface: Atlas (all)
     canon: []  # no .html pages in the mirror — Atlas runs its own separate canon campaign, see project_atlas_canon_state
-    code: ["app/atlas/", "components/atlas/"]
+    code: ["app/atlas/", "components/atlas/", "components/me/"]
     aligned_at: null
     status: deferred
-    notes: "~34 screens / ~22k LOC, own canon campaign outside this mirror. Atlas-freeze decision from project_vision_alignment_assessment is STILL OPEN — re-raise before spending alignment effort on this cluster."
+    notes: "~34 screens / ~22k LOC, own canon campaign outside this mirror. Atlas-freeze decision from project_vision_alignment_assessment is STILL OPEN — re-raise before spending alignment effort on this cluster. Wave 0: added components/me/ (TravelDNACard — taste-profile card, see project_taste_store_reconciliation memory) found by the orphan sweep."
+
+  - surface: Voice (narration + live mic)
+    canon: []  # no dedicated .html page in the mirror — audio voice ≠ "Voice registers (family)" (that's typographic/attribution voice, VesperMark etc.)
+    code: ["components/voice/", "components/narration/"]
+    aligned_at: null
+    status: unmapped
+    notes: "Wave 0: new surface, found by the orphan sweep — no manifest row existed at all (not even a blank one). components/voice/ (VoiceOrb, VoiceOverlay, mic privacy/status) + components/narration/ (NarrationListenButton). Dark subsystem per project_dogfood_phase memory: 'narration SHIPS + live mic BUILT+GATED (VOICE_ENABLED=off)'. Real, shipped, credential-gated code — not off-wedge, just dark. No canon page found in the mirror; may need a Claude Design ask rather than a code audit."
 
   # ── Shared-element FAMILIES (cross-cutting primitives, not screens) ──────
   #    Added 2026-07-09 from the component-consistency audit. These rows exist
@@ -412,7 +429,7 @@ surfaces:
 
   - surface: Cards kit (family)
     canon: ["Vesper Cards.html", "Vesper Action Card Ownership.html", "vesper-cards-kit.jsx", "vesper-cards-system.jsx", "vesper-cards-families.jsx", "vesper-cards-fam.jsx"]
-    code: ["components/vesper-cards/", "components/ui/CardSurface.tsx", "utils/vesperCardFamilies.ts", "components/focus-home/", "components/takes/"]
+    code: ["components/vesper-cards/", "components/ui/CardSurface.tsx", "utils/vesperCardFamilies.ts", "components/focus-home/", "components/takes/", "components/concierge/"]
     aligned_at: 127
     status: stale    # was: aligned — verdict reset 2026-07-11
     notes: "D5 RESOLVED (canon 127): vesper-cards-kit.jsx CardShell now r14 + solid warm paper + real letterpress boxShadow (glass blur removed) — canon catching up to code's CardSurface, which already had this right (confirms, no code action). D4 RESOLVED: Transact + Trust are now real families (FAM entries: transact spine #2E4A63/receipt glyph, trust spine #5E7355/seal glyph) drawing a new shared ReceiptFace component — 4-part anatomy (header · vesper-line · status · source), demoed live in vesper-cards-app.jsx. Batch B SHIPPED 07-10: CC2.2 (StayCard 6444f6a9, CostsEstimateCard 183ad84a folded onto CardSurface; TripLogCard held back — zero consumers, dead code; FolioReceiptCard held back — transparent clip-container around 11 distinct receipt sub-widgets, not a unifiable shell), CC2.3 (fe3664c9 — DeckPickFace/DeckBriefFace/DeckCompareFace/DeckStructuredFace onto CardSurface, r20→r14; Deck.tsx/DeckCallFace excluded, concurrent-session WIP), CC2.5 (6f66ce27 — label/glyph/color/authored metadata de-triplicated from glyphs.tsx/KindTag.tsx/VesperCardKit.tsx into one VESPER_FAMILY_META in utils/vesperCardFamilies.ts). Batch C SHIPPED 07-10: CC2.4 (44bc3be6 — new components/vesper-cards/ReceiptFace.tsx (4-part anatomy) + CardTransact/CardTrust faces wired into FocusHome's dispatch; also fixed transact/trust FAM label/icon/color to canon's exact D4 values, replacing pre-D4 placeholders; added surface.transactInk token, reused surface.sageDeep for trust). Remaining code gap: status/source fields don't exist on ConciergeHomeCard yet (no backend wiring for transact/trust card kinds) — both faces currently render header+vesper-line only; not this batch's scope (data-gated, deferred). All Batch A-C Cards-kit code work is now DONE — status flipped to aligned."
