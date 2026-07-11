@@ -25,7 +25,7 @@ export AI_MODE="${AI_MODE:-replay}"
 export ATLAS_BOARD_COPY_LLM_ENABLED="${ATLAS_BOARD_COPY_LLM_ENABLED:-false}"
 export DOGFOOD_JOURNEY_LIVE_TRANSPORT="$TRANSPORT"
 
-PYTHONPATH=. python scripts/dogfood_journey_live_api.py \
+PYTHONPATH=. python scripts/dogfood_journey_cert.py live-api \
   --transport "$TRANSPORT" \
   --host "$PRELAUNCH_HOST" \
   "$@"

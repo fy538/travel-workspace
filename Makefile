@@ -64,7 +64,7 @@ api-coverage-check: ## Verify http.ts only calls URLs that exist in docs/openapi
 smoke: ## Drive the happy path against a backend (default localhost:8000). Override with PRELAUNCH_HOST=https://...
 	@./scripts/smoke-happy-path.sh
 
-pre-launch: offline-qa ## Pre-launch gate: offline QA ladder + happy-path smoke. Override target with PRELAUNCH_HOST.
+pre-launch: verify ## Pre-launch gate: verify + happy-path smoke. Override target with PRELAUNCH_HOST.
 	@./scripts/smoke-happy-path.sh
 
 preflight-eas: ## Pre-flight before EAS production build (toolchain + projectId + env + tests). MUST be green before running 'eas build'.
@@ -73,10 +73,13 @@ preflight-eas: ## Pre-flight before EAS production build (toolchain + projectId 
 fly-secrets: ## Emit a paste-ready 'fly secrets set' template for first-time Fly.io deploy. Pipe to a file and edit.
 	@./scripts/fly-secrets-template.sh
 
-mock-real-parity: ## Check frontend mock/API parity seams without live backend calls
-	@./scripts/mock-real-parity.sh
+mock-real-parity: ## Moved — use `make verify` (mock/API seam tests included)
+	@echo "⚠ mock-real-parity merged into make verify (architecture-simplification 2026-07)"
+	@$(MAKE) verify
 
-golden-path-qa: journey-wedge-qa ## Deprecated alias — use journey-wedge-qa or certify-logic
+golden-path-qa: ## Deprecated — use `make journey-wedge-qa`
+	@echo "⚠ golden-path-qa renamed to journey-wedge-qa (architecture-simplification 2026-07)"
+	@$(MAKE) journey-wedge-qa
 
 journey-wedge-qa: ## Journey wedge gate: J02/J05/J06 scenario pytest + mock-walk Jest
 	@chmod +x ./scripts/golden-path-qa.sh
@@ -86,8 +89,9 @@ mock-slug-parity: ## Gate: dogfood corpus city slugs have mock angle + destinati
 	@chmod +x ./scripts/mock-slug-parity-check.sh
 	@./scripts/mock-slug-parity-check.sh
 
-offline-qa: ## Run the full offline reliability ladder
-	@./scripts/offline-qa.sh
+offline-qa: ## Moved — use `make verify`
+	@echo "⚠ offline-qa merged into make verify (architecture-simplification 2026-07)"
+	@$(MAKE) verify
 
 reliability-report: ## Print a cheap reliability snapshot without running tests
 	@./scripts/reliability-report.sh
@@ -124,7 +128,7 @@ flag-registry-check: ## Gate: no feature flag in docs/flags/registry.yaml is pas
 	@python3 scripts/check_flag_registry.py
 
 docs-governance-check: ## Gate: new workspace Markdown files carry lifecycle metadata
-	@python3 scripts/check_doc_governance.py --local-new
+	@python3 scripts/check_docs.py --staged-new
 
 docs-inventory-check: ## Gate: every workspace Markdown file has one reviewed disposition
 	@python3 scripts/check_doc_inventory.py --steady
@@ -139,7 +143,7 @@ docs-status-check: ## Gate: generated current-state signals match executable reg
 	@python3 scripts/render_current_state.py
 
 docs-status-sync: ## Refresh the generated current-state signal table
-	@python3 scripts/render_current_state.py --write
+	@python3 scripts/check_docs.py --write-status
 
 docs-child-governance-check: ## Gate: new child-repo docs satisfy workspace lifecycle metadata
 	@python3 scripts/check_child_doc_governance.py
@@ -147,7 +151,8 @@ docs-child-governance-check: ## Gate: new child-repo docs satisfy workspace life
 docs-links-check: ## Gate: relative links in living workspace docs resolve
 	@python3 scripts/check_living_doc_links.py
 
-docs-check: docs-governance-check docs-child-governance-check docs-inventory-check docs-spine-check docs-status-check docs-links-check ## Run all documentation governance gates
+docs-check: ## Run all documentation governance gates
+	@python3 scripts/check_docs.py --all
 
 maestro-flow-check: ## Gate: every .maestro flow parses + visual-qa script refs resolve (offline, no simulator)
 	@python3 scripts/validate-maestro-flows.py --app-dir travel-app
@@ -229,17 +234,29 @@ dogfood-status-sync: ## Regenerate the auto:persona-cert block in docs/journeys/
 
 # ── Composite gate ─────────────────────────────────────────────────────────────
 
-verify: ## Single cross-repo "is it green?" gate: backend CI + frontend typecheck + contract drift + API coverage + frontend tests
+verify: ## Single cross-repo pre-push gate (absorbs offline-qa + mock-real-parity)
+	@echo "▸ Workspace doctor..."
+	@$(MAKE) doctor
 	@echo "▸ Backend CI (travel-agent: ruff + boundaries + gates + mypy + offline tests)..."
 	@$(MAKE) -C travel-agent ci
-	@echo "▸ Frontend typecheck (travel-app: tsc --noEmit)..."
-	@$(MAKE) typecheck
 	@echo "▸ Contract drift (OpenAPI snapshot ↔ generated types)..."
 	@$(MAKE) contract-check
 	@echo "▸ API coverage (http.ts URLs exist in docs/openapi.json)..."
 	@$(MAKE) api-coverage-check
-	@echo "▸ Frontend tests (Jest)..."
-	@$(MAKE) test-frontend
+	@echo "▸ Frontend typecheck (travel-app: tsc --noEmit)..."
+	@$(MAKE) typecheck
+	@echo "▸ Journey mock-walk (tier 1 Jest)..."
+	@cd travel-app && npm test -- __tests__/journeys/ --runInBand
+	@echo "▸ Mock/API seam tests..."
+	@cd travel-app && npx jest --runInBand \
+		__tests__/utils/api/mock.test.ts \
+		__tests__/utils/api/http.test.ts \
+		__tests__/data/notifications.test.ts \
+		__tests__/data/proposals.test.ts \
+		__tests__/data/privacy.test.ts \
+		__tests__/data/planState.test.ts
+	@echo "▸ Frontend offline tests..."
+	@cd travel-app && npm run test:offline
 	@echo "✓ verify: all cross-repo gates green"
 
 status: ## Show git status for workspace + child repos

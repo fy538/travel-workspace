@@ -25,7 +25,7 @@ export AI_MODE="${AI_MODE:-replay}"
 export ATLAS_BOARD_COPY_LLM_ENABLED="${ATLAS_BOARD_COPY_LLM_ENABLED:-false}"
 export DOGFOOD_J04_CHAT_TRANSPORT="$TRANSPORT"
 
-PYTHONPATH=. python scripts/dogfood_journey_j04_chat_eval.py \
+PYTHONPATH=. python scripts/dogfood_journey_cert.py j04-chat-eval \
   --transport "$TRANSPORT" \
   --host "$PRELAUNCH_HOST" \
   "$@"
