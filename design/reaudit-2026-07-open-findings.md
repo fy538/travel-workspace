@@ -176,10 +176,11 @@ Trip Story's 8 items are fully resolved (see the summary above) — the surface 
 - `Deck.tsx`'s r20 full-screen overlay is a 6th, unaudited shadow recipe outside canon's container table.
 
 **Tokens (family)**
-- `muteSoft`/`ink80` still used as real text color at ~292 sites despite canon's explicit "never text" rule.
-- `blue60`/`planningInk` never reconciled to canon's hex value the way its sibling status hues were.
+- `muteSoft`/`ink80` text debt largely cleared (2026-07-12 tokens campaign T0–T7): raw budget **286→134**; classifier post-T7 **TEXT 0 / DECORATIVE 101 / UNCLEAR 33**. Decorative muteSoft stays by design; UNCLEAR leftovers need render checks (icons/chrome/aliases).
+- `blue60`/`planningInk` **RESOLVED** (T4): snapped to canon `#2A5A8A`.
 - `colors.surface.sage` is overloaded (status-affirmative in some places, pure decoration in others) — needs file-by-file judgment before its value can move.
 - `fsStamp` equivalent for the sanctioned sub-9pt exception (D7) not yet added to code.
+- UNCLEAR muteSoft sites (33): leave until render-checked — list via `travel-app` `node scripts/classify-muteSoft.mjs`.
 
 **Stay**
 - `StayRow` (canon's Trip-Home stay module) is fully built and correctly ported but never wired into the live Trip Home — `TripFolioHome.tsx` uses a structurally different row that carries none of canon's vote-pending/hold-expiring attention signal.
