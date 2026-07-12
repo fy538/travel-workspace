@@ -35354,7 +35354,7 @@
           "layout"
         ],
         "title": "DeckFocus",
-        "description": "Level-2 decision substrate \u2014 the \"help me decide\" content behind a card.\n\nDistinct from ``DeckStructured`` (raw options/rows): focus carries Vesper's\nJUDGMENT layer rendered full-screen in the Deck. The home glance presents the\ndecision; this helps make it.\n\n``layout`` is the decision SHAPE \u2014 ``pick`` (choose one of N), ``call`` (a\nyes/no with a deadline / a conflict), ``brief`` (review a drafted thing), or\n``near_you`` (ambient what's-good-around-you). Each layout fills its own\nsub-payload; the others stay None."
+        "description": "Level-2 decision substrate \u2014 the \"help me decide\" content behind a card.\n\nDistinct from ``DeckStructured`` (raw options/rows): focus carries Vesper's\nJUDGMENT layer rendered full-screen in the Deck. The home glance presents the\ndecision; this helps make it.\n\n``layout`` is the decision SHAPE \u2014 ``pick`` (choose one of N), ``call`` (a\nyes/no with a deadline / a conflict), ``brief`` (review a drafted thing), or\n``near_you`` (ambient what's-good-around-you). Each layout fills its own\nsub-payload; the others stay None. Structure is real data; the Pick's\nreasoning/tradeoff come from a grounded LLM pass.\n\nORPHAN (canon 146 \u00a703b / D3): ``compare`` is FE-only today \u2014 not a layout\nliteral here. Wire a producer when D5 supplies a genuine two-option stay\ndecision; until then the FE face is dormant."
       },
       "DeckNearYouPlace": {
         "properties": {
@@ -35593,6 +35593,28 @@
             ],
             "title": "Price Tier"
           },
+          "currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Currency"
+          },
+          "currency_symbol": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Currency Symbol"
+          },
           "attribute": {
             "anyOf": [
               {
@@ -35740,7 +35762,7 @@
           "layout"
         ],
         "title": "DeckStructured",
-        "description": "Discriminated structured payload for rich Deck card faces.\n\nCards without this field render the generic prose face. Cards with it\nswitch on ``layout`` to render the appropriate face component. All\ndisplay values are pre-formatted by the backend (e.g. \"\u20ac128\") so the\nFE never re-derives money or colour hex values."
+        "description": "Discriminated structured payload for rich Deck card faces.\n\nCards without this field render the generic prose face. Cards with it\nswitch on ``layout`` to render the appropriate face component. All\ndisplay values are pre-formatted by the backend (e.g. \"\u20ac128\") so the\nFE never re-derives money or colour hex values.\n\nORPHANS (canon 146 \u00a703b / deck fullstack D3 \u2014 formally parked, not wired):\n* ``compare`` \u2014 FE ``DeckCompareFace`` exists; no producer. Needs D5\n  stay-candidate / two-option vote substrate.\n* ``flight`` \u2014 FE ``DeckFlightFace`` exists; no producer. Needs booking\n  schedule-change data (G2\u2013G4, currently gated dark). Readiness may still\n  list a transport row; that is not a Flight face."
       },
       "DecommitResponse": {
         "properties": {
