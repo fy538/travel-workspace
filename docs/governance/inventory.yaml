@@ -114,6 +114,11 @@ overrides:
     disposition: keep_authoritative
     rationale: Active implementation plan for the phone-auth rollout through 2026-08-10.
 
+  docs/systems/client-state.md:
+    disposition: keep_authoritative
+    rationale: Active cross-cutting client-state reliability contract for async UI truthfulness.
+
+
   docs/working/deck-fullstack-plan.md:
     disposition: keep_authoritative
     rationale: Active end-to-end Deck rollout plan across frontend, backend, and dogfood data.
