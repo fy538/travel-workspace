@@ -15,8 +15,15 @@ CONFIG = ROOT / "docs/governance/child-baselines.yaml"
 
 
 def git(repo: Path, *args: str) -> str:
+    # Pre-push/pre-commit set GIT_DIR to the parent repo; clear those so
+    # `git -C <child>` actually talks to the child repository.
+    env = {
+        key: value
+        for key, value in __import__("os").environ.items()
+        if key not in {"GIT_DIR", "GIT_WORK_TREE", "GIT_COMMON_DIR", "GIT_INDEX_FILE"}
+    }
     result = subprocess.run(
-        ["git", *args], cwd=repo, text=True, capture_output=True, check=False
+        ["git", *args], cwd=repo, text=True, capture_output=True, check=False, env=env
     )
     if result.returncode:
         raise RuntimeError(result.stderr.strip() or result.stdout.strip())
