@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "policy": {
+    "default": "delete",
+    "allowed_reasons": [
+      "persisted_data",
+      "external_link",
+      "deployed_version_boundary",
+      "intentional_dark_surface"
+    ],
+    "annotation": "compatibility_id: <ledger-id>"
+  },
+  "entries": []
+}

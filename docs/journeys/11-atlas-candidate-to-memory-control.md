@@ -28,9 +28,9 @@ As a traveler, I want to review a memory candidate, turn it into an artifact if 
 
 ## Primary Surfaces
 
-- Routes: `/(tabs)/atlas`, `/atlas/inbox`, `/atlas/candidate/[id]`, `/atlas/artifact/[id]`, `/atlas/learned/[id]`, `/atlas/receipt`, `/atlas/dna`, `/atlas/privacy`, `/atlas/map`, `/atlas/postcards`, `/atlas/almanac`, `/atlas/timeline`, **`/atlas/profile`**, **`/atlas/account`**, **`/atlas/constraints`**, **`/atlas/data-receipt`**, **`/atlas/delegation`**, **`/atlas/following`**, `/atlas/removed`.
+- Routes: `/(tabs)/atlas`, `/atlas/inbox`, `/atlas/candidate/[id]`, `/atlas/artifact/[id]`, `/atlas/learned/[id]`, `/atlas/receipt`, `/atlas/dna`, `/atlas/privacy`, `/atlas/long-view`, `/atlas/postcards`, **`/atlas/profile`**, **`/atlas/account`**, **`/atlas/constraints`**, **`/atlas/data-receipt`**, **`/atlas/delegation`**, `/atlas/companions`, `/atlas/removed`.
 - App docs: [Atlas Home](../../travel-app/docs/page-specs/atlas-home.md), [Atlas Backend Contracts](../../travel-app/docs/page-specs/atlas-backend-contracts.md), [Atlas Signal Controls](../../travel-app/docs/page-specs/atlas-signal-controls.md), [archived Me/Account → Atlas trust investigation](../archive/2026-07/retired-live/me-account-atlas-trust-investigation-2026-06-25.md).
-- Existing anchors: `__tests__/utils/atlasCluster.test.ts`, `__tests__/data/memory.test.ts`, `__tests__/components/memory/DNAStrip.test.tsx`, `__tests__/screens/personal-memory.smoke.test.tsx`, **`__tests__/screens/atlas-almanac.smoke.test.tsx`**, **`__tests__/screens/atlas-timeline.smoke.test.tsx`**, **`__tests__/components/atlas/AtlasYearStepper.test.tsx`**.
+- Existing anchors: `__tests__/utils/atlasCluster.test.ts`, `__tests__/data/memory.test.ts`, `__tests__/components/memory/DNAStrip.test.tsx`, `__tests__/screens/personal-memory.smoke.test.tsx`, **`__tests__/screens/atlas-long-view.smoke.test.tsx`**, **`__tests__/components/atlas/AtlasYearStepper.test.tsx`**.
 
 ## Canonical Steps
 
@@ -61,8 +61,7 @@ Post-trip **story compose, settlement closeout, and returned-phase Folio** live 
 
 | Surface | Backend | App | Tests |
 |---|---|---|---|
-| Timeline (`GET /api/atlas/timeline`) | Persisted projection + SQL keyset pagination | `/atlas/timeline`, infinite scroll, error/retry, empty state | `tests/atlas/test_timeline_pagination_integration.py`, `__tests__/screens/atlas-timeline.smoke.test.tsx` |
-| Almanac (`GET /api/atlas/almanac`) | Grouped projection + horizon bucket for future trips | `/atlas/almanac`, ON THE HORIZON section, year stepper | `tests/atlas/test_atlas_timeline.py` (horizon group), `__tests__/screens/atlas-almanac.smoke.test.tsx` |
+| Timeline / Almanac (`GET /api/atlas/timeline`, `GET /api/atlas/almanac`) | Persisted projection + grouped horizon data | `/atlas/long-view?mode=time` | `tests/atlas/test_timeline_pagination_integration.py`, `tests/atlas/test_atlas_timeline.py`, `__tests__/screens/atlas-long-view.smoke.test.tsx` |
 | Entry controls (hide/pin/rename/restore) | `PATCH` + `POST …/hide` + `POST …/restore` + `archive_reason` | Bottom sheet on Almanac/Timeline; removed-moments screen | `tests/atlas/test_timeline_archive_reason.py`, `tests/atlas/test_timeline_removed.py`, `__tests__/screens/atlas-removed.smoke.test.tsx` |
 | Removed moments audit | `GET /api/atlas/timeline/removed` | `/atlas/removed` (linked from Privacy) | `tests/atlas/test_timeline_removed.py`, `__tests__/screens/atlas-removed.smoke.test.tsx` |
 | Trip ↔ memory dedup | Projector + reconcile on artifact delete | Read path shows one visible entry; removed screen for folded trips | Postgres canary below |
@@ -108,7 +107,7 @@ With `EXPO_PUBLIC_USE_MOCK_API=true`, Journey 11 screen coverage:
 | Postcards shelf | `/atlas/postcards` | `__tests__/screens/atlas-postcards.smoke.test.tsx` |
 | Inbox review queue | `/atlas/inbox` | `__tests__/screens/atlas-inbox.smoke.test.tsx` |
 | Atlas Home (desk + ribbon + shelf) | `/(tabs)/atlas` | `__tests__/screens/atlas-home.smoke.test.tsx` |
-| Almanac + Timeline + Map | `/atlas/almanac`, `/atlas/timeline`, `/atlas/map` | `__tests__/screens/atlas-*-smoke.test.tsx` |
+| Long View (Time + Places) | `/atlas/long-view` | `__tests__/screens/atlas-long-view.smoke.test.tsx` |
 | Timeline entry menu | Almanac/Timeline bottom sheet | `__tests__/components/atlas/AtlasTimelineEntryMenu.test.tsx` |
 | Receipt + privacy | `/atlas/receipt`, `/atlas/privacy` | `__tests__/screens/atlas-receipt.smoke.test.tsx` |
 | Removed moments | `/atlas/removed` (+ links from Privacy, Almanac, Timeline) | `__tests__/screens/atlas-removed.smoke.test.tsx` |

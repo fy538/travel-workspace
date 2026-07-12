@@ -29,6 +29,7 @@ CHECKS: dict[str, list[str]] = {
     "spine": [PYTHON, "scripts/check_docs_spine.py"],
     "status": [PYTHON, "scripts/render_current_state.py"],
     "links": [PYTHON, "scripts/check_living_doc_links.py"],
+    "compatibility": [PYTHON, "scripts/check_compatibility_ledger.py"],
 }
 
 
@@ -67,7 +68,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
     if args.write_status:
         return _run("status-sync", [PYTHON, "scripts/render_current_state.py", "--write"])
-    if not selected and not args.all:
+    if args.all or not selected:
         selected = list(CHECKS)
 
     exit_code = 0

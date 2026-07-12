@@ -14,7 +14,7 @@ source_of_truth_for: [architecture-simplification-backlog-2026-07]
 
 **Scope:** `travel-agent` (backend, 263k LOC + 237k test LOC), `travel-app` (frontend, ~317k TS/TSX incl. 34.7k generated), and the workspace coordination layer (Makefile, scripts/, docs governance, design/, CI hooks).
 **Question:** which designs can be simplified for practicality, lower maintenance, and lower logic tax — and which complexity is load-bearing and must not be touched.
-**Method:** three parallel code-grounded investigations (backend / frontend / cross-repo), followed by direct verification of every claim that would change a recommendation. Verified 2026-07-11: `LLM_FAILOVER_PROVIDER` absent from `fly.toml` and all `.env*`; `_resolve_legacy_family` live at `concierge_feed.py:629,661,693` with the legacy-seven CHECK at `core/db/_tables/home.py:221`; 229 manual `conn.commit()` sites; persona `.generated.json` files referenced only in "kept in sync by hand" comments; `DeckCompareFace` imported nowhere; 462 design-bundle files git-tracked (`design/` = 219MB on disk).
+**Method:** three parallel code-grounded investigations (backend / frontend / cross-repo), followed by direct verification of every claim that would change a recommendation. Re-baselined 2026-07-11: `LLM_FAILOVER_PROVIDER` remains absent from `fly.toml` and all `.env*`; `_resolve_legacy_family` remains live at `concierge_feed.py:629,661,693` with the legacy-seven CHECK at `core/db/_tables/home.py:221`; the prior 229-manual-commit count was stale (there are now no executable `conn.commit()` calls in `backend/core`); there are no persona `.generated.json` files in the app; `DeckCompareFace` is imported nowhere; 462 design-bundle files remain git-tracked (`design/` = 219MB on disk).
 
 ---
 
@@ -23,7 +23,7 @@ source_of_truth_for: [architecture-simplification-backlog-2026-07]
 The complexity in this codebase is **not** diffuse. It concentrates in four repeating patterns, which orders the whole cleanup:
 
 1. **Dormant capability that hasn't been made real** — the multi-vendor LLM layer (~5.5k LOC, never exercised against a real network). **Founder decision 2026-07-11: the layer stays** — vendor portability is strategic. The recommendation therefore flips from *delete* to *verify and light up*: the tax was never its existence, it's the unverified-shelf status (the 07-09 debt-audit fixes closed the catalogued bugs; the one open item, P2-1, is a founder-gated live-spend verification).
-2. **Migrations finished 44–90% and then abandoned** — leaving *two idioms* for one concept, which is worse than either idiom alone: `get_tx` vs manual commits (229 sites), card-family wire-vs-DB taxonomies (bridge still live), TTLCache vs ≥10 hand-rolled caches, FE persona bundles hand-mirroring seed JSONs.
+2. **Migrations finished 44–90% and then abandoned** — leaving *two idioms* for one concept, which is worse than either idiom alone: card-family wire-vs-DB taxonomies (bridge still live), TTLCache vs ≥10 hand-rolled caches, and FE itinerary presentation fixtures alongside the canonical plan-state read model. The earlier `get_tx`/manual-commit finding is closed.
 3. **Completed-campaign residue** — the dogfood/corpus import machinery (finished 06-29) still occupies ~30% of the Makefile and ~45% of workspace scripts; 66 dated design briefs; ~135MB of superseded design bundles tracked in git; three journey-certification oracles frozen since 06-28 contradicting the one canonical generated matrix.
 4. **Parallel read/render models for the same surface** — 3 trip-home read models + 3 card types + 2 translators on the backend; 3 screenshot-QA systems with 3 vocabularies on the frontend.
 
@@ -38,9 +38,8 @@ Meanwhile the things that *look* most excessive — the OpenAPI snapshot churn, 
 | # | Finding | Repo | Size | Risk | Category |
 |---|---------|------|------|------|----------|
 | 1 | Make the multi-vendor LLM layer real: P2-1 live verification (Bedrock/Vertex/OpenAI creds + one real call each), then wire `LLM_FAILOVER_PROVIDER` in prod — **KEEP decision 2026-07-11** | agent | ~hours + small spend | Low | D strategic |
-| 2 | Finish persona Cut 3 on the FE + stop committing `.generated.json`; generate fixtures from seed JSONs | app | −12–15k LOC | Med | B/C |
+| 2 | Finish plan-state fixture migration on the FE; preserve scenario fixtures only as named QA recipes | app | reduction measured after migration | Med | B/C |
 | 3 | Card-family DB migration; delete `_resolve_legacy_family` bridge | agent | ~1 day | Low | B dual-idiom |
-| 4 | Finish `get_tx` sweep (229 sites); delete `check_db_commit.py` linter | agent | 1–2 days | Low | B dual-idiom |
 | 5 | Workspace residue sweep: `dogfood.mk` split, scripts attic, `git rm --cached` 135MB design bundles, retire 3 stale journey oracles | ws | −30 targets, −135MB | ~Zero | A residue |
 | 6 | Fold journey-cert scripts under `persona_cert` | agent | −1,200 LOC | Low | B |
 | 7 | Fold 3 screenshot-QA systems → 1 (+ cut ~40 npm script aliases) | app | −2–3k LOC | Low | B |
@@ -79,9 +78,9 @@ Categories: **A** dead/residue · **B** duplicated/parallel · **C** over-abstra
 
 `_resolve_legacy_family` + `_LEGACY_FAMILY_MAP` live at `concierge_feed.py:629–703`; the durable `vesper_cards` CHECK still enforces the legacy seven (`core/db/_tables/home.py:221-222`). Well-contained (~50 LOC) but every durable-card writer must speak the *old* vocabulary and every reader the new one. **Fix:** one Alembic migration rewriting stored families + CHECK to `{family, variant}`, then delete the map. ~1 day, low risk (pre-launch data, one table).
 
-### 4. `get_tx` stalled at ~44% — a linter doing a type system's job (B)
+### 4. `get_tx` sweep — closed
 
-229 manual `conn.commit()` sites remain (169 in `core/`; hottest: `core/db/content/_angles.py`, `trip_invites.py`, `entities.py`, `takes.py`). Whole subsystems (`research_agent`, `notifications`, `places`, `concierge`, `home`) have zero `get_tx`. The forgotten-commit → silent-rollback bug class is currently held off by `scripts/check_db_commit.py`. Error translation does **not** diverge (both paths use `core/db/errors.py` — good). **Fix:** finish the mechanical sweep (clustered in ~a dozen `core/db` files), then **delete the linter**. 1–2 days. Pure-read `get_connection` sites correctly stay.
+The earlier manual-commit count was stale. A fresh repository scan finds no executable `conn.commit()` calls in `backend/core`; retain the guardrail only if it still protects a distinct, tested invariant. This is no longer a simplification backlog item.
 
 ### 5. Journey-certification triplication in scripts/ (B)
 
@@ -127,10 +126,10 @@ Cheapest→hardest to freeze: **postcards** (294 LOC, one lazy import, already e
 
 ### 1. The mock/persona world: ~34k hand-maintained lines mirroring a 7-identity backend (B/C, some A)
 
-- **What:** `constants/personas/` — 16 registered bundles (10,753 LOC) + 5 `.generated.json` seed snapshots (9,572 lines, **zero code consumers** — referenced only in "kept in sync by hand" comments, verified); `constants/mocks/` (2,680); `utils/api/mock/` (10,728; `mock/atlas.ts` 2,910, `mock/trips.ts` 2,503). ≈ 34k lines, ~12% of non-generated app code.
-- **Why it's a tax:** seed → JSON → hand-mirrored TS is double bookkeeping; 16 FE personas vs the 7 canonical backend identities (see reconciliation below); `ana` (stale since 06-17) and `ready` (06-29) are dead; `torture/between/urgent/ready` only force cascade states that `app/dev/force-state.tsx` already forces; every backend schema change fans out through mock API + up to 16 bundles; `EXPO_PUBLIC_USE_MOCK_API` now defaults **false**, so the mock world's justification shrinks as dogfood starts.
-- **Simpler:** keep the 7 canonical seed-backed personas; replace state-matrix personas with `dev/force-state`; delete `ana`/`ready`/dead bundles; stop committing the generated JSONs (regen on demand); **generate persona fixtures from the seed JSONs at build time** instead of hand-mirroring.
-- **Size/risk:** −12–15k lines now; **medium** — Maestro persona walkthroughs (40/44/45/46) and 42 persona-referencing Jest files pin mara/dao/reza/elif only. **Lost:** offline demo variety; the hand-tuned narrative polish in e.g. `elif.ts` (1,401 lines).
+- **What:** `constants/personas/` contains seven seed-backed identities and seven named visual-QA scenarios, plus a deliberate default baseline. There are no `.generated.json` snapshots in the app. `utils/api/mock/` remains substantial and is the remaining fixture-boundary tax.
+- **Why it's a tax:** itinerary presentation rows still coexist with the canonical `TripPlanState` read model, so one persona can accidentally describe the same trip twice. The scenario bundles are still referenced by Maestro and Jest and are therefore not dead code; their problem is ambiguous product status, not existence.
+- **Simpler:** migrate fixtures trip-by-trip so `TripPlanState` is authoritative; retain scenario data only when a named QA recipe consumes it, and make that recipe explicit. Delete a scenario only with its named coverage replacement.
+- **Size/risk:** medium. The safe win is source-of-truth convergence, not a line-count-driven deletion that would silently remove test coverage.
 
 ### 2. Atlas: ~38k lines / 36 routes still absorbing every consistency campaign while the freeze decision stays open (D + A)
 

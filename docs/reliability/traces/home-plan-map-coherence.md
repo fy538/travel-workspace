@@ -46,7 +46,7 @@ block, proposal, and place state.
 ## Current Anchors
 
 - `Travel Agent/tests/api/test_home.py`
-- `Travel Agent/tests/api/test_home_group_state.py`
+- `Travel Agent/tests/api/test_home_group_invites.py`
 - `Travel Agent/tests/api/test_plan_state.py`
 - `Travel Agent/tests/api/test_trips_api.py`
 - `Travel App/__tests__/data/planState.test.ts`

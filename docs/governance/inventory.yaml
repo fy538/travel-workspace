@@ -90,6 +90,10 @@ overrides:
     disposition: keep_authoritative
     rationale: Active cross-repo simplification backlog; expires 2026-08-10, archive on close.
 
+  docs/working/compatibility-ledger-2026-07.md:
+    disposition: keep_authoritative
+    rationale: Active cross-repo compatibility-exception policy and removal ledger; expires 2026-08-10, archive on close.
+
   docs/working/dogfood-loop-validation-2026-07-04.md:
     disposition: keep_authoritative
     rationale: Active pre-flight and external-cohort validation plan.

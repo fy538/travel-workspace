@@ -41973,7 +41973,7 @@
           "archetype": {
             "type": "string",
             "title": "Archetype",
-            "description": "Discriminator for render + tap routing. Active zone: 'pending_decision' | 'morning_brief' | 'booking_event' | 'constraint_meal' | 'capture_nudge' | 'just_accepted' | 'pending_too_long' | 'unread_intake' | 'planning_brief' | 'trip_retrospective' | 'settlement_closeout'. Ambient zone: 'happening_nearby' | 'place_context' | 'memory_highlight' | 'next_trip_inspo'. The legacy 'group_state' alias is still emitted for one release of back-compat."
+            "description": "Discriminator for render + tap routing. Active zone: 'pending_decision' | 'morning_brief' | 'booking_event' | 'constraint_meal' | 'capture_nudge' | 'just_accepted' | 'pending_too_long' | 'unread_intake' | 'planning_brief' | 'trip_retrospective' | 'settlement_closeout'. Ambient zone: 'happening_nearby' | 'place_context' | 'memory_highlight' | 'next_trip_inspo'."
           },
           "title": {
             "type": "string",

@@ -26,7 +26,7 @@ Start with:
 - Travel App/docs/page-specs/trip-plan-v2.md
 - Travel App/docs/page-specs/trip-map-v2.md
 - Travel Agent/tests/api/test_home.py
-- Travel Agent/tests/api/test_home_group_state.py
+- Travel Agent/tests/api/test_home_group_invites.py
 - Travel App/__tests__/utils/tripMapStateParity.test.ts
 
 Audit questions:
@@ -45,4 +45,3 @@ Run if cheap:
 Deliver:
 Find cross-surface contradictions and stale-cache paths. Include a minimal state_before/action/state_after trace for each major finding.
 ```
-

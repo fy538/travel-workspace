@@ -25,7 +25,7 @@ As a user, I want to discover people (by taste/public profile) and entities (by 
 
 ## Primary Surfaces
 
-- Routes: `/search` (universal overlay), `/atlas/companions`, `/atlas/following`, `/atlas/profile/[userId]`, `/place/[slug]`, `/venue/[id]`, `/guide/[slug]`.
+- Routes: `/search` (universal overlay), `/atlas/companions`, `/atlas/profile/[userId]`, `/place/[slug]`, `/venue/[id]`, `/guide/[slug]`.
 - App docs: [Discover Spec](../../travel-app/docs/page-specs/discover.md), social/people surfaces.
 
 ## Canonical Steps
