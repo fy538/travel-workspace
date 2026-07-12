@@ -12,7 +12,7 @@ supersedes: []
 
 Date: 2026-07-11  
 Repo: `travel-app` (work from `main`)  
-Related: [header chrome icon audit](../../.cursor/projects/Users-feihuyan-travel-workspace/canvases/header-chrome-icon-audit.canvas.tsx), `docs/audits/header-chrome-audit-20260617.md`, `design/archive/2026-07/code-alignment-brief-J1-header-consolidation.md`, `docs/design-alignment/HEADER-SYSTEMS.md`
+Related: Cursor canvas `header-chrome-icon-audit.canvas.tsx` (local IDE artifact, not in-repo), `docs/audits/header-chrome-audit-20260617.md`, `design/archive/2026-07/code-alignment-brief-J1-header-consolidation.md`, `docs/design-alignment/HEADER-SYSTEMS.md`
 
 ## Goal
 
