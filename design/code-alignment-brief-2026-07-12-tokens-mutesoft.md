@@ -1,6 +1,6 @@
 # Code Alignment Brief — Tokens Campaign (muteSoft + follow-ons) (2026-07-12)
 
-**Status:** T0–T6 landed locally (awaiting push/merge) · **Lane:** Tokens (family)  
+**Status:** T0–T7 landed locally (awaiting push/merge) · **Lane:** Tokens (family)  
 **Repo:** `travel-app` from `origin/main` · isolated worktrees · pathspec commits  
 **Canon:** `vesper-tokens.jsx`, `token-reference-app.jsx`, `Vesper Design Tokens.html`, Productive Type & Material  
 **Prior:** CC4.4 (`d4bc893b`) migrated 104 text sites; CC4.5 locked `check-muteSoft-budget.mjs` at **286**. Remaining ~300 raw `.muteSoft` hits are mixed text + decorative — do **not** blind-replace.
@@ -136,15 +136,15 @@ Do not half-snap Soft/Deep without checking Live blues.
 | T5 | `polish/tokens-t5-integrate` | merged T0–T4; muteSoft `BASELINE` **237** |
 | T6 | `polish/t6-mutesoft-atlas-text` | Atlas TEXT cluster (+ goodbye, trips/all); **237→211** |
 
-Post-T6 classifier: **Total 211 | TEXT 24 | DECORATIVE 101 | UNCLEAR 86**. Campaign success metric (≤~200) nearly met on raw count; remaining TEXT is non-Atlas (plan, invite, PlaceHome, ExperienceDetail, DeckNearYou, etc.).
+Post-T7 classifier: **Total 134 | TEXT 0 | DECORATIVE 101 | UNCLEAR 33**. Campaign success metric met (≤~200, stretch ≤150). Remaining UNCLEAR is mostly icon/chrome/token-alias/ternary — not blind-migratable.
 
-### Remaining TEXT (post-T6)
+### Remaining TEXT (post-T7)
 
-See classifier output; top leftovers: `plan.tsx` (3), `invite/[slug].tsx` (3), `PlaceHome.tsx` (3), ExperienceDetailSheet / DeckNearYouFace / BookingOfferRow / ComposerBar / places Spot* / ReceiptFace / dossier / memory / trip-dates.
+**0** — classifier TEXT bucket empty.
 
 ### Remaining UNCLEAR (count)
 
-86 sites — do not migrate without render check. Full list via `node scripts/classify-muteSoft.mjs`.
+33 sites — icon tints, ActivityIndicator, tab inactive tint, token aliases, a few ternaries. Full list via `node scripts/classify-muteSoft.mjs`. Do not blind-migrate.
 
 ---
 
@@ -164,7 +164,7 @@ npx tsc --noEmit -p .
 
 | Metric | Before | After campaign |
 |---|---|---|
-| muteSoft raw count (budget) | 286 | **211** after T6 (≤~200 stretch next TEXT batch) |
+| muteSoft raw count (budget) | 286 | **134** after T7 |
 | Known body/caption text on muteSoft in T1–T3 files | many | ~0 |
 | planningInk | unreconciled | **snapped** to `#2A5A8A` (T4) |
 | Tokens manifest | partial, stale | notes + sha |
