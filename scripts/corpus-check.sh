@@ -65,7 +65,9 @@ done
 echo "== corpus-check: Rome canonical brief bridge (elif-rome) =="
 SLUG_BRIDGE="$MANIFEST_DIR/elif-rome-slug-bridge.yaml"
 if [ -f "$SLUG_BRIDGE" ]; then
-  if PYTHONPATH=. python -m tools.dogfood.content.slug_bridge "$SLUG_BRIDGE" --verify; then
+  if grep -q '^retired: true' "$SLUG_BRIDGE" || ! grep -q 'canonical_slug:' "$SLUG_BRIDGE"; then
+    echo "  ✓ elif-rome: slug bridge retired — manifests use editorial corpus slugs"
+  elif PYTHONPATH=. python -m tools.dogfood.content.slug_bridge "$SLUG_BRIDGE" --verify; then
     echo "  ✓ elif-rome: canonical manifest slugs have briefs"
   else
     echo "  ✗ elif-rome: canonical slugs missing briefs — run slug_bridge --apply after ENRICH" >&2
