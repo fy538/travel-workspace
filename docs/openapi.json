@@ -9145,6 +9145,97 @@
         }
       }
     },
+    "/api/conversations/{conversation_id}/trip-proposals/{proposal_id}/confirm": {
+      "post": {
+        "tags": [
+          "conversations"
+        ],
+        "summary": "Confirm Trip Creation Proposal",
+        "description": "Create the trip from the exact proposal version the user reviewed.\n\nThe proposal row, trip row, conversation link, membership copy, and\nstructured-message receipt are committed in one transaction. Repeating a\nsuccessful confirmation returns the same trip. A stale version returns 409\nwith the current version so the client can refresh before asking again.",
+        "operationId": "confirm_trip_creation_proposal_api_conversations__conversation_id__trip_proposals__proposal_id__confirm_post",
+        "parameters": [
+          {
+            "name": "conversation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Conversation Id"
+            }
+          },
+          {
+            "name": "proposal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Proposal Id"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 200,
+              "title": "X-Idempotency-Key"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfirmTripCreationProposalRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfirmTripCreationProposalResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/conversations/{conversation_id}/promote_to_trip": {
       "post": {
         "tags": [
@@ -19497,6 +19588,69 @@
                 }
               }
             }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/photos/{photo_id}": {
+      "delete": {
+        "tags": [
+          "trip",
+          "photos"
+        ],
+        "summary": "Delete Trip Photo",
+        "description": "Remove one uploaded photo from all trip surfaces.\n\nOnly the uploader may remove it. The row is tombstoned immediately;\nretention later purges the stored variants after the recovery window.",
+        "operationId": "delete_trip_photo_api_trips__trip_id__photos__photo_id__delete",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "photo_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Photo Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
           },
           "422": {
             "description": "Validation Error",
@@ -34098,6 +34252,108 @@
         "type": "object",
         "title": "ConfirmCartRequest"
       },
+      "ConfirmTripCreationProposalRequest": {
+        "properties": {
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Version"
+          }
+        },
+        "type": "object",
+        "required": [
+          "expected_version"
+        ],
+        "title": "ConfirmTripCreationProposalRequest",
+        "description": "Version the user actually reviewed before pressing the primary action."
+      },
+      "ConfirmTripCreationProposalResponse": {
+        "properties": {
+          "proposal_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Proposal Id"
+          },
+          "proposal_status": {
+            "type": "string",
+            "const": "created",
+            "title": "Proposal Status"
+          },
+          "proposal_version": {
+            "type": "integer",
+            "title": "Proposal Version"
+          },
+          "conversation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Conversation Id"
+          },
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "start_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start Date"
+          },
+          "end_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Date"
+          },
+          "evidence": {
+            "$ref": "#/components/schemas/TripCreationProposalEvidence"
+          },
+          "place_resolution": {
+            "type": "string",
+            "title": "Place Resolution"
+          },
+          "members_copied": {
+            "type": "integer",
+            "title": "Members Copied"
+          }
+        },
+        "type": "object",
+        "required": [
+          "proposal_id",
+          "proposal_status",
+          "proposal_version",
+          "conversation_id",
+          "trip_id",
+          "title",
+          "start_date",
+          "end_date",
+          "evidence",
+          "place_resolution",
+          "members_copied"
+        ],
+        "title": "ConfirmTripCreationProposalResponse"
+      },
       "ConfirmVerificationRequest": {
         "properties": {
           "code": {
@@ -34628,6 +34884,18 @@
               }
             ],
             "title": "Currency"
+          },
+          "expense_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expense Date"
           }
         },
         "type": "object",
@@ -38982,6 +39250,18 @@
               }
             ],
             "title": "Booking Offer Id"
+          },
+          "trip_accommodation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Accommodation Id"
           },
           "metadata_": {
             "additionalProperties": true,
@@ -55835,6 +56115,183 @@
         ],
         "title": "TripContext",
         "description": "Trip-scoped context for filtering and relevance."
+      },
+      "TripCreationAnchorEvidence": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 180,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "kind": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Kind"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "TripCreationAnchorEvidence"
+      },
+      "TripCreationDateEvidence": {
+        "properties": {
+          "start": {
+            "type": "string",
+            "format": "date",
+            "title": "Start"
+          },
+          "end": {
+            "type": "string",
+            "format": "date",
+            "title": "End"
+          },
+          "nights": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Nights"
+          },
+          "firm": {
+            "type": "boolean",
+            "title": "Firm",
+            "default": true
+          }
+        },
+        "type": "object",
+        "required": [
+          "start",
+          "end",
+          "nights"
+        ],
+        "title": "TripCreationDateEvidence"
+      },
+      "TripCreationDestinationEvidence": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "place_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Id"
+          },
+          "resolution": {
+            "type": "string",
+            "enum": [
+              "found",
+              "not_found"
+            ],
+            "title": "Resolution"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "resolution"
+        ],
+        "title": "TripCreationDestinationEvidence"
+      },
+      "TripCreationProposalEvidence": {
+        "properties": {
+          "title": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 180
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "destination": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TripCreationDestinationEvidence"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "date_window": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TripCreationDateEvidence"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "travelers": {
+            "$ref": "#/components/schemas/TripCreationTravelerEvidence"
+          },
+          "anchors": {
+            "items": {
+              "$ref": "#/components/schemas/TripCreationAnchorEvidence"
+            },
+            "type": "array",
+            "maxItems": 4,
+            "title": "Anchors"
+          },
+          "missing": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "destination",
+                "exact_dates"
+              ]
+            },
+            "type": "array",
+            "title": "Missing"
+          }
+        },
+        "type": "object",
+        "required": [
+          "travelers"
+        ],
+        "title": "TripCreationProposalEvidence"
+      },
+      "TripCreationTravelerEvidence": {
+        "properties": {
+          "count": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Count"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "count",
+          "label"
+        ],
+        "title": "TripCreationTravelerEvidence"
       },
       "TripCrossTripThreadsResponse": {
         "properties": {
