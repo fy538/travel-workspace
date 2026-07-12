@@ -199,6 +199,20 @@ Trip Story's 8 items are fully resolved (see the summary above) — the surface 
 
 ---
 
+## Polish family gap-close leftovers (2026-07-12)
+
+Campaign brief: `design/code-alignment-brief-2026-07-12-polish-gap-close.md`. G1–G4 implemented on feature branches; do not rediscover the closed items (local-button budget 0, PublicHeader/TripFolio cold chrome, StatusPill rename+ratchet, SheetHandle budget, GroupAgency ConfirmDialog).
+
+Still deferred by design (owners: frontend polish):
+
+- **Buttons — Keep it muted fill** (`ConflictResolutionSheet`): adjudicate new `Button` variant vs permanent local exception.
+- **Buttons — `CostsReceiptButton`**: ticket silhouette never built; implement notches or document as plain-pill exception.
+- **Buttons — species park:** on-dark Discover cover CTAs, booking tone-pills, People `RolePill`.
+- **Sheets — remaining Modal bypasses** (tracked by `check-sheet-bypass-budget.mjs` @ 13): VoiceOverlay, ProposalDetail sheet mode, Deck, FindPhotos native `pageSheet`, etc.
+- **Headers — device dogfood** of glass entry + G1/G2 chrome (checklist in gap-close brief G5); not a code bug.
+
+---
+
 ## Notes on scope
 
 - Rows not listed above (`Interaction Surfaces` sub-items already folded into P2, family rows, etc.) either had zero open findings after this session's fixes, or are `deferred`/`pending-canon` and intentionally untouched (Discover, Atlas, Planning-Progress Cards).
