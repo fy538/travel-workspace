@@ -54,8 +54,8 @@ in this durable contract.
 Immediate tactile acknowledgment for buttons, cards, rows, and other substantial
 targets.
 
-- Scale target: `0.97`.
-- Response: the shared press spring; release settles to `1`.
+- Scale target: `0.98`.
+- Response: the shared press timing collapse; release settles to `1`.
 - Optional light haptic only when it reinforces a real selection or commitment.
 - Disabled or non-actionable objects do not perform an actionable press response.
 - Reduced Motion: no scale; visual pressed state may change instantly.

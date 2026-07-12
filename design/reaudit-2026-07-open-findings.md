@@ -48,7 +48,7 @@ Trip Story's 8 items are fully resolved (see the summary above) — the surface 
 - The same "change Vesper autonomy" canon rule is now wrong in **two more places** beyond the fixed permissions.tsx bug: `GroupAgencySheet.tsx` uses Ask where canon specifies no-Ask (opposite direction of the fixed bug) — needs a shared gating primitive, not three hand-rolled checks.
 
 ### State System (family)
-- `ErrorState.tsx` and `StateScreen.tsx(tone='failure')` are two visually different implementations of the same canon-blessed full-page hard-failure tier, live simultaneously (34 vs 13+ call sites) — exactly the "local state treatment" drift canon's own doc warns against.
+- ~~`ErrorState` vs `StateScreen(tone='failure')` dual kits~~ — **RESOLVED 2026-07-12 (PR-S1 #78):** `ErrorState` is a thin wrapper around `StateScreen tone="failure"`; `hard-failure-kit` ratchet in CI. Discover cold-start + InlineAbsence still open.
 - Discover's cold-start chip-picker ("Tell Vesper what you're drawn to" + interest chips) has zero code counterpart — collapses into a generic empty state.
 - The reader's sparse-section `InlineAbsence` panel has zero code counterpart.
 
@@ -105,16 +105,16 @@ Trip Story's 8 items are fully resolved (see the summary above) — the surface 
 - No code equivalent of canon's `VSheetField` (borderless read-only display atom).
 
 **Motion**
-- Several components running legacy-Animated-API loops/timings have **no reduce-motion check at all** (`VoiceOrb`, `CardStates`, `CardLive`, `CardLift`, `Deck.tsx`, `OrganizerInviteNudge`, `ErrorBanner`, `AtlasMemoryReel`, `NavChromeContext`) — contradicts canon's explicit "disables all nonessential animation, app-wide" rule.
-- Press-scale drifted 0.98 → 0.97; press feedback uses a spring where canon specifies a fixed-duration timing collapse.
+- ~~Several components … no reduce-motion~~ — **RESOLVED 2026-07-12 (PR-M1 #79):** audit list already gated; SpotTake caret → `usePulse`; `motion-governance` ratchet in CI.
+- ~~Press-scale 0.97 + spring~~ — **RESOLVED 2026-07-12 (PR-M2 #76):** `pressScale` 0.98 + 120ms `withTiming` in `Tap`.
 - The row's own canon-file mapping was wrong (assigned file has zero motion content; real content lives in `vesper-canon-consolidation-app.jsx` §06c, uncited by any manifest row).
 
 **Header system**
 - ~~`story.tsx`'s `MemoryStoryHeader` fork~~ — **RESOLVED**, now a thin `ProductiveHeader` wrapper (see Trip Story resolution in the summary above). Note predates the fix.
 
 **Notifications**
-- TODAY/YESTERDAY/EARLIER sectioning is fully implemented but never wired into 3 of 4 canon screen modes (only Trip-Updates mode sections its rows).
-- The priority/time-sensitive strip has reverted to a bordered, tinted card — exactly the pattern canon's own doctrine explicitly killed.
+- ~~TODAY/YESTERDAY/EARLIER only on Trip-Updates~~ — **RESOLVED 2026-07-12 (PR-N1 #77):** Global / Trip-Scoped / Personal now time-sectioned; Trip Updates keeps Live/Planning/Returned.
+- ~~NeedsEye bordered priority card~~ — **RESOLVED 2026-07-12 (PR-N1 #77):** full-bleed hairline band, no card chrome.
 - Kicker isn't always the spec'd muteSoft; loading skeleton doesn't mirror the row shape; push-denied CTA says "Turn on" instead of canon's "Open Settings"; stale banner drops the last-synced timestamp and list-dimming.
 
 **Places**
