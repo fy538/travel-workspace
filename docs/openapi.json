@@ -35253,7 +35253,8 @@
             "enum": [
               "pick",
               "call",
-              "brief"
+              "brief",
+              "near_you"
             ],
             "title": "Layout"
           },
@@ -35336,6 +35337,16 @@
                 "type": "null"
               }
             ]
+          },
+          "near_you": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DeckNearYouSubstrate"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -35343,7 +35354,107 @@
           "layout"
         ],
         "title": "DeckFocus",
-        "description": "Level-2 decision substrate \u2014 the \"help me decide\" content behind a card.\n\nDistinct from ``DeckStructured`` (raw options/rows): focus carries Vesper's\nJUDGMENT layer rendered full-screen in the Deck. The home glance presents the\ndecision; this helps make it.\n\n``layout`` is the decision SHAPE \u2014 ``pick`` (choose one of N), ``call`` (a\nyes/no with a deadline / a conflict), or ``brief`` (review a drafted thing).\nEach layout fills its own sub-payload; the others stay None. Structure is\nreal data; the Pick's reasoning/tradeoff come from a grounded LLM pass."
+        "description": "Level-2 decision substrate \u2014 the \"help me decide\" content behind a card.\n\nDistinct from ``DeckStructured`` (raw options/rows): focus carries Vesper's\nJUDGMENT layer rendered full-screen in the Deck. The home glance presents the\ndecision; this helps make it.\n\n``layout`` is the decision SHAPE \u2014 ``pick`` (choose one of N), ``call`` (a\nyes/no with a deadline / a conflict), ``brief`` (review a drafted thing), or\n``near_you`` (ambient what's-good-around-you). Each layout fills its own\nsub-payload; the others stay None."
+      },
+      "DeckNearYouPlace": {
+        "properties": {
+          "entity_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Entity Ref"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "walk_min": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Walk Min"
+          },
+          "why": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Why"
+          },
+          "tag": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tag"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "DeckNearYouPlace",
+        "description": "One nearby venue row in the ambient Near-You deck face."
+      },
+      "DeckNearYouSubstrate": {
+        "properties": {
+          "places": {
+            "items": {
+              "$ref": "#/components/schemas/DeckNearYouPlace"
+            },
+            "type": "array",
+            "title": "Places"
+          },
+          "synthesis": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Synthesis"
+          },
+          "primary_label": {
+            "type": "string",
+            "title": "Primary Label",
+            "default": "Take me there"
+          },
+          "secondary_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Secondary Label",
+            "default": "Save"
+          }
+        },
+        "type": "object",
+        "title": "DeckNearYouSubstrate",
+        "description": "Ambient Near-You substrate \u2014 what's good around you right now.\n\nNot a booking decision (that's Pick). Real nearby venues + walk time +\nwhy-it-fits, with saved/loved tags. Suppress-when-thin: never emit without\n\u22651 named place."
       },
       "DeckOption": {
         "properties": {
@@ -35572,6 +35683,17 @@
               }
             ],
             "title": "Meta"
+          },
+          "take_line": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Take Line"
           },
           "options": {
             "items": {
