@@ -73,6 +73,8 @@ Wedge journeys = the group-trip path (journeys 02 → 05). "Serves" cites
   personalization should be felt through fit rather than narrated as surveillance.
 - [Content Generation](content-generation.md) governs grounding, confidence,
   correction, and privacy boundaries for model-authored output.
+- [Client State Reliability](client-state.md) governs loading, partial data,
+  mutation outcomes, pagination, and recovery across every surface.
 
 ---
 
