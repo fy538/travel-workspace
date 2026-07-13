@@ -1,5 +1,5 @@
 {
-  "travel-agent": "188971a14e262fd22e73bc3eb5a7da4973159764",
-  "travel-app": "f6e211e0c55b843119500cca16fd457b4e0f55d3",
+  "travel-agent": "bcfb93064ba27387aa9967b28541e918fd831ed3",
+  "travel-app": "87446d3760b8af513c1603fbcaebe01bf8410017",
   "_comment": "Immutable coordinated child SHAs for workspace reliability CI. Bump both after child changes land."
 }

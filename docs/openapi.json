@@ -14588,6 +14588,476 @@
         }
       }
     },
+    "/api/trips/{trip_id}/itinerary/operations/preview": {
+      "post": {
+        "tags": [
+          "itinerary-operations"
+        ],
+        "summary": "Preview Operation",
+        "description": "Normalize and resolve one operation draft without writing anything.",
+        "operationId": "preview_operation_api_trips__trip_id__itinerary_operations_preview_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItineraryOperationPreviewRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItineraryOperationPreview"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItineraryOperationPreviewError"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItineraryOperationPreviewError"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/itinerary/operations/commit": {
+      "post": {
+        "tags": [
+          "itinerary-operations"
+        ],
+        "summary": "Commit Operation",
+        "description": "Atomically apply one hash-bound operation and append immutable evidence.",
+        "operationId": "commit_operation_api_trips__trip_id__itinerary_operations_commit_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItineraryOperationCommitRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItineraryOperationCommitResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItineraryOperationCommitError"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItineraryOperationCommitError"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/itinerary/operations/proposals": {
+      "post": {
+        "tags": [
+          "itinerary-operations"
+        ],
+        "summary": "Create Operation Proposal",
+        "description": "Persist an exact operation and immutable creation-policy snapshot.",
+        "operationId": "create_operation_proposal_api_trips__trip_id__itinerary_operations_proposals_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItineraryOperationProposalCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItineraryOperationProposal"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/itinerary/operations/proposals/{proposal_id}/accept": {
+      "post": {
+        "tags": [
+          "itinerary-operations"
+        ],
+        "summary": "Accept Operation Proposal",
+        "description": "Durably accept a proposal without claiming it has already applied.",
+        "operationId": "accept_operation_proposal_api_trips__trip_id__itinerary_operations_proposals__proposal_id__accept_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "proposal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Proposal Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItineraryOperationProposalResolveRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItineraryOperationProposal"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/itinerary/operations/proposals/{proposal_id}/apply": {
+      "post": {
+        "tags": [
+          "itinerary-operations"
+        ],
+        "summary": "Apply Operation Proposal",
+        "description": "Apply an accepted operation after current-fact revalidation.",
+        "operationId": "apply_operation_proposal_api_trips__trip_id__itinerary_operations_proposals__proposal_id__apply_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "proposal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Proposal Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItineraryOperationProposalApplyResult"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/itinerary/operations/proposals/{proposal_id}/withdraw": {
+      "post": {
+        "tags": [
+          "itinerary-operations"
+        ],
+        "summary": "Withdraw Operation Proposal",
+        "description": "Withdraw only until a resolver atomically begins resolution.",
+        "operationId": "withdraw_operation_proposal_api_trips__trip_id__itinerary_operations_proposals__proposal_id__withdraw_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "proposal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Proposal Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItineraryOperationProposal"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/lookup/": {
       "post": {
         "tags": [
@@ -21338,6 +21808,22 @@
             }
           },
           {
+            "name": "X-Itinerary-Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Itinerary-Idempotency-Key"
+            }
+          },
+          {
             "name": "authorization",
             "in": "header",
             "required": false,
@@ -22259,64 +22745,6 @@
         }
       }
     },
-    "/api/trips/{trip_id}/messages/events": {
-      "get": {
-        "tags": [
-          "trips"
-        ],
-        "summary": "Stream Trip Messages",
-        "description": "Push durable group-history invalidations to authenticated members.\n\nFrames contain identifiers only. Clients refetch the canonical message\nendpoint, so sender attribution, visibility filtering, and card hydration\nstay centralized there. Missing Redis simply closes this enhancement; the\nclient continues polling.",
-        "operationId": "stream_trip_messages_api_trips__trip_id__messages_events_get",
-        "parameters": [
-          {
-            "name": "trip_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Trip Id"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/trips/{trip_id}/group-memory": {
       "get": {
         "tags": [
@@ -22542,6 +22970,22 @@
               "type": "string",
               "format": "uuid",
               "title": "Block Id"
+            }
+          },
+          {
+            "name": "X-Itinerary-Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Itinerary-Idempotency-Key"
             }
           },
           {
@@ -22821,6 +23265,22 @@
               "type": "string",
               "format": "uuid",
               "title": "Day Id"
+            }
+          },
+          {
+            "name": "X-Itinerary-Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Itinerary-Idempotency-Key"
             }
           },
           {
@@ -27426,6 +27886,140 @@
         "title": "AccommodationWriteRequest",
         "description": "Create or replace a trip accommodation.\n\nExactly one of ``accommodation_id`` or ``(freeform_lat, freeform_lng)``\nmust be provided. The server-side Pydantic validator and DB CHECK\nboth enforce this \u2014 the client gets a 422 or 400 on inconsistency."
       },
+      "ActionAttribution": {
+        "properties": {
+          "initiator": {
+            "$ref": "#/components/schemas/ActionInitiator"
+          },
+          "human_principal_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Human Principal Id"
+          },
+          "channel": {
+            "$ref": "#/components/schemas/ActionChannel"
+          },
+          "requested_by_user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Requested By User Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "initiator",
+          "channel"
+        ],
+        "title": "ActionAttribution"
+      },
+      "ActionCapability": {
+        "properties": {
+          "outcome": {
+            "$ref": "#/components/schemas/ResolutionOutcome"
+          },
+          "reason_code": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Reason Code"
+          },
+          "decision_owner_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decision Owner Id"
+          },
+          "proposal_policy": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ProposalPolicy"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "confirmation_reasons": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Confirmation Reasons"
+          },
+          "protected_dependencies": {
+            "items": {
+              "$ref": "#/components/schemas/ProtectedDependency"
+            },
+            "type": "array",
+            "title": "Protected Dependencies"
+          },
+          "allowed_alternatives": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Allowed Alternatives"
+          },
+          "predicted_recovery": {
+            "$ref": "#/components/schemas/PredictedRecovery"
+          },
+          "can_voluntarily_propose": {
+            "type": "boolean",
+            "title": "Can Voluntarily Propose",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "outcome",
+          "reason_code",
+          "predicted_recovery"
+        ],
+        "title": "ActionCapability"
+      },
+      "ActionChannel": {
+        "type": "string",
+        "enum": [
+          "itinerary",
+          "map",
+          "discover",
+          "chat",
+          "background",
+          "provider"
+        ],
+        "title": "ActionChannel"
+      },
+      "ActionInitiator": {
+        "type": "string",
+        "enum": [
+          "human",
+          "vesper",
+          "system",
+          "provider"
+        ],
+        "title": "ActionInitiator"
+      },
       "ActionReceiptResponse": {
         "properties": {
           "receipt": {
@@ -27570,6 +28164,53 @@
           "user_id"
         ],
         "title": "AddMemberRequest"
+      },
+      "AddPayload": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "add",
+            "title": "Kind",
+            "default": "add"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/OperationEntityRef"
+          },
+          "placement": {
+            "$ref": "#/components/schemas/OperationPlacement"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/ParticipationScope"
+          },
+          "planned_participant_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Planned Participant Ids"
+          },
+          "decision_owner_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Decision Owner Id"
+          },
+          "structural_role": {
+            "$ref": "#/components/schemas/StructuralRole",
+            "default": "ordinary"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "entity",
+          "placement",
+          "scope",
+          "planned_participant_ids",
+          "decision_owner_id"
+        ],
+        "title": "AddPayload"
       },
       "AffiliateLinkResponse": {
         "properties": {
@@ -31204,6 +31845,101 @@
         "title": "AtlasUnpackedStat",
         "description": "One figure on the 'where you went' card \u2014 a value + its unit label."
       },
+      "AtomicChildOperation": {
+        "properties": {
+          "target": {
+            "$ref": "#/components/schemas/OperationTarget"
+          },
+          "payload": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/AddPayload"
+              },
+              {
+                "$ref": "#/components/schemas/MovePayload"
+              },
+              {
+                "$ref": "#/components/schemas/ReorderPayload"
+              },
+              {
+                "$ref": "#/components/schemas/ReplacePayload"
+              },
+              {
+                "$ref": "#/components/schemas/RemovePayload"
+              },
+              {
+                "$ref": "#/components/schemas/SetAttendancePayload"
+              },
+              {
+                "$ref": "#/components/schemas/MarkOccurrencePayload"
+              }
+            ],
+            "title": "Payload",
+            "discriminator": {
+              "propertyName": "kind",
+              "mapping": {
+                "add": "#/components/schemas/AddPayload",
+                "mark_occurrence": "#/components/schemas/MarkOccurrencePayload",
+                "move": "#/components/schemas/MovePayload",
+                "remove": "#/components/schemas/RemovePayload",
+                "reorder": "#/components/schemas/ReorderPayload",
+                "replace": "#/components/schemas/ReplacePayload",
+                "set_attendance": "#/components/schemas/SetAttendancePayload"
+              }
+            }
+          },
+          "precondition": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ShapePrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/TripContextPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/DayPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/BranchPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/BlockPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/ProposalPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/ProviderPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/CompoundPrecondition"
+              }
+            ],
+            "title": "Precondition",
+            "discriminator": {
+              "propertyName": "kind",
+              "mapping": {
+                "block": "#/components/schemas/BlockPrecondition",
+                "branch": "#/components/schemas/BranchPrecondition",
+                "compound": "#/components/schemas/CompoundPrecondition",
+                "day": "#/components/schemas/DayPrecondition",
+                "proposal": "#/components/schemas/ProposalPrecondition",
+                "provider": "#/components/schemas/ProviderPrecondition",
+                "shape": "#/components/schemas/ShapePrecondition",
+                "trip_context": "#/components/schemas/TripContextPrecondition"
+              }
+            }
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "target",
+          "payload",
+          "precondition"
+        ],
+        "title": "AtomicChildOperation"
+      },
       "AttachPhotoRequest": {
         "properties": {
           "entity_type": {
@@ -31365,6 +32101,15 @@
           "entity_id"
         ],
         "title": "AttachPhotoResponse"
+      },
+      "AttendanceIntention": {
+        "type": "string",
+        "enum": [
+          "attending",
+          "not_attending",
+          "undecided"
+        ],
+        "title": "AttendanceIntention"
       },
       "AuditEvent": {
         "properties": {
@@ -31765,6 +32510,44 @@
         ],
         "title": "BlockAlternativesResponse",
         "description": "``GET /api/trips/{trip_id}/itinerary/blocks/{block_id}/alternatives``.\n\nThe CandidateSet for a block's Swap surface. ``reason`` is set (and\n``candidates`` empty) when there's nothing to offer \u2014 e.g. ``no_venue``\nfor a free-time / experience block."
+      },
+      "BlockPrecondition": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "block",
+            "title": "Kind",
+            "default": "block"
+          },
+          "subject_lineage_id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Subject Lineage Id"
+          },
+          "expected_block_revision": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Expected Block Revision"
+          },
+          "expected_day_revision": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Day Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "subject_lineage_id",
+          "expected_block_revision"
+        ],
+        "title": "BlockPrecondition"
       },
       "BlockSummary": {
         "properties": {
@@ -32483,6 +33266,39 @@
           "updated_at"
         ],
         "title": "BookingSession"
+      },
+      "BranchPrecondition": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "branch",
+            "title": "Kind",
+            "default": "branch"
+          },
+          "branch_group_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Branch Group Id"
+          },
+          "expected_branch_revision": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Expected Branch Revision"
+          },
+          "expected_day_revision": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Expected Day Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "branch_group_id",
+          "expected_branch_revision",
+          "expected_day_revision"
+        ],
+        "title": "BranchPrecondition"
       },
       "BridgeRenderRequest": {
         "properties": {
@@ -33831,6 +34647,56 @@
         "type": "object",
         "title": "CompositionUnderstanding",
         "description": "What the engine understood and actually used.\n\nThis powers the board's quiet trust affordance (\"Built from\u2026\") and product\ntelemetry. It is intentionally plain: no raw private prose beyond the\nalready-returned residual phrase, and no invented reasoning."
+      },
+      "CompoundPrecondition": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "compound",
+            "title": "Kind",
+            "default": "compound"
+          },
+          "all": {
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/ShapePrecondition"
+                },
+                {
+                  "$ref": "#/components/schemas/TripContextPrecondition"
+                },
+                {
+                  "$ref": "#/components/schemas/DayPrecondition"
+                },
+                {
+                  "$ref": "#/components/schemas/BranchPrecondition"
+                },
+                {
+                  "$ref": "#/components/schemas/BlockPrecondition"
+                }
+              ],
+              "discriminator": {
+                "propertyName": "kind",
+                "mapping": {
+                  "block": "#/components/schemas/BlockPrecondition",
+                  "branch": "#/components/schemas/BranchPrecondition",
+                  "day": "#/components/schemas/DayPrecondition",
+                  "shape": "#/components/schemas/ShapePrecondition",
+                  "trip_context": "#/components/schemas/TripContextPrecondition"
+                }
+              }
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "All"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "all"
+        ],
+        "title": "CompoundPrecondition"
       },
       "ConciergeCardFeedbackEvent": {
         "properties": {
@@ -35692,6 +36558,33 @@
           "after"
         ],
         "title": "DayDiff"
+      },
+      "DayPrecondition": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "day",
+            "title": "Kind",
+            "default": "day"
+          },
+          "day_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Day Id"
+          },
+          "expected_day_revision": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Expected Day Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "day_id",
+          "expected_day_revision"
+        ],
+        "title": "DayPrecondition"
       },
       "DeckBriefDay": {
         "properties": {
@@ -44656,6 +45549,36 @@
         "type": "object",
         "title": "ItineraryBlockUpdate"
       },
+      "ItineraryCommittedRevision": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "day",
+              "block"
+            ],
+            "title": "Kind"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "revision": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind",
+          "id",
+          "revision"
+        ],
+        "title": "ItineraryCommittedRevision"
+      },
       "ItineraryDayOut": {
         "properties": {
           "id": {
@@ -44839,6 +45762,816 @@
           "created_at"
         ],
         "title": "ItineraryEditLog"
+      },
+      "ItineraryOperationCommitError": {
+        "properties": {
+          "detail": {
+            "$ref": "#/components/schemas/ItineraryOperationCommitErrorDetail"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "detail"
+        ],
+        "title": "ItineraryOperationCommitError"
+      },
+      "ItineraryOperationCommitErrorDetail": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Code"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "code"
+        ],
+        "title": "ItineraryOperationCommitErrorDetail"
+      },
+      "ItineraryOperationCommitRequest": {
+        "properties": {
+          "preview_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Preview Id"
+          },
+          "preview_hash": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$",
+            "title": "Preview Hash"
+          },
+          "operation": {
+            "$ref": "#/components/schemas/NormalizedItineraryOperation"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          },
+          "confirmation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ItineraryOperationConfirmation"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "preview_id",
+          "preview_hash",
+          "operation",
+          "idempotency_key"
+        ],
+        "title": "ItineraryOperationCommitRequest"
+      },
+      "ItineraryOperationCommitResult": {
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "const": "ir07-v1",
+            "title": "Contract Version",
+            "default": "ir07-v1"
+          },
+          "operation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Operation Id"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "committed",
+              "rejected"
+            ],
+            "title": "State"
+          },
+          "reason_code": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Reason Code"
+          },
+          "idempotent_replay": {
+            "type": "boolean",
+            "title": "Idempotent Replay",
+            "default": false
+          },
+          "preview_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Preview Id"
+          },
+          "preview_hash": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$",
+            "title": "Preview Hash"
+          },
+          "normalized_operation": {
+            "$ref": "#/components/schemas/NormalizedItineraryOperation"
+          },
+          "capability": {
+            "$ref": "#/components/schemas/ActionCapability"
+          },
+          "committed_revisions": {
+            "items": {
+              "$ref": "#/components/schemas/ItineraryCommittedRevision"
+            },
+            "type": "array",
+            "title": "Committed Revisions"
+          },
+          "receipt": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ItineraryOperationReceipt"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "recovery": {
+            "$ref": "#/components/schemas/PredictedRecovery"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "operation_id",
+          "state",
+          "reason_code",
+          "preview_id",
+          "preview_hash",
+          "normalized_operation",
+          "capability",
+          "recovery"
+        ],
+        "title": "ItineraryOperationCommitResult",
+        "description": "Terminal IR-07 result; rejected attempts remain idempotent evidence."
+      },
+      "ItineraryOperationConfirmation": {
+        "properties": {
+          "confirmed": {
+            "type": "boolean",
+            "const": true,
+            "title": "Confirmed",
+            "default": true
+          },
+          "preview_hash": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$",
+            "title": "Preview Hash"
+          },
+          "confirmed_by_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Confirmed By User Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "preview_hash",
+          "confirmed_by_user_id"
+        ],
+        "title": "ItineraryOperationConfirmation",
+        "description": "User evidence bound to the exact preview being committed."
+      },
+      "ItineraryOperationPreview": {
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "const": "ir06-v1",
+            "title": "Contract Version",
+            "default": "ir06-v1"
+          },
+          "preview_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Preview Id"
+          },
+          "preview_hash": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$",
+            "title": "Preview Hash"
+          },
+          "client_request_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Client Request Id"
+          },
+          "normalized_operation": {
+            "$ref": "#/components/schemas/NormalizedItineraryOperation"
+          },
+          "bound_precondition": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ShapePrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/TripContextPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/DayPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/BranchPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/BlockPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/ProposalPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/ProviderPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/CompoundPrecondition"
+              }
+            ],
+            "title": "Bound Precondition",
+            "discriminator": {
+              "propertyName": "kind",
+              "mapping": {
+                "block": "#/components/schemas/BlockPrecondition",
+                "branch": "#/components/schemas/BranchPrecondition",
+                "compound": "#/components/schemas/CompoundPrecondition",
+                "day": "#/components/schemas/DayPrecondition",
+                "proposal": "#/components/schemas/ProposalPrecondition",
+                "provider": "#/components/schemas/ProviderPrecondition",
+                "shape": "#/components/schemas/ShapePrecondition",
+                "trip_context": "#/components/schemas/TripContextPrecondition"
+              }
+            }
+          },
+          "capability": {
+            "$ref": "#/components/schemas/ActionCapability"
+          },
+          "effect": {
+            "$ref": "#/components/schemas/ItineraryPlanEffectSummary"
+          },
+          "provider_consequence": {
+            "$ref": "#/components/schemas/ItineraryProviderConsequence"
+          },
+          "predicted_recovery": {
+            "$ref": "#/components/schemas/PredictedRecovery"
+          },
+          "revalidation": {
+            "$ref": "#/components/schemas/ItineraryPreviewRevalidation"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "preview_id",
+          "preview_hash",
+          "client_request_id",
+          "normalized_operation",
+          "bound_precondition",
+          "capability",
+          "effect",
+          "provider_consequence",
+          "predicted_recovery",
+          "revalidation"
+        ],
+        "title": "ItineraryOperationPreview",
+        "description": "Read-only, server-authored IR-06 preview contract."
+      },
+      "ItineraryOperationPreviewError": {
+        "properties": {
+          "detail": {
+            "$ref": "#/components/schemas/ItineraryOperationPreviewErrorDetail"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "detail"
+        ],
+        "title": "ItineraryOperationPreviewError"
+      },
+      "ItineraryOperationPreviewErrorDetail": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Code"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "code"
+        ],
+        "title": "ItineraryOperationPreviewErrorDetail"
+      },
+      "ItineraryOperationPreviewRequest": {
+        "properties": {
+          "operation": {
+            "$ref": "#/components/schemas/NormalizedItineraryOperation"
+          },
+          "client_request_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Client Request Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "operation",
+          "client_request_id"
+        ],
+        "title": "ItineraryOperationPreviewRequest",
+        "description": "One typed draft plus a caller-owned correlation identity.\n\n``client_request_id`` is intentionally not an idempotency key and is not\nincluded in semantic preview hashing. Commit idempotency begins in IR-07."
+      },
+      "ItineraryOperationProposal": {
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "const": "ir08-v1",
+            "title": "Contract Version",
+            "default": "ir08-v1"
+          },
+          "proposal_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Proposal Id"
+          },
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "open",
+              "accepted",
+              "rejected",
+              "superseded",
+              "withdrawn"
+            ],
+            "title": "Status"
+          },
+          "normalized_operation": {
+            "$ref": "#/components/schemas/NormalizedItineraryOperation"
+          },
+          "creation_policy_snapshot": {
+            "$ref": "#/components/schemas/ActionCapability"
+          },
+          "creation_preview_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Creation Preview Id"
+          },
+          "creation_preview_hash": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$",
+            "title": "Creation Preview Hash"
+          },
+          "resolution_started_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolution Started At"
+          },
+          "accepted_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Accepted At"
+          },
+          "applied_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Applied At"
+          },
+          "withdrawn_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Withdrawn At"
+          },
+          "resolution_actor_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolution Actor Id"
+          },
+          "applied_operation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Applied Operation Id"
+          },
+          "rebased_from_proposal_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rebased From Proposal Id"
+          },
+          "rebased_to_proposal_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rebased To Proposal Id"
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "proposal_id",
+          "trip_id",
+          "status",
+          "normalized_operation",
+          "creation_policy_snapshot",
+          "creation_preview_id",
+          "creation_preview_hash",
+          "revision"
+        ],
+        "title": "ItineraryOperationProposal",
+        "description": "Canonical IR-08 proposal truth joined to the legacy read-model id."
+      },
+      "ItineraryOperationProposalApplyResult": {
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "const": "ir08-v1",
+            "title": "Contract Version",
+            "default": "ir08-v1"
+          },
+          "proposal": {
+            "$ref": "#/components/schemas/ItineraryOperationProposal"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "applied",
+              "rebased",
+              "rejected"
+            ],
+            "title": "State"
+          },
+          "reason_code": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Reason Code"
+          },
+          "commit_result": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ItineraryOperationCommitResult"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "rebased_proposal": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ItineraryOperationProposal"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "proposal",
+          "state",
+          "reason_code"
+        ],
+        "title": "ItineraryOperationProposalApplyResult"
+      },
+      "ItineraryOperationProposalCreateRequest": {
+        "properties": {
+          "operation": {
+            "$ref": "#/components/schemas/NormalizedItineraryOperation"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 1200,
+            "minLength": 1,
+            "title": "Description"
+          },
+          "approval_mode": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "auto_approve",
+                  "lazy_consensus",
+                  "active_approval"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Approval Mode"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "operation",
+          "idempotency_key",
+          "title",
+          "description"
+        ],
+        "title": "ItineraryOperationProposalCreateRequest",
+        "description": "Create a durable proposal from one exact normalized operation."
+      },
+      "ItineraryOperationProposalResolveRequest": {
+        "properties": {
+          "resolution_note": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 1200
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolution Note"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "ItineraryOperationProposalResolveRequest"
+      },
+      "ItineraryOperationReceipt": {
+        "properties": {
+          "summary_code": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Summary Code"
+          },
+          "affected_day_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Affected Day Ids"
+          },
+          "affected_block_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Affected Block Ids"
+          },
+          "subject_lineage_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subject Lineage Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "summary_code"
+        ],
+        "title": "ItineraryOperationReceipt"
+      },
+      "ItineraryOperationType": {
+        "type": "string",
+        "enum": [
+          "materialize_shape",
+          "add",
+          "move",
+          "reorder",
+          "replace",
+          "remove",
+          "set_attendance",
+          "mark_occurrence",
+          "create_parallel_plan",
+          "update_parallel_plan",
+          "optimize_day",
+          "replan"
+        ],
+        "title": "ItineraryOperationType"
+      },
+      "ItineraryPlanEffectSummary": {
+        "properties": {
+          "summary_code": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Summary Code"
+          },
+          "affected_day_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Affected Day Ids"
+          },
+          "affected_block_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Affected Block Ids"
+          },
+          "affected_user_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Affected User Ids"
+          },
+          "child_operation_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Child Operation Count",
+            "default": 0
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "summary_code"
+        ],
+        "title": "ItineraryPlanEffectSummary",
+        "description": "Group-safe structural effect; never includes private rationale."
+      },
+      "ItineraryPreviewRevalidation": {
+        "properties": {
+          "required": {
+            "type": "boolean",
+            "const": true,
+            "title": "Required",
+            "default": true
+          },
+          "reason_code": {
+            "type": "string",
+            "const": "commit_revalidates_current_facts",
+            "title": "Reason Code",
+            "default": "commit_revalidates_current_facts"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Expires At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "expires_at"
+        ],
+        "title": "ItineraryPreviewRevalidation"
+      },
+      "ItineraryProviderConsequence": {
+        "properties": {
+          "intent": {
+            "$ref": "#/components/schemas/ProviderIntent"
+          },
+          "protected_dependency_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Protected Dependency Ids"
+          },
+          "provider_action_requested": {
+            "type": "boolean",
+            "title": "Provider Action Requested"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "intent",
+          "provider_action_requested"
+        ],
+        "title": "ItineraryProviderConsequence"
       },
       "KeptBoard": {
         "properties": {
@@ -46192,6 +47925,25 @@
         ],
         "title": "MarkHappenedResponse"
       },
+      "MarkOccurrencePayload": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "mark_occurrence",
+            "title": "Kind",
+            "default": "mark_occurrence"
+          },
+          "occurrence": {
+            "$ref": "#/components/schemas/OccurrenceState"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "occurrence"
+        ],
+        "title": "MarkOccurrencePayload"
+      },
       "MarkReadRequest": {
         "properties": {
           "user_id": {
@@ -46225,6 +47977,37 @@
         ],
         "title": "MarkReadResponse",
         "description": "Response after marking as read."
+      },
+      "MaterializeShapePayload": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "materialize_shape",
+            "title": "Kind",
+            "default": "materialize_shape"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/ShapeDestinationRef"
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date",
+            "title": "Start Date"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date",
+            "title": "End Date"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "destination",
+          "start_date",
+          "end_date"
+        ],
+        "title": "MaterializeShapePayload"
       },
       "MemoryHome": {
         "properties": {
@@ -46580,17 +48363,6 @@
             ],
             "title": "Sender Id"
           },
-          "sender_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Sender Name"
-          },
           "sender_type": {
             "type": "string",
             "title": "Sender Type"
@@ -46887,6 +48659,25 @@
         ],
         "title": "MoveConflict",
         "description": "A block on the target day that overlaps the proposed time window."
+      },
+      "MovePayload": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "move",
+            "title": "Kind",
+            "default": "move"
+          },
+          "placement": {
+            "$ref": "#/components/schemas/OperationPlacement"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "placement"
+        ],
+        "title": "MovePayload"
       },
       "MuteTodayRequest": {
         "properties": {
@@ -47496,6 +49287,136 @@
         "title": "NearbyResponse",
         "description": "Nearby venues/sites around a geographic point."
       },
+      "NormalizedItineraryOperation": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ItineraryOperationType"
+          },
+          "target": {
+            "$ref": "#/components/schemas/OperationTarget"
+          },
+          "payload": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/MaterializeShapePayload"
+              },
+              {
+                "$ref": "#/components/schemas/AddPayload"
+              },
+              {
+                "$ref": "#/components/schemas/MovePayload"
+              },
+              {
+                "$ref": "#/components/schemas/ReorderPayload"
+              },
+              {
+                "$ref": "#/components/schemas/ReplacePayload"
+              },
+              {
+                "$ref": "#/components/schemas/RemovePayload"
+              },
+              {
+                "$ref": "#/components/schemas/SetAttendancePayload"
+              },
+              {
+                "$ref": "#/components/schemas/MarkOccurrencePayload"
+              },
+              {
+                "$ref": "#/components/schemas/ParallelPlanPayload"
+              },
+              {
+                "$ref": "#/components/schemas/OptimizeDayPayload"
+              },
+              {
+                "$ref": "#/components/schemas/ReplanPayload"
+              }
+            ],
+            "title": "Payload",
+            "discriminator": {
+              "propertyName": "kind",
+              "mapping": {
+                "add": "#/components/schemas/AddPayload",
+                "create_parallel_plan": "#/components/schemas/ParallelPlanPayload",
+                "mark_occurrence": "#/components/schemas/MarkOccurrencePayload",
+                "materialize_shape": "#/components/schemas/MaterializeShapePayload",
+                "move": "#/components/schemas/MovePayload",
+                "optimize_day": "#/components/schemas/OptimizeDayPayload",
+                "remove": "#/components/schemas/RemovePayload",
+                "reorder": "#/components/schemas/ReorderPayload",
+                "replace": "#/components/schemas/ReplacePayload",
+                "replan": "#/components/schemas/ReplanPayload",
+                "set_attendance": "#/components/schemas/SetAttendancePayload",
+                "update_parallel_plan": "#/components/schemas/ParallelPlanPayload"
+              }
+            }
+          },
+          "attribution": {
+            "$ref": "#/components/schemas/ActionAttribution"
+          },
+          "precondition": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ShapePrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/TripContextPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/DayPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/BranchPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/BlockPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/ProposalPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/ProviderPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/CompoundPrecondition"
+              }
+            ],
+            "title": "Precondition",
+            "discriminator": {
+              "propertyName": "kind",
+              "mapping": {
+                "block": "#/components/schemas/BlockPrecondition",
+                "branch": "#/components/schemas/BranchPrecondition",
+                "compound": "#/components/schemas/CompoundPrecondition",
+                "day": "#/components/schemas/DayPrecondition",
+                "proposal": "#/components/schemas/ProposalPrecondition",
+                "provider": "#/components/schemas/ProviderPrecondition",
+                "shape": "#/components/schemas/ShapePrecondition",
+                "trip_context": "#/components/schemas/TripContextPrecondition"
+              }
+            }
+          },
+          "provider_intent": {
+            "$ref": "#/components/schemas/ProviderIntent",
+            "default": "plan_only"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "type",
+          "target",
+          "payload",
+          "attribution",
+          "precondition"
+        ],
+        "title": "NormalizedItineraryOperation"
+      },
       "NotificationFeed": {
         "properties": {
           "unread_conversations": {
@@ -47953,6 +49874,15 @@
         ],
         "title": "Observation"
       },
+      "OccurrenceState": {
+        "type": "string",
+        "enum": [
+          "planned",
+          "happened",
+          "did_not_happen"
+        ],
+        "title": "OccurrenceState"
+      },
       "OnboardingSignalsCreate": {
         "properties": {
           "branch": {
@@ -48096,6 +50026,247 @@
         ],
         "title": "OneLineReadResponse"
       },
+      "OperationEntityRef": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "venue",
+              "experience",
+              "site",
+              "custom"
+            ],
+            "title": "Kind"
+          },
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind"
+        ],
+        "title": "OperationEntityRef"
+      },
+      "OperationPlacement": {
+        "properties": {
+          "day_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Day Id"
+          },
+          "before_block_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Before Block Id"
+          },
+          "after_block_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "After Block Id"
+          },
+          "time_start": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Start"
+          },
+          "time_end": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time End"
+          },
+          "time_semantics": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacementTimeSemantics"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "branch_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Branch Id"
+          },
+          "branch_semantics": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacementBranchSemantics"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "day_id"
+        ],
+        "title": "OperationPlacement"
+      },
+      "OperationTarget": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "shape_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Shape Id"
+          },
+          "day_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Day Id"
+          },
+          "block_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Block Id"
+          },
+          "subject_lineage_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subject Lineage Id"
+          },
+          "branch_group_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Branch Group Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "trip_id"
+        ],
+        "title": "OperationTarget"
+      },
+      "OptimizeDayPayload": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "optimize_day",
+            "title": "Kind",
+            "default": "optimize_day"
+          },
+          "day_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Day Id"
+          },
+          "child_operations": {
+            "items": {
+              "$ref": "#/components/schemas/AtomicChildOperation"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Child Operations"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "day_id",
+          "child_operations"
+        ],
+        "title": "OptimizeDayPayload"
+      },
       "OptimizeRouteResponse": {
         "properties": {
           "day_id": {
@@ -48204,6 +50375,127 @@
         "title": "ParagraphBlock",
         "description": "A prose paragraph. Supports inline markdown in ``text``."
       },
+      "ParallelBranchDraft": {
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "block_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Block Ids"
+          },
+          "planned_participant_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Planned Participant Ids"
+          },
+          "decision_owner_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Decision Owner Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "block_ids",
+          "planned_participant_ids",
+          "decision_owner_id"
+        ],
+        "title": "ParallelBranchDraft"
+      },
+      "ParallelPlanPayload": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "create_parallel_plan",
+              "update_parallel_plan"
+            ],
+            "title": "Kind"
+          },
+          "day_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Day Id"
+          },
+          "topology_owner_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Topology Owner Id"
+          },
+          "starts_after_block_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Starts After Block Id"
+          },
+          "rejoins_before_block_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rejoins Before Block Id"
+          },
+          "branches": {
+            "items": {
+              "$ref": "#/components/schemas/ParallelBranchDraft"
+            },
+            "type": "array",
+            "minItems": 2,
+            "title": "Branches"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind",
+          "day_id",
+          "topology_owner_id",
+          "branches"
+        ],
+        "title": "ParallelPlanPayload"
+      },
       "ParseQueryRequest": {
         "properties": {
           "text": {
@@ -48293,6 +50585,15 @@
         ],
         "title": "ParticipantResponse",
         "description": "A participant in a conversation."
+      },
+      "ParticipationScope": {
+        "type": "string",
+        "enum": [
+          "personal",
+          "subgroup",
+          "whole_group"
+        ],
+        "title": "ParticipationScope"
       },
       "PatchTripRequest": {
         "properties": {
@@ -48995,6 +51296,24 @@
         ],
         "title": "PlaceMapNeighborhood",
         "description": "A child neighborhood that has editorial content, as a drill-in map pin.\n\nOnly neighborhoods that (a) contributed at least one dossier to this feed\nand (b) carry a centroid are surfaced \u2014 a pin therefore always corresponds\nto browsable content, never a bare administrative boundary."
+      },
+      "PlacementBranchSemantics": {
+        "type": "string",
+        "enum": [
+          "preserve",
+          "set",
+          "main"
+        ],
+        "title": "PlacementBranchSemantics"
+      },
+      "PlacementTimeSemantics": {
+        "type": "string",
+        "enum": [
+          "preserve",
+          "set",
+          "unscheduled"
+        ],
+        "title": "PlacementTimeSemantics"
       },
       "PlanBlock": {
         "properties": {
@@ -51062,6 +53381,18 @@
         "title": "PostcardRenderResponse",
         "description": "Outcome of a postcard render request.\n\n``render_status`` is ``ready`` (rendered_image_url set), ``failed`` (a stable\n``error`` token explains why \u2014 e.g. ``feature_disabled``, ``daily_cap_reached``,\n``no_source_image``, ``below_quality_floor``), or ``none``."
       },
+      "PredictedRecovery": {
+        "type": "string",
+        "enum": [
+          "undo",
+          "withdraw",
+          "review_revert",
+          "provider_action",
+          "new_change",
+          "none"
+        ],
+        "title": "PredictedRecovery"
+      },
       "PrerenderHintResponse": {
         "properties": {
           "enqueued": {
@@ -51893,6 +54224,72 @@
         "title": "ProposalImpactAnalysis",
         "description": "Structured trade-off payload for a change proposal.\n\nAll fields are optional so the concierge can fill in as much or as\nlittle as warranted by the proposal stakes. ``extra=\"allow\"`` preserves\nlegacy keys (e.g. ``new_time``, ``new_title``, ``new_notes``) written\nby older proposals and consumed by ``proposal_apply._apply_*``."
       },
+      "ProposalPolicy": {
+        "type": "string",
+        "enum": [
+          "organizer_review",
+          "affected_member_vote"
+        ],
+        "title": "ProposalPolicy"
+      },
+      "ProposalPrecondition": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "proposal",
+            "title": "Kind",
+            "default": "proposal"
+          },
+          "proposal_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Proposal Id"
+          },
+          "expected_proposal_revision": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Expected Proposal Revision"
+          },
+          "operation": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ShapePrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/TripContextPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/DayPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/BranchPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/BlockPrecondition"
+              }
+            ],
+            "title": "Operation",
+            "discriminator": {
+              "propertyName": "kind",
+              "mapping": {
+                "block": "#/components/schemas/BlockPrecondition",
+                "branch": "#/components/schemas/BranchPrecondition",
+                "day": "#/components/schemas/DayPrecondition",
+                "shape": "#/components/schemas/ShapePrecondition",
+                "trip_context": "#/components/schemas/TripContextPrecondition"
+              }
+            }
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "proposal_id",
+          "expected_proposal_revision",
+          "operation"
+        ],
+        "title": "ProposalPrecondition"
+      },
       "ProposalSummary": {
         "properties": {
           "id": {
@@ -51996,6 +54393,84 @@
         "title": "ProposalSummary",
         "description": "Lightweight proposal for list views.\n\nDeliberately omits ``proposed_entity_*`` \u2014 the deep-link affordance\nis a detail-page concern, not a list-row concern.\n\n``my_vote`` is the authenticated viewer's current vote (\"approve\",\n\"reject\", \"neutral\") or ``None`` if they haven't voted yet. The\nmobile client uses this to filter the \"Needs your vote\" digest."
       },
+      "ProtectedDependency": {
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ProtectedDependencyType"
+          },
+          "provider_state": {
+            "$ref": "#/components/schemas/ProviderState"
+          },
+          "changeability": {
+            "$ref": "#/components/schemas/ProviderChangeability"
+          },
+          "controller_user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Controller User Id"
+          },
+          "provider_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider Ref"
+          },
+          "provider_revision": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "type",
+          "provider_state",
+          "changeability"
+        ],
+        "title": "ProtectedDependency"
+      },
+      "ProtectedDependencyType": {
+        "type": "string",
+        "enum": [
+          "reservation",
+          "ticket",
+          "stay",
+          "transport",
+          "payment"
+        ],
+        "title": "ProtectedDependencyType"
+      },
       "ProviderBreakdown": {
         "properties": {
           "stt_provider": {
@@ -52048,6 +54523,25 @@
         "title": "ProviderBreakdown",
         "description": "Per-STT-provider TTFT slice (V-3). Surfaces the latency cost of\nthe on-device fallback (Apple SpeechAnalyzer / Picovoice) vs. the\ncloud baseline (Deepgram). Once the iOS native module ships and\nstarts emitting ``stt_provider != 'deepgram_cloud'``, this is the\nsurface that lights up to compare them."
       },
+      "ProviderChangeability": {
+        "type": "string",
+        "enum": [
+          "flexible",
+          "fee",
+          "nonrefundable",
+          "external_only",
+          "unknown"
+        ],
+        "title": "ProviderChangeability"
+      },
+      "ProviderIntent": {
+        "type": "string",
+        "enum": [
+          "plan_only",
+          "plan_and_provider"
+        ],
+        "title": "ProviderIntent"
+      },
       "ProviderKeyStatus": {
         "properties": {
           "key_present": {
@@ -52060,6 +54554,75 @@
           "key_present"
         ],
         "title": "ProviderKeyStatus"
+      },
+      "ProviderPrecondition": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "provider",
+            "title": "Kind",
+            "default": "provider"
+          },
+          "dependency_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Dependency Id"
+          },
+          "expected_provider_revision": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Expected Provider Revision"
+          },
+          "operation": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ShapePrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/TripContextPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/DayPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/BranchPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/BlockPrecondition"
+              }
+            ],
+            "title": "Operation",
+            "discriminator": {
+              "propertyName": "kind",
+              "mapping": {
+                "block": "#/components/schemas/BlockPrecondition",
+                "branch": "#/components/schemas/BranchPrecondition",
+                "day": "#/components/schemas/DayPrecondition",
+                "shape": "#/components/schemas/ShapePrecondition",
+                "trip_context": "#/components/schemas/TripContextPrecondition"
+              }
+            }
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "dependency_id",
+          "expected_provider_revision",
+          "operation"
+        ],
+        "title": "ProviderPrecondition"
+      },
+      "ProviderState": {
+        "type": "string",
+        "enum": [
+          "held",
+          "confirmed",
+          "paid",
+          "cancelled",
+          "unknown"
+        ],
+        "title": "ProviderState"
       },
       "PublicProfile": {
         "properties": {
@@ -53156,6 +55719,97 @@
           "released"
         ],
         "title": "ReleaseResponse"
+      },
+      "RemovePayload": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "remove",
+            "title": "Kind",
+            "default": "remove"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "RemovePayload"
+      },
+      "ReorderPayload": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "reorder",
+            "title": "Kind",
+            "default": "reorder"
+          },
+          "placement": {
+            "$ref": "#/components/schemas/OperationPlacement"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "placement"
+        ],
+        "title": "ReorderPayload"
+      },
+      "ReplacePayload": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "replace",
+            "title": "Kind",
+            "default": "replace"
+          },
+          "chosen_entity": {
+            "$ref": "#/components/schemas/OperationEntityRef"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "chosen_entity"
+        ],
+        "title": "ReplacePayload"
+      },
+      "ReplanPayload": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "replan",
+            "title": "Kind",
+            "default": "replan"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Reason"
+          },
+          "child_operations": {
+            "items": {
+              "$ref": "#/components/schemas/AtomicChildOperation"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Child Operations"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "reason",
+          "child_operations"
+        ],
+        "title": "ReplanPayload"
+      },
+      "ResolutionOutcome": {
+        "type": "string",
+        "enum": [
+          "direct",
+          "confirm",
+          "propose",
+          "denied"
+        ],
+        "title": "ResolutionOutcome"
       },
       "ResolveOutcomeRequest": {
         "properties": {
@@ -54292,6 +56946,31 @@
         "title": "SessionInfoResponse",
         "description": "Basic info about the current session."
       },
+      "SetAttendancePayload": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "set_attendance",
+            "title": "Kind",
+            "default": "set_attendance"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "intention": {
+            "$ref": "#/components/schemas/AttendanceIntention"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "user_id",
+          "intention"
+        ],
+        "title": "SetAttendancePayload"
+      },
       "SetCadenceOverrideRequest": {
         "properties": {
           "cadence_override": {
@@ -54469,6 +57148,67 @@
           "currency"
         ],
         "title": "SettlementTransfer"
+      },
+      "ShapeDestinationRef": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "place",
+              "custom"
+            ],
+            "title": "Kind"
+          },
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind"
+        ],
+        "title": "ShapeDestinationRef"
+      },
+      "ShapePrecondition": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "shape",
+            "title": "Kind",
+            "default": "shape"
+          },
+          "expected_shape_revision": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Expected Shape Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "expected_shape_revision"
+        ],
+        "title": "ShapePrecondition"
       },
       "ShareEventCreate": {
         "properties": {
@@ -55945,6 +58685,15 @@
         "title": "StorySourceSignal",
         "description": "Human-readable provenance for a story section."
       },
+      "StructuralRole": {
+        "type": "string",
+        "enum": [
+          "ordinary",
+          "anchor",
+          "soft_suggestion"
+        ],
+        "title": "StructuralRole"
+      },
       "SuggestCategoryResponse": {
         "properties": {
           "category": {
@@ -56872,6 +59621,38 @@
         "title": "TripContext",
         "description": "Trip-scoped context for filtering and relevance."
       },
+      "TripContextPrecondition": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "trip_context",
+            "title": "Kind",
+            "default": "trip_context"
+          },
+          "expected_trip_revision": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Expected Trip Revision"
+          },
+          "expected_itinerary_head": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Itinerary Head"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "expected_trip_revision"
+        ],
+        "title": "TripContextPrecondition"
+      },
       "TripCreationAnchorEvidence": {
         "properties": {
           "name": {
@@ -57118,69 +59899,6 @@
               }
             ],
             "title": "Lowlight"
-          },
-          "made_trip_better_score": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "maximum": 5.0,
-                "minimum": 1.0
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Made Trip Better Score"
-          },
-          "felt_represented_score": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "maximum": 5.0,
-                "minimum": 1.0
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Felt Represented Score"
-          },
-          "privacy_trust_score": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "maximum": 5.0,
-                "minimum": 1.0
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Privacy Trust Score"
-          },
-          "organizer_relief_score": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "maximum": 5.0,
-                "minimum": 1.0
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Organizer Relief Score"
-          },
-          "would_use_again": {
-            "anyOf": [
-              {
-                "type": "boolean"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Would Use Again"
           }
         },
         "type": "object",
