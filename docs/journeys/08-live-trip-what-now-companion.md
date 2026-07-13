@@ -16,7 +16,8 @@ As a traveler already on the trip, I want Vesper to help me understand the next 
 ## Why This Journey Matters
 
 - Live-trip value is where the product either feels like a companion or a planning archive.
-- It crosses Vesper Home, Trip Folio live mode, Trip Map, Plan, notifications, and location permission.
+- It crosses Vesper Home, itinerary live mode, the in-place Map face,
+  notifications, Chat, and location permission.
 - Existing docs list several live/on-trip affordance no-ops that dogfooders will hit.
 
 ## Starting State
@@ -36,10 +37,10 @@ As a traveler already on the trip, I want Vesper to help me understand the next 
 
 1. Open Vesper Home (concierge tab) during an active trip — live/urgent cards, capture nudges, and trip-less fallback must not appear.
 2. Open Trips Home global tab — live tile / NOW / TONIGHT routing when persona is on-trip.
-3. Open Trip Folio live mode for the active `tripId` (route param, not `currentTrip` alone).
-4. Inspect live/urgent card and its primary action.
-5. Open the active day in Plan; confirm Now Mode reflects in-progress vs upcoming block.
-6. Open Map focused on current/next stop.
+3. Open the active trip directly into Itinerary live mode for the route `tripId`.
+4. Inspect the one contextual live/urgent state and its primary action.
+5. Confirm Now Mode reflects in-progress versus upcoming blocks.
+6. Switch in place to Map focused on current/next stop.
 7. Ask Vesper "what should we do now?" from Map or live card.
 8. Handle location permission allowed/denied/undetermined.
 9. Dismiss or act on a nudge and confirm state updates.
@@ -55,7 +56,8 @@ Journey 06 owns read-model agreement after a live-trip mutation; this journey ow
 
 - User-visible state: current/next stop, stay, route, and urgent cards are aligned.
 - Data state: live mode derives from date/time and trip blocks; map focus uses valid ids.
-- Cross-surface coherence: Vesper/Home/Plan/Map/Chat agree on what is next.
+- Cross-surface coherence: Vesper Home, Itinerary, Map, Chat, Details, and
+  Changes agree on what is next.
 - Trust state: denied location gracefully degrades to plan/place context.
 
 ## Must Never Happen
@@ -81,4 +83,3 @@ Mock-mode screen walkthrough with fixture `trip-lisbon-26`:
 - open Trip Folio live thread
 - open Map from live context
 - verify no dead taps and no stale next-stop mismatch
-

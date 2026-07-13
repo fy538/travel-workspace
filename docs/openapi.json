@@ -167,6 +167,312 @@
         }
       }
     },
+    "/api/agent-workflows/{workflow_id}": {
+      "get": {
+        "tags": [
+          "agent-workflows"
+        ],
+        "summary": "Read Agent Workflow",
+        "operationId": "read_agent_workflow_api_agent_workflows__workflow_id__get",
+        "parameters": [
+          {
+            "name": "workflow_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Workflow Id"
+            }
+          },
+          {
+            "name": "after_event_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "title": "After Event Id"
+            }
+          },
+          {
+            "name": "event_limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 250,
+              "minimum": 1,
+              "default": 100,
+              "title": "Event Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Read Agent Workflow Api Agent Workflows  Workflow Id  Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/agent-workflows/planning/latest": {
+      "get": {
+        "tags": [
+          "agent-workflows"
+        ],
+        "summary": "Read Latest Planning Workflow",
+        "operationId": "read_latest_planning_workflow_api_trips__trip_id__agent_workflows_planning_latest_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "after_event_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "title": "After Event Id"
+            }
+          },
+          {
+            "name": "event_limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 250,
+              "minimum": 1,
+              "default": 100,
+              "title": "Event Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Read Latest Planning Workflow Api Trips  Trip Id  Agent Workflows Planning Latest Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/memory-evidence": {
+      "get": {
+        "tags": [
+          "agent-workflows"
+        ],
+        "summary": "Read Trip Memory Evidence",
+        "description": "Expose confidence, provenance, acceptance, and supersession evidence.",
+        "operationId": "read_trip_memory_evidence_api_trips__trip_id__memory_evidence_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 250,
+              "minimum": 1,
+              "default": 100,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Read Trip Memory Evidence Api Trips  Trip Id  Memory Evidence Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/me/memory-evidence": {
+      "get": {
+        "tags": [
+          "agent-workflows"
+        ],
+        "summary": "Read Personal Memory Evidence",
+        "description": "Let a traveler audit confidence, provenance, and revocation state.",
+        "operationId": "read_personal_memory_evidence_api_users_me_memory_evidence_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 250,
+              "minimum": 1,
+              "default": 100,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Read Personal Memory Evidence Api Users Me Memory Evidence Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/admin/users/{user_id}/observations": {
       "get": {
         "tags": [
@@ -21158,7 +21464,7 @@
           "trips"
         ],
         "summary": "Undo Itinerary Block Edit",
-        "description": "Undo the most recent direct edit to a block (the Undo affordance).\n\nReverses the latest ``block_updated`` plan_event for the block by\nre-applying its prior values. Returns 409 when there's nothing to undo.\nSee ``Travel App/docs/page-specs/itinerary-editing.md`` \u00a74 / \u00a711.",
+        "description": "Undo the most recent direct edit to a block (the Undo affordance).\n\nReverses the latest ``block_updated`` plan_event for the block by\nre-applying its prior values. A removed (cancelled) block remains addressable\nhere because restoring that exact state is the destructive-recovery case.\nReturns 409 when there's no authority-valid exact inverse.\nSee ``Travel App/docs/page-specs/itinerary-editing.md`` \u00a74 / \u00a711.",
         "operationId": "undo_itinerary_block_edit_api_trips__trip_id__itinerary_blocks__block_id__undo_post",
         "parameters": [
           {

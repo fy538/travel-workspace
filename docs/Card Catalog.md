@@ -2,7 +2,7 @@
 
 **Status:** current cross-repo source of truth
 
-**Last verified:** 2026-07-12
+**Last verified:** 2026-07-13
 
 **Implementations:** `travel-app` + `travel-agent`
 
@@ -32,14 +32,13 @@ Live Deck faces:
 | `focus.layout=pick` | `DeckPickFace` | Choose one grounded venue | confirmed mutation |
 | `focus.layout=call` | `DeckCallFace` | Booking, conflict, or reschedule call | confirmed mutation or seeded chat |
 | `focus.layout=brief` | `DeckBriefFace` | Review a drafted plan | navigation / seeded chat |
-| `focus.layout=near_you` | `DeckNearYouFace` | Nearby shortlist with Vesper’s read | seeded chat |
+| `focus.layout=near_you` | `DeckNearYouFace` | Nearby shortlist with Vesper’s read | Maps handoff / confirmed save |
 | `structured.layout=vote` | `DeckStructuredFace` | Approve or decline a proposal | confirmed mutation |
 | `structured.layout=settle` | `DeckStructuredFace` | Close owed expense shares | confirmed mutation |
 | `structured.layout=readiness` | `DeckStructuredFace` | Pre-departure open-loop check | navigation |
 
-`compare` and `flight` remain deliberately dormant: components may exist, but
-no trustworthy producer emits their substrate. They must not be dispatched
-until a real data contract exists.
+`compare` and `flight` are not implemented. Their dormant presentation code was
+removed pre-launch; add them only alongside a trustworthy producer and data contract.
 
 Home data is deterministic. Small schema-enforced LLM calls may add grounded
 judgment (`pick_judgment.py`, `deck_take.py`); failure keeps deterministic copy.
@@ -97,8 +96,8 @@ Every actionable card resolves through `utils/cardActionContract.ts`:
 | `external` | Open a validated external URL or phone handoff | immediate |
 | `dismiss` | Remove or decline without another destination | immediate or confirmed when persisted |
 
-Labels must describe the actual behavior. A chat-mediated action cannot say
-“Take me there” or “Save”; it says “Ask for directions” or “Ask Vesper to save.”
+Labels must describe the actual behavior. Near You opens native directions and
+performs a confirmed save directly; neither action detours through chat.
 
 Route payload rules:
 
@@ -137,12 +136,18 @@ transactions, solo proposal previews, and consequential receipt status. New
 interactive cards must use it rather than inventing local `idle/submitting/done`
 unions.
 
+Every uncertain Deck write has an exact durable readback: venue commitments,
+proposal votes, settled expense shares, saved entities, applied reschedules,
+booking proposals, provider holds, and Home feedback suppression. A card-feed
+disappearance is never treated as proof that a consequential write landed.
+
 ## 5. Arrival and motion contract
 
-Card-producing tool events reserve a structured-card footprint with
-`CardArrivalPlaceholder` before the persisted attachment is refetched. The
+Card-producing tool events carry a typed `card_envelope`. Start events identify
+the attachment type so `CardArrivalPlaceholder` reserves the correct shell;
+completion events add the persisted card/message ID when available. The
 reservation remains through prose streaming and briefly across the history
-handoff. The actual attachment then enters with the shared soft-card animation.
+handoff, then the exact attachment enters with the shared soft-card animation.
 
 Only known card-producing tools reserve space. Ordinary prose answers do not.
 
@@ -172,6 +177,11 @@ Rules:
 - interactive controls expose busy, disabled, error, and accessibility states
 - cards without enough substrate stay warm on Home or do not render
 
+Chat attachments also share one telemetry boundary. It records an 800 ms
+exposure, action tap/start, and committed/failed outcomes using the message ID
+and attachment type; cards can explicitly report a superseded durable outcome.
+Mutation telemetry is best-effort and never changes interaction behavior.
+
 ## 7. Agent guidance
 
 `backend/concierge/_prompts_skill_cards.py` owns the expressive-surface quality
@@ -199,9 +209,7 @@ route string, lifecycle state, or arbitrary metadata shape.
 
 ## 9. Deliberate open work
 
-- Replace chat-mediated Near You “save” and “directions” with direct typed
-  mutations/navigation when those product capabilities exist.
-- Add a reconciliation read for every `uncertain` write, rather than requiring
-  manual verification for the remaining cases.
 - Activate Compare or Flight only after their backend substrate and routing are
   real; do not revive their dormant components from presentation alone.
+- Add new Home mechanics families only with a real producer and complete card
+  substrate. Dormant Trust and Transact faces were removed pre-launch.

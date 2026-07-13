@@ -34,7 +34,7 @@ journeys:
     doc: 05-group-planning-to-proposal-to-plan-mutation.md
     tier: golden-path
   - id: J06
-    title: Home, Plan, Map, Changes Coherence
+    title: Itinerary, Map, Details, Chat, and Changes Coherence
     doc: 06-home-plan-map-changes-coherence.md
     tier: golden-path
   - id: J07

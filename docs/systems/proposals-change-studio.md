@@ -7,8 +7,9 @@
 
 ## Purpose
 The controlled mutation gateway for a trip plan — the two ways the itinerary changes:
-(A) a **proposal** the group votes on, and (B) a **direct edit** (Change Studio) by an
-authorized actor — each producing a visible, reversible receipt. Serves belief #9
+(A) an exact **proposal** resolved by the named decision owner (or by an explicitly
+enabled vote), and (B) a **direct edit** by an authorized actor — each producing a
+visible receipt with only server-proven recovery actions. Serves belief #9
 (planning and experiencing are one continuous activity) and the trust loop.
 
 ## Spans (cross-repo)
@@ -29,6 +30,13 @@ Planning/Itinerary — this system is their only sanctioned mutation path.
 
 ## Invariants (must always be true)
 *(These are journey 05's "Must Never Happen", inverted.)*
+
+These are accepted target invariants. Current implementation satisfies them
+path-by-path, not universally: direct future-unbooked Remove has atomic
+fault-injection proof; proposal apply, ordinary Add/Move/Replace, Optimize,
+Replan, provider sagas, proposal creation convergence, and canonical receipts
+remain migration/evidence work. No client may promise a target invariant merely
+because it is listed here.
 - **Every accepted change emits a visible receipt** — no silent mutation.
 - **Rejected proposal confirms the original remains** — it never just disappears.
 - **Optimistic concurrency:** commit must surface conflict or a stale `expected_updated_at` rather than clobber.
@@ -36,6 +44,11 @@ Planning/Itinerary — this system is their only sanctioned mutation path.
 - **Revert truthfulness:** if revert says success, Plan **and** Map reflect it (no ghost state) — the ledger makes this deterministic and diff-safe.
 - **No private source leak:** proposal detail shows a public-safe reason; never the private constraint behind it.
 - **One creation path:** chat-created and UI-created proposals both go through `build_and_persist_proposal`.
+- **No silent voting:** voting is explicit trip/action policy; adding a member
+  never enables it and silence never counts as consent.
+- **Frozen authorship, current safety:** a submitted proposal's normalized
+  operation and attribution are immutable, while acceptance revalidates current
+  authority, protection/provider state, trip phase, and preconditions.
 - **Receipts separate public reason from private influence:** group-visible copy may
   explain the decision but must never identify who supplied a private constraint.
 - **Receipts carry stable source references:** the visible result must be traceable
@@ -45,7 +58,9 @@ Planning/Itinerary — this system is their only sanctioned mutation path.
 
 ## Failure modes
 - Commit conflict / stale timestamp → 409-style surface to the UI (recovery banner), never a silent overwrite.
-- Source-system error mid-commit → atomic write rolls back; ledger not written.
+- Target: source-system error before a structural commit rolls back mutation and
+  canonical operation evidence together. Current ordinary writers and proposal
+  compensation do not yet prove this universally.
 
 ## Maturity & validation
 - Serves journey: 05 (Track A proposal loop + Track B direct edit).

@@ -15,7 +15,8 @@ As a traveler with a new trip draft, I want to fill in just enough structure for
 
 ## Why This Journey Matters
 
-- Trip Folio Home is a state machine with cold, pre, live, and post modes.
+- The itinerary-first shell must bridge an undated Trip Shape into a useful
+  first dated draft without becoming a blank planner.
 - Bugs here often look like empty states, dead facets, or stale mode transitions.
 - Dogfooders may not notice if a seeded trip works but a fresh blank trip is incoherent.
 
@@ -35,17 +36,22 @@ As a traveler with a new trip draft, I want to fill in just enough structure for
 ## Canonical Steps
 
 1. Create or open a blank/draft trip.
-2. Confirm cold Trip Folio renders setup slots for place, dates, and people.
+2. Confirm the itinerary shell renders Trip Shape setup for place, dates, known
+   anchors, and people without fake dated days.
 3. Select or enter a place.
 4. Select date shape or dates.
 5. Add/invite at least one traveler.
-6. Use "Build the trip" to open group chat with prefill.
-7. Open stay and costs facets once they become relevant.
-8. Return to Trip Folio and confirm it now reads as a useful pre-trip workspace.
+6. Vesper materializes one dated first draft once minimum context exists; the
+   traveler reacts to it rather than starting from a blank calendar.
+7. Open group Chat with trip context when coordination is useful.
+8. Open Stay/Costs through Trip Details once relevant, then return to the exact
+   itinerary position.
 
 ## Expected Outcome
 
-- User-visible state: setup slots disappear or update as fields are filled; pre-trip surfaces appear when dates/place exist.
+- User-visible state: Trip Shape becomes a dated first draft; setup needs update
+  honestly and specialized pre-trip surfaces become reachable without a Folio
+  dashboard.
 - Data state: patched trip fields persist and hydrate after reload.
 - Cross-surface coherence: Trip title/header, Home facets, chat context, and trip settings agree.
 - Trust state: incomplete setup is honestly labeled, not covered by fake itinerary content.
@@ -73,4 +79,3 @@ Mock-mode journey test:
 - reload trip
 - verify mode changes from cold toward pre
 - verify setup links preserve `tripId`
-

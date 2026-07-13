@@ -1,10 +1,12 @@
-# Home, Plan, And Map Coherence
+# Itinerary, Map, Details, Chat, And Changes Coherence
 
 ## Purpose
 
-The app should feel like one living trip, not disconnected tabs. Home, Plan,
-and Map can emphasize different views, but they must reference compatible trip,
-block, proposal, and place state.
+The app should feel like one living trip, not disconnected tabs. Itinerary List,
+Map, Trip Details, Chat attachments, and Changes can emphasize different views,
+but they must reference compatible trip, block, proposal, provider, and place
+state. The current Folio/Home read remains a compatibility projection during
+migration, not a target trip destination.
 
 ## Trace
 
@@ -13,20 +15,22 @@ block, proposal, and place state.
   "scenario": "home_plan_map_coherence",
   "state_before": {
     "trip": "shared trip with itinerary blocks, proposals, and maybe stays",
-    "home": "concierge attention feed",
-    "plan": "Plan v2 read model",
+    "itinerary": "Plan State current truth and one contextual attention item",
     "map": "Trip Map v2 spatial read model"
   },
-  "action": "user opens Home, Plan, and Map after a plan change or proposal",
+  "action": "user opens Itinerary, Map, Details, Chat context, and Changes after a plan change or proposal",
   "tool_or_api_calls": [
-    "GET /api/trips/{trip_id}/home_cards",
     "GET /api/trips/{trip_id}/plan-state",
-    "GET /api/trips/{trip_id}/map-state"
+    "GET /api/trips/{trip_id}/map-state",
+    "GET /api/trips/{trip_id}/details-state",
+    "GET /api/trips/{trip_id}/itinerary/history",
+    "GET /api/trips/{trip_id}/folio (compatibility during migration)"
   ],
   "state_after": {
-    "home": "active and ambient cards reference current trip state",
-    "plan": "days, blocks, open decisions, and recent changes render",
+    "itinerary": "days, blocks, open decisions, and recent changes render",
     "map": "placed blocks render as pins/routes; unplaced blocks do not crash",
+    "details": "trip-wide summaries deep-link to the same anchors/provider truth",
+    "history": "operation status and recovery match the landed itinerary",
     "identity": "shared ids let users connect the same thing across surfaces"
   }
 }
@@ -34,7 +38,8 @@ block, proposal, and place state.
 
 ## Invariants
 
-- Home cards, Plan blocks, and Map pins must agree on trip id.
+- List blocks, Map pins, Details summaries, Chat attachments, Changes, and the
+  transitional Folio adapter must agree on trip and canonical object ids.
 - A block shown as affected by an open proposal in Plan should not disappear
   from Map unless it was actually removed or unplaced.
 - Dismissing ambient Home cards must not hide Tier 1 critical state.

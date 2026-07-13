@@ -1,0 +1,10 @@
+{
+  "generate_trip_shapes": { "type": "trip_shapes", "label": "Preparing a few trip directions" },
+  "present_options": { "type": "reaction_card", "label": "Preparing the options" },
+  "propose_change": { "type": "vote_widget", "label": "Preparing the proposed change" },
+  "post_venue_card": { "type": "venue_card", "label": "Preparing the place card" },
+  "confirm_booking": { "type": "booking_confirmation", "label": "Preparing the booking receipt" },
+  "propose_booking": { "type": "booking_proposal", "label": "Preparing the booking proposal" },
+  "propose_trip_creation": { "type": "trip_creation_proposal", "label": "Preparing the trip card" },
+  "generate_plan": { "type": "plan_ready", "label": "Preparing the plan preview" }
+}

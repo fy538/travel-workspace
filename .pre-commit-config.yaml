@@ -25,6 +25,13 @@ repos:
         files: \.(env|env\..*|md|yml|yaml|ts|tsx|py|sh|json|txt)$
         exclude: 'node_modules/|\.venv/|\.git/'
 
+      - id: check-card-arrival-contract
+        name: Check generated card-arrival contracts
+        entry: python3 scripts/sync-card-arrival-contract.py --check
+        language: system
+        pass_filenames: false
+        files: '(^docs/contracts/card-arrival\.json$|cardArrivalContract\.generated\.ts$|card_arrival_contract_generated\.py$)'
+
       - id: check-flag-registry
         name: Check no feature flag is past its review/removal date
         entry: python3 scripts/check_flag_registry.py

@@ -17,6 +17,6 @@ Start here when asking Codex or Claude Code to audit a journey:
 - [Create Trip And Invite Group](./create-trip-and-invite-group.md)
 - [Private Input To Group-Safe Context](./private-input-to-group-safe-context.md)
 - [Proposal Review And Plan Mutation](./proposal-review-and-plan-mutation.md)
-- [Home, Plan, And Map Coherence](./home-plan-map-coherence.md)
+- [Itinerary, Map, Details, Chat, And Changes Coherence](./home-plan-map-coherence.md)
 - [Notifications And Proactive Help](./notifications-and-proactive-help.md)
 - [Memory And Post-Trip Loop](./memory-and-post-trip-loop.md)

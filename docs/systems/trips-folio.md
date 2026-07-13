@@ -11,6 +11,15 @@ The single backend-authored read model for the Trip Home surface — it answers
 ideation → pre-trip → live → post-trip lifecycle. Serves belief #17 (*if a user is in
 the product without a trip context, that's a design failure* — the trip is the spine).
 
+**Redesign disposition (accepted 2026-07-13):** the current `/folio` endpoint and
+hero-led Trip Home are compatibility surfaces during the itinerary-first
+migration. The UI is decomposed rather than expanded. Preserve Folio's useful
+lifecycle, ranked attention, source-status/partial-data, stay/cost/booking,
+recent-change, discovery, and keepsake responsibilities by assigning each to
+canonical Lifecycle, Itinerary/Plan State, Trip Details, History, Discover, or
+Memory projections. Retire `/folio` only after field parity, first-paint
+performance, degradation behavior, and old-client compatibility are proven.
+
 ## Spans (cross-repo)
 - Backend: [`travel-agent/backend/folio/`](../../travel-agent/backend/folio/FEATURE.md) (`read_model.py::assemble_trip_folio`) + `backend/api/routes/folio.py`.
 - Frontend: `travel-app/app/(tabs)/trips/[tripId]/index` (Trip Home), `components/trip-home/*`, `components/focus-home/*` (Deck), `data/folio.ts`.

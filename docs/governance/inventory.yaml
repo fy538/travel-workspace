@@ -131,6 +131,10 @@ overrides:
     disposition: keep_authoritative
     rationale: Active motion rollout and release-review practice; expires 2026-08-11.
 
+  docs/working/itinerary-interaction-business-logic-audit-2026-07-12.md:
+    disposition: keep_authoritative
+    rationale: Active cross-repo itinerary authority and mutation-contract audit; expires 2026-08-11 after product rulings and redesign handoff.
+
   docs/audits/motion-language-audit-2026-07-11.md:
     disposition: keep_reference
     rationale: Phase 0 motion evidence still cited by docs/systems/motion-language.md.

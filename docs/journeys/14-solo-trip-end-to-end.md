@@ -26,13 +26,16 @@ As a solo traveler, I want the app to feel built for one, so that group-coordina
 
 ## Primary Surfaces
 
-- Routes: `/(tabs)/trips/[tripId]` (Folio), `/plan`, `/map`, `/(tabs)/concierge/chat`, `/notifications`, `/(tabs)/atlas`.
-- App docs: [Single Trip Home](../../travel-app/docs/surfaces/single-trip-home/contract.md), [Concierge Home](../../travel-app/docs/page-specs/concierge-home.md).
+- Routes: target trip entry/Itinerary, in-place Map face, private trip-scoped
+  Vesper, `/notifications`, and `/(tabs)/atlas`.
+- App docs: [Trip Itinerary](../../travel-app/docs/surfaces/trip-itinerary/contract.md), [Concierge Home](../../travel-app/docs/page-specs/concierge-home.md).
 
 ## Canonical Steps
 
-1. Create / open a single-member trip → Folio shows solo chrome (no group header, no member avatars row, no "waiting on N").
-2. Open Plan → no vote affordances, no consensus/decision rows; edits apply directly (no proposal-to-group step).
+1. Create/open a single-member trip → Itinerary/Trip Shape shows solo chrome
+   with no group header, avatar row, or “waiting on N.”
+2. Shape the Itinerary → no vote affordances or group proposal step; ordinary
+   edits apply directly and consequential ones confirm.
 3. Ask Vesper in chat → routes to a personal/solo conversation, never a group thread.
 4. Live mode → "what now" reads for one; no group-coordination cards.
 5. Notifications → personal cadence only; no group-activity rows.

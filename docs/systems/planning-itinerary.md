@@ -22,6 +22,13 @@ spatially coherent, paced).
 - **Consumes:** Memory & Preference (narrative profiles for fan-out search), Places (live hours), venue/experience corpora (Qdrant).
 - **Never:** other systems must not write itinerary blocks directly — mutations go through the Change Studio / edit-commit gateway (see [proposals-change-studio](proposals-change-studio.md)).
 
+The final two statements above are target boundaries, not current proof. The
+accepted redesign replaces Folio as the target composed read with Trip Shape /
+Plan State + Details/History projections and replaces Change Studio-specific
+mutation with one typed itinerary-operation gateway. Existing direct, agent,
+pin, proposal, and replan paths remain migration adapters until contract tests
+prove convergence.
+
 ## Owns (source of truth)
 The itinerary structure (days/blocks) and edit log. **Generation** produces it;
 **Change Studio** is the controlled mutation path over it.
@@ -50,5 +57,8 @@ The itinerary structure (days/blocks) and edit log. **Generation** produces it;
 - **Graph legibility**: context signals injected into `trip_context` (planning_brief, loved_places, returning_traveler, upcoming_events, weather_forecast) shape the plan silently — they must never be echoed back to the user as labels. See [graph-legibility-doctrine.md](graph-legibility-doctrine.md).
 
 ## Open risks / known gaps
+- Undated Trip Shape, parallel-plan topology, per-traveler delegation, typed
+  operations, and operation-linked write-back are accepted target contracts but
+  not current tables/read paths.
 - The dual read-model collapse (06-20) retired legacy `useItinerary` → plan-state adapter; confirm no surface still reads the old model (feeds journey 06 coherence).
 - Replan/edit-inference wiring lives in `concierge/tool_handlers/planning/_plan.py`, **not** in this package — the seam between "agent decides to replan" and "planner replans" is the likely break point.

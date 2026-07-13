@@ -1,4 +1,4 @@
-# 06 - Home, Plan, Map, Changes Coherence
+# 06 - Itinerary, Map, Details, Chat, And Changes Coherence
 
 > Status: draft  
 > Owner: founder / engineering  
@@ -7,11 +7,15 @@
 
 ## Product Promise
 
-The same trip truth should appear consistently wherever the traveler looks: Home, Plan, Map, Chat, and Changes.
+The same trip truth should appear consistently wherever the traveler looks:
+Itinerary List, Map, Trip Details, Chat, and Changes. The transitional Folio/Home
+adapter must agree during migration but is not a target destination.
 
 ## Canonical User Story
 
-As a traveler, I want the trip dashboard, itinerary, map, and change history to agree, so that I can trust the app during planning and while traveling.
+As a traveler, I want the itinerary, map, trip details, conversation context,
+and change history to agree, so that I can trust the app during planning and
+while traveling.
 
 ## Why This Journey Matters
 
@@ -30,19 +34,23 @@ This journey is the **invariant checker** that runs after any mutation from Jour
 
 ## Primary Surfaces
 
-- Routes: `/(tabs)/trips/[tripId]`, `/(tabs)/trips/[tripId]/plan`, `/(tabs)/trips/[tripId]/map`, `/(tabs)/trips/[tripId]/changes`, `/(tabs)/trips/[tripId]/chat`.
-- App docs: [Trip Map](../../travel-app/docs/page-specs/trip-map.md), [Trip Plan](../../travel-app/docs/page-specs/trip-plan.md), [Change Proposals](../../travel-app/docs/page-specs/change-proposals.md).
-- Reliability trace: [Home, Plan, And Map Coherence](../reliability/traces/home-plan-map-coherence.md).
+- Routes: target trip entry/Itinerary List, in-place Map face, Trip Details,
+  `/(tabs)/trips/[tripId]/changes`, and `/(tabs)/trips/[tripId]/chat`.
+- App docs: [Trip Itinerary contract](../../travel-app/docs/surfaces/trip-itinerary/contract.md),
+  [Itinerary UX audit](../../travel-app/docs/audits/itinerary-interaction-ux-audit-2026-07-12.md),
+  and [Change Proposals](../../travel-app/docs/page-specs/change-proposals.md).
+- Reliability trace: [Itinerary, Map, Details, Chat, And Changes Coherence](../reliability/traces/home-plan-map-coherence.md).
 - Existing anchors: `__tests__/data/planState.test.ts`, `__tests__/utils/tripMapStateParity.test.ts`, `__tests__/utils/invalidateTripReadModels.test.ts`, `__tests__/screens/plan.smoke.test.tsx`, `__tests__/screens/map.smoke.test.tsx`.
 
 ## Canonical Steps
 
-1. Open Trip Folio Home and note current/next/highest-attention item.
-2. Open Plan and inspect the affected day/block.
-3. Open Map and inspect the corresponding spatial pin or unplaced state.
-4. Open Changes and inspect recent/open changes.
+1. Open the trip directly into Itinerary and note current/next/highest-attention item.
+2. Inspect the affected day/block in List.
+3. Switch in place to Map and inspect the corresponding spatial pin or unplaced state.
+4. Open Trip Details and Changes; inspect canonical summary/history truth.
 5. Apply or revert a change **or** complete a direct edit commit (Journey 05 Track B).
-6. Revisit Trip Folio Home, Plan, Map, Chat, and Changes.
+6. Revisit Itinerary List, Map, Trip Details, Chat, and Changes. During migration,
+   verify the Folio compatibility adapter as an additional projection.
 7. Confirm all surfaces agree after invalidation/refetch — including `applied_block_map` id transitions after proposal apply.
 8. Dismiss a non-critical home card and confirm Tier 1 trip truth remains visible.
 
@@ -55,16 +63,17 @@ This journey is the **invariant checker** that runs after any mutation from Jour
 
 ## Must Never Happen
 
-- Home says one next stop while Plan/Map show another.
+- Itinerary/List, Map, Details, Chat attachment, Changes, or the transitional
+  Folio adapter claim different current/next truth.
 - Map crashes or hides unplaced items.
 - Plan applies a change but Map stays stale.
 - Changes screen reverts an item that Plan cannot identify.
-- A dismissed noncritical card hides an urgent/open decision.
+- Dismissing noncritical attention hides an urgent/open decision.
 
 ## AI Trace Prompt
 
 ```text
-Trace the trip read models feeding Trip Folio Home, Plan, Map, Chat, and Changes. Pick one block id and follow it across hooks, API calls, mock data, backend endpoints, invalidation paths, and backend home-feed cache behavior. Run after BOTH proposal apply/revert AND direct edit-commit. Report mismatched ids, applied_block_map drift, stale caches, and missing tests.
+Trace the trip read models feeding Itinerary List, Map, Trip Details, Chat attachments, Changes, and the transitional Folio adapter. Pick one block id and follow it across hooks, API calls, mock data, backend endpoints, invalidation paths, and compatibility-cache behavior. Run after BOTH proposal apply/revert AND direct edit-commit. Report mismatched ids, applied_block_map drift, stale caches, and missing tests.
 ```
 
 ## First Automation Target
@@ -75,4 +84,3 @@ Build a deterministic parity assertion:
 - every open proposal affecting a block appears in plan state
 - every recent change can route back to proposal/detail or affected block
 - invalidation runs after apply/revert
-
