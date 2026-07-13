@@ -82,6 +82,11 @@ def main() -> int:
             if not (app_dir / ref).is_file():
                 missing.append(f"{script_name} → {ref} (not found)")
 
+    if not referenced:
+        missing.append(
+            "package.json has no visual-qa script with explicit .maestro/*.yaml references"
+        )
+
     ok = not parse_failures and not missing
     if parse_failures:
         print(f"\n✗ {len(parse_failures)} flow(s) failed to parse:", file=sys.stderr)

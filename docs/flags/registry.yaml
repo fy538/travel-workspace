@@ -278,6 +278,16 @@ flags:
     status: active
     notes: Gates outbound Expo push sends from the receipt reaper loop.
 
+  - name: EMBEDDING_PREWARM_ENABLED
+    repo: travel-agent
+    location: backend/api/lifecycle.py:223
+    default: false
+    category: ops
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Gates startup embedding-model prewarm; disabled by default to keep boot independent of model availability.
+
   # ── Found unregistered by scripts/check_flag_registry.py's ad-hoc-lever
   # scan (2026-07-10, simplification audit). All 8 are read via
   # truthy_env/falsy_env rather than the Pydantic-Settings convention the

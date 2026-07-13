@@ -8,6 +8,7 @@ Usage:
 from __future__ import annotations
 
 import json
+import re
 import sys
 from datetime import date
 from pathlib import Path
@@ -16,6 +17,8 @@ ROOT = Path(__file__).resolve().parent.parent
 LEDGER = ROOT / "docs/governance/compatibility-ledger.json"
 REQUIRED = {"id", "status", "reason", "owner", "canonical", "paths", "markers", "removal_trigger", "expires"}
 STATUSES = {"active", "retiring"}
+MARKER_RE = re.compile(r"compatibility_id:\s*([a-z0-9][a-z0-9-]*)")
+SOURCE_ROOTS = (ROOT / "travel-app", ROOT / "travel-agent")
 
 
 def main() -> int:
@@ -79,6 +82,23 @@ def main() -> int:
         for marker in markers:
             if marker not in joined:
                 failures.append(f"{entry_id}: marker not found in tracked paths: {marker!r}")
+
+    discovered: dict[str, list[str]] = {}
+    for source_root in SOURCE_ROOTS:
+        if not source_root.is_dir():
+            continue
+        for path in source_root.rglob("*"):
+            if path.suffix not in {".py", ".ts", ".tsx"} or not path.is_file():
+                continue
+            if any(part in {"node_modules", ".git", ".venv"} for part in path.parts):
+                continue
+            for marker_id in MARKER_RE.findall(path.read_text(errors="replace")):
+                discovered.setdefault(marker_id, []).append(str(path.relative_to(ROOT)))
+    for marker_id, paths in sorted(discovered.items()):
+        if marker_id not in seen:
+            failures.append(
+                f"unregistered compatibility marker {marker_id}: {', '.join(paths)}"
+            )
 
     if failures:
         print("compatibility ledger check failed:")

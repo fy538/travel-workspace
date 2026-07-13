@@ -47,6 +47,7 @@ jobs:
             AGENT_REF=$(python3 -c "import json; print(json.load(open('$LOCK')).get('travel-agent') or 'main')")
             APP_REF=$(python3 -c "import json; print(json.load(open('$LOCK')).get('travel-app') or 'main')")
           fi
+          python3 -c "import re,sys; refs=sys.argv[1:]; assert all(re.fullmatch(r'[0-9a-f]{40}', ref) for ref in refs), f'child refs must be immutable 40-character SHAs: {refs}'" "$AGENT_REF" "$APP_REF"
           echo "agent_ref=$AGENT_REF" >> "$GITHUB_OUTPUT"
           echo "app_ref=$APP_REF" >> "$GITHUB_OUTPUT"
           echo "Child repo pins: travel-agent@$AGENT_REF travel-app@$APP_REF"
@@ -125,6 +126,9 @@ jobs:
         # that stops a renamed/deleted flow from silently breaking the wedge
         # visual gate (certify-visual / visual-qa:wedge).
         run: make maestro-flow-check
+
+      - name: Compatibility and card-arrival contract guards
+        run: make compatibility-check card-arrival-check
 
       - name: Journey-list drift guard
         # Pure file-glob (no DB): fails if scenarios.mjs and tests/scenarios/
