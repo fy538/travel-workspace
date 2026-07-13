@@ -58798,6 +58798,16 @@
             "title": "Public Profile Enabled",
             "default": false
           },
+          "atlas_learning_enabled": {
+            "type": "boolean",
+            "title": "Atlas Learning Enabled",
+            "default": false
+          },
+          "atlas_render_enabled": {
+            "type": "boolean",
+            "title": "Atlas Render Enabled",
+            "default": false
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -59297,6 +59307,26 @@
             "type": "boolean",
             "title": "Public Profile Enabled",
             "default": false
+          },
+          "atlas_learning_enabled": {
+            "type": "boolean",
+            "title": "Atlas Learning Enabled",
+            "default": false
+          },
+          "atlas_render_enabled": {
+            "type": "boolean",
+            "title": "Atlas Render Enabled",
+            "default": false
+          },
+          "atlas_learning_available": {
+            "type": "boolean",
+            "title": "Atlas Learning Available",
+            "default": false
+          },
+          "atlas_render_available": {
+            "type": "boolean",
+            "title": "Atlas Render Available",
+            "default": false
           }
         },
         "type": "object",
@@ -59597,6 +59627,28 @@
               }
             ],
             "title": "Public Profile Enabled"
+          },
+          "atlas_learning_enabled": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Atlas Learning Enabled"
+          },
+          "atlas_render_enabled": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Atlas Render Enabled"
           },
           "home_city": {
             "anyOf": [
