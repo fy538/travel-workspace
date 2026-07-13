@@ -6895,6 +6895,426 @@
         }
       }
     },
+    "/api/trips/{trip_id}/messages": {
+      "post": {
+        "tags": [
+          "chat"
+        ],
+        "summary": "Send Message",
+        "description": "Send a message to the concierge for this trip.\n\nDelegates to the DB-backed conversation session. Creates the trip's\ngroup conversation on first call.\n\nOptional ``X-Idempotency-Key`` header deduplicates retries: a second\ncall with the same key returns the cached response (if the original\ncompleted) or 409 Conflict (if still processing).",
+        "operationId": "send_message_api_trips__trip_id__messages_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Idempotency-Key"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/backend__api__routes__chat__SendMessageRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/backend__api__routes__chat__SendMessageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/messages/stream": {
+      "post": {
+        "tags": [
+          "chat"
+        ],
+        "summary": "Send Message Stream",
+        "description": "Send a message and stream the response via Server-Sent Events.\n\nStreams text deltas as they arrive from the LLM, then sends a final\nevent with metadata (tool calls, token counts, etc.).\n\nEvent types:\n    - ``text_delta``: partial text chunk (``{\"text\": \"...\"}``).\n    - ``metadata``: final turn metadata, sent once after the reply completes.\n    - ``error``: if an exception occurs during processing.\n\nOptional ``X-Idempotency-Key`` header deduplicates retries. A repeat\nrequest with the same key whose original is still streaming emits an\n``error`` SSE event with ``kind=\"in_flight\"``; a repeat whose original\ncompleted emits the cached reply as ``text_delta`` followed by metadata.",
+        "operationId": "send_message_stream_api_trips__trip_id__messages_stream_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Idempotency-Key"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/backend__api__routes__chat__SendMessageRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/messages/history": {
+      "get": {
+        "tags": [
+          "chat"
+        ],
+        "summary": "Get History",
+        "description": "Get conversation history for this trip from the DB.\n\nUses ``get_or_create_trip_conversation`` so the response always\ncarries ``conversation_id`` \u2014 even on the first load before any\nmessages exist. The client uses this ID to target the SSE stream\nendpoint (``POST /api/conversations/{id}/messages/stream``) without\na second round-trip to discover the conversation.",
+        "operationId": "get_history_api_trips__trip_id__messages_history_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatHistoryResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/messages/info": {
+      "get": {
+        "tags": [
+          "chat"
+        ],
+        "summary": "Get Session Info",
+        "description": "Get basic session info (turn count, message count).",
+        "operationId": "get_session_info_api_trips__trip_id__messages_info_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionInfoResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/messages/close": {
+      "post": {
+        "tags": [
+          "chat"
+        ],
+        "summary": "Close Session Endpoint",
+        "description": "Close the conversation session for this trip.\n\nTriggers post-session reflection for all participants.",
+        "operationId": "close_session_endpoint_api_trips__trip_id__messages_close_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageCloseResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/side-chat": {
+      "post": {
+        "tags": [
+          "chat"
+        ],
+        "summary": "Create Side Chat",
+        "description": "Get or create the private 1:1 conversation for this user + trip.\n\nAllows a user to have a private chat with the concierge about\ntrip-specific topics (budget concerns, social dynamics, personal\npreferences) without the group seeing the conversation.\n\nIdempotent \u2014 safe to call on every Concierge tab mount. Returns the\nexisting conversation if one already exists for this (user, trip) pair.\nThe agent has full access to trip context but skips group coordination\nfeatures (compose_group_message, strict_group_compose, privacy stripping).",
+        "operationId": "create_side_chat_api_trips__trip_id__side_chat_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSideChatRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateSideChatResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/collections": {
       "get": {
         "tags": [
@@ -8541,7 +8961,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SendMessageRequest"
+                "$ref": "#/components/schemas/backend__api__routes__conversations__SendMessageRequest"
               }
             }
           }
@@ -8554,83 +8974,13 @@
                 "schema": {
                   "anyOf": [
                     {
-                      "$ref": "#/components/schemas/SendMessageResponse"
+                      "$ref": "#/components/schemas/backend__api__routes__conversations__SendMessageResponse"
                     },
                     {
                       "$ref": "#/components/schemas/UserMessageResponse"
                     }
                   ],
                   "title": "Response Send Message Api Conversations  Conversation Id  Messages Post"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/trips/{trip_id}/side-chat": {
-      "post": {
-        "tags": [
-          "conversations"
-        ],
-        "summary": "Create Side Chat",
-        "description": "Get or create this member's private trip-linked conversation.",
-        "operationId": "create_side_chat_api_trips__trip_id__side_chat_post",
-        "parameters": [
-          {
-            "name": "trip_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Trip Id"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateSideChatRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreateSideChatResponse"
                 }
               }
             }
@@ -8705,7 +9055,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SendMessageRequest"
+                "$ref": "#/components/schemas/backend__api__routes__conversations__SendMessageRequest"
               }
             }
           }
@@ -8869,6 +9219,76 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ConfirmTripCreationProposalResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/conversations/{conversation_id}/promote_to_trip": {
+      "post": {
+        "tags": [
+          "conversations"
+        ],
+        "summary": "Promote To Trip",
+        "description": "Promote a pre-trip conversation into a committed trip.\n\nReads the conversation's ``intent_state`` scratchpad, creates a trip\nrow with best-effort field mapping (title / place_id / dates),\nlinks them both ways, copies conversation participants as trip\nmembers, and stamps ``intent_state.phase='committed'``.\n\nOnly the conversation creator may promote \u2014 the resulting trip is\nowned by that user (``trip.created_by = conversation.created_by``)\nso allowing anyone else to drive this would let an attacker spawn\ntrips under a victim's name. Normal participant auth is not strong\nenough here because trip creation is an ownership-changing action.\n\nFails with:\n- 403 if the caller isn't the conversation creator\n- 400 on not-found / home / already-promoted / not-ready",
+        "operationId": "promote_to_trip_api_conversations__conversation_id__promote_to_trip_post",
+        "parameters": [
+          {
+            "name": "conversation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Conversation Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PromoteToTripRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PromoteToTripResponse"
                 }
               }
             }
@@ -20221,6 +20641,71 @@
         }
       }
     },
+    "/api/trips/{trip_id}/itinerary": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Trip Itinerary",
+        "description": "DEPRECATED (use ``GET /api/trips/{trip_id}/plan-state``) \u2014 latest itinerary, days+blocks.\n\nRetained only so old deployed app builds that still call it keep working;\ndo not point new clients here. Behavior unchanged. Returns a flat list of\ndays, each with embedded blocks, matching the mobile app's expected shape.",
+        "operationId": "get_trip_itinerary_api_trips__trip_id__itinerary_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ItineraryDayOut"
+                  },
+                  "title": "Response Get Trip Itinerary Api Trips  Trip Id  Itinerary Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/itinerary/transport-gaps": {
       "get": {
         "tags": [
@@ -20835,7 +21320,7 @@
           "trips"
         ],
         "summary": "Pin Experience To Itinerary",
-        "description": "Pin an experience block to a specific day of the trip itinerary.\n\nReturns the newly created itinerary block so mutation callers can update\ntheir cache before the canonical plan-state refetch completes.",
+        "description": "Pin an experience block to a specific day of the trip itinerary.\n\nReturns the newly created itinerary block in the same shape as\n``GET /api/trips/{trip_id}/itinerary`` blocks, so the frontend can\nappend it to the local cache without a full refetch.",
         "operationId": "pin_experience_to_itinerary_api_trips__trip_id__itinerary_pin_experience_post",
         "parameters": [
           {
@@ -32289,6 +32774,108 @@
         "title": "ChangeProposal",
         "description": "A proposal to modify an itinerary, pending group approval."
       },
+      "ChatHistoryMessage": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "sender_type": {
+            "type": "string",
+            "title": "Sender Type"
+          },
+          "sender_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sender Id"
+          },
+          "content": {
+            "type": "string",
+            "title": "Content"
+          },
+          "message_type": {
+            "type": "string",
+            "title": "Message Type"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Metadata"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created At"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "error_details": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Details"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "sender_type",
+          "sender_id",
+          "content",
+          "message_type",
+          "metadata",
+          "created_at",
+          "status",
+          "error_details"
+        ],
+        "title": "ChatHistoryMessage",
+        "description": "A single message in the chat history."
+      },
+      "ChatHistoryResponse": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "title": "Trip Id"
+          },
+          "conversation_id": {
+            "type": "string",
+            "title": "Conversation Id"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/ChatHistoryMessage"
+            },
+            "type": "array",
+            "title": "Messages"
+          },
+          "turn_count": {
+            "type": "integer",
+            "title": "Turn Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "conversation_id",
+          "messages",
+          "turn_count"
+        ],
+        "title": "ChatHistoryResponse",
+        "description": "Response for GET /messages/history."
+      },
       "CheckoutOfferResult": {
         "properties": {
           "offer_id": {
@@ -34646,7 +35233,7 @@
           "user_id"
         ],
         "title": "CreateSideChatRequest",
-        "description": "Resolve a private conversation linked to a trip."
+        "description": "Create a personal side conversation linked to a trip."
       },
       "CreateSideChatResponse": {
         "properties": {
@@ -34664,7 +35251,8 @@
           "conversation_id",
           "trip_id"
         ],
-        "title": "CreateSideChatResponse"
+        "title": "CreateSideChatResponse",
+        "description": "Response after creating a side chat."
       },
       "CreateTripRequest": {
         "properties": {
@@ -43739,6 +44327,118 @@
         "type": "object",
         "title": "ItineraryBlockUpdate"
       },
+      "ItineraryDayOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "itinerary_id": {
+            "type": "string",
+            "title": "Itinerary Id"
+          },
+          "day_number": {
+            "type": "integer",
+            "title": "Day Number"
+          },
+          "date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date"
+          },
+          "day_theme": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Day Theme"
+          },
+          "energy_target": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Energy Target"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          },
+          "opener": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Opener"
+          },
+          "closing": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Closing"
+          },
+          "sort_order": {
+            "type": "integer",
+            "title": "Sort Order"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "title": "Updated At"
+          },
+          "blocks": {
+            "items": {
+              "$ref": "#/components/schemas/ItineraryBlockOut"
+            },
+            "type": "array",
+            "title": "Blocks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "itinerary_id",
+          "day_number",
+          "sort_order",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "ItineraryDayOut",
+        "description": "API response shape for a single itinerary day with embedded blocks."
+      },
       "ItineraryEditLog": {
         "properties": {
           "id": {
@@ -45446,29 +46146,24 @@
         "title": "MemoryResetResponse",
         "description": "Counts of rows deleted per source table \u2014 useful for confirmation UI."
       },
-      "MessageImage": {
+      "MessageCloseResponse": {
         "properties": {
-          "base64": {
+          "status": {
             "type": "string",
-            "maxLength": 2500000,
-            "minLength": 1,
-            "title": "Base64",
-            "description": "Base64-encoded image bytes (no data: prefix)."
+            "title": "Status"
           },
-          "mime_type": {
+          "trip_id": {
             "type": "string",
-            "pattern": "^image/(jpeg|jpg|png|webp|gif)$",
-            "title": "Mime Type",
-            "description": "MIME type accepted by the concierge vision path."
+            "title": "Trip Id"
           }
         },
         "type": "object",
         "required": [
-          "base64",
-          "mime_type"
+          "status",
+          "trip_id"
         ],
-        "title": "MessageImage",
-        "description": "Inline image attached to a conversation-scoped Vesper turn."
+        "title": "MessageCloseResponse",
+        "description": "Response for POST /messages/close."
       },
       "MessageReportRequest": {
         "properties": {
@@ -50439,6 +51134,49 @@
         "title": "ProfileFactDisputeRequest",
         "description": "Body for ``POST /api/me/profile-fact/dispute``.\n\nRecords a \"not quite\" reaction on a non-phrase profile fact \u2014 a\ntaste-dimension reading or an interest noun. Companion to\n``dispute_dna_phrase``; lives in the \"What I know about you\"\ntransparency surface that disputes multiple facets from one screen.\n\n``kind`` discriminates the observation copy. ``value`` is the\nuser-visible string the user just disputed (e.g. ``\"Planner\"`` or\n``\"seafood\"``). ``label`` is optional context \u2014 for taste dims it\ncarries the dimension name (``\"energy\"`` / ``\"planning\"`` / \u2026) so\nthe observation reads naturally; ignored for interests."
       },
+      "PromoteToTripRequest": {
+        "properties": {
+          "force": {
+            "type": "boolean",
+            "title": "Force",
+            "description": "Override the readiness gate. By default we require at least one destination and a date window in the intent scratchpad; set force=True to promote anyway (e.g. for testing).",
+            "default": false
+          }
+        },
+        "type": "object",
+        "title": "PromoteToTripRequest",
+        "description": "Explicit promotion of a pre-trip conversation into a committed trip."
+      },
+      "PromoteToTripResponse": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "conversation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Conversation Id"
+          },
+          "place_resolution": {
+            "type": "string",
+            "title": "Place Resolution"
+          },
+          "members_copied": {
+            "type": "integer",
+            "title": "Members Copied"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "conversation_id",
+          "place_resolution",
+          "members_copied"
+        ],
+        "title": "PromoteToTripResponse"
+      },
       "ProposalDetail": {
         "properties": {
           "id": {
@@ -53072,158 +53810,6 @@
         "title": "SearchResultItem",
         "description": "A single search result \u2014 venue, experience, site, or accommodation."
       },
-      "SendMessageRequest": {
-        "properties": {
-          "user_id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "User Id"
-          },
-          "user_name": {
-            "type": "string",
-            "title": "User Name"
-          },
-          "user_role": {
-            "type": "string",
-            "title": "User Role",
-            "description": "'organizer' or 'member'",
-            "default": "member"
-          },
-          "message": {
-            "type": "string",
-            "maxLength": 10000,
-            "minLength": 1,
-            "title": "Message"
-          },
-          "modality": {
-            "type": "string",
-            "enum": [
-              "text",
-              "voice"
-            ],
-            "title": "Modality",
-            "description": "'text' or 'voice'",
-            "default": "text"
-          },
-          "trigger_agent": {
-            "type": "boolean",
-            "title": "Trigger Agent",
-            "description": "If False, persist the message without triggering an agent reply. Useful for user-to-user chat in group conversations.",
-            "default": true
-          },
-          "location": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/LocationReading"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Optional current GPS reading from the client. Stored on the conversation's metadata before the turn runs."
-          },
-          "images": {
-            "anyOf": [
-              {
-                "items": {
-                  "$ref": "#/components/schemas/MessageImage"
-                },
-                "type": "array",
-                "maxItems": 4
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Images",
-            "description": "Optional images to attach to this turn. Mirrors the trip-scoped chat endpoint so private Vesper chats do not silently drop photo context."
-          },
-          "metadata": {
-            "anyOf": [
-              {
-                "additionalProperties": true,
-                "type": "object"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Metadata",
-            "description": "Optional turn metadata from the client. Used for structured entry-point grounding such as metadata.conversation_seed."
-          }
-        },
-        "type": "object",
-        "required": [
-          "user_id",
-          "user_name",
-          "message"
-        ],
-        "title": "SendMessageRequest",
-        "description": "Send a message in a conversation."
-      },
-      "SendMessageResponse": {
-        "properties": {
-          "reply": {
-            "type": "string",
-            "title": "Reply"
-          },
-          "conversation_id": {
-            "type": "string",
-            "title": "Conversation Id"
-          },
-          "tool_calls_made": {
-            "items": {
-              "additionalProperties": true,
-              "type": "object"
-            },
-            "type": "array",
-            "title": "Tool Calls Made",
-            "default": []
-          },
-          "observations_made": {
-            "type": "integer",
-            "title": "Observations Made",
-            "default": 0
-          },
-          "latency_ms": {
-            "type": "number",
-            "title": "Latency Ms",
-            "default": 0
-          },
-          "input_tokens": {
-            "type": "integer",
-            "title": "Input Tokens",
-            "default": 0
-          },
-          "output_tokens": {
-            "type": "integer",
-            "title": "Output Tokens",
-            "default": 0
-          },
-          "iterations": {
-            "type": "integer",
-            "title": "Iterations",
-            "default": 0
-          },
-          "recommendation": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/RecommendationPayload"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "type": "object",
-        "required": [
-          "reply",
-          "conversation_id"
-        ],
-        "title": "SendMessageResponse",
-        "description": "Agent reply after processing a message."
-      },
       "SerializedActionReceipt": {
         "properties": {
           "id": {
@@ -53320,6 +53906,41 @@
         ],
         "title": "SerializedActionReceipt",
         "description": "What the API returns after channel-based filtering.\n\nprivate_influences are never present \u2014 only safe_label values are\nsurfaced via the public_reasons fallback mechanism."
+      },
+      "SessionInfoResponse": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "title": "Trip Id"
+          },
+          "conversation_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Conversation Id"
+          },
+          "turn_count": {
+            "type": "integer",
+            "title": "Turn Count"
+          },
+          "message_count": {
+            "type": "integer",
+            "title": "Message Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "turn_count",
+          "message_count"
+        ],
+        "title": "SessionInfoResponse",
+        "description": "Basic info about the current session."
       },
       "SetCadenceOverrideRequest": {
         "properties": {
@@ -60413,6 +61034,369 @@
           "interaction_id"
         ],
         "title": "_InteractionAck"
+      },
+      "backend__api__routes__chat__MessageImage": {
+        "properties": {
+          "base64": {
+            "type": "string",
+            "maxLength": 2500000,
+            "minLength": 1,
+            "title": "Base64",
+            "description": "Base64-encoded image bytes (no data: prefix)."
+          },
+          "mime_type": {
+            "type": "string",
+            "pattern": "^image/(jpeg|jpg|png|webp|gif)$",
+            "title": "Mime Type",
+            "description": "MIME type \u2014 Anthropic vision accepts JPEG, PNG, WebP, GIF."
+          }
+        },
+        "type": "object",
+        "required": [
+          "base64",
+          "mime_type"
+        ],
+        "title": "MessageImage",
+        "description": "Inline image attached to a chat message.\n\nThe Anthropic chat API accepts image content blocks in messages \u2014\nwe forward the base64 + mime type through the agent loop so the\nconcierge can see what the user is asking about (\"what is this\nmonument?\", \"is this dish vegetarian?\", scan a paper menu).\n\nSized for mobile: clients should compress to <=1MB base64 (typical\nJPEG at 1920px wide, quality 0.7 = 150-300KB). Larger images flow\nthrough the existing receipt-upload path instead.\n\nMirrors the receipt-OCR call shape (``backend/expenses/receipt_ocr.py``)\nso the same vision-capable code path serves both surfaces."
+      },
+      "backend__api__routes__chat__SendMessageRequest": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "user_name": {
+            "type": "string",
+            "title": "User Name"
+          },
+          "user_role": {
+            "type": "string",
+            "title": "User Role",
+            "description": "'organizer' or 'member'",
+            "default": "member"
+          },
+          "message": {
+            "type": "string",
+            "maxLength": 10000,
+            "minLength": 1,
+            "title": "Message"
+          },
+          "modality": {
+            "type": "string",
+            "enum": [
+              "text",
+              "voice"
+            ],
+            "title": "Modality",
+            "description": "'text' or 'voice'",
+            "default": "text"
+          },
+          "location": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LocationReading"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Optional current GPS reading from the client. Written to conversation metadata before the turn runs; read by the concierge's distance tool when from_origin='current_location'."
+          },
+          "images": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/backend__api__routes__chat__MessageImage"
+                },
+                "type": "array",
+                "maxItems": 4
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Images",
+            "description": "Optional images to attach to this message. The concierge answers questions about what's in the photo (translate a menu, identify a monument, scan an entry sign). Multiple images are concatenated in order. Limit 4 per message."
+          },
+          "metadata": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Metadata",
+            "description": "Optional structured per-turn metadata from the client (e.g. {'angle_id': 42} when entering from the angle detail screen). Persisted on the user message row and surfaced to the agent."
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "user_name",
+          "message"
+        ],
+        "title": "SendMessageRequest",
+        "description": "A single message from a user to the concierge."
+      },
+      "backend__api__routes__chat__SendMessageResponse": {
+        "properties": {
+          "reply": {
+            "type": "string",
+            "title": "Reply"
+          },
+          "conversation_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Conversation Id"
+          },
+          "tool_calls_made": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Tool Calls Made",
+            "default": []
+          },
+          "observations_made": {
+            "type": "integer",
+            "title": "Observations Made",
+            "default": 0
+          },
+          "latency_ms": {
+            "type": "number",
+            "title": "Latency Ms",
+            "default": 0
+          },
+          "input_tokens": {
+            "type": "integer",
+            "title": "Input Tokens",
+            "default": 0
+          },
+          "output_tokens": {
+            "type": "integer",
+            "title": "Output Tokens",
+            "default": 0
+          },
+          "iterations": {
+            "type": "integer",
+            "title": "Iterations",
+            "default": 0
+          },
+          "recommendation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RecommendationPayload"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "reply"
+        ],
+        "title": "SendMessageResponse",
+        "description": "What the concierge returns after processing a message."
+      },
+      "backend__api__routes__conversations__MessageImage": {
+        "properties": {
+          "base64": {
+            "type": "string",
+            "maxLength": 2500000,
+            "minLength": 1,
+            "title": "Base64",
+            "description": "Base64-encoded image bytes (no data: prefix)."
+          },
+          "mime_type": {
+            "type": "string",
+            "pattern": "^image/(jpeg|jpg|png|webp|gif)$",
+            "title": "Mime Type",
+            "description": "MIME type accepted by the concierge vision path."
+          }
+        },
+        "type": "object",
+        "required": [
+          "base64",
+          "mime_type"
+        ],
+        "title": "MessageImage",
+        "description": "Inline image attached to a conversation-scoped Vesper turn."
+      },
+      "backend__api__routes__conversations__SendMessageRequest": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "user_name": {
+            "type": "string",
+            "title": "User Name"
+          },
+          "user_role": {
+            "type": "string",
+            "title": "User Role",
+            "description": "'organizer' or 'member'",
+            "default": "member"
+          },
+          "message": {
+            "type": "string",
+            "maxLength": 10000,
+            "minLength": 1,
+            "title": "Message"
+          },
+          "modality": {
+            "type": "string",
+            "enum": [
+              "text",
+              "voice"
+            ],
+            "title": "Modality",
+            "description": "'text' or 'voice'",
+            "default": "text"
+          },
+          "trigger_agent": {
+            "type": "boolean",
+            "title": "Trigger Agent",
+            "description": "If False, persist the message without triggering an agent reply. Useful for user-to-user chat in group conversations.",
+            "default": true
+          },
+          "location": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LocationReading"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Optional current GPS reading from the client. Stored on the conversation's metadata before the turn runs."
+          },
+          "images": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/backend__api__routes__conversations__MessageImage"
+                },
+                "type": "array",
+                "maxItems": 4
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Images",
+            "description": "Optional images to attach to this turn. Mirrors the trip-scoped chat endpoint so private Vesper chats do not silently drop photo context."
+          },
+          "metadata": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Metadata",
+            "description": "Optional turn metadata from the client. Used for structured entry-point grounding such as metadata.conversation_seed."
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "user_name",
+          "message"
+        ],
+        "title": "SendMessageRequest",
+        "description": "Send a message in a conversation."
+      },
+      "backend__api__routes__conversations__SendMessageResponse": {
+        "properties": {
+          "reply": {
+            "type": "string",
+            "title": "Reply"
+          },
+          "conversation_id": {
+            "type": "string",
+            "title": "Conversation Id"
+          },
+          "tool_calls_made": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Tool Calls Made",
+            "default": []
+          },
+          "observations_made": {
+            "type": "integer",
+            "title": "Observations Made",
+            "default": 0
+          },
+          "latency_ms": {
+            "type": "number",
+            "title": "Latency Ms",
+            "default": 0
+          },
+          "input_tokens": {
+            "type": "integer",
+            "title": "Input Tokens",
+            "default": 0
+          },
+          "output_tokens": {
+            "type": "integer",
+            "title": "Output Tokens",
+            "default": 0
+          },
+          "iterations": {
+            "type": "integer",
+            "title": "Iterations",
+            "default": 0
+          },
+          "recommendation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RecommendationPayload"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "promoted_trip_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Promoted Trip Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "reply",
+          "conversation_id"
+        ],
+        "title": "SendMessageResponse",
+        "description": "Agent reply after processing a message."
       },
       "backend__core__models__composition__Provenance": {
         "properties": {
