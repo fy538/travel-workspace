@@ -22259,6 +22259,64 @@
         }
       }
     },
+    "/api/trips/{trip_id}/messages/events": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Stream Trip Messages",
+        "description": "Push durable group-history invalidations to authenticated members.\n\nFrames contain identifiers only. Clients refetch the canonical message\nendpoint, so sender attribution, visibility filtering, and card hydration\nstay centralized there. Missing Redis simply closes this enhancement; the\nclient continues polling.",
+        "operationId": "stream_trip_messages_api_trips__trip_id__messages_events_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/group-memory": {
       "get": {
         "tags": [
