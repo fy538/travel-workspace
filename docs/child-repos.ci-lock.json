@@ -1,5 +1,5 @@
 {
-  "travel-agent": "main",
-  "travel-app": "main",
-  "_comment": "Pins sibling repos for workspace reliability CI. Override branch names during coordinated PRs; reset to main after merge."
+  "travel-agent": "188971a14e262fd22e73bc3eb5a7da4973159764",
+  "travel-app": "f6e211e0c55b843119500cca16fd457b4e0f55d3",
+  "_comment": "Immutable coordinated child SHAs for workspace reliability CI. Bump both after child changes land."
 }
