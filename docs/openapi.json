@@ -5313,6 +5313,58 @@
         }
       }
     },
+    "/metrics/discover": {
+      "get": {
+        "tags": [
+          "metrics"
+        ],
+        "summary": "Get Discover Metrics",
+        "description": "Bounded live health window for the Discover composition path.",
+        "operationId": "get_discover_metrics_metrics_discover_get",
+        "parameters": [
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Get Discover Metrics Metrics Discover Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/metrics/tokens": {
       "get": {
         "tags": [
@@ -5702,6 +5754,76 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/BookingDecisionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/booking/holds/{offer_id}": {
+      "get": {
+        "tags": [
+          "booking"
+        ],
+        "summary": "Get Booking Hold Endpoint",
+        "description": "Read one provider hold for exact post-write reconciliation.",
+        "operationId": "get_booking_hold_endpoint_api_trips__trip_id__booking_holds__offer_id__get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "offer_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Offer Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingOffer"
                 }
               }
             }
@@ -20038,6 +20160,68 @@
       }
     },
     "/api/trips/{trip_id}/venue-commitments": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "List Trip Venue Commitments Endpoint",
+        "description": "Read back this member's durable Pick commitments for reconciliation.",
+        "operationId": "list_trip_venue_commitments_endpoint_api_trips__trip_id__venue_commitments_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/VenueCommitmentItem"
+                  },
+                  "title": "Response List Trip Venue Commitments Endpoint Api Trips  Trip Id  Venue Commitments Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
       "post": {
         "tags": [
           "trips"
@@ -23543,6 +23727,57 @@
         }
       }
     },
+    "/api/me/home-bootstrap": {
+      "get": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "Get Home Bootstrap",
+        "description": "Return the minimum authoritative state needed by global Home.\n\nThe component reads retain their standalone routes for refreshes and\nmutations. This endpoint owns only the first authenticated hydration.",
+        "operationId": "get_home_bootstrap_api_me_home_bootstrap_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HomeBootstrapResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/users/{user_id}/phone": {
       "post": {
         "tags": [
@@ -24703,7 +24938,7 @@
           "users"
         ],
         "summary": "Get For You",
-        "description": "Return a personalized list of venue recommendations.\n\nScoring pipeline:\n  1. Collect published angles, filter excluded IDs, take top 30 by distinctiveness\n  2. LLM personalization rerank (Haiku, angle_rank.py)\n  3. Engagement stats from angle_user_engagement materialized view\n  4. LLM cold prior for angles with < MIN_IMPRESSIONS_FOR_WARM impressions\n  5. Three-way blend: 40% LLM + 40% engagement + 20% editorial\n  6. Lens-diversity injection (max 2 consecutive same-lens)\n  7. Return top 8\n\nEvents at step 8 use taste-DNA fan-out (experience_fan_out_search) ranked\nby Personal Memory; fall back to recency ordering when fan-out returns empty.\n\n``exclude_angle_ids`` \u2014 filtered before personalization to skip angles\nalready shown this session.",
+        "description": "Full For You ranking, including bounded LLM personalization upgrades.",
         "operationId": "get_for_you_api_users__user_id__for_you_get",
         "parameters": [
           {
@@ -28510,6 +28745,28 @@
               }
             ]
           },
+          "secondary_dna_line": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AtlasHomeDnaLine"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "saved_places_preview": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasHomeSavedPlace"
+            },
+            "type": "array",
+            "title": "Saved Places Preview"
+          },
+          "saved_place_count": {
+            "type": "integer",
+            "title": "Saved Place Count",
+            "default": 0
+          },
           "rooms": {
             "$ref": "#/components/schemas/AtlasHomeRooms"
           },
@@ -28772,6 +29029,92 @@
           "postcards"
         ],
         "title": "AtlasHomeRooms"
+      },
+      "AtlasHomeSavedPlace": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          },
+          "venue_type": {
+            "type": "string",
+            "title": "Venue Type"
+          },
+          "city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "City"
+          },
+          "neighborhood": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Neighborhood"
+          },
+          "relationship": {
+            "type": "string",
+            "enum": [
+              "saved",
+              "want",
+              "been",
+              "loved",
+              "noted"
+            ],
+            "title": "Relationship",
+            "default": "saved"
+          },
+          "editorial_read": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Editorial Read"
+          },
+          "provenance": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provenance"
+          },
+          "saved_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Saved At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "display_name",
+          "venue_type",
+          "saved_at"
+        ],
+        "title": "AtlasHomeSavedPlace",
+        "description": "One display-ready, explicitly saved venue in the Home preview."
       },
       "AtlasHomeShelf": {
         "properties": {
@@ -33548,10 +33891,8 @@
                 "enum": [
                   "surface",
                   "decide",
-                  "transact",
                   "explain",
-                  "keep",
-                  "trust"
+                  "keep"
                 ]
               },
               {
@@ -35374,7 +35715,7 @@
           "primary_label": {
             "type": "string",
             "title": "Primary Label",
-            "default": "Take me there"
+            "default": "Directions"
           },
           "secondary_label": {
             "anyOf": [
@@ -35699,7 +36040,7 @@
           "layout"
         ],
         "title": "DeckStructured",
-        "description": "Discriminated structured payload for rich Deck card faces.\n\nCards without this field render the generic prose face. Cards with it\nswitch on ``layout`` to render the appropriate face component. All\ndisplay values are pre-formatted by the backend (e.g. \"\u20ac128\") so the\nFE never re-derives money or colour hex values.\n\nORPHANS (canon 146 \u00a703b / deck fullstack D3 \u2014 formally parked, not wired):\n* ``compare`` \u2014 FE ``DeckCompareFace`` exists; no producer. Needs D5\n  stay-candidate / two-option vote substrate.\n* ``flight`` \u2014 FE ``DeckFlightFace`` exists; no producer. Needs booking\n  schedule-change data (G2\u2013G4, currently gated dark). Readiness may still\n  list a transport row; that is not a Flight face."
+        "description": "Discriminated structured payload for rich Deck card faces.\n\nCards without this field render the generic prose face. Cards with it\nswitch on ``layout`` to render the appropriate face component. All\ndisplay values are pre-formatted by the backend (e.g. \"\u20ac128\") so the\nFE never re-derives money or colour hex values.\n\nSupported layouts are deliberately limited to the active pre-launch\nproducers: vote, settle, and readiness. New layouts must add backend\nsubstrate, a registered renderer, and contract coverage together."
       },
       "DecommitResponse": {
         "properties": {
@@ -36301,6 +36642,20 @@
             ],
             "title": "Eyebrow"
           },
+          "provenance": {
+            "$ref": "#/components/schemas/DiscoverFeedProvenance"
+          },
+          "personalization_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Personalization Reason"
+          },
           "angle_id": {
             "anyOf": [
               {
@@ -36375,6 +36730,56 @@
             "type": "string",
             "format": "date-time",
             "title": "Generated At"
+          },
+          "personalization_status": {
+            "type": "string",
+            "enum": [
+              "deterministic",
+              "upgraded"
+            ],
+            "title": "Personalization Status",
+            "default": "deterministic"
+          },
+          "degraded_sources": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "for_you",
+                "editorial",
+                "friends"
+              ]
+            },
+            "type": "array",
+            "title": "Degraded Sources"
+          },
+          "composition_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Composition Id"
+          },
+          "ranking_version": {
+            "type": "string",
+            "title": "Ranking Version",
+            "default": "deterministic-v1"
+          },
+          "source_counts": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "propertyNames": {
+              "enum": [
+                "for_you",
+                "editorial",
+                "friends"
+              ]
+            },
+            "type": "object",
+            "title": "Source Counts"
+          },
+          "issue_key": {
+            "type": "string",
+            "title": "Issue Key",
+            "default": ""
           }
         },
         "type": "object",
@@ -36385,6 +36790,75 @@
           "generated_at"
         ],
         "title": "DiscoverFeedMeta"
+      },
+      "DiscoverFeedProvenance": {
+        "properties": {
+          "author_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Author Id"
+          },
+          "author_type": {
+            "type": "string",
+            "enum": [
+              "vesper",
+              "traveler",
+              "editorial"
+            ],
+            "title": "Author Type"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          },
+          "avatar_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Avatar Url"
+          },
+          "profile_user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile User Id"
+          },
+          "trust_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trust Reason"
+          }
+        },
+        "type": "object",
+        "required": [
+          "author_type",
+          "display_name"
+        ],
+        "title": "DiscoverFeedProvenance",
+        "description": "Display-safe authorship and trust context for a feed item."
       },
       "DiscoverFeedResponse": {
         "properties": {
@@ -39856,6 +40330,17 @@
             "type": "string",
             "title": "Display Name"
           },
+          "avatar_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Avatar Url"
+          },
           "event_type": {
             "type": "string",
             "title": "Event Type"
@@ -42203,6 +42688,53 @@
         ],
         "title": "HomeAnchor",
         "description": "Single always-present orientation card at the top of the feed."
+      },
+      "HomeBootstrapResponse": {
+        "properties": {
+          "profile": {
+            "$ref": "#/components/schemas/UserMeResponse"
+          },
+          "trips": {
+            "items": {
+              "$ref": "#/components/schemas/Trip"
+            },
+            "type": "array",
+            "title": "Trips"
+          },
+          "member_board": {
+            "$ref": "#/components/schemas/TripMemberBoardResponse"
+          },
+          "open_proposals": {
+            "items": {
+              "$ref": "#/components/schemas/UserOpenProposalSummary"
+            },
+            "type": "array",
+            "title": "Open Proposals"
+          },
+          "timings": {
+            "$ref": "#/components/schemas/HomeBootstrapTimings"
+          }
+        },
+        "type": "object",
+        "required": [
+          "profile",
+          "timings"
+        ],
+        "title": "HomeBootstrapResponse"
+      },
+      "HomeBootstrapTimings": {
+        "properties": {
+          "total_ms": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Total Ms"
+          }
+        },
+        "type": "object",
+        "required": [
+          "total_ms"
+        ],
+        "title": "HomeBootstrapTimings"
       },
       "HomeCard": {
         "properties": {
@@ -57383,6 +57915,14 @@
               }
             ],
             "title": "User Name"
+          },
+          "activity_events": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Activity Events"
           }
         },
         "type": "object",
@@ -59847,6 +60387,48 @@
           "venue_id"
         ],
         "title": "VenueCommitResponse"
+      },
+      "VenueCommitmentItem": {
+        "properties": {
+          "commitment_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Commitment Id"
+          },
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "venue_id": {
+            "type": "integer",
+            "title": "Venue Id"
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "commitment_id",
+          "trip_id",
+          "venue_id",
+          "created_at"
+        ],
+        "title": "VenueCommitmentItem"
       },
       "VenueDetailResponse": {
         "properties": {
