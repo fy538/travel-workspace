@@ -2694,74 +2694,6 @@
         }
       }
     },
-    "/api/atlas/map": {
-      "get": {
-        "tags": [
-          "atlas"
-        ],
-        "summary": "Get Atlas Map",
-        "description": "Symbolic Atlas map read model.\n\nThis deliberately returns normalized canvas positions and provenance,\nnot raw mapbox coordinates. The Atlas map is a memory/world artifact\nsurface; literal geography remains the job of trip maps.",
-        "operationId": "get_atlas_map_api_atlas_map_get",
-        "parameters": [
-          {
-            "name": "year",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "integer",
-                  "maximum": 2100,
-                  "minimum": 1900
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Year"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AtlasMapReadModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/atlas/receipt": {
       "get": {
         "tags": [
@@ -5007,65 +4939,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AtlasTimelineRemovedReadModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/atlas/almanac": {
-      "get": {
-        "tags": [
-          "atlas"
-        ],
-        "summary": "Get Atlas Almanac",
-        "description": "Almanac view \u2014 entries grouped by month for the given year.\n\nSuitable for the Almanac screen that replaces the frontend-derived\n``buildAtlasAlmanacEntries`` composition.  Entries are bucketed into\nmonth groups, sorted newest-first within each group.  Undated entries\n(trips with no start_date) are omitted from the grouping.\n\nThe ``empty_state`` field is populated when there are no groups so the\nfrontend can render a warm zero-state without conditional logic.",
-        "operationId": "get_atlas_almanac_api_atlas_almanac_get",
-        "parameters": [
-          {
-            "name": "year",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Year"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AtlasAlmanacReadModel"
                 }
               }
             }
@@ -27683,109 +27556,6 @@
         "title": "AtlasAction",
         "description": "Small navigation/action contract for Atlas read models."
       },
-      "AtlasAlmanacReadModel": {
-        "properties": {
-          "generated_at": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Generated At"
-          },
-          "summary": {
-            "$ref": "#/components/schemas/AtlasTimelineSummary"
-          },
-          "year_summary": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/AtlasAlmanacSummary"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "groups": {
-            "items": {
-              "$ref": "#/components/schemas/AtlasTimelineGroup"
-            },
-            "type": "array",
-            "title": "Groups"
-          },
-          "empty_state": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/AtlasMapEmptyState"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "truncated": {
-            "type": "boolean",
-            "title": "Truncated",
-            "default": false
-          }
-        },
-        "type": "object",
-        "required": [
-          "generated_at",
-          "summary"
-        ],
-        "title": "AtlasAlmanacReadModel",
-        "description": "Response for ``GET /api/atlas/almanac``.\n\nEntries are pre-grouped into month buckets and sorted newest-first.\nAn ``empty_state`` is included when there are no groups so the\nfrontend can render a warm zero-state without conditional logic."
-      },
-      "AtlasAlmanacSummary": {
-        "properties": {
-          "title": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Title"
-          },
-          "body": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Body"
-          },
-          "generation_status": {
-            "type": "string",
-            "enum": [
-              "pending",
-              "generating",
-              "ready",
-              "failed"
-            ],
-            "title": "Generation Status",
-            "default": "pending"
-          },
-          "generated_at": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Generated At"
-          }
-        },
-        "type": "object",
-        "title": "AtlasAlmanacSummary",
-        "description": "Generated year or month almanac copy \u2014 optional enrichment over factual entries."
-      },
       "AtlasArtifact": {
         "properties": {
           "id": {
@@ -28632,6 +28402,34 @@
         "title": "AtlasCandidatesResponse",
         "description": "Response for ``POST /api/atlas/candidates`` \u2014 persisted candidates with ids."
       },
+      "AtlasEmptyState": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "body": {
+            "type": "string",
+            "title": "Body"
+          },
+          "action": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AtlasAction"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "body"
+        ],
+        "title": "AtlasEmptyState"
+      },
       "AtlasFacetSuggestion": {
         "properties": {
           "dimension": {
@@ -29382,324 +29180,6 @@
         "title": "AtlasLovedPlace",
         "description": "A place this traveler has genuinely loved across trips \u2014 the durable\n\"you loved {name} in {city}\" recall, read from traveler_place_affinity.\n\nThis is memory, not pending work: no CTA, no candidate, nothing to do. The\nAtlas home renders it as a quiet recall strip alongside On-This-Day. Only\nweight\u2265LOVED rows reach here, so \"loved\" is honest, never an inflated single\nsave. Best-effort and never load-bearing \u2014 an empty list just hides the\nstrip rather than manufacturing personalization."
       },
-      "AtlasMapArc": {
-        "properties": {
-          "id": {
-            "type": "string",
-            "title": "Id"
-          },
-          "from_node_id": {
-            "type": "string",
-            "title": "From Node Id"
-          },
-          "to_node_id": {
-            "type": "string",
-            "title": "To Node Id"
-          },
-          "kind": {
-            "type": "string",
-            "enum": [
-              "chronology",
-              "repeat",
-              "theme"
-            ],
-            "title": "Kind"
-          },
-          "confidence": {
-            "type": "string",
-            "enum": [
-              "high",
-              "medium",
-              "low"
-            ],
-            "title": "Confidence",
-            "default": "medium"
-          }
-        },
-        "type": "object",
-        "required": [
-          "id",
-          "from_node_id",
-          "to_node_id",
-          "kind"
-        ],
-        "title": "AtlasMapArc"
-      },
-      "AtlasMapEmptyState": {
-        "properties": {
-          "title": {
-            "type": "string",
-            "title": "Title"
-          },
-          "body": {
-            "type": "string",
-            "title": "Body"
-          },
-          "action": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/AtlasAction"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "type": "object",
-        "required": [
-          "title",
-          "body"
-        ],
-        "title": "AtlasMapEmptyState"
-      },
-      "AtlasMapMonthMark": {
-        "properties": {
-          "month": {
-            "type": "integer",
-            "title": "Month"
-          },
-          "node_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Node Id"
-          },
-          "label": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Label"
-          }
-        },
-        "type": "object",
-        "required": [
-          "month"
-        ],
-        "title": "AtlasMapMonthMark"
-      },
-      "AtlasMapNode": {
-        "properties": {
-          "id": {
-            "type": "string",
-            "title": "Id"
-          },
-          "kind": {
-            "type": "string",
-            "enum": [
-              "artifact",
-              "candidate",
-              "trip",
-              "saved_place",
-              "cluster"
-            ],
-            "title": "Kind"
-          },
-          "label": {
-            "type": "string",
-            "title": "Label"
-          },
-          "sublabel": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Sublabel"
-          },
-          "detail": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Detail"
-          },
-          "approximate_place_label": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Approximate Place Label"
-          },
-          "month": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Month"
-          },
-          "year": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Year"
-          },
-          "weight": {
-            "type": "number",
-            "title": "Weight",
-            "default": 1.0
-          },
-          "x": {
-            "type": "number",
-            "title": "X"
-          },
-          "y": {
-            "type": "number",
-            "title": "Y"
-          },
-          "confidence": {
-            "type": "string",
-            "enum": [
-              "high",
-              "medium",
-              "low"
-            ],
-            "title": "Confidence",
-            "default": "medium"
-          },
-          "provenance": {
-            "items": {
-              "$ref": "#/components/schemas/AtlasProvenanceRef"
-            },
-            "type": "array",
-            "title": "Provenance"
-          },
-          "action": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/AtlasAction"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "type": "object",
-        "required": [
-          "id",
-          "kind",
-          "label",
-          "x",
-          "y"
-        ],
-        "title": "AtlasMapNode"
-      },
-      "AtlasMapReadModel": {
-        "properties": {
-          "generated_at": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Generated At"
-          },
-          "summary": {
-            "$ref": "#/components/schemas/AtlasMapSummary"
-          },
-          "nodes": {
-            "items": {
-              "$ref": "#/components/schemas/AtlasMapNode"
-            },
-            "type": "array",
-            "title": "Nodes"
-          },
-          "arcs": {
-            "items": {
-              "$ref": "#/components/schemas/AtlasMapArc"
-            },
-            "type": "array",
-            "title": "Arcs"
-          },
-          "month_marks": {
-            "items": {
-              "$ref": "#/components/schemas/AtlasMapMonthMark"
-            },
-            "type": "array",
-            "title": "Month Marks"
-          },
-          "privacy_note": {
-            "type": "string",
-            "title": "Privacy Note"
-          },
-          "empty_state": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/AtlasMapEmptyState"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "type": "object",
-        "required": [
-          "generated_at",
-          "summary",
-          "privacy_note"
-        ],
-        "title": "AtlasMapReadModel"
-      },
-      "AtlasMapSummary": {
-        "properties": {
-          "place_count": {
-            "type": "integer",
-            "title": "Place Count",
-            "default": 0
-          },
-          "region_count": {
-            "type": "integer",
-            "title": "Region Count",
-            "default": 0
-          },
-          "artifact_count": {
-            "type": "integer",
-            "title": "Artifact Count",
-            "default": 0
-          },
-          "draft_count": {
-            "type": "integer",
-            "title": "Draft Count",
-            "default": 0
-          },
-          "planned_trip_count": {
-            "type": "integer",
-            "title": "Planned Trip Count",
-            "default": 0
-          }
-        },
-        "type": "object",
-        "title": "AtlasMapSummary"
-      },
       "AtlasMomentStateUpdateResponse": {
         "properties": {
           "entity_id": {
@@ -29854,7 +29334,7 @@
           "empty_state": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/AtlasMapEmptyState"
+                "$ref": "#/components/schemas/AtlasEmptyState"
               },
               {
                 "type": "null"
@@ -30634,63 +30114,6 @@
         "title": "AtlasTimelineEntryUpdate",
         "description": "PATCH body for user display overrides on a persisted timeline row."
       },
-      "AtlasTimelineGroup": {
-        "properties": {
-          "key": {
-            "type": "string",
-            "title": "Key"
-          },
-          "year": {
-            "type": "integer",
-            "title": "Year"
-          },
-          "month": {
-            "type": "integer",
-            "title": "Month"
-          },
-          "label": {
-            "type": "string",
-            "title": "Label"
-          },
-          "month_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Month Name"
-          },
-          "summary": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/AtlasAlmanacSummary"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "entries": {
-            "items": {
-              "$ref": "#/components/schemas/AtlasTimelineEntry"
-            },
-            "type": "array",
-            "title": "Entries"
-          }
-        },
-        "type": "object",
-        "required": [
-          "key",
-          "year",
-          "month",
-          "label"
-        ],
-        "title": "AtlasTimelineGroup",
-        "description": "A single month bucket inside the Almanac read model."
-      },
       "AtlasTimelineGroupedReadModel": {
         "properties": {
           "generated_at": {
@@ -30730,7 +30153,7 @@
           "group_by"
         ],
         "title": "AtlasTimelineGroupedReadModel",
-        "description": "Response for ``GET /api/atlas/timeline/summary`` \u2014 Long View's\nyear-chapter and whole-corpus-places counts. Aggregates the same\n``atlas_timeline_entries`` projection the timeline/almanac endpoints\nalready read; not a new pipeline."
+        "description": "Response for ``GET /api/atlas/timeline/summary`` \u2014 Long View's\nyear-chapter and whole-corpus-places counts. Aggregates the same\n``atlas_timeline_entries`` projection the timeline endpoint\nalready read; not a new pipeline."
       },
       "AtlasTimelineReadModel": {
         "properties": {
