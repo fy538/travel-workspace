@@ -4805,7 +4805,7 @@
           "atlas"
         ],
         "summary": "Get Atlas Timeline Summary",
-        "description": "Long View's index counts \u2014 the same ``atlas_timeline_entries``\nprojection the timeline/almanac endpoints read, grouped by year (Time\nmode's year chapters) or by normalized city (Places mode's whole-corpus\nnode counts). Not the taste/composition engine \u2014 this indexes memories,\nit doesn't compose a reading from place-affinity signals.",
+        "description": "Long View's index counts \u2014 the same ``atlas_timeline_entries``\nprojection the timeline endpoint reads, grouped by year (Time\nmode's year chapters) or by normalized city (Places mode's whole-corpus\nnode counts). Not the taste/composition engine \u2014 this indexes memories,\nit doesn't compose a reading from place-affinity signals.",
         "operationId": "get_atlas_timeline_summary_api_atlas_timeline_summary_get",
         "parameters": [
           {
@@ -37129,6 +37129,16 @@
           "phrase": {
             "type": "string",
             "title": "Phrase"
+          },
+          "user_state": {
+            "type": "string",
+            "enum": [
+              "active",
+              "disputed",
+              "forgotten"
+            ],
+            "title": "User State",
+            "default": "disputed"
           }
         },
         "type": "object",
@@ -50547,6 +50557,16 @@
               }
             ],
             "title": "Label"
+          },
+          "user_state": {
+            "type": "string",
+            "enum": [
+              "active",
+              "disputed",
+              "forgotten"
+            ],
+            "title": "User State",
+            "default": "disputed"
           }
         },
         "type": "object",
