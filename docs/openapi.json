@@ -14768,6 +14768,180 @@
         }
       }
     },
+    "/api/trips/{trip_id}/itinerary/operations/history": {
+      "get": {
+        "tags": [
+          "itinerary-operations"
+        ],
+        "summary": "Get Operation History",
+        "description": "Project stable trip or stop history from the canonical operation ledger.",
+        "operationId": "get_operation_history_api_trips__trip_id__itinerary_operations_history_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "subject_lineage_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Subject Lineage Id"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItineraryHistoryPage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/itinerary/operations/history/seen": {
+      "post": {
+        "tags": [
+          "itinerary-operations"
+        ],
+        "summary": "Mark History Seen",
+        "description": "Advance a viewer cursor without changing Needs-attention truth.",
+        "operationId": "mark_history_seen_api_trips__trip_id__itinerary_operations_history_seen_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItineraryHistorySeenRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItineraryHistorySeenResult"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/itinerary/operations/proposals": {
       "post": {
         "tags": [
@@ -14821,6 +14995,156 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ItineraryOperationProposal"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/itinerary/operations/detail/{operation_id}": {
+      "get": {
+        "tags": [
+          "itinerary-operations"
+        ],
+        "summary": "Get Operation Detail Route",
+        "description": "Return the canonical viewer-scoped detail for one ledger identity.",
+        "operationId": "get_operation_detail_route_api_trips__trip_id__itinerary_operations_detail__operation_id__get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "operation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Operation Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItineraryOperationDetail"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/itinerary/operations/detail/{operation_id}/undo": {
+      "post": {
+        "tags": [
+          "itinerary-operations"
+        ],
+        "summary": "Undo Operation Route",
+        "description": "Execute only an exact, currently-authorized typed inverse.",
+        "operationId": "undo_operation_route_api_trips__trip_id__itinerary_operations_detail__operation_id__undo_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "operation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Operation Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItineraryOperationUndoRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItineraryOperationCommitResult"
                 }
               }
             }
@@ -45763,6 +46087,122 @@
         ],
         "title": "ItineraryEditLog"
       },
+      "ItineraryHistoryItem": {
+        "properties": {
+          "operation": {
+            "$ref": "#/components/schemas/ItineraryOperationDetail"
+          },
+          "unseen": {
+            "type": "boolean",
+            "title": "Unseen"
+          },
+          "needs_attention": {
+            "type": "boolean",
+            "title": "Needs Attention"
+          },
+          "attention_reason_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attention Reason Code"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "operation",
+          "unseen",
+          "needs_attention"
+        ],
+        "title": "ItineraryHistoryItem"
+      },
+      "ItineraryHistoryPage": {
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "const": "ir09-v1",
+            "title": "Contract Version",
+            "default": "ir09-v1"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/ItineraryHistoryItem"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "title": "ItineraryHistoryPage"
+      },
+      "ItineraryHistorySeenRequest": {
+        "properties": {
+          "last_seen_operation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Last Seen Operation Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "last_seen_operation_id"
+        ],
+        "title": "ItineraryHistorySeenRequest"
+      },
+      "ItineraryHistorySeenResult": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "last_seen_operation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Last Seen Operation Id"
+          },
+          "seen_through_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Seen Through At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "trip_id",
+          "user_id",
+          "last_seen_operation_id",
+          "seen_through_at"
+        ],
+        "title": "ItineraryHistorySeenResult"
+      },
       "ItineraryOperationCommitError": {
         "properties": {
           "detail": {
@@ -45958,6 +46398,151 @@
         ],
         "title": "ItineraryOperationConfirmation",
         "description": "User evidence bound to the exact preview being committed."
+      },
+      "ItineraryOperationDelta": {
+        "properties": {
+          "before": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Before"
+          },
+          "after": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "After"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "ItineraryOperationDelta"
+      },
+      "ItineraryOperationDetail": {
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "const": "ir09-v1",
+            "title": "Contract Version",
+            "default": "ir09-v1"
+          },
+          "operation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Operation Id"
+          },
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "normalized_operation": {
+            "$ref": "#/components/schemas/NormalizedItineraryOperation"
+          },
+          "state": {
+            "type": "string",
+            "title": "State"
+          },
+          "reason_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason Code"
+          },
+          "occurred_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Occurred At"
+          },
+          "delta": {
+            "$ref": "#/components/schemas/ItineraryOperationDelta"
+          },
+          "receipt": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ItineraryOperationReceipt"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "committed_revisions": {
+            "items": {
+              "$ref": "#/components/schemas/ItineraryCommittedRevision"
+            },
+            "type": "array",
+            "title": "Committed Revisions"
+          },
+          "provider_transitions": {
+            "items": {
+              "$ref": "#/components/schemas/ItineraryProviderTransitionProjection"
+            },
+            "type": "array",
+            "title": "Provider Transitions"
+          },
+          "recovery": {
+            "$ref": "#/components/schemas/OperationRecoveryCapability"
+          },
+          "inverse_of_operation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Inverse Of Operation Id"
+          },
+          "private_context_labels": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Private Context Labels"
+          },
+          "tombstone_block_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tombstone Block Id"
+          },
+          "successor_block_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Successor Block Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "operation_id",
+          "trip_id",
+          "normalized_operation",
+          "state",
+          "occurred_at",
+          "delta",
+          "recovery"
+        ],
+        "title": "ItineraryOperationDetail"
       },
       "ItineraryOperationPreview": {
         "properties": {
@@ -46473,6 +47058,22 @@
         ],
         "title": "ItineraryOperationType"
       },
+      "ItineraryOperationUndoRequest": {
+        "properties": {
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "idempotency_key"
+        ],
+        "title": "ItineraryOperationUndoRequest"
+      },
       "ItineraryPlanEffectSummary": {
         "properties": {
           "summary_code": {
@@ -46572,6 +47173,60 @@
           "provider_action_requested"
         ],
         "title": "ItineraryProviderConsequence"
+      },
+      "ItineraryProviderTransitionProjection": {
+        "properties": {
+          "dependency_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Dependency Id"
+          },
+          "sequence": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Sequence"
+          },
+          "from_state": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "From State"
+          },
+          "to_state": {
+            "type": "string",
+            "title": "To State"
+          },
+          "reason_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason Code"
+          },
+          "occurred_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Occurred At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "dependency_id",
+          "sequence",
+          "to_state",
+          "occurred_at"
+        ],
+        "title": "ItineraryProviderTransitionProjection"
       },
       "KeptBoard": {
         "properties": {
@@ -50162,6 +50817,44 @@
           "day_id"
         ],
         "title": "OperationPlacement"
+      },
+      "OperationRecoveryCapability": {
+        "properties": {
+          "recovery": {
+            "$ref": "#/components/schemas/PredictedRecovery"
+          },
+          "can_execute": {
+            "type": "boolean",
+            "title": "Can Execute"
+          },
+          "reason_code": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Reason Code"
+          },
+          "inverse_operation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Inverse Operation Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "recovery",
+          "can_execute",
+          "reason_code"
+        ],
+        "title": "OperationRecoveryCapability",
+        "description": "Current recovery truth, recomputed from live facts on every read."
       },
       "OperationTarget": {
         "properties": {
