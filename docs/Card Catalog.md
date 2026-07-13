@@ -1,317 +1,207 @@
-# Card Catalog — Vesper's structured-message vocabulary
+# Card Catalog — Vesper’s structured surfaces
 
-**Status:** living source of truth. Last full audit: 2026-05-24.
-**Scope:** cross-repo. Cards are the agent's primary *non-text* way of talking to
-the user — the thing that makes the concierge feel alive instead of a chatbot.
-This file is the single place that ties together, for every card:
-purpose · the three-layer contract · data shape · who emits it · design status ·
-prompt status · known risks.
+**Status:** current cross-repo source of truth
 
-> Why this exists: cards grew organically across ~13 types, ~10 backend creators,
-> and 11 frontend components with no shared registry. Adding one means touching
-> ~5 spots in two repos. This catalog is the checklist + the contract so new
-> cards land consistently and the existing ones can be brought up to one bar.
+**Last verified:** 2026-07-12
 
----
+**Implementations:** `travel-app` + `travel-agent`
 
-## 1. The card contract (three layers)
+Cards are Vesper’s structured vocabulary. They are not decoration and they are
+not Markdown containers: each card must either carry a decision, a durable
+receipt, a useful artifact, or a typed destination.
 
-Every card threads the same pipeline. A card is **not** a first-class entity —
-it's a `messages` row whose `message_type` (+ optional `metadata.card_type`
-discriminator) the frontend recognizes and renders as rich UI.
+## 1. Two card systems
 
-```
-backend creator  (Travel Agent/backend/concierge/structured_messages.py)
-  └─ writes a messages row: message_type + metadata{ card_type, …fields }
-       │
-       ▼
-messageMapping.ts  (Travel App/utils/chat/messageMapping.ts)
-  └─ message_type (+ metadata.card_type gate) → MessageAttachment.type
-       │
-       ▼
-AttachmentRenderer.tsx  (Travel App/components/chat/AttachmentRenderer.tsx)
-  └─ attachment.type → component
+### Vesper Home and Deck
+
+The Home feed is assembled from real world state by
+`backend/home/concierge_feed/`. A warm glance appears as the Home hero or rail;
+only cards with `focus` or `structured` substrate may enter the dark Deck.
+
+Pipeline:
+
+```text
+Home producers → ConciergeHomeCard → useConciergeHomeState parser
+  → Home hero / rail → Deck face → typed action contract
 ```
 
-A card is *agent-driven* when a concierge **tool** the model can call results in
-the row being written; *system* when a cron / trigger / route writes it.
+Live Deck faces:
 
-### message_type CHECK constraint (authoritative)
+| Substrate | Face | Purpose | Primary completion |
+|---|---|---|---|
+| `focus.layout=pick` | `DeckPickFace` | Choose one grounded venue | confirmed mutation |
+| `focus.layout=call` | `DeckCallFace` | Booking, conflict, or reschedule call | confirmed mutation or seeded chat |
+| `focus.layout=brief` | `DeckBriefFace` | Review a drafted plan | navigation / seeded chat |
+| `focus.layout=near_you` | `DeckNearYouFace` | Nearby shortlist with Vesper’s read | seeded chat |
+| `structured.layout=vote` | `DeckStructuredFace` | Approve or decline a proposal | confirmed mutation |
+| `structured.layout=settle` | `DeckStructuredFace` | Close owed expense shares | confirmed mutation |
+| `structured.layout=readiness` | `DeckStructuredFace` | Pre-departure open-loop check | navigation |
 
-`Travel Agent/backend/core/db/_tables/conversations.py:221` (squashed into
-`alembic/versions/73a1ca90a2ef_initial_schema.py`). The **only** allowed values:
+`compare` and `flight` remain deliberately dormant: components may exist, but
+no trustworthy producer emits their substrate. They must not be dispatched
+until a real data contract exists.
 
+Home data is deterministic. Small schema-enforced LLM calls may add grounded
+judgment (`pick_judgment.py`, `deck_take.py`); failure keeps deterministic copy.
+
+### Structured cards in chat
+
+Chat cards are persisted message rows:
+
+```text
+tool / system producer
+  → message_type + metadata.card_type
+  → utils/chat/messageMapping.ts
+  → MessageAttachment
+  → components/chat/AttachmentRenderer.tsx
 ```
-text · tool_result · reaction_card · vote_widget · notification ·
-system · venue_card · change_applied · narration
+
+The database `message_type` CHECK is authoritative. New visual variants should
+normally reuse an allowed message type plus `metadata.card_type`; add a database
+message type only when storage or aggregation semantics genuinely differ.
+
+## 2. Current chat registry
+
+This table mirrors the `MessageAttachment` union and `AttachmentRenderer`
+registry. A row absent here is not a supported chat card.
+
+| Attachment | Component | Persistence discriminator | Primary producer | Interaction |
+|---|---|---|---|---|
+| `venue_card` | `VenueCard` | `venue_card` | `post_venue_card` | venue detail when ID exists |
+| `reaction_card` | `ReactionCard` | `reaction_card/reaction` | `present_options` | optimistic reaction + rollback |
+| `trip_shapes` | `TripShapes` | `reaction_card/trip_shapes` | `generate_trip_shapes` | choose shape, continue planning |
+| `vote_widget` | `VoteWidgetCard` / `PreviewEditCard` | `vote_widget` | `propose_change` | group vote or solo approval gate |
+| `notification_card` | `NotificationCard` | `notification/notification` | proactive and automation systems | typed destination or external URL only |
+| `taste_dna_reflection` | `TravelDNACard` | `notification/taste_dna_reflection` | reflection trigger | dispute learned phrases |
+| `change_applied` | `ChangeAppliedCard` | `change_applied` | proposal apply paths | receipt, undo, uncertain state |
+| `plan_ready` | `PlanReadyCard` | `notification/plan_ready` | plan generation/refinement | exact Plan destination, revision/undo |
+| `booking_confirmation` | `BookingConfirmationCard` | `booking_confirmation` | `confirm_booking` | receipt, provider link/call/session |
+| `booking_proposal` | `BookingProposalCardFetched` | `booking_proposal` | `propose_booking` | confirm/decline fetched proposal |
+| `document_edit` | `DocumentEditCard` | notification metadata | document/planning tools | open exact day when available |
+| `narration` | `NarrationCard` | `narration` | narration endpoint | audio and cited narration |
+| `trip_creation_proposal` | `TripCreationProposalCard` | notification metadata | `propose_trip_creation` | versioned, idempotent trip creation |
+| `lazy_research` | `ResearchCard` | text metadata | research worker | informational status |
+
+There are no supported chat `itinerary` or `map_card` attachments. Map is a
+face of Plan, not a standalone chat card.
+
+## 3. Shared action contract
+
+Every actionable card resolves through `utils/cardActionContract.ts`:
+
+| Behavior | Meaning | Completion |
+|---|---|---|
+| `navigate` | Open a typed in-app destination | immediate |
+| `mutate` | Change durable domain state | confirmed |
+| `seeded_chat` | Open Vesper with structured card context | immediate |
+| `external` | Open a validated external URL or phone handoff | immediate |
+| `dismiss` | Remove or decline without another destination | immediate or confirmed when persisted |
+
+Labels must describe the actual behavior. A chat-mediated action cannot say
+“Take me there” or “Save”; it says “Ask for directions” or “Ask Vesper to save.”
+
+Route payload rules:
+
+- IDs used for deduplication or provenance are never destinations.
+- Notifications navigate only with a typed `destination` object.
+- Home Plan actions preserve the backend itinerary `day_id` UUID.
+- Missing destinations remove the CTA; they do not fall back to a no-op tap.
+- Unknown backend Home actions may fall back to seeded chat, never an invented
+  route.
+
+## 4. Shared interaction state machine
+
+Consequential cards use `utils/cardInteractionState.ts`:
+
+```text
+ready → acting → committed
+             ↘ failed_retryable → acting
+             ↘ uncertain → reconciling → committed / uncertain
+
+terminal: committed · superseded · dismissed
 ```
 
-**The discriminator pattern is the escape hatch.** To add a new card *without a
-migration*, reuse an allowed `message_type` and discriminate with
-`metadata.card_type`:
-- `trip_shapes` rides on `message_type='reaction_card'` (`card_type='trip_shapes'`).
-- `taste_dna_reflection` rides on `message_type='notification'`.
+Vocabulary:
 
-**Rule for new cards:** prefer a `card_type` discriminator under an existing
-`message_type`. Only add a brand-new `message_type` (and the Alembic migration to
-expand this CHECK) when the card needs its own reaction/aggregation semantics.
+- `ready`: safe to act
+- `acting`: a confirmed-completion write is in flight
+- `committed`: server-confirmed consequence
+- `failed_retryable`: request is known not to have landed; retry is safe
+- `uncertain`: write may have landed; do not offer blind retry
+- `reconciling`: re-reading durable state
+- `superseded`: a newer version or expired moment replaced the card
+- `dismissed`: explicitly removed, declined, or undone
 
-### Adding a new card — checklist
+The shared vocabulary currently projects persisted Home lifecycle, drives Deck
+transactions, solo proposal previews, and consequential receipt status. New
+interactive cards must use it rather than inventing local `idle/submitting/done`
+unions.
 
-1. **Backend creator** in `structured_messages.py` — write a `create_<x>_card()`
-   helper. Set `message_type` (allowed value) + `metadata.card_type` + a
-   plain-text `content` fallback for clients that can't render it.
-2. **Emit it** — from a tool handler (agent-driven) or a trigger (system).
-3. **Frontend type** — add `<X>Data` + a `{ type: '<x>'; data }` member to the
-   `MessageAttachment` union in `Travel App/types/chat.ts`.
-4. **Mapper** — add a `case`/branch in `messageMapping.ts` (`_<x>Attachment`).
-5. **Component** — build `components/chat/<X>.tsx` (use the design kit; see §4).
-6. **Renderer** — register in `AttachmentRenderer.tsx` (+ a direct branch if it
-   needs stable callbacks like reactions).
-7. **Body-owning** — if the card renders the message body itself, add its type to
-   `BODY_OWNING_TYPES` in `VesperNote.tsx`, `PrivateVesperNote.tsx`,
-   `MessageBubble.tsx` so the text doesn't double-render.
-8. **Prompt** — if agent-driven, add it to the expressive-surfaces guidance
-   (see §5) with a quality bar.
-9. **This doc** — add the row + entry.
+## 5. Arrival and motion contract
 
----
+Card-producing tool events reserve a structured-card footprint with
+`CardArrivalPlaceholder` before the persisted attachment is refetched. The
+reservation remains through prose streaming and briefly across the history
+handoff. The actual attachment then enters with the shared soft-card animation.
 
-## 2. The catalog
+Only known card-producing tools reserve space. Ordinary prose answers do not.
 
-Design score is 1–5 vs. the TripShapes "gold standard" (§4). Family: **A** =
-agent-driven (a tool emits it), **S** = system/automatic, **F** = frontend-only
-(no backend creator found — mock/legacy).
+Deck behavior:
 
-Design scores updated 2026-05-24 after the design-kit migration (see §4).
+- opening: scrim fade + card lift
+- confirmed resolution: current card exits left, next enters right
+- failed mutation: current card remains in place
+- width: capped by the canon 341pt face and available window width
+- height: capped by safe-area space and adjusted for font scale
+- overflow: vertical scrolling, with a visible indicator for enlarged text
+- Reduced Motion: all transitions collapse without changing state semantics
 
-| Card | Fam | message_type | card_type | Attachment | Component | Emitter | Design |
-|---|---|---|---|---|---|---|---|
-| **Trip Shapes** | A | `reaction_card` | `trip_shapes` | `trip_shapes` | `TripShapes.tsx` | `generate_trip_shapes` | **5** ✅kit |
-| Reaction Card | A | `reaction_card` | `reaction` | `reaction_card` | `ReactionCard.tsx` | `present_options` | 5 ✅kit |
-| Vote Widget | A | `vote_widget` | `vote` | `vote_widget` | `VoteWidgetCard.tsx` | `propose_change` (lazy/active) | 5 ✅kit |
-| Venue Card | A | `venue_card` | — | `venue_card` | `VenueCard.tsx` | `post_venue_card` | 4.5 ✅kit |
-| Narration | S | `narration` | — | `narration` | `NarrationCard.tsx` | narrate endpoint (user-triggered) | 4 ✅kit |
-| Travel-DNA Reflection | S | `notification` | `taste_dna_reflection` | `taste_dna_reflection` | `TravelDNACard.tsx` | `first_contact.py` | 4 |
-| Booking Confirmation | A | `booking_confirmation` | `booking_confirmation` | `booking_confirmation` | `BookingConfirmationCard.tsx` | `confirm_booking` | 3.5 ✅kit |
-| Booking Proposal | A | `booking_proposal` | — | `booking_proposal` | `BookingProposalCard.tsx` | `propose_booking` (confirm-first ask) | 4 ✅kit |
-| Change Applied | A+S | `change_applied` | `change_applied` | `change_applied` | `ChangeAppliedCard.tsx` | `propose_change` auto_approve · cron resolve · `PATCH /proposals` | 3.5 ✅kit |
-| Notification | S | `notification` | `notification` | `notification_card` | `NotificationCard.tsx` | `proactive.py`, `proposal_automation.py` | 3.5 ✅kit |
-| Lazy-Research badge | S | `text` | (metadata.kind=`lazy_research_answer`) | `lazy_research` | `LazyResearchBadge.tsx` | B-fast research worker | 1 (badge) |
-| Itinerary | F | — | — | `itinerary` | `ItineraryCard.tsx` | none found (mock/legacy) | 2 |
-| Map | F | — | — | `map_card` | `MapCard.tsx` | none found (mock/legacy) | 2 |
+## 6. Design construction
 
-`✅kit` = migrated onto the shared card kit (§4).
+Chat cards compose `VesperChatCardKit` (`ChatCardFrame`, `ChatCardHeader`,
+`ChatActionRow`, diff/meta primitives). Home cards compose the Vesper card faces
+and shared button/card primitives. Do not recreate shadows, radii, action pills,
+or receipt rows inline.
 
-⚠️ = contract risk, see §6.
+Rules:
 
----
+- structured fields are plain text, never Markdown
+- one card per conversational moment
+- prose introduces the human beat; it does not repeat the card
+- body-owning attachments must be registered in `components/chat/bodyOwning.ts`
+- interactive controls expose busy, disabled, error, and accessibility states
+- cards without enough substrate stay warm on Home or do not render
 
-## 3. Per-card detail
+## 7. Agent guidance
 
-Key fields only; the component/creator are the full source of truth.
+`backend/concierge/_prompts_skill_cards.py` owns the expressive-surface quality
+bar. `_tools_select.py` owns availability. Group reaction/vote tools are hard
+gated out of private turns; trip shapes, venue, booking, planning, and trip
+creation surfaces are loaded only when their turn context warrants them.
 
-### Trip Shapes — `generate_trip_shapes` → `TripShapes.tsx`
-- **Purpose:** cold-start exploration — 2-4 opinionated "what could this trip feel
-  like" sketches the group taps to choose a direction. The reaction feeds
-  `generate_plan`.
-- **Data:** `{ context, prompt, shapes: [{ id, emoji, name, pitch, anchors[], best_for }], my_selection[] }`.
-- **Interactive:** each shape is the tappable choice; tap → `record_reaction`.
-- **Reference implementation.** New cards should look and feel like this one.
+The model chooses a sanctioned tool. It does not choose a React component,
+route string, lifecycle state, or arbitrary metadata shape.
 
-### Reaction Card — `present_options` → `ReactionCard.tsx`
-- **Purpose:** group weighs in on a genuine tradeoff (2-3 options) via one tap.
-- **Data:** `{ content, options:[{id,label,emoji}], context, deadline, allow_multiple, my_selection[] }`.
-- **Anti-pattern (prompted):** do NOT use when the user *delegated* the choice —
-  commit to a pick + a venue card instead. See `_prompts_skills.py:615`.
+## 8. Adding or changing a card
 
-### Vote Widget — `propose_change` (lazy/active) → `VoteWidgetCard.tsx`
-- **Purpose:** formal vote on a change proposal; cron auto-resolves at deadline.
-- **Data:** `{ proposal_id, title, proposal_type, description, impact_summary, deadline, options[], my_selection[] }`.
-- **Gate:** only when `Voting` is enabled for the trip; else auto_approve or a
-  reaction card. See `_prompts_skills.py:628`.
+1. Define the backend creator and plain-text fallback.
+2. Emit from a sanctioned tool or system producer.
+3. Add or update the `MessageAttachment` data type.
+4. Parse and validate in `messageMapping.ts`.
+5. Register the component in `AttachmentRenderer.tsx`.
+6. Declare its action behavior and typed destination.
+7. Use the shared interaction state machine for any consequential action.
+8. Add body ownership when the attachment renders the message prose.
+9. Add arrival-tool mapping if it is produced during a streamed turn.
+10. Test mapping, failure/retry semantics, navigation, reduced motion, Dynamic
+    Type, and narrow-screen overflow.
+11. Update this catalog in the same change.
 
-### Venue Card — `post_venue_card` → `VenueCard.tsx`
-- **Purpose:** the structured form of a recommendation — verdict + headline +
-  short take, tap → full venue page. Prompted: "always `post_venue_card` after
-  your text" (`_prompts_skills.py:766`).
-- **Data:** `{ name, type, detail, matchScore, venue_id }` (+ `recommendation`
-  payload in metadata).
+## 9. Deliberate open work
 
-### Booking Confirmation — `confirm_booking` → `BookingConfirmationCard.tsx`
-- **Purpose:** receipt after a booking; deep-link / phone / in-progress by
-  autonomy level. **message_type now allowed (fixed §6 #1; migration deployed — RESOLVED 2026-06-27).**
-
-### Booking Proposal — `propose_booking` → `BookingProposalCard.tsx`
-- **Purpose:** pre-commit booking offer; card fetches the proposal by id.
-  `propose_booking` writes a `booking_proposals` row; the *message* that carries
-  `message_type='booking_proposal'` has **no creator found** — likely
-  frontend-ready, backend-pending. **⚠️ see §6.**
-
-### Change Applied — auto_approve / cron / route → `ChangeAppliedCard.tsx`
-- **Purpose:** visual receipt after a proposal is applied. Emitted three ways
-  (agent auto_approve, cron `_do_resolve`, manual `PATCH /proposals/{id}`).
-
-### Notification — `proactive.py` / `proposal_automation.py` → `NotificationCard.tsx`
-- **Purpose:** system nudges (deadline approaching, offer expiring, escalation,
-  rejection). `notification_type`: side_quest / deadline / weather / update.
-
-### Travel-DNA Reflection — `first_contact.py` → `TravelDNACard.tsx`
-- **Purpose:** surfaces 3-5 learned-preference phrases mid-conversation; each
-  disputable. Wrapped in `EditorialCard tone="agent"` (inherits letterpress).
-
-### Narration — narrate endpoint → `NarrationCard.tsx`
-- **Purpose:** on-the-ground place narration (persona, depth, citations, audio).
-  Personal conversation only; user/geofence triggered.
-
-### Lazy-Research badge — B-fast worker → `LazyResearchBadge.tsx`
-- A badge on a normal `text` message (metadata.kind=`lazy_research_answer`), not
-  a container card — signals "researched live, verify before booking."
-
----
-
-## 4. Design status & the kit
-
-**Doctrine** (Brand Identity §6-7, Design Language §2-4): cards are *Vesper
-artifacts*. They should wear the **letterpress** card (`letterpress.cardBg` +
-`letterpress.shadow`), the **sacred-purple** `colors.agent.*` palette (reserved
-for Vesper alone), the **fleuron** mark, and the two type scales (Newsreader to
-read, DM Sans to act). Content is **structured data rendered in styled `<Text>`**,
-*not* markdown — that's why TripShapes reads clean and why stuffing `**bold**`
-into a card leaks raw asterisks.
-
-### The card kit (built 2026-05-24)
-
-The shared kit now exists. Crucially, the **container already existed** — reuse it,
-don't re-implement:
-- **`components/ui/EditorialCard.tsx`** `tone="agent"` — the letterpress +
-  sacred-purple-wash + agent-hairline container. Composes
-  `components/brand/LetterpressCard.tsx` (the locked shadow stack). This is the
-  card container; never re-implement letterpress inline.
-- **`components/chat/CardEyebrow.tsx`** — `Fleuron` (agent accent) + uppercase
-  caps label. The card-header signature.
-- **`components/chat/CardChipRow.tsx`** — presentational selectable chips
-  (parent owns state/haptics); `variant: 'wrap'` (reaction) | `'fill'` (vote);
-  sacred-purple selected state.
-
-**New cards:** wrap in `EditorialCard tone="agent"`, add a `CardEyebrow`, use
-`CardChipRow` for any tappable options. That reproduces the TripShapes bar by
-default — no inline letterpress, no generic purple.
-
-**Migration status:** on the kit — TripShapes, ReactionCard, VoteWidgetCard (5),
-VenueCard (4.5), NarrationCard (4), TravelDNACard (4, via EditorialCard already),
-and the receipt/notification cards ChangeApplied, BookingConfirmation, Notification
-(3.5 — `EditorialCard` default-tone letterpress + their *semantic* accents
-olive/slate/type; intentionally not agent-purple, which stays reserved for cards
-where Vesper is actively conversing). Remaining: BookingProposalCard (deferred —
-not backend-emitted, larger fetched accept/reject component) and the orphan mock
-cards (Itinerary, Voting, Map).
-
-**Still missing:** a sanctioned rich-text field for prose-bearing fields (see
-markdown risk in §6) — NarrationCard's body still renders as plain `<Text>`.
-
----
-
-## 5. Prompt status
-
-Agent-side guidance is **good but scattered** across the ~2000-line
-`Travel Agent/backend/concierge/_prompts_skills.py`, tool-by-tool:
-- when to card vs. propose vs. just-do-it — `:651`
-- reaction card vs. delegation — `:615`
-- vote widget gating on `Voting` — `:628`
-- always `post_venue_card` after text — `:766`
-- `generate_trip_shapes` as cold-start move — `:463`
-
-**Expressive-surfaces skill** (`backend/concierge/_prompts_skill_cards.py`) —
-*shipped.* Closes both prior gaps: it frames the card vocabulary as a *set* and
-gives a per-card **quality bar** (how to fill each well — e.g. trip-shapes:
-vivid distinct names, 3-4 concrete non-overlapping anchors), explicitly
-deferring *when* to emit to the Tools skill so it doesn't duplicate tuned text.
-Split by surface, wired in `_prompts_select.py`:
-- `SKILL_EXPRESSIVE_SURFACES` — trip shapes / venue / booking bars; loads in
-  **any** chat (recommend-likely, not-ambient).
-- `SKILL_GROUP_CARD_SURFACES` — reaction + vote bars; **group-only** (those are
-  coordination surfaces), so a 1:1 prose chat never carries group-tool guidance.
-
-The scattered when-to-use guidance still lives in `_prompts_skills.py`. Note:
-effectiveness is unverified by eval/dogfood — it passes structural checks only.
-
-**Mode gating is now hard, not just prompt-deep.** The group-coordination cards
-(reaction via `present_options`, vote via `propose_change`, plus
-`compose_group_message`) are dropped from the tool surface on personal turns
-(`_GROUP_ONLY_TOOLS` in `_tools_select.py`), and `_execute_present_options`
-rejects a personal call as defense in depth. So a 1:1 can't emit a reaction/vote
-card even if the prompt slips. Trip-shapes / venue / booking cards remain
-available in both modes. The privacy/compose machinery (`is_group`
-strict-compose) is the separate, already-correct gate.
-
----
-
-## 6. Known contract risks
-
-1. **Booking Confirmation message_type not in CHECK constraint** — ✅ *fixed.*
-   `create_booking_confirmation_card` writes `message_type="booking_confirmation"`;
-   the insert is wrapped in try/except in `confirm_booking`, so it failed
-   *silently* (booking succeeds, no receipt card). Migration
-   `b1c9a4e7f2d8_add_booking_card_message_types` adds `booking_confirmation` +
-   `booking_proposal` to the CHECK (+ tables.py), using `ADD CONSTRAINT … NOT
-   VALID` + `VALIDATE CONSTRAINT` to avoid locking `messages`. **Deployed —
-   RESOLVED 2026-06-27.** The migration is in the live mainline chain
-   (`alembic history`: `a7c3e1b9d2f5 → b1c9a4e7f2d8`) and the single head
-   (`sma26expimmut`) descends through it; the receipt path works.
-2. **Booking Proposal emitter — ✅ added.** `propose_booking` now posts the
-   card via `create_booking_proposal_card` (confirm-first path) — the "confirm?"
-   ask, with the receipt following from `confirm_booking`. Like
-   booking_confirmation, the `booking_proposal` message_type relied on the §6 #1
-   migration, now deployed (RESOLVED 2026-06-27), so the insert lands.
-   *Follow-on:* the L3 auto-book "attempt-and-inform" path (skip the ask, post a
-   receipt with Undo) is not built — gated by booking autonomy.
-3. **Markdown-leak fields — ✅ resolved (structured-only + one rich-text field).**
-   Cards are *artifact surfaces*, so the rule is "no markdown in card fields"
-   except the one genuinely long-form field. Implemented:
-   - **`stripMarkdown()`** (`utils/stripMarkdown.ts`, unit-tested) runs at the
-     mapper boundary on the plain-`<Text>` prose fields — reaction `content`,
-     notification `content`, vote `title`+`description` — and on BookingProposal
-     `notes` in its component (API-fetched, not via the mapper). A stray `**`
-     degrades to clean text. It deliberately ignores underscores so snake_case
-     (`trip_shapes`) isn't mangled.
-   - **NarrationCard body** is the one sanctioned rich-text field — it renders
-     through the markdown stack (bold/italic/bullets format properly).
-   - Trip-shapes fields are left untouched (structured/short, the gold standard).
-4. **Orphan attachment types** — `voting` removed (superseded by the Vote
-   Widget; component + union member + mock deleted). `itinerary` and `map_card`
-   remain: no backend creator yet, but they read as intended-future features
-   (`map_card` has a handler + an empty-state test), so kept as mock-only
-   placeholders rather than deleted. Decide later: wire or drop.
-
----
-
-## 7. Roadmap (proposed)
-
-## 8. Family and governance rules
-
-The complete surface census is historical; new work uses these durable rules:
-
-- Prefer the shared card shell when hierarchy, padding, attribution, and action
-  placement are the same. Fork only when interaction semantics differ.
-- Every card declares one family: focus/home, conversational artifact, receipt,
-  place/booking, memory/story, or system state. A component that spans families is
-  a signal to split the content model, not add variants indefinitely.
-- Generated fields must bind to a named content contract and expose provenance when
-  a user could mistake prose for an operational fact.
-- Each family covers loading, empty, partial, failure, stale, and completed states.
-- A new one-off container requires an explicit reason in this catalog and a review
-  of whether an existing shell can absorb it.
-
-1. ✅ This catalog (source of truth).
-2. ✅ **Design kit** — `EditorialCard` (reused) + `CardEyebrow` / `CardChipRow` +
-   a `receipt` tone (left-accent). All emitted cards migrated: TripShapes,
-   Reaction, Vote, Venue, Narration, ChangeApplied, BookingConfirmation,
-   Notification, BookingProposal. Orphan `voting` removed; `itinerary`/`map_card`
-   kept as mock placeholders.
-3. ✅ **Prompt module** — `SKILL_EXPRESSIVE_SURFACES` + `SKILL_GROUP_CARD_SURFACES`
-   (card vocabulary + per-card quality bars), surface-split. Shipped (see §5).
-4. **§6 risks** — booking constraint ✅ fixed and migration deployed (§6 #1,
-   RESOLVED 2026-06-27); `voting` orphan ✅ removed; markdown policy ✅ implemented
-   (`stripMarkdown` guard on card fields + rich-text for the NarrationCard body).
-   No carryover.
+- Replace chat-mediated Near You “save” and “directions” with direct typed
+  mutations/navigation when those product capabilities exist.
+- Add a reconciliation read for every `uncertain` write, rather than requiring
+  manual verification for the remaining cases.
+- Activate Compare or Flight only after their backend substrate and routing are
+  real; do not revive their dormant components from presentation alone.
