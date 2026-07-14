@@ -135,6 +135,14 @@ overrides:
     disposition: keep_authoritative
     rationale: Active cross-repo itinerary authority and mutation-contract audit; expires 2026-08-11 after product rulings and redesign handoff.
 
+  docs/working/invitee-first-five-minutes-audit-2026-07-13.md:
+    disposition: keep_authoritative
+    rationale: Active full-stack (design+backend+frontend) audit of the invitee first-touch paths; owns the pre-cohort invite fix list; expires 2026-08-12, archive to audits/ on close.
+
+  docs/working/claude-design-invitee-post-join-prompt-2026-07-13.md:
+    disposition: keep_authoritative
+    rationale: Active Claude Design prompt for the missing invitee post-join payoff moment (D9/D10 in the invitee-first-five-minutes-audit); expires 2026-08-12, archive to audits/ once the design session runs.
+
   docs/audits/motion-language-audit-2026-07-11.md:
     disposition: keep_reference
     rationale: Phase 0 motion evidence still cited by docs/systems/motion-language.md.

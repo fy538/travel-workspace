@@ -116,7 +116,7 @@ printf "\033[1mSmoke happy-path against:\033[0m %s\n" "$HOST" >&2
 if [ -n "$JWT" ]; then
   printf "  auth: bearer token (length %d)\n" "${#JWT}" >&2
 else
-  printf "  auth: none (assumes SKIP_AUTH=true on backend)\n" >&2
+  printf "  auth: none (expects production 401 or a dev SKIP_AUTH user)\n" >&2
 fi
 printf "  timeout per request: %ss\n" "$TIMEOUT" >&2
 
@@ -143,7 +143,7 @@ if [ -z "${SKIP_AASA:-}" ]; then
     if [[ "$status" =~ ^2[0-9][0-9]$ ]]; then
       pass "AASA served ($status)"
       host_aasa_body="$body"
-      if printf "%s" "$body" | python3 -c "import json,sys; d=json.load(sys.stdin); apps=d.get('applinks',{}).get('details',[]); sys.exit(0 if apps and apps[0].get('appID','').count('.')>=1 and not apps[0]['appID'].startswith('REPLACE') else 1)" 2>/dev/null; then
+      if printf "%s" "$body" | python3 -c "import json,sys; d=json.load(sys.stdin); apps=d.get('applinks',{}).get('details',[]); entry=apps[0] if apps else {}; ids=entry.get('appIDs') or [entry.get('appID','')]; appid=ids[0] if ids else ''; sys.exit(0 if appid.count('.')>=1 and not appid.startswith('REPLACE') else 1)" 2>/dev/null; then
         pass "AASA appID set (Team ID + bundle present)"
       else
         fail "AASA returned but appID looks like REPLACE_ME or is malformed"
@@ -172,8 +172,8 @@ if [ -z "${SKIP_AASA:-}" ]; then
         if [[ "$cdn_status" =~ ^2[0-9][0-9]$ ]]; then
           pass "Apple CDN AASA fetched ($cdn_status)"
           if [ -n "$host_aasa_body" ]; then
-            host_appid=$(printf "%s" "$host_aasa_body" | python3 -c "import json,sys; d=json.load(sys.stdin); apps=d.get('applinks',{}).get('details',[]); print(apps[0].get('appID','') if apps else '')" 2>/dev/null)
-            cdn_appid=$(printf "%s" "$cdn_body" | python3 -c "import json,sys; d=json.load(sys.stdin); apps=d.get('applinks',{}).get('details',[]); print(apps[0].get('appID','') if apps else '')" 2>/dev/null)
+            host_appid=$(printf "%s" "$host_aasa_body" | python3 -c "import json,sys; d=json.load(sys.stdin); apps=d.get('applinks',{}).get('details',[]); entry=apps[0] if apps else {}; ids=entry.get('appIDs') or [entry.get('appID','')]; print(ids[0] if ids else '')" 2>/dev/null)
+            cdn_appid=$(printf "%s" "$cdn_body" | python3 -c "import json,sys; d=json.load(sys.stdin); apps=d.get('applinks',{}).get('details',[]); entry=apps[0] if apps else {}; ids=entry.get('appIDs') or [entry.get('appID','')]; print(ids[0] if ids else '')" 2>/dev/null)
             if [ -n "$host_appid" ] && [ "$host_appid" = "$cdn_appid" ]; then
               pass "Apple CDN appID matches origin ($cdn_appid)"
             else
@@ -192,13 +192,30 @@ fi
 
 # 3. Auth path
 step "3. Auth surface"
-_check "GET /api/me — auth path resolves" GET /api/me > /tmp/_smoke_me.json
-if [ -s /tmp/_smoke_me.json ]; then
-  user_id=$(python3 -c "import json; d=json.load(open('/tmp/_smoke_me.json')); print(d.get('id') or d.get('user_id') or '')" 2>/dev/null)
-  if [ -n "$user_id" ]; then
-    pass "/api/me returned a user_id ($user_id)"
+if [ -n "$JWT" ]; then
+  _check "GET /api/me — authenticated path resolves" GET /api/me > /tmp/_smoke_me.json
+  if [ -s /tmp/_smoke_me.json ]; then
+    user_id=$(python3 -c "import json; d=json.load(open('/tmp/_smoke_me.json')); print(d.get('id') or d.get('user_id') or '')" 2>/dev/null)
+    if [ -n "$user_id" ]; then
+      pass "/api/me returned a user_id ($user_id)"
+    else
+      fail "/api/me returned but has no id field"
+    fi
+  fi
+else
+  unauth_resp=$(curl -sS --max-time "$TIMEOUT" -o /dev/null -w "%{http_code}" "$HOST/api/me" 2>&1)
+  if [ "$unauth_resp" = "401" ]; then
+    pass "/api/me without bearer → 401 (production auth gate is live)"
+  elif [ "$unauth_resp" = "200" ]; then
+    _check "GET /api/me — dev auth bypass resolves" GET /api/me > /tmp/_smoke_me.json
+    user_id=$(python3 -c "import json; d=json.load(open('/tmp/_smoke_me.json')); print(d.get('id') or d.get('user_id') or '')" 2>/dev/null)
+    if [ -n "$user_id" ]; then
+      pass "/api/me returned a dev user_id ($user_id)"
+    else
+      fail "/api/me returned 200 but has no id field"
+    fi
   else
-    fail "/api/me returned but has no id field"
+    fail "/api/me without bearer → HTTP $unauth_resp (expected 401 or authenticated 200)"
   fi
 fi
 

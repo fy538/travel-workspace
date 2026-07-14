@@ -12087,6 +12087,134 @@
             }
           }
         }
+      },
+      "get": {
+        "tags": [
+          "expenses"
+        ],
+        "summary": "List Trip Settlement Payments",
+        "description": "Payments history \u2014 every recorded transfer, newest first.\n\n2026-07-14 (one settlement voice): \"B paid A \u20ac30 on July 13\" is a real\nevent that previously appeared nowhere \u2014 the ledger existed but was\ninvisible, so a disputed balance couldn't be explained. Voided payments\nare included (rendered as voided by the client): history stays honest.",
+        "operationId": "list_trip_settlement_payments_api_trips__trip_id__settlements_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SettlementPaymentsResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/settlements/{payment_id}/void": {
+      "post": {
+        "tags": [
+          "expenses"
+        ],
+        "summary": "Void Trip Settlement Payment",
+        "description": "Void a recorded payment and return the freshly recomputed settlement.\n\nThe ledger's only correction path \u2014 append-only means a mis-recorded\npayment is never deleted or edited; it's marked voided (who + when),\nstays visible in history, and drops out of the balance graph. Only the\ntwo parties to the transfer may void it (mirrors the record endpoint's\nauthorization). Idempotent: voiding an already-voided payment returns\nthe current settlement unchanged.",
+        "operationId": "void_trip_settlement_payment_api_trips__trip_id__settlements__payment_id__void_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "payment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Payment Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripSettlement"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/api/trips/{trip_id}/receipts/upload": {
@@ -61375,6 +61503,123 @@
           "amount"
         ],
         "title": "SettlementPaymentCreate"
+      },
+      "SettlementPaymentView": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "from_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "From User Id"
+          },
+          "to_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "To User Id"
+          },
+          "amount": {
+            "type": "number",
+            "title": "Amount"
+          },
+          "currency": {
+            "type": "string",
+            "title": "Currency"
+          },
+          "expense_share_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expense Share Id"
+          },
+          "recorded_by": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Recorded By"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "voided_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Voided At"
+          },
+          "voided_by": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Voided By"
+          },
+          "from_display_name": {
+            "type": "string",
+            "title": "From Display Name"
+          },
+          "to_display_name": {
+            "type": "string",
+            "title": "To Display Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "trip_id",
+          "from_user_id",
+          "to_user_id",
+          "amount",
+          "currency",
+          "recorded_by",
+          "created_at",
+          "from_display_name",
+          "to_display_name"
+        ],
+        "title": "SettlementPaymentView",
+        "description": "Payment + display names, for the payments-history read surface."
+      },
+      "SettlementPaymentsResponse": {
+        "properties": {
+          "payments": {
+            "items": {
+              "$ref": "#/components/schemas/SettlementPaymentView"
+            },
+            "type": "array",
+            "title": "Payments"
+          }
+        },
+        "type": "object",
+        "required": [
+          "payments"
+        ],
+        "title": "SettlementPaymentsResponse"
       },
       "SettlementTransfer": {
         "properties": {

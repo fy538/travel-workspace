@@ -1,6 +1,6 @@
 # Atlas Overhaul — Implementation Doc
 
-**Status:** implementation substantially complete; final state-system visual design pending · **Created:** 2026-07-12 · **Home clarification:** 2026-07-12 · **Fresh audit:** 2026-07-13 · **Scope:** the Atlas tab (`travel-app/app/atlas/*`, `app/(tabs)/atlas/*`, `components/atlas/*`) + the "Your Memory" surface in Trust & Controls · plus tagged backend/launch items.
+**Status:** implementation substantially complete; final state-system design approved and implementation alignment pending · **Created:** 2026-07-12 · **Home clarification:** 2026-07-12 · **Final design adjudication:** 2026-07-13 · **Scope:** the Atlas tab (`travel-app/app/atlas/*`, `app/(tabs)/atlas/*`, `components/atlas/*`) + the "Your Memory" surface in Trust & Controls · plus tagged backend/launch items.
 
 > **Read §0 fully before touching code.** A fresh agent has none of the design-session history that produced this. Everything you need is here or cited to a design file you can open. The latest design canon owns visual execution; the recorded product rulings in this doc own hierarchy, eligibility, data honesty, and surface behavior.
 
@@ -22,13 +22,16 @@ Four doctrines drive everything:
 4. **Conversational when cold; archival when mature.** An early Atlas may use a small number of temporary, low-friction learning cards so it is useful before the user has trips. As evidence grows, those cards recede and the surface becomes calmer, flatter, and more editorial.
 
 ### 0.2 The design canon (pixels = source of truth)
-The canon is an exported Claude Design bundle at **`~/Downloads/vesper <NNN>/project/`** — a user-local path. **Always use the highest-numbered bundle** (the latest Atlas bundle reviewed for this clarification is vesper 155; if it is missing or a higher one exists, ask the user for the latest `vesper NNN`).
+The canon is an exported Claude Design bundle at **`~/Downloads/vesper <NNN>/project/`** — a user-local path. **Always use the highest-numbered reviewed Atlas bundle.** The final state-system bundle reviewed and approved for this implementation is **`vesper 173`**. A later export does not silently replace it: review the newer Atlas section and update this receipt before implementing from it.
 
 **How to read it (it is NOT normal HTML):** each top-level `Vesper *.html` is canvas-mode — the visible page is empty; the real content is the JSX file named in its `<script src="...jsx">` tag. **Open the `.jsx`, not the `.html`.** These are prototypes: match the visual output, recreate in RN idioms that fit the codebase; don't copy prototype structure. Do NOT implement from files in `archive/` (e.g. `atlas-app-spine-fold.jsx` — the *reverted* dark aesthetic; see guardrails).
 
 **The Atlas design files** (all in the bundle's `project/`):
 | File | Owns |
 |---|---|
+| `atlas-home-final.jsx` | **Canonical Atlas Home implementation source:** truthful blank, cold, accumulating, mature, loading, and stale/error states; the dynamic-hero register; canonical section order; warm timely returns; saved-versus-visited grammar; and the restrained Whole Atlas entrance. |
+| `atlas-memory-final.jsx` | **Canonical Your Memory and Memory Receipt implementation source:** synthesis-first hierarchy, learned evidence and provenance, learning/photo states, correction controls, honest empty/loading/stale states, and receipt correction context. |
+| `Vesper Atlas.html` | Canvas-level adjudication. The section titled **“Atlas Home — final state system · CANONICAL”** wins over every older Home composition. Every other section carries `CANONICAL`, `SUPPORTING`, `SUPERSEDED`, or `DEFERRED` status. |
 | `atlas-app.jsx` | The place-first HOME: header (monogram→Settings + search), the stage model (Stage-0 true-empty → Cold → Accumulating → Mature), the historical Ways Back In treatment (superseded by the Readings shelf), Long View / Unpacked strips, proactive-drop + reading cards, and the seed wiring. |
 | `atlas-seed.jsx` | The COLD-START seed pool: two card families + the state-driven selection/rotation doctrine. |
 | `atlas-reader.jsx` | The READING READER: thesis + evidence tiles (provenance + source), arrangement modes (Read/Time/Places, Reel deferred), Steer, the long-press moment primitive, Keep→Readings shelf, freshness states, and the evidence + media-degradation doctrine. |
@@ -78,24 +81,24 @@ Already correctly gone (design supersessions the code executed): `almanac`, `map
 Each subsection: the design intent (open the cited `.jsx` for pixels), the code target, and the guardrails. Build to the design file; this is the map.
 
 ### 3.1 The place-first HOME  — `app/(tabs)/atlas/index.tsx`, `components/atlas/*`
-**Design:** `atlas-app.jsx` (stages + strips) + `atlas-complete.jsx` `HomeComposition` (the attention-order board).
+**Design:** `atlas-home-final.jsx` (canonical pixels and states). Use `atlas-app.jsx` and `atlas-complete.jsx` only where the final section explicitly marks their supporting concepts as still valid.
 - **Header:** monogram (opens Settings/Trust & Controls) + search. Warm glass chrome.
 - **Stage model:** Stage-0 (true-empty) → Cold → Accumulating → Mature. The SAME surface fills in; it never flips empty→rich. Lead content = identity/taste + places/seed. Atlas remains place-first at every stage; maturity adds interpretation and authored output without replacing the place layer.
-- **Attention-order rule (load-bearing):** identity + taste + places/seed ALWAYS lead; readings/Unpacked/proactive drops are strips/cards BELOW, never the hero. Implement a priority/attention order so modules don't fight for the top — this is what prevents the featured-hero from creeping back.
+- **Attention-order rule (load-bearing):** the dynamic hero ALWAYS leads. Actionable review follows it when present and precedes passive places/editorial content; otherwise Your Places or the truthful blank-state entrance follows directly. Readings/Unpacked/proactive drops are strips/cards BELOW this backbone, never the hero. Implement one priority/eligibility resolver so modules do not fight for the top.
 - **Guardrail:** replace `AtlasHomeBoardHero` — the home must NOT open on a composed featured reading.
 
 #### 3.1.1 Canonical Home section grammar
-The stable order is:
+The eligibility order is:
 1. **Dynamic Atlas hero.** A concise interpretation of the user's travel identity. It may temporarily respond to a recent meaningful action (save, accepted trip, completed Reading, correction), then returns to the stable identity. It must not repeat a module below or make an unsupported claim.
-2. **Your places.** A flat canonical-list preview with an Add action. Saved intent and visited history are distinct concepts. A place may carry an explicit, editable relationship (`loved`, `been`, `want to go`); never infer `loved` from a save or visit.
-3. **Needs your attention** *(conditional).* A quiet Inbox/review entry only when unresolved work exists. Workflow takes precedence over celebratory or editorial modules.
+2. **Needs your attention** *(conditional).* A quiet Inbox/review entry only when unresolved work exists. Workflow takes precedence over passive, celebratory, or editorial modules.
+3. **Your places.** A flat canonical-list preview with an Add action. Saved intent and visited history are distinct concepts. A place may carry an explicit, editable relationship (`loved`, `been`, `want to go`); never infer `loved` from a save or visit.
 4. **Readings** *(conditional).* The latest durable authored Reading plus entry to its shelf. A Reading is a revisitable artifact with source evidence, not a disposable insight card.
 5. **One timely return** *(conditional; max one).* On This Day, Unpacked, or one recent grounded discovery/reflection. These need freshness, expiry/dismissal, and sufficient-evidence rules. Live-trip operations do not belong here; Trips owns active travel.
 6. **Places you've been** *(conditional).* A compact visited-history/map preview, separate from saved places, once accepted history exists.
-7. **Long View** *(conditional).* A restrained navigation row into the complete corpus, once there is meaningful accepted history.
+7. **The Whole Atlas** *(conditional).* One restrained archive row exposing Places, Been, Readings, and Taste once there is enough real material to browse.
 8. **Learning** *(conditional and occasional).* A mature trust prompt for one specific, evidence-backed claim. Once confirmed, corrected, or dismissed, it leaves Home and updates the Taste/Your Memory record.
 
-Only the hero and the place/seed layer are structural constants. The page must not render every eligible module merely because data exists. Workflow may insert after the lead; otherwise cap a normal visit at **one timely return and no more than two prominent editorial cards**.
+Only the hero and the place/seed layer are structural constants. The page must not render every eligible module merely because data exists. When actionable work exists it follows the hero and precedes passive place/editorial content. Otherwise cap a normal visit at **one timely return and no more than two prominent editorial cards**.
 
 #### 3.1.2 Card taxonomy and flattening rule
 Cards have two valid jobs:
@@ -109,10 +112,10 @@ The following do **not** belong on Home: active-trip management, a multi-card St
 #### 3.1.3 Stage composition contract
 | Stage | Must appear | May appear | Must not appear |
 |---|---|---|---|
-| **Truly blank** | Welcome hero; first-place/search entrance; 1–2 low-friction learning/seed cards | Nearby suggestions with a real home city; quiet photo scan | Readings; map; Long View; mature Learning; return shelf; Desk |
-| **Cold / first saves** | Taste hero; 1–3 saved places; Add another; gentle visited-history empty state | Inbox when actionable; place-based relationship question | Readings without accepted evidence; annual summaries; On This Day; persistent insight cards; Desk |
-| **Accumulating** | Taste hero; saved preview; visited-history/Long View entry | Inbox; first grounded Reading; one timely return; one compact return path | Active-trip cards; Starting Points stack; unsupported Learning; Desk |
-| **Mature** | Condensed taste hero; saved preview; Readings shelf; visited-history/Places entry; Long View | Inbox; one timely return; one recent receipt; one mature Learning prompt | Permanent taste chips; duplicate return sections; Desk; active-trip operations |
+| **Truly blank** | Truthful welcome hero; place search; one combined home-area/nearby entrance; at most one optional learning entrance | Photo recovery **or** one quick taste question, selected by eligibility | Invented home context; simultaneous photo + taste prompts; Readings; map; Long View; mature Learning; return shelf; Desk |
+| **Cold / first saves** | Provisional hero; 1–3 saved places; Add another; at most one optional question | Inbox when actionable; place-based relationship question | Empty visited-history section; Readings without accepted evidence; annual summaries; On This Day; persistent insight cards; Desk |
+| **Accumulating** | Taste hero; saved preview; accepted visited history when present | Inbox; first grounded Reading; one timely return; Whole Atlas once its archive destinations are useful | Active-trip cards; Starting Points stack; unsupported Learning; Desk |
+| **Mature** | Condensed taste hero; saved preview; Readings shelf; visited-history entry; Whole Atlas | Inbox; one timely return; one recent receipt; one mature Learning prompt | Permanent taste chips; duplicate return sections; Desk; active-trip operations |
 
 The stage name alone does not decide composition. Stage, workflow, recent action, temporal opportunity, and trust prompts are separate axes, so implement one explicit precedence/eligibility resolver rather than allowing independent modules to accumulate down the page.
 
@@ -137,9 +140,9 @@ Compose remains discoverable without becoming Atlas's purpose. Before the first 
 Trips may appear as provenance/evidence, but Atlas must not duplicate the operational Trips surface.
 
 ### 3.2 Cold-start SEED  — the Stage-0 state
-**Design:** `atlas-seed.jsx`.
-- **Two card families:** (A) *seed-a-place* — persistent search ("a place you love"), the standing photo scan ("Let Atlas find your past trips"), `known around {city}`, `your everyday place`, `cities you've been`, `somewhere you're dreaming of` (→ tags **want**). (B) *get-to-know-you* — `set your home` (structural, top priority when unset), `what kind of food`, `your pace`, `what pulls you in`.
-- **Selection doctrine (show the best 1–2):** home city UNSET → lead "Set your home"; onboarding taste SKIPPED (the truly-blank user) → lead a light Family-B card; else → lead a Family-A place-seed. Always keep search + scan available. **Rotate** the pool so a returning-empty user sees a fresh angle. Cap at 1–2 hook cards — never a wall.
+**Design:** `atlas-home-final.jsx` `HomeStage0` / `BlankEntrances`; `atlas-seed.jsx` remains supporting doctrine for the optional prompt pool.
+- **Three-part blank composition:** (1) persistent primary search ("a place you love"); (2) one combined location row that opens Set Home Area or Use Current Location; (3) at most one optional learning entrance.
+- **Selection doctrine:** photo recovery appears when past-trip recovery is relevant; otherwise one concrete Family-B taste question may appear. Search is always present. Photo recovery and the taste question never appear together. Rotate eligible questions for a returning-empty user, but never render a wall of hooks.
 - **Honesty:** Family-B taps are weak priors ("noted," not a verdict; correctable via Your Memory's one-correction-model); `known around {city}` tags are chosen on save (want/been/loved), never hardcoded "loved."
 - **Low-friction doctrine:** cold-start cards exist to help the user teach Atlas before a trip corpus exists, not to simulate authored content or fill space. Every prompt is optional, dismissible, answerable in one or two taps, and immediately reflected in the user's understanding/receipt.
 - **Ask concrete tradeoffs, not personality quizzes:** e.g. neighborhood wandering vs major landmarks; market breakfast vs quiet café vs early museum; atmosphere vs food vs history; anchor planning vs leaving the day open. As real places arrive, replace generic prompts with grounded questions such as "Would you return here?", "Loved or useful?", or "Been or want to go?"
@@ -171,7 +174,7 @@ Trips may appear as provenance/evidence, but Atlas must not duplicate the operat
 **Design:** `atlas-complete.jsx` `ComposeIntent`/`ComposeFindingShape`/`ComposeThin`. The **demoted, warm, place-first** replacement for the killed dark query aperture: a light intent capture with a few warm suggested-angle chips ("places I keep returning to," "everywhere I've had the seafood," "my Lisbon") → a warm progressive "finding the shape…" (no dark sheet, no full-screen spinner) → the reading reader opens. Thin result falls to an honest list, never a faked story. Most readings arrive as proactive drops; this is the quiet "I want to make one" path.
 
 ### 3.8 "YOUR MEMORY" (Trust & Controls)  — one canonical memory center
-**Design:** `trust-screens.jsx` `YourMemory`. The "What Vesper knows" Settings zone opens into ONE control center at `/atlas/memory`: **photo access** status + grant/revoke (with the on-device privacy line) · the **learning toggle** ("Learn from what you keep" — the FE control for the dark `ATLAS_SIGNALS_TO_MEMORY` loop) · the **render toggle** ("Render your photos into views") · **what Vesper has learned** (the `view=receipt` evidence/correction view) · **correct/forget** (soften · forget-a-fact · reset-all) · the subordinate Removed Moments recovery list. Artifact-specific learned signals live inline on `/atlas/artifact/[id]`, beside the memory that produced them. Historical `/atlas/receipt` and `/atlas/learned/[id]` URLs are compatibility aliases only. Constraints, privacy, and the data-use receipt remain linked specialist records, not competing memory homes. **One correction model, two contexts:** the in-reading/artifact "This isn't right" and Your Memory soften/forget are the SAME system — corrections suppress permanently. Do not build a second correction UI.
+**Design:** `atlas-memory-final.jsx`. The "What Vesper knows" Settings zone opens into ONE control center at `/atlas/memory`. Its hierarchy is: **what Vesper understands** (synthesis) · **learned evidence and provenance** · **photo access** · **how Vesper learns** · subordinate record/correction controls · isolated destructive reset. An empty learned state keeps learning ON unless the user explicitly disabled it. Launch-gated capabilities collapse into a quiet note instead of looking like broken switches. Artifact-specific learned signals live inline on `/atlas/artifact/[id]`, beside the memory that produced them. Historical `/atlas/receipt` and `/atlas/learned/[id]` URLs are compatibility aliases only. Constraints, privacy, and the data-use receipt remain linked specialist records, not competing memory homes. **One correction model, two contexts:** the in-reading/artifact "This isn't right" and Your Memory soften/forget are the SAME system — corrections suppress permanently. Do not build a second correction UI.
 
 ### 3.9 Cross-cutting: STATE COVERAGE + MOTION
 **Design:** `atlas-complete.jsx` `StateCoverage` + `MotionBoard`.
@@ -180,31 +183,30 @@ Trips may appear as provenance/evidence, but Atlas must not duplicate the operat
 
 ---
 
-## 4. Phased implementation plan
+## 4. Final alignment implementation plan
 
-Land each phase independently; verify end-to-end + `/code-review` before the next.
+Phases 1–9 of the original overhaul are substantially implemented. The remaining work is a final canon-alignment sequence. Land each slice independently; verify end-to-end + `/code-review` before the next.
 
-- **Phase 1 — Kill the reverted aesthetic + retire dead code.** Replace `AtlasHomeBoardHero` (featured hero) so the home no longer opens on a composed reading. Replace `compose.tsx`'s dark aperture with the warm flow (§3.7). Retire dead backend endpoints (`/atlas/almanac`, `/atlas/map`) + stale Stack.Screen registrations; confirm `your-map` redirects to Long View. *Foundational — unblocks the warm home.*
-- **Phase 2 — The warm place-first home** (§3.1): stable section grammar + dynamic hero + stage/precedence resolver + flattening/card taxonomy + the four-view Whole Atlas archive. This is the make-or-break surface.
-- **Phase 3 — Cold-start seed** (§3.2): two families + state-driven selection/rotation + low-friction choice capture + retirement/provenance behavior. Remove passive Home taste chips.
-- **Phase 4 — The reading reader** (§3.3): thesis/evidence/provenance + Read/Time/Places modes + Steer + moment primitive + media degradation. (Reel stays deferred — see §5.)
-- **Phase 5 — Long View** (§3.4).
-- **Phase 6 — Output layer** (§3.5): Unpacked (+ share + landing/invite) · artifact detail · style taxonomy/picker · postcards fold.
-- **Phase 7 — Memory Inbox + warm compose** (§3.6, §3.7 if not done in Ph1).
-- **Phase 8 — "Your Memory" reconcile** (§3.8): unify the memory-config routes into one surface + the one-correction-model.
-- **Phase 9 — State coverage + motion pass** (§3.9) across every surface.
+- **Slice 1 — Adopt the final canon. ✅** Updated this doc, Home/Memory/Receipt contracts, design receipts, and the pre-design audit/brief to the approved final state system.
+- **Slice 2 — Centralize Home composition. ✅** Split hero, saved places, and seed entrances into independent components; `resolveAtlasHomeComposition` now owns ordered eligibility, including hero → actionable attention → places.
+- **Slice 3 — Implement final blank and cold states. ✅** One search entrance, one combined location entrance, one optional learning entrance; provisional cold hero; no empty visited section; durable prompt retirement/provenance.
+- **Slice 4 — Implement accumulating and mature composition. ✅** Dynamic hero circumstances now resolve from expiring save/trip/Reading/correction/return evidence; recent consequences fold into the hero instead of duplicating it; accepted visited history is a distinct canonical row preview; and Whole Atlas is one restrained archive doorway with Places · Been · Readings · Taste grammar. Existing actionable attention, saved rows, durable Readings, one timely return, and rare learning remain under the central composition resolver.
+- **Slice 5 — Align Your Memory and Memory Receipt.** Synthesis first, evidence second, controls third; honest nothing-learned versus learning-off states; no duplicate Current Read or confidence-pill hierarchy.
+- **Slice 6 — Cleanup and certify.** Remove obsolete Home branches/components, audit unused compatibility fields, regenerate contracts if required, run focused tests, and refresh the registered state captures.
 
-Suggested order rationale: Phase 1 removes what contradicts the design; Phase 2 establishes the warm home everything hangs off; 3–7 build the surfaces; 8 unifies controls; 9 is the finishing hygiene that makes it feel done.
+The bundled `AtlasPlaceFirstLead` boundary has been removed. Keep final-state work on the split components and the central resolver; do not reintroduce local section-order booleans in the screen.
 
 ---
 
-## 5. Mismatches & kills (code ships what design reverted/deferred)
+## 5. Current implementation mismatches
 
-- **`AtlasHomeBoardHero` (featured-reading home hero) → KILL.** Design guardrail: no featured hero; home leads place-first. Replace in `app/(tabs)/atlas/index.tsx`. (Phase 1.)
-- **`compose.tsx` (dark query aperture) → REPLACE** with the warm compose flow (§3.7). (Phase 1/7.)
-- **Reel (`app/atlas/reel.tsx`, `AtlasBoardReel`) → design DEFERS it (greyed, not v1); code ships it live.** `[DECISION]`: either hide/deprecate Reel for v1 to match design, or the user rules to keep it live. Don't silently keep both positions.
-- **Dead backend endpoints** `GET /api/atlas/almanac` (+ `almanac_generator/*`) and `GET /api/atlas/map` (+ `map_compose.py`) — FE consumers deleted; retire the endpoints once confirmed unused. Remove stale `Stack.Screen` registrations for deleted routes and any "opened from the Almanac footer" residue.
-- **Route-name drift:** `/atlas/board` (code) vs `/atlas/readings/[id]` (design) — reconcile.
+- **Home composition boundary — resolved.** `AtlasHomeHero`, `AtlasSavedPlacesSection`, and `AtlasSeedEntrances` are independent; `resolveAtlasHomeComposition` owns eligibility and section order. Actionable attention now follows the hero before passive places.
+- **Blank and cold states — resolved.** Stage 0 now uses one primary search, one combined home-area/current-location entrance, and at most one optional photo-recovery entrance. Cold uses a provisional hero, one to three canonical saved rows, Add another, and one optional binary prompt that retires durably and records source-attributed weak-prior provenance in Personal Memory.
+- **Hero behavior — resolved.** Stable, recent save, accepted trip, completed Reading, recent correction, and meaningful-return circumstances now resolve from bounded evidence and expire back to stable. Save/correction consequences are absorbed rather than repeated below the hero.
+- **Visited and Whole Atlas — resolved.** Accepted trips and user-kept memories produce a distinct Places You've Been preview; saved intent and drafts are excluded. Whole Atlas uses one canonical flat archive row with Places · Been · Readings · Taste grammar.
+- **Your Memory hierarchy.** Photo access and feature availability currently precede learned synthesis/evidence. The final design reverses that priority and collapses unavailable future capabilities.
+- **Receipt hierarchy.** The current receipt still exposes `CURRENT READ` and qualitative confidence pills. The final design uses synthesis → evidence/provenance → correction → subordinate technical receipt, with no confidence UI competing with evidence.
+- **Legacy contract residue.** After UI parity, audit unused `AtlasHome` letter/room/shelf/postcard compatibility fields and remove only those proven unconsumed. Do not combine that contract cleanup with the visual refactor.
 
 ---
 
@@ -225,7 +227,7 @@ After each phase, drive the surface (`/verify`, `/run`) and check the **honesty 
 - The string "composition engine" (or any backend system name) appears **nowhere** in Atlas UI.
 - **No dark surfaces** anywhere in Atlas; every screen is warm daylight.
 - The Atlas home **never opens on a composed reading** — it leads place-first; readings/Unpacked/proactive-drops are below.
-- Cold-start shows a warm, populated, honest page (never "a reading is gathering") — 1–2 seed cards, priors-not-verdicts, `known around {city}` tags chosen on save.
+- Cold-start shows a warm, populated, honest page (never "a reading is gathering") — place search/location/photo recovery when blank, then one to three real saved rows and at most one prior-not-verdict question after the first saves.
 - Cold-start choices are optional, answerable in one or two taps, reflected in Taste/Your Memory, and removed after answering; passive taste chips do not remain on Home.
 - Saved places and Places You've Been remain separate; `loved` / `been` / `want to go` are explicit editable relationships, never inference shortcuts.
 - A normal Home visit shows at most one timely-return module and no more than two prominent editorial cards; independent eligible modules do not accumulate into a dashboard.
@@ -233,7 +235,7 @@ After each phase, drive the surface (`/verify`, `/run`) and check the **honesty 
 - Readings are **evidence-first** (provenance markers + source labels; never a confidence score; never "you are a X person"); private moments never leak (safety plates, never blur).
 - Corrections (in-reading "This isn't right" and Your Memory soften/forget) are **one system** and suppress permanently.
 
-### 7.1 Fresh state audit and Claude Design handoff — 2026-07-13
+### 7.1 Final design adjudication and implementation handoff — 2026-07-13
 
 The implementation now has registered Home captures for stage 0, cold,
 accumulating, mature, loading, and stale/error states. The audit corrected
@@ -241,17 +243,16 @@ persona-wide fake facts, fabricated cold receipt DNA, maturity based on planned
 trips, Discover saves counted as accepted memory, duplicate timely-return slots,
 and the missing Readings entrance.
 
-The remaining work is a focused visual-design pass, not an information-
-architecture reset. Use:
+The focused visual-design pass is complete. The approved implementation source is the `Vesper Atlas.html` section titled **“Atlas Home — final state system · CANONICAL”** in the reviewed `vesper 173` bundle, plus `atlas-home-final.jsx` and `atlas-memory-final.jsx`.
+
+Use:
 
 - `travel-app/docs/audits/atlas-home-state-audit-2026-07-13.md`
-- `travel-app/docs/surfaces/atlas-home/claude-design-brief-2026-07-13.md`
+- `travel-app/docs/surfaces/atlas-home/design-refs/vesper-173-atlas-source.md`
 - `.maestro/runs/_pairs/atlas-home/after` (7/7 state captures)
 - `.maestro/runs/_pairs/atlas-receipt/after`
 
-Do not ask Claude Design to choose the section hierarchy. Ask it to resolve the
-visual rhythm, stage transitions, dynamic hero states, emerging-vs-mature voice,
-visited-vs-saved distinction, and the density of Your Memory / Memory Receipt.
+The historical Claude Design brief is retained only as provenance. Do not reopen the section hierarchy while implementing. When older boards conflict with the final canonical section, the final section wins.
 
 ## Provenance
-Built from a 2026-07-12 functional gap audit of Atlas (code+backend vs the vesper-153 design canon) plus the design-session history that produced the warm, place-first Atlas (the composition-first "spine fold" was explored and reverted; see `archive/atlas-app-spine-fold.jsx`). The design canon (the `atlas-*.jsx` boards) is the pixel source of truth — this doc is the intent, the map, and the guardrails. Every code path here reflects that snapshot — **verify current before editing** (§0.5).
+Built from a 2026-07-12 functional gap audit of Atlas (code+backend vs the vesper-153 design canon), the implementation cleanup through 2026-07-13, and the final `vesper 173` Atlas state-system adjudication. The composition-first "spine fold" was explored and reverted; the older Atlas Home and postcard explorations remain visible only with explicit status labels. The final `atlas-home-final.jsx` and `atlas-memory-final.jsx` boards are the pixel source of truth — this doc is the intent, map, and guardrails. **Verify current code before editing** (§0.5).
