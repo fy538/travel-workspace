@@ -50152,6 +50152,22 @@
             "minimum": 1.0,
             "title": "Revision"
           },
+          "commitment_state": {
+            "type": "string",
+            "enum": [
+              "open",
+              "suggested",
+              "proposed",
+              "tentative",
+              "confirmed",
+              "handed_off",
+              "booking_in_progress",
+              "booked",
+              "cancelled",
+              "completed"
+            ],
+            "title": "Commitment State"
+          },
           "participation_scope": {
             "type": "string",
             "title": "Participation Scope"
@@ -50234,6 +50250,7 @@
           "block_id",
           "subject_lineage_id",
           "revision",
+          "commitment_state",
           "participation_scope",
           "structural_role",
           "participation",
