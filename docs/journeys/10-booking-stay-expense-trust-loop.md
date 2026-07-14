@@ -38,7 +38,7 @@ As an organizer, I want Vesper to help choose or confirm a stay, share the usefu
 2. Open accommodations list and accommodation detail.
 3. Ask Vesper about the stay or add it to plan.
 4. Open a booking session created by chat.
-5. Organizer selects or confirms offer.
+5. The proposal's assigned booker selects or confirms the offer (organizer by default; delegation may assign another member).
 6. App routes back to trip detail with a success receipt.
 7. Member sees public stay state, not private payment details.
 8. Organizer optionally shares total for expense settling.
@@ -57,7 +57,7 @@ As an organizer, I want Vesper to help choose or confirm a stay, share the usefu
 
 ## Expected Outcome
 
-- User-visible state: organizer can transact; non-organizer sees appropriate quiet/group state.
+- User-visible state: the assigned proposal owner can transact; other members, including an unassigned organizer, see the appropriate quiet/group state and converge on its terminal result.
 - Data state: booking session, selected offer, provider receipt, optional hotel stay writeback, and opt-in expense source ids are stable.
 - Cross-surface coherence: stays, chat, plan, booking receipt, and expenses agree.
 - Trust state: total paid, payment method, provider confirmation number, and cancellation details remain private until opt-in.
@@ -77,6 +77,7 @@ As an organizer, I want Vesper to help choose or confirm a stay, share the usefu
 - Provider receipts are receipt-only for flights. They do not create trip stays or shared expenses.
 - Confirmed hotel offers may write a `trip_accommodations` row only through the booking accommodation writeback hook, and only when the normalized hotel payload has enough stay/date/location data.
 - Shared trip-base stays are organizer-controlled. Members can manage their own personal stay slot; organizers can manage any stay slot.
+- Booking proposal decisions are owner-controlled: `proposal.user_id` may confirm or reject, same-outcome retries are idempotent, opposite terminal decisions conflict, and other open cards reconcile while the proposal is pending.
 - Expenses remain opt-in. Manual and receipt-derived expenses validate that `paid_by` and every split user are members of the trip before money rows are written.
 - Offer refresh is wired through provider `get_price`; Duffel refresh reads the latest offer before checkout so stale search prices are not treated as bookable truth.
 
