@@ -69723,6 +69723,19 @@
             ],
             "title": "Metadata",
             "description": "Optional turn metadata from the client. Used for structured entry-point grounding such as metadata.conversation_seed."
+          },
+          "retry_message_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Retry Message Id",
+            "description": "Durable ID of this actor's original user message when resuming a failed or interrupted turn. The server validates ownership, conversation, and content before reusing its private idempotency key."
           }
         },
         "type": "object",

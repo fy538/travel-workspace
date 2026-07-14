@@ -5,6 +5,12 @@
 > Last updated: 2026-06-26  
 > Primary phase: memory / identity control / trust hub
 
+> **Current Atlas IA:** This cross-repo journey certifies the candidate and
+> memory-control trust loop. Its older route inventory below is not the current
+> Atlas-internal journey map. Use
+> [`../../travel-app/docs/user-flows/atlas-journeys.md`](../../travel-app/docs/user-flows/atlas-journeys.md)
+> for the six current journeys that begin and end inside Atlas.
+
 ## Product Promise
 
 Atlas should make Vesper's memory inspectable and controllable: users can see what was learned, keep or reject candidates, inspect provenance, and change their mind.

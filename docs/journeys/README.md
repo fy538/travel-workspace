@@ -9,7 +9,7 @@ These one-pagers define the canonical journeys we should protect before expandin
 
 Use these when asking Codex, Claude Code, QA, or a human dogfooder to inspect the app. The goal is to catch the boring deterministic failures first: broken routes, stale read models, mock/real drift, no-op CTAs, privacy leaks, and fake-success states.
 
-**Promotion board:** [STATUS.md](STATUS.md) · **Archived static findings:** [STATIC_TRACE_PUNCH_LIST.md](../archive/2026-07/retired-live/STATIC_TRACE_PUNCH_LIST.md) · **Logic QA:** [travel-app/docs/logic-qa/README.md](../../travel-app/docs/logic-qa/README.md)
+**Promotion board:** [STATUS.md](STATUS.md) · **AI interaction map:** [AI_INTERACTION_MAP.md](AI_INTERACTION_MAP.md) · **Archived static findings:** [STATIC_TRACE_PUNCH_LIST.md](../archive/2026-07/retired-live/STATIC_TRACE_PUNCH_LIST.md) · **Logic QA:** [travel-app/docs/logic-qa/README.md](../../travel-app/docs/logic-qa/README.md)
 
 ## Research Inputs
 
