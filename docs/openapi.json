@@ -9377,7 +9377,7 @@
           "conversations"
         ],
         "summary": "Send Message",
-        "description": "Send a message in a conversation.\n\nIf ``trigger_agent`` is True (default), the concierge processes the\nmessage and returns its reply. If False, the message is persisted as a\nuser-to-user message and no agent reply is generated \u2014 useful for group\nchat where users want to talk to each other.\n\nOptional ``X-Idempotency-Key`` header deduplicates retries (only\napplies when ``trigger_agent`` is True; user-to-user messages don't\nneed retry protection at this layer).",
+        "description": "Send a message in a conversation.\n\nIf ``trigger_agent`` is True (default), the concierge processes the\nmessage and returns its reply. If False, the message is persisted as a\nuser-to-user message and no agent reply is generated \u2014 useful for group\nchat where users want to talk to each other.\n\nOptional ``X-Idempotency-Key`` header deduplicates both human-only sends\nand agent turns. Human messaging must tolerate lost-response mobile retries\nwithout inserting the same group message twice.",
         "operationId": "send_message_api_conversations__conversation_id__messages_post",
         "parameters": [
           {
@@ -16644,6 +16644,18 @@
             }
           },
           {
+            "name": "force",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Proceed even if the member has an unsettled balance. Without this, a removal that would orphan an unsettled debt 409s with the balance detail instead of completing.",
+              "default": false,
+              "title": "Force"
+            },
+            "description": "Proceed even if the member has an unsettled balance. Without this, a removal that would orphan an unsettled debt 409s with the balance detail instead of completing."
+          },
+          {
             "name": "authorization",
             "in": "header",
             "required": false,
@@ -20275,7 +20287,7 @@
           "stay-candidates"
         ],
         "summary": "Choose Stay Candidate",
-        "description": "Lock a candidate in as the trip's stay \u2014 the vote\u2192booking handoff.\n\nCreates a ``trip_accommodations`` row from the candidate (typed entity or\nits geocoded coords), carries the candidate's stated cost as display\ncontext, then marks the candidate ``chosen`` and links the two.\nOrganizer-gated.",
+        "description": "Lock a candidate in as the trip's stay \u2014 the vote\u2192selection handoff.\n\nCreates a ``trip_accommodations`` row from the candidate (typed entity or\nits geocoded coords), carries the candidate's stated cost as display\ncontext, then marks the candidate ``chosen`` and links the two. This does\nnot claim that a provider reservation has been completed.\nOrganizer-gated.",
         "operationId": "choose_stay_candidate_api_trips__trip_id__stay_candidates__candidate_id__choose_post",
         "parameters": [
           {
