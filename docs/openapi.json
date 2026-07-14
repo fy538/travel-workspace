@@ -33461,6 +33461,9 @@
                 "$ref": "#/components/schemas/RemovePayload"
               },
               {
+                "$ref": "#/components/schemas/RestorePayload"
+              },
+              {
                 "$ref": "#/components/schemas/SetAttendancePayload"
               },
               {
@@ -33477,6 +33480,7 @@
                 "remove": "#/components/schemas/RemovePayload",
                 "reorder": "#/components/schemas/ReorderPayload",
                 "replace": "#/components/schemas/ReplacePayload",
+                "restore": "#/components/schemas/RestorePayload",
                 "set_attendance": "#/components/schemas/SetAttendancePayload"
               }
             }
@@ -49134,6 +49138,7 @@
           "reorder",
           "replace",
           "remove",
+          "restore",
           "set_attendance",
           "mark_occurrence",
           "create_parallel_plan",
@@ -53441,6 +53446,9 @@
                 "$ref": "#/components/schemas/RemovePayload"
               },
               {
+                "$ref": "#/components/schemas/RestorePayload"
+              },
+              {
                 "$ref": "#/components/schemas/SetAttendancePayload"
               },
               {
@@ -53470,6 +53478,7 @@
                 "reorder": "#/components/schemas/ReorderPayload",
                 "replace": "#/components/schemas/ReplacePayload",
                 "replan": "#/components/schemas/ReplanPayload",
+                "restore": "#/components/schemas/RestorePayload",
                 "set_attendance": "#/components/schemas/SetAttendancePayload",
                 "update_parallel_plan": "#/components/schemas/ParallelPlanPayload"
               }
@@ -60427,6 +60436,63 @@
           "updated_at"
         ],
         "title": "RestaurantBookingAttempt"
+      },
+      "RestorePayload": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "restore",
+            "title": "Kind",
+            "default": "restore"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "tentative",
+              "confirmed"
+            ],
+            "title": "Status"
+          },
+          "commitment_state": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Commitment State"
+          },
+          "booking_state": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Booking State"
+          },
+          "actor_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Actor Type"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "RestorePayload"
       },
       "ResultGroup": {
         "type": "string",
