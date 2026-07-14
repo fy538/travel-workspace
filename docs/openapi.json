@@ -9160,7 +9160,7 @@
           "conversations"
         ],
         "summary": "Update Conversation Agency",
-        "description": "Patch Vesper's group-room agency controls.\n\nMember-operable by design: any participant can choose the room's\nreactive/proactive posture and mute Vesper for themselves. ``room_muted``\nis also member-operable for the W3 launch; if product later wants\norganizer-only room mute, keep the metadata shape and tighten auth here.",
+        "description": "Patch Vesper's group-room agency controls.\n\nThe room posture is organizer-owned. Every participant may mute Vesper for\nthemselves, and any participant may use the visible whole-room mute as an\nemergency brake. Room-level changes are durable governance events; a mute\ntransition also becomes a quiet, unattributed fact in group history.",
         "operationId": "update_conversation_agency_api_conversations__conversation_id__agency_patch",
         "parameters": [
           {
@@ -12003,6 +12003,92 @@
         }
       }
     },
+    "/api/trips/{trip_id}/settlements": {
+      "post": {
+        "tags": [
+          "expenses"
+        ],
+        "summary": "Record Settlement Payment",
+        "description": "Record a real-world transfer between two travelers and return the\nfreshly recomputed trip settlement.\n\n2026-07-14: this is the fix for the trip-wide \"Settle up\" flow, which\nused to guess which expense shares corresponded to a net (possibly\nchained/simplified) transfer amount and flip is_settled on them \u2014\nsometimes the wrong ones, corrupting the balance graph. Recording the\nactual transfer instead of guessing a share mapping is unambiguous by\nconstruction: the graph nets exactly the amount that changed hands, no\nmatter how many expenses or people it was originally chained through.\n\nEither side of the transfer may record it \u2014 the person who paid\n(self-declaring \"I paid X\"), or the person who received it (confirming\n\"X paid me\") \u2014 mirroring the existing single-share settle endpoint's\npayer-or-self-only authorization (B6).",
+        "operationId": "record_settlement_payment_api_trips__trip_id__settlements_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "x-idempotency-key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Idempotency-Key"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SettlementPaymentCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripSettlement"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/receipts/upload": {
       "post": {
         "tags": [
@@ -14601,7 +14687,7 @@
           "trip-invites"
         ],
         "summary": "Submit Intake",
-        "description": "Record pre-auth chip answers on the invite.\n\nPublic endpoint \u2014 the invitee hasn't signed up yet. The payload is\nmerged into the invite's pending_intake JSONB and handed to the\nconcierge at accept-time so the conversation picks up continuously.",
+        "description": "Record pre-auth chip answers on the invite.\n\nPublic endpoint \u2014 the invitee hasn't signed up yet. The payload is\nmerged into the invite's pending_intake JSONB and handed to the\nconcierge at accept-time so the conversation picks up continuously.\n\nRate-limited by client IP (D15, invitee-first-five-minutes-audit-\n2026-07-13) \u2014 unauthenticated, so no user_id exists to key on.",
         "operationId": "submit_intake_api_invites__token__intake_post",
         "parameters": [
           {
@@ -14647,7 +14733,7 @@
           "trip-invites"
         ],
         "summary": "Accept Invite",
-        "description": "Consume the invite and add the authenticated user as a member.\n\nBranches on scope: trip invites add the user to trip_members and log\nan ``invite.consumed`` trip_event. Conversation invites (Phase 4)\nadd the user to conversation_participants; on promotion those\nparticipants are copied over to trip_members automatically (see\npromotion.py). Event logging for conversation invites is deferred\n\u2014 we don't have a conversation_events table yet and the audit gap\nat this pre-trip stage is acceptable.",
+        "description": "Consume the invite and add the authenticated user as a member.\n\nBranches on scope: trip invites add the user to trip_members and log\nan ``invite.consumed`` trip_event. Conversation invites (Phase 4)\nadd the user to conversation_participants; on promotion those\nparticipants are copied over to trip_members automatically (see\npromotion.py). Event logging for conversation invites is deferred\n\u2014 we don't have a conversation_events table yet and the audit gap\nat this pre-trip stage is acceptable.\n\n``body`` is optional and backward-compatible with the existing\nno-body callers \u2014 only a group-share invitee reclaiming their own\npre-auth answer (D10, invitee-postjoin design) has a reason to send\none. See ``claim_group_share_intake`` for the matching rule.",
         "operationId": "accept_invite_api_invites__token__accept_post",
         "parameters": [
           {
@@ -14692,6 +14778,23 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/InviteAcceptRequest"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Body"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -20599,7 +20702,7 @@
           "trips"
         ],
         "summary": "Decommit Trip Endpoint",
-        "description": "Archive a trip and return its conversation to drafting.\n\nThe two-way door from promotion. Trip row stays (status='archived')\nfor audit / undo. The primary conversation is unlinked and its\nintent_state.phase set back to 'drafting' so the agent resumes\nexploration without losing history.\n\nOnly trip organizers can decommit because this changes the trip-wide\nlifecycle and detaches its conversation boundary. The settings surface\nuses the separate archive endpoint below; this endpoint remains the narrow\ntwo-way door for undoing a conversation promotion back to drafting.",
+        "description": "Archive a trip and return its conversation to drafting.\n\nThe two-way door from promotion. Trip row stays (status='archived')\nfor audit / undo. The primary conversation is unlinked and its\nintent_state.phase set back to 'drafting' so the agent resumes\nexploration without losing history.\n\nOnly trip organizers can decommit: this changes the trip-wide lifecycle and\ndetaches its conversation. Archiving is separate; this only undoes promotion.",
         "operationId": "decommit_trip_endpoint_api_trips__trip_id__decommit_post",
         "parameters": [
           {
@@ -21364,6 +21467,66 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TripMapState"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/postjoin-payoff": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Postjoin Payoff",
+        "description": "One-shot invitee \"felt, not told\" acknowledgment (Slice H4, D9/D10,\ninvitee-postjoin design \u2014 invitee-first-five-minutes-audit-2026-07-13).\n\nFires at most once per membership \u2014 the accepting member's own\npre-auth signal (chip answer / free text), attributed via\n``consumed_by`` (single-use) or a group-share claim (H3), shown back\nthrough the plan. Every call after the first \u2014 a return visit, a\nretry, or when there was never any attributable signal \u2014 returns\n``payoff=None``; the client renders the ordinary trip either way,\nnever an apology or a placeholder.",
+        "operationId": "get_postjoin_payoff_api_trips__trip_id__postjoin_payoff_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostJoinPayoffResponse"
                 }
               }
             }
@@ -40053,6 +40216,17 @@
             "title": "Masked",
             "default": false
           },
+          "rate_source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rate Source"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -43977,6 +44151,23 @@
         ],
         "title": "InterruptionAction"
       },
+      "InviteAcceptRequest": {
+        "properties": {
+          "claimed_intake": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/InviteClaimIntake"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "title": "InviteAcceptRequest",
+        "description": "Optional accept-time body. Absent/None claimed_intake is the\nordinary accept path (single-use invites, or a group-share invitee\nwho never answered / declined to claim)."
+      },
       "InviteAcceptResponse": {
         "properties": {
           "trip_id": {
@@ -44011,6 +44202,11 @@
           "member_role": {
             "type": "string",
             "title": "Member Role"
+          },
+          "intake_claimed": {
+            "type": "boolean",
+            "title": "Intake Claimed",
+            "default": false
           }
         },
         "type": "object",
@@ -44019,6 +44215,37 @@
           "member_role"
         ],
         "title": "InviteAcceptResponse"
+      },
+      "InviteClaimIntake": {
+        "properties": {
+          "chip_answer": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Chip Answer"
+          },
+          "free_text": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 1000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Free Text"
+          }
+        },
+        "type": "object",
+        "title": "InviteClaimIntake",
+        "description": "What the client asserts it remembers submitting pre-auth, offered\nat accept time for a group-share invite (D10, attribute-at-accept \u2014\ninvitee-postjoin design, Slice H). Same shape as InviteIntakeRequest's\nsignal fields; the backend matches this against the invite's\nanonymous ``pending_intake.submissions`` list rather than trusting it\noutright \u2014 see claim_group_share_intake."
       },
       "InviteConversationSummary": {
         "properties": {
@@ -44150,11 +44377,15 @@
           },
           "max_uses": {
             "type": "integer",
+            "maximum": 50.0,
+            "minimum": 1.0,
             "title": "Max Uses",
             "default": 1
           },
           "expires_in_days": {
             "type": "integer",
+            "maximum": 90.0,
+            "minimum": 1.0,
             "title": "Expires In Days",
             "default": 14
           }
@@ -44508,6 +44739,11 @@
             "type": "string",
             "const": "active",
             "title": "Status"
+          },
+          "is_group_share": {
+            "type": "boolean",
+            "title": "Is Group Share",
+            "default": false
           }
         },
         "type": "object",
@@ -48014,7 +48250,8 @@
             "type": "string",
             "enum": [
               "stay_vote",
-              "settle_up"
+              "settle_up",
+              "proposal"
             ],
             "title": "Reason"
           },
@@ -48690,6 +48927,17 @@
             ],
             "title": "Voting Enabled"
           },
+          "consensus_automation_enabled": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Consensus Automation Enabled"
+          },
           "autonomy_level": {
             "anyOf": [
               {
@@ -48725,7 +48973,27 @@
         },
         "type": "object",
         "title": "PatchTripRequest",
-        "description": "User-editable trip fields.\n\nExcludes internal fields (``status``, ``trip_summary``, ``planning_brief``)\nthat are managed by the concierge or background jobs and must not be\noverwritten by direct client mutations."
+        "description": "User-editable trip fields.\n\nExcludes internal fields managed by the concierge or background jobs; direct\nclient mutations must not overwrite them."
+      },
+      "PayoffBlockAside": {
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Block Id"
+          },
+          "aside_text": {
+            "type": "string",
+            "title": "Aside Text"
+          }
+        },
+        "type": "object",
+        "required": [
+          "block_id",
+          "aside_text"
+        ],
+        "title": "PayoffBlockAside",
+        "description": "One itinerary-row inflection line for the invitee post-join payoff.\n\n``block_id`` must reference a real block from the trip's current\nitinerary \u2014 the generator validates this post-hoc against the actual\nblock-id set it was given (invitee-postjoin design, Slice H)."
       },
       "PendingInviteAnswer": {
         "properties": {
@@ -51327,6 +51595,44 @@
         "title": "PlanningSavedPlaceBootstrap",
         "description": "A saved place the client used as a trip-draft starting point."
       },
+      "PostJoinPayoff": {
+        "properties": {
+          "welcome_aside": {
+            "type": "string",
+            "title": "Welcome Aside"
+          },
+          "block_asides": {
+            "items": {
+              "$ref": "#/components/schemas/PayoffBlockAside"
+            },
+            "type": "array",
+            "title": "Block Asides"
+          }
+        },
+        "type": "object",
+        "required": [
+          "welcome_aside"
+        ],
+        "title": "PostJoinPayoff",
+        "description": "The invitee post-join \"felt, not told\" acknowledgment moment.\n\nNone (not an instance of this model) signals \"nothing plausibly\nmatched\" \u2014 the caller degrades to the plain TripBody mode, per the\ninvitee-postjoin design's own rule that absence must never render as\nan apology or placeholder."
+      },
+      "PostJoinPayoffResponse": {
+        "properties": {
+          "payoff": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PostJoinPayoff"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "title": "PostJoinPayoffResponse",
+        "description": "Response for the one-shot invitee payoff fetch (Slice H4).\n\n``payoff=None`` covers every \"show the ordinary trip\" case alike \u2014\nalready seen, no signal was ever given, or nothing plausibly\nmatched \u2014 the client never needs to distinguish them."
+      },
       "PostcardRenderResponse": {
         "properties": {
           "render_status": {
@@ -51914,7 +52220,7 @@
           "can_view_individual_votes": {
             "type": "boolean",
             "title": "Can View Individual Votes",
-            "default": false
+            "default": true
           },
           "resolution_note": {
             "anyOf": [
@@ -53370,6 +53676,17 @@
               }
             ],
             "title": "Device Info"
+          },
+          "timezone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timezone"
           }
         },
         "type": "object",
@@ -54730,6 +55047,32 @@
           "user_ids"
         ],
         "title": "SettleRequest"
+      },
+      "SettlementPaymentCreate": {
+        "properties": {
+          "from_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "From User Id"
+          },
+          "to_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "To User Id"
+          },
+          "amount": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Amount"
+          }
+        },
+        "type": "object",
+        "required": [
+          "from_user_id",
+          "to_user_id",
+          "amount"
+        ],
+        "title": "SettlementPaymentCreate"
       },
       "SettlementTransfer": {
         "properties": {
@@ -56874,6 +57217,11 @@
             "title": "Voting Enabled",
             "default": false
           },
+          "consensus_automation_enabled": {
+            "type": "boolean",
+            "title": "Consensus Automation Enabled",
+            "default": false
+          },
           "occasion": {
             "anyOf": [
               {
@@ -58284,6 +58632,18 @@
               }
             ],
             "title": "Display Name"
+          },
+          "invite_payoff_seen_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Invite Payoff Seen At"
           }
         },
         "type": "object",

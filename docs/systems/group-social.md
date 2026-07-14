@@ -82,9 +82,14 @@ privacy.
    OFF, organizer opt-in. Explicit-unanimity auto-accept stays (it only fires on
    explicit votes). This honors "membership does not imply a governance
    preference" — that principle was always about automation, never expression.
-   *Status: ruled, implementation pending* (flag split + migration + FE copy on
-   the "voting is off" states + re-keying the sweep gates in
-   `change_proposals.py`).
+   *Status: implemented* (`consensus_automation_enabled` column + migration;
+   `change_proposals.py`'s deadline sweep/reminder re-keyed to it;
+   `trips/members.py::add_trip_member` reinstates auto-enable for visible
+   voting only, on the trip's first non-organizer member; `_propose_present.py`
+   only sets a proposal deadline when automation is on, so a lazy_consensus/
+   active_approval countdown never shows without a sweep to honor it; FE
+   trip-settings gets a second toggle for automation, gated on visible voting
+   being on first).
 
 ## Spans (cross-repo)
 - Backend: membership/invites in `core/` + `api/routes/trips.py`, `members`, `invites`; social dynamics in [`travel-agent/backend/social_state/`](../../travel-agent/backend/social_state/FEATURE.md) (6).
