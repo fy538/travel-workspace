@@ -275,6 +275,26 @@ A0 does not yet retire the planner's direct persistence path.
   full-version replacement; a stale planner result fails without overwriting a
   newer human or Vesper edit; receipts/progress/enrichment still close correctly.
 
+Execution status (2026-07-14): **A1 first-birth half complete; replan half
+remains open.** Travel Agent commits `0d0ffa1b8`, `c529b8d5f`, and `bc394b268`
+add the canonical planner-output normalizer, deterministic retry recovery, and
+the `_plan.py` persistence dispatch. A first planner result now creates or
+reuses one accepted shape and emits one complete `materialize_shape` operation,
+including contiguous dated days, stable deterministic itinerary/day/block
+identities, group participation/ownership, anchors, reasoning, narratives,
+transitions, price-estimate provenance, fidelity, and workflow provenance.
+Durable workflow fencing encloses shape/operation/itinerary birth and the
+workflow checkpoint in one transaction; checkpoint failure leaves no shape,
+itinerary, or ledger residue. Dated trip creation/update no longer publishes an
+empty itinerary shell before real planner output exists. Undated or
+destination-less birth fails closed rather than selecting the legacy writer.
+Focused birth/durable/gateway/planner/persistence/trip verification is green
+(**141 passed** in the broad slice; **31 passed** after final dispatch wiring).
+The A1 checkbox stays open: existing-itinerary output still uses
+`persist_planning_output` and full-version replacement. The next slice must
+define and land the deterministic guarded `replan` child-operation diff, then
+rebind/retire the remaining `persisted_version` and `plan_events` assumptions.
+
 ### A2. Proposal creation goes canonical
 
 - Today: creation is legacy across four producers (`change_proposals.py`,
