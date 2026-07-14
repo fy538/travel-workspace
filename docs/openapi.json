@@ -21820,6 +21820,76 @@
         }
       }
     },
+    "/api/trips/{trip_id}/context-change-preview": {
+      "post": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Preview Trip Context Change Endpoint",
+        "description": "Preview date, destination, timezone, and protected-plan consequences.",
+        "operationId": "preview_trip_context_change_endpoint_api_trips__trip_id__context_change_preview_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TripContextChangePreviewRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripContextChangePreview"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/photos": {
       "post": {
         "tags": [
@@ -22497,76 +22567,6 @@
               }
             },
             "description": "Conflict"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/trips/{trip_id}/context-change-preview": {
-      "post": {
-        "tags": [
-          "trips"
-        ],
-        "summary": "Preview Trip Context Change Endpoint",
-        "description": "Preview date, destination, timezone, and protected-plan consequences.",
-        "operationId": "preview_trip_context_change_endpoint_api_trips__trip_id__context_change_preview_post",
-        "parameters": [
-          {
-            "name": "trip_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Trip Id"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TripContextChangePreviewRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TripContextChangePreview"
-                }
-              }
-            }
           },
           "422": {
             "description": "Validation Error",
@@ -49369,6 +49369,9 @@
               }
             ],
             "title": "Approval Mode"
+          },
+          "projection": {
+            "$ref": "#/components/schemas/ItineraryProposalReadProjection"
           }
         },
         "additionalProperties": false,
@@ -49716,6 +49719,66 @@
           "source_status"
         ],
         "title": "ItineraryProjectionEnvelope"
+      },
+      "ItineraryProposalReadProjection": {
+        "properties": {
+          "impact_analysis": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Impact Analysis"
+          },
+          "alternative_options": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Alternative Options"
+          },
+          "proposed_entity_type": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "venue",
+                  "experience",
+                  "site"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proposed Entity Type"
+          },
+          "proposed_entity_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proposed Entity Id"
+          },
+          "deadline": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deadline"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "ItineraryProposalReadProjection",
+        "description": "Compatibility fields consumed by the group-facing proposal projection."
       },
       "ItineraryProtectionProjection": {
         "properties": {
