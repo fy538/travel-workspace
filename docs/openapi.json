@@ -15724,6 +15724,86 @@
         }
       }
     },
+    "/api/trips/{trip_id}/itinerary/operations/provider-sagas/{saga_id}/reapprove-held-price": {
+      "post": {
+        "tags": [
+          "itinerary-operations"
+        ],
+        "summary": "Reapprove Held Price Route",
+        "description": "Approve one current held quote and resume its canonical provider saga.",
+        "operationId": "reapprove_held_price_route_api_trips__trip_id__itinerary_operations_provider_sagas__saga_id__reapprove_held_price_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "saga_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Saga Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItineraryHeldPriceReapprovalRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItineraryProviderSaga"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/itinerary/operations/proposals": {
       "post": {
         "tags": [
@@ -29995,6 +30075,16 @@
           "structural_role": {
             "$ref": "#/components/schemas/StructuralRole",
             "default": "ordinary"
+          },
+          "content": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/OperationBlockContent"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "additionalProperties": false,
@@ -48087,6 +48177,47 @@
         ],
         "title": "ItineraryHeldBookingSagaStartRequest"
       },
+      "ItineraryHeldPriceReapprovalRequest": {
+        "properties": {
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          },
+          "expected_saga_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Saga Revision"
+          },
+          "quote_hash": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$",
+            "title": "Quote Hash"
+          },
+          "terms_accepted": {
+            "type": "boolean",
+            "const": true,
+            "title": "Terms Accepted"
+          },
+          "final_human_approval": {
+            "type": "boolean",
+            "const": true,
+            "title": "Final Human Approval"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "idempotency_key",
+          "expected_saga_revision",
+          "quote_hash",
+          "terms_accepted",
+          "final_human_approval"
+        ],
+        "title": "ItineraryHeldPriceReapprovalRequest",
+        "description": "Fresh human approval bound to one persisted provider quote and saga revision."
+      },
       "ItineraryHistoryItem": {
         "properties": {
           "operation": {
@@ -49874,6 +50005,11 @@
             "format": "uuid",
             "title": "Saga Id"
           },
+          "revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Revision"
+          },
           "saga_kind": {
             "type": "string",
             "enum": [
@@ -49992,6 +50128,7 @@
         "type": "object",
         "required": [
           "saga_id",
+          "revision",
           "saga_kind",
           "state",
           "plan_outcome",
@@ -54590,6 +54727,101 @@
           "composed_by"
         ],
         "title": "OneLineReadResponse"
+      },
+      "OperationBlockContent": {
+        "properties": {
+          "block_type": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Block Type"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          },
+          "energy_rationale": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Energy Rationale"
+          },
+          "travel_to_next": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Travel To Next"
+          },
+          "interlude": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Interlude"
+          },
+          "price_cents": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Cents"
+          },
+          "price_is_estimated": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Is Estimated"
+          },
+          "venue_unlinked": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Venue Unlinked"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "block_type"
+        ],
+        "title": "OperationBlockContent",
+        "description": "Complete planner-owned content carried by Add/Replace operations."
       },
       "OperationEntityRef": {
         "properties": {
@@ -60588,6 +60820,26 @@
           },
           "chosen_entity": {
             "$ref": "#/components/schemas/OperationEntityRef"
+          },
+          "placement": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/OperationPlacement"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "content": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/OperationBlockContent"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "additionalProperties": false,
