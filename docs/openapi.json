@@ -21332,6 +21332,76 @@
         }
       }
     },
+    "/api/trips/{trip_id}/members/{member_id}/departure-preflight": {
+      "get": {
+        "tags": [
+          "trip-access"
+        ],
+        "summary": "Get Departure Preflight",
+        "description": "Preview blockers and consequences before leave/remove confirmation.",
+        "operationId": "get_departure_preflight_api_trips__trip_id__members__member_id__departure_preflight_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "member_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Member Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripDeparturePreflight"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/itinerary-delegation": {
       "get": {
         "tags": [
@@ -65283,6 +65353,118 @@
         "type": "object",
         "title": "TripDebriefSubmit",
         "description": "Structured post-trip debrief \u2014 funnels explicit traveler signal into memory."
+      },
+      "TripDepartureBalance": {
+        "properties": {
+          "net_balance": {
+            "type": "number",
+            "title": "Net Balance"
+          },
+          "absolute_amount": {
+            "type": "number",
+            "title": "Absolute Amount"
+          },
+          "currency": {
+            "type": "string",
+            "title": "Currency"
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "owes_group",
+              "owed_by_group"
+            ],
+            "title": "Direction"
+          }
+        },
+        "type": "object",
+        "required": [
+          "net_balance",
+          "absolute_amount",
+          "currency",
+          "direction"
+        ],
+        "title": "TripDepartureBalance"
+      },
+      "TripDeparturePreflight": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "member_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Member Id"
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "leave",
+              "remove"
+            ],
+            "title": "Action"
+          },
+          "can_proceed": {
+            "type": "boolean",
+            "title": "Can Proceed"
+          },
+          "blocker": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "only_traveler",
+                  "last_organizer"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Blocker"
+          },
+          "requires_force": {
+            "type": "boolean",
+            "title": "Requires Force"
+          },
+          "unsettled_balance": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TripDepartureBalance"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "is_shared_plan_owner": {
+            "type": "boolean",
+            "title": "Is Shared Plan Owner"
+          },
+          "shared_plan_owner_will_transfer": {
+            "type": "boolean",
+            "title": "Shared Plan Owner Will Transfer"
+          },
+          "remaining_member_count": {
+            "type": "integer",
+            "title": "Remaining Member Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "member_id",
+          "action",
+          "can_proceed",
+          "requires_force",
+          "is_shared_plan_owner",
+          "shared_plan_owner_will_transfer",
+          "remaining_member_count"
+        ],
+        "title": "TripDeparturePreflight",
+        "description": "Current facts a client must show before ending a membership.\n\nThis is deliberately a read model, not authorization for the later delete:\nthe removal transaction re-checks structural invariants and the balance\nwarning still requires ``force=true`` at write time."
       },
       "TripDetailsRow": {
         "properties": {
