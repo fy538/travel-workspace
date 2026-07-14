@@ -1,0 +1,13 @@
+{
+  "compatibility_window_declared": true,
+  "compatibility_window_closed": false,
+  "old_client_projection_parity_clean": false,
+  "shadow_and_dual_read_clean": false,
+  "legacy_bypass_observation_clean": false,
+  "canonical_history_complete": false,
+  "rollback_drill_passed": true,
+  "evidence_refs": [
+    "itinerary-redesign-ir17-operational-followups-2026-07-13.md#rollback-drill",
+    "itinerary-redesign-ir17-operational-followups-2026-07-13.md#compatibility-window-and-retirement"
+  ]
+}

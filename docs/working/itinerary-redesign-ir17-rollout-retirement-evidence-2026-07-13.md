@@ -12,7 +12,7 @@ source_of_truth_for: [itinerary-redesign-ir17-rollout-retirement-evidence]
 # Itinerary redesign IR-17 — rollout and retirement evidence
 
 **Date:** 2026-07-13
-**Status:** rollout controls implemented; production stage advance and irreversible retirement blocked on measured evidence
+**Status:** rollout controls and local rollback drill implemented; production stage advance and irreversible retirement blocked on measured evidence
 **Lane:** itinerary-foundation
 
 ## Outcome
@@ -109,19 +109,19 @@ provider partials, proposal state, write-backs, or additive schema.
 
 Backend:
 
-- 197 focused rollout/flag/telemetry, canonical route, and concierge mutation
-  tests passed.
+- An isolated current-schema PostgreSQL database upgraded through the single
+  head `ir16a001`.
+- 519 itinerary/lifecycle/policy/read-model/API/provider/compatibility tests
+  passed on that schema.
 - Ruff passed on every changed backend, script, and test file.
 - Python byte compilation and `git diff --check` passed.
 - Alembic remains one head: `ir16a001`.
-- A broader read-model/lifecycle run produced 17 passing lifecycle tests; 11
-  PostgreSQL read-model tests could not start because the shared local database
-  is stale before IR-05 (`trips.itinerary_decision_owner_id` is missing). This
-  is an environment migration blocker, not a rollout assertion failure; CI or a
-  current disposable database must run those tests before cohort exposure.
+- A real flag-only rollback drill passed after finding and fixing a Plan State
+  cache-key defect that could retain canonical authority for the cache TTL.
 
 Frontend:
 
+- 210 itinerary/trip-shell frontend tests passed across 35 suites.
 - TypeScript passed.
 - The rollout fallback test passed (2 tests), proving build permission alone
   does not select a trip and removal of canonical authority restores the
@@ -133,9 +133,13 @@ Frontend:
 
 Keep `ITINERARY_ROLLOUT_STAGE=off` and all behavior flags dark until:
 
-1. CI executes the current backend suite against `ir16a001`;
-2. IR-00 receives measured baselines and approved numerical thresholds;
+1. CI repeats the current-schema verification against `ir16a001`;
+2. the canonical dogfood lifecycle gaps are repaired and the selected-cohort
+   policy baseline and threshold are recorded;
 3. a selected-trip evidence JSON passes `scripts/audit_itinerary_rollout.py`
    for the requested next stage; and
-4. rollback is drilled by removing the selected trip or lowering the stage and
-   verifying the legacy read returns while canonical records remain.
+4. every later stage supplies its own measured evidence before advancing.
+
+The dated measurements, rollback proof, declared compatibility window, and
+executable failing gate fixtures are recorded in
+`itinerary-redesign-ir17-operational-followups-2026-07-13.md`.

@@ -1,0 +1,18 @@
+[
+  {
+    "signal": "lifecycle_disagreement",
+    "baseline_measured": true,
+    "threshold_recorded": true,
+    "sample_count": 13,
+    "passed": false,
+    "evidence_ref": "itinerary-redesign-ir17-operational-followups-2026-07-13.md#measured-shadow-baseline"
+  },
+  {
+    "signal": "policy_disagreement",
+    "baseline_measured": false,
+    "threshold_recorded": false,
+    "sample_count": 0,
+    "passed": false,
+    "evidence_ref": "itinerary-redesign-ir17-operational-followups-2026-07-13.md#measured-shadow-baseline"
+  }
+]
