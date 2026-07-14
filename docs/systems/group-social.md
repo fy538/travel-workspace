@@ -3,7 +3,7 @@
 > Surface: Trips
 > Maturity (for MVP): MVP-required
 > Status: wired (membership golden-path; social dynamics beta)
-> Last updated: 2026-07-13 (coordination-channel ruling + group-decision rulings added)
+> Last updated: 2026-07-14 (shared-outcome propagation and two-observer certification closed)
 
 ## Purpose
 The group itself — **membership & invites** (who is in the trip, with what role) and
@@ -124,6 +124,18 @@ is owned by [Memory & Preference](memory-preference.md); this system supplies th
   organizer/agent-side only — the old D1 rule this replaces.)
 - **Quiet propagation:** ordinary group-visible mutations converge on focus/refetch;
   only existing arbiter-gated event classes receive push.
+- **Human delivery is independent of AI participation:** ordinary reactive-room
+  messages use an idempotent non-streaming write, consume no concierge-turn quota,
+  and render no Vesper placeholder. Explicit Vesper address and opted-in proactive
+  candidates alone enter the AI participation transport.
+- **Committed chat history cannot depend on one Redis publish:** human-message and
+  Vesper-message lifecycle writes enqueue an identifier-only propagation event in
+  the same Postgres transaction. Successful publish acknowledges it; a periodic
+  repair sweep retries missed signals. The client poll remains the final fallback.
+- **Shared-room routing fails closed on roster uncertainty:** group-chat hooks mount
+  only after an authoritative roster verifies at least two members. A verified solo
+  roster redirects privately; an unavailable or empty roster exposes retry without
+  creating or subscribing to the shared room.
 - **Wiki-mode V1:** committed plan state is shared immediately; curator/selective
   draft propagation is deferred.
 - **Organizer authority is explicit:** the organizer resolves proposals in V1;
@@ -139,7 +151,7 @@ is owned by [Memory & Preference](memory-preference.md); this system supplies th
 
 ## Maturity & validation
 - Serves journeys: 02 (create + invite — already a reliability golden path), 04 (group-safe routing), 05 (role gates edit-mode).
-- DoD state: offline golden-path + invite hooks tests ✅ (`useCreateInvite`, `useTripInvites`, `invite-landing.smoke`) · **screen-level mock walk-through ❌ · live two-account invite walk ❌**.
+- DoD state: offline golden-path + invite hooks tests ✅ (`useCreateInvite`, `useTripInvites`, `invite-landing.smoke`) · persisted second-observer certification ✅ (membership, itinerary invalidation, stay tally/selection, public votes, direct-edit receipts, booking decisions, room mute, and trip genesis) · **screen-level mock walk-through ❌ · live two-account invite walk ❌**.
 
 ## Canonical docs
 - why → `product/Interaction Design and Social Dynamics.md` · how → `working/Group Interjection Sync Design.md` · what(be) → `backend/social_state/FEATURE.md` · what(fe) → `page-specs/trip-group-chat.md` · `trip-page.md`.
@@ -148,7 +160,8 @@ is owned by [Memory & Preference](memory-preference.md); this system supplies th
 ## Open risks / known gaps
 - Invite flows are "easy to break with auth detours, stale tokens, and current-user assumptions" — the **stale `currentTripId`** assumption is the classic failure (sends an invitee to the wrong workspace). Trace it explicitly.
 - This is the only MVP-required system needing a genuine **two-account, two-device** live walk (everything else can be walked solo).
-- Remaining propagation backlog is honest-but-quiet rather than a privacy blocker:
-  vote history, direct-edit receipts, stay decision events, booking path symmetry,
-  mark-booked chat bridge, trip-genesis audit, room-mute audit, and pin idempotency.
-  Extend the second-observer certifier as each lands.
+- The 2026-07-14 propagation backlog is closed in code: public vote history,
+  direct-edit receipts, stay selection, booking-proposal decisions, mark-booked,
+  trip-genesis audit, room-mute audit, and legacy pin idempotency now have durable
+  behavior plus second-observer or focused replay coverage. Remaining risk is
+  experiential/device certification, not a known persistence hole.
