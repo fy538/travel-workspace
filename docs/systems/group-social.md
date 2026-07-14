@@ -3,7 +3,7 @@
 > Surface: Trips
 > Maturity (for MVP): MVP-required
 > Status: wired (membership golden-path; social dynamics beta)
-> Last updated: 2026-07-13 (coordination-channel ruling + group-decision rulings added)
+> Last updated: 2026-07-14 (human-message/AI-transport separation added)
 
 ## Purpose
 The group itself — **membership & invites** (who is in the trip, with what role) and
@@ -124,6 +124,10 @@ is owned by [Memory & Preference](memory-preference.md); this system supplies th
   organizer/agent-side only — the old D1 rule this replaces.)
 - **Quiet propagation:** ordinary group-visible mutations converge on focus/refetch;
   only existing arbiter-gated event classes receive push.
+- **Human delivery is independent of AI participation:** ordinary reactive-room
+  messages use an idempotent non-streaming write, consume no concierge-turn quota,
+  and render no Vesper placeholder. Explicit Vesper address and opted-in proactive
+  candidates alone enter the AI participation transport.
 - **Wiki-mode V1:** committed plan state is shared immediately; curator/selective
   draft propagation is deferred.
 - **Organizer authority is explicit:** the organizer resolves proposals in V1;
