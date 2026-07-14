@@ -5037,6 +5037,34 @@
             }
           },
           {
+            "name": "city",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "City"
+            }
+          },
+          {
+            "name": "accepted_only",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Accepted Only"
+            }
+          },
+          {
             "name": "limit",
             "in": "query",
             "required": false,
@@ -5059,10 +5087,10 @@
                   "type": "null"
                 }
               ],
-              "description": "Opaque pagination cursor \u2014 the ``id`` of the last entry from the previous page. Cursors are scoped to the same ``year``/``undated`` filter as the request that produced them; reusing a cursor from another scope returns 422. Omit on the first page.",
+              "description": "Opaque pagination cursor \u2014 the ``id`` of the last entry from the previous page. Cursors are scoped to the same ``year``/``undated``/city/``accepted_only`` filter as the request that produced them; reusing a cursor from another scope returns 422. Omit on the first page.",
               "title": "Cursor"
             },
-            "description": "Opaque pagination cursor \u2014 the ``id`` of the last entry from the previous page. Cursors are scoped to the same ``year``/``undated`` filter as the request that produced them; reusing a cursor from another scope returns 422. Omit on the first page."
+            "description": "Opaque pagination cursor \u2014 the ``id`` of the last entry from the previous page. Cursors are scoped to the same ``year``/``undated``/city/``accepted_only`` filter as the request that produced them; reusing a cursor from another scope returns 422. Omit on the first page."
           },
           {
             "name": "authorization",
@@ -5125,6 +5153,16 @@
               ],
               "type": "string",
               "title": "Group By"
+            }
+          },
+          {
+            "name": "accepted_only",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Accepted Only"
             }
           },
           {
