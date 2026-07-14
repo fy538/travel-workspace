@@ -5,7 +5,7 @@ owner: backend / product
 created: 2026-07-13
 last_verified: 2026-07-13
 expires: 2026-08-12
-why_new: Record the IR-12 target read-model authority, Folio compatibility boundary, and governing-document synchronization gate.
+why_new: Record the IR-12 target read-model authority, Folio compatibility boundary, and governing-document synchronization status.
 source_of_truth_for: [itinerary-redesign-ir12-read-model-contract]
 ---
 
@@ -31,24 +31,19 @@ source-status, partial-data, and Memory handoff are measured independently.
 Folio is not an input to the target graph and cannot become the new shell's
 underlying authority merely by reaching field parity.
 
-## IR-13 synchronization gate
+## IR-13 synchronization status
 
-The following older governing language is stale under the later 2026-07-13
-Trip-shell convergence amendment:
+The documentation gate was cleared on 2026-07-13. The active Trip Itinerary
+contract, itinerary UX audit, business-logic audit, Single Trip Home
+shipped-surface contract, and Trips/Folio system charter now agree that:
 
-- `travel-app/docs/surfaces/trip-itinerary/contract.md:178` and
-  `travel-app/docs/audits/itinerary-interaction-ux-audit-2026-07-12.md:599`
-  prescribe a medium-sheet Trip Details presentation. The accepted target is a
-  full-screen, scrollable push.
-- `docs/working/itinerary-interaction-business-logic-audit-2026-07-12.md:104`,
-  `travel-app/docs/surfaces/trip-itinerary/contract.md:130`, and the UX audit's
-  completed-trip rules prescribe an unconditional Memory default. The accepted
-  target is hybrid: the completed record remains the fresh-entry face until
-  meaningful Memory is ready; cancelled trips always retain the record.
+- Trip Details is a full-screen, scrollable factual index; and
+- completed trips open the completed record until server-authored readiness
+  marks Memory meaningful, while cancelled trips always retain the record.
 
-Those documents must be synchronized before IR-13 exposes the target shell.
-IR-12 may emit server-authored entry readiness and a recommendation, but routing
-remains disabled until IR-16.
+IR-12 emits entry readiness and a recommendation, but routing remains disabled
+until IR-16. Archived and compatibility-only documents do not override these
+active contracts.
 
 ## Initial contract slice
 
@@ -154,6 +149,6 @@ targeted mypy reports no IR-12-file errors (the repository retains 13 unrelated
 baseline errors in six existing files).
 
 No frontend shell, `TripFolioHome` expansion, alternate Plan/Map model,
-post-trip routing, or IR-13/IR-16 UI behavior is included. The stale
-medium-sheet Trip Details and unconditional Memory-default language identified
-above remains a synchronization gate before IR-13 exposure.
+post-trip routing, or IR-13/IR-16 UI behavior is included. The documentation
+synchronization gate is cleared; the remaining gates are implementation and
+evidence requirements in IR-13 and IR-16.

@@ -94,7 +94,7 @@ The following product decisions are accepted for the redesign:
   the same truth spatially. Day, stop, candidate, and edit context persist when
   switching faces.
 - Time-and-place facts belong in the itinerary. Cross-trip facts belong in a
-  compact **Trip Details** index. Conversation routes to Chat with its originating
+  full-screen factual **Trip Details** index. Conversation routes to Chat with its originating
   trip context preserved.
 - Stays, major transport, check-in/out, local connectors, and relevant booking
   state appear in the itinerary where they affect the day. Full stay, transport,

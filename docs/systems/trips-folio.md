@@ -1,15 +1,16 @@
 # Trips / Folio — System Charter
 
 > Surface: Trips
-> Maturity (for MVP): MVP-required
-> Status: wired (beta; not yet validated on-device)
-> Last updated: 2026-06-27
+> Maturity (for MVP): compatibility-required during migration
+> Status: wired (transitional; target read authority established, frontend migration pending)
+> Last updated: 2026-07-13
 
 ## Purpose
-The single backend-authored read model for the Trip Home surface — it answers
-"*what is the current truth of this trip, and what's the next move?*" across the
-ideation → pre-trip → live → post-trip lifecycle. Serves belief #17 (*if a user is in
-the product without a trip context, that's a design failure* — the trip is the spine).
+The compatibility backend-authored read model for the currently shipped,
+hero-led Trip Home. It composes "*what is the current truth of this trip, and
+what's the next move?*" across the ideation → pre-trip → live → post-trip
+lifecycle while the product migrates to the itinerary-first trip shell. It is
+not the target trip authority.
 
 **Redesign disposition (accepted 2026-07-13):** the current `/folio` endpoint and
 hero-led Trip Home are compatibility surfaces during the itinerary-first
@@ -22,12 +23,12 @@ performance, degradation behavior, and old-client compatibility are proven.
 
 ## Spans (cross-repo)
 - Backend: [`travel-agent/backend/folio/`](../../travel-agent/backend/folio/FEATURE.md) (`read_model.py::assemble_trip_folio`) + `backend/api/routes/folio.py`.
-- Frontend: `travel-app/app/(tabs)/trips/[tripId]/index` (Trip Home), `components/trip-home/*`, `components/focus-home/*` (Deck), `data/folio.ts`.
+- Frontend: `travel-app/app/(tabs)/trips/[tripId]/index.tsx` (Trip Home), `travel-app/components/trip/TripFolioHome.tsx`, `travel-app/components/trip/TripFolioPostTrip.tsx`, `travel-app/components/trip/FolioReceiptCard.tsx`, and `travel-app/data/folio.ts`.
 - Tables read: itinerary (`itineraries`/`_days`/`_blocks`, `plan_state`), `trips`, `trip_members`, expenses, proposals, story/Atlas, saves, trip photos. **Folio owns no tables.**
 
 ## Public interface (what other systems may call / read)
 - **Inbound (FE → BE):** `GET /api/trips/{trip_id}/folio` (membership-verified).
-- **Entry point:** `read_model.py::assemble_trip_folio(trip_id, user_id, today=None)` → `TripFolio` shape.
+- **Entry point:** `read_model.py::assemble_trip_folio(...)` receives the trip, viewer, member, attention, and leave-by inputs assembled by the route and returns `TripFolioReadModel`.
 - **Authored slices:** mode + `source_status`, itinerary spine, ranked facets (plan/group/expenses/memory/Atlas), attention/discovery, group consensus, prep/leave-by, readiness/keepsake.
 - **Consumes:** every Trips source system (read-only).
 
@@ -48,13 +49,17 @@ write path.
 
 ## Maturity & validation
 - Serves journeys: 03 (cold setup → useful workspace), 06 (home/plan/map/changes coherence).
-- DoD state: assembly + degraded-source + contract tests ✅ (`tests/api/test_trip_folio.py`) · **mock-walk ❌ · Maestro ❌ · live-walk ❌**.
-- Known gap (journey 06): no unified block-id parity test proving the same trip truth across Home / Plan / Map / Changes after a mutation.
+- Current Folio assembly, degraded-source, and contract tests pass (`travel-agent/tests/api/test_trip_folio.py`).
+- IR-12 backend evidence now proves one projection version and stable object/operation identity across List, Map, Details, Chat attachments, Changes, Bookings, and the Folio compatibility measurement.
+- Remaining evidence: target-shell frontend dogfood, first-paint comparison, mock walk, Maestro capture, and live walk.
 
 ## Canonical docs
-- why → `product/Trips Vision.md` · how → `architecture/Trip Folio Read Model.md` · `architecture/Trip State Architecture.md` · what(be) → `backend/folio/FEATURE.md` · what(fe) → `page-specs/trips-home-hero.md` · `trip-page.md`.
-- Tests: `tests/api/test_trip_folio.py`.
+- Why → [`Trips Vision`](../../travel-agent/docs/product/Trips%20Vision.md).
+- Current compatibility architecture → [`Trip Folio Read Model`](../../travel-agent/docs/architecture/Trip%20Folio%20Read%20Model.md), [`Trip State Architecture`](../../travel-agent/docs/architecture/Trip%20State%20Architecture.md), and [`backend/folio/FEATURE.md`](../../travel-agent/backend/folio/FEATURE.md).
+- Target product contract → [`Trip Itinerary`](../../travel-app/docs/surfaces/trip-itinerary/contract.md); shipped-surface QA only → [`Single Trip Home`](../../travel-app/docs/surfaces/single-trip-home/contract.md).
+- Migration contract → [`IR-12 coherent read models`](../working/itinerary-redesign-ir12-read-model-contract-2026-07-13.md).
+- Tests → `travel-agent/tests/api/test_trip_folio.py`.
 
 ## Open risks / known gaps
-- **Coherence (journey 06)** is the headline risk: a mutation must propagate identically to every surface. `invalidateTripReadModels` exists on the FE but there is no cross-surface block-id parity test. This is the first thing to harden for the wedge.
-- Mode-derivation (ideation/pre/live/post) is now date-derived (the dead status column was retired 06-25) — verify the boundaries with the time-travel clock across persona states.
+- **Frontend migration and first paint** are now the headline risks: backend parity is proven, but the itinerary-first shell must demonstrate equal or better first-paint latency, honest partial-data behavior, exact-return navigation, and on-device coherence before Folio retirement.
+- Folio's `cold`/`pre`/`imminent`/`live`/`post` mode remains compatibility-only. Target clients consume the canonical lifecycle projection and must not derive product behavior from Folio mode.

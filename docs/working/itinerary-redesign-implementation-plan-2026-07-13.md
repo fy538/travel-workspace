@@ -18,6 +18,34 @@ Proceed to implementation. The product paradigm, interaction model, authority
 model, operation model, and target-state design are sufficiently settled. No
 additional broad design exploration is required before engineering starts.
 
+### 2026-07-13 Trip-shell convergence amendment
+
+Subsequent founder review of the consolidated target design locks the following
+clarifications without renumbering or restarting this program:
+
+- the itinerary remains the default single-trip home before and during travel;
+- the resting shell uses a light trip **Ledger** for identity, dates, people,
+  and the Trip Details entrance, then withdraws to compact chrome on scroll;
+- Trip Details is a **full-screen, scrollable push**, not a medium-sheet target;
+- Trip Details is the comprehensive index, while an object already visible in
+  the itinerary may open directly without using Details as a hallway;
+- the domain model is one trip graph of typed linked objects: itinerary event,
+  provider booking, expense, place, stay, and transport retain separate stable
+  identities even when several entrances reach the same object;
+- completed-trip entry is hybrid: immediately after completion, or while Memory
+  is thin/not ready, fresh entry opens the completed itinerary record; a later
+  fresh entry may default to Memory only when meaningful Memory is ready;
+- cancelled trips always open the retained itinerary record and closure work.
+
+These are convergence clarifications, not authority, operation, history, or
+rollout changes. IR-10 continues on the existing dependency path. The affected
+delivery contracts are IR-10, IR-12, IR-13, IR-14, and IR-16 below.
+
+The governing UX, business, surface, and system documents were synchronized on
+2026-07-13 to incorporate the full-screen Trip Details and hybrid
+completed-record/Memory decisions. The former documentation gate is cleared;
+implementation exposure remains governed by the IR-13 and IR-16 evidence gates.
+
 This document is the execution bridge between the accepted target contracts and
 implementation in `travel-agent` and `travel-app`. It does not promote the
 Claude Design artifact to shipped canon and does not claim that target behavior
@@ -42,12 +70,26 @@ When this plan is ambiguous, use this order:
 The target design reference is `Vesper Itinerary Redesign.html`. It is a
 behavioral and visual target, not executable product truth.
 
+If archived or compatibility-only material conflicts with the convergence
+amendment's full-screen Trip Details, typed linked-object entrances,
+Ledger/compact shell, or hybrid completed-trip entry, follow the active
+governing contracts and treat the older material as shipped-state evidence only.
+All other precedence remains unchanged.
+
 ## Non-negotiable product invariants
 
 - Itinerary is the default single-trip workspace before and during travel.
+- At rest, a light Ledger owns trip identity and the Trip Details entrance; on
+  scroll it yields to safe-area-correct compact chrome without becoming a
+  dashboard above the timeline.
 - List and Map are two faces of one artifact and share day, stop, candidate,
   operation draft, and return context.
+- Trip Details is a full-screen comprehensive index with a stable row order; it
+  is neither a second home nor a mandatory hallway for visible itinerary facts.
 - Row tap inspects; explicit Change begins mutation.
+- Same-object multiple entrances preserve object identity and vary only the
+  return stack. Event, provider booking, expense, place, stay, transport, and
+  history remain typed linked objects rather than one overloaded object.
 - Add, Move/Reorder, Replace, Remove, attendance, occurrence, Optimize, Replan,
   and parallel-plan changes are typed operations.
 - One server-authored resolver returns `direct`, `confirm`, `propose`, or
@@ -68,6 +110,9 @@ behavioral and visual target, not executable product truth.
 - Parallel plans use an explicit split/branch/rejoin compound operation rather
   than incidental timestamp overlap.
 - Legacy trips and old clients remain readable throughout migration.
+- Completed trips open the factual record immediately after completion and
+  whenever Memory is not meaningfully ready; later fresh entry may default to a
+  ready Memory. Cancelled trips retain the record and closure truth.
 
 ## Verified current implementation boundary
 
@@ -207,13 +252,13 @@ be merged with a later slice merely to make the UI appear complete sooner.
 | IR-07 | travel-agent | Transactional commit spine, idempotency, revision binding, and minimal operation ledger | IR-06 | disabled by default |
 | IR-08 | travel-agent | Proposal creation/acceptance/withdrawal through the operation spine | IR-07 | shadow, then dogfood |
 | IR-09 | travel-agent | History projections and proven Undo/Revert/Withdraw capabilities | IR-07, IR-08 | dogfood by operation type |
-| IR-10 | travel-agent | Replace-and-rebook provider saga and partial-state continuation | IR-07, IR-09 | protected cohort only |
+| IR-10 | travel-agent | Canonical provider-action saga, including Replace-and-rebook, held-to-confirmed proof, and partial-state continuation | IR-07, IR-09 | protected cohort only |
 | IR-11 | travel-agent | Atomic Optimize/Replan and parallel split/branch/rejoin operations | IR-07, IR-09 | disabled until fault proof |
-| IR-12 | travel-agent + workspace API snapshot | Versioned Plan State, Map parity, Details State, and history APIs | IR-03, IR-05, IR-07, IR-09 | dual-read |
-| IR-13 | travel-app | Read-only itinerary-first shell, Trip Details, List/Map continuity, Trip Shape | IR-12 | dogfood flag |
+| IR-12 | travel-agent + workspace API snapshot | Versioned Plan State, Map parity, typed linked-object/attention projections, Details State, and history APIs | IR-03, IR-05, IR-07, IR-09 | dual-read |
+| IR-13 | travel-app | Read-only Ledger/compact shell, full-screen Trip Details, typed entrances, List/Map continuity, Trip Shape | IR-12 | dogfood flag |
 | IR-14 | travel-app | Inspect-first and low-risk solo Add/Move/Replace/Remove over gateway | IR-09, IR-12, IR-13 | dogfood operation flags |
 | IR-15 | both | Review, attendance, subgroup ownership, and parallel branches | IR-08, IR-11, IR-12, IR-14 | selected group trips |
-| IR-16 | both | Vesper parity, protected/provider continuation, replan, lifecycle/post-trip, awareness | IR-10, IR-11, IR-12, IR-15 | selected cohort |
+| IR-16 | both | Vesper parity, protected/provider continuation, replan, hybrid completed/Memory entry, lifecycle, and awareness | IR-10, IR-11, IR-12, IR-15 | selected cohort |
 | IR-17 | both + workspace | Shadow completion, compatibility window, legacy retirement | all prior gates | staged rollout |
 
 ## Slice specifications
@@ -459,15 +504,32 @@ operation ID, delta, attribution, state, provider truth, and recovery.
 
 Deliverables:
 
+- A general canonical provider-action saga whose first protected workflow is
+  Replace-and-rebook and whose reference single-action proof is a held booking
+  becoming confirmed.
+- Stable provider-booking/dependency identity, linked itinerary subject or
+  lineage, originating operation when applicable, controller, provider
+  revision, and idempotency identity.
 - Explicit Replace-and-rebook saga states.
 - Separate plan and provider outcomes.
 - Controller identity and confirmation boundaries.
 - Durable partial state when cancellation/booking fails.
 - Idempotent provider callback/retry handling.
 - Typed provider continuation rather than generic Undo.
+- One settled provider transition projects consistently into itinerary
+  commitment metadata, contextual Needs attention, the Bookings index,
+  provider detail, and canonical history without client-authored synchronization.
+- Provider evidence changes expense/deposit/refund truth only when the provider
+  supplies actual financial evidence; plan or booking transitions alone do not
+  invent a charge.
+- Attention clears from settled provider truth rather than a separate client or
+  notification write, and a retried callback cannot duplicate history.
 
 Exit gate: fault injection at every provider boundary yields either no committed
-plan mutation or the exact durable partial state with a valid continuation.
+plan mutation or the exact durable partial state with a valid continuation. A
+held-to-confirmed transition and every Replace-and-rebook terminal/partial state
+produce one canonical provider record, one history transition, consistent
+itinerary/Bookings/attention projections, and no inferred provider success.
 
 ### IR-11 — Compound operations
 
@@ -490,26 +552,58 @@ Deliverables:
   ownership, participation, branches, protection, capabilities, pending work,
   and landed/recovery state.
 - Map consumes the same day/block/branch projection.
-- `details-state` owns identity, people, stay, transport, costs, bookings,
-  history, and settings summaries.
+- `details-state` owns the fixed identity, people, stay, transport, costs,
+  bookings, Changes/History, and settings summaries used by full-screen Trip
+  Details. Each row carries a typed destination, one factual calm/attention/
+  absence status, viewer-safe visibility, and server-authored capabilities.
+- Calm, Needs-attention, and Sparse Details variants are contract fixtures;
+  organizer and member projections cannot leak actions or private/provider
+  facts that the viewer cannot use.
+- Plan/Details projections expose stable typed identities and edges for
+  itinerary event, stay, transport leg, provider booking, expense, place, and
+  operation/history records. They do not collapse linked subjects into one
+  ambiguous canonical object.
+- A contextual entry and a comprehensive Details/index entry resolve to the
+  same object identity where applicable; event-to-booking or event-to-expense
+  navigation is an explicit transition between linked objects.
+- One Needs-attention projection feeds itinerary notices, Details row status,
+  Bookings grouping, provider continuation, and Changes Needs attention.
 - History endpoints support trip, subject lineage, stable compound cursors, and
   seen advancement.
+- The read-model envelope can carry server-authored completed-record/Memory
+  readiness and a recommended fresh-entry face without requiring a client-side
+  post-trip algorithm; IR-16 owns enabling that recommendation.
 - Folio compatibility adapter retains lifecycle, urgency, facets, source status,
   partial-data semantics, and Memory handoff until parity is proven.
 
 Exit gate: List, Map, Trip Details, Chat attachment, and Changes agree after
-every canonical operation and on member/deletion visibility.
+every canonical operation and on member/deletion visibility. Both contextual
+and comprehensive object routes resolve stable identities, and a provider
+transition updates all attention/booking/history observers from one versioned
+projection.
 
 ### IR-13 — Read-only frontend shell
 
 Build the target shell without enabling unsupported writes:
 
-- itinerary-first trip entry;
-- compact trip header, Chat, Trip Details, and stable List/Map control;
+- itinerary-first trip entry with a light resting Ledger, not a Folio or second
+  dashboard;
+- Ledger identity/dates/people and the Trip Details entrance at rest, then a
+  safe-area-correct compact header on scroll;
+- full-screen, vertically scrollable Trip Details using the fixed Details State
+  order and returning to exact prior context;
+- compact identity truncation and a deliberate 393pt priority among Back,
+  identity/current day, Chat, the single face switch, and rare-action overflow;
+- Chat and stable List/Map control;
 - shared trip/day/selection/return context;
-- inspect-first rows and Map peek;
+- inspect-first rows and Map peek, with generic events opening event inspection,
+  unambiguous stay/flight anchors opening typed domain detail, and multi-linked
+  events exposing explicit booking/expense/place destinations;
+- direct contextual entrances that bypass Trip Details and comprehensive routes
+  through Trip Details/domain indexes, both over the same typed identities;
 - undated Trip Shape and first-draft read state;
-- accessibility and 393pt layout;
+- accessible semantic actions, Dynamic Type, device safe areas, real scrolling,
+  and 393pt layout;
 - server-authored lifecycle and capabilities only.
 
 Recommended targets:
@@ -520,7 +614,12 @@ Recommended targets:
 - do not duplicate Plan/Map adapters in the new component tree.
 
 Exit gate: read-only dogfood users can enter, switch List/Map, inspect, open
-Details/Chat, and return to exact day/selection/scroll/camera state.
+Details/Chat, and return to exact day/selection/scroll/camera state. On-device
+golden paths prove (1) event -> linked expense -> event -> exact itinerary and
+itinerary -> Ledger -> Details -> Costs -> the same expense -> exact itinerary;
+and (2) stay anchor -> stay -> exact itinerary and itinerary -> Ledger ->
+Details -> Stay index -> the same stay -> exact itinerary. Every target is a
+keyboard/screen-reader-reachable action rather than a pointer-only wrapper.
 
 ### IR-14 — Low-risk operation UX
 
@@ -532,6 +631,9 @@ state for low-risk solo/direct Add, Move/Reorder, Replace, and Remove.
 - Structured and gesture reorder create the same operation.
 - Render server capability and server recovery without inference.
 - Preserve drafts through detail, Map, Chat, stale refresh, and return tokens.
+- Preserve the complete semantic return stack when Change begins after a
+  contextual or comprehensive object entrance; a linked expense/provider action
+  never aliases structural itinerary Change.
 
 Exit gate: manual and Vesper low-risk paired journeys converge on identical
 backend operations, receipts, history, and recovery.
@@ -546,6 +648,8 @@ Deliverables:
 - Personal/subgroup ownership and explicit decision owner.
 - Parallel split/branch/rejoin presentation and editing.
 - Organizer transfer and traveler departure behavior.
+- People and Settings summaries remain viewer-scoped and do not expose an
+  organizer/provider action that predictably fails for a member.
 
 Exit gate: solo, Open, Review, personal, subgroup, and branch journeys pass with
 two-account and privacy/deletion fixtures.
@@ -559,12 +663,27 @@ Deliverables:
 - Protected booking/provider continuations.
 - Contextual destination/date Replan.
 - Disruption overlay, live Now/Next, offline reading, completed/cancelled entry,
-  post-trip Memory default, and factual corrections.
+  hybrid completed-record/Memory readiness, and factual corrections.
+- Immediately after completion, and whenever Memory is thin, missing, or still
+  processing, fresh entry opens the completed itinerary record with planned
+  versus happened truth; structural editing is unavailable and authorized
+  occurrence/attendance correction remains possible.
+- A later fresh entry may default to Memory only when a meaningful Memory is
+  ready. The final itinerary remains explicitly reachable and an explicit face
+  choice persists for the session.
+- Cancelled trips always open the retained itinerary record with refund,
+  provider, and cost closure; they never fabricate happened state or Memory.
+- Entry recommendation and Memory readiness are server-authored/backend-real,
+  not inferred from device time, raw status, or the presence of media on one
+  client.
 - Proportional awareness keyed to operation ID.
 - Typed, confidence-scored, correctable write-back observations.
 
 Exit gate: paired Vesper/manual journeys, provider partials, lifecycle edges,
 offline reconciliation, and write-back correction pass with backend-real data.
+Completion-session, ready-Memory, thin/not-ready Memory, and cancelled-entry
+fixtures each open the truthful face and preserve explicit navigation to the
+other available record.
 
 ### IR-17 — Rollout and retirement
 
@@ -599,6 +718,7 @@ Names may adapt to the existing flag framework, but separation is mandatory.
 | Provider saga | `itinerary_provider_saga_v2` | protected cohort |
 | Branch operations | `itinerary_branches_v2` | selected trips |
 | Vesper gateway | `itinerary_vesper_gateway_v2` | off until parity |
+| Hybrid completed-trip entry | `itinerary_completed_entry_v2` | off until IR-16 backend-real readiness proof |
 
 Do not use one umbrella flag to enable an unproven stack of behaviors.
 
@@ -624,8 +744,8 @@ Do not hand-maintain duplicate TypeScript versions of generated backend models.
 | Preview/commit | Cross-entry preview hash, revision binding, stale revalidation, idempotency, no mutation without evidence |
 | Proposal | Immutable authored intent, acceptance re-resolution, stale rebase, Withdraw race, failed apply |
 | Recovery | Exact inverse proof per advertised Undo, dependency invalidation, Revert degradation, provider partials, version pruning |
-| Read models | List/Map/Details/Chat/receipt/history parity, pagination, unseen vs attention, tombstones, privacy/deletion |
-| Frontend | Manual/Vesper pairs, lifecycle/governance journeys, Dynamic Type, screen reader, Reduced Motion, offline, exact return state |
+| Read models | List/Map/Details/Chat/receipt/history parity, typed object/link identity, contextual/comprehensive route parity, provider/attention projection, pagination, unseen vs attention, tombstones, privacy/deletion |
+| Frontend | Manual/Vesper pairs, event/expense and Stay golden paths, lifecycle/governance journeys, safe-area 393pt compact shell, Dynamic Type, screen reader, Reduced Motion, offline, exact return state |
 | Rollout | Shadow disagreement, capability-to-403, stale rate, saga failures, history duplication, List/Map mismatch, latency |
 
 ## Observability and launch gates
@@ -645,6 +765,9 @@ Instrument before enabling behavior:
 - unseen/attention cursor anomalies;
 - awareness duplication;
 - Folio-to-target field parity and first-paint latency;
+- contextual/comprehensive object identity or return-stack disagreement;
+- provider transition versus itinerary/Bookings/attention/history disagreement;
+- completed-entry recommendation versus Memory-readiness disagreement;
 - write-back correction/supersession failures.
 
 Numerical launch thresholds must be recorded in IR-00 after current baselines are
@@ -697,7 +820,11 @@ or authority states.
 The redesign is implemented only when:
 
 - trip entry uses the itinerary-first shell for the enabled cohort;
+- the resting Ledger, compact-on-scroll header, and full-screen Trip Details pass
+  safe-area, 393pt, Dynamic Type, and exact-return evidence;
 - List and Map share one canonical projection and editing context;
+- contextual and comprehensive entrances preserve typed object identity and
+  distinguish event, provider booking, expense, place, stay, and transport;
 - every structural entry point uses one policy resolver and typed gateway;
 - manual and Vesper paths converge;
 - solo, Open, Review, personal, subgroup, and branch authority is server-authored;
@@ -705,6 +832,8 @@ The redesign is implemented only when:
 - receipts, stop history, operation detail, and Changes agree;
 - every visible recovery action is currently valid and fault-proven;
 - undated, planning, live, completed, cancelled, and post-trip journeys pass;
+- completed fresh entry follows backend-real record/Memory readiness rather than
+  an unconditional Memory default;
 - old clients remain compatible through the declared window;
 - shadow/dual-read telemetry is clean;
 - legacy mutation, policy, lifecycle, and recent-change paths are retired;
@@ -715,6 +844,8 @@ The redesign is implemented only when:
 
 | Date | Slice | Status | Evidence / decision |
 |---|---|---|---|
+| 2026-07-13 | IR-00–17 independent adversarial review | implementation findings closed; rollout gates remain | Routed remaining occurrence and concierge writes through canonical authority; hardened current-policy proposal resolution, affected-member voting, cross-trip constraints, immutable evidence, privacy/deletion, stable history cursors, tombstones, and day-aware recovery; converged booking/expense invalidation, completed-entry availability, and canonical Map identity/order; completed frontend history, attention, typed-object, provider-continuation, rollout-guard, and generated-contract convergence. Backend commits `a216d5158` and `15da92baa`; frontend commits `bc58c7c0`, `bc77e8ab`, and `c54c6380`. Verification: 110 focused backend tests; broader review run 352 passed with one unrelated pre-existing expired-hold mock expectation; migration down/up; 9 frontend suites/56 tests; TypeScript, ESLint, Ruff, pre-commit integrity gates, and 360-path OpenAPI contract parity passed. No rollout stage advanced and no compatibility path retired. Evidence: `itinerary-redesign-adversarial-review-remediation-2026-07-13.md`. |
+| 2026-07-13 | Trip-shell convergence amendment | complete | Preserved the IR-00–17 dependency graph and current IR-10 sequence. Locked the resting Ledger/compact shell, full-screen Trip Details, typed linked-object entrances, two exact-return golden paths, canonical provider-transition propagation, and hybrid completed-record/Memory entry. Updated IR-10, IR-12, IR-13, IR-14, IR-15, IR-16, flags, evidence, observability, and program definition of done. Governing UX/business/surface/system documents were synchronized and the documentation gate was cleared; implementation evidence gates remain. |
 | 2026-07-13 | IR-17 rollout controls | implementation complete; exposure/retirement gated | Added fail-closed stage + trip/canonical-dogfood selection + independent capability resolution; per-operation server gates; trip-scoped dual reads and mobile compatibility fallback; compatibility-path telemetry across app/concierge legacy producers; and executable baseline/threshold/retirement/rollback evidence gates. No numerical threshold was invented and no compatibility path/schema/record was destructively retired. Focused backend tests: 197 passed; frontend rollout tests: 2 passed; TypeScript/Ruff/compile/diff checks passed. Production stage advance remains blocked on current-schema CI, measured IR-00 thresholds, selected-cohort evidence, and a rollback drill. Evidence: `itinerary-redesign-ir17-rollout-retirement-evidence-2026-07-13.md`. |
 | 2026-07-13 | Planning | complete | Product paradigm approved; target design reviewed through 66-artboard artifact; implementation plan created. |
 | 2026-07-13 | IR-00 | complete | Created clean coordinated worktrees at `travel-agent--itinerary-foundation` and `travel-app--itinerary-foundation`, both on `codex/itinerary-foundation`. Added the governed mutation inventory; strict lifecycle/capability/normalized-operation contracts; independently default-off flags; executable manual/Vesper parity and lifecycle fixtures; non-runtime target-state fixtures covering all required scenarios with explicit later-slice dependencies; stable telemetry events and privacy-safe labels without emission; semantic preview/commit/detail/history lock; and durable evidence ID families. Validation: 74 focused backend tests plus Ruff, 4 frontend Jest tests plus ESLint and full TypeScript passed. No routes, emitters, reads, writes, or shipped persona mocks changed. Next: IR-01 canonical lifecycle in shadow mode; IR-02 additive schema may proceed independently. |

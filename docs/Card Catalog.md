@@ -80,6 +80,7 @@ registry. A row absent here is not a supported chat card.
 | `narration` | `NarrationCard` | `narration` | narration endpoint | audio and cited narration |
 | `trip_creation_proposal` | `TripCreationProposalCard` | notification metadata | `propose_trip_creation` | versioned, idempotent trip creation |
 | `lazy_research` | `ResearchCard` | text metadata | research worker | informational status |
+| `itinerary_operation` | `ItineraryOperationCard` | notification metadata | itinerary operation preparation | review in canonical itinerary flow |
 
 There are no supported chat `itinerary` or `map_card` attachments. Map is a
 face of Plan, not a standalone chat card.
