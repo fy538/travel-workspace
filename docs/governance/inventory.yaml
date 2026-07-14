@@ -143,6 +143,10 @@ overrides:
     disposition: keep_authoritative
     rationale: Active review evidence connecting the itinerary redesign to the Folio presentation contract; archive when rollout closes.
 
+  docs/working/itinerary-legacy-retirement-cutover-plan-2026-07-14.md:
+    disposition: keep_authoritative
+    rationale: Active pre-launch cutover authority for deleting legacy itinerary mutation paths, canonical replay, and frontend consolidation; expires 2026-08-13 and archives when closure evidence is complete.
+
   docs/working/invitee-first-five-minutes-audit-2026-07-13.md:
     disposition: keep_authoritative
     rationale: Active full-stack (design+backend+frontend) audit of the invitee first-touch paths; owns the pre-cohort invite fix list; expires 2026-08-12, archive to audits/ on close.

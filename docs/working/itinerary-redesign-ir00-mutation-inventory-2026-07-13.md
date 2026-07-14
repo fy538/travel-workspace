@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: backend / frontend
 created: 2026-07-13
-last_verified: 2026-07-13
+last_verified: 2026-07-14
 expires: 2026-08-12
 why_new: IR-00 requires an explicit inventory and migration disposition for every itinerary mutation producer before the canonical gateway can replace path-specific policy and persistence.
 supersedes: []
@@ -28,6 +28,38 @@ POST /api/trips/{trip_id}/itinerary/operations/commit
 
 Until those endpoints and their ledger are real, all target write flags remain
 off.
+
+## Executable persistence boundary
+
+The point-in-time route inventory below is now backed by two ratcheting static
+manifests in `travel-agent/scripts/`:
+
+- `check_itinerary_writer_boundary_baseline.tsv` classifies **112 stable direct
+  writer sites / 132 current write occurrences**. The current occurrence split
+  is 72 canonical writer/recovery, 28 legacy product mutation, 6 named integrity
+  exceptions, 21 seed/scenario setup, and 5 one-off migration utility writes.
+- `check_itinerary_legacy_consumer_boundary_baseline.tsv` gives **105 current
+  legacy imports** an executable disposition: 68 replace, 22 delete, and 15
+  rename. The rename rows are the current group-facing `change_proposals`
+  projection consumers; they do not preserve proposal mutation authority.
+
+Both checks use stable keys without line numbers. A classified occurrence or
+import may disappear or decrease, but a new site or count increase fails CI.
+The production scan covers `backend/`, `tools/`, and `scripts/`. Disposable test
+fixture setup remains the sole directory-scoped direct-write exception; live
+journey, dogfood, and scenario setup are included and must migrate to canonical
+replay.
+
+The source-level boundary proves ownership and regrowth prevention, not SQL
+transactionality. The canonical fault-injection proof now verifies that
+materialized block/day revisions, operation rows, transitions and their embedded
+mutation evidence, the temporary `plan_events` mirror, and projected operation
+history all roll back together. The six integrity writer keys are also a closed
+code-level allowlist, so a TSV row cannot relabel a new product writer as
+maintenance. The remaining Workstream 0 boundary work is (1) extending the
+consumer manifest beyond backend module imports to legacy recent-changes and
+compatibility-column readers, including frontend call sites, and (2) focused
+reachability/semantic certification for the six integrity exceptions.
 
 ## Backend mutation inventory
 
@@ -112,4 +144,7 @@ These are not current paths to adapt; they require first-class implementation:
 - [x] Missing target-only operation families identified.
 - [x] Every path has a migration disposition and target slice.
 - [x] IR-06 adds executable parity tests proving equivalent normalization.
+- [x] Every production direct writer has a ratcheted classification.
+- [x] Every backend legacy proposal/event/version module import has a ratcheted disposition.
+- [ ] Legacy recent-changes and compatibility-column readers are ratcheted across both repos.
 - [ ] IR-07 records removal dates for each independent legacy write.
