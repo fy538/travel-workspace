@@ -21332,6 +21332,134 @@
         }
       }
     },
+    "/api/trips/{trip_id}/itinerary-delegation": {
+      "get": {
+        "tags": [
+          "trip-access"
+        ],
+        "summary": "Get Itinerary Delegation",
+        "description": "Return only the current traveler's private Vesper delegation.",
+        "operationId": "get_itinerary_delegation_api_trips__trip_id__itinerary_delegation_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripVesperDelegationState"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "trip-access"
+        ],
+        "summary": "Put Itinerary Delegation",
+        "description": "Update only the current traveler's explicit Vesper consent.",
+        "operationId": "put_itinerary_delegation_api_trips__trip_id__itinerary_delegation_put",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTripVesperDelegationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripVesperDelegationState"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/shared-plan-owner": {
       "put": {
         "tags": [
@@ -51914,6 +52042,11 @@
           "entity": {
             "$ref": "#/components/schemas/OperationEntityRef"
           },
+          "block_type": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Block Type"
+          },
           "sort_order": {
             "type": "integer",
             "minimum": 1.0,
@@ -51985,6 +52118,63 @@
               }
             ],
             "title": "Energy Rationale"
+          },
+          "travel_to_next": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Travel To Next"
+          },
+          "interlude": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Interlude"
+          },
+          "price_cents": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Cents"
+          },
+          "price_is_estimated": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Is Estimated"
+          },
+          "venue_unlinked": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Venue Unlinked"
           }
         },
         "additionalProperties": false,
@@ -51993,6 +52183,7 @@
           "id",
           "subject_lineage_id",
           "entity",
+          "block_type",
           "sort_order",
           "scope",
           "planned_participant_ids",
@@ -52056,6 +52247,43 @@
             ],
             "title": "Notes"
           },
+          "opener": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Opener"
+          },
+          "closing": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Closing"
+          },
+          "fidelity": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "skeleton",
+                  "detailed"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fidelity"
+          },
           "blocks": {
             "items": {
               "$ref": "#/components/schemas/MaterializeShapeBlock"
@@ -52101,10 +52329,36 @@
             "format": "uuid",
             "title": "Itinerary Id"
           },
+          "workflow_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Workflow Id"
+          },
           "markdown_content": {
             "type": "string",
             "title": "Markdown Content",
             "default": ""
+          },
+          "planning_reasoning_trace": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Planning Reasoning Trace"
           },
           "days": {
             "items": {
@@ -64455,6 +64709,9 @@
           "context": {
             "$ref": "#/components/schemas/TripAccessContext"
           },
+          "vesper_delegation": {
+            "$ref": "#/components/schemas/TripVesperDelegationState"
+          },
           "capabilities": {
             "$ref": "#/components/schemas/TripAccessCapabilities"
           },
@@ -64475,6 +64732,7 @@
           "authority_health",
           "governance",
           "context",
+          "vesper_delegation",
           "capabilities",
           "trip_updated_at"
         ],
@@ -67254,6 +67512,102 @@
         ],
         "title": "TripTerminalState"
       },
+      "TripVesperDelegationEntry": {
+        "properties": {
+          "operation_type": {
+            "$ref": "#/components/schemas/ItineraryOperationType"
+          },
+          "level": {
+            "$ref": "#/components/schemas/VesperDelegationLevel"
+          },
+          "consented_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Consented At"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "operation_type",
+          "level"
+        ],
+        "title": "TripVesperDelegationEntry"
+      },
+      "TripVesperDelegationState": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/TripVesperDelegationEntry"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "user_id",
+          "items"
+        ],
+        "title": "TripVesperDelegationState"
+      },
+      "TripVesperDelegationUpdate": {
+        "properties": {
+          "operation_type": {
+            "$ref": "#/components/schemas/ItineraryOperationType"
+          },
+          "level": {
+            "$ref": "#/components/schemas/VesperDelegationLevel"
+          }
+        },
+        "type": "object",
+        "required": [
+          "operation_type",
+          "level"
+        ],
+        "title": "TripVesperDelegationUpdate"
+      },
       "UndoPlanningRevisionRequest": {
         "properties": {
           "restore_version_number": {
@@ -67838,6 +68192,23 @@
         },
         "type": "object",
         "title": "UpdatePreferencesRequest"
+      },
+      "UpdateTripVesperDelegationRequest": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/TripVesperDelegationUpdate"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Items"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "title": "UpdateTripVesperDelegationRequest"
       },
       "UploadTripPhotoRequest": {
         "properties": {
@@ -69227,6 +69598,16 @@
         ],
         "title": "Verdict",
         "description": "Opinion layer. Derived from signals, not free LLM judgment.\n\n`derived_from` lists the signal categories the verdict is grounded in,\nfor traceability and debugging."
+      },
+      "VesperDelegationLevel": {
+        "type": "string",
+        "enum": [
+          "none",
+          "suggest",
+          "prepare_preview",
+          "request_confirmation"
+        ],
+        "title": "VesperDelegationLevel"
       },
       "VisualSlot": {
         "properties": {
