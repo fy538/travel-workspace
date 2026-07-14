@@ -100,7 +100,60 @@ authority. Routing recommendations remain disabled.
 Database evidence covers stable repeated projection versions, event↔expense
 and stay↔expense identity/link paths, transport lineage, Details row counts,
 and exact Plan/Map authority equality. Provider attention and canonical history
-also prove one shared operation identity. The targeted IR-10/IR-11/IR-12 suite
-is 97 tests passing. Remaining IR-12 work is broader privacy/degradation fixtures,
-explicit generic booking/provider-detail projection coverage, Folio parity
-measurement against live authority, and final exit-gate evidence.
+also prove one shared operation identity. This slice originally closed with 97
+targeted tests passing.
+
+## Final exit-gate closure
+
+IR-12 is complete on 2026-07-13. The final slice adds:
+
+- viewer-scoped authority access, current-member filtering for block and branch
+  participation, departed-viewer denial, and account-deletion absence;
+- privacy-safe limited Details rows for private stays, masked expenses, and
+  provider details, with provider references/revisions restricted to the
+  authorized controller;
+- optional-source transaction savepoints for stays, expenses, bookings,
+  provider truth, history, and Memory, so Sparse/partial reads preserve the
+  plan and report explicit degraded source status;
+- first-class generic and saga-backed booking projections, including event and
+  lineage identity, Bookings group, itinerary commitment metadata, expense,
+  provider-detail permission, continuation/attention, history operation, and
+  saga identity;
+- block-level booking identities/groups sourced from those same booking
+  projections rather than reconstructed by Plan or Map;
+- comparable List, Map, Details, Chat-attachment, Changes, and Bookings
+  observer snapshots carrying one projection version, object identities,
+  attention IDs, and history operation IDs;
+- live Folio compatibility measurement against the canonical projection
+  version plus a compatibility-only entry-readiness handoff; legacy facets
+  remain explicitly degraded and Folio is still not an authority;
+- backend-real completed-record, meaningful-Memory, and cancelled-record
+  fixtures with routing still fixed off; and
+- the independently gated, membership-scoped Details State route.
+
+Exit evidence proves:
+
+- stable event↔expense, stay↔expense, event↔booking, transport-lineage, and
+  contextual/comprehensive identity paths;
+- exact Plan/Map canonical equality and one-version agreement across all six
+  IR-12 observer surfaces after a canonical operation;
+- IR-11 branch group/branch revisions, owner, participants, and block branch ID
+  survive as explicit projection facts;
+- a real Replace-and-rebook pending state supplies one booking/history/
+  attention operation identity, then its settled provider transition advances
+  itinerary and Bookings metadata and clears attention without duplicating
+  history;
+- organizer/member projections differ only where privacy or capability facts
+  require it, and a departed/deleted member is absent; and
+- a failed optional expense source produces a partial Sparse Details response
+  without losing the canonical plan.
+
+Final regression evidence is 345 passing itinerary, provider, history,
+compound, Plan, Map, Details, Folio, and route tests. Ruff and diff checks pass;
+targeted mypy reports no IR-12-file errors (the repository retains 13 unrelated
+baseline errors in six existing files).
+
+No frontend shell, `TripFolioHome` expansion, alternate Plan/Map model,
+post-trip routing, or IR-13/IR-16 UI behavior is included. The stale
+medium-sheet Trip Details and unconditional Memory-default language identified
+above remains a synchronization gate before IR-13 exposure.
