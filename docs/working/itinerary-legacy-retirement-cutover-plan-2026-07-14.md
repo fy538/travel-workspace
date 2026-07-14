@@ -275,25 +275,37 @@ A0 does not yet retire the planner's direct persistence path.
   full-version replacement; a stale planner result fails without overwriting a
   newer human or Vesper edit; receipts/progress/enrichment still close correctly.
 
-Execution status (2026-07-14): **A1 first-birth half complete; replan half
-remains open.** Travel Agent commits `0d0ffa1b8`, `c529b8d5f`, and `bc394b268`
-add the canonical planner-output normalizer, deterministic retry recovery, and
-the `_plan.py` persistence dispatch. A first planner result now creates or
-reuses one accepted shape and emits one complete `materialize_shape` operation,
-including contiguous dated days, stable deterministic itinerary/day/block
-identities, group participation/ownership, anchors, reasoning, narratives,
-transitions, price-estimate provenance, fidelity, and workflow provenance.
-Durable workflow fencing encloses shape/operation/itinerary birth and the
-workflow checkpoint in one transaction; checkpoint failure leaves no shape,
-itinerary, or ledger residue. Dated trip creation/update no longer publishes an
-empty itinerary shell before real planner output exists. Undated or
-destination-less birth fails closed rather than selecting the legacy writer.
-Focused birth/durable/gateway/planner/persistence/trip verification is green
-(**141 passed** in the broad slice; **31 passed** after final dispatch wiring).
-The A1 checkbox stays open: existing-itinerary output still uses
-`persist_planning_output` and full-version replacement. The next slice must
-define and land the deterministic guarded `replan` child-operation diff, then
-rebind/retire the remaining `persisted_version` and `plan_events` assumptions.
+Execution status (2026-07-14): **A1 complete.** Travel Agent commits
+`0d0ffa1b8`, `c529b8d5f`, and `bc394b268` land canonical first birth; commits
+`618ec93e4`, `ed6d49a0b`, `110c730ec`, `5c854b2c7`, and `8188c7d93` land and
+adopt canonical replan. A first planner result creates or reuses one accepted
+shape and emits one complete `materialize_shape` operation, including
+contiguous dated days, stable deterministic itinerary/day/block identities,
+group participation/ownership, anchors, reasoning, narratives, transitions,
+price-estimate provenance, fidelity, and workflow provenance. Subsequent
+planner output compiles deterministically to one atomic `replan` containing
+ordered Add/Move/Reorder/Replace/Remove children; unchanged output is a no-op,
+the child limit is bounded, and omission of a manual, anchored, confirmed,
+booked, or branch-bound block fails closed. Add/Replace carry the full
+planner-visible block content, and Replace can atomically reposition a block so
+one compound never targets the same block twice.
+
+The planner captures a revision fingerprint over the current day/block
+projection before synthesis and requires that exact head inside the durable
+workflow transaction. A human or Vesper edit that lands while planning is in
+flight therefore rejects the late output without overwriting the newer edit.
+The workflow checkpoint and canonical commit share one transaction. Existing
+itineraries are mutated in place through operation evidence; replans no longer
+call `persist_planning_output` or create replacement versions. The post-write
+confirmed-booking copier and its `plan_events` mirror were deleted; protected
+blocks are preserved by the atomic diff itself. Legacy version-pair Undo is no
+longer emitted for replans—history/recovery belongs to the operation ledger.
+The planner result contract now exposes operation ID, mutation kind,
+changed/no-op state, itinerary ID, and compatibility projection version; no
+planner/response consumer retains the `persisted_version` semantic. Focused
+compiler/gateway proof is green (**23 passed**); the final planner,
+persistence, durable-workflow, authority, response, and replan regression suite
+is green (**91 passed**).
 
 ### A2. Proposal creation goes canonical
 
@@ -601,7 +613,7 @@ complete.
       draft—days, initial blocks/anchors, ownership, provenance, and canonical
       deterministic identities—with idempotency, one history item, and atomic
       fault rollback; no partial/empty first draft is visible.
-- [ ] A1: planner births itineraries with that one materialization operation and
+- [x] A1: planner births itineraries with that one materialization operation and
       replans as deterministic guarded diffs; `_plan.py` has zero direct writes,
       no downstream consumer depends on legacy `persisted_version`, and stale
       output cannot overwrite newer edits.
