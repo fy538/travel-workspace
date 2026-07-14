@@ -21332,6 +21332,76 @@
         }
       }
     },
+    "/api/trips/{trip_id}/shared-plan-owner": {
+      "put": {
+        "tags": [
+          "trip-access"
+        ],
+        "summary": "Put Shared Plan Owner",
+        "description": "Atomically hand shared-plan authority to another current traveler.",
+        "operationId": "put_shared_plan_owner_api_trips__trip_id__shared_plan_owner_put",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransferSharedPlanOwnerRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransferSharedPlanOwnerResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/archive": {
       "post": {
         "tags": [
@@ -51829,6 +51899,182 @@
         "title": "MarkReadResponse",
         "description": "Response after marking as read."
       },
+      "MaterializeShapeBlock": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "subject_lineage_id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Subject Lineage Id"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/OperationEntityRef"
+          },
+          "sort_order": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Sort Order"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/ParticipationScope"
+          },
+          "planned_participant_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Planned Participant Ids"
+          },
+          "decision_owner_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Decision Owner Id"
+          },
+          "structural_role": {
+            "$ref": "#/components/schemas/StructuralRole",
+            "default": "ordinary"
+          },
+          "time_start": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Start"
+          },
+          "time_end": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time End"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          },
+          "energy_rationale": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Energy Rationale"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "subject_lineage_id",
+          "entity",
+          "sort_order",
+          "scope",
+          "planned_participant_ids",
+          "decision_owner_id"
+        ],
+        "title": "MaterializeShapeBlock",
+        "description": "One stable block in the accepted first-draft shape snapshot."
+      },
+      "MaterializeShapeDay": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "day_number": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Day Number"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "title": "Date"
+          },
+          "sort_order": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Sort Order"
+          },
+          "day_theme": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Day Theme"
+          },
+          "energy_target": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Energy Target"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          },
+          "blocks": {
+            "items": {
+              "$ref": "#/components/schemas/MaterializeShapeBlock"
+            },
+            "type": "array",
+            "title": "Blocks"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "day_number",
+          "date",
+          "sort_order"
+        ],
+        "title": "MaterializeShapeDay",
+        "description": "One dated day in the accepted first-draft shape snapshot."
+      },
       "MaterializeShapePayload": {
         "properties": {
           "kind": {
@@ -51849,6 +52095,30 @@
             "type": "string",
             "format": "date",
             "title": "End Date"
+          },
+          "itinerary_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Itinerary Id"
+          },
+          "markdown_content": {
+            "type": "string",
+            "title": "Markdown Content",
+            "default": ""
+          },
+          "days": {
+            "items": {
+              "$ref": "#/components/schemas/MaterializeShapeDay"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Days"
+          },
+          "provenance": {
+            "type": "string",
+            "const": "accepted_shape",
+            "title": "Provenance",
+            "default": "accepted_shape"
           }
         },
         "additionalProperties": false,
@@ -51856,7 +52126,9 @@
         "required": [
           "destination",
           "start_date",
-          "end_date"
+          "end_date",
+          "itinerary_id",
+          "days"
         ],
         "title": "MaterializeShapePayload"
       },
@@ -63486,6 +63758,49 @@
           "label"
         ],
         "title": "TasteDimension"
+      },
+      "TransferSharedPlanOwnerRequest": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id"
+        ],
+        "title": "TransferSharedPlanOwnerRequest"
+      },
+      "TransferSharedPlanOwnerResponse": {
+        "properties": {
+          "previous_owner_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Previous Owner Id"
+          },
+          "new_owner_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "New Owner Id"
+          },
+          "promoted_to_organizer": {
+            "type": "boolean",
+            "title": "Promoted To Organizer"
+          },
+          "access_state": {
+            "$ref": "#/components/schemas/TripAccessState"
+          }
+        },
+        "type": "object",
+        "required": [
+          "previous_owner_id",
+          "new_owner_id",
+          "promoted_to_organizer",
+          "access_state"
+        ],
+        "title": "TransferSharedPlanOwnerResponse"
       },
       "TransportGap": {
         "properties": {
