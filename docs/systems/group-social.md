@@ -3,7 +3,7 @@
 > Surface: Trips
 > Maturity (for MVP): MVP-required
 > Status: wired (membership golden-path; social dynamics beta)
-> Last updated: 2026-07-14 (chat transport, roster routing, and durable propagation added)
+> Last updated: 2026-07-14 (shared-outcome propagation and two-observer certification closed)
 
 ## Purpose
 The group itself — **membership & invites** (who is in the trip, with what role) and
@@ -151,7 +151,7 @@ is owned by [Memory & Preference](memory-preference.md); this system supplies th
 
 ## Maturity & validation
 - Serves journeys: 02 (create + invite — already a reliability golden path), 04 (group-safe routing), 05 (role gates edit-mode).
-- DoD state: offline golden-path + invite hooks tests ✅ (`useCreateInvite`, `useTripInvites`, `invite-landing.smoke`) · **screen-level mock walk-through ❌ · live two-account invite walk ❌**.
+- DoD state: offline golden-path + invite hooks tests ✅ (`useCreateInvite`, `useTripInvites`, `invite-landing.smoke`) · persisted second-observer certification ✅ (membership, itinerary invalidation, stay tally/selection, public votes, direct-edit receipts, booking decisions, room mute, and trip genesis) · **screen-level mock walk-through ❌ · live two-account invite walk ❌**.
 
 ## Canonical docs
 - why → `product/Interaction Design and Social Dynamics.md` · how → `working/Group Interjection Sync Design.md` · what(be) → `backend/social_state/FEATURE.md` · what(fe) → `page-specs/trip-group-chat.md` · `trip-page.md`.
@@ -160,7 +160,8 @@ is owned by [Memory & Preference](memory-preference.md); this system supplies th
 ## Open risks / known gaps
 - Invite flows are "easy to break with auth detours, stale tokens, and current-user assumptions" — the **stale `currentTripId`** assumption is the classic failure (sends an invitee to the wrong workspace). Trace it explicitly.
 - This is the only MVP-required system needing a genuine **two-account, two-device** live walk (everything else can be walked solo).
-- Remaining propagation backlog is honest-but-quiet rather than a privacy blocker:
-  vote history, direct-edit receipts, stay decision events, booking path symmetry,
-  mark-booked chat bridge, trip-genesis audit, room-mute audit, and pin idempotency.
-  Extend the second-observer certifier as each lands.
+- The 2026-07-14 propagation backlog is closed in code: public vote history,
+  direct-edit receipts, stay selection, booking-proposal decisions, mark-booked,
+  trip-genesis audit, room-mute audit, and legacy pin idempotency now have durable
+  behavior plus second-observer or focused replay coverage. Remaining risk is
+  experiential/device certification, not a known persistence hole.
