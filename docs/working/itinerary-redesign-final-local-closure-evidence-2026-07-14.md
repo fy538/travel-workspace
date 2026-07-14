@@ -98,6 +98,14 @@ frontend main. The final device capture's manifest pins the itinerary code under
 test to `d902dffa`; the later branch commits record the structured verdict and
 merge two unrelated Atlas-only mainline commits.
 
+Integration audit correction (2026-07-14): the original branch history had
+merged frontend `main` into the evidence branch, but the evidence branch itself
+had not become reachable from `main` before its worktree/ref was removed. The
+complete chain was recovered at `e23b4400` and merged into frontend `main` as
+`8c2ae16f`. Commit `e23b4400` is post-capture hardening for typed contextual
+return boundaries and one-time scroll restoration; the device manifest remains
+correctly pinned to the captured implementation at `d902dffa`.
+
 The Simulator pass found and fixed a real dogfood blocker: mock persona Plan
 State omitted canonical authority, so the server-selected read-shell boundary
 correctly fell back and the new itinerary shell could not be exercised. Mock
