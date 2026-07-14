@@ -101,10 +101,12 @@ The following product decisions are accepted for the redesign:
   cost, people, booking, and trip-setting summaries remain available through
   Trip Details.
 - Post-trip begins on the destination-local day after the trip ends. A fresh
-  completed-trip entry leads with **Memory**, while the final Itinerary remains
-  available and an explicitly selected face is retained for the current
-  session. A cancelled trip instead leads with its retained Itinerary and
-  outstanding booking/cost closure work; it does not fabricate a memory state.
+  completed-trip entry leads with the completed record until server-authored
+  readiness says Memory is meaningful; the final Itinerary remains available
+  and an explicitly selected face is retained for the current session. A
+  cancelled trip always leads with its retained record and outstanding
+  booking/cost closure work; it does not fabricate a memory state. IR-16 owns
+  post-trip routing exposure.
 - Before dates exist, the trip still opens through the itinerary-first shell,
   but it shows an **undated Trip Shape**—destination intent, anchors, loose
   regions, and the next useful planning action—not fabricated calendar days.
@@ -2440,7 +2442,7 @@ Ship in reversible slices:
    Undo/Revert;
 6. Review proposals, personal attendance, subgroup owner, and parallel branches;
 7. Vesper parity and protected continuation over the same history contract;
-8. post-trip Memory default and factual correction paths;
+8. server-authored completed-record/Memory readiness and factual correction paths;
 9. destination/date contextual replan, governance transitions, proportional
    shared awareness, and operation-linked write-back verification.
 
