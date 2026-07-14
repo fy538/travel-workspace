@@ -53402,6 +53402,18 @@
             "format": "uuid",
             "title": "Id"
           },
+          "inverse_of_operation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Inverse Of Operation Id"
+          },
           "type": {
             "$ref": "#/components/schemas/ItineraryOperationType"
           },
