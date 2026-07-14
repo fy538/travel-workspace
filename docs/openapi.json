@@ -15804,6 +15804,86 @@
         }
       }
     },
+    "/api/trips/{trip_id}/itinerary/operations/provider-sagas/{saga_id}/decline-held-price": {
+      "post": {
+        "tags": [
+          "itinerary-operations"
+        ],
+        "summary": "Decline Held Price Route",
+        "description": "Decline one current held quote and release it through canonical history.",
+        "operationId": "decline_held_price_route_api_trips__trip_id__itinerary_operations_provider_sagas__saga_id__decline_held_price_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "saga_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Saga Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItineraryHeldPriceDeclineRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItineraryProviderSaga"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/itinerary/operations/proposals": {
       "post": {
         "tags": [
@@ -48177,6 +48257,41 @@
         ],
         "title": "ItineraryHeldBookingSagaStartRequest"
       },
+      "ItineraryHeldPriceDeclineRequest": {
+        "properties": {
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          },
+          "expected_saga_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Saga Revision"
+          },
+          "quote_hash": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$",
+            "title": "Quote Hash"
+          },
+          "final_human_decision": {
+            "type": "boolean",
+            "const": true,
+            "title": "Final Human Decision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "idempotency_key",
+          "expected_saga_revision",
+          "quote_hash",
+          "final_human_decision"
+        ],
+        "title": "ItineraryHeldPriceDeclineRequest",
+        "description": "Explicit controller decision to reject one current provider quote."
+      },
       "ItineraryHeldPriceReapprovalRequest": {
         "properties": {
           "idempotency_key": {
@@ -49807,6 +49922,7 @@
               "partial",
               "succeeded",
               "failed",
+              "declined",
               "manual_action_required"
             ],
             "title": "Provider Outcome"
@@ -50036,6 +50152,7 @@
               "partial",
               "succeeded",
               "failed",
+              "declined",
               "manual_action_required"
             ],
             "title": "Provider Outcome"
@@ -59656,6 +59773,7 @@
           "awaiting_held_confirmation",
           "confirmation_failed",
           "succeeded",
+          "declined",
           "manual_action_required"
         ],
         "title": "ProviderSagaState"
