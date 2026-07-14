@@ -31,8 +31,8 @@ off.
 
 ## Executable persistence boundary
 
-The point-in-time route inventory below is now backed by two ratcheting static
-manifests in `travel-agent/scripts/`:
+The point-in-time route inventory below is now backed by four ratcheting static
+manifests across the two repositories:
 
 - `check_itinerary_writer_boundary_baseline.tsv` classifies **112 stable direct
   writer sites / 132 current write occurrences**. The current occurrence split
@@ -42,8 +42,17 @@ manifests in `travel-agent/scripts/`:
   legacy imports** an executable disposition: 68 replace, 22 delete, and 15
   rename. The rename rows are the current group-facing `change_proposals`
   projection consumers; they do not preserve proposal mutation authority.
+- `check_itinerary_legacy_readers_baseline.tsv` classifies **14 backend
+  file/resource pairs / 63 semantic compatibility uses** across legacy recent
+  changes, raw status, planner `persisted_version`, `locked` governance, and the
+  Folio compatibility projection.
+- `travel-app/scripts/check-itinerary-legacy-readers-baseline.tsv` classifies
+  **20 frontend file/resource pairs / 83 semantic compatibility uses** for the
+  same wire concepts plus the Folio query and source-health fallback. Generated
+  OpenAPI types and disposable mock fixtures are explicit directory-scoped
+  exceptions rather than product-authority allowlist rows.
 
-Both checks use stable keys without line numbers. A classified occurrence or
+All four checks use stable keys without line numbers. A classified occurrence or
 import may disappear or decrease, but a new site or count increase fails CI.
 The production scan covers `backend/`, `tools/`, and `scripts/`. Disposable test
 fixture setup remains the sole directory-scoped direct-write exception; live
@@ -56,10 +65,11 @@ materialized block/day revisions, operation rows, transitions and their embedded
 mutation evidence, the temporary `plan_events` mirror, and projected operation
 history all roll back together. The six integrity writer keys are also a closed
 code-level allowlist, so a TSV row cannot relabel a new product writer as
-maintenance. The remaining Workstream 0 boundary work is (1) extending the
-consumer manifest beyond backend module imports to legacy recent-changes and
-compatibility-column readers, including frontend call sites, and (2) focused
-reachability/semantic certification for the six integrity exceptions.
+maintenance. Their five callable entry points are restricted to the named
+account-deletion, trip-archival, member-removal, planner-warning, and internal
+owner-reassignment importers; a normal itinerary route importing one fails CI.
+The focused certification suite covers that reachability plus the existing
+authorization and lifecycle behavior (**54 passed**). Workstream 0 is complete.
 
 ## Backend mutation inventory
 
@@ -146,5 +156,5 @@ These are not current paths to adapt; they require first-class implementation:
 - [x] IR-06 adds executable parity tests proving equivalent normalization.
 - [x] Every production direct writer has a ratcheted classification.
 - [x] Every backend legacy proposal/event/version module import has a ratcheted disposition.
-- [ ] Legacy recent-changes and compatibility-column readers are ratcheted across both repos.
+- [x] Legacy recent-changes and compatibility-column readers are ratcheted across both repos.
 - [ ] IR-07 records removal dates for each independent legacy write.

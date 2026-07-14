@@ -187,10 +187,13 @@ rename). Both are wired into the local `gates` target and backend CI. The
 canonical fault-injection test now proves plan revisions, operation/transition
 evidence, the temporary legacy event mirror, and projected history roll back
 together. The six integrity keys are a closed code-level allowlist rather than
-free-form manifest labels. Workstream 0 remains open for the cross-repo legacy
-recent-changes/compatibility-column reader inventory and for focused
-reachability/semantic certification that the integrity exceptions cannot act as
-ordinary product edits.
+free-form manifest labels. A semantic compatibility ratchet now covers 14
+backend file/resource pairs / 63 uses and 20 frontend pairs / 83 uses across
+legacy recent changes, raw status, planner `persisted_version`, `locked`
+governance, and Folio compatibility inputs. The integrity exceptions' five
+callable entry points are restricted to named lifecycle importers in CI, and the
+focused reachability/authorization/lifecycle suite is green (**54 passed**).
+Workstream 0 is complete.
 
 ## Workstream A — Build the missing canonical producers
 
@@ -554,7 +557,7 @@ complete.
 
 ## Acceptance — definition of done
 
-- [ ] 0: every direct writer and legacy proposal/history consumer is classified;
+- [x] 0: every direct writer and legacy proposal/history consumer is classified;
       the CI boundary guard is installed and its product-mutation allowlist is
       ratcheted to zero by closure.
 - [ ] A0: one `materialize_shape` operation commits the complete first dated
