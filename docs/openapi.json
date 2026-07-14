@@ -31956,14 +31956,7 @@
           },
           "kind": {
             "type": "string",
-            "enum": [
-              "memory_candidate",
-              "pattern_candidate",
-              "place_cluster",
-              "postcard_ready",
-              "memory_correction",
-              "signal_review"
-            ],
+            "const": "memory_candidate",
             "title": "Kind"
           },
           "eyebrow": {
@@ -32018,7 +32011,7 @@
           "primary_action"
         ],
         "title": "AtlasInboxReviewItem",
-        "description": "Backend-authored Atlas Inbox review item.\n\nThese are the broad Atlas review queue rows: memories, patterns, places,\npostcards, corrections, and signal reviews. The frontend renders these\ndirectly instead of inferring Vesper's queue from unrelated hooks."
+        "description": "Backend-authored Atlas Inbox review item.\n\nV1 contains real pending memory candidates only. The frontend renders this\ndurable queue directly instead of inferring review work from unrelated\nartifacts, profile phrases, or map counts."
       },
       "AtlasInboxReviewPage": {
         "properties": {
