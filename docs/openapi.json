@@ -47649,6 +47649,18 @@
             "format": "uuid",
             "title": "Branch Id"
           },
+          "originating_operation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Originating Operation Id"
+          },
           "label": {
             "anyOf": [
               {
