@@ -227,6 +227,23 @@ while the birth path is legacy.
   accepted anchors/provenance; no separate initial Adds or direct day/version
   writes are needed; all fault points roll back both plan truth and evidence.
 
+Execution status (2026-07-14): **A0 complete** in Travel Agent commit
+`5fca67070`. The normalized payload now carries validated caller-supplied
+itinerary/day/block identities, exact contiguous dated-day coverage, initial
+blocks, stable lineage, participation/ownership, structural roles, scheduled
+times, and accepted-shape provenance. Preview rejects missing/already-used
+shapes, destination/date drift, non-member participants, invalid catalog
+entities, and any trip that already has an itinerary. Commit locks the trip and
+shape, then creates the itinerary, days, blocks, canonical participation,
+undated→dated trip transition, shape materialization state, immutable operation
+evidence, and one history projection in a single transaction. PostgreSQL proof
+`test_itinerary_materialize_shape_gateway.py` covers complete birth,
+caller-supplied identity preservation, fault rollback before terminal evidence,
+same-key idempotent replay, duplicate-birth rejection, stale-date rejection,
+and one visible history item. Focused A0 + gateway/policy/preview verification:
+**62 passed**. A1 remains responsible for making the planner emit this contract;
+A0 does not yet retire the planner's direct persistence path.
+
 ### A1. Plan generation → typed operations (critical path)
 
 - Today: `_plan.py` persists complete itinerary versions directly;
@@ -560,7 +577,7 @@ complete.
 - [x] 0: every direct writer and legacy proposal/history consumer is classified;
       the CI boundary guard is installed and its product-mutation allowlist is
       ratcheted to zero by closure.
-- [ ] A0: one `materialize_shape` operation commits the complete first dated
+- [x] A0: one `materialize_shape` operation commits the complete first dated
       draft—days, initial blocks/anchors, ownership, provenance, and canonical
       deterministic identities—with idempotency, one history item, and atomic
       fault rollback; no partial/empty first draft is visible.
