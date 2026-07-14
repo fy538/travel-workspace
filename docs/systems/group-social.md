@@ -3,7 +3,7 @@
 > Surface: Trips
 > Maturity (for MVP): MVP-required
 > Status: wired (membership golden-path; social dynamics beta)
-> Last updated: 2026-07-13 (coordination-channel ruling added)
+> Last updated: 2026-07-13 (coordination-channel ruling + group-decision rulings added)
 
 ## Purpose
 The group itself — **membership & invites** (who is in the trip, with what role) and
@@ -37,6 +37,55 @@ against Partiful's bar, not iMessage's. We do not compete on messaging.
   charter's existing "Quiet propagation" invariant, which is a deliberate consequence
   of this ruling, not an anti-spam accident.
 
+## Group-decision rulings (2026-07-13)
+
+Four founder rulings on how group decisions should *feel*. The through-line: the
+privacy load belongs on the **input layer** (private chat, constraint synthesis,
+compose redaction) — which stays sacred — not on the **decision layer**, where
+anonymity reads as bureaucracy to a friend group. Constraint privacy ≠ preference
+privacy.
+
+1. **Social votes — supersedes the D1 secret ballot.** Names on choices, holdouts
+   visible to the group. By the time something is up for a vote, the options were
+   already filtered group-safe by the synthesis layer, so a public vote leaks no
+   constraints; visible preference among friends is ordinary social life and is
+   what creates momentum and peer accountability. A *sensitive* objection belongs
+   in the private channel (Ask Vesper), not an anonymous ballot — the vote is the
+   public instrument, the private channel is the constraint instrument.
+   *Status: implemented* (`proposals.py`'s `_to_detail`/`list_proposals`,
+   `users/trips_board.py`, `conversations.py`'s vote_widget rehydration; FE
+   avatar-stack vote rows from the 07-06 batches lit up with zero FE-side
+   logic changes — purely gated on the now-always-true
+   `can_view_individual_votes` field). Per-vote free-text comments are a
+   narrower, still-restricted exception: visible only to the comment's own
+   author and the organizer — free text can carry more than a preference,
+   closer to a private objection than "I approve".
+2. **Attribution follows the visibility of the initiating intent.** An ask made in
+   front of the group ("hey Vesper, propose swapping Tuesday") is the member's own
+   proposal, prepared by Vesper — human credit. An ask made privately stays
+   "Vesper proposed" — deliberately, as the diplomacy shield (a private "somewhere
+   cheaper tonight" must never leak its asker through attribution). Unknown
+   provenance fails private. `proposed_by_agent` now means "autonomous, or
+   shielding a private ask." *Status: implemented* (`_propose_present.py`;
+   Change-Studio proposals already carried human credit).
+3. **Visible care: show the work, never the accommodation.** Constraint-neutral
+   diligence (hours checked for the actual day, walking time from the stay,
+   cross-checks against saved places) is group-visible by design — discretion
+   felt as competence (belief #31). Accommodation visibility ("works for
+   everyone") stays banned for cohort 1 — the asymmetry implies someone needed
+   accommodating; revisit with real cohort transcripts. *Status: implemented*
+   (invisible-scaffolding prompt).
+4. **Voting visible by default; automation opt-in.** The old `voting_enabled`
+   conflated (a) members expressing an opinion with (b) timers converting silence
+   into plan mutations. Split them: visible voting defaults ON for trips with ≥2
+   members; consensus automation (deadlines, lazy-consensus auto-apply) defaults
+   OFF, organizer opt-in. Explicit-unanimity auto-accept stays (it only fires on
+   explicit votes). This honors "membership does not imply a governance
+   preference" — that principle was always about automation, never expression.
+   *Status: ruled, implementation pending* (flag split + migration + FE copy on
+   the "voting is off" states + re-keying the sweep gates in
+   `change_proposals.py`).
+
 ## Spans (cross-repo)
 - Backend: membership/invites in `core/` + `api/routes/trips.py`, `members`, `invites`; social dynamics in [`travel-agent/backend/social_state/`](../../travel-agent/backend/social_state/FEATURE.md) (6).
 - Frontend: `app/trip-begin`, `app/invite/[slug]`, `app/invite-code`, `(tabs)/trips/[tripId]/chat` (group room), `components/trips/*`, `data/trips.ts`, `useCreateInvite`/`useTripInvites` hooks.
@@ -62,8 +111,12 @@ is owned by [Memory & Preference](memory-preference.md); this system supplies th
 - **Membership coherence:** Trips list, Trip Info, Group Chat, and Notifications agree on who's in.
 - **Social state is rebuilt from signals**, not stored as a static doc; extraction is Haiku.
 - **Fairness:** equity-imbalance signals feed the concierge (vote-absence friction, quiet-member detection).
-- **Vote privacy:** group surfaces show tallies and the viewer's own vote, never
-  voter names; missing-voter identity is organizer/agent-side only.
+- **Vote privacy (superseded 2026-07-13 by group-decision ruling 1, above):**
+  vote choice + identity — names on choices, holdouts — is group-visible to
+  every trip member. Per-vote free-text comments remain restricted to the
+  comment's own author and the organizer. (Was: group surfaces show tallies
+  and the viewer's own vote, never voter names; missing-voter identity was
+  organizer/agent-side only — the old D1 rule this replaces.)
 - **Quiet propagation:** ordinary group-visible mutations converge on focus/refetch;
   only existing arbiter-gated event classes receive push.
 - **Wiki-mode V1:** committed plan state is shared immediately; curator/selective
