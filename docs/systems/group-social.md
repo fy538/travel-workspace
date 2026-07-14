@@ -3,7 +3,7 @@
 > Surface: Trips
 > Maturity (for MVP): MVP-required
 > Status: wired (membership golden-path; social dynamics beta)
-> Last updated: 2026-07-14 (human-message/AI-transport separation added)
+> Last updated: 2026-07-14 (human-message transport and fail-closed roster routing added)
 
 ## Purpose
 The group itself — **membership & invites** (who is in the trip, with what role) and
@@ -128,6 +128,10 @@ is owned by [Memory & Preference](memory-preference.md); this system supplies th
   messages use an idempotent non-streaming write, consume no concierge-turn quota,
   and render no Vesper placeholder. Explicit Vesper address and opted-in proactive
   candidates alone enter the AI participation transport.
+- **Shared-room routing fails closed on roster uncertainty:** group-chat hooks mount
+  only after an authoritative roster verifies at least two members. A verified solo
+  roster redirects privately; an unavailable or empty roster exposes retry without
+  creating or subscribing to the shared room.
 - **Wiki-mode V1:** committed plan state is shared immediately; curator/selective
   draft propagation is deferred.
 - **Organizer authority is explicit:** the organizer resolves proposals in V1;
