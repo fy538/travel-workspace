@@ -52791,6 +52791,23 @@
               }
             ],
             "title": "Time End"
+          },
+          "after_block_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "After Block Id"
+          },
+          "insert_at_front": {
+            "type": "boolean",
+            "title": "Insert At Front",
+            "default": false
           }
         },
         "type": "object",
@@ -52798,7 +52815,7 @@
           "day_id"
         ],
         "title": "MoveBlockRequest",
-        "description": "Body for POST /api/trips/{trip_id}/itinerary/blocks/{block_id}/move.\n\n``day_id`` may differ from the block's current day (cross-day move).\n``time_start`` / ``time_end`` are ISO-8601 strings; null clears the slot."
+        "description": "Body for POST /api/trips/{trip_id}/itinerary/blocks/{block_id}/move.\n\n``day_id`` may differ from the block's current day (cross-day move).\n``time_start`` / ``time_end`` are ISO-8601 strings; null clears the slot.\n\n``after_block_id`` / ``insert_at_front`` (Phase 5, itinerary cutover\ncampaign \u2014 reorder-within-a-day, e.g. Move-up/Move-down buttons): give\na position within ``day_id`` instead of appending at the end (the\nexisting default, preserved for every caller that predates these\nfields \u2014 they default falsy so old callers are unaffected).\n``insert_at_front`` wins if both are set."
       },
       "MoveCheckResult": {
         "properties": {
