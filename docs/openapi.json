@@ -31395,6 +31395,16 @@
             "type": "array",
             "title": "Postcard Previews"
           },
+          "latest_reading": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/KeptBoard"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "pending_candidates": {
             "items": {
               "$ref": "#/components/schemas/AtlasCandidate"
