@@ -15936,6 +15936,76 @@
         }
       }
     },
+    "/api/trips/{trip_id}/itinerary/operations/detail/{operation_id}/revert-preview": {
+      "post": {
+        "tags": [
+          "itinerary-operations"
+        ],
+        "summary": "Preview Operation Revert Route",
+        "description": "Prepare one server-built reversal against current itinerary truth.",
+        "operationId": "preview_operation_revert_route_api_trips__trip_id__itinerary_operations_detail__operation_id__revert_preview_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "operation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Operation Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItineraryOperationPreview"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/itinerary/operations/detail/{operation_id}/undo": {
       "post": {
         "tags": [
