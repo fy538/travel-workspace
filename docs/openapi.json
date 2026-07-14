@@ -40461,6 +40461,44 @@
         "title": "DismissCardResponse",
         "description": "Acknowledgment payload \u2014 the frontend uses ``status`` to drive the\nundo toast. ``dismissed`` is the tuple just affected so the client\nhas everything it needs to call the undo endpoint without re-deriving\nkeys."
       },
+      "DissolveParallelPlanPayload": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "dissolve_parallel_plan",
+            "title": "Kind",
+            "default": "dissolve_parallel_plan"
+          },
+          "day_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Day Id"
+          },
+          "branch_group_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Branch Group Id"
+          },
+          "restored_block_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Restored Block Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "day_id",
+          "branch_group_id",
+          "restored_block_ids"
+        ],
+        "title": "DissolveParallelPlanPayload",
+        "description": "Server-authored reversal of one parallel-plan creation."
+      },
       "DnaConfidence": {
         "properties": {
           "trips_observed": {
@@ -49146,6 +49184,7 @@
           "mark_occurrence",
           "create_parallel_plan",
           "update_parallel_plan",
+          "dissolve_parallel_plan",
           "optimize_day",
           "replan"
         ],
@@ -53461,6 +53500,9 @@
                 "$ref": "#/components/schemas/ParallelPlanPayload"
               },
               {
+                "$ref": "#/components/schemas/DissolveParallelPlanPayload"
+              },
+              {
                 "$ref": "#/components/schemas/OptimizeDayPayload"
               },
               {
@@ -53473,6 +53515,7 @@
               "mapping": {
                 "add": "#/components/schemas/AddPayload",
                 "create_parallel_plan": "#/components/schemas/ParallelPlanPayload",
+                "dissolve_parallel_plan": "#/components/schemas/DissolveParallelPlanPayload",
                 "mark_occurrence": "#/components/schemas/MarkOccurrencePayload",
                 "materialize_shape": "#/components/schemas/MaterializeShapePayload",
                 "move": "#/components/schemas/MovePayload",
