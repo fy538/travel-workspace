@@ -22511,6 +22511,76 @@
         }
       }
     },
+    "/api/trips/{trip_id}/context-change-preview": {
+      "post": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Preview Trip Context Change Endpoint",
+        "description": "Preview date, destination, timezone, and protected-plan consequences.",
+        "operationId": "preview_trip_context_change_endpoint_api_trips__trip_id__context_change_preview_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TripContextChangePreviewRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripContextChangePreview"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/cross-trip-threads": {
       "get": {
         "tags": [
@@ -65326,6 +65396,302 @@
         "title": "TripContext",
         "description": "Trip-scoped context for filtering and relevance."
       },
+      "TripContextChangeImpact": {
+        "properties": {
+          "date_change_kind": {
+            "type": "string",
+            "enum": [
+              "unchanged",
+              "materialize",
+              "remove_dates",
+              "shift",
+              "extend",
+              "shorten",
+              "reshape"
+            ],
+            "title": "Date Change Kind"
+          },
+          "destination_changed": {
+            "type": "boolean",
+            "title": "Destination Changed"
+          },
+          "timezone_changed": {
+            "type": "boolean",
+            "title": "Timezone Changed"
+          },
+          "lifecycle_changed": {
+            "type": "boolean",
+            "title": "Lifecycle Changed"
+          },
+          "live_trip": {
+            "type": "boolean",
+            "title": "Live Trip"
+          },
+          "itinerary_day_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Itinerary Day Count"
+          },
+          "active_block_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Active Block Count"
+          },
+          "unaffected_block_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Unaffected Block Count"
+          },
+          "review_block_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Review Block Count"
+          },
+          "protected_block_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Protected Block Count"
+          },
+          "outside_new_range_block_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Outside New Range Block Count"
+          },
+          "destination_review_block_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Destination Review Block Count"
+          },
+          "timezone_review_block_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Timezone Review Block Count"
+          },
+          "active_stay_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Active Stay Count"
+          },
+          "provider_confirmed_stay_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Provider Confirmed Stay Count"
+          },
+          "active_booking_workflow_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Active Booking Workflow Count"
+          },
+          "open_proposal_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Open Proposal Count"
+          },
+          "day_remaps": {
+            "items": {
+              "$ref": "#/components/schemas/TripContextDayRemap"
+            },
+            "type": "array",
+            "title": "Day Remaps"
+          },
+          "protected_dependencies": {
+            "items": {
+              "$ref": "#/components/schemas/TripContextProtectedDependency"
+            },
+            "type": "array",
+            "title": "Protected Dependencies"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Warnings"
+          }
+        },
+        "type": "object",
+        "required": [
+          "date_change_kind",
+          "destination_changed",
+          "timezone_changed",
+          "lifecycle_changed",
+          "live_trip",
+          "itinerary_day_count",
+          "active_block_count",
+          "unaffected_block_count",
+          "review_block_count",
+          "protected_block_count",
+          "outside_new_range_block_count",
+          "destination_review_block_count",
+          "timezone_review_block_count",
+          "active_stay_count",
+          "provider_confirmed_stay_count",
+          "active_booking_workflow_count",
+          "open_proposal_count"
+        ],
+        "title": "TripContextChangeImpact"
+      },
+      "TripContextChangePreview": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "changed_fields": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "place_id",
+                "start_date",
+                "end_date"
+              ]
+            },
+            "type": "array",
+            "title": "Changed Fields"
+          },
+          "current": {
+            "$ref": "#/components/schemas/TripContextSnapshot"
+          },
+          "proposed": {
+            "$ref": "#/components/schemas/TripContextSnapshot"
+          },
+          "requires_replan": {
+            "type": "boolean",
+            "title": "Requires Replan"
+          },
+          "can_apply_directly": {
+            "type": "boolean",
+            "title": "Can Apply Directly"
+          },
+          "next_step": {
+            "type": "string",
+            "enum": [
+              "no_change",
+              "apply_directly",
+              "contextual_replan"
+            ],
+            "title": "Next Step"
+          },
+          "impact": {
+            "$ref": "#/components/schemas/TripContextChangeImpact"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "changed_fields",
+          "current",
+          "proposed",
+          "requires_replan",
+          "can_apply_directly",
+          "next_step",
+          "impact"
+        ],
+        "title": "TripContextChangePreview"
+      },
+      "TripContextChangePreviewRequest": {
+        "properties": {
+          "place_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Id"
+          },
+          "start_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start Date"
+          },
+          "end_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Date"
+          }
+        },
+        "type": "object",
+        "title": "TripContextChangePreviewRequest",
+        "description": "Proposed context values; omitted fields retain their current value."
+      },
+      "TripContextDayRemap": {
+        "properties": {
+          "day_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Day Id"
+          },
+          "day_number": {
+            "type": "integer",
+            "title": "Day Number"
+          },
+          "current_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current Date"
+          },
+          "proposed_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proposed Date"
+          },
+          "disposition": {
+            "type": "string",
+            "enum": [
+              "unchanged",
+              "remap",
+              "outside_new_range",
+              "undated"
+            ],
+            "title": "Disposition"
+          },
+          "active_block_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Active Block Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "day_id",
+          "day_number",
+          "disposition",
+          "active_block_count"
+        ],
+        "title": "TripContextDayRemap"
+      },
       "TripContextPrecondition": {
         "properties": {
           "kind": {
@@ -65357,6 +65723,69 @@
           "expected_trip_revision"
         ],
         "title": "TripContextPrecondition"
+      },
+      "TripContextProtectedDependency": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "itinerary_block",
+              "stay",
+              "booking_workflow",
+              "proposal"
+            ],
+            "title": "Kind"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "state": {
+            "type": "string",
+            "title": "State"
+          },
+          "current_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current Date"
+          },
+          "proposed_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proposed Date"
+          },
+          "provider_action_required": {
+            "type": "boolean",
+            "title": "Provider Action Required",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "id",
+          "title",
+          "state"
+        ],
+        "title": "TripContextProtectedDependency"
       },
       "TripContextReplanRequiredDetail": {
         "properties": {
@@ -65408,6 +65837,80 @@
           "detail"
         ],
         "title": "TripContextReplanRequiredResponse"
+      },
+      "TripContextSnapshot": {
+        "properties": {
+          "place_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Id"
+          },
+          "place_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Name"
+          },
+          "start_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start Date"
+          },
+          "end_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Date"
+          },
+          "effective_timezone": {
+            "type": "string",
+            "title": "Effective Timezone"
+          },
+          "timezone_source": {
+            "type": "string",
+            "enum": [
+              "trip_override",
+              "primary_destination",
+              "utc_fallback"
+            ],
+            "title": "Timezone Source"
+          },
+          "lifecycle_phase": {
+            "type": "string",
+            "title": "Lifecycle Phase"
+          }
+        },
+        "type": "object",
+        "required": [
+          "effective_timezone",
+          "timezone_source",
+          "lifecycle_phase"
+        ],
+        "title": "TripContextSnapshot"
       },
       "TripCreationAnchorEvidence": {
         "properties": {
