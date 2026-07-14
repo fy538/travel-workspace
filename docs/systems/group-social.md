@@ -3,7 +3,7 @@
 > Surface: Trips
 > Maturity (for MVP): MVP-required
 > Status: wired (membership golden-path; social dynamics beta)
-> Last updated: 2026-06-27
+> Last updated: 2026-07-13 (coordination-channel ruling added)
 
 ## Purpose
 The group itself — **membership & invites** (who is in the trip, with what role) and
@@ -12,6 +12,30 @@ reads to adapt tone and routing. Membership is the foundation everything group-s
 stands on (privacy routing, booking, expenses, notifications). Serves belief #3
 (*the agent never reveals individual constraints to the group*) and #14 (using the
 product is the distribution — the invite is "join our trip").
+
+## Coordination-channel ruling (2026-07-13)
+
+**The pre-cohort strategy is the shared-object path, not chat replacement.** The trip
+is the shared social object; the group's existing thread (iMessage/WhatsApp) remains
+their talk channel; every decision artifact (invite, proposal, trip page) must preview
+beautifully and land deep when pasted into it. The in-app group room's job is **"the
+trip's room"** — where Vesper, decisions, and the operational record live — judged
+against Partiful's bar, not iMessage's. We do not compete on messaging.
+
+- **Dogfood metric:** links created and pasted out (invite / proposal / trip-page
+  shares) and taps back in (link-landing opens → deep-link arrivals). **Not** in-app
+  group-message volume — low chat volume is *expected and fine* under this ruling.
+- **Chat replacement is a hypothesis the cohort may promote, not a plan.** Promotion
+  trigger: observed *organic* member-to-member banter in trip rooms (unprompted
+  human-to-human messages, not Vesper-addressed). Until that trigger fires, no
+  engineering hours go to messaging table stakes (per-message push, reactions,
+  reply-to, in-thread photo sharing, human presence/typing/read receipts).
+- **Supersession:** this overrides `travel-agent/docs/product/Strategic
+  Implications.md` §14 ("replaces WhatsApp as the trip's communication hub", "move
+  their trip conversation into your app") — annotated in place. It is consistent with
+  `Growth Strategy.md` §"Don't compete with WhatsApp on messaging" and with this
+  charter's existing "Quiet propagation" invariant, which is a deliberate consequence
+  of this ruling, not an anti-spam accident.
 
 ## Spans (cross-repo)
 - Backend: membership/invites in `core/` + `api/routes/trips.py`, `members`, `invites`; social dynamics in [`travel-agent/backend/social_state/`](../../travel-agent/backend/social_state/FEATURE.md) (6).
