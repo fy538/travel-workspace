@@ -64,3 +64,43 @@ The first implementation slice establishes:
 
 Database projection integration, List/Map parity, privacy proofs, provider and
 compound/branch propagation, and route exposure remain subsequent IR-12 slices.
+
+## Database authority slice
+
+The second slice replaces the contract-only seam with a database-backed
+canonical authority assembled from normalized itinerary, participation,
+policy, branch, protection, provider-saga, booking, expense, stay, history,
+place, people, lifecycle, and Memory-readiness facts. It does not read Folio.
+
+The authority now:
+
+- hydrates day/block revisions, subject lineage, participation scope,
+  ownership, structural role, branch topology/participants/revisions,
+  protection, and fail-closed server capabilities;
+- retains the complete IR-10 provider-saga projection and IR-11 history page
+  instead of rebuilding either from client-facing summaries;
+- emits one deduplicated Needs-attention projection consumed by Details and
+  available unchanged to later Bookings and shell consumers;
+- preserves distinct event, stay, transport-leg, provider-booking, expense,
+  place, and history identities with contextual/comprehensive exact-return
+  links;
+- hashes viewer, lifecycle-affecting projections, objects, links, people,
+  Memory readiness, provider/history facts, and source states into a stable
+  projection version; and
+- degrades provider/history sources behind transaction savepoints, while
+  incomplete policy facts produce denied capabilities and an explicit
+  degraded capability source instead of permissive guesses.
+
+`TripPlanState` and `TripMapState` expose the same additive authority behind
+`ITINERARY_READ_MODELS_V2`; neither was replaced with another Plan/Map model.
+`GET /api/trips/{trip_id}/details-state` is separately gated by
+`TRIP_DETAILS_STATE_V2` and composes the fixed factual index from that
+authority. Routing recommendations remain disabled.
+
+Database evidence covers stable repeated projection versions, event↔expense
+and stay↔expense identity/link paths, transport lineage, Details row counts,
+and exact Plan/Map authority equality. Provider attention and canonical history
+also prove one shared operation identity. The targeted IR-10/IR-11/IR-12 suite
+is 97 tests passing. Remaining IR-12 work is broader privacy/degradation fixtures,
+explicit generic booking/provider-detail projection coverage, Folio parity
+measurement against live authority, and final exit-gate evidence.
