@@ -22,7 +22,7 @@ from committed registries; follow the linked authority for evidence and detail.
 | Canonical journeys | 19 total / 12 golden path / 7 holistic extension | [`journeys.yaml`](../journeys/journeys.yaml) |
 | Feature flags | 56 registered / 55 active / 1 resolved | [`registry.yaml`](../flags/registry.yaml) |
 | System charters | 20 Markdown documents | [`systems/`](../systems/) |
-| Documentation inventory | 223 files classified | [`inventory.yaml`](../governance/inventory.yaml) |
+| Documentation inventory | 224 files classified | [`inventory.yaml`](../governance/inventory.yaml) |
 <!-- END auto:current-state -->
 
 For readiness, use [Journey Status](../journeys/STATUS.md). For the bounded first
