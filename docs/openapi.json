@@ -21272,6 +21272,126 @@
         }
       }
     },
+    "/api/trips/{trip_id}/access-state": {
+      "get": {
+        "tags": [
+          "trip-access"
+        ],
+        "summary": "Get Trip Access State",
+        "description": "Return one server-authored capability snapshot for the current viewer.",
+        "operationId": "get_trip_access_state_api_trips__trip_id__access_state_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripAccessState"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/archive": {
+      "post": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Archive Trip Endpoint",
+        "description": "Move a trip out of active coordination while preserving its record.\n\nArchive is not cancellation. It preserves the itinerary, members,\nconversation links, confirmed bookings, and expenses; closes only\nuncommitted coordination state; and makes linked conversations read-only.\nActive booking searches or provider holds return 409 rather than implying\nexternal work was cancelled. Organizer-only and idempotent.",
+        "operationId": "archive_trip_endpoint_api_trips__trip_id__archive_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArchiveTripResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/photos": {
       "post": {
         "tags": [
@@ -21744,66 +21864,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TripPhotoOptInResponse"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/trips/{trip_id}/archive": {
-      "post": {
-        "tags": [
-          "trips"
-        ],
-        "summary": "Archive Trip Endpoint",
-        "description": "Move a trip out of active coordination while preserving its record.\n\nArchive is not cancellation. It preserves the itinerary, members,\nconversation links, confirmed bookings, and expenses; closes only\nuncommitted coordination state; and makes linked conversations read-only.\nActive booking searches or provider holds return 409 rather than implying\nexternal work was cancelled. Organizer-only and idempotent.",
-        "operationId": "archive_trip_endpoint_api_trips__trip_id__archive_post",
-        "parameters": [
-          {
-            "name": "trip_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Trip Id"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ArchiveTripResponse"
                 }
               }
             }
@@ -63875,6 +63935,263 @@
           "updated_at"
         ],
         "title": "Trip"
+      },
+      "TripAccessCapabilities": {
+        "properties": {
+          "can_manage_members": {
+            "type": "boolean",
+            "title": "Can Manage Members"
+          },
+          "can_manage_invites": {
+            "type": "boolean",
+            "title": "Can Manage Invites"
+          },
+          "can_change_governance": {
+            "type": "boolean",
+            "title": "Can Change Governance"
+          },
+          "can_change_trip_context": {
+            "type": "boolean",
+            "title": "Can Change Trip Context"
+          },
+          "can_transfer_shared_plan": {
+            "type": "boolean",
+            "title": "Can Transfer Shared Plan"
+          },
+          "can_request_leave": {
+            "type": "boolean",
+            "title": "Can Request Leave"
+          },
+          "leave_blocker": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "only_traveler",
+                  "last_organizer"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Leave Blocker"
+          }
+        },
+        "type": "object",
+        "required": [
+          "can_manage_members",
+          "can_manage_invites",
+          "can_change_governance",
+          "can_change_trip_context",
+          "can_transfer_shared_plan",
+          "can_request_leave"
+        ],
+        "title": "TripAccessCapabilities"
+      },
+      "TripAccessContext": {
+        "properties": {
+          "effective_timezone": {
+            "type": "string",
+            "title": "Effective Timezone"
+          },
+          "timezone_source": {
+            "type": "string",
+            "enum": [
+              "trip_override",
+              "primary_destination",
+              "utc_fallback"
+            ],
+            "title": "Timezone Source"
+          },
+          "change_requires_replan": {
+            "type": "boolean",
+            "title": "Change Requires Replan"
+          }
+        },
+        "type": "object",
+        "required": [
+          "effective_timezone",
+          "timezone_source",
+          "change_requires_replan"
+        ],
+        "title": "TripAccessContext"
+      },
+      "TripAccessGovernance": {
+        "properties": {
+          "plan_editing": {
+            "type": "string",
+            "enum": [
+              "open",
+              "review"
+            ],
+            "title": "Plan Editing"
+          },
+          "voting_enabled": {
+            "type": "boolean",
+            "title": "Voting Enabled"
+          },
+          "consensus_automation_enabled": {
+            "type": "boolean",
+            "title": "Consensus Automation Enabled"
+          }
+        },
+        "type": "object",
+        "required": [
+          "plan_editing",
+          "voting_enabled",
+          "consensus_automation_enabled"
+        ],
+        "title": "TripAccessGovernance"
+      },
+      "TripAccessMember": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Name"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "organizer",
+              "member"
+            ],
+            "title": "Role"
+          },
+          "is_shared_plan_owner": {
+            "type": "boolean",
+            "title": "Is Shared Plan Owner",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "role"
+        ],
+        "title": "TripAccessMember"
+      },
+      "TripAccessState": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "trip_status": {
+            "type": "string",
+            "title": "Trip Status"
+          },
+          "trip_mode": {
+            "type": "string",
+            "enum": [
+              "solo",
+              "group"
+            ],
+            "title": "Trip Mode"
+          },
+          "member_count": {
+            "type": "integer",
+            "title": "Member Count"
+          },
+          "viewer": {
+            "$ref": "#/components/schemas/TripAccessViewer"
+          },
+          "members": {
+            "items": {
+              "$ref": "#/components/schemas/TripAccessMember"
+            },
+            "type": "array",
+            "title": "Members"
+          },
+          "shared_plan_owner": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TripAccessMember"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "authority_health": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "decision_owner_unavailable"
+            ],
+            "title": "Authority Health"
+          },
+          "governance": {
+            "$ref": "#/components/schemas/TripAccessGovernance"
+          },
+          "context": {
+            "$ref": "#/components/schemas/TripAccessContext"
+          },
+          "capabilities": {
+            "$ref": "#/components/schemas/TripAccessCapabilities"
+          },
+          "trip_updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Trip Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "trip_status",
+          "trip_mode",
+          "member_count",
+          "viewer",
+          "members",
+          "authority_health",
+          "governance",
+          "context",
+          "capabilities",
+          "trip_updated_at"
+        ],
+        "title": "TripAccessState"
+      },
+      "TripAccessViewer": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "organizer",
+              "member"
+            ],
+            "title": "Role"
+          },
+          "is_shared_plan_owner": {
+            "type": "boolean",
+            "title": "Is Shared Plan Owner"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "role",
+          "is_shared_plan_owner"
+        ],
+        "title": "TripAccessViewer"
       },
       "TripBudgetUpdate": {
         "properties": {
