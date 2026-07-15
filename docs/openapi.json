@@ -6845,6 +6845,86 @@
         }
       }
     },
+    "/api/trips/{trip_id}/booking/sessions/{session_id}/offers/{offer_id}/reconcile": {
+      "post": {
+        "tags": [
+          "booking"
+        ],
+        "summary": "Reconcile Offer Checkout",
+        "description": "Safely re-read one ambiguous provider order without resubmitting it.",
+        "operationId": "reconcile_offer_checkout_api_trips__trip_id__booking_sessions__session_id__offers__offer_id__reconcile_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Session Id"
+            }
+          },
+          {
+            "name": "offer_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Offer Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingOffer"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/booking/sessions/{session_id}/offers/{offer_id}/cancel": {
       "post": {
         "tags": [
@@ -34666,6 +34746,24 @@
             "type": "string",
             "title": "Status",
             "default": "available"
+          },
+          "checkout_status": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "pending",
+                  "confirmed",
+                  "failed",
+                  "cancelled",
+                  "manual_action_required"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Checkout Status"
           },
           "provider_offer_id": {
             "anyOf": [

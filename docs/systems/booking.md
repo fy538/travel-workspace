@@ -54,3 +54,17 @@ receipts, but the itinerary blocks remain owned by Planning/Itinerary.
 - The signature feature (venue briefing) has BE + an FE receipt but **no live provider/channel validation** — until a restaurant call actually carries the brief, the moat is unproven.
 - Flipping Duffel live is a money-moving change behind a boot guard + final-human-approval; the dark→live transition is the highest-risk path to verify.
 - `readiness.py` is the machine-readable launch gate (Viator attribution, insurance URL, restaurant dispatch creds are blocking config checks) — trust it over ad-hoc judgments of "is booking ready."
+
+## Provider reconciliation boundary
+
+- A transport error after order submission is `manual_action_required`, never
+  proof of failure. The offer remains held and cannot be submitted again.
+- Automatic retry exhaustion performs a final provider GET. A late confirmation
+  wins; an unresolved result remains Needs attention rather than becoming a
+  false failure.
+- The traveler-facing status check and operator canary perform provider reads
+  only. They do not create an order, place or settle a hold, submit payment, or
+  cancel.
+- Local sandbox search connectivity passed on 2026-07-14. A live read-only order
+  reconciliation remains gated on an operator-supplied existing sandbox order
+  id; no order id or final payment approval was configured during this slice.
