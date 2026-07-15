@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / engineering
 created: 2026-07-12
-last_verified: 2026-07-13
+last_verified: 2026-07-14
 why_new: Establish itinerary action, permission, risk, group-governance, and agent-authority rules before redesigning the interaction in Claude Design.
 supersedes: []
 source_of_truth_for: [itinerary-interaction-business-logic-audit]
@@ -1945,6 +1945,22 @@ does not block the itinerary action.
 This requires group-safe operation fields to be stored separately from private
 source material. A personal chat quote or private constraint cannot be copied
 into the shared ledger and later “redacted” only in the client.
+
+Shared-plan ownership is governance history, not an itinerary edit. Every
+user-initiated ownership transfer—manual transfer, owner demotion, membership
+removal, or organizer handoff—must append exactly one
+`itinerary.owner_transferred` event in the same database transaction as the
+authority mutation. The event records the previous and new owner, initiating
+actor when known, affected traveler, whether the successor was promoted, and a
+bounded reason code. A failed or rolled-back transition creates no ownership
+event. Account erasure remains governed by the stricter anonymization and
+retention policy above; it must not preserve a newly identifying audit payload.
+
+The itinerary Changes surface remains the normalized operation ledger: it must
+not mix role, membership, invitation, or ownership administration into the
+count of plan changes. A future inspectable people/governance activity surface
+may project the durable trip audit, but it must label that history separately
+instead of making an organizer handoff look like a Move, Replace, or Remove.
 
 Durable human-readable before/after evidence survives itinerary-version
 pruning. Pruning may make an exact restore unavailable; it changes recovery to
