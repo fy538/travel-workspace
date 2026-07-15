@@ -34,23 +34,23 @@ receipts, but the itinerary blocks remain owned by Planning/Itinerary.
 - **All providers return `NormalizedOffer`** — never raw API responses; resilience decorators (`@retry_with_backoff` + `@with_circuit_breaker`) are mandatory to prevent cascade failures.
 - **Deep-link offers never auto-confirm** — `booking_method="deep_link"` (Viator, Rome2Rio, Amadeus hotels) is filtered out of L3 auto-cart; the user completes on the provider site.
 - **Idempotent handoff** — the `concierge:{itinerary_id}:{autonomy}` key + `FOR UPDATE SKIP LOCKED` claim make session warming safe across multiple instances.
-- **Claim before restaurant contact** — a restaurant attempt must atomically move from `pending` to `in_progress` before any Bland or Twilio POST. Only that transaction's winner may contact the provider.
+- **Claim before restaurant contact** — a restaurant voice attempt must atomically move from `pending` to `in_progress` before any Bland POST. Only that transaction's winner may contact the provider.
 - **Unknown is not retryable** — a timeout, provider 5xx, malformed success response, missing provider reference, or local persistence failure after provider acceptance is `manual_action_required`. It remains `in_progress` and must not expose Retry. Only an explicit provider rejection, `failed`, or `no_answer` can enter the atomic retry path.
 - **Manual recovery is not an override** — an operator may resolve an active restaurant attempt only after automatic reconciliation is explicitly complete. The attempt number, current attempt status, and offer status are locked and rechecked; a late webhook or conflicting terminal state wins.
-- **Signed callbacks are one terminalization boundary** — callback identity includes `attempt_id` plus `attempt_number`; Bland also rechecks the exact call reference when supplied. Attempt status, normalized offer status, provider-outcome event, and confirmation writeback queue commit atomically. Negative attempt outcomes normalize to offer `failed`.
+- **Signed voice callbacks are one terminalization boundary** — callback identity includes `attempt_id` plus `attempt_number`; Bland also rechecks the exact call reference when supplied. Attempt status, normalized offer status, provider-outcome event, and confirmation writeback queue commit atomically. Negative attempt outcomes normalize to offer `failed`.
 
 ## Failure modes
 - Provider error → circuit breaker opens, search degrades to remaining providers; a dead provider doesn't cascade.
 - Non-Duffel `create_order` → raises `NotImplementedError` by design (handoff-only); resolves to a deep-link, never a fabricated confirmation.
 - Lapsed pay-later hold → `tasks/expiration.py` atomically sweeps it to `expired` and releases its block marker. If a canonical provider saga owns the hold, the same transaction also cancels the protected dependency and records terminal saga/provider/history evidence; a payment-claimed `held` row is excluded.
-- Restaurant provider 4xx → explicit dispatch failure, safe to retry through the guarded retry API. Timeout, transport error, provider 5xx, or ambiguous 2xx → outcome unknown, retain `in_progress`, preserve reconciliation evidence, and wait for a late webhook/operator check rather than contacting the venue twice.
+- Restaurant voice provider 4xx → explicit dispatch failure, safe to retry through the guarded retry API. Timeout, transport error, provider 5xx, or ambiguous 2xx → outcome unknown, retain `in_progress`, preserve reconciliation evidence, and wait for a late webhook/operator check rather than contacting the venue twice. A legacy SMS/WhatsApp attempt is quarantined locally before contact and cannot be retried.
 - Operator resolution write fails after either state update → the entire transaction rolls back, including attempt, offer, and audit event; the same resolution id can be retried safely.
 - Confirmation commits but itinerary/receipt projection crashes → durable per-attempt writeback state retains completed steps; the supervised loop reclaims an expired lease and resumes without contacting the restaurant or changing provider truth.
 - Signed restaurant callback audit write fails → attempt, offer, and projection queue all roll back. Provider retry can safely re-run the same callback; concurrent duplicates produce one event.
 
 ## Maturity & validation
 - Serves journey: 10 (booking / stay / expense / trust loop).
-- **No category transacts money today.** Every provider except Duffel hits `NotImplementedError` at `create_order`. **Duffel is the only transactional path and it is gated DARK** (`BOOKING_DUFFEL_LIVE_BOOKING_ENABLED=false`, with a prod boot guard). Pay-later **holds are gated off** behind the same flag. Restaurant voice/SMS (Bland.ai + Twilio) exists but provider accounts are **unprovisioned**.
+- **No category transacts money today.** Every provider except Duffel hits `NotImplementedError` at `create_order`. **Duffel is the only transactional path and it is gated DARK** (`BOOKING_DUFFEL_LIVE_BOOKING_ENABLED=false`, with a prod boot guard). Pay-later **holds are gated off** behind the same flag. Restaurant automated voice exists through Bland.ai but its live provider path is **unproven**. SMS/WhatsApp are traveler handoffs, not automated bookings.
 - Revenue dark: `BOOKING_MONETIZATION_MODE=free_affiliate`; Viator `pid`/`mcid` default `""`; travel-insurance referral URL unconfigured.
 - DoD state: trip-lifecycle wiring + Propose UX + venue-brief v1 (BE + FE receipt) ✅ · **live provider/channel validation ❌ · any verified end-to-end in-app booking ❌**.
 
@@ -61,7 +61,7 @@ receipts, but the itinerary blocks remain owned by Planning/Itinerary.
 ## Open risks / known gaps
 - The signature feature (venue briefing) has BE + an FE receipt but **no live provider/channel validation** — until a restaurant call actually carries the brief, the moat is unproven.
 - Flipping Duffel live is a money-moving change behind a boot guard + final-human-approval; the dark→live transition is the highest-risk path to verify.
-- `readiness.py` is the machine-readable launch gate (Viator attribution, insurance URL, restaurant dispatch creds are blocking config checks) — trust it over ad-hoc judgments of "is booking ready."
+- `readiness.py` is the machine-readable launch gate (Viator attribution, insurance URL, and Bland voice credentials/public callback URL are blocking config checks; restaurant Twilio messaging is explicitly dark and nonblocking) — trust it over ad-hoc judgments of "is booking ready."
 
 ## Provider reconciliation boundary
 
@@ -77,19 +77,19 @@ receipts, but the itinerary blocks remain owned by Planning/Itinerary.
   reconciliation remains gated on an operator-supplied existing sandbox order
   id; no order id or final payment approval was configured during this slice.
 
-### Restaurant call and message dispatch
+### Restaurant automated voice and messaging handoffs
 
-- Dispatch is a two-boundary operation: first win the atomic local claim, then
-  make exactly one provider POST. Concurrent workers that lose the claim exit
-  without contacting Bland or Twilio.
-- The regular Twilio Message API and Bland Send Call API do not document a
-  provider-side idempotency token for these requests. Twilio's duplicate-message
-  guidance says duplicates almost always mean the application made multiple
-  POSTs. Therefore the database claim—not an assumed provider feature—is the
-  primary duplicate-contact boundary.
-- A provider reference (`call_id` or message `sid`) is durable evidence and is
-  retained whenever available. Missing or unpersisted evidence after submission
-  is ambiguous, not failed.
+- Automated voice dispatch is a two-boundary operation: first win the atomic
+  local claim, then make exactly one Bland POST. Concurrent workers that lose the
+  claim exit without contacting Bland.
+- Bland Send Call does not document a provider-side idempotency token. Therefore
+  the database claim—not an assumed provider feature—is the primary
+  duplicate-contact boundary.
+- A Bland `call_id` is durable evidence and is retained whenever available.
+  Missing or unpersisted evidence after submission is ambiguous, not failed.
+- Block analysis now carries the venue phone number into the analyzed block and
+  then into the voice attempt. This closes the former gap where a venue phone was
+  selected from storage and silently discarded before dispatch.
 - Retry atomically accepts only terminal `failed` or `no_answer` attempts,
   increments `attempt_number`, clears the prior provider reference, and appends a
   bounded reconciliation history. Pending, active, ambiguous, confirmed,
@@ -97,15 +97,28 @@ receipts, but the itinerary blocks remain owned by Planning/Itinerary.
 - The app polls while an attempt is active. It displays explicit failed/no-answer
   as retryable, declined as a replacement decision, and ambiguous/stale active
   contact as “check, do not contact again.”
-- A supervised read-only worker now atomically claims active attempts that have
-  an exact provider reference, then performs Bland Call Details or Twilio
-  Message fetches. Claims carry a recoverable lease, refreshes retain a bounded
+- A supervised read-only worker now atomically claims active voice attempts that
+  have an exact provider reference, then performs Bland Call Details. Legacy
+  message attempts that already carry an exact Twilio Message SID retain a
+  read-only Message fetch for recovery even though no new automated message can
+  be dispatched. Claims carry a recoverable lease, refreshes retain a bounded
   history, and the final write is guarded by both `attempt_number` and active
   status so a late terminal webhook always wins the race.
 - Transport truth is deliberately narrower than reservation truth. Bland
-  `no-answer`/`busy` and Twilio `failed`/`undelivered` are explicit retryable
-  failures. Bland `completed` and Twilio `delivered` prove only that contact ran
-  or arrived; neither can confirm a table without the signed outcome webhook.
+  `no-answer`/`busy` are explicit retryable failures. Bland `completed` proves
+  only that contact ran; it cannot confirm a table without the signed outcome
+  webhook.
+- Plain Programmable Messaging inbound webhooks identify the inbound message and
+  sender/recipient but do not reliably carry the exact outbound booking Message
+  SID. WhatsApp's replied-message SID is conditional, so it cannot be the sole
+  destructive mutation key. Phone/time matching is unsafe when attempts overlap.
+  Consequently new SMS/WhatsApp capabilities render `sms:` or `wa.me` traveler
+  handoffs. Any legacy automated messaging attempt fails before a Twilio POST
+  with `twilio_exact_reply_correlation_unavailable`; retry remains disabled.
+- A future automated messaging channel must be implemented as a separate durable
+  provider saga with exact thread identity (for example, a recoverable Twilio
+  Conversations adapter), signed callbacks, reconciliation, and fault-injection
+  coverage. Twilio credentials alone do not make that surface ready.
 - Missing provider references are not searched by phone number, venue, or time.
   That destructive-recovery branch remains manual because a fuzzy match could
   attach another call/message to the wrong request.
@@ -167,9 +180,11 @@ receipts, but the itinerary blocks remain owned by Planning/Itinerary.
   exactly one receipt and one event, while the injected event transaction rolls
   back completely before retry.
 - Provider evidence reviewed 2026-07-15:
+  [Twilio inbound-message webhooks](https://www.twilio.com/docs/messaging/guides/webhook-request),
   [Twilio Message resource](https://www.twilio.com/docs/messaging/api/message-resource),
   [Twilio outbound-status tracking](https://www.twilio.com/docs/messaging/guides/track-outbound-message-status),
-  [Twilio duplicate-message guidance](https://www.twilio.com/docs/messaging/guides/debugging-common-issues),
+  [Twilio Conversations overview](https://www.twilio.com/docs/conversations-classic/overview),
+  [Twilio conversation-scoped webhooks](https://www.twilio.com/docs/conversations-classic/api/conversation-scoped-webhook-resource),
   [Bland Send Call](https://docs.bland.ai/api-v1/post/calls), and
   [Bland Get Call](https://docs.bland.ai/api-v1/get/calls-id).
 
@@ -186,10 +201,11 @@ receipts, but the itinerary blocks remain owned by Planning/Itinerary.
   callback URL and request metadata. If Bland supplies `call_id`, it must match
   the durable provider reference. An old callback therefore cannot finish a
   retried contact row.
-- Twilio's inbound-reply endpoint enforces the same two-part identity and
-  signature boundary. Because provider accounts remain unprovisioned, live
-  Twilio inbound correlation and webhook configuration are still launch-gated;
-  no phone/time fuzzy fallback is permitted.
+- The legacy Twilio inbound-reply parser still enforces the same two-part identity
+  and signature boundary, but no production dispatcher can create the required
+  per-attempt callback identity with plain Programmable Messaging. The route is
+  dormant compatibility code, not a live product path. Automated SMS/WhatsApp is
+  quarantined before contact; no phone/time fuzzy fallback is permitted.
 - The first terminal result wins for one attempt version. Exact duplicates are
   idempotent; negative callbacks cannot overwrite confirmation; a callback for
   another attempt number/reference or any other terminal attempt is an
