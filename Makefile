@@ -55,7 +55,7 @@ worktrees: ## List active worktree lanes for both child repos
 
 # ── Reliability ───────────────────────────────────────────────────────────────
 
-contract-check: ## Verify OpenAPI snapshot matches generated Travel App types
+contract-check: ## Verify full OpenAPI → app projection → generated types
 	@./scripts/contract-check.sh
 
 api-coverage-check: ## Audit operation consumers, lifecycle policy, and OpenAPI method coverage

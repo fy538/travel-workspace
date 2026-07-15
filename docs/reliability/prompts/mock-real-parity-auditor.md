@@ -13,8 +13,8 @@ Target:
 
 Checklist:
 1. Run make contract-check.
-2. Inspect docs/openapi.json and Travel App/utils/api/schema.gen.ts only as
-   generated contract artifacts.
+2. Inspect docs/openapi.json, docs/openapi.app.json, and Travel
+   App/utils/api/schema.gen.ts only as generated contract artifacts.
 3. Verify Travel App/utils/api/interface.ts exposes a single API surface.
 4. Compare Travel App/utils/api/http.ts and mock.ts behavior for the target.
 5. Verify data hooks use data/ as the screen bridge, not direct screen imports

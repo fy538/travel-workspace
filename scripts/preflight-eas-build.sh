@@ -209,7 +209,7 @@ step "5. API surface integrity"
 if "$WORKSPACE_DIR/scripts/contract-check.sh" >/dev/null 2>&1; then
   pass "OpenAPI snapshot ↔ generated types in sync"
 else
-  fail "contract-check failed — run scripts/sync-types.sh and re-commit docs/openapi.json"
+  fail "contract-check failed — run scripts/sync-types.sh and re-commit both OpenAPI snapshots"
 fi
 
 if python3 "$WORKSPACE_DIR/scripts/api_contract_audit.py" >/dev/null 2>&1; then

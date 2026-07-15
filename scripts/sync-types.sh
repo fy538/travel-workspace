@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
-# sync-types.sh — Regenerate the OpenAPI snapshot and the travel-app
-# TypeScript types from it. Single source of truth: docs/openapi.json
-# (this workspace repo). The travel-app npm scripts read the same file
-# via ../docs/openapi.json, so there is exactly one snapshot every tool
-# generates from.
+# sync-types.sh — Regenerate the complete OpenAPI snapshot, derive the mobile
+# projection, and generate the travel-app TypeScript types from that projection.
+# docs/openapi.json is the authoritative backend contract;
+# docs/openapi.app.json is deterministic generated evidence, not a second source.
 #
 # Usage:
 #   ./scripts/sync-types.sh                 # regenerate snapshot OFFLINE
@@ -26,6 +25,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
 BACKEND_URL="${BACKEND_URL:-http://localhost:8000}"
 SNAPSHOT_PATH="$WORKSPACE_DIR/docs/openapi.json"
+APP_SNAPSHOT_PATH="$WORKSPACE_DIR/docs/openapi.app.json"
 TRAVEL_AGENT_DIR="$WORKSPACE_DIR/travel-agent"
 TRAVEL_APP_DIR="$WORKSPACE_DIR/travel-app"
 OUTPUT_FILE="$TRAVEL_APP_DIR/utils/api/schema.gen.ts"
@@ -78,13 +78,19 @@ case "$MODE" in
     ;;
 esac
 
-# ── Step 2: Generate TypeScript types ──────────────────────────────────────
+# ── Step 2: Derive the active mobile contract ──────────────────────────────
+echo "→ Projecting active mobile contract → $APP_SNAPSHOT_PATH ..."
+python3 "$SCRIPT_DIR/project_app_openapi.py" \
+  --openapi "$SNAPSHOT_PATH" \
+  --output "$APP_SNAPSHOT_PATH"
+
+# ── Step 3: Generate TypeScript types ──────────────────────────────────────
 echo "→ Generating TypeScript types → $OUTPUT_FILE ..."
 cd "$TRAVEL_APP_DIR"
-npx openapi-typescript "$SNAPSHOT_PATH" --output "$OUTPUT_FILE"
+npx openapi-typescript "$APP_SNAPSHOT_PATH" --output "$OUTPUT_FILE"
 echo "  ✓ Generated $OUTPUT_FILE"
 
-# ── Step 3: Type-check ──────────────────────────────────────────────────────
+# ── Step 4: Type-check ──────────────────────────────────────────────────────
 echo "→ Running tsc --noEmit to check for type breakage ..."
 if npx tsc --noEmit 2>&1; then
   echo "  ✓ No type errors"
@@ -99,6 +105,7 @@ fi
 # ── Done ────────────────────────────────────────────────────────────────────
 echo ""
 echo "✓ Done. Next steps:"
-echo "  1. Review the diff in utils/api/schema.gen.ts"
-echo "  2. Commit docs/openapi.json alongside the travel-app changes"
-echo "     (keeps the schema snapshot and generated types atomic)"
+echo "  1. Review docs/openapi.json and docs/openapi.app.json"
+echo "  2. Review the diff in utils/api/schema.gen.ts"
+echo "  3. Commit both snapshots alongside the travel-app changes"
+echo "     (keeps the full contract, projection, and generated types atomic)"

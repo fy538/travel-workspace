@@ -127,7 +127,8 @@ secret-management decision.
 ## Failure Triage
 
 - Contract failure: run `make sync-types-snapshot`, review
-  `docs/openapi.json` and `Travel App/utils/api/schema.gen.ts`.
+  `docs/openapi.json`, `docs/openapi.app.json`, and
+  `Travel App/utils/api/schema.gen.ts`.
 - Backend golden-path failure: inspect the failing backend test and the trace
   file in `docs/reliability/traces/`.
 - Frontend golden-path failure: run the matching Jest command from
