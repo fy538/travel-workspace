@@ -26,7 +26,8 @@ Do not deploy on a red gate. The `test-db` job now round-trips `alembic downgrad
 
 ```bash
 cd "Travel Agent"
-fly deploy            # builds image, runs release_command, then swaps machines
+fly deploy --build-arg GIT_SHA="$(git rev-parse HEAD)"
+# builds an identifiable image, runs release_command, then swaps machines
 ```
 
 What happens (see `fly.toml`):
@@ -34,6 +35,14 @@ What happens (see `fly.toml`):
 2. **`release_command = "alembic upgrade head"`** runs in a one-off machine with secrets attached.
    - **If the migration fails, the deploy aborts and the old machines keep serving.** No rollback needed — production is untouched. Fix forward and re-deploy.
 3. On migration success, Fly rolls machines: `app` (uvicorn) and `worker` (arq) process groups.
+4. Verify the deployed SHA and AI configuration after rollout:
+   - `GET /ready` exposes the content-free deployment identity.
+   - Admin-authenticated `GET /debug/runtime` adds resolved model roles,
+     prompt version, embedding provider, and output-guard mode.
+
+Do not use a bare `fly deploy`: the application will deliberately report
+`git_sha=unknown`, making dogfood screenshots and latency traces impossible to
+join back to the source that produced them.
 
 First-time deploy + secrets: `make fly-secrets` (emits the paste-ready template; `required` now includes Postgres/Qdrant/Redis). See the `fly.toml` header for the full first-deploy sequence.
 

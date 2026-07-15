@@ -10,26 +10,5 @@
     ],
     "annotation": "compatibility_id: <ledger-id>"
   },
-  "entries": [
-    {
-      "id": "atlas-route-aliases-v1",
-      "status": "active",
-      "reason": "external_link",
-      "owner": "frontend / product",
-      "canonical": "/atlas/readings, /atlas/memory, /atlas/artifact/[id], and /search",
-      "paths": [
-        "travel-app/app/atlas/search.tsx",
-        "travel-app/app/atlas/board.tsx",
-        "travel-app/app/atlas/boards.tsx",
-        "travel-app/app/atlas/reel.tsx",
-        "travel-app/app/atlas/postcards.tsx",
-        "travel-app/app/atlas/receipt.tsx",
-        "travel-app/app/atlas/learned/[id].tsx",
-        "travel-app/docs/surfaces/atlas-compatibility-aliases.md"
-      ],
-      "markers": ["compatibility_id: atlas-route-aliases-v1"],
-      "removal_trigger": "No internal callers or observed alias traffic for two consecutive shipped app versions.",
-      "expires": "2026-10-12"
-    }
-  ]
+  "entries": []
 }

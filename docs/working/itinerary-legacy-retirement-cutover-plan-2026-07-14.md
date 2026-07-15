@@ -475,19 +475,20 @@ visible without falsely licensing deletion; the same command without
 `--allow-blocked` is the blocking deletion gate.
 
 No lane is licensed yet. The current zero-count bundle is deliberately honest:
-lane 1 still lacks C1/C2 canonical dogfood replay; lanes 2 and 4 still have
-callable frontend legacy add/move/Change Studio paths; lane 3 has not yet
-captured end-to-end positive/negative proposal evidence; and lane 5 is ordered
-after lanes 1-4 plus the canonical-only rollback checkpoint and D2 decision.
-The static inventories themselves are green and ratcheted, but their remaining
-classified legacy rows are blockers—not deletion proof.
+lane 1 still lacks C1/C2 canonical dogfood replay; lane 2's frontend callers are
+migrated but its agent callers still retain rollout-selectable legacy branches
+and the lane has no measured outcome evidence; lane 3 has not yet captured
+end-to-end positive/negative proposal evidence; lane 4 is frontend
+reference-clean but has not exercised and signed its canonical preview evidence;
+and lane 5 is ordered after lanes 1-4 plus the canonical-only rollback checkpoint
+and D2 decision. The static inventories themselves are green and ratcheted, but
+their remaining classified legacy rows are blockers—not deletion proof.
 
-The frontend deletion-reference scanner currently reports **1** production
-caller: the legacy Change Studio preview caller in `data/itinerary.ts`. The
-adapter lane is clean. API implementations, mocks, and tests are excluded from
-that count. This scanner runs in report-only mode during migration and becomes
-blocking by dropping `--allow-blocked` when a lane requests its deletion
-license.
+The frontend deletion-reference scanner now reports **0** production callers.
+Both the adapter and Change Studio preview lanes are reference-clean. API
+implementations, mocks, and tests are excluded from that count. The scanner can
+now run as a blocking gate when either frontend-dependent lane requests its
+deletion license.
 
 `useEditCommit` has crossed the boundary: concrete Change Studio Move, Remove,
 and Replace intents are now constructed from the revisioned canonical plan
@@ -523,6 +524,16 @@ operation. Unsupported legacy edit shapes fail closed. Undo targets the landed
 canonical operation directly, using the immediate commit receipt first and the
 live history recovery capability after navigation or reload. The legacy update
 and undo route callers are gone, leaving the adapter lane reference-clean.
+
+Change Studio recommendation preview no longer calls the legacy plan-edit
+preview route. Candidate discovery remains a read-only better-slot query; the
+client compiles the selected candidate into a revision-bound canonical Reorder
+or Move preview before displaying it. Direct/Confirm/Propose/Denied therefore
+comes from canonical policy, and Apply performs a fresh canonical preview before
+commit. Free-form instructions and non-Move legacy preview shapes fail closed
+into the existing rephrase/full-conversation path instead of being silently
+reinterpreted or reviving the old authority. The frontend deletion-reference
+scan is now clean.
 
 ### B3. Deletion lanes (strict order; each lane: delete → suites green → next)
 

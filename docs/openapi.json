@@ -24072,7 +24072,7 @@
           "trips"
         ],
         "summary": "Mark Itinerary Block Booked",
-        "description": "Confirm a handed-off booking \u2014 \"I completed it, it's booked.\"\n\nThe one-tap close to the booking handoff: a block Vesper handed off\n(``booking_ref.state == \"handed_off\"``) is flipped to ``confirmed`` with a\nserver-side MERGE (preserving the rest of the booking_ref). Idempotent; only\nsurfaced on handed-off blocks. Any trip member may confirm \u2014 completing a\nbooking the group is waiting on isn't a structural plan edit, so it's NOT\ngated by the propose-mode flow (unlike status/time changes).",
+        "description": "Attest that an externally handed-off booking was completed.\n\nThis records immutable ``user_reported`` truth; it is never treated as\nprovider confirmation. Only the booking controller or explicitly assigned\nhandoff actor may attest. The action is idempotent and is not a structural\nitinerary edit.",
         "operationId": "mark_itinerary_block_booked_api_trips__trip_id__itinerary_blocks__block_id__mark_booked_post",
         "parameters": [
           {
@@ -24093,6 +24093,22 @@
               "type": "string",
               "format": "uuid",
               "title": "Block Id"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Idempotency-Key"
             }
           },
           {
@@ -29276,6 +29292,55 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Token Usage Debug Tokens Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/debug/runtime": {
+      "get": {
+        "summary": "Runtime Diagnostics",
+        "description": "Identify the deployed AI build and its content-free runtime policy.",
+        "operationId": "runtime_diagnostics_debug_runtime_get",
+        "parameters": [
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Runtime Diagnostics Debug Runtime Get"
                 }
               }
             }
@@ -69733,8 +69798,8 @@
                 "type": "null"
               }
             ],
-            "description": "Required when demoting the current shared-plan owner. Must name another current organizer; ownership transfer and demotion commit together.",
-            "title": "Shared Plan Successor User Id"
+            "title": "Shared Plan Successor User Id",
+            "description": "Required when demoting the current shared-plan owner. Must name another current organizer; ownership transfer and demotion commit together."
           }
         },
         "type": "object",

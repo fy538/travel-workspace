@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: founder / engineering
 created: 2026-07-11
-last_verified: 2026-07-11
+last_verified: 2026-07-15
 expires: 2026-08-10
 why_new: The simplification backlog identifies compatibility debt but does not own the individual migration contracts, expiry rules, or enforcement policy.
 supersedes: []
@@ -84,8 +84,9 @@ plan-to-day presentation selector. Scenario personas now each name their QA
 recipe, so they are bounded test substrate rather than alternate product
 identities.
 
-The Atlas redirects and secure-store migrations remain active only until their
-external-link and persisted-data removal triggers are evidenced.
+The Atlas route-alias exception is now retired. Its redirect-only route files,
+marker document, and registry entry were deleted together after the canonical
+Atlas routes became the only supported pre-launch surface.
 
 The deprecated place-media helper, unused token-link helper, no-op composer
 prop, and duplicate Maestro script aliases were removed in Phase 2; they are
