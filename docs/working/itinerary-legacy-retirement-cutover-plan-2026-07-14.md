@@ -309,7 +309,7 @@ is green (**91 passed**).
 
 ### A2. Proposal creation goes canonical
 
-- Today: creation is legacy across four producers (`change_proposals.py`,
+- Before A2: creation was legacy across four producers (`change_proposals.py`,
   `proactive.py`, `_propose_present.py`, `proposal_automation.py` creation
   half). Resolution adapters (`proposals.py:502`,
   `proposal_automation.py:437`) only fire for proposals that are already
@@ -326,6 +326,30 @@ A2 retires its independent construction/apply authority; it does **not** delete
 the projection or its reader API by implication. The 0.1 consumer inventory must
 decide whether to retain and rename that projection or replace its consumers
 before B3 can delete/import-ban the module.
+
+**Executed 2026-07-14.** All product proposal producers now construct an exact
+normalized operation and call the canonical proposal gateway. This includes
+feasibility catches, venue-disruption swaps, exact chat add/swap/reschedule/
+remove requests, and Change Studio plan edits. Generic or incomplete chat
+“modify” intent fails closed instead of minting an ambiguous proposal. Manual
+organizer resolution, vote/deadline automation, author withdrawal, acceptance
+and application now use canonical proposal transitions; organizer revert
+commits one typed inverse of the applied operation with a stable idempotency key
+instead of restoring a whole itinerary version.
+
+The compatibility boundary is deliberate: `change_proposals` remains the
+group-facing read projection owned by the itinerary proposal gateway and read
+by proposal API, Home/Plan, concierge receipt/notification, and frontend
+proposal consumers. It has no reachable product construction or itinerary-
+apply authority. The legacy construction/apply functions and the unreachable
+route bodies below unconditional canonical returns remain only as physical B3
+lane-3 deletion debt; their presence is not a fallback or selectable writer.
+Focused proposal certification is green (**234 passed**). Product-source scans
+find no caller of `create_change_proposal(...)` or
+`build_and_persist_proposal(...)` outside their retained legacy definition
+module; remaining `apply_accepted_proposal(...)` and
+`revert_accepted_proposal_v2(...)` route references are confined to those
+unreachable B3 deletion bodies.
 
 ### A3. Remaining producers (parallelizable after their contracts are explicit)
 
@@ -617,8 +641,8 @@ complete.
       replans as deterministic guarded diffs; `_plan.py` has zero direct writes,
       no downstream consumer depends on legacy `persisted_version`, and stale
       output cannot overwrite newer edits.
-- [ ] A2: all four proposal producers mint canonical operation proposals.
-- [ ] A2 projection boundary: legacy proposal construction/apply authority is
+- [x] A2: all four proposal producers mint canonical operation proposals.
+- [x] A2 projection boundary: legacy proposal construction/apply authority is
       gone; every retained group-facing proposal projection has an explicit
       consumer/owner/disposition and no independent itinerary writer.
 - [ ] A3: optimize_day, REST recovery, branches, D5-approved manual booking
