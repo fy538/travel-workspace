@@ -36,12 +36,14 @@ receipts, but the itinerary blocks remain owned by Planning/Itinerary.
 - **Idempotent handoff** — the `concierge:{itinerary_id}:{autonomy}` key + `FOR UPDATE SKIP LOCKED` claim make session warming safe across multiple instances.
 - **Claim before restaurant contact** — a restaurant attempt must atomically move from `pending` to `in_progress` before any Bland or Twilio POST. Only that transaction's winner may contact the provider.
 - **Unknown is not retryable** — a timeout, provider 5xx, malformed success response, missing provider reference, or local persistence failure after provider acceptance is `manual_action_required`. It remains `in_progress` and must not expose Retry. Only an explicit provider rejection, `failed`, or `no_answer` can enter the atomic retry path.
+- **Manual recovery is not an override** — an operator may resolve an active restaurant attempt only after automatic reconciliation is explicitly complete. The attempt number, current attempt status, and offer status are locked and rechecked; a late webhook or conflicting terminal state wins.
 
 ## Failure modes
 - Provider error → circuit breaker opens, search degrades to remaining providers; a dead provider doesn't cascade.
 - Non-Duffel `create_order` → raises `NotImplementedError` by design (handoff-only); resolves to a deep-link, never a fabricated confirmation.
 - Lapsed pay-later hold → `tasks/expiration.py` atomically sweeps it to `expired` and releases its block marker. If a canonical provider saga owns the hold, the same transaction also cancels the protected dependency and records terminal saga/provider/history evidence; a payment-claimed `held` row is excluded.
 - Restaurant provider 4xx → explicit dispatch failure, safe to retry through the guarded retry API. Timeout, transport error, provider 5xx, or ambiguous 2xx → outcome unknown, retain `in_progress`, preserve reconciliation evidence, and wait for a late webhook/operator check rather than contacting the venue twice.
+- Operator resolution write fails after either state update → the entire transaction rolls back, including attempt, offer, and audit event; the same resolution id can be retried safely.
 
 ## Maturity & validation
 - Serves journey: 10 (booking / stay / expense / trust loop).
@@ -107,6 +109,31 @@ receipts, but the itinerary blocks remain owned by Planning/Itinerary.
 - Automatic reads are bounded (30 refreshes by default). Exhaustion, provider
   auth failure, unreadable truth, or provider `unknown` becomes durable manual
   attention without exposing another contact action.
+- Provider-terminal ambiguity can be closed through
+  `POST /admin/booking/restaurant-attempts/{attempt_id}/resolve`. The route is
+  secure-by-default behind `ADMIN_API_TOKEN` and requires an opaque operator id,
+  a resolution UUID, `expected_attempt_number`, a structured evidence type and
+  reference, and an outcome-bound reason code. It does not accept free-form
+  notes or raw transcript text.
+- Allowed outcomes are `confirmed`, `declined`, `failed`, and `no_answer`.
+  Confirmation requires an explicit confirmed datetime; confirmation fields are
+  rejected for negative outcomes. The matching offer becomes `confirmed` or
+  `failed` in the same transaction as the attempt and append-only
+  `booking.restaurant_operator_resolved` event.
+- Replaying the same resolution UUID with the same decision is an idempotent
+  read. Reusing it with different operator identity, evidence, or outcome is a
+  conflict. Stale attempt numbers, still-running automatic reconciliation, and
+  terminal offer contradictions are also conflicts.
+- The shared admin token establishes the current internal trust boundary; the
+  separately recorded `operator_id` is asserted by that trusted caller, not an
+  independently authenticated human principal. Before a multi-operator support
+  console is exposed, replace this with per-operator identity and least-privilege
+  authorization. This limitation does not weaken atomicity, but it limits the
+  attribution strength of the audit record.
+- Real-Postgres fault injection proves that an audit-event failure rolls back
+  the prior attempt and offer writes and that retry succeeds. A four-connection
+  race proves exactly one applied decision and one event; all other callers
+  receive idempotent replay.
 - Provider evidence reviewed 2026-07-15:
   [Twilio Message resource](https://www.twilio.com/docs/messaging/api/message-resource),
   [Twilio outbound-status tracking](https://www.twilio.com/docs/messaging/guides/track-outbound-message-status),

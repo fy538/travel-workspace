@@ -2622,6 +2622,77 @@
         }
       }
     },
+    "/admin/booking/restaurant-attempts/{attempt_id}/resolve": {
+      "post": {
+        "tags": [
+          "admin",
+          "booking"
+        ],
+        "summary": "Resolve Restaurant Attempt",
+        "description": "Resolve provider-terminal ambiguity without bypassing reconciliation.",
+        "operationId": "resolve_restaurant_attempt_admin_booking_restaurant_attempts__attempt_id__resolve_post",
+        "parameters": [
+          {
+            "name": "attempt_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Attempt Id"
+            }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RestaurantOperatorResolutionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RestaurantOperatorResolutionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/me/delegation-preferences": {
       "get": {
         "tags": [
@@ -61568,6 +61639,134 @@
           "updated_at"
         ],
         "title": "RestaurantBookingAttempt"
+      },
+      "RestaurantOperatorResolutionRequest": {
+        "properties": {
+          "resolution_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Resolution Id"
+          },
+          "expected_attempt_number": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Attempt Number"
+          },
+          "operator_id": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 3,
+            "pattern": "^[A-Za-z0-9._:@-]+$",
+            "title": "Operator Id"
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "confirmed",
+              "declined",
+              "failed",
+              "no_answer"
+            ],
+            "title": "Outcome"
+          },
+          "evidence_type": {
+            "type": "string",
+            "enum": [
+              "provider_dashboard",
+              "restaurant_direct",
+              "provider_transcript"
+            ],
+            "title": "Evidence Type"
+          },
+          "evidence_reference": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 3,
+            "pattern": "^\\S+$",
+            "title": "Evidence Reference"
+          },
+          "reason_code": {
+            "type": "string",
+            "enum": [
+              "reservation_confirmed",
+              "restaurant_declined",
+              "provider_transport_failed",
+              "provider_record_failed",
+              "provider_no_answer"
+            ],
+            "title": "Reason Code"
+          },
+          "confirmed_datetime": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confirmed Datetime"
+          },
+          "confirmation_number": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 100,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confirmation Number"
+          }
+        },
+        "type": "object",
+        "required": [
+          "resolution_id",
+          "expected_attempt_number",
+          "operator_id",
+          "outcome",
+          "evidence_type",
+          "evidence_reference",
+          "reason_code"
+        ],
+        "title": "RestaurantOperatorResolutionRequest"
+      },
+      "RestaurantOperatorResolutionResponse": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "session_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Session Id"
+          },
+          "applied": {
+            "type": "boolean",
+            "title": "Applied"
+          },
+          "idempotent": {
+            "type": "boolean",
+            "title": "Idempotent"
+          },
+          "attempt": {
+            "$ref": "#/components/schemas/RestaurantBookingAttempt"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "session_id",
+          "applied",
+          "idempotent",
+          "attempt"
+        ],
+        "title": "RestaurantOperatorResolutionResponse"
       },
       "RestorePayload": {
         "properties": {
