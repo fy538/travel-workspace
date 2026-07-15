@@ -25748,7 +25748,7 @@
           "trips"
         ],
         "summary": "Optimize Day Route",
-        "description": "Suggest a nearest-neighbor reordering of a day's venue blocks.\n\nRead-only preview \u2014 never commits. The client applies (when the user\naccepts the preview) by issuing N ``move_block`` calls in the suggested\norder, which goes through the existing direct-edit gate and Undo spine.\n\nMember-only; no edit-mode gate since this is a read. The destination\nmove_block calls during Apply enforce the gate themselves.",
+        "description": "Prepare one atomic optimize-day operation and its human-readable diff.",
         "operationId": "optimize_day_route_api_trips__trip_id__itinerary_days__day_id__optimize_route_post",
         "parameters": [
           {
@@ -55554,6 +55554,16 @@
             "type": "boolean",
             "title": "Is Improvement",
             "default": false
+          },
+          "canonical_preview": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ItineraryOperationPreview"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -55618,7 +55628,7 @@
           "new_sort_order"
         ],
         "title": "OptimizeRouteSuggestion",
-        "description": "One block's new position in the optimized day order.\n\nReturned by the optimize-route endpoint; client applies by issuing N\nmove_block calls in the suggested order. Backend never commits \u2014 this\nis a preview surface only."
+        "description": "One block's new position in the optimized day order.\n\nReturned beside one canonical compound-operation preview."
       },
       "OrganizerHandoffLeaveRequest": {
         "properties": {
@@ -61668,7 +61678,7 @@
         },
         "type": "object",
         "title": "RevertRequest",
-        "description": "Revert an already-accepted proposal, restoring the prior itinerary state.\n\nOnly the trip organizer may revert. The ``resolution_note`` is stored on\nthe proposal row and surfaced in the group chat bridge message so members\nunderstand why the change was undone.\n\n``mode`` selects the revert strategy. ``None``/``\"diff_safe\"`` keeps the\nsurgical reverse-patch that preserves unrelated later edits (and may return\n``diff_safe_partial`` when some fields were edited since). ``\"version_restore\"``\nis the \"Force full revert\" path the conflict sheet offers \u2014 it snaps the\nitinerary back to the pre-accept version, discarding later edits. Previously\nthis field was silently dropped by FastAPI, so \"Force full revert\" was a\nno-op for any modern (post-Phase-2) proposal."
+        "description": "Revert an already-accepted proposal, restoring the prior itinerary state.\n\nOnly the trip organizer may revert. The ``resolution_note`` is stored on\nthe proposal row and surfaced in the group chat bridge message so members\nunderstand why the change was undone.\n\n``mode`` remains accepted for older clients. Canonical proposals always\ncommit the exact typed inverse; whole-version restoration is no longer a\nproduct mutation path."
       },
       "RevokeShareResponse": {
         "properties": {
@@ -69064,6 +69074,18 @@
             "maxLength": 200,
             "minLength": 16,
             "title": "Request Key"
+          },
+          "operation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Operation Id"
           }
         },
         "type": "object",
