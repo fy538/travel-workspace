@@ -37,7 +37,7 @@ receipts, but the itinerary blocks remain owned by Planning/Itinerary.
 - **Claim before restaurant contact** — a restaurant voice attempt must atomically move from `pending` to `in_progress` before any Bland POST. Only that transaction's winner may contact the provider.
 - **Unknown is not retryable** — a timeout, provider 5xx, malformed success response, missing provider reference, or local persistence failure after provider acceptance is `manual_action_required`. It remains `in_progress` and must not expose Retry. Only an explicit provider rejection, `failed`, or `no_answer` can enter the atomic retry path.
 - **Manual recovery is not an override** — an operator may resolve an active restaurant attempt only after automatic reconciliation is explicitly complete. The attempt number, current attempt status, and offer status are locked and rechecked; a late webhook or conflicting terminal state wins.
-- **Signed voice callbacks are one terminalization boundary** — callback identity includes `attempt_id` plus `attempt_number`; Bland also rechecks the exact call reference when supplied. Attempt status, normalized offer status, provider-outcome event, and confirmation writeback queue commit atomically. Negative attempt outcomes normalize to offer `failed`.
+- **Signed voice callbacks are one terminalization boundary** — Bland HMAC-SHA256 signs the raw callback body. Signed metadata must equal the URL's `attempt_id` plus `attempt_number`, and the signed `call_id` must equal the durable provider reference before parsing. Attempt status, normalized offer status, provider-outcome event, and confirmation writeback queue then commit atomically. Negative attempt outcomes normalize to offer `failed`.
 
 ## Failure modes
 - Provider error → circuit breaker opens, search degrades to remaining providers; a dead provider doesn't cascade.
@@ -61,7 +61,7 @@ receipts, but the itinerary blocks remain owned by Planning/Itinerary.
 ## Open risks / known gaps
 - The signature feature (venue briefing) has BE + an FE receipt but **no live provider/channel validation** — until a restaurant call actually carries the brief, the moat is unproven.
 - Flipping Duffel live is a money-moving change behind a boot guard + final-human-approval; the dark→live transition is the highest-risk path to verify.
-- `readiness.py` is the machine-readable launch gate (Viator attribution, insurance URL, and Bland voice credentials/public callback URL are blocking config checks; restaurant Twilio messaging is explicitly dark and nonblocking) — trust it over ad-hoc judgments of "is booking ready."
+- `readiness.py` is the machine-readable launch gate (Viator attribution, insurance URL, and Bland API key/signing secret/public callback URL are blocking config checks; restaurant Twilio messaging is explicitly dark and nonblocking) — trust it over ad-hoc judgments of "is booking ready."
 
 ## Provider reconciliation boundary
 
@@ -87,6 +87,10 @@ receipts, but the itinerary blocks remain owned by Planning/Itinerary.
   duplicate-contact boundary.
 - A Bland `call_id` is durable evidence and is retained whenever available.
   Missing or unpersisted evidence after submission is ambiguous, not failed.
+- Outbound voice now normalizes the provider number to E.164 and states the
+  exact requested datetime and party size in the task. The privacy-safe venue
+  brief is included, voicemail hangs up without leaving traveler details, audio
+  recording is disabled, and call duration is capped at five minutes by default.
 - Block analysis now carries the venue phone number into the analyzed block and
   then into the voice attempt. This closes the former gap where a venue phone was
   selected from storage and silently discarded before dispatch.
@@ -108,6 +112,13 @@ receipts, but the itinerary blocks remain owned by Planning/Itinerary.
   `no-answer`/`busy` are explicit retryable failures. Bland `completed` proves
   only that contact ran; it cannot confirm a table without the signed outcome
   webhook.
+- Transcript interpretation is also fail-closed. A confirmation lands only when
+  the parsed transcript contains the exact requested datetime (minute-level) and
+  exact party size; a different/alternative time cannot be silently accepted and
+  a decline requires an explicit reason. Empty, unparsable, or
+  otherwise ambiguous signed callbacks atomically preserve the normalized
+  transcript, retain the active offer, set durable manual attention, and append
+  `booking.restaurant_provider_review_required`. They never expose Retry.
 - Plain Programmable Messaging inbound webhooks identify the inbound message and
   sender/recipient but do not reliably carry the exact outbound booking Message
   SID. WhatsApp's replied-message SID is conditional, so it cannot be the sole
@@ -197,10 +208,13 @@ receipts, but the itinerary blocks remain owned by Planning/Itinerary.
   `failed`, `no_answer`). The parent offer uses its smaller legal vocabulary:
   `confirmed` for confirmation and `failed` for every negative outcome. A
   callback can no longer attempt to write invalid offer status `declined`.
-- Bland dispatch embeds both `attempt_id` and `attempt_number` in the signed
-  callback URL and request metadata. If Bland supplies `call_id`, it must match
-  the durable provider reference. An old callback therefore cannot finish a
-  retried contact row.
+- Bland dispatch embeds both `attempt_id` and `attempt_number` in callback URL,
+  request data, and metadata. The route implements Bland's documented
+  `X-Webhook-Signature` HMAC-SHA256 verification over the exact raw body. Because
+  Bland signs the body rather than the URL, the handler additionally requires
+  the signed metadata to match the URL identity and requires signed `call_id` to
+  equal the durable provider reference before transcript parsing. A valid body
+  replayed to another URL, an old retry callback, or a mismatched call is ignored.
 - The legacy Twilio inbound-reply parser still enforces the same two-part identity
   and signature boundary, but no production dispatcher can create the required
   per-attempt callback identity with plain Programmable Messaging. The route is
@@ -224,3 +238,11 @@ receipts, but the itinerary blocks remain owned by Planning/Itinerary.
   attempt, offer, and queued projection, and a retry then succeeds. A
   four-connection duplicate race proves one terminal transition and one audit
   event; the other callers receive idempotent acknowledgement.
+- The same transaction rule covers inconclusive callbacks: transcript/manual
+  review state and its append-only event land together. Injecting failure at the
+  event write rolls the review state back so a provider replay can retry safely.
+- Provider contract re-reviewed 2026-07-15:
+  [Bland webhook signing](https://docs.bland.ai/tutorials/webhook-signing),
+  [Bland Send Call](https://docs.bland.ai/api-v1/post/calls),
+  [Bland post-call webhook payload](https://docs.bland.ai/tutorials/post-call-webhooks),
+  and [Bland Call Details](https://docs.bland.ai/api-v1/get/calls-id).
