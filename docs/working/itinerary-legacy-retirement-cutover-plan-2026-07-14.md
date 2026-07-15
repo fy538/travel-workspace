@@ -388,7 +388,7 @@ unreachable B3 deletion bodies.
   recovery and replan interaction. No additional branch writer was needed.
 
 Evidence commits: backend `9b7116e9f`, `eae54e0ea`, `0c30db23b`,
-`e45594b86`; frontend `3498cfc0`, `8ab935ea`, `e52c090f`, `31b2497c`;
+`64ea203b8`, `e45594b86`; frontend `3498cfc0`, `8ab935ea`, `e52c090f`, `31b2497c`;
 workspace contract snapshot `ac6536c`. Focused certification is green: 98
 backend tests (including optimize, compound/branches, REST recovery, manual
 attestation, held-saga route/gateway/executor) and 56 frontend tests, plus
