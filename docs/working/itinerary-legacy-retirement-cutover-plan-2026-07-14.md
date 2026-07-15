@@ -361,6 +361,41 @@ unreachable B3 deletion bodies.
 | REST undo → `OperationRecoveryCapability` | `trips.py:2058`, `:2107` | concierge undo adapter (`itinerary_edit.py:971`) is the template |
 | Verify `branches` producers | — | gateway types and flag readers exist; prove every create/update/dissolve producer and recovery path, including frontend construction and replan interaction |
 
+#### A3 execution evidence (complete 2026-07-14)
+
+- `optimize_day` now returns a server-authored compound-operation preview and
+  the client commits or proposes that exact operation once. The former N-call
+  partial-move apply path is gone; one compound operation owns recovery.
+- Manual `mark_booked` now goes through `booking_attestation_gateway`. Only the
+  protected-dependency controller or the explicitly stamped handoff actor may
+  act. The block projection records `state=user_reported_booked` and
+  `truth_source=user_reported`, while one immutable
+  `booking.user_reported_completed` event stores attribution without deep
+  links, phone numbers, provider references, or confirmation secrets. Replays
+  are serialized and idempotent. Provider-confirmed truth remains a different
+  terminal state and is rendered differently in the app.
+- The frontend operation gateway now calls the existing
+  `/provider-sagas/held-confirmation` contract directly. The booking-agent
+  provider executor remains its only money/provider continuation; pending,
+  confirmed, failed, repriced, expired, retry, and manual-action states remain
+  visible through the canonical saga/history projections. No second held-
+  confirmation contract was added.
+- Both REST undo entry points resolve a canonical committed operation and call
+  `undo_itinerary_operation`; planning cards carry the exact `operation_id`.
+  Whole-version restore is no longer a reachable REST mutation strategy.
+- Branch create/update/dissolve construction is present in
+  `LowRiskOperationSheet`/`ParallelPlanEditor`; compound gateway coverage proves
+  recovery and replan interaction. No additional branch writer was needed.
+
+Evidence commits: backend `9b7116e9f`, `eae54e0ea`, `0c30db23b`,
+`e45594b86`; frontend `3498cfc0`, `8ab935ea`, `e52c090f`, `31b2497c`;
+workspace contract snapshot `ac6536c`. Focused certification is green: 98
+backend tests (including optimize, compound/branches, REST recovery, manual
+attestation, held-saga route/gateway/executor) and 56 frontend tests, plus
+frontend TypeScript validation. A broader `test_trips_api.py` run also exposed
+four pre-existing trip-detail/map test mocks returning 404; they are outside A3
+but must be green before B1 can be checked.
+
 ## Workstream B — Flip, prove, delete
 
 ### B1. Flip everything on (dev/local + CI)
@@ -645,7 +680,7 @@ complete.
 - [x] A2 projection boundary: legacy proposal construction/apply authority is
       gone; every retained group-facing proposal projection has an explicit
       consumer/owner/disposition and no independent itinerary writer.
-- [ ] A3: optimize_day, REST recovery, branches, D5-approved manual booking
+- [x] A3: optimize_day, REST recovery, branches, D5-approved manual booking
       attestation, and existing held-provider confirmation adoption are
       implemented and proven as distinct semantics.
 - [ ] B1: full suites + every journey in the canonical registry are green with
