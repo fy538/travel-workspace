@@ -30,8 +30,8 @@ The backend exposes a full OpenAPI 3.1 schema at **`GET /openapi.json`** (when r
 The frontend consumes it via generated TypeScript types.
 
 **Single source of truth:** `docs/openapi.json` in THIS workspace repo. Every
-type-generation tool reads this one file — `scripts/sync-types.sh`,
-`scripts/contract-check.sh`, `scripts/api-coverage-check.py`, and the Travel
+type-generation and contract tool reads this one file — `scripts/sync-types.sh`,
+`scripts/contract-check.sh`, `scripts/api_contract_audit.py`, and the Travel
 App npm scripts (`generate-api-types:snapshot` / `:check`, which read it via
 `../docs/openapi.json`). There is no second snapshot to drift against.
 
@@ -85,13 +85,12 @@ Other modes:
 3. Use the generated types in Travel App — import from `utils/api/schema.gen.ts`
 4. Commit both `docs/openapi.json` and the updated app code together
 
-**Drift detection** — `make api-coverage-check` (or `python3
-scripts/api-coverage-check.py`) verifies every URL fetched by
-`Travel App/utils/api/http.ts` exists in `docs/openapi.json` at the
-declared method. Fails with exit code 1 on drift, which means either
-(a) the frontend will 404 at runtime, or (b) the openapi snapshot is
-stale. Run after adding a new endpoint or before opening a PR that
-touches the API surface.
+**Operation governance** — `make api-coverage-check` (or `python3
+scripts/api_contract_audit.py`) combines method-aware mobile caller discovery
+with `docs/governance/api-operation-policy.json`. It fails on frontend/OpenAPI
+drift, missing consumers, stale lifecycle entries, dark operations that gain a
+product caller, and transport methods that have never acquired a product
+consumer. Run it after adding, adopting, or retiring any endpoint.
 
 ---
 

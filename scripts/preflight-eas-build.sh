@@ -212,10 +212,10 @@ else
   fail "contract-check failed — run scripts/sync-types.sh and re-commit docs/openapi.json"
 fi
 
-if python3 "$WORKSPACE_DIR/scripts/api-coverage-check.py" >/dev/null 2>&1; then
-  pass "All http.ts URLs exist in docs/openapi.json"
+if python3 "$WORKSPACE_DIR/scripts/api_contract_audit.py" >/dev/null 2>&1; then
+  pass "API operations have valid consumers and lifecycle policy"
 else
-  fail "api-coverage-check failed — http.ts is calling routes not in the OpenAPI snapshot"
+  fail "api-coverage-check failed — run make api-coverage-check for operation registry findings"
 fi
 
 # ── 6. Frontend type + lint + tests ──────────────────────────────────────────

@@ -23,7 +23,7 @@ header "Contract drift"
 "$WORKSPACE_DIR/scripts/contract-check.sh"
 
 header "API coverage"
-python3 "$WORKSPACE_DIR/scripts/api-coverage-check.py"
+python3 "$WORKSPACE_DIR/scripts/api_contract_audit.py"
 
 header "Backend import boundaries"
 (

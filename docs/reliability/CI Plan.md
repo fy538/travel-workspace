@@ -104,8 +104,10 @@ and reports its slow tail. Coverage thresholds hold the established baseline and
 rise deliberately; they are a regression floor, not a proxy for journey quality.
 
 Backend-only API counts are generated evidence, never a maintained spreadsheet.
-Use `python3 scripts/api-coverage-check.py --list-unused`; classify an endpoint from
-current callers and ownership before deprecating it.
+Use `python3 scripts/api_contract_audit.py --list-transport-only`; classify an
+endpoint from current callers and ownership before deprecating it. Non-mobile
+consumers and lifecycle exceptions live in
+`docs/governance/api-operation-policy.json`.
 
 ## Promotion Path
 

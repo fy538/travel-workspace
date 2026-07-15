@@ -102,6 +102,25 @@ excluded from metadata enforcement because their values are placeholders.
 - `travel-app` owns surface contracts, navigation/interaction conventions,
   mobile operations, and visual QA.
 
+## API operation ownership
+
+OpenAPI owns each operation's method, path, and stable `operationId`.
+[`api-operation-policy.json`](api-operation-policy.json) owns the facts OpenAPI
+cannot express: primary audience, lifecycle, owner, non-mobile consumers,
+feature-flag posture, and dated removal criteria.
+
+The default is an active app operation, but that default is valid only while
+`scripts/api_contract_audit.py` can trace the HTTP method to a product source.
+An `http.ts` method with no product caller must be classified explicitly.
+Operator, infrastructure, server, public-web, and webhook operations must name
+their consumer in policy. Dark and retiring operations must name an owner,
+removal trigger, and review date; `dark` additionally requires a registered
+feature flag. An unflagged, unadopted operation is `retiring`, not dark. Stale
+policy entries and dark operations that gain a product caller fail the gate.
+
+Run the audit with `make api-coverage-check`; add
+`--list-transport-only` when reviewing the retirement queue.
+
 Phase 1 enforces new files in the workspace `docs/` tree. The policy is already
 cross-repo; equivalent child-repo enforcement should be added after this gate
 has proven non-disruptive.
