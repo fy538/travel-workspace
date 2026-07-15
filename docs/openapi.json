@@ -16786,6 +16786,25 @@
             "description": "Proceed even if the member has an unsettled balance. Without this, a removal that would orphan an unsettled debt 409s with the balance detail instead of completing."
           },
           {
+            "name": "shared_plan_successor_user_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Required when the departing traveler currently owns the shared plan. Must name another current organizer; ownership transfer and removal commit together.",
+              "title": "Shared Plan Successor User Id"
+            },
+            "description": "Required when the departing traveler currently owns the shared plan. Must name another current organizer; ownership transfer and removal commit together."
+          },
+          {
             "name": "authorization",
             "in": "header",
             "required": false,
@@ -69504,6 +69523,19 @@
               }
             ],
             "title": "Role"
+          },
+          "shared_plan_successor_user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Required when demoting the current shared-plan owner. Must name another current organizer; ownership transfer and demotion commit together.",
+            "title": "Shared Plan Successor User Id"
           }
         },
         "type": "object",
