@@ -3,7 +3,7 @@
 > Surface: Trips
 > Maturity (for MVP): Built-dark
 > Status: partial/dark
-> Last updated: 2026-07-14
+> Last updated: 2026-07-15
 
 ## Purpose
 The multi-provider booking spine — searches flights, hotels, restaurants, transit,
@@ -92,8 +92,24 @@ receipts, but the itinerary blocks remain owned by Planning/Itinerary.
 - The app polls while an attempt is active. It displays explicit failed/no-answer
   as retryable, declined as a replacement decision, and ambiguous/stale active
   contact as “check, do not contact again.”
-- Provider evidence reviewed 2026-07-14:
+- A supervised read-only worker now atomically claims active attempts that have
+  an exact provider reference, then performs Bland Call Details or Twilio
+  Message fetches. Claims carry a recoverable lease, refreshes retain a bounded
+  history, and the final write is guarded by both `attempt_number` and active
+  status so a late terminal webhook always wins the race.
+- Transport truth is deliberately narrower than reservation truth. Bland
+  `no-answer`/`busy` and Twilio `failed`/`undelivered` are explicit retryable
+  failures. Bland `completed` and Twilio `delivered` prove only that contact ran
+  or arrived; neither can confirm a table without the signed outcome webhook.
+- Missing provider references are not searched by phone number, venue, or time.
+  That destructive-recovery branch remains manual because a fuzzy match could
+  attach another call/message to the wrong request.
+- Automatic reads are bounded (30 refreshes by default). Exhaustion, provider
+  auth failure, unreadable truth, or provider `unknown` becomes durable manual
+  attention without exposing another contact action.
+- Provider evidence reviewed 2026-07-15:
   [Twilio Message resource](https://www.twilio.com/docs/messaging/api/message-resource),
+  [Twilio outbound-status tracking](https://www.twilio.com/docs/messaging/guides/track-outbound-message-status),
   [Twilio duplicate-message guidance](https://www.twilio.com/docs/messaging/guides/debugging-common-issues),
   [Bland Send Call](https://docs.bland.ai/api-v1/post/calls), and
   [Bland Get Call](https://docs.bland.ai/api-v1/get/calls-id).
