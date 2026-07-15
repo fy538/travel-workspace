@@ -30,7 +30,7 @@ As an organizer, I want Vesper to help choose or confirm a stay, share the usefu
 
 - Routes: `/trip-accommodations?tripId=`, `/accommodation/[accommodationId]`, `/booking/[sessionId]`, `/trip-expenses?tripId=`, `/(tabs)/trips/[tripId]/chat`, `/(tabs)/trips/[tripId]/plan`.
 - App docs: [Booking Group Semantics](../../travel-app/docs/page-specs/booking-group-semantics.md), [Per-Person Stays](../../travel-app/docs/page-specs/per-person-stays.md), [Change Proposals](../../travel-app/docs/page-specs/change-proposals.md).
-- Existing anchors: `__tests__/screens/booking-confirm.test.tsx`, `__tests__/screens/accommodation-detail.smoke.test.tsx`, `__tests__/hooks/useStaySummary.test.ts`, `__tests__/components/expense/AddExpenseSheet.test.tsx`, `__tests__/hooks/useCreateExpenseIdempotency.test.tsx`.
+- Existing anchors: backend real-Postgres journey certification in `tests/scenarios/test_j10_booking_stay_expense_trust_loop.py`; frontend `__tests__/screens/booking-confirm.test.tsx`, `__tests__/screens/accommodation-detail.smoke.test.tsx`, `__tests__/hooks/useStaySummary.test.ts`, `__tests__/components/expense/AddExpenseSheet.test.tsx`, and `__tests__/hooks/useCreateExpenseIdempotency.test.tsx`.
 
 ## Canonical Steps
 

@@ -47,7 +47,7 @@ whom" that could drift from the underlying rows.
 
 ## Maturity & validation
 - Serves journeys: 10 (booking/stay/expense trust loop), 12 (returned trip → settle-up).
-- DoD state: idempotency + opt-in + member-validation + settlement-ledger + void-marker + currency-truth FE tests ✅ (backend: `tests/expenses/`, `tests/api/test_expenses_api.py`, `tests/concierge/test_expense_tools_db_parity.py`, real-Postgres e2e in `tests/expenses/test_settlement_payments_e2e.py`; FE: `__tests__/components/expense/`, `__tests__/hooks/`, `__tests__/utils/costsViewModel*.test.ts`, `__tests__/utils/formatMoney.test.ts`) · **live settle-up walk ❌**.
+- DoD state: idempotency + opt-in + member-validation + settlement-ledger + void-marker + currency-truth FE tests ✅ (backend: `tests/expenses/`, `tests/api/test_expenses_api.py`, `tests/concierge/test_expense_tools_db_parity.py`, real-Postgres settlement e2e in `tests/expenses/test_settlement_payments_e2e.py`, and the confirmed-booking race/seam in `tests/scenarios/test_j10_booking_stay_expense_trust_loop.py`; FE: `__tests__/components/expense/`, `__tests__/hooks/`, `__tests__/utils/costsViewModel*.test.ts`, `__tests__/utils/formatMoney.test.ts`) · **live on-device settle-up walk ❌**.
 - FEATURE.md maturity is **"scaffolded"** — code hardening is well ahead of on-device validation; this remains the gap.
 
 ## Canonical docs
@@ -57,5 +57,5 @@ whom" that could drift from the underlying rows.
 ## Open risks / known gaps
 - **Opt-in boundary is the headline trust risk** — any path that resurrects general automatic expense creation from booking (beyond the scoped accommodation-cost exception) violates journeys 10 and 12. Guard against re-introduction.
 - "Scaffolded" maturity: the settle-up surface — including the payments-history/void UI and the currency-truth fixes — has not been walked end-to-end against live multi-currency data; the code-level behavior is well-tested in isolation but unverified on-device.
-- Booking → opt-in-share → ledger-entry is now code- and contract-tested across the repo seam, including organizer authorization, confirmed-offer/trip ownership, durable source/link, stable idempotency, and explicit payer/splits. A live multi-member on-device walk remains outstanding.
+- Booking → opt-in-share → ledger-entry is now proven against a fresh, fully migrated PostgreSQL database, including organizer authorization, two simultaneous submissions with different client keys, one durable source/link, exact payer/splits, deterministic settlement, and conflict on a financially changed retry. A multi-member on-device walk remains outstanding.
 - `settlement.py::compute_settlement`'s `payments` param defaults to `None`/`[]` for callers that don't have payment data — any NEW caller that forgets to thread real payments through will silently see gross (un-netted) balances. There's no runtime guard against this; it relies on callers following the pattern in `get_settlement_data_with_currency`.
