@@ -44,6 +44,7 @@ receipts, but the itinerary blocks remain owned by Planning/Itinerary.
 - Lapsed pay-later hold → `tasks/expiration.py` atomically sweeps it to `expired` and releases its block marker. If a canonical provider saga owns the hold, the same transaction also cancels the protected dependency and records terminal saga/provider/history evidence; a payment-claimed `held` row is excluded.
 - Restaurant provider 4xx → explicit dispatch failure, safe to retry through the guarded retry API. Timeout, transport error, provider 5xx, or ambiguous 2xx → outcome unknown, retain `in_progress`, preserve reconciliation evidence, and wait for a late webhook/operator check rather than contacting the venue twice.
 - Operator resolution write fails after either state update → the entire transaction rolls back, including attempt, offer, and audit event; the same resolution id can be retried safely.
+- Confirmation commits but itinerary/receipt projection crashes → durable per-attempt writeback state retains completed steps; the supervised loop reclaims an expired lease and resumes without contacting the restaurant or changing provider truth.
 
 ## Maturity & validation
 - Serves journey: 10 (booking / stay / expense / trust loop).
@@ -134,6 +135,35 @@ receipts, but the itinerary blocks remain owned by Planning/Itinerary.
   the prior attempt and offer writes and that retry succeeds. A four-connection
   race proves exactly one applied decision and one event; all other callers
   receive idempotent replay.
+
+### Restaurant confirmation projection recovery
+
+- Every first transition to `restaurant_booking_attempts.status=confirmed`
+  queues `confirmation_details.confirmation_writeback` in the same transaction.
+  The immediate hook is only a low-latency attempt; correctness does not depend
+  on that process surviving.
+- The supervised booking loop leases due confirmed attempts and records
+  `block`, `receipt`, and `event` progress independently. A 180-second lease is
+  reclaimable after process death. Transient failures retry with exponential
+  backoff capped at one hour.
+- Block stamping is idempotent by `attempt_id`. A cancelled or deleted block is
+  an intentional no-op because a delayed provider result must not resurrect it.
+  A block confirmed by another booking becomes `manual_action_required` and is
+  never overwritten automatically.
+- Confirmation receipts use database-enforced idempotency key
+  `restaurant-confirmation:{attempt_id}`. Their metadata contains only the
+  confirmation number/time, confirmed party size, special notes, and shared
+  venue brief; internal operator evidence, provider reconciliation, and lease
+  state are excluded. The normal 24-hour chat idempotency-key cleanup preserves
+  this reserved prefix, keeping replay protection durable across long outages.
+- The durable `booking.restaurant_confirmed` event and its completed-step marker
+  commit atomically. The in-process event-bus broadcast happens afterward and is
+  best-effort; itinerary state, receipt, and the append-only event remain the
+  durable product truth.
+- Real-Postgres crash tests cover both non-atomic boundaries: receipt committed
+  before its marker, and event inserted before its marker update. Replay yields
+  exactly one receipt and one event, while the injected event transaction rolls
+  back completely before retry.
 - Provider evidence reviewed 2026-07-15:
   [Twilio Message resource](https://www.twilio.com/docs/messaging/api/message-resource),
   [Twilio outbound-status tracking](https://www.twilio.com/docs/messaging/guides/track-outbound-message-status),
