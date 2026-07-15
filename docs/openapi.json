@@ -42971,6 +42971,18 @@
             ],
             "title": "Block Id"
           },
+          "booking_offer_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Booking Offer Id"
+          },
           "title": {
             "type": "string",
             "title": "Title"

@@ -2,7 +2,7 @@
 
 > Status: draft
 > Owner: founder / engineering
-> Last updated: 2026-06-26  
+> Last updated: 2026-07-15
 > Primary phase: booking / stay / money
 
 ## Product Promise
@@ -54,6 +54,8 @@ As an organizer, I want Vesper to help choose or confirm a stay, share the usefu
 | Booking nested ids scoped to path `trip_id` | Cross-trip IDOR |
 | Expense `paid_by` / share `user_id` validated | Financial identity spoofing |
 | UI "Booked" only after provider-confirmed state | Overclaimed trust |
+| `booking_offer_id` resolves to one provider-confirmed offer in this trip | Planning/session state enters the financial ledger as fact |
+| Booking share is organizer-only, explicit, and idempotent | Private payment data leaks or duplicates in settlement |
 
 ## Expected Outcome
 
@@ -78,7 +80,8 @@ As an organizer, I want Vesper to help choose or confirm a stay, share the usefu
 - Confirmed hotel offers may write a `trip_accommodations` row only through the booking accommodation writeback hook, and only when the normalized hotel payload has enough stay/date/location data.
 - Shared trip-base stays are organizer-controlled. Members can manage their own personal stay slot; organizers can manage any stay slot.
 - Booking proposal decisions are owner-controlled: `proposal.user_id` may confirm or reject, same-outcome retries are idempotent, opposite terminal decisions conflict, and other open cards reconcile while the proposal is pending.
-- Expenses remain opt-in. Manual and receipt-derived expenses validate that `paid_by` and every split user are members of the trip before money rows are written.
+- Expenses remain opt-in. For a single provider-confirmed offer, an organizer may choose **Share in Costs**, review/edit the provider-price prefill, payer, and split, then submit. The API—not the app—proves offer confirmation and trip ownership, derives the linked block, stamps `booking_opt_in`, and deduplicates by offer. Selected offers and session-only confirmation never unlock this action. Manual and receipt-derived expenses continue to validate that `paid_by` and every split user are members of the trip.
+- The booking cart transport is the backend's flat `CartResponse`; session detail remains a separate query. The app no longer certifies a mock-only nested `cart.session` contract.
 - Offer refresh is wired through provider `get_price`; Duffel refresh reads the latest offer before checkout so stale search prices are not treated as bookable truth.
 
 ## AI Trace Prompt
@@ -94,6 +97,7 @@ Deterministic tests for:
 - booking confirmation route returns to trip
 - organizer/member confirmation visibility differs
 - expense creation is idempotent, opt-in, and trip-member validated
+- selected/session-confirmed offers cannot enter Costs; provider-confirmed offers can be shared once by an organizer
 - accommodation Ask/Add routing preserves trip id
 - shared stay mutation requires organizer; personal stay mutation requires self or organizer
 - provider refresh updates the persisted offer instead of returning 501
