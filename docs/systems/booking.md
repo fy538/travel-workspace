@@ -37,6 +37,7 @@ receipts, but the itinerary blocks remain owned by Planning/Itinerary.
 - **Claim before restaurant contact** — a restaurant attempt must atomically move from `pending` to `in_progress` before any Bland or Twilio POST. Only that transaction's winner may contact the provider.
 - **Unknown is not retryable** — a timeout, provider 5xx, malformed success response, missing provider reference, or local persistence failure after provider acceptance is `manual_action_required`. It remains `in_progress` and must not expose Retry. Only an explicit provider rejection, `failed`, or `no_answer` can enter the atomic retry path.
 - **Manual recovery is not an override** — an operator may resolve an active restaurant attempt only after automatic reconciliation is explicitly complete. The attempt number, current attempt status, and offer status are locked and rechecked; a late webhook or conflicting terminal state wins.
+- **Signed callbacks are one terminalization boundary** — callback identity includes `attempt_id` plus `attempt_number`; Bland also rechecks the exact call reference when supplied. Attempt status, normalized offer status, provider-outcome event, and confirmation writeback queue commit atomically. Negative attempt outcomes normalize to offer `failed`.
 
 ## Failure modes
 - Provider error → circuit breaker opens, search degrades to remaining providers; a dead provider doesn't cascade.
@@ -45,6 +46,7 @@ receipts, but the itinerary blocks remain owned by Planning/Itinerary.
 - Restaurant provider 4xx → explicit dispatch failure, safe to retry through the guarded retry API. Timeout, transport error, provider 5xx, or ambiguous 2xx → outcome unknown, retain `in_progress`, preserve reconciliation evidence, and wait for a late webhook/operator check rather than contacting the venue twice.
 - Operator resolution write fails after either state update → the entire transaction rolls back, including attempt, offer, and audit event; the same resolution id can be retried safely.
 - Confirmation commits but itinerary/receipt projection crashes → durable per-attempt writeback state retains completed steps; the supervised loop reclaims an expired lease and resumes without contacting the restaurant or changing provider truth.
+- Signed restaurant callback audit write fails → attempt, offer, and projection queue all roll back. Provider retry can safely re-run the same callback; concurrent duplicates produce one event.
 
 ## Maturity & validation
 - Serves journey: 10 (booking / stay / expense / trust loop).
@@ -170,3 +172,39 @@ receipts, but the itinerary blocks remain owned by Planning/Itinerary.
   [Twilio duplicate-message guidance](https://www.twilio.com/docs/messaging/guides/debugging-common-issues),
   [Bland Send Call](https://docs.bland.ai/api-v1/post/calls), and
   [Bland Get Call](https://docs.bland.ai/api-v1/get/calls-id).
+
+### Restaurant signed outcome terminalization
+
+- Callback parsing is deliberately outside the transaction; applying parsed
+  truth is not. The apply boundary locks the attempt joined to its offer and
+  session, then rechecks the contact attempt number before changing state.
+- The attempt preserves channel-specific outcomes (`confirmed`, `declined`,
+  `failed`, `no_answer`). The parent offer uses its smaller legal vocabulary:
+  `confirmed` for confirmation and `failed` for every negative outcome. A
+  callback can no longer attempt to write invalid offer status `declined`.
+- Bland dispatch embeds both `attempt_id` and `attempt_number` in the signed
+  callback URL and request metadata. If Bland supplies `call_id`, it must match
+  the durable provider reference. An old callback therefore cannot finish a
+  retried contact row.
+- Twilio's inbound-reply endpoint enforces the same two-part identity and
+  signature boundary. Because provider accounts remain unprovisioned, live
+  Twilio inbound correlation and webhook configuration are still launch-gated;
+  no phone/time fuzzy fallback is permitted.
+- The first terminal result wins for one attempt version. Exact duplicates are
+  idempotent; negative callbacks cannot overwrite confirmation; a callback for
+  another attempt number/reference or any other terminal attempt is an
+  acknowledged no-op. A conflicting terminal offer is a hard conflict, never a
+  partial attempt-only write.
+- During rollout, an exact signed replay may find the attempt already terminal
+  but its offer still active because the legacy two-transaction handler crashed
+  between writes. That one recognizable partial state is repaired atomically
+  and marked `repaired_legacy_partial` in the outcome event; contradictory
+  terminal states are not guessed or overwritten.
+- `booking.restaurant_provider_outcome` is inserted in the same transaction and
+  excludes transcript and confirmation number. Confirmations also queue durable
+  block/receipt/event projection work before commit; the immediate writeback is
+  only a latency optimization after transaction success.
+- Real-Postgres fault injection proves an audit insertion failure rolls back the
+  attempt, offer, and queued projection, and a retry then succeeds. A
+  four-connection duplicate race proves one terminal transition and one audit
+  event; the other callers receive idempotent acknowledgement.
