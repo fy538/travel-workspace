@@ -180,10 +180,11 @@ consumer; the guard is green with an explicit nonzero migration allowlist; each
 subsequent deletion lane ratchets that allowlist downward.
 
 Execution status (2026-07-14): the two static boundaries are landed locally and
-green. The writer manifest classifies 112 stable sites / 132 occurrences (72
-canonical, 28 legacy product, 6 integrity, 21 seed/scenario, 5 migration). The
-consumer manifest classifies 105 legacy imports (68 replace, 22 delete, 15
-rename). Both are wired into the local `gates` target and backend CI. The
+green. After the A1-A3 producer additions and ratchet reductions, the writer
+manifest classifies 130 stable sites / 150 occurrences (89 canonical, 28 legacy
+product, 7 integrity, 21 seed/scenario, 5 migration). The consumer manifest
+classifies 105 legacy imports (63 replace, 21 delete, 21 rename). Both are wired
+into the local `gates` target and backend CI. The
 canonical fault-injection test now proves plan revisions, operation/transition
 evidence, the temporary legacy event mirror, and projected history roll back
 together. The six integrity keys are a closed code-level allowlist rather than
@@ -412,6 +413,35 @@ default cannot make a nominally green suite exercise only compatibility code.
 Each mutation producer in the 0.1 inventory must have at least one canonical
 success exercise and its relevant denied/conflict/recovery exercise.
 
+Completion evidence (2026-07-14):
+
+- `travel-agent/scripts/certify_itinerary_full_on.py` installs and asserts
+  `stage=full`, cohort `all`, and all 20 registered backend capability flags
+  before it launches a child command. `make itinerary-full-on-cert` is the
+  repeatable local/CI entry point; CI also wraps both persona gates in the same
+  asserted environment.
+- The two named backend corpora pass under that posture: 447 tests in the
+  itinerary/lifecycle/API/audit corpus and 406 tests in the adjacent
+  Plan/proposal/folio/map/trip/writeback corpus (853 total executions). Tests
+  that intentionally prove a retained compatibility branch now disable the
+  specific capability explicitly instead of inheriting an ambient dark flag.
+- `travel-app/scripts/certify-itinerary-full-on.mjs` installs and asserts all
+  13 frontend itinerary flags. The named frontend itinerary corpus passes 51
+  suites / 376 tests under that posture and is a blocking CI step.
+- The complete real-persona registry passes under the asserted backend posture:
+  mara 11/11 and elif 4/4, with zero failures and zero skips. The run corrected
+  stale J01 private-to-group conversation expectations, made J08 create its
+  explicit itinerary scaffold, and moved J05 onto the canonical proposal
+  producer/resolver path.
+- Breakage found and fixed during proof included destination-wall-clock proposal
+  rescheduling incorrectly inheriting the database session timezone, dogfood
+  trips missing their canonical itinerary decision owner, four stale trip API
+  mock targets, and frontend full-on mocks/fixtures that omitted canonical
+  history, operation-gateway, completed-entry, and provider-recovery fields.
+- CI now proves the full-on posture independently of ordinary default-off test
+  runs in both repositories. This is B1 proof only; B2 still requires measured
+  nonzero canonical traffic and zero compatibility events per deletion lane.
+
 ### B2. Prove zero legacy traffic (the deletion license)
 
 Run the full journey certifier + Maestro wedge flows (J04/J05/J10 device flows).
@@ -433,6 +463,47 @@ Every deletion lane requires a signed evidence row containing all of:
 
 This evidence—not an unqualified zero—is the deletion license. No lane starts
 before its complete row is green.
+
+Execution status (2026-07-14): the fail-closed B2 license evaluator and a
+schema-valid evidence bundle now exist for all five physical deletion lanes.
+The evaluator requires exact prerequisite and producer-surface coverage,
+nonzero exercise/commit/proposal counts, zero compatibility-path events,
+applicable outcome proof, green writer/import/reference scans, evidence links,
+and a signer plus timestamp. Missing or duplicate lanes fail validation. CI runs
+the evaluator in report-only mode so schema drift and missing lane coverage are
+visible without falsely licensing deletion; the same command without
+`--allow-blocked` is the blocking deletion gate.
+
+No lane is licensed yet. The current zero-count bundle is deliberately honest:
+lane 1 still lacks C1/C2 canonical dogfood replay; lanes 2 and 4 still have
+callable frontend legacy add/move/Change Studio paths; lane 3 has not yet
+captured end-to-end positive/negative proposal evidence; and lane 5 is ordered
+after lanes 1-4 plus the canonical-only rollback checkpoint and D2 decision.
+The static inventories themselves are green and ratcheted, but their remaining
+classified legacy rows are blockers—not deletion proof.
+
+The frontend deletion-reference scanner currently reports **6** production
+callers: **5** in the adapter lane (`useAddBlock`, `usePinExperience`, and
+`useUpdateBlock`) and **1** legacy
+Change Studio preview caller in `data/itinerary.ts`. API implementations, mocks,
+and tests are excluded from that count. This scanner runs in report-only mode
+during migration and becomes blocking by dropping `--allow-blocked` when a lane
+requests its deletion license.
+
+`useEditCommit` has crossed the boundary: concrete Change Studio Move, Remove,
+and Replace intents are now constructed from the revisioned canonical plan
+projection and sent through canonical preview plus server-resolved
+Direct/Confirm/Propose/Denied handling. Replace now carries a stable venue
+identity instead of only a display title. The legacy `postEditCommit` caller is
+gone; target-less recommendation generation remains the separate lane-4
+preview migration.
+
+`useMoveBlock` has also crossed the boundary. Plan-row up/down controls now
+compile to canonical Reorder with an explicit before/after anchor; timed and
+cross-day moves compile to canonical Move. Both carry current day/block
+revision preconditions, revalidate in preview, and follow the server's
+Direct/Confirm/Propose/Denied decision. The old `api.moveBlock` product caller
+is gone.
 
 ### B3. Deletion lanes (strict order; each lane: delete → suites green → next)
 
@@ -683,7 +754,7 @@ complete.
 - [x] A3: optimize_day, REST recovery, branches, D5-approved manual booking
       attestation, and existing held-provider confirmation adoption are
       implemented and proven as distinct semantics.
-- [ ] B1: full suites + every journey in the canonical registry are green with
+- [x] B1: full suites + every journey in the canonical registry are green with
       the intended full-on environment asserted and every producer exercised
       canonically; the prior 790-test corpus has not regressed and new cutover
       tests are included.
