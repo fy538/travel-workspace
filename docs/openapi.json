@@ -16819,6 +16819,76 @@
         }
       }
     },
+    "/api/trips/{trip_id}/organizer-handoff-and-leave": {
+      "post": {
+        "tags": [
+          "trip-members"
+        ],
+        "summary": "Organizer Handoff And Leave",
+        "description": "Atomically hand organizing to a current traveler and leave the trip.",
+        "operationId": "organizer_handoff_and_leave_api_trips__trip_id__organizer_handoff_and_leave_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrganizerHandoffLeaveRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizerHandoffLeaveResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/users/{user_id}/co-travelers": {
       "get": {
         "tags": [
@@ -55549,6 +55619,61 @@
         ],
         "title": "OptimizeRouteSuggestion",
         "description": "One block's new position in the optimized day order.\n\nReturned by the optimize-route endpoint; client applies by issuing N\nmove_block calls in the suggested order. Backend never commits \u2014 this\nis a preview surface only."
+      },
+      "OrganizerHandoffLeaveRequest": {
+        "properties": {
+          "successor_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Successor User Id"
+          },
+          "force": {
+            "type": "boolean",
+            "title": "Force",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "successor_user_id"
+        ],
+        "title": "OrganizerHandoffLeaveRequest"
+      },
+      "OrganizerHandoffLeaveResponse": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "departed_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Departed User Id"
+          },
+          "successor_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Successor User Id"
+          },
+          "successor_promoted_to_organizer": {
+            "type": "boolean",
+            "title": "Successor Promoted To Organizer"
+          },
+          "shared_plan_owner_transferred": {
+            "type": "boolean",
+            "title": "Shared Plan Owner Transferred"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "departed_user_id",
+          "successor_user_id",
+          "successor_promoted_to_organizer",
+          "shared_plan_owner_transferred"
+        ],
+        "title": "OrganizerHandoffLeaveResponse"
       },
       "ParagraphBlock": {
         "properties": {
