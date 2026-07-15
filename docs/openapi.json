@@ -61121,15 +61121,23 @@
               "$ref": "#/components/schemas/AtomicChildOperation"
             },
             "type": "array",
-            "minItems": 1,
             "title": "Child Operations"
+          },
+          "context_change": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TripContextMutation"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "additionalProperties": false,
         "type": "object",
         "required": [
-          "reason",
-          "child_operations"
+          "reason"
         ],
         "title": "ReplanPayload"
       },
@@ -65630,6 +65638,28 @@
             "type": "boolean",
             "title": "Can Apply Directly"
           },
+          "can_apply_atomically": {
+            "type": "boolean",
+            "title": "Can Apply Atomically",
+            "default": false
+          },
+          "atomic_apply_blockers": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Atomic Apply Blockers"
+          },
+          "prepared_operation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ItineraryOperationPreview"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "next_step": {
             "type": "string",
             "enum": [
@@ -65698,6 +65728,34 @@
         "title": "TripContextChangePreviewRequest",
         "description": "Proposed context values; omitted fields retain their current value."
       },
+      "TripContextDayMutation": {
+        "properties": {
+          "day_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Day Id"
+          },
+          "current_date": {
+            "type": "string",
+            "format": "date",
+            "title": "Current Date"
+          },
+          "proposed_date": {
+            "type": "string",
+            "format": "date",
+            "title": "Proposed Date"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "day_id",
+          "current_date",
+          "proposed_date"
+        ],
+        "title": "TripContextDayMutation",
+        "description": "One existing itinerary day re-anchored by a contextual replan."
+      },
       "TripContextDayRemap": {
         "properties": {
           "day_id": {
@@ -65757,6 +65815,48 @@
           "active_block_count"
         ],
         "title": "TripContextDayRemap"
+      },
+      "TripContextMutation": {
+        "properties": {
+          "place_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Id"
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date",
+            "title": "Start Date"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date",
+            "title": "End Date"
+          },
+          "day_remaps": {
+            "items": {
+              "$ref": "#/components/schemas/TripContextDayMutation"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Day Remaps"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "start_date",
+          "end_date",
+          "day_remaps"
+        ],
+        "title": "TripContextMutation",
+        "description": "Full proposed trip context plus the exact current-day remap."
       },
       "TripContextPrecondition": {
         "properties": {
