@@ -38,7 +38,7 @@ receipts, but the itinerary blocks remain owned by Planning/Itinerary.
 ## Failure modes
 - Provider error → circuit breaker opens, search degrades to remaining providers; a dead provider doesn't cascade.
 - Non-Duffel `create_order` → raises `NotImplementedError` by design (handoff-only); resolves to a deep-link, never a fabricated confirmation.
-- Lapsed pay-later hold → `tasks/expiration.py` sweeps it to `expired` so a dead hold never surfaces on the Call-held surface.
+- Lapsed pay-later hold → `tasks/expiration.py` atomically sweeps it to `expired` and releases its block marker. If a canonical provider saga owns the hold, the same transaction also cancels the protected dependency and records terminal saga/provider/history evidence; a payment-claimed `held` row is excluded.
 
 ## Maturity & validation
 - Serves journey: 10 (booking / stay / expense / trust loop).

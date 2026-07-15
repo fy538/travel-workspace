@@ -50056,6 +50056,7 @@
               "succeeded",
               "failed",
               "declined",
+              "expired",
               "manual_action_required"
             ],
             "title": "Provider Outcome"
@@ -50286,6 +50287,7 @@
               "succeeded",
               "failed",
               "declined",
+              "expired",
               "manual_action_required"
             ],
             "title": "Provider Outcome"
@@ -59907,6 +59909,7 @@
           "confirmation_failed",
           "succeeded",
           "declined",
+          "expired",
           "manual_action_required"
         ],
         "title": "ProviderSagaState"

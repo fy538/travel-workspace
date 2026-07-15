@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: backend
 created: 2026-07-13
-last_verified: 2026-07-13
+last_verified: 2026-07-14
 expires: 2026-08-12
 why_new: Record the executable IR-10 provider-saga contract, exit evidence, and downstream read-model handoff.
 source_of_truth_for: [itinerary-redesign-ir10-provider-saga-evidence]
@@ -11,9 +11,11 @@ source_of_truth_for: [itinerary-redesign-ir10-provider-saga-evidence]
 
 # IR-10 — Canonical provider saga evidence
 
-IR-10 continues the accepted operation and history spine. It does not introduce
-a frontend surface. Replace-and-rebook remains the primary protected workflow;
-the reference single-action proof is one linked held booking becoming confirmed.
+IR-10 continues the accepted operation and history spine. The original slice did
+not introduce a frontend surface; subsequent IR-13/16 and reliability hardening
+now expose controller-safe continuation and held-price decisions. Replace-and-
+rebook remains the primary protected workflow; the reference single-action proof
+is one linked held booking becoming confirmed.
 
 ## Durable contract
 
@@ -49,6 +51,28 @@ The test retains the same block/lineage, dependency, booking-offer, expense,
 saga-event, operation, and provider-transition identities across repeated
 reads. The callback does not create or change an expense amount or currency.
 
+## Held-price decision and natural-expiry proof
+
+A changed provider quote suspends the saga without moving money. Fresh approval
+is bound to the exact quote hash and saga revision; decline is a distinct human
+decision that atomically releases the hold and records terminal `declined`
+evidence. Both retain their idempotency key across ambiguous client retries.
+
+Natural deadline expiry is not relabeled as decline. The expiration worker uses
+the canonical `expired` terminal state and one transaction to:
+
+- expire the offer and stamp provider-deadline evidence;
+- cancel the held protected dependency;
+- release the block booking reference;
+- append exactly one provider transition, saga event, and operation transition;
+- clear continuation while preserving Needs Attention; and
+- invalidate all itinerary/booking observers after commit.
+
+Fault injection after the offer, dependency, block, and provider-transition
+writes but before saga terminalization rolls the whole transaction back. A
+provider worker that already claimed the offer into transient `held` wins the
+race, so the sweeper cannot overwrite an ambiguous payment outcome.
+
 ## IR-12/13/16 handoff
 
 `project_provider_truth_for_operation` is the single viewer-scoped provider
@@ -77,5 +101,6 @@ models. IR-13 and IR-16 own all shell, provider-detail, and continuation UI.
 - Provider routes remain independently default-off and are registered as
   built-dark until IR-13/IR-16 adoption.
 
-No travel-app component, route, generated client, or UI contract is changed by
-IR-10.
+Post-IR-10 reliability hardening adds the generated `declined` and `expired`
+provider outcomes plus concise mobile labels. The provider saga remains built-
+dark until its independent rollout gate is enabled.

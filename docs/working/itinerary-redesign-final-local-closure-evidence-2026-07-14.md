@@ -64,7 +64,13 @@ from plan commit through saga creation and retry boundaries.
   coherently;
 - provider transitions do not mutate expense truth;
 - an expired hold cannot trigger provider payment after the atomic database
-  claim rejects it.
+  claim rejects it;
+- changed-price approval is bound to one quote hash and saga revision, while an
+  explicit rejection is terminally recorded as `declined`; and
+- natural deadline expiry is terminally recorded as `expired` and atomically
+  converges the offer, dependency, block booking reference, saga, provider
+  transition, operation history, and read-model invalidation. Fault injection
+  proves no partial expiry can land.
 
 The history projector now returns the latest append-only transition. A saga
 that recovers from `provider_failed` through pending to success no longer
