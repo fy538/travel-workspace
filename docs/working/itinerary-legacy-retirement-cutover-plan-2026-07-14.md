@@ -482,13 +482,12 @@ after lanes 1-4 plus the canonical-only rollback checkpoint and D2 decision.
 The static inventories themselves are green and ratcheted, but their remaining
 classified legacy rows are blockers—not deletion proof.
 
-The frontend deletion-reference scanner currently reports **6** production
-callers: **5** in the adapter lane (`useAddBlock`, `usePinExperience`, and
-`useUpdateBlock`) and **1** legacy
-Change Studio preview caller in `data/itinerary.ts`. API implementations, mocks,
-and tests are excluded from that count. This scanner runs in report-only mode
-during migration and becomes blocking by dropping `--allow-blocked` when a lane
-requests its deletion license.
+The frontend deletion-reference scanner currently reports **1** production
+caller: the legacy Change Studio preview caller in `data/itinerary.ts`. The
+adapter lane is clean. API implementations, mocks, and tests are excluded from
+that count. This scanner runs in report-only mode during migration and becomes
+blocking by dropping `--allow-blocked` when a lane requests its deletion
+license.
 
 `useEditCommit` has crossed the boundary: concrete Change Studio Move, Remove,
 and Replace intents are now constructed from the revisioned canonical plan
@@ -504,6 +503,26 @@ cross-day moves compile to canonical Move. Both carry current day/block
 revision preconditions, revalidate in preview, and follow the server's
 Direct/Confirm/Propose/Denied decision. The old `api.moveBlock` product caller
 is gone.
+
+`useAddBlock` has crossed the boundary as well. Additions now construct a
+revision-bound canonical Add from the current day projection, preserve stable
+venue identity and cross-surface attribution, and follow
+Direct/Confirm/Propose/Denied policy. Direct callers receive the created block
+identity from the canonical commit receipt; proposal outcomes do not fabricate
+a navigable block. The Add toast's Undo now targets the operation receipt. Both
+the legacy `api.addBlock` and `api.undoBlockEdit` callers in this hook are gone.
+
+`usePinExperience` now delegates to that same canonical Add authority after
+resolving the requested day number and stable experience identity. It preserves
+the experience's real title, avoids duplicate receipts, and no longer calls the
+legacy pin route.
+
+`useUpdateBlock` now maps the only supported production update shape—planned,
+happened, or skipped event state—to a revision-bound canonical Mark Occurrence
+operation. Unsupported legacy edit shapes fail closed. Undo targets the landed
+canonical operation directly, using the immediate commit receipt first and the
+live history recovery capability after navigation or reload. The legacy update
+and undo route callers are gone, leaving the adapter lane reference-clean.
 
 ### B3. Deletion lanes (strict order; each lane: delete → suites green → next)
 
