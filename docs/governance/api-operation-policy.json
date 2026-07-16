@@ -63,7 +63,8 @@
       "consumers": [
         {
           "kind": "operator",
-          "name": "operator-tooling"
+          "name": "cancellation-review-cli",
+          "source": "travel-agent/scripts/cancellation_review.py"
         }
       ],
       "feature_flag": null,
@@ -964,7 +965,8 @@
       "consumers": [
         {
           "kind": "operator",
-          "name": "operator-tooling"
+          "name": "cancellation-review-cli",
+          "source": "travel-agent/scripts/cancellation_review.py"
         }
       ],
       "feature_flag": null,
