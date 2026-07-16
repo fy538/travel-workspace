@@ -58,6 +58,21 @@
       "removal_trigger": null,
       "review_by": null
     },
+    "GET /admin/booking/cancellation-reviews": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated read-only queue for cancellation claims that exhausted automatic provider reconciliation.",
+      "removal_trigger": null,
+      "review_by": null
+    },
     "GET /admin/dogfood/audit": {
       "audience": "operator",
       "consumers": [

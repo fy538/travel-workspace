@@ -72660,28 +72660,6 @@
             ],
             "title": "Correlation Id"
           },
-          "price_amount": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Price Amount"
-          },
-          "price_currency": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Price Currency"
-          },
           "refresh_attempts": {
             "type": "integer",
             "minimum": 0.0,
