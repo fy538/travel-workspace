@@ -545,16 +545,6 @@
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
       "review_by": "2026-08-15"
     },
-    "GET /api/trips/{trip_id}/itinerary": {
-      "audience": "app",
-      "consumers": [],
-      "feature_flag": null,
-      "lifecycle": "retiring",
-      "owner": "itinerary",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
-      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
-    },
     "GET /api/trips/{trip_id}/itinerary/operations/history": {
       "audience": "app",
       "consumers": [],
