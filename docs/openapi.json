@@ -9352,6 +9352,23 @@
             }
           },
           {
+            "name": "before_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Before Id"
+            }
+          },
+          {
             "name": "reference_id_prefix",
             "in": "query",
             "required": false,
@@ -9574,6 +9591,77 @@
             "content": {
               "application/json": {
                 "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/conversations/{conversation_id}/messages/cancel": {
+      "post": {
+        "tags": [
+          "conversations"
+        ],
+        "summary": "Cancel Message Stream",
+        "description": "Cancel this actor's currently running turn without treating socket loss as cancellation.",
+        "operationId": "cancel_message_stream_api_conversations__conversation_id__messages_cancel_post",
+        "parameters": [
+          {
+            "name": "conversation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Conversation Id"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "title": "X-Idempotency-Key"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancelTurnResponse"
+                }
               }
             }
           },
@@ -14658,6 +14746,22 @@
               "type": "string",
               "format": "uuid",
               "title": "Conversation Id"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Idempotency-Key"
             }
           },
           {
@@ -29416,6 +29520,73 @@
           }
         }
       }
+    },
+    "/admin/booking/cancellation-reviews": {
+      "get": {
+        "tags": [
+          "admin",
+          "booking"
+        ],
+        "summary": "List Cancellation Review Queue",
+        "description": "List cancellations that need a provider-record review, oldest first.",
+        "operationId": "list_cancellation_review_queue_admin_booking_cancellation_reviews_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 200,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CancellationReviewItem"
+                  },
+                  "title": "Response List Cancellation Review Queue Admin Booking Cancellation Reviews Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -35539,6 +35710,29 @@
           "message"
         ],
         "title": "CancelOfferResponse"
+      },
+      "CancelTurnResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "cancelled",
+              "not_running"
+            ],
+            "title": "Status"
+          },
+          "conversation_id": {
+            "type": "string",
+            "title": "Conversation Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "conversation_id"
+        ],
+        "title": "CancelTurnResponse",
+        "description": "Result of an ownership-scoped explicit turn cancellation request."
       },
       "CaptureMomentRequest": {
         "properties": {
@@ -42986,18 +43180,6 @@
               }
             ],
             "title": "Block Id"
-          },
-          "booking_offer_id": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "uuid"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Booking Offer Id"
           },
           "title": {
             "type": "string",
@@ -60906,6 +61088,57 @@
         ],
         "title": "Receipt"
       },
+      "RecommendationAction": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "phone",
+              "deadline"
+            ],
+            "title": "Kind"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Label"
+          },
+          "phone_number": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 30,
+                "minLength": 5,
+                "pattern": "^\\+?[0-9() .-]+$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Phone Number"
+          },
+          "deadline_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deadline At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "label"
+        ],
+        "title": "RecommendationAction",
+        "description": "A reviewed, typed CTA derived alongside recommendation reasoning."
+      },
       "RecommendationPayload": {
         "properties": {
           "move": {
@@ -60971,6 +61204,15 @@
             ],
             "title": "Timing Note",
             "description": "When to go, how long, reservation tip, time-of-day cue."
+          },
+          "actions": {
+            "items": {
+              "$ref": "#/components/schemas/RecommendationAction"
+            },
+            "type": "array",
+            "maxItems": 3,
+            "title": "Actions",
+            "description": "Typed phone or calendar actions; never infer actions from display prose."
           }
         },
         "type": "object",
@@ -72336,6 +72578,189 @@
         ],
         "title": "Provenance",
         "description": "Where a result came from and how sensitive it is.\n\n``label`` is the short, ALL-CAPS-in-UI string the row displays\n(e.g. \"FROM YOUR ATLAS\", \"YOUR TRIP\", \"SHARED BY ANA\", \"DISCOVER GUIDE\").\n``privacy`` gates rendering: a ``private`` row must always show its label."
+      },
+      "CancellationReviewError": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9._:-]+$",
+            "title": "Code"
+          },
+          "message": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code"
+        ],
+        "title": "CancellationReviewError"
+      },
+      "CancellationReviewItem": {
+        "properties": {
+          "offer_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Offer Id"
+          },
+          "session_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Session Id"
+          },
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "provider": {
+            "type": "string",
+            "title": "Provider"
+          },
+          "category": {
+            "type": "string",
+            "title": "Category"
+          },
+          "booking_status": {
+            "type": "string",
+            "title": "Booking Status"
+          },
+          "provider_booking_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider Booking Id"
+          },
+          "correlation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Correlation Id"
+          },
+          "price_amount": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Amount"
+          },
+          "price_currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Currency"
+          },
+          "refresh_attempts": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Refresh Attempts"
+          },
+          "pending_since": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pending Since"
+          },
+          "last_refreshed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Refreshed At"
+          },
+          "manual_action_required_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Manual Action Required At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CancellationReviewError"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "last_refresh_error": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CancellationReviewError"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "offer_id",
+          "session_id",
+          "trip_id",
+          "provider",
+          "category",
+          "booking_status",
+          "refresh_attempts",
+          "updated_at"
+        ],
+        "title": "CancellationReviewItem"
       }
     }
   }
