@@ -54515,10 +54515,6 @@
           "commitment_state": {
             "$ref": "#/components/schemas/PlanCommitmentState"
           },
-          "raw_status": {
-            "type": "string",
-            "title": "Raw Status"
-          },
           "updated_at": {
             "anyOf": [
               {
@@ -54693,8 +54689,7 @@
           "sort_order",
           "block_type",
           "title",
-          "commitment_state",
-          "raw_status"
+          "commitment_state"
         ],
         "title": "PlanBlock"
       },
