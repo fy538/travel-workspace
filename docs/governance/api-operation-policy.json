@@ -1,0 +1,1443 @@
+{
+  "defaults": {
+    "audience": "app",
+    "feature_flag": null,
+    "lifecycle": "active",
+    "owner": "product-engineering",
+    "removal_trigger": null,
+    "review_by": null
+  },
+  "operations": {
+    "DELETE /admin/users/{user_id}/constraints/{constraint_type}/{value}": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "DELETE /api/conversations/{conversation_id}/invites/{token}": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "conversations",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "DELETE /api/trips/{trip_id}/expenses/{expense_id}/comments/{comment_id}": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "expenses",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "GET /admin/digests/{digest_id}": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /admin/dogfood/audit": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /admin/dogfood/preflight": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "internal-mobile-ops",
+          "source": "travel-app/utils/api/opsStatus.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /admin/entity-facets-status": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /admin/ingestion-status": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /admin/ops/ai-status": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "internal-mobile-ops",
+          "source": "travel-app/utils/api/opsStatus.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /admin/trips/{trip_id}/digest/daily/{day_number}": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /admin/trips/{trip_id}/digest/planning-context": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /admin/trips/{trip_id}/digest/summary": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /admin/trips/{trip_id}/digests": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /admin/trips/{trip_id}/notification-stats": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /admin/trips/{trip_id}/proactive-events": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /admin/users/{user_id}/constraints": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /admin/users/{user_id}/events": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /admin/users/{user_id}/observations": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /admin/users/{user_id}/personal-memory": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /admin/users/{user_id}/reflections": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /api/admin/voice-metrics": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /api/atlas/artifacts/{artifact_id}/stream": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "atlas",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/atlas/places": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "atlas",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/atlas/scan-history": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "atlas",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/atlas/search": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "atlas",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/conversations/{conversation_id}/invites": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "conversations",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/conversations/{conversation_id}/messages/{message_id}/reactions": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "conversations",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/discover/trending": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "product-engineering",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/dossiers/accommodation/{accommodation_id}": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "product-engineering",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/dossiers/site/{site_id}": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "product-engineering",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/events/users/{user_id}": {
+      "audience": "server",
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "notification-pipeline"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "notifications",
+      "reason": "Notification pipeline reads the user event stream.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /api/public/trip-map/{trip_id}": {
+      "audience": "public_web",
+      "consumers": [
+        {
+          "kind": "public_web",
+          "name": "public-trip-map"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "sharing",
+      "reason": "Public trip-map web renderer consumes this operation.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /api/takes/{take_id}": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "product-engineering",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/trips/blank": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "product-engineering",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/trips/{trip_id}/action-receipts/recent": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "expenses",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/trips/{trip_id}/booking/affiliate-links/travel-insurance": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "booking",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/trips/{trip_id}/booking/readiness": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "booking",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/trips/{trip_id}/booking/sessions": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "booking",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/trips/{trip_id}/cross-trip-threads": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "product-engineering",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/trips/{trip_id}/expenses/suggest-category": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "expenses",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/trips/{trip_id}/expenses/{expense_id}": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "expenses",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/trips/{trip_id}/expenses/{expense_id}/comments": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "expenses",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/trips/{trip_id}/geofence-events": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "live-companion",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/trips/{trip_id}/itinerary": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "itinerary",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/trips/{trip_id}/itinerary/edit-history": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "itinerary",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/trips/{trip_id}/itinerary/operations/history": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "itinerary",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/trips/{trip_id}/itinerary/operations/writebacks": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "itinerary",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/trips/{trip_id}/memory-evidence": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "memory",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/trips/{trip_id}/messages/history": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "conversations",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/trips/{trip_id}/messages/info": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "conversations",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/trips/{trip_id}/narration/audio/{entity_type}/{entity_id}": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "useNarrationAudio",
+          "source": "travel-app/hooks/useNarrationAudio.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "live-companion",
+      "reason": "Indirect mobile transport is a current product consumer.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /api/trips/{trip_id}/narration/manifest": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "live-companion",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/trips/{trip_id}/receipts/{receipt_id}/image": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "expenses",
+          "source": "travel-app/data/expenses.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "expenses",
+      "reason": "Indirect mobile transport is a current product consumer.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /api/trips/{trip_id}/story/narration/audio": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "StoryListenButton",
+          "source": "travel-app/components/memory/StoryListenButton.tsx"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "live-companion",
+      "reason": "Indirect mobile transport is a current product consumer.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /api/trips/{trip_id}/voice-guide/session": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "live-companion",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/users/me/memory-evidence": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "memory",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/users/{user_id}/devices": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "product-engineering",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/users/{user_id}/facts/{fact_id}/history": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "product-engineering",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "GET /api/users/{user_id}/followers": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "product-engineering",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "GET /debug/cost": {
+      "audience": "infrastructure",
+      "consumers": [
+        {
+          "kind": "infrastructure",
+          "name": "operator-observability"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Operational diagnostics and observability consumer.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /debug/runtime": {
+      "audience": "infrastructure",
+      "consumers": [
+        {
+          "kind": "infrastructure",
+          "name": "operator-observability"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Operational diagnostics and observability consumer.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /debug/tokens": {
+      "audience": "infrastructure",
+      "consumers": [
+        {
+          "kind": "infrastructure",
+          "name": "operator-observability"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Operational diagnostics and observability consumer.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /health": {
+      "audience": "infrastructure",
+      "consumers": [
+        {
+          "kind": "infrastructure",
+          "name": "deployment-platform"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Deployment liveness and readiness consumer.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /health/background-tasks": {
+      "audience": "infrastructure",
+      "consumers": [
+        {
+          "kind": "infrastructure",
+          "name": "deployment-platform"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Deployment liveness and readiness consumer.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /health/external": {
+      "audience": "infrastructure",
+      "consumers": [
+        {
+          "kind": "infrastructure",
+          "name": "deployment-platform"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Deployment liveness and readiness consumer.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /metrics/discover": {
+      "audience": "infrastructure",
+      "consumers": [
+        {
+          "kind": "infrastructure",
+          "name": "operator-observability"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Operational diagnostics and observability consumer.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /metrics/llm-accounting": {
+      "audience": "infrastructure",
+      "consumers": [
+        {
+          "kind": "infrastructure",
+          "name": "operator-observability"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Operational diagnostics and observability consumer.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /metrics/llm-anomalies": {
+      "audience": "infrastructure",
+      "consumers": [
+        {
+          "kind": "infrastructure",
+          "name": "operator-observability"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Operational diagnostics and observability consumer.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /metrics/tokens": {
+      "audience": "infrastructure",
+      "consumers": [
+        {
+          "kind": "infrastructure",
+          "name": "operator-observability"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Operational diagnostics and observability consumer.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /ready": {
+      "audience": "infrastructure",
+      "consumers": [
+        {
+          "kind": "infrastructure",
+          "name": "deployment-platform"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Deployment liveness and readiness consumer.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "HEAD /api/trips/{trip_id}/narration/audio/{entity_type}/{entity_id}": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "useNarrationAudio",
+          "source": "travel-app/hooks/useNarrationAudio.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "live-companion",
+      "reason": "Indirect mobile transport is a current product consumer.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "PATCH /api/trips/{trip_id}/itinerary/blocks/{block_id}": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "itinerary",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "POST /admin/atlas/entity-facets/project": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "POST /admin/booking/restaurant-attempts/{attempt_id}/resolve": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "POST /admin/digests/retry": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "POST /admin/trips/{trip_id}/digest/daily/{day_number}": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "POST /admin/trips/{trip_id}/digest/planning-context": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "POST /admin/trips/{trip_id}/digest/summary": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "POST /admin/users/{user_id}/constraints": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "POST /admin/users/{user_id}/reflect": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "POST /admin/users/{user_id}/refresh-memory": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "POST /api/admin/discover/trending": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "POST /api/conversations/{conversation_id}/invites": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "conversations",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "POST /api/conversations/{conversation_id}/location": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "conversations",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "POST /api/conversations/{conversation_id}/messages/stream": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "useConciergeChat",
+          "source": "travel-app/hooks/useConciergeChat.ts"
+        },
+        {
+          "kind": "app_url",
+          "name": "useGroupChat",
+          "source": "travel-app/hooks/useGroupChat.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "conversations",
+      "reason": "Indirect mobile transport is a current product consumer.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "POST /api/conversations/{conversation_id}/promote_to_trip": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "conversations",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "POST /api/curator/photos": {
+      "audience": "server",
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "curator-ingestion"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "content",
+      "reason": "Curator ingestion tool writes approved media.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "POST /api/lookup/": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "product-engineering",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "POST /api/places/{slug}/angles/request": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "product-engineering",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "POST /api/takes/stream": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "useStreamingTake",
+          "source": "travel-app/hooks/useStreamingTake.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "product-engineering",
+      "reason": "Indirect mobile transport is a current product consumer.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "POST /api/trips/{trip_id}/decommit": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "product-engineering",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "POST /api/trips/{trip_id}/digest/email": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "product-engineering",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "POST /api/trips/{trip_id}/itinerary/blocks/{block_id}/move": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "itinerary",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "POST /api/trips/{trip_id}/itinerary/blocks/{block_id}/undo": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "itinerary",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "POST /api/trips/{trip_id}/itinerary/days/{day_id}/blocks": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "itinerary",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "POST /api/trips/{trip_id}/itinerary/operations/proposals/{proposal_id}/accept": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "itinerary",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "POST /api/trips/{trip_id}/itinerary/operations/proposals/{proposal_id}/apply": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "itinerary",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "POST /api/trips/{trip_id}/itinerary/operations/provider-sagas/{saga_id}/advance": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "itinerary",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "POST /api/trips/{trip_id}/itinerary/operations/writebacks": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "itinerary",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "POST /api/trips/{trip_id}/itinerary/pin-experience": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "itinerary",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "POST /api/trips/{trip_id}/itinerary/revisions/{revision_version_number}/undo": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "itinerary",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "POST /api/trips/{trip_id}/members": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "product-engineering",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "POST /api/trips/{trip_id}/messages": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "conversations",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "POST /api/trips/{trip_id}/messages/close": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "conversations",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "POST /api/trips/{trip_id}/messages/stream": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "conversations",
+      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
+      "review_by": "2026-08-15"
+    },
+    "POST /api/trips/{trip_id}/narration/prerender-hint/{entity_type}/{entity_id}": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "live-companion",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "POST /api/trips/{trip_id}/notifications/leave-by/mute-today": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "notifications",
+          "source": "travel-app/utils/api/notifications.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "product-engineering",
+      "reason": "Indirect mobile transport is a current product consumer.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "POST /api/trips/{trip_id}/notifications/leave-by/{block_id}/dismiss": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "notifications",
+          "source": "travel-app/utils/api/notifications.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "product-engineering",
+      "reason": "Indirect mobile transport is a current product consumer.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "POST /api/trips/{trip_id}/photos": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "product-engineering",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "POST /api/trips/{trip_id}/plan/edit-commit": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "itinerary",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "POST /api/trips/{trip_id}/plan/edit-preview": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "itinerary",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "POST /api/users/{user_id}/heartbeat": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "product-engineering",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "POST /api/users/{user_id}/modality/route": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "product-engineering",
+      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
+      "review_by": "2026-08-15"
+    },
+    "POST /webhooks/bland-ai/call-complete": {
+      "audience": "webhook",
+      "consumers": [
+        {
+          "kind": "webhook",
+          "name": "bland-ai"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "integrations",
+      "reason": "Provider callback surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "POST /webhooks/twilio/message-reply": {
+      "audience": "webhook",
+      "consumers": [
+        {
+          "kind": "webhook",
+          "name": "twilio"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "integrations",
+      "reason": "Provider callback surface.",
+      "removal_trigger": null,
+      "review_by": null
+    }
+  },
+  "version": 1
+}

@@ -55,11 +55,11 @@ worktrees: ## List active worktree lanes for both child repos
 
 # ── Reliability ───────────────────────────────────────────────────────────────
 
-contract-check: ## Verify OpenAPI snapshot matches generated Travel App types
+contract-check: ## Verify full OpenAPI → app projection → generated types
 	@./scripts/contract-check.sh
 
-api-coverage-check: ## Verify http.ts only calls URLs that exist in docs/openapi.json
-	@python3 ./scripts/api-coverage-check.py
+api-coverage-check: ## Audit operation consumers, lifecycle policy, and OpenAPI method coverage
+	@python3 ./scripts/api_contract_audit.py
 
 smoke: ## Drive the happy path against a backend (default localhost:8000). Override with PRELAUNCH_HOST=https://...
 	@./scripts/smoke-happy-path.sh
@@ -247,7 +247,7 @@ verify: ## Single cross-repo pre-push gate (absorbs offline-qa + mock-real-parit
 	@$(MAKE) -C travel-agent ci
 	@echo "▸ Contract drift (OpenAPI snapshot ↔ generated types)..."
 	@$(MAKE) contract-check
-	@echo "▸ API coverage (http.ts URLs exist in docs/openapi.json)..."
+	@echo "▸ API operation registry + consumer coverage..."
 	@$(MAKE) api-coverage-check
 	@echo "▸ Frontend typecheck (travel-app: tsc --noEmit)..."
 	@$(MAKE) typecheck

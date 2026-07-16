@@ -27,13 +27,15 @@ Memory entries that describe "current state" are point-in-time snapshots and rot
 ## API Contract
 
 The backend exposes a full OpenAPI 3.1 schema at **`GET /openapi.json`** (when running).
-The frontend consumes it via generated TypeScript types.
+The frontend consumes a deterministic active-mobile projection via generated
+TypeScript types.
 
-**Single source of truth:** `docs/openapi.json` in THIS workspace repo. Every
-type-generation tool reads this one file — `scripts/sync-types.sh`,
-`scripts/contract-check.sh`, `scripts/api-coverage-check.py`, and the Travel
-App npm scripts (`generate-api-types:snapshot` / `:check`, which read it via
-`../docs/openapi.json`). There is no second snapshot to drift against.
+**Single source of truth:** `docs/openapi.json` in THIS workspace repo. It is
+the complete backend contract. `scripts/project_app_openapi.py` combines it
+with the governed operation registry and mobile caller evidence to generate
+`docs/openapi.app.json`. The app npm scripts generate from that narrower file;
+CI proves the projection is reproducible, so it cannot become an independent
+hand-maintained contract.
 
 > `make export-openapi` (in Travel Agent) writes directly to the workspace
 > `docs/openapi.json` — the single canonical snapshot. There is no in-repo
@@ -47,14 +49,18 @@ http://localhost:8000/openapi.json
 
 # OpenAPI schema (committed snapshot — the single source of truth)
 ./docs/openapi.json
+
+# Generated active-mobile projection used for TypeScript generation
+./docs/openapi.app.json
 ```
 
 The snapshot is regenerated deterministically and OFFLINE (no running
 backend needed) by `scripts/sync-types.sh`, which wraps Travel Agent's
 `scripts/export_openapi.py` (`app.openapi()`). Commit it whenever backend
 models change. CI (`.github/workflows/reliability.yml`) fails if the
-committed snapshot is stale vs the backend models, or if `schema.gen.ts`
-is stale vs the snapshot.
+committed full snapshot is stale vs the backend models, if the app projection
+is stale vs the full contract and operation registry, or if `schema.gen.ts`
+is stale vs the app projection.
 
 ---
 
@@ -69,8 +75,9 @@ is stale vs the snapshot.
 # What it does:
 # 1. Regenerates docs/openapi.json OFFLINE via Travel Agent's
 #    export_openapi.py (no running backend required)
-# 2. Generates TypeScript types in Travel App/utils/api/schema.gen.ts
-# 3. Runs tsc --noEmit in Travel App to surface any breakage
+# 2. Derives docs/openapi.app.json from active mobile operations
+# 3. Generates TypeScript types in Travel App/utils/api/schema.gen.ts
+# 4. Runs tsc --noEmit in Travel App to surface any breakage
 ```
 
 Other modes:
@@ -83,15 +90,14 @@ Other modes:
 1. Add the FastAPI route + Pydantic models in Travel Agent
 2. Run `./scripts/sync-types.sh`
 3. Use the generated types in Travel App — import from `utils/api/schema.gen.ts`
-4. Commit both `docs/openapi.json` and the updated app code together
+4. Commit `docs/openapi.json`, `docs/openapi.app.json`, and the updated app code together
 
-**Drift detection** — `make api-coverage-check` (or `python3
-scripts/api-coverage-check.py`) verifies every URL fetched by
-`Travel App/utils/api/http.ts` exists in `docs/openapi.json` at the
-declared method. Fails with exit code 1 on drift, which means either
-(a) the frontend will 404 at runtime, or (b) the openapi snapshot is
-stale. Run after adding a new endpoint or before opening a PR that
-touches the API surface.
+**Operation governance** — `make api-coverage-check` (or `python3
+scripts/api_contract_audit.py`) combines method-aware mobile caller discovery
+with `docs/governance/api-operation-policy.json`. It fails on frontend/OpenAPI
+drift, missing consumers, stale lifecycle entries, dark operations that gain a
+product caller, and transport methods that have never acquired a product
+consumer. Run it after adding, adopting, or retiring any endpoint.
 
 ---
 

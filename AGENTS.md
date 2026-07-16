@@ -40,7 +40,11 @@ Use a child repo root when:
 The backend exposes OpenAPI at:
 
 - live: `http://localhost:8000/openapi.json`
-- committed snapshot: `./docs/openapi.json`
+- complete committed snapshot: `./docs/openapi.json`
+
+The workspace deterministically derives the active mobile contract at:
+
+- generated app projection: `./docs/openapi.app.json`
 
 The frontend consumes generated types from:
 
@@ -52,7 +56,7 @@ When backend models or routes change:
 
 1. Update backend code and tests in `Travel Agent`
 2. Run `./scripts/sync-types.sh` from this workspace root
-3. Review `docs/openapi.json`
+3. Review `docs/openapi.json` and the derived `docs/openapi.app.json`
 4. Review `Travel App/utils/api/schema.gen.ts`
 5. Fix any frontend type breakage before finishing
 
@@ -131,6 +135,7 @@ protection against silently colliding is discipline:
 - `README.md` — human-readable workspace map
 - `Makefile` — cross-repo commands
 - `docs/openapi.json` — committed API snapshot
+- `docs/openapi.app.json` — generated active-mobile API projection
 - `scripts/dev.sh` — start local stack
 - `scripts/doctor.sh` — validate workspace/tooling setup
 - `scripts/new-worktree.sh` / `scripts/land-worktree.sh` — coordinated cross-repo worktree lane (create/land)

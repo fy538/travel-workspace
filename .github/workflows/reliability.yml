@@ -179,9 +179,8 @@ jobs:
         run: make docs-spine-check docs-status-check docs-links-check docs-child-governance-check
 
       - name: API coverage check
-        # Verifies every URL the frontend calls in http.ts exists in
-        # docs/openapi.json at the declared method. Catches stale
-        # snapshots and 404-at-runtime drift before they ship.
+        # Verifies method-aware mobile calls, named non-mobile consumers,
+        # lifecycle policy, and stale/dark operation classifications.
         run: make api-coverage-check
 
       - name: Golden path QA

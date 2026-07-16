@@ -30,6 +30,7 @@ This is **not** a superproject for the child repos.
 - [CLAUDE.md](./CLAUDE.md) — existing cross-repo contract notes
 - [Workspace Repo Setup](./docs/Workspace%20Repo%20Setup.md) — how to clone/bootstrap this coordination repo
 - [docs/openapi.json](./docs/openapi.json) — committed backend schema snapshot
+- [docs/openapi.app.json](./docs/openapi.app.json) — generated active-mobile schema projection
 - [travel.code-workspace](./travel.code-workspace) — saved multi-root editor workspace
 
 ## First-Time Setup
