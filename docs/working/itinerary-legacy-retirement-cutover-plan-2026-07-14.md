@@ -96,9 +96,9 @@ preserving the old itinerary underneath the new design.
   `persist_planning_output` fallback. Materialization and replanning continue
   through their typed canonical operations.
 - Static boundaries are green after exact-scope classification and ratcheting:
-  151 backend writer occurrences remain classified (including **17
-  `legacy_product` occurrences**), 72 legacy imports remain classified (**31
-  `replace`, 21 `delete`, 20 `rename`**), and 14 backend compatibility readers
+  151 backend writer occurrences remain classified (including **16
+  `legacy_product` occurrences**), 71 legacy imports remain classified (**31
+  `replace`, 20 `delete`, 20 `rename`**), and 14 backend compatibility readers
   remain classified (all **`delete`**). Green means “no unreviewed
   growth”; it does not mean those legacy rows are retired.
 - No B2 lane is formally licensed. A deterministic local refresh records the
@@ -131,6 +131,11 @@ preserving the old itinerary underneath the new design.
   operation recovery remains authoritative; a migration normalizes any stranded
   transient proposal row to Accepted with explicit recovery evidence before
   narrowing the database constraint.
+- Proposal voting now row-locks and writes only through the canonical
+  operation-proposal gateway; the old independent vote writer is deleted. The
+  unused planner `persist_planning_output` / `fork_itinerary_version` facade is
+  also deleted while live planning reads, feasibility warnings, and deferred
+  enrichment remain intact.
 
 The sections below retain the 2026-07-14 wiring trace as the audit baseline;
 use this closeout block and the executable guards for current status.
@@ -564,7 +569,7 @@ counts, deployed-revision/static-revision identity, lane-specific symbol and
 artifact/caller scans, observation windows, reset/reseed evidence, rollback
 checkpoint, evidence references, and sign-off unresolved. Lane 5 also lacks the
 lanes-1-to-4 license and final D2 closure. The static inventories are green
-ratchets but still contain 17 classified legacy-product writer occurrences, 52
+ratchets but still contain 16 classified legacy-product writer occurrences, 51
 replace/delete legacy imports, and 14 delete-classified compatibility readers.
 Those are retirement debt, not deletion proof.
 
