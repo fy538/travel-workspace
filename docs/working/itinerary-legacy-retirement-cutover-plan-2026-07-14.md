@@ -82,16 +82,31 @@ preserving the old itinerary underneath the new design.
 - A frontend cutover leak found during this review was fixed: Plan's day rail
   now derives its changed-day markers from canonical operation-history receipts
   and targets, not `recent_change_ids` / legacy day changes.
+- The retired Folio and Change Studio transport surfaces are now physically
+  removed in both repositories. This includes the backend Folio/read-model
+  package, old edit preview/commit routes, frontend Folio components, mock
+  clients, generated schemas, query persistence, cache invalidations, and the
+  obsolete plan-edit idempotency table (with a drop migration).
+- Canonical commits no longer mirror manual-edit events into `plan_events`.
+  Proposal resolve/revert now use only the canonical proposal gateway; the
+  unreachable duplicate route body and the independent
+  `core/db/proposal_apply.py` mutation/revert engine are deleted. Proactive
+  supersession also resolves through canonical authority.
+- The planner execution boundary no longer imports or exposes its dormant
+  `persist_planning_output` fallback. Materialization and replanning continue
+  through their typed canonical operations.
 - Static boundaries are green after exact-scope classification and ratcheting:
-  162 backend writer sites remain classified (including **28
-  `legacy_product` sites**), 102 legacy imports remain classified (**57
-  `replace`, 24 `delete`, 21 `rename`**), and 37 backend compatibility readers
-  remain classified (**30 `delete`, 7 `replace`**). Green means “no unreviewed
+  161 backend writer sites remain classified (including **27
+  `legacy_product` sites**), 87 legacy imports remain classified (**43
+  `replace`, 24 `delete`, 20 `rename`**), and 23 backend compatibility readers
+  remain classified (**21 `delete`, 2 `replace`**). Green means “no unreviewed
   growth”; it does not mean those legacy rows are retired.
-- No B2 lane is licensed. The evidence rows still lack measured nonzero
+- No B2 lane is formally licensed. The evidence rows still lack measured nonzero
   per-surface exercises, canonical write/proposal counts, applicable outcome
-  coverage, and signatures. Therefore B3 physical deletion and lane-5 flag
-  collapse remain blocked by design.
+  coverage, and signatures. Pre-launch physical deletion has nevertheless
+  started where static reachability and canonical journey coverage proved the
+  old authority dead; the evidence bundle must be reconciled before claiming
+  B2/B3 complete. Lane-5 flag collapse remains unstarted.
 - C4 five-pack manifest readiness now passes for all five packs. Nine Istanbul
   itinerary targets that had never acquired promoted corpus identities remain
   as honest authored labels instead of fabricated venue/site references. The
