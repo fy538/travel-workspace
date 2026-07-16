@@ -6101,6 +6101,23 @@
             }
           },
           {
+            "name": "before_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Before Id"
+            }
+          },
+          {
             "name": "reference_id_prefix",
             "in": "query",
             "required": false,
@@ -6323,6 +6340,77 @@
             "content": {
               "application/json": {
                 "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/conversations/{conversation_id}/messages/cancel": {
+      "post": {
+        "tags": [
+          "conversations"
+        ],
+        "summary": "Cancel Message Stream",
+        "description": "Cancel this actor's currently running turn without treating socket loss as cancellation.",
+        "operationId": "cancel_message_stream_api_conversations__conversation_id__messages_cancel_post",
+        "parameters": [
+          {
+            "name": "conversation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Conversation Id"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "title": "X-Idempotency-Key"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancelTurnResponse"
+                }
               }
             }
           },
@@ -21900,6 +21988,22 @@
             }
           },
           {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Idempotency-Key"
+            }
+          },
+          {
             "name": "authorization",
             "in": "header",
             "required": false,
@@ -22107,6 +22211,22 @@
               "type": "string",
               "format": "uuid",
               "title": "Trip Id"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Idempotency-Key"
             }
           },
           {
@@ -27902,6 +28022,29 @@
           "message"
         ],
         "title": "CancelOfferResponse"
+      },
+      "CancelTurnResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "cancelled",
+              "not_running"
+            ],
+            "title": "Status"
+          },
+          "conversation_id": {
+            "type": "string",
+            "title": "Conversation Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "conversation_id"
+        ],
+        "title": "CancelTurnResponse",
+        "description": "Result of an ownership-scoped explicit turn cancellation request."
       },
       "CaptureMomentRequest": {
         "properties": {
@@ -34777,18 +34920,6 @@
             ],
             "title": "Block Id"
           },
-          "booking_offer_id": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "uuid"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Booking Offer Id"
-          },
           "title": {
             "type": "string",
             "title": "Title"
@@ -38242,6 +38373,16 @@
         ],
         "title": "Hypothesis",
         "description": "Internal-only. The LLM's working claim about the user and its evidence.\n\nNOT surfaced to the user. Used for:\n- Debugging + eval (\"why did the Take emphasize X?\")\n- Offline analysis (aggregating which hypothesis categories correlate\n  with saves vs dismisses, feeding Personal Memory refresh)\n- Grounding validation (post-generation check that every hypothesis\n  references real evidence)\n\n`evidence_refs` are opaque ID strings scoped by `evidence_type`:\n- personal_memory: the Personal Memory version id or a section marker\n- past_trip: trip_id\n- angle_affinity: angle_id\n- group_signal: group_profile_version id\n- saved_entity: entity_id previously saved"
+      },
+      "InitialPlanCommitmentState": {
+        "type": "string",
+        "enum": [
+          "open",
+          "suggested",
+          "tentative"
+        ],
+        "title": "InitialPlanCommitmentState",
+        "description": "Intrinsic softness that may be asserted when a first plan is born.\n\nProvider and traveler-confirmed states require their own canonical\nchronology.  Keeping them out of ``materialize_shape`` prevents an\naccepted draft from manufacturing booking or occurrence truth."
       },
       "IntakePayload": {
         "properties": {
@@ -43773,6 +43914,10 @@
           "structural_role": {
             "$ref": "#/components/schemas/StructuralRole",
             "default": "ordinary"
+          },
+          "commitment_state": {
+            "$ref": "#/components/schemas/InitialPlanCommitmentState",
+            "default": "tentative"
           },
           "time_start": {
             "anyOf": [
@@ -51249,6 +51394,57 @@
         ],
         "title": "Receipt"
       },
+      "RecommendationAction": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "phone",
+              "deadline"
+            ],
+            "title": "Kind"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Label"
+          },
+          "phone_number": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 30,
+                "minLength": 5,
+                "pattern": "^\\+?[0-9() .-]+$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Phone Number"
+          },
+          "deadline_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deadline At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "label"
+        ],
+        "title": "RecommendationAction",
+        "description": "A reviewed, typed CTA derived alongside recommendation reasoning."
+      },
       "RecommendationPayload": {
         "properties": {
           "move": {
@@ -51314,6 +51510,15 @@
             ],
             "title": "Timing Note",
             "description": "When to go, how long, reservation tip, time-of-day cue."
+          },
+          "actions": {
+            "items": {
+              "$ref": "#/components/schemas/RecommendationAction"
+            },
+            "type": "array",
+            "maxItems": 3,
+            "title": "Actions",
+            "description": "Typed phone or calendar actions; never infer actions from display prose."
           }
         },
         "type": "object",

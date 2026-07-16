@@ -58,6 +58,21 @@
       "removal_trigger": null,
       "review_by": null
     },
+    "GET /admin/booking/cancellation-reviews": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated read-only queue for cancellation claims that exhausted automatic provider reconciliation.",
+      "removal_trigger": null,
+      "review_by": null
+    },
     "GET /admin/dogfood/audit": {
       "audience": "operator",
       "consumers": [
@@ -1102,6 +1117,25 @@
       "lifecycle": "active",
       "owner": "conversations",
       "reason": "Indirect mobile transport is a current product consumer.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "POST /api/conversations/{conversation_id}/messages/cancel": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "useConciergeChat"
+        },
+        {
+          "kind": "app_source",
+          "name": "useGroupChat"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "conversations",
+      "reason": "The private and group chat stop controls cancel accepted server turns through the shared API adapter.",
       "removal_trigger": null,
       "review_by": null
     },
