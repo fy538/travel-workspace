@@ -8729,66 +8729,6 @@
         }
       }
     },
-    "/api/trips/{trip_id}/folio": {
-      "get": {
-        "tags": [
-          "trips"
-        ],
-        "summary": "Get Trip Folio",
-        "description": "Return the backend-authored diagnosis for the single-trip Folio.\n\nV1 owns mode, ranked facets, attention, discovery, group consensus,\npre-trip prep, live leave-by, readiness, the compact itinerary spine,\npost-trip memory facets, and the completed-trip keepsake band. Deeper\nsurfaces such as full itinerary editing still keep their specialist read\nmodels.",
-        "operationId": "get_trip_folio_api_trips__trip_id__folio_get",
-        "parameters": [
-          {
-            "name": "trip_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Trip Id"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TripFolioReadModel"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/users/{user_id}/following": {
       "post": {
         "tags": [
@@ -10340,7 +10280,7 @@
           "trip-invites"
         ],
         "summary": "View Invite",
-        "description": "Render the landing page for an invite token. Public endpoint.\n\nBranches on scope: trip invites render the committed-trip summary\nwith a Haiku-generated snapshot (cached). Conversation invites\n(Phase 4, pre-trip group chat) render a lightweight summary built\ndirectly from intent_state — no LLM call, no caching needed, since\nthe substance bar is low and the content is already structured.",
+        "description": "HTTP adapter for the canonical public invite projection service.",
         "operationId": "view_invite_api_invites__token__get",
         "parameters": [
           {
@@ -17251,6 +17191,204 @@
         }
       }
     },
+    "/api/trips/{trip_id}/group-memory": {
+      "get": {
+        "tags": [
+          "trips",
+          "trips"
+        ],
+        "summary": "Get Group Memory",
+        "operationId": "get_group_memory_api_trips__trip_id__group_memory_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupMemoryResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "trips",
+          "trips"
+        ],
+        "summary": "Patch Group Memory",
+        "operationId": "patch_group_memory_api_trips__trip_id__group_memory_patch",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GroupMemoryPatchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupMemoryResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/group-memory/forget": {
+      "post": {
+        "tags": [
+          "trips",
+          "trips"
+        ],
+        "summary": "Forget Group Memory Item",
+        "operationId": "forget_group_memory_item_api_trips__trip_id__group_memory_forget_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GroupMemoryForgetRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupMemoryResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/users/{user_id}/trips": {
       "get": {
         "tags": [
@@ -18886,204 +19024,6 @@
             "content": {
               "application/json": {
                 "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/trips/{trip_id}/group-memory": {
-      "get": {
-        "tags": [
-          "trips"
-        ],
-        "summary": "Get Group Memory",
-        "description": "Group-safe profile legibility surface for trip members.",
-        "operationId": "get_group_memory_api_trips__trip_id__group_memory_get",
-        "parameters": [
-          {
-            "name": "trip_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Trip Id"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GroupMemoryResponse"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "trips"
-        ],
-        "summary": "Patch Group Memory",
-        "description": "Replace the group-safe memory surface with edited member-visible notes.",
-        "operationId": "patch_group_memory_api_trips__trip_id__group_memory_patch",
-        "parameters": [
-          {
-            "name": "trip_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Trip Id"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GroupMemoryPatchRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GroupMemoryResponse"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/trips/{trip_id}/group-memory/forget": {
-      "post": {
-        "tags": [
-          "trips"
-        ],
-        "summary": "Forget Group Memory Item",
-        "description": "Forget one group-safe memory item by creating a new version without it.",
-        "operationId": "forget_group_memory_item_api_trips__trip_id__group_memory_forget_post",
-        "parameters": [
-          {
-            "name": "trip_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Trip Id"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GroupMemoryForgetRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GroupMemoryResponse"
-                }
               }
             }
           },
@@ -27227,40 +27167,6 @@
         ],
         "title": "BlockPrecondition"
       },
-      "BlockSummary": {
-        "properties": {
-          "block_id": {
-            "type": "string",
-            "title": "Block Id"
-          },
-          "title": {
-            "type": "string",
-            "title": "Title"
-          },
-          "time_label": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Time Label"
-          },
-          "changed": {
-            "type": "boolean",
-            "title": "Changed",
-            "default": false
-          }
-        },
-        "type": "object",
-        "required": [
-          "block_id",
-          "title"
-        ],
-        "title": "BlockSummary"
-      },
       "BlockTransition": {
         "properties": {
           "mode": {
@@ -27552,22 +27458,6 @@
               }
             ],
             "title": "Checkout Status"
-          },
-          "cancellation_status": {
-            "anyOf": [
-              {
-                "type": "string",
-                "enum": [
-                  "pending",
-                  "cancelled",
-                  "manual_action_required"
-                ]
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Cancellation Status"
           },
           "provider_offer_id": {
             "anyOf": [
@@ -28152,228 +28042,6 @@
         ],
         "title": "Caveat",
         "description": "Structured because caveats get special UI treatment on the phone —\nthey can't be buried in the body (allergen warnings, accessibility, etc.)."
-      },
-      "ChangeProposal": {
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Id"
-          },
-          "trip_id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Trip Id"
-          },
-          "itinerary_id": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "uuid"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Itinerary Id"
-          },
-          "proposed_by": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Proposed By"
-          },
-          "proposal_type": {
-            "type": "string",
-            "title": "Proposal Type"
-          },
-          "title": {
-            "type": "string",
-            "title": "Title"
-          },
-          "description": {
-            "type": "string",
-            "title": "Description"
-          },
-          "impact_analysis": {
-            "$ref": "#/components/schemas/ProposalImpactAnalysis"
-          },
-          "affected_block_ids": {
-            "items": {
-              "type": "string",
-              "format": "uuid"
-            },
-            "type": "array",
-            "title": "Affected Block Ids"
-          },
-          "alternative_options": {
-            "items": {
-              "$ref": "#/components/schemas/AlternativeOption"
-            },
-            "type": "array",
-            "title": "Alternative Options"
-          },
-          "status": {
-            "type": "string",
-            "title": "Status",
-            "default": "open"
-          },
-          "votes": {
-            "additionalProperties": true,
-            "type": "object",
-            "title": "Votes"
-          },
-          "resolution_note": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Resolution Note"
-          },
-          "resolved_by": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "uuid"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Resolved By"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Created At"
-          },
-          "resolved_at": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Resolved At"
-          },
-          "metadata_": {
-            "additionalProperties": true,
-            "type": "object",
-            "title": "Metadata"
-          },
-          "approval_mode": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Approval Mode"
-          },
-          "deadline": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Deadline"
-          },
-          "auto_resolved": {
-            "type": "boolean",
-            "title": "Auto Resolved",
-            "default": false
-          },
-          "proposed_by_agent": {
-            "type": "boolean",
-            "title": "Proposed By Agent",
-            "default": false
-          },
-          "proposed_entity_type": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Proposed Entity Type"
-          },
-          "proposed_entity_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Proposed Entity Id"
-          },
-          "apply_status": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Apply Status"
-          },
-          "apply_error": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Apply Error"
-          },
-          "applied_block_map": {
-            "anyOf": [
-              {
-                "additionalProperties": true,
-                "type": "object"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Applied Block Map"
-          },
-          "was_reverted": {
-            "type": "boolean",
-            "title": "Was Reverted",
-            "default": false
-          }
-        },
-        "type": "object",
-        "required": [
-          "id",
-          "trip_id",
-          "proposed_by",
-          "proposal_type",
-          "title",
-          "description",
-          "created_at"
-        ],
-        "title": "ChangeProposal",
-        "description": "A proposal to modify an itinerary, pending group approval."
       },
       "CheckoutOfferResult": {
         "properties": {
@@ -31041,40 +30709,6 @@
           "day_number"
         ],
         "title": "DayConflictsResponse"
-      },
-      "DayDiff": {
-        "properties": {
-          "day_id": {
-            "type": "string",
-            "title": "Day Id"
-          },
-          "day_label": {
-            "type": "string",
-            "title": "Day Label"
-          },
-          "before": {
-            "items": {
-              "$ref": "#/components/schemas/BlockSummary"
-            },
-            "type": "array",
-            "title": "Before"
-          },
-          "after": {
-            "items": {
-              "$ref": "#/components/schemas/BlockSummary"
-            },
-            "type": "array",
-            "title": "After"
-          }
-        },
-        "type": "object",
-        "required": [
-          "day_id",
-          "day_label",
-          "before",
-          "after"
-        ],
-        "title": "DayDiff"
       },
       "DayPrecondition": {
         "properties": {
@@ -35887,1231 +35521,6 @@
         },
         "type": "object",
         "title": "FeedbackResponse"
-      },
-      "FolioAction": {
-        "properties": {
-          "type": {
-            "type": "string",
-            "enum": [
-              "open_stay",
-              "open_decisions",
-              "review_proposal",
-              "open_timeline",
-              "open_transport",
-              "open_route",
-              "open_costs",
-              "open_story",
-              "open_atlas"
-            ],
-            "title": "Type"
-          },
-          "ref_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Ref Id"
-          },
-          "day_number": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Day Number"
-          }
-        },
-        "type": "object",
-        "required": [
-          "type"
-        ],
-        "title": "FolioAction"
-      },
-      "FolioCompatibilityProjection": {
-        "properties": {
-          "contract_version": {
-            "type": "string",
-            "const": "ir12-folio-compat-v1",
-            "title": "Contract Version",
-            "default": "ir12-folio-compat-v1"
-          },
-          "authority": {
-            "type": "string",
-            "const": "compatibility_only",
-            "title": "Authority",
-            "default": "compatibility_only"
-          },
-          "measured_against_projection_version": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Measured Against Projection Version"
-          },
-          "fields": {
-            "items": {
-              "$ref": "#/components/schemas/FolioFieldParity"
-            },
-            "type": "array",
-            "title": "Fields"
-          },
-          "parity_proven": {
-            "type": "boolean",
-            "title": "Parity Proven",
-            "default": false
-          }
-        },
-        "additionalProperties": false,
-        "type": "object",
-        "required": [
-          "fields"
-        ],
-        "title": "FolioCompatibilityProjection"
-      },
-      "FolioCostSummary": {
-        "properties": {
-          "logged_count": {
-            "type": "integer",
-            "title": "Logged Count",
-            "default": 0
-          },
-          "total_amount": {
-            "type": "number",
-            "title": "Total Amount",
-            "default": 0
-          },
-          "currency": {
-            "type": "string",
-            "title": "Currency",
-            "default": "USD"
-          },
-          "traveler_count": {
-            "type": "integer",
-            "title": "Traveler Count",
-            "default": 1
-          },
-          "current_user_net_balance": {
-            "type": "number",
-            "title": "Current User Net Balance",
-            "default": 0
-          },
-          "outgoing_count": {
-            "type": "integer",
-            "title": "Outgoing Count",
-            "default": 0
-          },
-          "incoming_count": {
-            "type": "integer",
-            "title": "Incoming Count",
-            "default": 0
-          },
-          "estimate_total": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Estimate Total"
-          },
-          "estimate_per_person": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Estimate Per Person"
-          },
-          "estimate_currency": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Estimate Currency"
-          },
-          "is_settled": {
-            "type": "boolean",
-            "title": "Is Settled",
-            "default": true
-          }
-        },
-        "type": "object",
-        "title": "FolioCostSummary",
-        "description": "Compact, non-ledger cost state needed by Trip Home."
-      },
-      "FolioDiagnostics": {
-        "properties": {
-          "open_proposal_count": {
-            "type": "integer",
-            "title": "Open Proposal Count",
-            "default": 0
-          },
-          "top_proposal": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/ChangeProposal"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "hard_conflict_count": {
-            "type": "integer",
-            "title": "Hard Conflict Count",
-            "default": 0
-          },
-          "lead_conflict_title": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Lead Conflict Title"
-          },
-          "lead_conflict_detail": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Lead Conflict Detail"
-          },
-          "transport_gap_count": {
-            "type": "integer",
-            "title": "Transport Gap Count",
-            "default": 0
-          }
-        },
-        "type": "object",
-        "title": "FolioDiagnostics"
-      },
-      "FolioDiscoveryAction": {
-        "properties": {
-          "type": {
-            "type": "string",
-            "enum": [
-              "open_saved_places",
-              "open_event"
-            ],
-            "title": "Type"
-          },
-          "ref_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Ref Id"
-          }
-        },
-        "type": "object",
-        "required": [
-          "type"
-        ],
-        "title": "FolioDiscoveryAction"
-      },
-      "FolioDiscoveryBand": {
-        "properties": {
-          "kind": {
-            "type": "string",
-            "enum": [
-              "saved_places",
-              "dated_events"
-            ],
-            "title": "Kind"
-          },
-          "title": {
-            "type": "string",
-            "title": "Title"
-          },
-          "items": {
-            "items": {
-              "$ref": "#/components/schemas/FolioDiscoveryItem"
-            },
-            "type": "array",
-            "title": "Items"
-          },
-          "empty_state": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Empty State"
-          },
-          "add_action": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/FolioDiscoveryAction"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "type": "object",
-        "required": [
-          "kind",
-          "title"
-        ],
-        "title": "FolioDiscoveryBand"
-      },
-      "FolioDiscoveryItem": {
-        "properties": {
-          "kind": {
-            "type": "string",
-            "enum": [
-              "saved_place",
-              "dated_event"
-            ],
-            "title": "Kind"
-          },
-          "id": {
-            "type": "string",
-            "title": "Id"
-          },
-          "name": {
-            "type": "string",
-            "title": "Name"
-          },
-          "meta": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Meta"
-          },
-          "venue_type": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Venue Type"
-          },
-          "starts_at": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Starts At"
-          },
-          "action": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/FolioDiscoveryAction"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "type": "object",
-        "required": [
-          "kind",
-          "id",
-          "name"
-        ],
-        "title": "FolioDiscoveryItem"
-      },
-      "FolioEvidenceChip": {
-        "properties": {
-          "time": {
-            "type": "string",
-            "title": "Time"
-          },
-          "label": {
-            "type": "string",
-            "title": "Label"
-          }
-        },
-        "type": "object",
-        "required": [
-          "time",
-          "label"
-        ],
-        "title": "FolioEvidenceChip"
-      },
-      "FolioEvidenceOption": {
-        "properties": {
-          "label": {
-            "type": "string",
-            "title": "Label"
-          },
-          "meta": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Meta"
-          },
-          "votes": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Votes"
-          }
-        },
-        "type": "object",
-        "required": [
-          "label"
-        ],
-        "title": "FolioEvidenceOption"
-      },
-      "FolioEvidenceSwapSide": {
-        "properties": {
-          "label": {
-            "type": "string",
-            "title": "Label"
-          },
-          "meta": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Meta"
-          }
-        },
-        "type": "object",
-        "required": [
-          "label"
-        ],
-        "title": "FolioEvidenceSwapSide"
-      },
-      "FolioEvidenceVoter": {
-        "properties": {
-          "initial": {
-            "type": "string",
-            "title": "Initial"
-          },
-          "label": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Label"
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "in",
-              "waiting",
-              "you"
-            ],
-            "title": "Status",
-            "default": "in"
-          }
-        },
-        "type": "object",
-        "required": [
-          "initial"
-        ],
-        "title": "FolioEvidenceVoter"
-      },
-      "FolioFacetEvidence": {
-        "properties": {
-          "kind": {
-            "type": "string",
-            "enum": [
-              "vote",
-              "next",
-              "ribbon",
-              "booking",
-              "clash",
-              "budget",
-              "swap",
-              "lazy",
-              "readiness",
-              "reaction",
-              "applied"
-            ],
-            "title": "Kind"
-          },
-          "in_count": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "In Count"
-          },
-          "total": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Total"
-          },
-          "time": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Time"
-          },
-          "label": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Label"
-          },
-          "tail": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Tail"
-          },
-          "to_book": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "To Book"
-          },
-          "venue_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Venue Name"
-          },
-          "venue_meta": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Venue Meta"
-          },
-          "hold_label": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Hold Label"
-          },
-          "days": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Days"
-          },
-          "a": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/FolioEvidenceChip"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "b": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/FolioEvidenceChip"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "options": {
-            "items": {
-              "$ref": "#/components/schemas/FolioEvidenceOption"
-            },
-            "type": "array",
-            "title": "Options"
-          },
-          "voters": {
-            "items": {
-              "$ref": "#/components/schemas/FolioEvidenceVoter"
-            },
-            "type": "array",
-            "title": "Voters"
-          },
-          "was": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/FolioEvidenceSwapSide"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "now": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/FolioEvidenceSwapSide"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "overlap_label": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Overlap Label"
-          }
-        },
-        "type": "object",
-        "required": [
-          "kind"
-        ],
-        "title": "FolioFacetEvidence"
-      },
-      "FolioFieldParity": {
-        "properties": {
-          "field": {
-            "type": "string",
-            "enum": [
-              "lifecycle",
-              "urgency",
-              "facets",
-              "source_status",
-              "partial_data",
-              "memory_handoff"
-            ],
-            "title": "Field"
-          },
-          "state": {
-            "type": "string",
-            "enum": [
-              "parity",
-              "degraded",
-              "missing"
-            ],
-            "title": "State"
-          },
-          "reason_code": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Reason Code"
-          }
-        },
-        "additionalProperties": false,
-        "type": "object",
-        "required": [
-          "field",
-          "state"
-        ],
-        "title": "FolioFieldParity"
-      },
-      "FolioKeepsakeBand": {
-        "properties": {
-          "title": {
-            "type": "string",
-            "title": "Title"
-          },
-          "count_label": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Count Label"
-          },
-          "empty_title": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Empty Title"
-          },
-          "items": {
-            "items": {
-              "$ref": "#/components/schemas/FolioKeepsakeItem"
-            },
-            "type": "array",
-            "title": "Items"
-          },
-          "primary_action": {
-            "$ref": "#/components/schemas/FolioAction"
-          },
-          "secondary_action": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/FolioAction"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "type": "object",
-        "required": [
-          "title",
-          "primary_action"
-        ],
-        "title": "FolioKeepsakeBand"
-      },
-      "FolioKeepsakeItem": {
-        "properties": {
-          "id": {
-            "type": "string",
-            "title": "Id"
-          },
-          "title": {
-            "type": "string",
-            "title": "Title"
-          },
-          "meta": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Meta"
-          },
-          "day_number": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Day Number"
-          },
-          "action": {
-            "$ref": "#/components/schemas/FolioAction"
-          }
-        },
-        "type": "object",
-        "required": [
-          "id",
-          "title",
-          "action"
-        ],
-        "title": "FolioKeepsakeItem"
-      },
-      "FolioPrepBand": {
-        "properties": {
-          "title": {
-            "type": "string",
-            "title": "Title"
-          },
-          "countdown": {
-            "type": "string",
-            "title": "Countdown"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/FolioPrepMessage"
-            },
-            "type": "array",
-            "title": "Messages"
-          }
-        },
-        "type": "object",
-        "required": [
-          "title",
-          "countdown"
-        ],
-        "title": "FolioPrepBand"
-      },
-      "FolioPrepMessage": {
-        "properties": {
-          "id": {
-            "type": "string",
-            "title": "Id"
-          },
-          "content": {
-            "type": "string",
-            "title": "Content"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Created At"
-          }
-        },
-        "type": "object",
-        "required": [
-          "id",
-          "content",
-          "created_at"
-        ],
-        "title": "FolioPrepMessage"
-      },
-      "FolioReadinessBand": {
-        "properties": {
-          "title": {
-            "type": "string",
-            "title": "Title"
-          },
-          "rows": {
-            "items": {
-              "$ref": "#/components/schemas/FolioReadinessRow"
-            },
-            "type": "array",
-            "title": "Rows"
-          }
-        },
-        "type": "object",
-        "required": [
-          "title"
-        ],
-        "title": "FolioReadinessBand"
-      },
-      "FolioReadinessRow": {
-        "properties": {
-          "key": {
-            "type": "string",
-            "title": "Key"
-          },
-          "mo": {
-            "type": "string",
-            "title": "Mo"
-          },
-          "d": {
-            "type": "string",
-            "title": "D"
-          },
-          "label": {
-            "type": "string",
-            "title": "Label"
-          },
-          "sub": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Sub"
-          },
-          "meta": {
-            "type": "string",
-            "title": "Meta"
-          },
-          "state": {
-            "type": "string",
-            "enum": [
-              "clash",
-              "open",
-              "set"
-            ],
-            "title": "State"
-          },
-          "action": {
-            "$ref": "#/components/schemas/FolioAction"
-          }
-        },
-        "type": "object",
-        "required": [
-          "key",
-          "mo",
-          "d",
-          "label",
-          "meta",
-          "state",
-          "action"
-        ],
-        "title": "FolioReadinessRow"
-      },
-      "FolioSourceStatus": {
-        "properties": {
-          "plan_state": {
-            "type": "boolean",
-            "title": "Plan State",
-            "default": true
-          },
-          "proposals": {
-            "type": "boolean",
-            "title": "Proposals",
-            "default": true
-          },
-          "accommodations": {
-            "type": "boolean",
-            "title": "Accommodations",
-            "default": true
-          },
-          "conflicts": {
-            "type": "boolean",
-            "title": "Conflicts",
-            "default": true
-          },
-          "transport_gaps": {
-            "type": "boolean",
-            "title": "Transport Gaps",
-            "default": true
-          },
-          "home_cards": {
-            "type": "boolean",
-            "title": "Home Cards",
-            "default": true
-          },
-          "discovery": {
-            "type": "boolean",
-            "title": "Discovery",
-            "default": true
-          },
-          "group_profile": {
-            "type": "boolean",
-            "title": "Group Profile",
-            "default": true
-          },
-          "prep": {
-            "type": "boolean",
-            "title": "Prep",
-            "default": true
-          },
-          "leave_by": {
-            "type": "boolean",
-            "title": "Leave By",
-            "default": true
-          },
-          "readiness": {
-            "type": "boolean",
-            "title": "Readiness",
-            "default": true
-          },
-          "settlement": {
-            "type": "boolean",
-            "title": "Settlement",
-            "default": true
-          },
-          "keepsake": {
-            "type": "boolean",
-            "title": "Keepsake",
-            "default": true
-          }
-        },
-        "type": "object",
-        "title": "FolioSourceStatus"
-      },
-      "FolioSpine": {
-        "properties": {
-          "current_day_number": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Current Day Number"
-          },
-          "total_days": {
-            "type": "integer",
-            "title": "Total Days",
-            "default": 0
-          },
-          "days": {
-            "items": {
-              "$ref": "#/components/schemas/FolioSpineDay"
-            },
-            "type": "array",
-            "title": "Days"
-          }
-        },
-        "type": "object",
-        "title": "FolioSpine"
-      },
-      "FolioSpineBlock": {
-        "properties": {
-          "id": {
-            "type": "string",
-            "title": "Id"
-          },
-          "block_type": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Block Type"
-          },
-          "status": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Status"
-          },
-          "event_state": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Event State"
-          },
-          "time": {
-            "type": "string",
-            "title": "Time"
-          },
-          "title": {
-            "type": "string",
-            "title": "Title"
-          },
-          "detail": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Detail"
-          },
-          "neighborhood_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Neighborhood Name"
-          },
-          "travel_to_next": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/FolioTravelSegment"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "type": "object",
-        "required": [
-          "id",
-          "time",
-          "title"
-        ],
-        "title": "FolioSpineBlock"
-      },
-      "FolioSpineDay": {
-        "properties": {
-          "day_number": {
-            "type": "integer",
-            "title": "Day Number"
-          },
-          "date": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Date"
-          },
-          "theme": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Theme"
-          },
-          "blocks": {
-            "items": {
-              "$ref": "#/components/schemas/FolioSpineBlock"
-            },
-            "type": "array",
-            "title": "Blocks"
-          }
-        },
-        "type": "object",
-        "required": [
-          "day_number"
-        ],
-        "title": "FolioSpineDay"
-      },
-      "FolioTravelSegment": {
-        "properties": {
-          "mode": {
-            "type": "string",
-            "title": "Mode"
-          },
-          "duration_minutes": {
-            "type": "integer",
-            "title": "Duration Minutes"
-          },
-          "distance_km": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Distance Km"
-          },
-          "note": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Note"
-          }
-        },
-        "type": "object",
-        "required": [
-          "mode",
-          "duration_minutes"
-        ],
-        "title": "FolioTravelSegment"
       },
       "Follow": {
         "properties": {
@@ -48615,327 +47024,6 @@
         "type": "object",
         "title": "PlanDecisionVotes"
       },
-      "PlanEditCommitRequest": {
-        "properties": {
-          "intent": {
-            "type": "string",
-            "title": "Intent"
-          },
-          "block_id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Block Id"
-          },
-          "idempotency_token": {
-            "type": "string",
-            "title": "Idempotency Token"
-          },
-          "day_id": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "uuid"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Day Id"
-          },
-          "time_start": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Time Start"
-          },
-          "time_end": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Time End"
-          },
-          "new_title": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "New Title"
-          },
-          "expected_updated_at": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Expected Updated At"
-          },
-          "prefer_mode": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Prefer Mode"
-          }
-        },
-        "type": "object",
-        "required": [
-          "intent",
-          "block_id",
-          "idempotency_token"
-        ],
-        "title": "PlanEditCommitRequest"
-      },
-      "PlanEditCommitResponse": {
-        "properties": {
-          "applied": {
-            "type": "boolean",
-            "title": "Applied"
-          },
-          "edit_mode": {
-            "type": "string",
-            "title": "Edit Mode"
-          },
-          "proposal_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Proposal Id"
-          },
-          "block_id": {
-            "type": "string",
-            "title": "Block Id"
-          }
-        },
-        "type": "object",
-        "required": [
-          "applied",
-          "edit_mode",
-          "block_id"
-        ],
-        "title": "PlanEditCommitResponse"
-      },
-      "PlanEditPreviewOut": {
-        "properties": {
-          "intent": {
-            "type": "string",
-            "title": "Intent"
-          },
-          "recommendation": {
-            "type": "string",
-            "title": "Recommendation"
-          },
-          "action": {
-            "type": "string",
-            "enum": [
-              "move",
-              "swap",
-              "remove",
-              "fill",
-              "none"
-            ],
-            "title": "Action",
-            "default": "move"
-          },
-          "rationale": {
-            "type": "string",
-            "title": "Rationale",
-            "default": ""
-          },
-          "rationale_group_safe": {
-            "type": "boolean",
-            "title": "Rationale Group Safe",
-            "default": true
-          },
-          "apply_time_start": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Apply Time Start"
-          },
-          "apply_time_end": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Apply Time End"
-          },
-          "day_diffs": {
-            "items": {
-              "$ref": "#/components/schemas/DayDiff"
-            },
-            "type": "array",
-            "title": "Day Diffs"
-          },
-          "risks": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array",
-            "title": "Risks"
-          },
-          "commit_mode": {
-            "type": "string",
-            "enum": [
-              "auto",
-              "confirm",
-              "proposal"
-            ],
-            "title": "Commit Mode"
-          },
-          "plan_version": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Plan Version"
-          },
-          "idempotency_token": {
-            "type": "string",
-            "title": "Idempotency Token"
-          }
-        },
-        "type": "object",
-        "required": [
-          "intent",
-          "recommendation",
-          "day_diffs",
-          "commit_mode",
-          "idempotency_token"
-        ],
-        "title": "PlanEditPreviewOut"
-      },
-      "PlanEditPreviewRequest": {
-        "properties": {
-          "intent": {
-            "type": "string",
-            "enum": [
-              "move",
-              "swap",
-              "remove",
-              "fill"
-            ],
-            "title": "Intent"
-          },
-          "block_id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Block Id"
-          },
-          "target_day_id": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "uuid"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Target Day Id"
-          },
-          "target_time_start": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Target Time Start"
-          },
-          "target_time_end": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Target Time End"
-          },
-          "swap_with_block_id": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "uuid"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Swap With Block Id"
-          },
-          "nl_instruction": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Nl Instruction"
-          },
-          "plan_version": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Plan Version"
-          }
-        },
-        "type": "object",
-        "required": [
-          "intent",
-          "block_id"
-        ],
-        "title": "PlanEditPreviewRequest"
-      },
       "PlanEntityRef": {
         "properties": {
           "kind": {
@@ -57284,317 +55372,6 @@
         ],
         "title": "TripDigest",
         "description": "A daily, trip-summary, or planning-context structured digest.\n\n`content` is the LLM's structured JSON output; `rendered_markdown` is a\npre-formatted textual view populated at generation time so consumers\n(planner prompt, admin UI) don't need to re-render the payload."
-      },
-      "TripFolioFacet": {
-        "properties": {
-          "key": {
-            "type": "string",
-            "enum": [
-              "stay",
-              "decisions",
-              "plan",
-              "route"
-            ],
-            "title": "Key"
-          },
-          "state": {
-            "type": "string",
-            "enum": [
-              "broken",
-              "needs",
-              "cta",
-              "clear",
-              "ok"
-            ],
-            "title": "State"
-          },
-          "label": {
-            "type": "string",
-            "title": "Label"
-          },
-          "column_value": {
-            "type": "string",
-            "title": "Column Value"
-          },
-          "column_sub": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Column Sub"
-          },
-          "hero_label": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Hero Label"
-          },
-          "hero_title": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Hero Title"
-          },
-          "hero_sub": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Hero Sub"
-          },
-          "hero_cta": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Hero Cta"
-          },
-          "evidence": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/FolioFacetEvidence"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "action": {
-            "$ref": "#/components/schemas/FolioAction"
-          },
-          "a11y": {
-            "type": "string",
-            "title": "A11Y"
-          }
-        },
-        "type": "object",
-        "required": [
-          "key",
-          "state",
-          "label",
-          "column_value",
-          "action",
-          "a11y"
-        ],
-        "title": "TripFolioFacet"
-      },
-      "TripFolioFacets": {
-        "properties": {
-          "hero_key": {
-            "type": "string",
-            "enum": [
-              "stay",
-              "decisions",
-              "plan",
-              "route"
-            ],
-            "title": "Hero Key"
-          },
-          "hero": {
-            "$ref": "#/components/schemas/TripFolioFacet"
-          },
-          "supporting": {
-            "items": {
-              "$ref": "#/components/schemas/TripFolioFacet"
-            },
-            "type": "array",
-            "title": "Supporting"
-          },
-          "all": {
-            "items": {
-              "$ref": "#/components/schemas/TripFolioFacet"
-            },
-            "type": "array",
-            "title": "All"
-          }
-        },
-        "type": "object",
-        "required": [
-          "hero_key",
-          "hero"
-        ],
-        "title": "TripFolioFacets"
-      },
-      "TripFolioReadModel": {
-        "properties": {
-          "trip_id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Trip Id"
-          },
-          "mode": {
-            "type": "string",
-            "enum": [
-              "cold",
-              "pre",
-              "imminent",
-              "live",
-              "post"
-            ],
-            "title": "Mode"
-          },
-          "generated_at": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Generated At"
-          },
-          "facets": {
-            "$ref": "#/components/schemas/TripFolioFacets"
-          },
-          "attention": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/HomeFeed"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "discovery": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/FolioDiscoveryBand"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "group_consensus": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/TripGroupProfileSurface"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "prep": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/FolioPrepBand"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "leave_by": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/LeaveByHint"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "readiness": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/FolioReadinessBand"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "keepsake": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/FolioKeepsakeBand"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "spine": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/FolioSpine"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "recent_changes": {
-            "items": {
-              "$ref": "#/components/schemas/PlanChange"
-            },
-            "type": "array",
-            "title": "Recent Changes"
-          },
-          "cost_summary": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/FolioCostSummary"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "diagnostics": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/FolioDiagnostics"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "source_status": {
-            "$ref": "#/components/schemas/FolioSourceStatus"
-          },
-          "compatibility": {
-            "$ref": "#/components/schemas/FolioCompatibilityProjection"
-          },
-          "entry_readiness": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/ItineraryEntryReadiness"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "type": "object",
-        "required": [
-          "trip_id",
-          "mode",
-          "generated_at",
-          "facets"
-        ],
-        "title": "TripFolioReadModel"
       },
       "TripGroupProfileSurface": {
         "properties": {

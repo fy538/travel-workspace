@@ -58,21 +58,6 @@
       "removal_trigger": null,
       "review_by": null
     },
-    "GET /admin/booking/cancellation-reviews": {
-      "audience": "operator",
-      "consumers": [
-        {
-          "kind": "operator",
-          "name": "operator-tooling"
-        }
-      ],
-      "feature_flag": null,
-      "lifecycle": "active",
-      "owner": "operations",
-      "reason": "Authenticated read-only queue for cancellation claims that exhausted automatic provider reconciliation.",
-      "removal_trigger": null,
-      "review_by": null
-    },
     "GET /admin/dogfood/audit": {
       "audience": "operator",
       "consumers": [
@@ -1398,26 +1383,6 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "product-engineering",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
-      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
-    },
-    "POST /api/trips/{trip_id}/plan/edit-commit": {
-      "audience": "app",
-      "consumers": [],
-      "feature_flag": null,
-      "lifecycle": "retiring",
-      "owner": "itinerary",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
-      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
-    },
-    "POST /api/trips/{trip_id}/plan/edit-preview": {
-      "audience": "app",
-      "consumers": [],
-      "feature_flag": null,
-      "lifecycle": "retiring",
-      "owner": "itinerary",
       "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
       "review_by": "2026-08-15"
