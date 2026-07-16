@@ -96,9 +96,9 @@ preserving the old itinerary underneath the new design.
   `persist_planning_output` fallback. Materialization and replanning continue
   through their typed canonical operations.
 - Static boundaries are green after exact-scope classification and ratcheting:
-  151 backend writer occurrences remain classified (including **14
-  `legacy_product` occurrences**), 71 legacy imports remain classified (**31
-  `replace`, 20 `delete`, 20 `rename`**), and 14 backend compatibility readers
+  153 backend writer occurrences remain classified (including **11
+  `legacy_product` occurrences**), 63 legacy imports remain classified (**30
+  `replace`, 14 `delete`, 19 `rename`**), and 14 backend compatibility readers
   remain classified (all **`delete`**). Green means “no unreviewed
   growth”; it does not mean those legacy rows are retired.
 - No B2 lane is formally licensed. A deterministic local refresh records the
@@ -140,6 +140,14 @@ preserving the old itinerary underneath the new design.
   now owns a trip- and marker-scoped fixture cleanup boundary. Map route-point
   persistence is isolated as a validated derived-cache gateway reachable only
   from map-state enrichment, rather than masquerading as a product edit writer.
+- The legacy proposal write engine is now physically retired. Canonical
+  proposal creation owns privacy-safe lifecycle transitions, same-stop
+  supersession, trust receipts, automatic-resolution attribution, and atomic
+  replan withdrawal of both operation-backed truth and its temporary
+  group-facing projection. The old create/build/supersede/resolve/expiry
+  helpers and their writer-only tests are deleted; `change_proposals.py` is a
+  read/deadline projection module only. Journey certs, scenario fixtures,
+  replay/eval spies, and concierge tests now enter through canonical producers.
 
 The sections below retain the 2026-07-14 wiring trace as the audit baseline;
 use this closeout block and the executable guards for current status.
@@ -417,16 +425,15 @@ instead of restoring a whole itinerary version.
 The compatibility boundary is deliberate: `change_proposals` remains the
 group-facing read projection owned by the itinerary proposal gateway and read
 by proposal API, Home/Plan, concierge receipt/notification, and frontend
-proposal consumers. It has no reachable product construction or itinerary-
-apply authority. The legacy construction/apply functions and the unreachable
-route bodies below unconditional canonical returns remain only as physical B3
-lane-3 deletion debt; their presence is not a fallback or selectable writer.
-Focused proposal certification is green (**234 passed**). Product-source scans
-find no caller of `create_change_proposal(...)` or
-`build_and_persist_proposal(...)` outside their retained legacy definition
-module; remaining `apply_accepted_proposal(...)` and
-`revert_accepted_proposal_v2(...)` route references are confined to those
-unreachable B3 deletion bodies.
+proposal consumers. It has no product construction or itinerary-apply
+authority: the legacy create/build/supersede/resolve/expiry helpers and the
+legacy apply module are physically deleted. Canonical replan withdrawal closes
+operation truth and the projection atomically, and canonical creation preserves
+the product invariant that a newer suggestion supersedes an older open
+suggestion on the same stop. The closeout regression suite is green (**134
+passed**), while the deletion-license proposal lane records **24 passed** local
+canonical exercises. Remaining lane-3 work is the deliberate rename or
+replacement of projection readers—not removal of a hidden mutation fallback.
 
 ### A3. Remaining producers (parallelizable after their contracts are explicit)
 
