@@ -180,6 +180,16 @@
             }
           },
           {
+            "name": "conversation_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Conversation Id"
+            }
+          },
+          {
             "name": "after_event_id",
             "in": "query",
             "required": false,
@@ -13185,7 +13195,7 @@
           "notification-preferences"
         ],
         "summary": "Set Trip Override",
-        "description": "Set (or clear) the per-trip cadence override for a specific user.\n\nOnly the user themselves or the trip organizer may call this.\nPass cadence_override=null to clear and inherit from the user's global preference.",
+        "description": "Set (or clear) the per-trip cadence override for a specific user.\n\nOnly the user themselves may call this.\nPass cadence_override=null to clear and inherit from the user's global preference.",
         "operationId": "set_trip_override_api_trips__trip_id__members__user_id__notification_preferences_patch",
         "parameters": [
           {
@@ -17683,7 +17693,7 @@
           "trips"
         ],
         "summary": "Create Trip",
-        "description": "Create a new trip in ideation status.\n\nThe creator is automatically added as an organizer so they have\nauthority to finalize proposals, edit trip shape, etc.\n\n**Blank-trip dedupe (2026-05-27 overhaul):** when the request has no\ntitle, destination, place_id, dates, occasion, or budget_band — i.e.\nthe user tapped \"+ New trip\" with no intent yet — the route returns\nthe user's existing blank trip if one exists, rather than creating\na second placeholder. This enforces the \"one draft slot per user\"\nproduct rule and prevents the empty-trip clutter that motivated the\noverhaul. Requests with ANY substantive field (destination, dates,\netc.) always create a new trip — distinct intent = distinct trip.\n\nPass ``X-Idempotency-Key`` to prevent duplicate trips on a slow-\nnetwork retry. Audit pass 2026-05-19 P0: pre-fix the route read\nno header and a flaky-network retry created a second trip even\nthough the FE had been threading the key since the prior audit.",
+        "description": "Create an ideation trip and atomically add its creator as organizer.\n\nBlank input resolves the user's singleton draft slot. Substantive input\ncreates a distinct trip. ``X-Idempotency-Key`` is durable across retries.",
         "operationId": "create_trip_api_trips_post",
         "parameters": [
           {
@@ -46221,6 +46231,10 @@
           "commitment_state": {
             "$ref": "#/components/schemas/PlanCommitmentState"
           },
+          "raw_status": {
+            "type": "string",
+            "title": "Raw Status"
+          },
           "updated_at": {
             "anyOf": [
               {
@@ -46395,7 +46409,8 @@
           "sort_order",
           "block_type",
           "title",
-          "commitment_state"
+          "commitment_state",
+          "raw_status"
         ],
         "title": "PlanBlock"
       },
