@@ -53867,8 +53867,7 @@
                 "type": "string",
                 "enum": [
                   "open",
-                  "review",
-                  "locked"
+                  "review"
                 ]
               },
               {
@@ -62851,8 +62850,7 @@
             "type": "string",
             "enum": [
               "open",
-              "review",
-              "locked"
+              "review"
             ],
             "title": "Plan Editing",
             "default": "review"
