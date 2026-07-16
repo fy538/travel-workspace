@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / backend / frontend / product operations
 created: 2026-07-14
-last_verified: 2026-07-14
+last_verified: 2026-07-16
 expires: 2026-08-13
 why_new: Record the pre-launch founder ruling to adopt the canonical itinerary operation gateway as the only mutation path, and plan the legacy deletion + dogfood-data rewrite in executable detail.
 supersedes: []
@@ -66,7 +66,45 @@ polish of the reworked Itinerary × Trip Home/Folio product surface may continue
 afterward, but it must build on this single canonical authority rather than
 preserving the old itinerary underneath the new design.
 
-## Current state (verified against code, 2026-07-14)
+## Current state (verified against code, 2026-07-16)
+
+### 2026-07-16 closeout reality check
+
+- C1/C2/C3 implementation has landed: dogfood itineraries now enter through
+  deterministic canonical replay, itinerary birth has authored chronology,
+  resets respect append-only ledger boundaries, and authored proposals are
+  created through the canonical proposal gateway. The old raw itinerary and
+  proposal insert sites were removed from `tools/dogfood/content/seed.py`.
+- B1 remains green. The backend full-on cert passed 458 + 409 tests under the
+  asserted `full` / all-trips / 20-capability posture. Frontend typecheck and
+  lint pass (warnings only), and its blocking deletion-reference scan reports
+  zero production legacy callers.
+- A frontend cutover leak found during this review was fixed: Plan's day rail
+  now derives its changed-day markers from canonical operation-history receipts
+  and targets, not `recent_change_ids` / legacy day changes.
+- Static boundaries are green after exact-scope classification and ratcheting:
+  162 backend writer sites remain classified (including **28
+  `legacy_product` sites**), 102 legacy imports remain classified (**57
+  `replace`, 24 `delete`, 21 `rename`**), and 37 backend compatibility readers
+  remain classified (**30 `delete`, 7 `replace`**). Green means “no unreviewed
+  growth”; it does not mean those legacy rows are retired.
+- No B2 lane is licensed. The evidence rows still lack measured nonzero
+  per-surface exercises, canonical write/proposal counts, applicable outcome
+  coverage, and signatures. Therefore B3 physical deletion and lane-5 flag
+  collapse remain blocked by design.
+- C4 five-pack manifest readiness now passes for all five packs. Nine Istanbul
+  itinerary targets that had never acquired promoted corpus identities remain
+  as honest authored labels instead of fabricated venue/site references. The
+  reset preflight also exposed a corpus-import bug: staged refs already present
+  in the target DB were incorrectly reported missing. That importer is fixed,
+  and the missing Lisbon experience plus Brooklyn refs were imported locally.
+  Seven Rome refs and Istanbul's `ciya-sofrasi-kadikoy` still lack structured
+  importable corpus rows, so the all-five reset/reseed has not started. Promote
+  or deliberately de-reference those remaining rows first. Fly reset/promotion
+  also remains unperformed.
+
+The sections below retain the 2026-07-14 wiring trace as the audit baseline;
+use this closeout block and the executable guards for current status.
 
 ### How gating works today
 
@@ -86,7 +124,7 @@ their legacy branches, while canonical-only endpoints reject or remain dark;
 the defaults do not exercise the target authority. The IR-17 retirement gate
 records `legacy_bypass_observation_clean: false`.
 
-### Legacy mutation-path wiring (trace of 2026-07-14)
+### Legacy mutation-path wiring (historical trace of 2026-07-14)
 
 | # | Path | State | Capability / flag | Writes DB today |
 |---|---|---|---|---|
@@ -464,7 +502,7 @@ Every deletion lane requires a signed evidence row containing all of:
 This evidence—not an unqualified zero—is the deletion license. No lane starts
 before its complete row is green.
 
-Execution status (2026-07-14): the fail-closed B2 license evaluator and a
+Execution status (2026-07-16): the fail-closed B2 license evaluator and a
 schema-valid evidence bundle now exist for all five physical deletion lanes.
 The evaluator requires exact prerequisite and producer-surface coverage,
 nonzero exercise/commit/proposal counts, zero compatibility-path events,
@@ -475,8 +513,9 @@ visible without falsely licensing deletion; the same command without
 `--allow-blocked` is the blocking deletion gate.
 
 No lane is licensed yet. The current zero-count bundle is deliberately honest:
-lane 1 still lacks C1/C2 canonical dogfood replay; lane 2's frontend callers are
-migrated but its agent callers still retain rollout-selectable legacy branches
+lane 1 now has C1/C2 canonical dogfood replay but lacks its five-pack reset and
+measured lane evidence; lane 2's frontend callers are migrated but its agent
+callers still retain rollout-selectable legacy branches
 and the lane has no measured outcome evidence; lane 3 has not yet captured
 end-to-end positive/negative proposal evidence; lane 4 is frontend
 reference-clean but has not exercised and signed its canonical preview evidence;
@@ -618,6 +657,10 @@ code controls chronology/input sourcing only; deterministic replay is
 idempotent; an already-completed trip cannot receive structural edits merely
 because replay supplied an older timestamp.
 
+Execution status (2026-07-16): implemented and covered by the canonical seed
+and replay suites. The internal replay orchestrator owns chronology while the
+canonical commit gateway remains the writer.
+
 ### C2. Rewrite `_seed_itinerary` (seed.py:673)
 
 Replay each manifest itinerary chronologically:
@@ -636,6 +679,10 @@ Replay each manifest itinerary chronologically:
 This is an upgrade, not just compliance: seeded trips gain real history,
 receipts, undo capability, and Changes-feed content — surfaces that are empty
 in dogfood today.
+
+Execution status (2026-07-16): implemented for itinerary birth and authored
+proposal replay. Final acceptance remains coupled to C4's all-five-pack reset,
+cross-domain verification, and journey run against the newly replayed data.
 
 ### C3. Manifest schema pass
 
