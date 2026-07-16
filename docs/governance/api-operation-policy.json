@@ -959,6 +959,21 @@
       "removal_trigger": null,
       "review_by": null
     },
+    "POST /admin/booking/cancellation-reviews/{offer_id}/resolve": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "operator-tooling"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated evidence-backed resolution for ambiguous provider cancellation truth.",
+      "removal_trigger": null,
+      "review_by": null
+    },
     "POST /admin/digests/retry": {
       "audience": "operator",
       "consumers": [

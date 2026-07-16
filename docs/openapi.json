@@ -29587,6 +29587,77 @@
           }
         }
       }
+    },
+    "/admin/booking/cancellation-reviews/{offer_id}/resolve": {
+      "post": {
+        "tags": [
+          "admin",
+          "booking"
+        ],
+        "summary": "Resolve Cancellation Review",
+        "description": "Resolve one ambiguous cancellation from provider-record evidence.",
+        "operationId": "resolve_cancellation_review_admin_booking_cancellation_reviews__offer_id__resolve_post",
+        "parameters": [
+          {
+            "name": "offer_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Offer Id"
+            }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancellationOperatorResolutionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancellationOperatorResolutionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -72739,6 +72810,177 @@
           "updated_at"
         ],
         "title": "CancellationReviewItem"
+      },
+      "CancellationOperatorResolutionRequest": {
+        "properties": {
+          "resolution_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Resolution Id"
+          },
+          "expected_correlation_id": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 3,
+            "pattern": "^\\S+$",
+            "title": "Expected Correlation Id"
+          },
+          "operator_id": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 3,
+            "pattern": "^[A-Za-z0-9._:@-]+$",
+            "title": "Operator Id"
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "cancelled",
+              "active"
+            ],
+            "title": "Outcome"
+          },
+          "evidence_type": {
+            "type": "string",
+            "enum": [
+              "provider_dashboard",
+              "provider_support"
+            ],
+            "title": "Evidence Type"
+          },
+          "evidence_reference": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 3,
+            "pattern": "^\\S+$",
+            "title": "Evidence Reference"
+          },
+          "reason_code": {
+            "type": "string",
+            "enum": [
+              "provider_cancelled",
+              "provider_booking_active"
+            ],
+            "title": "Reason Code"
+          },
+          "cancellation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cancellation Id"
+          },
+          "refund_amount": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Refund Amount"
+          },
+          "refund_currency": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 3,
+                "minLength": 3,
+                "pattern": "^[A-Z]{3}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Refund Currency"
+          },
+          "provider_request_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider Request Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "resolution_id",
+          "expected_correlation_id",
+          "operator_id",
+          "outcome",
+          "evidence_type",
+          "evidence_reference",
+          "reason_code"
+        ],
+        "title": "CancellationOperatorResolutionRequest"
+      },
+      "CancellationOperatorResolutionResponse": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "session_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Session Id"
+          },
+          "offer_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Offer Id"
+          },
+          "applied": {
+            "type": "boolean",
+            "title": "Applied"
+          },
+          "idempotent": {
+            "type": "boolean",
+            "title": "Idempotent"
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "cancelled",
+              "active"
+            ],
+            "title": "Outcome"
+          },
+          "booking_status": {
+            "type": "string",
+            "enum": [
+              "confirmed",
+              "cancelled"
+            ],
+            "title": "Booking Status"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "session_id",
+          "offer_id",
+          "applied",
+          "idempotent",
+          "outcome",
+          "booking_status"
+        ],
+        "title": "CancellationOperatorResolutionResponse"
       }
     }
   }
