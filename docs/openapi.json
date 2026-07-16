@@ -46613,6 +46613,16 @@
         ],
         "title": "IngestionStatusResponse"
       },
+      "InitialPlanCommitmentState": {
+        "type": "string",
+        "enum": [
+          "open",
+          "suggested",
+          "tentative"
+        ],
+        "title": "InitialPlanCommitmentState",
+        "description": "Intrinsic softness that may be asserted when a first plan is born.\n\nProvider and traveler-confirmed states require their own canonical\nchronology.  Keeping them out of ``materialize_shape`` prevents an\naccepted draft from manufacturing booking or occurrence truth."
+      },
       "IntakePayload": {
         "properties": {
           "dietary": {
@@ -52886,6 +52896,10 @@
           "structural_role": {
             "$ref": "#/components/schemas/StructuralRole",
             "default": "ordinary"
+          },
+          "commitment_state": {
+            "$ref": "#/components/schemas/InitialPlanCommitmentState",
+            "default": "tentative"
           },
           "time_start": {
             "anyOf": [
