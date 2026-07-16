@@ -13698,6 +13698,59 @@
         }
       }
     },
+    "/api/trips/{trip_id}/postjoin-payoff/acknowledge": {
+      "post": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Acknowledge Postjoin Payoff",
+        "description": "Idempotently mark the invitee payoff handled by the client.",
+        "operationId": "acknowledge_postjoin_payoff_api_trips__trip_id__postjoin_payoff_acknowledge_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/users/{user_id}/profile": {
       "get": {
         "tags": [
@@ -37239,6 +37292,20 @@
               }
             ],
             "title": "Free Text"
+          },
+          "client_submission_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64,
+                "minLength": 8,
+                "pattern": "^[A-Za-z0-9_-]+$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Client Submission Id"
           }
         },
         "type": "object",
@@ -37483,11 +37550,43 @@
               }
             ],
             "title": "Contact Channel"
+          },
+          "client_submission_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64,
+                "minLength": 8,
+                "pattern": "^[A-Za-z0-9_-]+$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Client Submission Id"
+          },
+          "client_revision": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 2147483647.0,
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Client Revision"
+          },
+          "clear": {
+            "type": "boolean",
+            "title": "Clear",
+            "default": false
           }
         },
         "type": "object",
         "title": "InviteIntakeRequest",
-        "description": "Chip answers and optional contact info captured pre-auth."
+        "description": "The invitee's current pre-auth draft.\n\nNew clients send a stable anonymous ``client_submission_id`` plus a\nmonotonically increasing revision. That turns rapid chip toggles into\nreplace/clear semantics and lets the server ignore a late response from an\nolder tap. The fields remain optional for backward compatibility."
       },
       "InviteListItem": {
         "properties": {
