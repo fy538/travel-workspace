@@ -96,9 +96,9 @@ preserving the old itinerary underneath the new design.
   `persist_planning_output` fallback. Materialization and replanning continue
   through their typed canonical operations.
 - Static boundaries are green after exact-scope classification and ratcheting:
-  157 backend writer occurrences remain classified (including **23
-  `legacy_product` occurrences**), 78 legacy imports remain classified (**35
-  `replace`, 23 `delete`, 20 `rename`**), and 14 backend compatibility readers
+  151 backend writer occurrences remain classified (including **17
+  `legacy_product` occurrences**), 72 legacy imports remain classified (**31
+  `replace`, 21 `delete`, 20 `rename`**), and 14 backend compatibility readers
   remain classified (all **`delete`**). Green means “no unreviewed
   growth”; it does not mean those legacy rows are retired.
 - No B2 lane is formally licensed. A deterministic local refresh records the
@@ -126,6 +126,11 @@ preserving the old itinerary underneath the new design.
   OpenAPI, generated TypeScript, mocks, scanners, and product documentation to
   `open | review`. Two unreachable writer APIs and the duplicated plan-state
   `raw_status` field are also physically deleted.
+- The dead legacy block move/remove/undo editor, itinerary-version pruning
+  worker/CLI, and proposal `in_revert` claim/reaper are retired. Canonical
+  operation recovery remains authoritative; a migration normalizes any stranded
+  transient proposal row to Accepted with explicit recovery evidence before
+  narrowing the database constraint.
 
 The sections below retain the 2026-07-14 wiring trace as the audit baseline;
 use this closeout block and the executable guards for current status.
@@ -559,7 +564,7 @@ counts, deployed-revision/static-revision identity, lane-specific symbol and
 artifact/caller scans, observation windows, reset/reseed evidence, rollback
 checkpoint, evidence references, and sign-off unresolved. Lane 5 also lacks the
 lanes-1-to-4 license and final D2 closure. The static inventories are green
-ratchets but still contain 23 classified legacy-product writer occurrences, 58
+ratchets but still contain 17 classified legacy-product writer occurrences, 52
 replace/delete legacy imports, and 14 delete-classified compatibility readers.
 Those are retirement debt, not deletion proof.
 
