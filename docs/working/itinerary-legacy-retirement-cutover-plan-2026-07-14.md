@@ -96,31 +96,36 @@ preserving the old itinerary underneath the new design.
   `persist_planning_output` fallback. Materialization and replanning continue
   through their typed canonical operations.
 - Static boundaries are green after exact-scope classification and ratcheting:
-  161 backend writer occurrences remain classified (including **27
-  `legacy_product` occurrences**), 86 legacy imports remain classified (**42
-  `replace`, 24 `delete`, 20 `rename`**), and 20 backend compatibility readers
-  remain classified (**18 `delete`, 2 `replace`**). Green means “no unreviewed
+  157 backend writer occurrences remain classified (including **23
+  `legacy_product` occurrences**), 78 legacy imports remain classified (**35
+  `replace`, 23 `delete`, 20 `rename`**), and 14 backend compatibility readers
+  remain classified (all **`delete`**). Green means “no unreviewed
   growth”; it does not mean those legacy rows are retired.
-- No B2 lane is formally licensed. A deterministic local refresh now records
-  113 passing focused canonical exercises across the five lanes (44, 33, 13, 7,
-  and 16 respectively), but these are local test exercises—not deployed
-  producer traffic. Every lane still lacks a Fly observation window, measured
-  per-surface traffic, a measured compatibility-event count, and signatures;
-  commit/proposal counts are also absent where required. Pre-launch physical
+- No B2 lane is formally licensed. A deterministic local refresh records the
+  focused canonical exercises across all five lanes, but these are local test
+  exercises—not deployed producer traffic. Every lane still lacks an
+  identifiable Fly revision, an observation window, per-surface traffic,
+  canonical commit/proposal counts where required, deployed artifact/caller
+  absence scans, rollback evidence, evidence references, and signatures.
+  Compatibility branches deleted before an emitter existed use deployed
+  unreachability proof; their compatibility count remains null rather than a
+  fabricated zero. Pre-launch physical
   deletion nevertheless started where static reachability and canonical
   journey coverage proved the old authority dead. The evidence bundle therefore
   documents the sequencing exception rather than retroactively licensing it,
   and B2/B3 cannot be claimed complete.
-- C4 five-pack manifest readiness now passes for all five packs. Nine Istanbul
-  itinerary targets that had never acquired promoted corpus identities remain
-  as honest authored labels instead of fabricated venue/site references. The
-  reset preflight also exposed a corpus-import bug: staged refs already present
-  in the target DB were incorrectly reported missing. That importer is fixed,
-  and the missing Lisbon experience plus Brooklyn refs were imported locally.
-  Seven Rome refs and Istanbul's `ciya-sofrasi-kadikoy` still lack structured
-  importable corpus rows, so the all-five reset/reseed has not started. Promote
-  or deliberately de-reference those remaining rows first. Fly reset/promotion
-  also remains unperformed.
+- C4 local five-pack reset/reseed is complete and reproducible: canonical
+  substrate checks and TestClient API exercises cover deterministic identities,
+  authored chronology, committed operation history, occurrences, proposals,
+  recovery, cross-domain references, Discover, briefs, and Atlas. Authored
+  labels without a promoted corpus identity remain honest labels rather than
+  fabricated venue/site references. Fly backup/reset/reseed and deployed
+  certification remain unperformed.
+- Stored `plan_editing='locked'` compatibility is retired end to end. The new
+  migration normalizes it to Review and narrows the physical database, backend,
+  OpenAPI, generated TypeScript, mocks, scanners, and product documentation to
+  `open | review`. Two unreachable writer APIs and the duplicated plan-state
+  `raw_status` field are also physically deleted.
 
 The sections below retain the 2026-07-14 wiring trace as the audit baseline;
 use this closeout block and the executable guards for current status.
@@ -502,16 +507,19 @@ Completion evidence (2026-07-14):
 ### B2. Prove zero legacy traffic (the deletion license)
 
 Run the full journey certifier + Maestro wedge flows (J04/J05/J10 device flows).
-Telemetry uses the event `itinerary.compatibility_path_used`; zero events alone
-are not deletion proof because only selected trips and explicitly instrumented
-paths emit it.
+Compatibility-event evidence is valid only for a path with complete, named
+instrumentation coverage. Branches deleted before an emitter existed instead
+require deployed unreachability proof from the same identifiable revision as
+the static proof; their event count remains null.
 
 Every deletion lane requires a signed evidence row containing all of:
 
 1. every producer and frontend/agent/planner/seeder entry surface assigned to
    the lane was exercised;
 2. the exercise count and canonical commit/proposal count are both nonzero;
-3. `itinerary.compatibility_path_used` is zero for that exercised set;
+3. either completely instrumented named paths report zero compatibility events,
+   or lane-specific symbol, deployed-artifact, and caller scans prove the
+   deleted paths unreachable on the deployed revision;
 4. the static writer/import allowlist was ratcheted and is green;
 5. repository route/reference scans show no migrated frontend, agent, planner,
    seeder, job, or script caller;
@@ -544,16 +552,16 @@ the hash of the commit that contains that same file. Omitting `--allow-blocked`
 is the fail-closed deletion-license gate. Missing or duplicate lanes fail
 validation.
 
-No lane is licensed yet. The local refresh proves 113 canonical tests and the
-absence of the retired plan-edit, proposal-apply, and rollout modules, but it
-deliberately leaves deployed surface counts, canonical commit/proposal counts,
-compatibility traffic, observation windows, reset/reseed evidence, rollback
-checkpoint, and sign-off unresolved. Lane 2 also lacks recorded
-`agent_callers_migrated`; lane 5 still lacks the lanes-1-to-4 license,
-canonical-only rollback checkpoint, and D2 decision. The static inventories are
-green ratchets but still contain 27 classified legacy-product writer
-occurrences, 66 replace/delete legacy imports, and 20 replace/delete
-compatibility readers. Those are retirement debt, not deletion proof.
+No lane is licensed yet. The local refresh proves the focused canonical suites
+and the absence of the retired plan-edit, proposal-apply, and rollout modules,
+but it deliberately leaves deployed surface counts, canonical commit/proposal
+counts, deployed-revision/static-revision identity, lane-specific symbol and
+artifact/caller scans, observation windows, reset/reseed evidence, rollback
+checkpoint, evidence references, and sign-off unresolved. Lane 5 also lacks the
+lanes-1-to-4 license and final D2 closure. The static inventories are green
+ratchets but still contain 23 classified legacy-product writer occurrences, 58
+replace/delete legacy imports, and 14 delete-classified compatibility readers.
+Those are retirement debt, not deletion proof.
 
 The frontend deletion-reference scanner now reports **0** production callers.
 Both the adapter and Change Studio preview lanes are reference-clean. API
