@@ -14955,7 +14955,7 @@
           "trip-invites"
         ],
         "summary": "View Invite",
-        "description": "Render the landing page for an invite token. Public endpoint.\n\nBranches on scope: trip invites render the committed-trip summary\nwith a Haiku-generated snapshot (cached). Conversation invites\n(Phase 4, pre-trip group chat) render a lightweight summary built\ndirectly from intent_state \u2014 no LLM call, no caching needed, since\nthe substance bar is low and the content is already structured.",
+        "description": "HTTP adapter for the canonical public invite projection service.",
         "operationId": "view_invite_api_invites__token__get",
         "parameters": [
           {
@@ -22723,6 +22723,204 @@
         }
       }
     },
+    "/api/trips/{trip_id}/group-memory": {
+      "get": {
+        "tags": [
+          "trips",
+          "trips"
+        ],
+        "summary": "Get Group Memory",
+        "operationId": "get_group_memory_api_trips__trip_id__group_memory_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupMemoryResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "trips",
+          "trips"
+        ],
+        "summary": "Patch Group Memory",
+        "operationId": "patch_group_memory_api_trips__trip_id__group_memory_patch",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GroupMemoryPatchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupMemoryResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/group-memory/forget": {
+      "post": {
+        "tags": [
+          "trips",
+          "trips"
+        ],
+        "summary": "Forget Group Memory Item",
+        "operationId": "forget_group_memory_item_api_trips__trip_id__group_memory_forget_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GroupMemoryForgetRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupMemoryResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/users/{user_id}/trips": {
       "get": {
         "tags": [
@@ -22770,6 +22968,56 @@
                     "$ref": "#/components/schemas/Trip"
                   },
                   "title": "Response List User Trips Api Users  User Id  Trips Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/blank": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Blank Trip",
+        "description": "Return the caller's blank trip, or 404 if none exists.\n\nStatic trip routes must stay above ``/api/trips/{trip_id}``: Starlette\nresolves in registration order, so the dynamic UUID route would otherwise\ncapture ``blank`` and return a validation error before this endpoint ran.",
+        "operationId": "get_blank_trip_api_trips_blank_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Trip"
                 }
               }
             }
@@ -23039,56 +23287,6 @@
         },
         "responses": {
           "201": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Trip"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/trips/blank": {
-      "get": {
-        "tags": [
-          "trips"
-        ],
-        "summary": "Get Blank Trip",
-        "description": "Return the caller's blank trip, or 404 if none exists.\n\nUsed by the frontend to (a) detect whether a \"Draft trip\" chip\nshould render on the Trips tab, (b) route ``+ New trip`` to the\nexisting draft slot rather than creating a duplicate. See\n``get_blank_trip_for_user`` for the matching definition of \"blank\".",
-        "operationId": "get_blank_trip_api_trips_blank_get",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
@@ -25115,204 +25313,6 @@
             "content": {
               "application/json": {
                 "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/trips/{trip_id}/group-memory": {
-      "get": {
-        "tags": [
-          "trips"
-        ],
-        "summary": "Get Group Memory",
-        "description": "Group-safe profile legibility surface for trip members.",
-        "operationId": "get_group_memory_api_trips__trip_id__group_memory_get",
-        "parameters": [
-          {
-            "name": "trip_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Trip Id"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GroupMemoryResponse"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "trips"
-        ],
-        "summary": "Patch Group Memory",
-        "description": "Replace the group-safe memory surface with edited member-visible notes.",
-        "operationId": "patch_group_memory_api_trips__trip_id__group_memory_patch",
-        "parameters": [
-          {
-            "name": "trip_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Trip Id"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GroupMemoryPatchRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GroupMemoryResponse"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/trips/{trip_id}/group-memory/forget": {
-      "post": {
-        "tags": [
-          "trips"
-        ],
-        "summary": "Forget Group Memory Item",
-        "description": "Forget one group-safe memory item by creating a new version without it.",
-        "operationId": "forget_group_memory_item_api_trips__trip_id__group_memory_forget_post",
-        "parameters": [
-          {
-            "name": "trip_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Trip Id"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GroupMemoryForgetRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GroupMemoryResponse"
-                }
               }
             }
           },
@@ -29536,73 +29536,6 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Cost Breakdown Debug Cost Get"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/admin/booking/cancellation-reviews": {
-      "get": {
-        "tags": [
-          "admin",
-          "booking"
-        ],
-        "summary": "List Cancellation Review Queue",
-        "description": "List cancellations that need a provider-record review, oldest first.",
-        "operationId": "list_cancellation_review_queue_admin_booking_cancellation_reviews_get",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "maximum": 200,
-              "minimum": 1,
-              "default": 50,
-              "title": "Limit"
-            }
-          },
-          {
-            "name": "x-service-token",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "X-Service-Token"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CancellationReviewItem"
-                  },
-                  "title": "Response List Cancellation Review Queue Admin Booking Cancellation Reviews Get"
                 }
               }
             }
@@ -35192,22 +35125,6 @@
               }
             ],
             "title": "Checkout Status"
-          },
-          "cancellation_status": {
-            "anyOf": [
-              {
-                "type": "string",
-                "enum": [
-                  "pending",
-                  "cancelled",
-                  "manual_action_required"
-                ]
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Cancellation Status"
           },
           "provider_offer_id": {
             "anyOf": [
@@ -72624,189 +72541,6 @@
         ],
         "title": "Provenance",
         "description": "Where a result came from and how sensitive it is.\n\n``label`` is the short, ALL-CAPS-in-UI string the row displays\n(e.g. \"FROM YOUR ATLAS\", \"YOUR TRIP\", \"SHARED BY ANA\", \"DISCOVER GUIDE\").\n``privacy`` gates rendering: a ``private`` row must always show its label."
-      },
-      "CancellationReviewError": {
-        "properties": {
-          "code": {
-            "type": "string",
-            "maxLength": 100,
-            "minLength": 1,
-            "pattern": "^[A-Za-z0-9._:-]+$",
-            "title": "Code"
-          },
-          "message": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 500
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Message"
-          }
-        },
-        "type": "object",
-        "required": [
-          "code"
-        ],
-        "title": "CancellationReviewError"
-      },
-      "CancellationReviewItem": {
-        "properties": {
-          "offer_id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Offer Id"
-          },
-          "session_id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Session Id"
-          },
-          "trip_id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Trip Id"
-          },
-          "provider": {
-            "type": "string",
-            "title": "Provider"
-          },
-          "category": {
-            "type": "string",
-            "title": "Category"
-          },
-          "booking_status": {
-            "type": "string",
-            "title": "Booking Status"
-          },
-          "provider_booking_id": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 200
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Provider Booking Id"
-          },
-          "correlation_id": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 200
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Correlation Id"
-          },
-          "price_amount": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Price Amount"
-          },
-          "price_currency": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Price Currency"
-          },
-          "refresh_attempts": {
-            "type": "integer",
-            "minimum": 0.0,
-            "title": "Refresh Attempts"
-          },
-          "pending_since": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Pending Since"
-          },
-          "last_refreshed_at": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Last Refreshed At"
-          },
-          "manual_action_required_at": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Manual Action Required At"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Updated At"
-          },
-          "error": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/CancellationReviewError"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "last_refresh_error": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/CancellationReviewError"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "type": "object",
-        "required": [
-          "offer_id",
-          "session_id",
-          "trip_id",
-          "provider",
-          "category",
-          "booking_status",
-          "refresh_attempts",
-          "updated_at"
-        ],
-        "title": "CancellationReviewItem"
       }
     }
   }
