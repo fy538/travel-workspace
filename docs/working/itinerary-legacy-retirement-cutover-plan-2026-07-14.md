@@ -96,17 +96,21 @@ preserving the old itinerary underneath the new design.
   `persist_planning_output` fallback. Materialization and replanning continue
   through their typed canonical operations.
 - Static boundaries are green after exact-scope classification and ratcheting:
-  161 backend writer sites remain classified (including **27
-  `legacy_product` sites**), 87 legacy imports remain classified (**43
-  `replace`, 24 `delete`, 20 `rename`**), and 23 backend compatibility readers
-  remain classified (**21 `delete`, 2 `replace`**). Green means “no unreviewed
+  161 backend writer occurrences remain classified (including **27
+  `legacy_product` occurrences**), 86 legacy imports remain classified (**42
+  `replace`, 24 `delete`, 20 `rename`**), and 20 backend compatibility readers
+  remain classified (**18 `delete`, 2 `replace`**). Green means “no unreviewed
   growth”; it does not mean those legacy rows are retired.
-- No B2 lane is formally licensed. The evidence rows still lack measured nonzero
-  per-surface exercises, canonical write/proposal counts, applicable outcome
-  coverage, and signatures. Pre-launch physical deletion has nevertheless
-  started where static reachability and canonical journey coverage proved the
-  old authority dead; the evidence bundle must be reconciled before claiming
-  B2/B3 complete. Lane-5 flag collapse remains unstarted.
+- No B2 lane is formally licensed. A deterministic local refresh now records
+  113 passing focused canonical exercises across the five lanes (44, 33, 13, 7,
+  and 16 respectively), but these are local test exercises—not deployed
+  producer traffic. Every lane still lacks a Fly observation window, measured
+  per-surface traffic, a measured compatibility-event count, and signatures;
+  commit/proposal counts are also absent where required. Pre-launch physical
+  deletion nevertheless started where static reachability and canonical
+  journey coverage proved the old authority dead. The evidence bundle therefore
+  documents the sequencing exception rather than retroactively licensing it,
+  and B2/B3 cannot be claimed complete.
 - C4 five-pack manifest readiness now passes for all five packs. Nine Istanbul
   itinerary targets that had never acquired promoted corpus identities remain
   as honest authored labels instead of fabricated venue/site references. The
@@ -517,26 +521,39 @@ Every deletion lane requires a signed evidence row containing all of:
 This evidence—not an unqualified zero—is the deletion license. No lane starts
 before its complete row is green.
 
-Execution status (2026-07-16): the fail-closed B2 license evaluator and a
-schema-valid evidence bundle now exist for all five physical deletion lanes.
-The evaluator requires exact prerequisite and producer-surface coverage,
-nonzero exercise/commit/proposal counts, zero compatibility-path events,
-applicable outcome proof, green writer/import/reference scans, evidence links,
-and a signer plus timestamp. Missing or duplicate lanes fail validation. CI runs
-the evaluator in report-only mode so schema drift and missing lane coverage are
-visible without falsely licensing deletion; the same command without
-`--allow-blocked` is the blocking deletion gate.
+Execution status (2026-07-16): the source-controlled B2 evaluator and a
+schema-valid evidence bundle exist for all five physical deletion lanes. The
+first evaluator was accidentally deleted when rollout infrastructure was
+retired while its JSON evidence remained; the replacement is standalone and
+does not depend on the deleted rollout module. Run:
 
-No lane is licensed yet. The current zero-count bundle is deliberately honest:
-lane 1 now has C1/C2 canonical dogfood replay but lacks its five-pack reset and
-measured lane evidence; lane 2's frontend callers are migrated but its agent
-callers still retain rollout-selectable legacy branches
-and the lane has no measured outcome evidence; lane 3 has not yet captured
-end-to-end positive/negative proposal evidence; lane 4 is frontend
-reference-clean but has not exercised and signed its canonical preview evidence;
-and lane 5 is ordered after lanes 1-4 plus the canonical-only rollback checkpoint
-and D2 decision. The static inventories themselves are green and ratcheted, but
-their remaining classified legacy rows are blockers—not deletion proof.
+```bash
+PYTHONPATH=. python scripts/certify_itinerary_deletion_lanes.py \
+  --refresh-local --allow-blocked
+PYTHONPATH=. python scripts/certify_itinerary_deletion_lanes.py \
+  --check-local --allow-blocked
+```
+
+The refresh executes the focused canonical suites, records their real pass
+counts, snapshots all three static ratchets, scans the retired lane artifacts,
+and preserves deployed evidence and signatures as separate manual inputs. The
+check re-runs the focused canonical suites and fails when their paths, counts,
+results, static snapshots, or retired-artifact scans are stale. It does not
+compare the embedded revision to `HEAD`, because an evidence file cannot contain
+the hash of the commit that contains that same file. Omitting `--allow-blocked`
+is the fail-closed deletion-license gate. Missing or duplicate lanes fail
+validation.
+
+No lane is licensed yet. The local refresh proves 113 canonical tests and the
+absence of the retired plan-edit, proposal-apply, and rollout modules, but it
+deliberately leaves deployed surface counts, canonical commit/proposal counts,
+compatibility traffic, observation windows, reset/reseed evidence, rollback
+checkpoint, and sign-off unresolved. Lane 2 also lacks recorded
+`agent_callers_migrated`; lane 5 still lacks the lanes-1-to-4 license,
+canonical-only rollback checkpoint, and D2 decision. The static inventories are
+green ratchets but still contain 27 classified legacy-product writer
+occurrences, 66 replace/delete legacy imports, and 20 replace/delete
+compatibility readers. Those are retirement debt, not deletion proof.
 
 The frontend deletion-reference scanner now reports **0** production callers.
 Both the adapter and Change Studio preview lanes are reference-clean. API
