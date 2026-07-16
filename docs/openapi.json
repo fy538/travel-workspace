@@ -34990,6 +34990,22 @@
             ],
             "title": "Checkout Status"
           },
+          "cancellation_status": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "pending",
+                  "cancelled",
+                  "manual_action_required"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cancellation Status"
+          },
           "provider_offer_id": {
             "anyOf": [
               {
