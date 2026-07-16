@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: frontend / design
 created: 2026-07-12
-last_verified: 2026-07-12
+last_verified: 2026-07-16
 why_new: Record the deliberately bespoke motion that is allowed outside the shared semantic primitives.
 supersedes: []
 source_of_truth_for: [motion-exceptions]
@@ -20,8 +20,7 @@ behavior. Adding one requires a design review and a matching update to
 | Owner | Purpose | Why the shared primitive is insufficient | Reduced Motion |
 |---|---|---|---|
 | `components/ui/DecisionSeal.tsx` | Consequential settled/confirmed ceremony | It is the one sanctioned completion beat: seal impact, one ring, then copy. | Static seal and copy; no scale, rotation, ring, or displacement. |
-| `components/atlas/AtlasBoardReel.tsx` | Atlas’s bounded memory-reel composition | The reel represents a deliberate authored sequence, rather than ordinary content arrival. | Stops automatic progression; shows the current composition without travel. |
-| `components/atlas/AtlasTasteBoard.tsx` | Atlas board recomposition and spatial reading | Arrangement changes preserve the board’s authored spatial evidence and cannot be a generic row transition. | Crossfade/static arrangement; no lift or layout travel. |
+| `components/atlas/AtlasReadingCanvas.tsx` | Atlas reading dive, authored sequence, and spatial recomposition | One current owner coordinates the reel and board states whose spatial evidence cannot be represented as a generic row transition. | Stops automatic travel and spring layout; shows or crossfades the current composition. |
 | `components/trip-plan/HighlightPulse.tsx` | One-time plan-change locator cue | A brief cue helps identify the itinerary block changed by an explicit action; it is not ambient attention-seeking. | No pulse; the changed block remains visibly marked. |
 
 The registry is intentionally not a backlog. If a sequence becomes routine, it
