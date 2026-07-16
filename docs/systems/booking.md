@@ -3,7 +3,7 @@
 > Surface: Trips
 > Maturity (for MVP): Built-dark
 > Status: partial/dark
-> Last updated: 2026-07-15
+> Last updated: 2026-07-16
 
 ## Purpose
 The multi-provider booking spine — searches flights, hotels, restaurants, transit,
@@ -44,6 +44,7 @@ receipts, but the itinerary blocks remain owned by Planning/Itinerary.
 - **Cancellation review has a source-checked operator consumer** — `travel-agent/scripts/cancellation_review.py` lists bounded queue evidence, resolves with a stable operator-supplied resolution id, and exposes an SLA check whose exit code is monitor-friendly. It reads the admin token from the environment and never contacts a provider directly.
 - **Cancellation review breaches fail the scheduled workflow** — the backend cron workflow polls every 15 minutes and fails when the oldest review exceeds 30 minutes. The production API URL and admin token come from repository secrets; authentication, transport, response-shape, and overdue failures all remain loud through existing GitHub Actions notifications.
 - **Booking authority follows current trip membership** — when a controller leaves, non-terminal booking sessions transfer atomically to the selected shared-plan successor or a deterministic remaining organizer/member, with an append-only transfer event. Pending cancellation truth and receipts therefore remain actionable by a current traveler; expired and failed sessions keep historical initiator provenance. The departing member's pending booking proposals expire in the same transaction so no undecidable held-booking obligation survives, while terminal proposal history remains intact.
+- **Shared provider truth survives account deletion without the person** — confirmed/cancelled offers, live holds, ambiguous reconciliation claims, active restaurant contact, protected dependencies, and non-terminal provider sagas transfer to a remaining shared-trip member. Retained rows are minimized to operational evidence and anonymized; traveler preferences, passenger/contact/payment data, notes, transcripts, venue briefs, deep links, and the deleted account UUID do not survive. Draft/unused booking state and solo-trip bookings are deleted.
 - **Trip archival stops forward booking work, not recovery** — archived trips reject new sessions, proposal decisions, offer selection/refresh, hold settlement, cart confirmation, and restaurant-contact retry with a stable `trip_archived` conflict. Reads, provider-truth reconciliation, cancellation, and hold release remain available so archival cannot trap an existing external liability.
 - **Manual recovery is not an override** — an operator may resolve an active restaurant attempt only after automatic reconciliation is explicitly complete. The attempt number, current attempt status, and offer status are locked and rechecked; a late webhook or conflicting terminal state wins.
 - **Signed voice callbacks are one terminalization boundary** — Bland HMAC-SHA256 signs the raw callback body. Signed metadata must equal the URL's `attempt_id` plus `attempt_number`, and the signed `call_id` must equal the durable provider reference before parsing. Attempt status, normalized offer status, provider-outcome event, and confirmation writeback queue then commit atomically. Negative attempt outcomes normalize to offer `failed`.
