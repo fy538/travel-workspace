@@ -122,6 +122,16 @@ flags:
       data, then flip for cohort 2 if the eval passes — that evaluation is
       the next explicit decision, not this flag staying dark indefinitely.
 
+  - name: ITINERARY_OPERATIONS_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:158
+    default: true
+    category: ops
+    owner: fy538
+    expires: 2026-10-04
+    status: active
+    notes: Global fail-closed kill switch for canonical itinerary writes; reads and previews remain available when disabled.
+
   - name: DOSSIER_APPROVED_FILTER_CHAT
     repo: travel-agent
     location: backend/core/settings.py:158

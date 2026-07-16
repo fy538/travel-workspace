@@ -1,12 +1,12 @@
 # Trips / Folio — System Charter
 
 > Surface: Trips
-> Maturity (for MVP): compatibility-required during migration
-> Status: wired (transitional; target read authority established, frontend migration pending)
-> Last updated: 2026-07-13
+> Maturity (for MVP): retired compatibility surface
+> Status: retired (canonical itinerary/lifecycle projections now own the read path)
+> Last updated: 2026-07-16
 
 ## Purpose
-The compatibility backend-authored read model for the currently shipped,
+Historical charter for the compatibility backend-authored read model that served the
 hero-led Trip Home. It composes "*what is the current truth of this trip, and
 what's the next move?*" across the ideation → pre-trip → live → post-trip
 lifecycle while the product migrates to the itinerary-first trip shell. It is
@@ -22,7 +22,7 @@ Memory projections. Retire `/folio` only after field parity, first-paint
 performance, degradation behavior, and old-client compatibility are proven.
 
 ## Spans (cross-repo)
-- Backend: [`travel-agent/backend/folio/`](../../travel-agent/backend/folio/FEATURE.md) (`read_model.py::assemble_trip_folio`) + `backend/api/routes/folio.py`.
+- Backend: retired; the former Folio route and assembly package have been removed.
 - Frontend: `travel-app/app/(tabs)/trips/[tripId]/index.tsx` (Trip Home), `travel-app/components/trip/TripFolioHome.tsx`, `travel-app/components/trip/TripFolioPostTrip.tsx`, `travel-app/components/trip/FolioReceiptCard.tsx`, and `travel-app/data/folio.ts`.
 - Tables read: itinerary (`itineraries`/`_days`/`_blocks`, `plan_state`), `trips`, `trip_members`, expenses, proposals, story/Atlas, saves, trip photos. **Folio owns no tables.**
 
@@ -55,7 +55,7 @@ write path.
 
 ## Canonical docs
 - Why → [`Trips Vision`](../../travel-agent/docs/product/Trips%20Vision.md).
-- Current compatibility architecture → [`Trip Folio Read Model`](../../travel-agent/docs/architecture/Trip%20Folio%20Read%20Model.md), [`Trip State Architecture`](../../travel-agent/docs/architecture/Trip%20State%20Architecture.md), and [`backend/folio/FEATURE.md`](../../travel-agent/backend/folio/FEATURE.md).
+- Current compatibility architecture → [`Trip Folio Read Model`](../../travel-agent/docs/architecture/Trip%20Folio%20Read%20Model.md) and [`Trip State Architecture`](../../travel-agent/docs/architecture/Trip%20State%20Architecture.md).
 - Target product contract → [`Trip Itinerary`](../../travel-app/docs/surfaces/trip-itinerary/contract.md); shipped-surface QA only → [`Single Trip Home`](../../travel-app/docs/surfaces/single-trip-home/contract.md).
 - Migration contract → [`IR-12 coherent read models`](../working/itinerary-redesign-ir12-read-model-contract-2026-07-13.md).
 - Tests → `travel-agent/tests/api/test_trip_folio.py`.
