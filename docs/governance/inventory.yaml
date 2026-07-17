@@ -116,6 +116,12 @@ overrides:
   docs/audits/code-behind-design-2026-07-17.md:
     disposition: keep_reference
     rationale: Active reverse companion and authoritative compact residual implementation-gap inventory (frontmatter status active, created 2026-07-17).
+  docs/audits/vesper-235-design-gap-investigation-2026-07-17.md:
+    disposition: keep_reference
+    rationale: Active Vesper 235 design-versus-code investigation feeding the bounded parity program; expires 2026-08-16.
+  docs/audits/vesper-235-parity-ledger-2026-07-17.md:
+    disposition: keep_reference
+    rationale: Active closure ledger for the verified Vesper 235 gaps; expires 2026-08-16.
   docs/audits/charter-invariant-checkers-2026-07.md:
     disposition: keep_reference
     rationale: Durable evidence for the executable charter-invariant regression net.
@@ -160,6 +166,10 @@ overrides:
   docs/working/claude-design-invitee-post-join-prompt-2026-07-13.md:
     disposition: keep_authoritative
     rationale: Active Claude Design prompt for the missing invitee post-join payoff moment (D9/D10 in the invitee-first-five-minutes-audit); expires 2026-08-12, archive to audits/ once the design session runs.
+
+  docs/working/vesper-round-1-claude-design-prompts-2026-07-17.md:
+    disposition: keep_reference
+    rationale: Bounded design-execution prompts derived from the Vesper 235 audit and parity ledger; expires 2026-08-16.
 
   docs/audits/motion-language-audit-2026-07-11.md:
     disposition: keep_reference
