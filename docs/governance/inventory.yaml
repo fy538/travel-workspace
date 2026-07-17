@@ -110,12 +110,6 @@ overrides:
     disposition: keep_authoritative
     rationale: Current source of truth for V1 scope and dark surfaces.
 
-  docs/audits/design-behind-code-2026-07-17.md:
-    disposition: keep_reference
-    rationale: Active design-canon-vs-code gap inventory feeding the next design-iteration sessions (frontmatter status active, created 2026-07-17).
-  docs/audits/code-behind-design-2026-07-17.md:
-    disposition: keep_reference
-    rationale: Active reverse companion and authoritative compact residual implementation-gap inventory (frontmatter status active, created 2026-07-17).
   docs/audits/charter-invariant-checkers-2026-07.md:
     disposition: keep_reference
     rationale: Durable evidence for the executable charter-invariant regression net.
