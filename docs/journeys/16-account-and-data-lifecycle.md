@@ -2,7 +2,7 @@
 
 > Status: draft
 > Owner: founder / engineering
-> Last updated: 2026-06-29
+> Last updated: 2026-07-16
 > Primary phase: cross-cutting (account + data rights)
 
 ## Product Promise
@@ -35,17 +35,19 @@ As a user, I want real control over my account and data, so that I can trust the
 3. Memory reset / retire a learned fact (`/atlas/constraints`) → the signal is actually forgotten downstream.
 4. Revoke a shared recap link → the public link 404s afterward.
 5. Data receipt / "what Vesper knows" → reflects actual stored data, not a static template.
-6. Delete account → personal memory, private signals, and PII are purged or anonymized; the user is signed out.
+6. Delete account → personal memory, private signals, and PII are purged or anonymized; shared provider-backed obligations remain only as minimized, anonymized operational truth under a remaining member's control; the user is signed out.
 
 ## Expected Outcome
 
 - Privacy toggles, delegation, and constraints persist and take effect downstream.
 - Export/receipt reflect real stored data.
 - Account deletion purges/anonymizes personal memory + private signals; revoked links die.
+- Shared bookings with real external obligations remain actionable for the group without retaining the deleted traveler's identity or private booking context. Drafts, unused offers, and solo-trip booking state are deleted.
 
 ## Must Never Happen
 
 - Account deletion leaves personal memory, private signals, or PII queryable.
+- Account deletion either destroys a shared external obligation/audit trail or leaves it controlled by, or identifiable to, the deleted account.
 - A privacy toggle renders changed but doesn't take effect downstream.
 - A revoked shared link still resolves.
 - The data receipt shows a template instead of the user's actual data.

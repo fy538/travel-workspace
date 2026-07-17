@@ -58,6 +58,22 @@
       "removal_trigger": null,
       "review_by": null
     },
+    "GET /admin/booking/cancellation-reviews": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "cancellation-review-cli",
+          "source": "travel-agent/scripts/cancellation_review.py"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated read-only queue for cancellation claims that exhausted automatic provider reconciliation.",
+      "removal_trigger": null,
+      "review_by": null
+    },
     "GET /admin/dogfood/audit": {
       "audience": "operator",
       "consumers": [
@@ -911,6 +927,22 @@
       "lifecycle": "active",
       "owner": "operations",
       "reason": "Authenticated operator and dogfood tooling surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "POST /admin/booking/cancellation-reviews/{offer_id}/resolve": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "cancellation-review-cli",
+          "source": "travel-agent/scripts/cancellation_review.py"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Authenticated evidence-backed resolution for ambiguous provider cancellation truth.",
       "removal_trigger": null,
       "review_by": null
     },
