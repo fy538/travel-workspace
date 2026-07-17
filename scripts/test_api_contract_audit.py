@@ -50,6 +50,7 @@ class APIContractAuditTests(unittest.TestCase):
                         "review_by": None,
                     },
                     "operations": overrides or {},
+                    "retired_operations": {},
                 }
             ),
             encoding="utf-8",
@@ -142,6 +143,66 @@ class APIContractAuditTests(unittest.TestCase):
         }
         findings, _, _ = audit(openapi, policy, consumers, {"TEST_DARK_FLAG"})
         self.assertIn("stale-policy", {finding.code for finding in findings})
+
+    def test_retired_operation_cannot_reappear_in_openapi(self) -> None:
+        key = "POST /api/things/{thing_id}/apply"
+        openapi, policy = self._files(
+            [("POST", "/api/things/{thing_id}/apply", "apply_thing")]
+        )
+        payload = json.loads(policy.read_text())
+        payload["retired_operations"][key] = {
+            "owner": "test-owner",
+            "reason": "Superseded split mutation route.",
+            "replacement": "POST /api/things/{thing_id}/resolve",
+            "retired_on": "2026-07-16",
+        }
+        policy.write_text(json.dumps(payload))
+
+        findings, _, _ = audit(openapi, policy, {}, set())
+
+        self.assertIn("retired-operation-exposed", {finding.code for finding in findings})
+
+    def test_retired_operation_stays_as_absence_ratchet(self) -> None:
+        key = "POST /api/things/{thing_id}/apply"
+        openapi, policy = self._files(
+            [("POST", "/api/things/{thing_id}/resolve", "resolve_thing")],
+            {
+                "POST /api/things/{thing_id}/resolve": {
+                    **self._policy("active"),
+                    "consumers": [{"kind": "server", "name": "test"}],
+                }
+            },
+        )
+        payload = json.loads(policy.read_text())
+        payload["retired_operations"][key] = {
+            "owner": "test-owner",
+            "reason": "Superseded split mutation route.",
+            "replacement": "POST /api/things/{thing_id}/resolve",
+            "retired_on": "2026-07-16",
+        }
+        policy.write_text(json.dumps(payload))
+
+        findings, _, _ = audit(openapi, policy, {}, set())
+
+        self.assertEqual(findings, [])
+
+    def test_retirement_requires_live_replacement(self) -> None:
+        key = "POST /api/things/{thing_id}/apply"
+        openapi, policy = self._files([])
+        payload = json.loads(policy.read_text())
+        payload["retired_operations"][key] = {
+            "owner": "test-owner",
+            "reason": "Superseded split mutation route.",
+            "replacement": "POST /api/things/{thing_id}/resolve",
+            "retired_on": "2026-07-16",
+        }
+        policy.write_text(json.dumps(payload))
+
+        findings, _, _ = audit(openapi, policy, {}, set())
+
+        self.assertIn(
+            "retirement-replacement-missing", {finding.code for finding in findings}
+        )
 
     def test_expired_dark_policy_fails(self) -> None:
         key = "GET /api/things/{thing_id}"
