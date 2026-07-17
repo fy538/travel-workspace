@@ -68,7 +68,7 @@ Automated live API covers backend trust invariants (I1–I3 invite, I5/I7/I8 pro
 
 ```bash
 make dogfood-fly-smoke                    # Fly substrate + personas
-make dogfood-journey-live-api             # local TestClient — must be 15/15
+make dogfood-journey-live-api             # local TestClient — must be 16/16
 make certify-visual                       # Maestro 24 + 25 (J02/J05 wedge UI)
 ```
 

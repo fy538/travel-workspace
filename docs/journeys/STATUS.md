@@ -16,7 +16,7 @@ Visual gate: the generated **Visual (Maestro)** column in the journey fidelity m
 | Substrate (DB + offline compose) | `make dogfood-five-pack-verify PROFILE=fly` | **PASSED** 2026-06-29 |
 | Fly smoke (API + personas + Rome bridge) | `make dogfood-fly-smoke` | **PASSED** 2026-06-29 |
 | Five-pack certification (agent-owned) | `make dogfood-five-pack-verify PROFILE=fly` + `make dogfood-five-pack-simulator` | **COMPLETE** 2026-06-29 |
-| Live HTTP (Fly + Clerk) | `TRANSPORT=http PRELAUNCH_JWT_MARA=… PRELAUNCH_JWT_DAO=… make dogfood-journey-live-api PROFILE=fly` | **not blocked, not built** — TestClient 15/15 green; the transport gap is ~3-5h of internal glue (test Clerk users + SQL backfill of `external_auth_id` + a JWT-mint script), not an external Clerk dependency. **In progress:** `tools/dogfood/link_clerk_accounts.py` (added 2026-07-05) links real Clerk test accounts to the seeded `mara`/`elif` rows; JWT-mint step still unbuilt. |
+| Live HTTP (Fly + Clerk) | `TRANSPORT=http PRELAUNCH_JWT_MARA=… PRELAUNCH_JWT_DAO=… make dogfood-journey-live-api PROFILE=fly` | **not blocked, not built** — TestClient 16/16 green; the transport gap is ~3-5h of internal glue (test Clerk users + SQL backfill of `external_auth_id` + a JWT-mint script), not an external Clerk dependency. **In progress:** `tools/dogfood/link_clerk_accounts.py` (added 2026-07-05) links real Clerk test accounts to the seeded `mara`/`elif` rows; JWT-mint step still unbuilt. |
 
 **Note (2026-07-05):** this row is CI-automation nice-to-have, not a shipping blocker. The actual device-certification gate for J04/J05/J10 runs on **real Clerk accounts on two physical devices** (see [journey-live-full-cert-04-05-10.md](../working/journey-live-full-cert-04-05-10.md) and [dogfood-loop-validation-2026-07-04.md](../working/dogfood-loop-validation-2026-07-04.md)) and never touches this automated persona-JWT row at all — that path deliberately routes *around* the persona-JWT problem entirely.
 
@@ -209,7 +209,7 @@ Source: `docs/journeys/journeys.yaml` × derived coverage (FE mock-walk / BE pyt
 | Maestro wedge flows (24/25) | **green** 2026-06-29 (`make certify-visual`) |
 | Five-pack dogfood (agent gates) | **certified** 2026-06-29 (`dogfood-five-pack-verify` + `dogfood-five-pack-simulator`) |
 | Journey agent-certified (12) | **12 / 12** golden (J01–J12) — automated ladder green (mock-walk + logic + Maestro where required); J14 + J15 also pass persona-cert (see auto block above) |
-| Journey live-api (J02/J04/J05/J10) | **4/4** — `make dogfood-journey-live-api` 15/15 TestClient (2026-06-29); Fly HTTP transport gap is unbuilt internal glue, not a Clerk blocker (see Live HTTP row above) |
+| Journey live-api (J02/J04/J05/J10) | **4/4** — `make dogfood-journey-live-api` 16/16 TestClient (2026-07-17); Fly HTTP transport gap is unbuilt internal glue, not a Clerk blocker (see Live HTTP row above) |
 | Journey full-certified (12) | **0 / 12** — device walks for J04/J05/J10 (runbook linked above) |
 
 ## Certify ladder (workspace)
