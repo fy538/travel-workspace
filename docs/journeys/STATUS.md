@@ -166,7 +166,7 @@ Source: `dogfood_journey_persona_cert.py --json` for mara + elif (seeded world, 
 | J16 | — | - | ⤵️ skip | privacy controls take effect; deletion purges private data — Account deletion is DESTRUCTIVE on the shared seeded persona — deleting mara/elif would break every other cert. Certify against an ephemeral user in BE pytest (tests/scenarios), not the lived persona. |
 | J17 | — | - | ⤵️ skip | cross-trip affinity recall without private-context leak — Cross-trip recall substrate is DARK (ATLAS_SIGNALS_TO_MEMORY gated; traveler_place_affinity recall quiet). Lit it would assert recall surfaces in a second trip; until enabled this is a visible gap. |
 | J18 | — | - | ⤵️ skip | invite token survives the auth detour → correct membership — The signed-out auth detour is a FE/Clerk flow not exercised by the in-process certifier. Cert the token→membership contract in BE (invite accept) + the public-field shape in the FE mock-walk. |
-| J19 | — | - | ⤵️ skip | search/profiles route live; public taste leaks no private data — Social loop is a deferred initiative and universal search is built-but-unpushed. Cert search-routing as a BE/FE contract test and public-profile privacy as a persona-cert leak check once in scope. |
+| J19 | — | - | ⤵️ skip | search/profiles route live; public taste leaks no private data — Search routing, public-profile projection, follow persistence, and the device walk are implemented. Live persona-cert still needs a seeded discoverable public profile/follow target and a deployed authorization check proving private constraints, memory, and trip membership stay hidden. |
 
 **Persona-cert summary:** 15 / 15 lived-certified journeys pass · 4 skipped (J16, J17, J18, J19).
 <!-- END auto:persona-cert -->
