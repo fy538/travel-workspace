@@ -48,12 +48,12 @@ The current Trip header is frozen. This program must not redesign it. “Folio�
 
 | ID | Finding | Required outcome | Validation evidence | Status |
 |---|---|---|---|---|
-| M01 | Cancellation reconciliation | Separate requesting, processing/refreshing, pending verification, cancelled, not cancelled, and manual action required; prevent duplicate submission | State mapping against internal and client projections; transition tests | DESIGNING |
-| M02 | Cancellation completion receipt | Canonical replay-safe receipt anatomy for success, not-cancelled, and escalation | Notification payload mapping and replay test | DESIGNING |
-| M03 | Cancelled booking → Costs review | Booking receipt links to a paused-settlement expense review without implying final settlement | Booking/Costs navigation and settlement exclusion test | DESIGNING |
+| M01 | Cancellation reconciliation | Separate requesting, processing/refreshing, pending verification, cancelled, not cancelled, and manual action required; prevent duplicate submission | State mapping against internal and client projections; transition tests | DESIGN VALIDATED |
+| M02 | Cancellation completion receipt | Canonical replay-safe receipt anatomy for success, not-cancelled, and escalation | Notification payload mapping and replay test | DESIGN VALIDATED |
+| M03 | Cancelled booking → Costs review | Booking receipt links to a paused-settlement expense review without implying final settlement | Booking/Costs navigation and settlement exclusion test | DESIGN VALIDATED |
 | M04 | Participant consent ledger | Pending, approved, declined, excluded, reminder cooldown, narrow-to-self, and confirmation blocking | Per-participant state fixture and permission test | DESIGNING |
 | M05 | Booking controller/viewer | Controller owns provider mutations; other travelers see attribution and view-only outcomes | Role matrix and action-visibility test | DESIGNING |
-| M06 | Expense review governance | Eligible opener, opener-only withdrawal, payer/organizer resolution, payment-void prerequisite, paused settlement | Expense-review permission and settlement tests | DESIGNING |
+| M06 | Expense review governance | Eligible opener, opener-only withdrawal, payer/organizer resolution, payment-void prerequisite, paused settlement | Expense-review permission and settlement tests | DESIGN VALIDATED |
 | M07 | Recorded payments and void | Visible recorded/voided ledger rows and restricted void action | Ledger fixture and void permission tests | DESIGNING |
 | M08 | Currency truth | One settlement currency; unsupported conversions excluded; estimated rates labeled | Mixed-currency fixture | DESIGNING |
 | M09 | Masked expenses | Protect payer identity/amounts while preserving valid split and booking constraints | Payer/non-payer visibility matrix | DESIGNING |
@@ -153,7 +153,9 @@ Retirement happens only after the replacement route and state coverage are verif
 - Second design return: several source-truth corrections landed, but integration, component reuse, and internal consistency remain open; **no row promoted**.
 - Third design return: ownership and runtime labels improved, but the surgical prompt was only partially executed; **no row promoted**.
 - Fourth design return: cancellation micro-pass landed most required behavior; a small literal-consistency cleanup remains before cancellation rows can advance.
-- Next gate: close the cancellation residue, then run consent and public/governance micro-passes.
+- Fifth design return: cancellation source checks passed; M01, M02, M03, and M06 promoted to `DESIGN VALIDATED`.
+- Sixth design return: consent micro-pass fixed actor perspective and audit labels but skipped status/ownership work and introduced a contradictory role row; M04/M05 remain `DESIGNING`.
+- Next gate: one smaller consent cleanup, then public/governance micro-pass.
 
 ## Round 1 validation — first design return
 
@@ -349,4 +351,51 @@ Round 1 remains `DESIGNING`. The third return closes the ownership-registration 
 5. One Round 1 decorative-token violation remains in the controller/viewer capability board: meaningful unavailable-capability markers use `muteSoft`.
 6. State System inspection shows that WorkerProgress, StaleNotice, and ActionFailureInline are documented prototype patterns, not exported reusable JSX components. Annotated local render adapters are therefore acceptable in this design medium, but all three helper comments should say **noncanonical prototype adapter · owned by State System**, not “mirror,” so they cannot be mistaken for new component ownership.
 
-Cancellation is close, but M01–M03 and M06–M11 remain `DESIGNING` until these internal contradictions are removed and the relevant source mappings are rechecked.
+At the fourth return, cancellation remained close but not yet validated; the fifth-return closure below supersedes that interim status.
+
+## Round 1 validation — fifth design return (cancellation closure)
+
+### Cancellation result
+
+Booking Cancellation Truth now passes the cancellation-specific design gate:
+
+- exactly two verified provider outcomes: Cancelled and Still booked;
+- Verification needed is durable and unresolved everywhere;
+- refresh/network failure is rendered and read-only;
+- no retry resubmits cancellation;
+- completion and escalation receipts are separated truthfully;
+- review opener, manager, controller, and viewer capabilities are distinct;
+- split type is display-only without an invented change flow;
+- State System render helpers are explicitly noncanonical prototype adapters owned by State System;
+- no cancellation-specific meaningful-text decorative-token violation remains.
+
+M01, M02, M03, and M06 move to `DESIGN VALIDATED`. They are not `PARITY VALIDATED`: implementation mapping and focused tests remain required before that later gate.
+
+### Scope drift
+
+The design tool also modified Booking Consent & Control despite the cancellation-only instruction. Those changes removed the mixed-ledger controller action and both consent-specific decorative-token violations. They are directionally correct, but M04/M05 remain `DESIGNING` because canonical row/status ownership, status-tone propagation, edge-state audit labels, and role-overlap modeling are still open.
+
+The global consistency audit now reports 36 decorative-token findings, all outside the Round 1 canvases. Its remaining hard-failure categories are the unindexed Itinerary Redesign page and the pre-existing decorative-token backlog; shared-primitive warnings remain a separate project-wide cleanup item.
+
+## Round 1 validation — sixth design return (consent micro-pass)
+
+### Correctly landed
+
+- The design tool respected the consent-only file boundary.
+- Mixed-ledger and declined-recovery captions now identify viewer versus controller perspective explicitly.
+- Traveler removal, controller unavailable, concurrent consent change, and provider-action-in-progress are visibly labeled `CODE AUDIT REQUIRED`.
+- Consent-specific decorative-token violations remain at zero.
+
+### Blocking residue
+
+1. Status tone still does not reach visible chips in `BHead`, edge `Mini` cards, or receipts; `chipTone` remains unused by the actual `Chip` rendering.
+2. `ConChip`, `Av`, and `ConRow` have no prototype-adapter/ownership annotations. The prompt did not require their deletion; it required clear Row System/status-anatomy ownership.
+3. The role matrix now contains two self-consent rows that contradict one another:
+   - the original row grants self-consent only to the affected-participant column;
+   - the added row grants it to organizer, controller, affected participant, and ordinary viewer unconditionally.
+4. The new all-columns row is itself false: an ordinary viewer who is not an included booking participant cannot answer consent. The correct rule is capability-based—**any included participant, regardless of other roles**.
+5. The explicit doctrine **“Capabilities accumulate”** was not added.
+6. Accessibility was not extended to cover text-plus-color status, audit-label reading order, or matrix overflow.
+7. The requested validation board was not added.
+
+M04 and M05 remain `DESIGNING`. The next consent pass should edit only status-chip propagation, adapter ownership notes, the role matrix, accessibility annotations, and the validation board; the lifecycle specimens no longer need redesign.
