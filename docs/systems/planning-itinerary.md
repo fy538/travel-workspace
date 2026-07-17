@@ -65,5 +65,7 @@ changes use typed operations.
   reset/reseed proof, and signatures remain operational closeout work.
 - One historical edit-log acknowledgement writer remains until its deployed
   backlog is proved drained; it cannot mutate itinerary truth.
-- Planner orchestration remains oversized; `_execute_generate_plan_once` still
-  exceeds the backend function-size budget and deserves a dedicated refactor.
+- Planner orchestration now separates runtime progress, handoff telemetry,
+  plan-ready receipts, and deferred enrichment from policy and canonical
+  persistence. `_execute_generate_plan_once` is below the enforced function
+  budget; preserve that boundary as planning behavior evolves.

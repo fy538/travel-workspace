@@ -166,6 +166,12 @@ preserving the old itinerary underneath the new design.
   helpers and their writer-only tests are deleted; `change_proposals.py` is a
   read/deadline projection module only. Journey certs, scenario fixtures,
   replay/eval spies, and concierge tests now enter through canonical producers.
+- Planner orchestration no longer requires a size-budget exception. Runtime
+  progress transport, handoff telemetry, plan-ready receipts, and deferred
+  enrichment are isolated from planning policy and canonical persistence;
+  `_execute_generate_plan_once` is below the 800-line function ceiling. The
+  full structural gate and itinerary certificate remain green (319 + 280
+  tests), with direct runtime regression coverage (117 passed, 6 skipped).
 
 The sections below retain the 2026-07-14 wiring trace as the audit baseline;
 use this closeout block and the executable guards for current status.
