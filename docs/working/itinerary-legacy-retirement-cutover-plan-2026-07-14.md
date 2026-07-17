@@ -172,6 +172,12 @@ preserving the old itinerary underneath the new design.
   `_execute_generate_plan_once` is below the 800-line function ceiling. The
   full structural gate and itinerary certificate remain green (319 + 280
   tests), with direct runtime regression coverage (117 passed, 6 skipped).
+- B4 guard/disposition hygiene is complete. IR-00 now reflects the executable
+  141-writer / 19-import / zero-reader reality, records the 2026-07-16 local
+  retirement date for independently reachable legacy writes, and gives every
+  retained structure an owner, purpose, consumer set, disposition trigger, and
+  2026-07-23 review date. This does not license the one edit-log acknowledgement
+  writer or any physical table deletion without deployed evidence.
 
 The sections below retain the 2026-07-14 wiring trace as the audit baseline;
 use this closeout block and the executable guards for current status.
@@ -935,8 +941,9 @@ complete.
 - [ ] B3: local physical source deletion is substantially complete, but a
       certified deployed canonical-only rollback checkpoint and lane evidence
       are still required; `patch_trip` remains intentionally retained.
-- [ ] B4: deleted API/module import bans are green; IR-00 removal dates and the
-      retained-read-model disposition ledger are complete.
+- [x] B4: deleted API/module import bans are green; IR-00 removal dates and the
+      retained-read-model disposition ledger are complete. The one finite
+      edit-log acknowledgement remains tracked by 0b rather than hidden here.
 - [x] C-local: five packs replay chronologically through canonical preview/
       policy/commit and distinct manual/provider booking contracts with stable
       cross-domain IDs and no seed-specific mutation semantics.
