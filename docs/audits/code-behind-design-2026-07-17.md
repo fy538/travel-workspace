@@ -78,14 +78,13 @@ pre-trip preparation, and calendar completion all recheck durable lifecycle
 truth. Post-trip story/memory work and money/reconciliation notices remain
 available by explicit policy rather than accidental exception.
 
-Optimize Route consequence truth is now typed at backend `8526bc37` and app
-`95b1c2fa`. Every suggested stop carries its current and proposed position and
-time plus a server-authored `kept`, `moved`, `retimed`, or
-`moved_and_retimed` classification. The existing sheet renders compact
-destination-local WAS/NOW evidence before committing the same canonical
-compound operation. This resolves Optimize's before/after clarity without
-adding another mutation system; Replan and richer initial parallel-plan
-construction remain.
+Optimize Route consequence truth is typed at backend `8526bc37` and app
+`95b1c2fa`. Replan previews now also project every atomic child as an added,
+moved, removed, or replaced stop and state how many existing stops stay
+unchanged and how many protected provider dependencies remain explicit. The
+same canonical compound operation still owns preview and commit. Full
+destination-local before/after timing and travel deltas in the Replan receipt,
+plus richer initial parallel-plan construction, remain.
 
 ### Resolved in the first wave
 
@@ -125,7 +124,7 @@ construction remain.
 
 | Priority | Residual capability | Direction |
 |---|---|---|
-| P1 | Replan and parallel-construction deltas | Optimize per-stop consequences are typed and rendered; complete Replan added/moved/removed/kept evidence, protected-provider consequences, and richer initial parallel-plan construction inside the existing operation system. |
+| P1 | Replan receipt depth and parallel construction | Replan preview classification, kept-stop truth, and protected-dependency counts are typed and rendered. Add destination-local before/after timing and travel deltas to the landed receipt, then enrich initial parallel-plan construction inside the existing operation system. |
 | P1 | Missing Chat object producers | Full itinerary, map/route, comparison, Atlas draft, recovery and private handoff need typed producers plus durable actions. |
 | P1 | Heterogeneous Discover pins | Venue pins are complete; friend, experience and place payloads still need accessible rendering and grounded handoffs. |
 | P2 | Bounded product/interaction polish | Trip Info hero/description, Skip vote, trip-creation correction, booking recovery and share-owner sheets. |
@@ -254,7 +253,7 @@ The backend and sheet can refresh/rebase a stale preview, but the UI collapses r
 
 Implement this as a recovery state of the existing operation flow, not a second mutation system.
 
-### 1.4 Optimize consequence delta resolved; Replan remains — P1
+### 1.4 Optimize resolved; Replan preview classified, receipt depth remains — P1
 
 `OptimizeRouteSheet` now shows distance saved plus a typed per-stop
 classification and destination-local current/proposed position and time. Kept,
@@ -262,11 +261,13 @@ moved, retimed, and moved-plus-retimed stops therefore have explicit WAS/NOW
 evidence before the canonical compound operation is committed. Map drag
 remains an explicit deferral rather than an incomplete promise.
 
-The residual is Replan: its compound operation still needs traveler-facing
-added/moved/removed/kept projection, protected-provider consequences, and a
-full before/after receipt. Build that on the same operation and history
-contracts rather than extending the Optimize-specific response into a second
-generic delta system.
+Replan now uses the generic operation preview contract to expose every atomic
+child as added, moved, removed, or replaced, plus the count of unchanged stops
+and protected provider dependencies. The review sheet renders those exact
+server-authored consequences before its one atomic commit. The residual is
+destination-local prior/proposed timing, travel ripple, and equivalent landed
+receipt detail. Build that on the same operation and history contracts rather
+than extending the Optimize-specific response into a second mutation system.
 
 ### 1.5 Initial Split/Rejoin construction is narrower than the target — P1
 

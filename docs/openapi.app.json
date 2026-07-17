@@ -41309,6 +41309,31 @@
             "minimum": 0.0,
             "title": "Child Operation Count",
             "default": 0
+          },
+          "replan_changes": {
+            "items": {
+              "$ref": "#/components/schemas/ItineraryReplanChange"
+            },
+            "type": "array",
+            "title": "Replan Changes"
+          },
+          "kept_block_count": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Kept Block Count"
+          },
+          "protected_dependency_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Protected Dependency Count",
+            "default": 0
           }
         },
         "additionalProperties": false,
@@ -42210,6 +42235,52 @@
           "blocks"
         ],
         "title": "ItineraryReadDayProjection"
+      },
+      "ItineraryReplanChange": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "added",
+              "moved",
+              "removed",
+              "replaced"
+            ],
+            "title": "Kind"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "day_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Day Id"
+          },
+          "block_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Block Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind",
+          "title",
+          "day_id"
+        ],
+        "title": "ItineraryReplanChange",
+        "description": "One traveler-readable structural consequence of an atomic Replan."
       },
       "ItineraryReturnField": {
         "type": "string",
