@@ -46777,7 +46777,7 @@
         },
         "type": "object",
         "title": "PatchTripRequest",
-        "description": "User-editable trip fields.\n\nExcludes internal fields managed by the concierge or background jobs; direct\nclient mutations must not overwrite them."
+        "description": "User-editable trip fields.\n\nExcludes internal concierge/background fields from direct client mutation."
       },
       "PayoffBlockAside": {
         "properties": {
