@@ -152,7 +152,8 @@ Retirement happens only after the replacement route and state coverage are verif
 - First design return: inspected against all three prompts and current source; **not yet validated**.
 - Second design return: several source-truth corrections landed, but integration, component reuse, and internal consistency remain open; **no row promoted**.
 - Third design return: ownership and runtime labels improved, but the surgical prompt was only partially executed; **no row promoted**.
-- Next gate: split the remaining work into smaller canvas-specific corrections, then re-run the audit and source comparison.
+- Fourth design return: cancellation micro-pass landed most required behavior; a small literal-consistency cleanup remains before cancellation rows can advance.
+- Next gate: close the cancellation residue, then run consent and public/governance micro-passes.
 
 ## Round 1 validation — first design return
 
@@ -325,3 +326,27 @@ The consent source did not change at all in this return. Every blocker from the 
 - All 40 decorative-token findings remain, including four introduced by Round 1.
 
 Round 1 remains `DESIGNING`. The third return closes the ownership-registration subtask but does not independently satisfy any product ledger row’s full validation evidence.
+
+## Round 1 validation — fourth design return (cancellation micro-pass)
+
+### Materially corrected
+
+- Two verified outcomes are rendered separately from the durable unresolved verification-needed state.
+- The manual receipt is an escalation receipt, not a false success receipt.
+- A full refresh/network-failure specimen now preserves prior truth and makes retry read-only.
+- Costs review identifies the opener and renders opener, manager, and viewer capabilities separately.
+- Booking control is explicitly separated from Costs withdrawal/resolution authority.
+- Split type is presented as display-only without a named alternate flow.
+- The new permission note no longer uses a decorative token; total decorative findings fell from 40 to 39.
+- A validation board records the intended cancellation truth.
+
+### Small blockers still present
+
+1. The lifecycle section subtitle still says: **“Only three terminal outcomes are truth: cancelled · not cancelled · finish by phone.”** This directly contradicts the corrected boards.
+2. The manual artboard label remains **“Manual action required · retry.”** It must say **“Verification needed · unresolved”** or equivalent.
+3. The accessibility recovery row still says **“Try again re-requests only when safe.”** In this canvas, retry must mean read provider status only; a new cancellation is a later explicit workflow after verified Still booked truth, not an inline retry.
+4. The verified-outcomes section says each state ends with a single valid next action, while the unresolved specimen intentionally exposes several bounded verification/support paths. Adjust the section doctrine rather than deleting valid support paths.
+5. One Round 1 decorative-token violation remains in the controller/viewer capability board: meaningful unavailable-capability markers use `muteSoft`.
+6. State System inspection shows that WorkerProgress, StaleNotice, and ActionFailureInline are documented prototype patterns, not exported reusable JSX components. Annotated local render adapters are therefore acceptable in this design medium, but all three helper comments should say **noncanonical prototype adapter · owned by State System**, not “mirror,” so they cannot be mistaken for new component ownership.
+
+Cancellation is close, but M01–M03 and M06–M11 remain `DESIGNING` until these internal contradictions are removed and the relevant source mappings are rechecked.
