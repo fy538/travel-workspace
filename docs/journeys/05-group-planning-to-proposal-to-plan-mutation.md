@@ -2,12 +2,14 @@
 
 > Status: draft  
 > Owner: founder / engineering  
-> Last updated: 2026-06-26  
+> Last updated: 2026-07-16
 > Primary phase: collaborative planning + direct itinerary edit
 
 ## Product Promise
 
-Vesper can help a group make a decision, turn it into a clear proposal, apply it to the plan, and explain or undo what changed.
+Vesper can help a group make a decision, turn it into an exact itinerary
+operation, preserve the coherence of the surrounding trip, and make the outcome
+understandable and recoverable.
 
 ## Canonical User Story
 
@@ -16,7 +18,8 @@ As a group planning a trip, we want to ask for a change, review Vesper's proposa
 ## Why This Journey Matters
 
 - This is the central Advise -> Propose -> Act loop.
-- It crosses chat, proposal detail, plan state, change history, notifications, and map invalidation.
+- It crosses private/group intent, proposal detail, itinerary policy, operation
+  commit, provider consequences, history, notifications, and List/Map coherence.
 - Mock mode covers the happy path, but real acceptance/apply behavior is a known drift hotspot.
 
 ## Starting State
@@ -28,7 +31,9 @@ As a group planning a trip, we want to ask for a change, review Vesper's proposa
 
 ## Primary Surfaces
 
-- Routes: `/(tabs)/trips/[tripId]/chat`, `/(tabs)/trips/[tripId]/plan`, `/(tabs)/trips/[tripId]/changes`, `/notifications`, Change Studio sheets on Plan rows.
+- Routes: trip room/private Vesper entry, the canonical Itinerary List/Map faces,
+  stop inspection/change flow, Review Stack, Trip Details → Changes, and
+  notification deep links.
 - App docs: [Change Proposals](../../travel-app/docs/page-specs/change-proposals.md), [Trip Group Chat](../../travel-app/docs/page-specs/trip-group-chat.md), [Trip Plan](../../travel-app/docs/page-specs/trip-plan.md).
 - Reliability trace: [Proposal Review And Plan Mutation](../reliability/traces/proposal-review-and-plan-mutation.md).
 - Existing anchors: `__tests__/data/proposals.test.ts`, `__tests__/components/plan/ProposalReviewSheet.test.tsx`, `__tests__/components/chat/VoteWidgetCardEmpty.test.tsx`, backend proposal API/apply tests.
@@ -42,8 +47,10 @@ As a group planning a trip, we want to ask for a change, review Vesper's proposa
 3. Vesper creates a proposal with affected ids and public-safe reason.
 4. Member votes or organizer resolves.
 5. Proposal detail shows accepted/rejected state.
-6. Plan reflects the accepted mutation or reassures that rejected plan stayed.
-7. Changes screen shows recent change with undo/revert when safe.
+6. Itinerary reflects the accepted operation or reassures that a rejected
+   proposal left plan truth unchanged; affected timing/logistics are repaired.
+7. The landed row/day summarizes what changed, provider truth, and unresolved
+   work; Changes preserves durable history and valid recovery.
 8. Notification/activity receipt routes back to the right object.
 
 ### Track B — Direct edit (Change Studio, no proposal)
@@ -63,6 +70,9 @@ Both tracks must send idempotency keys on mutating calls where the API requires 
 - Data state: proposal status, votes, affected ids, resolution, and applied/reverted state are stable.
 - Cross-surface coherence: Chat, Plan, Home, Changes, Map, and Notifications agree.
 - Trust state: users can distinguish proposed, accepted, rejected, and reverted changes.
+- Product proof: members can say **Vesper understood us** and the organizer can
+  see that the revision improved the itinerary rather than creating follow-up
+  planning work.
 
 ## Must Never Happen
 
@@ -73,6 +83,8 @@ Both tracks must send idempotency keys on mutating calls where the API requires 
 - Revert says success but Plan/Map still show the changed state.
 - Direct edit-preview succeeds in UI but commit fails without surfacing conflict or stale `expected_updated_at`.
 - Chat-created proposals bypass shared `build_and_persist_proposal` (drift risk).
+- A selected block changes while the surrounding day, participants, or provider
+  commitments silently become invalid.
 
 ## AI Trace Prompt
 
@@ -89,4 +101,3 @@ Add or extend deterministic tests for:
 - plan state after accept
 - recent changes after accept/revert
 - notification routing into proposal/chat/plan
-

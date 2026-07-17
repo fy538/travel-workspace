@@ -3,7 +3,7 @@
 > Surface: Trips
 > Maturity (for MVP): compatibility-required during migration
 > Status: wired (transitional; target read authority established, frontend migration pending)
-> Last updated: 2026-07-13
+> Last updated: 2026-07-16
 
 ## Purpose
 The compatibility backend-authored read model for the currently shipped,
@@ -11,6 +11,12 @@ hero-led Trip Home. It composes "*what is the current truth of this trip, and
 what's the next move?*" across the ideation → pre-trip → live → post-trip
 lifecycle while the product migrates to the itinerary-first trip shell. It is
 not the target trip authority.
+
+**Strategy boundary:** Folio is not a product concept to preserve or expand. The
+living itinerary is the primary single-trip surface; Details, History, Discover,
+and Memory own their named projections around it. Folio receives only
+compatibility, degradation, measurement, and retirement work during migration.
+No new traveler-facing capability should choose Folio as its permanent home.
 
 **Redesign disposition (accepted 2026-07-13):** the current `/folio` endpoint and
 hero-led Trip Home are compatibility surfaces during the itinerary-first
