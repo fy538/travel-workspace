@@ -2,7 +2,7 @@
 
 > Status: draft  
 > Owner: founder / engineering  
-> Last updated: 2026-06-26  
+> Last updated: 2026-07-16
 > Primary phase: memory / identity control / trust hub
 
 > **Current Atlas IA:** This cross-repo journey certifies the candidate and
@@ -54,7 +54,9 @@ As a traveler, I want to review a memory candidate, turn it into an artifact if 
 
 ### Journey 12 boundary
 
-Post-trip **story compose, settlement closeout, and returned-phase Folio** live in Journey 12. This journey owns memory **control and provenance**, not the narrative arc.
+Post-trip **completed-record entry, story compose, Memory, and settlement
+closeout** live in Journey 12. This journey owns memory **control and
+provenance**, not the narrative arc.
 
 ## Expected Outcome
 

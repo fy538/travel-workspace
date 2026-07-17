@@ -2,7 +2,7 @@
 
 > Status: draft  
 > Owner: founder / engineering  
-> Last updated: 2026-06-06  
+> Last updated: 2026-07-16
 > Primary phase: post-trip
 
 ## Product Promise
@@ -37,8 +37,9 @@ As a traveler who just got back, I want to see my trip story, inspect what Vespe
 
 1. Open Trips Home in returned state.
 2. Tap returned trip or Atlas postcard hero.
-3. Open Trip Folio post mode.
-4. Open Story and share/regenerate/edit if available.
+3. Confirm the server-authored entry decision: final Itinerary remains the
+   completed record; meaningful Memory may be recommended as the initial face.
+4. Open Story from Memory or Trip Details and share/regenerate/edit if available.
 5. Ask Vesper privately from Story footer.
 6. Open Memory and inspect learned DNA.
 7. Open Atlas from post-trip CTA.
@@ -47,7 +48,8 @@ As a traveler who just got back, I want to see my trip story, inspect what Vespe
 
 ## Expected Outcome
 
-- User-visible state: returned trip has story, memory, Atlas, and settle-up paths.
+- User-visible state: returned trip retains its final itinerary and exposes
+  Story, Memory, Atlas, and settle-up paths without a second trip dashboard.
 - Data state: memory observations, story sections, expenses, and Atlas candidates have source metadata.
 - Cross-surface coherence: Trip post mode, Story, Memory, Atlas, and Expenses agree about the completed trip.
 - Trust state: user can inspect learning and avoid forced debrief forms.
@@ -63,7 +65,11 @@ As a traveler who just got back, I want to see my trip story, inspect what Vespe
 ## AI Trace Prompt
 
 ```text
-Trace the returned-trip loop from Trips Home returned state through Trip Folio post mode, Story, Memory, Atlas, and Expenses. Identify date logic, source metadata, notification entry points, photo permission fallbacks, memory ordering, and mock-real drift.
+Trace the returned-trip loop from Trips Home through server-authored
+Itinerary/Memory entry, final Itinerary, Trip Details, Story, Memory, Atlas, and
+Costs. Identify lifecycle timezone logic, readiness, source metadata,
+notification entry points, exact-return navigation, photo permission fallbacks,
+memory ordering, and mock-real drift.
 ```
 
 ## First Automation Target
@@ -75,4 +81,3 @@ Post-trip mock walkthrough:
 - Memory route opens and links to Atlas DNA
 - settle-up routes to expenses with trip id
 - Atlas candidate/artifact state matches trip memory
-

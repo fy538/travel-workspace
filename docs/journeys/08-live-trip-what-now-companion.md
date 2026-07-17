@@ -2,7 +2,7 @@
 
 > Status: draft  
 > Owner: founder / engineering  
-> Last updated: 2026-06-26  
+> Last updated: 2026-07-16
 > Primary phase: live trip + Vesper Home live mode
 
 ## Product Promise
@@ -29,7 +29,10 @@ As a traveler already on the trip, I want Vesper to help me understand the next 
 
 ## Primary Surfaces
 
-- Routes: `/(tabs)/concierge`, `/(tabs)/trips`, `/(tabs)/trips/[tripId]`, `/(tabs)/trips/[tripId]/map`, `/(tabs)/trips/[tripId]/plan`, `/(tabs)/trips/[tripId]/chat`.
+- Routes: `/(tabs)/concierge`, `/(tabs)/trips`,
+  `/(tabs)/trips/[tripId]/plan`, the in-place `face=map` itinerary state,
+  `/(tabs)/trips/[tripId]/details`, and `/(tabs)/trips/[tripId]/chat`. The
+  literal trip index and `/map` routes are redirect-only legacy aliases.
 - App docs: [Concierge Home](../../travel-app/docs/page-specs/concierge-home.md), [Trip Map](../../travel-app/docs/page-specs/trip-map.md), [Canonical User Flow Map](../../travel-app/docs/user-flows/canonical-flow-map.md).
 - Existing anchors: `__tests__/hooks/useAmbientWeather.test.ts`, `__tests__/hooks/useNarrationGeofence.test.ts`, `__tests__/screens/map.smoke.test.tsx`, `__tests__/utils/tripMapStateParity.test.ts`.
 
@@ -71,7 +74,10 @@ Journey 06 owns read-model agreement after a live-trip mutation; this journey ow
 ## AI Trace Prompt
 
 ```text
-Trace live-trip state from date/time and trip plan into Vesper Home, Trip Folio, Plan, Map, notifications, and Ask Vesper seeds. Identify no-op CTAs, permission fallbacks, currentTripId assumptions, and map focus risks.
+Trace server-authored live-trip state into Vesper Home, Itinerary List/Map,
+Trip Details, notifications, and Ask Vesper seeds. Identify no-op CTAs,
+permission fallbacks, route-`tripId` versus selected-trip assumptions, and map
+focus risks.
 ```
 
 ## First Automation Target
@@ -80,6 +86,6 @@ Mock-mode screen walkthrough with fixture `trip-lisbon-26`:
 
 - open Vesper Home live mode
 - tap every visible live/urgent CTA
-- open Trip Folio live thread
-- open Map from live context
+- open Itinerary live mode
+- switch in place to Map from live context
 - verify no dead taps and no stale next-stop mismatch

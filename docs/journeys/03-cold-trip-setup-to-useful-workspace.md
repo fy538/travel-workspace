@@ -2,7 +2,7 @@
 
 > Status: draft  
 > Owner: founder / engineering  
-> Last updated: 2026-06-06  
+> Last updated: 2026-07-16
 > Primary phase: early planning
 
 ## Product Promise
@@ -29,7 +29,10 @@ As a traveler with a new trip draft, I want to fill in just enough structure for
 
 ## Primary Surfaces
 
-- Routes: `/(tabs)/trips/[tripId]`, `/trip-place?tripId=`, `/trip-dates?tripId=`, `/trip-info?tripId=`, `/trip-accommodations?tripId=`, `/trip-expenses?tripId=`, `/(tabs)/trips/[tripId]/chat`.
+- Routes: the legacy entry alias `/(tabs)/trips/[tripId]` resolving to
+  `/(tabs)/trips/[tripId]/plan`, `/trip-place?tripId=`,
+  `/trip-dates?tripId=`, `/trip-info?tripId=`,
+  `/(tabs)/trips/[tripId]/details`, and `/(tabs)/trips/[tripId]/chat`.
 - App docs: [Trip Page](../../travel-app/docs/page-specs/trip-page.md), [Canonical User Flow Map](../../travel-app/docs/user-flows/canonical-flow-map.md).
 - Existing anchors: `__tests__/utils/blankTrip.test.ts`, `__tests__/screens/trip-workspace.smoke.test.tsx`, `__tests__/hooks/useTripSettings.test.ts`.
 
@@ -53,7 +56,8 @@ As a traveler with a new trip draft, I want to fill in just enough structure for
   honestly and specialized pre-trip surfaces become reachable without a Folio
   dashboard.
 - Data state: patched trip fields persist and hydrate after reload.
-- Cross-surface coherence: Trip title/header, Home facets, chat context, and trip settings agree.
+- Cross-surface coherence: itinerary Ledger/header, Trip Details, chat context,
+  and trip settings agree.
 - Trust state: incomplete setup is honestly labeled, not covered by fake itinerary content.
 
 ## Must Never Happen
@@ -67,7 +71,11 @@ As a traveler with a new trip draft, I want to fill in just enough structure for
 ## AI Trace Prompt
 
 ```text
-Trace the cold Trip Folio setup path. For each setup slot and facet, identify route params, hooks, patchTrip behavior, mock persistence, organizer permissions, and mode transition logic. Report any display-only affordances that look tappable.
+Trace the cold Itinerary Trip Shape path. For each setup action, identify route
+params, hooks, canonical materialization behavior, organizer permissions, and
+lifecycle transition logic. Verify that Trip Details continuations preserve the
+exact itinerary return state. Report any display-only affordances that look
+tappable.
 ```
 
 ## First Automation Target
@@ -77,5 +85,5 @@ Mock-mode journey test:
 - create blank trip
 - patch place and dates
 - reload trip
-- verify mode changes from cold toward pre
+- verify Trip Shape becomes one dated first draft
 - verify setup links preserve `tripId`
