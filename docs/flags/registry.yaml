@@ -124,7 +124,7 @@ flags:
 
   - name: ITINERARY_OPERATIONS_ENABLED
     repo: travel-agent
-    location: backend/core/feature_flags.py:158
+    location: backend/core/feature_flags.py:164
     default: true
     category: ops
     owner: fy538
@@ -390,209 +390,6 @@ flags:
     status: active
     notes: Latency prototype — shrinks the final synthesis reasoning_trace (the slowest single call, ~50% of wall-clock). Off by default; env-flippable for A/B measurement only, not yet a product decision.
 
-  # Itinerary redesign rollout gates. These remain independently reversible
-  # until the canonical read/write authority is certified in production.
-  - name: ITINERARY_LIFECYCLE_V2
-    repo: travel-agent
-    location: backend/core/feature_flags.py:158
-    default: false
-    category: release
-    owner: fy538
-    expires: 2026-10-11
-    status: active
-    notes: Gates the canonical server-authored itinerary lifecycle projection.
-
-  - name: ITINERARY_POLICY_V2
-    repo: travel-agent
-    location: backend/core/feature_flags.py:164
-    default: false
-    category: release
-    owner: fy538
-    expires: 2026-10-11
-    status: active
-    notes: Gates canonical itinerary capability and policy evaluation.
-
-  - name: ITINERARY_OPERATIONS_PREVIEW_V2
-    repo: travel-agent
-    location: backend/core/feature_flags.py:170
-    default: false
-    category: release
-    owner: fy538
-    expires: 2026-10-11
-    status: active
-    notes: Gates typed itinerary operation previews independently from commits.
-
-  - name: ITINERARY_OPERATIONS_COMMIT_V2
-    repo: travel-agent
-    location: backend/core/feature_flags.py:176
-    default: false
-    category: release
-    owner: fy538
-    expires: 2026-10-11
-    status: active
-    notes: Gates canonical typed-operation commits after preview certification.
-
-  - name: ITINERARY_OPERATION_PROPOSALS_V2
-    repo: travel-agent
-    location: backend/core/feature_flags.py:182
-    default: false
-    category: release
-    owner: fy538
-    expires: 2026-10-11
-    status: active
-    notes: Gates immutable typed operations for proposal creation and resolution.
-
-  - name: ITINERARY_HISTORY_V2
-    repo: travel-agent
-    location: backend/core/feature_flags.py:188
-    default: false
-    category: release
-    owner: fy538
-    expires: 2026-10-11
-    status: active
-    notes: Gates canonical immediate, stop, and trip history reads.
-
-  - name: TRIP_DETAILS_STATE_V2
-    repo: travel-agent
-    location: backend/core/feature_flags.py:194
-    default: false
-    category: release
-    owner: fy538
-    expires: 2026-10-11
-    status: active
-    notes: Gates the consolidated trip-details read model.
-
-  - name: ITINERARY_READ_MODELS_V2
-    repo: travel-agent
-    location: backend/core/feature_flags.py:200
-    default: false
-    category: release
-    owner: fy538
-    expires: 2026-10-11
-    status: active
-    notes: Gates canonical itinerary authority on Plan and Map reads.
-
-  - name: ITINERARY_OP_ADD_V2
-    repo: travel-agent
-    location: backend/core/feature_flags.py:204
-    default: false
-    category: release
-    owner: fy538
-    expires: 2026-10-11
-    status: active
-    notes: Independently gates canonical itinerary add operations.
-
-  - name: ITINERARY_OP_MOVE_V2
-    repo: travel-agent
-    location: backend/core/feature_flags.py:208
-    default: false
-    category: release
-    owner: fy538
-    expires: 2026-10-11
-    status: active
-    notes: Independently gates canonical itinerary move operations.
-
-  - name: ITINERARY_OP_REPLACE_V2
-    repo: travel-agent
-    location: backend/core/feature_flags.py:212
-    default: false
-    category: release
-    owner: fy538
-    expires: 2026-10-11
-    status: active
-    notes: Independently gates canonical itinerary replace operations.
-
-  - name: ITINERARY_OP_REMOVE_V2
-    repo: travel-agent
-    location: backend/core/feature_flags.py:216
-    default: false
-    category: release
-    owner: fy538
-    expires: 2026-10-11
-    status: active
-    notes: Independently gates canonical itinerary remove operations.
-
-  - name: ITINERARY_OP_ATTENDANCE_V2
-    repo: travel-agent
-    location: backend/core/feature_flags.py:220
-    default: false
-    category: release
-    owner: fy538
-    expires: 2026-10-11
-    status: active
-    notes: Independently gates attendance and occurrence operations.
-
-  - name: ITINERARY_PROVIDER_SAGA_V2
-    repo: travel-agent
-    location: backend/core/feature_flags.py:226
-    default: false
-    category: release
-    owner: fy538
-    expires: 2026-10-11
-    status: active
-    notes: Gates typed plan/provider continuations for protected operations.
-
-  - name: ITINERARY_BRANCHES_V2
-    repo: travel-agent
-    location: backend/core/feature_flags.py:232
-    default: false
-    category: release
-    owner: fy538
-    expires: 2026-10-11
-    status: active
-    notes: Gates explicit split, branch, and rejoin models.
-
-  - name: ITINERARY_OP_OPTIMIZE_DAY_V2
-    repo: travel-agent
-    location: backend/core/feature_flags.py:238
-    default: false
-    category: release
-    owner: fy538
-    expires: 2026-10-11
-    status: active
-    notes: Independently gates atomic Optimize Day operations.
-
-  - name: ITINERARY_OP_REPLAN_V2
-    repo: travel-agent
-    location: backend/core/feature_flags.py:244
-    default: false
-    category: release
-    owner: fy538
-    expires: 2026-10-11
-    status: active
-    notes: Independently gates atomic Replan operations.
-
-  - name: ITINERARY_VESPER_GATEWAY_V2
-    repo: travel-agent
-    location: backend/core/feature_flags.py:250
-    default: false
-    category: release
-    owner: fy538
-    expires: 2026-10-11
-    status: active
-    notes: Gates Vesper-authored itinerary intent through the canonical gateway.
-
-  - name: ITINERARY_COMPLETED_ENTRY_V2
-    repo: travel-agent
-    location: backend/core/feature_flags.py:256
-    default: false
-    category: release
-    owner: fy538
-    expires: 2026-10-11
-    status: active
-    notes: Gates the completed-record and Memory destination recommendation.
-
-  - name: ITINERARY_WRITEBACK_V2
-    repo: travel-agent
-    location: backend/core/feature_flags.py:262
-    default: false
-    category: release
-    owner: fy538
-    expires: 2026-10-11
-    status: active
-    notes: Gates typed, confidence-scored, correctable itinerary observations.
-
-  # ── travel-app (frontend) ───────────────────────────────────────────────
   - name: VOICE_ENABLED
     repo: travel-app
     location: utils/voiceEnabled.ts:12
@@ -642,3 +439,23 @@ flags:
     expires: 2026-10-04
     status: active
     notes: 'The "Hear the read" icon in dossier chrome — stub until TTS ships.'
+
+  - name: AUTH_PHONE_ENABLED
+    repo: travel-app
+    location: constants/featureFlags.ts:23
+    default: true
+    category: release
+    owner: fy538
+    expires: 2026-10-11
+    status: active
+    notes: FE gate for phone-number auth screens. Registered 2026-07-17 during interaction-audit registry cleanup (was live in code, missing from registry).
+
+  - name: CONTEXT_COMPILER_SHADOW_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:151
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-11
+    status: active
+    notes: Telemetry-only shadow comparison for the context compiler; grants no runtime authority. Registered 2026-07-17 during interaction-audit registry cleanup.
