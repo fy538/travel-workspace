@@ -49067,6 +49067,37 @@
               }
             ],
             "title": "Subject Lineage Id"
+          },
+          "replan_changes": {
+            "items": {
+              "$ref": "#/components/schemas/ItineraryReplanChange"
+            },
+            "type": "array",
+            "title": "Replan Changes"
+          },
+          "kept_block_count": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Kept Block Count"
+          },
+          "protected_dependency_count": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Protected Dependency Count"
           }
         },
         "additionalProperties": false,
@@ -49293,10 +49324,16 @@
             "title": "Kept Block Count"
           },
           "protected_dependency_count": {
-            "type": "integer",
-            "minimum": 0.0,
-            "title": "Protected Dependency Count",
-            "default": 0
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Protected Dependency Count"
           }
         },
         "additionalProperties": false,

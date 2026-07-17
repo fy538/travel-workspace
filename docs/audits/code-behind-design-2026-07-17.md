@@ -82,9 +82,9 @@ Optimize Route consequence truth is typed at backend `8526bc37` and app
 `95b1c2fa`. Replan previews now also project every atomic child as an added,
 moved, removed, or replaced stop and state how many existing stops stay
 unchanged and how many protected provider dependencies remain explicit. The
-same canonical compound operation still owns preview and commit. Full
-destination-local before/after timing and travel deltas in the Replan receipt,
-plus richer initial parallel-plan construction, remain.
+landed receipt preserves that same structural evidence from the revalidated
+preview. Full destination-local before/after timing and travel deltas, plus
+richer initial parallel-plan construction, remain.
 
 ### Resolved in the first wave
 
@@ -124,7 +124,7 @@ plus richer initial parallel-plan construction, remain.
 
 | Priority | Residual capability | Direction |
 |---|---|---|
-| P1 | Replan receipt depth and parallel construction | Replan preview classification, kept-stop truth, and protected-dependency counts are typed and rendered. Add destination-local before/after timing and travel deltas to the landed receipt, then enrich initial parallel-plan construction inside the existing operation system. |
+| P1 | Replan timing depth and parallel construction | Replan preview and landed receipts preserve per-stop classification, kept-stop truth, and protected-dependency counts. Add destination-local before/after timing and travel deltas, then enrich initial parallel-plan construction inside the existing operation system. |
 | P1 | Missing Chat object producers | Full itinerary, map/route, comparison, Atlas draft, recovery and private handoff need typed producers plus durable actions. |
 | P1 | Heterogeneous Discover pins | Venue pins are complete; friend, experience and place payloads still need accessible rendering and grounded handoffs. |
 | P2 | Bounded product/interaction polish | Trip Info hero/description, Skip vote, trip-creation correction, booking recovery and share-owner sheets. |
@@ -264,10 +264,11 @@ remains an explicit deferral rather than an incomplete promise.
 Replan now uses the generic operation preview contract to expose every atomic
 child as added, moved, removed, or replaced, plus the count of unchanged stops
 and protected provider dependencies. The review sheet renders those exact
-server-authored consequences before its one atomic commit. The residual is
-destination-local prior/proposed timing, travel ripple, and equivalent landed
-receipt detail. Build that on the same operation and history contracts rather
-than extending the Optimize-specific response into a second mutation system.
+server-authored consequences before its one atomic commit, and the landed
+receipt persists and renders the revalidated structural delta. The residual is
+destination-local prior/proposed timing and travel ripple. Build that on the
+same operation and history contracts rather than extending the
+Optimize-specific response into a second mutation system.
 
 ### 1.5 Initial Split/Rejoin construction is narrower than the target — P1
 
