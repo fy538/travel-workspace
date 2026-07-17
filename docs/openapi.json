@@ -8942,6 +8942,25 @@
             "description": "Viewer longitude \u2014 'what's around me' scope."
           },
           {
+            "name": "trip_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Optional trip context for exact in-plan markers and grounded handoffs.",
+              "title": "Trip Id"
+            },
+            "description": "Optional trip context for exact in-plan markers and grounded handoffs."
+          },
+          {
             "name": "radius_m",
             "in": "query",
             "required": false,
