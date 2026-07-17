@@ -1323,11 +1323,11 @@
       "audience": "app",
       "consumers": [],
       "feature_flag": null,
-      "lifecycle": "retiring",
+      "lifecycle": "active",
       "owner": "product-engineering",
-      "reason": "The archived-trip recovery backend is not yet connected to a named mobile product journey.",
-      "removal_trigger": "Add a registered mobile recovery consumer before the review date or remove the unadopted endpoint.",
-      "review_by": "2026-08-15"
+      "reason": "Trip settings exposes archived-trip recovery through the current mobile transport.",
+      "removal_trigger": null,
+      "review_by": null
     },
     "POST /api/users/{user_id}/heartbeat": {
       "audience": "app",

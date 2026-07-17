@@ -17360,6 +17360,66 @@
         }
       }
     },
+    "/api/trips/{trip_id}/recover": {
+      "post": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Recover Trip Endpoint",
+        "description": "Restore an archived trip without resurrecting its closed coordination.",
+        "operationId": "recover_trip_endpoint_api_trips__trip_id__recover_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecoverTripResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/context-change-preview": {
       "post": {
         "tags": [
@@ -50794,6 +50854,40 @@
           "response_type"
         ],
         "title": "RecordResponseRequest"
+      },
+      "RecoverTripResponse": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "already_recovered": {
+            "type": "boolean",
+            "title": "Already Recovered"
+          },
+          "conversations_reopened": {
+            "type": "integer",
+            "title": "Conversations Reopened"
+          },
+          "closed_coordination_preserved": {
+            "type": "boolean",
+            "title": "Closed Coordination Preserved"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "status",
+          "already_recovered",
+          "conversations_reopened",
+          "closed_coordination_preserved"
+        ],
+        "title": "RecoverTripResponse"
       },
       "RedactionPolicy": {
         "properties": {
