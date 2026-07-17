@@ -22616,6 +22616,126 @@
         }
       }
     },
+    "/api/trips/{trip_id}/cancellation-preflight": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Trip Cancellation Preflight Endpoint",
+        "description": "Preview cancellation blockers without calling any provider.",
+        "operationId": "trip_cancellation_preflight_endpoint_api_trips__trip_id__cancellation_preflight_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripCancellationPreflightResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/cancel": {
+      "post": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Cancel Trip Endpoint",
+        "description": "Cancel trip coordination after all provider truth is resolved.",
+        "operationId": "cancel_trip_endpoint_api_trips__trip_id__cancel_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancelTripResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/archive": {
       "post": {
         "tags": [
@@ -35646,6 +35766,82 @@
           "message"
         ],
         "title": "CancelOfferResponse"
+      },
+      "CancelTripResponse": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "status": {
+            "type": "string",
+            "const": "cancelled",
+            "title": "Status",
+            "default": "cancelled"
+          },
+          "already_cancelled": {
+            "type": "boolean",
+            "title": "Already Cancelled"
+          },
+          "conversations_archived": {
+            "type": "integer",
+            "title": "Conversations Archived"
+          },
+          "change_proposals_withdrawn": {
+            "type": "integer",
+            "title": "Change Proposals Withdrawn"
+          },
+          "booking_proposals_expired": {
+            "type": "integer",
+            "title": "Booking Proposals Expired"
+          },
+          "booking_sessions_expired": {
+            "type": "integer",
+            "title": "Booking Sessions Expired"
+          },
+          "booking_offers_expired": {
+            "type": "integer",
+            "title": "Booking Offers Expired"
+          },
+          "workflows_cancelled": {
+            "type": "integer",
+            "title": "Workflows Cancelled"
+          },
+          "notification_outcomes_closed": {
+            "type": "integer",
+            "title": "Notification Outcomes Closed"
+          },
+          "invites_revoked": {
+            "type": "integer",
+            "title": "Invites Revoked"
+          },
+          "unsettled_expense_shares_preserved": {
+            "type": "integer",
+            "title": "Unsettled Expense Shares Preserved"
+          },
+          "provider_cancellations_performed": {
+            "type": "integer",
+            "const": 0,
+            "title": "Provider Cancellations Performed",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "already_cancelled",
+          "conversations_archived",
+          "change_proposals_withdrawn",
+          "booking_proposals_expired",
+          "booking_sessions_expired",
+          "booking_offers_expired",
+          "workflows_cancelled",
+          "notification_outcomes_closed",
+          "invites_revoked",
+          "unsettled_expense_shares_preserved"
+        ],
+        "title": "CancelTripResponse"
       },
       "CancelTurnResponse": {
         "properties": {
@@ -64768,6 +64964,84 @@
         "type": "object",
         "title": "TripBudgetUpdate",
         "description": "Body for PATCH /api/trips/{trip_id}/budget.\n\nAll fields optional with no default \u2014 the route uses ``model_fields_set``\nto distinguish \"clear it\" (``null``) from \"not provided\" (absent). A\nfield that the caller didn't include is left untouched on the trip."
+      },
+      "TripCancellationPreflightResponse": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "trip_status": {
+            "type": "string",
+            "title": "Trip Status"
+          },
+          "already_cancelled": {
+            "type": "boolean",
+            "title": "Already Cancelled"
+          },
+          "can_cancel": {
+            "type": "boolean",
+            "title": "Can Cancel"
+          },
+          "blocker_codes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Blocker Codes"
+          },
+          "searches_in_progress": {
+            "type": "integer",
+            "title": "Searches In Progress"
+          },
+          "active_holds": {
+            "type": "integer",
+            "title": "Active Holds"
+          },
+          "confirmed_provider_bookings": {
+            "type": "integer",
+            "title": "Confirmed Provider Bookings"
+          },
+          "ambiguous_provider_outcomes": {
+            "type": "integer",
+            "title": "Ambiguous Provider Outcomes"
+          },
+          "active_provider_sagas": {
+            "type": "integer",
+            "title": "Active Provider Sagas"
+          },
+          "recorded_bookings_needing_attention": {
+            "type": "integer",
+            "title": "Recorded Bookings Needing Attention"
+          },
+          "unsettled_expense_shares_preserved": {
+            "type": "integer",
+            "title": "Unsettled Expense Shares Preserved"
+          },
+          "provider_cancellations_performed": {
+            "type": "integer",
+            "const": 0,
+            "title": "Provider Cancellations Performed",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "trip_status",
+          "already_cancelled",
+          "can_cancel",
+          "blocker_codes",
+          "searches_in_progress",
+          "active_holds",
+          "confirmed_provider_bookings",
+          "ambiguous_provider_outcomes",
+          "active_provider_sagas",
+          "recorded_bookings_needing_attention",
+          "unsettled_expense_shares_preserved"
+        ],
+        "title": "TripCancellationPreflightResponse"
       },
       "TripConflictsResponse": {
         "properties": {
