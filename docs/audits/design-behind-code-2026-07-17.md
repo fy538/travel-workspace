@@ -15,8 +15,8 @@ source_of_truth_for: [design-canon-vs-code-gap-inventory-2026-07-17]
 
 ## Post-remediation delta
 
-The companion engineering waves through `travel-app@6094fe1e` and
-`travel-agent@eea2c245` change several reverse-audit assumptions. Claude Design
+The companion engineering waves through `travel-app@95b1c2fa` and
+`travel-agent@8526bc37` change several reverse-audit assumptions. Claude Design
 should now treat these as shipped code truth:
 
 - Vesper 220 is the active fingerprint and all canonical Trip routes have live
@@ -73,6 +73,12 @@ should now treat these as shipped code truth:
   Money/reconciliation notices and completed-trip story/memory work remain by
   explicit policy. Designs must not imply that cancelled trips silently resume
   queued coordination or that retirement erases financial/provider truth.
+- Optimize Route now carries and renders a typed consequence for every stop:
+  current/proposed position and time plus kept, moved, retimed, or both. Claude
+  Design should treat compact WAS/NOW consequence evidence as shipped Optimize
+  behavior. The remaining code-side delta is Replan-wide
+  added/moved/removed/kept projection and richer initial parallel-plan
+  construction.
 
 Accordingly, remove the resolved items from §7's code-behind appendix. The
 highest-value remaining design/code convergence seams are now the deeper trip
@@ -253,7 +259,7 @@ Stay inside the existing Trip visual language; preserve the frozen header, Detai
 These held up under verification; don't spend design sessions here: **header & Trip entrance chrome** (frozen; preserve) · **the central itinerary spine** (canon is *ahead* of production here) · **the core typed-operation doctrine and already-rendered Workflow journeys** (consume them; update the family↔engine mapping and current ChangeStudio application rather than inventing a second operation system) · **Story/Memory/sharing composition + share lifecycle** (covered; only the §4.9 module-placement and §5 flag-dark-state additions remain) · **people rosters & member action sheets** (covered — but the distinct *shared-plan succession/atomic-departure* slice is not; it stays in session 7) · **typography/tokens/row/button systems** (apply, don't fork) · **trip-entry waiting screen** (no visible production state to match; future polish, not parity).
 
 ## 7 · Code-behind-design (for completeness — NOT design debt)
-Trip-creation row-level correction remains · Home Flight/Comparison faces await grounded producers · voice takeover remains flag-dark (residual `Vesper · {city}` subtitle on reopening) · live in-app checkout is gated dark · heterogeneous Discover pins remain backend-gated · richer Optimize/Replan delta remains.
+Trip-creation row-level correction remains · Home Flight/Comparison faces await grounded producers · voice takeover remains flag-dark (residual `Vesper · {city}` subtitle on reopening) · live in-app checkout is gated dark · heterogeneous Discover pins remain backend-gated · richer Replan delta and initial parallel-plan construction remain.
 
 ---
 

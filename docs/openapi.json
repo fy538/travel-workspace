@@ -55045,6 +55045,43 @@
             "type": "string",
             "title": "Title"
           },
+          "change_kind": {
+            "type": "string",
+            "enum": [
+              "kept",
+              "moved",
+              "retimed",
+              "moved_and_retimed"
+            ],
+            "title": "Change Kind"
+          },
+          "current_sort_order": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Current Sort Order"
+          },
+          "current_time_start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current Time Start"
+          },
+          "current_time_end": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current Time End"
+          },
           "new_sort_order": {
             "type": "integer",
             "title": "New Sort Order"
@@ -55087,6 +55124,8 @@
         "required": [
           "block_id",
           "title",
+          "change_kind",
+          "current_sort_order",
           "new_sort_order"
         ],
         "title": "OptimizeRouteSuggestion",

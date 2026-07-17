@@ -9,8 +9,8 @@ why_new: Reconciles the reverse design/code audit after remediation and provides
 reference_material: docs/audits/design-behind-code-2026-07-17.md
 design_target: Vesper 220 / Canon 130
 code_target:
-  travel_app: 6094fe1e
-  travel_agent: eea2c245
+  travel_app: 95b1c2fa
+  travel_agent: 8526bc37
 source_of_truth_for: [code-behind-design-gap-inventory-2026-07-17]
 ---
 
@@ -78,6 +78,15 @@ pre-trip preparation, and calendar completion all recheck durable lifecycle
 truth. Post-trip story/memory work and money/reconciliation notices remain
 available by explicit policy rather than accidental exception.
 
+Optimize Route consequence truth is now typed at backend `8526bc37` and app
+`95b1c2fa`. Every suggested stop carries its current and proposed position and
+time plus a server-authored `kept`, `moved`, `retimed`, or
+`moved_and_retimed` classification. The existing sheet renders compact
+destination-local WAS/NOW evidence before committing the same canonical
+compound operation. This resolves Optimize's before/after clarity without
+adding another mutation system; Replan and richer initial parallel-plan
+construction remain.
+
 ### Resolved in the first wave
 
 - **Truth and governance:** Stay's internal soft hold is now framed as a group
@@ -116,7 +125,7 @@ available by explicit policy rather than accidental exception.
 
 | Priority | Residual capability | Direction |
 |---|---|---|
-| P1 | Rich typed itinerary deltas | Complete Optimize/Replan consequence data and richer initial parallel-plan construction inside the existing operation system. |
+| P1 | Replan and parallel-construction deltas | Optimize per-stop consequences are typed and rendered; complete Replan added/moved/removed/kept evidence, protected-provider consequences, and richer initial parallel-plan construction inside the existing operation system. |
 | P1 | Missing Chat object producers | Full itinerary, map/route, comparison, Atlas draft, recovery and private handoff need typed producers plus durable actions. |
 | P1 | Heterogeneous Discover pins | Venue pins are complete; friend, experience and place payloads still need accessible rendering and grounded handoffs. |
 | P2 | Bounded product/interaction polish | Trip Info hero/description, Skip vote, trip-creation correction, booking recovery and share-owner sheets. |
@@ -245,9 +254,19 @@ The backend and sheet can refresh/rebase a stale preview, but the UI collapses r
 
 Implement this as a recovery state of the existing operation flow, not a second mutation system.
 
-### 1.4 Optimize/Replan lacks a full typed delta — P1
+### 1.4 Optimize consequence delta resolved; Replan remains — P1
 
-`OptimizeRouteSheet` shows optimized order, local times, and distance saved. It does not yet classify the result as added/moved/removed/kept, identify protected provider-held items, or produce a full before/after receipt. Map drag remains an explicit deferral; the missing item here is consequence clarity.
+`OptimizeRouteSheet` now shows distance saved plus a typed per-stop
+classification and destination-local current/proposed position and time. Kept,
+moved, retimed, and moved-plus-retimed stops therefore have explicit WAS/NOW
+evidence before the canonical compound operation is committed. Map drag
+remains an explicit deferral rather than an incomplete promise.
+
+The residual is Replan: its compound operation still needs traveler-facing
+added/moved/removed/kept projection, protected-provider consequences, and a
+full before/after receipt. Build that on the same operation and history
+contracts rather than extending the Optimize-specific response into a second
+generic delta system.
 
 ### 1.5 Initial Split/Rejoin construction is narrower than the target — P1
 
@@ -573,7 +592,7 @@ These visual differences are design-behind-code or intentional deferrals:
 1. Structured operation consequences and receipts.
 2. Replace-only vs replace-and-rebook consent.
 3. Three-truth stale recovery.
-4. Optimize/Replan typed delta and richer initial parallel-plan construction.
+4. Replan typed delta and richer initial parallel-plan construction.
 
 ### Deferred activation work
 
