@@ -2,14 +2,14 @@
 
 > Status: draft  
 > Owner: founder / engineering  
-> Last updated: 2026-06-26  
+> Last updated: 2026-07-16
 > Primary phase: pre-trip / live-trip truth (projection invariant layer)
 
 ## Product Promise
 
 The same trip truth should appear consistently wherever the traveler looks:
-Itinerary List, Map, Trip Details, Chat, and Changes. The transitional Folio/Home
-adapter must agree during migration but is not a target destination.
+Itinerary List, its in-place Map face, Trip Details, Chat, and Changes. No
+retired Folio aggregate participates in current trip truth.
 
 ## Canonical User Story
 
@@ -49,8 +49,7 @@ This journey is the **invariant checker** that runs after any mutation from Jour
 3. Switch in place to Map and inspect the corresponding spatial pin or unplaced state.
 4. Open Trip Details and Changes; inspect canonical summary/history truth.
 5. Apply or revert a change **or** complete a direct edit commit (Journey 05 Track B).
-6. Revisit Itinerary List, Map, Trip Details, Chat, and Changes. During migration,
-   verify the Folio compatibility adapter as an additional projection.
+6. Revisit Itinerary List, Map, Trip Details, Chat, and Changes.
 7. Confirm all surfaces agree after invalidation/refetch — including `applied_block_map` id transitions after proposal apply.
 8. Dismiss a non-critical home card and confirm Tier 1 trip truth remains visible.
 
@@ -63,8 +62,8 @@ This journey is the **invariant checker** that runs after any mutation from Jour
 
 ## Must Never Happen
 
-- Itinerary/List, Map, Details, Chat attachment, Changes, or the transitional
-  Folio adapter claim different current/next truth.
+- Itinerary/List, Map, Details, Chat attachment, or Changes claim different
+  current/next truth.
 - Map crashes or hides unplaced items.
 - Plan applies a change but Map stays stale.
 - Changes screen reverts an item that Plan cannot identify.
@@ -73,7 +72,12 @@ This journey is the **invariant checker** that runs after any mutation from Jour
 ## AI Trace Prompt
 
 ```text
-Trace the trip read models feeding Itinerary List, Map, Trip Details, Chat attachments, Changes, and the transitional Folio adapter. Pick one block id and follow it across hooks, API calls, mock data, backend endpoints, invalidation paths, and compatibility-cache behavior. Run after BOTH proposal apply/revert AND direct edit-commit. Report mismatched ids, applied_block_map drift, stale caches, and missing tests.
+Trace the canonical trip read models feeding Itinerary List, its in-place Map
+face, Trip Details, Chat attachments, and Changes. Pick one block id and follow
+it across hooks, API calls, mock data, backend endpoints, and invalidation
+paths. Run after BOTH proposal apply/revert AND direct edit-commit. Report
+mismatched ids, `applied_block_map` drift, stale caches, and any dependency on a
+retired trip aggregate.
 ```
 
 ## First Automation Target

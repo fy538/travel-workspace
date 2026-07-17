@@ -561,26 +561,6 @@
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
       "review_by": "2026-08-15"
     },
-    "GET /api/trips/{trip_id}/itinerary": {
-      "audience": "app",
-      "consumers": [],
-      "feature_flag": null,
-      "lifecycle": "retiring",
-      "owner": "itinerary",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
-      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
-    },
-    "GET /api/trips/{trip_id}/itinerary/edit-history": {
-      "audience": "app",
-      "consumers": [],
-      "feature_flag": null,
-      "lifecycle": "retiring",
-      "owner": "itinerary",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
-      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
-    },
     "GET /api/trips/{trip_id}/itinerary/operations/history": {
       "audience": "app",
       "consumers": [],
@@ -920,16 +900,6 @@
       "removal_trigger": null,
       "review_by": null
     },
-    "PATCH /api/trips/{trip_id}/itinerary/blocks/{block_id}": {
-      "audience": "app",
-      "consumers": [],
-      "feature_flag": null,
-      "lifecycle": "retiring",
-      "owner": "itinerary",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
-      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
-    },
     "POST /admin/atlas/entity-facets/project": {
       "audience": "operator",
       "consumers": [
@@ -1137,6 +1107,25 @@
       "removal_trigger": null,
       "review_by": null
     },
+    "POST /api/conversations/{conversation_id}/messages/cancel": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "useConciergeChat"
+        },
+        {
+          "kind": "app_source",
+          "name": "useGroupChat"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "conversations",
+      "reason": "The private and group chat stop controls cancel accepted server turns through the shared API adapter.",
+      "removal_trigger": null,
+      "review_by": null
+    },
     "POST /api/conversations/{conversation_id}/promote_to_trip": {
       "audience": "app",
       "consumers": [],
@@ -1218,56 +1207,6 @@
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
       "review_by": "2026-08-15"
     },
-    "POST /api/trips/{trip_id}/itinerary/blocks/{block_id}/move": {
-      "audience": "app",
-      "consumers": [],
-      "feature_flag": null,
-      "lifecycle": "retiring",
-      "owner": "itinerary",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
-      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
-    },
-    "POST /api/trips/{trip_id}/itinerary/blocks/{block_id}/undo": {
-      "audience": "app",
-      "consumers": [],
-      "feature_flag": null,
-      "lifecycle": "retiring",
-      "owner": "itinerary",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
-      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
-    },
-    "POST /api/trips/{trip_id}/itinerary/days/{day_id}/blocks": {
-      "audience": "app",
-      "consumers": [],
-      "feature_flag": null,
-      "lifecycle": "retiring",
-      "owner": "itinerary",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
-      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
-    },
-    "POST /api/trips/{trip_id}/itinerary/operations/proposals/{proposal_id}/accept": {
-      "audience": "app",
-      "consumers": [],
-      "feature_flag": null,
-      "lifecycle": "retiring",
-      "owner": "itinerary",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
-      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
-    },
-    "POST /api/trips/{trip_id}/itinerary/operations/proposals/{proposal_id}/apply": {
-      "audience": "app",
-      "consumers": [],
-      "feature_flag": null,
-      "lifecycle": "retiring",
-      "owner": "itinerary",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
-      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
-    },
     "POST /api/trips/{trip_id}/itinerary/operations/provider-sagas/{saga_id}/advance": {
       "audience": "app",
       "consumers": [],
@@ -1279,26 +1218,6 @@
       "review_by": "2026-08-15"
     },
     "POST /api/trips/{trip_id}/itinerary/operations/writebacks": {
-      "audience": "app",
-      "consumers": [],
-      "feature_flag": null,
-      "lifecycle": "retiring",
-      "owner": "itinerary",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
-      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
-    },
-    "POST /api/trips/{trip_id}/itinerary/pin-experience": {
-      "audience": "app",
-      "consumers": [],
-      "feature_flag": null,
-      "lifecycle": "retiring",
-      "owner": "itinerary",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
-      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
-    },
-    "POST /api/trips/{trip_id}/itinerary/revisions/{revision_version_number}/undo": {
       "audience": "app",
       "consumers": [],
       "feature_flag": null,
@@ -1400,26 +1319,6 @@
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
       "review_by": "2026-08-15"
     },
-    "POST /api/trips/{trip_id}/plan/edit-commit": {
-      "audience": "app",
-      "consumers": [],
-      "feature_flag": null,
-      "lifecycle": "retiring",
-      "owner": "itinerary",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
-      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
-    },
-    "POST /api/trips/{trip_id}/plan/edit-preview": {
-      "audience": "app",
-      "consumers": [],
-      "feature_flag": null,
-      "lifecycle": "retiring",
-      "owner": "itinerary",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
-      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
-    },
     "POST /api/users/{user_id}/heartbeat": {
       "audience": "app",
       "consumers": [],
@@ -1455,6 +1354,21 @@
       "removal_trigger": null,
       "review_by": null
     },
+    "POST /webhooks/revenuecat": {
+      "audience": "webhook",
+      "consumers": [
+        {
+          "kind": "webhook",
+          "name": "revenuecat"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "commercial-access",
+      "reason": "Provider callback surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
     "POST /webhooks/twilio/message-reply": {
       "audience": "webhook",
       "consumers": [
@@ -1469,6 +1383,20 @@
       "reason": "Provider callback surface.",
       "removal_trigger": null,
       "review_by": null
+    }
+  },
+  "retired_operations": {
+    "POST /api/trips/{trip_id}/itinerary/operations/proposals/{proposal_id}/accept": {
+      "owner": "itinerary",
+      "reason": "Unadopted split-phase acceptance conflicts with the canonical proposal resolution authority.",
+      "replacement": "POST /api/trips/{trip_id}/proposals/{proposal_id}/resolve",
+      "retired_on": "2026-07-16"
+    },
+    "POST /api/trips/{trip_id}/itinerary/operations/proposals/{proposal_id}/apply": {
+      "owner": "itinerary",
+      "reason": "Unadopted second mutation step can diverge from the canonical atomic resolution response.",
+      "replacement": "POST /api/trips/{trip_id}/proposals/{proposal_id}/resolve",
+      "retired_on": "2026-07-16"
     }
   },
   "version": 1

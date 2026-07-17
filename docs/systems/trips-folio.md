@@ -1,65 +1,63 @@
 # Trips / Folio — System Charter
 
 > Surface: Trips
-> Maturity (for MVP): compatibility-required during migration
-> Status: wired (transitional; target read authority established, frontend migration pending)
-> Last updated: 2026-07-13
+> Maturity (for MVP): retired compatibility surface
+> Status: retired (canonical itinerary/lifecycle projections now own the read path)
+> Last updated: 2026-07-16
 
 ## Purpose
-The compatibility backend-authored read model for the currently shipped,
-hero-led Trip Home. It composes "*what is the current truth of this trip, and
-what's the next move?*" across the ideation → pre-trip → live → post-trip
-lifecycle while the product migrates to the itinerary-first trip shell. It is
-not the target trip authority.
+Historical charter for the removed backend-authored Folio read model and
+hero-led Trip Home. Preserve it as migration provenance only. It is not a
+current route, fallback, read authority, or target design input.
 
-**Redesign disposition (accepted 2026-07-13):** the current `/folio` endpoint and
-hero-led Trip Home are compatibility surfaces during the itinerary-first
-migration. The UI is decomposed rather than expanded. Preserve Folio's useful
-lifecycle, ranked attention, source-status/partial-data, stay/cost/booking,
-recent-change, discovery, and keepsake responsibilities by assigning each to
-canonical Lifecycle, Itinerary/Plan State, Trip Details, History, Discover, or
-Memory projections. Retire `/folio` only after field parity, first-paint
-performance, degradation behavior, and old-client compatibility are proven.
+**Redesign disposition (completed locally 2026-07-16):** the `/folio` endpoint,
+assembly package, frontend aggregate, and hero-led Trip Home are removed. The UI
+was decomposed rather than expanded. Folio's useful lifecycle, ranked
+attention, source-status/partial-data, stay/cost/booking, recent-change,
+discovery, and keepsake responsibilities now live in canonical Lifecycle,
+Itinerary/Plan State, Trip Details, History, Discover, or Memory projections.
 
 ## Spans (cross-repo)
-- Backend: [`travel-agent/backend/folio/`](../../travel-agent/backend/folio/FEATURE.md) (`read_model.py::assemble_trip_folio`) + `backend/api/routes/folio.py`.
-- Frontend: `travel-app/app/(tabs)/trips/[tripId]/index.tsx` (Trip Home), `travel-app/components/trip/TripFolioHome.tsx`, `travel-app/components/trip/TripFolioPostTrip.tsx`, `travel-app/components/trip/FolioReceiptCard.tsx`, and `travel-app/data/folio.ts`.
-- Tables read: itinerary (`itineraries`/`_days`/`_blocks`, `plan_state`), `trips`, `trip_members`, expenses, proposals, story/Atlas, saves, trip photos. **Folio owns no tables.**
+- Backend: retired; the former Folio route and assembly package have been removed.
+- Frontend: retired Folio components/data are removed. The trip index is a
+  redirect-only entry resolver; `plan.tsx` is the Itinerary List/Map workspace.
+- Tables read: none. **Folio owns no tables.**
 
 ## Public interface (what other systems may call / read)
-- **Inbound (FE → BE):** `GET /api/trips/{trip_id}/folio` (membership-verified).
-- **Entry point:** `read_model.py::assemble_trip_folio(...)` receives the trip, viewer, member, attention, and leave-by inputs assembled by the route and returns `TripFolioReadModel`.
-- **Authored slices:** mode + `source_status`, itinerary spine, ranked facets (plan/group/expenses/memory/Atlas), attention/discovery, group consensus, prep/leave-by, readiness/keepsake.
-- **Consumes:** every Trips source system (read-only).
+- No current public interface. Deleted endpoint/module names remain denylisted
+  by deletion-reference and import-boundary checks.
 
 ## Owns (source of truth)
-**Nothing.** Folio is a pure **read model** — a deterministic composition over other
-systems' truth. This is the load-bearing boundary: it must never become a second
-write path.
+**Nothing.** Current trip truth belongs to canonical lifecycle, Itinerary,
+Trip Details, History, and their source systems.
 
 ## Invariants (must always be true)
-- **Read-only:** all mutations stay owned by the source systems (itinerary, expenses, proposals, story/Atlas, saves, photos). A Folio that writes is a bug.
-- **Honest degradation:** when a source fails, Folio degrades and reports it in `source_status`; only the known `FOLIO_SOURCE_ERRORS` are swallowed — unexpected exceptions surface loudly.
-- **FE fallback discipline:** the app may fall back to legacy plan-state paths **only** when Folio errors or `source_status.plan_state` says plan state is unavailable.
-- **No fabrication:** honest absence over manufactured content (empty state never invents a hero).
+- A new Folio route, aggregate, fallback, or mutation path is a regression.
+- Retained useful behavior must be added to its owning canonical projection,
+  never reconstructed as another all-purpose trip dashboard.
 
 ## Failure modes
-- Single source down → that slice degrades, `source_status` flags it, rest of the Folio renders.
-- Folio route error → FE falls back to legacy plan-state read paths.
+- Old bookmark targets the trip index → resolver selects canonical Itinerary or
+  meaningful completed Memory.
+- Canonical source degrades → its owning projection reports honest partial data;
+  no Folio substitution exists.
 
 ## Maturity & validation
-- Serves journeys: 03 (cold setup → useful workspace), 06 (home/plan/map/changes coherence).
-- Current Folio assembly, degraded-source, and contract tests pass (`travel-agent/tests/api/test_trip_folio.py`).
-- IR-12 backend evidence now proves one projection version and stable object/operation identity across List, Map, Details, Chat attachments, Changes, Bookings, and the Folio compatibility measurement.
-- Remaining evidence: target-shell frontend dogfood, first-paint comparison, mock walk, Maestro capture, and live walk.
+- Historical journeys: 03 and 06.
+- Current journey authority: the itinerary-first J03/J05/J06/J08/J10/J12
+  one-pagers and Trip Itinerary surface contract.
+- Local deletion-reference scans report zero Folio production callers.
 
 ## Canonical docs
 - Why → [`Trips Vision`](../../travel-agent/docs/product/Trips%20Vision.md).
-- Current compatibility architecture → [`Trip Folio Read Model`](../../travel-agent/docs/architecture/Trip%20Folio%20Read%20Model.md), [`Trip State Architecture`](../../travel-agent/docs/architecture/Trip%20State%20Architecture.md), and [`backend/folio/FEATURE.md`](../../travel-agent/backend/folio/FEATURE.md).
-- Target product contract → [`Trip Itinerary`](../../travel-app/docs/surfaces/trip-itinerary/contract.md); shipped-surface QA only → [`Single Trip Home`](../../travel-app/docs/surfaces/single-trip-home/contract.md).
+- Historical compatibility architecture → [`Trip Folio Read Model`](../../travel-agent/docs/architecture/Trip%20Folio%20Read%20Model.md) and [`Trip State Architecture`](../../travel-agent/docs/architecture/Trip%20State%20Architecture.md).
+- Target product contract → [`Trip Itinerary`](../../travel-app/docs/surfaces/trip-itinerary/contract.md); historical surface provenance only → [`Single Trip Home`](../../travel-app/docs/surfaces/single-trip-home/contract.md).
 - Migration contract → [`IR-12 coherent read models`](../working/itinerary-redesign-ir12-read-model-contract-2026-07-13.md).
-- Tests → `travel-agent/tests/api/test_trip_folio.py`.
+- Retirement guards → `travel-agent/scripts/certify_itinerary_deletion_lanes.py`
+  and the itinerary legacy-reader/consumer-boundary checks.
 
 ## Open risks / known gaps
-- **Frontend migration and first paint** are now the headline risks: backend parity is proven, but the itinerary-first shell must demonstrate equal or better first-paint latency, honest partial-data behavior, exact-return navigation, and on-device coherence before Folio retirement.
-- Folio's `cold`/`pre`/`imminent`/`live`/`post` mode remains compatibility-only. Target clients consume the canonical lifecycle projection and must not derive product behavior from Folio mode.
+- Deployed artifact/caller absence and on-device journey evidence remain part of
+  formal cutover certification; they do not authorize restoring Folio locally.
+- Historical `cold`/`pre`/`imminent`/`live`/`post` Folio mode must not reappear.
+  Target clients consume the canonical lifecycle projection.

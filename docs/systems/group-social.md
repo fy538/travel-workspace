@@ -3,7 +3,7 @@
 > Surface: Trips
 > Maturity (for MVP): MVP-required
 > Status: wired (membership golden-path; social dynamics beta)
-> Last updated: 2026-07-14 (shared-outcome propagation and two-observer certification closed)
+> Last updated: 2026-07-16 (strategy aligned to relational personalization and the living itinerary)
 
 ## Purpose
 The group itself — **membership & invites** (who is in the trip, with what role) and
@@ -12,6 +12,12 @@ reads to adapt tone and routing. Membership is the foundation everything group-s
 stands on (privacy routing, booking, expenses, notifications). Serves belief #3
 (*the agent never reveals individual constraints to the group*) and #14 (using the
 product is the distribution — the invite is "join our trip").
+
+The strategic objective is not generic collaboration. It is **relational
+personalization**: Vesper should understand how this person travels with these
+people, in this destination, for this occasion. Per-trip group state is the
+launch expression; recurring-group memory is earned only after repeated-trip
+evidence exists and never overrides what members say on the current trip.
 
 ## Coordination-channel ruling (2026-07-13)
 
@@ -30,12 +36,11 @@ against Partiful's bar, not iMessage's. We do not compete on messaging.
   human-to-human messages, not Vesper-addressed). Until that trigger fires, no
   engineering hours go to messaging table stakes (per-message push, reactions,
   reply-to, in-thread photo sharing, human presence/typing/read receipts).
-- **Supersession:** this overrides `travel-agent/docs/product/Strategic
-  Implications.md` §14 ("replaces WhatsApp as the trip's communication hub", "move
-  their trip conversation into your app") — annotated in place. It is consistent with
-  `Growth Strategy.md` §"Don't compete with WhatsApp on messaging" and with this
-  charter's existing "Quiet propagation" invariant, which is a deliberate consequence
-  of this ruling, not an anti-spam accident.
+- **Strategy alignment:** this ruling is now reflected directly in
+  `travel-agent/docs/product/Strategic Implications.md` §14 ("The Trip as Shared
+  Object") and remains consistent with `Growth Strategy.md` §"Don't compete with
+  WhatsApp on messaging." The charter's "Quiet propagation" invariant is a
+  deliberate consequence of this strategy, not an anti-spam accident.
 
 ## Group-decision rulings (2026-07-13)
 
@@ -116,6 +121,12 @@ is owned by [Memory & Preference](memory-preference.md); this system supplies th
 - **Membership coherence:** Trips list, Trip Info, Group Chat, and Notifications agree on who's in.
 - **Social state is rebuilt from signals**, not stored as a static doc; extraction is Haiku.
 - **Fairness:** equity-imbalance signals feed the concierge (vote-absence friction, quiet-member detection).
+- **Relational context, not a flat average:** group synthesis preserves meaningful
+  differences, companion-dependent behavior, and explicit current-trip intent;
+  it must not optimize toward a bland consensus no one actually wants.
+- **Itinerary consequence:** group understanding is not complete until it shapes
+  the shared itinerary, decision object, or facilitation outcome. A group profile
+  that only appears in chat context is inert substrate.
 - **Vote privacy (superseded 2026-07-13 by group-decision ruling 1, above):**
   vote choice + identity — names on choices, holdouts — is group-visible to
   every trip member. Per-vote free-text comments remain restricted to the

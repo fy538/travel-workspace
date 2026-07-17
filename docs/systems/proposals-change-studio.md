@@ -18,7 +18,8 @@ visible receipt with only server-proven recovery actions. Serves belief #9
 - Tables of record: `change_proposals` (+ votes), `plan_events` (append-only ledger).
 
 ## Public interface (what other systems may call / read)
-- **Proposal lifecycle:** `GET /proposals`, `GET /proposals/{id}`, `POST /proposals/{id}/vote`, `POST /proposals/{id}/resolve`.
+- **Proposal lifecycle:** `GET /api/trips/{trip_id}/proposals`, `GET /api/trips/{trip_id}/proposals/{proposal_id}`, `POST /api/trips/{trip_id}/proposals/{proposal_id}/vote`, and canonical mobile `POST /api/trips/{trip_id}/proposals/{proposal_id}/resolve`.
+- **Retired split authority:** `/api/trips/{trip_id}/itinerary/operations/proposals/{proposal_id}/accept` and `/apply` are not public lifecycle steps. They had no adopted consumer and must remain absent from OpenAPI; proposal resolution and application are one server-owned canonical resolve flow.
 - **Direct edit:** `POST /plan/edit-preview` → returns an `idempotency_token`; `POST /plan/edit-commit` (replays the token) → `direct` (atomic write + ledger entry) or `propose` (creates a proposal, no mutation until accepted), chosen by `edit_policy`. `POST /plan/mark-happened`.
 - **Inbound:** Concierge creates proposals **only** via the shared `build_and_persist_proposal` (chat-created proposals must not bypass it).
 - **Consumes:** Planning/Itinerary (the blocks it mutates), Group/Social (edit-mode/role), Places (conflict: closed-hours).

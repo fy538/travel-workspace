@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / engineering
 created: 2026-07-12
-last_verified: 2026-07-14
+last_verified: 2026-07-16
 why_new: Establish itinerary action, permission, risk, group-governance, and agent-authority rules before redesigning the interaction in Claude Design.
 supersedes: []
 source_of_truth_for: [itinerary-interaction-business-logic-audit]
@@ -1968,8 +1968,11 @@ pruning. Pruning may make an exact restore unavailable; it changes recovery to
 
 ### Accepted offline and asynchronous contract
 
-- A local or offline draft is not shared history and cannot be rendered as
-  applied. It remains `waiting to send` in its source editor.
+- The MVP has no itinerary mutation outbox. An action attempted while offline
+  is blocked before mutation, is not shared history, and is explicitly labeled
+  as not sent. The traveler retries after reconnecting; the app must not promise
+  automatic delivery. An editor may preserve local input, but that is not a
+  queued operation.
 - Once accepted by the server, operation status is queried by stable operation/
   idempotency identity after timeout or reconnect.
 - Unknown response means unknown, not success. Duplicate retries cannot create

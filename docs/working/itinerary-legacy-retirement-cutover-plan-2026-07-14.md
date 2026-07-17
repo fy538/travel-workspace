@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / backend / frontend / product operations
 created: 2026-07-14
-last_verified: 2026-07-14
+last_verified: 2026-07-16
 expires: 2026-08-13
 why_new: Record the pre-launch founder ruling to adopt the canonical itinerary operation gateway as the only mutation path, and plan the legacy deletion + dogfood-data rewrite in executable detail.
 supersedes: []
@@ -66,27 +66,133 @@ polish of the reworked Itinerary × Trip Home/Folio product surface may continue
 afterward, but it must build on this single canonical authority rather than
 preserving the old itinerary underneath the new design.
 
-## Current state (verified against code, 2026-07-14)
+## Current state (verified against code, 2026-07-16)
 
-### How gating works today
+### 2026-07-16 closeout reality check
 
-The itinerary rollout flags are not read by legacy paths directly. Every
-adapter calls `itinerary_rollout_enabled(trip_id, capability)`
-(`backend/core/itinerary_rollout.py:240`), which requires ALL of:
+- C1/C2/C3 implementation has landed: dogfood itineraries now enter through
+  deterministic canonical replay, itinerary birth has authored chronology,
+  resets respect append-only ledger boundaries, and authored proposals are
+  created through the canonical proposal gateway. The old raw itinerary and
+  proposal insert sites were removed from `tools/dogfood/content/seed.py`.
+- B1 remains green. The backend full-on cert passed 458 + 409 tests under the
+  asserted `full` / all-trips / 20-capability posture. Frontend typecheck and
+  lint pass (warnings only), and its blocking deletion-reference scan reports
+  zero production legacy callers.
+- A frontend cutover leak found during this review was fixed: Plan's day rail
+  now derives its changed-day markers from canonical operation-history receipts
+  and targets, not `recent_change_ids` / legacy day changes.
+- The retired Folio and Change Studio transport surfaces are now physically
+  removed in both repositories. This includes the backend Folio/read-model
+  package, old edit preview/commit routes, frontend Folio components, mock
+  clients, generated schemas, query persistence, cache invalidations, and the
+  obsolete plan-edit idempotency table (with a drop migration).
+- `plan_events` is now a frozen, read-only compatibility ledger: canonical
+  commits no longer mirror manual edits, proposal lifecycle writes are gone,
+  and the module exposes no product write API. Historical rows remain for
+  retention, privacy erasure, and archive sign-off. Proposal resolve/revert
+  now use only the canonical proposal gateway; the
+  unreachable duplicate route body and the independent
+  `core/db/proposal_apply.py` mutation/revert engine are deleted. Proactive
+  supersession also resolves through canonical authority.
+- The planner execution boundary no longer imports or exposes its dormant
+  `persist_planning_output` fallback. Materialization and replanning continue
+  through their typed canonical operations.
+- Provider booking/restaurant/handoff projection writes now pass through a
+  source-validated, revisioned gateway. Deferred planning enrichment is also a
+  named active-head-guarded annotation gateway rather than a structural writer.
+  The raw `update_block`, `reorder_blocks`, and bulk sort-order helpers are
+  deleted; canonical operations and provider projection now own those changes.
+  `create_itinerary_version`, `create_itinerary_day`, and `create_block` are
+  also deleted. Scenario, certification, and test setup now materialize and
+  replay canonical operations; structural legacy itinerary-birth writers are
+  zero.
+  The obsolete itinerary edit-log producer is gone; historical preference rows
+  remain readable/drainable while canonical committed human catalog Replace
+  operations produce idempotent preference-observation receipts. The one
+  remaining legacy-product writer only acknowledges that finite deployed
+  edit-log backlog and is removed after its drain is proved.
+- Static boundaries are green after exact-scope classification and ratcheting:
+  141 backend writer sites remain classified (including **1
+  `legacy_product` site**), 19 legacy imports remain classified (**8
+  `replace`, 7 `delete`, 4 `rename`**), and backend compatibility readers are
+  **0**. Product readers now use the explicitly named itinerary decision,
+  planner-context, and feasibility-projection owners. Green means “no unreviewed
+  growth”; it does not mean those legacy rows are retired.
+- No B2 lane is formally licensed. A deterministic local refresh records the
+  focused canonical exercises across all five lanes, but these are local test
+  exercises—not deployed producer traffic. Every lane still lacks an
+  identifiable Fly revision, an observation window, per-surface traffic,
+  canonical commit/proposal counts where required, deployed artifact/caller
+  absence scans, rollback evidence, evidence references, and signatures.
+  Compatibility branches deleted before an emitter existed use deployed
+  unreachability proof; their compatibility count remains null rather than a
+  fabricated zero. Pre-launch physical
+  deletion nevertheless started where static reachability and canonical
+  journey coverage proved the old authority dead. The evidence bundle therefore
+  documents the sequencing exception rather than retroactively licensing it,
+  and B2/B3 cannot be claimed complete.
+- C4 local five-pack reset/reseed is complete and reproducible: canonical
+  substrate checks and TestClient API exercises cover deterministic identities,
+  authored chronology, committed operation history, occurrences, proposals,
+  recovery, cross-domain references, Discover, briefs, and Atlas. Authored
+  labels without a promoted corpus identity remain honest labels rather than
+  fabricated venue/site references. Fly backup/reset/reseed and deployed
+  certification remain unperformed.
+- Stored `plan_editing='locked'` compatibility is retired end to end. The new
+  migration normalizes it to Review and narrows the physical database, backend,
+  OpenAPI, generated TypeScript, mocks, scanners, and product documentation to
+  `open | review`. Two unreachable writer APIs and the duplicated plan-state
+  `raw_status` field are also physically deleted.
+- The dead legacy block move/remove/undo editor, itinerary-version pruning
+  worker/CLI, and proposal `in_revert` claim/reaper are retired. Canonical
+  operation recovery remains authoritative; a migration normalizes any stranded
+  transient proposal row to Accepted with explicit recovery evidence before
+  narrowing the database constraint.
+- Proposal voting now row-locks and writes only through the canonical
+  operation-proposal gateway; the old independent vote writer is deleted. The
+  unused planner `persist_planning_output` / `fork_itinerary_version` facade is
+  also deleted while live planning reads, feasibility warnings, and deferred
+  enrichment remain intact.
+- The generic itinerary-version hard-delete helper is gone; journey teardown
+  now owns a trip- and marker-scoped fixture cleanup boundary. Map route-point
+  persistence is isolated as a validated derived-cache gateway reachable only
+  from map-state enrichment, rather than masquerading as a product edit writer.
+- The legacy proposal write engine is now physically retired. Canonical
+  proposal creation owns privacy-safe lifecycle transitions, same-stop
+  supersession, trust receipts, automatic-resolution attribution, and atomic
+  replan withdrawal of both operation-backed truth and its temporary
+  group-facing projection. The old create/build/supersede/resolve/expiry
+  helpers and their writer-only tests are deleted; `change_proposals.py` is a
+  read/deadline projection module only. Journey certs, scenario fixtures,
+  replay/eval spies, and concierge tests now enter through canonical producers.
+- Planner orchestration no longer requires a size-budget exception. Runtime
+  progress transport, handoff telemetry, plan-ready receipts, and deferred
+  enrichment are isolated from planning policy and canonical persistence;
+  `_execute_generate_plan_once` is below the 800-line function ceiling. The
+  full structural gate and itinerary certificate remain green (319 + 280
+  tests), with direct runtime regression coverage (117 passed, 6 skipped).
+- B4 guard/disposition hygiene is complete. IR-00 now reflects the executable
+  141-writer / 19-import / zero-reader reality, records the 2026-07-16 local
+  retirement date for independently reachable legacy writes, and gives every
+  retained structure an owner, purpose, consumer set, disposition trigger, and
+  2026-07-23 review date. This does not license the one edit-log acknowledgement
+  writer or any physical table deletion without deployed evidence.
 
-1. trip enrolled (`ITINERARY_ROLLOUT_TRIP_IDS`, or
-   `ITINERARY_ROLLOUT_COHORTS=canonical_dogfood` + dogfood-authored trip);
-2. `ITINERARY_ROLLOUT_STAGE` ≥ the capability's stage
-   (`_CAPABILITY_STAGE`, `itinerary_rollout.py:64-85`);
-3. the capability's `_V2` flag truthy
-   (`_CAPABILITY_FLAG`, `itinerary_rollout.py:88-109`).
+The sections below retain the 2026-07-14 wiring trace as the audit baseline;
+use this closeout block and the executable guards for current status.
 
-Defaults: stage `off`, no trips, all flags false. Legacy-capable adapters select
-their legacy branches, while canonical-only endpoints reject or remain dark;
-the defaults do not exercise the target authority. The IR-17 retirement gate
-records `legacy_bypass_observation_clean: false`.
+### Current gating posture (2026-07-16)
 
-### Legacy mutation-path wiring (trace of 2026-07-14)
+The per-trip stage/cohort/capability rollout selectors and their modules are
+deleted. The only retained boundary is the global fail-closed
+`ITINERARY_OPERATIONS_ENABLED` switch. Disabling it rejects canonical writes;
+it cannot select or resurrect a legacy writer.
+
+The wiring table below records the historical 2026-07-14 starting point, not
+the current product graph.
+
+### Legacy mutation-path wiring (historical trace of 2026-07-14)
 
 | # | Path | State | Capability / flag | Writes DB today |
 |---|---|---|---|---|
@@ -119,9 +225,12 @@ records `legacy_bypass_observation_clean: false`.
 Capabilities `optimize_day`, `replan`, `branches`, and `writeback` are wired
 through the rollout capability map and have backend and/or frontend flag
 readers. What remains unproved is complete producer adoption and exercised
-canonical-only behavior for each capability. No legacy path is retired.
+canonical-only behavior for each capability.
 
-### Dogfood seeding mechanics
+In that 2026-07-14 snapshot, no legacy path was retired. The current closeout
+block above and executable ratchets supersede that state.
+
+### Historical dogfood seeding mechanics (2026-07-14)
 
 `tools/dogfood/content/seed.py` (2,870 lines) writes itineraries as raw SQL
 (`pg_insert` into `itinerary_days`/`itinerary_blocks`,
@@ -130,6 +239,10 @@ deterministic via `stable_uuid(dogfood_key, ...)`; cross-domain seeders
 (`seed_expenses.py`, `seed_atlas_artifacts.py`, booking proposals via
 `create_booking_proposal`) depend on those IDs. Seeded trips have **no**
 operation ledger, history, receipts, or recovery capability.
+
+Current dogfood birth and proposal setup uses canonical materialization and
+replay with deterministic cross-domain identities. Scenario tools fail closed
+when asked to layer partial setup onto incompatible canonical history.
 
 ---
 
@@ -179,7 +292,7 @@ Acceptance: the inventory accounts for every direct writer and legacy read-model
 consumer; the guard is green with an explicit nonzero migration allowlist; each
 subsequent deletion lane ratchets that allowlist downward.
 
-Execution status (2026-07-14): the two static boundaries are landed locally and
+Historical execution status (2026-07-14): the two static boundaries are landed locally and
 green. After the A1-A3 producer additions and ratchet reductions, the writer
 manifest classifies 130 stable sites / 150 occurrences (89 canonical, 28 legacy
 product, 7 integrity, 21 seed/scenario, 5 migration). The consumer manifest
@@ -195,6 +308,11 @@ governance, and Folio compatibility inputs. The integrity exceptions' five
 callable entry points are restricted to named lifecycle importers in CI, and the
 focused reachability/authorization/lifecycle suite is green (**54 passed**).
 Workstream 0 is complete.
+
+Current status (2026-07-16): inventory and CI ratchets are complete and green at
+141 writer sites, 19 retained compatibility imports, and 0 compatibility
+readers. Zero legacy-product writers is not yet complete: the sole remaining
+site is the finite `itinerary_edit_log` drain acknowledgement described above.
 
 ## Workstream A — Build the missing canonical producers
 
@@ -341,16 +459,15 @@ instead of restoring a whole itinerary version.
 The compatibility boundary is deliberate: `change_proposals` remains the
 group-facing read projection owned by the itinerary proposal gateway and read
 by proposal API, Home/Plan, concierge receipt/notification, and frontend
-proposal consumers. It has no reachable product construction or itinerary-
-apply authority. The legacy construction/apply functions and the unreachable
-route bodies below unconditional canonical returns remain only as physical B3
-lane-3 deletion debt; their presence is not a fallback or selectable writer.
-Focused proposal certification is green (**234 passed**). Product-source scans
-find no caller of `create_change_proposal(...)` or
-`build_and_persist_proposal(...)` outside their retained legacy definition
-module; remaining `apply_accepted_proposal(...)` and
-`revert_accepted_proposal_v2(...)` route references are confined to those
-unreachable B3 deletion bodies.
+proposal consumers. It has no product construction or itinerary-apply
+authority: the legacy create/build/supersede/resolve/expiry helpers and the
+legacy apply module are physically deleted. Canonical replan withdrawal closes
+operation truth and the projection atomically, and canonical creation preserves
+the product invariant that a newer suggestion supersedes an older open
+suggestion on the same stop. The closeout regression suite is green (**134
+passed**), while the deletion-license proposal lane records **24 passed** local
+canonical exercises. Remaining lane-3 work is the deliberate rename or
+replacement of projection readers—not removal of a hidden mutation fallback.
 
 ### A3. Remaining producers (parallelizable after their contracts are explicit)
 
@@ -445,16 +562,19 @@ Completion evidence (2026-07-14):
 ### B2. Prove zero legacy traffic (the deletion license)
 
 Run the full journey certifier + Maestro wedge flows (J04/J05/J10 device flows).
-Telemetry uses the event `itinerary.compatibility_path_used`; zero events alone
-are not deletion proof because only selected trips and explicitly instrumented
-paths emit it.
+Compatibility-event evidence is valid only for a path with complete, named
+instrumentation coverage. Branches deleted before an emitter existed instead
+require deployed unreachability proof from the same identifiable revision as
+the static proof; their event count remains null.
 
 Every deletion lane requires a signed evidence row containing all of:
 
 1. every producer and frontend/agent/planner/seeder entry surface assigned to
    the lane was exercised;
 2. the exercise count and canonical commit/proposal count are both nonzero;
-3. `itinerary.compatibility_path_used` is zero for that exercised set;
+3. either completely instrumented named paths report zero compatibility events,
+   or lane-specific symbol, deployed-artifact, and caller scans prove the
+   deleted paths unreachable on the deployed revision;
 4. the static writer/import allowlist was ratcheted and is green;
 5. repository route/reference scans show no migrated frontend, agent, planner,
    seeder, job, or script caller;
@@ -464,25 +584,40 @@ Every deletion lane requires a signed evidence row containing all of:
 This evidence—not an unqualified zero—is the deletion license. No lane starts
 before its complete row is green.
 
-Execution status (2026-07-14): the fail-closed B2 license evaluator and a
-schema-valid evidence bundle now exist for all five physical deletion lanes.
-The evaluator requires exact prerequisite and producer-surface coverage,
-nonzero exercise/commit/proposal counts, zero compatibility-path events,
-applicable outcome proof, green writer/import/reference scans, evidence links,
-and a signer plus timestamp. Missing or duplicate lanes fail validation. CI runs
-the evaluator in report-only mode so schema drift and missing lane coverage are
-visible without falsely licensing deletion; the same command without
-`--allow-blocked` is the blocking deletion gate.
+Execution status (2026-07-16): the source-controlled B2 evaluator and a
+schema-valid evidence bundle exist for all five physical deletion lanes. The
+first evaluator was accidentally deleted when rollout infrastructure was
+retired while its JSON evidence remained; the replacement is standalone and
+does not depend on the deleted rollout module. Run:
 
-No lane is licensed yet. The current zero-count bundle is deliberately honest:
-lane 1 still lacks C1/C2 canonical dogfood replay; lane 2's frontend callers are
-migrated but its agent callers still retain rollout-selectable legacy branches
-and the lane has no measured outcome evidence; lane 3 has not yet captured
-end-to-end positive/negative proposal evidence; lane 4 is frontend
-reference-clean but has not exercised and signed its canonical preview evidence;
-and lane 5 is ordered after lanes 1-4 plus the canonical-only rollback checkpoint
-and D2 decision. The static inventories themselves are green and ratcheted, but
-their remaining classified legacy rows are blockers—not deletion proof.
+```bash
+PYTHONPATH=. python scripts/certify_itinerary_deletion_lanes.py \
+  --refresh-local --allow-blocked
+PYTHONPATH=. python scripts/certify_itinerary_deletion_lanes.py \
+  --check-local --allow-blocked
+```
+
+The refresh executes the focused canonical suites, records their real pass
+counts, snapshots all three static ratchets, scans the retired lane artifacts,
+and preserves deployed evidence and signatures as separate manual inputs. The
+check re-runs the focused canonical suites and fails when their paths, counts,
+results, static snapshots, or retired-artifact scans are stale. It does not
+compare the embedded revision to `HEAD`, because an evidence file cannot contain
+the hash of the commit that contains that same file. Omitting `--allow-blocked`
+is the fail-closed deletion-license gate. Missing or duplicate lanes fail
+validation.
+
+No lane is licensed yet. The local refresh proves the focused canonical suites
+and the absence of the retired plan-edit, proposal-apply, and rollout modules,
+but it deliberately leaves deployed surface counts, canonical commit/proposal
+counts, deployed-revision/static-revision identity, lane-specific symbol and
+artifact/caller scans, observation windows, reset/reseed evidence, rollback
+checkpoint, evidence references, and sign-off unresolved. Lane 5 also lacks the
+lanes-1-to-4 license and the recorded global-switch decision. The static
+inventories are green ratchets but still contain 1 classified legacy-product
+writer site, 19 compatibility imports (8 replace, 7 delete, 4 rename), and 0
+compatibility readers.
+Those are retirement debt, not deletion proof.
 
 The frontend deletion-reference scanner now reports **0** production callers.
 Both the adapter and Change Studio preview lanes are reference-clean. API
@@ -618,6 +753,10 @@ code controls chronology/input sourcing only; deterministic replay is
 idempotent; an already-completed trip cannot receive structural edits merely
 because replay supplied an older timestamp.
 
+Execution status (2026-07-16): implemented and covered by the canonical seed
+and replay suites. The internal replay orchestrator owns chronology while the
+canonical commit gateway remains the writer.
+
 ### C2. Rewrite `_seed_itinerary` (seed.py:673)
 
 Replay each manifest itinerary chronologically:
@@ -636,6 +775,10 @@ Replay each manifest itinerary chronologically:
 This is an upgrade, not just compliance: seeded trips gain real history,
 receipts, undo capability, and Changes-feed content — surfaces that are empty
 in dogfood today.
+
+Execution status (2026-07-16): implemented for itinerary birth and authored
+proposal replay. Final acceptance remains coupled to C4's all-five-pack reset,
+cross-domain verification, and journey run against the newly replayed data.
 
 ### C3. Manifest schema pass
 
@@ -754,21 +897,23 @@ deterministic identities exist. B3 deletion lanes are fast only after frontend,
 producer-exercise, canonical-only checkpoint, and static-boundary proof are
 complete.
 
-## Open decisions (need founder ruling before the affected lane)
+## Decision record
 
 | # | Decision | Affects | Recommendation |
 |---|---|---|---|
-| D1 | Fate of `plan_events`: retire entirely (IR-09 makes history a projection of the operation record) or keep for non-itinerary trip events? | A1, B3 lanes 1/3 | Trace every planner/proposal/read consumer; retire itinerary history writes and retain only a deliberately named non-itinerary event projection if real consumers remain |
-| D2 | Flags: delete all rollout flags, or keep one `ITINERARY_OPERATIONS` ops kill switch? | B3 lane 5 | Keep one operational switch only if it is a global fail-closed/read-only availability boundary and can never select a legacy writer |
-| D3 | Historical replay clock shape: route parameter vs separate internal replay entry point using preview + commit? | C1 | Separate internal replay entry point; never on the public route |
-| D4 | Fate of the group-facing `change_proposals` projection/read API after its legacy mutation authority is removed? | A2, B3 lane 3, B4 | Retain and rename it as an explicit projection for this cutover unless replacing all readers is smaller; never delete/import-ban it while consumers remain |
-| D5 | Manual booking-attestation authority and evidence: who may say an external handoff is booked, and what truth does that establish? | A3, C2, B3 lane 2 | Permit only the booking controller or explicitly assigned handoff actor; record immutable `user_reported` attribution, not provider-confirmed truth. Keep the existing held-provider saga separate. |
+| D1 — resolved | `plan_events` is a frozen read-only historical ledger. Product writes, readers, and the dead read module are gone; table rows remain only for archive/privacy lifecycle and deployed retirement evidence. | A1, B3 lanes 1/3 | Physically drop the table only after archive/privacy and deployed evidence license it. |
+| D2 — resolved | Per-trip rollout selectors are deleted; retain one global fail-closed `ITINERARY_OPERATIONS_ENABLED` switch. | B3 lane 5 | The switch rejects canonical writes when off and can never select a legacy writer. |
+| D3 — resolved | Historical replay time belongs to a separate internal replay orchestration path. | C1 | Never expose the replay clock on the public route. |
+| D4 — open physical disposition | The group-facing decision projection is retained behind the explicit `itinerary_decision_projection` owner. | A2, B3 lane 3, B4 | Preserve display/vote/deadline/status behavior; rename or replace the physical projection only after its lifecycle and deployed consumers are proved absent. |
+| D5 — resolved | Only the booking controller or assigned handoff actor may make manual booking attestation. | A3, C2, B3 lane 2 | Record immutable `user_reported` attribution, distinct from provider-confirmed truth. |
 
 ## Acceptance — definition of done
 
-- [x] 0: every direct writer and legacy proposal/history consumer is classified;
-      the CI boundary guard is installed and its product-mutation allowlist is
-      ratcheted to zero by closure.
+- [x] 0a: every direct writer and legacy proposal/history consumer is
+      classified and the CI boundary guards are installed and ratcheted.
+- [ ] 0b: the legacy-product writer allowlist is zero. One finite
+      `itinerary_edit_log` drain acknowledgement remains until deployed backlog
+      evidence licenses its removal.
 - [x] A0: one `materialize_shape` operation commits the complete first dated
       draft—days, initial blocks/anchors, ownership, provenance, and canonical
       deterministic identities—with idempotency, one history item, and atomic
@@ -788,24 +933,31 @@ complete.
       the intended full-on environment asserted and every producer exercised
       canonically; the prior 790-test corpus has not regressed and new cutover
       tests are included.
-- [ ] B2: each deletion lane has nonzero exercise and canonical-write counts,
-      zero `itinerary.compatibility_path_used`, green negative/static scans, and
-      direct/denied/conflict/retry/recovery evidence as applicable.
-- [ ] B3: a certified canonical-only rollback checkpoint exists; physical lanes
-      1–5 are deleted in order; `patch_trip` is retained; no current frontend,
-      agent, planner, seeder, or rollback build can select a deleted writer.
-- [ ] B4: deleted API/module import bans are green; IR-00 removal dates and the
-      retained-read-model disposition ledger are complete.
-- [ ] C: five packs replay chronologically through canonical preview/policy/
-      commit and distinct manual/provider booking contracts with stable
-      cross-domain IDs and no seed-specific mutation semantics; local and Fly
-      are backed up, reseeded, and verified without ad hoc repair SQL.
-- [ ] D: every itinerary mutation entry surface uses canonical APIs; schema
-      regeneration is clean; every registered journey, the J05 wedge, and
-      relevant device flows are re-certified; no old Plan/Folio component owns
-      a legacy mutation path; the reworked Itinerary is the default and no
-      duplicate itinerary editor remains; docs are synced.
+- [ ] B2: each deletion lane has deployed nonzero exercise and canonical-write
+      counts, green negative/static scans, and direct/denied/conflict/retry/
+      recovery evidence as applicable. Zero compatibility events applies only
+      where instrumentation existed; already-deleted paths require deployed
+      unreachability proof with null—not fabricated zero—event counts.
+- [ ] B3: local physical source deletion is substantially complete, but a
+      certified deployed canonical-only rollback checkpoint and lane evidence
+      are still required; `patch_trip` remains intentionally retained.
+- [x] B4: deleted API/module import bans are green; IR-00 removal dates and the
+      retained-read-model disposition ledger are complete. The one finite
+      edit-log acknowledgement remains tracked by 0b rather than hidden here.
+- [x] C-local: five packs replay chronologically through canonical preview/
+      policy/commit and distinct manual/provider booking contracts with stable
+      cross-domain IDs and no seed-specific mutation semantics.
+- [ ] C-deployed: Fly is backed up, reset/reseeded, and verified without ad hoc
+      repair SQL.
+- [x] D-functional-local: every itinerary mutation entry surface uses canonical
+      APIs; app/backend compatibility readers and app production callers are
+      zero.
+- [ ] D-deployed-closeout: schema/device journeys, the J05 wedge, default
+      reworked-Itinerary presentation, duplicate-editor absence, and docs are
+      re-certified against the deployed revision.
 - [ ] End-state audit: one normalized operation model and one server mutation
       authority own itinerary truth; every retained compatibility structure is
       read-only with an explicit purpose; the operational kill switch, if kept,
-      fails closed and cannot resurrect legacy behavior.
+      fails closed and cannot resurrect legacy behavior. Formal closure still
+      requires zeroing the one legacy writer, resolving the 19 retained imports,
+      and completing deployed B2/C/D evidence and sign-off.

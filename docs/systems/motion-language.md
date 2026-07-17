@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: founder / design / frontend
 created: 2026-07-11
-last_verified: 2026-07-11
+last_verified: 2026-07-16
 why_new: Establish one cross-cutting interaction-motion doctrine so each surface does not invent timing, spatial behavior, and presentation semantics independently.
 supersedes: []
 source_of_truth_for: [interaction-motion-language, motion-presentation-semantics, reduced-motion-contract]
@@ -14,7 +14,7 @@ source_of_truth_for: [interaction-motion-language, motion-presentation-semantics
 > Status: ratified 2026-07-11
 > Applies to: Vesper, Trips, Discover, Atlas, and shared application chrome
 > Consumed by: every interactive frontend surface and shared UI primitive
-> Last updated: 2026-07-11
+> Last updated: 2026-07-16
 
 ## Purpose
 
@@ -38,7 +38,8 @@ in this durable contract.
 4. **State accumulates rather than flips.** Preserve object identity and position
    when saved, booked, applied, enriched, or completed.
 5. **Nothing bounces by default.** Ordinary entrances and layout changes use
-   timing and the house ease. Spring is reserved for direct press response.
+   timing and the house ease. Spring is reserved for settling a directly
+   manipulated gesture, or for a registered bespoke sequence.
 6. **“Now” is stable.** Current, urgent, or anchoring information uses hierarchy
    and contrast, not ambient movement.
 7. **Ceremony is scarce.** Expressive motion is reserved for consequential,
@@ -207,23 +208,24 @@ compensate for unclear visual state.
 
 ## Executable implementation
 
-The current shared implementation is intentionally small:
+The current shared implementation is intentionally small and is limited to
+files that exist in the application today:
 
 - Semantic intents and the numeric scale: `travel-app/constants/motion.ts`.
 - Declarative reveal/state presets: `travel-app/utils/motion.ts`.
 - System preference boundary: `travel-app/hooks/useMotionPreference.ts`.
-- Press: `travel-app/components/ui/Tap.tsx` and semantic
-  `MotionPressable.tsx`.
-- Soft Reveal and State Settle: `SoftReveal.tsx` and `StateTransition.tsx`.
-- Progress threshold: `ProgressGate.tsx`, composed around the appropriate
-  loading or worker-progress content.
+- Press: `travel-app/components/ui/Tap.tsx`.
+- Soft Reveal presets and State Settle: `travel-app/utils/motion.ts` and
+  `travel-app/components/ui/StateTransition.tsx`.
+- Progress threshold: `travel-app/components/ui/ProgressGate.tsx`.
 - Deliberation Sheet, Card Lift, and Deck Focus: `BottomSheet.tsx`,
   `CardLift.tsx`, and `components/focus-home/Deck.tsx`.
-- Workspace options: `travel-app/utils/navigationMotion.ts`.
 - Completion ceremony: `DecisionSeal.tsx`.
-- Local QA events: `useMotionInstrumentation.ts` and
-  `motionInstrumentation.ts`. These are opt-in local observers and do not send
-  interaction telemetry remotely.
+
+There is not yet a separate navigation-motion adapter or motion-instrumentation
+layer. Those concepts remain doctrine until an implementation is justified by
+a concrete surface; feature code must not
+import a non-existent abstraction or recreate one under a local name.
 
 Feature code chooses a pattern and invokes its shared implementation. It does not
 import Reanimated merely to reproduce one of these mechanics.
@@ -233,11 +235,13 @@ import Reanimated merely to reproduce one of these mechanics.
 The app CI runs `npm run motion-governance`. The guard is intentionally a
 reviewable ratchet rather than a universal animation ban:
 
-- direct Reanimated ownership is an explicit file allowlist, so a new owner is
-  a conscious design-system decision;
+- direct Reanimated ownership is an exact file registry, so adding or removing
+  an owner is a conscious review decision (the registry includes both shared
+  primitives and established product owners while they are migrated);
 - ordinary imperative animation must import the canonical motion tokens and may
   not introduce a raw non-zero timing literal;
-- bespoke sequences are a four-entry allowlist with an owner and defined
+- springs are limited to direct gesture settling and registered bespoke work;
+- bespoke sequences are a three-entry allowlist with an owner and defined
   Reduced Motion behavior; their human-readable rationale lives in
   [Motion Exceptions](motion-exceptions.md).
 
@@ -256,5 +260,5 @@ Every new or changed interaction must answer:
 
 Device review covers normal and Reduced Motion modes, keyboard open/closed where
 relevant, interrupted gestures, slower supported hardware, and offline/failure
-states. Automated enforcement is migration work following this doctrine; until
-then, review against this contract is required.
+states. Automated enforcement is a ratchet rather than proof of perceptual
+quality; review against this contract remains required.

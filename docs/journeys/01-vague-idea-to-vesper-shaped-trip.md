@@ -2,7 +2,7 @@
 
 > Status: draft  
 > Owner: founder / engineering  
-> Last updated: 2026-06-26  
+> Last updated: 2026-07-16
 > Primary phase: cold start / ideation / first session
 
 ## Product Promise
@@ -22,7 +22,8 @@ As a traveler, I want to say "maybe Portugal in September with friends" and have
 ## Boundary With Journey 03
 
 - **Journey 01 ends** when the user is still ideating OR has just promoted/created a draft trip but has not yet filled workspace facets (place, dates, people).
-- **Journey 03 starts** when a `trip_id` exists and Trip Folio is in cold/pre mode with setup slots to complete.
+- **Journey 03 starts** when a `trip_id` exists and Itinerary shows an honest
+  undated Trip Shape with setup actions to complete.
 
 ## Starting State
 
@@ -90,4 +91,3 @@ Static trace plus a mock API test proving:
 - conversation promotion returns a stable trip id
 - promoted trip appears in `getTripsForUser`
 - created trip status is ideation/draft
-

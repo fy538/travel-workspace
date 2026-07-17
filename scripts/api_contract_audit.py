@@ -13,6 +13,7 @@ The gate fails when:
 * an OpenAPI operation has neither a product/server consumer nor an explicit
   ``dark``/``retiring`` policy;
 * a policy entry no longer exists in OpenAPI;
+* an operation recorded as retired reappears in OpenAPI;
 * a dark operation gains a product caller; or
 * a declared source consumer no longer contains the operation path.
 """
@@ -417,6 +418,14 @@ def load_policy(path: Path) -> tuple[dict[str, Any], list[Finding]]:
                 "api operation policy requires an operations object",
             )
         )
+    retired_operations = policy.get("retired_operations")
+    if not isinstance(retired_operations, dict):
+        findings.append(
+            Finding(
+                "policy-retired-operations",
+                "api operation policy requires a retired_operations object",
+            )
+        )
     return policy, findings
 
 
@@ -521,6 +530,7 @@ def audit(
         return findings, {}, []
 
     overrides: dict[str, Any] = policy["operations"]
+    retired_operations: dict[str, Any] = policy["retired_operations"]
     defaults: dict[str, Any] = policy["defaults"]
     registered_flags = (
         registered_feature_flags
@@ -547,6 +557,49 @@ def audit(
             )
 
     openapi_keys = {key.registry_key for key in operations}
+    for retired_key, retirement in sorted(retired_operations.items()):
+        if not isinstance(retirement, dict) or not all(
+            isinstance(retirement.get(field), str) and retirement[field].strip()
+            for field in ("owner", "reason", "replacement", "retired_on")
+        ):
+            findings.append(
+                Finding(
+                    "invalid-retirement",
+                    f"{retired_key}: retirement needs owner, reason, replacement, and retired_on",
+                )
+            )
+        else:
+            try:
+                date.fromisoformat(retirement["retired_on"])
+            except ValueError:
+                findings.append(
+                    Finding(
+                        "invalid-retirement",
+                        f"{retired_key}: retired_on must be an ISO date",
+                    )
+                )
+            replacement = retirement["replacement"]
+            if replacement not in openapi_keys:
+                findings.append(
+                    Finding(
+                        "retirement-replacement-missing",
+                        f"{retired_key}: replacement is absent from OpenAPI: {replacement}",
+                    )
+                )
+        if retired_key in openapi_keys:
+            findings.append(
+                Finding(
+                    "retired-operation-exposed",
+                    f"{retired_key} is retired but still exposed in OpenAPI",
+                )
+            )
+        if retired_key in overrides:
+            findings.append(
+                Finding(
+                    "retirement-policy-overlap",
+                    f"{retired_key} cannot be both current policy and retired",
+                )
+            )
     for stale in sorted(set(overrides) - openapi_keys):
         findings.append(
             Finding("stale-policy", f"{stale} is in policy but absent from OpenAPI")

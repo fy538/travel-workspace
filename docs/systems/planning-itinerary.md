@@ -2,8 +2,8 @@
 
 > Surface: Trips
 > Maturity (for MVP): MVP-required
-> Status: wired (backend shipped; on-device generation walk unvalidated)
-> Last updated: 2026-06-27
+> Status: canonical mutation/read path shipped; deployed/on-device closeout pending
+> Last updated: 2026-07-16
 
 ## Purpose
 Generates and modifies trip itineraries with Claude tool-calling, grounded in the
@@ -14,24 +14,25 @@ spatially coherent, paced).
 ## Spans (cross-repo)
 - Backend: [`travel-agent/backend/planning_agent/`](../../travel-agent/backend/planning_agent/FEATURE.md) (21, custom tool_use loop) + the generation wiring in `concierge/tool_handlers/planning/` + itinerary tables in `core/`.
 - Frontend: `travel-app/app/(tabs)/trips/[tripId]/plan`, `components/trip-plan/*` (35), itinerary edit hooks (`useAddBlock`/`useMoveBlock`/`useApplyReschedule`).
-- Tables of record: `itineraries`, `itinerary_days`, `itinerary_blocks`, `itinerary_edit_log`, `plan_state`.
+- Tables of record: normalized itinerary shape plus the canonical operation,
+  transition, proposal, provider-saga, and projection tables. The retained
+  `itinerary_edit_log` is a finite historical preference-drain input, not
+  itinerary truth.
 
 ## Public interface (what other systems may call / read)
 - **Entry points:** `agent.py::run_planning_agent()` / `arun_planning_agent()` (generate | replan) → structured `PlanningOutput`. Invoked by Concierge via the `generate_plan` tool (`tool_handlers/planning/_plan.py`).
-- **Reads (FE → BE):** `GET /api/trips/{id}/...` plan/itinerary reads; the Folio spine is the composed read.
+- **Reads (FE → BE):** canonical plan authority, lifecycle, Map, Trip Details,
+  object inspection, proposal, and operation-history endpoints.
 - **Consumes:** Memory & Preference (narrative profiles for fan-out search), Places (live hours), venue/experience corpora (Qdrant).
-- **Never:** other systems must not write itinerary blocks directly — mutations go through the Change Studio / edit-commit gateway (see [proposals-change-studio](proposals-change-studio.md)).
-
-The final two statements above are target boundaries, not current proof. The
-accepted redesign replaces Folio as the target composed read with Trip Shape /
-Plan State + Details/History projections and replaces Change Studio-specific
-mutation with one typed itinerary-operation gateway. Existing direct, agent,
-pin, proposal, and replan paths remain migration adapters until contract tests
-prove convergence.
+- **Never:** another surface may become a second mutation authority. Manual,
+  Vesper, proposal, replan, optimize, recovery, and provider-linked changes
+  converge on typed canonical operations or a named narrow projection gateway.
 
 ## Owns (source of truth)
-The itinerary structure (days/blocks) and edit log. **Generation** produces it;
-**Change Studio** is the controlled mutation path over it.
+The itinerary structure, stable subject lineage, operation/transition ledger,
+policy result, exact recovery, and canonical read projections. Generation
+births one accepted first draft with `materialize_shape`; subsequent structural
+changes use typed operations.
 
 ## Invariants (must always be true)
 - **Grounded:** never recommends a venue it can't retrieve from the knowledge base (no hallucinated places).
@@ -45,8 +46,11 @@ The itinerary structure (days/blocks) and edit log. **Generation** produces it;
 - Search returns nothing → the agent narrows/re-queries via fan-out; never fabricates to fill.
 
 ## Maturity & validation
-- Serves journey: 05 (the plan that gets proposed against and mutated).
-- DoD state: planning eval scenarios ✅ (~27 configs) · feasibility unit tests ✅ · **on-device "generate a plan" walk ❌ · mock-walk ❌**.
+- Serves journeys: 03, 05, 06, 08, 10, 12, with privacy/recovery coverage from
+  04, 13, 14, and 15.
+- DoD state: canonical backend itinerary certification ✅ · app itinerary
+  certification ✅ · deterministic J01–J19 logic QA ✅ · static legacy-reader
+  and caller scans ✅ · **deployed evidence and on-device walks pending**.
 - Concierge planning + the agent both run on **Sonnet**.
 
 ## Canonical docs
@@ -57,8 +61,11 @@ The itinerary structure (days/blocks) and edit log. **Generation** produces it;
 - **Graph legibility**: context signals injected into `trip_context` (planning_brief, loved_places, returning_traveler, upcoming_events, weather_forecast) shape the plan silently — they must never be echoed back to the user as labels. See [graph-legibility-doctrine.md](graph-legibility-doctrine.md).
 
 ## Open risks / known gaps
-- Undated Trip Shape, parallel-plan topology, per-traveler delegation, typed
-  operations, and operation-linked write-back are accepted target contracts but
-  not current tables/read paths.
-- The dual read-model collapse (06-20) retired legacy `useItinerary` → plan-state adapter; confirm no surface still reads the old model (feeds journey 06 coherence).
-- Replan/edit-inference wiring lives in `concierge/tool_handlers/planning/_plan.py`, **not** in this package — the seam between "agent decides to replan" and "planner replans" is the likely break point.
+- Deployed deletion-lane counts, rollback checkpoint, observation windows,
+  reset/reseed proof, and signatures remain operational closeout work.
+- One historical edit-log acknowledgement writer remains until its deployed
+  backlog is proved drained; it cannot mutate itinerary truth.
+- Planner orchestration now separates runtime progress, handoff telemetry,
+  plan-ready receipts, and deferred enrichment from policy and canonical
+  persistence. `_execute_generate_plan_once` is below the enforced function
+  budget; preserve that boundary as planning behavior evolves.

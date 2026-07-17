@@ -50,8 +50,8 @@ Wedge journeys = the group-trip path (journeys 02 → 05). "Serves" cites
 |---|---|---|---|---|---|
 | **Concierge (Vesper)** | Vesper | MVP-required | wired | 01,04,05,07,08 | [✎](concierge-vesper.md) |
 | **Memory & Preference** | Vesper | MVP-required | wired | 04,11 | [✎](memory-preference.md) |
-| **Trips / Folio** | Trips | MVP-required | wired | 03,06 | [✎](trips-folio.md) |
-| **Planning / Itinerary** | Trips | MVP-required | wired | 05 | [✎](planning-itinerary.md) |
+| **Trips / Folio** | Trips | compatibility-required | transitional | 03,06 | [✎](trips-folio.md) |
+| **Planning / Itinerary** | Trips | MVP-required | governed target rollout | 01,05,06,08,15 | [✎](planning-itinerary.md) |
 | **Proposals / Change Studio** | Trips | MVP-required | wired | 05 | [✎](proposals-change-studio.md) |
 | **Group / Social state** | Trips | MVP-required | wired | 02,04,05 | [✎](group-social.md) |
 | **Proactive / Notifications** | Vesper | Should-have | wired | 09 | [✎](proactive-notifications.md) |
@@ -68,6 +68,9 @@ Wedge journeys = the group-trip path (journeys 02 → 05). "Serves" cites
 
 ## Cross-cutting doctrines
 
+- [Planning / Itinerary](planning-itinerary.md) governs the living itinerary as
+  the canonical shared trip artifact. Chat, voice, notifications, booking, and
+  Discover may open or announce actions; they do not become competing trip truth.
 - [Graph Legibility](graph-legibility-doctrine.md) governs when the traveler/group
   world model may explain itself. Outside Atlas or an explicit “Why this?” action,
   personalization should be felt through fit rather than narrated as surveillance.

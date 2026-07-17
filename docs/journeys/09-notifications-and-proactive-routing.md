@@ -2,12 +2,15 @@
 
 > Status: draft  
 > Owner: founder / engineering  
-> Last updated: 2026-06-06  
+> Last updated: 2026-07-16
 > Primary phase: proactive help / re-entry
 
 ## Product Promise
 
-Notifications should bring the traveler back to the right surface, at the right level of privacy, without being noisy or misleading.
+Vesper should notice a consequential gap, understand its impact, prepare a useful
+response, and reach the traveler through the smallest privacy-correct surface.
+A notification is successful only when it reduces work or leads toward a real
+trip outcome; routing alone is necessary but insufficient.
 
 ## Canonical User Story
 
@@ -44,6 +47,11 @@ As a traveler, I want a Vesper nudge or trip notification to open exactly where 
 7. Tap social notification.
 8. Change notification cadence/quiet setting and verify the feed respects it.
 9. Mark read and confirm badge/feed state updates.
+10. For one advisory candidate, verify the full intervention: evidence → impact
+    on these travelers/this itinerary → prepared action → authority decision →
+    itinerary or coordination outcome.
+11. Dismiss or defer a low-urgency intervention and verify that Vesper quiets the
+    relevant class without suppressing critical operational messages.
 
 ## Expected Outcome
 
@@ -51,6 +59,10 @@ As a traveler, I want a Vesper nudge or trip notification to open exactly where 
 - Data state: read state persists; badge count and feed partition agree.
 - Cross-surface coherence: notification object maps to valid trip/conversation/proposal/social destination.
 - Trust state: private notification copy and destination do not expose private facts to group.
+- Product state: an advisory nudge opens the exact itinerary/proposal context and
+  offers the best available next action, not a generic information screen.
+- Emotional state: the traveler experiences the intervention as timely help, not
+  another feed item to manage.
 
 ## Must Never Happen
 
@@ -59,11 +71,15 @@ As a traveler, I want a Vesper nudge or trip notification to open exactly where 
 - Read state updates locally but reappears after refresh.
 - Push tap with missing trip id strands the user.
 - Quiet hours/cadence settings are ignored for proactive noncritical nudges.
+- Weather, delay, closure, or group-state information is sent without explaining
+  its trip consequence or offering a useful continuation.
+- Notification delivery claims a plan/provider outcome that the canonical
+  itinerary operation or provider evidence does not confirm.
 
 ## AI Trace Prompt
 
 ```text
-Trace notification feed, ownership, routing priority, read-state mutation, badge counts, push payload handling, and preference/cadence controls. Verify private-vs-group destinations and list every fallback when ids are missing.
+Trace opportunity detection, need/accept arbitration, ownership, routing priority, read-state mutation, badge counts, push payload handling, and preference/cadence controls. Verify private-vs-group destinations, the canonical itinerary continuation for material actions, every fallback when ids are missing, and every path where silence should win.
 ```
 
 ## First Automation Target
@@ -71,10 +87,9 @@ Trace notification feed, ownership, routing priority, read-state mutation, badge
 Route-priority test matrix:
 
 - `outcome_id + trip_id + private` -> private concierge
-- `outcome_id + trip_id` -> group chat
-- concierge category + trip -> group chat
+- `outcome_id + trip_id + group-visible proposal` -> proposal/itinerary context
+- concierge category + trip -> smallest relevant trip or private Vesper context
 - invite answer -> trip info
-- generic trip -> trip detail
+- generic trip -> canonical itinerary or named Trip Details continuation
 - social -> companions
 - fallback -> private concierge
-
