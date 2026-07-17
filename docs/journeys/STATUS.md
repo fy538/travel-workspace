@@ -183,7 +183,7 @@ Source: `docs/journeys/journeys.yaml` × derived coverage (FE mock-walk / BE pyt
 | J03 | Cold Trip Setup to Useful Workspace | golden | ✅ | ✅ | — | ✅ |
 | J04 | Private Constraint to Group-Safe Plan | golden | ✅ | ✅ | ✅ | ✅ |
 | J05 | Group Planning to Proposal to Plan Mutation | golden | ✅ | ✅ | ✅ | ✅ |
-| J06 | Itinerary, Map, Details, Chat, and Changes Coherence | golden | ✅ | ✅ | — | ✅ |
+| J06 | Itinerary, Map, Details, Chat, and Changes Coherence | golden | ✅ | ✅ | ✅ | ✅ |
 | J07 | Discover to Contextual Vesper to Trip Action | golden | ✅ | ✅ | — | ✅ |
 | J08 | Live Trip What-Now Companion | golden | ✅ | ✅ | — | ✅ |
 | J09 | Notifications and Proactive Routing | golden | ✅ | ✅ | — | ✅ |
