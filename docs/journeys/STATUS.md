@@ -151,7 +151,7 @@ Source: `dogfood_journey_persona_cert.py --json` for mara + elif (seeded world, 
 | J01 | mara |  | ✅ pass | vague idea promotes into a structured draft trip linked to the exploration |
 | J02 | mara | mara-lisbon | ✅ pass | invite accept adds member exactly once |
 | J03 | mara |  | ✅ pass | blank trip lands one pre-trip workspace slot without fake itinerary |
-| J04 | mara | mara-lisbon | ✅ pass | private phrase redacted from group proposal + audited |
+| J04 | mara | mara-lisbon | ✅ pass | unsafe private draft rejected; group-safe re-draft persisted |
 | J05 | mara | mara-lisbon | ✅ pass | accepted member proposal mutates the itinerary |
 | J06 | mara | mara-lisbon | ✅ pass | plan + map expose same block ids; open proposal attaches |
 | J07 | elif | elif-rome-return-2026 | ✅ pass | discover venue saves + commits to trip idempotently |
@@ -181,22 +181,22 @@ Source: `docs/journeys/journeys.yaml` × derived coverage (FE mock-walk / BE pyt
 | J01 | Vague Idea to Vesper-Shaped Trip | golden | ✅ | ✅ | — | ✅ |
 | J02 | Concrete Trip Creation and Invite | golden | ✅ | ✅ | ✅ | ✅ |
 | J03 | Cold Trip Setup to Useful Workspace | golden | ✅ | ✅ | — | ✅ |
-| J04 | Private Constraint to Group-Safe Plan | golden | ✅ | ✅ | — | ✅ |
+| J04 | Private Constraint to Group-Safe Plan | golden | ✅ | ✅ | ✅ | ✅ |
 | J05 | Group Planning to Proposal to Plan Mutation | golden | ✅ | ✅ | ✅ | ✅ |
 | J06 | Itinerary, Map, Details, Chat, and Changes Coherence | golden | ✅ | ✅ | — | ✅ |
 | J07 | Discover to Contextual Vesper to Trip Action | golden | ✅ | ✅ | — | ✅ |
 | J08 | Live Trip What-Now Companion | golden | ✅ | ✅ | — | ✅ |
 | J09 | Notifications and Proactive Routing | golden | ✅ | ✅ | — | ✅ |
-| J10 | Booking, Stay, and Expense Trust Loop | golden | ✅ | ✅ | — | ✅ |
+| J10 | Booking, Stay, and Expense Trust Loop | golden | ✅ | ✅ | ✅ | ✅ |
 | J11 | Atlas Candidate to Memory Control | golden | ✅ | ✅ | — | ✅ |
 | J12 | Returned Trip to Story, Memory, and Settle-Up | golden | ✅ | ✅ | — | ✅ |
 | J13 | Failure and Recovery | holistic | ✅ | ✅ | — | ✅ |
 | J14 | Solo Trip End-to-End | holistic | ✅ | ✅ | — | ✅ |
 | J15 | Destructive and Reversible Actions | holistic | ✅ | ✅ | — | ✅ |
 | J16 | Account and Data Lifecycle | holistic | ✅ | ✅ | — | ⤵️ |
-| J17 | Returning Traveler (Cross-Trip Recall) | holistic | — | — | — | ⤵️ |
+| J17 | Returning Traveler (Cross-Trip Recall) | holistic | ✅ | ✅ | — | ⤵️ |
 | J18 | Signed-Out Join-By-Invite | holistic | ✅ | ✅ | — | ⤵️ |
-| J19 | Social Loop and Cross-Entity Discovery | holistic | ✅ | — | — | ⤵️ |
+| J19 | Social Loop and Cross-Entity Discovery | holistic | ✅ | ✅ | ✅ | ⤵️ |
 <!-- END auto:journey-matrix -->
 
 ## Summary
