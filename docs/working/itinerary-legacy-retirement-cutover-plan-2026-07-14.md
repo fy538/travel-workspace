@@ -87,19 +87,28 @@ preserving the old itinerary underneath the new design.
   package, old edit preview/commit routes, frontend Folio components, mock
   clients, generated schemas, query persistence, cache invalidations, and the
   obsolete plan-edit idempotency table (with a drop migration).
-- Canonical commits no longer mirror manual-edit events into `plan_events`.
-  Proposal resolve/revert now use only the canonical proposal gateway; the
+- `plan_events` is now a frozen, read-only compatibility ledger: canonical
+  commits no longer mirror manual edits, proposal lifecycle writes are gone,
+  and the module exposes no product write API. Historical rows remain for
+  retention, privacy erasure, and archive sign-off. Proposal resolve/revert
+  now use only the canonical proposal gateway; the
   unreachable duplicate route body and the independent
   `core/db/proposal_apply.py` mutation/revert engine are deleted. Proactive
   supersession also resolves through canonical authority.
 - The planner execution boundary no longer imports or exposes its dormant
   `persist_planning_output` fallback. Materialization and replanning continue
   through their typed canonical operations.
+- Provider booking/restaurant/handoff projection writes now pass through a
+  source-validated, revisioned gateway. Deferred planning enrichment is also a
+  named active-head-guarded annotation gateway rather than a structural writer.
+  The obsolete itinerary edit-log producer is gone; historical preference rows
+  remain readable/drainable until canonical revealed-choice inference replaces
+  that lifecycle.
 - Static boundaries are green after exact-scope classification and ratcheting:
-  153 backend writer occurrences remain classified (including **11
-  `legacy_product` occurrences**), 63 legacy imports remain classified (**30
-  `replace`, 14 `delete`, 19 `rename`**), and 14 backend compatibility readers
-  remain classified (all **`delete`**). Green means “no unreviewed
+  153 backend writer occurrences remain classified (including **7
+  `legacy_product` occurrences**), 56 legacy imports remain classified (**23
+  `replace`, 14 `delete`, 19 `rename`**), and backend compatibility readers are
+  now **0**. Green means “no unreviewed
   growth”; it does not mean those legacy rows are retired.
 - No B2 lane is formally licensed. A deterministic local refresh records the
   focused canonical exercises across all five lanes, but these are local test
@@ -580,8 +589,8 @@ counts, deployed-revision/static-revision identity, lane-specific symbol and
 artifact/caller scans, observation windows, reset/reseed evidence, rollback
 checkpoint, evidence references, and sign-off unresolved. Lane 5 also lacks the
 lanes-1-to-4 license and final D2 closure. The static inventories are green
-ratchets but still contain 14 classified legacy-product writer occurrences, 51
-replace/delete legacy imports, and 14 delete-classified compatibility readers.
+ratchets but still contain 7 classified legacy-product writer occurrences, 37
+replace/delete legacy imports, and 0 compatibility readers.
 Those are retirement debt, not deletion proof.
 
 The frontend deletion-reference scanner now reports **0** production callers.
