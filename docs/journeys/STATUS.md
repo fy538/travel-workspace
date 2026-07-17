@@ -186,7 +186,7 @@ Source: `docs/journeys/journeys.yaml` × derived coverage (FE mock-walk / BE pyt
 | J06 | Itinerary, Map, Details, Chat, and Changes Coherence | golden | ✅ | ✅ | ✅ | ✅ |
 | J07 | Discover to Contextual Vesper to Trip Action | golden | ✅ | ✅ | — | ✅ |
 | J08 | Live Trip What-Now Companion | golden | ✅ | ✅ | — | ✅ |
-| J09 | Notifications and Proactive Routing | golden | ✅ | ✅ | — | ✅ |
+| J09 | Notifications and Proactive Routing | golden | ✅ | ✅ | ✅ | ✅ |
 | J10 | Booking, Stay, and Expense Trust Loop | golden | ✅ | ✅ | ✅ | ✅ |
 | J11 | Atlas Candidate to Memory Control | golden | ✅ | ✅ | — | ✅ |
 | J12 | Returned Trip to Story, Memory, and Settle-Up | golden | ✅ | ✅ | — | ✅ |
