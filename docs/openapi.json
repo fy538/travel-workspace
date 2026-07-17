@@ -23295,6 +23295,74 @@
         }
       }
     },
+    "/api/trips/{trip_id}/reuse-template": {
+      "post": {
+        "summary": "Reuse Trip Template Endpoint",
+        "description": "Create a clean solo draft from this trip's reusable itinerary shape.",
+        "operationId": "reuse_trip_template_endpoint_api_trips__trip_id__reuse_template_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 16,
+              "maxLength": 200,
+              "title": "X-Idempotency-Key"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReuseTripTemplateResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/group-memory": {
       "get": {
         "tags": [
@@ -60589,6 +60657,34 @@
           "status"
         ],
         "title": "RetireFactResponse"
+      },
+      "ReuseTripTemplateResponse": {
+        "properties": {
+          "trip": {
+            "$ref": "#/components/schemas/Trip"
+          },
+          "source_trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Source Trip Id"
+          },
+          "copied_days": {
+            "type": "integer",
+            "title": "Copied Days"
+          },
+          "copied_blocks": {
+            "type": "integer",
+            "title": "Copied Blocks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip",
+          "source_trip_id",
+          "copied_days",
+          "copied_blocks"
+        ],
+        "title": "ReuseTripTemplateResponse"
       },
       "RevenueCatWebhookResponse": {
         "properties": {
