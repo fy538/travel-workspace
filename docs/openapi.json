@@ -59699,6 +59699,7 @@
           },
           "status": {
             "type": "string",
+            "const": "planning",
             "title": "Status"
           },
           "already_recovered": {
