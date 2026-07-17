@@ -101,11 +101,13 @@ preserving the old itinerary underneath the new design.
 - Provider booking/restaurant/handoff projection writes now pass through a
   source-validated, revisioned gateway. Deferred planning enrichment is also a
   named active-head-guarded annotation gateway rather than a structural writer.
+  The raw `update_block`, `reorder_blocks`, and bulk sort-order helpers are
+  deleted; canonical operations and provider projection now own those changes.
   The obsolete itinerary edit-log producer is gone; historical preference rows
   remain readable/drainable until canonical revealed-choice inference replaces
   that lifecycle.
 - Static boundaries are green after exact-scope classification and ratcheting:
-  153 backend writer occurrences remain classified (including **7
+  151 backend writer occurrences remain classified (including **5
   `legacy_product` occurrences**), 56 legacy imports remain classified (**23
   `replace`, 14 `delete`, 19 `rename`**), and backend compatibility readers are
   now **0**. Green means “no unreviewed
@@ -589,7 +591,7 @@ counts, deployed-revision/static-revision identity, lane-specific symbol and
 artifact/caller scans, observation windows, reset/reseed evidence, rollback
 checkpoint, evidence references, and sign-off unresolved. Lane 5 also lacks the
 lanes-1-to-4 license and final D2 closure. The static inventories are green
-ratchets but still contain 7 classified legacy-product writer occurrences, 37
+ratchets but still contain 5 classified legacy-product writer occurrences, 37
 replace/delete legacy imports, and 0 compatibility readers.
 Those are retirement debt, not deletion proof.
 
