@@ -59699,7 +59699,15 @@
           },
           "status": {
             "type": "string",
-            "const": "planning",
+            "enum": [
+              "ideation",
+              "planning",
+              "booked",
+              "live",
+              "active",
+              "completed",
+              "cancelled"
+            ],
             "title": "Status"
           },
           "already_recovered": {
