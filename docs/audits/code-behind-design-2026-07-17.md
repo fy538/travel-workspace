@@ -9,8 +9,8 @@ why_new: Reconciles the reverse design/code audit after remediation and provides
 reference_material: docs/audits/design-behind-code-2026-07-17.md
 design_target: Vesper 220 / Canon 130
 code_target:
-  travel_app: b1bef1e7
-  travel_agent: eefed571
+  travel_app: 6094fe1e
+  travel_agent: eea2c245
 source_of_truth_for: [code-behind-design-gap-inventory-2026-07-17]
 ---
 
@@ -60,6 +60,24 @@ archived by that transition, and deliberately leaves proposals, searches,
 workflows, notification outcomes, and invites closed. The app normalizes the
 backend's legacy `active` phase to the traveler-facing `live` phase.
 
+Trip cancellation and reuse are now full-stack. Cancellation has an
+organizer-only preflight, refuses unresolved booking/provider truth, states
+that cancelling a trip never cancels a reservation, preserves confirmed
+booking and unsettled Costs truth, retains a readable cancelled record, and is
+durably idempotent. Reuse creates a clean, undated solo draft and copies only
+reusable itinerary shape; members, invitations, conversations, bookings,
+expenses, proposals, votes, workflows, event outcomes, and provider state stay
+with the source trip. The mobile entrance, generated contract, duplicate-call
+guards, and return routing are covered.
+
+The terminal-lifecycle hardening through backend `eea2c245` closes the
+remaining cancellation races. Central write gates now reject late booking,
+proposal, workflow, planning, and message persistence. Notification creation,
+channel fan-out, invite delivery, scheduled active-trip work, recurring
+pre-trip preparation, and calendar completion all recheck durable lifecycle
+truth. Post-trip story/memory work and money/reconciliation notices remain
+available by explicit policy rather than accidental exception.
+
 ### Resolved in the first wave
 
 - **Truth and governance:** Stay's internal soft hold is now framed as a group
@@ -80,13 +98,25 @@ backend's legacy `active` phase to the traveler-facing `live` phase.
   non-mutating destinations; Atlas Unpacked and stale profile state use the
   shared state doctrine; the privacy seam uses an attached explanation.
 
+### Resolved in the durable-agency and lifecycle waves
+
+- **Booking lifecycle authority:** entry authority, participant consent,
+  named holdouts and cooldown-governed reminders, organizer-plus-controller
+  confirmation, provider cancellation/reconciliation, shared replay-safe
+  receipts, and expense disputes are durable.
+- **Trip retirement:** archive/recovery, guarded cancellation, readable
+  cancelled records, and sanitized reuse-as-template are implemented across
+  backend, generated client contract, app state, settings entrances, and
+  regression tests.
+- **Cancellation races:** terminal status now wins against in-flight writers,
+  queued notifications and invites, scheduled coordination work, recurring
+  pre-trip workers, and automatic calendar completion.
+
 ### Compact residual backlog
 
 | Priority | Residual capability | Direction |
 |---|---|---|
-| P1 | Booking lifecycle authority | Entry authority, participant consent, named holdouts, nudge delivery, shared provider receipts, and expense disputes are durable; continue cancellation/recovery without weakening organizer-plus-controller confirmation. |
 | P1 | Rich typed itinerary deltas | Complete Optimize/Replan consequence data and richer initial parallel-plan construction inside the existing operation system. |
-| P1 | Remaining trip lifecycle | Design and implement cancel and reuse-as-template with explicit provider revalidation. Archive recovery is resolved. |
 | P1 | Missing Chat object producers | Full itinerary, map/route, comparison, Atlas draft, recovery and private handoff need typed producers plus durable actions. |
 | P1 | Heterogeneous Discover pins | Venue pins are complete; friend, experience and place payloads still need accessible rendering and grounded handoffs. |
 | P2 | Bounded product/interaction polish | Trip Info hero/description, Skip vote, trip-creation correction, booking recovery and share-owner sheets. |
@@ -100,9 +130,10 @@ The overall verdict after remediation is:
 - The central Trip/Itinerary shell is substantially aligned. It does not need another structural rewrite.
 - There are no remaining P0 findings from this audit.
 - Durable trip agency now covers plan governance, Costs/Booking entry authority,
-  booking participant consent and reminders, shared booking receipts, and the
-  expense-dispute lifecycle. Remaining P1s are deeper lifecycle/producers rather
-  than shell redesign.
+  booking participant consent and reminders, shared booking receipts, the
+  expense-dispute lifecycle, guarded trip cancellation, archive recovery, and
+  sanitized reuse. Remaining P1s are typed consequence depth and grounded
+  object producers rather than lifecycle or shell redesign.
 - The central Trip/Itinerary shell, alignment gate, typography ratchet and
   bounded Discover/Atlas/Chat seams are green.
 
@@ -224,17 +255,21 @@ Production supports atomic parallel-plan operations, traveler assignment, branch
 
 The lifecycle engine is ahead of the board in several respects; only the expressive initial branch builder is code debt.
 
-### 1.6 Trip cancellation and reuse remain unbuilt — P1
+### 1.6 Trip cancellation and reuse — resolved 2026-07-17
 
-Production now supports organizer-only archive recovery through the backend,
-generated mobile contract, Trip context, and archived Trip Settings posture.
-It restores the exact prior lifecycle phase and only the conversations closed
-by that archive transition; coordination already closed by archive stays
-closed. The remaining canon gap is trip-level cancel and reuse-as-template,
-including provider revalidation and readable cancelled records.
+Production supports organizer-only archive recovery, guarded trip
+cancellation, and private reuse-as-template through the backend, generated
+mobile contract, Trip context, and Trip Settings. Cancellation first exposes
+provider/booking blockers, performs no provider cancellation itself, preserves
+confirmed reservations and unsettled shares, retires forward coordination,
+and leaves a readable cancelled record. Creation and queued-delivery paths
+recheck terminal status so late work cannot quietly resurrect the trip.
 
-Do not substitute a cosmetic hard-delete button. The valid remaining target is
-durable, readable cancellation and explicit reuse/provider consequences.
+Reuse is not recovery and does not copy live truth. It creates an undated solo
+ideation draft from reusable day/block structure while stripping travelers,
+bookings, Costs, votes, conversations, workflows, provider state, dates,
+times, commitments, and prices. New provider work therefore requires fresh
+selection and validation in the new trip.
 
 ### 1.7 Object Detail and Changes still leak engineering artifacts — P1
 
@@ -531,8 +566,7 @@ These visual differences are design-behind-code or intentional deferrals:
 1. Chat Map/Route, Comparison, Error/Recovery, Itinerary, Atlas Draft, and production Privacy Handoff; then CardLift depth behavior.
 2. Discover Map scope/layer contract, trip context, heterogeneous pin types, denied/offline states.
 3. Atlas state-driven seed selector and progression.
-4. Trip notification categories, permission policy, booking group consent, and expense disputes.
-5. Stay comparison attribution/differentiators/recommendation.
+4. Stay comparison attribution/differentiators/recommendation.
 
 ### Wave 3 — workflow depth and lifecycle
 
@@ -540,7 +574,6 @@ These visual differences are design-behind-code or intentional deferrals:
 2. Replace-only vs replace-and-rebook consent.
 3. Three-truth stale recovery.
 4. Optimize/Replan typed delta and richer initial parallel-plan construction.
-5. Cancel/reuse-template lifecycle and provider revalidation; archive recovery is resolved.
 
 ### Deferred activation work
 
@@ -561,6 +594,15 @@ Focused suites reported by the domain passes:
 
 - 81 Trip workflow tests passed across ChangeStudio, Parallel Plan, Proposal Detail, Changes, and Privacy.
 - 32 Booking tests passed.
+- 190 notification/cancellation tests passed after terminal delivery fencing.
+- 148 scheduled-task/subscriber tests passed with one infrastructure-dependent skip.
+- 87 lifecycle, pre-trip, and worker tests passed after recurring-job fencing.
+
+Lifecycle claims were additionally checked against the cancellation preflight
+and cancel routes, sanitized template-reuse route and copier, generated mobile
+contract, Trip context actions, Trip Settings entrances, retained cancelled
+record routing, Postgres cancellation race coverage, and template-reuse
+copy/strip assertions.
 
 Passing tests do not invalidate these findings; most gaps are accepted target omissions or unmodeled contracts rather than regressions against current assertions.
 

@@ -15,8 +15,8 @@ source_of_truth_for: [design-canon-vs-code-gap-inventory-2026-07-17]
 
 ## Post-remediation delta
 
-The companion engineering wave at `travel-app@b1bef1e7` and
-`travel-agent@eefed571` changes several reverse-audit assumptions. Claude Design
+The companion engineering waves through `travel-app@6094fe1e` and
+`travel-agent@eea2c245` change several reverse-audit assumptions. Claude Design
 should now treat these as shipped code truth:
 
 - Vesper 220 is the active fingerprint and all canonical Trip routes have live
@@ -57,6 +57,22 @@ should now treat these as shipped code truth:
   notification outcomes, and invites closed by archive remain closed. Canon
   should draw this bounded recovery and must not imply that all earlier work
   resumes or that every recovered trip returns to Planning.
+- Trip-level cancellation and reuse-as-template are now shipped contracts.
+  Cancellation is organizer-only, begins with a booking/provider-truth
+  preflight, never claims to cancel a reservation, preserves confirmed booking
+  and unsettled Costs records, and retains a readable cancelled trip. Reuse
+  creates a clean undated solo draft from itinerary shape only; it strips
+  travelers, bookings, Costs, votes, conversations, workflows, dates, times,
+  commitments, prices, and provider state. Canon should draw the blocked and
+  ready cancellation postures, retained record, and explicit reuse
+  consequences without treating reuse as recovery.
+- Terminal lifecycle is now enforced at execution boundaries, not merely in
+  route visibility. Late booking/proposal/workflow/planning/message writes,
+  notification and invite delivery, scheduled coordination work, recurring
+  pre-trip work, and calendar auto-completion all stop after cancellation.
+  Money/reconciliation notices and completed-trip story/memory work remain by
+  explicit policy. Designs must not imply that cancelled trips silently resume
+  queued coordination or that retirement erases financial/provider truth.
 
 Accordingly, remove the resolved items from §7's code-behind appendix. The
 highest-value remaining design/code convergence seams are now the deeper trip
@@ -237,7 +253,7 @@ Stay inside the existing Trip visual language; preserve the frozen header, Detai
 These held up under verification; don't spend design sessions here: **header & Trip entrance chrome** (frozen; preserve) · **the central itinerary spine** (canon is *ahead* of production here) · **the core typed-operation doctrine and already-rendered Workflow journeys** (consume them; update the family↔engine mapping and current ChangeStudio application rather than inventing a second operation system) · **Story/Memory/sharing composition + share lifecycle** (covered; only the §4.9 module-placement and §5 flag-dark-state additions remain) · **people rosters & member action sheets** (covered — but the distinct *shared-plan succession/atomic-departure* slice is not; it stays in session 7) · **typography/tokens/row/button systems** (apply, don't fork) · **trip-entry waiting screen** (no visible production state to match; future polish, not parity).
 
 ## 7 · Code-behind-design (for completeness — NOT design debt)
-Trip-creation row-level correction remains · Home Flight/Comparison faces await grounded producers · voice takeover remains flag-dark (residual `Vesper · {city}` subtitle on reopening) · live in-app checkout is gated dark · heterogeneous Discover pins remain backend-gated · richer Optimize/Replan delta and trip lifecycle recovery remain.
+Trip-creation row-level correction remains · Home Flight/Comparison faces await grounded producers · voice takeover remains flag-dark (residual `Vesper · {city}` subtitle on reopening) · live in-app checkout is gated dark · heterogeneous Discover pins remain backend-gated · richer Optimize/Replan delta remains.
 
 ---
 
