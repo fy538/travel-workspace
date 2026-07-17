@@ -12318,6 +12318,253 @@
         }
       }
     },
+    "/api/trips/{trip_id}/expenses/{expense_id}/disputes": {
+      "post": {
+        "tags": [
+          "expenses"
+        ],
+        "summary": "Open Expense Dispute",
+        "operationId": "open_expense_dispute_api_trips__trip_id__expenses__expense_id__disputes_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "expense_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Expense Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExpenseDisputeCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExpenseDispute"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/expenses/{expense_id}/disputes/{dispute_id}/withdraw": {
+      "post": {
+        "tags": [
+          "expenses"
+        ],
+        "summary": "Withdraw Expense Dispute",
+        "operationId": "withdraw_expense_dispute_api_trips__trip_id__expenses__expense_id__disputes__dispute_id__withdraw_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "expense_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Expense Id"
+            }
+          },
+          {
+            "name": "dispute_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Dispute Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExpenseDispute"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/expenses/{expense_id}/disputes/{dispute_id}/resolve": {
+      "post": {
+        "tags": [
+          "expenses"
+        ],
+        "summary": "Resolve Expense Dispute",
+        "operationId": "resolve_expense_dispute_api_trips__trip_id__expenses__expense_id__disputes__dispute_id__resolve_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "expense_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Expense Id"
+            }
+          },
+          {
+            "name": "dispute_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Dispute Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExpenseDisputeResolve"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExpenseDispute"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/expenses/{expense_id}/settle": {
       "post": {
         "tags": [
@@ -43133,6 +43380,190 @@
         ],
         "title": "ExpenseCreate"
       },
+      "ExpenseDispute": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "expense_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Expense Id"
+          },
+          "opened_by": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Opened By"
+          },
+          "reason": {
+            "type": "string",
+            "enum": [
+              "amount",
+              "split",
+              "payer",
+              "duplicate",
+              "other"
+            ],
+            "title": "Reason"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "open",
+              "resolved",
+              "withdrawn"
+            ],
+            "title": "Status"
+          },
+          "resolution": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "adjusted",
+                  "accepted",
+                  "rejected"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolution"
+          },
+          "resolution_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolution Note"
+          },
+          "resolved_by": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolved By"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          },
+          "resolved_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolved At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "expense_id",
+          "opened_by",
+          "reason",
+          "status",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "ExpenseDispute"
+      },
+      "ExpenseDisputeCreate": {
+        "properties": {
+          "reason": {
+            "type": "string",
+            "enum": [
+              "amount",
+              "split",
+              "payer",
+              "duplicate",
+              "other"
+            ],
+            "title": "Reason"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "reason"
+        ],
+        "title": "ExpenseDisputeCreate"
+      },
+      "ExpenseDisputeResolve": {
+        "properties": {
+          "resolution": {
+            "type": "string",
+            "enum": [
+              "adjusted",
+              "accepted",
+              "rejected"
+            ],
+            "title": "Resolution"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "resolution"
+        ],
+        "title": "ExpenseDisputeResolve"
+      },
       "ExpenseShare": {
         "properties": {
           "id": {
@@ -43426,6 +43857,13 @@
             },
             "type": "array",
             "title": "Comments"
+          },
+          "disputes": {
+            "items": {
+              "$ref": "#/components/schemas/ExpenseDispute"
+            },
+            "type": "array",
+            "title": "Disputes"
           }
         },
         "type": "object",
@@ -54746,7 +55184,7 @@
         },
         "type": "object",
         "title": "PatchTripRequest",
-        "description": "User-editable trip fields.\n\nExcludes internal concierge/background fields from direct client mutation."
+        "description": "User-editable trip fields.\n\nExcludes internal fields managed by the concierge or background jobs; direct\nclient mutations must not overwrite them."
       },
       "PayoffBlockAside": {
         "properties": {

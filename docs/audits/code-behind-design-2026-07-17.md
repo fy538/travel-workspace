@@ -29,14 +29,29 @@ The first engineering remediation wave landed in `travel-app@b1bef1e7` and
 changes. The original detailed findings remain below as the historical audit;
 this section is now the authoritative residual list.
 
-A second durable-agency increment is complete in the current app/backend
-working trees and is awaiting its commit boundary. It adds an enforced
+A second durable-agency increment is committed at app `8f506f70` and backend
+`c57f6036`. It adds an enforced
 `organizers` editing mode; granular, persisted Vesper suggestion/minor/major
 delegation; and viewer-owned quiet-trip plus proactive notification-family
 controls. Notification policy is applied before proactive arbitration, and
-partial family updates preserve earlier choices. Costs and booking authority
-remain intentionally unchanged because their enforcement contract is not yet
-durable.
+partial family updates preserve earlier choices.
+
+The next increment now includes organizer-managed policies that durably
+control who may add expenses and who may start booking work. Final provider
+confirmation remains the stricter organizer-plus-session-controller action.
+Booking sessions opened from explicitly scoped plan blocks now persist each
+included traveler as pending/approved/declined, block confirmation on holdouts,
+and support a durable self-only fallback. Controllers can now remind named
+pending travelers through the shared notification pipeline; each accepted send
+has a durable participant receipt, a four-hour anti-spam claim, and a direct
+booking-session destination. Shared confirmation receipts are now durable:
+provider-confirmed checkout, reconciliation, restaurant, and paid-hold paths
+post one replay-safe receipt to the shared trip room,
+including proposal-less plan and venue sessions. The Costs half is now durable
+too: affected travelers can open one expense dispute, the opener can withdraw,
+and the payer or an organizer can resolve it. An open dispute is excluded from
+settlement, blocks settle/delete, cannot be opened over live payments, retains
+history, and posts an exact-expense receipt to the trip room.
 
 ### Resolved in the first wave
 
@@ -62,13 +77,12 @@ durable.
 
 | Priority | Residual capability | Direction |
 |---|---|---|
-| P1 | Enforceable Costs and Booking authority | The remaining durable-agency slice; define actors, capabilities, consent and receipts before adding controls. |
+| P1 | Booking lifecycle authority | Entry authority, participant consent, named holdouts, nudge delivery, shared provider receipts, and expense disputes are durable; continue cancellation/recovery without weakening organizer-plus-controller confirmation. |
 | P1 | Rich typed itinerary deltas | Complete Optimize/Replan consequence data and richer initial parallel-plan construction inside the existing operation system. |
 | P1 | Durable trip and booking lifecycle | Cancel/recover/unarchive/reuse-template plus booking participant consent and holdout states, with provider revalidation. |
-| P1 | Expense disputes | Add schema, authority, lifecycle and receipts together. |
 | P1 | Missing Chat object producers | Full itinerary, map/route, comparison, Atlas draft, recovery and private handoff need typed producers plus durable actions. |
 | P1 | Heterogeneous Discover pins | Venue pins are complete; friend, experience and place payloads still need accessible rendering and grounded handoffs. |
-| P2 | Bounded product/interaction polish | Trip Info hero/description, Skip vote, trip-creation correction, booking recovery, share-owner sheets and a shared receipt confirmation primitive. |
+| P2 | Bounded product/interaction polish | Trip Info hero/description, Skip vote, trip-creation correction, booking recovery and share-owner sheets. |
 
 Deferred and therefore excluded from the active residual list: Home
 Flight/Comparison without producers, per-trip privacy/learning, voice takeover,
@@ -78,9 +92,10 @@ The overall verdict after remediation is:
 
 - The central Trip/Itinerary shell is substantially aligned. It does not need another structural rewrite.
 - There are no remaining P0 findings from this audit.
-- Durable trip agency now has an enforceable first increment. Its remaining
-  coherent slice is Costs/Booking authority; the other P1s are deeper
-  lifecycle/producers rather than shell redesign.
+- Durable trip agency now covers plan governance, Costs/Booking entry authority,
+  booking participant consent and reminders, shared booking receipts, and the
+  expense-dispute lifecycle. Remaining P1s are deeper lifecycle/producers rather
+  than shell redesign.
 - The central Trip/Itinerary shell, alignment gate, typography ratchet and
   bounded Discover/Atlas/Chat seams are green.
 
@@ -290,19 +305,29 @@ Do not preserve the current wording while leaving the backend unchanged.
 
 Add saved-by identity and a typed differentiator/recommendation layer. Do not generate unsupported certainty from price/vote counts alone.
 
-### 2.3 Booking group-consent states are unbuilt — P1
+### 2.3 Booking group-consent states — resolved 2026-07-17
 
-The design includes organizer-for-group, waiting for approval, named holdout, nudge, and book-for-self escape. Production authorizes control through `session.initiated_by === currentUserId`; other travelers receive generic assigned-traveler copy. There is no booking-specific approval or holdout model.
-
-This needs durable participant-consent state and authority rules before the waiting/nudge UI can be honest.
+Production now persists included participants and their pending, approved,
+declined, or excluded state; blocks provider confirmation while any included
+traveler has not approved; names holdouts from the trip roster; lets the
+controller remind only pending participants; records accepted nudge delivery;
+and offers the explicit self-only scope reduction. Push and shared-chat cards
+both deep-link to the booking session, while the existing durable four-hour
+claim prevents repeated delivery.
 
 ### 2.4 Booking recovery coverage is partial — P2
 
 Production strongly covers price change, ambiguous provider outcome, cancellation, multi-traveler fallback, handoff, and checkout recovery. The designed provider-down, missing-dates, dedicated missing-traveler, and “Notify me” states are not represented as a coherent family. Some belong before a booking session exists, so route ownership should be settled before building them.
 
-### 2.5 Expense dispute UI is unreachable — P1
+### 2.5 Expense dispute lifecycle — resolved 2026-07-17
 
-The canon includes disputed ledger/detail states, and components contain some display support. The Expense contract has no dispute field, and `buildLedgerRow` intentionally never emits `disputed`. Implement a real dispute lifecycle and schema; do not infer disputes from notes or comments.
+Production now persists dispute reason, note, state, resolution and actor history.
+Only the payer or an assigned-share traveler may open; only the opener may
+withdraw; the payer or a trip organizer may resolve. One open dispute suspends
+the expense from settlement and blocks settle/delete, while existing live
+payments must be voided before a dispute can open. Ledger/detail projection is
+server-backed, and every transition posts an exact-expense trip-room receipt.
+No money is silently edited by a dispute transition.
 
 The older reimbursement row is not part of this gap. Recorded settlement payments and voiding are newer, more durable code truth and belong in the design-behind-code audit.
 
@@ -444,7 +469,7 @@ The reference document intentionally treated code-behind-design as a brief appen
 | Trip-creation anchors/correction/failure | **Partly true**: anchors and correction remain; safe in-card failure now exists; §1.11. |
 | Home Flight/Vote/Comparison/Settle/Readiness | **Only Flight and Comparison remain**; Vote, Settle, and Readiness are implemented; §3.1. |
 | Voice permission screens + takeover | Permission screens are **implemented**; takeover remains intentionally flag-dark; city subtitle remains; §3.6. |
-| Costs disputed/reimbursement | Dispute remains unreachable; reimbursement was superseded by the recorded-payments ledger; §2.5. |
+| Costs disputed/reimbursement | **Dispute resolved** as a durable lifecycle; reimbursement was superseded by the recorded-payments ledger; §2.5. |
 | `/your-map` should redirect | **Resolved**; it is now a redirect stub. |
 | Adopted-workflow recovery band | Persistence/polling exist; the explicit adopted-running choice remains; §1.13. |
 | Completed-trip settlement pointer | **Still true**; §1.12. |

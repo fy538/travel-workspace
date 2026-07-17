@@ -41,13 +41,20 @@ should now treat these as shipped code truth:
   modes (`open`, `review`, `organizers`), persists Vesper consent separately
   for suggestions/minor fixes/major changes, and persists viewer-owned
   quiet-trip plus proactive notification-family choices. Claude Design should
-  treat these controls as functional, not speculative. Costs/Booking authority
-  is still not an enforceable contract and must remain visibly gated.
+  treat these controls as functional, not speculative. Costs/Booking entry
+  authority now persists who may add expenses and start booking work;
+  session participant consent and self-only fallback are now enforceable.
+  Controller-only reminders to named pending travelers now use the shared
+  notification pipeline, persist delivery evidence, honor its cooldown and
+  deep-link back to the booking session. Provider-confirmed checkout,
+  reconciliation, restaurant, and paid-hold paths now emit replay-safe shared
+  trip-room receipts even without a concierge proposal. Expense disputes are
+  now durable: affected travelers open, openers withdraw, payers/organizers
+  resolve, settlement pauses, and each transition leaves a shared receipt.
 
 Accordingly, remove the resolved items from §7's code-behind appendix. The
-highest-value remaining design/code convergence seam is the unfinished half of
-**durable trip agency**: enforceable Costs/Booking authority and its
-traveler/provider consent receipts.
+highest-value remaining design/code convergence seams are now the deeper trip
+and booking lifecycle states plus typed object producers—not a new shell.
 
 **Scope + method.** Independent investigation, deliberately run without reading any prior design-alignment/audit prose in the repos. Sources: the Claude Design handoff bundle at `~/Downloads/vesper 220/project` (canon self-labels **Canon 130**; its governance changelog runs through **2026-07-12**, cleanup verification through 07-13) diffed against `travel-app` + `travel-agent` at HEAD (**commits through 2026-07-17 ~10:30**). Five parallel domain audits (Trip/Itinerary, Money, Chat/Home/Voice/Search, Atlas/Discover/Post-trip, Group/Invite/Sharing) each read the canon JSX sources and verified claims against actual code, not commit messages, plus a cross-cutting route + July-15→17 sweep. Direction judgment applied throughout: **only design-behind-code is reported in detail**; code-behind-design is noted in one-liners at the end.
 
@@ -124,7 +131,7 @@ The July IR-series + cutover made the backend the operational authority; the Wor
 
 ---
 
-## 2 · Money: Costs / Booking / Stay (1 P0 · 8 P1 · 4 P2)
+## 2 · Money: Costs / Booking / Stay (1 P0 · 9 P1 · 4 P2)
 
 1. **P0 — Masked-expense semantics.** Code enforces **masked = payer-covers-fully**: shares to others rejected (`expenses.py:187`), non-payers see a fully redacted "Hidden expense" (title, amount→0, shares emptied, receipt stripped), masked never enters the balance graph, booking-linked can't be masked. Canon's masked ExpenseDetail draws a *hidden group split* (real merchant, 3 participants, `••••` amounts) — a state the backend forbids — and the AddSheet toggle copy implies only the amount hides. → Redraw as payer-view + redacted non-payer view; fix copy.
 2. **P1 — Recorded settlement payments + void.** Code: `settlement_payments` is the **sole source of cleared debt** (append-only, void marker as only correction); FE "Recorded payments" section with struck-through `VOIDED` rows + undo, record-payment confirm ("Record that you paid X…?"), trip-wide settle-up recorded as a real payment. Canon's balance sheet has Nudge/Settle/Review only; its `reimbursement` ledger row ("SETTLED IN CASH") is a mechanism the code never emits. → Add the Recorded Payments block + record/void moments; decide the reimbursement row's fate.
@@ -134,11 +141,12 @@ The July IR-series + cutover made the backend the operational authority; the Wor
 6. **P1 — Receipt scan flow.** Code: photo→OCR→suggested total→**user must confirm** (model-guessed totals never split real money). Canon: passive photo/note field only. → Design the scan sub-flow with the confirm rule visible.
 7. **P1 — Booking cancellation is a lifecycle** (Jul 15–17). Code: `cancellation_status` pending ("Do not submit another cancellation…") / `manual_action_required` (unverifiable provider outcome) / completed receipts; survives restart; BE ambiguous-resolution + operator queue + SLA. Canon: one cancel-confirm card + terminal `cancelled` chip. → Extend the state table with cancellation_pending/ambiguous/complete and their exact words.
 8. **P1 — Vesper contacts the venue** (voice/message booking). Code: full attempt state machine (pending/dialing/in_progress/no_answer/failed/declined/confirmed + `manual_action_required` + stale-claim recovery "…may have reached the restaurant. Do not contact them again from Vesper", guarded retry-once). Canon's `manual` category = *you* call the venue; Vesper-initiated contact is absent. → New method family with its chips + do-not-double-contact language.
-9. **P2 — Booking controller authority (viewer ≠ actor).** Non-assigned members see "The assigned traveler is reviewing this…"; session banner names controller authority; control transfers on departure. No canon variants. 
-10. **P2 — Held-price change:** decline-and-record + "Managed by your itinerary change" saga-owned holds — beyond canon's keep/find-cheaper.
-11. **P1 — Stay "recorded, not booked".** Code: reservation-proof boundary (`stayBookingTruth.ts` — proof requires booking_confirmed source or reference; booker chip suppressed without proof; STATUS "Stay recorded · not booked"). Canon's 8-state StayCard jumps held→confirmed. → Add the recorded state + proof rule. (Stay otherwise notably current: vote blocking/holdout matches canon.)
-12. **P2 — Non-equal "EACH OWES" suppression + `CONFIRMING SETTLEMENT`/`settling` in-flight states.** 
-13. **P2 — Canon self-inconsistency:** Costs FlowNotes still says Expense Detail is a sheet; the same file's 07-11 ruling (and code) made it a full-screen route. Also §consolidation claims the Settle face is "currency-aware" — not shown anywhere on the Costs page.
+9. **P1 — Expense-dispute doctrine trails the durable lifecycle.** Canon draws disputed ledger/detail states, but production now defines the missing authority and transition truth: payer or assigned-share traveler opens; opener withdraws; payer or organizer resolves; one open dispute suspends the whole expense from settlement and blocks settle/delete; live payments must be voided first; no transition silently changes money; every transition leaves a shared trip-room receipt and exact expense deep link. → Keep the existing visual treatment, add the authority variants, written reason, resolution/withdrawal moments, payment precondition, and receipt-to-detail journey.
+10. **P2 — Booking controller authority (viewer ≠ actor).** Non-assigned members see "The assigned traveler is reviewing this…"; session banner names controller authority; control transfers on departure. No canon variants.
+11. **P2 — Held-price change:** decline-and-record + "Managed by your itinerary change" saga-owned holds — beyond canon's keep/find-cheaper.
+12. **P1 — Stay "recorded, not booked".** Code: reservation-proof boundary (`stayBookingTruth.ts` — proof requires booking_confirmed source or reference; booker chip suppressed without proof; STATUS "Stay recorded · not booked"). Canon's 8-state StayCard jumps held→confirmed. → Add the recorded state + proof rule. (Stay otherwise notably current: vote blocking/holdout matches canon.)
+13. **P2 — Non-equal "EACH OWES" suppression + `CONFIRMING SETTLEMENT`/`settling` in-flight states.**
+14. **P2 — Canon self-inconsistency:** Costs FlowNotes still says Expense Detail is a sheet; the same file's 07-11 ruling (and code) made it a full-screen route. Also §consolidation claims the Settle face is "currency-aware" — not shown anywhere on the Costs page.
 
 ---
 
@@ -223,7 +231,7 @@ Stay inside the existing Trip visual language; preserve the frozen header, Detai
 These held up under verification; don't spend design sessions here: **header & Trip entrance chrome** (frozen; preserve) · **the central itinerary spine** (canon is *ahead* of production here) · **the core typed-operation doctrine and already-rendered Workflow journeys** (consume them; update the family↔engine mapping and current ChangeStudio application rather than inventing a second operation system) · **Story/Memory/sharing composition + share lifecycle** (covered; only the §4.9 module-placement and §5 flag-dark-state additions remain) · **people rosters & member action sheets** (covered — but the distinct *shared-plan succession/atomic-departure* slice is not; it stays in session 7) · **typography/tokens/row/button systems** (apply, don't fork) · **trip-entry waiting screen** (no visible production state to match; future polish, not parity).
 
 ## 7 · Code-behind-design (for completeness — NOT design debt)
-Trip-creation row-level correction remains · Home Flight/Comparison faces await grounded producers · voice takeover remains flag-dark (residual `Vesper · {city}` subtitle on reopening) · Costs/Booking authority is the residual durable-agency seam · Costs disputes are backend-gated · live in-app checkout is gated dark · heterogeneous Discover pins remain backend-gated · richer Optimize/Replan delta and trip lifecycle recovery remain.
+Trip-creation row-level correction remains · Home Flight/Comparison faces await grounded producers · voice takeover remains flag-dark (residual `Vesper · {city}` subtitle on reopening) · live in-app checkout is gated dark · heterogeneous Discover pins remain backend-gated · richer Optimize/Replan delta and trip lifecycle recovery remain.
 
 ---
 
