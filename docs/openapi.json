@@ -22676,6 +22676,66 @@
         }
       }
     },
+    "/api/trips/{trip_id}/recover": {
+      "post": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Recover Trip Endpoint",
+        "description": "Restore an archived trip without resurrecting its closed coordination.",
+        "operationId": "recover_trip_endpoint_api_trips__trip_id__recover_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecoverTripResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/context-change-preview": {
       "post": {
         "tags": [
@@ -43564,6 +43624,52 @@
         ],
         "title": "ExpenseDisputeResolve"
       },
+      "ExpenseMutationCapability": {
+        "properties": {
+          "can_edit": {
+            "type": "boolean",
+            "title": "Can Edit"
+          },
+          "can_delete": {
+            "type": "boolean",
+            "title": "Can Delete"
+          },
+          "denial_reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "not_authorized",
+                  "live_settlement_payment"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Denial Reason"
+          },
+          "recovery": {
+            "anyOf": [
+              {
+                "type": "string",
+                "const": "void_settlement_payments"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Recovery"
+          }
+        },
+        "type": "object",
+        "required": [
+          "can_edit",
+          "can_delete"
+        ],
+        "title": "ExpenseMutationCapability",
+        "description": "Server-authored mutation posture for the current expense viewer.\n\nThis is advisory UX truth, not the write authority: update/delete still\nrepeat the same authorization and live-payment checks transactionally."
+      },
       "ExpenseShare": {
         "properties": {
           "id": {
@@ -43841,6 +43947,9 @@
             "type": "array",
             "title": "Shares"
           },
+          "mutation_capability": {
+            "$ref": "#/components/schemas/ExpenseMutationCapability"
+          },
           "receipt": {
             "anyOf": [
               {
@@ -43869,7 +43978,8 @@
         "type": "object",
         "required": [
           "expense",
-          "shares"
+          "shares",
+          "mutation_capability"
         ],
         "title": "ExpenseWithShares"
       },
@@ -59580,6 +59690,40 @@
         ],
         "title": "RecordResponseRequest"
       },
+      "RecoverTripResponse": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "already_recovered": {
+            "type": "boolean",
+            "title": "Already Recovered"
+          },
+          "conversations_reopened": {
+            "type": "integer",
+            "title": "Conversations Reopened"
+          },
+          "closed_coordination_preserved": {
+            "type": "boolean",
+            "title": "Closed Coordination Preserved"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "status",
+          "already_recovered",
+          "conversations_reopened",
+          "closed_coordination_preserved"
+        ],
+        "title": "RecoverTripResponse"
+      },
       "RedactionPolicy": {
         "properties": {
           "show_dates": {
@@ -63965,6 +64109,18 @@
             "type": "string",
             "title": "Status",
             "default": "ideation"
+          },
+          "archive_snapshot": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Archive Snapshot"
           },
           "voting_enabled": {
             "type": "boolean",

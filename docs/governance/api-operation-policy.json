@@ -1319,6 +1319,16 @@
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
       "review_by": "2026-08-15"
     },
+    "POST /api/trips/{trip_id}/recover": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "product-engineering",
+      "reason": "The archived-trip recovery backend is not yet connected to a named mobile product journey.",
+      "removal_trigger": "Add a registered mobile recovery consumer before the review date or remove the unadopted endpoint.",
+      "review_by": "2026-08-15"
+    },
     "POST /api/users/{user_id}/heartbeat": {
       "audience": "app",
       "consumers": [],

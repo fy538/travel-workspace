@@ -35757,6 +35757,52 @@
         ],
         "title": "ExpenseDisputeResolve"
       },
+      "ExpenseMutationCapability": {
+        "properties": {
+          "can_edit": {
+            "type": "boolean",
+            "title": "Can Edit"
+          },
+          "can_delete": {
+            "type": "boolean",
+            "title": "Can Delete"
+          },
+          "denial_reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "not_authorized",
+                  "live_settlement_payment"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Denial Reason"
+          },
+          "recovery": {
+            "anyOf": [
+              {
+                "type": "string",
+                "const": "void_settlement_payments"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Recovery"
+          }
+        },
+        "type": "object",
+        "required": [
+          "can_edit",
+          "can_delete"
+        ],
+        "title": "ExpenseMutationCapability",
+        "description": "Server-authored mutation posture for the current expense viewer.\n\nThis is advisory UX truth, not the write authority: update/delete still\nrepeat the same authorization and live-payment checks transactionally."
+      },
       "ExpenseShare": {
         "properties": {
           "id": {
@@ -36034,6 +36080,9 @@
             "type": "array",
             "title": "Shares"
           },
+          "mutation_capability": {
+            "$ref": "#/components/schemas/ExpenseMutationCapability"
+          },
           "receipt": {
             "anyOf": [
               {
@@ -36062,7 +36111,8 @@
         "type": "object",
         "required": [
           "expense",
-          "shares"
+          "shares",
+          "mutation_capability"
         ],
         "title": "ExpenseWithShares"
       },
@@ -54618,6 +54668,18 @@
             "type": "string",
             "title": "Status",
             "default": "ideation"
+          },
+          "archive_snapshot": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Archive Snapshot"
           },
           "voting_enabled": {
             "type": "boolean",
