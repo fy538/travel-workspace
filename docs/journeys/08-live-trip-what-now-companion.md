@@ -7,10 +7,7 @@
 
 ## Product Promise
 
-During a trip, Vesper should answer the traveler's unstated question—**"are we
-okay, and what happens next?"**—using the live itinerary, place, weather, route,
-group, and relationship context. When reality changes, it should carry one
-coherent response toward action rather than merely report the disruption.
+During a trip, the app should answer "what now?" with time, place, weather, route, and group context that is immediately useful.
 
 ## Canonical User Story
 
@@ -32,7 +29,10 @@ As a traveler already on the trip, I want Vesper to help me understand the next 
 
 ## Primary Surfaces
 
-- Routes: `/(tabs)/concierge`, `/(tabs)/trips`, `/(tabs)/trips/[tripId]`, `/(tabs)/trips/[tripId]/map`, `/(tabs)/trips/[tripId]/plan`, `/(tabs)/trips/[tripId]/chat`.
+- Routes: `/(tabs)/concierge`, `/(tabs)/trips`,
+  `/(tabs)/trips/[tripId]/plan`, the in-place `face=map` itinerary state,
+  `/(tabs)/trips/[tripId]/details`, and `/(tabs)/trips/[tripId]/chat`. The
+  literal trip index and `/map` routes are redirect-only legacy aliases.
 - App docs: [Concierge Home](../../travel-app/docs/page-specs/concierge-home.md), [Trip Map](../../travel-app/docs/page-specs/trip-map.md), [Canonical User Flow Map](../../travel-app/docs/user-flows/canonical-flow-map.md).
 - Existing anchors: `__tests__/hooks/useAmbientWeather.test.ts`, `__tests__/hooks/useNarrationGeofence.test.ts`, `__tests__/screens/map.smoke.test.tsx`, `__tests__/utils/tripMapStateParity.test.ts`.
 
@@ -44,8 +44,7 @@ As a traveler already on the trip, I want Vesper to help me understand the next 
 4. Inspect the one contextual live/urgent state and its primary action.
 5. Confirm Now Mode reflects in-progress versus upcoming blocks.
 6. Switch in place to Map focused on current/next stop.
-7. Ask Vesper "what should we do now?" from Map or itinerary context; the answer
-   preserves the current day and opens the canonical action when a change helps.
+7. Ask Vesper "what should we do now?" from Map or live card.
 8. Handle location permission allowed/denied/undetermined.
 9. Dismiss or act on a nudge and confirm state updates.
 
@@ -63,10 +62,6 @@ Journey 06 owns read-model agreement after a live-trip mutation; this journey ow
 - Cross-surface coherence: Vesper Home, Itinerary, Map, Chat, Details, and
   Changes agree on what is next.
 - Trust state: denied location gracefully degrades to plan/place context.
-- Emotional state: the traveler feels calm and oriented; Vesper communicates
-  whether there is time, what can be skipped, and when no action is needed.
-- Product proof: **Vesper helped at the right moment** and any accepted adjustment
-  improved the itinerary without breaking the rest of the day.
 
 ## Must Never Happen
 
@@ -79,7 +74,10 @@ Journey 06 owns read-model agreement after a live-trip mutation; this journey ow
 ## AI Trace Prompt
 
 ```text
-Trace live-trip state from the canonical lifecycle and itinerary into Vesper Home, Itinerary List/Map, notifications, and Ask Vesper seeds. For a delay/weather/closure case, trace notice → traveler/group impact → coherent proposal → authority → operation commit → relevant-member awareness. Identify no-op CTAs, permission fallbacks, currentTripId assumptions, and stale next-stop risks.
+Trace server-authored live-trip state into Vesper Home, Itinerary List/Map,
+Trip Details, notifications, and Ask Vesper seeds. Identify no-op CTAs,
+permission fallbacks, route-`tripId` versus selected-trip assumptions, and map
+focus risks.
 ```
 
 ## First Automation Target
@@ -88,6 +86,6 @@ Mock-mode screen walkthrough with fixture `trip-lisbon-26`:
 
 - open Vesper Home live mode
 - tap every visible live/urgent CTA
-- open the active trip directly into Itinerary live mode
-- open Map from live context
+- open Itinerary live mode
+- switch in place to Map from live context
 - verify no dead taps and no stale next-stop mismatch

@@ -2,7 +2,7 @@
 
 > Status: draft
 > Owner: founder / engineering
-> Last updated: 2026-06-29
+> Last updated: 2026-07-16
 > Primary phase: cross-cutting (every phase's unhappy path)
 
 ## Product Promise
@@ -23,7 +23,7 @@ As a traveler hitting a real-world failure (expired booking hold, offline edit, 
 
 - Persona: any (mara group / solo).
 - Trip state: a planning or live trip with a pending hold, an open proposal, and a pending invite.
-- Failure triggers: expired hold (Duffel 410), stale `expected_updated_at` (409), declined/expired/consumed invite, offline edit queued then conflicting, 401/403 on a member-restricted write.
+- Failure triggers: expired hold (Duffel 410), stale `expected_updated_at` (409), declined/expired/consumed invite, an edit attempted while offline, 401/403 on a member-restricted write.
 
 ## Primary Surfaces
 
@@ -34,7 +34,7 @@ As a traveler hitting a real-world failure (expired booking hold, offline edit, 
 
 1. Open a booking session whose hold has expired → 410 surfaces as "this hold expired, re-search," not a confirmed booking.
 2. Resolve a proposal with a stale `expected_updated_at` → 409 surfaces a refresh/conflict path, no silent overwrite.
-3. Edit a block offline → the queued change either applies cleanly on reconnect or surfaces a conflict sheet; never a lost write rendered as saved.
+3. Edit a block offline → the app says the change was not sent and requires an explicit retry after reconnect; it never claims that an outbox exists or renders the edit as saved.
 4. Open a declined / expired / already-consumed invite → a clear terminal state, not a join that half-succeeds.
 5. Hit a member-restricted write as a non-organizer → 403 surfaces a "ask the organizer" path, not a dead button.
 6. Lose auth mid-session (401) → re-auth prompt, no blank screen or partial-state corruption.

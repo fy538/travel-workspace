@@ -2,7 +2,7 @@
 
 > Status: draft
 > Owner: founder / engineering
-> Last updated: 2026-07-15
+> Last updated: 2026-07-16
 > Primary phase: booking / stay / money
 
 ## Product Promise
@@ -34,12 +34,13 @@ As an organizer, I want Vesper to help choose or confirm a stay, share the usefu
 
 ## Canonical Steps
 
-1. Open trip stay facet from Trip Folio.
+1. Open Trip Details from Itinerary, then open Stay.
 2. Open accommodations list and accommodation detail.
 3. Ask Vesper about the stay or add it to plan.
 4. Open a booking session created by chat.
 5. The proposal's assigned booker selects or confirms the offer (organizer by default; delegation may assign another member).
-6. App routes back to trip detail with a success receipt.
+6. App routes back to the canonical booking or itinerary object with a success
+   receipt; closing returns to the exact prior Itinerary context.
 7. Member sees public stay state, not private payment details.
 8. Organizer optionally shares total for expense settling.
 9. Expense ledger entry appears with booking source.

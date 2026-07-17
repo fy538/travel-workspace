@@ -16498,156 +16498,6 @@
         }
       }
     },
-    "/api/trips/{trip_id}/itinerary/operations/proposals/{proposal_id}/accept": {
-      "post": {
-        "tags": [
-          "itinerary-operations"
-        ],
-        "summary": "Accept Operation Proposal",
-        "description": "Durably accept a proposal without claiming it has already applied.",
-        "operationId": "accept_operation_proposal_api_trips__trip_id__itinerary_operations_proposals__proposal_id__accept_post",
-        "parameters": [
-          {
-            "name": "trip_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Trip Id"
-            }
-          },
-          {
-            "name": "proposal_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Proposal Id"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ItineraryOperationProposalResolveRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ItineraryOperationProposal"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/trips/{trip_id}/itinerary/operations/proposals/{proposal_id}/apply": {
-      "post": {
-        "tags": [
-          "itinerary-operations"
-        ],
-        "summary": "Apply Operation Proposal",
-        "description": "Apply an accepted operation after current-fact revalidation.",
-        "operationId": "apply_operation_proposal_api_trips__trip_id__itinerary_operations_proposals__proposal_id__apply_post",
-        "parameters": [
-          {
-            "name": "trip_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Trip Id"
-            }
-          },
-          {
-            "name": "proposal_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Proposal Id"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ItineraryOperationProposalApplyResult"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/trips/{trip_id}/itinerary/operations/proposals/{proposal_id}/withdraw": {
       "post": {
         "tags": [
@@ -17023,11 +16873,11 @@
             "required": false,
             "schema": {
               "type": "boolean",
-              "description": "Proceed even if the member has an unsettled balance. Without this, a removal that would orphan an unsettled debt 409s with the balance detail instead of completing.",
+              "description": "Deprecated compatibility flag. Unsettled balances block every departure because membership removal also removes expense access.",
               "default": false,
               "title": "Force"
             },
-            "description": "Proceed even if the member has an unsettled balance. Without this, a removal that would orphan an unsettled debt 409s with the balance detail instead of completing."
+            "description": "Deprecated compatibility flag. Unsettled balances block every departure because membership removal also removes expense access."
           },
           {
             "name": "shared_plan_successor_user_id",
@@ -47434,62 +47284,6 @@
         "title": "ItineraryOperationProposal",
         "description": "Canonical IR-08 proposal truth joined to the legacy read-model id."
       },
-      "ItineraryOperationProposalApplyResult": {
-        "properties": {
-          "contract_version": {
-            "type": "string",
-            "const": "ir08-v1",
-            "title": "Contract Version",
-            "default": "ir08-v1"
-          },
-          "proposal": {
-            "$ref": "#/components/schemas/ItineraryOperationProposal"
-          },
-          "state": {
-            "type": "string",
-            "enum": [
-              "applied",
-              "rebased",
-              "rejected"
-            ],
-            "title": "State"
-          },
-          "reason_code": {
-            "type": "string",
-            "maxLength": 120,
-            "minLength": 1,
-            "title": "Reason Code"
-          },
-          "commit_result": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/ItineraryOperationCommitResult"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "rebased_proposal": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/ItineraryOperationProposal"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "additionalProperties": false,
-        "type": "object",
-        "required": [
-          "proposal",
-          "state",
-          "reason_code"
-        ],
-        "title": "ItineraryOperationProposalApplyResult"
-      },
       "ItineraryOperationProposalCreateRequest": {
         "properties": {
           "operation": {
@@ -47543,25 +47337,6 @@
         ],
         "title": "ItineraryOperationProposalCreateRequest",
         "description": "Create a durable proposal from one exact normalized operation."
-      },
-      "ItineraryOperationProposalResolveRequest": {
-        "properties": {
-          "resolution_note": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 1200
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Resolution Note"
-          }
-        },
-        "additionalProperties": false,
-        "type": "object",
-        "title": "ItineraryOperationProposalResolveRequest"
       },
       "ItineraryOperationReceipt": {
         "properties": {
@@ -64893,7 +64668,7 @@
           "remaining_member_count"
         ],
         "title": "TripDeparturePreflight",
-        "description": "Current facts a client must show before ending a membership.\n\nThis is deliberately a read model, not authorization for the later delete:\nthe removal transaction re-checks structural invariants and the balance\nwarning still requires ``force=true`` at write time."
+        "description": "Current facts a client must show before ending a membership.\n\nThis is deliberately a read model, not authorization for the later delete:\nthe removal transaction re-checks structural invariants and balances.\n``requires_force`` is retained for wire compatibility and is always false;\nall departures must settle costs first."
       },
       "TripDetailsRow": {
         "properties": {

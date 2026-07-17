@@ -1,11 +1,20 @@
 # Canonical Journeys
 
-> Status: draft
+> Status: active
 > Owner: founder / engineering
-> Last updated: 2026-06-28
+> Last updated: 2026-07-16
 > Source of truth for: the first production/dogfood journey set for Vesper
 
 These one-pagers define the canonical journeys we should protect before expanding TestFlight and real dogfood: **J01–J12** are the lifecycle golden path; **J13–J19** extend coverage to the dimensions the golden path misses (failure, solo, destructive, account/data, cross-trip, distribution, social/search). They sit above the existing reliability traces: a journey describes the user-facing promise across screens; a trace proves specific contracts and invariants underneath it.
+
+For single-trip navigation, **Itinerary is the operational home**. Opening an
+active or upcoming trip lands on the full-screen Itinerary List/Map workspace;
+the index route is only a legacy deep-link resolver. Trip Details is the factual
+index for Identity, People, Stay, Transport, Costs, Bookings, Changes/History,
+and Settings. Completed entry may recommend Memory only when the server-authored
+readiness projection says it is meaningful; the final itinerary remains
+reachable. References to the retired Folio in historical evidence are not
+target product authority.
 
 Use these when asking Codex, Claude Code, QA, or a human dogfooder to inspect the app. The goal is to catch the boring deterministic failures first: broken routes, stale read models, mock/real drift, no-op CTAs, privacy leaks, and fake-success states.
 
@@ -32,7 +41,7 @@ Use these when asking Codex, Claude Code, QA, or a human dogfooder to inspect th
 |---|---|---|
 | 01 | [Vague Idea To Vesper-Shaped Trip](01-vague-idea-to-vesper-shaped-trip.md) | Cold start, Trips Home phases, first-session onboarding handoff |
 | 02 | [Concrete Trip Creation And Invite](02-concrete-trip-creation-and-invite.md) | Shared workspace and invite membership correctness |
-| 03 | [Cold Trip Setup To Useful Workspace](03-cold-trip-setup-to-useful-workspace.md) | Trip Folio state machine, empty states, and setup slots |
+| 03 | [Cold Trip Setup To Useful Workspace](03-cold-trip-setup-to-useful-workspace.md) | Trip Shape, honest empty states, and first canonical draft |
 | 04 | [Private Constraint To Group-Safe Plan](04-private-constraint-to-group-safe-plan.md) | Privacy contract across private, group, proposal, notification, and booking surfaces |
 | 05 | [Group Planning To Proposal To Plan Mutation](05-group-planning-to-proposal-to-plan-mutation.md) | Advise → Propose → Act loop **and** direct Change Studio edits |
 | 06 | [Itinerary, Map, Details, Chat, and Changes Coherence](06-home-plan-map-changes-coherence.md) | Read-model consistency after **any** trip mutation |
@@ -75,7 +84,8 @@ When TestFlight starts cold for every tester, consider promoting Phase 0 to a nu
 | Ideation vs draft trip | **01** — no committed trip, home conversation, promotion | **03** — `trip_id` exists, blank/draft facets to fill |
 | Proposal workflow vs read-model truth | **05** — create, vote, apply, revert, direct edit | **06** — do Home/Plan/Map/Changes agree after the mutation? |
 | Live UX vs projection invariants | **08** — "what now?", permissions, urgent CTAs | **06** — same block ids across surfaces |
-| Atlas control vs post-trip narrative | **11** — provenance, dispute, trust hub | **12** — story compose, settlement, returned-phase Folio |
+| Itinerary home vs factual depth | **03/05/08** — lifecycle and action in Itinerary | **06/10/12** — Trip Details and specialized continuations agree |
+| Atlas control vs post-trip narrative | **11** — provenance, dispute, trust hub | **12** — completed record, story, Memory, and settlement |
 | Privacy leak vs notification routing | **04** — private text must not appear in group surfaces | **09** — tap opens the right private vs group destination |
 
 ## Deferred Surfaces (intentionally outside the 12)

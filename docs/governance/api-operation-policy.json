@@ -1175,26 +1175,6 @@
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
       "review_by": "2026-08-15"
     },
-    "POST /api/trips/{trip_id}/itinerary/operations/proposals/{proposal_id}/accept": {
-      "audience": "app",
-      "consumers": [],
-      "feature_flag": null,
-      "lifecycle": "retiring",
-      "owner": "itinerary",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
-      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
-    },
-    "POST /api/trips/{trip_id}/itinerary/operations/proposals/{proposal_id}/apply": {
-      "audience": "app",
-      "consumers": [],
-      "feature_flag": null,
-      "lifecycle": "retiring",
-      "owner": "itinerary",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
-      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
-    },
     "POST /api/trips/{trip_id}/itinerary/operations/provider-sagas/{saga_id}/advance": {
       "audience": "app",
       "consumers": [],
@@ -1371,6 +1351,20 @@
       "reason": "Provider callback surface.",
       "removal_trigger": null,
       "review_by": null
+    }
+  },
+  "retired_operations": {
+    "POST /api/trips/{trip_id}/itinerary/operations/proposals/{proposal_id}/accept": {
+      "owner": "itinerary",
+      "reason": "Unadopted split-phase acceptance conflicts with the canonical proposal resolution authority.",
+      "replacement": "POST /api/trips/{trip_id}/proposals/{proposal_id}/resolve",
+      "retired_on": "2026-07-16"
+    },
+    "POST /api/trips/{trip_id}/itinerary/operations/proposals/{proposal_id}/apply": {
+      "owner": "itinerary",
+      "reason": "Unadopted second mutation step can diverge from the canonical atomic resolution response.",
+      "replacement": "POST /api/trips/{trip_id}/proposals/{proposal_id}/resolve",
+      "retired_on": "2026-07-16"
     }
   },
   "version": 1

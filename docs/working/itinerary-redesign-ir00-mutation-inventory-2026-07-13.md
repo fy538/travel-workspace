@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: backend / frontend
 created: 2026-07-13
-last_verified: 2026-07-14
+last_verified: 2026-07-16
 expires: 2026-08-12
 why_new: IR-00 requires an explicit inventory and migration disposition for every itinerary mutation producer before the canonical gateway can replace path-specific policy and persistence.
 supersedes: []
@@ -26,31 +26,26 @@ POST /api/trips/{trip_id}/itinerary/operations/preview
 POST /api/trips/{trip_id}/itinerary/operations/commit
 ```
 
-Until those endpoints and their ledger are real, all target write flags remain
-off.
+Those endpoints and the canonical ledger are now the unconditional product
+authority. The historical route tables below remain the IR-00 audit baseline;
+the closeout ledger in this document governs their current disposition.
 
 ## Executable persistence boundary
 
 The point-in-time route inventory below is now backed by four ratcheting static
 manifests across the two repositories:
 
-- `check_itinerary_writer_boundary_baseline.tsv` classifies **112 stable direct
-  writer sites / 132 current write occurrences**. The current occurrence split
-  is 72 canonical writer/recovery, 28 legacy product mutation, 6 named integrity
-  exceptions, 21 seed/scenario setup, and 5 one-off migration utility writes.
-- `check_itinerary_legacy_consumer_boundary_baseline.tsv` gives **105 current
-  legacy imports** an executable disposition: 68 replace, 22 delete, and 15
-  rename. The rename rows are the current group-facing `change_proposals`
-  projection consumers; they do not preserve proposal mutation authority.
-- `check_itinerary_legacy_readers_baseline.tsv` classifies **14 backend
-  file/resource pairs / 63 semantic compatibility uses** across legacy recent
-  changes, raw status, planner `persisted_version`, `locked` governance, and the
-  Folio compatibility projection.
-- `travel-app/scripts/check-itinerary-legacy-readers-baseline.tsv` classifies
-  **20 frontend file/resource pairs / 83 semantic compatibility uses** for the
-  same wire concepts plus the Folio query and source-health fallback. Generated
-  OpenAPI types and disposable mock fixtures are explicit directory-scoped
-  exceptions rather than product-authority allowlist rows.
+- `check_itinerary_writer_boundary_baseline.tsv` classifies **121 stable direct
+  writer sites / 141 current write occurrences**: 97 canonical writers, 11
+  named integrity exceptions, 27 seed/scenario cleanup writes, 5 migration
+  utility writes, and **1 finite legacy-product acknowledgement writer**.
+- `check_itinerary_legacy_consumer_boundary_baseline.tsv` classifies **19
+  retained imports**: 8 replace, 7 delete, and 4 rename. These are physical
+  lifecycle/projection dependencies, not unclassified product readers.
+- The backend and frontend semantic compatibility-reader baselines are both
+  **zero**. Folio, legacy recent-change/raw-status behavior, locked governance,
+  planner `persisted_version`, and mobile compatibility fallbacks have no
+  approved production consumers.
 
 All four checks use stable keys without line numbers. A classified occurrence or
 import may disappear or decrease, but a new site or count increase fails CI.
@@ -68,8 +63,26 @@ code-level allowlist, so a TSV row cannot relabel a new product writer as
 maintenance. Their five callable entry points are restricted to the named
 account-deletion, trip-archival, member-removal, planner-warning, and internal
 owner-reassignment importers; a normal itinerary route importing one fails CI.
-The focused certification suite covers that reachability plus the existing
-authorization and lifecycle behavior (**54 passed**). Workstream 0 is complete.
+The current full structural gate and canonical itinerary certificate cover that
+reachability plus authorization and lifecycle behavior (**319 + 280 passed** on
+2026-07-16). Workstream 0's inventory/regrowth boundary is complete; physical
+retirement still follows the evidence gates below.
+
+## Retained compatibility disposition ledger (2026-07-16)
+
+| Structure | Current purpose and consumers | Owner | Disposition / next review |
+|---|---|---|---|
+| `change_proposals` physical table | Temporary group-facing decision projection used by proposal reads/votes/deadlines and maintained atomically by the canonical proposal gateway; account deletion, archival, member departure, and deterministic seed cleanup preserve lifecycle integrity. It owns no itinerary mutation authority. | `itinerary_decision_projection` + canonical proposal gateway | Rename or replace only after deployed decision consumers and lifecycle cleanup are certified. Review **2026-07-23**; physical removal remains gated by B2/B3/D4. |
+| `plan_events` physical table | Frozen historical ledger retained only for privacy/archive lifecycle, invariant checks, and deterministic fixture cleanup. No product writer or reader exists. | data lifecycle / archive | Drop after deployed artifact/caller absence and retention sign-off. Review **2026-07-23**; gated by B2/B3/D1. |
+| `itinerary_edit_log` | Finite historical preference-drain input. Preference inference may read unprocessed rows and the sole legacy-product writer may only acknowledge them as processed; it cannot alter itinerary truth. | Preference Engine | Remove reader, acknowledgement writer, table, and writer allowlist row after deployed backlog is zero for the signed observation window. Review **2026-07-23**; this is the only remaining product-writer closeout. |
+| `legacy_itinerary_version` exports | Version-shaped materialized reads still used by planner/proposal/story consumers while canonical authority owns writes and history semantics. They are not compatibility behavior readers. | Trips read authority | Replace with explicitly named plan/history projections, then rename/delete the module. Review **2026-07-23**; no new consumers allowed. |
+| `backfill_itinerary_redesign.py` | One-off migration utility for already-deployed rows; never reachable from product routes. | itinerary migration owner | Delete after Fly backup, migration verification, and reset/reseed evidence are signed. Review **2026-07-23**; gated by C-deployed. |
+
+All independently reachable legacy mutation routes, planner persistence
+fallbacks, proposal mutation engines, Folio assembly, and app compatibility
+readers were removed locally by **2026-07-16**. The rows above are the complete
+retained set relevant to B4; their dates are review dates, not fabricated
+deletion licenses.
 
 ## Backend mutation inventory
 
@@ -157,4 +170,7 @@ These are not current paths to adapt; they require first-class implementation:
 - [x] Every production direct writer has a ratcheted classification.
 - [x] Every backend legacy proposal/event/version module import has a ratcheted disposition.
 - [x] Legacy recent-changes and compatibility-column readers are ratcheted across both repos.
-- [ ] IR-07 records removal dates for each independent legacy write.
+- [x] IR-07 records the 2026-07-16 local retirement date for independently
+      reachable legacy writes and a dated review/trigger for every retained
+      structure. The finite edit-log acknowledgement remains explicitly open
+      until deployed drain evidence licenses deletion.

@@ -11820,11 +11820,11 @@
             "required": false,
             "schema": {
               "type": "boolean",
-              "description": "Proceed even if the member has an unsettled balance. Without this, a removal that would orphan an unsettled debt 409s with the balance detail instead of completing.",
+              "description": "Deprecated compatibility flag. Unsettled balances block every departure because membership removal also removes expense access.",
               "default": false,
               "title": "Force"
             },
-            "description": "Proceed even if the member has an unsettled balance. Without this, a removal that would orphan an unsettled debt 409s with the balance detail instead of completing."
+            "description": "Deprecated compatibility flag. Unsettled balances block every departure because membership removal also removes expense access."
           },
           {
             "name": "shared_plan_successor_user_id",
@@ -55717,7 +55717,7 @@
           "remaining_member_count"
         ],
         "title": "TripDeparturePreflight",
-        "description": "Current facts a client must show before ending a membership.\n\nThis is deliberately a read model, not authorization for the later delete:\nthe removal transaction re-checks structural invariants and the balance\nwarning still requires ``force=true`` at write time."
+        "description": "Current facts a client must show before ending a membership.\n\nThis is deliberately a read model, not authorization for the later delete:\nthe removal transaction re-checks structural invariants and balances.\n``requires_force`` is retained for wire compatibility and is always false;\nall departures must settle costs first."
       },
       "TripDetailsRow": {
         "properties": {

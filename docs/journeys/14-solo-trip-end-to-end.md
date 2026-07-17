@@ -2,7 +2,7 @@
 
 > Status: draft
 > Owner: founder / engineering
-> Last updated: 2026-06-29
+> Last updated: 2026-07-16
 > Primary phase: cross-cutting (solo variant of the whole lifecycle)
 
 ## Product Promise
@@ -57,7 +57,10 @@ As a solo traveler, I want the app to feel built for one, so that group-coordina
 ## AI Trace Prompt
 
 ```text
-Trace a single-member trip through Folio, Plan, Map, chat routing, notifications, and Atlas. Identify any surface that renders group chrome (votes, consensus, member-waiting, group chat) or routes a solo user into a group conversation.
+Trace a single-member trip through Itinerary List/Map, Trip Details, chat
+routing, notifications, completed Memory, and Atlas. Identify any surface that
+renders group chrome (votes, consensus, member-waiting, group chat) or routes a
+solo user into a group conversation.
 ```
 
 ## First Automation Target
