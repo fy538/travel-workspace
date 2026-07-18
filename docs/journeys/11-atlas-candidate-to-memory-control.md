@@ -2,7 +2,7 @@
 
 > Status: draft  
 > Owner: founder / engineering  
-> Last updated: 2026-07-16
+> Last updated: 2026-07-18
 > Primary phase: memory / identity control / trust hub
 
 > **Current Atlas IA:** This cross-repo journey certifies the candidate and
@@ -57,6 +57,34 @@ As a traveler, I want to review a memory candidate, turn it into an artifact if 
 Post-trip **completed-record entry, story compose, Memory, and settlement
 closeout** live in Journey 12. This journey owns memory **control and
 provenance**, not the narrative arc.
+
+## Required Branches
+
+The six established Atlas-internal journeys are registered here as branch
+trials so their existing evidence no longer collapses into one binary J11 cell.
+The coverage refresh will decide which durable outcomes should receive their own
+global journey IDs.
+
+| Branch | Atlas outcome | Required evidence | Current assessment |
+|---|---|---|---|
+| `J11.B01` | Empty/provisional Atlas → first grounded saved place or weak prior → useful Home | `FE`, `BE`, `VIS`, `LIVE` | Native save/return flow exists; failure/offline and lived first-value proof are partial |
+| `J11.B02` | Review candidate → keep/refine/dismiss → updated queue/artifact | `FE`, `BE`, `VIS`, `LIVE` | Strongest branch: mock, backend, native, and seeded candidate approval exist; dismiss/retry variants need registration |
+| `J11.B03` | Open/compose Reading → steer → keep → shelf/Home return | `FE`, `BE`, `VIS`, `LIVE` | Native keep/return exists; thin/failure/offline and lived generation remain gaps |
+| `J11.B04` | Inspect provenance → correct/soften/forget → originating surfaces reconcile | `FE`, `BE`, `VIS`, `LIVE` | Native forget/return and backend controls exist; cross-surface correction parity is partial |
+| `J11.B05` | Browse time/place history → hide → Removed → restore to original chapter | `FE`, `BE`, `VIS`, `LIVE` | Strong FE/BE/native evidence; lived restore and failure branches remain incomplete |
+| `J11.B06` | Grounded timely return → open source → dismiss/expire → slot retires | `FE`, `BE`, `VIS`, `LIVE` | Native flow exists; expiry/missing-source/seasonal and lived branches remain partial |
+
+Existing native anchors:
+
+- `atlas-journey-place-save-return.yaml` → `J11.B01`
+- `atlas-journey-review-dismiss-return.yaml` → `J11.B02`
+- `atlas-journey-reading-keep-return.yaml` → `J11.B03`
+- `atlas-journey-memory-forget-return.yaml` → `J11.B04`
+- `atlas-journey-archive-hide-restore.yaml` → `J11.B05`
+- `atlas-journey-timely-return-open-dismiss.yaml` → `J11.B06`
+
+See [Atlas canonical internal journeys](../../travel-app/docs/user-flows/atlas-journeys.md)
+and [Branch-Level Journey Certification Model](BRANCH_CERTIFICATION_MODEL.md).
 
 ## Expected Outcome
 

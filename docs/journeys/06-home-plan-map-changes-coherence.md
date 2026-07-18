@@ -2,7 +2,7 @@
 
 > Status: draft  
 > Owner: founder / engineering  
-> Last updated: 2026-07-16
+> Last updated: 2026-07-18
 > Primary phase: pre-trip / live-trip truth (projection invariant layer)
 
 ## Product Promise
@@ -52,6 +52,24 @@ This journey is the **invariant checker** that runs after any mutation from Jour
 6. Revisit Itinerary List, Map, Trip Details, Chat, and Changes.
 7. Confirm all surfaces agree after invalidation/refetch — including `applied_block_map` id transitions after proposal apply.
 8. Dismiss a non-critical home card and confirm Tier 1 trip truth remains visible.
+
+## Required Branches
+
+J06 is an assurance pack. Mutation journeys invoke these branches after their
+own commit; J06 does not become green because one block happens to agree on one
+pair of surfaces.
+
+| Branch | Mutation / state | Required outcome | Evidence required | Current assessment |
+|---|---|---|---|---|
+| `J06.B01` | Baseline placed block | List, Map, Details, Chat attachment, and Changes use the same canonical id/truth | `FE`, `BE`, `VIS` | Proven locally and visually |
+| `J06.B02` | Proposal apply | `applied_block_map`, Plan, Map, receipt, and return route converge | `FE`, `BE`, `VIS`, `LIVE` | Local/lived apply proof exists; branch-level visual mapping needed |
+| `J06.B03` | Proposal revert | Every projection restores the prior coherent state | `FE`, `BE`, `VIS`, `LIVE` | Logic exists; dedicated stable native revert control remains a named gap |
+| `J06.B04` | Direct edit commit | Typed operation appears identically in List, Map, Details, and Changes | `FE`, `BE`, `VIS` | Change Studio opens; full post-commit reconciliation evidence is partial |
+| `J06.B05` | Live-trip mutation | Current/next truth and spatial selection reconcile without losing orientation | `FE`, `BE`, `VIS`, `LIVE` | J08 proves a seeded next stop; mutation-after-return branch remains partial |
+| `J06.B06` | Stay/booking writeback | Canonical itinerary object, booking receipt, Details, and Map agree | `FE`, `BE`, `VIS`, `LIVE` | J10 covers pieces; no single branch receipt maps all projections |
+| `J06.B07` | Unplaced/unmapped item | Every surface names the item honestly without a phantom pin or crash | `FE`, `BE`, `VIS` | Deterministic parity anchors exist; dedicated journey visual evidence is incomplete |
+
+See [Branch-Level Journey Certification Model](BRANCH_CERTIFICATION_MODEL.md).
 
 ## Expected Outcome
 

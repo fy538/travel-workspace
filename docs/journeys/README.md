@@ -5,7 +5,7 @@
 > Last updated: 2026-07-16
 > Source of truth for: the first production/dogfood journey set for Vesper
 
-These one-pagers define the canonical journeys we should protect before expanding TestFlight and real dogfood: **J01–J12** are the lifecycle golden path; **J13–J19** extend coverage to the dimensions the golden path misses (failure, solo, destructive, account/data, cross-trip, distribution, social/search). They sit above the existing reliability traces: a journey describes the user-facing promise across screens; a trace proves specific contracts and invariants underneath it.
+These one-pagers define the canonical journeys we should protect before expanding TestFlight and real dogfood: **J01–J12** are the lifecycle golden path; **J13–J19** extend coverage to the dimensions the golden path misses (failure, solo, destructive, account/data, cross-trip, distribution, social/search). They sit above the existing reliability traces: a journey describes the user-facing promise across screens; a trace proves specific contracts and invariants underneath it. Required authority, lifecycle, failure, and recovery paths are tracked as branches under the [Branch-Level Journey Certification Model](BRANCH_CERTIFICATION_MODEL.md); one matching test or Maestro filename no longer implies that every branch is certified.
 
 For single-trip navigation, **Itinerary is the operational home**. Opening an
 active or upcoming trip lands on the full-screen Itinerary List/Map workspace;

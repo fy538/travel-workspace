@@ -42,6 +42,18 @@ As a traveler, I want to ..., so that ...
 4. Move to ...
 5. End at ...
 
+## Required Branches
+
+Use stable branch IDs (`JNN.BNN`). Declare materially different authority,
+lifecycle, privacy, failure, recovery, or return paths. Do not create branches
+for cosmetic variants.
+
+| Branch | Starting state / actor | Outcome | Required evidence |
+|---|---|---|---|
+| `JNN.B01` |  |  | `FE`, `BE`, `VIS`, `LIVE` as applicable |
+
+See [Branch-Level Journey Certification Model](BRANCH_CERTIFICATION_MODEL.md).
+
 ## Expected Outcome
 
 - User-visible state:
@@ -79,4 +91,4 @@ This journey can move from draft to dogfood canary only when:
 - Mock-mode journey is walkable.
 - Relevant deterministic tests pass.
 - Any real-backend-only risk has a clear live canary rubric.
-
+- Every required branch has passing evidence or an explicit `dark` product state.

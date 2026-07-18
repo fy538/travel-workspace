@@ -2,7 +2,7 @@
 
 > Status: draft
 > Owner: founder / engineering
-> Last updated: 2026-07-16
+> Last updated: 2026-07-18
 > Primary phase: booking / stay / money
 
 ## Product Promise
@@ -46,6 +46,26 @@ As an organizer, I want Vesper to help choose or confirm a stay, share the usefu
 9. Expense ledger entry appears with booking source.
 10. **Hold path:** confirm pay-later hold with `terms_accepted` + `final_human_approval` in request body (`POST /booking/holds/{offer_id}/settle`) — verify `http.ts` sends body matching OpenAPI `SettleHoldRequest`.
 11. **Hold expired:** 410 surfaces actionable copy, not generic toast.
+
+## Required Branches
+
+These branches make the current commercial loop explicit while the coverage
+refresh decides which become separately numbered customer journeys.
+
+| Branch | Starting state / actor | Required outcome | Evidence required | Current assessment |
+|---|---|---|---|---|
+| `J10.B01` | Organizer manages shared trip base | Shared stay persists and members see only the group-safe projection | `FE`, `BE`, `VIS`, `LIVE` | Strong local and two-account device evidence |
+| `J10.B02` | Traveler manages personal stay slot | Self or organizer may edit; unrelated member cannot view/mutate private slot | `FE`, `BE`, `VIS`, `LIVE` | Logic covered; dedicated lived branch is partial |
+| `J10.B03` | Assigned booking owner versus observer | Owner may decide; other organizers/members remain read-only and converge on terminal state | `FE`, `BE`, `VIS`, `LIVE` | FE/BE coverage exists; multi-account terminal convergence is incomplete |
+| `J10.B04` | Unpaid provider hold | Settle requires explicit terms/approval; release never claims a booked cancellation | `FE`, `BE`, `VIS`, `LIVE` | Release visual is certified in J15; real provider settle remains a live gap |
+| `J10.B05` | Expired, unknown, stale, or refresh-failed provider state | Honest actionable recovery; never renders Booked | `FE`, `BE`, `VIS`, `LIVE` | Expired/unknown visuals exist under J13; provider-live coverage is incomplete |
+| `J10.B06` | Provider-confirmed hotel offer | One stay writeback with stable source/offer identity | `FE`, `BE`, `VIS`, `LIVE` | Local seam coverage exists; deployed provider receipt/writeback remains partial |
+| `J10.B07` | Organizer opts confirmed offer into Costs | Explicit editable payer/split; exactly one expense; retry is idempotent | `FE`, `BE`, `VIS`, `LIVE` | Strong FE/BE coverage; two-account lived settlement is incomplete |
+| `J10.B08` | Non-booker member views group state | Useful public status without payment method, confirmation secret, or private constraints | `FE`, `BE`, `VIS`, `LIVE` | Two-account visibility flow exists; needs branch registration |
+| `J10.B09` | Close success/failure handoff | Return to exact Itinerary object/context with a truthful receipt | `FE`, `VIS` | Screen tests exist; native exact-return proof is partial |
+
+J10 is therefore not “done” merely because one booking/stay/expense file exists.
+See [Branch-Level Journey Certification Model](BRANCH_CERTIFICATION_MODEL.md).
 
 ## Cross-repo seam checks (2026-06-25 audit)
 
