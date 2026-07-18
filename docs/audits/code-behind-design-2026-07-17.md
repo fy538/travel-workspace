@@ -110,6 +110,15 @@ exist, and opens the canonical Stay comparison/vote surface for the complete
 durable action. It does not infer pros/cons, claim live inventory, or revive the
 separate producer-gated Home Comparison face.
 
+Memory/Atlas Draft is now closed by mapping the canon card to the product's
+actual pre-consent object: a pending `AtlasCandidate`, not an already-composed
+artifact or a second draft table. `post_atlas_draft` is keyword-gated and
+personal-thread-only, resolves an exact owner-scoped pending candidate, omits
+photo identifiers, and deduplicates the candidate within the conversation.
+The card labels the object pending review and opens the canonical candidate
+screen, where style, reflection, Keep and Not-this-time remain durable existing
+actions. Group execution is rejected before any Atlas read.
+
 ### Resolved in the first wave
 
 - **Truth and governance:** Stay's internal soft hold is now framed as a group
@@ -148,7 +157,7 @@ separate producer-gated Home Comparison face.
 
 | Priority | Residual capability | Direction |
 |---|---|---|
-| P1 | Missing Chat object producers | Atlas draft still needs a typed producer plus durable action; itinerary contributor attribution remains ungrounded. |
+| P1 | Itinerary contributor truth | Persisted itinerary blocks still lack reliable author identity, so Plan/Day cards correctly omit contributor attribution. |
 | P1 | Heterogeneous Discover pins | Venue pins are complete; friend, experience and place payloads still need accessible rendering and grounded handoffs. |
 | P2 | Bounded product/interaction polish | Trip Info hero/description, Skip vote, trip-creation correction, booking recovery and share-owner sheets. |
 
@@ -458,7 +467,6 @@ Build grounded producer/action contracts first. Do not add static front-end face
 The attachment union and renderer cover many designed cards, but these remain absent or incomplete in production:
 
 - contributor attribution on the persisted Itinerary/Day Plan stop grid,
-- Memory/Atlas Draft,
 - explicit consent path for sending a voice segment to the group.
 
 `PlanReadyCard` now persists and renders the committed itinerary's complete
@@ -468,9 +476,8 @@ two stops per day; the in-card depth action reveals the complete snapshot, and
 the primary action opens the canonical Plan surface. The remaining itinerary
 gap is contributor attribution: the durable block model does not yet record a
 reliable author, so the producer intentionally omits it rather than presenting
-planner inference as fact. Memory/Atlas Draft still requires an attachment
-schema, producer, persistence, renderer states, and actions—not just card
-styling. Voice-segment sharing remains a separate consent-gated voice scope.
+planner inference as fact. Voice-segment sharing remains a separate
+consent-gated voice scope.
 
 Chat Comparison is closed through the durable Stay candidate/vote substrate.
 The persisted card carries every active candidate as factual data, orders its
@@ -479,6 +486,13 @@ the resolved vote phase without naming holdouts. The compact renderer shows two
 options and routes to the complete Stay comparison for voting. This does not
 close §3.1's Home Deck Comparison family, which remains correctly gated on a
 separate Home producer contract.
+
+Memory/Atlas Draft is closed through the pending Atlas candidate substrate.
+The producer is private-only at both selection and execution boundaries,
+projects no photo asset IDs, and persists one review entrance per candidate per
+conversation. Its CTA opens the exact candidate, preserving the established
+atomic approval path and its style/reflection controls rather than introducing
+an unsafe one-tap keep inside chat.
 
 The production Map/Route path is also closed. `post_map_route` answers explicit
 map, connection and day-route questions with a typed, persisted route object
