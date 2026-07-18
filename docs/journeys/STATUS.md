@@ -189,7 +189,7 @@ Source: `docs/journeys/journeys.yaml` × derived coverage (FE mock-walk / BE pyt
 | J09 | Notifications and Proactive Routing | golden | ✅ | ✅ | ✅ | ✅ |
 | J10 | Booking, Stay, and Expense Trust Loop | golden | ✅ | ✅ | ✅ | ✅ |
 | J11 | Atlas Candidate to Memory Control | golden | ✅ | ✅ | ✅ | ✅ |
-| J12 | Returned Trip to Story, Memory, and Settle-Up | golden | ✅ | ✅ | — | ✅ |
+| J12 | Returned Trip to Story, Memory, and Settle-Up | golden | ✅ | ✅ | ✅ | ✅ |
 | J13 | Failure and Recovery | holistic | ✅ | ✅ | — | ✅ |
 | J14 | Solo Trip End-to-End | holistic | ✅ | ✅ | — | ✅ |
 | J15 | Destructive and Reversible Actions | holistic | ✅ | ✅ | — | ✅ |
