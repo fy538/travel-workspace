@@ -12,18 +12,18 @@ source_of_truth_for: [customer-journey-expansion-proposal-2026-07]
 
 # Customer Journey Expansion Proposal
 
-## Recommendation
+## Accepted recommendation
 
-Add nine customer-outcome journeys after the evidence namespace is reconciled.
-Do not allocate final J20+ numbers yet. Strengthen four existing journeys rather
-than creating separate top-level entries for every mature surface.
+Nine customer-outcome journeys were added as J20–J28 after the evidence namespace
+was reconciled. Four existing journeys will be strengthened instead of creating
+separate top-level entries for every mature surface.
 
 This yields a projected registry of 28 stable entries while making its internal
 types honest: customer outcomes versus cross-cutting assurance packs.
 
-## Proposed new customer outcomes
+## Approved new customer outcomes
 
-### `CJ-FIRST-VALUE` — First-use trust setup to first personalized value
+### `J20` — First-use trust setup to first personalized value
 
 **Promise:** A new traveler can establish only the context they choose, defer
 optional permissions, and reach one useful personalized result without being
@@ -41,7 +41,7 @@ forced through a personality quiz.
   Vesper Home.
 - Priority: **P0** — privacy and activation risk.
 
-### `CJ-STAY` — Collaborative stay and traveler ownership lifecycle
+### `J21` — Collaborative stay and traveler ownership lifecycle
 
 **Promise:** The group can establish where the trip is based while each
 traveler retains control over personal lodging details.
@@ -56,7 +56,7 @@ traveler retains control over personal lodging details.
 - Likely surfaces: `/trip-accommodations/*`, `/accommodation/[id]`, Trip Details.
 - Priority: **P0** — current J10 ownership is too broad.
 
-### `CJ-BOOKING-EXCEPTION` — Booking exception and provider handoff lifecycle
+### `J22` — Booking exception and provider handoff lifecycle
 
 **Promise:** The traveler always knows what Vesper, the provider, and the human
 have actually completed—and how to recover when those states diverge.
@@ -72,7 +72,7 @@ have actually completed—and how to recover when those states diverge.
 - Likely surfaces: `/booking/[sessionId]`, chat booking cards, itinerary object.
 - Priority: **P0** — provider and payment truth.
 
-### `CJ-COSTS` — Group costs through correction, dispute, and settlement
+### `J23` — Group costs through correction, dispute, and settlement
 
 **Promise:** A group can turn a real cost into an understandable split, correct
 or dispute it, and record settlement without duplicating or misdirecting money.
@@ -87,7 +87,7 @@ or dispute it, and record settlement without duplicating or misdirecting money.
 - Likely surfaces: `/trip-expenses/*`, booking share-to-Costs.
 - Priority: **P0** — direct financial trust.
 
-### `CJ-GOVERNANCE` — Group membership, organizer handoff, and agency
+### `J24` — Group membership, organizer handoff, and agency
 
 **Promise:** Joining, leaving, rejoining, changing roles, and changing Vesper's
 room authority update current access without rewriting shared history.
@@ -102,7 +102,7 @@ room authority update current access without rewriting shared history.
 - Likely surfaces: `/trip-info`, `/trip-settings/permissions`, group chat.
 - Priority: **P0** — existing deep backend evidence has no customer owner.
 
-### `CJ-ATLAS-FIRST` — Empty Atlas to first useful Atlas
+### `J25` — Empty Atlas to first useful Atlas
 
 **Promise:** Atlas becomes useful from one grounded action without inventing a
   strong taste claim or requiring a completed trip.
@@ -113,7 +113,7 @@ room authority update current access without rewriting shared history.
   no-result; failed save; prompt dismissal; offline cached Home.
 - Priority: **P1** — activation depth after trust-critical work.
 
-### `CJ-ATLAS-READING` — Shape and keep a grounded Reading
+### `J26` — Shape and keep a grounded Reading
 
 **Promise:** A traveler can understand the evidence behind an interpretation,
 steer it, keep it, and reliably find it again.
@@ -124,7 +124,7 @@ steer it, keep it, and reliably find it again.
   provenance; steer; keep idempotency; offline cached Reading; deleted source.
 - Priority: **P1**.
 
-### `CJ-ATLAS-CORRECT` — Understand and correct what Vesper learned
+### `J27` — Understand and correct what Vesper learned
 
 **Promise:** A traveler can trace a learned claim to evidence and correct,
 soften, forget, or disable it without deleting the underlying travel record.
@@ -135,7 +135,7 @@ soften, forget, or disable it without deleting the underlying travel record.
   soften; forget; originating-artifact parity; retry; source retention.
 - Priority: **P0** — memory/privacy trust.
 
-### `CJ-ATLAS-HISTORY` — Browse, hide, and recover Atlas history
+### `J28` — Browse, hide, and recover Atlas history
 
 **Promise:** A traveler can browse the durable record by time/place, hide an
 entry, understand why it is removed, and restore it to the right chapter.
@@ -167,15 +167,14 @@ entry, understand why it is removed, and restore it to the right chapter.
 Retaining their IDs protects historical links. Their eventual registry tier
 should become `assurance-pack`, not `holistic-extension`.
 
-## ID collision resolution
+## ID collision resolution — complete
 
-Recommended resolution for the adjacent backend J22–J27 scenario labels:
+The adjacent backend J22–J27 scenario labels were resolved on 2026-07-18:
 
-1. Map each test to `CJ-GOVERNANCE`, J14, or J15 branches.
-2. Rename test labels to descriptive branch/evidence IDs when that checkout is
-   integrated (for example `test_governance_membership_epochs.py`).
-3. Preserve the old labels in commit history or a migration note.
-4. Allocate global J20+ numbers only from `journeys.yaml` after the rename/map.
+1. All six files and test functions now use descriptive scenario names.
+2. The old labels remain discoverable in commit history and this migration note.
+3. The scenarios will map to J24, J14, or J15 branches.
+4. Global J20+ numbers may now be allocated only from `journeys.yaml`.
 
 Promoting those six backend file numbers directly is not recommended: they are
 implementation scenarios, overlap one customer motivation, and would reserve
@@ -194,13 +193,13 @@ six global journeys for one governance family.
 | “Photo/story sharing needs a new journey.” | Not yet; J12 owns the returned-trip narrative and J18/J19 own recipient conversion. |
 | “Failure and solo should become more journeys.” | They are assurance dimensions and should attach to every relevant customer outcome. |
 
-## Approval gate before registry edits
+## Approval gate — passed 2026-07-18
 
-The candidate set is ready for registry allocation only when:
+The registry allocation proceeded after confirming:
 
 - each candidate has a non-overlapping boundary against J01–J19;
 - J06/J10/J11 evidence is mapped to branch IDs;
-- the adjacent J22–J27 labels have a recorded migration destination;
+- the renamed governance scenarios have a recorded branch destination;
 - the status generator can display branch fractions without turning partial
   journeys green;
 - dark versus missing capability is represented explicitly.

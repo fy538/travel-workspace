@@ -5,7 +5,7 @@
 > Last updated: 2026-07-18
 > Source of truth for: the first production/dogfood journey set for Vesper
 
-These one-pagers define the canonical journeys we should protect before expanding TestFlight and real dogfood: **J01–J12** are the lifecycle golden path; **J13–J19** extend coverage to the dimensions the golden path misses (failure, solo, destructive, account/data, cross-trip, distribution, social/search). They sit above the existing reliability traces: a journey describes the user-facing promise across screens; a trace proves specific contracts and invariants underneath it. Required authority, lifecycle, failure, and recovery paths are tracked as branches under the [Branch-Level Journey Certification Model](BRANCH_CERTIFICATION_MODEL.md); one matching test or Maestro filename no longer implies that every branch is certified.
+These one-pagers define the canonical journeys we should protect before expanding TestFlight and real dogfood: **J01–J12** are the lifecycle golden path; **J13–J19** extend coverage to cross-cutting and repeat/distribution dimensions; **J20–J28** own customer outcomes added after the 2026-07 product expansion audit. They sit above the existing reliability traces: a journey describes the user-facing promise across screens; a trace proves specific contracts and invariants underneath it. Required authority, lifecycle, failure, and recovery paths are tracked as branches under the [Branch-Level Journey Certification Model](BRANCH_CERTIFICATION_MODEL.md); one matching test or Maestro filename no longer implies that every branch is certified.
 
 For single-trip navigation, **Itinerary is the operational home**. Opening an
 active or upcoming trip lands on the full-screen Itinerary List/Map workspace;
@@ -60,22 +60,43 @@ J01–J12 are the lifecycle golden path. These cover the *dimensions* the golden
 |---|---|---|
 | 13 | [Failure And Recovery](13-failure-and-recovery.md) | Unhappy path — honest errors + recovery, never fake success |
 | 14 | [Solo Trip End-to-End](14-solo-trip-end-to-end.md) | Single-member trip never drops into group chrome/routing |
-| 15 | [Destructive And Reversible Actions](15-destructive-and-reversible-actions.md) | Leave/remove/delete/cancel cascade correctly; undo restores |
+| 15 | [Destructive And Reversible Actions](15-destructive-and-reversible-actions.md) | Supported leave/remove/archive/cancel boundaries; undo restores |
 | 16 | [Account And Data Lifecycle](16-account-and-data-lifecycle.md) | Privacy controls take effect; deletion purges private data |
 | 17 | [Returning Traveler (Cross-Trip Recall)](17-returning-traveler-cross-trip.md) | Second trip recalls taste without leaking another trip's context |
 | 18 | [Signed-Out Join-By-Invite](18-signed-out-join-by-invite.md) | Invite token survives the auth detour → correct membership |
 | 19 | [Social Loop And Cross-Entity Discovery](19-social-loop-and-discovery.md) | Search/profiles route live; public taste leaks no private data |
 
-### Phase 0 (cross-journey, not numbered)
+### Customer-outcome expansion (J20–J28)
 
-Auth and first-session onboarding are **not** a standalone journey yet. They are embedded checks that every cold-start trace must cover:
+These journeys were added after inventorying 89 non-dev screens and decomposing
+the overloaded J06/J10/J11 evidence. They begin intentionally uncertified; the
+matrix reports missing branch evidence rather than inheriting a green parent.
+
+| # | Journey | Main risk protected |
+|---|---|---|
+| 20 | [First-Use Trust To First Personalized Value](20-first-use-trust-to-first-personalized-value.md) | Consent, permission denial, provenance, and first-session activation |
+| 21 | [Collaborative Stay And Traveler Ownership](21-collaborative-stay-and-traveler-ownership.md) | Shared/personal lodging scope and authority |
+| 22 | [Booking Exception And Provider Handoff](22-booking-exception-and-provider-handoff.md) | Provider/payment truth and recoverable handoff |
+| 23 | [Group Costs To Correction And Settlement](23-group-costs-to-correction-and-settlement.md) | Payer, split, dispute, direction, and payment correctness |
+| 24 | [Group Membership And Agency Governance](24-group-membership-and-agency-governance.md) | Membership epochs, organizer handoff, and Vesper room authority |
+| 25 | [Empty Atlas To First Useful Atlas](25-empty-atlas-to-first-useful-atlas.md) | Grounded Atlas activation without inflated learning claims |
+| 26 | [Atlas Reading To Steer Keep And Return](26-atlas-reading-to-steer-keep-and-return.md) | Reading provenance, generation, steering, and durable return |
+| 27 | [Atlas Provenance To Correct Or Forget](27-atlas-provenance-to-correct-or-forget.md) | Inspectable and reversible learned memory |
+| 28 | [Atlas History To Hide Restore And Recover](28-atlas-history-to-hide-restore-and-recover.md) | Archive reasons, restoration, and long-history coherence |
+
+### First-session boundary
+
+Authentication remains a cross-journey boundary; first-use trust and value are
+now owned by J20:
 
 - Clerk sign-in / sign-up and invite auth detour return (see Journey 02)
-- `onboarding` + `onboarding-safety` screens
+- `onboarding` + `onboarding-safety` consent/value lifecycle (Journey 20)
 - Planning-intent bootstrap and push permission at first trip-chat send
 - First land on Trips Home or Vesper Home after auth
 
-When TestFlight starts cold for every tester, consider promoting Phase 0 to a numbered journey. Until then, **Journey 01** owns the first-session path; **Journey 02** owns auth detours.
+**Journey 01** owns trip ideation after the first-use boundary; **Journey 18**
+owns signed-out invite auth return. Generic sign-in/session recovery remains a
+required branch wherever auth interrupts a customer journey.
 
 ## Journey Boundaries (avoid double-tracing)
 

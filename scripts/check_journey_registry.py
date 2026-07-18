@@ -9,8 +9,8 @@ DEFINITION registries (must match the manifest exactly → exit 1 on drift):
   - dogfood_journey_persona_cert.py  JOURNEY_PERSONA_MAP specs (lived)
 
 FIDELITY subset (informational, never fails): scenarios.mjs / BE pytest /
-FE mock-walk are the core contract/logic layer — J13–J19 are intentionally
-lived-only so far, so partial coverage there is expected and just reported.
+FE mock-walk are the core contract/logic layer. Newly defined customer journeys
+may begin without fidelity evidence, so partial coverage is reported honestly.
 
 Add a journey to journeys.yaml FIRST; this guard then names every registry
 that still needs it.

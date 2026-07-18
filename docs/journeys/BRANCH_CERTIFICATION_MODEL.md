@@ -20,9 +20,9 @@ Vesper protects customer behavior at three levels:
 3. **Evidence (`FE`, `BE`, `VIS`, `LIVE`)** — proof attached to a branch, not
    inferred from the existence of one file for the parent journey.
 
-The existing J01–J19 identifiers stay stable during the coverage refresh. New
-global journey numbers are allocated only after the ownership inventory and ID
-collision audit are complete.
+The existing J01–J19 identifiers stayed stable during the coverage refresh.
+After the ownership inventory and ID collision audit completed on 2026-07-18,
+the approved customer outcomes were allocated J20–J28.
 
 ## What qualifies as a customer journey
 
@@ -147,18 +147,18 @@ Global `JNN` IDs belong only to `docs/journeys/journeys.yaml`. Subsystem docs us
 namespaced IDs such as `J-A1`; branches use `JNN.BNN`; test-only scenarios use a
 descriptive prefix rather than inventing the next global journey number.
 
-An adjacent backend checkout currently contains test labels J22–J27 for archive,
+An adjacent backend checkout previously used test labels J22–J27 for archive,
 membership epochs, cardinality transitions, organizer handoff, active authority,
-and group agency. They are valuable scenario evidence but are not present in the
-canonical registry. Those labels must be mapped, promoted, or renamed before the
-global registry allocates J20+ IDs.
+and group agency. On 2026-07-18 those files and test names were changed to
+descriptive scenario names and retained as evidence for J14/J15 and the proposed
+governance journey. Global J20+ allocation is now unambiguous.
 
 ## Migration sequence
 
-1. Inventory current routes, domains, promises, and evidence against J01–J19.
-2. Write branch manifests for overloaded J06, J10, and J11.
-3. Classify J06/J13/J14/J15 as customer journeys or assurance packs.
-4. Resolve unregistered J22–J27 backend labels.
-5. Approve the true ownership gaps and allocate new IDs.
-6. Teach the registry guard and status generator to calculate branch coverage.
+1. Inventory current routes, domains, promises, and evidence against J01–J19. **Complete.**
+2. Write branch manifests for overloaded J06, J10, and J11. **Complete.**
+3. Classify J06/J13/J14/J15 as customer journeys or assurance packs. **Complete.**
+4. Resolve unregistered J22–J27 backend labels. **Complete 2026-07-18.**
+5. Approve the true ownership gaps and allocate new IDs. **Complete: J20–J28.**
+6. Teach the registry guard and status generator to calculate branch coverage. **Trial complete for J06/J10/J11.**
 7. Migrate evidence incrementally; do not manufacture green cells during the transition.

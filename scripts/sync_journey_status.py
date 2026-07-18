@@ -30,7 +30,7 @@ from pathlib import Path
 import yaml
 
 _REPO_ROOT = Path(__file__).resolve().parent.parent
-_AGENT_ROOT = _REPO_ROOT / "travel-agent"
+_AGENT_ROOT = Path(os.environ.get("JOURNEY_AGENT_ROOT", _REPO_ROOT / "travel-agent")).resolve()
 _STATUS_MD = _REPO_ROOT / "docs" / "journeys" / "STATUS.md"
 _AI_MODE = "replay"
 _DEFAULT_PERSONAS = ("mara", "elif")
@@ -42,7 +42,12 @@ def _agent_python() -> str:
     venv = _AGENT_ROOT / ".venv" / "bin" / "python"
     return str(venv) if venv.exists() else sys.executable
 
-_ALL_JOURNEYS = [f"J{n:02d}" for n in range(1, 20)]
+def _manifest_journey_ids() -> tuple[str, ...]:
+    manifest = yaml.safe_load((_REPO_ROOT / "docs" / "journeys" / "journeys.yaml").read_text())
+    return tuple(journey["id"] for journey in manifest.get("journeys", []))
+
+
+_ALL_JOURNEYS = _manifest_journey_ids()
 _UNMAPPED_REASON = "not mapped to a seeded persona — covered by logic + mock-walk gates"
 _STATUS_GLYPH = {"pass": "✅ pass", "fail": "🔴 fail", "skip": "⤵️ skip"}
 
@@ -277,7 +282,11 @@ def build_matrix_block(by_id: dict[str, dict]) -> str:
             lived = "—"
         else:
             lived = lived_glyph.get(lived_row.get("status", ""), lived_row.get("status", "—"))
-        tier = "golden" if j.get("tier") == "golden-path" else "holistic"
+        tier = {
+            "golden-path": "golden",
+            "holistic-extension": "holistic",
+            "customer-extension": "customer",
+        }.get(j.get("tier"), j.get("tier", "—"))
         contract = _branch_fidelity_cell(j, "FE", by_id)
         logic = _branch_fidelity_cell(j, "BE", by_id)
         visual_cell = _branch_fidelity_cell(j, "VIS", by_id)

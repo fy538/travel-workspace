@@ -110,40 +110,41 @@ one binary J11 visual signal.
 **Direction:** keep J11 for review-to-memory; promote the other durable outcomes
 or attach them to explicit new customer journeys.
 
-## Unregistered backend evidence
+## Resolved backend evidence namespace
 
-An adjacent backend checkout used by the workspace contains scenario files
-labeled J22–J27:
+An adjacent backend checkout used by the workspace contained scenario files
+labeled J22–J27. They were renamed on 2026-07-18 without changing behavior:
 
-| Existing label | Scenario | Likely owner |
+| Former label | Descriptive scenario file | Likely owner |
 |---|---|---|
-| J22 | Archive preserves shared history and makes the room read-only | J15 branch or trip lifecycle journey |
-| J23 | Leave/rejoin creates membership epochs without rewriting history | Membership/governance journey |
-| J24 | Solo → group → solo → group preserves room boundaries | J14 assurance + membership journey |
-| J25 | Organizer handoff transfers live authority | Membership/governance journey |
-| J26 | Demotion/departure fences uncommitted work | Membership/governance + booking/proposal branches |
-| J27 | Room mute is shared/auditable while personal mute stays personal | Group agency/governance journey |
+| J22 | `test_trip_archive_history.py` | J15 branch or trip lifecycle journey |
+| J23 | `test_membership_epochs.py` | Membership/governance journey |
+| J24 | `test_trip_cardinality_transitions.py` | J14 assurance + membership journey |
+| J25 | `test_organizer_handoff.py` | Membership/governance journey |
+| J26 | `test_active_membership_authority.py` | Membership/governance + booking/proposal branches |
+| J27 | `test_group_agency_governance.py` | Group agency/governance journey |
 
-These are not canonical J22–J27 entries. The next global journey IDs must not be
-allocated until this evidence namespace is reconciled.
+All six renamed scenarios pass. They remain evidence, not implicit canonical
+journeys, and the global registry again owns the full `JNN` namespace.
 
-## Provisional ownership gaps
+## Approved ownership expansion
 
-These are candidates, not yet approved registry entries:
+The audit approved these registry entries on 2026-07-18:
 
-| Priority | Candidate outcome | Why it is distinct |
+| Journey | Outcome | Why it is distinct |
 |---|---|---|
-| P0 | First-run trust setup → first personalized value | Phase 0 is now a real multi-screen promise |
-| P0 | Collaborative stay and traveler ownership | Different visibility/authority lifecycle from booking |
-| P0 | Booking exception and provider handoff | Held, expired, unknown, retry, cancel, and external responsibility |
-| P0 | Group costs → correction/dispute → settlement | Money authority and durable payment state deserve direct ownership |
-| P0 | Group membership, organizer handoff, and agency | Existing backend depth has no canonical customer owner |
-| P0 | Atlas provenance → correct/forget/restore | Core trust promise across memory and originating artifacts |
-| P1 | Search → evaluate → save/share → trip action | Cross-entity evaluation currently ends in multiple partial journeys |
-| P1 | Empty Atlas → first useful Atlas | A durable value moment independent of completing a trip |
-| P1 | Atlas Reading → steer → keep → return | Authored interpretation has its own persisted lifecycle |
-| P1 | Public share recipient → meaningful action | Distribution success is more than rendering a public page |
-| P2 | Photo/media intake → memory → story → share | Mature multi-surface loop, lower trust risk than P0 candidates |
+| J20 | First-run trust setup → first personalized value | Phase 0 is now a real multi-screen promise |
+| J21 | Collaborative stay and traveler ownership | Different visibility/authority lifecycle from booking |
+| J22 | Booking exception and provider handoff | Held, expired, unknown, retry, cancel, and external responsibility |
+| J23 | Group costs → correction/dispute → settlement | Money authority and durable payment state deserve direct ownership |
+| J24 | Group membership, organizer handoff, and agency | Existing backend depth has no canonical customer owner |
+| J25 | Empty Atlas → first useful Atlas | A durable value moment independent of completing a trip |
+| J26 | Atlas Reading → steer → keep → return | Authored interpretation has its own persisted lifecycle |
+| J27 | Atlas provenance → correct/forget | Core trust promise across memory and originating artifacts |
+| J28 | Atlas history → hide/restore/recover | Distinct long-record management and archive-reason lifecycle |
+
+Search/evaluate/action, public recipient conversion, timely returns, and
+photo/media closeout remain new branches of J07/J18/J19/J17/J12 rather than new IDs.
 
 ## What should remain a branch, not a new journey
 
@@ -158,6 +159,6 @@ These are candidates, not yet approved registry entries:
 
 1. Write branch manifests for J06, J10, and J11 as schema trials.
 2. Map all 47 numbered native flows and six Atlas flows to branches.
-3. Reconcile the J22–J27 backend evidence namespace.
+3. Map the renamed governance evidence files to approved branch IDs.
 4. Red-team the provisional candidates for overlap with J01–J19.
 5. Approve the expanded registry only after branch coverage exposes the real gaps.
