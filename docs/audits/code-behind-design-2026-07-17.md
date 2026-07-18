@@ -127,7 +127,7 @@ branch, and requires an owner drawn from each branch.
 
 | Priority | Residual capability | Direction |
 |---|---|---|
-| P1 | Missing Chat object producers | Full itinerary, map/route, comparison, Atlas draft, recovery and private handoff need typed producers plus durable actions. |
+| P1 | Missing Chat object producers | Map/route, comparison, Atlas draft, recovery and private handoff still need typed producers plus durable actions; itinerary contributor attribution remains ungrounded. |
 | P1 | Heterogeneous Discover pins | Venue pins are complete; friend, experience and place payloads still need accessible rendering and grounded handoffs. |
 | P2 | Bounded product/interaction polish | Trip Info hero/description, Skip vote, trip-creation correction, booking recovery and share-owner sheets. |
 
@@ -436,7 +436,7 @@ Build grounded producer/action contracts first. Do not add static front-end face
 
 The attachment union and renderer cover many designed cards, but these remain absent or incomplete in production:
 
-- full Itinerary/Day Plan stop grid with contributor attribution,
+- contributor attribution on the persisted Itinerary/Day Plan stop grid,
 - Map/Route,
 - Comparison,
 - Memory/Atlas Draft,
@@ -444,7 +444,16 @@ The attachment union and renderer cover many designed cards, but these remain ab
 - production Privacy/Private-Handoff card—the component is gallery-only,
 - explicit consent path for sending a voice segment to the group.
 
-`PlanReadyCard` is a receipt/teaser, not the full in-thread itinerary object. This work requires attachment schemas, producers, persistence, renderer states, and actions—not just card styling.
+`PlanReadyCard` now persists and renders the committed itinerary's complete
+day/stop grid, including themes, stable block identity, wall-clock labels and
+grounded outbound travel mode/minutes. Its compact state previews two days and
+two stops per day; the in-card depth action reveals the complete snapshot, and
+the primary action opens the canonical Plan surface. The remaining itinerary
+gap is contributor attribution: the durable block model does not yet record a
+reliable author, so the producer intentionally omits it rather than presenting
+planner inference as fact. The other families above still require attachment
+schemas, producers, persistence, renderer states, and actions—not just card
+styling.
 
 ### 3.3 Chat's depth law is not applied — P1
 
