@@ -16842,6 +16842,49 @@
             }
           },
           {
+            "name": "card_kinds",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "enum": [
+                      "year_named",
+                      "where",
+                      "you",
+                      "postcard"
+                    ],
+                    "type": "string"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Card Kinds"
+            }
+          },
+          {
+            "name": "expires_in_days",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 365,
+                  "minimum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Expires In Days"
+            }
+          },
+          {
             "name": "authorization",
             "in": "header",
             "required": false,
@@ -32060,6 +32103,18 @@
               }
             ],
             "title": "Followers Visible"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
           }
         },
         "type": "object",
@@ -39180,11 +39235,6 @@
       },
       "InviteConversationSummary": {
         "properties": {
-          "conversation_id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Conversation Id"
-          },
           "title": {
             "anyOf": [
               {
@@ -39206,10 +39256,6 @@
               }
             ],
             "title": "Organizer Display Name"
-          },
-          "participant_count": {
-            "type": "integer",
-            "title": "Participant Count"
           },
           "phase": {
             "anyOf": [
@@ -39243,10 +39289,8 @@
         },
         "type": "object",
         "required": [
-          "conversation_id",
           "title",
-          "organizer_display_name",
-          "participant_count"
+          "organizer_display_name"
         ],
         "title": "InviteConversationSummary",
         "description": "Landing-page facts for a conversation-scoped invite (pre-trip).\n\nLighter than :class:`InviteTripSummary` — the conversation is still\nexploratory, so we render what the intent scratchpad has captured\nso far rather than committed trip details."
@@ -39590,11 +39634,6 @@
       },
       "InviteTripSummary": {
         "properties": {
-          "trip_id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Trip Id"
-          },
           "title": {
             "anyOf": [
               {
@@ -39651,21 +39690,15 @@
               }
             ],
             "title": "Organizer Display Name"
-          },
-          "member_count": {
-            "type": "integer",
-            "title": "Member Count"
           }
         },
         "type": "object",
         "required": [
-          "trip_id",
           "title",
           "destination",
           "start_date",
           "end_date",
-          "organizer_display_name",
-          "member_count"
+          "organizer_display_name"
         ],
         "title": "InviteTripSummary",
         "description": "Non-generated facts shown on the landing page alongside the snapshot."
@@ -52190,6 +52223,13 @@
             },
             "type": "array",
             "title": "Hidden Section Ids"
+          },
+          "hidden_photo_urls": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Hidden Photo Urls"
           }
         },
         "type": "object",
