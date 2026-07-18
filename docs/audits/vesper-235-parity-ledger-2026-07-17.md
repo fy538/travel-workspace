@@ -150,6 +150,7 @@ Retirement happens only after the replacement route and state coverage are verif
 - Current phase: Round 1 design complete; implementation/parity preparation.
 - Current batch: M01–M12 and S01–S02 design closure complete.
 - Code-parity Wave 0 (2026-07-18): S01 public proposal leakage contained in HTML and generated-card paths; Vesper 255 fingerprint/status and new-page ownership refreshed. S01 remains below `PARITY VALIDATED` until the current judge calibration and accepted capture evidence are complete.
+- Code-parity Wave 1 (2026-07-18): M01–M03 exact cancellation projection, durable receipt anatomy/delivery, client state restoration, and system-authored settlement-paused Costs review are implemented with focused backend/frontend and generated-contract evidence. They remain below `PARITY VALIDATED` pending real-provider, device, and accessibility certification.
 - First design return: inspected against all three prompts and current source; **not yet validated**.
 - Second design return: several source-truth corrections landed, but integration, component reuse, and internal consistency remain open; **no row promoted**.
 - Third design return: ownership and runtime labels improved, but the surgical prompt was only partially executed; **no row promoted**.

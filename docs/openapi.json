@@ -7447,7 +7447,7 @@
           "booking"
         ],
         "summary": "Cancel Offer",
-        "description": "Cancel a confirmed booking offer.\n\nFor API-bookable providers (Duffel) this calls the provider's cancellation\nAPI and marks the offer ``cancelled``. For non-API providers the offer is\nmarked ``cancelled`` locally with a message directing the user to the\nprovider's own cancel flow.",
+        "description": "Cancel a confirmed booking offer.\n\nFor API-bookable providers (Duffel) this durably claims provider\ncancellation work. Providers without a cancellation API remain explicitly\nactive with ``manual_action_required`` until external evidence proves the\noutcome; a local button tap never fabricates cancellation truth.",
         "operationId": "cancel_offer_api_trips__trip_id__booking_sessions__session_id__offers__offer_id__cancel_post",
         "parameters": [
           {
@@ -12424,6 +12424,76 @@
         "responses": {
           "204": {
             "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/expenses/{expense_id}/booking-cost-review/resolve": {
+      "post": {
+        "tags": [
+          "expenses"
+        ],
+        "summary": "Resolve Booking Cost Review",
+        "description": "Resume settlement after a confirmed cancellation's cost is reviewed.\n\nThe review is system-authored from durable booking truth, not attributed\nto a traveler who never opened it. Payer/organizer authority is checked\nindependently of booking-controller authority. The shared expense update\ntransaction enforces the live-payment void-first prerequisite.",
+        "operationId": "resolve_booking_cost_review_api_trips__trip_id__expenses__expense_id__booking_cost_review_resolve_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "expense_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Expense Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingCostReviewResolution"
+                }
+              }
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -35123,6 +35193,125 @@
         "title": "BookingActionResponse",
         "description": "Shared response model for booking mutation endpoints."
       },
+      "BookingCancellationTruth": {
+        "properties": {
+          "state": {
+            "type": "string",
+            "enum": [
+              "requested",
+              "processing",
+              "pending_verification",
+              "refreshing",
+              "refresh_failed",
+              "cancelled",
+              "not_cancelled",
+              "manual_action_required"
+            ],
+            "title": "State"
+          },
+          "controller_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Controller Id"
+          },
+          "requested_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Requested At"
+          },
+          "last_checked_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Checked At"
+          },
+          "booking_still_active": {
+            "type": "boolean",
+            "title": "Booking Still Active"
+          },
+          "what_changed": {
+            "type": "string",
+            "title": "What Changed"
+          },
+          "what_did_not": {
+            "type": "string",
+            "title": "What Did Not"
+          },
+          "next_action": {
+            "type": "string",
+            "enum": [
+              "wait",
+              "refresh_status",
+              "review_cost",
+              "request_cancellation_again",
+              "contact_provider"
+            ],
+            "title": "Next Action"
+          },
+          "can_refresh_status": {
+            "type": "boolean",
+            "title": "Can Refresh Status",
+            "default": false
+          },
+          "can_request_cancellation": {
+            "type": "boolean",
+            "title": "Can Request Cancellation",
+            "default": false
+          },
+          "refund_amount": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Refund Amount"
+          },
+          "refund_currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Refund Currency"
+          }
+        },
+        "type": "object",
+        "required": [
+          "state",
+          "booking_still_active",
+          "what_changed",
+          "what_did_not",
+          "next_action"
+        ],
+        "title": "BookingCancellationTruth",
+        "description": "Viewer-safe, exact cancellation lifecycle derived from provider evidence."
+      },
       "BookingConsentNudgeRequest": {
         "properties": {
           "target_user_id": {
@@ -35242,6 +35431,38 @@
         ],
         "title": "BookingConsentState"
       },
+      "BookingCostReviewResolution": {
+        "properties": {
+          "expense_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Expense Id"
+          },
+          "status": {
+            "type": "string",
+            "const": "resolved",
+            "title": "Status"
+          },
+          "resolved_by": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Resolved By"
+          },
+          "resolved_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Resolved At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "expense_id",
+          "status",
+          "resolved_by",
+          "resolved_at"
+        ],
+        "title": "BookingCostReviewResolution"
+      },
       "BookingDecisionResponse": {
         "properties": {
           "status": {
@@ -35325,8 +35546,13 @@
               {
                 "type": "string",
                 "enum": [
-                  "pending",
+                  "requested",
+                  "processing",
+                  "pending_verification",
+                  "refreshing",
+                  "refresh_failed",
                   "cancelled",
+                  "not_cancelled",
                   "manual_action_required"
                 ]
               },
@@ -35335,6 +35561,16 @@
               }
             ],
             "title": "Cancellation Status"
+          },
+          "cancellation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/BookingCancellationTruth"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "provider_offer_id": {
             "anyOf": [
@@ -35901,6 +36137,9 @@
             "type": "string",
             "title": "Status"
           },
+          "cancellation": {
+            "$ref": "#/components/schemas/BookingCancellationTruth"
+          },
           "refund_amount": {
             "anyOf": [
               {
@@ -35932,6 +36171,7 @@
         "required": [
           "offer_id",
           "status",
+          "cancellation",
           "message"
         ],
         "title": "CancelOfferResponse"

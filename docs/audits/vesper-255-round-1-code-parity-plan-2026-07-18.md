@@ -8,9 +8,9 @@ expires: 2026-08-17
 why_new: Cross-repository execution record for the Vesper 255 parity waves; existing design-validation ledger does not own implementation sequencing or code evidence.
 design_target: Vesper 255, Round 1 M01-M12 and S01-S02
 code_target:
-  travel_app: d10db32c
-  travel_agent: 9cd4b143
-  workspace: ccae8e2 plus the uncommitted Vesper 255 ledger update
+  travel_app: f9ea7e1b
+  travel_agent: 28763890
+  workspace: 7b6a845 plus this Wave 1 checkpoint
 source_of_truth_for: vesper-255-round-1-code-parity-execution
 ---
 
@@ -205,6 +205,14 @@ The safe immediate posture is:
 5. Add replay, restart, controller/viewer, receipt-return, and settlement-exclusion tests.
 
 **Exit:** request, waiting, read failure, cancelled, still booked, and manual action remain distinguishable after restart; no action can resubmit an in-flight cancellation; the Costs consequence is truthful and durable.
+
+**Execution checkpoint — 2026-07-18:** functional scope complete; device and live-provider certification remain open.
+
+- Booking reads and generated app types preserve all eight exact cancellation states with controller, timestamps, active-booking posture, changed/unchanged facts, next action, and capabilities.
+- Both API-triggered and scheduled cancellation paths persist terminal evidence, queue replay-safe completion delivery, and carry the canonical receipt anatomy. Provider-less cancellation remains `manual_action_required`; it never marks a booking cancelled locally.
+- The booking screen polls only genuinely in-flight states, never offers a duplicate request while work is in flight, restores exact state after restart, and permits a new explicit request only after verified `not_cancelled` truth.
+- Confirmed cancellation projects a system-authored review onto only the linked expense. Settlement excludes that expense until the payer or organizer resolves the review; a live recorded payment remains void-first.
+- Focused evidence: 304 backend tests, 62 frontend tests, TypeScript, offline OpenAPI export/projection, and generated-client checks pass. This is implementation evidence, not yet real-provider/device/accessibility proof, so M01–M03 remain below `PARITY VALIDATED`.
 
 ### Wave 2 — booking roles and consent projection
 
