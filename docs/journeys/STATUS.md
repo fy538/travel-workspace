@@ -180,7 +180,7 @@ Source: `docs/journeys/journeys.yaml` × derived coverage (FE mock-walk / BE pyt
 |---|---|---|---|---|---|---|
 | J01 | Vague Idea to Vesper-Shaped Trip | golden | ✅ | ✅ | ✅ | ✅ |
 | J02 | Concrete Trip Creation and Invite | golden | ✅ | ✅ | ✅ | ✅ |
-| J03 | Cold Trip Setup to Useful Workspace | golden | ✅ | ✅ | — | ✅ |
+| J03 | Cold Trip Setup to Useful Workspace | golden | ✅ | ✅ | ✅ | ✅ |
 | J04 | Private Constraint to Group-Safe Plan | golden | ✅ | ✅ | ✅ | ✅ |
 | J05 | Group Planning to Proposal to Plan Mutation | golden | ✅ | ✅ | ✅ | ✅ |
 | J06 | Itinerary, Map, Details, Chat, and Changes Coherence | golden | ✅ | ✅ | ✅ | ✅ |
