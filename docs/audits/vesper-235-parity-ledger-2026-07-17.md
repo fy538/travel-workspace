@@ -55,7 +55,7 @@ The current Trip header is frozen. This program must not redesign it. “Folio�
 | M05 | Booking controller/viewer | Controller owns provider mutations; other travelers see attribution and view-only outcomes | Role matrix and action-visibility test | DESIGN VALIDATED |
 | M06 | Expense review governance | Eligible opener, opener-only withdrawal, payer/organizer resolution, payment-void prerequisite, paused settlement | Expense-review permission and settlement tests | DESIGN VALIDATED |
 | M07 | Recorded payments and void | Visible recorded/voided ledger rows and restricted void action | Ledger fixture and void permission tests | DESIGNING |
-| M08 | Currency truth | One settlement currency; unsupported conversions excluded; estimated rates labeled | Mixed-currency fixture | DESIGNING |
+| M08 | Currency truth | One settlement currency; unsupported conversions excluded; estimated rates labeled | Mixed-currency fixture | DESIGN VALIDATED |
 | M09 | Masked expenses | Hide amount/details from non-payers while preserving payer attribution, payer-only cost, settlement exclusion, and booking constraints | Payer/non-payer visibility matrix | DESIGN VALIDATED |
 | M10 | Split-type immutability | Existing split type remains display-only during edit; language derives from actual shares | Expense-edit fixtures | DESIGN VALIDATED |
 | M11 | Archived-trip booking closure | Define booking actions and receipts before archive, while archived, and after recovery | Archive/recover navigation and mutation tests | DESIGNING |
@@ -164,7 +164,8 @@ Retirement happens only after the replacement route and state coverage are verif
 - Thirteenth design return: matrix overflow, status definitions, count truth, and the last broad proposal-content contradiction were fixed. S01 promoted to `DESIGN VALIDATED`; S02 remains `DESIGNING` because Story/Invite runtime posture and payload ownership are still duplicated in older tables.
 - Fourteenth design return: three money/archive sections and most remaining S02 normalization landed. M09 and M10 promoted to `DESIGN VALIDATED`; M07, M08, M11, and S02 remain `DESIGNING` after code-grounded source checks found authority, currency, archive-preflight, primitive, and residual payload-ownership defects.
 - Fifteenth design return: the audit regression was removed, the local Costs `Field` fork was replaced, and External Sharing now consistently delegates all four exact public payloads to Public Projection Contract while rendering runtime postures as separate tags. S02 promoted to `DESIGN VALIDATED`. M07, M08, and M11 remain `DESIGNING` because each still contains a literal source contradiction.
-- Next gate: one surgical correction round for the payment viewer fixture, mixed-currency total/copy, and archived-trip impossible-hold/action-primitive residue.
+- Sixteenth design return: the payment fixture, mixed-currency arithmetic, sentinel warning, and reachable confirmed-booking archive specimen were corrected. M08 promoted to `DESIGN VALIDATED`. M07 remains `DESIGNING` only because Trip Workflow retains a stale resolved void-authority audit question; M11 remains `DESIGNING` because the archived actions are still local styled spans rather than canonical action primitives and the same stale audit row remains.
+- Next gate: a source-only Trip Workflow cleanup—use `VBtn` for the three archived `Screen` actions and remove the resolved organizer/cost-manager void audit residue.
 
 ## Round 1 validation — first design return
 
@@ -632,3 +633,29 @@ No new canvases or product doctrines are needed. The next pass should correct th
 - External Sharing remains responsible only for shell, lifecycle, route, fallback, privacy-doctrine, and governance concerns. No public-card or landing-state redesign was introduced.
 
 No new canvas is needed for the next pass. Correct only the three existing owner sections above and leave the frozen Trip header, validated public-projection work, and all unrelated canvases untouched.
+
+## Round 1 validation — sixteenth design return (three-item correction)
+
+### Source checks passed
+
+- The payment viewer now consistently renders and describes Ana → You. Its authority copy correctly states that only sender Ana or recipient You may void, and organizer/cost-manager status grants nothing.
+- The mixed-currency headline is now €972.00, matching the three included stored values (€96 + €96 + €780). The sentinel-derived €780 remains visibly `MAY BE WRONG`; the unsupported row remains excluded.
+- Currency copy no longer claims the total is infallible. It explicitly says the total uses stored converted values, identifies the 1.0 fallback contribution as potentially wrong, and separates it from the excluded unconverted expense.
+- The archived booking specimen is now a reachable confirmed booking rather than an active hold carried through archive. Forward modification/rebooking is absent, while controller-attributed cancellation/reconciliation is presented as surviving liability-reducing work.
+- The consistency audit remains at the established project baseline: one unindexed legacy HTML file, 36 unresolved meaningful-text findings with 8 reviewed-decorative findings, and the pre-existing shared-primitive warning. This return introduced no new audit regression.
+
+### M08 — DESIGN VALIDATED
+
+The currency section now distinguishes normal stored conversions, sentinel-corrupted stored conversions, and unsupported/unconverted exclusions without inventing a settlement-time rate-locking or auto-correction workflow. Its displayed arithmetic and explanatory copy agree.
+
+### M07 — still DESIGNING
+
+The Costs owner section is now internally correct. Trip Workflow nevertheless still contains the audit item `Whether a cost-manager/organizer may void a payment they did not record`. This question is already resolved by backend and Costs truth: only the payment sender or recipient may void. Remove the stale audit item and leave void ownership delegated to Costs before promoting M07.
+
+### M11 — still DESIGNING
+
+1. The impossible archived active-hold specimen is fixed.
+2. The `Screen` action renderer still maps actions to locally styled `<span>` elements. Adding `minHeight: 44` improves geometry but does not satisfy the explicit requirement to consume the existing canonical `VBtn`/workflow action primitive. Replace those spans with `VBtn`; do not create another wrapper family unless it is a trivial adapter with no independent geometry.
+3. The archived matrix still renders `Void a payment` as audit-required, and the audit block repeats the resolved organizer/cost-manager question. Remove the resolved role question. If archived payment mutation availability itself is not code-verified, label that exact archived-route availability question rather than reopening payment-role authority.
+
+No content redesign or new canvas is required. The remaining work is a small source-only cleanup in the existing Archived Trip Booking Closure section.
