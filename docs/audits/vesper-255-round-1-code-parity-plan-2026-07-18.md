@@ -8,9 +8,9 @@ expires: 2026-08-17
 why_new: Cross-repository execution record for the Vesper 255 parity waves; existing design-validation ledger does not own implementation sequencing or code evidence.
 design_target: Vesper 255, Round 1 M01-M12 and S01-S02
 code_target:
-  travel_app: f9ea7e1b
-  travel_agent: 28763890
-  workspace: 7b6a845 plus this Wave 1 checkpoint
+  travel_app: 2fc15f89
+  travel_agent: bd275b94
+  workspace: aebf614 plus this Wave 2 checkpoint
 source_of_truth_for: vesper-255-round-1-code-parity-execution
 ---
 
@@ -224,6 +224,14 @@ The safe immediate posture is:
 4. Certify action visibility for controller, organizer-non-controller, included traveler, excluded traveler, and ordinary viewer.
 
 **Exit:** network payload and UI both obey the role matrix; every included traveler's consent state remains legible; confirmation remains blocked until the active scope approves.
+
+**Execution checkpoint — 2026-07-18:** functional scope complete; device/accessibility certification remains open.
+
+- Booking offers now carry a server-authored viewer posture. The controller receives bounded provider references and continuation links; every non-controller receives shared plan/status truth and controller attribution with provider references, passenger/payment evidence, and continuation URLs recursively removed.
+- Provider mutations remain controller-only even when the viewer is a trip organizer. Included non-controllers may answer only their own consent; excluded travelers and non-participant viewers receive no consent or provider action.
+- The booking surface renders the complete named ledger—approved, pending, declined, and excluded—plus requester attribution and durable reminder count/evidence. Narrow-to-self keeps excluded rows visible instead of making the consent history disappear.
+- Focused evidence: 103 booking API tests, the PostgreSQL consent lifecycle test, 98 app booking-family tests, TypeScript, lint with only the pre-existing booking-screen size warning, and deterministic OpenAPI/client regeneration pass.
+- M04–M05 remain below `PARITY VALIDATED` until accepted device and accessibility evidence is attached; the implementation and role/action test gates for this wave are complete.
 
 ### Wave 3 — Costs governance and contract hardening
 
