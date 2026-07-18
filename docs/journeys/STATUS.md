@@ -192,7 +192,7 @@ Source: `docs/journeys/journeys.yaml` × derived coverage (FE mock-walk / BE pyt
 | J12 | Returned Trip to Story, Memory, and Settle-Up | golden | ✅ | ✅ | ✅ | ✅ |
 | J13 | Failure and Recovery | holistic | ✅ | ✅ | ✅ | ✅ |
 | J14 | Solo Trip End-to-End | holistic | ✅ | ✅ | ✅ | ✅ |
-| J15 | Destructive and Reversible Actions | holistic | ✅ | ✅ | — | ✅ |
+| J15 | Destructive and Reversible Actions | holistic | ✅ | ✅ | ✅ | ✅ |
 | J16 | Account and Data Lifecycle | holistic | ✅ | ✅ | — | ⤵️ |
 | J17 | Returning Traveler (Cross-Trip Recall) | holistic | ✅ | ✅ | — | ⤵️ |
 | J18 | Signed-Out Join-By-Invite | holistic | ✅ | ✅ | — | ⤵️ |
