@@ -47389,6 +47389,34 @@
             ],
             "title": "Title"
           },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "hero_style": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "illustration",
+                  "photo",
+                  "minimal"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hero Style"
+          },
           "place_id": {
             "anyOf": [
               {

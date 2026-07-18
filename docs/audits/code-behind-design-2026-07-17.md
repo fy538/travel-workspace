@@ -163,12 +163,18 @@ actions. Group execution is rejected before any Atlas read.
   accessibility semantics. Friend pins require exact authenticated trip scope,
   a reading under 15 minutes old, and rounded coordinates; legacy or
   cross-trip readings are omitted.
+- **Trip Info authored identity:** organizers can now add or clear a bounded
+  optional description and choose Illustration, Photo, or Minimal hero style.
+  Both are typed through the generated contract and merged atomically into the
+  authored trip summary, so destination and planning provenance survive the
+  edit. Photo explicitly falls back to illustration until eligible trip
+  photography exists; the itinerary header remains unchanged.
 
 ### Compact residual backlog
 
 | Priority | Residual capability | Direction |
 |---|---|---|
-| P2 | Bounded product/interaction polish | Trip Info hero/description, Skip vote, trip-creation correction, booking recovery and share-owner sheets. |
+| P2 | Bounded product/interaction polish | Skip vote, trip-creation correction, booking recovery and share-owner sheets. |
 
 Deferred and therefore excluded from the active residual list: Home
 Flight/Comparison without producers, per-trip privacy/learning, voice takeover,
@@ -371,7 +377,10 @@ Keep that honesty. Build durable per-trip fields before exposing the designed to
 ### 1.10 Connected systems and Trip Info are incomplete — P2
 
 - Trip Settings exposes Stay, Costs, and Story, but not the designed Bookings, Photos, and Atlas connections.
-- Trip Info supports name, destination, dates, and travelers, but not optional description or Illustration/Photo/Minimal hero style.
+- Resolved: Trip Info now persists an optional description and the closed
+  Illustration/Photo/Minimal hero-style choice without changing the canonical
+  itinerary header. The metadata is an atomic authored-summary delta rather
+  than a replacement of destination or generated planning truth.
 - Proposal Detail supports neutral tallies and lazy-consensus behavior, but has no neutral “Skip vote” action.
 - Date-change review covers substantive impacts in copy, but flattens them into a generic confirmation instead of grouped impact rows and conflicts.
 
