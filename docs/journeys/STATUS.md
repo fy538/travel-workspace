@@ -178,7 +178,7 @@ Source: `docs/journeys/journeys.yaml` × derived coverage (FE mock-walk / BE pyt
 
 | # | Journey | Tier | Contract (FE) | Logic (BE) | Visual (Maestro) | Lived (persona-cert) |
 |---|---|---|---|---|---|---|
-| J01 | Vague Idea to Vesper-Shaped Trip | golden | ✅ | ✅ | — | ✅ |
+| J01 | Vague Idea to Vesper-Shaped Trip | golden | ✅ | ✅ | ✅ | ✅ |
 | J02 | Concrete Trip Creation and Invite | golden | ✅ | ✅ | ✅ | ✅ |
 | J03 | Cold Trip Setup to Useful Workspace | golden | ✅ | ✅ | — | ✅ |
 | J04 | Private Constraint to Group-Safe Plan | golden | ✅ | ✅ | ✅ | ✅ |
