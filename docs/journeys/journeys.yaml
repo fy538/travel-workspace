@@ -614,7 +614,7 @@ journeys:
         evidence:
           FE: [travel-app/__tests__/screens/trip-settings.group-agency.test.tsx]
           BE: [travel-agent/tests/scenarios/test_j24_organizer_handoff.py]
-          VIS: []
+          VIS: [travel-app/.maestro/polish/trip-owner-demotion.yaml]
           LIVE: [persona-cert:J24]
       - id: J24.B05
         title: Authority fences uncommitted work
@@ -622,7 +622,7 @@ journeys:
         evidence:
           FE: [travel-app/__tests__/screens/trip-settings.group-agency.test.tsx]
           BE: [travel-agent/tests/scenarios/test_j24_active_membership_authority.py]
-          VIS: []
+          VIS: [travel-app/.maestro/polish/trip-owner-demotion.yaml]
       - id: J24.B06
         title: Shared room mute and private personal mute
         required_evidence: [FE, BE, VIS, LIVE]
