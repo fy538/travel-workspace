@@ -8,9 +8,9 @@ expires: 2026-08-17
 why_new: Cross-repository execution record for the Vesper 255 parity waves; existing design-validation ledger does not own implementation sequencing or code evidence.
 design_target: Vesper 255, Round 1 M01-M12 and S01-S02
 code_target:
-  travel_app: 9e1125aa
-  travel_agent: 6c62c0ff
-  workspace: 92b9028 plus this Wave 4 checkpoint
+  travel_app: c5dc44d6
+  travel_agent: fc48a68c
+  workspace: 92b9028 plus Wave 4–5 checkpoints
 source_of_truth_for: vesper-255-round-1-code-parity-execution
 ---
 
@@ -285,6 +285,16 @@ The safe immediate posture is:
 6. Run the Trip Costs surface capture against current Vesper 255 design refs.
 
 **Exit:** scanning never creates an expense before confirmation, never overwrites manual work, never invents extracted values, never loses the retained receipt, and returns through canonical Costs truth.
+
+**Execution checkpoint — 2026-07-18:** functional scope complete; accepted Trip Costs device capture remains open.
+
+- `Receipt` now exposes bounded OCR status and deterministic `complete` / `partial` / `unreadable` quality over a validated result schema. Malformed model output fails closed, and generated OpenAPI/app types no longer treat extraction as an arbitrary JSON bag.
+- The client owns explicit upload, processing, complete-review, partial-review, unreadable-review, manual, and upload-failure states. Manual entry supersedes the active generation, retains the uploaded receipt, and rejects late poll results.
+- Add Expense only marks fields that were actually extracted as suggestions. It no longer invents a Food category, keeps user corrections authoritative, records corrected-field provenance on receipt-created expenses, and requires the same explicit Add confirmation for every scan quality.
+- Failed, unreadable, timed-out, and manually superseded scans retain their receipt ID and attach it through the manual expense path. Save failure keeps the form open; retries preserve idempotency, and changing the retained receipt changes the create fingerprint.
+- Successful creation returns to the canonical trip Costs route. Existing masked-receipt 404 gates, worker terminal-state/reaper behavior, and receipt-to-expense scope constraints remain green.
+- Focused evidence passed: 39 backend OCR/API tests plus 34 worker/privacy/scope tests; 19 receipt/form/idempotency client tests plus 26 Costs/mock/journey checks; backend lint/format; app lint; TypeScript before an unrelated concurrent Costs style edit introduced a missing local style key; and deterministic OpenAPI projection/client checks.
+- M12 is implementation-complete but remains below `PARITY VALIDATED` until the accepted device and accessibility capture is attached.
 
 ### Wave 6 — four-projection public contract
 

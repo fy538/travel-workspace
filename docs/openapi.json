@@ -60639,17 +60639,21 @@
           "ocr_result": {
             "anyOf": [
               {
-                "additionalProperties": true,
-                "type": "object"
+                "$ref": "#/components/schemas/ReceiptOcrResult"
               },
               {
                 "type": "null"
               }
-            ],
-            "title": "Ocr Result"
+            ]
           },
           "ocr_status": {
             "type": "string",
+            "enum": [
+              "pending",
+              "processing",
+              "completed",
+              "failed"
+            ],
             "title": "Ocr Status",
             "default": "pending"
           },
@@ -60668,6 +60672,24 @@
             "type": "string",
             "format": "date-time",
             "title": "Created At"
+          },
+          "ocr_quality": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "complete",
+                  "partial",
+                  "unreadable"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ocr Quality",
+            "description": "Classify review readiness without inventing confidence scores.",
+            "readOnly": true
           }
         },
         "type": "object",
@@ -60677,9 +60699,148 @@
           "uploaded_by",
           "image_path",
           "content_type",
-          "created_at"
+          "created_at",
+          "ocr_quality"
         ],
         "title": "Receipt"
+      },
+      "ReceiptOcrLineItem": {
+        "properties": {
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "amount": {
+            "type": "number",
+            "title": "Amount"
+          },
+          "quantity": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Quantity"
+          }
+        },
+        "type": "object",
+        "required": [
+          "description",
+          "amount"
+        ],
+        "title": "ReceiptOcrLineItem"
+      },
+      "ReceiptOcrResult": {
+        "properties": {
+          "merchant_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Merchant Name"
+          },
+          "date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date"
+          },
+          "currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Currency"
+          },
+          "total_amount": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Amount"
+          },
+          "subtotal": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subtotal"
+          },
+          "tax": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tax"
+          },
+          "tip": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tip"
+          },
+          "line_items": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/ReceiptOcrLineItem"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Line Items"
+          },
+          "payment_method": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Payment Method"
+          }
+        },
+        "type": "object",
+        "title": "ReceiptOcrResult",
+        "description": "Legible facts extracted from a receipt, never inferred defaults."
       },
       "RecommendationAction": {
         "properties": {
