@@ -301,7 +301,7 @@ journeys:
             - travel-agent/tests/scenarios/test_j24_trip_cardinality_transitions.py
             - travel-agent/tests/scenarios/test_j24_trip_archive_history.py
           VIS: [travel-app/.maestro/polish/trip-settings-admin.yaml]
-          LIVE: []
+          LIVE: [persona-cert:J24]
       - id: J24.B02
         title: Leave and rejoin membership epochs
         required_evidence: [FE, BE, VIS, LIVE]
@@ -309,7 +309,7 @@ journeys:
           FE: [travel-app/__tests__/journeys/journey-24-mock-walk.smoke.test.tsx]
           BE: [travel-agent/tests/scenarios/test_j24_membership_epochs.py]
           VIS: []
-          LIVE: []
+          LIVE: [persona-cert:J24]
       - id: J24.B03
         title: Role and shared-plan-owner transfer
         required_evidence: [FE, BE, VIS, LIVE]
@@ -319,7 +319,7 @@ journeys:
             - travel-agent/tests/scenarios/test_j24_membership_epochs.py
             - travel-agent/tests/scenarios/test_j24_organizer_handoff.py
           VIS: [travel-app/.maestro/polish/trip-settings-admin.yaml]
-          LIVE: []
+          LIVE: [persona-cert:J24]
       - id: J24.B04
         title: Atomic organizer handoff
         required_evidence: [FE, BE, VIS, LIVE]
@@ -327,7 +327,7 @@ journeys:
           FE: [travel-app/__tests__/screens/trip-settings.group-agency.test.tsx]
           BE: [travel-agent/tests/scenarios/test_j24_organizer_handoff.py]
           VIS: []
-          LIVE: []
+          LIVE: [persona-cert:J24]
       - id: J24.B05
         title: Authority fences uncommitted work
         required_evidence: [FE, BE, VIS]
@@ -344,7 +344,7 @@ journeys:
             - travel-app/__tests__/screens/trip-settings.group-agency.test.tsx
           BE: [travel-agent/tests/scenarios/test_j24_group_agency_governance.py]
           VIS: [travel-app/.maestro/polish/trip-settings-admin.yaml]
-          LIVE: []
+          LIVE: [persona-cert:J24]
       - id: J24.B07
         title: Invite attention follows current authority
         required_evidence: [FE, BE, VIS]

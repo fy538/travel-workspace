@@ -55,6 +55,6 @@ auditable, so that history remains trustworthy while the roster changes.
 
 ## First Automation Target
 
-Add a disposable multi-account lived fixture plus dedicated handoff/rejoin
-captures. Frontend and backend contracts now cover all seven branches; the
-existing settings capture covers four, while three interaction states remain.
+Add dedicated handoff, rejoin, and uncommitted-work captures. Frontend and
+backend contracts cover all seven branches, and the disposable three-account
+lived fixture covers every branch requiring live evidence without retaining data.
