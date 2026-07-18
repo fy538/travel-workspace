@@ -85,7 +85,9 @@ unchanged and how many protected provider dependencies remain explicit. The
 landed receipt preserves that same structural evidence from the revalidated
 preview. Each changed stop now also carries destination-local prior/proposed
 day and time plus grounded outbound travel mode/minutes; absent route truth is
-left absent. Richer initial parallel-plan construction remains.
+left absent. Initial Split construction now selects any active same-day place,
+keeps the full interval explicit, supports multiple travelers on either named
+branch, and requires an owner drawn from each branch.
 
 ### Resolved in the first wave
 
@@ -125,7 +127,6 @@ left absent. Richer initial parallel-plan construction remains.
 
 | Priority | Residual capability | Direction |
 |---|---|---|
-| P1 | Initial parallel-plan construction | Replan consequence truth is resolved. Enrich initial Split construction with independently selected places, named traveler branches, and multi-traveler assignment inside the existing atomic operation system. |
 | P1 | Missing Chat object producers | Full itinerary, map/route, comparison, Atlas draft, recovery and private handoff need typed producers plus durable actions. |
 | P1 | Heterogeneous Discover pins | Venue pins are complete; friend, experience and place payloads still need accessible rendering and grounded handoffs. |
 | P2 | Bounded product/interaction polish | Trip Info hero/description, Skip vote, trip-creation correction, booking recovery and share-owner sheets. |
@@ -141,8 +142,8 @@ The overall verdict after remediation is:
 - Durable trip agency now covers plan governance, Costs/Booking entry authority,
   booking participant consent and reminders, shared booking receipts, the
   expense-dispute lifecycle, guarded trip cancellation, archive recovery, and
-  sanitized reuse. Remaining P1s are expressive parallel-plan construction and
-  grounded object producers rather than lifecycle or shell redesign.
+  sanitized reuse. Remaining P1s are grounded object producers rather than
+  lifecycle, authority, consequence, or shell redesign.
 - The central Trip/Itinerary shell, alignment gate, typography ratchet and
   bounded Discover/Atlas/Chat seams are green.
 
@@ -273,11 +274,16 @@ receipt render the same evidence; missing travel remains absent rather than
 estimated. Route geometry and private planner rationale are deliberately
 excluded from this group-safe contract.
 
-### 1.5 Initial Split/Rejoin construction is narrower than the target — P1
+### 1.5 Initial Split/Rejoin construction — resolved 2026-07-17
 
-Production supports atomic parallel-plan operations, traveler assignment, branch movement/expansion, detachment, rejoin, and recovery. Initial creation, however, can only use an adjacent existing stop as the alternate branch and assign one traveler. The design supports named traveler branches with independently selected places.
-
-The lifecycle engine is ahead of the board in several respects; only the expressive initial branch builder is code debt.
+Production supports atomic parallel-plan operations, traveler assignment,
+branch movement/expansion, detachment, rejoin, and recovery. Initial creation
+now lets the traveler select any active same-day place for the other branch,
+assigns every intervening stop explicitly so topology remains contiguous,
+supports multiple travelers on either named branch, and chooses each decision
+owner from that branch. The resulting preview remains one canonical
+`create_parallel_plan` operation with one split, both branches, and one rejoin;
+the UI does not sequence per-row mutations.
 
 ### 1.6 Trip cancellation and reuse — resolved 2026-07-17
 
