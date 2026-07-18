@@ -88,6 +88,14 @@ There are no supported legacy chat `itinerary` or `map_card` attachments.
 `map_route` is a persisted evidence object, not an independent map screen: its
 primary action opens Map as the second face of Plan.
 
+Strict group-compose privacy handoffs are a typed group-thread state, not a
+`MessageAttachment`. The failed agent row persists `message_type=dignified_exception`
+inside `error_details`; `messageMapping` projects it to `DignifiedExceptionCard`,
+and `PrivateHandoffSeamCard` opens the exact idempotently seeded personal trip
+conversation. The group-visible contract contains routing identifiers and seed
+status only. The suppressed draft stays in a server-authored system row that
+conversation-history endpoints never return.
+
 ## 3. Shared action contract
 
 Every actionable card resolves through `utils/cardActionContract.ts`:

@@ -89,6 +89,18 @@ left absent. Initial Split construction now selects any active same-day place,
 keeps the full interval explicit, supports multiple travelers on either named
 branch, and requires an owner drawn from each branch.
 
+The private-handoff finding is also closed after re-adjudicating the production
+path. A strict group-compose failure already persists a replay-safe, hidden
+system seed in the requesting traveler's existing personal trip conversation;
+group history maps that failed row to the canonical privacy divider and
+`PrivateHandoffSeamCard`, whose action opens the exact seeded conversation.
+The public projection is now intentionally narrower than the private seed: it
+carries only conversation/trip routing truth and seed status. Suppressed draft
+content and presentation summaries never enter group history, SSE metadata,
+mock payloads, or route params. The similarly named gallery privacy-boundary
+specimen is not the group private-handoff contract and does not need a second
+producer.
+
 ### Resolved in the first wave
 
 - **Truth and governance:** Stay's internal soft hold is now framed as a group
@@ -127,7 +139,7 @@ branch, and requires an owner drawn from each branch.
 
 | Priority | Residual capability | Direction |
 |---|---|---|
-| P1 | Missing Chat object producers | Comparison, Atlas draft and private handoff still need typed producers plus durable actions; itinerary contributor attribution remains ungrounded. |
+| P1 | Missing Chat object producers | Comparison and Atlas draft still need typed producers plus durable actions; itinerary contributor attribution remains ungrounded. |
 | P1 | Heterogeneous Discover pins | Venue pins are complete; friend, experience and place payloads still need accessible rendering and grounded handoffs. |
 | P2 | Bounded product/interaction polish | Trip Info hero/description, Skip vote, trip-creation correction, booking recovery and share-owner sheets. |
 
