@@ -54,12 +54,12 @@ The current Trip header is frozen. This program must not redesign it. “Folio�
 | M04 | Participant consent ledger | Pending, approved, declined, excluded, reminder cooldown, narrow-to-self, and confirmation blocking | Per-participant state fixture and permission test | DESIGN VALIDATED |
 | M05 | Booking controller/viewer | Controller owns provider mutations; other travelers see attribution and view-only outcomes | Role matrix and action-visibility test | DESIGN VALIDATED |
 | M06 | Expense review governance | Eligible opener, opener-only withdrawal, payer/organizer resolution, payment-void prerequisite, paused settlement | Expense-review permission and settlement tests | DESIGN VALIDATED |
-| M07 | Recorded payments and void | Visible recorded/voided ledger rows and restricted void action | Ledger fixture and void permission tests | DESIGNING |
+| M07 | Recorded payments and void | Visible recorded/voided ledger rows and restricted void action | Ledger fixture and void permission tests | DESIGN VALIDATED |
 | M08 | Currency truth | One settlement currency; unsupported conversions excluded; estimated rates labeled | Mixed-currency fixture | DESIGN VALIDATED |
 | M09 | Masked expenses | Hide amount/details from non-payers while preserving payer attribution, payer-only cost, settlement exclusion, and booking constraints | Payer/non-payer visibility matrix | DESIGN VALIDATED |
 | M10 | Split-type immutability | Existing split type remains display-only during edit; language derives from actual shares | Expense-edit fixtures | DESIGN VALIDATED |
-| M11 | Archived-trip booking closure | Define booking actions and receipts before archive, while archived, and after recovery | Archive/recover navigation and mutation tests | DESIGNING |
-| M12 | Receipt/OCR scan states | Complete confirm-before-add loading, unreadable, partial, retry, and correction states | Scan fixtures and accessibility pass | OPEN |
+| M11 | Archived-trip booking closure | Define booking actions and receipts before archive, while archived, and after recovery | Archive/recover navigation and mutation tests | DESIGN VALIDATED |
+| M12 | Receipt/OCR scan states | Complete confirm-before-add loading, unreadable, partial, retry, and correction states | Scan fixtures and accessibility pass | DESIGNING |
 | S01 | Public proposal privacy contradiction | Public proposal output exposes no vote counts or vote-derived decision status; authentication is required for group decision detail | Anonymous route/card inspection and privacy test | DESIGN VALIDATED |
 | S02 | Four public card projections | Exact allowed/redacted fields for Story, Invite, Proposal, and Unpacked 9:16 cards | Projection table mapped to renderer payloads | DESIGN VALIDATED |
 
@@ -165,7 +165,10 @@ Retirement happens only after the replacement route and state coverage are verif
 - Fourteenth design return: three money/archive sections and most remaining S02 normalization landed. M09 and M10 promoted to `DESIGN VALIDATED`; M07, M08, M11, and S02 remain `DESIGNING` after code-grounded source checks found authority, currency, archive-preflight, primitive, and residual payload-ownership defects.
 - Fifteenth design return: the audit regression was removed, the local Costs `Field` fork was replaced, and External Sharing now consistently delegates all four exact public payloads to Public Projection Contract while rendering runtime postures as separate tags. S02 promoted to `DESIGN VALIDATED`. M07, M08, and M11 remain `DESIGNING` because each still contains a literal source contradiction.
 - Sixteenth design return: the payment fixture, mixed-currency arithmetic, sentinel warning, and reachable confirmed-booking archive specimen were corrected. M08 promoted to `DESIGN VALIDATED`. M07 remains `DESIGNING` only because Trip Workflow retains a stale resolved void-authority audit question; M11 remains `DESIGNING` because the archived actions are still local styled spans rather than canonical action primitives and the same stale audit row remains.
-- Next gate: a source-only Trip Workflow cleanup—use `VBtn` for the three archived `Screen` actions and remove the resolved organizer/cost-manager void audit residue.
+- Seventeenth design return: the archived `Screen` action renderer now consumes canonical `VBtn`, and the payment audit text now treats sender/recipient authority as settled while isolating archived-route availability as the open code question. M07 and M11 promoted to `DESIGN VALIDATED`.
+- Receipt/OCR kickoff: code and design ownership were re-audited before prompting. M12 moved to `DESIGNING`; it extends the existing Costs Add Expense section and must distinguish upload, reading, long-running, complete, partial, unreadable/failure, manual correction, explicit confirmation, save, and durable receipt states without creating an expense before confirmation.
+- Eighteenth design return: the complete Receipt/OCR state sequence landed inside Costs and is directionally strong, but M12 remains `DESIGNING`. Source checks found six new meaningful-text contrast findings, local button/field reimplementations, invented upload progress, contradictory long-scan supersession, guessed partial-item count, incorrect durability claims, and an ambiguous Expense Detail-versus-Costs return.
+- Next gate: one bounded M12 correction pass, then re-run source/audit validation and close Round 1 design if clean. Implementation fixtures and route/mutation tests are still required before any row becomes `PARITY VALIDATED`.
 
 ## Round 1 validation — first design return
 
@@ -659,3 +662,50 @@ The Costs owner section is now internally correct. Trip Workflow nevertheless st
 3. The archived matrix still renders `Void a payment` as audit-required, and the audit block repeats the resolved organizer/cost-manager question. Remove the resolved role question. If archived payment mutation availability itself is not code-verified, label that exact archived-route availability question rather than reopening payment-role authority.
 
 No content redesign or new canvas is required. The remaining work is a small source-only cleanup in the existing Archived Trip Booking Closure section.
+
+## Round 1 validation — seventeenth design return (Trip Workflow cleanup closed)
+
+### Source checks passed
+
+- Scope stayed limited to Trip Workflow source, its HTML loader, and the generated thumbnail.
+- The archived `Screen` action renderer now maps its action data to canonical `VBtn` rather than a locally styled `<span>`.
+- `Review booking work`, `Recover from archive`, and `Create draft` remain present and inherit the canonical primitive's 44pt default height.
+- No new button component, variant, or geometry family was introduced.
+- The resolved organizer/cost-manager void-authority question is gone.
+- The remaining payment audit language is precise: sender-or-recipient authority is settled in Costs; only archived-route availability of that already-authorized mutation remains code-audit-required.
+- The archived matrix continues to mark the archived void route as audit-required without reopening role authority.
+- The consistency audit remains at the established project baseline: one unindexed legacy HTML file, 36 unresolved meaningful-text findings with 8 reviewed-decorative findings, and the pre-existing shared-primitive warning. No new regression was introduced.
+
+### Status decisions
+
+- **M07 Recorded payments and void → DESIGN VALIDATED.** The design now has a durable active/voided ledger lifecycle, exact sender-or-recipient authority, viewer restriction, prerequisite behavior, receipts, failures, and consistent cross-canon ownership.
+- **M11 Archived-trip booking closure → DESIGN VALIDATED.** The design now covers blocked preflight, reachable archived booking truth, surviving controller actions, open-review posture, recovery/revalidation, exact return, Reuse exclusions, capability/audit boundaries, and canonical archived-screen actions.
+
+These promotions close design definition only. M07 still requires ledger fixtures and void-permission tests; M11 still requires archive/recover navigation and mutation tests before either can become `PARITY VALIDATED`.
+
+## Round 1 validation — eighteenth design return (Receipt/OCR first return)
+
+### What landed correctly
+
+- Receipt scanning was added as a bounded section inside the existing Costs canon rather than as a new top-level product page.
+- The source covers entrance, permission rationale/recovery, uploading, reading, long-running, complete, partial, unreadable, correction, adding, added, add-failed, capability matrix, privacy, accessibility, implementation truth, and validation.
+- The design consistently states that scanning does not create an expense and that explicit Add Expense confirmation is required.
+- Complete and partial extraction are distinct; missing required values are left empty; unreadable and long-running states are distinct.
+- OCR suggestions, user-confirmed overrides, rescan, and expense-create retry are separated.
+- Failed-OCR receipt retention is honestly labeled `DESIGN-APPROVED · BLOCKED BY CODE`.
+- Masked receipt imagery and OCR text are correctly treated as payer-protected.
+- The long-scan UI and incomplete auto-application are correctly identified as implementation gaps.
+
+### Blocking corrections
+
+1. The consistency audit regressed from the established 36 meaningful-text findings to 42. All six new findings are in the Receipt Scan source and use `K.muteSoft` for meaningful labels or values. Move those strings to a sanctioned readable token and return the audit to baseline.
+2. The validation board claims canonical button and field reuse, but the new source independently defines `ScanPrimary`, `ScanSecondary`, and `RevField` with their own geometry. Use existing canonical Costs/shared actions and `VField` for editable review fields. `VSheetField` remains for read-only display rows. Do not claim reuse while drawing local lookalikes.
+3. Uploading shows `62%`, but the production upload path exposes no progress callback. Use an indeterminate Uploading state; do not invent measurable progress.
+4. The long-scan path is internally contradictory: one sentence says a late result will be offered without overwriting typed values, while the implementation-gap note says manual continuation supersedes the scan. Choose one explicit contract. Recommended: waiting keeps the scan alive; entering manually cancels/supersedes it, so no late result is applied or offered.
+5. Partial extraction says `2 of ~5 read`. The approximate total guesses how many illegible items exist and violates the no-estimation doctrine. Say `2 line items read · others illegible` without an inferred count.
+6. The matrix defines durable truth as what survives if the sheet closes, but `Corrected` says `confirmed values` and `Add failed` says `reviewed draft`. Those form edits are preserved only while the sheet remains open; they are not durable server truth. Before successful add, durable truth is at most receipt + OCR, with reviewed fields local/unsaved.
+7. The success specimen is a pushed Expense Detail screen but its confirmation says `returns to Costs`. Current production closes Add Expense back to Costs. Render the exact Costs-ledger return with the new row, or explicitly label a detail-route landing as a future code change. Do not claim both destinations.
+
+### Status
+
+M12 remains `DESIGNING`. The state inventory and doctrine do not need another redesign; the next pass is a literal/source/component correction within the existing Receipt Scan section only.
