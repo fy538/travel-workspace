@@ -169,12 +169,17 @@ actions. Group execution is rejected before any Atlas read.
   authored trip summary, so destination and planning provenance survive the
   edit. Photo explicitly falls back to illustration until eligible trip
   photography exists; the itinerary header remains unchanged.
+- **Neutral proposal participation:** Proposal Detail now exposes the durable
+  backend `neutral` vote as a quiet “Skip vote” action. It records that the
+  traveler weighed in, removes them from the holdout set, remains outside
+  approve/reject consensus arithmetic, and can be changed like either active
+  vote. Product copy says “skipped” rather than leaking the enum name.
 
 ### Compact residual backlog
 
 | Priority | Residual capability | Direction |
 |---|---|---|
-| P2 | Bounded product/interaction polish | Skip vote, trip-creation correction, booking recovery and share-owner sheets. |
+| P2 | Bounded product/interaction polish | Trip-creation correction, booking recovery and share-owner sheets. |
 
 Deferred and therefore excluded from the active residual list: Home
 Flight/Comparison without producers, per-trip privacy/learning, voice takeover,
@@ -381,7 +386,10 @@ Keep that honesty. Build durable per-trip fields before exposing the designed to
   Illustration/Photo/Minimal hero-style choice without changing the canonical
   itinerary header. The metadata is an atomic authored-summary delta rather
   than a replacement of destination or generated planning truth.
-- Proposal Detail supports neutral tallies and lazy-consensus behavior, but has no neutral “Skip vote” action.
+- Resolved: Proposal Detail now exposes the existing durable neutral vote as a
+  ghost “Skip vote” action and renders an intelligible skipped-vote receipt.
+  Neutral participation counts as weighed in but does not become approval or
+  rejection; the existing resolver and holdout projection remain authoritative.
 - Date-change review covers substantive impacts in copy, but flattens them into a generic confirmation instead of grouped impact rows and conflicts.
 
 Do not restore the design's obsolete queued date-change state; keep the newer preview → atomic replan model and improve only its information hierarchy.
