@@ -157,12 +157,17 @@ actions. Group execution is rejected before any Atlas read.
   backfilled only from exact add-operation lineage, and Plan/Chat project a
   display-safe contributor without exposing user IDs. Later editors remain in
   immutable operation history rather than overwriting the original author.
+- **Heterogeneous Discover pins:** the map contract now carries venue,
+  experience, place and trip-friend objects. Each kind has a non-color form,
+  canonical detail and Vesper handoffs, safe save eligibility, and explicit
+  accessibility semantics. Friend pins require exact authenticated trip scope,
+  a reading under 15 minutes old, and rounded coordinates; legacy or
+  cross-trip readings are omitted.
 
 ### Compact residual backlog
 
 | Priority | Residual capability | Direction |
 |---|---|---|
-| P1 | Heterogeneous Discover pins | Venue pins are complete; friend, experience and place payloads still need accessible rendering and grounded handoffs. |
 | P2 | Bounded product/interaction polish | Trip Info hero/description, Skip vote, trip-creation correction, booking recovery and share-owner sheets. |
 
 Deferred and therefore excluded from the active residual list: Home
@@ -176,8 +181,7 @@ The overall verdict after remediation is:
 - Durable trip agency now covers plan governance, Costs/Booking entry authority,
   booking participant consent and reminders, shared booking receipts, the
   expense-dispute lifecycle, guarded trip cancellation, archive recovery, and
-  sanitized reuse. Remaining P1s are grounded object producers rather than
-  lifecycle, authority, consequence, or shell redesign.
+  sanitized reuse. No P1 from this audit remains in the compact active backlog.
 - The central Trip/Itinerary shell, alignment gate, typography ratchet and
   bounded Discover/Atlas/Chat seams are green.
 
@@ -586,17 +590,20 @@ The design includes an active-trip context strip, in-plan markers, and a trip-aw
 
 The marker primitive is partial implementation; context propagation and handoff are missing.
 
-### 4.4 Discover Map pin and state taxonomies are incomplete — P1
+### 4.4 Discover Map pin and state taxonomies are aligned — resolved
 
-The design uses shape as well as color: friend square, experience open ring, place/area, suggested dashed ring, in-trip dot, and saved ring. The current payload/canvas explicitly supports current venue pins only; friend and heterogeneous object types are deferred until the payload expands.
+The payload and canvas now support venue circles, experience open rings,
+place/area fields and trip-friend squares. Saved rings, in-trip dots, judgment
+fills and selection halos remain orthogonal channels; accessibility labels
+announce kind and approximate location directly.
 
-State gaps are also explicit:
-
-- no location-denied state with “Use city scope,”
-- no offline-cached posture that clearly limits the map to cached saved/trip pins,
-- generic loading uses an activity indicator rather than the richer map-state treatment.
-
-This needs backend object/type expansion, accessible shape encoding, and route-level state selection. Current cluster and pin accessibility labels are useful foundations.
+Experience and place pins come from durable catalog geometry and route to their
+canonical detail owners. Friend pins are not general social-presence data:
+they require authenticated trip context, exact trip provenance on the latest
+location write, freshness under 15 minutes, viewer exclusion and reduced
+coordinate precision. Unsupported saves remain absent rather than becoming
+no-op controls. Location-denied, offline-cached and semantic loading postures
+were completed in the preceding map-state pass.
 
 ### 4.5 Places and core Atlas reading surfaces are aligned — no active gap
 
@@ -671,7 +678,7 @@ These visual differences are design-behind-code or intentional deferrals:
 ### Wave 2 — full-stack canonical capabilities
 
 1. Chat Map/Route, Comparison, Error/Recovery, Itinerary, Atlas Draft, and production Privacy Handoff; then CardLift depth behavior.
-2. Discover Map scope/layer contract, trip context, heterogeneous pin types, denied/offline states.
+2. Discover Map scope/layer contract, trip context, heterogeneous pin types, denied/offline states. **Resolved.**
 3. Atlas state-driven seed selector and progression.
 4. Stay comparison attribution/differentiators/recommendation.
 

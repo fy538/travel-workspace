@@ -9181,7 +9181,7 @@
           "discover"
         ],
         "summary": "Discover Map",
-        "description": "Discover spatial-browse pins \u2014 venues with coordinates, each carrying the\njudgment layer that makes the map a browse surface: a curator Take preview\n(Vesper's stance) and the viewer's own affinity ('loved here').\n\nTwo scopes. ``place_slug`` plots the city subtree; ``lat``/``lng`` plots\nwhat's within ``radius_m``. With neither, returns an empty pin set (honest\nabsence) rather than guessing a location. The full Take is a tap-time fetch\non the client peek card \u2014 pins carry only the cheap preview.",
+        "description": "Discover spatial-browse pins for venues, experiences, places, and friends.\n\nCatalog pins carry the cheap judgment preview available for their entity\ntype. Venue pins additionally carry affinity; venue and experience pins\ncarry saved/planned state. Fresh trip-companion locations are a separate,\napproximate coordination signal and never masquerade as itinerary items.\n\nTwo scopes. ``place_slug`` plots the city subtree; ``lat``/``lng`` plots\nwhat's within ``radius_m``. With neither, returns an empty pin set (honest\nabsence) rather than guessing a location. The full Take is a tap-time fetch\non the client peek card \u2014 pins carry only the cheap preview.",
         "operationId": "discover_map_api_discover_map_get",
         "parameters": [
           {
@@ -41268,17 +41268,79 @@
           },
           "kind": {
             "type": "string",
-            "const": "venue",
+            "enum": [
+              "venue",
+              "experience",
+              "place",
+              "friend"
+            ],
             "title": "Kind",
             "default": "venue"
           },
+          "entity_id": {
+            "type": "string",
+            "title": "Entity Id"
+          },
           "venue_id": {
-            "type": "integer",
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Venue Id"
+          },
+          "experience_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Experience Id"
+          },
+          "place_slug": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Slug"
+          },
+          "user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "User Id"
           },
           "title": {
             "type": "string",
             "title": "Title"
+          },
+          "category": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category"
           },
           "venue_type": {
             "anyOf": [
@@ -41334,12 +41396,17 @@
             "type": "boolean",
             "title": "In Trip",
             "default": false
+          },
+          "approximate": {
+            "type": "boolean",
+            "title": "Approximate",
+            "default": false
           }
         },
         "type": "object",
         "required": [
           "id",
-          "venue_id",
+          "entity_id",
           "title",
           "lat",
           "lng"

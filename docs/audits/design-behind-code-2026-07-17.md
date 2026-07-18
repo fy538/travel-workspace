@@ -30,8 +30,11 @@ should now treat these as shipped code truth:
   three-truth stale-draft recovery state.
 - Discover Map now has scope/layer controls, exact-trip context, preserved
   venue/Vesper handoffs, location-denied recovery, and an offline mode limited
-  to saved/in-plan pins. Heterogeneous friend/experience/place pin payloads
-  remain future work.
+  to saved/in-plan pins. Venue, experience, place and friend pins are now typed
+  runtime objects with distinct accessible forms and canonical handoffs.
+  Friend-location specimens must preserve the shipped privacy boundary:
+  authenticated trip context, exact trip-scoped provenance, under-15-minute
+  freshness, viewer exclusion, rounded coordinates and no legacy fallback.
 - Atlas seed entrances are state-driven, Chat depth is live for booking, vote
   and research, Universal Search action receipts have stable destinations, and
   completed Trip owns the unresolved-settlement pointer.
