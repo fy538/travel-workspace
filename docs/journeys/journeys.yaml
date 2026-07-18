@@ -294,17 +294,19 @@ journeys:
         title: Solo group and archive room lifecycle
         required_evidence: [FE, BE, VIS, LIVE]
         evidence:
-          FE: []
+          FE:
+            - travel-app/__tests__/journeys/journey-24-mock-walk.smoke.test.tsx
+            - travel-app/__tests__/screens/trip-settings.group-agency.test.tsx
           BE:
             - travel-agent/tests/scenarios/test_j24_trip_cardinality_transitions.py
             - travel-agent/tests/scenarios/test_j24_trip_archive_history.py
-          VIS: []
+          VIS: [travel-app/.maestro/polish/trip-settings-admin.yaml]
           LIVE: []
       - id: J24.B02
         title: Leave and rejoin membership epochs
         required_evidence: [FE, BE, VIS, LIVE]
         evidence:
-          FE: []
+          FE: [travel-app/__tests__/journeys/journey-24-mock-walk.smoke.test.tsx]
           BE: [travel-agent/tests/scenarios/test_j24_membership_epochs.py]
           VIS: []
           LIVE: []
@@ -312,17 +314,17 @@ journeys:
         title: Role and shared-plan-owner transfer
         required_evidence: [FE, BE, VIS, LIVE]
         evidence:
-          FE: []
+          FE: [travel-app/__tests__/screens/trip-settings.group-agency.test.tsx]
           BE:
             - travel-agent/tests/scenarios/test_j24_membership_epochs.py
             - travel-agent/tests/scenarios/test_j24_organizer_handoff.py
-          VIS: []
+          VIS: [travel-app/.maestro/polish/trip-settings-admin.yaml]
           LIVE: []
       - id: J24.B04
         title: Atomic organizer handoff
         required_evidence: [FE, BE, VIS, LIVE]
         evidence:
-          FE: []
+          FE: [travel-app/__tests__/screens/trip-settings.group-agency.test.tsx]
           BE: [travel-agent/tests/scenarios/test_j24_organizer_handoff.py]
           VIS: []
           LIVE: []
@@ -330,24 +332,26 @@ journeys:
         title: Authority fences uncommitted work
         required_evidence: [FE, BE, VIS]
         evidence:
-          FE: []
+          FE: [travel-app/__tests__/screens/trip-settings.group-agency.test.tsx]
           BE: [travel-agent/tests/scenarios/test_j24_active_membership_authority.py]
           VIS: []
       - id: J24.B06
         title: Shared room mute and private personal mute
         required_evidence: [FE, BE, VIS, LIVE]
         evidence:
-          FE: []
+          FE:
+            - travel-app/__tests__/journeys/journey-24-mock-walk.smoke.test.tsx
+            - travel-app/__tests__/screens/trip-settings.group-agency.test.tsx
           BE: [travel-agent/tests/scenarios/test_j24_group_agency_governance.py]
-          VIS: []
+          VIS: [travel-app/.maestro/polish/trip-settings-admin.yaml]
           LIVE: []
       - id: J24.B07
         title: Invite attention follows current authority
         required_evidence: [FE, BE, VIS]
         evidence:
-          FE: []
+          FE: [travel-app/__tests__/screens/trip-settings.group-agency.test.tsx]
           BE: [travel-agent/tests/scenarios/test_j24_organizer_handoff.py]
-          VIS: []
+          VIS: [travel-app/.maestro/polish/trip-settings-admin.yaml]
   - id: J25
     title: Empty Atlas to First Useful Atlas
     doc: 25-empty-atlas-to-first-useful-atlas.md

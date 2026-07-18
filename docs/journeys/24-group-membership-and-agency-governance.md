@@ -55,6 +55,6 @@ auditable, so that history remains trustworthy while the roster changes.
 
 ## First Automation Target
 
-Add frontend role/authority contracts and a two-account native roster walk; the
-six archive/membership/cardinality/handoff/authority/agency backend scenarios
-are now consolidated under J24 and mapped to all seven logic branches.
+Add a disposable multi-account lived fixture plus dedicated handoff/rejoin
+captures. Frontend and backend contracts now cover all seven branches; the
+existing settings capture covers four, while three interaction states remain.
