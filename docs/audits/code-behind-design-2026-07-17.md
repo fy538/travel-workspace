@@ -177,9 +177,8 @@ actions. Group execution is rejected before any Atlas read.
 
 ### Compact residual backlog
 
-| Priority | Residual capability | Direction |
-|---|---|---|
-| P2 | Bounded product/interaction polish | Place/venue share-owner sheet. |
+No ungated bounded parity item remains from this audit. The items below require
+new producer, persistence, platform, or product contracts before implementation.
 
 Deferred and therefore excluded from the active residual list: Home
 Flight/Comparison without producers, booking pre-session date validation and
@@ -493,9 +492,16 @@ No money is silently edited by a dispute transition.
 
 The older reimbursement row is not part of this gap. Recorded settlement payments and voiding are newer, more durable code truth and belong in the design-behind-code audit.
 
-### 2.6 Place and venue share controls are absent — P2
+### 2.6 Place and venue share controls — resolved
 
-The design specifies an owner-control sheet with copy, preview, native share, personal-note exclusion, and privacy posture. Place and Venue currently invoke native sharing immediately with a public URL. Add the owner-control surface and link state when these design-ready patterns move into the active release scope.
+Place and Venue now open one shared owner-control sheet before leaving the app.
+It keeps Copy public link, native Share, and Preview public page together and
+states the real payload boundary: public entity information only; personal
+notes, saves, memories, and trip context remain private. It deliberately does
+not expose the design sketch's misleading “Remove personal note” mutation—the
+public payload already excludes that material, so there is nothing share-local
+to remove. Both surfaces retain their existing public URLs and public-reader
+ownership.
 
 ### 2.7 OAuth failure lacks its inline provider state — P2
 
@@ -737,7 +743,7 @@ These visual differences are design-behind-code or intentional deferrals:
 
 ### Deferred activation work
 
-Home Flight/Comparison producers, live checkout, per-trip privacy/learning, voice takeover, blur material, external-share owner controls, and Atlas deferred facets should advance only with their required contracts and product gates.
+Home Flight/Comparison producers, live checkout, per-trip privacy/learning, voice takeover, blur material, and Atlas deferred facets should advance only with their required contracts and product gates.
 
 ---
 
