@@ -210,7 +210,7 @@ Source: `docs/journeys/journeys.yaml` × registered branch evidence where declar
 | J21 | Collaborative Stay and Traveler Ownership | customer | — | — | — | ⤵️ |
 | J22 | Booking Exception and Provider Handoff | customer | — | — | — | ⤵️ |
 | J23 | Group Costs to Correction and Settlement | customer | — | — | — | ⤵️ |
-| J24 | Group Membership and Agency Governance | customer | — | — | — | ⤵️ |
+| J24 | Group Membership and Agency Governance | customer | — 0/7 | ✅ 7/7 | — 0/7 | — 0/5 |
 | J25 | Empty Atlas to First Useful Atlas | customer | — | — | — | ⤵️ |
 | J26 | Atlas Reading to Steer Keep and Return | customer | — | — | — | ⤵️ |
 | J27 | Atlas Provenance to Correct or Forget | customer | — | — | — | ⤵️ |
@@ -223,8 +223,8 @@ Source: `docs/journeys/journeys.yaml` × registered branch evidence where declar
 |---|---|
 | Canonical journey contracts | 28 / 28 defined |
 | Frontend contract evidence | 19 / 28; J20–J28 intentionally open |
-| Backend logic evidence | 19 / 28; J20–J28 intentionally open |
-| Branch-aware trial | J06: VIS 4/7, LIVE 3/4 · J10: VIS 4/9, LIVE 2/8 · J11: VIS 6/6, LIVE 1/6 |
+| Backend logic evidence | 20 / 28; J24 is 7/7 at the branch level |
+| Branch-aware coverage | J06: VIS 4/7, LIVE 3/4 · J10: VIS 4/9, LIVE 2/8 · J11: VIS 6/6, LIVE 1/6 · J24: FE 0/7, BE 7/7, VIS 0/7, LIVE 0/5 |
 | Visual journey evidence | 14 complete + 2 partial / 28 |
 | Lived persona evidence | 15 pass / 28 · 13 explicit skips |
 | Maestro wedge flows (24/25) | **green** 2026-06-29 (`make certify-visual`) |

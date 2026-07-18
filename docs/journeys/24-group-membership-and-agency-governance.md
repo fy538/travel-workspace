@@ -55,5 +55,6 @@ auditable, so that history remains trustworthy while the roster changes.
 
 ## First Automation Target
 
-Promote the six existing archive/membership/cardinality/handoff/authority/agency
-backend scenarios into this branch map, then add a two-account native roster walk.
+Add frontend role/authority contracts and a two-account native roster walk; the
+six archive/membership/cardinality/handoff/authority/agency backend scenarios
+are now consolidated under J24 and mapped to all seven logic branches.

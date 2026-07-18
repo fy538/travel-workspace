@@ -289,6 +289,65 @@ journeys:
     title: Group Membership and Agency Governance
     doc: 24-group-membership-and-agency-governance.md
     tier: customer-extension
+    branches:
+      - id: J24.B01
+        title: Solo group and archive room lifecycle
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE: []
+          BE:
+            - travel-agent/tests/scenarios/test_j24_trip_cardinality_transitions.py
+            - travel-agent/tests/scenarios/test_j24_trip_archive_history.py
+          VIS: []
+          LIVE: []
+      - id: J24.B02
+        title: Leave and rejoin membership epochs
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE: []
+          BE: [travel-agent/tests/scenarios/test_j24_membership_epochs.py]
+          VIS: []
+          LIVE: []
+      - id: J24.B03
+        title: Role and shared-plan-owner transfer
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE: []
+          BE:
+            - travel-agent/tests/scenarios/test_j24_membership_epochs.py
+            - travel-agent/tests/scenarios/test_j24_organizer_handoff.py
+          VIS: []
+          LIVE: []
+      - id: J24.B04
+        title: Atomic organizer handoff
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE: []
+          BE: [travel-agent/tests/scenarios/test_j24_organizer_handoff.py]
+          VIS: []
+          LIVE: []
+      - id: J24.B05
+        title: Authority fences uncommitted work
+        required_evidence: [FE, BE, VIS]
+        evidence:
+          FE: []
+          BE: [travel-agent/tests/scenarios/test_j24_active_membership_authority.py]
+          VIS: []
+      - id: J24.B06
+        title: Shared room mute and private personal mute
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE: []
+          BE: [travel-agent/tests/scenarios/test_j24_group_agency_governance.py]
+          VIS: []
+          LIVE: []
+      - id: J24.B07
+        title: Invite attention follows current authority
+        required_evidence: [FE, BE, VIS]
+        evidence:
+          FE: []
+          BE: [travel-agent/tests/scenarios/test_j24_organizer_handoff.py]
+          VIS: []
   - id: J25
     title: Empty Atlas to First Useful Atlas
     doc: 25-empty-atlas-to-first-useful-atlas.md

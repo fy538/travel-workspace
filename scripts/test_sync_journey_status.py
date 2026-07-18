@@ -59,6 +59,9 @@ def test_trial_branch_registry_reports_expected_honest_fractions() -> None:
     assert subject._branch_fidelity_cell(journeys["J10"], "LIVE", lived) == "◐ 2/8"
     assert subject._branch_fidelity_cell(journeys["J11"], "VIS", lived) == "✅ 6/6"
     assert subject._branch_fidelity_cell(journeys["J11"], "LIVE", lived) == "◐ 1/6"
+    assert subject._branch_fidelity_cell(journeys["J24"], "FE", lived) == "— 0/7"
+    assert subject._branch_fidelity_cell(journeys["J24"], "BE", lived) == "✅ 7/7"
+    assert subject._branch_fidelity_cell(journeys["J24"], "LIVE", lived) == "— 0/5"
 
 
 def test_journey_set_is_derived_from_the_manifest() -> None:
