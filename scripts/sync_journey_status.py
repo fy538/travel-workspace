@@ -207,6 +207,52 @@ def _visual_ids() -> set[str]:
     return visual
 
 
+def _branch_anchor_state(anchor: str, by_id: dict[str, dict]) -> str:
+    """Return pass/fail/missing for one registered branch evidence anchor."""
+    if anchor.startswith("persona-cert:"):
+        jid = anchor.removeprefix("persona-cert:")
+        row = by_id.get(jid)
+        if row is None or row.get("status") == "skip":
+            return "missing"
+        return "pass" if row.get("status") == "pass" else "fail"
+    return "pass" if (_REPO_ROOT / anchor).exists() else "missing"
+
+
+def _branch_fidelity_cell(journey: dict, code: str, by_id: dict[str, dict]) -> str | None:
+    """Summarize registered branch evidence for one fidelity.
+
+    All anchors listed for a branch/fidelity are required. An empty list is an
+    explicit gap. Returns None when this journey has no branch manifest for the
+    requested fidelity, allowing the legacy parent-level signal during migration.
+    """
+    branches = [
+        branch
+        for branch in journey.get("branches", [])
+        if code in branch.get("required_evidence", [])
+    ]
+    if not branches:
+        return None
+
+    passed = 0
+    failed = False
+    for branch in branches:
+        anchors = branch.get("evidence", {}).get(code, [])
+        states = [_branch_anchor_state(anchor, by_id) for anchor in anchors]
+        if states and all(state == "pass" for state in states):
+            passed += 1
+        if "fail" in states:
+            failed = True
+
+    total = len(branches)
+    if failed:
+        return f"🔴 {passed}/{total}"
+    if passed == total:
+        return f"✅ {passed}/{total}"
+    if passed:
+        return f"◐ {passed}/{total}"
+    return f"— 0/{total}"
+
+
 def build_matrix_block(by_id: dict[str, dict]) -> str:
     """Generated fidelity Matrix for the WHOLE journey set (from journeys.yaml):
     rows = every journey; columns = contract(FE)/logic(BE) derived from which
@@ -232,19 +278,26 @@ def build_matrix_block(by_id: dict[str, dict]) -> str:
         else:
             lived = lived_glyph.get(lived_row.get("status", ""), lived_row.get("status", "—"))
         tier = "golden" if j.get("tier") == "golden-path" else "holistic"
+        contract = _branch_fidelity_cell(j, "FE", by_id)
+        logic = _branch_fidelity_cell(j, "BE", by_id)
+        visual_cell = _branch_fidelity_cell(j, "VIS", by_id)
+        lived_cell = _branch_fidelity_cell(j, "LIVE", by_id)
         rows.append(
             f"| {jid} | {j['title']} | {tier} | "
-            f"{'✅' if jid in fe else '—'} | {'✅' if jid in be else '—'} | "
-            f"{'✅' if jid in visual else '—'} | {lived} |"
+            f"{contract or ('✅' if jid in fe else '—')} | "
+            f"{logic or ('✅' if jid in be else '—')} | "
+            f"{visual_cell or ('✅' if jid in visual else '—')} | "
+            f"{lived_cell or lived} |"
         )
     table = "\n".join(rows)
     return (
         f"{_MX_BEGIN}\n"
         "### Journey fidelity matrix (auto-generated)\n\n"
-        "Source: `docs/journeys/journeys.yaml` × derived coverage (FE mock-walk / "
-        "BE pytest file presence / Maestro dedicated flow) × live persona-cert. "
+        "Source: `docs/journeys/journeys.yaml` × registered branch evidence where "
+        "declared; legacy rows use FE mock-walk / BE pytest / dedicated Maestro "
+        "file presence × live persona-cert. "
         "Regenerate: `make dogfood-status-sync`. Set integrity: `make journey-registry-check`. "
-        "Legend: ✅ present/pass · ⤵️ skip · 🔴 fail · — none.\n\n"
+        "Legend: ✅ all required branches · ◐ partial · ⤵️ skip · 🔴 fail · — none.\n\n"
         f"{table}\n"
         f"{_MX_END}"
     )

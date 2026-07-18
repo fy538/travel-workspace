@@ -28,6 +28,7 @@ _REPO = Path(__file__).resolve().parent.parent
 _DOCS = _REPO / "docs" / "journeys"
 _AGENT = _REPO / "travel-agent"
 _APP = _REPO / "travel-app"
+_EVIDENCE_CODES = {"FE", "BE", "VIS", "LIVE"}
 
 
 def _manifest() -> tuple[set[str], dict[str, str]]:
@@ -77,6 +78,66 @@ def _fe_mockwalk_ids() -> set[str]:
     )
 
 
+def _branch_registry_problems() -> tuple[list[str], int]:
+    """Validate optional branch manifests and their registered evidence anchors.
+
+    Empty evidence lists are allowed: they are how the registry represents an
+    explicit coverage gap. Non-persona anchors must resolve inside the workspace.
+    """
+    data = yaml.safe_load((_DOCS / "journeys.yaml").read_text()) or {}
+    journeys = data.get("journeys", [])
+    journey_ids = {journey.get("id") for journey in journeys}
+    seen: set[str] = set()
+    problems: list[str] = []
+    branch_count = 0
+
+    for journey in journeys:
+        jid = journey.get("id")
+        for branch in journey.get("branches", []):
+            branch_count += 1
+            bid = branch.get("id")
+            if not isinstance(bid, str) or not re.fullmatch(rf"{re.escape(jid)}\.B\d{{2}}", bid):
+                problems.append(f"{jid}: invalid branch id {bid!r}")
+                continue
+            if bid in seen:
+                problems.append(f"duplicate branch id: {bid}")
+            seen.add(bid)
+
+            required = branch.get("required_evidence")
+            if not isinstance(required, list) or not required:
+                problems.append(f"{bid}: required_evidence must be a non-empty list")
+                continue
+            unknown_required = set(required) - _EVIDENCE_CODES
+            if unknown_required:
+                problems.append(f"{bid}: unknown required evidence {sorted(unknown_required)}")
+
+            evidence = branch.get("evidence")
+            if not isinstance(evidence, dict):
+                problems.append(f"{bid}: evidence must be a mapping")
+                continue
+            unknown_evidence = set(evidence) - _EVIDENCE_CODES
+            if unknown_evidence:
+                problems.append(f"{bid}: unknown evidence keys {sorted(unknown_evidence)}")
+
+            for code in required:
+                anchors = evidence.get(code)
+                if not isinstance(anchors, list):
+                    problems.append(f"{bid}: {code} evidence must be a list (empty is allowed)")
+                    continue
+                for anchor in anchors:
+                    if not isinstance(anchor, str) or not anchor:
+                        problems.append(f"{bid}: {code} contains an invalid anchor")
+                        continue
+                    if anchor.startswith("persona-cert:"):
+                        target = anchor.removeprefix("persona-cert:")
+                        if target not in journey_ids:
+                            problems.append(f"{bid}: unknown persona-cert journey {target}")
+                    elif not (_REPO / anchor).exists():
+                        problems.append(f"{bid}: evidence anchor does not exist: {anchor}")
+
+    return problems, branch_count
+
+
 def main() -> int:
     manifest_ids, manifest_docs = _manifest()
     if not manifest_ids:
@@ -99,6 +160,9 @@ def main() -> int:
         if ids - manifest_ids:
             problems.append(f"in {name} but not manifest: {sorted(ids - manifest_ids)}")
 
+    branch_problems, branch_count = _branch_registry_problems()
+    problems.extend(branch_problems)
+
     if problems:
         print("✗ journey-set drift (fix journeys.yaml or the listed registry):", file=sys.stderr)
         for p in problems:
@@ -107,6 +171,8 @@ def main() -> int:
 
     n = len(manifest_ids)
     print(f"✓ journey set in sync across docs + README + persona-cert ({n} journeys)")
+    if branch_count:
+        print(f"  branch registry: {branch_count} branches validated")
 
     # Informational fidelity coverage — never fails (J13–J19 are lived-only).
     fe, be, sc = _fe_mockwalk_ids(), _be_test_ids(), _scenarios_ids()

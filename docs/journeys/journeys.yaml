@@ -37,6 +37,60 @@ journeys:
     title: Itinerary, Map, Details, Chat, and Changes Coherence
     doc: 06-home-plan-map-changes-coherence.md
     tier: golden-path
+    branches:
+      - id: J06.B01
+        title: Baseline placed-block coherence
+        required_evidence: [FE, BE, VIS]
+        evidence:
+          FE: [travel-app/__tests__/journeys/06-cross-surface-coherence.test.ts]
+          BE: [travel-agent/tests/scenarios/test_j06_home_plan_map_changes_coherence.py]
+          VIS: [travel-app/.maestro/49-journey-06-cross-surface-coherence.yaml]
+      - id: J06.B02
+        title: Proposal apply reconciliation
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE: [travel-app/__tests__/journeys/journey-05-mock-walk.smoke.test.tsx]
+          BE: [travel-agent/tests/scenarios/test_j05_proposal_plan_mutation.py]
+          VIS: [travel-app/.maestro/25-journey-05-proposal-mutation.yaml]
+          LIVE: [persona-cert:J05]
+      - id: J06.B03
+        title: Proposal revert reconciliation
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE: [travel-app/__tests__/hooks/usePlanProposalUndo.test.ts]
+          BE: [travel-agent/tests/api/test_itinerary_operation_history.py]
+          VIS: []
+          LIVE: []
+      - id: J06.B04
+        title: Direct-edit commit reconciliation
+        required_evidence: [FE, BE, VIS]
+        evidence:
+          FE: [travel-app/__tests__/data/itineraryOperations.test.tsx]
+          BE: [travel-agent/tests/api/test_itinerary_operations_commit.py]
+          VIS: []
+      - id: J06.B05
+        title: Live-trip mutation reconciliation
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE: [travel-app/__tests__/journeys/journey-08-mock-walk.smoke.test.tsx]
+          BE: [travel-agent/tests/scenarios/test_j08_live_trip_what_now.py]
+          VIS: [travel-app/.maestro/51-journey-08-live-what-now.yaml]
+          LIVE: [persona-cert:J08]
+      - id: J06.B06
+        title: Stay and booking writeback reconciliation
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE: [travel-app/__tests__/utils/bookingReceiptState.test.ts]
+          BE: [travel-agent/tests/scenarios/test_j10_booking_stay_expense_trust_loop.py]
+          VIS: [travel-app/.maestro/28-journey-10-booking-stay-expense.yaml]
+          LIVE: [persona-cert:J10]
+      - id: J06.B07
+        title: Unplaced and unmapped honesty
+        required_evidence: [FE, BE, VIS]
+        evidence:
+          FE: [travel-app/__tests__/utils/tripMapStateParity.test.ts]
+          BE: [travel-agent/tests/core/test_map_state_builder.py]
+          VIS: []
   - id: J07
     title: Discover to Contextual Vesper to Trip Action
     doc: 07-discover-to-contextual-vesper-to-trip-action.md
@@ -53,10 +107,136 @@ journeys:
     title: Booking, Stay, and Expense Trust Loop
     doc: 10-booking-stay-expense-trust-loop.md
     tier: golden-path
+    branches:
+      - id: J10.B01
+        title: Organizer manages the shared trip base
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE: [travel-app/__tests__/hooks/useStaySummary.test.ts]
+          BE: [travel-agent/tests/scenarios/test_j10_booking_stay_expense_trust_loop.py]
+          VIS: [travel-app/.maestro/31-journey-10-device-organizer-stay-expense.yaml]
+          LIVE: [persona-cert:J10]
+      - id: J10.B02
+        title: Traveler manages a personal stay slot
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE: [travel-app/__tests__/screens/accommodation-detail.smoke.test.tsx]
+          BE: [travel-agent/tests/scenarios/test_j10_booking_stay_expense_trust_loop.py]
+          VIS: []
+          LIVE: []
+      - id: J10.B03
+        title: Assigned booker and read-only observer converge
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE: [travel-app/__tests__/hooks/useBookingDecision.test.tsx]
+          BE: [travel-agent/tests/booking/test_booking_controller_departure_postgres.py]
+          VIS: []
+          LIVE: []
+      - id: J10.B04
+        title: Unpaid hold settle and release truth
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE: [travel-app/__tests__/screens/booking-confirm.test.tsx]
+          BE: [travel-agent/tests/booking/test_holds.py]
+          VIS: []
+          LIVE: []
+      - id: J10.B05
+        title: Provider exception and recovery truth
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE: [travel-app/__tests__/utils/api/mockBookingQaContract.test.ts]
+          BE:
+            - travel-agent/tests/booking/test_hold_expiration.py
+            - travel-agent/tests/booking/test_provider_resilience.py
+          VIS: []
+          LIVE: []
+      - id: J10.B06
+        title: Provider-confirmed hotel writeback
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE: [travel-app/__tests__/hooks/useProviderReceiptCapture.test.ts]
+          BE: [travel-agent/tests/booking/test_accommodation_projection_task.py]
+          VIS: [travel-app/.maestro/28-journey-10-booking-stay-expense.yaml]
+          LIVE: []
+      - id: J10.B07
+        title: Explicit idempotent share to Costs
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE:
+            - travel-app/__tests__/components/expense/AddExpenseSheet.test.tsx
+            - travel-app/__tests__/hooks/useCreateExpenseIdempotency.test.tsx
+          BE: [travel-agent/tests/scenarios/test_j10_booking_stay_expense_trust_loop.py]
+          VIS: [travel-app/.maestro/28-journey-10-booking-stay-expense.yaml]
+          LIVE: [persona-cert:J10]
+      - id: J10.B08
+        title: Non-booker sees group-safe booking state
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE: [travel-app/__tests__/screens/accommodation-detail.smoke.test.tsx]
+          BE: [travel-agent/tests/scenarios/test_j10_booking_stay_expense_trust_loop.py]
+          VIS: [travel-app/.maestro/32-journey-10-device-member-stay-visibility-check.yaml]
+          LIVE: []
+      - id: J10.B09
+        title: Exact return after booking handoff
+        required_evidence: [FE, VIS]
+        evidence:
+          FE: [travel-app/__tests__/screens/booking-confirm.test.tsx]
+          VIS: []
   - id: J11
     title: Atlas Candidate to Memory Control
     doc: 11-atlas-candidate-to-memory-control.md
     tier: golden-path
+    branches:
+      - id: J11.B01
+        title: First useful Atlas
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE: [travel-app/__tests__/utils/api/atlasPlaceSave.mock.test.ts]
+          BE: [travel-agent/tests/atlas/test_home_saved_places.py]
+          VIS: [travel-app/.maestro/atlas-journey-place-save-return.yaml]
+          LIVE: []
+      - id: J11.B02
+        title: Review and resolve an Atlas decision
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE: [travel-app/__tests__/journeys/journey-11-mock-walk.smoke.test.tsx]
+          BE: [travel-agent/tests/scenarios/test_j11_atlas_candidate_memory_control.py]
+          VIS:
+            - travel-app/.maestro/55-journey-11-atlas-memory-control.yaml
+            - travel-app/.maestro/atlas-journey-review-dismiss-return.yaml
+          LIVE: [persona-cert:J11]
+      - id: J11.B03
+        title: Shape and keep a Reading
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE: [travel-app/__tests__/utils/api/atlasReading.mock.test.ts]
+          BE: [travel-agent/tests/atlas/test_atlas_composer.py]
+          VIS: [travel-app/.maestro/atlas-journey-reading-keep-return.yaml]
+          LIVE: []
+      - id: J11.B04
+        title: Correct or forget learned memory
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE: [travel-app/__tests__/conventions/atlasMemoryCorrectionContract.test.ts]
+          BE: [travel-agent/tests/core/test_memory_corrections.py]
+          VIS: [travel-app/.maestro/atlas-journey-memory-forget-return.yaml]
+          LIVE: []
+      - id: J11.B05
+        title: Browse hide and restore Atlas history
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE: [travel-app/__tests__/utils/atlasTimelineArchive.test.ts]
+          BE: [travel-agent/tests/atlas/test_timeline_removed.py]
+          VIS: [travel-app/.maestro/atlas-journey-archive-hide-restore.yaml]
+          LIVE: []
+      - id: J11.B06
+        title: Receive and retire a timely return
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE: [travel-app/__tests__/utils/atlasTimelyReturn.test.ts]
+          BE: [travel-agent/tests/atlas/test_atlas_unpacked.py]
+          VIS: [travel-app/.maestro/atlas-journey-timely-return-open-dismiss.yaml]
+          LIVE: []
   - id: J12
     title: Returned Trip to Story, Memory, and Settle-Up
     doc: 12-returned-trip-to-story-memory-settle-up.md
