@@ -262,7 +262,7 @@ Stay inside the existing Trip visual language; preserve the frozen header, Detai
 These held up under verification; don't spend design sessions here: **header & Trip entrance chrome** (frozen; preserve) · **the central itinerary spine** (canon is *ahead* of production here) · **the core typed-operation doctrine and already-rendered Workflow journeys** (consume them; update the family↔engine mapping and current ChangeStudio application rather than inventing a second operation system) · **Story/Memory/sharing composition + share lifecycle** (covered; only the §4.9 module-placement and §5 flag-dark-state additions remain) · **people rosters & member action sheets** (covered — but the distinct *shared-plan succession/atomic-departure* slice is not; it stays in session 7) · **typography/tokens/row/button systems** (apply, don't fork) · **trip-entry waiting screen** (no visible production state to match; future polish, not parity).
 
 ## 7 · Code-behind-design (for completeness — NOT design debt)
-Trip-creation row-level correction remains · Home Flight/Comparison faces await grounded producers · voice takeover remains flag-dark (residual `Vesper · {city}` subtitle on reopening) · live in-app checkout is gated dark · heterogeneous Discover pins remain backend-gated · richer Replan delta and initial parallel-plan construction remain.
+Home Flight/Comparison faces await grounded producers · voice takeover remains flag-dark (residual `Vesper · {city}` subtitle on reopening) · live in-app checkout is gated dark · richer Replan delta and initial parallel-plan construction remain. Trip-creation row-level correction and heterogeneous Discover pins are now implemented.
 
 ---
 

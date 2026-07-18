@@ -179,7 +179,7 @@ actions. Group execution is rejected before any Atlas read.
 
 | Priority | Residual capability | Direction |
 |---|---|---|
-| P2 | Bounded product/interaction polish | Trip-creation correction, booking recovery and share-owner sheets. |
+| P2 | Bounded product/interaction polish | Booking recovery and share-owner sheets. |
 
 Deferred and therefore excluded from the active residual list: Home
 Flight/Comparison without producers, per-trip privacy/learning, voice takeover,
@@ -394,12 +394,17 @@ Keep that honesty. Build durable per-trip fields before exposing the designed to
 
 Do not restore the design's obsolete queued date-change state; keep the newer preview → atomic replan model and improve only its information hierarchy.
 
-### 1.11 Trip-creation proposal is missing editable evidence — P2
+### 1.11 Trip-creation proposal editable evidence — resolved
 
-`TripCreationProposalCard` now has a safe in-card ambiguous-outcome error, so the old audit claim that failure is absent is stale. It still omits two designed behaviors:
-
-- the anchors row carried by the evidence contract,
-- row-level “Change” actions that seed a correction into the composer and refresh the same proposal.
+`TripCreationProposalCard` now renders the grounded anchors carried by the
+evidence contract and exposes accessible row-level correction actions before
+commit. Each action seeds an editable, focused composer draft; the submitted
+turn carries the proposal ID, displayed version, and corrected field. The
+existing durable backend path locks the conversation's one proposal, increments
+its version, and rewrites the original transcript message in place. Drafting
+proposals expose the designed exact-date handoff, repeat taps deliberately
+re-seed the composer, and committed receipts remove correction affordances.
+The safe ambiguous-confirmation outcome remains in card.
 
 ### 1.12 Completed trips do not point to unresolved settlement — P1
 
@@ -645,7 +650,7 @@ The reference document intentionally treated code-behind-design as a brief appen
 | Reference item | Current adjudication |
 |---|---|
 | Universal Search action rows `route=None` | **Still true**; §3.4. |
-| Trip-creation anchors/correction/failure | **Partly true**: anchors and correction remain; safe in-card failure now exists; §1.11. |
+| Trip-creation anchors/correction/failure | **Resolved**: grounded anchors, composer-seeded typed corrections, same-card durable refresh, and safe ambiguous confirmation now exist; §1.11. |
 | Home Flight/Vote/Comparison/Settle/Readiness | **Only Flight and Comparison remain**; Vote, Settle, and Readiness are implemented; §3.1. |
 | Voice permission screens + takeover | Permission screens are **implemented**; takeover remains intentionally flag-dark; city subtitle remains; §3.6. |
 | Costs disputed/reimbursement | **Dispute resolved** as a durable lifecycle; reimbursement was superseded by the recorded-payments ledger; §2.5. |
