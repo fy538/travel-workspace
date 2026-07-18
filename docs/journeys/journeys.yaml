@@ -351,6 +351,111 @@ journeys:
     title: Booking Exception and Provider Handoff
     doc: 22-booking-exception-and-provider-handoff.md
     tier: customer-extension
+    branches:
+      - id: J22.B01
+        title: Assigned booker versus read-only observer
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-22-mock-walk.smoke.test.tsx
+            - travel-app/__tests__/screens/booking-confirm.test.tsx
+          BE:
+            - travel-agent/tests/scenarios/test_j22_booking_exception_provider_handoff.py
+            - travel-agent/tests/api/test_api_booking.py
+          VIS: [travel-app/.maestro/60-journey-22-booking-exceptions.yaml]
+          LIVE: [persona-cert:J22]
+      - id: J22.B02
+        title: Settle unpaid hold with terms and approval
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-22-mock-walk.smoke.test.tsx
+            - travel-app/__tests__/screens/booking-confirm.test.tsx
+            - travel-app/__tests__/utils/bookingTrustState.test.ts
+          BE:
+            - travel-agent/tests/scenarios/test_j22_booking_exception_provider_handoff.py
+            - travel-agent/tests/scenarios/test_j10_booking_stay_expense_trust_loop.py
+            - travel-agent/tests/api/test_api_booking.py
+          VIS: [travel-app/.maestro/polish/booking-held-stay.yaml]
+          LIVE: [persona-cert:J22]
+      - id: J22.B03
+        title: Release unpaid hold without cancellation overclaim
+        required_evidence: [FE, BE, VIS]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-22-mock-walk.smoke.test.tsx
+            - travel-app/__tests__/screens/booking-confirm.test.tsx
+          BE:
+            - travel-agent/tests/scenarios/test_j22_booking_exception_provider_handoff.py
+            - travel-agent/tests/scenarios/test_j10_booking_stay_expense_trust_loop.py
+          VIS: [travel-app/.maestro/59-journey-15-release-hold-confirm.yaml]
+      - id: J22.B04
+        title: Expired or stale price refresh and retry
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-22-mock-walk.smoke.test.tsx
+            - travel-app/__tests__/screens/booking-confirm.test.tsx
+            - travel-app/__tests__/utils/bookingTrustState.test.ts
+          BE:
+            - travel-agent/tests/scenarios/test_j22_booking_exception_provider_handoff.py
+            - travel-agent/tests/booking/test_hold_expiration.py
+            - travel-agent/tests/api/test_api_booking.py
+          VIS: [travel-app/.maestro/polish/booking-expired-flight.yaml]
+          LIVE: [persona-cert:J22]
+      - id: J22.B05
+        title: Provider unknown or failure remains unresolved
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-22-mock-walk.smoke.test.tsx
+            - travel-app/__tests__/screens/booking-confirm.test.tsx
+            - travel-app/__tests__/utils/bookingReceiptState.test.ts
+          BE:
+            - travel-agent/tests/scenarios/test_j22_booking_exception_provider_handoff.py
+            - travel-agent/tests/booking/test_checkout_reconciliation.py
+            - travel-agent/tests/booking/test_provider_resilience.py
+          VIS: [travel-app/.maestro/polish/booking-provider-unknown.yaml]
+          LIVE: [persona-cert:J22]
+      - id: J22.B06
+        title: Confirmed provider receipt and optional writeback
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-22-mock-walk.smoke.test.tsx
+            - travel-app/__tests__/screens/booking-confirm.test.tsx
+            - travel-app/__tests__/utils/bookingReceiptState.test.ts
+          BE:
+            - travel-agent/tests/scenarios/test_j22_booking_exception_provider_handoff.py
+            - travel-agent/tests/api/test_api_booking.py
+            - travel-agent/tests/booking/test_checkout_reconciliation.py
+          VIS:
+            - travel-app/.maestro/polish/booking-confirmed-train.yaml
+            - travel-app/.maestro/polish/booking-chat-confirmation-card.yaml
+          LIVE: [persona-cert:J22]
+      - id: J22.B07
+        title: Cancellation boundary and provider responsibility
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-22-mock-walk.smoke.test.tsx
+            - travel-app/__tests__/screens/booking-confirm.test.tsx
+          BE:
+            - travel-agent/tests/scenarios/test_j22_booking_exception_provider_handoff.py
+            - travel-agent/tests/booking/test_cancellation_reconciliation.py
+            - travel-agent/tests/booking/test_cancellation_operator_resolution.py
+          VIS: [travel-app/.maestro/60-journey-22-booking-exceptions.yaml]
+          LIVE: [persona-cert:J22]
+      - id: J22.B08
+        title: Exact return and observer reconciliation
+        required_evidence: [FE, VIS, LIVE]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-22-mock-walk.smoke.test.tsx
+            - travel-app/__tests__/screens/booking-confirm.test.tsx
+            - travel-app/__tests__/utils/routes.itineraryReturn.test.ts
+          VIS: [travel-app/.maestro/60-journey-22-booking-exceptions.yaml]
+          LIVE: [persona-cert:J22]
   - id: J23
     title: Group Costs to Correction and Settlement
     doc: 23-group-costs-to-correction-and-settlement.md
