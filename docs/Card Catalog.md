@@ -75,6 +75,7 @@ registry. A row absent here is not a supported chat card.
 | `change_applied` | `ChangeAppliedCard` | `change_applied` | proposal apply paths | receipt, undo, uncertain state |
 | `plan_ready` | `PlanReadyCard` | `notification/plan_ready` | plan generation/refinement | exact Plan destination, revision/undo |
 | `map_route` | `MapRouteCard` | `notification/map_route` | `post_map_route` | inspect grounded route evidence, open focused Map face |
+| `error_recovery` | `ErrorRecoveryCard` | `notification/error_recovery` | durable planning workflow | background retry status or revised-request handoff |
 | `booking_confirmation` | `BookingConfirmationCard` | `booking_confirmation` | `confirm_booking` | receipt, provider link/call/session |
 | `booking_proposal` | `BookingProposalCardFetched` | `booking_proposal` | `propose_booking` | confirm/decline fetched proposal |
 | `document_edit` | `DocumentEditCard` | notification metadata | document/planning tools | open exact day when available |

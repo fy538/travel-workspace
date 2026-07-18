@@ -127,7 +127,7 @@ branch, and requires an owner drawn from each branch.
 
 | Priority | Residual capability | Direction |
 |---|---|---|
-| P1 | Missing Chat object producers | Comparison, Atlas draft, recovery and private handoff still need typed producers plus durable actions; itinerary contributor attribution remains ungrounded. |
+| P1 | Missing Chat object producers | Comparison, Atlas draft and private handoff still need typed producers plus durable actions; itinerary contributor attribution remains ungrounded. |
 | P1 | Heterogeneous Discover pins | Venue pins are complete; friend, experience and place payloads still need accessible rendering and grounded handoffs. |
 | P2 | Bounded product/interaction polish | Trip Info hero/description, Skip vote, trip-creation correction, booking recovery and share-owner sheets. |
 
@@ -439,7 +439,6 @@ The attachment union and renderer cover many designed cards, but these remain ab
 - contributor attribution on the persisted Itinerary/Day Plan stop grid,
 - Comparison,
 - Memory/Atlas Draft,
-- canonical in-turn Error/Recovery,
 - production Privacy/Private-Handoff card—the component is gallery-only,
 - explicit consent path for sending a voice segment to the group.
 
@@ -465,6 +464,19 @@ The renderer never presents a straight connector as routed truth, reports
 omitted unplaced stops, and opens the canonical Map face focused on the first
 stop. Keeping this as an explicit on-demand producer also preserves the card
 catalog's one-object-per-conversational-moment rule.
+
+Canonical Error/Recovery is now closed for the durable planning workflow.
+Retryable workflow failures persist a `retrying` object that states no plan was
+committed, explains that the background worker owns the retry, and deliberately
+offers no competing Retry action. Terminal failures persist a distinct
+`failed` object with a server-authored revised-request prompt; only that
+explicitly retry-safe state exposes the composer action. Recovery cards are
+deduplicated by workflow and terminal state, retain the internal error code for
+diagnostics without displaying it as user copy, and are followed by the normal
+`plan_ready` artifact when background recovery succeeds. Generic connection
+and history-loading failures remain transient `ErrorBanner` UI rather than
+durable artifacts, preserving the distinction between screen chrome and an
+in-thread execution receipt.
 
 ### 3.3 Chat's depth law is not applied — P1
 
