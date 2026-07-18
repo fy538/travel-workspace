@@ -56,3 +56,14 @@ so that the group can coordinate without exposing private lodging details.
 
 Three-person fixture: organizer adds a group base, member adds a private stay,
 and a second member can see the base but neither read nor mutate the private row.
+
+## Certification Notes
+
+- The traveler's personal slot overrides the shared base only for that
+  traveler. Parallel member slots are not rendered as sequential stay legs.
+- Personal slots default private; the traveler can explicitly share one with
+  the group. A shared base cannot be made ownerless-private.
+- Organizers can create or assist a current member's slot, but cannot attach a
+  personal stay to an account outside the trip roster.
+- Removing a recorded stay retires the in-app lodging row and its derived
+  projections. It does not claim that a provider reservation was cancelled.

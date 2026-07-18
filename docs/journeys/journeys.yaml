@@ -277,6 +277,76 @@ journeys:
     title: Collaborative Stay and Traveler Ownership
     doc: 21-collaborative-stay-and-traveler-ownership.md
     tier: customer-extension
+    branches:
+      - id: J21.B01
+        title: Organizer creates and edits the shared trip base
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-21-mock-walk.smoke.test.tsx
+            - travel-app/__tests__/screens/accommodation-detail.smoke.test.tsx
+          BE:
+            - travel-agent/tests/scenarios/test_j21_collaborative_stay_ownership.py
+            - travel-agent/tests/scenarios/test_j10_booking_stay_expense_trust_loop.py
+          VIS:
+            - travel-app/.maestro/47-journey-10-catalog-stay-decision.yaml
+            - travel-app/.maestro/48-journey-21-stay-ownership.yaml
+          LIVE: [persona-cert:J21]
+      - id: J21.B02
+        title: Traveler creates and edits their own personal stay
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-21-mock-walk.smoke.test.tsx
+            - travel-app/__tests__/screens/accommodation-detail.smoke.test.tsx
+            - travel-app/__tests__/utils/routes.tripAccommodationAdd.test.ts
+          BE: [travel-agent/tests/scenarios/test_j21_collaborative_stay_ownership.py]
+          VIS: [travel-app/.maestro/48-journey-21-stay-ownership.yaml]
+          LIVE: [persona-cert:J21]
+      - id: J21.B03
+        title: Organizer assists another traveler
+        required_evidence: [FE, BE, VIS]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-21-mock-walk.smoke.test.tsx
+            - travel-app/__tests__/utils/routes.tripAccommodationAdd.test.ts
+          BE: [travel-agent/tests/scenarios/test_j21_collaborative_stay_ownership.py]
+          VIS: [travel-app/.maestro/48-journey-21-stay-ownership.yaml]
+      - id: J21.B04
+        title: Unrelated member cannot view or mutate a private slot
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-21-mock-walk.smoke.test.tsx
+            - travel-app/__tests__/screens/accommodation-detail.smoke.test.tsx
+          BE:
+            - travel-agent/tests/scenarios/test_j21_collaborative_stay_ownership.py
+            - travel-agent/tests/scenarios/test_second_observer_private_accommodation.py
+          VIS: [travel-app/.maestro/32-journey-10-device-member-stay-visibility-check.yaml]
+          LIVE: [persona-cert:J21]
+      - id: J21.B05
+        title: Candidate versus manual stay stays honestly sourced
+        required_evidence: [FE, BE, VIS]
+        evidence:
+          FE:
+            - travel-app/__tests__/screens/accommodation-detail.smoke.test.tsx
+            - travel-app/__tests__/utils/stayCandidateRequest.test.ts
+          BE:
+            - travel-agent/tests/api/test_stay_candidates.py
+            - travel-agent/tests/api/test_smaudit_stay_candidates.py
+          VIS: [travel-app/.maestro/47-journey-10-catalog-stay-decision.yaml]
+      - id: J21.B06
+        title: Date mismatch replacement and removal reconcile through J06
+        required_evidence: [FE, BE, VIS]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-21-mock-walk.smoke.test.tsx
+            - travel-app/__tests__/utils/stayState.test.ts
+          BE:
+            - travel-agent/tests/scenarios/test_j21_collaborative_stay_ownership.py
+            - travel-agent/tests/core/test_update_accommodation_primary_claim.py
+            - travel-agent/tests/api/test_smaudit_stay_saga_atomic.py
+          VIS: []
   - id: J22
     title: Booking Exception and Provider Handoff
     doc: 22-booking-exception-and-provider-handoff.md
