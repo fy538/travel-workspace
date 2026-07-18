@@ -8,9 +8,9 @@ expires: 2026-08-17
 why_new: Cross-repository execution record for the Vesper 255 parity waves; existing design-validation ledger does not own implementation sequencing or code evidence.
 design_target: Vesper 255, Round 1 M01-M12 and S01-S02
 code_target:
-  travel_app: cce28617
-  travel_agent: aff2b413
-  workspace: aebf614 plus this Wave 3 checkpoint
+  travel_app: 9e1125aa
+  travel_agent: 6c62c0ff
+  workspace: 92b9028 plus this Wave 4 checkpoint
 source_of_truth_for: vesper-255-round-1-code-parity-execution
 ---
 
@@ -263,6 +263,15 @@ The safe immediate posture is:
 5. Add two-connection archive-versus-booking tests and route-return tests.
 
 **Exit:** archive behavior matches the active Trip Settings contract and Vesper 255 source, with no silent booking-work expiry that the UI described as a clean archive.
+
+**Execution checkpoint — 2026-07-18:** functional scope complete; accepted device/accessibility evidence remains open.
+
+- One shared classifier now drives both `GET /archive-preflight` and the locked archive transaction. `pending`, `searching`, `offers_ready`, and `review` sessions are active booking work—not disposable coordination—and `held`/`held_for_payment` offers are explicit provider-hold blockers.
+- Every blocker carries its exact session, optional offer, persisted statuses, and `booking_session` destination. Trip Settings checks readiness before confirmation, renders `Finish booking work first`, and routes directly to the blocking session. A blocker appearing after the read is returned by the archive conflict and reconciled into the same UI instead of becoming a generic toast.
+- The archive transaction no longer silently expires active searches. Confirmed/closed booking evidence remains preserved, and the existing trip-row lock protocol prevents a waiting booking session from being created after archive commits.
+- Archived booking detail is now explicitly historical. New selection, consent mutation, checkout, hold settlement, provider handoff, availability refresh, and retry-forward paths are removed or disabled. Controller-authorized provider reconciliation, confirmed-booking cancellation, and unpaid-hold release remain available where the backend still permits recovery.
+- Focused evidence passed: 252 backend trip/archive/booking tests including PostgreSQL blocker and archive-versus-session concurrency coverage; 234 app booking/archive/settings/data/transport tests; TypeScript; lint with only pre-existing file-size and legacy warnings; and deterministic OpenAPI projection/client checks.
+- M11 is implementation-complete but remains below `PARITY VALIDATED` until the accepted real-device and accessibility walk is attached.
 
 ### Wave 5 — Receipt/OCR vertical slice
 

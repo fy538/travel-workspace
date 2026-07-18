@@ -17609,6 +17609,66 @@
         }
       }
     },
+    "/api/trips/{trip_id}/archive-preflight": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Trip Archive Preflight Endpoint",
+        "description": "Preview the exact booking work that must finish before archive.",
+        "operationId": "trip_archive_preflight_endpoint_api_trips__trip_id__archive_preflight_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripArchivePreflightResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/recover": {
       "post": {
         "tags": [
@@ -18905,7 +18965,7 @@
           "trips"
         ],
         "summary": "Create Trip Accommodation",
-        "description": "Record where this trip is based, for a given date range.\n\nTrip-member-gated — anyone on the trip can declare the base,\nmatching existing trip-scoped auth patterns. The concierge will\ncall this (or a tool backed by it) when the user answers\n\"where are you staying?\" on promotion.",
+        "description": "Record a shared organizer-controlled base or an authorized personal stay.",
         "operationId": "create_trip_accommodation_api_trips__trip_id__accommodations_post",
         "parameters": [
           {
@@ -56361,6 +56421,127 @@
           "is_shared_plan_owner"
         ],
         "title": "TripAccessViewer"
+      },
+      "TripArchiveBlockerResponse": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "booking_search",
+              "provider_hold"
+            ],
+            "title": "Kind"
+          },
+          "code": {
+            "type": "string",
+            "enum": [
+              "active_booking_search",
+              "active_provider_hold"
+            ],
+            "title": "Code"
+          },
+          "session_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Session Id"
+          },
+          "session_status": {
+            "type": "string",
+            "title": "Session Status"
+          },
+          "offer_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Offer Id"
+          },
+          "offer_status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Offer Status"
+          },
+          "destination": {
+            "type": "string",
+            "const": "booking_session",
+            "title": "Destination",
+            "default": "booking_session"
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "code",
+          "session_id",
+          "session_status"
+        ],
+        "title": "TripArchiveBlockerResponse"
+      },
+      "TripArchivePreflightResponse": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "trip_status": {
+            "type": "string",
+            "title": "Trip Status"
+          },
+          "already_archived": {
+            "type": "boolean",
+            "title": "Already Archived"
+          },
+          "can_archive": {
+            "type": "boolean",
+            "title": "Can Archive"
+          },
+          "blocker_codes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Blocker Codes"
+          },
+          "blockers": {
+            "items": {
+              "$ref": "#/components/schemas/TripArchiveBlockerResponse"
+            },
+            "type": "array",
+            "title": "Blockers"
+          },
+          "searches_in_progress": {
+            "type": "integer",
+            "title": "Searches In Progress"
+          },
+          "active_holds": {
+            "type": "integer",
+            "title": "Active Holds"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "trip_status",
+          "already_archived",
+          "can_archive",
+          "blocker_codes",
+          "blockers",
+          "searches_in_progress",
+          "active_holds"
+        ],
+        "title": "TripArchivePreflightResponse"
       },
       "TripBudgetUpdate": {
         "properties": {
