@@ -2,7 +2,7 @@
 
 **Status:** current cross-repo source of truth
 
-**Last verified:** 2026-07-13
+**Last verified:** 2026-07-17
 
 **Implementations:** `travel-app` + `travel-agent`
 
@@ -74,6 +74,7 @@ registry. A row absent here is not a supported chat card.
 | `taste_dna_reflection` | `TravelDNACard` | `notification/taste_dna_reflection` | reflection trigger | dispute learned phrases |
 | `change_applied` | `ChangeAppliedCard` | `change_applied` | proposal apply paths | receipt, undo, uncertain state |
 | `plan_ready` | `PlanReadyCard` | `notification/plan_ready` | plan generation/refinement | exact Plan destination, revision/undo |
+| `map_route` | `MapRouteCard` | `notification/map_route` | `post_map_route` | inspect grounded route evidence, open focused Map face |
 | `booking_confirmation` | `BookingConfirmationCard` | `booking_confirmation` | `confirm_booking` | receipt, provider link/call/session |
 | `booking_proposal` | `BookingProposalCardFetched` | `booking_proposal` | `propose_booking` | confirm/decline fetched proposal |
 | `document_edit` | `DocumentEditCard` | notification metadata | document/planning tools | open exact day when available |
@@ -82,8 +83,9 @@ registry. A row absent here is not a supported chat card.
 | `lazy_research` | `ResearchCard` | text metadata | research worker | informational status |
 | `itinerary_operation` | `ItineraryOperationCard` | notification metadata | itinerary operation preparation | review in canonical itinerary flow |
 
-There are no supported chat `itinerary` or `map_card` attachments. Map is a
-face of Plan, not a standalone chat card.
+There are no supported legacy chat `itinerary` or `map_card` attachments.
+`map_route` is a persisted evidence object, not an independent map screen: its
+primary action opens Map as the second face of Plan.
 
 ## 3. Shared action contract
 

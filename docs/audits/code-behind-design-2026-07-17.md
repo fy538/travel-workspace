@@ -127,7 +127,7 @@ branch, and requires an owner drawn from each branch.
 
 | Priority | Residual capability | Direction |
 |---|---|---|
-| P1 | Missing Chat object producers | Map/route, comparison, Atlas draft, recovery and private handoff still need typed producers plus durable actions; itinerary contributor attribution remains ungrounded. |
+| P1 | Missing Chat object producers | Comparison, Atlas draft, recovery and private handoff still need typed producers plus durable actions; itinerary contributor attribution remains ungrounded. |
 | P1 | Heterogeneous Discover pins | Venue pins are complete; friend, experience and place payloads still need accessible rendering and grounded handoffs. |
 | P2 | Bounded product/interaction polish | Trip Info hero/description, Skip vote, trip-creation correction, booking recovery and share-owner sheets. |
 
@@ -437,7 +437,6 @@ Build grounded producer/action contracts first. Do not add static front-end face
 The attachment union and renderer cover many designed cards, but these remain absent or incomplete in production:
 
 - contributor attribution on the persisted Itinerary/Day Plan stop grid,
-- Map/Route,
 - Comparison,
 - Memory/Atlas Draft,
 - canonical in-turn Error/Recovery,
@@ -454,6 +453,18 @@ reliable author, so the producer intentionally omits it rather than presenting
 planner inference as fact. The other families above still require attachment
 schemas, producers, persistence, renderer states, and actions—not just card
 styling.
+
+The production Map/Route path is also closed. `post_map_route` answers explicit
+map, connection and day-route questions with a typed, persisted route object
+from the canonical `TripMapState` builder. It carries stable block identity,
+coordinates, saved segment mode/minutes/distance, route-quality evidence, and
+an explicit `routed` versus `straight_line` geometry source. The handler
+refuses days with fewer than two placed stops, is retry-idempotent by tool-call
+identity, and passes all visible route copy through the group privacy guard.
+The renderer never presents a straight connector as routed truth, reports
+omitted unplaced stops, and opens the canonical Map face focused on the first
+stop. Keeping this as an explicit on-demand producer also preserves the card
+catalog's one-object-per-conversational-moment rule.
 
 ### 3.3 Chat's depth law is not applied — P1
 
