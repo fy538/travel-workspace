@@ -179,10 +179,11 @@ actions. Group execution is rejected before any Atlas read.
 
 | Priority | Residual capability | Direction |
 |---|---|---|
-| P2 | Bounded product/interaction polish | Booking recovery and share-owner sheets. |
+| P2 | Bounded product/interaction polish | Place/venue share-owner sheet. |
 
 Deferred and therefore excluded from the active residual list: Home
-Flight/Comparison without producers, per-trip privacy/learning, voice takeover,
+Flight/Comparison without producers, booking pre-session date validation and
+provider-availability subscriptions, per-trip privacy/learning, voice takeover,
 native blur material, and Atlas deferred facets.
 
 The overall verdict after remediation is:
@@ -453,9 +454,32 @@ and offers the explicit self-only scope reduction. Push and shared-chat cards
 both deep-link to the booking session, while the existing durable four-hour
 claim prevents repeated delivery.
 
-### 2.4 Booking recovery coverage is partial — P2
+### 2.4 Booking recovery coverage — implemented; two contract-gated pre-session ideas deferred
 
-Production strongly covers price change, ambiguous provider outcome, cancellation, multi-traveler fallback, handoff, and checkout recovery. The designed provider-down, missing-dates, dedicated missing-traveler, and “Notify me” states are not represented as a coherent family. Some belong before a booking session exists, so route ownership should be settled before building them.
+The earlier four-state finding flattened unlike ownership boundaries and is no
+longer an active UI gap. Production has a shared `BookingRecoveryCard` family
+for price/gone/payment/network/provider-processing/cancellation and provider
+handoff outcomes; checkout validation already produces the dedicated missing-
+traveler correction; multi-traveler scope, participant consent, controller-only
+retry, provider-status reconciliation, and the fail-closed cold-load/stale-load
+states are all explicit. Ambiguous provider outcomes never expose a second
+submit.
+
+Two canon ideas still lack durable product contracts and must not be simulated
+with inert controls:
+
+- **Missing trip dates** belongs before a booking session is created. Session
+  creation currently accepts an itinerary and participants, not a dated target
+  or a block reference, so the server cannot author a precise “Add trip dates”
+  recovery destination.
+- **Notify me when back** requires a provider-availability subscription,
+  deduplication policy, delivery owner, and unsubscribe lifecycle. None exists.
+
+The generic hard-load state also cannot truthfully claim “provider down”: it
+may represent authorization, session absence, network failure, or provider
+unavailability. Keep its fail-closed Retry posture until the API returns a
+typed provider-availability reason. These are contract-gated additions, not a
+reason to fork the coherent in-session recovery component.
 
 ### 2.5 Expense dispute lifecycle — resolved 2026-07-17
 
