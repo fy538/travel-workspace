@@ -44444,6 +44444,49 @@
               }
             ],
             "title": "Recovery"
+          },
+          "can_open_review": {
+            "type": "boolean",
+            "title": "Can Open Review",
+            "default": false
+          },
+          "can_withdraw_review": {
+            "type": "boolean",
+            "title": "Can Withdraw Review",
+            "default": false
+          },
+          "can_resolve_review": {
+            "type": "boolean",
+            "title": "Can Resolve Review",
+            "default": false
+          },
+          "review_denial_reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "not_affected",
+                  "review_already_open",
+                  "live_settlement_payment"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Review Denial Reason"
+          },
+          "review_recovery": {
+            "anyOf": [
+              {
+                "type": "string",
+                "const": "void_settlement_payments"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Review Recovery"
           }
         },
         "type": "object",
@@ -44643,17 +44686,6 @@
             ],
             "title": "Currency"
           },
-          "split_type": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Split Type"
-          },
           "expense_date": {
             "anyOf": [
               {
@@ -44716,6 +44748,7 @@
             "title": "Masked"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "title": "ExpenseUpdate"
       },

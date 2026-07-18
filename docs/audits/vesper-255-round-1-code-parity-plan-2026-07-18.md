@@ -8,9 +8,9 @@ expires: 2026-08-17
 why_new: Cross-repository execution record for the Vesper 255 parity waves; existing design-validation ledger does not own implementation sequencing or code evidence.
 design_target: Vesper 255, Round 1 M01-M12 and S01-S02
 code_target:
-  travel_app: 2fc15f89
-  travel_agent: bd275b94
-  workspace: aebf614 plus this Wave 2 checkpoint
+  travel_app: cce28617
+  travel_agent: aff2b413
+  workspace: aebf614 plus this Wave 3 checkpoint
 source_of_truth_for: vesper-255-round-1-code-parity-execution
 ---
 
@@ -243,6 +243,14 @@ The safe immediate posture is:
 4. Run app mock/real parity, accessibility, and surface QA for payer, non-payer, opener, payer-manager, organizer-manager, transfer party, and unrelated viewer.
 
 **Exit:** M06 and M10 behavior is complete; M07-M09 have code-backed evidence sufficient to consider promotion to `PARITY VALIDATED`.
+
+**Execution checkpoint — 2026-07-18:** functional scope complete; real-device and accessibility certification remain open.
+
+- Every expense projection now carries server-authored review posture for the current viewer: open, withdraw, resolve, exact denial reason, and void-first recovery. The expense detail consumes that posture instead of guessing from local role data, and a recorded payment proactively replaces `Flag for review` with the exact payment-history recovery.
+- Review authority is consistent in production and mock paths: only the payer or an assigned traveler may open; only the opener may withdraw; only the payer or trip organizer may resolve; a live settlement payment blocks opening until voided. Open reviews continue to suspend the expense from settlement.
+- Existing split grammar is immutable. `ExpenseUpdate` forbids unknown fields and no longer exposes `split_type`; runtime mock calls reject the stale field even when replacement shares are supplied; regenerated OpenAPI and app types carry no update-time split field.
+- Code evidence passed: 290 backend expense/API tests (including PostgreSQL dispute and settlement-payment lifecycle coverage), 132 app expense/cost/payment/currency/masking tests, backend lint/format hooks, TypeScript, deterministic OpenAPI projection, and generated-client checks.
+- M06 and M10 are implementation-complete. M07-M09 now have broad code-backed certification, but remain below `PARITY VALIDATED` until the accepted real-device/accessibility matrix—and, for mixed-currency and masking, the explicit real-backend viewer walk—is attached.
 
 ### Wave 4 — archived booking closure
 
