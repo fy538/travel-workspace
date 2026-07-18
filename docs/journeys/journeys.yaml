@@ -163,6 +163,7 @@ journeys:
         required_evidence: [FE, BE, VIS, LIVE]
         evidence:
           FE:
+            - travel-app/__tests__/journeys/journey-23-mock-walk.smoke.test.tsx
             - travel-app/__tests__/components/expense/AddExpenseSheet.test.tsx
             - travel-app/__tests__/hooks/useCreateExpenseIdempotency.test.tsx
           BE: [travel-agent/tests/scenarios/test_j10_booking_stay_expense_trust_loop.py]
@@ -460,6 +461,114 @@ journeys:
     title: Group Costs to Correction and Settlement
     doc: 23-group-costs-to-correction-and-settlement.md
     tier: customer-extension
+    branches:
+      - id: J23.B01
+        title: Manual and receipt intake
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-23-mock-walk.smoke.test.tsx
+            - travel-app/__tests__/components/expense/AddExpenseSheet.test.tsx
+            - travel-app/__tests__/hooks/useUploadReceiptStillScanning.test.tsx
+            - travel-app/__tests__/screens/trip-expenses.smoke.test.tsx
+          BE:
+            - travel-agent/tests/api/test_expenses_api.py
+            - travel-agent/tests/expenses/test_receipt_ocr.py
+          VIS: [travel-app/.maestro/polish/trip-costs-carmen-mexico-ledger.yaml]
+          LIVE: []
+      - id: J23.B02
+        title: Payer and member validation with privacy
+        required_evidence: [FE, BE, VIS]
+        evidence:
+          FE:
+            - travel-app/__tests__/utils/expensePermissions.test.ts
+            - travel-app/__tests__/components/expense/CostsLedgerRow.test.tsx
+            - travel-app/__tests__/components/expense/ExpenseDetail.splitKicker.test.tsx
+          BE:
+            - travel-agent/tests/api/test_expenses_api.py
+            - travel-agent/tests/expenses/test_expense_mutation_capabilities.py
+            - travel-agent/tests/search/test_masked_expense_search_leak.py
+          VIS: []
+      - id: J23.B03
+        title: Equal exact percentage and itemized split
+        required_evidence: [FE, BE, VIS]
+        evidence:
+          FE:
+            - travel-app/__tests__/components/expense/AddExpenseSheet.test.tsx
+            - travel-app/__tests__/components/expense/EditExpenseSheet.test.tsx
+            - travel-app/__tests__/components/expense/ExpenseDetail.splitKicker.test.tsx
+          BE:
+            - travel-agent/tests/api/test_expenses_api.py
+            - travel-agent/tests/expenses/test_expenses.py
+            - travel-agent/tests/expenses/test_settlement_properties.py
+          VIS: []
+      - id: J23.B04
+        title: Edit and delete authority with payment lock
+        required_evidence: [FE, BE, VIS]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-23-mock-walk.smoke.test.tsx
+            - travel-app/__tests__/utils/api/mockExpenseParity.test.ts
+            - travel-app/__tests__/components/expense/ExpenseDetail.paymentLock.test.tsx
+            - travel-app/__tests__/screens/trip-expense-edit.paymentLock.test.tsx
+          BE:
+            - travel-agent/tests/api/test_expenses_api.py
+            - travel-agent/tests/expenses/test_expense_mutation_capabilities.py
+            - travel-agent/tests/expenses/test_settlement_payments_e2e.py
+          VIS: []
+      - id: J23.B05
+        title: Participant dispute and resolution
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE:
+            - travel-app/__tests__/utils/api/mockExpenseParity.test.ts
+            - travel-app/__tests__/components/expense/ExpenseDetail.bookingReview.test.tsx
+            - travel-app/__tests__/utils/costsViewModel.test.ts
+          BE:
+            - travel-agent/tests/api/test_expenses_api.py
+            - travel-agent/tests/expenses/test_expense_disputes_e2e.py
+          VIS: []
+          LIVE: []
+      - id: J23.B06
+        title: Currency rate and owed-direction truth
+        required_evidence: [FE, BE, VIS]
+        evidence:
+          FE:
+            - travel-app/__tests__/utils/costsViewModel.currencyTruth.test.ts
+            - travel-app/__tests__/screens/trip-expenses-balance-screen.test.tsx
+            - travel-app/__tests__/components/expense/ExpenseDetail.rateWarning.test.tsx
+          BE:
+            - travel-agent/tests/api/test_expenses_api.py
+            - travel-agent/tests/expenses/test_exchange_rates.py
+            - travel-agent/tests/expenses/test_settlement_properties.py
+          VIS: [travel-app/.maestro/56d-journey-12-settlement-direction.yaml]
+      - id: J23.B07
+        title: Partial and full settlement with payment retry
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-23-mock-walk.smoke.test.tsx
+            - travel-app/__tests__/hooks/useCostsBalanceActions.test.tsx
+            - travel-app/__tests__/hooks/useRecordSettlementPaymentIdempotency.test.tsx
+            - travel-app/__tests__/screens/trip-expenses-settle-ack.test.tsx
+          BE:
+            - travel-agent/tests/api/test_expenses_api.py
+            - travel-agent/tests/expenses/test_settlement_payments_e2e.py
+            - travel-agent/tests/expenses/test_settlement_properties.py
+          VIS: [travel-app/.maestro/56c-journey-12-settle-up.yaml]
+          LIVE: []
+      - id: J23.B08
+        title: Provider-linked opt-in deduplicates
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-10-mock-walk.smoke.test.tsx
+            - travel-app/__tests__/screens/booking-confirm.test.tsx
+          BE:
+            - travel-agent/tests/scenarios/test_j10_booking_stay_expense_trust_loop.py
+            - travel-agent/tests/api/test_expenses_api.py
+          VIS: []
+          LIVE: []
   - id: J24
     title: Group Membership and Agency Governance
     doc: 24-group-membership-and-agency-governance.md

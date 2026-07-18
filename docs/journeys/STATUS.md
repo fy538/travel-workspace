@@ -209,7 +209,7 @@ Source: `docs/journeys/journeys.yaml` × registered branch evidence where declar
 | J20 | First-Use Trust to First Personalized Value | customer | — | — | — | ⤵️ |
 | J21 | Collaborative Stay and Traveler Ownership | customer | ✅ 6/6 | ✅ 6/6 | ◐ 5/6 | ✅ 3/3 |
 | J22 | Booking Exception and Provider Handoff | customer | ✅ 8/8 | ✅ 7/7 | ✅ 8/8 | ✅ 7/7 |
-| J23 | Group Costs to Correction and Settlement | customer | — | — | — | ⤵️ |
+| J23 | Group Costs to Correction and Settlement | customer | ✅ 8/8 | ✅ 8/8 | ◐ 3/8 | — 0/4 |
 | J24 | Group Membership and Agency Governance | customer | ✅ 7/7 | ✅ 7/7 | ◐ 4/7 | ✅ 5/5 |
 | J25 | Empty Atlas to First Useful Atlas | customer | — | — | — | ⤵️ |
 | J26 | Atlas Reading to Steer Keep and Return | customer | — | — | — | ⤵️ |
@@ -222,10 +222,10 @@ Source: `docs/journeys/journeys.yaml` × registered branch evidence where declar
 | Metric | Count |
 |---|---|
 | Canonical journey contracts | 28 / 28 defined |
-| Frontend contract evidence | 22 / 28; J22 is 8/8 at the branch level |
-| Backend logic evidence | 22 / 28; J22 is 7/7 at the branch level |
-| Branch-aware coverage | J06: VIS 4/7, LIVE 3/4 · J10: VIS 4/9, LIVE 2/8 · J11: VIS 6/6, LIVE 1/6 · J21: VIS 5/6, LIVE 3/3 · J22: FE 8/8, BE 7/7, VIS 8/8, LIVE 7/7 · J24: FE 7/7, BE 7/7, VIS 4/7, LIVE 5/5 |
-| Visual journey evidence | 15 complete + 4 partial / 28 |
+| Frontend contract evidence | 23 / 28; J23 is 8/8 at the branch level |
+| Backend logic evidence | 22 / 28; J23 has branch evidence 8/8 and still needs one named scenario suite |
+| Branch-aware coverage | J06: VIS 4/7, LIVE 3/4 · J10: VIS 4/9, LIVE 2/8 · J11: VIS 6/6, LIVE 1/6 · J21: VIS 5/6, LIVE 3/3 · J22: FE 8/8, BE 7/7, VIS 8/8, LIVE 7/7 · J23: FE 8/8, BE 8/8, VIS 3/8, LIVE 0/4 · J24: FE 7/7, BE 7/7, VIS 4/7, LIVE 5/5 |
+| Visual journey evidence | 15 complete + 5 partial / 28 |
 | Lived persona evidence | 18 pass / 28 · 10 explicit skips |
 | Maestro wedge flows (24/25) | **green** 2026-06-29 (`make certify-visual`) |
 | Five-pack dogfood (agent gates) | **certified** 2026-06-29 (`dogfood-five-pack-verify` + `dogfood-five-pack-simulator`) |
