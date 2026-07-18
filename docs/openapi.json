@@ -35572,6 +35572,16 @@
               }
             ]
           },
+          "viewer_access": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/BookingOfferViewerAccess"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "provider_offer_id": {
             "anyOf": [
               {
@@ -35677,6 +35687,40 @@
           "updated_at"
         ],
         "title": "BookingOffer"
+      },
+      "BookingOfferViewerAccess": {
+        "properties": {
+          "controller_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Controller Id"
+          },
+          "is_controller": {
+            "type": "boolean",
+            "title": "Is Controller",
+            "default": false
+          },
+          "can_view_provider_details": {
+            "type": "boolean",
+            "title": "Can View Provider Details",
+            "default": false
+          },
+          "can_continue_provider_work": {
+            "type": "boolean",
+            "title": "Can Continue Provider Work",
+            "default": false
+          }
+        },
+        "type": "object",
+        "title": "BookingOfferViewerAccess",
+        "description": "Server-authored viewer posture for provider-sensitive booking reads."
       },
       "BookingParticipantConsent": {
         "properties": {
