@@ -51,17 +51,17 @@ The current Trip header is frozen. This program must not redesign it. “Folio�
 | M01 | Cancellation reconciliation | Separate requesting, processing/refreshing, pending verification, cancelled, not cancelled, and manual action required; prevent duplicate submission | State mapping against internal and client projections; transition tests | DESIGN VALIDATED |
 | M02 | Cancellation completion receipt | Canonical replay-safe receipt anatomy for success, not-cancelled, and escalation | Notification payload mapping and replay test | DESIGN VALIDATED |
 | M03 | Cancelled booking → Costs review | Booking receipt links to a paused-settlement expense review without implying final settlement | Booking/Costs navigation and settlement exclusion test | DESIGN VALIDATED |
-| M04 | Participant consent ledger | Pending, approved, declined, excluded, reminder cooldown, narrow-to-self, and confirmation blocking | Per-participant state fixture and permission test | DESIGNING |
-| M05 | Booking controller/viewer | Controller owns provider mutations; other travelers see attribution and view-only outcomes | Role matrix and action-visibility test | DESIGNING |
+| M04 | Participant consent ledger | Pending, approved, declined, excluded, reminder cooldown, narrow-to-self, and confirmation blocking | Per-participant state fixture and permission test | DESIGN VALIDATED |
+| M05 | Booking controller/viewer | Controller owns provider mutations; other travelers see attribution and view-only outcomes | Role matrix and action-visibility test | DESIGN VALIDATED |
 | M06 | Expense review governance | Eligible opener, opener-only withdrawal, payer/organizer resolution, payment-void prerequisite, paused settlement | Expense-review permission and settlement tests | DESIGN VALIDATED |
 | M07 | Recorded payments and void | Visible recorded/voided ledger rows and restricted void action | Ledger fixture and void permission tests | DESIGNING |
 | M08 | Currency truth | One settlement currency; unsupported conversions excluded; estimated rates labeled | Mixed-currency fixture | DESIGNING |
-| M09 | Masked expenses | Protect payer identity/amounts while preserving valid split and booking constraints | Payer/non-payer visibility matrix | DESIGNING |
-| M10 | Split-type immutability | Existing split type remains display-only during edit; language derives from actual shares | Expense-edit fixtures | DESIGNING |
+| M09 | Masked expenses | Hide amount/details from non-payers while preserving payer attribution, payer-only cost, settlement exclusion, and booking constraints | Payer/non-payer visibility matrix | DESIGN VALIDATED |
+| M10 | Split-type immutability | Existing split type remains display-only during edit; language derives from actual shares | Expense-edit fixtures | DESIGN VALIDATED |
 | M11 | Archived-trip booking closure | Define booking actions and receipts before archive, while archived, and after recovery | Archive/recover navigation and mutation tests | DESIGNING |
 | M12 | Receipt/OCR scan states | Complete confirm-before-add loading, unreadable, partial, retry, and correction states | Scan fixtures and accessibility pass | OPEN |
-| S01 | Public proposal privacy contradiction | Public proposal output exposes no vote counts or vote-derived decision status; authentication is required for group decision detail | Anonymous route/card inspection and privacy test | DESIGNING |
-| S02 | Four public card projections | Exact allowed/redacted fields for Story, Invite, Proposal, and Unpacked 9:16 cards | Projection table mapped to renderer payloads | DESIGNING |
+| S01 | Public proposal privacy contradiction | Public proposal output exposes no vote counts or vote-derived decision status; authentication is required for group decision detail | Anonymous route/card inspection and privacy test | DESIGN VALIDATED |
+| S02 | Four public card projections | Exact allowed/redacted fields for Story, Invite, Proposal, and Unpacked 9:16 cards | Projection table mapped to renderer payloads | DESIGN VALIDATED |
 
 ## Round 2 — itinerary grammar
 
@@ -155,7 +155,16 @@ Retirement happens only after the replacement route and state coverage are verif
 - Fourth design return: cancellation micro-pass landed most required behavior; a small literal-consistency cleanup remains before cancellation rows can advance.
 - Fifth design return: cancellation source checks passed; M01, M02, M03, and M06 promoted to `DESIGN VALIDATED`.
 - Sixth design return: consent micro-pass fixed actor perspective and audit labels but skipped status/ownership work and introduced a contradictory role row; M04/M05 remain `DESIGNING`.
-- Next gate: one smaller consent cleanup, then public/governance micro-pass.
+- Seventh design return: consent ownership notes and overlapping-role logic landed, but visible status-tone propagation, accessibility completion, and the validation board are still absent; M04/M05 remain `DESIGNING`.
+- Eighth design return: visible status tones and a validation board landed, but matrix overflow contradicts the new accessibility claim, three accessibility rows are duplicated, and the validation board omits the unchanged-scope check; M04/M05 remain `DESIGNING`.
+- Ninth design return: final consent source checks passed; M04 and M05 promoted to `DESIGN VALIDATED`.
+- Tenth design return: exported project is byte-for-byte identical to the ninth return; the handoff identifies Booking Consent & Control as the active page, so the requested External Sharing/Public Projection governance pass was not executed. S01/S02 remain `DESIGNING`.
+- Eleventh design return: External Sharing gained the proposal split, posture table, ownership pointer, and validation board, but Public Projection Contract did not change and several new claims remain unimplemented or internally stale. S01/S02 remain `DESIGNING`.
+- Twelfth design return: Public Projection Contract gained all five accessibility annotations, but External Sharing is unchanged and the projection matrix still clips enlarged content. S01/S02 remain `DESIGNING`.
+- Thirteenth design return: matrix overflow, status definitions, count truth, and the last broad proposal-content contradiction were fixed. S01 promoted to `DESIGN VALIDATED`; S02 remains `DESIGNING` because Story/Invite runtime posture and payload ownership are still duplicated in older tables.
+- Fourteenth design return: three money/archive sections and most remaining S02 normalization landed. M09 and M10 promoted to `DESIGN VALIDATED`; M07, M08, M11, and S02 remain `DESIGNING` after code-grounded source checks found authority, currency, archive-preflight, primitive, and residual payload-ownership defects.
+- Fifteenth design return: the audit regression was removed, the local Costs `Field` fork was replaced, and External Sharing now consistently delegates all four exact public payloads to Public Projection Contract while rendering runtime postures as separate tags. S02 promoted to `DESIGN VALIDATED`. M07, M08, and M11 remain `DESIGNING` because each still contains a literal source contradiction.
+- Next gate: one surgical correction round for the payment viewer fixture, mixed-currency total/copy, and archived-trip impossible-hold/action-primitive residue.
 
 ## Round 1 validation — first design return
 
@@ -399,3 +408,227 @@ The global consistency audit now reports 36 decorative-token findings, all outsi
 7. The requested validation board was not added.
 
 M04 and M05 remain `DESIGNING`. The next consent pass should edit only status-chip propagation, adapter ownership notes, the role matrix, accessibility annotations, and the validation board; the lifecycle specimens no longer need redesign.
+
+## Round 1 validation — seventh design return (consent cleanup)
+
+### Correctly landed
+
+- The design tool again respected the consent-only file boundary; no other project source changed.
+- `ConChip` is now identified as a local prototype adapter whose consent vocabulary is local while geometry belongs to the canonical chip/status anatomy.
+- `ConRow` and `Av` are now identified as local prototype adapters owned by the Row System and traveler/member identity anatomy, not as new shared components.
+- The contradictory duplicate self-consent rows were replaced by one capability row.
+- The role matrix now states that capabilities accumulate and uses a conditional `◐` marker for organizers or booking controllers who are also included participants.
+- The four uncertain lifecycle states retain visible `CODE AUDIT REQUIRED` labels.
+- The project consistency audit remains unchanged at the global level: one unrelated unindexed itinerary page, 36 unrelated meaningful-text token findings, and the pre-existing shared-primitive warning. The consent source adds no new consistency-audit finding.
+
+### Blocking residue
+
+1. `chipTone` still does not reach the visible status labels. `BHead`, result receipts, and lifecycle `Mini` cards tint their outer container through `Receipt tone={chipTone}`, but each visible label still renders as the neutral booking-kit `<Chip>`. This does not satisfy text-plus-color status semantics and makes the API misleading.
+2. No labeled-status adapter was added. The remaining fix should reuse canonical Chip/StatusPill geometry while accepting a label and semantic tone, then use it consistently in all three call sites above.
+3. The accessibility board still lacks explicit guidance for status text plus color, reading `CODE AUDIT REQUIRED` before the speculative state content, the meaning/announcement of `◐`, and horizontal matrix overflow at larger text sizes. Existing Dynamic Type and VoiceOver notes do not cover these requirements.
+4. The requested source-visible validation board is absent. There is no final checklist proving status propagation, component ownership, exactly one conditional self-consent rule, audit-label preservation, accessibility coverage, and unchanged scope.
+
+M04 and M05 remain `DESIGNING`. The next pass should touch only `booking-consent-control.jsx` and should not revise lifecycle copy, role permissions, frozen Trip header geometry, or unrelated canvases.
+
+## Round 1 validation — eighth design return (consent finalization)
+
+### Correctly landed
+
+- The only substantive source change remains inside Booking Consent & Control; the thumbnail refresh is expected output.
+- A documented local `StatusChip` adapter now gives the visible label itself a semantic foreground, background, and border tone while retaining complete text.
+- `BHead`, resulting receipts, and lifecycle `Mini` cards all render their `chipTone` through `StatusChip`; no affected status call site falls back to the neutral booking-kit `Chip`.
+- The existing role and consent rules remain unchanged and internally consistent.
+- The four required accessibility topics were added in prose.
+- A `VALIDATION · CONSENT CLEANUP` board was added and covers consent states, overlapping self-consent, authority, narrowing, viewer behavior, status treatment, prototype ownership, and the four audit-required transitions.
+- The project consistency audit remains at the same unrelated global baseline: one unindexed itinerary page, 36 meaningful-text token findings, and the existing shared-primitive warning.
+
+### Final blocking residue
+
+1. The accessibility board claims the role and state matrices scroll horizontally, but both matrix wrappers still use `overflow: hidden`. This would clip enlarged content and makes the annotation false. Each matrix needs an actual horizontal overflow wrapper, with a stable inner minimum width.
+2. Three accessibility requirements are duplicated: audit-label ordering, conditional `◐` announcement, and matrix overflow. Consolidate each into one row; retain the distinct text-plus-color status row.
+3. The validation board does not visibly verify that no unrelated canvas or frozen Trip header element changed, despite this being an explicit final checklist item.
+4. The source is missing its final newline. This is non-product residue, but should be corrected in the same surgical edit.
+
+M04 and M05 remain `DESIGNING` until the annotation matches rendered overflow behavior and the validation checklist is complete. No other consent behavior or visual composition needs another pass.
+
+## Round 1 validation — ninth design return (consent closed)
+
+### Source checks passed
+
+- The design tool changed only Booking Consent & Control plus the generated project thumbnail.
+- Both matrices now have real `overflowX: auto` wrappers and stable inner minimum widths while retaining the existing clipped border-radius treatment inside the scroll region.
+- The four new accessibility requirements each appear exactly once; the three duplicate rows are gone.
+- The validation board now includes the explicit unchanged-scope assertion for unrelated canvases and the frozen Trip header.
+- All existing `StatusChip` call sites and semantic tones remain unchanged.
+- Exactly one self-consent capability row remains, with organizer/controller access conditional on also being an included participant.
+- All four uncertain lifecycle states retain visible `CODE AUDIT REQUIRED` labels.
+- The source again ends with a newline.
+
+### Audit context
+
+The global consistency audit remains unchanged: one unrelated unindexed itinerary page, 36 unrelated meaningful-text token findings, and the pre-existing shared-primitive warning. No consent source appears in those findings.
+
+M04 and M05 move to `DESIGN VALIDATED`. They are not yet `PARITY VALIDATED`; the per-participant fixtures, role/action visibility checks, and implementation mapping remain later code-parity gates.
+
+## Round 1 validation — eleventh design return (public governance integration)
+
+### Correctly landed
+
+- Scope was limited to External Sharing plus the generated thumbnail; no completed cancellation, consent, header, or card-grammar source changed.
+- External Sharing now separates neutral proposal context from group decisions/votes.
+- Neutral proposal context is labeled `DESIGN-APPROVED · BLOCKED BY CODE`; votes and standing are labeled `AUTHENTICATED-ONLY`.
+- The five posture rows align textually with the existing Public Projection Contract decision block.
+- External Sharing now states the intended ownership split and points field-level Story/Invite/Proposal/Unpacked payload governance to Public Projection Contract.
+- The generic-public versus exact-trusted unavailable-state doctrine remains intact.
+- A public-projection governance validation board was added.
+- The global consistency audit remains at its unrelated baseline: one unindexed itinerary page, 36 meaningful-text token findings, and the existing shared-primitive warning.
+
+### Blocking residue
+
+1. Public Projection Contract is byte-for-byte unchanged. Its privacy annotations still lack Dynamic Type, VoiceOver/alt-text reading order, post-auth/recovery/retry focus, ≥44px targets, and reduced-motion guidance.
+2. The new validation board says accessibility is documented even though the detailed accessibility contract was not added. This is a false completion claim.
+3. External Sharing says it no longer maintains a second field matrix, but its Share Object Matrix still lists exact Story and Invite projection fields. Replace those duplicated payload cells with a pointer to Public Projection Contract while retaining shell/route governance.
+4. The Share Object Matrix subtitle still says `16 objects`; the proposal split increased it to 17 rows.
+5. The status legend renders the four newly added posture labels but provides no explanation for any of them because the legend description switch was not extended.
+6. Story and Invite still appear as `CANON READY` in the ownership, object, and implementation-route tables without an adjacent runtime posture. `CANON READY` may remain a design-readiness axis, but those rows must explicitly pair it with `RUNTIME GATED` or `TOKEN-GATED` so readers do not mistake design readiness for availability.
+7. The new validation board claims both canvases are aligned, but only one canvas was edited. It should be retained only after the two-source checks above are visibly true.
+
+S01 and S02 remain `DESIGNING`. The next pass should modify only External Sharing and Public Projection Contract; it should correct these governance statements without redesigning any card or landing specimen.
+
+## Round 1 validation — twelfth design return (public accessibility only)
+
+### Correctly landed
+
+- Public Projection Contract now contains distinct Dynamic Type, VoiceOver/generated-image alt-text order, focus, ≥44×44pt target, and reduced-motion requirements.
+- The annotations artboard was enlarged to contain the additional rows without changing public-card or landing-state specimens.
+- No unrelated source changed; the generated thumbnail is the only other changed artifact.
+- The global consistency-audit result remains unchanged from the prior baseline.
+
+### Blocking residue
+
+1. External Sharing is byte-for-byte unchanged, so its duplicated Story/Invite field projections, stale `16 objects` label, blank definitions for four posture labels, and unpaired Story/Invite runtime postures remain.
+2. Public Projection Contract now claims its projection matrix scrolls when needed, but the matrix wrapper still uses `overflow: hidden` and has no horizontal-scroll wrapper or stable inner minimum width.
+3. External Sharing still lists `Group decisions, vote counts, or proposal content` under content that is never externally shared. This broad phrase contradicts the approved neutral proposal-context projection; it must distinguish vote/decision material from the narrowly allowed context-only projection.
+4. The External Sharing validation board continues to claim accessibility and cross-canvas alignment even though the matrix behavior and the stale governance rows above remain unresolved.
+
+S01 and S02 remain `DESIGNING`. The next pass needs no new specimens or doctrine: it is a literal/source-consistency correction across the two existing files.
+
+## Round 1 validation — thirteenth design return (public governance narrowed)
+
+### Source checks passed
+
+- Both authorized sources changed; no unrelated design source changed.
+- Public Projection Contract now uses a real horizontal-overflow wrapper with a stable inner minimum width.
+- All five accessibility annotations remain present and now agree with rendered matrix behavior.
+- The Share Object Matrix count is corrected to 17.
+- All four new runtime-posture legend entries have non-empty definitions.
+- The broad `proposal content` prohibition was replaced with a precise ban on votes, voter identity, counts, quorum, progress, and standing while preserving the separately governed neutral proposal-context projection.
+- Neutral proposal context remains `DESIGN-APPROVED · BLOCKED BY CODE`; votes and standing remain `AUTHENTICATED-ONLY`.
+- Generic public unavailable-state doctrine and trusted/owner-only exact reasons remain unchanged.
+- The consistency audit remains at the unrelated project baseline.
+
+These checks close the design contradiction tracked by S01. S01 moves to `DESIGN VALIDATED`; anonymous route/card inspection and privacy tests are still required before later `PARITY VALIDATED` status.
+
+### Remaining S02 residue
+
+1. Story public view and Invite peek still show only `ROUTE EXISTS · CANON READY` in the Ownership Map and Route Checklist, and only `CANON READY` in the Share Object Matrix. The separate posture board is correct, but the older tables still omit `DESIGN-APPROVED · RUNTIME GATED` and `TOKEN-GATED` respectively.
+2. External Sharing still duplicates exact Story and Invite payload fields in the Share Object Matrix and Route Checklist (`Title, dates, sections...`, `Trip title, dates, organizer...`, and their data-field lists). Those governance cells must point to Public Projection Contract instead. Representative Story/Invite screen specimens may retain illustrative content.
+
+S02 remains `DESIGNING`. Its final pass should change only External Sharing and should not touch Public Projection Contract, public cards, landing states, or accessibility.
+
+## Round 1 validation — fourteenth design return (money/archive round)
+
+### Scope and structure
+
+- The existing Costs canon was extended in place through two new supporting source modules; no second Costs page was created.
+- Trip Workflow gained one archived-booking-closure section rather than a new top-level lifecycle canvas.
+- External Sharing also received the outstanding S02 table edits from the prior pass.
+- The consistency audit baseline regressed from 36 to 39 meaningful-text token findings and added `costs-payments.jsx` to the independent `Field` reimplementation warning. Those three new token findings and the local field primitive must be cleaned before the round can close.
+
+### M09 — DESIGN VALIDATED
+
+- Payer view retains full masked-expense truth.
+- Non-payer view hides amount, merchant/detail, category, and share amounts while retaining the payer attribution that current implementation also exposes.
+- Masked expenses are payer-only and cannot allocate shares to other travelers.
+- Booking-derived expenses cannot be masked.
+- The visibility matrix, accessibility notes, and validation block are present.
+
+The M09 ledger wording is corrected accordingly: current code hides non-payer amounts/details but does not hide payer identity.
+
+### M10 — DESIGN VALIDATED
+
+- Split type is rendered display-only during edit.
+- No split-type conversion flow was introduced.
+- Equal wording is shown only for stored equal shares.
+- Matching exact amounts remain described as exact rather than equal.
+- Accessibility and validation coverage are present.
+
+### M07 — still DESIGNING
+
+1. Runtime void authority is exact: **either the payment sender or payment recipient may void**. The new viewer copy says the recorder or a trip cost manager may void, while the matrix calls manager authority audit-required. Both are wrong or contradictory.
+2. Replace role labels based on `payer (recorded it)` with sender/recipient semantics. `recorded_by` is audit metadata, not the authorization rule.
+3. Remove the cost-manager/organizer void claim and its `CODE AUDIT REQUIRED` residue; the backend rule is already verified.
+4. The new local nested `Field` implementation triggered the shared-primitive audit. Reuse the existing sheet/field or Costs row anatomy instead of independently defining `Field`.
+5. Two disabled-looking meaningful actions (`Void payment` during processing and `Open review` while locked) use decorative muted text and are new consistency-audit failures. Use canonical disabled/action state treatment that remains readable.
+
+### M08 — still DESIGNING
+
+1. The design invents a `LOCKED` conversion rate and says a final rate is confirmed at settlement. Current code stores the conversion at expense creation/update; it has no final-settlement rate-confirmation workflow.
+2. Current `ESTIMATED RATE` behavior is specifically the `rate_source === sentinel` failure posture: the stored converted total may be badly wrong and is not corrected automatically. Replace the plausible `≈ €71` estimate/final-confirmation story with the shipped warning truth or explicitly mark a safer future design as blocked by code.
+3. Keep unsupported legacy/null conversion exclusion separate from sentinel-rate corruption. Do not present the sentinel as a safe approximate rate.
+4. The hidden-amount `••••` uses a decorative text token and is a new audit failure; use a sanctioned meaningful-text color.
+
+### M11 — still DESIGNING
+
+1. Archive is organizer-only and the backend **refuses archive while a booking search or provider hold is active**. The new preflight shows a live hold and offers `Archive anyway`, which contradicts the archive endpoint. Replace it with a blocking preflight and a `Review booking work`/release-first recovery.
+2. Archived trips do permit reads, cancellation, checkout reconciliation, and hold release in principle, but an active hold must be resolved before the archive transition. Do not use an impossible live-hold-after-archive specimen as the primary example.
+3. Recovery restores the archived shell and selected pre-archive status; it does not resurrect proposals, searches, booking workflows, notification outcomes, or invites closed by archival. Add this explicit “closed coordination stays closed” truth to recovery and receipt specimens.
+4. Reuse as new trip is implemented in Trip Settings, not unresolved. Replace the all-phases `CODE AUDIT REQUIRED` row with the verified archived-only private-template action and its exact exclusion contract: no travelers, invitations, conversations, bookings/provider references, costs, votes, proposals, workflow identity, event outcomes, or group ownership.
+5. The new archived screens draw local pill actions as styled spans instead of using canonical action primitives. Reuse existing `VBtn`/workflow action components and preserve ≥44pt targets in source, not annotation only.
+6. Review-opening/resolution and payment recording/voiding while archived need evidence. Keep them audit-required rather than presenting unsupported blocked/allowed claims.
+
+### S02 — still DESIGNING
+
+- Ownership Map and Share Object Matrix now pair Story/Invite design readiness with runtime posture correctly.
+- Share Object Matrix payload fields now point to Public Projection Contract.
+- Route Checklist projection cells point correctly, but their `data` cells still list exact Story/Invite payload fields. Replace those remaining lists with the same Public Projection Contract pointer.
+- Route Checklist status is stored as combined text rather than separately rendered known tags. If the table renders plain text this is legible, but the validation should explicitly identify route existence, canon readiness, and runtime availability as separate axes.
+
+No new canvases or product doctrines are needed. The next pass should correct these literal conflicts and audit regressions in the existing sources.
+
+## Round 1 validation — fifteenth design return (correction round)
+
+### Audit and component hygiene
+
+- The consistency audit returned from 39 to the established 36 unresolved meaningful-text findings, with the same 8 reviewed-decorative findings.
+- `costs-payments.jsx` no longer defines a local `Field`; it consumes `VSheetField`, returning the independent `Field` warning from three implementations to the prior two.
+- The remaining audit failures are project-wide baseline items: one unindexed legacy HTML file and the 36 pre-existing meaningful-text findings. This return did not add a new audit finding.
+
+### M07 — still DESIGNING
+
+- The sender-or-recipient void rule is now correctly stated in the payment detail, role matrix, and validation copy, and organizer/cost-manager status no longer grants void authority.
+- One viewer specimen is internally inconsistent: its visible record is `Ana paid You`, with Ana and You avatars, but the authority explanation calls Theo the recipient. The recipient named in the explanation must be `You`, or the whole fixture must be changed consistently to Ana → Theo.
+- Trip Workflow still lists organizer/cost-manager void authority as `CODE AUDIT REQUIRED`. This is stale: backend authorization is already verified as sender-or-recipient only. Remove that audit question and let the Costs canon remain the owner.
+
+### M08 — still DESIGNING
+
+- The sentinel conversion specimen now accurately exposes the stored 1.0 fallback, marks it `MAY BE WRONG`, and says it is not corrected automatically. Unsupported/null conversion remains separately excluded.
+- The mixed-currency summary is arithmetically stale: its included rows are €96 + €96 + €780, but the displayed settlement total is €263.00. If all three stored converted values count, the fixture total must be €972.00.
+- The sentence `the total is never faked` contradicts a total containing a known sentinel fallback that may be wrong. It should say the displayed total uses stored converted values, flags the sentinel contribution as potentially wrong, and excludes only the unconverted row.
+
+### M11 — still DESIGNING
+
+- The before-archive preflight now correctly blocks archive while searches or holds are active, and the ready state correctly preserves records without implying cancellation, refund, settlement, or deletion.
+- The archived booking specimen still shows an active Ramiro’s hold (`Held until 18:00`) and offers `Release hold`. That state cannot be reached through the archive endpoint because active provider holds block archival. Use a confirmed booking/cancellation or reconciliation example for surviving archived recovery, or explicitly model a later-discovered stale provider state rather than an active hold carried through archive.
+- The archived journey still renders `Screen` actions as styled `<span>` elements with 9px vertical padding, despite claiming canonical actions and ≥44pt targets. Replace them with the existing workflow/VBtn action primitive.
+- The matrix and audit block still ask whether an organizer/cost manager may void a payment. That question is already resolved by Costs/backend truth and must be removed; other genuinely unaudited archived expense/payment permissions may remain marked for code audit.
+- Recovery truth, closed-coordination truth, exact return, and archived-only `Reuse as new trip` with its exclusion contract are now correctly represented.
+
+### S02 — DESIGN VALIDATED
+
+- Share Object Matrix and Route Checklist now delegate exact Story and Invite allowed/redacted fields to Public Projection Contract instead of maintaining duplicate payload lists.
+- The broader ownership note delegates Story, Invite, Proposal, and Unpacked field-level payloads to the same owner.
+- Route existence, canon readiness, and runtime posture are stored and rendered as separate status tags rather than one combined label.
+- External Sharing remains responsible only for shell, lifecycle, route, fallback, privacy-doctrine, and governance concerns. No public-card or landing-state redesign was introduced.
+
+No new canvas is needed for the next pass. Correct only the three existing owner sections above and leave the frozen Trip header, validated public-projection work, and all unrelated canvases untouched.
