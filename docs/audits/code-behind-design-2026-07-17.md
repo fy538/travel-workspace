@@ -152,12 +152,16 @@ actions. Group execution is rejected before any Atlas read.
 - **Cancellation races:** terminal status now wins against in-flight writers,
   queued notifications and invites, scheduled coordination work, recurring
   pre-trip workers, and automatic calendar completion.
+- **Itinerary contributor truth:** blocks now preserve their direct human
+  creator, Vesper/system authorship remains explicit, legacy rows are
+  backfilled only from exact add-operation lineage, and Plan/Chat project a
+  display-safe contributor without exposing user IDs. Later editors remain in
+  immutable operation history rather than overwriting the original author.
 
 ### Compact residual backlog
 
 | Priority | Residual capability | Direction |
 |---|---|---|
-| P1 | Itinerary contributor truth | Persisted itinerary blocks still lack reliable author identity, so Plan/Day cards correctly omit contributor attribution. |
 | P1 | Heterogeneous Discover pins | Venue pins are complete; friend, experience and place payloads still need accessible rendering and grounded handoffs. |
 | P2 | Bounded product/interaction polish | Trip Info hero/description, Skip vote, trip-creation correction, booking recovery and share-owner sheets. |
 
@@ -464,20 +468,20 @@ Build grounded producer/action contracts first. Do not add static front-end face
 
 ### 3.2 The canonical Chat card catalog is only partial — P1
 
-The attachment union and renderer cover many designed cards, but these remain absent or incomplete in production:
+The attachment union and renderer cover many designed cards. This remains
+absent or incomplete in production:
 
-- contributor attribution on the persisted Itinerary/Day Plan stop grid,
 - explicit consent path for sending a voice segment to the group.
 
 `PlanReadyCard` now persists and renders the committed itinerary's complete
 day/stop grid, including themes, stable block identity, wall-clock labels and
 grounded outbound travel mode/minutes. Its compact state previews two days and
 two stops per day; the in-card depth action reveals the complete snapshot, and
-the primary action opens the canonical Plan surface. The remaining itinerary
-gap is contributor attribution: the durable block model does not yet record a
-reliable author, so the producer intentionally omits it rather than presenting
-planner inference as fact. Voice-segment sharing remains a separate
-consent-gated voice scope.
+the primary action opens the canonical Plan surface. Direct human contributors
+now appear as a quiet “Added by” line when no higher-priority row truth needs
+that single support slot. Vesper authorship remains available in the contract
+without repeating a label on every generated stop. Ambiguous legacy rows stay
+unlabeled. Voice-segment sharing remains a separate consent-gated voice scope.
 
 Chat Comparison is closed through the durable Stay candidate/vote substrate.
 The persisted card carries every active candidate as factual data, orders its

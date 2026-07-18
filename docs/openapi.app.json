@@ -7071,7 +7071,6 @@
           "conversations"
         ],
         "summary": "Mark Conversation Read",
-        "description": "Advance the exact read pointer and persist the current viewport.",
         "operationId": "mark_conversation_read_api_conversations__conversation_id__read_post",
         "parameters": [
           {
@@ -7118,6 +7117,66 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MarkReadResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/conversations/batch-read": {
+      "post": {
+        "tags": [
+          "conversations"
+        ],
+        "summary": "Batch Mark Conversations Read",
+        "description": "Mark several conversations read in one request.\n\nReplaces the client fanning out one ``/read`` call per conversation id\n(the \"mark all read\" inbox action) — each id is still authorized and\nwritten independently, but as one round trip instead of N. A bad id\n(not found, not a participant) fails only that id; it never aborts the\nrest of the batch.",
+        "operationId": "batch_mark_conversations_read_api_conversations_batch_read_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchMarkReadRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchMarkReadResponse"
                 }
               }
             }
@@ -7477,14 +7536,14 @@
         }
       }
     },
-    "/api/dossiers/venue/{venue_id}": {
+    "/api/dossiers/venue/{venue_id}/primary": {
       "get": {
         "tags": [
           "dossiers"
         ],
-        "summary": "List Venue Dossiers",
-        "description": "List all dossiers for a venue.",
-        "operationId": "list_venue_dossiers_api_dossiers_venue__venue_id__get",
+        "summary": "Get Primary Venue Dossier",
+        "description": "The venue's most-recent approved dossier, fully resolved.\n\nReplaces the client-side \"list dossiers for venue, then fetch the\nfirst one's detail\" two-hop chain (list_venue_dossiers + get_dossier)\nwith one request. Selection matches list_venue_dossiers exactly\n(get_dossiers_for_venue orders by created_at desc, approved-only) so\nswapping to this endpoint changes zero behavior for the caller.",
+        "operationId": "get_primary_venue_dossier_api_dossiers_venue__venue_id__primary_get",
         "parameters": [
           {
             "name": "venue_id",
@@ -7520,7 +7579,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DossierListResponse"
+                  "$ref": "#/components/schemas/DossierDetail"
                 }
               }
             }
@@ -27744,6 +27803,55 @@
         ],
         "title": "BatchEventResponse"
       },
+      "BatchMarkReadRequest": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "conversation_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Conversation Ids"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "conversation_ids"
+        ],
+        "title": "BatchMarkReadRequest",
+        "description": "Mark several conversations read for the same user in one request."
+      },
+      "BatchMarkReadResponse": {
+        "properties": {
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/MarkReadResponse"
+            },
+            "type": "array",
+            "title": "Results"
+          },
+          "failed_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Failed Ids",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "results"
+        ],
+        "title": "BatchMarkReadResponse",
+        "description": "Per-id results for a batch mark-read request.\n\n``failed_ids`` holds ids that were not found or the actor isn't a\nparticipant of — the rest of the batch still succeeds."
+      },
       "BetterSlot": {
         "properties": {
           "time_start": {
@@ -35124,83 +35232,6 @@
           "angle"
         ],
         "title": "DossierLeadItem"
-      },
-      "DossierListResponse": {
-        "properties": {
-          "items": {
-            "items": {
-              "$ref": "#/components/schemas/DossierSummary"
-            },
-            "type": "array",
-            "title": "Items"
-          },
-          "count": {
-            "type": "integer",
-            "title": "Count"
-          }
-        },
-        "type": "object",
-        "required": [
-          "items",
-          "count"
-        ],
-        "title": "DossierListResponse"
-      },
-      "DossierSummary": {
-        "properties": {
-          "id": {
-            "type": "integer",
-            "title": "Id"
-          },
-          "angle": {
-            "type": "string",
-            "title": "Angle"
-          },
-          "travel_lens": {
-            "type": "string",
-            "title": "Travel Lens"
-          },
-          "thematic_tags": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array",
-            "title": "Thematic Tags"
-          },
-          "word_count": {
-            "type": "integer",
-            "title": "Word Count"
-          },
-          "coverage_depth": {
-            "type": "string",
-            "title": "Coverage Depth"
-          },
-          "origin_type": {
-            "type": "string",
-            "title": "Origin Type"
-          },
-          "review_status": {
-            "type": "string",
-            "title": "Review Status"
-          },
-          "created_at": {
-            "type": "string",
-            "title": "Created At"
-          }
-        },
-        "type": "object",
-        "required": [
-          "id",
-          "angle",
-          "travel_lens",
-          "word_count",
-          "coverage_depth",
-          "origin_type",
-          "review_status",
-          "created_at"
-        ],
-        "title": "DossierSummary",
-        "description": "Lightweight dossier listing item."
       },
       "EntitySave": {
         "properties": {
@@ -48090,6 +48121,16 @@
             "title": "Actor Type",
             "default": "vesper"
           },
+          "contributor": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlanContributor"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "price_cents": {
             "anyOf": [
               {
@@ -48184,6 +48225,28 @@
         ],
         "title": "PlanCommitmentState",
         "description": "Server-derived commitment lane for an itinerary block."
+      },
+      "PlanContributor": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "traveler",
+              "vesper"
+            ],
+            "title": "Kind"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "display_name"
+        ],
+        "title": "PlanContributor"
       },
       "PlanCorrectionWritebackPayload": {
         "properties": {
@@ -49721,6 +49784,17 @@
               }
             ],
             "title": "Conversation Id"
+          },
+          "card_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Card Id"
           },
           "is_read": {
             "type": "boolean",

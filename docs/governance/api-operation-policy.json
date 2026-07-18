@@ -421,6 +421,16 @@
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
       "review_by": "2026-08-15"
     },
+    "GET /api/dossiers/venue/{venue_id}": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "product-engineering",
+      "reason": "Superseded by the single primary-dossier endpoint used by venue detail.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete the unused venue dossier-list route.",
+      "review_by": "2026-08-15"
+    },
     "GET /api/events/users/{user_id}": {
       "audience": "server",
       "consumers": [
