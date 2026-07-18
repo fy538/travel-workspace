@@ -83,8 +83,9 @@ Optimize Route consequence truth is typed at backend `8526bc37` and app
 moved, removed, or replaced stop and state how many existing stops stay
 unchanged and how many protected provider dependencies remain explicit. The
 landed receipt preserves that same structural evidence from the revalidated
-preview. Full destination-local before/after timing and travel deltas, plus
-richer initial parallel-plan construction, remain.
+preview. Each changed stop now also carries destination-local prior/proposed
+day and time plus grounded outbound travel mode/minutes; absent route truth is
+left absent. Richer initial parallel-plan construction remains.
 
 ### Resolved in the first wave
 
@@ -124,7 +125,7 @@ richer initial parallel-plan construction, remain.
 
 | Priority | Residual capability | Direction |
 |---|---|---|
-| P1 | Replan timing depth and parallel construction | Replan preview and landed receipts preserve per-stop classification, kept-stop truth, and protected-dependency counts. Add destination-local before/after timing and travel deltas, then enrich initial parallel-plan construction inside the existing operation system. |
+| P1 | Initial parallel-plan construction | Replan consequence truth is resolved. Enrich initial Split construction with independently selected places, named traveler branches, and multi-traveler assignment inside the existing atomic operation system. |
 | P1 | Missing Chat object producers | Full itinerary, map/route, comparison, Atlas draft, recovery and private handoff need typed producers plus durable actions. |
 | P1 | Heterogeneous Discover pins | Venue pins are complete; friend, experience and place payloads still need accessible rendering and grounded handoffs. |
 | P2 | Bounded product/interaction polish | Trip Info hero/description, Skip vote, trip-creation correction, booking recovery and share-owner sheets. |
@@ -140,8 +141,8 @@ The overall verdict after remediation is:
 - Durable trip agency now covers plan governance, Costs/Booking entry authority,
   booking participant consent and reminders, shared booking receipts, the
   expense-dispute lifecycle, guarded trip cancellation, archive recovery, and
-  sanitized reuse. Remaining P1s are typed consequence depth and grounded
-  object producers rather than lifecycle or shell redesign.
+  sanitized reuse. Remaining P1s are expressive parallel-plan construction and
+  grounded object producers rather than lifecycle or shell redesign.
 - The central Trip/Itinerary shell, alignment gate, typography ratchet and
   bounded Discover/Atlas/Chat seams are green.
 
@@ -253,7 +254,7 @@ The backend and sheet can refresh/rebase a stale preview, but the UI collapses r
 
 Implement this as a recovery state of the existing operation flow, not a second mutation system.
 
-### 1.4 Optimize resolved; Replan preview classified, receipt depth remains — P1
+### 1.4 Optimize and Replan consequence depth — resolved 2026-07-17
 
 `OptimizeRouteSheet` now shows distance saved plus a typed per-stop
 classification and destination-local current/proposed position and time. Kept,
@@ -266,9 +267,11 @@ child as added, moved, removed, or replaced, plus the count of unchanged stops
 and protected provider dependencies. The review sheet renders those exact
 server-authored consequences before its one atomic commit, and the landed
 receipt persists and renders the revalidated structural delta. The residual is
-destination-local prior/proposed timing and travel ripple. Build that on the
-same operation and history contracts rather than extending the
-Optimize-specific response into a second mutation system.
+also closed: every affected stop carries its grounded prior/proposed day and
+local time plus outbound travel mode/minutes when known. Preview and landed
+receipt render the same evidence; missing travel remains absent rather than
+estimated. Route geometry and private planner rationale are deliberately
+excluded from this group-safe contract.
 
 ### 1.5 Initial Split/Rejoin construction is narrower than the target — P1
 

@@ -4150,7 +4150,7 @@
           "atlas"
         ],
         "summary": "Dismiss Candidate Endpoint",
-        "description": "Mark a candidate as dismissed. Idempotent \u2014 repeated calls succeed silently.\n\nDismissed candidates do not re-appear in subsequent scans (the client\nis expected to check the dismiss status before re-submitting candidates\nthat match a previously-dismissed date+place cluster).",
+        "description": "Mark a candidate as dismissed. Idempotent \u2014 repeated calls succeed silently.\n\nDismissed candidates do not re-appear in subsequent scans (the client\nis expected to check the dismiss status before re-submitting candidates\nthat match a previously-dismissed date+place cluster).\n\n``async_dismiss_candidate`` only writes from ``pending`` state (see its\ndocstring) and returns False otherwise \u2014 e.g. the candidate is already\n``approved``, or a concurrent request dismissed/approved it between the\nread above and this write. That return value used to be discarded: the\nroute fired the \"dismissed\" telemetry event and returned 204 regardless,\neven when the write never happened.",
         "operationId": "dismiss_candidate_endpoint_api_atlas_candidates__candidate_id__delete",
         "parameters": [
           {
@@ -50365,6 +50365,124 @@
               }
             ],
             "title": "Block Id"
+          },
+          "current_title": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 240,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current Title"
+          },
+          "proposed_title": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 240,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proposed Title"
+          },
+          "current_day_number": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current Day Number"
+          },
+          "proposed_day_number": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proposed Day Number"
+          },
+          "current_time_start": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current Time Start"
+          },
+          "current_time_end": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current Time End"
+          },
+          "proposed_time_start": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proposed Time Start"
+          },
+          "proposed_time_end": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proposed Time End"
+          },
+          "current_travel": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ItineraryReplanTravel"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "proposed_travel": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ItineraryReplanTravel"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "additionalProperties": false,
@@ -50376,6 +50494,39 @@
         ],
         "title": "ItineraryReplanChange",
         "description": "One traveler-readable structural consequence of an atomic Replan."
+      },
+      "ItineraryReplanTravel": {
+        "properties": {
+          "mode": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 40,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mode"
+          },
+          "minutes": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Minutes"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "ItineraryReplanTravel",
+        "description": "Group-safe route consequence without geometry or planner rationale."
       },
       "ItineraryReturnField": {
         "type": "string",
