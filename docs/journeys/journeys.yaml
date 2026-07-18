@@ -489,7 +489,7 @@ journeys:
             - travel-agent/tests/api/test_expenses_api.py
             - travel-agent/tests/expenses/test_expense_mutation_capabilities.py
             - travel-agent/tests/search/test_masked_expense_search_leak.py
-          VIS: []
+          VIS: [travel-app/.maestro/61-journey-23-cost-corrections.yaml]
       - id: J23.B03
         title: Equal exact percentage and itemized split
         required_evidence: [FE, BE, VIS]
@@ -503,7 +503,7 @@ journeys:
             - travel-agent/tests/api/test_expenses_api.py
             - travel-agent/tests/expenses/test_expenses.py
             - travel-agent/tests/expenses/test_settlement_properties.py
-          VIS: []
+          VIS: [travel-app/.maestro/61-journey-23-cost-corrections.yaml]
       - id: J23.B04
         title: Edit and delete authority with payment lock
         required_evidence: [FE, BE, VIS]
@@ -517,7 +517,7 @@ journeys:
             - travel-agent/tests/api/test_expenses_api.py
             - travel-agent/tests/expenses/test_expense_mutation_capabilities.py
             - travel-agent/tests/expenses/test_settlement_payments_e2e.py
-          VIS: []
+          VIS: [travel-app/.maestro/61-journey-23-cost-corrections.yaml]
       - id: J23.B05
         title: Participant dispute and resolution
         required_evidence: [FE, BE, VIS, LIVE]
@@ -530,7 +530,7 @@ journeys:
             - travel-agent/tests/scenarios/test_j23_group_costs_correction_settlement.py
             - travel-agent/tests/api/test_expenses_api.py
             - travel-agent/tests/expenses/test_expense_disputes_e2e.py
-          VIS: []
+          VIS: [travel-app/.maestro/61-journey-23-cost-corrections.yaml]
           LIVE: [persona-cert:J23]
       - id: J23.B06
         title: Currency rate and owed-direction truth
@@ -571,7 +571,7 @@ journeys:
           BE:
             - travel-agent/tests/scenarios/test_j10_booking_stay_expense_trust_loop.py
             - travel-agent/tests/api/test_expenses_api.py
-          VIS: []
+          VIS: [travel-app/.maestro/61-journey-23-cost-corrections.yaml]
           LIVE: [persona-cert:J23]
   - id: J24
     title: Group Membership and Agency Governance
