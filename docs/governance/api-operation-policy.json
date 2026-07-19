@@ -699,6 +699,22 @@
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
       "review_by": "2026-08-15"
     },
+    "GET /api/users/{user_id}/memory-learning-candidates": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "personal-memory-learning-confirmation",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "memory",
+      "reason": "Owner-private confirmation queue for cross-trip policies inferred from itinerary outcomes.",
+      "removal_trigger": null,
+      "review_by": null
+    },
     "GET /api/users/{user_id}/devices": {
       "audience": "app",
       "consumers": [],
@@ -1348,6 +1364,22 @@
       "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
       "review_by": "2026-08-15"
+    },
+    "POST /api/users/{user_id}/memory-learning-candidates/{candidate_id}/resolve": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "personal-memory-learning-confirmation",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "memory",
+      "reason": "Records an idempotent owner confirmation or rejection without exposing private evidence.",
+      "removal_trigger": null,
+      "review_by": null
     },
     "POST /api/users/{user_id}/modality/route": {
       "audience": "app",
