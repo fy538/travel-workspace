@@ -2,7 +2,7 @@
 
 > Status: draft  
 > Owner: founder / engineering  
-> Last updated: 2026-07-18
+> Last updated: 2026-07-19
 > Primary phase: pre-trip / live-trip truth (projection invariant layer)
 
 ## Product Promise
@@ -62,14 +62,20 @@ pair of surfaces.
 | Branch | Mutation / state | Required outcome | Evidence required | Current assessment |
 |---|---|---|---|---|
 | `J06.B01` | Baseline placed block | List, Map, Details, Chat attachment, and Changes use the same canonical id/truth | `FE`, `BE`, `VIS` | Proven locally and visually |
-| `J06.B02` | Proposal apply | `applied_block_map`, Plan, Map, receipt, and return route converge | `FE`, `BE`, `VIS`, `LIVE` | Local/lived apply proof exists; branch-level visual mapping needed |
-| `J06.B03` | Proposal revert | Every projection restores the prior coherent state | `FE`, `BE`, `VIS`, `LIVE` | Logic exists; dedicated stable native revert control remains a named gap |
-| `J06.B04` | Direct edit commit | Typed operation appears identically in List, Map, Details, and Changes | `FE`, `BE`, `VIS` | Change Studio opens; full post-commit reconciliation evidence is partial |
-| `J06.B05` | Live-trip mutation | Current/next truth and spatial selection reconcile without losing orientation | `FE`, `BE`, `VIS`, `LIVE` | J08 proves a seeded next stop; mutation-after-return branch remains partial |
-| `J06.B06` | Stay/booking writeback | Canonical itinerary object, booking receipt, Details, and Map agree | `FE`, `BE`, `VIS`, `LIVE` | J10 covers pieces; no single branch receipt maps all projections |
-| `J06.B07` | Unplaced/unmapped item | Every surface names the item honestly without a phantom pin or crash | `FE`, `BE`, `VIS` | Deterministic parity anchors exist; dedicated journey visual evidence is incomplete |
+| `J06.B02` | Proposal apply | `applied_block_map`, Plan, Map, receipt, and return route converge | `FE`, `BE`, `VIS`, `LIVE` | Certified through J05 apply evidence and the lived mutation path |
+| `J06.B03` | Proposal revert | Every projection restores the prior coherent state | `FE`, `BE`, `VIS`, `LIVE` | Certified: native revert, durable detail/list status, restored Plan/Map, and canonical inverse history |
+| `J06.B04` | Direct edit commit | Typed operation appears identically in List, Map, Details, and Changes | `FE`, `BE`, `VIS` | Certified: occurrence commit, landed receipt, history record, refreshed Plan, and current object truth |
+| `J06.B05` | Live-trip mutation | Current/next truth and spatial selection reconcile without losing orientation | `FE`, `BE`, `VIS`, `LIVE` | Certified through J08 live mutation evidence |
+| `J06.B06` | Stay/booking writeback | Canonical itinerary object, booking receipt, Details, and Map agree | `FE`, `BE`, `VIS`, `LIVE` | Certified through J10 writeback evidence |
+| `J06.B07` | Unplaced/unmapped item | Every surface names the item honestly without a phantom pin or crash | `FE`, `BE`, `VIS` | Certified: Plan names the stop while Map explicitly reports it as unplaced |
 
 See [Branch-Level Journey Certification Model](BRANCH_CERTIFICATION_MODEL.md).
+
+## Certification Record
+
+- 2026-07-19: `49b-journey-06-mutation-reconciliation.yaml` passed on iPhone 16 Pro (iOS 18.2), covering `J06.B03`, `J06.B04`, and `J06.B07`.
+- 2026-07-19: `persona-cert:J06` passed against the disposable real-backend trip, including accepted proposal Plan/Map readback, canonical inverse revert, restored Plan/Map truth, and history.
+- Branch fidelity after this pass: `FE 7/7`, `BE 7/7`, `VIS 7/7`, `LIVE 4/4`.
 
 ## Expected Outcome
 

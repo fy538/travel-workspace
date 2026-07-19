@@ -59,15 +59,15 @@ journeys:
         evidence:
           FE: [travel-app/__tests__/hooks/usePlanProposalUndo.test.ts]
           BE: [travel-agent/tests/api/test_itinerary_operation_history.py]
-          VIS: []
-          LIVE: []
+          VIS: [travel-app/.maestro/49b-journey-06-mutation-reconciliation.yaml]
+          LIVE: [persona-cert:J06]
       - id: J06.B04
         title: Direct-edit commit reconciliation
         required_evidence: [FE, BE, VIS]
         evidence:
           FE: [travel-app/__tests__/data/itineraryOperations.test.tsx]
           BE: [travel-agent/tests/api/test_itinerary_operations_commit.py]
-          VIS: []
+          VIS: [travel-app/.maestro/49b-journey-06-mutation-reconciliation.yaml]
       - id: J06.B05
         title: Live-trip mutation reconciliation
         required_evidence: [FE, BE, VIS, LIVE]
@@ -90,7 +90,7 @@ journeys:
         evidence:
           FE: [travel-app/__tests__/utils/tripMapStateParity.test.ts]
           BE: [travel-agent/tests/core/test_map_state_builder.py]
-          VIS: []
+          VIS: [travel-app/.maestro/49b-journey-06-mutation-reconciliation.yaml]
   - id: J07
     title: Discover to Contextual Vesper to Trip Action
     doc: 07-discover-to-contextual-vesper-to-trip-action.md
