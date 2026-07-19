@@ -2,7 +2,7 @@
 
 > Status: draft  
 > Owner: founder / engineering  
-> Last updated: 2026-07-18
+> Last updated: 2026-07-19
 > Primary phase: memory / identity control / trust hub
 
 > **Current Atlas IA:** This cross-repo journey certifies the candidate and
@@ -67,12 +67,12 @@ global journey IDs.
 
 | Branch | Atlas outcome | Required evidence | Current assessment |
 |---|---|---|---|
-| `J11.B01` | Empty/provisional Atlas → first grounded saved place or weak prior → useful Home | `FE`, `BE`, `VIS`, `LIVE` | Native save/return flow exists; failure/offline and lived first-value proof are partial |
-| `J11.B02` | Review candidate → keep/refine/dismiss → updated queue/artifact | `FE`, `BE`, `VIS`, `LIVE` | Strongest branch: mock, backend, native, and seeded candidate approval exist; dismiss/retry variants need registration |
-| `J11.B03` | Open/compose Reading → steer → keep → shelf/Home return | `FE`, `BE`, `VIS`, `LIVE` | Native keep/return exists; thin/failure/offline and lived generation remain gaps |
-| `J11.B04` | Inspect provenance → correct/soften/forget → originating surfaces reconcile | `FE`, `BE`, `VIS`, `LIVE` | Native forget/return and backend controls exist; cross-surface correction parity is partial |
-| `J11.B05` | Browse time/place history → hide → Removed → restore to original chapter | `FE`, `BE`, `VIS`, `LIVE` | Strong FE/BE/native evidence; lived restore and failure branches remain incomplete |
-| `J11.B06` | Grounded timely return → open source → dismiss/expire → slot retires | `FE`, `BE`, `VIS`, `LIVE` | Native flow exists; expiry/missing-source/seasonal and lived branches remain partial |
+| `J11.B01` | Empty/provisional Atlas → first grounded saved place or weak prior → useful Home | `FE`, `BE`, `VIS`, `LIVE` | Certified through J25 first-value save, Home projection, and native return |
+| `J11.B02` | Review candidate → keep/refine/dismiss → updated queue/artifact | `FE`, `BE`, `VIS`, `LIVE` | Certified through native keep/dismiss and lived candidate-to-artifact grounding |
+| `J11.B03` | Open/compose Reading → steer → keep → shelf/Home return | `FE`, `BE`, `VIS`, `LIVE` | Certified through J26 compose, provenance, keep, shelf, and return evidence |
+| `J11.B04` | Inspect provenance → correct/soften/forget → originating surfaces reconcile | `FE`, `BE`, `VIS`, `LIVE` | Certified through J27 source-preserving correction/forget reconciliation |
+| `J11.B05` | Browse time/place history → hide → Removed → restore to original chapter | `FE`, `BE`, `VIS`, `LIVE` | Certified through J28 native and lived hide/restore/archive-reason evidence |
+| `J11.B06` | Grounded timely return → open source → dismiss/expire → slot retires | `FE`, `BE`, `VIS`, `LIVE` | Certified: native open/dismiss plus lived Unpacked postcard grounded by approved artifact |
 
 Existing native anchors:
 
@@ -85,6 +85,12 @@ Existing native anchors:
 
 See [Atlas canonical internal journeys](../../travel-app/docs/user-flows/atlas-journeys.md)
 and [Branch-Level Journey Certification Model](BRANCH_CERTIFICATION_MODEL.md).
+
+## Certification Record
+
+- 2026-07-19: all seven registered Atlas native flows passed on iPhone 16 Pro (iOS 18.2), covering first value, review/dismiss, Reading keep/return, forget, hide/restore, and timely-return retirement.
+- 2026-07-19: `persona-cert:J11` and `persona-cert:J25`–`J28` passed against disposable real-backend fixtures. J11 now proves the approved candidate is exposed by `/api/atlas/unpacked` as a postcard grounded in the created artifact.
+- Branch fidelity after this pass: `FE 6/6`, `BE 6/6`, `VIS 6/6`, `LIVE 6/6`.
 
 ## Expected Outcome
 

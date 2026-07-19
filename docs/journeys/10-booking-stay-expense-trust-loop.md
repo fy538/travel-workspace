@@ -2,7 +2,7 @@
 
 > Status: draft
 > Owner: founder / engineering
-> Last updated: 2026-07-18
+> Last updated: 2026-07-19
 > Primary phase: booking / stay / money
 
 ## Product Promise
@@ -54,18 +54,24 @@ refresh decides which become separately numbered customer journeys.
 
 | Branch | Starting state / actor | Required outcome | Evidence required | Current assessment |
 |---|---|---|---|---|
-| `J10.B01` | Organizer manages shared trip base | Shared stay persists and members see only the group-safe projection | `FE`, `BE`, `VIS`, `LIVE` | Strong local and two-account device evidence |
-| `J10.B02` | Traveler manages personal stay slot | Self or organizer may edit; unrelated member cannot view/mutate private slot | `FE`, `BE`, `VIS`, `LIVE` | Logic covered; dedicated lived branch is partial |
-| `J10.B03` | Assigned booking owner versus observer | Owner may decide; other organizers/members remain read-only and converge on terminal state | `FE`, `BE`, `VIS`, `LIVE` | FE/BE coverage exists; multi-account terminal convergence is incomplete |
-| `J10.B04` | Unpaid provider hold | Settle requires explicit terms/approval; release never claims a booked cancellation | `FE`, `BE`, `VIS`, `LIVE` | Release visual is certified in J15; real provider settle remains a live gap |
-| `J10.B05` | Expired, unknown, stale, or refresh-failed provider state | Honest actionable recovery; never renders Booked | `FE`, `BE`, `VIS`, `LIVE` | Expired/unknown visuals exist under J13; provider-live coverage is incomplete |
-| `J10.B06` | Provider-confirmed hotel offer | One stay writeback with stable source/offer identity | `FE`, `BE`, `VIS`, `LIVE` | Local seam coverage exists; deployed provider receipt/writeback remains partial |
-| `J10.B07` | Organizer opts confirmed offer into Costs | Explicit editable payer/split; exactly one expense; retry is idempotent | `FE`, `BE`, `VIS`, `LIVE` | Strong FE/BE coverage; two-account lived settlement is incomplete |
-| `J10.B08` | Non-booker member views group state | Useful public status without payment method, confirmation secret, or private constraints | `FE`, `BE`, `VIS`, `LIVE` | Two-account visibility flow exists; needs branch registration |
-| `J10.B09` | Close success/failure handoff | Return to exact Itinerary object/context with a truthful receipt | `FE`, `VIS` | Screen tests exist; native exact-return proof is partial |
+| `J10.B01` | Organizer manages shared trip base | Shared stay persists and members see only the group-safe projection | `FE`, `BE`, `VIS`, `LIVE` | Certified through J10 organizer stay and cost evidence |
+| `J10.B02` | Traveler manages personal stay slot | Self or organizer may edit; unrelated member cannot view/mutate private slot | `FE`, `BE`, `VIS`, `LIVE` | Certified through J21 native ownership and lived authorization evidence |
+| `J10.B03` | Assigned booking owner versus observer | Owner may decide; other organizers/members remain read-only and converge on terminal state | `FE`, `BE`, `VIS`, `LIVE` | Certified through J22 controller/observer recovery evidence |
+| `J10.B04` | Unpaid provider hold | Settle requires explicit terms/approval; release never claims a booked cancellation | `FE`, `BE`, `VIS`, `LIVE` | Certified: explicit settle consent, observer denial, and truthful hold release |
+| `J10.B05` | Expired, unknown, stale, or refresh-failed provider state | Honest actionable recovery; never renders Booked | `FE`, `BE`, `VIS`, `LIVE` | Certified across expired and provider-unknown native states plus J22 recovery |
+| `J10.B06` | Provider-confirmed hotel offer | One stay writeback with stable source/offer identity | `FE`, `BE`, `VIS`, `LIVE` | Certified: confirmed hotel writes one replay-safe booking-sourced stay |
+| `J10.B07` | Organizer opts confirmed offer into Costs | Explicit editable payer/split; exactly one expense; retry is idempotent | `FE`, `BE`, `VIS`, `LIVE` | Certified through J10 lived opt-in and idempotent settlement evidence |
+| `J10.B08` | Non-booker member views group state | Useful public status without payment method, confirmation secret, or private constraints | `FE`, `BE`, `VIS`, `LIVE` | Certified: observer sees terminal truth without confirmation or provider secrets |
+| `J10.B09` | Close success/failure handoff | Return to exact Itinerary object/context with a truthful receipt | `FE`, `VIS` | Certified through native exact-stop return with opaque return token |
 
 J10 is therefore not “done” merely because one booking/stay/expense file exists.
 See [Branch-Level Journey Certification Model](BRANCH_CERTIFICATION_MODEL.md).
+
+## Certification Record
+
+- 2026-07-19: the J10/J21/J22 native evidence set passed on iPhone 16 Pro (iOS 18.2), including personal stay ownership, observer safety, hold release, provider exceptions, and exact-stop return.
+- 2026-07-19: `persona-cert:J10`, `persona-cert:J21`, and `persona-cert:J22` passed against disposable real-backend fixtures. J22 now includes replay-safe confirmed-hotel accommodation writeback and controller/observer receipt privacy.
+- Branch fidelity after this pass: `FE 9/9`, `BE 8/8`, `VIS 9/9`, `LIVE 8/8`.
 
 ## Cross-repo seam checks (2026-06-25 audit)
 

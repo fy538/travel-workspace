@@ -122,24 +122,24 @@ journeys:
         evidence:
           FE: [travel-app/__tests__/screens/accommodation-detail.smoke.test.tsx]
           BE: [travel-agent/tests/scenarios/test_j10_booking_stay_expense_trust_loop.py]
-          VIS: []
-          LIVE: []
+          VIS: [travel-app/.maestro/48-journey-21-stay-ownership.yaml]
+          LIVE: [persona-cert:J21]
       - id: J10.B03
         title: Assigned booker and read-only observer converge
         required_evidence: [FE, BE, VIS, LIVE]
         evidence:
           FE: [travel-app/__tests__/hooks/useBookingDecision.test.tsx]
           BE: [travel-agent/tests/booking/test_booking_controller_departure_postgres.py]
-          VIS: []
-          LIVE: []
+          VIS: [travel-app/.maestro/60-journey-22-booking-exceptions.yaml]
+          LIVE: [persona-cert:J22]
       - id: J10.B04
         title: Unpaid hold settle and release truth
         required_evidence: [FE, BE, VIS, LIVE]
         evidence:
           FE: [travel-app/__tests__/screens/booking-confirm.test.tsx]
           BE: [travel-agent/tests/booking/test_holds.py]
-          VIS: []
-          LIVE: []
+          VIS: [travel-app/.maestro/59-journey-15-release-hold-confirm.yaml]
+          LIVE: [persona-cert:J22]
       - id: J10.B05
         title: Provider exception and recovery truth
         required_evidence: [FE, BE, VIS, LIVE]
@@ -148,8 +148,10 @@ journeys:
           BE:
             - travel-agent/tests/booking/test_hold_expiration.py
             - travel-agent/tests/booking/test_provider_resilience.py
-          VIS: []
-          LIVE: []
+          VIS:
+            - travel-app/.maestro/57-journey-13-expired-booking.yaml
+            - travel-app/.maestro/polish/booking-provider-unknown.yaml
+          LIVE: [persona-cert:J22]
       - id: J10.B06
         title: Provider-confirmed hotel writeback
         required_evidence: [FE, BE, VIS, LIVE]
@@ -157,7 +159,7 @@ journeys:
           FE: [travel-app/__tests__/hooks/useProviderReceiptCapture.test.ts]
           BE: [travel-agent/tests/booking/test_accommodation_projection_task.py]
           VIS: [travel-app/.maestro/28-journey-10-booking-stay-expense.yaml]
-          LIVE: []
+          LIVE: [persona-cert:J22]
       - id: J10.B07
         title: Explicit idempotent share to Costs
         required_evidence: [FE, BE, VIS, LIVE]
@@ -176,13 +178,13 @@ journeys:
           FE: [travel-app/__tests__/screens/accommodation-detail.smoke.test.tsx]
           BE: [travel-agent/tests/scenarios/test_j10_booking_stay_expense_trust_loop.py]
           VIS: [travel-app/.maestro/32-journey-10-device-member-stay-visibility-check.yaml]
-          LIVE: []
+          LIVE: [persona-cert:J22]
       - id: J10.B09
         title: Exact return after booking handoff
         required_evidence: [FE, VIS]
         evidence:
           FE: [travel-app/__tests__/screens/booking-confirm.test.tsx]
-          VIS: []
+          VIS: [travel-app/.maestro/60-journey-22-booking-exceptions.yaml]
   - id: J11
     title: Atlas Candidate to Memory Control
     doc: 11-atlas-candidate-to-memory-control.md
@@ -195,7 +197,7 @@ journeys:
           FE: [travel-app/__tests__/utils/api/atlasPlaceSave.mock.test.ts]
           BE: [travel-agent/tests/atlas/test_home_saved_places.py]
           VIS: [travel-app/.maestro/atlas-journey-place-save-return.yaml]
-          LIVE: []
+          LIVE: [persona-cert:J25]
       - id: J11.B02
         title: Review and resolve an Atlas decision
         required_evidence: [FE, BE, VIS, LIVE]
@@ -213,7 +215,7 @@ journeys:
           FE: [travel-app/__tests__/utils/api/atlasReading.mock.test.ts]
           BE: [travel-agent/tests/atlas/test_atlas_composer.py]
           VIS: [travel-app/.maestro/atlas-journey-reading-keep-return.yaml]
-          LIVE: []
+          LIVE: [persona-cert:J26]
       - id: J11.B04
         title: Correct or forget learned memory
         required_evidence: [FE, BE, VIS, LIVE]
@@ -221,7 +223,7 @@ journeys:
           FE: [travel-app/__tests__/conventions/atlasMemoryCorrectionContract.test.ts]
           BE: [travel-agent/tests/core/test_memory_corrections.py]
           VIS: [travel-app/.maestro/atlas-journey-memory-forget-return.yaml]
-          LIVE: []
+          LIVE: [persona-cert:J27]
       - id: J11.B05
         title: Browse hide and restore Atlas history
         required_evidence: [FE, BE, VIS, LIVE]
@@ -229,7 +231,7 @@ journeys:
           FE: [travel-app/__tests__/utils/atlasTimelineArchive.test.ts]
           BE: [travel-agent/tests/atlas/test_timeline_removed.py]
           VIS: [travel-app/.maestro/atlas-journey-archive-hide-restore.yaml]
-          LIVE: []
+          LIVE: [persona-cert:J28]
       - id: J11.B06
         title: Receive and retire a timely return
         required_evidence: [FE, BE, VIS, LIVE]
@@ -237,7 +239,7 @@ journeys:
           FE: [travel-app/__tests__/utils/atlasTimelyReturn.test.ts]
           BE: [travel-agent/tests/atlas/test_atlas_unpacked.py]
           VIS: [travel-app/.maestro/atlas-journey-timely-return-open-dismiss.yaml]
-          LIVE: []
+          LIVE: [persona-cert:J11]
   - id: J12
     title: Returned Trip to Story, Memory, and Settle-Up
     doc: 12-returned-trip-to-story-memory-settle-up.md

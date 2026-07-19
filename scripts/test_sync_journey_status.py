@@ -53,14 +53,20 @@ def test_trial_branch_registry_reports_expected_honest_fractions() -> None:
         "J08": {"status": "pass"},
         "J10": {"status": "pass"},
         "J11": {"status": "pass"},
+        "J21": {"status": "pass"},
+        "J22": {"status": "pass"},
+        "J25": {"status": "pass"},
+        "J26": {"status": "pass"},
+        "J27": {"status": "pass"},
+        "J28": {"status": "pass"},
     }
 
     assert subject._branch_fidelity_cell(journeys["J06"], "VIS", lived) == "✅ 7/7"
     lived["J06"] = {"status": "pass"}
     assert subject._branch_fidelity_cell(journeys["J06"], "LIVE", lived) == "✅ 4/4"
-    assert subject._branch_fidelity_cell(journeys["J10"], "LIVE", lived) == "◐ 2/8"
+    assert subject._branch_fidelity_cell(journeys["J10"], "LIVE", lived) == "✅ 8/8"
     assert subject._branch_fidelity_cell(journeys["J11"], "VIS", lived) == "✅ 6/6"
-    assert subject._branch_fidelity_cell(journeys["J11"], "LIVE", lived) == "◐ 1/6"
+    assert subject._branch_fidelity_cell(journeys["J11"], "LIVE", lived) == "✅ 6/6"
     assert subject._branch_fidelity_cell(journeys["J24"], "FE", lived) == "✅ 7/7"
     assert subject._branch_fidelity_cell(journeys["J24"], "BE", lived) == "✅ 7/7"
     assert subject._branch_fidelity_cell(journeys["J24"], "VIS", lived) == "✅ 7/7"
