@@ -10905,7 +10905,7 @@
           "trip-invites"
         ],
         "summary": "List Invites",
-        "description": "List all invites for a trip. Organizer-only.\n\nSide effect: stamps ``intake_seen_at = now()`` on exactly the invites this\nresponse showed as an unseen pending answer, treating the act of opening\nthe list as the organizer's acknowledgement of them. This is what clears\nthe \"Sam answered\" pip in the notification bell — see\n``NotificationFeed.pending_invite_answers``.",
+        "description": "List all invites for a trip. Organizer-only.\n\nSide effect: stamps ``intake_seen_at = now()`` on every invite for the\ntrip, treating the act of opening the list as the organizer's\nacknowledgement of any pending intake answers. This is what clears\nthe \"Sam answered\" pip in the notification bell — see\n``NotificationFeed.pending_invite_answers``.",
         "operationId": "list_invites_api_trips__trip_id__invites_get",
         "parameters": [
           {
@@ -50797,17 +50797,6 @@
             "type": "boolean",
             "title": "Voting Enabled",
             "default": false
-          },
-          "accepted_at": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Accepted At"
           },
           "apply_status": {
             "anyOf": [

@@ -132,6 +132,26 @@ flags:
     status: active
     notes: Global fail-closed kill switch for canonical itinerary writes; reads and previews remain available when disabled.
 
+  - name: CONTEXT_COMPILER_PLANNER_PARITY_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:164
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-17
+    status: active
+    notes: Dual-renders the typed planner context for content-free parity telemetry before cutover.
+
+  - name: CONTEXT_COMPILER_PLANNER_CUTOVER_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:170
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-17
+    status: active
+    notes: Selects the compiled typed planner overlay only after membership and coverage checks pass.
+
   - name: DOSSIER_APPROVED_FILTER_CHAT
     repo: travel-agent
     location: backend/core/settings.py:158
