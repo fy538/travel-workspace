@@ -202,9 +202,9 @@ Source: `docs/journeys/journeys.yaml` × registered branch evidence where declar
 | J13 | Failure and Recovery | holistic | ✅ | ✅ | ✅ | ✅ |
 | J14 | Solo Trip End-to-End | holistic | ✅ | ✅ | ✅ | ✅ |
 | J15 | Destructive and Reversible Actions | holistic | ✅ | ✅ | ✅ | ✅ |
-| J16 | Account and Data Lifecycle | holistic | ✅ | ✅ | — | ✅ |
-| J17 | Returning Traveler (Cross-Trip Recall) | holistic | ✅ | ✅ | — | ✅ |
-| J18 | Signed-Out Join-By-Invite | holistic | ✅ | ✅ | — | ✅ |
+| J16 | Account and Data Lifecycle | holistic | ✅ | ✅ | ✅ | ✅ |
+| J17 | Returning Traveler (Cross-Trip Recall) | holistic | ✅ | ✅ | ✅ | ✅ |
+| J18 | Signed-Out Join-By-Invite | holistic | ✅ | ✅ | ✅ | ✅ |
 | J19 | Social Loop and Cross-Entity Discovery | holistic | ✅ | ✅ | ✅ | ✅ |
 | J20 | First-Use Trust to First Personalized Value | customer | ✅ 6/6 | ✅ 3/3 | ✅ 6/6 | ✅ 3/3 |
 | J21 | Collaborative Stay and Traveler Ownership | customer | ✅ 6/6 | ✅ 6/6 | ✅ 6/6 | ✅ 3/3 |
@@ -225,7 +225,7 @@ Source: `docs/journeys/journeys.yaml` × registered branch evidence where declar
 | Frontend contract evidence | **28 / 28** by canonical mock-walk discovery; branch-certified journeys also resolve every declared FE branch |
 | Backend logic evidence | 28 / 28 |
 | Branch-aware coverage | J06: FE 7/7, BE 7/7, VIS 7/7, LIVE 4/4 · J10: FE 9/9, BE 8/8, VIS 9/9, LIVE 8/8 · J11: FE 6/6, BE 6/6, VIS 6/6, LIVE 6/6 · J20: FE 6/6, BE 3/3, VIS 6/6, LIVE 3/3 · J21: FE 6/6, BE 6/6, VIS 6/6, LIVE 3/3 · J22: FE 8/8, BE 7/7, VIS 8/8, LIVE 7/7 · J23: FE 8/8, BE 8/8, VIS 8/8, LIVE 4/4 · J24: FE 7/7, BE 7/7, VIS 7/7, LIVE 5/5 · J25: FE 6/6, BE 3/3, VIS 6/6, LIVE 1/1 · J26: FE 7/7, BE 7/7, VIS 7/7, LIVE 4/4 · J27: FE 6/6, BE 6/6, VIS 6/6, LIVE 3/3 · J28: FE 6/6, BE 6/6, VIS 6/6, LIVE 3/3 |
-| Visual journey evidence | 22 complete + 3 partial / 28 |
+| Visual journey evidence | 28 complete / 28 |
 | Lived persona evidence | **28 / 28 pass** across Mara, Elif, and Reza; destructive or state-specific journeys use disposable fixtures |
 | Maestro wedge flows (24/25) | **green** 2026-06-29 (`make certify-visual`) |
 | Five-pack dogfood (agent gates) | **certified** 2026-06-29 (`dogfood-five-pack-verify` + `dogfood-five-pack-simulator`) |
