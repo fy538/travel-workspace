@@ -3,7 +3,7 @@ doc_type: canon
 status: active
 owner: founder / engineering
 created: 2026-07-18
-last_verified: 2026-07-18
+last_verified: 2026-07-19
 why_new: First-session consent, safety, and value are now a durable product lifecycle rather than incidental checks inside trip ideation.
 source_of_truth_for: [journey-J20]
 ---
@@ -56,3 +56,22 @@ see it personalize anything, so that the first useful moment feels earned.
 
 Ephemeral first-session fixture: deny every optional permission, save one grounded
 place, restart, and prove Home shows the save while private/safety state remains private.
+
+## Certification
+
+J20 is certified across four independent layers:
+
+- The frontend now stores a versioned 24-hour onboarding draft, restores the
+  exact step and partial answers, serializes clear-after-save handoffs, and
+  clears the draft when the traveler deliberately exits onboarding.
+- Connected mock contracts prove optional fields stay absent, safety constraints
+  persist privately, photo-derived recovery remains pending until approval, and
+  one explicit venue save returns on Atlas Home without invented Travel DNA.
+- The PostgreSQL scenario and `persona-cert:J20` repeat the private intake,
+  approval provenance, and first grounded result against disposable users and
+  clean up every fixture, so shared dogfood identities are never mutated.
+- Maestro flow `67-journey-20-first-use-trust-value.yaml` visibly certifies exact
+  resume, minimal deferral, photo/location denial, private safety persistence,
+  recovery approval, and the first useful Atlas result. Push denial is covered
+  headlessly because the OS prompt is session/device state rather than a stable
+  screenshot fixture.

@@ -274,6 +274,68 @@ journeys:
     title: First-Use Trust to First Personalized Value
     doc: 20-first-use-trust-to-first-personalized-value.md
     tier: customer-extension
+    branches:
+      - id: J20.B01
+        title: Minimal setup with all optional fields deferred
+        required_evidence: [FE, VIS]
+        evidence:
+          FE:
+            - travel-app/__tests__/screens/onboarding.smoke.test.tsx
+            - travel-app/__tests__/utils/onboardingProgress.test.ts
+          VIS: [travel-app/.maestro/67-journey-20-first-use-trust-value.yaml]
+      - id: J20.B02
+        title: Private safety constraint persists without group leakage
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-20-first-use-trust.connected.test.ts
+            - travel-app/__tests__/screens/onboarding.smoke.test.tsx
+          BE:
+            - travel-agent/tests/scenarios/test_j20_first_use_trust_value.py
+            - travel-agent/tests/api/test_users_api.py
+          VIS: [travel-app/.maestro/67-journey-20-first-use-trust-value.yaml]
+          LIVE: [persona-cert:J20]
+      - id: J20.B03
+        title: Photo location and push denial do not block value
+        required_evidence: [FE, VIS]
+        evidence:
+          FE:
+            - travel-app/__tests__/screens/onboarding.smoke.test.tsx
+            - travel-app/__tests__/utils/push.test.ts
+            - travel-app/__tests__/components/UniversalSearchOverlay.test.tsx
+          VIS: [travel-app/.maestro/67-journey-20-first-use-trust-value.yaml]
+      - id: J20.B04
+        title: Recovery intake requires approval and records provenance
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-20-first-use-trust.connected.test.ts
+            - travel-app/__tests__/journeys/atlasJourneys.connected.test.ts
+          BE:
+            - travel-agent/tests/scenarios/test_j20_first_use_trust_value.py
+            - travel-agent/tests/scenarios/test_j11_atlas_candidate_memory_control.py
+          VIS: [travel-app/.maestro/67-journey-20-first-use-trust-value.yaml]
+          LIVE: [persona-cert:J20]
+      - id: J20.B05
+        title: Interrupted setup resumes exactly once
+        required_evidence: [FE, VIS]
+        evidence:
+          FE:
+            - travel-app/__tests__/screens/onboarding.smoke.test.tsx
+            - travel-app/__tests__/utils/onboardingProgress.test.ts
+          VIS: [travel-app/.maestro/67-journey-20-first-use-trust-value.yaml]
+      - id: J20.B06
+        title: First useful result returns on the correct Home
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-20-first-use-trust.connected.test.ts
+            - travel-app/__tests__/journeys/journey-25-first-useful-atlas.connected.test.tsx
+          BE:
+            - travel-agent/tests/scenarios/test_j20_first_use_trust_value.py
+            - travel-agent/tests/atlas/test_home_saved_places.py
+          VIS: [travel-app/.maestro/67-journey-20-first-use-trust-value.yaml]
+          LIVE: [persona-cert:J20]
   - id: J21
     title: Collaborative Stay and Traveler Ownership
     doc: 21-collaborative-stay-and-traveler-ownership.md
