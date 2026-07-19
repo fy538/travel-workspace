@@ -308,6 +308,27 @@ The safe immediate posture is:
 
 **Exit:** all four projections share one enforceable default-deny contract and no public artifact leaks group decisions, costs, companions, or private state.
 
+### Wave 7 — evidence repair and promotion audit
+
+**Scope:** post-implementation proof across M01–M12 and S01–S02.
+
+**Execution checkpoint — 2026-07-18:** evidence substrate materially improved; no premature promotion.
+
+- Current Booking cancellation/consent, Costs, and External Sharing design
+  receipts are registered and validate.
+- The repaired persona/clock readiness lane produces a five-of-five Trip Costs
+  run and a two-of-two External Sharing run. New cancellation-pending and
+  unresolved-consent Booking device flows also pass.
+- 340 focused backend tests pass, including 19 explicit PostgreSQL lifecycle
+  tests; 17 focused app tests and TypeScript pass.
+- Device inspection fixed one confirmed-booking/cancellation truth-copy defect
+  and one missing completed-trip roster fixture.
+- No row is promoted to `PARITY VALIDATED`. Remaining evidence is now bounded:
+  Receipt/OCR and archive device state breadth, real-backend actor walks,
+  complete Booking aggregation, public network/card states, and large-text /
+  VoiceOver checks. The full receipt is
+  `wave-7-parity-evidence-and-promotion-2026-07-18.md`.
+
 ## Commit and branch boundaries
 
 Keep the work reviewable and avoid the unrelated backend vector lane:
