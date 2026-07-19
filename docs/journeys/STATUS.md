@@ -207,7 +207,7 @@ Source: `docs/journeys/journeys.yaml` × registered branch evidence where declar
 | J18 | Signed-Out Join-By-Invite | holistic | ✅ | ✅ | — | ⤵️ |
 | J19 | Social Loop and Cross-Entity Discovery | holistic | ✅ | ✅ | ✅ | ⤵️ |
 | J20 | First-Use Trust to First Personalized Value | customer | ✅ 6/6 | ✅ 3/3 | ✅ 6/6 | ✅ 3/3 |
-| J21 | Collaborative Stay and Traveler Ownership | customer | ✅ 6/6 | ✅ 6/6 | ◐ 5/6 | ✅ 3/3 |
+| J21 | Collaborative Stay and Traveler Ownership | customer | ✅ 6/6 | ✅ 6/6 | ✅ 6/6 | ✅ 3/3 |
 | J22 | Booking Exception and Provider Handoff | customer | ✅ 8/8 | ✅ 7/7 | ✅ 8/8 | ✅ 7/7 |
 | J23 | Group Costs to Correction and Settlement | customer | ✅ 8/8 | ✅ 8/8 | ✅ 8/8 | ✅ 4/4 |
 | J24 | Group Membership and Agency Governance | customer | ✅ 7/7 | ✅ 7/7 | ✅ 7/7 | ✅ 5/5 |
@@ -224,7 +224,7 @@ Source: `docs/journeys/journeys.yaml` × registered branch evidence where declar
 | Canonical journey contracts | 28 / 28 defined |
 | Frontend contract evidence | 23 / 28 by legacy mock-walk discovery; J20 is independently branch-certified 6/6 |
 | Backend logic evidence | 28 / 28 |
-| Branch-aware coverage | J06: VIS 4/7, LIVE 3/4 · J10: VIS 4/9, LIVE 2/8 · J11: VIS 6/6, LIVE 1/6 · J20: FE 6/6, BE 3/3, VIS 6/6, LIVE 3/3 · J21: VIS 5/6, LIVE 3/3 · J22: FE 8/8, BE 7/7, VIS 8/8, LIVE 7/7 · J23: FE 8/8, BE 8/8, VIS 8/8, LIVE 4/4 · J24: FE 7/7, BE 7/7, VIS 7/7, LIVE 5/5 · J25: FE 6/6, BE 3/3, VIS 6/6, LIVE 1/1 · J26: FE 7/7, BE 7/7, VIS 7/7, LIVE 4/4 · J27: FE 6/6, BE 6/6, VIS 6/6, LIVE 3/3 · J28: FE 6/6, BE 6/6, VIS 6/6, LIVE 3/3 |
+| Branch-aware coverage | J06: VIS 4/7, LIVE 3/4 · J10: VIS 4/9, LIVE 2/8 · J11: VIS 6/6, LIVE 1/6 · J20: FE 6/6, BE 3/3, VIS 6/6, LIVE 3/3 · J21: FE 6/6, BE 6/6, VIS 6/6, LIVE 3/3 · J22: FE 8/8, BE 7/7, VIS 8/8, LIVE 7/7 · J23: FE 8/8, BE 8/8, VIS 8/8, LIVE 4/4 · J24: FE 7/7, BE 7/7, VIS 7/7, LIVE 5/5 · J25: FE 6/6, BE 3/3, VIS 6/6, LIVE 1/1 · J26: FE 7/7, BE 7/7, VIS 7/7, LIVE 4/4 · J27: FE 6/6, BE 6/6, VIS 6/6, LIVE 3/3 · J28: FE 6/6, BE 6/6, VIS 6/6, LIVE 3/3 |
 | Visual journey evidence | 22 complete + 3 partial / 28 |
 | Lived persona evidence | 21 complete + 3 partial / 28 · 4 explicit skips; all 24 runnable certs pass |
 | Maestro wedge flows (24/25) | **green** 2026-06-29 (`make certify-visual`) |

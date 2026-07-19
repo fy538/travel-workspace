@@ -405,11 +405,13 @@ journeys:
           FE:
             - travel-app/__tests__/journeys/journey-21-mock-walk.smoke.test.tsx
             - travel-app/__tests__/utils/stayState.test.ts
+            - travel-app/__tests__/data/read-model-invalidations.test.ts
+            - travel-app/__tests__/utils/api/mock.test.ts
           BE:
             - travel-agent/tests/scenarios/test_j21_collaborative_stay_ownership.py
             - travel-agent/tests/core/test_update_accommodation_primary_claim.py
             - travel-agent/tests/api/test_smaudit_stay_saga_atomic.py
-          VIS: []
+          VIS: [travel-app/.maestro/48b-journey-21-stay-reconcile.yaml]
   - id: J22
     title: Booking Exception and Provider Handoff
     doc: 22-booking-exception-and-provider-handoff.md

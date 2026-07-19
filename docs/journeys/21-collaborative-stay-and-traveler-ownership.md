@@ -3,7 +3,7 @@ doc_type: canon
 status: active
 owner: founder / engineering
 created: 2026-07-18
-last_verified: 2026-07-18
+last_verified: 2026-07-19
 why_new: Shared and personal lodging now have distinct ownership, visibility, and itinerary contracts that exceed J10's booking loop.
 source_of_truth_for: [journey-J21]
 ---
@@ -67,3 +67,8 @@ and a second member can see the base but neither read nor mutate the private row
   personal stay to an account outside the trip roster.
 - Removing a recorded stay retires the in-app lodging row and its derived
   projections. It does not claim that a provider reservation was cancelled.
+- `48b-journey-21-stay-reconcile.yaml` certifies the destructive boundary and
+  proves the removed stay disappears after the canonical read model refreshes.
+- Mock and real-mode deletion now remove the row from the shared accommodation
+  cache before invalidation, preventing a successful removal from visibly
+  resurrecting while projections refresh.
