@@ -290,7 +290,7 @@ journeys:
         required_evidence: [FE, BE, VIS, LIVE]
         evidence:
           FE:
-            - travel-app/__tests__/journeys/journey-20-first-use-trust.connected.test.ts
+            - travel-app/__tests__/journeys/journey-20-mock-walk.smoke.test.tsx
             - travel-app/__tests__/screens/onboarding.smoke.test.tsx
           BE:
             - travel-agent/tests/scenarios/test_j20_first_use_trust_value.py
@@ -311,7 +311,7 @@ journeys:
         required_evidence: [FE, BE, VIS, LIVE]
         evidence:
           FE:
-            - travel-app/__tests__/journeys/journey-20-first-use-trust.connected.test.ts
+            - travel-app/__tests__/journeys/journey-20-mock-walk.smoke.test.tsx
             - travel-app/__tests__/journeys/atlasJourneys.connected.test.ts
           BE:
             - travel-agent/tests/scenarios/test_j20_first_use_trust_value.py
@@ -331,8 +331,8 @@ journeys:
         required_evidence: [FE, BE, VIS, LIVE]
         evidence:
           FE:
-            - travel-app/__tests__/journeys/journey-20-first-use-trust.connected.test.ts
-            - travel-app/__tests__/journeys/journey-25-first-useful-atlas.connected.test.tsx
+            - travel-app/__tests__/journeys/journey-20-mock-walk.smoke.test.tsx
+            - travel-app/__tests__/journeys/journey-25-mock-walk.smoke.test.tsx
           BE:
             - travel-agent/tests/scenarios/test_j20_first_use_trust_value.py
             - travel-agent/tests/atlas/test_home_saved_places.py
@@ -716,7 +716,7 @@ journeys:
         required_evidence: [FE, BE, VIS, LIVE]
         evidence:
           FE:
-            - travel-app/__tests__/journeys/journey-25-first-useful-atlas.connected.test.tsx
+            - travel-app/__tests__/journeys/journey-25-mock-walk.smoke.test.tsx
             - travel-app/__tests__/utils/api/atlasPlaceSave.mock.test.ts
           BE:
             - travel-agent/tests/scenarios/test_j25_empty_atlas_first_value.py
@@ -728,7 +728,7 @@ journeys:
         required_evidence: [FE, BE, VIS]
         evidence:
           FE:
-            - travel-app/__tests__/journeys/journey-25-first-useful-atlas.connected.test.tsx
+            - travel-app/__tests__/journeys/journey-25-mock-walk.smoke.test.tsx
             - travel-app/__tests__/components/atlas/AtlasColdStartSections.test.tsx
           BE:
             - travel-agent/tests/scenarios/test_j25_empty_atlas_first_value.py
@@ -745,7 +745,7 @@ journeys:
         required_evidence: [FE, VIS]
         evidence:
           FE:
-            - travel-app/__tests__/journeys/journey-25-first-useful-atlas.connected.test.tsx
+            - travel-app/__tests__/journeys/journey-25-mock-walk.smoke.test.tsx
             - travel-app/__tests__/components/UniversalSearchOverlay.test.tsx
           VIS: [travel-app/.maestro/63-journey-25-first-useful-atlas.yaml]
       - id: J25.B05
@@ -753,7 +753,7 @@ journeys:
         required_evidence: [FE, BE, VIS]
         evidence:
           FE:
-            - travel-app/__tests__/journeys/journey-25-first-useful-atlas.connected.test.tsx
+            - travel-app/__tests__/journeys/journey-25-mock-walk.smoke.test.tsx
             - travel-app/__tests__/components/atlas/AtlasColdStartSections.test.tsx
           BE:
             - travel-agent/tests/scenarios/test_j25_empty_atlas_first_value.py
@@ -764,7 +764,7 @@ journeys:
         required_evidence: [FE, VIS]
         evidence:
           FE:
-            - travel-app/__tests__/journeys/journey-25-first-useful-atlas.connected.test.tsx
+            - travel-app/__tests__/journeys/journey-25-mock-walk.smoke.test.tsx
             - travel-app/__tests__/screens/atlas-home.smoke.test.tsx
           VIS: [travel-app/.maestro/63-journey-25-first-useful-atlas.yaml]
   - id: J26
@@ -777,7 +777,7 @@ journeys:
         required_evidence: [FE, BE, VIS, LIVE]
         evidence:
           FE:
-            - travel-app/__tests__/journeys/journey-26-reading-lifecycle.connected.test.ts
+            - travel-app/__tests__/journeys/journey-26-mock-walk.smoke.test.tsx
             - travel-app/__tests__/screens/atlas-reading.smoke.test.tsx
           BE:
             - travel-agent/tests/scenarios/test_j26_reading_steer_keep_return.py
@@ -790,7 +790,7 @@ journeys:
         evidence:
           FE:
             - travel-app/__tests__/screens/atlas-compose.smoke.test.tsx
-            - travel-app/__tests__/journeys/journey-26-reading-lifecycle.connected.test.ts
+            - travel-app/__tests__/journeys/journey-26-mock-walk.smoke.test.tsx
           BE:
             - travel-agent/tests/scenarios/test_j26_reading_steer_keep_return.py
             - travel-agent/tests/atlas/test_taste_board.py
@@ -802,7 +802,7 @@ journeys:
         evidence:
           FE:
             - travel-app/__tests__/screens/atlas-reading.smoke.test.tsx
-            - travel-app/__tests__/journeys/journey-26-reading-lifecycle.connected.test.ts
+            - travel-app/__tests__/journeys/journey-26-mock-walk.smoke.test.tsx
           BE:
             - travel-agent/tests/scenarios/test_j26_reading_steer_keep_return.py
             - travel-agent/tests/atlas/test_taste_board.py
@@ -823,7 +823,7 @@ journeys:
         required_evidence: [FE, BE, VIS, LIVE]
         evidence:
           FE:
-            - travel-app/__tests__/journeys/journey-26-reading-lifecycle.connected.test.ts
+            - travel-app/__tests__/journeys/journey-26-mock-walk.smoke.test.tsx
             - travel-app/__tests__/screens/atlas-reading.smoke.test.tsx
           BE:
             - travel-agent/tests/scenarios/test_j26_reading_steer_keep_return.py
@@ -835,7 +835,7 @@ journeys:
         required_evidence: [FE, BE, VIS, LIVE]
         evidence:
           FE:
-            - travel-app/__tests__/journeys/journey-26-reading-lifecycle.connected.test.ts
+            - travel-app/__tests__/journeys/journey-26-mock-walk.smoke.test.tsx
             - travel-app/__tests__/screens/atlas-readings.smoke.test.tsx
             - travel-app/__tests__/data/atlas.test.ts
           BE:
@@ -848,7 +848,7 @@ journeys:
         required_evidence: [FE, BE, VIS]
         evidence:
           FE:
-            - travel-app/__tests__/journeys/journey-26-reading-lifecycle.connected.test.ts
+            - travel-app/__tests__/journeys/journey-26-mock-walk.smoke.test.tsx
             - travel-app/__tests__/screens/atlas-reading.smoke.test.tsx
           BE:
             - travel-agent/tests/scenarios/test_j26_reading_steer_keep_return.py
@@ -874,7 +874,7 @@ journeys:
         required_evidence: [FE, BE, VIS, LIVE]
         evidence:
           FE:
-            - travel-app/__tests__/journeys/journey-27-memory-provenance-correction.connected.test.ts
+            - travel-app/__tests__/journeys/journey-27-mock-walk.smoke.test.tsx
             - travel-app/__tests__/screens/atlas-memory.smoke.test.tsx
             - travel-app/__tests__/screens/atlas-receipt.smoke.test.tsx
           BE:
@@ -887,7 +887,7 @@ journeys:
         required_evidence: [FE, BE, VIS, LIVE]
         evidence:
           FE:
-            - travel-app/__tests__/journeys/journey-27-memory-provenance-correction.connected.test.ts
+            - travel-app/__tests__/journeys/journey-27-mock-walk.smoke.test.tsx
             - travel-app/__tests__/screens/atlas-receipt.smoke.test.tsx
             - travel-app/__tests__/screens/atlas-artifact.smoke.test.tsx
           BE:
@@ -900,7 +900,7 @@ journeys:
         required_evidence: [FE, BE, VIS, LIVE]
         evidence:
           FE:
-            - travel-app/__tests__/journeys/journey-27-memory-provenance-correction.connected.test.ts
+            - travel-app/__tests__/journeys/journey-27-mock-walk.smoke.test.tsx
             - travel-app/__tests__/screens/atlas-memory.smoke.test.tsx
             - travel-app/__tests__/screens/atlas-receipt.smoke.test.tsx
             - travel-app/__tests__/screens/atlas-artifact.smoke.test.tsx
@@ -914,7 +914,7 @@ journeys:
         required_evidence: [FE, BE, VIS]
         evidence:
           FE:
-            - travel-app/__tests__/journeys/journey-27-memory-provenance-correction.connected.test.ts
+            - travel-app/__tests__/journeys/journey-27-mock-walk.smoke.test.tsx
             - travel-app/__tests__/screens/atlas-artifact.smoke.test.tsx
           BE:
             - travel-agent/tests/scenarios/test_j27_memory_provenance_correction.py
@@ -941,7 +941,7 @@ journeys:
         required_evidence: [FE, BE, VIS, LIVE]
         evidence:
           FE:
-            - travel-app/__tests__/journeys/journey-28-atlas-history-lifecycle.connected.test.ts
+            - travel-app/__tests__/journeys/journey-28-mock-walk.smoke.test.tsx
             - travel-app/__tests__/screens/atlas-long-view.smoke.test.tsx
           BE:
             - travel-agent/tests/scenarios/test_j28_atlas_history_hide_restore.py
@@ -953,7 +953,7 @@ journeys:
         required_evidence: [FE, BE, VIS]
         evidence:
           FE:
-            - travel-app/__tests__/journeys/journey-28-atlas-history-lifecycle.connected.test.ts
+            - travel-app/__tests__/journeys/journey-28-mock-walk.smoke.test.tsx
             - travel-app/__tests__/screens/atlas-long-view.smoke.test.tsx
           BE:
             - travel-agent/tests/scenarios/test_j28_atlas_history_hide_restore.py
@@ -964,7 +964,7 @@ journeys:
         required_evidence: [FE, BE, VIS, LIVE]
         evidence:
           FE:
-            - travel-app/__tests__/journeys/journey-28-atlas-history-lifecycle.connected.test.ts
+            - travel-app/__tests__/journeys/journey-28-mock-walk.smoke.test.tsx
             - travel-app/__tests__/screens/atlas-removed.smoke.test.tsx
           BE:
             - travel-agent/tests/scenarios/test_j28_atlas_history_hide_restore.py
@@ -976,7 +976,7 @@ journeys:
         required_evidence: [FE, BE, VIS]
         evidence:
           FE:
-            - travel-app/__tests__/journeys/journey-28-atlas-history-lifecycle.connected.test.ts
+            - travel-app/__tests__/journeys/journey-28-mock-walk.smoke.test.tsx
             - travel-app/__tests__/screens/atlas-removed.smoke.test.tsx
           BE:
             - travel-agent/tests/scenarios/test_j28_atlas_history_hide_restore.py
@@ -988,7 +988,7 @@ journeys:
         required_evidence: [FE, BE, VIS, LIVE]
         evidence:
           FE:
-            - travel-app/__tests__/journeys/journey-28-atlas-history-lifecycle.connected.test.ts
+            - travel-app/__tests__/journeys/journey-28-mock-walk.smoke.test.tsx
             - travel-app/__tests__/journeys/atlasJourneys.connected.test.ts
             - travel-app/__tests__/screens/atlas-removed.smoke.test.tsx
           BE:
@@ -1001,7 +1001,7 @@ journeys:
         required_evidence: [FE, BE, VIS]
         evidence:
           FE:
-            - travel-app/__tests__/journeys/journey-28-atlas-history-lifecycle.connected.test.ts
+            - travel-app/__tests__/journeys/journey-28-mock-walk.smoke.test.tsx
             - travel-app/__tests__/screens/atlas-removed.smoke.test.tsx
           BE:
             - travel-agent/tests/scenarios/test_j28_atlas_history_hide_restore.py

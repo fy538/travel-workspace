@@ -2,7 +2,7 @@
 
 > Status: draft
 > Owner: founder / engineering
-> Last updated: 2026-06-29
+> Last updated: 2026-07-19
 > Primary phase: cross-trip (second-trip-benefits-from-first)
 
 ## Product Promise
@@ -53,9 +53,11 @@ As a returning traveler, I want the app to remember what I liked and where I've 
 Trace cross-trip recall: prior-trip affinity/taste/saved-places into a second trip's planning + Discover + your-map. Verify recall surfaces correctly AND that no private group context (constraints, members, messages) leaks from one trip into another.
 ```
 
-## First Automation Target
+## Certification Record
 
-> NOTE: cross-trip recall substrate is currently DARK (signals→memory gated). Until lit, this certifies as a visible skip. When enabled: persona-cert (lived) — seed/confirm a prior kept trip + a second trip for the same persona; assert prior-trip affinity surfaces in the second trip's context, and that no other trip's private fields appear.
+- 2026-07-19: `persona-cert:J17` creates two disposable travelers with distinct completed trips and one shared current trip, then proves each traveler receives only their own prior-trip thread.
+- The generation prompt excludes private group constraints and dynamics; an outsider receives `403`, and both member projections retain the correct prior-trip provenance.
+- The fixture uses the real Postgres thread cache and HTTP read route while patching only the deterministic language-model response.
 
 The cached cross-trip-thread backend and typed app client exist, but a dedicated
 Trip Home “from your prior trip” card is deferred until cohort evidence shows that

@@ -59,7 +59,7 @@ Memory, receipt, originating artifact, and Home against an ephemeral persona.
 
 ## Certification
 
-- The connected mock contract follows one sourced claim from active to disputed
+- The canonical `journey-27-mock-walk.smoke.test.tsx` follows one sourced claim from active to disputed
   to forgotten and proves the artifact is unchanged and still listed.
 - Mature receipts prioritize artifact-backed signals ahead of synthesized DNA,
   so a full five-line DNA summary cannot hide the claims with source-specific

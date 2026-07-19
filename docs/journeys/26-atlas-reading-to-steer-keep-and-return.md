@@ -55,7 +55,7 @@ without losing its sources, so that it becomes worth revisiting.
 
 ## Certification Evidence
 
-- Connected frontend coverage preserves the full query contract through steer,
+- The canonical `journey-26-mock-walk.smoke.test.tsx` preserves the full query contract through steer,
   idempotent Keep, shelf return, and reopen; mock parity no longer duplicates a
   repeated Keep or marks an ungrounded facet as used.
 - The J26 Maestro flow covers progressive compose, grounded provenance, the

@@ -41,8 +41,10 @@ a toast. The invitee gives signal; nothing they ever see reflects it.
   (see `dogfood-loop-validation-2026-07-04.md` and
   `project_monetization_reality_check`). Cohort-1's green threshold is a
   ≥20% re-invite rate; that rate is downstream of these five minutes.
-- J18 is a **visible skip** in persona-cert (the signed-out auth detour is not
-  exercised by the in-process certifier). This audit is the compensating trace.
+- At the time of this audit, J18 was a **visible skip** in persona-cert because
+  the signed-out auth detour was not exercised by the in-process certifier.
+  That certification gap closed on 2026-07-19 with a disposable invitee walk;
+  this audit remains the felt-experience trace.
 - J02/J18 are **plumbing contracts** (token survival, membership correctness,
   no leaks). Neither says a word about warmth, representation, or first value.
   The certified bar for this path is "doesn't break," not "feels like joining
@@ -360,8 +362,8 @@ trustworthy before the cohort.
 - `docs/journeys/02-concrete-trip-creation-and-invite.md` — organizer-side
   contract; unchanged.
 - `docs/journeys/18-signed-out-join-by-invite.md` — plumbing contract; this
-  audit is the felt-experience layer above it. The J18 "visible skip" in
-  persona-cert stands until the auth path is harnessed (D14).
+  audit is the felt-experience layer above it. The former J18 persona-cert skip
+  closed on 2026-07-19; D14 still tracks broader real-auth/device coverage.
 - `docs/working/dogfood-loop-validation-2026-07-04.md` — the funnel this
   audit's Tier 3 items make trustworthy; the pre-flight walk is the final
   gate.

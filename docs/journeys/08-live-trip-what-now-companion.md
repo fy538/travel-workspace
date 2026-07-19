@@ -2,7 +2,7 @@
 
 > Status: draft  
 > Owner: founder / engineering  
-> Last updated: 2026-07-16
+> Last updated: 2026-07-19
 > Primary phase: live trip + Vesper Home live mode
 
 ## Product Promise
@@ -22,9 +22,21 @@ As a traveler already on the trip, I want Vesper to help me understand the next 
 
 ## Starting State
 
-- Persona: member on active trip.
-- Trip state: live trip with current day, current block, next block, stay, and route.
-- Fixture: `trip-lisbon-26`.
+- Persona: `reza` (`reza@dogfood.local`), organizer on his live trip.
+- Trip state: live (during-trip) trip with current day, in-progress block, next
+  block, chosen stay, and route.
+- Fixture: `reza-rome-live-2026` (manifest `cascade-phase-fixtures`). The trip is
+  pinned to `dogfood_today = 2026-07-08` (Europe/Rome) so it stays LIVE regardless
+  of real-calendar drift; the `2026-07-08` itinerary day carries an in-progress
+  market block (08:30–11:00) and an upcoming trattoria lunch (13:00) straddling
+  the pinned local "now" (09:00), plus a chosen Testaccio stay covering the
+  window. The old mock walk used `trip-lisbon-26`, but `mara-lisbon` is an
+  October planning trip with no live day — it never resolves to during-trip.
+- Freshness: the held-booking "Call (held)" card (Roscioli) expires
+  `hold_hours` after the seed is applied (now 72h). Re-run the
+  `cascade-phase-fixtures` seed within that window before a device walk if you
+  need the held affordance live; the pinned live/plan/map state itself does not
+  expire.
 - Permissions: location allowed, denied, and unset variants should all be tested.
 
 ## Primary Surfaces
@@ -82,7 +94,7 @@ focus risks.
 
 ## First Automation Target
 
-Mock-mode screen walkthrough with fixture `trip-lisbon-26`:
+Mock-mode screen walkthrough as `reza` on fixture `reza-rome-live-2026`:
 
 - open Vesper Home live mode
 - tap every visible live/urgent CTA

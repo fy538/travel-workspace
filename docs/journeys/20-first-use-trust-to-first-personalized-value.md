@@ -64,7 +64,7 @@ J20 is certified across four independent layers:
 - The frontend now stores a versioned 24-hour onboarding draft, restores the
   exact step and partial answers, serializes clear-after-save handoffs, and
   clears the draft when the traveler deliberately exits onboarding.
-- Connected mock contracts prove optional fields stay absent, safety constraints
+- The canonical `journey-20-mock-walk.smoke.test.tsx` contract proves optional fields stay absent, safety constraints
   persist privately, photo-derived recovery remains pending until approval, and
   one explicit venue save returns on Atlas Home without invented Travel DNA.
 - The PostgreSQL scenario and `persona-cert:J20` repeat the private intake,

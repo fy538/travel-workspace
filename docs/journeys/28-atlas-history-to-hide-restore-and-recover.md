@@ -61,7 +61,7 @@ dedup/restore canary, pagination, and failed-restore branches.
 
 J28 is certified across four independent layers:
 
-- The connected frontend lifecycle uses the mature Elif corpus to verify
+- The canonical `journey-28-mock-walk.smoke.test.tsx` uses the mature Elif corpus to verify
   multi-year and multi-place grouping, disjoint pagination, rename, pin, hide,
   distinct user/system removal reasons, and restoration to the original
   chapter without changing summary counts.

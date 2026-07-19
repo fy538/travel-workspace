@@ -11,7 +11,7 @@ touched here.
 
     python scripts/sync_journey_status.py             # regenerate the block in place
     python scripts/sync_journey_status.py --check      # CI drift guard: exit 1 if stale
-    python scripts/sync_journey_status.py --personas mara,elif
+    python scripts/sync_journey_status.py --personas mara,elif,reza
 
 Needs a dogfood-seeded Postgres — the same substrate the persona gate uses.
 If a requested persona is unseeded / the certifier errors, this aborts WITHOUT
@@ -33,7 +33,7 @@ _REPO_ROOT = Path(__file__).resolve().parent.parent
 _AGENT_ROOT = Path(os.environ.get("JOURNEY_AGENT_ROOT", _REPO_ROOT / "travel-agent")).resolve()
 _STATUS_MD = _REPO_ROOT / "docs" / "journeys" / "STATUS.md"
 _AI_MODE = "replay"
-_DEFAULT_PERSONAS = ("mara", "elif")
+_DEFAULT_PERSONAS = ("mara", "elif", "reza")
 
 
 def _agent_python() -> str:
@@ -340,7 +340,7 @@ def main() -> int:
     parser.add_argument(
         "--personas",
         default=",".join(_DEFAULT_PERSONAS),
-        help="comma-separated seeded personas (default: mara,elif)",
+        help="comma-separated seeded personas (default: mara,elif,reza)",
     )
     parser.add_argument(
         "--check",

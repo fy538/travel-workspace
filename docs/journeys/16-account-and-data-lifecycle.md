@@ -2,7 +2,7 @@
 
 > Status: draft
 > Owner: founder / engineering
-> Last updated: 2026-07-16
+> Last updated: 2026-07-19
 > Primary phase: cross-cutting (account + data rights)
 
 ## Product Promise
@@ -58,8 +58,8 @@ As a user, I want real control over my account and data, so that I can trust the
 Trace signup → privacy/constraints/delegation edits → data-receipt → shared-link revoke → account deletion. Verify each privacy control takes effect downstream, the receipt reflects real data, revoked links 404, and deletion purges/anonymizes personal_memories + private signals + PII.
 ```
 
-## First Automation Target
+## Certification Record
 
-> NOTE: account-deletion certification must NOT run against a shared seeded persona (it would destroy mara/elif and break other certs). Certify against an ephemeral throwaway user, or a dedicated disposable persona, in BE pytest — not the lived persona-cert.
-
-BE scenario (ephemeral user): create a user with personal memory + private signals + a shared link; delete the account; assert personal_memories/private signals are purged or anonymized and the shared link no longer resolves.
+- 2026-07-19: `persona-cert:J16` creates a disposable account, persists an explicit private preference, verifies it in the data export, deletes the account through the real API, and proves the user no longer resolves. Shared Mara/Elif data is never targeted.
+- The destructive Postgres scenario covers solo-trip deletion, shared-trip preservation, idempotent missing-user deletion, and commercial-history export/erasure.
+- The live pass exposed and fixed the account-deletion response model so structured booking reassignment truth serializes instead of failing after the database deletion succeeds.

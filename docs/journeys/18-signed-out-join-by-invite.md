@@ -2,7 +2,7 @@
 
 > Status: draft
 > Owner: founder / engineering
-> Last updated: 2026-06-29
+> Last updated: 2026-07-19
 > Primary phase: distribution (invitee's first touch)
 
 ## Product Promise
@@ -56,6 +56,8 @@ As an invited person who has never used the app, I want to tap a link, understan
 Trace a signed-out invite: /invite/[slug] → auth → signup → membership. Verify the token survives the auth detour, the landing exposes only organizer-safe public fields, and consumed/expired tokens reach a clean terminal state. Identify any path where signup succeeds but membership doesn't.
 ```
 
-## First Automation Target
+## Certification Record
 
-> NOTE: the signed-out auth detour is a FE/Clerk flow not cleanly exercised in the in-process persona-cert; certify the token→membership contract in BE (invite accept) + the public-field shape in the FE mock-walk. Registers as a visible skip in persona-cert until the auth path is harnessed.
+- 2026-07-19: `persona-cert:J18` opens the no-auth public invite before an invitee account exists, creates the identity, reuses the same bearer token to accept, and proves the correct trip membership.
+- The public projection omits internal trip ids and member data. A second user receives the structured consumed-token `410` and is not added.
+- The FE mock walk remains the auth-screen routing proof; the lived certificate owns the public-token → newly authenticated identity → membership contract.

@@ -1,8 +1,8 @@
 # 19 - Social Loop And Cross-Entity Discovery
 
-> Status: implemented in mock/device proof; live persona-cert pending
+> Status: certified
 > Owner: founder / engineering
-> Last updated: 2026-07-17
+> Last updated: 2026-07-19
 > Primary phase: breadth surfaces (social + search)
 
 ## Product Promise
@@ -16,7 +16,7 @@ As a user, I want to discover people (by taste/public profile) and entities (by 
 ## Why This Journey Matters
 
 - The social surface (companions, following, public taste profiles, follow-from-taste) and universal cross-entity search now share one executable journey.
-- These are the "next initiative" growth loops (social/photo-journal) and the discovery breadth; the remaining gap is live seeded-persona certification, not route availability.
+- These are the "next initiative" growth loops (social/photo-journal) and the discovery breadth; the journey is now certified with disposable live identities as well as mock/device proof.
 - Each is a launch point: a search result or profile that no-ops is a dead growth loop.
 
 ## Starting State
@@ -61,4 +61,4 @@ Trace universal search (query → cross-entity results → entity reader) and th
 - Routed iOS proof: `travel-app/.maestro/48-journey-19-search-social-loop.yaml` walks search → public profile → Follow → Your people and asserts the relationship survives navigation.
 - Search-result navigation replaces the modal route in place, so both normal in-app entry and a root deep link reach the destination without a back-then-push race.
 
-This remains a visible **live persona-cert skip** until the seeded backend world includes a discoverable public profile/follow target and exercises authorization on the deployed API. Mock/device proof does not replace that live privacy check.
+- Lived proof: `persona-cert:J19` creates disposable companion, outsider, and public-profile fixtures; it proves mutual-trip people search, outsider non-enumeration, default-deny profile projection, idempotent follow conflict, and persisted following state without mutating seeded social graphs.

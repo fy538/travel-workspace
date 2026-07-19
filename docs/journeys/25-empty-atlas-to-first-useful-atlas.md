@@ -53,7 +53,7 @@ context, so that Atlas starts useful and honest.
 
 ## Certification Evidence
 
-- Connected frontend coverage proves save rollback, the grounded first save,
+- The canonical `journey-25-mock-walk.smoke.test.tsx` proves save rollback, the grounded first save,
   weak optional answers, and exactly-once prompt retirement.
 - The J25 Maestro flow covers permission denial, no-result recovery, save
   failure, a provisional venue read, successful activation, dismissal, and an
