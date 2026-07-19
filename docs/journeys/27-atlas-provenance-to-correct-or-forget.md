@@ -56,3 +56,20 @@ personalization remains accountable to me.
 
 Promote `atlas-journey-memory-forget-return.yaml`; add correction parity across
 Memory, receipt, originating artifact, and Home against an ephemeral persona.
+
+## Certification
+
+- The connected mock contract follows one sourced claim from active to disputed
+  to forgotten and proves the artifact is unchanged and still listed.
+- Mature receipts prioritize artifact-backed signals ahead of synthesized DNA,
+  so a full five-line DNA summary cannot hide the claims with source-specific
+  Soften, Correct, and Forget controls.
+- The Postgres scenario exercises the real receipt, signal mutation, artifact,
+  and artifact-signal routes. It also verifies the observation is inactive and
+  the durable correction exclusion is `forgotten`.
+- Maestro flow `65-journey-27-memory-provenance-correct-forget.yaml` covers the
+  honest cold start, receipt evidence, artifact soften/forget, retained-source
+  reopen, photo controls, cached failure, and healthy retry.
+- `persona-cert:J27` creates a disposable traveler, source artifact, signal, and
+  observation; it performs correction and forgetting through real routes, then
+  removes the entire fixture without touching Mara or Elif's durable memory.

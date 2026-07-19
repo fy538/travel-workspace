@@ -792,6 +792,79 @@ journeys:
     title: Atlas Provenance to Correct or Forget
     doc: 27-atlas-provenance-to-correct-or-forget.md
     tier: customer-extension
+    branches:
+      - id: J27.B01
+        title: Nothing learned versus learning disabled
+        required_evidence: [FE, BE, VIS]
+        evidence:
+          FE:
+            - travel-app/__tests__/screens/atlas-memory.smoke.test.tsx
+          BE:
+            - travel-agent/tests/atlas/test_signal_memory.py
+            - travel-agent/tests/atlas/test_receipt_copy_honesty.py
+          VIS: [travel-app/.maestro/65-journey-27-memory-provenance-correct-forget.yaml]
+      - id: J27.B02
+        title: Evidence and receipt provenance
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-27-memory-provenance-correction.connected.test.ts
+            - travel-app/__tests__/screens/atlas-memory.smoke.test.tsx
+            - travel-app/__tests__/screens/atlas-receipt.smoke.test.tsx
+          BE:
+            - travel-agent/tests/scenarios/test_j27_memory_provenance_correction.py
+            - travel-agent/tests/atlas/test_atlas_v1_scan_history.py
+          VIS: [travel-app/.maestro/65-journey-27-memory-provenance-correct-forget.yaml]
+          LIVE: [persona-cert:J27]
+      - id: J27.B03
+        title: Correct or soften learned claim
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-27-memory-provenance-correction.connected.test.ts
+            - travel-app/__tests__/screens/atlas-receipt.smoke.test.tsx
+            - travel-app/__tests__/screens/atlas-artifact.smoke.test.tsx
+          BE:
+            - travel-agent/tests/scenarios/test_j27_memory_provenance_correction.py
+            - travel-agent/tests/atlas/test_atlas_signal_mutation_pg.py
+          VIS: [travel-app/.maestro/65-journey-27-memory-provenance-correct-forget.yaml]
+          LIVE: [persona-cert:J27]
+      - id: J27.B04
+        title: Forget claim but retain source record
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-27-memory-provenance-correction.connected.test.ts
+            - travel-app/__tests__/screens/atlas-memory.smoke.test.tsx
+            - travel-app/__tests__/screens/atlas-receipt.smoke.test.tsx
+            - travel-app/__tests__/screens/atlas-artifact.smoke.test.tsx
+          BE:
+            - travel-agent/tests/scenarios/test_j27_memory_provenance_correction.py
+            - travel-agent/tests/atlas/test_atlas_signal_mutation_pg.py
+          VIS: [travel-app/.maestro/65-journey-27-memory-provenance-correct-forget.yaml]
+          LIVE: [persona-cert:J27]
+      - id: J27.B05
+        title: Originating artifact and Home reconcile
+        required_evidence: [FE, BE, VIS]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-27-memory-provenance-correction.connected.test.ts
+            - travel-app/__tests__/screens/atlas-artifact.smoke.test.tsx
+          BE:
+            - travel-agent/tests/scenarios/test_j27_memory_provenance_correction.py
+            - travel-agent/tests/atlas/test_atlas_v1_scan_history.py
+          VIS: [travel-app/.maestro/65-journey-27-memory-provenance-correct-forget.yaml]
+      - id: J27.B06
+        title: Learning and photo controls with failed retry
+        required_evidence: [FE, BE, VIS]
+        evidence:
+          FE:
+            - travel-app/__tests__/screens/atlas-memory.smoke.test.tsx
+            - travel-app/__tests__/screens/atlas-artifact.smoke.test.tsx
+          BE:
+            - travel-agent/tests/atlas/test_signal_memory.py
+            - travel-agent/tests/scenarios/test_j27_memory_provenance_correction.py
+          VIS: [travel-app/.maestro/65-journey-27-memory-provenance-correct-forget.yaml]
   - id: J28
     title: Atlas History to Hide Restore and Recover
     doc: 28-atlas-history-to-hide-restore-and-recover.md
