@@ -126,6 +126,30 @@ overrides:
     disposition: keep_reference
     rationale: Durable evidence for the executable charter-invariant regression net.
 
+  docs/audits/vesper-255-round-1-code-parity-plan-2026-07-18.md:
+    disposition: keep_reference
+    rationale: Active cross-repository Vesper 255 parity execution record; expires 2026-08-17 and archives when the parity program closes.
+
+  docs/audits/wave-6-public-projection-parity-2026-07-18.md:
+    disposition: keep_reference
+    rationale: Active Wave 6 public-projection privacy evidence; expires 2026-08-17 and archives when the parity program closes.
+
+  docs/audits/wave-7-parity-evidence-and-promotion-2026-07-18.md:
+    disposition: keep_reference
+    rationale: Active Wave 7 parity evidence and remaining promotion gates; expires 2026-08-17 and archives when the parity program closes.
+
+  docs/audits/wave-8-missing-state-evidence-2026-07-18.md:
+    disposition: keep_reference
+    rationale: Active Wave 8 device and policy evidence with external gates still open; expires 2026-08-17 and archives when the parity program closes.
+
+  docs/working/customer-journey-coverage-inventory-2026-07-18.md:
+    disposition: keep_reference
+    rationale: Active evidence inventory supporting the J20–J28 journey expansion; expires 2026-08-17 and archives after registry certification.
+
+  docs/working/customer-journey-expansion-proposal-2026-07-18.md:
+    disposition: keep_reference
+    rationale: Accepted working rationale for the J20–J28 registry expansion; expires 2026-08-17 and archives after registry certification.
+
   docs/working/phone-auth-plan-2026-07-11.md:
     disposition: keep_authoritative
     rationale: Active implementation plan for the phone-auth rollout through 2026-08-10.
