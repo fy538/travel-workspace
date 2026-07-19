@@ -644,6 +644,63 @@ journeys:
     title: Empty Atlas to First Useful Atlas
     doc: 25-empty-atlas-to-first-useful-atlas.md
     tier: customer-extension
+    branches:
+      - id: J25.B01
+        title: Search and save one place
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-25-first-useful-atlas.connected.test.tsx
+            - travel-app/__tests__/utils/api/atlasPlaceSave.mock.test.ts
+          BE:
+            - travel-agent/tests/scenarios/test_j25_empty_atlas_first_value.py
+            - travel-agent/tests/atlas/test_home_saved_places.py
+          VIS: [travel-app/.maestro/63-journey-25-first-useful-atlas.yaml]
+          LIVE: [persona-cert:J25]
+      - id: J25.B02
+        title: Optional concrete answer creates weak prior
+        required_evidence: [FE, BE, VIS]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-25-first-useful-atlas.connected.test.tsx
+            - travel-app/__tests__/components/atlas/AtlasColdStartSections.test.tsx
+          BE:
+            - travel-agent/tests/scenarios/test_j25_empty_atlas_first_value.py
+            - travel-agent/tests/api/test_onboarding_signals.py
+          VIS: [travel-app/.maestro/63-journey-25-first-useful-atlas.yaml]
+      - id: J25.B03
+        title: Permission denial leaves another value path
+        required_evidence: [FE, VIS]
+        evidence:
+          FE: [travel-app/__tests__/components/UniversalSearchOverlay.test.tsx]
+          VIS: [travel-app/.maestro/63-journey-25-first-useful-atlas.yaml]
+      - id: J25.B04
+        title: No result and save failure recover honestly
+        required_evidence: [FE, VIS]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-25-first-useful-atlas.connected.test.tsx
+            - travel-app/__tests__/components/UniversalSearchOverlay.test.tsx
+          VIS: [travel-app/.maestro/63-journey-25-first-useful-atlas.yaml]
+      - id: J25.B05
+        title: Prompt dismissal retires exactly once
+        required_evidence: [FE, BE, VIS]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-25-first-useful-atlas.connected.test.tsx
+            - travel-app/__tests__/components/atlas/AtlasColdStartSections.test.tsx
+          BE:
+            - travel-agent/tests/scenarios/test_j25_empty_atlas_first_value.py
+            - travel-agent/tests/api/test_onboarding_signals.py
+          VIS: [travel-app/.maestro/63-journey-25-first-useful-atlas.yaml]
+      - id: J25.B06
+        title: Offline cached Home preserves grounded state
+        required_evidence: [FE, VIS]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-25-first-useful-atlas.connected.test.tsx
+            - travel-app/__tests__/screens/atlas-home.smoke.test.tsx
+          VIS: [travel-app/.maestro/63-journey-25-first-useful-atlas.yaml]
   - id: J26
     title: Atlas Reading to Steer Keep and Return
     doc: 26-atlas-reading-to-steer-keep-and-return.md

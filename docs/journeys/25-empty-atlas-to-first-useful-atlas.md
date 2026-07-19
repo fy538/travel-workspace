@@ -51,7 +51,14 @@ context, so that Atlas starts useful and honest.
 - Multiple activation prompts compete simultaneously.
 - Empty Compose/Long View is offered as if meaningful.
 
-## First Automation Target
+## Certification Evidence
 
-Promote `atlas-journey-place-save-return.yaml` into J25 and add save-failure,
-permission-denial, and offline-return branches.
+- Connected frontend coverage proves save rollback, the grounded first save,
+  weak optional answers, and exactly-once prompt retirement.
+- The J25 Maestro flow covers permission denial, no-result recovery, save
+  failure, a provisional venue read, successful activation, dismissal, and an
+  offline return to the grounded Home state.
+- Postgres scenarios and the lived disposable-persona cert prove that one real
+  venue save projects into Atlas without fabricating a DNA claim.
+- Device certification also caught and fixed a sparse-profile leak where a new
+  traveler inherited strong-fit copy and named-persona evidence.
