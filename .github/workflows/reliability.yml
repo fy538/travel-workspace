@@ -88,9 +88,22 @@ jobs:
           cache: npm
           cache-dependency-path: travel-app/package-lock.json
 
+      - name: Set up Java for Maestro
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+
       - name: Install frontend dependencies
         run: npm ci
         working-directory: travel-app
+
+      - name: Install pinned Maestro CLI
+        env:
+          MAESTRO_VERSION: 2.6.1
+        run: |
+          curl -fsSL "https://get.maestro.mobile.dev" | bash
+          echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
 
       - name: OpenAPI snapshot freshness
         # Regenerate the snapshot offline from the backend models and fail
@@ -119,12 +132,10 @@ jobs:
         working-directory: travel-app
 
       - name: Maestro flow validation
-        # Offline visual-gate guard: every .maestro flow parses + every flow
-        # referenced by a package.json visual-qa* script exists. The full
-        # Maestro run needs a macOS runner + simulator (see visual-qa.yml,
-        # nightly/dispatch), so this cheap check is the PR-blocking foothold
-        # that stops a renamed/deleted flow from silently breaking the wedge
-        # visual gate (certify-visual / visual-qa:wedge).
+        # Hermetic governance plus Maestro's own semantic parser. Device
+        # execution remains in the macOS and Cloud workflows.
+        env:
+          MAESTRO_REQUIRE_CLI: "1"
         run: make maestro-flow-check
 
       - name: Compatibility and card-arrival contract guards

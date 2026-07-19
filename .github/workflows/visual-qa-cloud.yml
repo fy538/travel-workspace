@@ -1,18 +1,17 @@
 name: Visual QA (Maestro Cloud — PR gate)
 
-# PR-gating version of the wedge visual run, using Maestro Cloud
+# PR-gating version of the deterministic smoke lane, using Maestro Cloud
 # (mobile-dev-inc/action-maestro-cloud) instead of an in-runner simulator.
 # Maestro Cloud runs the flows on managed devices, so this is the robust path
 # for blocking PRs on visual QA — unlike the in-runner macOS nightly
 # (visual-qa.yml), which is slower and flakier.
 #
-# Ready to activate — add two repo secrets to turn PRs green:
+# Ready to activate — add these repo secrets:
 #   MAESTRO_CLOUD_API_KEY  (from console.maestro.dev)
+#   MAESTRO_CLOUD_PROJECT_ID
 #   EXPO_TOKEN             (for `eas build --local`)
-# The `guard` job checks for the secret and skips gracefully when absent,
+# The `guard` job checks all required secrets and skips gracefully when absent,
 # so this workflow never turns PRs red before it's configured.
-# It runs only the two wedge flows via `include-tags: wedge` (tagged on
-# .maestro/24-… and .maestro/25-…).
 #
 # Also fires via repository_dispatch (event: travel-app-ci-success) so the
 # workspace can trigger a post-merge cloud run after travel-app CI passes.
@@ -43,27 +42,44 @@ jobs:
         # is safe to branch on. Absent secret → job tree is skipped, PR stays green.
         env:
           KEY: ${{ secrets.MAESTRO_CLOUD_API_KEY }}
+          PROJECT: ${{ secrets.MAESTRO_CLOUD_PROJECT_ID }}
+          EXPO: ${{ secrets.EXPO_TOKEN }}
         run: |
-          if [ -n "$KEY" ]; then
+          if [ -n "$KEY" ] && [ -n "$PROJECT" ] && [ -n "$EXPO" ]; then
             echo "enabled=true" >> "$GITHUB_OUTPUT"
-            echo "Maestro Cloud configured — wedge flows will run."
+            echo "Maestro Cloud configured — PR smoke will run."
           else
             echo "enabled=false" >> "$GITHUB_OUTPUT"
-            echo "MAESTRO_CLOUD_API_KEY not set — skipping (PR not gated on visual QA yet)."
+            echo "Cloud key, project ID, or Expo token is absent — skipping visual gate."
           fi
 
   maestro-cloud:
-    name: Maestro Cloud wedge flows
+    name: Maestro Cloud PR smoke
     needs: guard
     if: needs.guard.outputs.enabled == 'true'
     runs-on: macos-15
     timeout-minutes: 45
     steps:
+      - name: Check out workspace
+        uses: actions/checkout@v6
+
+      - name: Resolve Travel App ref
+        id: app_ref
+        env:
+          DISPATCH_REF: ${{ github.event.client_payload.app_ref }}
+        run: |
+          REF="$DISPATCH_REF"
+          if [ -z "$REF" ]; then
+            REF=$(python3 -c "import json; print(json.load(open('docs/child-repos.ci-lock.json')).get('travel-app') or 'main')")
+          fi
+          echo "ref=$REF" >> "$GITHUB_OUTPUT"
+
       - name: Check out Travel App
         uses: actions/checkout@v6
         with:
           repository: ${{ github.repository_owner }}/travel-app
           path: travel-app
+          ref: ${{ steps.app_ref.outputs.ref }}
           token: ${{ secrets.TRAVEL_WORKSPACE_CI_TOKEN || github.token }}
 
       - name: Set up Node
@@ -78,12 +94,10 @@ jobs:
         working-directory: travel-app
 
       - name: Build iOS simulator app (mock mode)
-        # `development` profile bakes EXPO_PUBLIC_USE_MOCK_API=true + SKIP_AUTH=true
-        # (see eas.json / .maestro/config.yaml) so the wedge surfaces render with
-        # no backend/Clerk. Produces a simulator .app/.tar.gz for Maestro Cloud.
+        # `e2e-test` is a release-style simulator build with an embedded bundle.
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: npx eas-cli build --platform ios --profile development --local --non-interactive --output "$RUNNER_TEMP/vesper-sim.tar.gz"
+        run: npx eas-cli build --platform ios --profile e2e-test --local --non-interactive --output "$RUNNER_TEMP/vesper-sim.tar.gz"
         working-directory: travel-app
 
       - name: Extract .app for Maestro Cloud
@@ -96,10 +110,16 @@ jobs:
           if [ -z "$APP" ]; then echo "::error::No .app found in EAS build output"; exit 1; fi
           echo "APP_FILE=$APP" >> "$GITHUB_ENV"
 
-      - name: Run wedge flows on Maestro Cloud
-        uses: mobile-dev-inc/action-maestro-cloud@v1
+      - name: Run PR smoke on Maestro Cloud
+        uses: mobile-dev-inc/action-maestro-cloud@v3.0.1
         with:
           api-key: ${{ secrets.MAESTRO_CLOUD_API_KEY }}
+          project-id: ${{ secrets.MAESTRO_CLOUD_PROJECT_ID }}
           app-file: ${{ env.APP_FILE }}
           workspace: travel-app/.maestro
-          include-tags: wedge
+          include-tags: pr-smoke
+          exclude-tags: native-live,quarantine
+          branch: ${{ github.head_ref || steps.app_ref.outputs.ref }}
+          device-model: iPhone-16
+          device-os: iOS-18-2
+          device-locale: en_US

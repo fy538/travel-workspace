@@ -154,8 +154,10 @@ docs-links-check: ## Gate: relative links in living workspace docs resolve
 docs-check: ## Run all documentation governance gates
 	@python3 scripts/check_docs.py --all
 
-maestro-flow-check: ## Gate: every .maestro flow parses + visual-qa script refs resolve (offline, no simulator)
+maestro-flow-check: ## Gate: Maestro structure, lane metadata, references, configs, and CLI semantics
 	@python3 scripts/validate-maestro-flows.py --app-dir travel-app
+	@cd travel-app && npm run --silent maestro:metadata:check
+	@cd travel-app && scripts/maestro/check-syntax.sh
 
 compatibility-check: ## Gate: every marked compatibility exception has an owned, expiring ledger entry
 	@python3 scripts/check_compatibility_ledger.py
@@ -172,17 +174,18 @@ certify-corpus: ## Tier-2b certify ladder: discover_queries compose tests (requi
 	@cd travel-agent && SKIP_AUTH=true PYTHONPATH=. pytest tests/scenarios/ \
 	  -m requires_dogfood_wedge -v --tb=short
 
-certify-visual: ## Tier-3 certify ladder: wedge Maestro flows (needs simulator + Metro)
+certify-visual: ## Tier-3 certify ladder: deterministic PR-smoke Maestro lane (needs simulator + app)
 	@export JAVA_HOME="$${JAVA_HOME:-/opt/homebrew/opt/openjdk}" && \
 	 export PATH="$$JAVA_HOME/bin:$$HOME/.maestro/bin:$$PATH" && \
-	 cd travel-app && npm run --silent visual-qa:wedge
+	 cd travel-app && npm run --silent visual-qa:pr
 
 certify-visual-cloud: ## Activate Maestro Cloud PR gate: add secrets to GitHub repo settings
 	@echo "Visual QA cloud gate (.github/workflows/visual-qa-cloud.yml) is ready."
-	@echo "Add two secrets to the fy538/travel-app GitHub repo settings → Secrets and variables → Actions:"
+	@echo "Add three secrets to this workspace GitHub repo → Secrets and variables → Actions:"
 	@echo "  MAESTRO_CLOUD_API_KEY  — from console.maestro.dev (create a project, copy the API key)"
+	@echo "  MAESTRO_CLOUD_PROJECT_ID — Maestro Cloud workspace project ID"
 	@echo "  EXPO_TOKEN             — from expo.dev → account settings → access tokens"
-	@echo "Once set, PRs will auto-gate on wedge flows 24+25 via Maestro Cloud managed devices."
+	@echo "Once set, PRs will auto-gate on the pr-smoke lane via Maestro Cloud managed devices."
 	@echo "The workflow skips gracefully if the secret is absent, so it never blocks PRs before configured."
 
 certify-live: ## Tier-4 dogfood preflight + live-walk checklist (human: two Clerk accounts)

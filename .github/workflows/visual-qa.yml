@@ -1,18 +1,8 @@
-name: Visual QA (Maestro wedge)
+name: Visual QA (Maestro PR smoke)
 
-# Tier-3 of the certify ladder — the real wedge Maestro flows
-# (24-journey-02-create-invite + 25-journey-05-proposal-mutation) against a
-# booted iOS simulator running the app in mock mode. This needs a macOS
-# runner + Xcode simulator + a built app, which is too slow/expensive to gate
-# every PR — so it runs nightly and on demand, NOT on pull_request. The cheap,
-# PR-blocking foothold (every flow parses + visual-qa script refs resolve) lives
-# in reliability.yml via `make maestro-flow-check`.
-#
-# NOTE: first run must be triggered manually (workflow_dispatch) to validate the
-# simulator/build wiring on the runner — the iOS build step depends on the
-# Expo/prebuild config and may need one round of iteration. For a per-PR
-# blocking visual gate, the robust path is Maestro Cloud (upload flows + a
-# prebuilt EAS artifact) rather than building in-runner.
+# Tier-3 device execution for the deterministic ten-flow PR-smoke lane. The
+# release simulator build embeds JavaScript, so this lane does not depend on a
+# Metro process or a development client.
 
 on:
   workflow_dispatch:
@@ -28,10 +18,13 @@ permissions:
   contents: read
 
 jobs:
-  maestro-wedge:
-    name: Maestro wedge flows (iOS simulator)
+  maestro-pr-smoke:
+    name: Maestro PR smoke (iOS simulator)
     runs-on: macos-15
     timeout-minutes: 60
+    env:
+      MAESTRO_VERSION: 2.6.1
+      MAESTRO_TEST_SUITE_NAME: visual-qa-pr-smoke
     steps:
       - name: Check out workspace
         uses: actions/checkout@v6
@@ -87,16 +80,16 @@ jobs:
           xcrun simctl bootstatus "$UDID" -b
 
       - name: Build + install app on simulator (mock mode)
-        # Mock mode + SKIP_AUTH boots straight to Trips (see .maestro/config.yaml),
-        # so no backend/Clerk is needed for the wedge surface walk.
         env:
           EXPO_PUBLIC_USE_MOCK_API: "true"
-          SKIP_AUTH: "true"
+          EXPO_PUBLIC_SKIP_AUTH: "true"
           EXPO_PUBLIC_IS_INTERNAL_BUILD: "true"
-        run: npx expo run:ios --device "$SIM_UDID" --no-bundler
+          EXPO_PUBLIC_APP_CHANNEL: e2e
+          SENTRY_DISABLE_AUTO_UPLOAD: "true"
+        run: npx expo run:ios --configuration Release --device "$SIM_UDID" --no-bundler
         working-directory: travel-app
 
-      - name: Run wedge Maestro flows
+      - name: Run PR-smoke Maestro flows
         run: make certify-visual
 
       - name: Upload Maestro artifacts
@@ -105,6 +98,7 @@ jobs:
         with:
           name: maestro-visual-qa-${{ github.run_id }}
           path: |
+            travel-app/build/maestro/**
             ~/.maestro/tests/**
           retention-days: 14
           if-no-files-found: ignore
