@@ -53,7 +53,14 @@ without losing its sources, so that it becomes worth revisiting.
 - Steering silently swaps the source contract.
 - Keep duplicates or strands the Reading.
 
-## First Automation Target
+## Certification Evidence
 
-Promote `atlas-journey-reading-keep-return.yaml`, then add thin, failure/retry,
-steer-provenance, and missing-source scenarios.
+- Connected frontend coverage preserves the full query contract through steer,
+  idempotent Keep, shelf return, and reopen; mock parity no longer duplicates a
+  repeated Keep or marks an ungrounded facet as used.
+- The J26 Maestro flow covers progressive compose, grounded provenance, the
+  trust receipt, exactly-one shelf entry, an honest thin list, offline cached
+  return, and deleted-Reading recovery.
+- The Postgres scenario and disposable lived cert compose from three real
+  affinity sources, steer to an honest two-item list, keep once, and reopen with
+  the same raw ask, facets, residual phrase, exclusion, and moment set.

@@ -705,6 +705,89 @@ journeys:
     title: Atlas Reading to Steer Keep and Return
     doc: 26-atlas-reading-to-steer-keep-and-return.md
     tier: customer-extension
+    branches:
+      - id: J26.B01
+        title: Open existing grounded Reading
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-26-reading-lifecycle.connected.test.ts
+            - travel-app/__tests__/screens/atlas-reading.smoke.test.tsx
+          BE:
+            - travel-agent/tests/scenarios/test_j26_reading_steer_keep_return.py
+            - travel-agent/tests/atlas/test_taste_board.py
+          VIS: [travel-app/.maestro/64-journey-26-reading-steer-keep-return.yaml]
+          LIVE: [persona-cert:J26]
+      - id: J26.B02
+        title: Compose and progressive result
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE:
+            - travel-app/__tests__/screens/atlas-compose.smoke.test.tsx
+            - travel-app/__tests__/journeys/journey-26-reading-lifecycle.connected.test.ts
+          BE:
+            - travel-agent/tests/scenarios/test_j26_reading_steer_keep_return.py
+            - travel-agent/tests/atlas/test_taste_board.py
+          VIS: [travel-app/.maestro/64-journey-26-reading-steer-keep-return.yaml]
+          LIVE: [persona-cert:J26]
+      - id: J26.B03
+        title: Thin result remains an honest list
+        required_evidence: [FE, BE, VIS]
+        evidence:
+          FE:
+            - travel-app/__tests__/screens/atlas-reading.smoke.test.tsx
+            - travel-app/__tests__/journeys/journey-26-reading-lifecycle.connected.test.ts
+          BE:
+            - travel-agent/tests/scenarios/test_j26_reading_steer_keep_return.py
+            - travel-agent/tests/atlas/test_taste_board.py
+          VIS: [travel-app/.maestro/64-journey-26-reading-steer-keep-return.yaml]
+      - id: J26.B04
+        title: Generation failure retry and offline cache
+        required_evidence: [FE, BE, VIS]
+        evidence:
+          FE:
+            - travel-app/__tests__/screens/atlas-reading.smoke.test.tsx
+            - travel-app/__tests__/data/atlas.test.ts
+          BE:
+            - travel-agent/tests/atlas/test_save_board_route.py
+            - travel-agent/tests/atlas/test_taste_board.py
+          VIS: [travel-app/.maestro/64-journey-26-reading-steer-keep-return.yaml]
+      - id: J26.B05
+        title: Steer retains provenance
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-26-reading-lifecycle.connected.test.ts
+            - travel-app/__tests__/screens/atlas-reading.smoke.test.tsx
+          BE:
+            - travel-agent/tests/scenarios/test_j26_reading_steer_keep_return.py
+            - travel-agent/tests/atlas/test_taste_board.py
+          VIS: [travel-app/.maestro/64-journey-26-reading-steer-keep-return.yaml]
+          LIVE: [persona-cert:J26]
+      - id: J26.B06
+        title: Keep idempotently and return and reopen
+        required_evidence: [FE, BE, VIS, LIVE]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-26-reading-lifecycle.connected.test.ts
+            - travel-app/__tests__/screens/atlas-readings.smoke.test.tsx
+            - travel-app/__tests__/data/atlas.test.ts
+          BE:
+            - travel-agent/tests/scenarios/test_j26_reading_steer_keep_return.py
+            - travel-agent/tests/atlas/test_save_board_route.py
+          VIS: [travel-app/.maestro/64-journey-26-reading-steer-keep-return.yaml]
+          LIVE: [persona-cert:J26]
+      - id: J26.B07
+        title: Missing or deleted source degrades honestly
+        required_evidence: [FE, BE, VIS]
+        evidence:
+          FE:
+            - travel-app/__tests__/journeys/journey-26-reading-lifecycle.connected.test.ts
+            - travel-app/__tests__/screens/atlas-reading.smoke.test.tsx
+          BE:
+            - travel-agent/tests/scenarios/test_j26_reading_steer_keep_return.py
+            - travel-agent/tests/atlas/test_taste_board.py
+          VIS: [travel-app/.maestro/64-journey-26-reading-steer-keep-return.yaml]
   - id: J27
     title: Atlas Provenance to Correct or Forget
     doc: 27-atlas-provenance-to-correct-or-forget.md
