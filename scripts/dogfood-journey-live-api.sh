@@ -3,6 +3,8 @@
 #
 # Usage:
 #   scripts/dogfood-journey-live-api.sh                    # TestClient (local PG)
+#   CLERK_SECRET_KEY=... TRANSPORT=http PROFILE=fly \\      # auto-mint + revoke
+#       scripts/dogfood-journey-live-api.sh
 #   TRANSPORT=http PRELAUNCH_JWT_MARA=... PRELAUNCH_JWT_DAO=... \\
 #       scripts/dogfood-journey-live-api.sh
 set -euo pipefail
@@ -25,7 +27,24 @@ export AI_MODE="${AI_MODE:-replay}"
 export ATLAS_BOARD_COPY_LLM_ENABLED="${ATLAS_BOARD_COPY_LLM_ENABLED:-false}"
 export DOGFOOD_JOURNEY_LIVE_TRANSPORT="$TRANSPORT"
 
-PYTHONPATH=. python scripts/dogfood_journey_cert.py live-api \
-  --transport "$TRANSPORT" \
-  --host "$PRELAUNCH_HOST" \
-  "$@"
+if [[ "$TRANSPORT" == "http" ]] && \
+   [[ -n "${CLERK_SECRET_KEY:-}" ]] && \
+   { [[ -z "${PRELAUNCH_JWT_MARA:-}" ]] || [[ -z "${PRELAUNCH_JWT_DAO:-}" ]]; }; then
+  PYTHONPATH=. python "$WORKSPACE_DIR/scripts/clerk_dogfood_sessions.py" \
+    --persona-env mara=PRELAUNCH_JWT_MARA \
+    --persona-env dao=PRELAUNCH_JWT_DAO \
+    -- python scripts/dogfood_journey_cert.py live-api \
+      --transport "$TRANSPORT" \
+      --host "$PRELAUNCH_HOST" \
+      "$@"
+elif [[ "$TRANSPORT" == "http" ]]; then
+  env -u CLERK_SECRET_KEY PYTHONPATH=. python scripts/dogfood_journey_cert.py live-api \
+    --transport "$TRANSPORT" \
+    --host "$PRELAUNCH_HOST" \
+    "$@"
+else
+  PYTHONPATH=. python scripts/dogfood_journey_cert.py live-api \
+    --transport "$TRANSPORT" \
+    --host "$PRELAUNCH_HOST" \
+    "$@"
+fi

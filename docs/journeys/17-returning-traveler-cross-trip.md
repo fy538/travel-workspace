@@ -15,7 +15,10 @@ As a returning traveler, I want the app to remember what I liked and where I've 
 
 ## Why This Journey Matters
 
-- No journey proves the cross-trip value loop (place affinity, taste recall, "your map") — the substrate is built but largely dark (`ATLAS_SIGNALS_TO_MEMORY` gated, `traveler_place_affinity` recall wired but quiet).
+- This is the cross-trip value loop: place affinity, kept-memory signals,
+  cross-city hero recall, and the private Atlas place record all feed trip two.
+  Production enables `ATLAS_SIGNALS_TO_MEMORY`; the far-out recall pool and
+  `traveler_place_affinity` reads are active, privacy-scoped paths.
 - This is the place-relationship thesis: the product is a relationship with places over time, not a single-trip planner.
 - The privacy risk is real: cross-trip recall must not surface another trip's private group context.
 

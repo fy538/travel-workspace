@@ -16,9 +16,9 @@ Visual gate: the generated **Visual (Maestro)** column in the journey fidelity m
 | Substrate (DB + offline compose) | `make dogfood-five-pack-verify PROFILE=fly` | **PASSED** 2026-06-29 |
 | Fly smoke (API + personas + Rome bridge) | `make dogfood-fly-smoke` | **PASSED** 2026-06-29 |
 | Five-pack certification (agent-owned) | `make dogfood-five-pack-verify PROFILE=fly` + `make dogfood-five-pack-simulator` | **COMPLETE** 2026-06-29 |
-| Live HTTP (Fly + Clerk) | `TRANSPORT=http PRELAUNCH_JWT_MARA=… PRELAUNCH_JWT_DAO=… make dogfood-journey-live-api PROFILE=fly` | **not blocked, not built** — TestClient 16/16 green; the transport gap is ~3-5h of internal glue (test Clerk users + SQL backfill of `external_auth_id` + a JWT-mint script), not an external Clerk dependency. **In progress:** `tools/dogfood/link_clerk_accounts.py` (added 2026-07-05) links real Clerk test accounts to the seeded `mara`/`elif` rows; JWT-mint step still unbuilt. |
+| Live HTTP (Fly + Clerk) | `CLERK_SECRET_KEY=… TRANSPORT=http make dogfood-journey-live-api PROFILE=fly` | **automation complete** — TestClient 16/16 green; the HTTP runner now creates short-lived sessions for the linked dogfood accounts, passes their JWTs only to the certification child process, and revokes the sessions afterward. A supplied `PRELAUNCH_JWT_MARA` / `PRELAUNCH_JWT_DAO` still takes precedence. Running against Fly remains an operator credential lane. |
 
-**Note (2026-07-05):** this row is CI-automation nice-to-have, not a shipping blocker. The actual device-certification gate for J04/J05/J10 runs on **real Clerk accounts on two physical devices** (see [journey-live-full-cert-04-05-10.md](../working/journey-live-full-cert-04-05-10.md) and [dogfood-loop-validation-2026-07-04.md](../working/dogfood-loop-validation-2026-07-04.md)) and never touches this automated persona-JWT row at all — that path deliberately routes *around* the persona-JWT problem entirely.
+**Note (updated 2026-07-19):** automated HTTP certification and physical-device certification are separate lanes. The latter still runs J04/J05/J10 on **real Clerk accounts on two physical devices** (see [journey-live-full-cert-04-05-10.md](../working/journey-live-full-cert-04-05-10.md) and [dogfood-loop-validation-2026-07-04.md](../working/dogfood-loop-validation-2026-07-04.md)); it requires an operator to complete the real sign-in/OTP flow.
 
 | Pack | Fly promote | Substrate ✅ | Live API (local) | Optional UI spot-check |
 |------|-------------|--------------|------------------|-------------------------|
@@ -202,9 +202,9 @@ Source: `docs/journeys/journeys.yaml` × registered branch evidence where declar
 | J13 | Failure and Recovery | holistic | ✅ | ✅ | ✅ | ✅ |
 | J14 | Solo Trip End-to-End | holistic | ✅ | ✅ | ✅ | ✅ |
 | J15 | Destructive and Reversible Actions | holistic | ✅ | ✅ | ✅ | ✅ |
-| J16 | Account and Data Lifecycle | holistic | ✅ | ✅ | — | ✅ |
-| J17 | Returning Traveler (Cross-Trip Recall) | holistic | ✅ | ✅ | — | ✅ |
-| J18 | Signed-Out Join-By-Invite | holistic | ✅ | ✅ | — | ✅ |
+| J16 | Account and Data Lifecycle | holistic | ✅ | ✅ | ✅ | ✅ |
+| J17 | Returning Traveler (Cross-Trip Recall) | holistic | ✅ | ✅ | ✅ | ✅ |
+| J18 | Signed-Out Join-By-Invite | holistic | ✅ | ✅ | ✅ | ✅ |
 | J19 | Social Loop and Cross-Entity Discovery | holistic | ✅ | ✅ | ✅ | ✅ |
 | J20 | First-Use Trust to First Personalized Value | customer | ✅ 6/6 | ✅ 3/3 | ✅ 6/6 | ✅ 3/3 |
 | J21 | Collaborative Stay and Traveler Ownership | customer | ✅ 6/6 | ✅ 6/6 | ✅ 6/6 | ✅ 3/3 |
@@ -225,13 +225,13 @@ Source: `docs/journeys/journeys.yaml` × registered branch evidence where declar
 | Frontend contract evidence | **28 / 28** by canonical mock-walk discovery; branch-certified journeys also resolve every declared FE branch |
 | Backend logic evidence | 28 / 28 |
 | Branch-aware coverage | J06: FE 7/7, BE 7/7, VIS 7/7, LIVE 4/4 · J10: FE 9/9, BE 8/8, VIS 9/9, LIVE 8/8 · J11: FE 6/6, BE 6/6, VIS 6/6, LIVE 6/6 · J20: FE 6/6, BE 3/3, VIS 6/6, LIVE 3/3 · J21: FE 6/6, BE 6/6, VIS 6/6, LIVE 3/3 · J22: FE 8/8, BE 7/7, VIS 8/8, LIVE 7/7 · J23: FE 8/8, BE 8/8, VIS 8/8, LIVE 4/4 · J24: FE 7/7, BE 7/7, VIS 7/7, LIVE 5/5 · J25: FE 6/6, BE 3/3, VIS 6/6, LIVE 1/1 · J26: FE 7/7, BE 7/7, VIS 7/7, LIVE 4/4 · J27: FE 6/6, BE 6/6, VIS 6/6, LIVE 3/3 · J28: FE 6/6, BE 6/6, VIS 6/6, LIVE 3/3 |
-| Visual journey evidence | 22 complete + 3 partial / 28 |
+| Visual journey evidence | **28 / 28 complete** |
 | Lived persona evidence | **28 / 28 pass** across Mara, Elif, and Reza; destructive or state-specific journeys use disposable fixtures |
 | Maestro wedge flows (24/25) | **green** 2026-06-29 (`make certify-visual`) |
 | Five-pack dogfood (agent gates) | **certified** 2026-06-29 (`dogfood-five-pack-verify` + `dogfood-five-pack-simulator`) |
 | Legacy golden parent gates | J01–J12 have parent evidence; branch audit now supersedes binary confidence for J06/J10/J11 |
-| Journey live-api (J02/J04/J05/J10) | **4/4** — `make dogfood-journey-live-api` 16/16 TestClient (2026-07-17); Fly HTTP transport gap is unbuilt internal glue, not a Clerk blocker (see Live HTTP row above) |
-| Journey full-certified (12) | **0 / 12** — device walks for J04/J05/J10 (runbook linked above) |
+| Journey live-api (J02/J04/J05/J10) | **4/4** — `make dogfood-journey-live-api` 16/16 TestClient (2026-07-17); Fly HTTP session automation is complete and awaits an operator credentialed run (see Live HTTP row above) |
+| Required physical-device certification | **0 / 3** — J04/J05/J10 await the credentialed two-device runbook; this is the only remaining external certification lane |
 
 ## Certify ladder (workspace)
 
@@ -254,4 +254,4 @@ Live dogfood (S4 seed + two-account walk) is human/ops — see `docs/working/dog
 
 ## Promotion Rules
 
-Unchanged — see [README.md](README.md). **12 / 12** golden (J01–J12) meet agent-certified (J14 + J15 also pass persona-cert but are holistic-tier, not in the gate); **4 / 4** meet live-api (J02/J04/J05/J10 TestClient); **0 / 12** meet full-certified (device pending on J04/J05/J10).
+See [README.md](README.md). **28 / 28** canonical journeys have frontend, backend, visual, and lived-persona evidence; **4 / 4** scoped live-API journeys pass through TestClient. Promotion to physical-device certified remains pending only for J04/J05/J10 because that lane requires two real signed-in devices.
