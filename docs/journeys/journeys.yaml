@@ -596,7 +596,7 @@ journeys:
         evidence:
           FE: [travel-app/__tests__/journeys/journey-24-mock-walk.smoke.test.tsx]
           BE: [travel-agent/tests/scenarios/test_j24_membership_epochs.py]
-          VIS: []
+          VIS: [travel-app/.maestro/62-journey-24-membership-epochs.yaml]
           LIVE: [persona-cert:J24]
       - id: J24.B03
         title: Role and shared-plan-owner transfer
