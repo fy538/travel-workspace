@@ -22849,6 +22849,272 @@
         }
       }
     },
+    "/api/trips/{trip_id}/deletion-preflight": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Trip Hard Delete Preflight Endpoint",
+        "description": "Report whether a trip is still an erasable empty solo draft.",
+        "operationId": "trip_hard_delete_preflight_endpoint_api_trips__trip_id__deletion_preflight_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripHardDeletePreflightResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}": {
+      "delete": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Hard Delete Empty Trip Endpoint",
+        "description": "Permanently delete only a genuinely empty, solo ideation draft.\n\nNamed, dated, shared, planned, booked, cost-bearing, or conversation-linked\ntrips return 409 and must use archive/cancel so their durable truth remains.",
+        "operationId": "hard_delete_empty_trip_endpoint_api_trips__trip_id__delete",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TripHardDeleteRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripHardDeleteResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Trip Detail",
+        "description": "Get a single trip by ID.",
+        "operationId": "get_trip_detail_api_trips__trip_id__get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Trip"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Patch Trip",
+        "description": "Update user-editable trip settings (organizer-only PATCH).",
+        "operationId": "patch_trip_api_trips__trip_id__patch",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchTripRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Trip"
+                }
+              }
+            }
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripContextReplanRequiredResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/cancellation-preflight": {
       "get": {
         "tags": [
@@ -24074,144 +24340,6 @@
                 }
               }
             }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/trips/{trip_id}": {
-      "get": {
-        "tags": [
-          "trips"
-        ],
-        "summary": "Get Trip Detail",
-        "description": "Get a single trip by ID.",
-        "operationId": "get_trip_detail_api_trips__trip_id__get",
-        "parameters": [
-          {
-            "name": "trip_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Trip Id"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Trip"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "trips"
-        ],
-        "summary": "Patch Trip",
-        "description": "Update user-editable trip settings (organizer-only PATCH).",
-        "operationId": "patch_trip_api_trips__trip_id__patch",
-        "parameters": [
-          {
-            "name": "trip_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Trip Id"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PatchTripRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Trip"
-                }
-              }
-            }
-          },
-          "409": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TripContextReplanRequiredResponse"
-                }
-              }
-            },
-            "description": "Conflict"
           },
           "422": {
             "description": "Validation Error",
@@ -40854,9 +40982,7 @@
             "title": "Deleted"
           },
           "reassigned": {
-            "additionalProperties": {
-              "type": "integer"
-            },
+            "additionalProperties": true,
             "type": "object",
             "title": "Reassigned"
           },
@@ -68035,6 +68161,97 @@
           "available"
         ],
         "title": "TripGroupProfileSurface"
+      },
+      "TripHardDeletePreflightResponse": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "eligible": {
+            "type": "boolean",
+            "title": "Eligible"
+          },
+          "blocker_codes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Blocker Codes"
+          },
+          "member_count": {
+            "type": "integer",
+            "title": "Member Count"
+          },
+          "itinerary_count": {
+            "type": "integer",
+            "title": "Itinerary Count"
+          },
+          "invite_count": {
+            "type": "integer",
+            "title": "Invite Count"
+          },
+          "booking_session_count": {
+            "type": "integer",
+            "title": "Booking Session Count"
+          },
+          "expense_count": {
+            "type": "integer",
+            "title": "Expense Count"
+          },
+          "conversation_count": {
+            "type": "integer",
+            "title": "Conversation Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "eligible",
+          "blocker_codes",
+          "member_count",
+          "itinerary_count",
+          "invite_count",
+          "booking_session_count",
+          "expense_count",
+          "conversation_count"
+        ],
+        "title": "TripHardDeletePreflightResponse"
+      },
+      "TripHardDeleteRequest": {
+        "properties": {
+          "confirmation": {
+            "type": "string",
+            "const": "DELETE EMPTY DRAFT",
+            "title": "Confirmation"
+          }
+        },
+        "type": "object",
+        "required": [
+          "confirmation"
+        ],
+        "title": "TripHardDeleteRequest"
+      },
+      "TripHardDeleteResponse": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "deleted": {
+            "type": "boolean",
+            "const": true,
+            "title": "Deleted",
+            "default": true
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id"
+        ],
+        "title": "TripHardDeleteResponse"
       },
       "TripHero": {
         "properties": {

@@ -2,14 +2,18 @@
 
 > Status: draft
 > Owner: founder / engineering
-> Last updated: 2026-07-18
+> Last updated: 2026-07-19
 > Primary phase: cross-cutting (trust-critical mutations)
 
 ## Product Promise
 
 Leaving a trip, removing a member, archiving or cancelling a trip, and releasing a hold or cancelling a booking do exactly what they say: confirm first, name the consequence, preserve what they promise to preserve, and leave no orphaned money or ghost members. Reversible actions (recover an archive, undo a proposal, revert a change) restore cleanly.
 
-Hard trip deletion is not currently a product or API promise. The app deliberately offers archive/recover and trip cancellation instead of presenting a destructive control whose cascade is not implemented. Account and personal-data deletion belongs to J16.
+Permanent trip deletion is deliberately narrow: only an unnamed, undated,
+unshared solo ideation draft with no itinerary, invite, booking work, costs, or
+conversation can pass the server preflight and atomic delete. Any meaningful
+trip must use archive/recover or trip cancellation so durable history remains.
+Account and personal-data deletion belongs to J16.
 
 ## Canonical User Story
 
@@ -38,6 +42,8 @@ As a traveler managing a trip, I want destructive and reversible actions to be s
 4. Cancel a booking / hold → the hold releases, no orphaned expense, status reflects cancellation honestly.
 5. Undo / revert an applied proposal in the changes timeline → read models (plan/map/home) restore to the prior coherent state.
 6. Every destructive action confirms before committing; irreversibility is stated where it applies.
+7. Delete a truly empty solo draft → server preflight confirms the absence of
+   durable activity, then the atomic endpoint permanently removes it.
 
 ## Expected Outcome
 
@@ -47,7 +53,8 @@ As a traveler managing a trip, I want destructive and reversible actions to be s
 
 ## Must Never Happen
 
-- The app exposes hard trip deletion before an atomic backend cascade exists.
+- The app permanently deletes a named, dated, shared, planned, booked,
+  cost-bearing, or conversation-linked trip.
 - Removing/leaving a member corrupts the settlement balance for the rest.
 - A cancelled booking leaves a phantom hold or expense.
 - Undo/revert renders "reverted" but leaves a stale read model.
@@ -64,8 +71,14 @@ Trace leave-trip, remove-member, archive/recover, trip cancellation, booking/hol
 - Contract and lived backend coverage certify self-removal, organizer removal, access revocation, group-profile invalidation, notification cleanup, idempotent not-found behavior, and the last-organizer guard.
 - Dedicated native visual flows certify member-removal confirmation, the trip-cancellation preservation/provider boundary, and the distinction between releasing an unpaid hold and cancelling a booked reservation.
 - Proposal revert remains covered by its shared J05 logic/lived lifecycle. A stable native revert-control selector is still an explicit follow-up; J15 does not claim a dedicated revert screenshot yet.
-- Hard trip deletion remains intentionally unimplemented and uncertified. Add the atomic API cascade and orphan checks before adding any such UI control.
+- Empty-draft deletion is certified through the server preflight, exact
+  confirmation literal, row lock + same-transaction recheck, post-delete read,
+  and the app's race-to-archive recovery state. Meaningful-trip rejection is a
+  separate required assertion.
 
 ## Automation Target
 
-Keep the backend removal cascade and native confirmation flows as the regression gate. When hard trip deletion is intentionally built, add a throwaway trip with members, itinerary, blocks, expenses, and settlement, delete it through the atomic API, and prove every dependent row is gone before exposing the control.
+Keep the backend removal cascade, empty-draft deletion contract, and native
+confirmation flows as the regression gate. Never broaden permanent deletion
+to meaningful trips without a separately designed cascade, retention policy,
+and orphan-proof certification pack.
