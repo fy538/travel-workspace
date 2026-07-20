@@ -48300,6 +48300,18 @@
             "type": "string",
             "title": "Title"
           },
+          "subtitle": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 96
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subtitle"
+          },
           "time_start": {
             "anyOf": [
               {
@@ -53405,6 +53417,18 @@
             ],
             "title": "Time End"
           },
+          "subtitle": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 96
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subtitle"
+          },
           "notes": {
             "anyOf": [
               {
@@ -55901,6 +55925,18 @@
             "minLength": 1,
             "title": "Block Type"
           },
+          "subtitle": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 96
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subtitle"
+          },
           "notes": {
             "anyOf": [
               {
@@ -57499,6 +57535,18 @@
           "title": {
             "type": "string",
             "title": "Title"
+          },
+          "subtitle": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 96
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subtitle"
           },
           "time_start": {
             "anyOf": [
