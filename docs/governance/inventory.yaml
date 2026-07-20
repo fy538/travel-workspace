@@ -106,6 +106,18 @@ overrides:
     disposition: keep_authoritative
     rationale: Active device-certification runbook for the current release gate.
 
+  docs/working/device-cert-runbook-J04-J05-J10.md:
+    disposition: keep_authoritative
+    rationale: Executable two-device certification walk for the current J04, J05, and J10 release gate; expires 2026-08-18.
+
+  docs/working/device-jump-to-state-kit.md:
+    disposition: keep_authoritative
+    rationale: Active deep-link reference supporting the current device-certification program; expires 2026-08-18.
+
+  docs/working/predevice-preflight-smoke.md:
+    disposition: keep_authoritative
+    rationale: Active environment and fixture smoke gate required before device certification; expires 2026-08-18.
+
   docs/working/mvp-scope-and-flag-manifest-2026-06-30.md:
     disposition: keep_authoritative
     rationale: Current source of truth for V1 scope and dark surfaces.
