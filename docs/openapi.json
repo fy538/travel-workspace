@@ -27493,6 +27493,226 @@
         }
       }
     },
+    "/api/users/{user_id}/atlas-learning-card": {
+      "get": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "Get Atlas Learning Card",
+        "description": "Select one server-owned Atlas learning job for this traveler.",
+        "operationId": "get_atlas_learning_card_api_users__user_id__atlas_learning_card_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/AtlasLearningCardResponse"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Response Get Atlas Learning Card Api Users  User Id  Atlas Learning Card Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/{user_id}/atlas-learning-card/{card_id}/respond": {
+      "post": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "Respond To Atlas Learning Card",
+        "description": "Retire or resolve the one card; writes remain private and explicit.",
+        "operationId": "respond_to_atlas_learning_card_api_users__user_id__atlas_learning_card__card_id__respond_post",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "card_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Card Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AtlasLearningCardActionBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasLearningActionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/{user_id}/memory-learning-disclosures": {
+      "post": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "Create Memory Learning Disclosure",
+        "description": "Create a review candidate; the text is not durable memory yet.",
+        "operationId": "create_memory_learning_disclosure_api_users__user_id__memory_learning_disclosures_post",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AtlasDisclosureCreateBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MemoryLearningCandidateResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/users/{user_id}/memory-learning-candidates": {
       "get": {
         "tags": [
@@ -32809,6 +33029,21 @@
         "title": "AtlasCandidatesResponse",
         "description": "Response for ``POST /api/atlas/candidates`` \u2014 persisted candidates with ids."
       },
+      "AtlasDisclosureCreateBody": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "maxLength": 600,
+            "minLength": 10,
+            "title": "Text"
+          }
+        },
+        "type": "object",
+        "required": [
+          "text"
+        ],
+        "title": "AtlasDisclosureCreateBody"
+      },
       "AtlasEmptyState": {
         "properties": {
           "title": {
@@ -33390,6 +33625,117 @@
         ],
         "title": "AtlasKeepAllResponse",
         "description": "Response from POST /api/atlas/candidates/keep-all."
+      },
+      "AtlasLearningActionResponse": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok",
+            "default": true
+          }
+        },
+        "type": "object",
+        "title": "AtlasLearningActionResponse"
+      },
+      "AtlasLearningCardActionBody": {
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "answer",
+              "dismiss",
+              "confirm",
+              "reject",
+              "snooze"
+            ],
+            "title": "Action"
+          },
+          "answer": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Answer"
+          }
+        },
+        "type": "object",
+        "required": [
+          "action"
+        ],
+        "title": "AtlasLearningCardActionBody"
+      },
+      "AtlasLearningCardResponse": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "question",
+              "check",
+              "share"
+            ],
+            "title": "Kind"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "body": {
+            "type": "string",
+            "title": "Body"
+          },
+          "evidence": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evidence"
+          },
+          "options": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasLearningOption"
+            },
+            "type": "array",
+            "title": "Options"
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "id",
+          "title",
+          "body"
+        ],
+        "title": "AtlasLearningCardResponse"
+      },
+      "AtlasLearningOption": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "label"
+        ],
+        "title": "AtlasLearningOption"
       },
       "AtlasMomentStateUpdateResponse": {
         "properties": {
