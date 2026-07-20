@@ -153,6 +153,22 @@ Cross-checked against git logs + live probes. The founder is further along than 
 
 ---
 
+## Section 6 — Device-cert-walk & dogfood-funnel prerequisites (set before the J04/J05/J10 walk)
+
+Four ops settings that no code change can fix and that silently degrade the device-cert walk or
+the dogfood funnel if left as-is. Each is dark/unset **by default**, so a fresh device build will
+appear to work while emitting nothing (funnel) or delivering nothing (push). Set these on the
+backend the device build points at *before* the walk. `(A)` = founder-only ops.
+
+| # | Item | A/B | Status |
+|---|------|-----|--------|
+| 1 | **Set `POSTHOG_API_KEY` — the entire activation funnel is currently log-only/dark.** With the key unset, `backend/core/telemetry.py` logs `"telemetry: POSTHOG_API_KEY unset — events log-only"` (telemetry.py:284) and drops every event on the floor. That means the whole activation funnel — `activation.account_created`, `activation.onboarding_signal`, `activation.first_turn` (first-value), `activation.trip_created`, `activation.invite_minted/landing_viewed/accepted` (telemetry.py:194–210) — emits **nothing** to PostHog, so the dogfood walk produces zero measurable funnel. Set the PostHog project key as a Fly secret on the device build's backend so account-creation, onboarding, and first-value are actually captured. | **A** | 🟠 FOUNDER-MUST-SET — `fly secrets set POSTHOG_API_KEY=<project key>` (external PostHog console); verify a walk event lands in the PostHog project before the cert walk. |
+| 2 | **Set `EXPO_PUSH_ENABLED=true` + the Expo push secret — zero pushes reach the two physical cert devices.** `EXPO_PUSH_ENABLED` defaults to `false` (`backend/notifications/receipt_reaper.py:39`); with it unset the dispatcher is log-only and makes **no** HTTP call to Expo (`channel_dispatch.py:461` — real send only fires on `=true`). On a real device that silently breaks the **J09** push demo and yields **no** push open/engagement data for the funnel. Set the Fly secret to `true` **and** confirm the Expo push credential is present (`EXPO_ACCESS_TOKEN` in Fly + APNs `.p8` uploaded to Expo — see Section 1 #4 / Section 2). Without both, "push works" is indistinguishable from "push silently dropped." | **A** | 🟠 FOUNDER-MUST-SET — `fly secrets set EXPO_PUSH_ENABLED=true`; confirm APNs key + `EXPO_ACCESS_TOKEN` (Section 1 #4). |
+| 3 | **Give the device build's backend live LLM creds (or a J01 replay cassette) — else the J01 opener stalls at a blank thread.** `AI_MODE` unset defaults to `live` (`backend/core/ai_mode.py:96–97`), so the J01 front-door ("Vesper shapes the idea") needs a real, rotated `ANTHROPIC_API_KEY` in Fly for the opening turn to generate. The only alternative is `AI_MODE=replay` **with** `LLM_VCR_MODE=replay` and a recorded cassette covering the J01 opener (`ai_mode.py:237` / `dogfood_preflight.py:458` — replay fails closed without the VCR). Pick one before the walk: a live key (with a spend cap, Section 1 #5) **or** a verified J01 cassette. If neither is set, the opener returns nothing and the first-value moment never fires. | **A** | 🔴 FOUNDER-MUST-DECIDE — either `fly secrets set ANTHROPIC_API_KEY=<rotated key>` (`AI_MODE` left/set `live`), or `AI_MODE=replay` + `LLM_VCR_MODE=replay` + J01 cassette. |
+| 4 | **Confirm mara's Clerk device account is linked to the seeded `mara@dogfood.local` row (J03).** J03 signs in on-device as mara; the seeded persona row uses the reserved `@dogfood.local` TLD that Clerk rejects, so the account is linked by writing `external_auth_id` on the existing row via `tools/dogfood/link_clerk_accounts.py` (LINKS maps `mara@dogfood.local` → `user_3G61xwb0fxRgMjBfRba8Rvgox4F`, link_clerk_accounts.py:40). Confirm that mapping is actually applied **against the backend the device build points at** (not just local) before the walk — a stale/unlinked row lands mara in a fresh empty account with none of her seeded lisbon-phase1 group/trip state, breaking J03. | **A** | 🟠 FOUNDER-MUST-CONFIRM — dry-run `python -m tools.dogfood.link_clerk_accounts --dry-run` against the device-build target; if unlinked, `--apply --allow-prod`; verify mara's row shows the Clerk `external_auth_id`. |
+
+---
+
 ## Pre-build sanity checklist (run before `eas build --profile production`)
 
 - [ ] `ANTHROPIC_API_KEY` is a rotated production key with a monthly spend cap set. *(§2)*

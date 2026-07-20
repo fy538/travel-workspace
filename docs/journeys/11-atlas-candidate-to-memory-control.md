@@ -29,7 +29,7 @@ As a traveler, I want to review a memory candidate, turn it into an artifact if 
 
 - Persona: returned traveler or user with pending Atlas candidate.
 - Trip state: recently returned trip or saved/memory-rich history.
-- Fixture: Dev "Just back" persona with Athens candidate; Atlas inbox/candidate/artifact data.
+- Fixture: elif's Tokyo 2025 trip (`elif-tokyo-2025`) with the seeded reviewable candidate `elif-tokyo-transit-candidate` (pending review); Atlas inbox/candidate/artifact data.
 - Permissions: photo scan variants need photo permission; base candidate flow does not.
 
 ## Primary Surfaces
