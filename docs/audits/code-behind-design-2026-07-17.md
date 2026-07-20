@@ -183,6 +183,15 @@ actions. Group execution is rejected before any Atlas read.
   genuinely day-wide conditions remain quiet non-action day notes. Existing
   Fix, Adjust, Keep-as-is persistence, and Review-and-vote behavior is retained
   behind item-level actions.
+- **Adjacent old/new trip-surface collisions:** Operational alerts no longer
+  reuse the decision-review sheet pattern; they render inline as explicitly
+  named Trip follow-ups inside Trip Context and route to their owning objects.
+  Header Review locates proposals that already have a contextual day row rather
+  than reproducing vote depth. Header People now enters through the focused
+  Trip Details index, whose Identity and People continuations open distinct
+  focused editor views. Day-gap Add and stop-relative Add/Replace now compose
+  the same real-entity candidate list while retaining one canonical operation
+  gateway and context-specific placement.
 
 ### Compact residual backlog
 
