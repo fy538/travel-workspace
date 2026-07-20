@@ -174,6 +174,15 @@ actions. Group execution is rejected before any Atlas read.
   traveler weighed in, removes them from the holdout set, remains outside
   approve/reject consensus arithmetic, and can be changed like either active
   vote. Product copy says “skipped” rather than leaking the enum name.
+- **Itinerary review ownership:** The full Plan header's “things need your
+  decision” control now behaves as the canon's controlled View/Hide toggle and
+  expands the urgent-first review work inline beneath the thesis. Compact and
+  Map entrances return to that same anchored list context. The duplicate
+  per-day “planning issue” count and its competing sheet entrance are removed;
+  block-bound conflicts project specific context onto the affected rows, while
+  genuinely day-wide conditions remain quiet non-action day notes. Existing
+  Fix, Adjust, Keep-as-is persistence, and Review-and-vote behavior is retained
+  behind item-level actions.
 
 ### Compact residual backlog
 
