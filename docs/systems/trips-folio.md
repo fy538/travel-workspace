@@ -51,7 +51,7 @@ Trip Details, History, and their source systems.
 ## Canonical docs
 - Why → [`Trips Vision`](../../travel-agent/docs/product/Trips%20Vision.md).
 - Historical compatibility architecture → [`Trip Folio Read Model`](../../travel-agent/docs/architecture/Trip%20Folio%20Read%20Model.md) and [`Trip State Architecture`](../../travel-agent/docs/architecture/Trip%20State%20Architecture.md).
-- Target product contract → [`Trip Itinerary`](../../travel-app/docs/surfaces/trip-itinerary/contract.md); historical surface provenance only → [`Single Trip Home`](../../travel-app/docs/surfaces/single-trip-home/contract.md).
+- Target product contract → [`Trip Itinerary`](../../travel-app/docs/surfaces/trip-itinerary/contract.md); historical surface provenance only → [`Single Trip Home`](../../travel-app/docs/archive/surfaces/single-trip-home/contract.md).
 - Migration contract → [`IR-12 coherent read models`](../working/itinerary-redesign-ir12-read-model-contract-2026-07-13.md).
 - Retirement guards → `travel-agent/scripts/certify_itinerary_deletion_lanes.py`
   and the itinerary legacy-reader/consumer-boundary checks.

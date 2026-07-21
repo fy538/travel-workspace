@@ -29,7 +29,7 @@ As a traveler who just got back, I want to see my trip story, inspect what Vespe
 ## Primary Surfaces
 
 - Routes: `/(tabs)/trips`, `/(tabs)/trips/[tripId]`, `/(tabs)/trips/[tripId]/memory`, `/(tabs)/trips/[tripId]/story`, `/trip-expenses?tripId=`, `/(tabs)/atlas`, `/atlas/dna`, `/atlas/postcards`.
-- App docs: [Memory Surface Brief](../../travel-app/docs/Brief%20%E2%80%94%20Memory%20Surface.md), [Canonical User Flow Map](../../travel-app/docs/user-flows/canonical-flow-map.md), [Atlas Home](../../travel-app/docs/page-specs/atlas-home.md).
+- App docs: [Memory Surface Brief (archived)](../../travel-app/docs/archive/briefs/Memory%20Surface.md), [Canonical User Flow Map](../../travel-app/docs/user-flows/canonical-flow-map.md), [Atlas Home](../../travel-app/docs/page-specs/atlas-home.md).
 - Reliability trace: [Memory And Post-Trip Loop](../reliability/traces/memory-and-post-trip-loop.md).
 - Existing anchors: `__tests__/data/memory.test.ts`, `__tests__/data/memory-hooks.test.ts`, `__tests__/components/memory/TripStorySectionCard.test.tsx`, `__tests__/components/memory/ShareStorySheet.test.tsx`, `__tests__/screens/story.smoke.test.tsx`.
 

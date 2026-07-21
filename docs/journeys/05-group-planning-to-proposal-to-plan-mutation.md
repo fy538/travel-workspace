@@ -34,7 +34,7 @@ As a group planning a trip, we want to ask for a change, review Vesper's proposa
 - Routes: trip room/private Vesper entry, the canonical Itinerary List/Map faces,
   stop inspection/change flow, Review Stack, Trip Details → Changes, and
   notification deep links.
-- App docs: [Change Proposals](../../travel-app/docs/page-specs/change-proposals.md), [Trip Group Chat](../../travel-app/docs/page-specs/trip-group-chat.md), [Trip Plan](../../travel-app/docs/page-specs/trip-plan.md).
+- App docs: [Change Proposals](../../travel-app/docs/page-specs/change-proposals.md), [Trip Group Chat](../../travel-app/docs/page-specs/trip-group-chat.md), [Trip Plan (archived)](../../travel-app/docs/archive/page-specs/trip-plan.md).
 - Reliability trace: [Proposal Review And Plan Mutation](../reliability/traces/proposal-review-and-plan-mutation.md).
 - Existing anchors: `__tests__/data/proposals.test.ts`, `__tests__/components/plan/ProposalReviewSheet.test.tsx`, `__tests__/components/chat/VoteWidgetCardEmpty.test.tsx`, backend proposal API/apply tests.
 
