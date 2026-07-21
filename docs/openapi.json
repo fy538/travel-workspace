@@ -39474,7 +39474,8 @@
               {
                 "type": "null"
               }
-            ]
+            ],
+            "description": "First ranked Deck-queue card; never the visual Home hero."
           },
           "next_moves": {
             "items": {
