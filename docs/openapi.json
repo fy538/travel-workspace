@@ -39729,6 +39729,23 @@
           "members_copied": {
             "type": "integer",
             "title": "Members Copied"
+          },
+          "planning_workflow_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Planning Workflow Id"
+          },
+          "planning_status": {
+            "type": "string",
+            "title": "Planning Status",
+            "default": "not_started"
           }
         },
         "type": "object",
@@ -41237,6 +41254,17 @@
             ],
             "title": "Entity Ref"
           },
+          "venue_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Venue Id"
+          },
           "name": {
             "type": "string",
             "title": "Name"
@@ -41345,6 +41373,28 @@
             "type": "boolean",
             "title": "Resolved",
             "default": false
+          },
+          "target_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Id"
+          },
+          "action_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Action Label"
           }
         },
         "type": "object",
@@ -41355,13 +41405,62 @@
         "title": "DeckReadinessRow",
         "description": "One open-loop row in a departure-readiness deck face.\n\nA resolvable pre-departure gap (stay not booked, open days, a decision\nwaiting). ``resolved`` rows render checked; open rows render highlighted.\nStatus-only \u2014 the deck's single primary action routes to where they're\nclosed (no per-row buttons, so nothing looks tappable that isn't)."
       },
+      "DeckSettlementTransfer": {
+        "properties": {
+          "from_user_id": {
+            "type": "string",
+            "title": "From User Id"
+          },
+          "from_label": {
+            "type": "string",
+            "title": "From Label"
+          },
+          "to_user_id": {
+            "type": "string",
+            "title": "To User Id"
+          },
+          "to_label": {
+            "type": "string",
+            "title": "To Label"
+          },
+          "amount": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Amount"
+          },
+          "amount_label": {
+            "type": "string",
+            "title": "Amount Label"
+          },
+          "currency": {
+            "type": "string",
+            "title": "Currency"
+          }
+        },
+        "type": "object",
+        "required": [
+          "from_user_id",
+          "from_label",
+          "to_user_id",
+          "to_label",
+          "amount",
+          "amount_label",
+          "currency"
+        ],
+        "title": "DeckSettlementTransfer",
+        "description": "One exact net transfer in a Settle face.\n\nUnlike the legacy ``expense_ids`` bridge, this is the same durable money\ninstruction returned by the settlement API.  The client can therefore\nrecord (or remind about) the transfer without guessing which expense\nshares produced the net balance."
+      },
       "DeckStructured": {
         "properties": {
           "layout": {
             "type": "string",
             "enum": [
-              "vote",
+              "proposal_approval",
+              "choice_vote",
               "settle",
+              "plan_readiness",
+              "traveler_readiness",
+              "vote",
               "readiness"
             ],
             "title": "Layout"
@@ -41398,6 +41497,50 @@
             ],
             "title": "Take Line"
           },
+          "proposal_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proposal Id"
+          },
+          "current_state": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current State"
+          },
+          "proposed_state": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proposed State"
+          },
+          "impact": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Impact"
+          },
           "options": {
             "items": {
               "$ref": "#/components/schemas/DeckOption"
@@ -41430,6 +41573,28 @@
             "type": "array",
             "title": "Expense Ids"
           },
+          "settlement_direction": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "user_owes",
+                  "user_is_owed"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Settlement Direction"
+          },
+          "settlement_transfers": {
+            "items": {
+              "$ref": "#/components/schemas/DeckSettlementTransfer"
+            },
+            "type": "array",
+            "title": "Settlement Transfers"
+          },
           "readiness_rows": {
             "items": {
               "$ref": "#/components/schemas/DeckReadinessRow"
@@ -41443,7 +41608,7 @@
           "layout"
         ],
         "title": "DeckStructured",
-        "description": "Discriminated structured payload for rich Deck card faces.\n\nCards without this field render the generic prose face. Cards with it\nswitch on ``layout`` to render the appropriate face component. All\ndisplay values are pre-formatted by the backend (e.g. \"\u20ac128\") so the\nFE never re-derives money or colour hex values.\n\nSupported layouts are deliberately limited to the active pre-launch\nproducers: vote, settle, and readiness. New layouts must add backend\nsubstrate, a registered renderer, and contract coverage together."
+        "description": "Discriminated structured payload for rich Deck card faces.\n\nCards without this field render the generic prose face. Cards with it\nswitch on ``layout`` to render the appropriate face component. All\ndisplay values are pre-formatted by the backend (e.g. \"\u20ac128\") so the\nFE never re-derives money or colour hex values.\n\nLayout names describe the decision grammar, not merely the visual family.\n``vote`` and ``readiness`` remain accepted as migration aliases for stored\ncards, but new producers emit one of the explicit variants."
       },
       "DecommitResponse": {
         "properties": {
@@ -48881,7 +49046,7 @@
             "anyOf": [
               {
                 "type": "string",
-                "maxLength": 96
+                "maxLength": 40
               },
               {
                 "type": "null"
@@ -53998,7 +54163,7 @@
             "anyOf": [
               {
                 "type": "string",
-                "maxLength": 96
+                "maxLength": 40
               },
               {
                 "type": "null"
@@ -56506,7 +56671,7 @@
             "anyOf": [
               {
                 "type": "string",
-                "maxLength": 96
+                "maxLength": 40
               },
               {
                 "type": "null"
@@ -58117,7 +58282,7 @@
             "anyOf": [
               {
                 "type": "string",
-                "maxLength": 96
+                "maxLength": 40
               },
               {
                 "type": "null"
@@ -68069,6 +68234,30 @@
               }
             ],
             "title": "Kind"
+          },
+          "entity_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 180
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Entity Id"
+          },
+          "city": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "City"
           }
         },
         "type": "object",
