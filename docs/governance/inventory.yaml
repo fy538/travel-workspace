@@ -138,6 +138,10 @@ overrides:
     disposition: keep_reference
     rationale: Durable evidence for the executable charter-invariant regression net.
 
+  docs/audits/state-architecture-audit-2026-07-21.md:
+    disposition: keep_reference
+    rationale: Active cross-repository state ownership and reconciliation audit; expires 2026-08-20 and archives after its findings are resolved.
+
   docs/audits/vesper-255-round-1-code-parity-plan-2026-07-18.md:
     disposition: keep_reference
     rationale: Active cross-repository Vesper 255 parity execution record; expires 2026-08-17 and archives when the parity program closes.
