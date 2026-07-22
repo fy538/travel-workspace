@@ -18189,7 +18189,7 @@
           "memory"
         ],
         "summary": "Get Trip Story",
-        "description": "Return the composed Trip Story for the caller on this trip.\n\nIf no story exists yet, enqueues a background composition job and\nreturns **202 Accepted** with ``{\"status\": \"composing\"}``.  The\nclient should poll every few seconds until it receives a 200 with the\nfull TripStory body.  Using a background job (instead of an inline\n``compose_trip_story`` call) keeps this GET from blocking for the\n30\u201390s that a Sonnet composition takes on slow networks.\n\nThe job is deduped via ``_job_id=f\"story:{trip_id}:{user_id}\"`` so\na polling client never spawns more than one composition run per user.",
+        "description": "Return the composed Trip Story for the caller on this trip.\n\nIf no story exists yet, first checks the same authoritative signal gate as\nthe composer. A true no-signal trip returns **200 OK** with\n``{\"status\": \"insufficient_signal\"}``; otherwise the route enqueues a\nbackground composition job and returns **202 Accepted** with\n``{\"status\": \"composing\"}``. The client should poll until it receives a\nfull TripStory body or the terminal insufficient-signal state.\n\nThe job is deduped via ``_job_id=f\"story:{trip_id}:{user_id}\"`` so\na polling client never spawns more than one composition run per user.",
         "operationId": "get_trip_story_api_trips__trip_id__story_get",
         "parameters": [
           {
@@ -18225,7 +18225,15 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TripStory"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/TripStory"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TripStoryStatus"
+                    }
+                  ],
+                  "title": "Response Get Trip Story Api Trips  Trip Id  Story Get"
                 }
               }
             }
@@ -47590,6 +47598,9 @@
             "type": "array",
             "title": "Open Proposals"
           },
+          "notifications": {
+            "$ref": "#/components/schemas/NotificationFeed"
+          },
           "timings": {
             "$ref": "#/components/schemas/HomeBootstrapTimings"
           }
@@ -47597,6 +47608,7 @@
         "type": "object",
         "required": [
           "profile",
+          "notifications",
           "timings"
         ],
         "title": "HomeBootstrapResponse"
@@ -60485,6 +60497,26 @@
             "format": "uuid",
             "title": "Proposed By"
           },
+          "proposed_by_agent": {
+            "type": "boolean",
+            "title": "Proposed By Agent",
+            "default": false
+          },
+          "authorship_origin": {
+            "type": "string",
+            "title": "Authorship Origin",
+            "default": "human_group"
+          },
+          "viewer_can_vote": {
+            "type": "boolean",
+            "title": "Viewer Can Vote",
+            "default": false
+          },
+          "viewer_can_withdraw": {
+            "type": "boolean",
+            "title": "Viewer Can Withdraw",
+            "default": false
+          },
           "proposal_type": {
             "type": "string",
             "title": "Proposal Type"
@@ -60926,6 +60958,21 @@
           "proposed_by_agent": {
             "type": "boolean",
             "title": "Proposed By Agent",
+            "default": false
+          },
+          "authorship_origin": {
+            "type": "string",
+            "title": "Authorship Origin",
+            "default": "human_group"
+          },
+          "viewer_can_vote": {
+            "type": "boolean",
+            "title": "Viewer Can Vote",
+            "default": false
+          },
+          "viewer_can_withdraw": {
+            "type": "boolean",
+            "title": "Viewer Can Withdraw",
             "default": false
           },
           "proposer_display_name": {
@@ -70601,6 +70648,24 @@
         "title": "TripStorySectionProvenance",
         "description": "Owner-facing provenance and correction state for one section."
       },
+      "TripStoryStatus": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "composing",
+              "insufficient_signal"
+            ],
+            "title": "Status"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "TripStoryStatus",
+        "description": "Terminal or in-progress state returned when no composed story exists."
+      },
       "TripSummaryResponse": {
         "properties": {
           "what_worked": {
@@ -72111,6 +72176,21 @@
           "proposed_by_agent": {
             "type": "boolean",
             "title": "Proposed By Agent",
+            "default": false
+          },
+          "authorship_origin": {
+            "type": "string",
+            "title": "Authorship Origin",
+            "default": "human_group"
+          },
+          "viewer_can_vote": {
+            "type": "boolean",
+            "title": "Viewer Can Vote",
+            "default": false
+          },
+          "viewer_can_withdraw": {
+            "type": "boolean",
+            "title": "Viewer Can Withdraw",
             "default": false
           },
           "proposer_display_name": {
