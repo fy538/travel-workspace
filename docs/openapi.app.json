@@ -27362,6 +27362,28 @@
                 "type": "null"
               }
             ]
+          },
+          "is_inferred": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Inferred"
+          },
+          "is_fading": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Fading"
           }
         },
         "type": "object",
