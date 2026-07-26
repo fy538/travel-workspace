@@ -105,7 +105,7 @@ reliability-gate: ## Gate on eval reliability baseline — exits 1 if any checks
 # ── Tests ─────────────────────────────────────────────────────────────────────
 
 test-backend: ## Run offline backend tests
-	@cd travel-agent && SKIP_AUTH=true PYTHONPATH=. pytest tests/ -q -k "not requires_postgres and not requires_api_keys"
+	@cd travel-agent && SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -m pytest tests/ -q -k "not requires_postgres and not requires_api_keys"
 
 test-frontend: ## Run frontend Jest tests
 	@cd travel-app && npx jest --no-coverage
