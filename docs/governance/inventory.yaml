@@ -98,6 +98,10 @@ overrides:
     disposition: keep_authoritative
     rationale: Active cross-repo notification and attention architecture proposal and phased refactor roadmap; expires 2026-08-24, promote accepted boundaries into the system charter and a decision record, then archive.
 
+  docs/working/global-navigation-ia-proposal-2026-07-25.md:
+    disposition: keep_reference
+    rationale: Active migration plan for three task-mode tabs plus an avatar-opened You hub, including Discover and Atlas retirement gates; expires 2026-08-24 and must be promoted into app navigation contracts, revised, or archived.
+
   docs/working/compatibility-ledger-2026-07.md:
     disposition: keep_authoritative
     rationale: Active cross-repo compatibility-exception policy and removal ledger; expires 2026-08-10, archive on close.
