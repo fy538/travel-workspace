@@ -531,6 +531,36 @@
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
       "review_by": "2026-08-15"
     },
+    "GET /api/trips/{trip_id}/destinations": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "useTripDestinations"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "product-engineering",
+      "reason": "General reads the explicit trip-owned destination route instead of inferring one place from itinerary rows.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "PUT /api/trips/{trip_id}/destinations": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "useReplaceTripDestinations"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "product-engineering",
+      "reason": "General adds a typed route stop before itinerary materialization; planned routes are rejected into canonical Replan.",
+      "removal_trigger": null,
+      "review_by": null
+    },
     "GET /api/trips/{trip_id}/expenses/suggest-category": {
       "audience": "app",
       "consumers": [],
