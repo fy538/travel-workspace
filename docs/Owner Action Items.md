@@ -4,7 +4,7 @@ Single source of truth for everything that requires a human decision, account ac
 calendar time between today and first TestFlight. Delegable code work is broken out in
 Section 3; founder-console work no agent can do is in Section 2.
 
-**Last verified:** 2026-07-10 (against git logs in all three repos, GitHub Actions annotations, and live probes of
+**Last verified:** 2026-07-26 (against git logs in all three repos, GitHub Actions annotations, and live probes of
 `vesper-backend.fly.dev` + the launch/ docs). Supersedes the 2026-05-22 version, most of
 which is now done or was misdiagnosed.
 
@@ -25,8 +25,8 @@ device-certified on a real build** — that device walk is the headline gate. Of
 A0–A10 owner list, **most is done**: EAS projectId bound, AASA live on Fly, Google/Foursquare
 keys set, eval baselines filled, secret hooks installed. The genuinely open critical-path items
 are few: **(1)** cut a production EAS/TestFlight build (A) + device-walk J01–J12 on it (B);
-**(2)** fix the `/privacy` 503 in prod and reconcile the mic-permission contradiction, both of
-which will fail App Review as-is (B); **(3)** confirm the founder-console prerequisites
+**(2)** verify the release build preserves the repaired privacy and microphone-permission posture;
+**(3)** confirm the founder-console prerequisites
 (App Store Connect app, APNs key, key rotation) that no agent can see (A). The **single biggest
 blocker is the production EAS build** — nothing downstream (device cert, TestFlight submit,
 Apple review) can start without it, and it needs a founder Apple/Expo login.
@@ -47,8 +47,8 @@ The critical path only. `(A)` = founder-only ops · `(B)` = delegable engineerin
 | # | Item | A/B | Status |
 |---|------|-----|--------|
 | 0 | **Restore GitHub Actions billing/spend capacity for the child repos.** Every Travel Agent CI job currently fails before step 1 with GitHub's annotation: “recent account payments have failed or your spending limit needs to be increased.” Workspace Reliability is green and proves the code/docs gates can run, but child-repo branch signal remains unavailable until the account billing setting is fixed. | **A** | 🔴 FOUNDER-MUST-FIX — [Billing & plans](https://github.com/settings/billing); then rerun Travel Agent CI run `29069359543` |
-| 1 | **Fix `/privacy` 503 in prod** — route exists but returns 503 on Fly; `docs/legal/privacy.md` isn't in the deployed image (or image predates the 06-28 commit). Apple requires a working privacy-policy URL; the App Store copy points at it. | **B** | 🔴 open — small (ensure file ships in Docker context / redeploy; then verify `curl vesper-backend.fly.dev/privacy` → 200) |
-| 2 | **Reconcile mic-permission posture** — `app.json` ships a `microphonePermission` string, but Apple Review Notes + App Privacy Disclosures both say "no microphone requested / no audio recorded." A reviewer will see the mismatch. Voice is flag-OFF for v1, so the clean fix is to **remove the mic string** (and any mic entitlement) from the v1 build. | **B** | 🔴 open — small (decision is trivial: voice is OUT in v1, so drop the string) |
+| 1 | **Verify `/privacy` stays reachable in the release build** — `https://vesper-backend.fly.dev/privacy` returned HTTP 200 with the privacy policy on 2026-07-26. Apple requires this URL to remain live; recheck after the next backend deployment. | **B** | ✅ live probe verified 2026-07-26; release-build / post-deploy recheck remains |
+| 2 | **Verify v1 microphone posture in the release build** — voice remains flag-OFF. `app.config.js` now strips stale microphone and audio-background capabilities when voice is disabled, while preserving the explicit dogfood voice opt-in. | **B** | ✅ static Expo introspection verified 2026-07-26; inspect the generated production IPA before submission |
 | 3 | **Confirm App Store Connect app exists** (bundle `com.fyan.vesper`, iOS 17+) + set `INVITE_IOS_APP_STORE_ID` / `INVITE_APP_STORE_URL` in Fly secrets. Old A5. | **A** | ❓ FOUNDER-MUST-CONFIRM (external console) |
 | 4 | **Confirm APNs auth key uploaded to Expo** (old A6) — required for push on a physical device. | **A** | ❓ FOUNDER-MUST-CONFIRM (external console) |
 | 5 | **Rotate Anthropic + Tavily keys** before any build leaves the machine, set fresh keys in Fly secrets, revoke old (old B1 / deploy-surface #3). | **A** | ❓ FOUNDER-MUST-CONFIRM (external console) |
