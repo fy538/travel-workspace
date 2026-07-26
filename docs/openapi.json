@@ -8710,58 +8710,6 @@
         }
       }
     },
-    "/api/concierge/home/urgent-count": {
-      "get": {
-        "tags": [
-          "concierge-home"
-        ],
-        "summary": "Get Urgent Alert Count",
-        "description": "Count of active urgent-trip-action cards for the concierge tab badge.",
-        "operationId": "get_urgent_alert_count_api_concierge_home_urgent_count_get",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": true,
-                  "title": "Response Get Urgent Alert Count Api Concierge Home Urgent Count Get"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/concierge/home/cards/feedback": {
       "post": {
         "tags": [
@@ -18970,6 +18918,136 @@
         "responses": {
           "204": {
             "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/notification-deliveries/{delivery_id}/activity": {
+      "post": {
+        "tags": [
+          "notification-outcomes"
+        ],
+        "summary": "Update Activity Projection",
+        "description": "Update recipient-owned Activity state without mutating domain truth.",
+        "operationId": "update_activity_projection_api_notification_deliveries__delivery_id__activity_post",
+        "parameters": [
+          {
+            "name": "delivery_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Delivery Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActivityActionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityActionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/notification-deliveries/activity/batch-read": {
+      "post": {
+        "tags": [
+          "notification-outcomes"
+        ],
+        "summary": "Batch Mark Activity Read",
+        "description": "Mark up to 100 owned inbox projections read in one transaction.",
+        "operationId": "batch_mark_activity_read_api_notification_deliveries_activity_batch_read_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchActivityReadRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchActivityReadResponse"
+                }
+              }
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -31452,6 +31530,82 @@
         ],
         "title": "ActionReceiptsListResponse"
       },
+      "ActivityActionRequest": {
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "read",
+              "snooze",
+              "resume",
+              "dismiss"
+            ],
+            "title": "Action"
+          },
+          "snoozed_until": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Snoozed Until"
+          }
+        },
+        "type": "object",
+        "required": [
+          "action"
+        ],
+        "title": "ActivityActionRequest"
+      },
+      "ActivityActionResponse": {
+        "properties": {
+          "delivery_id": {
+            "type": "string",
+            "title": "Delivery Id"
+          },
+          "action": {
+            "type": "string",
+            "title": "Action"
+          },
+          "visibility_state": {
+            "type": "string",
+            "title": "Visibility State"
+          },
+          "work_state": {
+            "type": "string",
+            "title": "Work State"
+          },
+          "projection_state": {
+            "type": "string",
+            "title": "Projection State"
+          },
+          "snoozed_until": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Snoozed Until"
+          }
+        },
+        "type": "object",
+        "required": [
+          "delivery_id",
+          "action",
+          "visibility_state",
+          "work_state",
+          "projection_state"
+        ],
+        "title": "ActivityActionResponse"
+      },
       "AddMemberRequest": {
         "properties": {
           "user_id": {
@@ -35456,6 +35610,36 @@
         ],
         "title": "BalanceSummary"
       },
+      "BatchActivityReadRequest": {
+        "properties": {
+          "delivery_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Delivery Ids"
+          }
+        },
+        "type": "object",
+        "required": [
+          "delivery_ids"
+        ],
+        "title": "BatchActivityReadRequest"
+      },
+      "BatchActivityReadResponse": {
+        "properties": {
+          "marked_read": {
+            "type": "integer",
+            "title": "Marked Read"
+          }
+        },
+        "type": "object",
+        "required": [
+          "marked_read"
+        ],
+        "title": "BatchActivityReadResponse"
+      },
       "BatchEventCreate": {
         "properties": {
           "events": {
@@ -39266,6 +39450,77 @@
           "id": {
             "type": "string",
             "title": "Id"
+          },
+          "attention_case_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attention Case Id"
+          },
+          "attention_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attention Key"
+          },
+          "notification_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notification Type"
+          },
+          "subject_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subject Type"
+          },
+          "subject_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subject Id"
+          },
+          "projection_role": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "home.primary",
+                  "home.secondary"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Projection Role"
           },
           "zone": {
             "type": "string",
@@ -56004,6 +56259,108 @@
         ],
         "title": "NormalizedItineraryOperation"
       },
+      "NotificationDestinationContract": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "proposal_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proposal Id"
+          },
+          "booking_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Booking Ref"
+          },
+          "conversation_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Conversation Id"
+          },
+          "card_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Card Id"
+          },
+          "block_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Block Id"
+          },
+          "source_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Id"
+          },
+          "year": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Year"
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind"
+        ],
+        "title": "NotificationDestinationContract",
+        "description": "Provider-neutral semantic destination shared by inbox and push."
+      },
       "NotificationFeed": {
         "properties": {
           "unread_conversations": {
@@ -56038,6 +56395,11 @@
           "total_unread": {
             "type": "integer",
             "title": "Total Unread"
+          },
+          "badge_count": {
+            "type": "integer",
+            "title": "Badge Count",
+            "default": 0
           }
         },
         "type": "object",
@@ -60326,8 +60688,183 @@
             "type": "string",
             "title": "Id"
           },
-          "outcome_id": {
+          "notification_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notification Type"
+          },
+          "attention_case_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attention Case Id"
+          },
+          "attention_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attention Key"
+          },
+          "subject_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subject Type"
+          },
+          "subject_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subject Id"
+          },
+          "visibility_state": {
             "type": "string",
+            "title": "Visibility State",
+            "default": "unseen"
+          },
+          "work_state": {
+            "type": "string",
+            "title": "Work State",
+            "default": "informational"
+          },
+          "truth_state": {
+            "type": "string",
+            "title": "Truth State",
+            "default": "current"
+          },
+          "projection_state": {
+            "type": "string",
+            "title": "Projection State",
+            "default": "active"
+          },
+          "delivery_state": {
+            "type": "string",
+            "title": "Delivery State",
+            "default": "sent"
+          },
+          "superseded_by_subject_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Superseded By Subject Id"
+          },
+          "snoozed_until": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Snoozed Until"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "cancellation_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cancellation Reason"
+          },
+          "activity_section": {
+            "type": "string",
+            "title": "Activity Section",
+            "default": "updates"
+          },
+          "activity_status": {
+            "type": "string",
+            "title": "Activity Status",
+            "default": "unread"
+          },
+          "supported_actions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Supported Actions",
+            "default": []
+          },
+          "source_label": {
+            "type": "string",
+            "title": "Source Label",
+            "default": "Trip"
+          },
+          "reason_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason Label"
+          },
+          "destination": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NotificationDestinationContract"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "outcome_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Outcome Id"
           },
           "title": {
@@ -60383,6 +60920,17 @@
             ],
             "title": "Card Id"
           },
+          "booking_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Booking Ref"
+          },
           "is_read": {
             "type": "boolean",
             "title": "Is Read"
@@ -60395,7 +60943,6 @@
         "type": "object",
         "required": [
           "id",
-          "outcome_id",
           "title",
           "body",
           "urgency",
@@ -60405,7 +60952,7 @@
           "created_at"
         ],
         "title": "ProactiveNotification",
-        "description": "A proactive in-app notification from the notification intelligence system.\n\nSourced from ``notification_deliveries`` (channel='in_app') joined with\n``notification_outcomes`` so the feed can surface personalised nudges\nalongside conversation unread counts and proposal votes."
+        "description": "An inbox notification from the delivery system.\n\nSourced from ``notification_deliveries`` (channel='in_app') joined with its\ndelivery envelope and optional learning outcome. The legacy public name is\nretained for API compatibility."
       },
       "ProfileFactDisputeRequest": {
         "properties": {

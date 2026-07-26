@@ -94,6 +94,10 @@ overrides:
     disposition: keep_authoritative
     rationale: Active cross-repo simplification backlog; expires 2026-08-10, archive on close.
 
+  docs/working/notification-attention-architecture-roadmap-2026-07.md:
+    disposition: keep_authoritative
+    rationale: Active cross-repo notification and attention architecture proposal and phased refactor roadmap; expires 2026-08-24, promote accepted boundaries into the system charter and a decision record, then archive.
+
   docs/working/compatibility-ledger-2026-07.md:
     disposition: keep_authoritative
     rationale: Active cross-repo compatibility-exception policy and removal ledger; expires 2026-08-10, archive on close.
