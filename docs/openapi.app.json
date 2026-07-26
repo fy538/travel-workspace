@@ -59724,6 +59724,82 @@
         "title": "TripDeparturePreflight",
         "description": "Current facts a client must show before ending a membership.\n\nThis is deliberately a read model, not authorization for the later delete:\nthe removal transaction re-checks structural invariants and balances.\n``requires_force`` is retained for wire compatibility and is always false;\nall departures must settle costs first."
       },
+      "TripDetailsContext": {
+        "properties": {
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "trip_status": {
+            "type": "string",
+            "title": "Trip Status"
+          },
+          "viewer_role": {
+            "type": "string",
+            "enum": [
+              "organizer",
+              "member"
+            ],
+            "title": "Viewer Role"
+          },
+          "start_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start Date"
+          },
+          "end_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Date"
+          },
+          "traveler_count": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Traveler Count"
+          },
+          "legacy_place_anchor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Legacy Place Anchor"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "trip_status",
+          "viewer_role",
+          "traveler_count"
+        ],
+        "title": "TripDetailsContext",
+        "description": "Shared orientation facts for the Trip Details index.\n\nThis deliberately exposes only trip-wide facts already visible to every\ncurrent trip member.  It is not a second trip model and must not absorb\nprivate preferences, provider detail, or itinerary-derived geography."
+      },
       "TripDetailsRow": {
         "properties": {
           "key": {
@@ -59807,9 +59883,9 @@
         "properties": {
           "contract_version": {
             "type": "string",
-            "const": "ir12-details-v1",
+            "const": "ir12-details-v2",
             "title": "Contract Version",
-            "default": "ir12-details-v1"
+            "default": "ir12-details-v2"
           },
           "trip_id": {
             "type": "string",
@@ -59821,6 +59897,9 @@
           },
           "lifecycle": {
             "$ref": "#/components/schemas/TripLifecycleProjection"
+          },
+          "context": {
+            "$ref": "#/components/schemas/TripDetailsContext"
           },
           "rows": {
             "items": {
@@ -59860,6 +59939,7 @@
           "trip_id",
           "envelope",
           "lifecycle",
+          "context",
           "rows",
           "objects",
           "links",
