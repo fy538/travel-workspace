@@ -18983,6 +18983,66 @@
         }
       }
     },
+    "/api/trips/{trip_id}/destinations": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Trip Destinations",
+        "description": "Return the ordered trip-owned destination route for a member.",
+        "operationId": "get_trip_destinations_api_trips__trip_id__destinations_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripDestinationsResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips": {
       "post": {
         "tags": [
@@ -59723,6 +59783,68 @@
         ],
         "title": "TripDeparturePreflight",
         "description": "Current facts a client must show before ending a membership.\n\nThis is deliberately a read model, not authorization for the later delete:\nthe removal transaction re-checks structural invariants and balances.\n``requires_force`` is retained for wire compatibility and is always false;\nall departures must settle costs first."
+      },
+      "TripDestination": {
+        "properties": {
+          "place_id": {
+            "type": "integer",
+            "title": "Place Id"
+          },
+          "place_name": {
+            "type": "string",
+            "title": "Place Name"
+          },
+          "position": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Position"
+          },
+          "arrival_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Arrival Date"
+          },
+          "departure_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Departure Date"
+          }
+        },
+        "type": "object",
+        "required": [
+          "place_id",
+          "place_name",
+          "position"
+        ],
+        "title": "TripDestination",
+        "description": "One ordered, durable stop in a trip's destination route.\n\n``position == 0`` is mirrored to ``trips.place_id`` for old consumers. It\nis intentionally not inferred from itinerary blocks: a route can be\nchosen before a plan exists, and a plan can be partial or later reshaped."
+      },
+      "TripDestinationsResponse": {
+        "properties": {
+          "destinations": {
+            "items": {
+              "$ref": "#/components/schemas/TripDestination"
+            },
+            "type": "array",
+            "title": "Destinations"
+          }
+        },
+        "type": "object",
+        "title": "TripDestinationsResponse"
       },
       "TripDetailsContext": {
         "properties": {
