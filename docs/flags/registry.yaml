@@ -122,6 +122,16 @@ flags:
       data, then flip for cohort 2 if the eval passes — that evaluation is
       the next explicit decision, not this flag staying dark indefinitely.
 
+  - name: PLANNER_SEMANTIC_RANKING
+    repo: travel-agent
+    location: backend/core/feature_flags.py:170
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-25
+    status: active
+    notes: Enables Qdrant ranking only within SQL-approved planner venue candidates while corpus coverage is evaluated.
+
   - name: ITINERARY_OPERATIONS_ENABLED
     repo: travel-agent
     location: backend/core/feature_flags.py:164
