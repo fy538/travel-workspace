@@ -60,6 +60,21 @@ transaction.
   rather than timing or shared in-memory state.
 - Inbox, push, and Home can route and reconcile using the same type, case, key,
   and subject identity.
+
+## Follow-on policy rulings
+
+Adjudicated on 2026-07-26:
+
+- The badge counts feed entries that are unread or still require action.
+  Visibility does not complete open work.
+- Email is an asynchronous delivery class. It retains preferences, truth,
+  dedupe, expiry, and outcomes, but does not consume the push/SMS interruptive
+  cap or inherit mobile quiet-hours timing.
+- Live-travel experiments remain outside the MVP release gate until physical
+  iOS/Android and accessibility proof is complete.
+- Learned arbitration optimization remains dark until trustworthy exposure
+  data, causal holdouts, sample-size requirements, and rollback thresholds
+  exist.
 - Ambient request-time opportunities remain ephemeral only when they cannot
   duplicate a durable projection and need no cross-surface lifecycle.
 - `candidate_type` remains temporarily as a persistence compatibility field;

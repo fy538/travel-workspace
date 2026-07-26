@@ -954,24 +954,37 @@ For booking, proposal, itinerary, expense, and membership changes:
 - delivery success is not claimed solely from provider acceptance or green
   backend tests.
 
-## Remaining decisions
+## Decisions adjudicated on 2026-07-26
 
-For later delivery and badge phases:
-
-1. Exact product definition of the app badge count.
-2. Whether email is interruptive for policy purposes or a separate asynchronous
-   delivery class.
-3. Which deterministic producer becomes the first shadow-migration slice.
-4. Whether the first live-travel experiment belongs inside the MVP horizon.
+1. **Badge semantics:** the authoritative badge counts recipient-visible feed
+   entries that are unread or still require action. Reading open work does not
+   remove it from the badge; completing, canceling, superseding, dismissing, or
+   expiring it does. Conversation, proposal, and invite entries retain their
+   existing feed-owned inclusion rules.
+2. **Email policy:** email is a separate asynchronous delivery class. It
+   traverses preferences, membership/truth checks, dedupe, expiry, and outcome
+   recording, but does not consume the push/SMS interruptive cap and is not
+   delayed by mobile quiet hours. Email-specific digest/cadence policy belongs
+   to a future email adapter, not the mobile interruption policy.
+3. **Migration slice:** the producer migration is complete. Low-risk
+   deterministic updates led, followed by booking, proposal/open-loop,
+   leave-by, and inferred proactive producers.
+4. **Live travel and learned optimization:** both are outside the MVP release
+   gate until Phases 0 and 6 have physical iOS/Android and accessibility proof.
+   A bounded airport departure/boarding experiment may begin afterward.
+   Learned optimization additionally requires trustworthy exposure data,
+   causal holdouts, minimum sample sizes, and rollback thresholds.
 
 ## Exit
 
 Before 2026-08-24:
 
-- adjudicate the five remaining decisions;
+- preserve the adjudicated decisions above in the durable decision record;
 - promote durable vocabulary, ownership, and invariants into
   `docs/systems/proactive-notifications.md`;
 - record the schema and projection boundary as a decision under
   `docs/decisions/`;
-- convert accepted phases into implementation work;
-- archive this note as the point-in-time research record.
+- merge the backend, mobile, and workspace PRs;
+- complete physical-device and accessibility certification;
+- archive this note as the point-in-time research record after its accepted
+  boundaries are merged.

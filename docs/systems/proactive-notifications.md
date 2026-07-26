@@ -159,6 +159,18 @@ expense, or membership truth it speaks about.
   suppression and holdout exposure remain off. Email/SMS remain
   credential-dependent.
 
+### Accepted policy boundaries
+
+- The Activity/app badge counts feed entries that are unread or still require
+  action. Reading an open-loop item changes visibility but does not remove its
+  badge contribution.
+- Email is asynchronous rather than interruptive: it keeps preference,
+  membership/truth, dedupe, expiry, and outcome gates, but does not consume the
+  push/SMS interruptive cap or use mobile quiet hours.
+- A bounded live-travel experiment is deferred until physical iOS/Android and
+  accessibility certification passes. Learned optimization remains deferred
+  beyond that until causal exposure/outcome evidence is trustworthy.
+
 ## Canonical docs
 - why → `product/Surfacing Strategy.md` · what(be) → `backend/notifications/FEATURE.md` · `backend/tasks/FEATURE.md` · trace → `docs/reliability/traces/notifications-and-proactive-help.md`.
 - Tests: `__tests__/data/notifications.test.ts`, `notifications.routing.test.tsx`, `utils/notificationOwnership.test.ts`.
