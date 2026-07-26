@@ -10849,7 +10849,7 @@
           "conversations"
         ],
         "summary": "Get Notification Feed",
-        "description": "Get aggregated notifications for a user.\n\nIncludes:\n- Unread conversation counts (concierge messages not yet seen)\n- Proposals needing a vote (trip-scoped)\n- Proactive in-app notifications from the notification intelligence system",
+        "description": "Get unread conversations, pending votes, and proactive notifications for a user.",
         "operationId": "get_notification_feed_api_users__user_id__notifications_get",
         "parameters": [
           {
@@ -24479,6 +24479,144 @@
         }
       }
     },
+    "/api/trips/{trip_id}/destinations": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Trip Destinations",
+        "description": "Return the ordered trip-owned destination route for a member.",
+        "operationId": "get_trip_destinations_api_trips__trip_id__destinations_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripDestinationsResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Replace Trip Destination Route",
+        "description": "Replace a pre-itinerary trip route through its sole aggregate writer.\n\nA route change after dated itinerary days exist is a contextual Replan,\nnever a quiet metadata mutation. The shared Replan path retains authority,\nimpacts, and plan-history truth for those changes.",
+        "operationId": "replace_trip_destination_route_api_trips__trip_id__destinations_put",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReplaceTripDestinationsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripDestinationsResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripContextReplanRequiredResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/cross-trip-threads": {
       "get": {
         "tags": [
@@ -25675,7 +25813,7 @@
           "trips"
         ],
         "summary": "Get Trip Experiences",
-        "description": "List experiences for this trip's destination, defaulting to the trip date window.\n\nConvenience wrapper over ``GET /api/experiences`` that resolves the trip's\n``place_id`` automatically and pre-filters by trip dates so callers don't\nneed to look up the destination separately.\n\nPass ``ranked=true`` to sort by taste-DNA relevance (E-1). Each result will\ninclude a ``why_for_you`` rationale string derived from the user's taste\nprofile (E-2). Falls back to chronological order when no Personal Memory\nexists or when the Qdrant search returns no results.",
+        "description": "List experiences across this trip's explicit destination route.\n\nConvenience wrapper over ``GET /api/experiences`` that resolves the trip's\nordered route automatically and pre-filters by trip dates so callers don't\nneed to look up any destination separately.\n\nPass ``ranked=true`` to sort by taste-DNA relevance (E-1). Each result will\ninclude a ``why_for_you`` rationale string derived from the user's taste\nprofile (E-2). Falls back to chronological order when no Personal Memory\nexists or when the Qdrant search returns no results.",
         "operationId": "get_trip_experiences_api_trips__trip_id__experiences_get",
         "parameters": [
           {
@@ -63395,6 +63533,25 @@
         ],
         "title": "ReplacePayload"
       },
+      "ReplaceTripDestinationsRequest": {
+        "properties": {
+          "destinations": {
+            "items": {
+              "$ref": "#/components/schemas/TripDestinationInput"
+            },
+            "type": "array",
+            "maxItems": 12,
+            "minItems": 1,
+            "title": "Destinations"
+          }
+        },
+        "type": "object",
+        "required": [
+          "destinations"
+        ],
+        "title": "ReplaceTripDestinationsRequest",
+        "description": "Canonical writer input for a trip route (ordered, no duplicate places)."
+      },
       "ReplanPayload": {
         "properties": {
           "kind": {
@@ -69283,6 +69440,181 @@
         "title": "TripDeparturePreflight",
         "description": "Current facts a client must show before ending a membership.\n\nThis is deliberately a read model, not authorization for the later delete:\nthe removal transaction re-checks structural invariants and balances.\n``requires_force`` is retained for wire compatibility and is always false;\nall departures must settle costs first."
       },
+      "TripDestination": {
+        "properties": {
+          "place_id": {
+            "type": "integer",
+            "title": "Place Id"
+          },
+          "place_name": {
+            "type": "string",
+            "title": "Place Name"
+          },
+          "position": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Position"
+          },
+          "arrival_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Arrival Date"
+          },
+          "departure_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Departure Date"
+          }
+        },
+        "type": "object",
+        "required": [
+          "place_id",
+          "place_name",
+          "position"
+        ],
+        "title": "TripDestination",
+        "description": "One ordered, durable stop in a trip's destination route.\n\n``position == 0`` is mirrored to ``trips.place_id`` for old consumers. It\nis intentionally not inferred from itinerary blocks: a route can be\nchosen before a plan exists, and a plan can be partial or later reshaped."
+      },
+      "TripDestinationInput": {
+        "properties": {
+          "place_id": {
+            "type": "integer",
+            "title": "Place Id"
+          },
+          "arrival_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Arrival Date"
+          },
+          "departure_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Departure Date"
+          }
+        },
+        "type": "object",
+        "required": [
+          "place_id"
+        ],
+        "title": "TripDestinationInput"
+      },
+      "TripDestinationsResponse": {
+        "properties": {
+          "destinations": {
+            "items": {
+              "$ref": "#/components/schemas/TripDestination"
+            },
+            "type": "array",
+            "title": "Destinations"
+          }
+        },
+        "type": "object",
+        "title": "TripDestinationsResponse"
+      },
+      "TripDetailsContext": {
+        "properties": {
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "trip_status": {
+            "type": "string",
+            "title": "Trip Status"
+          },
+          "viewer_role": {
+            "type": "string",
+            "enum": [
+              "organizer",
+              "member"
+            ],
+            "title": "Viewer Role"
+          },
+          "start_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start Date"
+          },
+          "end_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Date"
+          },
+          "traveler_count": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Traveler Count"
+          },
+          "legacy_place_anchor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Legacy Place Anchor"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "trip_status",
+          "viewer_role",
+          "traveler_count"
+        ],
+        "title": "TripDetailsContext",
+        "description": "Shared orientation facts for the Trip Details index.\n\nThis deliberately exposes only trip-wide facts already visible to every\ncurrent trip member.  It is not a second trip model and must not absorb\nprivate preferences, provider detail, or itinerary-derived geography."
+      },
       "TripDetailsRow": {
         "properties": {
           "key": {
@@ -69366,9 +69698,9 @@
         "properties": {
           "contract_version": {
             "type": "string",
-            "const": "ir12-details-v1",
+            "const": "ir12-details-v2",
             "title": "Contract Version",
-            "default": "ir12-details-v1"
+            "default": "ir12-details-v2"
           },
           "trip_id": {
             "type": "string",
@@ -69380,6 +69712,9 @@
           },
           "lifecycle": {
             "$ref": "#/components/schemas/TripLifecycleProjection"
+          },
+          "context": {
+            "$ref": "#/components/schemas/TripDetailsContext"
           },
           "rows": {
             "items": {
@@ -69419,6 +69754,7 @@
           "trip_id",
           "envelope",
           "lifecycle",
+          "context",
           "rows",
           "objects",
           "links",
@@ -70030,6 +70366,14 @@
                 "type": "null"
               }
             ]
+          },
+          "destinations": {
+            "items": {
+              "$ref": "#/components/schemas/MapPlace"
+            },
+            "type": "array",
+            "title": "Destinations",
+            "description": "Ordered trip route. ``destination`` remains the first stop for older single-destination map clients."
           },
           "timezone": {
             "anyOf": [
