@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / frontend
 created: 2026-07-25
-last_verified: 2026-07-26
+last_verified: 2026-07-27
 expires: 2026-08-24
 why_new: No existing document owns the cross-surface migration from four peer tabs to Trips, Vesper, and Places plus an avatar-opened You hub, including compatibility and retirement plans for Discover and Atlas.
 promotes_to: Travel App/docs/Navigation Contract.md plus affected surface contracts and a navigation decision record
@@ -207,6 +207,38 @@ Discover is dissolved into Places rather than simply renamed. Strong search,
 context, map, editorial, social, and recommendation components may survive.
 Weak feed mechanics do not inherit permanent ownership merely because they
 exist today.
+
+#### Places composition contract — proposed for the first real implementation
+
+Places should be a **contextual place workspace**, not a renamed editorial
+feed. The persistent shell has four quiet elements: identity/avatar, one
+explicit place-or-trip scope, search, and a contextual utility row (Map, Saved,
+Been only when they have useful content). Geography is declared once in the
+scope; search should not repeat it.
+
+The zero-query body changes by the strongest honest context, rather than by a
+fixed set of feed sections:
+
+| Context | First viewport | Subsequent useful modules | Must not imply |
+|---|---|---|---|
+| No selected place or trip | Dominant search; Choose a city / Near me entrances | One optional editorial read; recently viewed when real | A generic personalized feed or fabricated nearby data |
+| Home / global personal context | Personal city return or practical nearby cue when evidence exists | Your Places summary; saved/been entries; recent cities | That home is an active trip |
+| Future trip | Trip scope and saved-but-not-planned decision | One trip-relevant recommendation; places that could be used in the trip | That saving a place added it to a dated plan |
+| Live trip | Trip scope, map/proximity, and one time-sensitive recommendation | Alternatives and saved nearby | Live hours, waits, or location precision without evidence |
+| Returned trip | Place scope plus a quiet retrospective cue | Been/history and durable saves | That the trip is still active |
+| Explicit search | Search results with location declared once; List / Map switch | Honest no-result recovery and a Vesper handoff | The old editorial zero-query composition |
+| Chosen place unrelated to active trip | Chosen place as primary scope, with a clear "not your active trip" relationship | Search, saved/been facts, editorial/place detail entrances | Silent rebinding of actions to the active trip |
+
+There can be several selectable scopes (current trip, an upcoming trip, home,
+or a globally chosen city), but only one primary scope at a time. A global
+search always remains available. Selecting a different city must not mutate the
+active trip. The chosen scope and every Vesper/trip handoff carry their context
+explicitly.
+
+Places may propose a trip action, but Trips remains the sole owner of a dated
+itinerary write. "Use in trip" therefore opens a confirmation naming the trip
+and deliberately asks for a day or next Trips step; it must never infer a day
+or create a parallel Places itinerary writer.
 
 ### You
 
@@ -799,6 +831,68 @@ notification payload construction and any persisted/shareable URL generation
 before declaring the blast radius frontend-only.
 
 ## Phased migration
+
+### Execution status — 2026-07-27
+
+Phases 1–2 have established the additive personal-hub foundation in the mobile
+app:
+
+- `/you` is the canonical private-hub route;
+- `/atlas/profile` remains available as a compatibility redirect to `/you`;
+- the Atlas identity control, self-edit action on public profile, and personal
+  notification fallback now enter You;
+- the same You entry control is now present on the Trips, Vesper, Discover,
+  and Atlas tab roots; Atlas and Discover retain their current tab status;
+- person-owned child controls now use canonical `/you/*` routes; the old
+  `/atlas/{account,phone,privacy,notifications,companions,constraints,
+  delegation,data-receipt,feedback}` paths are compatibility redirects.
+
+Phase 3 has a deliberately narrow routing seam, not a Places product surface:
+
+- `/(tabs)/places` and `/(tabs)/places/map` are available as hidden additive
+  routes inside the current tab shell;
+- they temporarily reuse the existing Discover feed and map, preserving the
+  shared navigation chrome and allowing isolated validation;
+- practical Saved and Been now have hidden canonical Places facades at
+  `/(tabs)/places/saved` and `/(tabs)/places/been`; their legacy Atlas routes
+  and implementations remain intact;
+- Discover's Saved action and Atlas's practical Saved/Been doors now enter the
+  canonical Places children; old deep links and the visible four-tab shell are
+  still unchanged.
+
+The first dedicated Places composition now replaces the temporary Discover
+facade at `/(tabs)/places`:
+
+- it provides an explicit local scope selector (selected trip, other trip, or
+  all places, or a city from the user's actual saved places), search-first
+  entry, and context-sensitive Saved/Been/Map
+  utilities;
+- it renders only existing trip and saved-place read models, with no invented
+  home, recommendation, availability, or map state;
+- the sole trip action is an explicit "Choose a day in Trips" handoff. It does
+  not mutate an itinerary or create a second plan writer.
+
+The global-chrome cutover is now implemented, subject to founder/device review:
+
+- the visible tab shell is **Trips · Vesper · Places**;
+- Discover and Atlas remain registered only as hidden legacy tab-route owners;
+  their tab roots replace into Places and Your Atlas respectively, preserving
+  city, trip, and map context where it is representable;
+- `routes.discover()` and `routes.discoverMap()` now resolve to Places, so
+  remaining product callers no longer create new Discover-root entrances;
+- `routes.atlas()` and the archive/memory route helpers now resolve to
+  `/you/atlas/*`; the legacy `/atlas/*` URLs remain available for existing
+  deep links while their canonical destinations are exercised;
+- practical saved places resolve to Places. Atlas's durable memory, readings,
+  artifact, review, scan, recap, and timeline screens are exposed as You/Atlas
+  child routes without rewriting their underlying implementations;
+- Places route state is serialised through search, map, and map-opened place,
+  venue, and experience detail back paths.
+
+Still required before this migration is formally accepted: fresh device
+captures for the visible shell and Places state matrix, review of any external
+or persisted legacy URL producer, and founder review of the new visible
+navigation.
 
 ### Phase 0 — Decision and contract lock
 
