@@ -102,6 +102,10 @@ overrides:
     disposition: keep_reference
     rationale: Active migration plan for three task-mode tabs plus an avatar-opened You hub, including Discover and Atlas retirement gates; expires 2026-08-24 and must be promoted into app navigation contracts, revised, or archived.
 
+  docs/working/work-receipt-2026-07-26.md:
+    disposition: keep_reference
+    rationale: Active proposal for grounded, privacy-safe agent work receipts; expires 2026-08-25 and must be promoted into content contracts or archived.
+
   docs/working/stabilization-candidate-2026-07-26.md:
     disposition: keep_authoritative
     rationale: Active cross-repository candidate receipt for the 2026-07-26 stabilization cycle; expires 2026-08-09 and archives after the named SHA set is promoted or superseded.
