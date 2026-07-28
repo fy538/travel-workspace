@@ -94,25 +94,33 @@ sibling.
 
 ## The plan
 
-### Phase 0 · Make it measurable *(prerequisite — nothing else is honest without it)*
+### Phase 0 · Build against the offline harness *(no provider spend)*
 
-Voice is gated off (`VOICE_ENABLED=false`, LiveKit/Deepgram/Cartesia
-secrets unset). **No baseline exists**, so every claim below is currently
-theoretical.
+**Constraint, 2026-07-28: there is no budget for voice-provider testing
+yet.** That does not block the engineering — it blocks *verification*.
+The plan is therefore split by cost, not by phase order alone.
 
-- Stand up a dev-only voice environment with the three provider keys.
-- Run 20–30 turns across the mix we care about: acknowledgment, simple
-  question, tool-calling question.
-- `VoiceTurnTimer` already writes four checkpoints (`stt_final` →
-  `filler_yield` → `concierge_done` → `reply_yield`) to
-  `voice_turn_metrics`. **Pull p50/p95 per checkpoint.** That is the
-  baseline.
-- **Add one missing checkpoint: first audio out.** Everything today
-  measures up to text hand-off, not to sound in the ear — which is the
-  number that actually matters.
+`tests/voice/` already exists with eight files (`test_agent`,
+`test_deferred_tool`, `test_quota`, `test_resume_directive`,
+`test_voice_metrics`, `test_voice_persona_fillers`, `test_worker`,
+`test_voice_memory`). Providers are mocked. **This is the harness — build
+everything below against it and leave it green.**
 
-Exit: a table of p50/p95 per stage. Expect the concierge stage to
-dominate; if it doesn't, re-prioritise the phases below.
+Two rules while unfunded:
+
+1. **Everything ships behind the existing gate.** `VOICE_ENABLED` stays
+   false; nothing here changes what users experience.
+2. **Do the cost-*reducing* work first** — see 1c. Fixing speculative
+   spend before the first paid session makes that session cheaper.
+
+**Add the first-audio-out checkpoint now** (`metrics.py`), even though it
+cannot be read yet. Everything today measures to text hand-off, not to
+sound in the ear. Landing it unfunded means the first funded session
+produces a real baseline instead of a second setup task.
+
+**Deferred to the funded session (see the end of this doc):** the actual
+p50/p95 baseline, turn-taking feel, persona voice listening checks, and
+end-to-end interruption QA. None of it is knowable from code.
 
 ### Phase 1 · The latency spine *(the big win)*
 
@@ -359,12 +367,43 @@ Audio multiplies whatever the writing is; narrating a generic city guide
 in a beautiful voice produces a generic audio guide, which is worse than
 shipping nothing.
 
-## Sequencing
+## Sequencing under the no-budget constraint
 
-Phase 0 → 1 is the critical path and worth doing as one push; 1a alone
-likely moves p50 more than everything else combined. Phase 2 is a
-half-day of visible polish that can ride along. Phase 3 is a separate
-decision.
+**Almost all of this is buildable now.** What is blocked is verification,
+not construction.
 
-**Do not start any of it while voice is gated off and unmeasured** —
-Phase 0 exists because "it feels faster" is not a result.
+### Free — build now, against `tests/voice/`
+
+| Item | Why it is free |
+|---|---|
+| **1c** preemptive-generation audit | pure code reading; **do this first — it may be burning tokens** |
+| **1a** stream concierge → TTS | `send_message_streaming` is already exercised by the text path; the clause-buffer is a pure function with unit tests |
+| **1d** filler branch | pure refactor |
+| **2a** wire `voice_id` | one-line wiring + a test asserting the kwarg reaches the TTS constructor |
+| **2b** greeting through the concierge | pure |
+| **2c** heuristics | pure |
+| **3a/3b** `deferred_tool` + resume call site | both already have test files and no live dependency |
+| **3c** FE interruption chain → a screen | RN + jest; no provider |
+| **3e** `storage.py` wire-or-delete | pure |
+
+**1b** (Silero VAD + `inference.TurnDetector`) is a middle case: both are
+**local models**, not paid APIs, and `livekit-local-inference` is already
+pinned — so adding and configuring them costs nothing. Only judging
+whether the turn-taking *feels* right needs a live session.
+
+### Blocked on the first funded session
+
+Latency baseline (p50/p95 per stage), turn-taking feel, persona voice
+listening checks, end-to-end interruption QA, and the podcast
+voice-continuity seam. **Script that session in advance** — a fixed
+20–30-turn run across ack / simple / tool-calling, executed once, rather
+than exploratory poking. Everything above should be landed and green
+before it starts, so one paid hour answers every open question at once.
+
+**Order:** 1c → 1a → 1b → 2a–2c → (Batch 3 as a product decision) →
+funded session → re-tune from real numbers.
+
+The one rule that survives the budget constraint: **nothing here gets
+called "faster" until the funded session says so.** Build it, test it
+offline, keep it gated, and let the measurement be the thing that closes
+each item.
