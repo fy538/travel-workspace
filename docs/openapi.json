@@ -8710,6 +8710,56 @@
         }
       }
     },
+    "/api/concierge/home/trips-stack": {
+      "get": {
+        "tags": [
+          "concierge-home"
+        ],
+        "summary": "Get Trips Home Stack",
+        "description": "Return Trips' slim view over the existing shared ranked feed.",
+        "operationId": "get_trips_home_stack_api_concierge_home_trips_stack_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripsHomeStackProjection"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/concierge/home/cards/feedback": {
       "post": {
         "tags": [
@@ -40741,6 +40791,56 @@
             "type": "integer",
             "title": "Unread Count",
             "default": 0
+          },
+          "intent_phase": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "ambient",
+                  "exploring",
+                  "drafting",
+                  "committed",
+                  "dormant"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Intent Phase"
+          },
+          "current_goal": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current Goal"
+          },
+          "session_status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "idle",
+              "closed"
+            ],
+            "title": "Session Status",
+            "default": "active"
+          },
+          "last_active_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Active At"
           }
         },
         "type": "object",
@@ -40751,7 +40851,7 @@
           "updated_at"
         ],
         "title": "ConversationListItem",
-        "description": "Lightweight conversation for list views.\n\nEnriched fields are populated by ``get_conversation_list_for_user``\nso the history surface can render last-message preview + unread\ncount without follow-up fetches per row. Older clients that don't\nneed the enrichment still receive the legacy shape \u2014 the new\nfields default to None / 0 so a Pydantic decode against existing\nsnapshots stays happy."
+        "description": "Lightweight conversation for list views.\n\n``get_conversation_list_for_user`` supplies list enrichment without\nper-row follow-up fetches. Older clients that don't\nneed the enrichment still receive the legacy shape \u2014 the new\nfields default to None / 0 so a Pydantic decode against existing\nsnapshots stays happy."
       },
       "ConversationResponse": {
         "properties": {
@@ -72221,6 +72321,117 @@
           "level"
         ],
         "title": "TripVesperDelegationUpdate"
+      },
+      "TripsHomeStackItem": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "live_trip",
+              "urgent_trip_action",
+              "daily_brief",
+              "constraint_alert",
+              "capture_nudge",
+              "planning_brief",
+              "trip_retrospective",
+              "settlement_closeout",
+              "imminent_trip",
+              "trip_thread",
+              "saved_cluster",
+              "memory_echo",
+              "weather",
+              "near_you",
+              "starter",
+              "pre_trip_prep"
+            ],
+            "title": "Kind"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "row_line": {
+            "type": "string",
+            "title": "Row Line"
+          },
+          "tier": {
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "title": "Tier"
+          },
+          "depth": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Depth"
+          },
+          "action": {
+            "$ref": "#/components/schemas/ConciergeHomeAction"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "title",
+          "row_line",
+          "tier",
+          "depth",
+          "action"
+        ],
+        "title": "TripsHomeStackItem"
+      },
+      "TripsHomeStackProjection": {
+        "properties": {
+          "crown": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TripsHomeStackItem"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "rows": {
+            "items": {
+              "$ref": "#/components/schemas/TripsHomeStackItem"
+            },
+            "type": "array",
+            "title": "Rows"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "generated_at"
+        ],
+        "title": "TripsHomeStackProjection"
       },
       "UniversalSearchItem": {
         "properties": {

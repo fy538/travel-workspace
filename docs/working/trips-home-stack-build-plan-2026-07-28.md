@@ -305,15 +305,22 @@ Three sub-decisions, all cheap, all blocking phase 2/3:
 
 ### Phase 1 exit criteria
 
-- [ ] D1–D4 answered in writing, appended to this doc
-- [ ] `_PRIO_*` → tier 0–4 mapping written, with a test asserting every
+- [x] D1–D4 answered in writing, appended to this doc
+- [x] `_PRIO_*` → tier 0–4 mapping written, with a test asserting every
       existing `_PRIO_*` constant maps to exactly one tier
-- [ ] One vertical slice proving the projection: `GET` the existing feed,
+- [x] One vertical slice proving the projection: `GET` the existing feed,
       project the top candidate + 2 next_moves into the stack shape,
       assert against a fixture. **No UI.**
-- [ ] The spec doc updated with the D4 outcome — serif-13 → sans-13, and
+- [x] The spec doc updated with the D4 outcome — serif-13 → sans-13, and
       the italic register's conditions (face + named role together,
       17px floor, ratchet extended)
+
+**Landed 2026-07-28.** Backend `3a99ed5a` adds the projection, exhaustive
+tier guard, S1 golden fixture, slim-wire guard and endpoint. App
+`63dca2b6` moves the existing Trips prefetch onto that endpoint without
+changing rendered hierarchy. Typography implementation remains program
+step 2; this phase answered and recorded D4, as its exit criterion
+requires.
 
 ---
 

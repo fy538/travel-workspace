@@ -189,6 +189,8 @@ ship with zero SQL-level coverage.
 `data/conversations.ts`. No behaviour change. Prerequisite for everything
 below.
 
+**Landed 2026-07-28:** app `4ffe418d`.
+
 ### Landing 1 · The row, free fields only
 Pure frontend. Replace `ThreadHistoryRow` (`history.tsx:468-546`) with
 `HRow`. Delivers: the group mark, the unread dot and weight, the trip
@@ -205,6 +207,10 @@ Standalone / Earlier buckets stay, so the row can be judged on its own.
 Backend + regen + mapper, per above. Delivers a real state line
 (`current_goal`) and `phase`, and unlocks landing 3's "still open"
 section.
+
+**Landed 2026-07-28:** backend `0cda2748`, app `25a862bb`. The generated
+contract also carries `session_status` and `last_active_at`; the app
+mapper preserves all four scalars.
 
 ### Landing 3 · Sectioning — **RULED: A, state first** (2026-07-28)
 Replace the trip-date bucketing (`history.tsx:172-218`) with state-first
