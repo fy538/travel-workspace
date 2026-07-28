@@ -157,7 +157,7 @@ its own rule; the codebase caught it.*
 
 ### 3 · The FE components exist too — phases 2–3 are a redraw, not a build
 
-`components/focus-home/` already contains the stack's anatomy, built and
+`components/decision-deck/` already contains the stack's anatomy, built and
 tested: **`HeroVoice`** (the bloom), **`Rail`** (docked rows, tapping
 through via `onOpenDeck`), and **`Deck`** with `DeckPickFace`,
 `DeckBriefFace`, `DeckCallFace`, `DeckStructuredFace`,
@@ -340,7 +340,7 @@ lowest-risk way to learn whether rows get tapped.
   `TripsHomeViews.tsx` plus a row component matching the geometry
   contract (`ROW_H 60` as `minHeight`, 2-line clamp — *not* a fixed
   height; the mock proved fixed height clips at 120% text). **Start from
-  `components/focus-home/Rail.tsx`**, which is the same anatomy already
+  `components/decision-deck/Rail.tsx`**, which is the same anatomy already
   built and tested — re-dress it to the stack's contract rather than
   writing a new row from scratch.
 - **If D1 = parallel:** phase 2 cannot start; it waits on producers.

@@ -147,7 +147,7 @@ One endpoint touches: `schema.gen.ts` (auto — fine, CI-verified fresh; the han
 
 ### 5. Orphans kept alive — and actively polished — by their own tests (A)
 
-**`components/focus-home/DeckCompareFace.tsx` (266L): zero renders anywhere** (`Deck.tsx` has no 'compare' case), yet it received 3 CC-batch commits on 07-09/07-10 — the consistency campaigns are polishing dead code. Confirm it isn't next week's feature, then delete. Also: `AtlasRoomArt.tsx` (27), `AtlasYearStepper.tsx` (86), `memory/DNAStrip.tsx` (103), `StoryArchiveCard.tsx` (130), `TripLogCard.tsx` (146 — matches the dead `routes.tripLog` helper), `discover/…VerdictChip.tsx` (69). (`MicStatusIndicator.tsx` is voice-dark → category D, keep.) ~1,100 LOC + ~8 test files, near-zero risk.
+**`components/decision-deck/DeckCompareFace.tsx` (266L): zero renders anywhere** (`Deck.tsx` has no 'compare' case), yet it received 3 CC-batch commits on 07-09/07-10 — the consistency campaigns are polishing dead code. Confirm it isn't next week's feature, then delete. Also: `AtlasRoomArt.tsx` (27), `AtlasYearStepper.tsx` (86), `memory/DNAStrip.tsx` (103), `StoryArchiveCard.tsx` (130), `TripLogCard.tsx` (146 — matches the dead `routes.tripLog` helper), `discover/…VerdictChip.tsx` (69). (`MicStatusIndicator.tsx` is voice-dark → category D, keep.) ~1,100 LOC + ~8 test files, near-zero risk.
 
 ### 6. The folio cluster is one 5.4k-line organism at 91% of its own budget (C)
 

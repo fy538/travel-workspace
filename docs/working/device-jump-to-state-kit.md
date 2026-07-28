@@ -158,7 +158,7 @@ Route templates for when you *do* have the real ids:
 
 | State | Why no deep link | How to reach |
 |---|---|---|
-| **DeckCall(held) card on Home** (J06) | It's a home/focus-feed producer card, not a routable screen — it renders when a held booking exists for the signed-in user. | Land on the home/Trips surface with the held booking present; the Call face appears in the Deck/Rail (`components/focus-home/DeckCallFace.tsx`). Deep-link the booking session (§3d) to inspect the underlying state directly. |
+| **DeckCall(held) card on Home** (J06) | It's a home/focus-feed producer card, not a routable screen — it renders when a held booking exists for the signed-in user. | Land on the home/Trips surface with the held booking present; the Call face appears in the Deck/Rail (`components/decision-deck/DeckCallFace.tsx`). Deep-link the booking session (§3d) to inspect the underlying state directly. |
 | **In-progress "Now Mode" strip** (J08) | It's a conditional strip on the Plan screen, gated on the live clock intersecting a today-pinned block — not a route. | Deep-link to the reza Rome **plan** (§2/§3c); the strip renders only if a block is in-progress *now*. On mock, the pinned persona clock guarantees it; on live it depends on the real seeded today-pin. |
 | **Badge decrement** (J09) | Side effect of viewing/acting on a notification, not a destination. | Deep-link to `notifications?mode=personal`, then act on the item; watch the tab badge decrement. |
 | **StoryReadyEntry → story** (J12) | The entry card lives on the returned-trip home; the story itself is routable. | After settle-up, the returned-hero pin shows StoryReadyEntry; tap through, or jump straight to `guide://trips/<elif-brooklyn-uuid>/story`. |

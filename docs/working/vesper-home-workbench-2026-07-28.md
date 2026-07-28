@@ -360,7 +360,7 @@ something that finished forty seconds ago is worse than no row.
 | Path | LOC |
 |---|---|
 | `app/(tabs)/concierge/index.tsx` | 814 |
-| `components/focus-home/` (16 files) | 4,486 |
+| `components/decision-deck/` (16 files) | 4,486 |
 | `components/vesper-cards/` | 110 |
 | `hooks/useConciergeHomeState.ts` | 1,100 |
 | 12 further exclusive hooks | ~1,100 |
@@ -406,7 +406,7 @@ against: *"two rankers over the same trip state will disagree."*
 
 **Vesper Home is the Deck's only production entrance.** ~3,950 LOC across
 `Deck.tsx` and five faces; the only non-dev importer of anything in
-`components/focus-home/` is `concierge/index.tsx`. Push notifications route
+`components/decision-deck/` is `concierge/index.tsx`. Push notifications route
 *through* it — `notificationDestination.ts` returns
 `routes.conciergeHome(cardId)`, which the screen forwards as
 `initialFocusedCardId`.
@@ -422,13 +422,17 @@ Conditions for keeping it from rotting:
 
 1. **The dev routes are the keep-alive.** `app/dev/deck-gallery.tsx` and
    `deck-qa.tsx` stay reachable so the code stays exercised.
-2. **The naming must move.** `components/focus-home/` is named after the
-   surface that is leaving.
-3. **The type block moves first.** `useConciergeHomeState.ts` is doing two
-   jobs — the local fallback state machine *and* the canonical home for
-   every Deck type and parser. Extract before deleting the hook.
+2. **The naming must move.** Landed 2026-07-28: the neutral owner is
+   `components/decision-deck/`.
+3. **The type block moves first.** Landed 2026-07-28:
+   `components/decision-deck/model.ts` owns the canonical Deck/card types
+   and defensive parsers; `useConciergeHomeState.ts` now owns only the
+   Vesper fallback state machine and keeps compatibility re-exports.
 4. **Expiry:** if Trips ships its queue without adopting these faces,
    delete then.
+
+**Extraction landed:** app `8947b1c7` (program seam S2). Both dev routes
+remain compiled and their focused gallery/face suites pass.
 
 ### Must survive
 

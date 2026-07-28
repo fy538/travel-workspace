@@ -172,6 +172,9 @@ the keep-alive. Pure mechanics, no behaviour change. **This unblocks
 Trips Phase 2 ("start from `Rail.tsx`") and honors Vesper's
 retire-don't-delete conditions in one move.**
 
+**Landed 2026-07-28:** `components/decision-deck/` and its neutral
+`model.ts`, app `8947b1c7`. The gallery and QA routes remain alive.
+
 ### 5 · Trips 2–3 — the queue becomes real *(the long middle)*
 
 - **Trips Phase 2** — docked rows under the existing hero (re-dress
@@ -224,7 +227,7 @@ The places where two plans touch one artifact. The rule at every seam:
 | # | Seam | Rule |
 |---|---|---|
 | S1 | `concierge_feed` | Trips D2's rule, now program-wide: neither surface forks the ranker; a producer or `_PRIO_*` change moves **both** surfaces and Vesper's hero grounding. **Upgraded from convention to guard by F1's condition 2** — a golden-fixture test asserts the Trips projection's #1 candidate == the Vesper hero's focus card for identical input. Lands in step 1; after that this seam fails CI rather than relying on someone remembering the commit message. |
-| S2 | `components/focus-home/` → its neutral successor | Extracted once (step 4). Trips re-dresses; Vesper retires its route. Nobody edits the pre-extraction tree after step 4 starts. |
+| S2 | `components/focus-home/` → `components/decision-deck/` | Extracted once in step 4 (`8947b1c7`). Trips re-dresses; Vesper retires its route. Nobody edits the retired pre-extraction path. |
 | S3 | `concierge_home.py` | Three plans touch it. Order: Trips projection **added** (1) → Places C2 extracts the ranker (6) → Vesper deletes rendering + `/cards/*` (7). Deletions last. |
 | S4 | Typography files | Step 2 only. After it lands, new type roles go through the ratchet like everything else. |
 
@@ -277,7 +280,7 @@ recorded below.
 | 1 · Decisions + backend slices | complete 2026-07-28 | agent `3a99ed5a`, `0cda2748`; app `63dca2b6`, `25a862bb`; docs `72eba35` |
 | 2 · Typography, once | complete 2026-07-28 | app `aee56838` |
 | 3 · The row, on a device | complete 2026-07-28 | app `f74dbafb`, `b9138405`, `27a009d8`, `8bde3c98`, `06af07c9`, `7f36afe2`, `b4b4e745`; docs/evidence `8647fce` |
-| 4 · The extraction | not started | |
+| 4 · The extraction | complete 2026-07-28 | app `8947b1c7` |
 | 5 · Trips 2–3 | not started | |
 | 6 · Places projection + un-borrow | not started | |
 | 7 · The Vesper cutover | not started | |

@@ -51,7 +51,7 @@ The **Deck** is the dark "N TO CLEAR" modal that opens from Vesper Home when you
 ```
 
 ### 0.2 The four layers (your four pillars)
-- **Frontend** — `travel-app/components/focus-home/` (Deck.tsx, DeckPickFace, DeckCallFace, DeckBriefFace, DeckStructuredFace, FocusHome.tsx), dispatch + run-through. Consumes the feed via `data/conciergeHome.ts`.
+- **Frontend** — `travel-app/components/decision-deck/` (Deck.tsx, DeckPickFace, DeckCallFace, DeckBriefFace, DeckStructuredFace, FocusHome.tsx), dispatch + run-through. Consumes the feed via `data/conciergeHome.ts`.
 - **Backend** — `travel-agent/backend/home/` (producers, deck_payloads, pick_judgment, ranking) + route `backend/api/routes/concierge_home.py`. Produces the cards and attaches faces.
 - **Fallback** — two independent layers: (a) **backend** fail-open — `degraded_home_feed()` + `_starter_cards()` + per-producer best-effort + LLM fail-open (never 500s, always returns a body); (b) **frontend** local templates — `hooks/useConciergeHomeState.ts` builds prose cards when the backend feed is empty. **Key fact:** FE local template cards **never** carry `focus`/`structured`, so they can only ever render a glance/prose card, never a rich Deck face.
 - **Dogfood data** — `travel-agent/tools/dogfood/content/` (manifests/*.yaml, scenarios.yaml, corpus_governance.py) seeds each persona's world; `travel-app/constants/personas/*.ts` are the FE mock worlds (a parallel, richer set — see §2.4).
@@ -152,7 +152,7 @@ The five rulings the rest of the plan depends on. All decided:
 ### Phase D4 — The near_you / ambient deck face *(decision 4 = build a real face)*
 - **Spec:** build to canon 146 `DeckNearYou` (`vesper-home-deck.jsx`) — real nearby venues + walk time + why-it-fits + grounded take line ("Ramiro's a 6-minute walk…"), near-you actions (Take me there / Save / Ask), suppress-when-thin (no card without ≥1 nearby venue).
 - **[BE]** Give `near_you` its own face payload (not a borrowed Pick) carrying the ambient substrate (top nearby venues, walk distance, meal-window/weather fit, saved/loved boosts already computed in `ranking.py:589`). Add a take line per decision 3.
-- **[FE]** Build the new face in `components/focus-home/` and dispatch it in `Deck.tsx` (today near_you falls to `CardLive` at `FocusHome.tsx:523`).
+- **[FE]** Build the new face in `components/decision-deck/` and dispatch it in `Deck.tsx` (today near_you falls to `CardLive` at `FocusHome.tsx:523`).
 - **[DATA]** near_you is dead outside the ~40 corpus cities. Handled in D5 (reseed) — for dogfood, ensure each persona has seeded venues near their test location; per suppress-when-thin (decision 2), near_you with no venues produces **no card**.
 - **Verify:** near_you in a seeded city renders the real ambient face; with no nearby venues it produces no card (not a starved glance).
 
@@ -182,7 +182,7 @@ A tester logged in as elif or mara, in a seeded city, sees a deck where:
 6. **Fallback** (backend degraded + FE templates) reads as calm quiet cards, never broken or empty-rich-face.
 
 ## 5. File index (jump-in points)
-- **FE faces/dispatch:** `travel-app/components/focus-home/{Deck,DeckPickFace,DeckCallFace,DeckBriefFace,DeckStructuredFace,FocusHome}.tsx`; run-through `utils/deckRunthrough.ts`; feed `data/conciergeHome.ts`; mapper `app/(tabs)/concierge/index.tsx:1033`; FE fallback `hooks/useConciergeHomeState.ts`.
+- **FE faces/dispatch:** `travel-app/components/decision-deck/{Deck,DeckPickFace,DeckCallFace,DeckBriefFace,DeckStructuredFace,FocusHome}.tsx`; run-through `utils/deckRunthrough.ts`; feed `data/conciergeHome.ts`; mapper `app/(tabs)/concierge/index.tsx:1033`; FE fallback `hooks/useConciergeHomeState.ts`.
 - **BE producer:** `travel-agent/backend/api/routes/concierge_home.py:229`; assembler `backend/home/concierge_feed/producers.py`; face builders `backend/home/deck_payloads.py`; models `backend/core/models/vesper_cards.py` + `backend/home/concierge_feed/models.py`; ranking/held/Catch `backend/home/concierge_feed/ranking.py`; Pick LLM `backend/home/pick_judgment.py`; surfaces `backend/core/surfaces/definitions.py`; venue query `backend/core/db/entities.py:782`.
 - **Dogfood data:** `travel-agent/tools/dogfood/content/manifests/elif-rome.yaml` (+ `elif-rome-slug-bridge.yaml`), `scenarios.yaml`, `corpus_governance.py`; real dossiers `travel-agent/content/staging/<city>/*.md`.
 - **Canon:** `~/Downloads/vesper 146/project/` — faces `vesper-home-deck.jsx` (incl. currency-aware Pick gauge + `DeckNearYou`), mapping `deck-readiness-taxonomy.jsx`, rail entry `vesper-deck-entry.jsx`, and the **Deck Content Contract in `vesper-canon-consolidation-app.jsx` §03b**. (Use the highest `vesper NNN` present if a newer bundle exists.)
