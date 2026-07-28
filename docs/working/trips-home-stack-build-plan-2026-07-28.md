@@ -50,13 +50,10 @@ from a different plan.** Ignore that line.
 - **D4 typography** — italic **approved** as a limited register (Vesper
   voice only), subject to the face/role, 17 px floor and ratchet
   conditions in D4. Serif-13 **removed** from the scale → sans-13.
-
-**Open — founder's call, blocks phase 2:**
-
-- **Row-tap destination** — the spec says a docked row opens *that trip*;
-  `Rail.tsx` today opens *that item's Deck*. A genuine fork, founder's
-  call. *Suggested: Deck for actionable items, trip page for the
-  `· 3 OPEN` depth affordance.* (Program queue: **F3**.)
+- **Row-tap destination — RATIFIED 2026-07-28 (founder): split by
+  intent.** An actionable row opens that item's Decision Deck. The
+  `· N OPEN` depth affordance opens the trip page. See **F3** under
+  Rulings.
 
 **Landed so far:** Phase 1 backend `3a99ed5a`, mobile consumer
 `63dca2b6`; shared typography step `aee56838`.
@@ -420,7 +417,7 @@ strategic value, and they do not need pixels.
 
 ---
 
-## Rulings — appended 2026-07-28 (satisfies phase-1 exit criterion 1 for D1/D3)
+## Rulings — appended 2026-07-28
 
 Ratified by founder via the home-surfaces program session
 (`home-surfaces-program-2026-07-28.md`, F1/F2), after adversarial
@@ -473,3 +470,14 @@ about drift, and extend wins it.
    criteria, so tier and priority can never disagree.
 3. **Deck payloads never reach the Trips wire.** The slim DTO excludes
    `structured` and `focus`.
+
+### F3 · SPLIT row destinations by intent
+
+Ratified by founder through the home-surfaces program session. A docked
+row represents one ranked actionable object, so tapping its body opens
+that object's Decision Deck. The separate `· N OPEN` affordance
+represents trip-level depth, so it opens the trip page.
+
+This keeps the Card↔Deck two-level contract intact without making the
+row's trip-count metadata pretend to be an item action. Both targets
+must remain separately labeled and separately instrumented.

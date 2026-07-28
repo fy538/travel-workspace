@@ -84,13 +84,13 @@ per this doc's rule).
 |---|---|---|---|
 | F1 | Trips D1 — adopt `concierge_feed` | ✅ **RATIFIED**, 2 conditions → Trips plan Rulings | 4 |
 | F2 | Trips D3 — extend `ConciergeHomeCard` | ✅ **RATIFIED** (slim-DTO clarification), 3 conditions → Trips plan Rulings | 4 |
-| F3 | Trips row-tap destination (Deck vs trip page) | open — suggested split | 5 |
+| F3 | Trips row-tap destination (Deck vs trip page) | ✅ **RATIFIED: split** — actionable row → Decision Deck; `· N OPEN` → trip page | 5 |
 | F4 | History sectioning | ✅ **RATIFIED: A (state-first)**, composite "open" definition mandatory → History plan | 3 |
 | F5 | Vesper promotion moment (eager vs lazy draft-trip) | open — leaning lazy | 7 |
 | F6 | Places E2 — `AUTO_PUBLISH_GREEN_DOSSIERS` posture | open | 8 |
 
-**The stream is unblocked through step 4.** F3 is the first remaining
-gate (step 5); F5 and F6 have runway.
+**The stream is unblocked through step 6.** F5 is the next remaining
+gate (step 7); F6 has runway through step 7.
 
 ## The sequence
 
