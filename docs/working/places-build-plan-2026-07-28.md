@@ -22,6 +22,38 @@ dead-end states.
 
 ---
 
+## 0. Picking this up cold
+
+**This file is the handover.** Read it first, then open the canvas — the plan
+sequences the work, the canvas *is* the spec.
+
+**The design lives in the Claude Design project "Vesper"**
+(`project_id: 551f400f-3da1-42ab-be7f-35f2d28e7c75`), not in this repo and not
+in the canon mirror. Two pages matter:
+
+| Page | What it is |
+|---|---|
+| `PLACES - CORE.html` | **The spec.** 19 sections, 74 artboards. Screens, states, contracts, rulings, cut ledger. Banner says EXPLORATION — that is accurate, it has never been exported to the canon mirror. |
+| `PLACES - COMPONENT MAP.html` | **The parts catalogue.** All 49 components rendered live, in 8 layers, each stamped with its ship tier — plus every state unrolled full-height with the 852px fold marked. Where it and CORE's inventory table disagree, the map is right. |
+
+Its modules are `places-foundation-kit.jsx` (the Pass 4 shell, layer 1, consumed
+unchanged) and `places-core-*.jsx` (layers 2–7 + the doc boards).
+
+**Do not touch:** `PLACES - COMPONENT POLISH PASS 3.html`, `... PASS 4.html`,
+`... PASS 5.html` are version history. `Vesper Places.html` is real canon for
+venue detail and is consumed as-is — every row on every Places surface ends
+there.
+
+**Start at A1** (§3, Track A). It is one line plus a save path, it is the only
+irreversible decision in the plan, and every list on every surface is broken
+until it lands. Everything else is additive or a deletion.
+
+**Also registered:** `design/surface-manifest.yaml` → "Places Tab (root browse
+surface)". Deliberately `canon: []` — do not drift-check it until a canon export
+exists.
+
+---
+
 ## 1. What is actually true today
 
 Verified in the code on 2026-07-28, not assumed. Several claims carried in
