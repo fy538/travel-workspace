@@ -275,7 +275,7 @@ recorded below.
 |---|---|---|
 | 0 · Setup + hygiene | complete 2026-07-28 | agent `c55e7819`, `42efbfe8`, `71681013`; app `4ffe418d`, `32594311`, `cc94b84c`; docs `2354f86` |
 | 1 · Decisions + backend slices | complete 2026-07-28 | agent `3a99ed5a`, `0cda2748`; app `63dca2b6`, `25a862bb`; docs `72eba35` |
-| 2 · Typography, once | not started | |
+| 2 · Typography, once | complete 2026-07-28 | app `aee56838` |
 | 3 · The row, on a device | not started | |
 | 4 · The extraction | not started | |
 | 5 · Trips 2–3 | not started | |

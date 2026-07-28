@@ -58,7 +58,8 @@ from a different plan.** Ignore that line.
   call. *Suggested: Deck for actionable items, trip page for the
   `· 3 OPEN` depth affordance.* (Program queue: **F3**.)
 
-**Code written so far: none.**
+**Landed so far:** Phase 1 backend `3a99ed5a`, mobile consumer
+`63dca2b6`; shared typography step `aee56838`.
 
 > Agents: the repos are `/Users/feihuyan/travel-workspace/travel-app`
 > (FE) and `/Users/feihuyan/travel-workspace/travel-agent` (BE). Use

@@ -80,7 +80,7 @@ Each removes a decision that would otherwise be made case by case.
 
 | Rule | What it settles |
 |---|---|
-| **No italic** — *amended, see erratum* | As written 2026-07-28 AM: Roman-only, verified (no face bundled, 0 `fontStyle:'italic'` hits, `fonts.ts:18-21` forbids synthesized slant). **Superseded same day by Trips D4 (founder): italic APPROVED as a limited register** — face + one named role registered together, **never below 17px**, ratchet extended. Until that lands (program step 2) the Roman-only state holds. History rows and the transcript are sans and unaffected either way; the read line's gold-weight emphasis may adopt italic after step 2 for cross-home rhyme. |
+| **No italic** — *amended, see erratum* | As written 2026-07-28 AM: Roman-only, verified (no face bundled, 0 `fontStyle:'italic'` hits, `fonts.ts:18-21` forbids synthesized slant). **Superseded same day by Trips D4 (founder): italic APPROVED as a limited register** — face + one named role registered together, **never below 17px**, ratchet extended. Landed in app `aee56838`; History rows and the transcript remain sans. The read line's gold-weight emphasis may now adopt the named role for cross-home rhyme. |
 | **No coloured left accent borders** | Project CLAUDE.md. A card is distinguished by material, never by an edge. |
 | **Grounded or absent** | A fact with no data renders nothing — no placeholder, no chrome over emptiness. |
 | **Potential, not buttons** | Capability renders as unwritten (ghost) text, never as a control. A pill is a button; a button promises a destination. |

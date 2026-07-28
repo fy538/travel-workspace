@@ -622,9 +622,9 @@ Italic marks the Vesper voice: the crowned read's emphasis phrase and the
 quoted thread line. **Nothing else** — not editorial titles, not
 metadata, not decoration.
 
-Production does not have it yet (EB Garamond is registered Roman-only),
-so this is a real build step with conditions set by
-`constants/fonts.ts`, and they are not optional:
+Production gained the limited register in app `aee56838`:
+`EBGaramond_500Medium_Italic`, one `vesperVoiceItalic` semantic role,
+and executable 17 px / semantic-only guards. Its conditions remain:
 
 - **Register the face and one named semantic role together.** The
   contract: *"add the face and named semantic role together; never
