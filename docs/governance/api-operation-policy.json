@@ -1465,6 +1465,21 @@
       "reason": "Provider callback surface.",
       "removal_trigger": null,
       "review_by": null
+    },
+    "POST /api/inbound-email/sendgrid/{webhook_secret}": {
+      "audience": "webhook",
+      "consumers": [
+        {
+          "kind": "webhook",
+          "name": "sendgrid"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "integrations",
+      "reason": "Provider callback surface — SendGrid Inbound Parse (unified ingestion Phase 3, docs/working/unified-ingestion-research-2026-07-27.md §12.7). Not under /webhooks/ because it needs the per-request path-secret pattern, not this repo's shared /webhooks/ auth middleware.",
+      "removal_trigger": null,
+      "review_by": null
     }
   },
   "retired_operations": {

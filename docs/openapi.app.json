@@ -10124,6 +10124,174 @@
         }
       }
     },
+    "/api/inbound-email/alias": {
+      "get": {
+        "tags": [
+          "inbound"
+        ],
+        "summary": "Get Inbound Email Alias",
+        "description": "Lazily mints the user's forwarding address on first fetch, same\nshape as trip invite links — no separate provisioning step.",
+        "operationId": "get_inbound_email_alias_api_inbound_email_alias_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AliasResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/inbound-items": {
+      "post": {
+        "tags": [
+          "inbound"
+        ],
+        "summary": "Create Inbound Item Route",
+        "operationId": "create_inbound_item_route_api_inbound_items_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInboundItemRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InboundItem"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/inbound-items/{item_id}": {
+      "get": {
+        "tags": [
+          "inbound"
+        ],
+        "summary": "Get Inbound Item Route",
+        "operationId": "get_inbound_item_route_api_inbound_items__item_id__get",
+        "parameters": [
+          {
+            "name": "item_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Item Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InboundItem"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/narration/stops": {
       "get": {
         "tags": [
@@ -25295,6 +25463,19 @@
         ],
         "title": "AddPayload"
       },
+      "AliasResponse": {
+        "properties": {
+          "email_address": {
+            "type": "string",
+            "title": "Email Address"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email_address"
+        ],
+        "title": "AliasResponse"
+      },
       "AlternativeOption": {
         "properties": {
           "label": {
@@ -33308,6 +33489,51 @@
         ],
         "title": "CreateExpenseFromReceiptRequest"
       },
+      "CreateInboundItemRequest": {
+        "properties": {
+          "raw_text": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 4096
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Raw Text"
+          },
+          "image": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/InboundImage"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "from_chat": {
+            "type": "boolean",
+            "title": "From Chat",
+            "default": false
+          }
+        },
+        "type": "object",
+        "title": "CreateInboundItemRequest"
+      },
       "CreateSessionRequest": {
         "properties": {
           "itinerary_id": {
@@ -40258,6 +40484,215 @@
         ],
         "title": "Hypothesis",
         "description": "Internal-only. The LLM's working claim about the user and its evidence.\n\nNOT surfaced to the user. Used for:\n- Debugging + eval (\"why did the Take emphasize X?\")\n- Offline analysis (aggregating which hypothesis categories correlate\n  with saves vs dismisses, feeding Personal Memory refresh)\n- Grounding validation (post-generation check that every hypothesis\n  references real evidence)\n\n`evidence_refs` are opaque ID strings scoped by `evidence_type`:\n- personal_memory: the Personal Memory version id or a section marker\n- past_trip: trip_id\n- angle_affinity: angle_id\n- group_signal: group_profile_version id\n- saved_entity: entity_id previously saved"
+      },
+      "InboundImage": {
+        "properties": {
+          "base64": {
+            "type": "string",
+            "maxLength": 2500000,
+            "minLength": 1,
+            "title": "Base64",
+            "description": "Base64-encoded image bytes (no data: prefix)."
+          },
+          "mime_type": {
+            "type": "string",
+            "pattern": "^image/(jpeg|jpg|png|webp|gif)$",
+            "title": "Mime Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "base64",
+          "mime_type"
+        ],
+        "title": "InboundImage",
+        "description": "Inline image submitted via the OS share sheet or chat. Mirrors\n``conversations.py::MessageImage``'s convention exactly (base64, no\n``data:`` prefix, same size cap and MIME allowlist)."
+      },
+      "InboundItem": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "owner_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Owner Id"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "source_kind": {
+            "type": "string",
+            "title": "Source Kind"
+          },
+          "origin_channel": {
+            "type": "string",
+            "title": "Origin Channel"
+          },
+          "raw_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Raw Text"
+          },
+          "raw_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Raw Ref"
+          },
+          "batch_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Batch Id"
+          },
+          "content_hash": {
+            "type": "string",
+            "title": "Content Hash"
+          },
+          "resolved_metadata": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolved Metadata"
+          },
+          "extracted_candidates": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Extracted Candidates"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "attention_case_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attention Case Id"
+          },
+          "promoted_refs": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Promoted Refs"
+          },
+          "receipt_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Receipt Id"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          },
+          "failed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Failed At"
+          },
+          "failure_detail": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Failure Detail"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "owner_id",
+          "trip_id",
+          "source_kind",
+          "origin_channel",
+          "raw_text",
+          "content_hash",
+          "resolved_metadata",
+          "extracted_candidates",
+          "status",
+          "attention_case_id",
+          "promoted_refs",
+          "receipt_id",
+          "created_at",
+          "updated_at",
+          "failed_at",
+          "failure_detail"
+        ],
+        "title": "InboundItem"
       },
       "InitialPlanCommitmentState": {
         "type": "string",
