@@ -52,6 +52,28 @@ parallel tracks merged later.
   `concierge_home.py`, the one file all three plans touch, and S3 fixes a
   strict order on it. A second worktree advancing C would race that order.
 
+### Execution errata — verified against code 2026-07-28
+
+- **Worktree base:** create both lanes from the current local `HEAD`, not
+  `origin/main`. `travel-app/main` contains the 90-commit stabilization
+  stack this program's plans were verified against; `origin/main` does
+  not yet contain those prerequisites. Do not run the ordinary
+  `land-worktree.sh` rebase-to-`origin/main` path for the app until that
+  integration base is reconciled.
+- **Places A1+A2 land atomically.** A non-null provider id immediately
+  enables the existing Vesper Near You save action, while today's save
+  endpoint would persist that provider id without materialising it.
+  A1 alone would therefore create the dead-end state Option A was chosen
+  to prevent. The first Places landing includes the namespaced id,
+  non-numeric consumer hardening, fingerprint dedup, and materialise-on-
+  save path together.
+- **Typography step 2 is incremental.** Chat's Roman 15px
+  `scale='signature'`, transcript leading, and expanded serif-floor
+  ratchet already landed in the mobile stabilization stack. Step 2 adds
+  only the approved italic face + one ≥17px role + italic ratchet and the
+  Trips serif-13 → sans-13 correction; it does not repeat the shipped
+  chat landing.
+
 ## The founder decision queue
 
 Three of six **ratified 2026-07-28** after adversarial analysis; each

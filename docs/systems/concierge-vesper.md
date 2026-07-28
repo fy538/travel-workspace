@@ -42,7 +42,7 @@ Memory & Preference** — Concierge only reads it and emits observations.
 ## Maturity & validation
 - Serves journeys: 01 (vague→shaped), 04 (private constraint→group-safe), 05 (propose→mutate), 07 (discover→contextual), 08 (live what-now).
 - DoD state: backend replay tests ✅ · grounding/privacy guards ✅ · **mock-walk ❌ · Maestro on-device ❌ · live-walk ❌**.
-- Dark/flagged: narration text ships (persists as `message_type='narration'`); the live mic path is dark — gated by absent voice credentials (`voice_settings.is_configured`) + the commented-out `voice` process in `fly.toml`, not a `VOICE_ENABLED` flag.
+- Dark/flagged: narration text ships (persists as `message_type='narration'`); the live mic path is dark — the `voice` process is defined in `fly.toml`, but its machines remain at `count=0`, the required `VOICE_*` credentials are unset, and the client gate (`EXPO_PUBLIC_VOICE_ENABLED`) stays false with the SDK uninstalled.
 
 ## Canonical docs
 - why → `product/Concierge Behavior Spec.md` · how → `architecture/Conversation System Architecture.md` · what(be) → `backend/concierge/FEATURE.md` · what(fe) → `page-specs/agent-chat.md`.
