@@ -50,3 +50,16 @@ change.
 - Run typecheck and relevant Composer/Home suites.
 - Capture Vesper Home on an iOS simulator before recording program step 3.
 
+## Landed
+
+Completed 2026-07-28 in app `8bde3c98`, with opaque-handoff coverage in
+`06af07c9`. The attachment payload uses `pendingComposerTurn`; no base64
+content enters route params. Private and group thread composer geometry
+and routing remain unchanged.
+
+Device evidence is recorded in
+`docs/audits/home-surfaces-step3-2026-07-28/`. The inline Home composer,
+attachment control, and screen passed focused Maestro assertions. The
+64px dissolve is intentionally accessibility-hidden and
+pointer-transparent, so its geometry is covered by the component test
+and its appearance by the persisted Home capture.

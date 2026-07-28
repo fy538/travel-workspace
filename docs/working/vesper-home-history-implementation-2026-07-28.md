@@ -203,6 +203,8 @@ renders honestly.
 Sectioning unchanged in this landing — the existing Active trips /
 Standalone / Earlier buckets stay, so the row can be judged on its own.
 
+**Landed 2026-07-28:** app `f74dbafb`.
+
 ### Landing 2 · The serializer cut
 Backend + regen + mapper, per above. Delivers a real state line
 (`current_goal`) and `phase`, and unlocks landing 3's "still open"
@@ -217,11 +219,18 @@ Replace the trip-date bucketing (`history.tsx:172-218`) with state-first
 grouping, using the **composite "open" definition** in the ruling below —
 never bare `session_status`.
 
+**Landed 2026-07-28:** app `b9138405`. The two-day recency fallback
+backs unread and exploring/drafting state; `session_status` is not an
+input. The dormant transition was verified in the re-engagement path
+before landing.
+
 ### Landing 4 · The remaining states
 Empty, loading skeletons in the row's own shape, and the no-results copy
 that says what search actually covers. Search itself already exists
 (`history.tsx:332-341`, filtering `title` / `trip_title` /
 `last_message_preview` at `:132-143`).
+
+**Landed 2026-07-28:** app `27a009d8`.
 
 ### Deferred, deliberately
 - **Named facepile** — needs display name + avatar on `ParticipantResponse`.
@@ -306,6 +315,12 @@ Judged on a device, not in a mock.
    two-line clamp at the largest setting is the case to check.
 6. **Nothing reflows when data lands** — which is why the skeleton is the
    row's own shape.
+
+**Accepted on device 2026-07-28:** app fixture/evidence landing
+`7f36afe2`; maximum-Dynamic-Type correction `b4b4e745`. Normal and
+`accessibility-extra-extra-extra-large` captures plus focused Maestro
+results are recorded in
+`docs/audits/home-surfaces-step3-2026-07-28/`.
 
 ## References
 
