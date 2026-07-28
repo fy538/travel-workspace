@@ -17,14 +17,54 @@ Companion to `trips-home-promotion-model-2026-07-27.md` (the design spec,
 which is self-contained and does not repeat here). **This doc answers
 "how", the spec answers "what and why".** Read the spec first.
 
-Design reference: Claude Design → Vesper → `Vesper Trips Home - Stack
-Model (Sans).html`, also exported to the handoff bundle at
-`~/Downloads/vesper 400/project/`.
+Design reference: Claude Design → Vesper project →
+**`Vesper Trips Home - Stack Model (Sans).html`** plus its four
+`trips-home-stack-sans*.jsx` support modules. That page is the durable
+reference.
+
+A snapshot was also exported to
+`/Users/feihuyan/Downloads/vesper 400/project/`. **Treat that path as
+transient** — these are numbered handoff exports and new ones keep
+arriving (394…400 as of 2026-07-28), so a later bundle likely exists by
+the time you read this. Prefer the design project; use a bundle only for
+offline reading, and check you are in the newest one. Its README names
+whatever file was open at export time as "the primary design" — in 400
+that is `Vesper Home - Workbench.html`, which is **a different surface
+from a different plan.** Ignore that line.
 
 > **Scope: Trips home only.** Vesper/Concierge home is a separate plan
 > and a separate session. Where the two touch — both consume the
 > `concierge_feed` ranker — this doc records the coordination rule (D2)
 > and nothing more. It does not decide anything about that surface.
+
+## Handover state (2026-07-28)
+
+**Decided — do not relitigate:**
+
+- **D2** — coordination rule only; Vesper/Concierge home is a separate
+  plan. Not blocking.
+- **D4 typography** — italic **approved** as a limited register (Vesper
+  voice only), subject to the face/role, 17 px floor and ratchet
+  conditions in D4. Serif-13 **removed** from the scale → sans-13.
+
+**Open — phase 1 exists to close these. Two already have strong
+recommendations; they need ratification, not fresh analysis:**
+
+- **D1** — adopt `concierge_feed` rather than build a second ranker.
+  *Recommended: adopt.*
+- **D3** — extend `ConciergeHomeCard`; do not introduce a parallel `Item`
+  type. Only `row_line`, `tier` and `depth` are genuinely new.
+  *Recommended: extend.*
+- **Row-tap destination** — the spec says a docked row opens *that trip*;
+  `Rail.tsx` today opens *that item's Deck*. A genuine fork, founder's
+  call. *Suggested: Deck for actionable items, trip page for the
+  `· 3 OPEN` depth affordance.*
+
+**Code written so far: none.**
+
+> Agents: the repos are `/Users/feihuyan/travel-workspace/travel-app`
+> (FE) and `/Users/feihuyan/travel-workspace/travel-agent` (BE). Use
+> literal absolute paths — the launched cwd may be elsewhere.
 
 ---
 
