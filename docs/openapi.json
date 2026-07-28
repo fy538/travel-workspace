@@ -72322,6 +72322,139 @@
         ],
         "title": "TripVesperDelegationUpdate"
       },
+      "TripsHomePromotion": {
+        "properties": {
+          "card_id": {
+            "type": "string",
+            "title": "Card Id"
+          },
+          "tier": {
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "title": "Tier"
+          },
+          "promoted_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Promoted At"
+          },
+          "voice": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Voice"
+          }
+        },
+        "type": "object",
+        "required": [
+          "card_id",
+          "tier",
+          "promoted_at"
+        ],
+        "title": "TripsHomePromotion"
+      },
+      "TripsHomeStackCrown": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "live_trip",
+              "urgent_trip_action",
+              "daily_brief",
+              "constraint_alert",
+              "capture_nudge",
+              "planning_brief",
+              "trip_retrospective",
+              "settlement_closeout",
+              "imminent_trip",
+              "trip_thread",
+              "saved_cluster",
+              "memory_echo",
+              "weather",
+              "near_you",
+              "starter",
+              "pre_trip_prep"
+            ],
+            "title": "Kind"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "row_line": {
+            "type": "string",
+            "title": "Row Line"
+          },
+          "tier": {
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "title": "Tier"
+          },
+          "depth": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Depth"
+          },
+          "action": {
+            "$ref": "#/components/schemas/ConciergeHomeAction"
+          },
+          "voice": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Voice"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "title",
+          "row_line",
+          "tier",
+          "depth",
+          "action"
+        ],
+        "title": "TripsHomeStackCrown"
+      },
       "TripsHomeStackItem": {
         "properties": {
           "id": {
@@ -72407,7 +72540,7 @@
           "crown": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/TripsHomeStackItem"
+                "$ref": "#/components/schemas/TripsHomeStackCrown"
               },
               {
                 "type": "null"

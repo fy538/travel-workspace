@@ -329,6 +329,12 @@ survives either answer.
 
 ### Phase 2 — Stack rows on the existing page
 
+**Landed 2026-07-28:** the adopted projection now renders docked rows
+under the existing hero and routes row bodies to their Decision Deck while
+the separately labelled `· N OPEN` depth control opens the trip. App
+`eaeb3627`, lifecycle-action correction `08dc9d19`; device checks passed at
+100%, 120%, and 135% Dynamic Type.
+
 Render docked rows beneath the *current* hero, which stays composed the
 old way. Visually the stack model's skeleton with old crown logic — the
 lowest-risk way to learn whether rows get tapped.
@@ -348,6 +354,14 @@ falsifier "docked rows go untapped AND their facts go unmissed" needs
 data from here).
 
 ### Phase 3 — Crown cutover
+
+**Landed 2026-07-28:** the crown now owns identity, grounded voice,
+receipt, step, facepile, empty chair, and docked rows. Durable promotion
+hysteresis holds within the UTC day, permits tier-0 intraday usurpation, and
+refreshes at the day boundary with an injected clock. Backend `76f534ba`;
+app `14280999`, `a68c5755`, `4e375e67`; structured surface verdict
+`4cb5e342` is intentionally MIXED and records the remaining returned-state
+and fixed-chrome defects rather than treating capture as certification.
 
 The bloom is driven by the crowned item: receipt and step come from the
 item, voice composed at promotion. Facepile + empty chair land in the

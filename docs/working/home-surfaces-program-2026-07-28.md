@@ -281,7 +281,7 @@ recorded below.
 | 2 · Typography, once | complete 2026-07-28 | app `aee56838` |
 | 3 · The row, on a device | complete 2026-07-28 | app `f74dbafb`, `b9138405`, `27a009d8`, `8bde3c98`, `06af07c9`, `7f36afe2`, `b4b4e745`; docs/evidence `8647fce` |
 | 4 · The extraction | complete 2026-07-28 | app `8947b1c7` |
-| 5 · Trips 2–3 | not started | |
+| 5 · Trips 2–3 | in progress — Trips phases 2–3 landed; CONNECT, signal writes, and Places B1–B4 remain | agent `76f534ba`; app `eaeb3627`, `08dc9d19`, `14280999`, `a68c5755`, `4e375e67`, verdict `4cb5e342` |
 | 6 · Places projection + un-borrow | not started | |
 | 7 · The Vesper cutover | not started | |
 | 8 · Content + tails | not started | |
