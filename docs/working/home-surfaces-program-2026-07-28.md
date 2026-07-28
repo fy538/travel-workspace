@@ -273,7 +273,7 @@ recorded below.
 
 | Step | Status | Commit |
 |---|---|---|
-| 0 · Setup + hygiene | not started | |
+| 0 · Setup + hygiene | complete 2026-07-28 | agent `c55e7819`, `42efbfe8`, `71681013`; app `4ffe418d`, `32594311`, `cc94b84c`; docs `2354f86` |
 | 1 · Decisions + backend slices | not started | |
 | 2 · Typography, once | not started | |
 | 3 · The row, on a device | not started | |
