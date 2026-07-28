@@ -21,12 +21,18 @@ Design reference: Claude Design → Vesper → `Vesper Trips Home - Stack
 Model (Sans).html`, also exported to the handoff bundle at
 `~/Downloads/vesper 400/project/`.
 
+> **Scope: Trips home only.** Vesper/Concierge home is a separate plan
+> and a separate session. Where the two touch — both consume the
+> `concierge_feed` ranker — this doc records the coordination rule (D2)
+> and nothing more. It does not decide anything about that surface.
+
 ---
 
 ## What investigation changed (read this before planning anything)
 
-Three findings from tracing the code. Two of them invalidate assumptions
-the spec was written on. **None were knowable from the mock.**
+Four findings from tracing the code. Two invalidate assumptions the spec
+was written on; one materially shrinks the build. **None were knowable
+from the mock.**
 
 ### 1 · The ranker already exists. Phase 1 is adoption, not construction.
 
@@ -110,7 +116,41 @@ its own rule; the codebase caught it.*
 > system.** Check `constants/`, the convention tests, and the surface's
 > own doctrine comments before ratifying a visual decision.
 
-### 3 · `Vesper Home - Workbench` is a different surface
+### 3 · The FE components exist too — phases 2–3 are a redraw, not a build
+
+`components/focus-home/` already contains the stack's anatomy, built and
+tested: **`HeroVoice`** (the bloom), **`Rail`** (docked rows, tapping
+through via `onOpenDeck`), and **`Deck`** with `DeckPickFace`,
+`DeckBriefFace`, `DeckCallFace`, `DeckStructuredFace`,
+`DeckNearYouFace`.
+
+This is the shipped **Card↔Deck two-level system**
+(`travel-agent/docs/specs/card-deck-two-level.md`): a card and its
+full-screen Deck are two fidelities of one object — level 1 *presents*
+the decision, level 2 *helps make* it. Its governing rule is already the
+one the stack model needs:
+
+> the glance is a **projection** of the focus, never a separate
+> generation
+
+That is precisely the relationship between an item's `row_line`, its
+crowned read, and its Deck. **The stack model should be read as the
+cross-trip glance layer of this existing system, not as a new one.**
+
+Consequence for scope: **phases 2–3 are substantially a redraw and a
+relocation, not new construction.** The row component needs the stack's
+geometry contract and the six-section grammar is genuinely new, but the
+hero/rail/deck spine and the four Deck faces are reused as-is. Budget
+accordingly — the plan's original phase 2–3 estimate assumed building
+what already exists.
+
+**Open sub-question, decide deliberately rather than inherit:** the spec
+says tapping a docked row opens *that trip*; `Rail.tsx` today opens *that
+item's Deck*. Both defensible — the trip page is the full ledger, the
+Deck is the decision. Suggested resolution: Deck for actionable items,
+trip page for the `· 3 OPEN` depth affordance.
+
+### 4 · `Vesper Home - Workbench` is a different surface
 
 The handoff bundle's README flags `Vesper Home - Workbench.html` as the
 primary design, because it was the open file at export time. It is not
@@ -146,29 +186,31 @@ expensive bug this design can have.
 of `assemble_concierge_home_feed()` — a second response shape over the
 same ranked candidates, not a fork of the ranker.
 
-### D2 · If adopted — what happens to the Concierge tab?
+### D2 · Consume the shared ranker without forking it
 
-This is a **product** decision, not an architecture one, and it is the
-one that most needs the founder rather than an agent.
+**Scope note: Vesper/Concierge home is a separate plan and a separate
+session. This plan does not decide that surface's fate.** What Trips home
+owns is narrower, and it is not a product decision:
 
-If Trips home renders a cross-trip ranked queue, and the Concierge tab
-renders a cross-trip ranked queue, they are the same page in two
-fidelities. Three coherent answers:
+**Trips home consumes `concierge_feed` as a new projection and changes
+nothing about how any other surface consumes it.** The projection is
+additive — a second response shape over the same ranked candidates.
 
-1. **Trips home becomes the queue; Concierge stays sessions.** Concierge
-   keeps the Vesper-presence surface it already migrated to
-   (`app/(tabs)/concierge/index.tsx` is already "a state machine, not a
-   conversation list"); `FocusHome` retires or narrows to the Deck
-   experience. Cleanest story, matches the Workbench session's framing
-   ("Trips owns objects, Vesper owns sessions"). **Recommended.**
-2. **Both render it, different fidelities** — Trips as the six-section
-   page, Concierge as the full-screen Deck. Defensible, but needs an
-   explicit rule for why a traveller would visit both.
-3. **Concierge keeps the queue; Trips home stays a roster.** Rejects the
-   stack model. Listed for completeness.
+The only thing to hold is a **coordination seam**: `concierge_feed` is
+now a shared dependency of two independently-planned surfaces. Two rules
+follow, and they are cheap:
 
-**Blocking.** Do not start phase 2 without an answer — phase 2 is FE work
-whose target surface this determines.
+- **Neither surface forks the ranker.** Divergent judgment about the same
+  trip state is the failure this whole model exists to prevent.
+- **Producer changes are shared changes.** Adding a producer or moving a
+  `_PRIO_*` value moves both surfaces. Say so in the commit.
+
+If the Vesper-home plan retires, narrows, or redraws its use of the feed,
+that is their call and it does not block anything here — the projection
+Trips home consumes is independent of whether another surface renders its
+own.
+
+**Not blocking.** Phase 2 can start once D1, D3 and D4 are answered.
 
 ### D3 · The item contract — extend `ConciergeHomeCard` or introduce `Item`?
 
@@ -195,13 +237,29 @@ type**; that is D1's mistake wearing a smaller hat.
 
 Three sub-decisions, all cheap, all blocking phase 2/3:
 
-- **Italic:** either register an EB Garamond italic face with a named
-  semantic role (per the contract's "face and role together" rule), or
-  **drop italic from the spec** and mark emphasis another way (weight, or
-  the existing `goldDeep` colour shift the mock already uses for
-  `strong`). *Recommend dropping* for v1 — the emphasis phrase is
-  backend-verified via `_cited_verbatim` and can be marked without slant;
-  registering a face to serve one phrase is a poor trade.
+- **Italic: APPROVED 2026-07-28 (founder) — limited register.** This
+  takes the contract's own sanctioned path, which has conditions
+  attached; they are not optional:
+  - **Register the face and a named semantic role together.** The
+    contract is explicit — *"add the face and named semantic role
+    together; never synthesize or register slant at an individual call
+    site."* So: add the EB Garamond italic face to `hooks/useAppFonts.ts`
+    and `constants/fonts.ts`, and add **one** named role in
+    `constants/textVariants.ts` that owns it. No `fontStyle:'italic'`
+    at any call site, ever.
+  - **Italic never renders below 17px** (`constants/fonts.ts`, decided
+    2026-07-27). **Check both italic sites against this before building**
+    — the crowned read's emphasis phrase should clear it comfortably, but
+    the companion's thread quote is a small row and may not. If the quote
+    sits below 17, it moves up to 17 or gives up italic; it does not get
+    a synthesized exception.
+  - **Extend the floor ratchet.** `serifFloorContract.test.ts` currently
+    enforces serif ≥15. Add the italic ≥17 rule to it in the same change,
+    or the new register has no guard and will drift exactly the way the
+    serif floor did.
+  - Scope stays *limited*: italic marks the Vesper voice — the read's
+    emphasis phrase and the quoted thread line. It is not available for
+    editorial titles, metadata, or decoration.
 - **Serif 13 → sans 13** everywhere in the scale, per the ratchet's own
   triage guidance. No visual loss.
 - **Confirm the remaining serif sizes** (32 / 22 / 18.5 / 17) against
@@ -215,8 +273,9 @@ Three sub-decisions, all cheap, all blocking phase 2/3:
 - [ ] One vertical slice proving the projection: `GET` the existing feed,
       project the top candidate + 2 next_moves into the stack shape,
       assert against a fixture. **No UI.**
-- [ ] The spec doc updated with the D4 outcome (it currently specifies
-      italic and serif-13, both of which are wrong)
+- [ ] The spec doc updated with the D4 outcome — serif-13 → sans-13, and
+      the italic register's conditions (face + named role together,
+      17px floor, ratchet extended)
 
 ---
 
@@ -232,12 +291,13 @@ old way. Visually the stack model's skeleton with old crown logic — the
 lowest-risk way to learn whether rows get tapped.
 
 - **If D1 = adopt:** consume the projection from phase 1. FE work is
-  `TripsHomeViews.tsx` + a new row component matching the geometry
+  `TripsHomeViews.tsx` plus a row component matching the geometry
   contract (`ROW_H 60` as `minHeight`, 2-line clamp — *not* a fixed
-  height; the mock proved fixed height clips at 120% text).
+  height; the mock proved fixed height clips at 120% text). **Start from
+  `components/focus-home/Rail.tsx`**, which is the same anatomy already
+  built and tested — re-dress it to the stack's contract rather than
+  writing a new row from scratch.
 - **If D1 = parallel:** phase 2 cannot start; it waits on producers.
-- **If D2 = Concierge keeps the queue:** phase 2 targets `FocusHome`
-  instead, and the whole plan becomes a Concierge redesign.
 
 Exit: rows render in busy and quiet states; Dynamic Type verified at
 100/120/135% **on device, not in the mock**; row taps instrumented (the

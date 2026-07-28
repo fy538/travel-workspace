@@ -601,10 +601,42 @@ x = 30 against everyone else's x = 38.
 ### Scale
 
 Three mono (10 / 9 / 8) · six sans (16.5 / 15 / 13 / 13 / 12.5 / 11) ·
-five serif (32 / 22 / 18.5 / 17 / 13). Avatar initials use an **integer
+**four** serif (32 / 22 / 18.5 / 17). Avatar initials use an **integer
 lookup (`AV_FS`)**, never `size * 0.4` — the computed form produced
 fractional 9.6 px text. Before the scale was declared the page carried
 **31 distinct size/weight pairs**.
+
+> **Corrected 2026-07-28.** The scale originally listed a fifth serif at
+> **13 px**. That cannot ship: `__tests__/conventions/serifFloorContract.test.ts`
+> enforces `SERIF_FLOOR = 15` as a ratchet, and any *new* sub-floor serif
+> fails the suite. Per the contract's own triage rule — *"the correct fix
+> is usually System Sans, which at the SAME px is larger in apparent
+> size, so it does not reflow the box"* — **serif-13 becomes sans-13.**
+> No visual loss, and it is what the register rule wanted anyway: 13 is
+> row and metadata territory, which this contract already assigns to
+> sans. The mock was inconsistent with its own rule.
+
+### Italic — approved as a limited register (2026-07-28)
+
+Italic marks the Vesper voice: the crowned read's emphasis phrase and the
+quoted thread line. **Nothing else** — not editorial titles, not
+metadata, not decoration.
+
+Production does not have it yet (EB Garamond is registered Roman-only),
+so this is a real build step with conditions set by
+`constants/fonts.ts`, and they are not optional:
+
+- **Register the face and one named semantic role together.** The
+  contract: *"add the face and named semantic role together; never
+  synthesize or register slant at an individual call site."* No
+  `fontStyle:'italic'` at a call site, ever — synthesized oblique on a
+  Roman family is inconsistent across platforms.
+- **Italic never renders below 17 px.** Check both sites against this.
+  The crowned read's emphasis should clear it; **the companion's thread
+  quote is a small row and may not** — if it sits below 17 it moves up or
+  gives up italic. It does not get an exception.
+- **Extend the floor ratchet** to guard italic ≥ 17 in the same change,
+  or the new register drifts exactly the way the serif floor did.
 
 **Hierarchy rule, learned the hard way:** the row fact line is 13, not
 14. At 14 it was the second-largest sans on the card — larger than the
