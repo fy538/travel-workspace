@@ -106,6 +106,42 @@ overrides:
     disposition: keep_reference
     rationale: Active proposal for grounded, privacy-safe agent work receipts; expires 2026-08-25 and must be promoted into content contracts or archived.
 
+  docs/working/chat-typography-plan-2026-07-28.md:
+    disposition: keep_reference
+    rationale: Active implementation plan for chat typography and agent signature roles; expires 2026-08-27 and must be promoted into the chat surface contract or archived.
+
+  docs/working/canon-index-registration-2026-07-28.md:
+    disposition: keep_reference
+    rationale: Active record of the Trips-home stack model canon registration; expires 2026-08-27 and archives after promotion or rejection.
+
+  docs/working/home-surfaces-program-2026-07-28.md:
+    disposition: keep_reference
+    rationale: Active sequential implementation program for the Trips, Places, and Vesper home surfaces; expires 2026-08-27.
+
+  docs/working/places-build-plan-2026-07-28.md:
+    disposition: keep_reference
+    rationale: Active Places implementation plan and design-rulings record; expires 2026-08-27 and promotes to a Places charter.
+
+  docs/working/trips-home-promotion-model-2026-07-27.md:
+    disposition: keep_reference
+    rationale: Active successor model for Trips home; expires 2026-08-26 and promotes into the Trips-home surface contract.
+
+  docs/working/trips-home-stack-build-plan-2026-07-28.md:
+    disposition: keep_reference
+    rationale: Active implementation sequence for the Trips-home stack model; expires 2026-08-27.
+
+  docs/working/unified-ingestion-research-2026-07-27.md:
+    disposition: keep_reference
+    rationale: Active cross-repository ingestion research record; expires 2026-08-26 and promotes to an ingestion system charter.
+
+  docs/working/vesper-home-history-implementation-2026-07-28.md:
+    disposition: keep_reference
+    rationale: Active implementation plan for Vesper home history; expires 2026-08-27.
+
+  docs/working/vesper-home-workbench-2026-07-28.md:
+    disposition: keep_reference
+    rationale: Active Vesper home workbench model; expires 2026-08-27 and promotes to the Vesper-home surface contract.
+
   docs/working/stabilization-candidate-2026-07-26.md:
     disposition: keep_authoritative
     rationale: Active cross-repository candidate receipt for the 2026-07-26 stabilization cycle; expires 2026-08-09 and archives after the named SHA set is promoted or superseded.
