@@ -213,6 +213,152 @@ actual product — and break vendor portability.
 The cascade is the right architecture. It is simply not currently
 configured or streamed like one.
 
+## The podcast question — format, artifact, interruption, adaptation
+
+Researched 2026-07-28 alongside the above. Short version: **we should
+borrow podcast *structure*, not podcast *format*, and the artifact we
+need is mostly already specified.**
+
+### Where the format is
+
+**NotebookLM Audio Overviews** is the reference. Its **Interactive Mode**
+is the relevant part: you listen, tap *Join*, the hosts call on you, you
+ask, they answer from your sources, **then resume the original overview**.
+Constraints worth noting even Google has: interactive mode works only on
+newly-made Deep Dive overviews, and it is English-only.
+
+Its most useful published lesson is a *design* one: **interrupt at thought
+boundaries, not mid-sentence.** The natural intervention point is when one
+speaker finishes a thought — cutting in mid-utterance produces awkward
+transitions. That argues for segment-granular bookmarks, not
+timestamp-granular ones.
+
+**Multi-speaker synthesis** is solved: ElevenLabs v3 (GA early 2026) leads
+expressive multi-speaker narration, with the standard workflow being a
+`Host A:` / `Host B:` script and two voices contrasting on at least two
+axes. **Cartesia** remains the low-latency specialist (sub-100 ms TTFA
+over WebSocket) and exposes **`context_id`**, which maintains voice
+context across sends so turn-by-turn dialogue sounds like one continuous
+speaker.
+
+The commonly-recommended split — **ElevenLabs for long-form narration,
+Cartesia for the realtime agent** — is the split we already run.
+
+### Recommendation: one voice, podcast structure
+
+**Do not build two-host banter.** Three reasons, in order:
+
+1. **It contradicts Voice Canon.** Our whole position is *one* voice with
+   taste. Two synthetic hosts chatting is a different product wearing a
+   very recognisable borrowed aesthetic.
+2. **Persona honesty (trait 6).** Vesper doesn't pretend to be human. Two
+   hosts performing rapport is precisely that pretence.
+3. **The format is already a cliché.** "AI podcast with two hosts" is
+   instantly identifiable, and being identifiable as generic AI output is
+   the thing we differentiate against.
+
+What we should borrow: **sectioning, pacing, and the join-then-resume
+interaction.** The differentiator is that it is *your trip*, not that
+there are two voices discussing it.
+
+> Possible later variant, not v1: the Reading's final section is spec'd to
+> *argue the trip's open decision*. A two-voice treatment of a genuine
+> for/against is a real use of dialogue rather than cargo-culting one.
+
+### The artifact already exists — in two halves that have never met
+
+**Half one — the script.** The companion Reading in
+`trips-home-promotion-model-2026-07-27.md` is already podcast-shaped:
+sectioned, `Listen N min / read N min`, section titles that carry the
+personalisation, a thread line, a refresh clock (recompose on itinerary
+commit and at T-7), and a pre-registered quality gate (the swap test).
+**Sections are the natural interrupt boundaries** the NotebookLM lesson
+asks for.
+
+**Half two — the delivery layer.** `narration.py` is more built than
+expected: per-stop audio (`/audio/{entity_type}/{entity_id}`), a
+**pre-render manifest** for downloading every cached narration over WiFi
+pre-departure and playing it **offline**, geofenced `NarrationStop`s, and
+a **depth ladder** (`narration_count` → intro / detail / obscure).
+
+But these are *per-place fragments*, not a long-form piece with a
+through-line. The gap between them is the podcast artifact: **the Reading
+rendered as a sectioned audio spine.**
+
+### We already designed past NotebookLM
+
+`interruptionController.ts` implements:
+
+```
+narrating → pausing (fade + capture bookmark) → in_voice
+          → bridging (bridge sentence) → resume
+```
+
+with `BookmarkDecision.mode: 'bridge' | 'renarrate' | 'skip'`.
+
+That third field is the **adapt-on-demand** primitive. NotebookLM, per its
+own docs, resumes the original overview. Ours can decide to *re-narrate*
+the segment because the answer changed its context, or *skip* it because
+the question revealed the listener doesn't need it. **That is a better
+design than the reference implementation, and it is not wired to
+anything.**
+
+### The architecture to build toward
+
+**Pre-rendered spine + live interruption + adaptive resume.**
+
+- **The spine is pre-rendered per section** (ElevenLabs, long-form,
+  expressive). Cheap, cacheable, offline-capable — reuses the manifest and
+  lease machinery already built.
+- **Interruptions are answered live** by the conversational agent
+  (Cartesia, low-latency) — the phase-1 streaming work applies directly.
+- **Resume is a decision, not a rewind** — `bridge` / `renarrate` / `skip`
+  per the controller.
+
+Fully-live generation is the wrong shape: it forfeits pre-render, offline,
+and cost control on the modality we already quota.
+
+### ⚠️ The seam this creates
+
+**The voice changes at the moment of interruption.** If the spine is
+ElevenLabs and the answer is Cartesia, the listener hears a different
+speaker the instant they engage — at the single moment they are paying
+most attention. This is the same class of failure as the unwired
+`voice_id`, and it undermines the entire "one voice with taste" position.
+
+Three options, decide deliberately:
+
+1. **One provider for both** — simplest, costs long-form expressiveness or
+   realtime latency depending which you pick.
+2. **Matched voice across providers** — a designed/cloned voice registered
+   with both, verified by listening, not by config.
+3. **Mask it with the bridge** — the `bridgeText` sentence already exists
+   between voice-answer and resume; if the bridge is rendered in the
+   *spine's* voice, the handoff back is seamless even if the answer wasn't.
+   Cheapest, and the machinery is already there.
+
+Option 3 is likely the v1 answer, but **the switch into voice is still
+audible** — only the return is covered.
+
+### Sequencing for the podcast path
+
+It sits **after** phase 1 (the answer path must be fast before it is worth
+interrupting into) and **depends on the Reading composer**, which is Trips
+phase 4 and gated on the swap test. Order:
+
+1. Reading composer exists and passes the swap test *(Trips plan, phase 4)*
+2. Render the Reading as a sectioned audio spine — reuse the manifest,
+   lease, and offline machinery
+3. Wire the interruption chain end-to-end *(phase 3 above)* — including
+   the resume-directive call site
+4. Then, and only then, `renarrate` / `skip` — the adaptive modes are
+   worthless until the basic loop is trustworthy
+
+**Do not build the podcast before the Reading passes the swap test.**
+Audio multiplies whatever the writing is; narrating a generic city guide
+in a beautiful voice produces a generic audio guide, which is worse than
+shipping nothing.
+
 ## Sequencing
 
 Phase 0 → 1 is the critical path and worth doing as one push; 1a alone
