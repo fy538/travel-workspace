@@ -41,24 +41,22 @@ from a different plan.** Ignore that line.
 
 **Decided — do not relitigate:**
 
+- **D1 — RATIFIED 2026-07-28 (founder): adopt `concierge_feed`.** Two
+  binding conditions — see **Rulings** at the end of this doc.
+- **D3 — RATIFIED 2026-07-28 (founder): extend, with the slim-DTO
+  clarification.** Three binding conditions — see **Rulings**.
 - **D2** — coordination rule only; Vesper/Concierge home is a separate
   plan. Not blocking.
 - **D4 typography** — italic **approved** as a limited register (Vesper
   voice only), subject to the face/role, 17 px floor and ratchet
   conditions in D4. Serif-13 **removed** from the scale → sans-13.
 
-**Open — phase 1 exists to close these. Two already have strong
-recommendations; they need ratification, not fresh analysis:**
+**Open — founder's call, blocks phase 2:**
 
-- **D1** — adopt `concierge_feed` rather than build a second ranker.
-  *Recommended: adopt.*
-- **D3** — extend `ConciergeHomeCard`; do not introduce a parallel `Item`
-  type. Only `row_line`, `tier` and `depth` are genuinely new.
-  *Recommended: extend.*
 - **Row-tap destination** — the spec says a docked row opens *that trip*;
   `Rail.tsx` today opens *that item's Deck*. A genuine fork, founder's
   call. *Suggested: Deck for actionable items, trip page for the
-  `· 3 OPEN` depth affordance.*
+  `· 3 OPEN` depth affordance.* (Program queue: **F3**.)
 
 **Code written so far: none.**
 
@@ -411,3 +409,59 @@ strategic value, and they do not need pixels.
   page; carry them over rather than redrawing
 - Promotion of the design page CANDIDATE → CANON, which is governance,
   not build
+
+---
+
+## Rulings — appended 2026-07-28 (satisfies phase-1 exit criterion 1 for D1/D3)
+
+Ratified by founder via the home-surfaces program session
+(`home-surfaces-program-2026-07-28.md`, F1/F2), after adversarial
+analysis. The conditions are **binding** — they exist because each closes
+the specific way its decision quietly fails later.
+
+### D1 · ADOPT `concierge_feed`
+
+The deciding argument: two rankers over the same trip state *will*
+disagree, and "the same vote is #1 on Trips but not on Vesper" is an
+unreproducible-class bug that attacks the product's core claim. The
+Vesper hero reads this ranker's top card for its grounding, so a parallel
+ranker would force that migration twice. The honest caveat, accepted: the
+feedback-tuned weights have never been validated against real usage — but
+a fresh ranker's weights would be equally unvalidated, minus 26 working
+producers.
+
+**Conditions:**
+
+1. **Stack-specific logic is filtering, never re-scoring.** Crown
+   hysteresis, one-row-per-trip, and imminence tiebreaks are implemented
+   in the projection layer as deterministic filters over the
+   already-ranked list. Re-scoring in the projection rebuilds the second
+   ranker inside the first — the exact failure adoption exists to
+   prevent.
+2. **The seam becomes CI.** A golden-fixture test asserts the Trips
+   projection's #1 candidate == the Vesper hero's focus card for
+   identical input. This turns program seam S1 from a commit-message
+   convention into a guard.
+
+### D3 · EXTEND `ConciergeHomeCard` — with the slim-DTO clarification
+
+"Extend" means: extend the **internal domain model**; the stack endpoint
+emits a **slim projection DTO** (~8 fields). A response shape is not a
+parallel type — the drift risk is two *domain models* describing one
+object, not two serializations of one model. This dissolves the fat-type
+objection (30+ fields, two Deck payloads) without reintroducing `Item`.
+
+Cost symmetry noted at ratification: the 26 `row_line` compositions are
+the bulk of the work **under either option** — the choice was purely
+about drift, and extend wins it.
+
+**Conditions:**
+
+1. **`row_line` is clamped in the model** — a hard character budget
+   enforced the way `ConciergeHomeLeadNote._clamp_text` already does it,
+   not a lint hope across 26 producers.
+2. **`tier` is derived, never stored** — the `_PRIO_*` → tier mapping
+   function plus the exhaustiveness test already named in phase-1 exit
+   criteria, so tier and priority can never disagree.
+3. **Deck payloads never reach the Trips wire.** The slim DTO excludes
+   `structured` and `focus`.

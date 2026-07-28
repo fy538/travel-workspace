@@ -116,8 +116,10 @@ three surfaces plus chat.
 ### 3 · The row, on a device *(days 4–6)*
 
 - **Vesper L1** — `HRow` on History, free fields. Retires the "V" avatar.
-- **Vesper L3** — sectioning per F4 (state-first recommended; note B is a
-  valid interim if F4 stalls, per the History plan).
+- **Vesper L3** — sectioning per **F4 as ratified: state-first**, with
+  the composite "open" definition from the History plan's ruling (never
+  bare `session_status`). The old B-as-interim hedge is void — F4 is
+  answered and L2 precedes L3 in this sequence anyway.
 - **Vesper L4** — empty / loading / no-results states.
 - **First device capture.** The program's first contact with hardware.
   History's row and Trips' docked row are the same *genre* — hairline-
