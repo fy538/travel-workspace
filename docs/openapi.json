@@ -5805,6 +5805,66 @@
         }
       }
     },
+    "/api/atlas/trips-seed-signals": {
+      "post": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Record Trips Seed Signal",
+        "description": "Capture one private, grounded Trips-home seed gesture.",
+        "operationId": "record_trips_seed_signal_api_atlas_trips_seed_signals_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TripsSeedSignalCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripsSeedSignalResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/metrics/discover": {
       "get": {
         "tags": [
@@ -72565,6 +72625,78 @@
           "generated_at"
         ],
         "title": "TripsHomeStackProjection"
+      },
+      "TripsSeedSignalCreate": {
+        "properties": {
+          "event_kind": {
+            "type": "string",
+            "enum": [
+              "seed_tap",
+              "seed_chat",
+              "seed_dismiss"
+            ],
+            "title": "Event Kind"
+          },
+          "event_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Event Id"
+          },
+          "seed_id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Seed Id"
+          },
+          "place": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Place"
+          },
+          "ground": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Ground"
+          }
+        },
+        "type": "object",
+        "required": [
+          "event_kind",
+          "event_id",
+          "seed_id",
+          "place",
+          "ground"
+        ],
+        "title": "TripsSeedSignalCreate",
+        "description": "One explicit gesture on a grounded Trips-home seed."
+      },
+      "TripsSeedSignalResponse": {
+        "properties": {
+          "recorded": {
+            "type": "boolean",
+            "title": "Recorded"
+          },
+          "observation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observation Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "recorded"
+        ],
+        "title": "TripsSeedSignalResponse",
+        "description": "Whether the gesture entered the traveler's private Personal Memory."
       },
       "UniversalSearchItem": {
         "properties": {

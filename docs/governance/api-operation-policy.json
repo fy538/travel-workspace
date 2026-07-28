@@ -1132,6 +1132,22 @@
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
       "review_by": "2026-08-15"
     },
+    "POST /api/atlas/trips-seed-signals": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "TripsHomeSeedSignals",
+          "source": "travel-app/data/tripsSeedSignals.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "trips-atlas",
+      "reason": "Grounded Trips-home seed gestures enter the traveler's private Personal Memory without blocking the interaction.",
+      "removal_trigger": null,
+      "review_by": null
+    },
     "POST /api/conversations/{conversation_id}/location": {
       "audience": "app",
       "consumers": [],
