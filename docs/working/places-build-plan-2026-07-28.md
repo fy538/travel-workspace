@@ -271,6 +271,16 @@ never which scopes exist.
 **B4. City scopes stop depending on saves.** A city you have never saved in must
 be selectable, or the "Selected city" screen is unreachable.
 
+**Implementation status (2026-07-28): B1–B4 landed in backend commit
+`db2fd449`.** `users.home_location` is now the sole authoritative Home;
+`users.places_scope` persists all six scope kinds; the resolver reports
+position and the explicit anchor it chose; and city scopes accept either a
+corpus place id or explicit coordinates, independent of saves. Historical
+`home:primary` facts remain provenance only. The migration upgraded cleanly
+from an empty database through the single Alembic head, and the fresh-schema
+offline run passed 14,669 tests; its two failures were unrelated existing
+venue/site field-consistency gaps for unified-ingestion columns.
+
 > **More load-bearing than it looks.** B4 is not a scope-picker nicety — it is
 > the entire reachability story for 621 dossiers. See E1: once any city is
 > selectable, any city's content is one scope-change away, which is what closes
