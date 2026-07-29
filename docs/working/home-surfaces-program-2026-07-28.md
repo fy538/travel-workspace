@@ -307,6 +307,25 @@ real place-id or coordinate resolution path for starter-city selection.
 contract exists; no location or starter-city fact is fabricated in the
 meantime.
 
+App `846083aa` continues D2 through the shippable Layer 3–4 objects.
+`GuidePreview` now owns the single optional highlight shape, consumes a real
+cover URL when the projection supplies one, and otherwise shows an explicit
+image fallback rather than fabricated photography. `ReadingDoor` remains a
+non-row—no photograph or excerpt—and exposes only its grounded title and
+coverage count. `ExperienceRow` now has independent open/save targets and a
+single time resolver that says `Times unconfirmed` when the projection has no
+time fact. The default registered flow passes on iPhone 16 Pro / iOS 18.2 with
+separate guide and reading-depth captures, opens the dossier, and returns to
+Places (`direct-maestro-2026-07-29T05-13-11-817Z`). Focused Jest passes 14/14;
+TypeScript, ESLint, and both Places registries pass.
+
+The boundary remains explicit. Layer 3's carousel and shared-place variants are
+still deliberately deferred; `GapPreview` still waits for Trips to distinguish
+a real itinerary gap from missing knowledge. `ExperienceRow` is wired and
+statically proven but is not called device-proven because neither the real nor
+mock projection currently emits an experience row or timing facts. ReadingDoor
+is device-proven. D2 as a whole remains open.
+
 ## The four seams
 
 The places where two plans touch one artifact. The rule at every seam:
@@ -399,7 +418,7 @@ record here — not a reason for a step 9.
 | 5 · Trips 2–3 | complete 2026-07-28 — phases 2–3, Places B1–B4, CONNECT, and private grounded signal writes landed with device proof | agent `76f534ba`, `db2fd449`, `8120da31`, `a2ad99a1`; app `eaeb3627`, `08dc9d19`, `14280999`, `a68c5755`, `4e375e67`, `3bfe8fd3`, `32e35526`; contract `a9c8e45`, `8b24a9ff`; verdict `4cb5e342` |
 | 6 · Places projection + un-borrow | complete 2026-07-28 — C1–C6 and D1 landed; the server-owned root, persisted scope, and marker priority are device-proven | agent `b05be32d`, `17c0cf5d`, `84ccc496`, `e859f0e5`, `b95f97de`, `d15cb49e`, `bd8a83a4`; app `8d676b4f`, `de15ec8f`, `6181ceff`; contract `6ed14cf`, `63395a2`, `c7df72b` |
 | 7 · The Vesper cutover | complete + device-proven 2026-07-28 on isolated lanes; child-main landing deferred behind concurrent dirty worktrees | agent `65d96662`; app `3f2013b7`; contract `5bd01ee` |
-| 8 · Content + tails | in progress 2026-07-29 — Places D3–D6, destinations/offline, and the Layer 2 row-family slice are device-proven; F6/E2 is ratified keep-off; the D2 catalogue, Layer 5–6 substrate contracts, and gated Trips Phase 4–5 tails remain | agent `92645f4c`; app `3f2013b7`, `6d60823b`, `f3f54ac2`; contract `942befb` |
+| 8 · Content + tails | in progress 2026-07-29 — Places D3–D6, destinations/offline, the Layer 2 row family, GuidePreview, and ReadingDoor are device-proven; F6/E2 is ratified keep-off; the D2 catalogue, Experience projection/device gate, Layer 5–6 substrate contracts, and gated Trips Phase 4–5 tails remain | agent `92645f4c`; app `3f2013b7`, `6d60823b`, `f3f54ac2`, `846083aa`; contract `942befb` |
 
 Update this table as steps land. One line per completion, with the
 commit hash.

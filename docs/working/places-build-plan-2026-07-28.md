@@ -424,6 +424,25 @@ real place-id or coordinate-resolution path. `SearchEscape` is present as the
 catalogue atom but intentionally remains unwired. Do not derive identifiers
 from display labels or invent coordinates to advance the visual catalogue.
 
+**Layer-3/4 update (2026-07-29):** app `846083aa` separates the catalogue
+atoms and depth objects into bounded modules, then lands the two shippable
+objects. `GuidePreview` is the one optional highlight shape and consumes only
+server-selected title/place/cover facts; a missing cover stays an explicit
+image fallback. `ReadingDoor` carries no photograph or excerpt and says only
+its title plus the projection's grounded coverage count. `ExperienceRow`
+preserves separate open/save targets and resolves absent time facts to
+`Times unconfirmed` rather than guessing.
+
+Focused Jest passes 14/14; TypeScript, ESLint, scenario registration, and design
+references pass. The iPhone 16 Pro / iOS 18.2 flow
+`direct-maestro-2026-07-29T05-13-11-817Z` captures GuidePreview and ReadingDoor,
+opens the reading dossier, and returns to Places. This is device proof for the
+guide and reading door only. ExperienceRow is wired and statically proven but
+remains projection/device-gated because no current real or mock Places
+projection emits an experience row or time facts. PlaceCarousel and
+SharedPlacesPreview remain deferred by design; GapPreview remains gated on
+Trips distinguishing a real gap from missing knowledge. D2 remains open.
+
 The real defect was neither grammar: `SectionHeading` is **17px/600** and
 `PlaceRow`'s name is **16px/600** — same weight, one pixel apart, so the heading
 barely outranks its own content. Both candidate fixes resolve that ambiguity in
