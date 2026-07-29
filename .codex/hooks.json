@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "git -C travel-agent log --oneline -3 2>/dev/null; git -C travel-app log --oneline -3 2>/dev/null"
+          }
+        ]
+      }
+    ]
+  }
+}
