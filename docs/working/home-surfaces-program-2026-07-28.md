@@ -186,6 +186,24 @@ retire-don't-delete conditions in one move.**
 - **Places B1–B4 interleave here** as backend work during any FE
   wait — B4 especially, since it gates dossier reachability (C6).
 
+**Landed 2026-07-28:** Places B1–B4 are in backend `db2fd449`.
+The pull-forward is also complete: backend `8120da31` records grounded
+tap/chat/dismiss observations as private Personal Memory
+(`shared=False`), backend `a2ad99a1` registers the cold+saves device
+fixture, app `ea893043` ships the permanent zero-install CONNECT door and
+select/dim/chat/dismiss behavior, and app `3bfe8fd3` + `32e35526` land
+the fixture and device-found navigation-clearance corrections. Root
+contract `a9c8e45` and app worktree contract `8b24a9ff` regenerate the
+OpenAPI projection and consumer types.
+
+Focused iPhone 16 Pro evidence passed on iOS 18.2:
+`polish-trips-home-cold-saves-connect` selects Kyoto, exposes the
+grounded chat action, dismisses it, renders the full CONNECT promise
+above floating navigation, and confirms the door exits Trips. The
+screen test independently proves the no-trip destination is
+`/trip-begin`. Focused Jest: 20/20; TypeScript: clean; scenario registry:
+28 registered; ESLint: zero errors (existing warnings only).
+
 ### 6 · Places projection + un-borrow
 
 - **Places C1–C6** per the Places critical path. **C2 lands before any
@@ -281,7 +299,7 @@ recorded below.
 | 2 · Typography, once | complete 2026-07-28 | app `aee56838` |
 | 3 · The row, on a device | complete 2026-07-28 | app `f74dbafb`, `b9138405`, `27a009d8`, `8bde3c98`, `06af07c9`, `7f36afe2`, `b4b4e745`; docs/evidence `8647fce` |
 | 4 · The extraction | complete 2026-07-28 | app `8947b1c7` |
-| 5 · Trips 2–3 | in progress — Trips phases 2–3 and Places B1–B4 landed; CONNECT and signal writes remain | agent `76f534ba`, `db2fd449`; app `eaeb3627`, `08dc9d19`, `14280999`, `a68c5755`, `4e375e67`, verdict `4cb5e342` |
+| 5 · Trips 2–3 | complete 2026-07-28 — phases 2–3, Places B1–B4, CONNECT, and private grounded signal writes landed with device proof | agent `76f534ba`, `db2fd449`, `8120da31`, `a2ad99a1`; app `eaeb3627`, `08dc9d19`, `14280999`, `a68c5755`, `4e375e67`, `3bfe8fd3`, `32e35526`; contract `a9c8e45`, `8b24a9ff`; verdict `4cb5e342` |
 | 6 · Places projection + un-borrow | not started | |
 | 7 · The Vesper cutover | not started | |
 | 8 · Content + tails | not started | |

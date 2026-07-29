@@ -398,6 +398,22 @@ Seed derivation (taste-backs first), select/dim/chat interaction, and the
 dismissal signal write to `signal_memory.py` (`seed_tap` / `seed_chat` /
 `seed_dismiss`).
 
+**Pull-forward landed 2026-07-28.** The existing grounded saved-place
+cells now support select/dim/chat/dismiss without inventing a cold-start
+destination, and the permanent CONNECT card promises exactly
+“Share a link — no app needed.” Backend `8120da31` writes all three
+signals to private Personal Memory (`shared=False`); `a2ad99a1`
+registers the cold+saves fixture. App `ea893043`, `3bfe8fd3`, and
+`32e35526` ship the interaction, fixture, and device-found clearance
+fixes. Contract commits are root `a9c8e45` and app worktree `8b24a9ff`.
+
+Device exit: the focused iPhone 16 Pro / iOS 18.2 Maestro flow
+`polish-trips-home-cold-saves-connect` passed selection, dismissal,
+unobscured CONNECT rendering, and the CONNECT exit from Trips. The
+screen test proves that the no-trip branch routes to `/trip-begin`.
+Focused Jest passed 20/20; TypeScript and the 28-scenario registry
+passed; targeted ESLint reported zero errors.
+
 - **Blocked on the tabled art direction** — but only for the cells.
   The *signal writes* are not blocked and are independently valuable:
   they are the plumbing answer to the affinity-ranker that the roadmap
