@@ -533,6 +533,16 @@
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
       "review_by": "2026-08-15"
     },
+    "GET /api/trips/{trip_id}/booking/blocks/{block_id}/confirmation-share": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "booking",
+      "reason": "The typed mobile transport is staged for confirmation-share status; product reachability remains intentionally pending.",
+      "removal_trigger": null,
+      "review_by": null
+    },
     "GET /api/trips/{trip_id}/booking/readiness": {
       "audience": "app",
       "consumers": [],
@@ -1310,6 +1320,16 @@
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
       "review_by": "2026-08-15"
+    },
+    "POST /api/trips/{trip_id}/itinerary/blocks/{block_id}/release-handoff": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "itinerary",
+      "reason": "The typed mobile transport is staged for the itinerary handoff flow; product reachability remains intentionally pending.",
+      "removal_trigger": null,
+      "review_by": null
     },
     "POST /api/trips/{trip_id}/itinerary/operations/provider-sagas/{saga_id}/advance": {
       "audience": "app",

@@ -269,10 +269,11 @@ def main() -> int:
     parser.add_argument("--openapi", type=Path, default=OPENAPI_SNAPSHOT)
     parser.add_argument("--policy", type=Path, default=POLICY_PATH)
     parser.add_argument("--output", type=Path, default=APP_SNAPSHOT)
+    parser.add_argument("--app-root", type=Path, default=APP_ROOT)
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
 
-    findings, _, _ = audit(args.openapi, args.policy)
+    findings, _, _ = audit(args.openapi, args.policy, app_root=args.app_root)
     if findings:
         print("Cannot project an invalid API operation registry:", file=sys.stderr)
         for finding in sorted(findings, key=lambda item: (item.code, item.message)):
@@ -281,9 +282,9 @@ def main() -> int:
 
     spec = json.loads(args.openapi.read_text(encoding="utf-8"))
     policy = json.loads(args.policy.read_text(encoding="utf-8"))
-    mobile_consumers, _ = discover_mobile_consumers()
+    mobile_consumers, _ = discover_mobile_consumers(args.app_root)
     selected = select_app_operations(spec, policy, mobile_consumers)
-    required_schemas = discover_mobile_schema_consumers()
+    required_schemas = discover_mobile_schema_consumers(args.app_root)
     projection = build_app_projection(spec, selected, required_schemas)
     rendered = render_projection(projection)
 

@@ -14,6 +14,7 @@ from api_contract_audit import (  # noqa: E402
     _iter_call_bodies,
     _method_for_call,
     audit,
+    discover_mobile_consumers,
     load_openapi,
     normalize_path,
 )
@@ -229,6 +230,30 @@ class APIContractAuditTests(unittest.TestCase):
         )
         self.assertIn("transport-only", {finding.code for finding in findings})
         self.assertEqual(transport_only, ["GET /api/things"])
+
+    def test_mobile_discovery_can_target_an_isolated_app_worktree(self) -> None:
+        directory = tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parent.parent)
+        self.addCleanup(directory.cleanup)
+        app_root = Path(directory.name)
+        http = app_root / "utils" / "api" / "http.ts"
+        http.parent.mkdir(parents=True)
+        http.write_text(
+            "export const httpApi = {\n"
+            "  async listThings() { return _request('/api/things'); },\n"
+            "};\n",
+            encoding="utf-8",
+        )
+        screen = app_root / "app" / "things.tsx"
+        screen.parent.mkdir(parents=True)
+        screen.write_text("api.listThings();\n", encoding="utf-8")
+
+        consumers, endpoints = discover_mobile_consumers(app_root)
+
+        self.assertEqual(endpoints, {("GET", "/api/things")})
+        self.assertEqual(
+            {consumer.kind for consumer in consumers[("GET", "/api/things")]},
+            {"app_transport", "app_source"},
+        )
 
     def test_current_workspace_policy_is_green(self) -> None:
         findings, counts, _ = audit()

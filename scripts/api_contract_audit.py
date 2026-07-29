@@ -285,7 +285,11 @@ def load_openapi(
 
 
 def _relative(path: Path) -> str:
-    return path.relative_to(WORKSPACE_ROOT).as_posix()
+    resolved = path.resolve()
+    try:
+        return resolved.relative_to(WORKSPACE_ROOT).as_posix()
+    except ValueError:
+        return resolved.as_posix()
 
 
 def _http_method_at(source: str, position: int) -> str | None:
@@ -302,12 +306,14 @@ def _http_method_at(source: str, position: int) -> str | None:
     return candidates[-1].group(1) if candidates else None
 
 
-def _product_method_callers(method_names: set[str]) -> dict[str, set[str]]:
+def _product_method_callers(
+    method_names: set[str], app_root: Path = APP_ROOT
+) -> dict[str, set[str]]:
     callers: dict[str, set[str]] = defaultdict(set)
-    if not APP_ROOT.exists():
+    if not app_root.exists():
         return callers
     pattern = re.compile(r"\bapi\.([A-Za-z_]\w*)\s*\(")
-    for path in APP_ROOT.rglob("*"):
+    for path in app_root.rglob("*"):
         if path.suffix not in {".ts", ".tsx"}:
             continue
         if any(
@@ -315,7 +321,7 @@ def _product_method_callers(method_names: set[str]) -> dict[str, set[str]]:
             for part in path.parts
         ):
             continue
-        relative = path.relative_to(APP_ROOT)
+        relative = path.relative_to(app_root)
         if relative.parts[:2] == ("utils", "api"):
             continue
         source = path.read_text(encoding="utf-8", errors="ignore")
@@ -326,13 +332,16 @@ def _product_method_callers(method_names: set[str]) -> dict[str, set[str]]:
     return callers
 
 
-def discover_mobile_consumers() -> tuple[
+def discover_mobile_consumers(
+    app_root: Path = APP_ROOT,
+) -> tuple[
     dict[tuple[str, str], set[Consumer]], set[tuple[str, str]]
 ]:
     consumers: dict[tuple[str, str], set[Consumer]] = defaultdict(set)
     calls_by_method: dict[str, set[tuple[str, str]]] = defaultdict(set)
-    if HTTP_TS.exists():
-        source = HTTP_TS.read_text(encoding="utf-8")
+    http_ts = app_root / "utils" / "api" / "http.ts"
+    if http_ts.exists():
+        source = http_ts.read_text(encoding="utf-8")
         for callee, url, body, position in _iter_call_bodies(
             source, {"_request", "_uploadFile"}
         ):
@@ -340,12 +349,12 @@ def discover_mobile_consumers() -> tuple[
             normalized = (method, normalize_path(url))
             symbol = _http_method_at(source, position)
             consumers[normalized].add(
-                Consumer("app_transport", _relative(HTTP_TS), symbol)
+                Consumer("app_transport", _relative(http_ts), symbol)
             )
             if symbol:
                 calls_by_method[symbol].add(normalized)
 
-    product_callers = _product_method_callers(set(calls_by_method))
+    product_callers = _product_method_callers(set(calls_by_method), app_root)
     for symbol, endpoints in calls_by_method.items():
         for endpoint in endpoints:
             for source in product_callers.get(symbol, set()):
@@ -353,8 +362,8 @@ def discover_mobile_consumers() -> tuple[
 
     # Direct calls outside the facade: fetch/expoFetch and streamSSE. Calls
     # whose URL is passed indirectly are declared in policy and source-checked.
-    if APP_ROOT.exists():
-        for path in APP_ROOT.rglob("*"):
+    if app_root.exists():
+        for path in app_root.rglob("*"):
             if path.suffix not in {".ts", ".tsx"}:
                 continue
             if any(
@@ -362,7 +371,7 @@ def discover_mobile_consumers() -> tuple[
                 for part in path.parts
             ):
                 continue
-            if path in {HTTP_TS, APP_ROOT / "utils" / "api" / "schema.gen.ts"}:
+            if path in {http_ts, app_root / "utils" / "api" / "schema.gen.ts"}:
                 continue
             source = path.read_text(encoding="utf-8", errors="ignore")
             for callee, url, body, _ in _iter_call_bodies(
@@ -522,6 +531,7 @@ def audit(
     policy_path: Path = POLICY_PATH,
     discovered_mobile_consumers: dict[tuple[str, str], set[Consumer]] | None = None,
     registered_feature_flags: set[str] | None = None,
+    app_root: Path = APP_ROOT,
 ) -> tuple[list[Finding], dict[str, int], list[str]]:
     operations, findings = load_openapi(openapi_path)
     policy, policy_findings = load_policy(policy_path)
@@ -543,7 +553,7 @@ def audit(
     mobile_consumers = (
         discovered_mobile_consumers
         if discovered_mobile_consumers is not None
-        else discover_mobile_consumers()[0]
+        else discover_mobile_consumers(app_root)[0]
     )
     mobile_endpoints = set(mobile_consumers)
 
@@ -709,11 +719,14 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--openapi", type=Path, default=OPENAPI_SNAPSHOT)
     parser.add_argument("--policy", type=Path, default=POLICY_PATH)
+    parser.add_argument("--app-root", type=Path, default=APP_ROOT)
     parser.add_argument("--list-transport-only", action="store_true")
     parser.add_argument("--json", action="store_true", dest="json_output")
     args = parser.parse_args()
 
-    findings, counts, transport_only = audit(args.openapi, args.policy)
+    findings, counts, transport_only = audit(
+        args.openapi, args.policy, app_root=args.app_root
+    )
     if args.json_output:
         print(
             json.dumps(

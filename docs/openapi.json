@@ -6181,6 +6181,344 @@
         }
       }
     },
+    "/api/trips/{trip_id}/booking/coverage": {
+      "get": {
+        "tags": [
+          "booking"
+        ],
+        "summary": "Get Trip Booking Coverage Route",
+        "description": "Per-category booking coverage: what's covered, in progress (and by\nwhom), and still open \u2014 the read model behind \"did anyone book the\nhotel?\" answering itself. Membership-gated like /readiness.",
+        "operationId": "get_trip_booking_coverage_route_api_trips__trip_id__booking_coverage_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripBookingCoverageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/booking/captured-amount/{block_id}": {
+      "get": {
+        "tags": [
+          "booking"
+        ],
+        "summary": "Get Block Captured Amount",
+        "description": "The real amount captured from a confirmation for this block, if\nany (S4) \u2014 what \"Split the cost\" prefills with instead of a blank\nfield. ``amount``/``currency`` are both null when nothing was\ncaptured; the FE should fall back to today's blank-field behavior.",
+        "operationId": "get_block_captured_amount_api_trips__trip_id__booking_captured_amount__block_id__get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "block_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Block Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockCapturedAmountResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/booking/blocks/{block_id}/confirmation-share": {
+      "get": {
+        "tags": [
+          "booking"
+        ],
+        "summary": "Get Booking Confirmation Share Status",
+        "description": "Read-only: is there an active share for this block, and what's its\nlink? Never mints \u2014 the FE uses this to decide whether to show \"Share\nto the group\" or \"Stop sharing\" without side effects on a plain render.",
+        "operationId": "get_booking_confirmation_share_status_api_trips__trip_id__booking_blocks__block_id__confirmation_share_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "block_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Block Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingConfirmationShareStatusResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "booking"
+        ],
+        "summary": "Create Booking Confirmation Share",
+        "description": "Mint (or reuse) the \"Share to the group\" link for a confirmed block.\n\nMembership-gated like /coverage \u2014 any trip member may share a settled\nbooking, not just whoever confirmed it (mirrors the story-share model:\nonce something is a fact on the trip, any member can pass it on).\nRejects an open/tentative block with 409 rather than silently minting a\nshare for something that isn't a settled fact yet.",
+        "operationId": "create_booking_confirmation_share_api_trips__trip_id__booking_blocks__block_id__confirmation_share_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "block_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Block Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingConfirmationShareResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/booking/blocks/{block_id}/confirmation-share/revoke": {
+      "post": {
+        "tags": [
+          "booking"
+        ],
+        "summary": "Revoke Booking Confirmation Share",
+        "description": "Revoke the block's active share. Creator-only (actor_controls in the\nbooking_confirmed policy) \u2014 a different member seeing the same booking\nin-trip cannot pull someone else's already-shared link.",
+        "operationId": "revoke_booking_confirmation_share_api_trips__trip_id__booking_blocks__block_id__confirmation_share_revoke_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "block_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Block Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingConfirmationShareRevokeResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/booking/affiliate-links/travel-insurance": {
       "get": {
         "tags": [
@@ -15748,6 +16086,85 @@
         }
       }
     },
+    "/api/trips/{trip_id}/invites/{token}/plan-preview": {
+      "patch": {
+        "tags": [
+          "trip-invites"
+        ],
+        "summary": "Set Trip Invite Plan Preview",
+        "description": "Toggle the rich live-preview tier on a personal invite.\n\nOrganizer-only, matching revoke. Turning it on requires the invite be\na personal (max_uses=1) token \u2014 a group-shareable link can never carry\nit (see docs/working/invite-live-preview-spec-2026-07-28.md). The\ninvite must still be open (not revoked, not consumed).",
+        "operationId": "set_trip_invite_plan_preview_api_trips__trip_id__invites__token__plan_preview_patch",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Token"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvitePlanPreviewUpdateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvitePlanPreviewUpdateResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/conversations/{conversation_id}/invites": {
       "post": {
         "tags": [
@@ -19906,6 +20323,154 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PlacesProjection"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/places/saved": {
+      "get": {
+        "tags": [
+          "places"
+        ],
+        "summary": "Get Places Saved",
+        "description": "Return personal saves inside the persisted Places scope.",
+        "operationId": "get_places_saved_api_places_saved_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 1000,
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlacesSavedPage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/places/reading": {
+      "get": {
+        "tags": [
+          "places"
+        ],
+        "summary": "Get Places Reading",
+        "description": "Return manually approved reading inside the persisted Places scope.",
+        "operationId": "get_places_reading_api_places_reading_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 1000,
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlacesReadingPage"
                 }
               }
             }
@@ -36413,6 +36978,43 @@
         "title": "BlockAlternativesResponse",
         "description": "``GET /api/trips/{trip_id}/itinerary/blocks/{block_id}/alternatives``.\n\nThe CandidateSet for a block's Swap surface. ``reason`` is set (and\n``candidates`` empty) when there's nothing to offer \u2014 e.g. ``no_venue``\nfor a free-time / experience block."
       },
+      "BlockCapturedAmountResponse": {
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Block Id"
+          },
+          "amount": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Amount"
+          },
+          "currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Currency"
+          }
+        },
+        "type": "object",
+        "required": [
+          "block_id"
+        ],
+        "title": "BlockCapturedAmountResponse",
+        "description": "``GET /api/trips/{trip_id}/booking/captured-amount/{block_id}``\nresponse body \u2014 the \"Split the cost\" prefill (S4). ``amount``/\n``currency`` are both ``None`` when nothing was captured for this\nblock; never a guessed or computed value, only what a confirmation\nitself stated (see ``backend/inbound/extraction.py``)."
+      },
       "BlockPrecondition": {
         "properties": {
           "kind": {
@@ -36715,6 +37317,63 @@
         "title": "BookingCancellationTruth",
         "description": "Viewer-safe, exact cancellation lifecycle derived from provider evidence."
       },
+      "BookingConfirmationShareResponse": {
+        "properties": {
+          "share_token": {
+            "type": "string",
+            "title": "Share Token"
+          },
+          "share_url": {
+            "type": "string",
+            "title": "Share Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "share_token",
+          "share_url"
+        ],
+        "title": "BookingConfirmationShareResponse",
+        "description": "Authenticated API response for creating/reusing a share \u2014 the\ntrip member's own view, safe to include the raw token (they're the\none who just consented to share it)."
+      },
+      "BookingConfirmationShareRevokeResponse": {
+        "properties": {
+          "revoked": {
+            "type": "boolean",
+            "title": "Revoked"
+          }
+        },
+        "type": "object",
+        "required": [
+          "revoked"
+        ],
+        "title": "BookingConfirmationShareRevokeResponse"
+      },
+      "BookingConfirmationShareStatusResponse": {
+        "properties": {
+          "is_shared": {
+            "type": "boolean",
+            "title": "Is Shared"
+          },
+          "share_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Share Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "is_shared"
+        ],
+        "title": "BookingConfirmationShareStatusResponse",
+        "description": "Read-only status for a block \u2014 lets the FE show a \"Stop sharing\"\naffordance without minting anything. ``share_url`` is only present\nwhen ``is_shared`` is true."
+      },
       "BookingConsentNudgeRequest": {
         "properties": {
           "target_user_id": {
@@ -36865,6 +37524,115 @@
           "resolved_at"
         ],
         "title": "BookingCostReviewResolution"
+      },
+      "BookingCoverageItem": {
+        "properties": {
+          "block_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Block Id"
+          },
+          "accommodation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Accommodation Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "time_start": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Start"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "covered",
+              "in_progress",
+              "uncovered"
+            ],
+            "title": "Status"
+          },
+          "actor_user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Actor User Id"
+          },
+          "actor_display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Actor Display Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "status"
+        ],
+        "title": "BookingCoverageItem",
+        "description": "One lane entry \u2014 an itinerary block (flight/dinner_activity/\ntransport) or a trip_accommodations row (stay). Exactly one of\n``block_id`` / ``accommodation_id`` is set, matching which source\nproduced it."
+      },
+      "BookingCoverageLane": {
+        "properties": {
+          "category": {
+            "type": "string",
+            "enum": [
+              "flight",
+              "stay",
+              "dinner_activity",
+              "transport"
+            ],
+            "title": "Category"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/BookingCoverageItem"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "type": "object",
+        "required": [
+          "category"
+        ],
+        "title": "BookingCoverageLane"
       },
       "BookingDecisionResponse": {
         "properties": {
@@ -49199,6 +49967,17 @@
             "minimum": 1.0,
             "title": "Expires In Days",
             "default": 14
+          },
+          "plan_preview_enabled": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Plan Preview Enabled"
           }
         },
         "type": "object",
@@ -49233,6 +50012,11 @@
           "dispatch_scheduled": {
             "type": "boolean",
             "title": "Dispatch Scheduled",
+            "default": false
+          },
+          "plan_preview_enabled": {
+            "type": "boolean",
+            "title": "Plan Preview Enabled",
             "default": false
           }
         },
@@ -49409,6 +50193,11 @@
               }
             ],
             "title": "Pending Intake Summary"
+          },
+          "plan_preview_enabled": {
+            "type": "boolean",
+            "title": "Plan Preview Enabled",
+            "default": false
           }
         },
         "type": "object",
@@ -49425,6 +50214,138 @@
         ],
         "title": "InviteListItem",
         "description": "Serializable summary of one invite row, returned by list endpoints.\n\nUsed by the organizer's \"Pending invites\" UI \u2014 each item carries\nenough state to render a status pill (sent / answered / joined /\nrevoked / expired) and the small momentum signal of a chip answer\nwhen the recipient has already engaged pre-auth."
+      },
+      "InvitePlanPreview": {
+        "properties": {
+          "destination": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Destination"
+          },
+          "days": {
+            "items": {
+              "$ref": "#/components/schemas/InvitePlanPreviewDay"
+            },
+            "type": "array",
+            "title": "Days"
+          },
+          "joined_first_names": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Joined First Names"
+          },
+          "joined_count": {
+            "type": "integer",
+            "title": "Joined Count",
+            "default": 0
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "InvitePlanPreview",
+        "description": "The invite_personal rich tier's live projection. Never constructed\nfor a thin (\"invite\") view \u2014 see build_invite_view's scope check."
+      },
+      "InvitePlanPreviewBlock": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "time_start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Start"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "title"
+        ],
+        "title": "InvitePlanPreviewBlock",
+        "description": "One itinerary block, reduced to what invite_personal allows.\n\n``extra=\"forbid\"`` is deliberate and load-bearing (see Artifact 1,\ndocs/working/invite-live-preview-spec-2026-07-28.md): this is the only\nobject the SSR template can reach, so a field that isn't declared here\nliterally cannot render on the public page, regardless of what the\nquery that built it happened to select."
+      },
+      "InvitePlanPreviewDay": {
+        "properties": {
+          "date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date"
+          },
+          "day_theme": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Day Theme"
+          },
+          "blocks": {
+            "items": {
+              "$ref": "#/components/schemas/InvitePlanPreviewBlock"
+            },
+            "type": "array",
+            "title": "Blocks"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "InvitePlanPreviewDay"
+      },
+      "InvitePlanPreviewUpdateRequest": {
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "title": "Enabled"
+          }
+        },
+        "type": "object",
+        "required": [
+          "enabled"
+        ],
+        "title": "InvitePlanPreviewUpdateRequest",
+        "description": "PATCH body for toggling a personal invite's rich live-preview tier."
+      },
+      "InvitePlanPreviewUpdateResponse": {
+        "properties": {
+          "token": {
+            "type": "string",
+            "title": "Token"
+          },
+          "plan_preview_enabled": {
+            "type": "boolean",
+            "title": "Plan Preview Enabled"
+          }
+        },
+        "type": "object",
+        "required": [
+          "token",
+          "plan_preview_enabled"
+        ],
+        "title": "InvitePlanPreviewUpdateResponse"
       },
       "InviteSnapshot": {
         "properties": {
@@ -49576,6 +50497,16 @@
             "type": "boolean",
             "title": "Is Group Share",
             "default": false
+          },
+          "plan_preview": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/InvitePlanPreview"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -59689,6 +60620,103 @@
         ],
         "title": "PlacesReadingDoor"
       },
+      "PlacesReadingItem": {
+        "properties": {
+          "dossier_id": {
+            "type": "integer",
+            "title": "Dossier Id"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Title"
+          },
+          "place_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Name"
+          },
+          "place_slug": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Slug"
+          },
+          "read_minutes": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Read Minutes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "dossier_id",
+          "title"
+        ],
+        "title": "PlacesReadingItem"
+      },
+      "PlacesReadingPage": {
+        "properties": {
+          "scope_label": {
+            "type": "string",
+            "title": "Scope Label"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/PlacesReadingItem"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "total": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Total"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Limit"
+          },
+          "offset": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Offset"
+          },
+          "has_more": {
+            "type": "boolean",
+            "title": "Has More"
+          }
+        },
+        "type": "object",
+        "required": [
+          "scope_label",
+          "items",
+          "total",
+          "limit",
+          "offset",
+          "has_more"
+        ],
+        "title": "PlacesReadingPage"
+      },
       "PlacesRelationshipTruth": {
         "properties": {
           "saved": {
@@ -59735,6 +60763,56 @@
         "type": "object",
         "title": "PlacesRelationshipTruth",
         "description": "Grounded five-marker contract after the unowned Been marker was cut."
+      },
+      "PlacesSavedPage": {
+        "properties": {
+          "scope_label": {
+            "type": "string",
+            "title": "Scope Label"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/PlacesRankedItem"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "total_in_scope": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Total In Scope"
+          },
+          "total_all": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Total All"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Limit"
+          },
+          "offset": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Offset"
+          },
+          "has_more": {
+            "type": "boolean",
+            "title": "Has More"
+          }
+        },
+        "type": "object",
+        "required": [
+          "scope_label",
+          "items",
+          "total_in_scope",
+          "total_all",
+          "limit",
+          "offset",
+          "has_more"
+        ],
+        "title": "PlacesSavedPage"
       },
       "PlacesScope": {
         "properties": {
@@ -69228,6 +70306,28 @@
           "active_holds"
         ],
         "title": "TripArchivePreflightResponse"
+      },
+      "TripBookingCoverageResponse": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "lanes": {
+            "items": {
+              "$ref": "#/components/schemas/BookingCoverageLane"
+            },
+            "type": "array",
+            "title": "Lanes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id"
+        ],
+        "title": "TripBookingCoverageResponse",
+        "description": "``GET /api/trips/{trip_id}/booking/coverage`` response body."
       },
       "TripBudgetUpdate": {
         "properties": {
