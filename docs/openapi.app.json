@@ -10556,6 +10556,134 @@
         }
       }
     },
+    "/api/inbound-items/{item_id}/confirm": {
+      "post": {
+        "tags": [
+          "inbound"
+        ],
+        "summary": "Confirm Inbound Candidate Route",
+        "operationId": "confirm_inbound_candidate_route_api_inbound_items__item_id__confirm_post",
+        "parameters": [
+          {
+            "name": "item_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Item Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfirmInboundCandidateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InboundItem"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/inbound-items/{item_id}/dismiss": {
+      "post": {
+        "tags": [
+          "inbound"
+        ],
+        "summary": "Dismiss Inbound Item Route",
+        "operationId": "dismiss_inbound_item_route_api_inbound_items__item_id__dismiss_post",
+        "parameters": [
+          {
+            "name": "item_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Item Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InboundItem"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/narration/stops": {
       "get": {
         "tags": [
@@ -32729,6 +32857,86 @@
         "title": "ComposeBoardRequest",
         "description": "Body for ``POST /api/atlas/compose`` — compose from a full query object."
       },
+      "ComposerContextAttachment": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "place",
+              "itinerary_item"
+            ],
+            "title": "Kind"
+          },
+          "place_id": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Id"
+          },
+          "place_slug": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Slug"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "itinerary_item_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Itinerary Item Id"
+          },
+          "display_label": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind"
+        ],
+        "title": "ComposerContextAttachment",
+        "description": "One structured object the traveler deliberately adds to a message."
+      },
       "CompositionResult": {
         "properties": {
           "query": {
@@ -33592,6 +33800,18 @@
         },
         "type": "object",
         "title": "ConfirmCartRequest"
+      },
+      "ConfirmInboundCandidateRequest": {
+        "properties": {
+          "candidate_index": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Candidate Index",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "title": "ConfirmInboundCandidateRequest"
       },
       "ConfirmTripCreationProposalRequest": {
         "properties": {
@@ -67614,6 +67834,21 @@
             ],
             "title": "Images",
             "description": "Optional images to attach to this turn. Mirrors the trip-scoped chat endpoint so private Vesper chats do not silently drop photo context."
+          },
+          "attachments": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/ComposerContextAttachment"
+                },
+                "type": "array",
+                "maxItems": 3
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attachments"
           },
           "metadata": {
             "anyOf": [
