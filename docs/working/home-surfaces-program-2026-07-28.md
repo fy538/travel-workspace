@@ -486,9 +486,34 @@ The founder then delegated the blind decision to Codex. Codex selected B with
 high confidence from the exact dates, party size, Baixa walk, Day 2 theme, and
 first-dinner vote; the opened key also identified B. This is recorded as
 **SUPPORT from a blinded evaluator**, not mislabeled as the pre-registered
-traveler-human test. Phase 4 remains gated until the founder explicitly
-ratifies that delegated evidence as sufficient or obtains the intended traveler
-verdict. It remains pre-UI and has no persistence or audio.
+traveler-human test. The founder then explicitly ratified that delegated
+evidence as sufficient and authorized continuation. Phase 4 has therefore
+passed its content gate without rewriting the evaluator class.
+
+The post-gate slice is now implemented on the isolated lanes: one group-shared
+Reading persists per trip, regenerates from fresh shared truth after itinerary
+commit and at T-7, suppresses stale cited sections at read time, and exposes a
+membership-gated citation-free API without composing on page load. The app
+selects the live trip or otherwise nearest upcoming trip, renders a collapsed
+companion card, deep-links exact sections into a focused reader, and sends the
+visible closing thread only into a private trip-scoped Vesper conversation.
+Mock mode returns `null` for unseeded trips rather than fabricating prose.
+Backend targeted evidence includes the earlier 130-test pass and a final
+94-test focused rerun, plus Ruff, pre-commit policy guards, and a single Alembic
+head. App typecheck, lint, API boundaries, mock/client parity, focused Reading
+tests, scenario registry, and design-reference checks pass. The generated full
+and mobile OpenAPI snapshots are synchronized.
+
+The Elif mock-device receipt now passes on iPhone 16 Pro / iOS 18.2. It proves
+the collapsed default, expanded exact-section index, section-targeted reader,
+private thread affordance, and explicit return to Trips. The structured
+`trips-home-reading-2026-07-29` verdict is `pass`; it records two non-blocking
+P2 overlaps in the long full-screen capture (floating navigation over the
+Reading teaser and the create control over a queued-row action). Backend
+`7bb5abab` and app `c3976b93` close the implementation plus mock-device UI
+gate. This is not a backend-real dogfood/device canary, so that receipt remains
+before Phase 4 can be called backend-real complete. Audio remains deliberately
+deferred.
 
 ## The four seams
 
@@ -582,7 +607,7 @@ record here — not a reason for a step 9.
 | 5 · Trips 2–3 | complete 2026-07-28 — phases 2–3, Places B1–B4, CONNECT, and private grounded signal writes landed with device proof | agent `76f534ba`, `db2fd449`, `8120da31`, `a2ad99a1`; app `eaeb3627`, `08dc9d19`, `14280999`, `a68c5755`, `4e375e67`, `3bfe8fd3`, `32e35526`; contract `a9c8e45`, `8b24a9ff`; verdict `4cb5e342` |
 | 6 · Places projection + un-borrow | complete 2026-07-28 — C1–C6 and D1 landed; the server-owned root, persisted scope, and marker priority are device-proven | agent `b05be32d`, `17c0cf5d`, `84ccc496`, `e859f0e5`, `b95f97de`, `d15cb49e`, `bd8a83a4`; app `8d676b4f`, `de15ec8f`, `6181ceff`; contract `6ed14cf`, `63395a2`, `c7df72b` |
 | 7 · The Vesper cutover | complete + device-proven 2026-07-28 on isolated lanes; child-main landing deferred behind concurrent dirty worktrees | agent `65d96662`; app `3f2013b7`; contract `5bd01ee` |
-| 8 · Content + tails | in progress 2026-07-29 — Places D3–D6, destinations/offline, and every currently non-gated D2 shipping atom are device-proven; Trips Phase 4's first sealed live swap is REFUTED (human A, key B), grounding remediation is landed, invalid v2 is preserved, and v3 is supported by a blinded delegated evaluator (B/key B) but still awaits founder ratification or the pre-registered traveler verdict; companion UI remains blocked; AskReading/GapPreview producer gates, deferred highlight variants, and the gated Trips Phase 4–5 tails remain | agent `917cb424`, `85285a12`, `fafbbcf0`, `c0abd4c9`, `943626b1`, `94f011a1`, `cead0f60`, `5f9469a9`, `07e69de0`, `d21eaea5`; app `3f2013b7`, `6d60823b`, `f3f54ac2`, `846083aa`, `1e0a3389`, `c59a747e`, `53cb30d7`, `28599876`, `054582c1`, `87f1b498`, `5135382d`, `420105a7`, `2d59829a`, `c6518881`; contract `942befb`, `a244b92`, `1877c8d`, `43e7311` |
+| 8 · Content + tails | in progress 2026-07-29 — Places D3–D6, destinations/offline, and every currently non-gated D2 shipping atom are device-proven; founder-ratified v3 evidence opened Trips Phase 4, and the persisted membership-gated Reading plus companion card/reader now pass the mock-device UI gate. A backend-real dogfood/device canary, AskReading/GapPreview producer gates, deferred highlight variants, and Trips Phase 5 remain; audio is explicitly deferred | agent `917cb424`, `85285a12`, `fafbbcf0`, `c0abd4c9`, `943626b1`, `94f011a1`, `cead0f60`, `5f9469a9`, `07e69de0`, `d21eaea5`, `7bb5abab`; app `3f2013b7`, `6d60823b`, `f3f54ac2`, `846083aa`, `1e0a3389`, `c59a747e`, `53cb30d7`, `28599876`, `054582c1`, `87f1b498`, `5135382d`, `420105a7`, `2d59829a`, `c6518881`, `c3976b93`; contract `942befb`, `a244b92`, `1877c8d`, `43e7311` |
 
 Update this table as steps land. One line per completion, with the
 commit hash.
