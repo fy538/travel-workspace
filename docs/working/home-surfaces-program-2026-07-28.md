@@ -286,6 +286,33 @@ routes on that assumption. So:
 Record any halt here with the date and reason, the way completions are
 recorded below.
 
+## Terminus — ruled by founder 2026-07-29
+
+**This program is the last private design iteration.** Standing rule from
+here: no new redesign cycle begins without new *external* evidence between
+cycles.
+
+The program ends at the **wedge bar**, not the vision bar — the test is
+"four people coordinate a real trip here instead of their group chat,"
+NOT "the founder feels the world model." Real users compare against
+WhatsApp; only the founder can see what's missing. Concretely, polish
+stops when:
+
+1. The **organizer's first five minutes** and the **joiner's first five
+   minutes** each work end-to-end without apology.
+2. **One full trip loop** runs with real data — decide → queue → claim →
+   capture → settle — even if rough at the edges.
+
+When the bar passes, the next step is external contact, in order:
+(a) five strangers, ten minutes each, first-touch ("what is this? what
+would you do?") — the only instrument that can answer whether the
+aesthetic register fits the social job; (b) one real trip with one real
+group, read via `scripts/invite_loop_funnel.py` + the three numbers
+(re-invite, money attach, chat displacement).
+
+If step 8 completes and the bar doesn't pass, that is a finding to
+record here — not a reason for a step 9.
+
 ## Contradictions resolved by this doc
 
 - **Italic.** Trips D4 (founder, 2026-07-28) supersedes the workbench
