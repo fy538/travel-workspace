@@ -425,6 +425,27 @@ pre-registered rule, Phase 4 remains gated and the collapsed-card UI must not
 start. Diagnose the composer, preserve this failed pair, and run a newly sealed
 swap after revision.
 
+**Remediation landed 2026-07-29; revised human verdict pending.** Backend
+`07e69de0` adds deterministic quantity/date citation checks, a separate
+fail-closed semantic-entailment verifier, exact date/duration facts,
+fact-grounded title/heading/decision projections, bounded repair attempts, and
+strict transport/completeness recovery. The writer moves to Sonnet after
+repeated Haiku grounding failures; the independent verifier remains Haiku.
+Backend `d21eaea5` covers the privacy boundary, malformed structured output,
+truncation, quantity/date rejection, exact-fact handling, semantic refusal,
+bounded repair, and surface registration. The focused suite is 63 passing
+tests plus Ruff and diff validation.
+
+The first revised output at
+`docs/audits/trip-reading-swap/2026-07-29-mara-lisbon-v2/` was invalidated
+before adjudication because its personalized article contained truncated
+section bodies. Its blind artifact is preserved, its answer key was not
+opened, and no human choice was requested. A complete, newly sealed pair now
+exists at `docs/audits/trip-reading-swap/2026-07-29-mara-lisbon-v3/`.
+Only `blind.md` has been inspected; `answer-key.json` remains sealed pending
+the traveller's A/B choice, identifying details, and confidence. No route,
+persistence, companion card, or audio has been built.
+
 ### Phase 5 — Table + CONNECT
 
 Seed derivation (taste-backs first), select/dim/chat interaction, and the
