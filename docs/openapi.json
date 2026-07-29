@@ -61018,6 +61018,16 @@
           "context": {
             "$ref": "#/components/schemas/PlacesContext"
           },
+          "search_scope": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesSearchScope"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "map": {
             "anyOf": [
               {
@@ -61526,6 +61536,59 @@
           "trip"
         ],
         "title": "PlacesScopeKind"
+      },
+      "PlacesSearchScope": {
+        "properties": {
+          "kind": {
+            "$ref": "#/components/schemas/PlacesSearchScopeKind"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Label"
+          },
+          "place_id": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Id"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "label"
+        ],
+        "title": "PlacesSearchScope",
+        "description": "Canonical identity the Places search entry may carry.\n\nHuman labels remain presentation only. Coordinate-only, Home, Around Me,\nand Saved scopes are omitted until search has matching retrieval semantics."
+      },
+      "PlacesSearchScopeKind": {
+        "type": "string",
+        "enum": [
+          "global",
+          "place",
+          "trip"
+        ],
+        "title": "PlacesSearchScopeKind"
       },
       "PlacesSectionKind": {
         "type": "string",
@@ -75029,6 +75092,19 @@
             "title": "Trip Id",
             "description": "Active trip UUID; required for trip scopes"
           },
+          "place_id": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Id",
+            "description": "Corpus place id; optional only for the places scope"
+          },
           "lat": {
             "anyOf": [
               {
@@ -75070,7 +75146,7 @@
           "q"
         ],
         "title": "UniversalSearchRequest",
-        "description": "A Universal Search query.\n\n``trip_id`` is required when ``scope`` is ``this_trip``, ``receipts``,\n``costs``, or ``actions``;\nignored otherwise.  ``lat`` / ``lng`` are required when ``scope`` is\n``nearby`` \u2014 they set the centre of the geo-radius search over personal\nAtlas memories.  ``per_group_limit`` caps each section so no single\ngroup floods the overlay."
+        "description": "A Universal Search query.\n\n``trip_id`` is required when ``scope`` is ``this_trip``, ``receipts``,\n``costs``, or ``actions``. Places search may carry either an authorized\n``trip_id`` or a public corpus ``place_id`` to constrain venue retrieval.\n``lat`` / ``lng`` are required when ``scope`` is\n``nearby`` \u2014 they set the centre of the geo-radius search over personal\nAtlas memories.  ``per_group_limit`` caps each section so no single\ngroup floods the overlay."
       },
       "UniversalSearchResponse": {
         "properties": {
