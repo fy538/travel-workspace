@@ -446,6 +446,22 @@
       "removal_trigger": null,
       "review_by": null
     },
+    "GET /api/places": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "PlacesWorkspaceProjection",
+          "source": "travel-app/components/places/PlacesWorkspace.tsx"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "places",
+      "reason": "The canonical Places workspace consumes the server-owned scoped projection.",
+      "removal_trigger": null,
+      "review_by": null
+    },
     "GET /api/public/trip-map/{trip_id}": {
       "audience": "public_web",
       "consumers": [
