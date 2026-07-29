@@ -314,17 +314,17 @@ against a trip's destination without walking the entity"* — reuse that shape.
 city/trip → dossiers. New query, plus the `>1 dossier` count that gates the
 entry point.
 
-**Implementation status (2026-07-28): C1, C2, C4, C5, and C6 landed.**
+**Implementation status (2026-07-28): C1–C6 landed.**
 Backend commits `b05be32d`, `17c0cf5d`, `84ccc496`, `e859f0e5`, and
 `b95f97de` publish the authenticated seven-position projection, paginate the
 shared ranker, batch-project cache freshness without provider fanout, page
 explicit personal saves, resolve membership-safe dossier doors, and persist
-authorized scope changes. Root commits `6ed14cf` and `63395a2` publish the GET
-and PUT contracts.
+authorized scope changes. Backend `d15cb49e` closes C3 with honest marker
+knowledge. Root commits `6ed14cf`, `63395a2`, and `c7df72b` publish the GET,
+PUT, and marker contracts. The focused Places backend suite passes 180/180.
 
-**C3 implementation status (2026-07-28): implemented and verified on the
-feature branch in backend `b2e72d54` and app `6af7baee`.** The source was
-recovered from `Downloads/vesper 400/project/places-core-backing.jsx` and
+The C3 source was recovered from
+`Downloads/vesper 400/project/places-core-backing.jsx` and
 `places-core-kit.jsx`: after Been is cut, the exact priority is `In trip`,
 `Loved`, `From <trip>`, `From your <guide>`, `Saved by <friend>`. The first two
 batch-read real commitments and the canonical affinity bucket. The other three
@@ -373,16 +373,14 @@ states each, differing only in which component fills the list.
 
 **D6. `SectionHeading` → the mono eyebrow (`VKicker`).** *(Ruled 2026-07-28.)*
 
-**Implementation status (2026-07-28): D1 landed; the server-owned root and
-scope-rail foundation are device-proven on the feature branch.** App main
-commit `8d676b4f` moves the 572-line map to Places ownership. Branch commits
-`6e828f06`, `be01ace7`, `7bc2c3d0`, and `6af7baee` add the generated projection client,
-replace the temporary root composition, persist scope through the authenticated
-write seam, register an iPhone 16 Pro Maestro proof for the saved projection
-and scope chooser, and consume the five-marker priority without rendering
-unknown provenance. Those commits are intentionally not yet cherry-picked
-to app main because another active session has uncommitted changes in the same
-generated/API client files. D2–D6 are not complete; this is the executable
+**Implementation status (2026-07-28): D1 and the server-owned root/scope-rail
+foundation landed and are device-proven.** App `8d676b4f` moves the 572-line
+map to Places ownership. App `de15ec8f` adds the generated projection client,
+replaces the temporary root composition, persists scope through the
+authenticated write seam, registers an iPhone 16 Pro / iOS 18.2 Maestro proof
+for the saved projection and scope chooser, and consumes the five-marker
+priority without rendering unknown provenance. App `6181ceff` synchronizes the
+generated marker contract. D2–D6 are not complete; this is the executable
 foundation, not a claim that the 49-component canvas has been reproduced.
 
 The real defect was neither grammar: `SectionHeading` is **17px/600** and
