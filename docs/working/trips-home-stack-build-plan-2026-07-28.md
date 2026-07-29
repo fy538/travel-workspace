@@ -478,25 +478,29 @@ screen test proves that the no-trip branch routes to `/trip-begin`.
 Focused Jest passed 20/20; TypeScript and the 28-scenario registry
 passed; targeted ESLint reported zero errors.
 
-- **Blocked on the tabled art direction** — but only for the cells.
-  The *signal writes* are not blocked and are independently valuable:
-  they are the plumbing answer to the affinity-ranker that the roadmap
-  validation refuted for want of cold-start signal. **Consider pulling
-  the signal writes forward into phase 2** if the table slips.
-- CONNECT ships here or earlier — it is one static card with no ranking
-  dependency, and it is the wedge. It could ship in phase 2 as the
-  cheapest thing on this list.
-- Respect the corrected cold start: **cold renders the invitation, not a
-  fabricated seed grid.**
+**Phase 5 completed 2026-07-29.** Option B is the decision: one deterministic,
+asset-free atmosphere blooms the strongest saved-city seed into a sketch.
+Only real saved venue names become solid anchors; ungrounded structure remains
+explicitly open. `Step inside` and redraw write the same private signal
+contract as the smaller select/chat/dismiss cells. App `4b35a749` ships the
+table and its registered flow; verdict `dc3b427b` is a structured `pass` from
+an iPhone 16 Pro / iOS 18.2 run with one full and three extra captures.
+TypeScript, seven focused screen tests, the 28-scenario registry, design
+references, and the existing ten-test backend privacy suite pass.
+
+The completion boundary is deliberate. This v1 uses only the shipped
+`FROM YOUR SAVES` producer and does not manufacture people, pattern, calendar,
+duration, or booking facts. `generate_trip_shapes` remains outside the home
+render until it has a grounded persistence contract. Cold with no saves still
+renders the invitation, not a fabricated seed grid.
 
 ---
 
 ## Sequencing note
 
-Phases 2–3 are re-plumbing and can precede the Reading entirely. Phase 4
-is the only net-new content system. Phase 5's signal writes should be
-pulled forward if the art direction stays tabled — they are the part with
-strategic value, and they do not need pixels.
+Phases 2–3 are re-plumbing and preceded the Reading. Phase 4 is the only
+net-new content system. Phase 5 is complete with the already-pulled-forward
+private signals and the ratified parametric table treatment.
 
 ## What this plan does not cover
 

@@ -451,15 +451,20 @@ What survives from the original decision, unchanged: **no separate
 onboarding questionnaire — ever.** Taste is taught through the same
 instrument the mature page uses, once there is ground to teach from.
 
-**Art direction: TABLED (2026-07-27).** Cells ship blank/typographic
-until decided. Options explored and recorded (`table-art-direction.html`
-mock): (A) pure typographic; (B) parametric atmosphere —
-`wash = f(place, ground)`, deterministic gradient layers over palette
-tokens, zero assets; (C) B plus **real pixels when the ground owns
-them** (a friend's shared photo with attribution chip, a saved venue's
-photo — never stock, never generated). Diffusion-generated imagery was
-rejected for chrome surfaces (style drift, stock feel, cost/latency).
-No riso/drawn illustration on this surface regardless of choice.
+**Art direction: OPTION B RATIFIED AND LANDED (2026-07-29).** The table uses
+parametric atmosphere: `wash = f(place)`, deterministic gradient layers over
+surface-local palette tokens, zero assets. App `4b35a749` applies it only to
+the bloomed lead seed. The visible spine names actual saved venues and calls
+all ungrounded structure `Room left open`; it does not infer duration, dates,
+bookings, social context, or calendar windows. Option C remains a future
+extension only when a ground owns attributable real pixels. Stock, generated,
+and riso/drawn destination imagery remain rejected on this surface.
+
+This is the honest saved-place v1 of the sketch. It deliberately does not call
+`generate_trip_shapes` until that producer has a persistence and grounding
+contract; `Step inside` carries the real city and anchor names into a private
+conversation instead. The other three proposed grounds remain absent until
+their own producers exist.
 
 Strategic note: the table is the **origination engine** (Surfacing
 Strategy §2.5; Fundraising Playbook §8 metric 2 — "trips surfaced by
@@ -709,8 +714,10 @@ Live was drawn on 2026-07-28; the "one mock still owed" noted in the
 4. **Companion**: compact card + toggle + thread (requires the
    trip-reading composer — a separate build on the Atlas compose
    engine).
-5. **Table**: seed derivation (taste-backs first) + select/dim/chat
-   interaction + dismissal signal write. Blank art.
+5. **Table**: seed derivation (taste-backs first) + lead-seed sketch +
+   deterministic parametric atmosphere + select/dim/chat/redraw/dismiss
+   interaction + private signal writes. **Landed 2026-07-29** in app
+   `4b35a749`, with structured device verdict `dc3b427b`.
 
 Phases 1–3 are re-plumbing of existing data and can precede the
 Reading entirely. Phase 4 is the only net-new content system.
@@ -758,9 +765,7 @@ live-day = collapse with table hidden; zero-trip = invitation, NOT a seed grid
 0 only; `agent_work` item kind in phase 3; group-described = hard
 facts only). Remaining:
 
-1. **Table art direction** — deliberately tabled; the three explored
-   options are recorded in The table.
-2. **Ranker weights** — per-state priors, the tier-2-age vs tier-3
+1. **Ranker weights** — per-state priors, the tier-2-age vs tier-3
    threshold, the invite gap threshold. Build-time tunables: start
    from the decisions recorded here, tune with cohort data.
 

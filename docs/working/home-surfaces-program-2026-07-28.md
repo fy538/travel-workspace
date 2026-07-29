@@ -528,6 +528,29 @@ Clerk auth, EAS build, or physical device was involved, and the seeded prose is
 not represented as provider-generated. That layer-4 receipt remains a release
 gate. Audio remains deliberately deferred.
 
+Trips Phase 5 closes the final implementation tail. Option B is ratified:
+app `4b35a749` promotes the strongest saved-city seed into an asset-free,
+deterministic sketch, names only real saved venue anchors, leaves unknown
+structure explicitly open, and keeps smaller select/chat/dismiss plus sketch
+chat/redraw on the existing private Personal Memory contract. Cold with no
+saves remains invitation-only. The commit-bound iPhone 16 Pro / iOS 18.2 run
+`20260729T203635Z-trips-home` passed the full journey with three supporting
+captures; structured verdict `dc3b427b` is `pass`. TypeScript, seven focused
+screen tests, the 28-scenario registry, design-reference checks, and the
+ten-test backend signal-memory suite pass.
+
+**Step 8 and the home-surfaces implementation program are complete
+2026-07-29.** The Places close is by explicit product scope, not invented
+coverage: every producer-backed D2 shipping atom is device-proven;
+`AskReading` and `GapPreview` move to their named producer backlogs, while
+`SharedPlacesPreview` and `PlaceCarousel` retain their original privacy/design
+deferrals. They are not represented as implemented components. The
+provider-generated Reading + Clerk + EAS + physical-device receipt remains a
+layer-4 **release** gate outside this refactor program, and audio remains a
+separate deferred product phase. This completion claim is therefore at the
+validated implementation layer: static/unit privacy proof, mock-device UI
+proof, and the recorded local backend-real Reading canary—not live dogfood.
+
 ## The four seams
 
 The places where two plans touch one artifact. The rule at every seam:
@@ -620,7 +643,7 @@ record here — not a reason for a step 9.
 | 5 · Trips 2–3 | complete 2026-07-28 — phases 2–3, Places B1–B4, CONNECT, and private grounded signal writes landed with device proof | agent `76f534ba`, `db2fd449`, `8120da31`, `a2ad99a1`; app `eaeb3627`, `08dc9d19`, `14280999`, `a68c5755`, `4e375e67`, `3bfe8fd3`, `32e35526`; contract `a9c8e45`, `8b24a9ff`; verdict `4cb5e342` |
 | 6 · Places projection + un-borrow | complete 2026-07-28 — C1–C6 and D1 landed; the server-owned root, persisted scope, and marker priority are device-proven | agent `b05be32d`, `17c0cf5d`, `84ccc496`, `e859f0e5`, `b95f97de`, `d15cb49e`, `bd8a83a4`; app `8d676b4f`, `de15ec8f`, `6181ceff`; contract `6ed14cf`, `63395a2`, `c7df72b` |
 | 7 · The Vesper cutover | complete + device-proven 2026-07-28 on isolated lanes; child-main landing deferred behind concurrent dirty worktrees | agent `65d96662`; app `3f2013b7`; contract `5bd01ee` |
-| 8 · Content + tails | in progress 2026-07-29 — Places D3–D6, destinations/offline, and every currently non-gated D2 shipping atom are device-proven; founder-ratified v3 evidence opened Trips Phase 4, and the persisted membership-gated Reading plus companion card/reader now pass mock-device and local backend-real simulator gates. Layer-4 provider/Clerk/EAS dogfood remains a release gate; AskReading/GapPreview producer gates, deferred highlight variants, and Trips Phase 5 remain; audio is explicitly deferred | agent `917cb424`, `85285a12`, `fafbbcf0`, `c0abd4c9`, `943626b1`, `94f011a1`, `cead0f60`, `5f9469a9`, `07e69de0`, `d21eaea5`, `7bb5abab`; app `3f2013b7`, `6d60823b`, `f3f54ac2`, `846083aa`, `1e0a3389`, `c59a747e`, `53cb30d7`, `28599876`, `054582c1`, `87f1b498`, `5135382d`, `420105a7`, `2d59829a`, `c6518881`, `c3976b93`, `e70bae97`, `0d45db04`; contract `942befb`, `a244b92`, `1877c8d`, `43e7311` |
+| 8 · Content + tails | complete 2026-07-29 — Trips Phase 4–5 and every producer-backed Places D2–D6/E2 shipping atom are implemented and device-proven at the stated layers. Producer-less AskReading/GapPreview and the two ruled highlight variants leave by explicit backlog/defer adjudication, not fabricated parity. Provider/Clerk/EAS/physical-device Reading dogfood remains a release gate; audio remains deferred | agent `917cb424`, `85285a12`, `fafbbcf0`, `c0abd4c9`, `943626b1`, `94f011a1`, `cead0f60`, `5f9469a9`, `07e69de0`, `d21eaea5`, `7bb5abab`; app `3f2013b7`, `6d60823b`, `f3f54ac2`, `846083aa`, `1e0a3389`, `c59a747e`, `53cb30d7`, `28599876`, `054582c1`, `87f1b498`, `5135382d`, `420105a7`, `2d59829a`, `c6518881`, `c3976b93`, `e70bae97`, `0d45db04`, `4b35a749`; verdict `dc3b427b`; contract `942befb`, `a244b92`, `1877c8d`, `43e7311` |
 
 Update this table as steps land. One line per completion, with the
 commit hash.

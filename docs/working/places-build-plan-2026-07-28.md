@@ -504,6 +504,17 @@ currently non-gated shipping atom in D2 is device-proven; D2 stays open for the
 `AskReading` and `GapPreview` producer gates and the two intentionally deferred
 highlight variants.
 
+**Step-8 scope closure (2026-07-29):** the executable v1 component layer is
+complete for every atom backed by a product truth source. `AskReading` moves to
+the post-program producer backlog because there is no persisted ask/answer
+contract; `GapPreview` stays behind C7 because the projection cannot yet
+distinguish a real itinerary gap from missing knowledge. `SharedPlacesPreview`
+still requires its per-save friend-privacy producer, and `PlaceCarousel`
+remains deliberately deferred by the original design ruling. None is replaced
+with mock production data or a display-label inference. This closes D2 for the
+home-surfaces program by adjudicated scope, **not** by claiming literal parity
+with all 49 exploration-canvas variants.
+
 The real defect was neither grammar: `SectionHeading` is **17px/600** and
 `PlaceRow`'s name is **16px/600** — same weight, one pixel apart, so the heading
 barely outranks its own content. Both candidate fixes resolve that ambiguity in
