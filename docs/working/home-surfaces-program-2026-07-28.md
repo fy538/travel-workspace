@@ -274,7 +274,7 @@ writes read back. Focused Jest passes 8/8, TypeScript and the surface registries
 pass, and all four Places Workspace captures pass on iPhone 16 Pro / iOS 18.2
 with a structured `pass` verdict.
 
-Backend `92645f4c`, app `6d60823b`, and contract `942befb` then close Places
+Backend `917cb424`, app `6d60823b`, and contract `942befb` then close Places
 D4–D5: Saved and Reading share one seven-state destination contract, the
 root exposes only grounded entry doors, dossier return navigation preserves
 Places ownership, and the offline root is limited to cached scope, geometry,
@@ -321,10 +321,27 @@ TypeScript, ESLint, and both Places registries pass.
 
 The boundary remains explicit. Layer 3's carousel and shared-place variants are
 still deliberately deferred; `GapPreview` still waits for Trips to distinguish
-a real itinerary gap from missing knowledge. `ExperienceRow` is wired and
-statically proven but is not called device-proven because neither the real nor
-mock projection currently emits an experience row or timing facts. ReadingDoor
-is device-proven. D2 as a whole remains open.
+a real itinerary gap from missing knowledge. ReadingDoor is device-proven. D2
+as a whole remains open.
+
+Backend `85285a12` and app `1e0a3389` close the Layer 4 Experience projection
+and device gate. The server now emits active experiences only for an authorized,
+dated trip scope, proves one-off/recurring overlap against that trip window,
+preserves the place's IANA timezone, and batches the traveler's personal saved
+truth. Arbitrary-city and undated-trip scopes omit the section instead of
+inventing temporal relevance. The app formats the machine-readable timing,
+uses the server save hint, and the default mock points at an existing routable
+experience rather than a display-only fixture.
+
+Evidence is the full Places backend suite (188 passed plus Ruff), a read-only
+query against the local Postgres experience corpus that returned three
+timezone-correct previews, app TypeScript/test-contract/ESLint gates, focused
+Jest (13 passed), and the passing iPhone 16 Pro / iOS 18.2 Maestro run
+`direct-maestro-2026-07-29T05-31-05-875Z`. That device run rendered the row,
+confirmed personal save state, opened the experience detail, returned to
+Places, and continued through Reading. This proves the ExperienceRow slice;
+it does not close the remaining D2 catalogue, the Layer 5–6 substrate
+contracts, or gated Trips Phase 4–5.
 
 ## The four seams
 
@@ -418,7 +435,7 @@ record here — not a reason for a step 9.
 | 5 · Trips 2–3 | complete 2026-07-28 — phases 2–3, Places B1–B4, CONNECT, and private grounded signal writes landed with device proof | agent `76f534ba`, `db2fd449`, `8120da31`, `a2ad99a1`; app `eaeb3627`, `08dc9d19`, `14280999`, `a68c5755`, `4e375e67`, `3bfe8fd3`, `32e35526`; contract `a9c8e45`, `8b24a9ff`; verdict `4cb5e342` |
 | 6 · Places projection + un-borrow | complete 2026-07-28 — C1–C6 and D1 landed; the server-owned root, persisted scope, and marker priority are device-proven | agent `b05be32d`, `17c0cf5d`, `84ccc496`, `e859f0e5`, `b95f97de`, `d15cb49e`, `bd8a83a4`; app `8d676b4f`, `de15ec8f`, `6181ceff`; contract `6ed14cf`, `63395a2`, `c7df72b` |
 | 7 · The Vesper cutover | complete + device-proven 2026-07-28 on isolated lanes; child-main landing deferred behind concurrent dirty worktrees | agent `65d96662`; app `3f2013b7`; contract `5bd01ee` |
-| 8 · Content + tails | in progress 2026-07-29 — Places D3–D6, destinations/offline, the Layer 2 row family, GuidePreview, and ReadingDoor are device-proven; F6/E2 is ratified keep-off; the D2 catalogue, Experience projection/device gate, Layer 5–6 substrate contracts, and gated Trips Phase 4–5 tails remain | agent `92645f4c`; app `3f2013b7`, `6d60823b`, `f3f54ac2`, `846083aa`; contract `942befb` |
+| 8 · Content + tails | in progress 2026-07-29 — Places D3–D6, destinations/offline, the Layer 2 row family, GuidePreview, ReadingDoor, and the trip-windowed ExperienceRow are device-proven; F6/E2 is ratified keep-off; the remaining D2 catalogue, Layer 5–6 substrate contracts, and gated Trips Phase 4–5 tails remain | agent `917cb424`, `85285a12`; app `3f2013b7`, `6d60823b`, `f3f54ac2`, `846083aa`, `1e0a3389`; contract `942befb` |
 
 Update this table as steps land. One line per completion, with the
 commit hash.
