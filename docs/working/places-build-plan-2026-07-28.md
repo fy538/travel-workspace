@@ -482,6 +482,17 @@ copy. The runner-seeded iPhone flow
 and cold-to-located transition with an unsaved nearby result. This is
 mock-device evidence; no real user location write was performed.
 
+**Layer-5 QueryRow update (2026-07-29):** app `5135382d` and device flow
+`420105a7` add the two search-owned query variants without inventing a
+completion producer. Deliberately submitted recents are bounded by user and
+canonical scope; partially typed completions are filtered from that same local
+history. They carry no place identity or place-row truth. The iPhone run
+`direct-maestro-2026-07-29T15-10-16-998Z` proves submit, cancel/re-entry,
+recent render, prefix completion, physical selection under the keyboard, and
+the returned grounded result. The exact `RowSkeleton` geometry remains the
+next non-gated catalogue atom; `AskReading` and `GapPreview` retain their
+backend gates, while the two highlight variants remain deliberately deferred.
+
 The real defect was neither grammar: `SectionHeading` is **17px/600** and
 `PlaceRow`'s name is **16px/600** — same weight, one pixel apart, so the heading
 barely outranks its own content. Both candidate fixes resolve that ambiguity in
