@@ -320,9 +320,19 @@ Backend commits `b05be32d`, `17c0cf5d`, `84ccc496`, `e859f0e5`, and
 shared ranker, batch-project cache freshness without provider fanout, page
 explicit personal saves, resolve membership-safe dossier doors, and persist
 authorized scope changes. Root commits `6ed14cf` and `63395a2` publish the GET
-and PUT contracts. C3 remains open: the two grounded relationship facts ship,
-but the other three canvas marker names and their explicit unknown states must
-come from the canvas rather than being invented from memory.
+and PUT contracts.
+
+**C3 implementation status (2026-07-28): implemented and verified on the
+feature branch in backend `b2e72d54` and app `6af7baee`.** The source was
+recovered from `Downloads/vesper 400/project/places-core-backing.jsx` and
+`places-core-kit.jsx`: after Been is cut, the exact priority is `In trip`,
+`Loved`, `From <trip>`, `From your <guide>`, `Saved by <friend>`. The first two
+batch-read real commitments and the canonical affinity bucket. The other three
+serialize as explicit `unknown` and remain display-ineligible; friend
+provenance additionally stays blocked on the missing per-save privacy gate.
+The complete Places suite passes 180 tests. Backend main currently has another
+session's staged index, so the backend commit and regenerated shared snapshots
+await a clean landing window rather than disturbing that work.
 
 **C7. Gap detection.** One canonical meal-slot vocabulary — the third time this
 codebase has needed one, and the event-type consolidation already set the
@@ -366,10 +376,11 @@ states each, differing only in which component fills the list.
 **Implementation status (2026-07-28): D1 landed; the server-owned root and
 scope-rail foundation are device-proven on the feature branch.** App main
 commit `8d676b4f` moves the 572-line map to Places ownership. Branch commits
-`6e828f06`, `be01ace7`, and `7bc2c3d0` add the generated projection client,
+`6e828f06`, `be01ace7`, `7bc2c3d0`, and `6af7baee` add the generated projection client,
 replace the temporary root composition, persist scope through the authenticated
-write seam, and register an iPhone 16 Pro Maestro proof for the saved projection
-and scope chooser. Those three commits are intentionally not yet cherry-picked
+write seam, register an iPhone 16 Pro Maestro proof for the saved projection
+and scope chooser, and consume the five-marker priority without rendering
+unknown provenance. Those commits are intentionally not yet cherry-picked
 to app main because another active session has uncommitted changes in the same
 generated/API client files. D2–D6 are not complete; this is the executable
 foundation, not a claim that the 49-component canvas has been reproduced.

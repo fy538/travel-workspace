@@ -300,7 +300,7 @@ recorded below.
 | 3 · The row, on a device | complete 2026-07-28 | app `f74dbafb`, `b9138405`, `27a009d8`, `8bde3c98`, `06af07c9`, `7f36afe2`, `b4b4e745`; docs/evidence `8647fce` |
 | 4 · The extraction | complete 2026-07-28 | app `8947b1c7` |
 | 5 · Trips 2–3 | complete 2026-07-28 — phases 2–3, Places B1–B4, CONNECT, and private grounded signal writes landed with device proof | agent `76f534ba`, `db2fd449`, `8120da31`, `a2ad99a1`; app `eaeb3627`, `08dc9d19`, `14280999`, `a68c5755`, `4e375e67`, `3bfe8fd3`, `32e35526`; contract `a9c8e45`, `8b24a9ff`; verdict `4cb5e342` |
-| 6 · Places projection + un-borrow | in progress 2026-07-28 — C1/C2/C4/C5/C6 and D1 landed; C3 remains; server-owned root + persisted scope are device-proven on the app feature branch and await a clean API-client landing window | agent `b05be32d`, `17c0cf5d`, `84ccc496`, `e859f0e5`, `b95f97de`, `bd8a83a4`; app main `8d676b4f`, branch `6e828f06`, `be01ace7`, `7bc2c3d0`; contract `6ed14cf`, `63395a2` |
+| 6 · Places projection + un-borrow | in progress 2026-07-28 — C1/C2/C4/C5/C6 and D1 landed; C3 is implemented + 180-test verified on the feature branch; server-owned root + persisted scope are device-proven and await clean backend/app landing windows | agent main `b05be32d`, `17c0cf5d`, `84ccc496`, `e859f0e5`, `b95f97de`, `bd8a83a4`, branch `b2e72d54`; app main `8d676b4f`, branch `6e828f06`, `be01ace7`, `7bc2c3d0`, `6af7baee`; contract `6ed14cf`, `63395a2` |
 | 7 · The Vesper cutover | not started | |
 | 8 · Content + tails | not started | |
 
