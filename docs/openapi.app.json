@@ -15333,6 +15333,66 @@
         }
       }
     },
+    "/api/places/position": {
+      "put": {
+        "tags": [
+          "places"
+        ],
+        "summary": "Update Places Position",
+        "description": "Acquire Around Me from a deliberate foreground location action.",
+        "operationId": "update_places_position_api_places_position_put",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlacesPositionUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlacesContext"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/postjoin-payoff/acknowledge": {
       "post": {
         "tags": [
@@ -52376,6 +52436,53 @@
         ],
         "title": "PlacesPositionState"
       },
+      "PlacesPositionUpdate": {
+        "properties": {
+          "lat": {
+            "type": "number",
+            "maximum": 90.0,
+            "minimum": -90.0,
+            "title": "Lat"
+          },
+          "lng": {
+            "type": "number",
+            "maximum": 180.0,
+            "minimum": -180.0,
+            "title": "Lng"
+          },
+          "accuracy_m": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Accuracy M"
+          },
+          "reported_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reported At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "lat",
+          "lng"
+        ],
+        "title": "PlacesPositionUpdate",
+        "description": "A deliberate, ephemeral foreground fix supplied by the Places surface."
+      },
       "PlacesProjection": {
         "properties": {
           "section_order": {
@@ -52444,6 +52551,13 @@
             },
             "type": "array",
             "title": "Areas"
+          },
+          "starter_cities": {
+            "items": {
+              "$ref": "#/components/schemas/PlacesStarterCity"
+            },
+            "type": "array",
+            "title": "Starter Cities"
           }
         },
         "type": "object",
@@ -53023,6 +53137,39 @@
         ],
         "title": "PlacesSectionKind",
         "description": "The fixed Places composition order.\n\nOptional sections are omitted from their payload slot, never returned as a\nfabricated empty card. Keeping the order in the contract prevents each\nclient from reconstructing the design grammar independently."
+      },
+      "PlacesStarterCity": {
+        "properties": {
+          "place_id": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Place Id"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Name"
+          },
+          "slug": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Slug"
+          },
+          "coverage_note": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Coverage Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "place_id",
+          "name",
+          "slug",
+          "coverage_note"
+        ],
+        "title": "PlacesStarterCity",
+        "description": "A corpus city with approved editorial coverage, never personalization."
       },
       "PlanBlock": {
         "properties": {
