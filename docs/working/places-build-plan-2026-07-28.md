@@ -383,15 +383,24 @@ priority without rendering unknown provenance. App `6181ceff` synchronizes the
 generated marker contract. D2–D6 are not complete; this is the executable
 foundation, not a claim that the 49-component canvas has been reproduced.
 
-**Step-8 implementation update (2026-07-28):** app `23586ee1` lands the first
+**Step-8 implementation update (2026-07-28):** app `3f2013b7` lands the first
 D2/D3/D6 slice: one fixed `CoreSurface`, mono `VKicker` section headings, and
 the grounded map/guide/place/experience/reading/area component family with
 independent open/save targets and explicit unknown-hours/time states. The mock
 projection now preserves the real context contract across cold, future-trip,
 live-trip, and persisted-scope states. Focused Jest passes 8/8; TypeScript and
 surface registries pass; all four Places Workspace captures pass on iPhone 16
-Pro / iOS 18.2 with a structured `pass` verdict. D2's remaining catalogue and
-D4–D5 remain open, and E2 remains a decision gate before Reading is exposed.
+Pro / iOS 18.2 with a structured `pass` verdict.
+
+Backend `92645f4c`, app `6d60823b`, and contract `942befb` complete D4–D5.
+Saved and Reading now use the same seven-state destination shell; their root
+doors are existence-gated, Reader back navigation returns to Reading, and the
+offline root exposes cached scope/map geometry and personal saves without
+operational or editorial claims. The iPhone 16 Pro / iOS 18.2 flow
+`direct-maestro-2026-07-29T04-19-37-613Z` passes the Saved return, Reading
+reader-return, and forced-offline journey. E2 is ratified keep-off and enforced:
+Reading queries manually approved rows only. D2's remaining 49-component
+catalogue and the gated Trips tails remain open.
 
 The real defect was neither grammar: `SectionHeading` is **17px/600** and
 `PlaceRow`'s name is **16px/600** — same weight, one pixel apart, so the heading
@@ -419,9 +428,14 @@ What stays unreachable is **undirected** inspiration browsing — "I don't know
 where, show me anything" — which is exactly the generic feed the canvas
 deliberately cut, and it stays cut. No new surface to design.
 
-**E2.** `AUTO_PUBLISH_GREEN_DOSSIERS` is `False` in prod; 621 dossiers were
-published by hand. Decide the posture before the Reading destination makes
-corpus size visible to users.
+**E2. Manual approval remains the publication boundary.**
+*(Ruled 2026-07-28.)* Keep `AUTO_PUBLISH_GREEN_DOSSIERS=False`. The existing
+621 hand-published dossiers are evidence of a reviewed corpus, not evidence
+that green generation should become self-publishing. The scoped Reading
+destination queries approved rows only; a generated dossier without editorial
+approval remains absent. Revisit only with an explicit content-governance
+proposal, reviewer ownership, rollback/incident posture, and measured quality
+evidence—not as a rollout flag hidden inside this surface refactor.
 
 ---
 

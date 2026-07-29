@@ -76,7 +76,7 @@ parallel tracks merged later.
 
 ## The founder decision queue
 
-Three of six **ratified 2026-07-28** after adversarial analysis; each
+All six **ratified 2026-07-28** after adversarial analysis; each
 ruling's conditions are appended to its owning plan (content lives there,
 per this doc's rule).
 
@@ -87,12 +87,11 @@ per this doc's rule).
 | F3 | Trips row-tap destination (Deck vs trip page) | ✅ **RATIFIED: split** — actionable row → Decision Deck; `· N OPEN` → trip page | 5 |
 | F4 | History sectioning | ✅ **RATIFIED: A (state-first)**, composite "open" definition mandatory → History plan | 3 |
 | F5 | Vesper promotion moment (eager vs lazy draft-trip) | ✅ **RATIFIED: lazy** — a personal session becomes a trip only after explicit transcript-native confirmation | 7 |
-| F6 | Places E2 — `AUTO_PUBLISH_GREEN_DOSSIERS` posture | open | 8 |
+| F6 | Places E2 — `AUTO_PUBLISH_GREEN_DOSSIERS` posture | ✅ **RATIFIED: keep off** — Reading exposes approved rows only; publication remains a manual editorial gate | 8 |
 
-**The stream is unblocked through step 7.** F6 is the next remaining
-gate in step 8. It gates the Reading destination's publication posture,
-not the root component/composition work; the owning Places plan explicitly
-marks E2 as non-blocking for that build.
+**The decision queue is closed.** F6 preserves the current content-governance
+boundary instead of turning corpus size into permission to publish. Reading is
+now unblocked, but it may expose only rows already carrying manual approval.
 
 ## The sequence
 
@@ -212,8 +211,9 @@ screen test independently proves the no-trip destination is
   Vesper-side deletion of `concierge_home.py`'s near-you plumbing** — the
   ranker relay (seam S3 below).
 - **Places D1** — the map un-borrow (572 lines move).
-- F6 has lead time from here: it must be answered before **step 8's**
-  Reading destination makes corpus size visible to users.
+- F6 was answered before **step 8's** Reading destination made corpus size
+  visible: automatic publication stays off and the destination reads approved
+  rows only.
 
 **Landed 2026-07-28:** C1–C6 and D1 are on the canonical branches. Backend
 `d15cb49e` closes C3 with honest marker knowledge; app `de15ec8f` lands the
@@ -239,9 +239,9 @@ Only when Trips' crown demonstrably renders the queue:
   *without* adopting the faces, delete them now.
 
 Implemented and device-proven 2026-07-28 on the isolated Step 7 lanes.
-Backend `e5232557` retires the four Vesper-only card feedback/lifecycle
+Backend `65d96662` retires the four Vesper-only card feedback/lifecycle
 operations while preserving the shared feed and Trips projection. App
-`ab6279dc` replaces the Vesper decision rail with the three-row session
+`3f2013b7` replaces the Vesper decision rail with the three-row session
 workbench, routes notification cards and the urgent seam into the Trips-owned
 Deck, preserves lazy trip promotion, refreshes the Vesper 400 design canon, and
 records a structured `pass` verdict. Focused evidence: backend 36 passed
@@ -264,7 +264,7 @@ intentionally deferred rather than sweeping their work into this step.
   `agent_workflows` busy flag, the named facepile. (Been is **cut** in
   step 0, not deferred — see A4.)
 
-**In progress 2026-07-28:** app `23586ee1` begins the Places tail with the
+**In progress 2026-07-28:** app `3f2013b7` begins the Places tail with the
 server-ordered `CoreSurface`, the mono `VKicker` section grammar, grounded
 map/guide/place/experience/reading/area component family, independent
 open/save targets, and honest unknown-hours/time states. It also repairs the
@@ -272,9 +272,20 @@ mock parity defect that forced every persona into Saved: cold now resolves to
 Anywhere, default/live resolve to their real lead trip, and explicit scope
 writes read back. Focused Jest passes 8/8, TypeScript and the surface registries
 pass, and all four Places Workspace captures pass on iPhone 16 Pro / iOS 18.2
-with a structured `pass` verdict. This is the first D2/D3/D6 slice, not a claim
-that D2's entire 49-component inventory or D4–D5 is complete. F6 remains open
-before the scoped Reading destination is exposed.
+with a structured `pass` verdict.
+
+Backend `92645f4c`, app `6d60823b`, and contract `942befb` then close Places
+D4–D5: Saved and Reading share one seven-state destination contract, the
+root exposes only grounded entry doors, dossier return navigation preserves
+Places ownership, and the offline root is limited to cached scope, geometry,
+and personal saves with operational/editorial claims suppressed. Reading
+queries approved rows only, preserving the ratified F6/E2 manual publication
+gate. Focused evidence is backend 15 passed plus Ruff, app 8 passed plus
+TypeScript and 28 registered polish scenarios, a green 394-operation API
+reachability audit, and the passing iPhone 16 Pro / iOS 18.2 Maestro run
+`direct-maestro-2026-07-29T04-19-37-613Z`. Step 8 remains in progress: this
+does not claim D2's full 49-component catalogue or the gated Trips Phase 4–5
+tails.
 
 ## The four seams
 
@@ -367,8 +378,8 @@ record here — not a reason for a step 9.
 | 4 · The extraction | complete 2026-07-28 | app `8947b1c7` |
 | 5 · Trips 2–3 | complete 2026-07-28 — phases 2–3, Places B1–B4, CONNECT, and private grounded signal writes landed with device proof | agent `76f534ba`, `db2fd449`, `8120da31`, `a2ad99a1`; app `eaeb3627`, `08dc9d19`, `14280999`, `a68c5755`, `4e375e67`, `3bfe8fd3`, `32e35526`; contract `a9c8e45`, `8b24a9ff`; verdict `4cb5e342` |
 | 6 · Places projection + un-borrow | complete 2026-07-28 — C1–C6 and D1 landed; the server-owned root, persisted scope, and marker priority are device-proven | agent `b05be32d`, `17c0cf5d`, `84ccc496`, `e859f0e5`, `b95f97de`, `d15cb49e`, `bd8a83a4`; app `8d676b4f`, `de15ec8f`, `6181ceff`; contract `6ed14cf`, `63395a2`, `c7df72b` |
-| 7 · The Vesper cutover | complete + device-proven 2026-07-28 on isolated lanes; child-main landing deferred behind concurrent dirty worktrees | agent `e5232557`; app `ab6279dc`; contract `5bd01ee` |
-| 8 · Content + tails | in progress 2026-07-28 — first Places D2/D3/D6 slice is device-proven; D2 remainder, D4–D5, F6/E2, and gated Trips tails remain | app `23586ee1` |
+| 7 · The Vesper cutover | complete + device-proven 2026-07-28 on isolated lanes; child-main landing deferred behind concurrent dirty worktrees | agent `65d96662`; app `3f2013b7`; contract `5bd01ee` |
+| 8 · Content + tails | in progress 2026-07-28 — Places D3–D6 and the first D2 slice are device-proven; F6/E2 is ratified keep-off; D2 remainder and gated Trips Phase 4–5 tails remain | agent `92645f4c`; app `3f2013b7`, `6d60823b`; contract `942befb` |
 
 Update this table as steps land. One line per completion, with the
 commit hash.
