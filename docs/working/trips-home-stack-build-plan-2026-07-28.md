@@ -392,6 +392,28 @@ Reading and a generic city guide for the same city; if they cannot tell
 which is theirs, the feature fails. Run that before building the
 collapsed-card UI, not after — the card is cheap, the composer is not.
 
+**Gate implementation landed 2026-07-29; verdict still pending.** Backend
+`94f011a1` adds the pre-UI `vesper.trips.reading` composer and blind A/B
+runner; `cead0f60` adds its privacy and grounding proof. The composer receives
+an explicit allowlist of shared destination/date/party-size, itinerary display,
+and open-decision facts. It cannot see member briefs, group-profile prose,
+planning rationales/notes, or private user context. Every title, section, and
+thread line must cite the allowlisted fact IDs; unknown citations, a weak
+substantive spine, misplaced open-decision copy, transport failure, or stale
+facts suppress rather than generate a generic fallback. No route, persistence,
+card, or audio was added.
+
+The Lisbon source preflight passes with 10 facts (7 substantive, 1 open
+decision), and 44 focused tests plus Ruff pass. The repository-wide offline
+suite reached 14,873 passed / 29 skipped with 15 failures outside this slice
+(venue/site field-consistency drift, dogfood snapshot/identity drift, retired
+Concierge lifecycle tests, and a scheduled-workflow assertion). The actual
+blind candidates were **not generated** because this worktree has no
+`ANTHROPIC_API_KEY`. Therefore the swap test has not passed, Phase 4 remains
+gated, and the collapsed-card UI must not start. Next action: run
+`tools/eval/trip_reading_swap.py` with provider credentials, have a traveller
+judge `blind.md` before opening `answer-key.json`, and record pass/refute.
+
 ### Phase 5 — Table + CONNECT
 
 Seed derivation (taste-backs first), select/dim/chat interaction, and the
