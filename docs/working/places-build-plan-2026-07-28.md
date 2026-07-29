@@ -314,6 +314,16 @@ against a trip's destination without walking the entity"* — reuse that shape.
 city/trip → dossiers. New query, plus the `>1 dossier` count that gates the
 entry point.
 
+**Implementation status (2026-07-28): C1, C2, C4, C5, and C6 landed.**
+Backend commits `b05be32d`, `17c0cf5d`, `84ccc496`, `e859f0e5`, and
+`b95f97de` publish the authenticated seven-position projection, paginate the
+shared ranker, batch-project cache freshness without provider fanout, page
+explicit personal saves, resolve membership-safe dossier doors, and persist
+authorized scope changes. Root commits `6ed14cf` and `63395a2` publish the GET
+and PUT contracts. C3 remains open: the two grounded relationship facts ship,
+but the other three canvas marker names and their explicit unknown states must
+come from the canvas rather than being invented from memory.
+
 **C7. Gap detection.** One canonical meal-slot vocabulary — the third time this
 codebase has needed one, and the event-type consolidation already set the
 pattern. Must distinguish *"no dinner on Thursday"* from *"we do not know what is
@@ -352,6 +362,17 @@ states each, differing only in which component fills the list.
 **D5. The fourth entry and the offline root** (§19).
 
 **D6. `SectionHeading` → the mono eyebrow (`VKicker`).** *(Ruled 2026-07-28.)*
+
+**Implementation status (2026-07-28): D1 landed; the server-owned root and
+scope-rail foundation are device-proven on the feature branch.** App main
+commit `8d676b4f` moves the 572-line map to Places ownership. Branch commits
+`6e828f06`, `be01ace7`, and `7bc2c3d0` add the generated projection client,
+replace the temporary root composition, persist scope through the authenticated
+write seam, and register an iPhone 16 Pro Maestro proof for the saved projection
+and scope chooser. Those three commits are intentionally not yet cherry-picked
+to app main because another active session has uncommitted changes in the same
+generated/API client files. D2–D6 are not complete; this is the executable
+foundation, not a claim that the 49-component canvas has been reproduced.
 
 The real defect was neither grammar: `SectionHeading` is **17px/600** and
 `PlaceRow`'s name is **16px/600** — same weight, one pixel apart, so the heading
