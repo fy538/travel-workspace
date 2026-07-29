@@ -415,9 +415,15 @@ production personalized candidate remained under the strict line and grounding
 guards. Evidence is sealed at
 `docs/audits/trip-reading-swap/2026-07-29-mara-lisbon/`: the traveller must
 judge `blind.md` before anyone opens `answer-key.json`. Generation is live-model
-eval evidence, not a passing verdict. Until that human choice is recorded, the
-swap test has **no verdict**, Phase 4 remains gated, and the collapsed-card UI
-must not start.
+eval evidence, not a passing verdict.
+
+**REFUTED 2026-07-29.** The human selected Candidate A; the sealed key
+identified Candidate B as the personalized Reading. No rationale or confidence
+was supplied. The mismatch is recorded without reinterpretation in
+`docs/audits/trip-reading-swap/2026-07-29-mara-lisbon/verdict.md`. Per the
+pre-registered rule, Phase 4 remains gated and the collapsed-card UI must not
+start. Diagnose the composer, preserve this failed pair, and run a newly sealed
+swap after revision.
 
 ### Phase 5 — Table + CONNECT
 
