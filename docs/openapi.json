@@ -59863,6 +59863,15 @@
         ],
         "title": "PlacesMapSummary"
       },
+      "PlacesMarkerKnowledge": {
+        "type": "string",
+        "enum": [
+          "present",
+          "absent",
+          "unknown"
+        ],
+        "title": "PlacesMarkerKnowledge"
+      },
       "PlacesOperationalFreshness": {
         "type": "string",
         "enum": [
@@ -60061,6 +60070,33 @@
         "title": "PlacesProjection",
         "description": "Seven-position, existence-gated Places root payload."
       },
+      "PlacesProvenanceTruth": {
+        "properties": {
+          "knowledge": {
+            "$ref": "#/components/schemas/PlacesMarkerKnowledge",
+            "default": "unknown"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "display_eligible": {
+            "type": "boolean",
+            "title": "Display Eligible",
+            "default": false
+          }
+        },
+        "type": "object",
+        "title": "PlacesProvenanceTruth",
+        "description": "Knowledge state for a named provenance marker.\n\nUnknown is distinct from absent: the current schema cannot answer these\nquestions. ``display_eligible`` remains false until a producer and, for\nfriend saves, the per-save privacy gate both exist."
+      },
       "PlacesRankedItem": {
         "properties": {
           "id": {
@@ -60228,11 +60264,30 @@
               }
             ],
             "title": "Taste Signal"
+          },
+          "in_trip": {
+            "type": "boolean",
+            "title": "In Trip",
+            "default": false
+          },
+          "loved": {
+            "type": "boolean",
+            "title": "Loved",
+            "default": false
+          },
+          "from_trip": {
+            "$ref": "#/components/schemas/PlacesProvenanceTruth"
+          },
+          "from_guide": {
+            "$ref": "#/components/schemas/PlacesProvenanceTruth"
+          },
+          "saved_by_friend": {
+            "$ref": "#/components/schemas/PlacesProvenanceTruth"
           }
         },
         "type": "object",
         "title": "PlacesRelationshipTruth",
-        "description": "Grounded personal relationship facts for one place row."
+        "description": "Grounded five-marker contract after the unowned Been marker was cut."
       },
       "PlacesScope": {
         "properties": {
