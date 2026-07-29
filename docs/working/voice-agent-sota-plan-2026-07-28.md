@@ -40,9 +40,22 @@ properly rather than bypassed.
 | 1b Silero VAD + turn detector | ✅ shipped — **not** `inference.TurnDetector`, see correction below | `5bb535ca` + `c2b5ea2e` |
 | 3a wire `deferred_tool.py` | ✅ shipped — **found and fixed a real race**, see below | `95a58476` |
 | 3b wire `resume_narration` directive | ✅ shipped | `d2dcead4` |
-| 3c FE interruption chain → a screen | ❌ **not started** — investigated, doesn't belong on the free list, see below | — |
+| 3c FE interruption chain → a screen | 🔶 **partially unblocked** — Feature A (concierge voice chat) wired; Feature B (narration interrupt) still not started, see below | `travel-app@e2818815` |
 | 3d adaptive interruption config | ❌ not started | — |
 | Funded-session items (baseline, turn-taking feel, listening QA) | ❌ blocked, unchanged | — |
+
+**Later the same day**: investigating 3c found it was two features sharing
+one name — Feature A (live concierge voice chat, `VoiceOverlay`/
+`useVoiceSession`, already had a real screen and just needed the LiveKit
+SDK installed and wired) and Feature B (narration interrupt-and-resume,
+the actually-hard one, needs a net-new mic→VAD pipeline). `travel-app`
+commit `e2818815` installs `@livekit/react-native` + `livekit-client` and
+wires Feature A's connector, gated behind the existing `VOICE_ENABLED`
+flag; verified via `tsc`, the full voice test suite, and a clean
+`expo prebuild --no-install` on both platforms — not yet on a real
+device. Feature B (the actual 3c/3d scope) is unchanged: still needs the
+VAD pipeline and a `NarrationCard` decision. Full writeup in Phase 3
+below.
 
 Three corrections to this doc's own earlier claims, found by verifying
 against installed packages and the actual codebase rather than the
@@ -362,10 +375,10 @@ has zero importers.
      capture pipeline to hook up; one would have to be built from
      scratch.
   2. **No real `voiceSessionOpener`.** The third injectable dependency
-     has no implementation outside the hook's own no-op default stub —
-     and a real one is blocked on the same zero-budget constraint
-     governing the rest of this doc (it opens a live LiveKit voice
-     session).
+     (`interruptionController.ts`'s `VoiceSessionOpener` type — distinct
+     from, and never wired to, `useVoiceSession`'s `configureVoiceRoomConnector`
+     below) has no implementation outside the hook's own no-op default
+     stub.
 
   The realistic integration target is `components/chat/NarrationCard.tsx`
   (550 lines, the actual current narration entry point, built on the
@@ -373,6 +386,60 @@ has zero importers.
   swapping it onto `useNarrationWithInterruption` is a full
   interaction-model rewrite of that screen, not a call to an unused
   hook. Left as a scoping decision for the user, not picked up.
+
+  **Follow-up (2026-07-28, later same day): `travel-app@e2818815` makes
+  the second gap smaller, but doesn't close it.** Investigating this
+  item surfaced that "3c" was actually two separate features wearing one
+  name:
+
+  - **Feature A — live concierge voice chat** (`VoiceOverlay` /
+    `useVoiceSession`, already mounted in `concierge/chat.tsx`, real
+    token endpoint, real state machine). No client-side VAD needed —
+    it's an open-mic conversation; turn-taking is server-side (1b's
+    `MultilingualModel`). It was stalled at `ready_to_connect` purely
+    because no one had ever installed `@livekit/react-native` or called
+    `configureVoiceRoomConnector()`.
+  - **Feature B — narration interrupt-and-resume** (this item, 3c as
+    originally scoped). Needs Feature A's LiveKit transport *plus* the
+    client-side VAD pipeline *plus* a `NarrationCard` interaction
+    rewrite — genuinely harder, and still fully unstarted.
+
+  `e2818815` installed `@livekit/react-native` + `livekit-client` +
+  `@livekit/react-native-expo-plugin` + `@livekit/react-native-webrtc`,
+  and wired Feature A's connector
+  (`utils/voice/registerVoiceRoomConnector.ts`, called once at app
+  startup from `app/_layout.tsx`, gated behind the existing
+  `VOICE_ENABLED` flag so the native module and its `registerGlobals()`
+  WebRTC globals are never touched when voice is off — consistent with
+  `app.config.js`'s existing "voice is off in production" throw). Found
+  and fixed a real correctness gap on the way in: `liveKitConnection.ts`
+  never called `AudioSession.start/stopAudioSession()`, which configures
+  the platform's play+record audio category — without it a connection
+  can succeed while the mic silently never captures.
+
+  Deliberately did **not** install `react-native-audio-api` or
+  `onnxruntime-react-native` + the Silero ONNX model — both are
+  Feature-B-only (`LiveAudioSessionProvider`'s own docstring says so
+  explicitly: "for the narration interrupt flow") and have zero
+  consumers today. No reason to pull in a model asset for nothing.
+
+  Verified: `tsc --noEmit` clean, all 252 voice tests pass, `expo
+  prebuild --no-install` succeeds on both iOS and Android with the
+  plugin present. **Not** verified: `pod install` / Gradle sync, an
+  actual `expo run:ios`/`expo run:android`, or a real `room.connect()` —
+  the last of those starts the metered LiveKit/Deepgram/Anthropic/
+  Cartesia spend this whole doc has been avoiding. That's the next step
+  whenever there's budget for it, and it's now a much smaller step than
+  "get any of this working" was this morning: install deps → wire
+  connector → device build → connect.
+
+  `voiceSessionOpener` (Feature B's own connector seam) is still a
+  no-op — `e2818815` didn't touch it. But it's now a much shorter piece
+  of work than before: it can call the same
+  `connectToLiveKitRoom`/`AudioSession` plumbing Feature A now uses,
+  just pointed at `interruptionController` instead of `useVoiceSession`.
+  The VAD pipeline (point 1 above) is still fully unbuilt and is the
+  larger remaining piece of 3c.
 
 - **3d · Configure adaptive interruption** — mode, `min_duration`,
   `min_words`, `false_interruption_timeout`.
@@ -565,7 +632,7 @@ not as `inference.TurnDetector`.
 | **2b** greeting through the concierge | pure | ✅ shipped |
 | **2c** heuristics | pure | ✅ shipped — became a reactive safety net, not a translated list |
 | **3a/3b** `deferred_tool` + resume call site | both already have test files and no live dependency | ✅ shipped (3a found a real race; see Phase 3 above) |
-| **3c** FE interruption chain → a screen | RN + jest; no provider | ❌ **turned out not free** — needs a net-new mic→VAD capture pipeline and a real `voiceSessionOpener`; see Phase 3 above |
+| **3c** FE interruption chain → a screen | RN + jest; no provider | 🔶 **half of it was free after all** — see below |
 | **3e** `storage.py` wire-or-delete | pure | ✅ investigated — deliberate, left as-is, no code change |
 
 **1b** (Silero VAD + turn detection) was originally framed as "both are
@@ -578,28 +645,62 @@ remote inference URL is configured). Chosen over `EnglishModel` because
 the personas are Portuguese/Japanese-flavored. Silero VAD was correct as
 originally framed — genuinely local, no credentials.
 
-The one item that was framed as free and was not: **3c**. It needs
-infrastructure that doesn't exist yet (live mic capture, a real voice
-session opener), not wiring of infrastructure that does.
+**3c turned out to be two features, and only one of them was free.**
+Investigating it found "the FE interruption chain" actually names two
+things: Feature A (live concierge voice chat, already had a real screen
+and a working state machine, just needed the LiveKit SDK installed and
+its connector wired — genuinely free, RN + jest, no provider) and
+Feature B (narration interrupt-and-resume, which needs a net-new
+mic→VAD capture pipeline and a real `voiceSessionOpener` — not free,
+infrastructure that doesn't exist yet). `travel-app@e2818815` shipped
+Feature A: `@livekit/react-native` + `livekit-client` installed,
+`configureVoiceRoomConnector` wired behind `VOICE_ENABLED`, and a real
+gap fixed along the way (`liveKitConnection.ts` never started/stopped
+the platform `AudioSession`, which could have meant a connection
+succeeding while the mic silently never captured). Verified via `tsc`,
+the full voice test suite, and clean `expo prebuild --no-install` on
+both platforms. Feature B is unchanged — still needs the VAD pipeline
+and the `NarrationCard` product decision below.
+
+### Free — turned out to be, once split: Feature A
+
+| Item | Why it turned out free | Outcome |
+|---|---|---|
+| Install `@livekit/react-native` + `livekit-client` | npm installs, `expo prebuild` is local/no-cost | ✅ shipped |
+| Wire `configureVoiceRoomConnector` at app startup | the seam already existed in `useVoiceSession.ts`, unconnected | ✅ shipped, gated behind `VOICE_ENABLED` |
+| `AudioSession` start/stop in `liveKitConnection.ts` | found missing while wiring the above; a pure correctness fix | ✅ shipped |
+
+Still not free, and not attempted: `pod install`/Gradle sync, an actual
+device build, or a real `room.connect()` — that's the first LiveKit
+session, and it starts the metered spend (LiveKit + Deepgram + Anthropic
++ Cartesia) this whole doc has been designed around avoiding.
 
 ### Blocked on the first funded session
 
-Unchanged from the original plan — nothing here required a funded
-session to land, so this list is still exactly what's left:
+Mostly unchanged from the original plan, but the entry point is
+different now — the first funded session should be **"does the
+concierge voice chat actually work on a device,"** not an abstract
+latency/turn-taking benchmark. It exercises the whole native stack
+(mic capture, AEC, LiveKit connect, agent audio playback) with the
+smallest possible surface, before anything narration-interrupt-shaped is
+built on top of it:
 
-Latency baseline (p50/p95 per stage), turn-taking feel, persona voice
-listening checks, end-to-end interruption QA, and the podcast
-voice-continuity seam. **Script that session in advance** — a fixed
-20–30-turn run across ack / simple / tool-calling, executed once, rather
-than exploratory poking. Everything free is now landed and green, so one
-paid hour should answer every open question at once.
+Device build + `pod install`/Gradle sync, real `room.connect()` against
+the concierge, latency baseline (p50/p95 per stage), turn-taking feel,
+persona voice listening checks, end-to-end interruption QA, and the
+podcast voice-continuity seam. **Script that session in advance** — a
+fixed 20–30-turn run across ack / simple / tool-calling, executed once,
+rather than exploratory poking.
 
-3d (adaptive interruption config) and 3c (once scoped) can both be
-tackled before or after that session — neither depends on it, but 3c in
-particular is a product decision (does an interrupt-and-resume narration
-experience belong on `NarrationCard`, and is it worth a screen rewrite)
-rather than an engineering one, so it's left for the user to scope
-rather than picked up here.
+3d (adaptive interruption config) and Feature B of 3c (the narration
+interrupt) can both be tackled before or after that session — neither
+strictly depends on it, but Feature B in particular is a product
+decision (does an interrupt-and-resume narration experience belong on
+`NarrationCard`, and is it worth a screen rewrite) rather than an
+engineering one, so it's left for the user to scope rather than picked
+up here. If Feature A's device validation goes well, Feature B's
+`voiceSessionOpener` reuses the same `connectToLiveKitRoom`/
+`AudioSession` plumbing — it would no longer be starting from zero.
 
 The one rule that survives the budget constraint: **nothing here gets
 called "faster" until the funded session says so.** It's built, tested
