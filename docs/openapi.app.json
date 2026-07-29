@@ -15190,6 +15190,89 @@
         }
       }
     },
+    "/api/places/search": {
+      "get": {
+        "tags": [
+          "places"
+        ],
+        "summary": "Get Places Search",
+        "description": "Search within persisted Places context without leaving the surface.",
+        "operationId": "get_places_search_api_places_search_get",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 200,
+              "title": "Q"
+            }
+          },
+          {
+            "name": "everywhere",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Everywhere"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 50,
+              "minimum": 1,
+              "default": 20,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlacesSearchResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/places/scope": {
       "put": {
         "tags": [
@@ -52474,6 +52557,17 @@
             "type": "number",
             "title": "Taste Score"
           },
+          "search_score": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Search Score"
+          },
           "relationship": {
             "$ref": "#/components/schemas/PlacesRelationshipTruth"
           },
@@ -52823,6 +52917,45 @@
           "trip"
         ],
         "title": "PlacesScopeKind"
+      },
+      "PlacesSearchResponse": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 2,
+            "title": "Query"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/PlacesSearchScope"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/PlacesRankedItem"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Limit"
+          },
+          "has_more": {
+            "type": "boolean",
+            "title": "Has More"
+          }
+        },
+        "type": "object",
+        "required": [
+          "query",
+          "scope",
+          "items",
+          "limit",
+          "has_more"
+        ],
+        "title": "PlacesSearchResponse",
+        "description": "A query result inside the current Places search state."
       },
       "PlacesSearchScope": {
         "properties": {
