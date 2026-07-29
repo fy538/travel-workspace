@@ -86,11 +86,11 @@ per this doc's rule).
 | F2 | Trips D3 — extend `ConciergeHomeCard` | ✅ **RATIFIED** (slim-DTO clarification), 3 conditions → Trips plan Rulings | 4 |
 | F3 | Trips row-tap destination (Deck vs trip page) | ✅ **RATIFIED: split** — actionable row → Decision Deck; `· N OPEN` → trip page | 5 |
 | F4 | History sectioning | ✅ **RATIFIED: A (state-first)**, composite "open" definition mandatory → History plan | 3 |
-| F5 | Vesper promotion moment (eager vs lazy draft-trip) | open — leaning lazy | 7 |
+| F5 | Vesper promotion moment (eager vs lazy draft-trip) | ✅ **RATIFIED: lazy** — a personal session becomes a trip only after explicit transcript-native confirmation | 7 |
 | F6 | Places E2 — `AUTO_PUBLISH_GREEN_DOSSIERS` posture | open | 8 |
 
-**The stream is unblocked through step 6.** F5 is the next remaining
-gate (step 7); F6 has runway through step 7.
+**The stream is unblocked through step 7.** F6 is the next remaining
+gate (step 8).
 
 ## The sequence
 
@@ -236,6 +236,21 @@ Only when Trips' crown demonstrably renders the queue:
 - **Deck expiry check** (workbench spec): if Trips shipped its queue
   *without* adopting the faces, delete them now.
 
+Implemented and device-proven 2026-07-28 on the isolated Step 7 lanes.
+Backend `419fa032` retires the four Vesper-only card feedback/lifecycle
+operations while preserving the shared feed and Trips projection. App
+`ab6279dc` replaces the Vesper decision rail with the three-row session
+workbench, routes notification cards and the urgent seam into the Trips-owned
+Deck, preserves lazy trip promotion, refreshes the Vesper 400 design canon, and
+records a structured `pass` verdict. Focused evidence: backend 36 passed
+(9 retired-route tests skipped), app 55 passed, TypeScript/API boundaries/design
+registry passed, and both Elif/default captures passed on iPhone 16 Pro / iOS
+18.2. Root contract `5bd01ee` removes the retired operations from both
+snapshots. The two product commits are rebased and land-ready but are not yet
+on child-repo `main`: concurrent sessions currently hold unrelated dirty
+booking/invite edits in both canonical worktrees, so the final fast-forward is
+intentionally deferred rather than sweeping their work into this step.
+
 ### 8 · Content + tails
 
 - **Trips Phase 4** (companion — gate on the swap test *before* building
@@ -338,7 +353,7 @@ record here — not a reason for a step 9.
 | 4 · The extraction | complete 2026-07-28 | app `8947b1c7` |
 | 5 · Trips 2–3 | complete 2026-07-28 — phases 2–3, Places B1–B4, CONNECT, and private grounded signal writes landed with device proof | agent `76f534ba`, `db2fd449`, `8120da31`, `a2ad99a1`; app `eaeb3627`, `08dc9d19`, `14280999`, `a68c5755`, `4e375e67`, `3bfe8fd3`, `32e35526`; contract `a9c8e45`, `8b24a9ff`; verdict `4cb5e342` |
 | 6 · Places projection + un-borrow | complete 2026-07-28 — C1–C6 and D1 landed; the server-owned root, persisted scope, and marker priority are device-proven | agent `b05be32d`, `17c0cf5d`, `84ccc496`, `e859f0e5`, `b95f97de`, `d15cb49e`, `bd8a83a4`; app `8d676b4f`, `de15ec8f`, `6181ceff`; contract `6ed14cf`, `63395a2`, `c7df72b` |
-| 7 · The Vesper cutover | not started | |
+| 7 · The Vesper cutover | complete + device-proven 2026-07-28 on isolated lanes; child-main landing deferred behind concurrent dirty worktrees | agent `419fa032`; app `ab6279dc`; contract `5bd01ee` |
 | 8 · Content + tails | not started | |
 
 Update this table as steps land. One line per completion, with the
