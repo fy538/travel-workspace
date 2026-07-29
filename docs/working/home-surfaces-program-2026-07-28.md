@@ -384,6 +384,34 @@ This is mock-fixture device evidence, not a real-backend canary. Layer 5 is
 complete; Step 8 remains open for the remaining D2 catalogue, Layer 6
 substrate, and gated Trips Phase 4–5 tails.
 
+Backend `943626b1`, app `054582c1`, device-flow follow-up `87f1b498`, and
+contract `43e7311` close the Layer 6 cold-start substrate. Anywhere now returns
+up to four canonical city identities ordered by approved dossier coverage plus
+one approved, display-ready guide; this is corpus ordering, not
+personalization. Machine taxonomy such as `local_favorite` can still contribute
+city coverage but cannot leak into the guide title. The explicit
+`PUT /api/places/position` action atomically writes the latest foreground fix
+and Around Me scope; Places never requests permission on render, and denial or
+failure leaves the prior scope unchanged.
+
+The cold app surface exposes that deliberate location action, labelled starter
+city rows that select real place ids, and the existing GuidePreview. It shows
+no map until an anchor exists. After the explicit action, the runner fixture
+proves the truthful state transition to a live Around Me anchor, one map result,
+and an unsaved nearby place with no invented taste or relationship marker.
+
+Static evidence is the full 196-test Places backend suite plus Ruff; 14 focused
+app tests, TypeScript, targeted ESLint, generated-contract parity, and the
+current 349-operation app projection. A read-only local corpus canary returned
+Naples, Brooklyn, Lisbon, and Athens as the coverage leaders and the
+human-readable Brooklyn guide `Counter before the crowd`. The runner-seeded
+iPhone 16 Pro / iOS 18.2 run
+`direct-maestro-2026-07-29T14-43-23-937Z` proves cold content, canonical city
+selection, return to Anywhere, deliberate location acquisition, and the
+located result. This is mock-device evidence; no real user location write was
+performed. Layer 6 is complete. Step 8 remains open for the remaining D2
+catalogue and gated Trips Phase 4–5 tails.
+
 ## The four seams
 
 The places where two plans touch one artifact. The rule at every seam:
@@ -476,7 +504,7 @@ record here — not a reason for a step 9.
 | 5 · Trips 2–3 | complete 2026-07-28 — phases 2–3, Places B1–B4, CONNECT, and private grounded signal writes landed with device proof | agent `76f534ba`, `db2fd449`, `8120da31`, `a2ad99a1`; app `eaeb3627`, `08dc9d19`, `14280999`, `a68c5755`, `4e375e67`, `3bfe8fd3`, `32e35526`; contract `a9c8e45`, `8b24a9ff`; verdict `4cb5e342` |
 | 6 · Places projection + un-borrow | complete 2026-07-28 — C1–C6 and D1 landed; the server-owned root, persisted scope, and marker priority are device-proven | agent `b05be32d`, `17c0cf5d`, `84ccc496`, `e859f0e5`, `b95f97de`, `d15cb49e`, `bd8a83a4`; app `8d676b4f`, `de15ec8f`, `6181ceff`; contract `6ed14cf`, `63395a2`, `c7df72b` |
 | 7 · The Vesper cutover | complete + device-proven 2026-07-28 on isolated lanes; child-main landing deferred behind concurrent dirty worktrees | agent `65d96662`; app `3f2013b7`; contract `5bd01ee` |
-| 8 · Content + tails | in progress 2026-07-29 — Places D3–D6, destinations/offline, Layers 2 and 5, GuidePreview, ReadingDoor, and trip-windowed ExperienceRow are device-proven; F6/E2 is ratified keep-off; the remaining D2 catalogue, Layer 6 substrate, and gated Trips Phase 4–5 tails remain | agent `917cb424`, `85285a12`, `fafbbcf0`, `c0abd4c9`; app `3f2013b7`, `6d60823b`, `f3f54ac2`, `846083aa`, `1e0a3389`, `c59a747e`, `53cb30d7`, `28599876`; contract `942befb`, `a244b92`, `1877c8d` |
+| 8 · Content + tails | in progress 2026-07-29 — Places D3–D6, destinations/offline, Layers 2, 5, and 6, GuidePreview, ReadingDoor, and trip-windowed ExperienceRow are device-proven; F6/E2 is ratified keep-off; the remaining D2 catalogue and gated Trips Phase 4–5 tails remain | agent `917cb424`, `85285a12`, `fafbbcf0`, `c0abd4c9`, `943626b1`; app `3f2013b7`, `6d60823b`, `f3f54ac2`, `846083aa`, `1e0a3389`, `c59a747e`, `53cb30d7`, `28599876`, `054582c1`, `87f1b498`; contract `942befb`, `a244b92`, `1877c8d`, `43e7311` |
 
 Update this table as steps land. One line per completion, with the
 commit hash.
