@@ -402,6 +402,28 @@ reader-return, and forced-offline journey. E2 is ratified keep-off and enforced:
 Reading queries manually approved rows only. D2's remaining 49-component
 catalogue and the gated Trips tails remain open.
 
+**Layer-2 hardening update (2026-07-29):** app `f3f54ac2` extracts the shipping
+row-family atoms from the catalogue into one composition:
+`PlaceList`/`PlaceRow`, `PhotoThumb`, `RelationshipMarker`, `StatusText`,
+`SaveControl`, `MapSummary`, and `AreaCard`. Shared resolvers preserve marker
+priority and operational truth, save failures remain visible and retryable,
+and offline accessibility labels suppress the same operational claims as the
+visible row. Focused Jest passes 11/11, TypeScript and ESLint pass, and the
+default, cold, and live registered flows pass on iPhone 16 Pro / iOS 18.2.
+The corrected default/live captures visibly exercise the row family; the cold
+capture is state evidence after the flow scrolls to the grounded empty body,
+not a full-composition verdict. This closes the Layer 2 row-family slice only;
+it does not close D2.
+
+**Next substrate gates:** Layer 5 cannot wire scoped local search until the
+projection supplies a canonical machine-readable search scope (city slug or
+semantic key); the current human trip/city label is not an API identifier.
+Layer 6 cannot offer truthful “Use location” or starter-city selection until
+there is a location-write boundary outside an active conversation/trip and a
+real place-id or coordinate-resolution path. `SearchEscape` is present as the
+catalogue atom but intentionally remains unwired. Do not derive identifiers
+from display labels or invent coordinates to advance the visual catalogue.
+
 The real defect was neither grammar: `SectionHeading` is **17px/600** and
 `PlaceRow`'s name is **16px/600** — same weight, one pixel apart, so the heading
 barely outranks its own content. Both candidate fixes resolve that ambiguity in
