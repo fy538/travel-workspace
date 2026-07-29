@@ -266,3 +266,55 @@ overrides:
   docs/audits/motion-language-audit-2026-07-11.md:
     disposition: keep_reference
     rationale: Phase 0 motion evidence still cited by docs/systems/motion-language.md.
+
+  docs/audits/home-surfaces-step3-2026-07-28/README.md:
+    disposition: keep_reference
+    rationale: Time-bounded device evidence supporting the active Home Surfaces program.
+
+  docs/audits/trip-reading-canary/2026-07-29-elif-rome/README.md:
+    disposition: keep_reference
+    rationale: Point-in-time backend and simulator evidence for the Trips Phase 4 Reading.
+
+  docs/audits/trip-reading-swap/2026-07-29-mara-lisbon/blind.md:
+    disposition: keep_reference
+    rationale: Point-in-time blind comparison evidence for the Trips Phase 4 Reading.
+
+  docs/audits/trip-reading-swap/2026-07-29-mara-lisbon/verdict.md:
+    disposition: keep_reference
+    rationale: Point-in-time adjudication evidence for the Trips Phase 4 Reading.
+
+  docs/audits/trip-reading-swap/2026-07-29-mara-lisbon-v2/blind.md:
+    disposition: keep_reference
+    rationale: Preserved invalid comparison evidence used to correct the reading evaluation.
+
+  docs/audits/trip-reading-swap/2026-07-29-mara-lisbon-v2/verdict.md:
+    disposition: keep_reference
+    rationale: Preserved invalid adjudication evidence used to correct the reading evaluation.
+
+  docs/audits/trip-reading-swap/2026-07-29-mara-lisbon-v3/blind.md:
+    disposition: keep_reference
+    rationale: Point-in-time corrected blind comparison evidence for the Trips Phase 4 Reading.
+
+  docs/audits/trip-reading-swap/2026-07-29-mara-lisbon-v3/verdict.md:
+    disposition: keep_reference
+    rationale: Point-in-time corrected adjudication evidence for the Trips Phase 4 Reading.
+
+  docs/working/hero-moment-scenes-2026-07-29.md:
+    disposition: keep_reference
+    rationale: Active product-polish decision instrument; expires 2026-08-28.
+
+  docs/working/trip-artifacts-vision-2026-07-28.md:
+    disposition: keep_reference
+    rationale: Active product vision for personal trip artifacts; expires 2026-08-27.
+
+  docs/working/trip-record-adjudication-2026-07-28.md:
+    disposition: keep_reference
+    rationale: Active code-grounded adjudication of the trip-artifact architecture; expires 2026-08-27.
+
+  docs/working/vesper-home-composer-corrections-2026-07-28.md:
+    disposition: keep_reference
+    rationale: Active implementation boundary for shared composer changes; expires 2026-08-27.
+
+  docs/working/voice-agent-sota-plan-2026-07-28.md:
+    disposition: keep_reference
+    rationale: Active voice integration gap and sequencing plan; expires 2026-08-27.
