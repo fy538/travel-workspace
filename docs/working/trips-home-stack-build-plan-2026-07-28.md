@@ -407,12 +407,17 @@ The Lisbon source preflight passes with 10 facts (7 substantive, 1 open
 decision), and 44 focused tests plus Ruff pass. The repository-wide offline
 suite reached 14,873 passed / 29 skipped with 15 failures outside this slice
 (venue/site field-consistency drift, dogfood snapshot/identity drift, retired
-Concierge lifecycle tests, and a scheduled-workflow assertion). The actual
-blind candidates were **not generated** because this worktree has no
-`ANTHROPIC_API_KEY`. Therefore the swap test has not passed, Phase 4 remains
-gated, and the collapsed-card UI must not start. Next action: run
-`tools/eval/trip_reading_swap.py` with provider credentials, have a traveller
-judge `blind.md` before opening `answer-key.json`, and record pass/refute.
+Concierge lifecycle tests, and a scheduled-workflow assertion).
+
+The canonical backend's local provider credential then generated the matched
+blind pair after `5f9469a9` fixed control-only metadata normalization; the
+production personalized candidate remained under the strict line and grounding
+guards. Evidence is sealed at
+`docs/audits/trip-reading-swap/2026-07-29-mara-lisbon/`: the traveller must
+judge `blind.md` before anyone opens `answer-key.json`. Generation is live-model
+eval evidence, not a passing verdict. Until that human choice is recorded, the
+swap test has **no verdict**, Phase 4 remains gated, and the collapsed-card UI
+must not start.
 
 ### Phase 5 — Table + CONNECT
 

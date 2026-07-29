@@ -455,12 +455,13 @@ adds the grounded `vesper.trips.reading` composer and a matched-format blind
 Reading-versus-generic-guide runner; `cead0f60` proves the shared-fact privacy
 boundary, citation rejection, open-decision placement, silent failure, and
 stale-section suppression. The Lisbon input preflight passes (10 facts, 7
-substantive, 1 open decision), and 44 focused tests plus Ruff pass. The live
-blind pair was not generated because the worktree has no
-`ANTHROPIC_API_KEY`, so this is static implementation evidence only: the swap
-test has **no verdict**, and no route, persistence, companion card, or audio
-was built. Phase 4 remains gated until a traveller identifies the
-trip-specific candidate before the sealed answer key is opened.
+substantive, 1 open decision), and 44 focused tests plus Ruff pass. Backend
+`5f9469a9` then normalized control-only metadata and a live provider generated
+the sealed A/B evidence under
+`docs/audits/trip-reading-swap/2026-07-29-mara-lisbon/`. Generation alone is
+not a pass: the swap test still has **no verdict**, and no route, persistence,
+companion card, or audio was built. Phase 4 remains gated until a traveller
+judges `blind.md` before anyone opens `answer-key.json`.
 
 ## The four seams
 
@@ -554,7 +555,7 @@ record here — not a reason for a step 9.
 | 5 · Trips 2–3 | complete 2026-07-28 — phases 2–3, Places B1–B4, CONNECT, and private grounded signal writes landed with device proof | agent `76f534ba`, `db2fd449`, `8120da31`, `a2ad99a1`; app `eaeb3627`, `08dc9d19`, `14280999`, `a68c5755`, `4e375e67`, `3bfe8fd3`, `32e35526`; contract `a9c8e45`, `8b24a9ff`; verdict `4cb5e342` |
 | 6 · Places projection + un-borrow | complete 2026-07-28 — C1–C6 and D1 landed; the server-owned root, persisted scope, and marker priority are device-proven | agent `b05be32d`, `17c0cf5d`, `84ccc496`, `e859f0e5`, `b95f97de`, `d15cb49e`, `bd8a83a4`; app `8d676b4f`, `de15ec8f`, `6181ceff`; contract `6ed14cf`, `63395a2`, `c7df72b` |
 | 7 · The Vesper cutover | complete + device-proven 2026-07-28 on isolated lanes; child-main landing deferred behind concurrent dirty worktrees | agent `65d96662`; app `3f2013b7`; contract `5bd01ee` |
-| 8 · Content + tails | in progress 2026-07-29 — Places D3–D6, destinations/offline, and every currently non-gated D2 shipping atom are device-proven; Trips Phase 4's grounded composer + blind harness are statically proven but the credential-gated live swap has no verdict; AskReading/GapPreview producer gates, deferred highlight variants, and the gated Trips Phase 4–5 tails remain | agent `917cb424`, `85285a12`, `fafbbcf0`, `c0abd4c9`, `943626b1`, `94f011a1`, `cead0f60`; app `3f2013b7`, `6d60823b`, `f3f54ac2`, `846083aa`, `1e0a3389`, `c59a747e`, `53cb30d7`, `28599876`, `054582c1`, `87f1b498`, `5135382d`, `420105a7`, `2d59829a`, `c6518881`; contract `942befb`, `a244b92`, `1877c8d`, `43e7311` |
+| 8 · Content + tails | in progress 2026-07-29 — Places D3–D6, destinations/offline, and every currently non-gated D2 shipping atom are device-proven; Trips Phase 4's grounded composer + blind harness are statically proven and the sealed live A/B awaits a human verdict; AskReading/GapPreview producer gates, deferred highlight variants, and the gated Trips Phase 4–5 tails remain | agent `917cb424`, `85285a12`, `fafbbcf0`, `c0abd4c9`, `943626b1`, `94f011a1`, `cead0f60`, `5f9469a9`; app `3f2013b7`, `6d60823b`, `f3f54ac2`, `846083aa`, `1e0a3389`, `c59a747e`, `53cb30d7`, `28599876`, `054582c1`, `87f1b498`, `5135382d`, `420105a7`, `2d59829a`, `c6518881`; contract `942befb`, `a244b92`, `1877c8d`, `43e7311` |
 
 Update this table as steps land. One line per completion, with the
 commit hash.
