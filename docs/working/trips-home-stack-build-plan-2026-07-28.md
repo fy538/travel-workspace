@@ -446,6 +446,16 @@ Only `blind.md` has been inspected; `answer-key.json` remains sealed pending
 the traveller's A/B choice, identifying details, and confidence. No route,
 persistence, companion card, or audio has been built.
 
+**Delegated evaluator result 2026-07-29: SUPPORT, with scope limitation.** The
+founder asked Codex to make the blind decision. Codex recorded Candidate B,
+citing the exact dates, three travelers, Baixa walk, Day 2 theme, and unresolved
+first-dinner vote, with high confidence. The sealed key was then opened and
+also identified B. The result is preserved at
+`docs/audits/trip-reading-swap/2026-07-29-mara-lisbon-v3/verdict.md`. Because
+the pre-registered gate called for a traveler-human judgment, this evaluator
+match does not silently authorize UI, persistence, or audio; founder
+ratification or the intended traveler verdict remains the next gate.
+
 ### Phase 5 — Table + CONNECT
 
 Seed derivation (taste-backs first), select/dim/chat interaction, and the
