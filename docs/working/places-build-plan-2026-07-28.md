@@ -392,7 +392,7 @@ live-trip, and persisted-scope states. Focused Jest passes 8/8; TypeScript and
 surface registries pass; all four Places Workspace captures pass on iPhone 16
 Pro / iOS 18.2 with a structured `pass` verdict.
 
-Backend `92645f4c`, app `6d60823b`, and contract `942befb` complete D4–D5.
+Backend `917cb424`, app `6d60823b`, and contract `942befb` complete D4–D5.
 Saved and Reading now use the same seven-state destination shell; their root
 doors are existence-gated, Reader back navigation returns to Reading, and the
 offline root exposes cached scope/map geometry and personal saves without
@@ -442,6 +442,25 @@ remains projection/device-gated because no current real or mock Places
 projection emits an experience row or time facts. PlaceCarousel and
 SharedPlacesPreview remain deferred by design; GapPreview remains gated on
 Trips distinguishing a real gap from missing knowledge. D2 remains open.
+
+**Layer-4 Experience update (2026-07-29):** backend `85285a12` and app
+`1e0a3389` close that projection/device gate with authorized trip-window
+overlap, place-local timezone, personal saved truth, a routable mock row, and
+the passing device flow `direct-maestro-2026-07-29T05-31-05-875Z`.
+
+**Layer-5 substrate update (2026-07-29):** backend `fafbbcf0`, app `c59a747e`,
+and contract `a244b92` replace the human-label bridge with an optional
+machine-readable search identity. Trip search is membership-gated and expands
+every destination root; corpus-city search carries `place_id`; Anywhere is
+explicitly global. Coordinate-only city, Home, Around Me, and Saved scopes omit
+search rather than silently widening. The scoped submit and independent
+`Search everywhere` escape pass on iPhone 16 Pro / iOS 18.2 in runner-seeded
+flow `direct-maestro-2026-07-29T13-57-57-898Z`.
+
+This closes the Layer-5 **substrate gate**, not Layer 5 itself. Search still
+uses the existing Universal Search destination; the canon's same-surface
+focused/typing/results/empty/offline body replacement and search-owned rows
+remain to build. No label is treated as an API identifier.
 
 The real defect was neither grammar: `SectionHeading` is **17px/600** and
 `PlaceRow`'s name is **16px/600** — same weight, one pixel apart, so the heading

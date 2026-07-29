@@ -343,6 +343,21 @@ Places, and continued through Reading. This proves the ExperienceRow slice;
 it does not close the remaining D2 catalogue, the Layer 5–6 substrate
 contracts, or gated Trips Phase 4–5.
 
+Backend `fafbbcf0`, app `c59a747e`, and contract `a244b92` close the Layer 5
+search-identity substrate gate. The projection now supplies a canonical trip,
+corpus-place, or explicit global identity; the search route membership-checks
+trip scope and expands every destination subtree. Coordinate-only city, Home,
+Around Me, and Saved scopes expose no search contract yet, so the client shows
+that limitation instead of searching globally under a local label.
+
+Static evidence is 232 Places/search backend tests plus Ruff, 56 focused app
+tests, both TypeScript checks, ESLint, and a current 347-operation app contract.
+The runner-seeded iPhone 16 Pro / iOS 18.2 flow
+`direct-maestro-2026-07-29T13-57-57-898Z` proves scoped submit, result render,
+return to Places, and the independent `Search everywhere` escape. This is
+device proof for the substrate and handoff only: the canon's same-surface
+Layer 5 search states remain open.
+
 ## The four seams
 
 The places where two plans touch one artifact. The rule at every seam:
@@ -435,7 +450,7 @@ record here — not a reason for a step 9.
 | 5 · Trips 2–3 | complete 2026-07-28 — phases 2–3, Places B1–B4, CONNECT, and private grounded signal writes landed with device proof | agent `76f534ba`, `db2fd449`, `8120da31`, `a2ad99a1`; app `eaeb3627`, `08dc9d19`, `14280999`, `a68c5755`, `4e375e67`, `3bfe8fd3`, `32e35526`; contract `a9c8e45`, `8b24a9ff`; verdict `4cb5e342` |
 | 6 · Places projection + un-borrow | complete 2026-07-28 — C1–C6 and D1 landed; the server-owned root, persisted scope, and marker priority are device-proven | agent `b05be32d`, `17c0cf5d`, `84ccc496`, `e859f0e5`, `b95f97de`, `d15cb49e`, `bd8a83a4`; app `8d676b4f`, `de15ec8f`, `6181ceff`; contract `6ed14cf`, `63395a2`, `c7df72b` |
 | 7 · The Vesper cutover | complete + device-proven 2026-07-28 on isolated lanes; child-main landing deferred behind concurrent dirty worktrees | agent `65d96662`; app `3f2013b7`; contract `5bd01ee` |
-| 8 · Content + tails | in progress 2026-07-29 — Places D3–D6, destinations/offline, the Layer 2 row family, GuidePreview, ReadingDoor, and the trip-windowed ExperienceRow are device-proven; F6/E2 is ratified keep-off; the remaining D2 catalogue, Layer 5–6 substrate contracts, and gated Trips Phase 4–5 tails remain | agent `917cb424`, `85285a12`; app `3f2013b7`, `6d60823b`, `f3f54ac2`, `846083aa`, `1e0a3389`; contract `942befb` |
+| 8 · Content + tails | in progress 2026-07-29 — Places D3–D6, destinations/offline, the Layer 2 row family, GuidePreview, ReadingDoor, trip-windowed ExperienceRow, and the Layer 5 search-identity substrate are device-proven; F6/E2 is ratified keep-off; the remaining D2 catalogue and same-surface search states, Layer 6 substrate, and gated Trips Phase 4–5 tails remain | agent `917cb424`, `85285a12`, `fafbbcf0`; app `3f2013b7`, `6d60823b`, `f3f54ac2`, `846083aa`, `1e0a3389`, `c59a747e`; contract `942befb`, `a244b92` |
 
 Update this table as steps land. One line per completion, with the
 commit hash.
