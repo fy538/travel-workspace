@@ -493,6 +493,17 @@ the returned grounded result. The exact `RowSkeleton` geometry remains the
 next non-gated catalogue atom; `AskReading` and `GapPreview` retain their
 backend gates, while the two highlight variants remain deliberately deferred.
 
+**Layer-5 RowSkeleton update (2026-07-29):** app `2d59829a` and device flow
+`c6518881` replace the generic list placeholder with the canonical place-row
+geometry and make mock forced-loading reachable through the direct Places query
+hook. The visual pass also repairs the shared row divider so its inset no longer
+shifts non-final rows. Thirty focused tests, TypeScript, ESLint, and runner run
+`direct-maestro-2026-07-29T16-47-23-280Z` pass. The loading proof is explicitly
+runner-seeded mock evidence, not a real-network canary. With this landing, every
+currently non-gated shipping atom in D2 is device-proven; D2 stays open for the
+`AskReading` and `GapPreview` producer gates and the two intentionally deferred
+highlight variants.
+
 The real defect was neither grammar: `SectionHeading` is **17px/600** and
 `PlaceRow`'s name is **16px/600** — same weight, one pixel apart, so the heading
 barely outranks its own content. Both candidate fixes resolve that ambiguity in

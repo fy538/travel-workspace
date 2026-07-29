@@ -431,6 +431,25 @@ autocomplete canary. The next non-gated exact-catalogue gap is the
 row-geometry loading skeleton; producer-gated and deliberately deferred
 variants remain outside this slice.
 
+App `2d59829a` and device-flow follow-up `c6518881` close that exact
+`RowSkeleton` gap. Search loading now uses the place row’s 60px thumbnail,
+three information bands, and 84px vertical rhythm instead of the generic
+notification-row placeholder; skeleton content stays out of the accessibility
+tree. Device inspection also caught and fixed a shared row-family defect:
+`marginLeft` had shifted every non-final row to indent its divider. Real rows
+and skeletons now remain aligned while only the hairline begins after the
+thumbnail.
+
+Static evidence is 30 focused app tests, TypeScript, targeted ESLint, and diff
+validation. The runner-seeded iPhone 16 Pro / iOS 18.2 flow
+`direct-maestro-2026-07-29T16-47-23-280Z` holds the dev-only mock loading state,
+captures the corrected geometry, then continues through grounded search,
+offline, Experience, and Reading behavior. This is mock-device loading-state
+evidence, not a real-network latency canary. All currently non-gated shipping
+atoms in the Places D2 catalogue are now device-proven; D2 itself remains open
+for `AskReading` and `GapPreview` producer gates plus the two deliberately
+deferred highlight variants.
+
 ## The four seams
 
 The places where two plans touch one artifact. The rule at every seam:
@@ -523,7 +542,7 @@ record here — not a reason for a step 9.
 | 5 · Trips 2–3 | complete 2026-07-28 — phases 2–3, Places B1–B4, CONNECT, and private grounded signal writes landed with device proof | agent `76f534ba`, `db2fd449`, `8120da31`, `a2ad99a1`; app `eaeb3627`, `08dc9d19`, `14280999`, `a68c5755`, `4e375e67`, `3bfe8fd3`, `32e35526`; contract `a9c8e45`, `8b24a9ff`; verdict `4cb5e342` |
 | 6 · Places projection + un-borrow | complete 2026-07-28 — C1–C6 and D1 landed; the server-owned root, persisted scope, and marker priority are device-proven | agent `b05be32d`, `17c0cf5d`, `84ccc496`, `e859f0e5`, `b95f97de`, `d15cb49e`, `bd8a83a4`; app `8d676b4f`, `de15ec8f`, `6181ceff`; contract `6ed14cf`, `63395a2`, `c7df72b` |
 | 7 · The Vesper cutover | complete + device-proven 2026-07-28 on isolated lanes; child-main landing deferred behind concurrent dirty worktrees | agent `65d96662`; app `3f2013b7`; contract `5bd01ee` |
-| 8 · Content + tails | in progress 2026-07-29 — Places D3–D6, destinations/offline, Layers 2, 5, and 6, GuidePreview, ReadingDoor, ExperienceRow, and grounded QueryRows are device-proven; F6/E2 is ratified keep-off; the remaining D2 catalogue and gated Trips Phase 4–5 tails remain | agent `917cb424`, `85285a12`, `fafbbcf0`, `c0abd4c9`, `943626b1`; app `3f2013b7`, `6d60823b`, `f3f54ac2`, `846083aa`, `1e0a3389`, `c59a747e`, `53cb30d7`, `28599876`, `054582c1`, `87f1b498`, `5135382d`, `420105a7`; contract `942befb`, `a244b92`, `1877c8d`, `43e7311` |
+| 8 · Content + tails | in progress 2026-07-29 — Places D3–D6, destinations/offline, and every currently non-gated D2 shipping atom are device-proven; F6/E2 is ratified keep-off; AskReading/GapPreview producer gates, deferred highlight variants, and gated Trips Phase 4–5 tails remain | agent `917cb424`, `85285a12`, `fafbbcf0`, `c0abd4c9`, `943626b1`; app `3f2013b7`, `6d60823b`, `f3f54ac2`, `846083aa`, `1e0a3389`, `c59a747e`, `53cb30d7`, `28599876`, `054582c1`, `87f1b498`, `5135382d`, `420105a7`, `2d59829a`, `c6518881`; contract `942befb`, `a244b92`, `1877c8d`, `43e7311` |
 
 Update this table as steps land. One line per completion, with the
 commit hash.
