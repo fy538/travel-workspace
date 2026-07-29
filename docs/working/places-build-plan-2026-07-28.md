@@ -462,6 +462,26 @@ uses the existing Universal Search destination; the canon's same-surface
 focused/typing/results/empty/offline body replacement and search-owned rows
 remain to build. No label is treated as an API identifier.
 
+**Layer-5 completion update (2026-07-29):** backend `c0abd4c9`, app
+`53cb30d7`, device flow `28599876`, and contract `1877c8d` replace the Places
+body in context for focused, loading, result, empty, error, and offline search.
+The explicit global escape preserves the query and never mutates the persisted
+scope; Cancel restores the contextual surface. The passing runner-seeded
+iPhone flow is `direct-maestro-2026-07-29T14-25-26-581Z`. This closes the
+same-surface search behavior; exact D2 catalogue atoms that require a separate
+producer remain governed by their own gates.
+
+**Layer-6 completion update (2026-07-29):** backend `943626b1`, app
+`054582c1`, device flow `87f1b498`, and contract `43e7311` ground the cold
+surface in approved corpus coverage and canonical city ids. A deliberate
+foreground location action atomically acquires Around Me; no permission prompt
+fires on render, and failure leaves scope unchanged. One existing GuidePreview
+supplies the editorial entrance, while machine taxonomy is rejected as display
+copy. The runner-seeded iPhone flow
+`direct-maestro-2026-07-29T14-43-23-937Z` proves cold content, city selection,
+and cold-to-located transition with an unsaved nearby result. This is
+mock-device evidence; no real user location write was performed.
+
 The real defect was neither grammar: `SectionHeading` is **17px/600** and
 `PlaceRow`'s name is **16px/600** — same weight, one pixel apart, so the heading
 barely outranks its own content. Both candidate fixes resolve that ambiguity in
