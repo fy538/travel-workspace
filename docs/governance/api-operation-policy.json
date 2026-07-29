@@ -462,6 +462,22 @@
       "removal_trigger": null,
       "review_by": null
     },
+    "PUT /api/places/scope": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "PlacesWorkspaceScopeRail",
+          "source": "travel-app/components/places/PlacesWorkspace.tsx"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "places",
+      "reason": "The canonical Places scope rail persists the traveler's server-owned selection.",
+      "removal_trigger": null,
+      "review_by": null
+    },
     "GET /api/public/trip-map/{trip_id}": {
       "audience": "public_web",
       "consumers": [
