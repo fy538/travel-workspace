@@ -19,6 +19,56 @@ Audit findings and plan, 2026-07-28. **The architecture is right; the
 integration is unfinished and the turn-taking config is default.** This
 is a finishing job, not a rebuild.
 
+## Status (2026-07-28, end of session)
+
+**Everything in the "Free — build now" list shipped except 3c, which
+turned out not to belong on that list.** 8 commits, `travel-agent`,
+`ae141dc6` → `d2dcead4`. mypy/ruff clean throughout; 197 tests green
+(was 143 at session start). Two pre-commit hooks (broad-exception
+ratchet, sync-DB-in-async) caught real issues along the way, both fixed
+properly rather than bypassed.
+
+| Item | Status | Commit |
+|---|---|---|
+| 1c preemptive-generation audit | ✅ shipped — disabled | `ae141dc6` |
+| 2a wire `voice_id` | ✅ shipped | `ae141dc6` |
+| 2b greeting through the concierge | ✅ shipped | `ae141dc6` |
+| 1a stream concierge → TTS | ✅ shipped | `9473998c` |
+| 1d filler branch | ✅ shipped — speculative case removed | `61155b44` |
+| 2c English-only heuristics | ✅ shipped — reactive safety net, not a translated list | `791b01a0` |
+| 3e `storage.py` | ✅ investigated — verified deliberate, left as-is | — (no code change) |
+| 1b Silero VAD + turn detector | ✅ shipped — **not** `inference.TurnDetector`, see correction below | `5bb535ca` + `c2b5ea2e` |
+| 3a wire `deferred_tool.py` | ✅ shipped — **found and fixed a real race**, see below | `95a58476` |
+| 3b wire `resume_narration` directive | ✅ shipped | `d2dcead4` |
+| 3c FE interruption chain → a screen | ❌ **not started** — investigated, doesn't belong on the free list, see below | — |
+| 3d adaptive interruption config | ❌ not started | — |
+| Funded-session items (baseline, turn-taking feel, listening QA) | ❌ blocked, unchanged | — |
+
+Three corrections to this doc's own earlier claims, found by verifying
+against installed packages and the actual codebase rather than the
+research pass:
+
+1. **1b was wrong about `inference.TurnDetector` being local.** It
+   isn't — its constructor takes `api_key`/`api_secret`, a hosted
+   LiveKit Cloud endpoint. Shipped with the deprecated standalone
+   `livekit-plugins-turn-detector` package's `MultilingualModel`
+   instead, which genuinely runs locally by default. See Phase 1 below
+   for the full correction.
+2. **3a's "5s budget and graceful deferral" undersold a real bug it
+   was hiding.** `asyncio.create_task()` schedules but doesn't run the
+   streaming call synchronously, so the naive implementation's first
+   queue wait would commit to being unbounded before the tool-start
+   signal could arrive — silently never deferring for the common case
+   of a tool call as the model's first action. Reproduced as an actual
+   hang, not a hypothetical; fixed by bounding every wait. Full account
+   in the 95a58476 commit message.
+3. **`storage.py` is not a "wire or delete" situation.** It's
+   deliberately dormant, well-tested scaffolding for a future R2
+   migration that hasn't been provisioned — its own module docstring
+   already says so, and the live narration path correctly uses a
+   different, index-keyed cache today. Wiring it in would have been
+   architecturally wrong. See 3e below.
+
 ## Where SOTA is (July 2026, light survey)
 
 **Latency targets.** Time-to-first-audio under **500 ms** is the
@@ -136,32 +186,70 @@ end-to-end interruption QA. None of it is knowable from code.
   and becomes *(first clause + ~40 ms)*. **This is the single largest
   improvement available.**
 
-**1b · Add the two-signal turn detector.** Add `livekit-plugins-silero`,
-configure `AgentSession(vad=silero.VAD.load(), turn_detection=...)` using
-`livekit.agents.inference.TurnDetector`. This is the fix for
-turn-taking feel, which the survey says users complain about more than
-speed.
+✅ **Shipped, `9473998c`.** `_ClauseBuffer` flushes at sentence ends
+always, softer clause boundaries once substantial (≥40 chars, avoids a
+premature flush on "Mr."), and a 200-char hard cap regardless. The
+callback (push) and the generator's yield (pull) bridge through an
+`asyncio.Queue`; `send_message_streaming` runs as a background task
+while `llm_node` drains the queue. `first_delta_at` added to
+`VoiceTurnTimer` as the new `ttft_ms` anchor (in-memory only — no new
+DB column; nothing needs the raw timestamp yet, and a migration meant a
+real head-collision risk with other sessions landing migrations the
+same night). Flagged, not fixed: `send_message_streaming`'s output
+guard runs log-only on the streaming path — a violation may already be
+**spoken** before the guard catches it, materially worse than the text
+path's silent-bubble-swap. Worth an explicit decision before this ships
+live (e.g. evidence-required turns falling back to the blocking path).
+
+**1b · Add the two-signal turn detector.**
+
+✅ **Shipped, `5bb535ca` (deps) + `c2b5ea2e` (wiring).** ⚠️ **This
+section's original claim was wrong — corrected during implementation,
+not just noted.** `livekit.agents.inference.TurnDetector`'s constructor
+takes `api_key`/`api_secret`/`base_url`: it's a hosted **LiveKit Cloud**
+endpoint, not a local model, despite being described that way above and
+in the sequencing table below. Verified against the installed package
+before writing any code. Using it would have meant trading one paid
+dependency for another, exactly what this whole unfunded phase exists
+to avoid.
+
+Shipped instead: `livekit-plugins-silero` (`VAD.load()` takes only
+local tuning params, confirmed no credentials) plus the **deprecated**
+standalone `livekit-plugins-turn-detector` package's `MultilingualModel`
+— confirmed its constructor sets `load_languages=True` whenever no
+remote inference URL is configured, so it runs locally by default.
+Multilingual over English because Mateus and Keiko are
+Portuguese/Japanese-flavoured. The deprecation is real (LiveKit wants
+everyone on the paid path); tracked in `requirements.in` as a follow-up
+once there's budget, or if the package is pulled from PyPI first.
 
 **1c · Audit preemptive generation against our side-effecting
-`llm_node`.** ⚠️ **Verify before assuming either way.** Our `llm_node`
-is not a pure LLM call — it persists a message, records modality state,
-writes metrics, and emits telemetry. If preemptive generation invokes it
-speculatively and the turn is then not confirmed, we may be persisting
-messages for utterances the user never finished, and double-counting
-telemetry. The idempotency key may absorb the message duplication; it
-will not absorb `record_modality` or the metrics row.
+`llm_node`.**
 
-Decide explicitly: either make `llm_node` side-effect-free until the turn
-is confirmed, or disable preemptive generation. **Also price it** — it
-increases token usage on the modality we already quota for cost.
+✅ **Shipped, `ae141dc6` — disabled.** Confirmed via the installed
+`livekit-agents==1.6.6` source, not assumed: preemptive generation
+re-invokes `Agent.llm_node` — our override, not a separate LLM-only
+path (`on_preemptive_generation` → `_generate_reply` →
+`perform_llm_inference(node=self._agent.llm_node)`) — on unconfirmed
+transcripts, up to `max_retries=3` per turn. Since `llm_node` persists a
+message, records modality, and writes metrics/telemetry, a discarded
+speculative attempt was paying for all of it on every voice turn, not
+just occasionally. Disabled via
+`turn_handling={"preemptive_generation": {"enabled": False}}` until
+`llm_node`'s side effects can be deferred until the turn is confirmed.
+This was landed **first**, before any other item, on the reasoning that
+it might be actively costing money.
 
-**1d · Re-evaluate the fillers.** Once 1a lands, the speculative filler
-is probably unnecessary for normal turns (sub-500 ms needs no
-scaffolding) and still valuable for tool calls (2–5 s). This is also the
-moment to fix the dead heuristic: `_filler_reason` currently returns
-`"tool_call"` vs `"speculative"` but **both paths yield the same filler**,
-so ~25 lines of keyword matching change only a telemetry label. Give tool
-calls a distinct treatment or delete the branch.
+**1d · Re-evaluate the fillers.**
+
+✅ **Shipped, `61155b44`.** Once 1a streams, the speculative case is a
+net loss, not just unnecessary — the real reply's first clause arrives
+about as fast as a filler's own TTS would, so firing one and cutting it
+short reads as *more* jerky than starting the stream directly. Removed
+the branch entirely; `_filler_reason` now returns `"tool_call"` or
+`None`. This also deleted `_ACK_ONLY_PHRASES`/`_ACK_MAX_CHARS` as dead
+code — their only job was choosing between "speculative" and `None`, a
+distinction that no longer exists.
 
 ### Phase 2 · The persona seam *(small, visible)*
 
@@ -172,10 +260,26 @@ default voice while saying persona-flavoured filler text — the exact seam
 `_persona_fillers`'s own comment says it exists to prevent. Verify the
 kwarg name against the installed `livekit-plugins-cartesia==1.6.6`.
 
+✅ **Shipped, `ae141dc6`.** Kwarg confirmed to be `voice` (not
+`voice_id`/`voice_name`) — its default is itself a fixed voice-ID
+string, not `None`, confirming the bug: every persona really was
+speaking in that one plugin default. Wired conditionally, omitting the
+kwarg entirely (not passing `None`) when a persona has no `voice_id`
+yet, to preserve the plugin's own default for un-designed personas.
+
 **2b · Route the greeting through the concierge.**
 `session.say("Hey! How can I help with your trip?")` is hardcoded,
 English, persona-less, and **ungoverned by Voice Canon** — the first
 sentence a user ever hears is the one that bypasses the voice.
+
+✅ **Shipped, `ae141dc6`.** Not routed through a live LLM call —
+deliberately static, matching `verbal_preamble_phrases`/
+`voice_deferral_phrase`'s existing pattern. A session opener has no
+user utterance to ground a live composition on, and firing an LLM call
+on every connect would add real cost to a modality already under
+budget pressure. New `GuidePersona.voice_greeting` field, populated for
+Mateus and Keiko; `persona_greeting()` resolves it with a neutral
+fallback for un-enriched personas.
 
 **2c · Fix or drop the English-only heuristics.** `_ACK_ONLY_PHRASES` and
 `_TOOL_TRIGGER_WORDS` are English while personas are Portuguese- and
@@ -183,6 +287,21 @@ Japanese-flavoured. A user answering Mateus with "sim" fails the ack
 check and gets a filler stacked on a 300 ms reply — the precise jerkiness
 the list was written to prevent. If 1d deletes the speculative branch,
 much of this dissolves.
+
+✅ **Shipped, `791b01a0` — reactive safety net, not a translated
+list.** `_ACK_ONLY_PHRASES` dissolved entirely per the 1d prediction
+above. `_TOOL_TRIGGER_WORDS`/`_PHRASES` survive (they still gate the
+pre-emptive, instant filler) but a translated word list would have
+been perpetually incomplete — new languages, code-switching, informal
+phrasing. Instead wired `on_tool_complete`'s sibling, `on_tool_start`,
+as a reactive fallback: it fires off the model's actual `tool_use`
+content block, not a transcript guess, so it's language-agnostic by
+construction. If the pre-emptive guess missed, a filler still fires the
+moment a real tool call starts — late beats silent for the rest of a
+2–5 s execution. Guarded against double-firing across multiple tool
+calls in one turn; `voice_turn_metrics.filler_reason` gains a new
+`"tool_start_reactive"` value so dashboards can see how often the
+prediction actually misses.
 
 ### Phase 3 · Interruption — the differentiated part *(the real bet)*
 
@@ -195,12 +314,70 @@ has zero importers.
 
 - **3a · Wire `deferred_tool`** into the agent's tool path — the 5 s
   budget and graceful deferral. Independent of everything else.
+
+  ✅ **Shipped, `95a58476`.** Found and fixed a real bug on the way in:
+  the original consumer loop's first `await chunk_queue.get()` was
+  unbounded, issued while `tool_started_at` was still `None` — because
+  `asyncio.create_task()` schedules the producer but doesn't run it
+  synchronously, the consumer could commit to waiting forever before the
+  producer had a chance to set the deadline flag. Reproduced as an
+  actual hung `pytest` process (killed via `ps aux | grep pytest` +
+  `kill -9`), not a mock artifact. Fixed with a bounded 0.5 s poll
+  (`_POLL_INTERVAL_S`) before the deadline is known, then a real budget
+  countdown once `tool_started_at` is set. On timeout, the deferred path
+  calls `post_deferred_result` / `deferral_phrase_for_persona` and, when
+  the background task later completes, posts the result back into chat
+  via `asyncio.to_thread(create_message, ...)` (sync DB call kept off
+  the event loop, per the repo's async-sync-db hook).
+
 - **3b · Wire the `resume_narration` call site** in `worker.py` (the
   integration note is already written there, as a comment).
+
+  ✅ **Shipped, `d2dcead4`.** `llm_node`'s new `_on_tool_complete`
+  callback parses the tool result's envelope (`ToolResultEnvelope` /
+  `wrap_envelope()`), and when the structured payload carries a
+  `resume_narration` directive, calls `publish_resume_directive(room,
+  directive)`. `TravelVoiceAgent.__init__` gained a `room:
+  _Room | None = None` param (TYPE_CHECKING-guarded import of the
+  `_Room` protocol from `resume_directive.py`, so no runtime import is
+  needed) and `worker.py` now passes `room=ctx.room` at construction.
+  The stale "Phase 6b.10" comment block in `worker.py` that used to
+  describe this as a remaining integration step has been deleted.
+
 - **3c · Consume the FE interruption chain from a real screen.** Today
   it is wired only to itself.
+
+  ❌ **Investigated, not started — this is not wire-up work.** Two of
+  the hook's three injectable dependencies do have real implementations
+  now (`LiveNarrationPlaybackAdapter` in
+  `utils/voice/liveNarrationPlaybackAdapter.ts`, and
+  `liveAudioSessionProvider.ts`) — but two things are still missing, and
+  neither is small:
+
+  1. **No live microphone → VAD pipeline.** `feedVadFrame` (the entry
+     point `useNarrationWithInterruption` needs to detect a voice
+     interruption) has zero real callers anywhere in the app — grepped
+     for it across `travel-app`; only the hook and
+     `interruptionController.ts` mention it. There is no existing
+     capture pipeline to hook up; one would have to be built from
+     scratch.
+  2. **No real `voiceSessionOpener`.** The third injectable dependency
+     has no implementation outside the hook's own no-op default stub —
+     and a real one is blocked on the same zero-budget constraint
+     governing the rest of this doc (it opens a live LiveKit voice
+     session).
+
+  The realistic integration target is `components/chat/NarrationCard.tsx`
+  (550 lines, the actual current narration entry point, built on the
+  much simpler `useNarrationAudio` play/pause/progress hook) — but
+  swapping it onto `useNarrationWithInterruption` is a full
+  interaction-model rewrite of that screen, not a call to an unused
+  hook. Left as a scoping decision for the user, not picked up.
+
 - **3d · Configure adaptive interruption** — mode, `min_duration`,
   `min_words`, `false_interruption_timeout`.
+
+  ❌ Not started; not investigated this session.
 
 **Interrupt a narration by voice, ask something, say "go on," resume at
 the bookmark** is the one capability here a general assistant cannot
@@ -367,43 +544,63 @@ Audio multiplies whatever the writing is; narrating a generic city guide
 in a beautiful voice produces a generic audio guide, which is worse than
 shipping nothing.
 
-## Sequencing under the no-budget constraint
+## Sequencing under the no-budget constraint — completion record
 
-**Almost all of this is buildable now.** What is blocked is verification,
-not construction.
+**Everything free landed.** Actual order was 1c → 1a → 1d → 2a → 2b →
+2c → 3e → 1b → 3a → 3b, each as its own commit in `travel-agent`, then
+3c was investigated and correctly stopped short of implementation. See
+the [Status](#status-2026-07-28-end-of-session) section at the top for
+the commit hashes and the corrections found along the way — in
+particular, **1b's original framing below was wrong**: it shipped, but
+not as `inference.TurnDetector`.
 
-### Free — build now, against `tests/voice/`
+### Free — build now, against `tests/voice/` *(original framing, kept for record)*
 
-| Item | Why it is free |
-|---|---|
-| **1c** preemptive-generation audit | pure code reading; **do this first — it may be burning tokens** |
-| **1a** stream concierge → TTS | `send_message_streaming` is already exercised by the text path; the clause-buffer is a pure function with unit tests |
-| **1d** filler branch | pure refactor |
-| **2a** wire `voice_id` | one-line wiring + a test asserting the kwarg reaches the TTS constructor |
-| **2b** greeting through the concierge | pure |
-| **2c** heuristics | pure |
-| **3a/3b** `deferred_tool` + resume call site | both already have test files and no live dependency |
-| **3c** FE interruption chain → a screen | RN + jest; no provider |
-| **3e** `storage.py` wire-or-delete | pure |
+| Item | Why it is free | Outcome |
+|---|---|---|
+| **1c** preemptive-generation audit | pure code reading; **do this first — it may be burning tokens** | ✅ shipped — disabled |
+| **1a** stream concierge → TTS | `send_message_streaming` is already exercised by the text path; the clause-buffer is a pure function with unit tests | ✅ shipped |
+| **1d** filler branch | pure refactor | ✅ shipped |
+| **2a** wire `voice_id` | one-line wiring + a test asserting the kwarg reaches the TTS constructor | ✅ shipped |
+| **2b** greeting through the concierge | pure | ✅ shipped |
+| **2c** heuristics | pure | ✅ shipped — became a reactive safety net, not a translated list |
+| **3a/3b** `deferred_tool` + resume call site | both already have test files and no live dependency | ✅ shipped (3a found a real race; see Phase 3 above) |
+| **3c** FE interruption chain → a screen | RN + jest; no provider | ❌ **turned out not free** — needs a net-new mic→VAD capture pipeline and a real `voiceSessionOpener`; see Phase 3 above |
+| **3e** `storage.py` wire-or-delete | pure | ✅ investigated — deliberate, left as-is, no code change |
 
-**1b** (Silero VAD + `inference.TurnDetector`) is a middle case: both are
-**local models**, not paid APIs, and `livekit-local-inference` is already
-pinned — so adding and configuring them costs nothing. Only judging
-whether the turn-taking *feels* right needs a live session.
+**1b** (Silero VAD + turn detection) was originally framed as "both are
+local models, including `inference.TurnDetector`." That was wrong:
+`inference.TurnDetector` requires `api_key`/`api_secret`/`base_url` —
+paid LiveKit Cloud inference. Shipped instead with the deprecated
+standalone `livekit-plugins-turn-detector` package's `MultilingualModel`,
+which is genuinely local by default (loads local language files when no
+remote inference URL is configured). Chosen over `EnglishModel` because
+the personas are Portuguese/Japanese-flavored. Silero VAD was correct as
+originally framed — genuinely local, no credentials.
+
+The one item that was framed as free and was not: **3c**. It needs
+infrastructure that doesn't exist yet (live mic capture, a real voice
+session opener), not wiring of infrastructure that does.
 
 ### Blocked on the first funded session
+
+Unchanged from the original plan — nothing here required a funded
+session to land, so this list is still exactly what's left:
 
 Latency baseline (p50/p95 per stage), turn-taking feel, persona voice
 listening checks, end-to-end interruption QA, and the podcast
 voice-continuity seam. **Script that session in advance** — a fixed
 20–30-turn run across ack / simple / tool-calling, executed once, rather
-than exploratory poking. Everything above should be landed and green
-before it starts, so one paid hour answers every open question at once.
+than exploratory poking. Everything free is now landed and green, so one
+paid hour should answer every open question at once.
 
-**Order:** 1c → 1a → 1b → 2a–2c → (Batch 3 as a product decision) →
-funded session → re-tune from real numbers.
+3d (adaptive interruption config) and 3c (once scoped) can both be
+tackled before or after that session — neither depends on it, but 3c in
+particular is a product decision (does an interrupt-and-resume narration
+experience belong on `NarrationCard`, and is it worth a screen rewrite)
+rather than an engineering one, so it's left for the user to scope
+rather than picked up here.
 
 The one rule that survives the budget constraint: **nothing here gets
-called "faster" until the funded session says so.** Build it, test it
-offline, keep it gated, and let the measurement be the thing that closes
-each item.
+called "faster" until the funded session says so.** It's built, tested
+offline, and gated — the measurement is still what closes each item.
