@@ -383,6 +383,16 @@ priority without rendering unknown provenance. App `6181ceff` synchronizes the
 generated marker contract. D2–D6 are not complete; this is the executable
 foundation, not a claim that the 49-component canvas has been reproduced.
 
+**Step-8 implementation update (2026-07-28):** app `23586ee1` lands the first
+D2/D3/D6 slice: one fixed `CoreSurface`, mono `VKicker` section headings, and
+the grounded map/guide/place/experience/reading/area component family with
+independent open/save targets and explicit unknown-hours/time states. The mock
+projection now preserves the real context contract across cold, future-trip,
+live-trip, and persisted-scope states. Focused Jest passes 8/8; TypeScript and
+surface registries pass; all four Places Workspace captures pass on iPhone 16
+Pro / iOS 18.2 with a structured `pass` verdict. D2's remaining catalogue and
+D4–D5 remain open, and E2 remains a decision gate before Reading is exposed.
+
 The real defect was neither grammar: `SectionHeading` is **17px/600** and
 `PlaceRow`'s name is **16px/600** — same weight, one pixel apart, so the heading
 barely outranks its own content. Both candidate fixes resolve that ambiguity in
