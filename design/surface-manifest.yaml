@@ -182,12 +182,70 @@ surfaces:
     notes: "Wave 3 re-audit (2026-07-11): the canon-129 header ruling (hero-first, no top bar) RE-CONFIRMED for both live Places screens (place + venue detail); deeper structural rules newly checked (Take placement, inline-not-floating planning rail, neighbourhood Option-A gating) all confirmed exact — strong result for genuinely-unverified territory. MAPPING CORRECTION: app/trip-place/index.tsx is a pure redirect stub (21 lines, no UI) to Trip Creation's ChoosePlaceSheet — canon itself disclaims ownership of this picker ('Trip place picker → Trip Creation, not detail'). It carries no Places content to verify; shouldn't have carried a stale/pending verdict as if it did. Two hygiene items, both previously-known but still live: components/places/PlaceHome.tsx's local VesperMark-that-renders-Fleuron naming collision (Voice-registers finding) is confirmed still present at both its call sites; components/places/SpotActions.tsx is dead code with a self-description that's now false (claims accommodation still depends on it — it doesn't) AND is literally the 'forbidden floating action rail' canon explicitly says not to build — should be deleted, not left importable."
 
   - surface: Places Tab (root browse surface)
-    canon: []  # deliberately empty — the design lives in the Claude Design project as EXPLORATION ("PLACES - CORE.html", 19 sections, + "PLACES - COMPONENT MAP.html") and is not in the mirror. It has never been exported as canon, and its own banner says so. Same posture as the Atlas row below: registered so the surface is not invisible, not so it can be drift-checked.
-    code: ["app/(tabs)/places/", "components/places/PlacesWorkspace.tsx", "utils/placesWorkspace.ts", "travel-agent: backend/places/", "travel-agent: backend/api/routes/concierge_home.py"]
-    aligned_at: null
-    code_verified_at: null
-    status: gap
-    notes: "ADDED 2026-07-28. Distinct from the `Places` row above, which is VENUE DETAIL (Vesper Places.html → app/place, app/venue) and is real canon. This row is the Places TAB — the root browse surface that landed with the 3-tab IA reorg (discover + atlas both href:null). Design is complete and adjudicated; code is not built. Audited 2026-07-28: all four routes under app/(tabs)/places/ are thin bridges totalling 47 lines — index → PlacesWorkspace (self-described 'temporary composition bridge'), saved → Atlas SavedIndexScreen (269), been → AtlasLongViewScreen (720), map → DiscoverMapScreen (572); 1,561 borrowed lines against 47 of its own. `PlacesScope` exists (utils/placesWorkspace.ts) but is client-only, 3 kinds against the design's 6, unpersisted, and derives city scopes from saved cities only. Backend: there is NO Places API — the taste ranker discover_nearby_ranked escapes only via /api/concierge/home at limit 3, and backend/places/discovery.py:88 emits `id: None` for live-provider rows, which the design's requireId contract throws on. Status `gap` is the closest available value but slightly wrong: the five open adjudications were all ruled 2026-07-28 and nothing awaits a decision — what remains is the build. Plan: docs/working/places-build-plan-2026-07-28.md (6 tracks, A1 first and alone). Do NOT drift-check this row until a canon export exists."
+    canon: []  # still deliberately empty — PLACES - CORE.html remains EXPLORATION, never exported to the mirror. Do NOT drift-check this row.
+    code:
+      - "app/(tabs)/places/"
+      - "components/places/PlacesWorkspace.tsx"
+      - "components/places/PlacesSearchState.tsx"
+      - "components/places/PlacesRootHeaderActions.tsx"
+      - "components/places/core/"          # PlacesCore, PlacesAtoms, PlacesDepth, PlacesShell, PlacesScopeControl, CORRESPONDENCE.md
+      - "utils/placesWorkspace.ts"
+      - "travel-agent: backend/places/"
+      - "travel-agent: backend/api/routes/places.py"
+    aligned_at: null    # still no canon EXPORT to align against — see canon: []
+    code_verified_at: 3b7b2557    # travel-app HEAD as of the shell-alignment pass below; NOTE this pass's own diff is uncommitted in the working tree at time of writing, not yet part of this SHA
+    status: partial
+    notes: >
+      UPDATED 2026-07-29 (places-shell alignment, PR-P1–P4 of
+      design/code-alignment-brief-2026-07-29-places-shell.md). The 2026-07-28
+      audit below this line is superseded almost everywhere it made a
+      specific claim — both by a separate, extensive concurrent build effort
+      documented commit-by-commit in docs/working/places-build-plan-2026-07-28.md
+      §3 (Tracks A–E, dated updates through 2026-07-29), and by this session's
+      own narrower shell-alignment work. Spot-checked, not re-audited: 12 of
+      13 travel-app commit SHAs and 7 of 7 travel-agent commit SHAs cited in
+      the build plan's dated updates resolve to real commits (one travel-app
+      SHA, 943626b1, did not resolve — flagged, not chased further).
+
+      What this session verified directly: PLACES - CORE.html's stale D6 note
+      resolved (SectionHeading now renders via VKicker on both the canvas and
+      in code — they agree). `PlacesWorkspace.tsx` no longer hand-rolls a
+      header: the "Places" nav title, the "PLACES IN" eyebrow card, and the
+      Saved pill are gone, replaced by `PlacesScopeControl` + `PlacesShell`
+      (new files, faithful ports of canon's ScopeControl/ExpandedShell).
+      `SearchEscape` is now persistently rendered per canon rather than
+      gated on active search. Section titles name the place (`Near you` /
+      `Places in X` / `Around X`) instead of defaulting to the generic
+      fallback for every non-trip scope. A correspondence table
+      (components/places/core/CORRESPONDENCE.md) now maps all 49 canon
+      components + 10 logic functions to their code counterpart or an
+      explicit reason one doesn't exist, checked by a new conventions test
+      (__tests__/conventions/placesShellContract.test.ts) that fails if the
+      header regresses, "PLACES IN" reappears, or the table drifts from real
+      exports — verified to actually catch the regression, not just pass by
+      construction.
+
+      Real gaps this pass found, not yet fixed: the `been` relationship
+      marker (of six canon markers) has no producer anywhere in code — a
+      genuine gap CORRESPONDENCE.md is the first place to say so explicitly.
+      `PlacesShell`'s `CompactShell` variant is built and correct but never
+      wired to a scroll-collapse behavior. `PFHeaderActions`' "dissolve to
+      bare You at zero saves" rule isn't implemented in the shipped
+      `PlacesRootHeaderActions` (kept unchanged per the alignment brief's
+      explicit scope). AskReading, GapPreview, SharedPlacesPreview, and
+      PlaceCarousel remain unbuilt, matching their own canon tiers
+      (backend/backend/defer/defer) — not regressions, just still open.
+
+      Per the build plan's own dated updates (not independently re-verified
+      here beyond the SHA spot-check above): Tracks A–C (place identity,
+      scope/position/anchor as three server facts, the seven-section
+      projection) are reported landed; Track D's component layers 1–6 are
+      reported substantially built and device-proven via Maestro; the D2
+      full 49-component catalogue closure remains explicitly open, gated on
+      the same four components named above. Plan:
+      docs/working/places-build-plan-2026-07-28.md. Still do NOT drift-check
+      this row — canon: [] stands until PLACES - CORE.html is formally
+      exported.
 
   - surface: Trip Story
     canon: ["Vesper Trip Story and Memory Handoff.html", "trip-story-app-a.jsx", "trip-story-app-b.jsx", "trip-story-app-c.jsx"]

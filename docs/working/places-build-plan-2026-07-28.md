@@ -56,8 +56,59 @@ exists.
 
 ## 1. What is actually true today
 
+> **SUPERSEDED 2026-07-29 — read this box, not just the table below.** The
+> audit under this heading describes 2026-07-28, before Tracks A–D's dated
+> updates in §3 (most of them, landed the same week) and before this
+> session's own places-shell alignment pass
+> (`design/code-alignment-brief-2026-07-29-places-shell.md`, PR-P1–P4). It is
+> wrong on almost every specific number and claim below. Kept verbatim as
+> the historical starting point — it's what made Track A necessary — not as
+> current status.
+>
+> **Current status, briefly, as of 2026-07-29:**
+> - **Backend (Tracks A–C):** reported landed per §3's dated commits —
+>   namespaced provider ids + materialize-on-save (A1–A2), Been cut (A4),
+>   scope/position/anchor as three persisted server facts (B1–B4, backend
+>   `db2fd449`), and the seven-section `GET /api/places` projection (C1–C6,
+>   backend `b05be32d` + 4 more, root `6ed14cf`+`63395a2`+`c7df72b`). A real
+>   Places API now exists — the "no Places API" line below is the single
+>   most out-of-date claim in this section.
+> - **Frontend (Track D):** component layers 1–6 reported substantially
+>   built and Maestro-device-proven per §3's dated updates; the 47-vs-1,561
+>   borrowed-lines framing below is stale — D1 moved `DiscoverMapScreen` to
+>   Places ownership and Been's 720 borrowed lines are gone with A4.
+>   **This session's own, narrower contribution** was the shell/header
+>   layer specifically: `PlacesWorkspace.tsx` no longer hand-rolls a header
+>   (no "Places" wordmark, no "PLACES IN" card, no Saved pill) — it now
+>   composes `PlacesScopeControl` + `PlacesShell`, faithful ports of canon's
+>   `ScopeControl`/`ExpandedShell`; `SearchEscape` renders persistently per
+>   canon instead of only during active search; section titles name the
+>   place instead of defaulting to `Places for this scope`. A
+>   canon-to-code correspondence table
+>   (`components/places/core/CORRESPONDENCE.md`) and a conventions-test
+>   guard (`__tests__/conventions/placesShellContract.test.ts`) now exist
+>   to catch exactly this kind of drift going forward.
+> - **Real gaps this pass surfaced, not yet closed:** the `been`
+>   relationship marker (of six canon markers) has no producer anywhere —
+>   unflagged until CORRESPONDENCE.md said so explicitly. D2's full
+>   49-component catalogue closure remains open, gated on the same four
+>   components §3 already names (`AskReading`, `GapPreview`,
+>   `SharedPlacesPreview`, `PlaceCarousel`). `CompactShell` is built and
+>   correct but unwired (no scroll-collapse behavior calls it).
+> - **Authoritative live snapshot:** `design/surface-manifest.yaml` →
+>   "Places Tab (root browse surface)" row, `status: partial`,
+>   `code_verified_at: 3b7b2557`. Update that row, not this section, for
+>   the next verification pass — this box will itself go stale the moment
+>   someone lands more of D2.
+>
+> None of the above was independently re-audited line-by-line in this
+> pass beyond a commit-SHA spot check (12/13 travel-app, 7/7 travel-agent
+> resolved to real commits) — it relays what §3's dated updates and this
+> session's own diff each state, not a fresh Wave-style re-verification.
+
 Verified in the code on 2026-07-28, not assumed. Several claims carried in
-earlier notes were wrong and are corrected here.
+earlier notes were wrong and are corrected here. **(Historical — see the
+box above for 2026-07-29 status.)**
 
 ### Frontend
 
