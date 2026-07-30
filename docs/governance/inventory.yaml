@@ -110,6 +110,14 @@ overrides:
     disposition: keep_reference
     rationale: Active implementation plan for chat typography and agent signature roles; expires 2026-08-27 and must be promoted into the chat surface contract or archived.
 
+  docs/working/design-file-consolidation-2026-07-29.md:
+    disposition: keep_reference
+    rationale: Active Vesper design-governance investigation; promote accepted audit ownership into the design canon or archive at expiry.
+
+  docs/working/vesper-home-engine-implementation-plan-2026-07-30.md:
+    disposition: keep_reference
+    rationale: Active cross-repo Vesper implementation sequence; promote durable API and surface boundaries into their feature contracts or archive at expiry.
+
   docs/working/canon-index-registration-2026-07-28.md:
     disposition: keep_reference
     rationale: Active record of the Trips-home stack model canon registration; expires 2026-08-27 and archives after promotion or rejection.
