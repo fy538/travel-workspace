@@ -6311,6 +6311,215 @@
         }
       }
     },
+    "/api/trips/{trip_id}/booking/link-surfaced": {
+      "post": {
+        "tags": [
+          "booking"
+        ],
+        "summary": "Post Link Surfaced",
+        "description": "U2: record that a booking-domain link was tapped out of chat \u2014\nmeasurement only, no consumer today. See docs/working/Booking\nCapture \u2014 Un-anchored Handoffs.md \u00a7U2. Silently a no-op for a\nnon-booking-domain URL; the FE fires this for every tapped link and\nthe server decides what's worth keeping.",
+        "operationId": "post_link_surfaced_api_trips__trip_id__booking_link_surfaced_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LinkSurfacedRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LinkSurfacedResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/booking/link-domain-attribution/preview": {
+      "get": {
+        "tags": [
+          "booking"
+        ],
+        "summary": "Get Link Domain Attribution Preview",
+        "description": "U3: read-only preview of the Tier-C (venue-less) suggestion for\nthis trip + domain \u2014 \"here's the GetYourGuide link you tapped\nrecently; is this the booking in your screenshot?\" Never writes\nanything; see the /confirm endpoint below for the actual write,\nwhich must only ever follow an explicit user confirmation.",
+        "operationId": "get_link_domain_attribution_preview_api_trips__trip_id__booking_link_domain_attribution_preview_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "domain",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Domain"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LinkDomainMatchPreview"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/booking/link-domain-attribution/confirm": {
+      "post": {
+        "tags": [
+          "booking"
+        ],
+        "summary": "Post Confirm Link Domain Attribution",
+        "description": "U3: persist a Tier-C (venue-less, domain-matched) attribution \u2014\nONLY ever reachable via this explicit user action, never a\nbackground worker. Confidence is always 'medium'; see\ndocs/working/Booking Capture \u2014 Un-anchored Handoffs.md \u00a7U3.",
+        "operationId": "post_confirm_link_domain_attribution_api_trips__trip_id__booking_link_domain_attribution_confirm_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfirmLinkDomainAttributionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfirmLinkDomainAttributionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/booking/blocks/{block_id}/confirmation-share": {
       "get": {
         "tags": [
@@ -37890,6 +38099,18 @@
             ],
             "title": "Accommodation Id"
           },
+          "attribution_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attribution Id"
+          },
           "title": {
             "type": "string",
             "title": "Title"
@@ -37945,7 +38166,7 @@
           "status"
         ],
         "title": "BookingCoverageItem",
-        "description": "One lane entry \u2014 an itinerary block (flight/dinner_activity/\ntransport) or a trip_accommodations row (stay). Exactly one of\n``block_id`` / ``accommodation_id`` is set, matching which source\nproduced it."
+        "description": "One lane entry \u2014 an itinerary block (flight/dinner_activity/\ntransport), a trip_accommodations row (stay), or a venue-less\nTier-C attribution (U3 \u2014 a booking confirmed via a domain-matched\nlink tap, with no venue or block to anchor on). Exactly one of\n``block_id`` / ``accommodation_id`` / ``attribution_id`` is set,\nmatching which source produced it."
       },
       "BookingCoverageLane": {
         "properties": {
@@ -41255,6 +41476,79 @@
         },
         "type": "object",
         "title": "ConfirmInboundCandidateRequest"
+      },
+      "ConfirmLinkDomainAttributionRequest": {
+        "properties": {
+          "domain": {
+            "type": "string",
+            "title": "Domain"
+          },
+          "inbound_item_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Inbound Item Id"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "captured_amount": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Captured Amount"
+          },
+          "captured_currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Captured Currency"
+          }
+        },
+        "type": "object",
+        "required": [
+          "domain",
+          "inbound_item_id"
+        ],
+        "title": "ConfirmLinkDomainAttributionRequest"
+      },
+      "ConfirmLinkDomainAttributionResponse": {
+        "properties": {
+          "attribution_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attribution Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "attribution_id"
+        ],
+        "title": "ConfirmLinkDomainAttributionResponse"
       },
       "ConfirmTripCreationProposalRequest": {
         "properties": {
@@ -55083,6 +55377,91 @@
           "utc_fallback"
         ],
         "title": "LifecycleTimezoneSource"
+      },
+      "LinkDomainMatchPreview": {
+        "properties": {
+          "matched": {
+            "type": "boolean",
+            "title": "Matched"
+          },
+          "source_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Url"
+          },
+          "handoff_issued_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Handoff Issued At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "matched"
+        ],
+        "title": "LinkDomainMatchPreview"
+      },
+      "LinkSurfacedRequest": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "Url"
+          },
+          "conversation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Conversation Id"
+          },
+          "message_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "url"
+        ],
+        "title": "LinkSurfacedRequest"
+      },
+      "LinkSurfacedResponse": {
+        "properties": {
+          "recorded": {
+            "type": "boolean",
+            "title": "Recorded"
+          }
+        },
+        "type": "object",
+        "required": [
+          "recorded"
+        ],
+        "title": "LinkSurfacedResponse"
       },
       "ListBlock": {
         "properties": {

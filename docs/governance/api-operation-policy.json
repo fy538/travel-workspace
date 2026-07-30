@@ -543,6 +543,21 @@
       "removal_trigger": null,
       "review_by": null
     },
+    "GET /api/trips/{trip_id}/booking/link-domain-attribution/preview": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "declared",
+          "name": "Backend substrate for U3 (venue-less Tier-C attribution) — read-only preview of a domain-matched suggestion. FE review-queue consumer is a named next increment, not yet built."
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "booking",
+      "reason": "See docs/working/Booking Capture — Un-anchored Handoffs.md §U3 — backend + tests shipped, no FE consumer yet by design.",
+      "removal_trigger": null,
+      "review_by": null
+    },
     "GET /api/trips/{trip_id}/booking/readiness": {
       "audience": "app",
       "consumers": [],
@@ -1298,6 +1313,36 @@
       "lifecycle": "active",
       "owner": "product-engineering",
       "reason": "Indirect mobile transport is a current product consumer.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "POST /api/trips/{trip_id}/booking/link-domain-attribution/confirm": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "declared",
+          "name": "Backend substrate for U3 (venue-less Tier-C attribution) — the ONLY write path, gated on an explicit human confirm. FE review-queue consumer is a named next increment, not yet built."
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "booking",
+      "reason": "See docs/working/Booking Capture — Un-anchored Handoffs.md §U3 — backend + tests shipped, no FE consumer yet by design.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "POST /api/trips/{trip_id}/booking/link-surfaced": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "declared",
+          "name": "MessageBubble.handleLinkPress (travel-app/components/chat/MessageBubble.tsx) — called via api.postLinkSurfaced on every assistant-message link tap."
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "booking",
+      "reason": "U2 outbound-link instrumentation; see docs/working/Booking Capture — Un-anchored Handoffs.md §U2.",
       "removal_trigger": null,
       "review_by": null
     },
