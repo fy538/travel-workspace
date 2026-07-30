@@ -23,26 +23,20 @@ source_of_truth_for:
 
 ## §0 — Blockers found while verifying (read before anything)
 
-### B1 · The byline cannot be italic. It must be Roman.
+### B1 · The chat byline cannot be italic. It must be Roman.
 
-The design board specifies "Vesper" in EB Garamond **italic**. That is
-not implementable, and not by accident.
+The design board specifies "Vesper" in EB Garamond **italic**. At the time this
+plan was written, no italic face was registered. The app now has one approved,
+named 17px italic role for bounded authored voice, but that does not change the
+chat decision: a 15px live attribution remains below the italic floor and must
+stay Roman.
 
-`constants/fonts.ts:18-21`:
-
-> "Production is Roman-first: italic faces are **intentionally not
-> registered yet**. If the product approves a limited italic register,
-> add the face and named semantic role together; **never synthesize or
-> register slant at an individual call site**."
-
-Corroborating evidence:
-- `hooks/useAppFonts.ts` loads only `EBGaramond_400Regular / _500Medium
-  / _600SemiBold / _700Bold`. No italic face is bundled.
-- `grep "fontStyle: 'italic'" components constants` → **0 hits.** The
-  app has never used italic.
-- `constants/fonts.ts:24-25` — even if registered, "**Italic, if ever
-  registered, never below 17px**", so a 15px italic byline would fail
-  the floor regardless.
+Current governing evidence:
+- `constants/textVariants.ts` exposes the italic face only through
+  `vesperVoiceItalic` at 17px.
+- `serifFloorContract.test.ts` forbids synthesized `fontStyle: 'italic'` and
+  direct call-site references to `fontFamily.serif_italic`.
+- The chat signature is 15px, so it remains Roman under the 17px italic floor.
 
 Setting `fontStyle: 'italic'` on a Roman-only family gets you
 synthesized oblique on Android and inconsistent behaviour on iOS —
@@ -106,7 +100,8 @@ name).
 
 **Signature** — Guiding Star mark + "Vesper" in **EB Garamond Roman
 15px** (at the serif floor) + an addressee in group rooms set in
-**sans 12** + a trailing mono stamp. **No hairline rule.**
+**sans 12** + a trailing 9px JetBrains Mono stamp. The functional attribution
+gold must meet WCAG AA on the canonical paper surface. **No hairline rule.**
 
 Rejected, with reasons on the design page: scale asymmetry
 (unconventional; collapses at a third speaker), mono-caps label (reads
@@ -144,9 +139,10 @@ override instead."* Patching this with `style={{lineHeight: 22}}` on
 1. Added a new variant, `chatTranscript`, to `constants/textVariants.ts`
    (sans 15/22/0, mirroring `typography.chatTranscript`'s current
    numbers exactly) — placed directly after `bodyMd`, with a doc
-   comment cross-referencing both files and noting they must be kept
-   numerically in sync by hand until the `typography.ts` migration
-   reaches this role.
+   comment cross-referencing both files. This initially required manual
+   synchronization; the 2026-07-30 hardening pass made `textVariants`
+   canonical and converted `typography.chatTranscript` into a derived
+   compatibility alias.
 2. `bodyMd`'s own doc comment corrected — it advertised itself for
    "message bubbles," which was the root confusion; now points readers
    to `chatTranscript` instead.
@@ -251,7 +247,7 @@ environment. **Rollback:** revert the two constants.
 branch renders the label as `VText variant="serifBody"` (serif 15/22 —
 exactly at the floor) in `signatureColor`, with a doc comment on the
 branch spelling out the B1 constraint explicitly: *never italic —
-production is Roman-first and no italic face is registered; never use
+the 15px signature is below the limited 17px italic floor; never use
 `signature` to label a human, that's what `byline` is for.* The
 plus-mark sizing condition (`styles.plusByline`) was widened from
 `scale === 'byline'` to `scale !== 'eyebrow'` so the mark sizes
@@ -439,6 +435,35 @@ to `colors.surface.ink` and restore the text-color ternary.
 
 ---
 
+## Hardening pass — ✅ SOURCE + TEST COMPLETE 2026-07-30
+
+The post-landing audit closed the remaining implementation and governance
+gaps:
+
+1. `textVariants.chatTranscript` is now the sole canonical 16/26 role;
+   `typography.chatTranscript` derives from it, with a reference-equality
+   regression test.
+2. Vesper's functional attribution uses `surface.signatureGold`
+   (`#856020`), which clears 4.5:1 against canonical chat paper. The decorative
+   `goldDeep` token is unchanged.
+3. Markdown emphasis remains Roman and uses the same AA-safe gold because the
+   native renderer's emphasis API exposes color but not weight. Strong text
+   remains bold.
+4. Empty assistant replies render through `chatTranscript`, not `bodyMd`.
+5. Signature timestamps render through the JetBrains Mono `monoStamp` role.
+6. The Vesper Chat surface contract now records the exact roles and the
+   outstanding iPhone/Pixel/tablet enlarged-text evidence matrix.
+
+Focused chat tests and TypeScript validation are green. The registered native
+QA doctor passed once Metro was available. The first post-change capture
+attempt collided with another active workspace session holding the same iPhone
+simulator's Maestro driver, so no conflicted screenshot was accepted. After
+that process cleared, a clean retry failed the Maestro driver-smoke hierarchy
+check before any flow ran. Device certification therefore remains explicitly
+open rather than being inferred from source or tests.
+
+---
+
 ## Sequencing
 
 1. **Landing 1** — ✅ shipped 2026-07-28.
@@ -447,16 +472,11 @@ to `colors.surface.ink` and restore the text-color ternary.
 3. **Landing 3** — ✅ shipped 2026-07-28.
 4. **Landing 4** — ✅ shipped 2026-07-28.
 
-**All four landings are shipped. Remaining before this doc can be
-retired:** update the typography and attribution sections of
-`travel-app/docs/surfaces/vesper-chat/contract.md` — that doc describes
-shipped behaviour, and now this is. B3 (Dynamic Type / font-scaling
-policy) still needs a native-simulator pass. E vs E′ (below) is still
-undecided.
-
-**Before any of it:** decide whether B1's italic correction should also
-be applied to the trips-home spec, which currently specifies serif
-italic in three places.
+**All four landings and the E′ decision are shipped.** Typography and
+attribution have been promoted into the Vesper Chat contract. The only
+remaining retirement condition is B3's conflict-free native transcript matrix
+at enlarged text sizes; source and tests are not a substitute for that device
+evidence.
 
 ---
 

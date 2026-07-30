@@ -318,3 +318,7 @@ overrides:
   docs/working/voice-agent-sota-plan-2026-07-28.md:
     disposition: keep_reference
     rationale: Active voice integration gap and sequencing plan; expires 2026-08-27.
+
+  docs/working/vesper-home-list-kinds-scope-2026-07-29.md:
+    disposition: keep_reference
+    rationale: Implementation scoping and build order for Vesper Home's four list kinds; expires 2026-08-28.

@@ -31072,6 +31072,236 @@
         }
       }
     },
+    "/api/concierge/home/workbench": {
+      "get": {
+        "tags": [
+          "vesper-workbench"
+        ],
+        "summary": "Get Vesper Workbench",
+        "description": "Return the cheap, deterministic Wave-1 Vesper Home envelope.",
+        "operationId": "get_vesper_workbench_api_concierge_home_workbench_get",
+        "parameters": [
+          {
+            "name": "lat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "maximum": 90,
+                  "minimum": -90
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Lat"
+            }
+          },
+          {
+            "name": "lng",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "maximum": 180,
+                  "minimum": -180
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Lng"
+            }
+          },
+          {
+            "name": "weather_condition",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 80
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Weather Condition"
+            }
+          },
+          {
+            "name": "temperature_c",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Temperature C"
+            }
+          },
+          {
+            "name": "precipitation_mm",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Precipitation Mm"
+            }
+          },
+          {
+            "name": "wind_kph",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Wind Kph"
+            }
+          },
+          {
+            "name": "place_label",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 120
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Place Label"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VesperWorkbenchEnvelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/concierge/home/workbench/voice": {
+      "post": {
+        "tags": [
+          "vesper-workbench"
+        ],
+        "summary": "Post Vesper Workbench Voice",
+        "description": "Compose Wave 2 from the exact server-stored Wave-1 grounding.",
+        "operationId": "post_vesper_workbench_voice_api_concierge_home_workbench_voice_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VesperWorkbenchVoiceRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VesperWorkbenchVoice"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/voice/token": {
       "post": {
         "tags": [
@@ -40911,7 +41141,8 @@
               "open_chat_prefill",
               "open_memory",
               "open_story",
-              "open_atlas_artifact"
+              "open_atlas_artifact",
+              "open_atlas"
             ],
             "title": "Type"
           },
@@ -41082,7 +41313,8 @@
               "weather",
               "near_you",
               "starter",
-              "pre_trip_prep"
+              "pre_trip_prep",
+              "atlas_homecoming"
             ],
             "title": "Kind"
           },
@@ -42045,6 +42277,38 @@
               }
             ],
             "title": "Last Active At"
+          },
+          "session_edge_owner": {
+            "type": "string",
+            "enum": [
+              "user",
+              "vesper",
+              "none"
+            ],
+            "title": "Session Edge Owner",
+            "default": "none"
+          },
+          "session_edge_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Session Edge Reason"
+          },
+          "session_edge_since": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Session Edge Since"
           }
         },
         "type": "object",
@@ -75115,7 +75379,8 @@
               "weather",
               "near_you",
               "starter",
-              "pre_trip_prep"
+              "pre_trip_prep",
+              "atlas_homecoming"
             ],
             "title": "Kind"
           },
@@ -75206,7 +75471,8 @@
               "weather",
               "near_you",
               "starter",
-              "pre_trip_prep"
+              "pre_trip_prep",
+              "atlas_homecoming"
             ],
             "title": "Kind"
           },
@@ -77369,6 +77635,126 @@
         ],
         "title": "VesperDelegationLevel"
       },
+      "VesperWorkbenchEnvelope": {
+        "properties": {
+          "schema_version": {
+            "type": "integer",
+            "const": 1,
+            "title": "Schema Version",
+            "default": 1
+          },
+          "envelope_id": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 16,
+            "title": "Envelope Id"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "context": {
+            "$ref": "#/components/schemas/WorkbenchContext"
+          },
+          "read": {
+            "$ref": "#/components/schemas/WorkbenchRead"
+          },
+          "facts": {
+            "items": {
+              "$ref": "#/components/schemas/WorkbenchFact"
+            },
+            "type": "array",
+            "maxItems": 2,
+            "title": "Facts"
+          },
+          "seam": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/WorkbenchSeam"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "list": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/WorkbenchList"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "coverage": {
+            "$ref": "#/components/schemas/WorkbenchCoverage"
+          }
+        },
+        "type": "object",
+        "required": [
+          "envelope_id",
+          "generated_at",
+          "context",
+          "read",
+          "coverage"
+        ],
+        "title": "VesperWorkbenchEnvelope"
+      },
+      "VesperWorkbenchVoice": {
+        "properties": {
+          "envelope_id": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 16,
+            "title": "Envelope Id"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "composed",
+              "deterministic",
+              "unavailable"
+            ],
+            "title": "Status"
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 190,
+            "minLength": 1,
+            "title": "Text"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "envelope_id",
+          "status",
+          "text",
+          "generated_at"
+        ],
+        "title": "VesperWorkbenchVoice"
+      },
+      "VesperWorkbenchVoiceRequest": {
+        "properties": {
+          "voice_token": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 24,
+            "title": "Voice Token"
+          }
+        },
+        "type": "object",
+        "required": [
+          "voice_token"
+        ],
+        "title": "VesperWorkbenchVoiceRequest"
+      },
       "VisualSlot": {
         "properties": {
           "slot_id": {
@@ -77842,6 +78228,863 @@
         ],
         "title": "WeekRibbonReceipt",
         "description": "WeekRibbon \u2014 the lived week, one cell per day (Returned \u00b7 Shape)."
+      },
+      "WorkbenchContext": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Label"
+          },
+          "situation": {
+            "type": "string",
+            "enum": [
+              "live_trip",
+              "upcoming_trip",
+              "home",
+              "away",
+              "unknown"
+            ],
+            "title": "Situation"
+          },
+          "local_date": {
+            "type": "string",
+            "format": "date",
+            "title": "Local Date"
+          },
+          "place_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Id"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "trip_title": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Title"
+          }
+        },
+        "type": "object",
+        "required": [
+          "label",
+          "situation",
+          "local_date"
+        ],
+        "title": "WorkbenchContext"
+      },
+      "WorkbenchCoverage": {
+        "properties": {
+          "producer_statuses": {
+            "items": {
+              "$ref": "#/components/schemas/WorkbenchProducerStatus"
+            },
+            "type": "array",
+            "title": "Producer Statuses"
+          },
+          "omitted_reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "no_eligible_material",
+                  "source_unavailable",
+                  "stale_only"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Omitted Reason"
+          }
+        },
+        "type": "object",
+        "title": "WorkbenchCoverage"
+      },
+      "WorkbenchFact": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "weather",
+              "live_trip",
+              "next_trip",
+              "edge",
+              "season"
+            ],
+            "title": "Kind"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 1,
+            "title": "Label"
+          },
+          "value": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Value"
+          },
+          "detail": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 140
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Detail"
+          },
+          "source_as_of": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source As Of"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "label",
+          "value"
+        ],
+        "title": "WorkbenchFact"
+      },
+      "WorkbenchHereItem": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "here",
+            "title": "Kind",
+            "default": "here"
+          },
+          "id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Id"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 140,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "place_id": {
+            "type": "integer",
+            "title": "Place Id"
+          },
+          "place_label": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Place Label"
+          },
+          "starts_on": {
+            "type": "string",
+            "format": "date",
+            "title": "Starts On"
+          },
+          "ends_on": {
+            "type": "string",
+            "format": "date",
+            "title": "Ends On"
+          },
+          "edge_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Edge At"
+          },
+          "edge_label": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Edge Label"
+          },
+          "source_as_of": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source As Of"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "place_id",
+          "place_label",
+          "starts_on",
+          "ends_on",
+          "edge_at",
+          "edge_label"
+        ],
+        "title": "WorkbenchHereItem"
+      },
+      "WorkbenchList": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "sessions",
+              "season",
+              "route",
+              "here"
+            ],
+            "title": "Kind"
+          },
+          "cap": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Cap"
+          },
+          "count": {
+            "type": "integer",
+            "maximum": 3.0,
+            "minimum": 1.0,
+            "title": "Count"
+          },
+          "edge_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Edge At"
+          },
+          "items": {
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/WorkbenchSessionItem"
+                },
+                {
+                  "$ref": "#/components/schemas/WorkbenchSeasonItem"
+                },
+                {
+                  "$ref": "#/components/schemas/WorkbenchRouteItem"
+                },
+                {
+                  "$ref": "#/components/schemas/WorkbenchHereItem"
+                }
+              ],
+              "discriminator": {
+                "propertyName": "kind",
+                "mapping": {
+                  "here": "#/components/schemas/WorkbenchHereItem",
+                  "route": "#/components/schemas/WorkbenchRouteItem",
+                  "season": "#/components/schemas/WorkbenchSeasonItem",
+                  "sessions": "#/components/schemas/WorkbenchSessionItem"
+                }
+              }
+            },
+            "type": "array",
+            "maxItems": 3,
+            "minItems": 1,
+            "title": "Items"
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "cap",
+          "count",
+          "items"
+        ],
+        "title": "WorkbenchList"
+      },
+      "WorkbenchParticipant": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 100
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Name"
+          },
+          "avatar_url": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Avatar Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id"
+        ],
+        "title": "WorkbenchParticipant"
+      },
+      "WorkbenchProducerStatus": {
+        "properties": {
+          "producer": {
+            "type": "string",
+            "enum": [
+              "context",
+              "sessions",
+              "seam",
+              "season",
+              "route",
+              "here"
+            ],
+            "title": "Producer"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ready",
+              "unavailable",
+              "stale",
+              "disabled"
+            ],
+            "title": "Status"
+          },
+          "candidate_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Candidate Count",
+            "default": 0
+          },
+          "as_of": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "As Of"
+          },
+          "reason_code": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason Code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "producer",
+          "status"
+        ],
+        "title": "WorkbenchProducerStatus"
+      },
+      "WorkbenchRead": {
+        "properties": {
+          "floor": {
+            "type": "string",
+            "maxLength": 190,
+            "minLength": 1,
+            "title": "Floor"
+          },
+          "max_chars": {
+            "type": "integer",
+            "title": "Max Chars",
+            "default": 190
+          },
+          "voice_token": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Voice Token"
+          }
+        },
+        "type": "object",
+        "required": [
+          "floor"
+        ],
+        "title": "WorkbenchRead"
+      },
+      "WorkbenchRouteItem": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "route",
+            "title": "Kind",
+            "default": "route"
+          },
+          "id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Id"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 140,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "origin_iata": {
+            "type": "string",
+            "maxLength": 3,
+            "minLength": 3,
+            "title": "Origin Iata"
+          },
+          "destination_iata": {
+            "type": "string",
+            "maxLength": 3,
+            "minLength": 3,
+            "title": "Destination Iata"
+          },
+          "travel_starts_on": {
+            "type": "string",
+            "format": "date",
+            "title": "Travel Starts On"
+          },
+          "travel_ends_on": {
+            "type": "string",
+            "format": "date",
+            "title": "Travel Ends On"
+          },
+          "edge_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Edge At"
+          },
+          "edge_label": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Edge Label"
+          },
+          "observed_fare": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed Fare"
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Observed At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "origin_iata",
+          "destination_iata",
+          "travel_starts_on",
+          "travel_ends_on",
+          "edge_at",
+          "edge_label",
+          "observed_at"
+        ],
+        "title": "WorkbenchRouteItem"
+      },
+      "WorkbenchSeam": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "deadline",
+              "breakage"
+            ],
+            "title": "Kind"
+          },
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "kicker": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Kicker"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 140,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "detail": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 220
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Detail"
+          },
+          "edge_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Edge At"
+          },
+          "proof": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "depletion",
+                  "struck_fact"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proof"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "trip_id",
+          "kicker",
+          "title"
+        ],
+        "title": "WorkbenchSeam"
+      },
+      "WorkbenchSeasonItem": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "season",
+            "title": "Kind",
+            "default": "season"
+          },
+          "id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Id"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 140,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "place_label": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Label"
+          },
+          "starts_on": {
+            "type": "string",
+            "format": "date",
+            "title": "Starts On"
+          },
+          "ends_on": {
+            "type": "string",
+            "format": "date",
+            "title": "Ends On"
+          },
+          "edge_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Edge At"
+          },
+          "edge_label": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Edge Label"
+          },
+          "source_as_of": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source As Of"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "starts_on",
+          "ends_on",
+          "edge_at",
+          "edge_label"
+        ],
+        "title": "WorkbenchSeasonItem"
+      },
+      "WorkbenchSessionEdge": {
+        "properties": {
+          "owner": {
+            "type": "string",
+            "enum": [
+              "user",
+              "vesper"
+            ],
+            "title": "Owner"
+          },
+          "reason": {
+            "type": "string",
+            "enum": [
+              "user_turn",
+              "agent_reply",
+              "workflow_pending",
+              "workflow_active",
+              "workflow_retryable",
+              "workflow_result_ready",
+              "workflow_failed",
+              "reply_failed"
+            ],
+            "title": "Reason"
+          },
+          "since": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Since"
+          }
+        },
+        "type": "object",
+        "required": [
+          "owner",
+          "reason",
+          "since"
+        ],
+        "title": "WorkbenchSessionEdge"
+      },
+      "WorkbenchSessionItem": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "sessions",
+            "title": "Kind",
+            "default": "sessions"
+          },
+          "id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Id"
+          },
+          "conversation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Conversation Id"
+          },
+          "conversation_type": {
+            "type": "string",
+            "enum": [
+              "personal",
+              "group"
+            ],
+            "title": "Conversation Type"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "kicker": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Kicker"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 140,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "state": {
+            "type": "string",
+            "maxLength": 180,
+            "minLength": 1,
+            "title": "State"
+          },
+          "stamp": {
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 1,
+            "title": "Stamp"
+          },
+          "unread": {
+            "type": "boolean",
+            "title": "Unread",
+            "default": false
+          },
+          "activity": {
+            "type": "string",
+            "enum": [
+              "unread",
+              "vesper_working",
+              "your_turn",
+              "open"
+            ],
+            "title": "Activity",
+            "default": "open"
+          },
+          "edge": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/WorkbenchSessionEdge"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "last_active_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Active At"
+          },
+          "participants": {
+            "items": {
+              "$ref": "#/components/schemas/WorkbenchParticipant"
+            },
+            "type": "array",
+            "maxItems": 5,
+            "title": "Participants"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "conversation_id",
+          "conversation_type",
+          "title",
+          "state",
+          "stamp"
+        ],
+        "title": "WorkbenchSessionItem"
       },
       "WritebackVisibility": {
         "type": "string",

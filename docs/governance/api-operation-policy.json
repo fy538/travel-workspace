@@ -371,6 +371,21 @@
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
       "review_by": "2026-08-15"
     },
+    "GET /api/concierge/home/workbench": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "declared",
+          "name": "Vesper Home Wave-1 envelope; the typed mobile consumer lands in implementation Phase 2 after the backend contract is proven."
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "concierge",
+      "reason": "See docs/working/vesper-home-engine-implementation-plan-2026-07-30.md Phases 0-2.",
+      "removal_trigger": null,
+      "review_by": null
+    },
     "GET /api/conversations/{conversation_id}/invites": {
       "audience": "app",
       "consumers": [],

@@ -29,6 +29,10 @@ APP_SNAPSHOT_PATH="$WORKSPACE_DIR/docs/openapi.app.json"
 TRAVEL_AGENT_DIR="$WORKSPACE_DIR/travel-agent"
 TRAVEL_APP_DIR="$WORKSPACE_DIR/travel-app"
 OUTPUT_FILE="$TRAVEL_APP_DIR/utils/api/schema.gen.ts"
+TRAVEL_AGENT_PYTHON="$TRAVEL_AGENT_DIR/.venv/bin/python"
+if [ ! -x "$TRAVEL_AGENT_PYTHON" ]; then
+  TRAVEL_AGENT_PYTHON="python"
+fi
 
 # ── Parse args ─────────────────────────────────────────────────────────────
 MODE="offline"
@@ -72,7 +76,7 @@ case "$MODE" in
     fi
     (
       cd "$TRAVEL_AGENT_DIR"
-      PYTHONPATH=. python scripts/export_openapi.py --out "$SNAPSHOT_PATH"
+      PYTHONPATH=. "$TRAVEL_AGENT_PYTHON" scripts/export_openapi.py --out "$SNAPSHOT_PATH"
     )
     echo "  ✓ Wrote $SNAPSHOT_PATH"
     ;;
