@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: founder / design / frontend
 created: 2026-07-11
-last_verified: 2026-07-16
+last_verified: 2026-07-30
 why_new: Establish one cross-cutting interaction-motion doctrine so each surface does not invent timing, spatial behavior, and presentation semantics independently.
 supersedes: []
 source_of_truth_for: [interaction-motion-language, motion-presentation-semantics, reduced-motion-contract]
@@ -55,9 +55,13 @@ in this durable contract.
 Immediate tactile acknowledgment for buttons, cards, rows, and other substantial
 targets.
 
-- Scale target: `0.98`.
+- Scale target: `0.98` for cards, nav pills, and large content pressables
+  (`pressScale`). Header / chrome icon controls use `chromePressScale` (`0.97`)
+  with a softer pressed opacity (`0.86`).
 - Response: the shared press timing collapse; release settles to `1`.
 - Optional light haptic only when it reinforces a real selection or commitment.
+  Chrome icon actions use light; dense list and message-bubble taps stay muted
+  (`haptic="none"`); send / destructive / commit actions use medium.
 - Disabled or non-actionable objects do not perform an actionable press response.
 - Reduced Motion: no scale; visual pressed state may change instantly.
 
