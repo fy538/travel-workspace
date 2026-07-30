@@ -52472,6 +52472,17 @@
           "place_type": {
             "type": "string",
             "title": "Place Type"
+          },
+          "photo_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Photo Url"
           }
         },
         "type": "object",
@@ -53032,6 +53043,28 @@
               }
             ],
             "title": "Price Range"
+          },
+          "locality": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Locality"
+          },
+          "photo_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Photo Url"
           },
           "meters": {
             "anyOf": [
