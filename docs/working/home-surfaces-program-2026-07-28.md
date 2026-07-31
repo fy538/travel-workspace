@@ -84,7 +84,7 @@ per this doc's rule).
 |---|---|---|---|
 | F1 | Trips D1 — adopt `concierge_feed` | ✅ **RATIFIED**, 2 conditions → Trips plan Rulings | 4 |
 | F2 | Trips D3 — extend `ConciergeHomeCard` | ✅ **RATIFIED** (slim-DTO clarification), 3 conditions → Trips plan Rulings | 4 |
-| F3 | Trips row-tap destination (Deck vs trip page) | ✅ **RATIFIED: split** — actionable row → Decision Deck; `· N OPEN` → trip page | 5 |
+| F3 | Trips row-tap destination | ✅ **SUPERSEDED 2026-07-31:** crown receipt/action and row body → typed canonical domain destination; `· N OPEN` → trip page. Decision Deck is retired from production. | 5 |
 | F4 | History sectioning | ✅ **RATIFIED: A (state-first)**, composite "open" definition mandatory → History plan | 3 |
 | F5 | Vesper promotion moment (eager vs lazy draft-trip) | ✅ **RATIFIED: lazy** — a personal session becomes a trip only after explicit transcript-native confirmation | 7 |
 | F6 | Places E2 — `AUTO_PUBLISH_GREEN_DOSSIERS` posture | ✅ **RATIFIED: keep off** — Reading exposes approved rows only; publication remains a manual editorial gate | 8 |
@@ -235,8 +235,12 @@ Only when Trips' crown demonstrably renders the queue:
 - Re-point `notificationDestination.ts` card routes.
 - Build the workbench page (read line · well · seam · ghost · composer)
   per the workbench spec's four states. Needs F5.
-- **Deck expiry check** (workbench spec): if Trips shipped its queue
-  *without* adopting the faces, delete them now.
+- **Deck retirement ruling (2026-07-31):** Trips adopted the stack but the
+  stack itself now owns prioritization. The production Deck is retired in favor
+  of one typed, server-owned destination per stack item; deterministic work
+  stays in its canonical domain surface and Vesper remains a private assistance
+  destination where appropriate. Legacy card-id links resolve through Trips
+  until they expire.
 
 Implemented and device-proven 2026-07-28 on the isolated Step 7 lanes.
 Backend `65d96662` retires the four Vesper-only card feedback/lifecycle

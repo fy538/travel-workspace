@@ -75348,6 +75348,103 @@
         ],
         "title": "TripVesperDelegationUpdate"
       },
+      "TripsHomeDestination": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "trip",
+              "plan",
+              "proposal",
+              "stay_workspace",
+              "trip_details",
+              "expenses",
+              "memory",
+              "story",
+              "atlas_artifact",
+              "atlas",
+              "vesper"
+            ],
+            "title": "Type"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "proposal_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proposal Id"
+          },
+          "artifact_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Artifact Id"
+          },
+          "day_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Day Id"
+          },
+          "message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message"
+          },
+          "details_section": {
+            "anyOf": [
+              {
+                "type": "string",
+                "const": "bookings"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Details Section"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "title": "TripsHomeDestination",
+        "description": "A stable, app-routable target for one ranked Home item.\n\nThis is deliberately navigation data only.  It never describes a write,\nso proposal, itinerary, booking, and expense mutations remain owned by\ntheir existing domain surfaces and canonical writers."
+      },
       "TripsHomePromotion": {
         "properties": {
           "card_id": {
@@ -75440,6 +75537,10 @@
             "type": "string",
             "title": "Row Line"
           },
+          "cta_label": {
+            "type": "string",
+            "title": "Cta Label"
+          },
           "tier": {
             "type": "integer",
             "enum": [
@@ -75456,28 +75557,8 @@
             "minimum": 1.0,
             "title": "Depth"
           },
-          "action": {
-            "$ref": "#/components/schemas/ConciergeHomeAction"
-          },
-          "focus": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/DeckFocus"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "structured": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/DeckStructured"
-              },
-              {
-                "type": "null"
-              }
-            ]
+          "destination": {
+            "$ref": "#/components/schemas/TripsHomeDestination"
           },
           "voice": {
             "anyOf": [
@@ -75497,9 +75578,10 @@
           "kind",
           "title",
           "row_line",
+          "cta_label",
           "tier",
           "depth",
-          "action"
+          "destination"
         ],
         "title": "TripsHomeStackCrown"
       },
@@ -75553,6 +75635,10 @@
             "type": "string",
             "title": "Row Line"
           },
+          "cta_label": {
+            "type": "string",
+            "title": "Cta Label"
+          },
           "tier": {
             "type": "integer",
             "enum": [
@@ -75569,28 +75655,8 @@
             "minimum": 1.0,
             "title": "Depth"
           },
-          "action": {
-            "$ref": "#/components/schemas/ConciergeHomeAction"
-          },
-          "focus": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/DeckFocus"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "structured": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/DeckStructured"
-              },
-              {
-                "type": "null"
-              }
-            ]
+          "destination": {
+            "$ref": "#/components/schemas/TripsHomeDestination"
           }
         },
         "type": "object",
@@ -75599,9 +75665,10 @@
           "kind",
           "title",
           "row_line",
+          "cta_label",
           "tier",
           "depth",
-          "action"
+          "destination"
         ],
         "title": "TripsHomeStackItem"
       },
