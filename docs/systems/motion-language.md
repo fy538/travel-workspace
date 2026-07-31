@@ -14,7 +14,7 @@ source_of_truth_for: [interaction-motion-language, motion-presentation-semantics
 > Status: ratified 2026-07-11
 > Applies to: Vesper, Trips, Discover, Atlas, and shared application chrome
 > Consumed by: every interactive frontend surface and shared UI primitive
-> Last updated: 2026-07-16
+> Last updated: 2026-07-30
 
 ## Purpose
 
@@ -144,6 +144,26 @@ A scarce ceremonial response after a consequential commitment has succeeded.
   normal interface and remain dismissible.
 - Reduced Motion: static seal and copy; no impact, rotation, overshoot, or ring.
 
+## Standard vs expressive ceremony
+
+Motion delight is **punctuation, not prose**. Most surfaces use the standard
+vocabulary; expressive ceremony stays scarce.
+
+| Register | Patterns | When |
+|---|---|---|
+| **Standard** | Soft Reveal, Deliberation Sheet travel, list/card enters, composer keyboard inset, Press | Everyday entrances, exits, and layout travel. Timing + house ease only. |
+| **Expressive** | Completion Seal (`DecisionSeal`) only | Consequential commitments that have already succeeded — booking confirmed, proposal consensus reached, everyone settled up. |
+
+Do **not** put a seal (or seal-like impact choreography) on ordinary send, save,
+scope change, message arrival, toggle, or background refresh. Soft Reveal and
+sheet/composer travel already cover calm presence; adding ceremony there turns
+punctuation into noise.
+
+Shared Soft Reveal wrapper: `travel-app/components/ui/SoftReveal.tsx` (pinned
+~7px rise via `softRevealRise`). Daily roots (Trips hero identity, Vesper
+workbench remount) adopt it once per identity change — never on tab refocus
+alone.
+
 ## Presentation decision matrix
 
 | User intent | Canonical presentation | Not this |
@@ -219,7 +239,8 @@ files that exist in the application today:
 - Declarative reveal/state presets: `travel-app/utils/motion.ts`.
 - System preference boundary: `travel-app/hooks/useMotionPreference.ts`.
 - Press: `travel-app/components/ui/Tap.tsx`.
-- Soft Reveal presets and State Settle: `travel-app/utils/motion.ts` and
+- Soft Reveal presets and State Settle: `travel-app/utils/motion.ts`,
+  `travel-app/components/ui/SoftReveal.tsx`, and
   `travel-app/components/ui/StateTransition.tsx`.
 - Progress threshold: `travel-app/components/ui/ProgressGate.tsx`.
 - Deliberation Sheet, Card Lift, and Deck Focus: `BottomSheet.tsx`,
