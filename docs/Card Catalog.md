@@ -30,6 +30,7 @@ Live Deck faces:
 | Substrate | Face | Purpose | Primary completion |
 |---|---|---|---|
 | `focus.layout=pick` | `DeckPickFace` | Choose one grounded venue | confirmed mutation |
+| `focus.layout=compare` | `DeckCompareFace` | Lean between ≥2 active stay candidates | stay vote (`POST …/stay-candidates/{id}/vote`) |
 | `focus.layout=call` | `DeckCallFace` | Booking, conflict, or reschedule call | confirmed mutation or seeded chat |
 | `focus.layout=brief` | `DeckBriefFace` | Review a drafted plan | navigation / seeded chat |
 | `focus.layout=near_you` | `DeckNearYouFace` | Nearby shortlist with Vesper’s read | Maps handoff / confirmed save |
@@ -37,8 +38,7 @@ Live Deck faces:
 | `structured.layout=settle` | `DeckStructuredFace` | Close owed expense shares | confirmed mutation |
 | `structured.layout=readiness` | `DeckStructuredFace` | Pre-departure open-loop check | navigation |
 
-`compare` and `flight` are not implemented. Their dormant presentation code was
-removed pre-launch; add them only alongside a trustworthy producer and data contract.
+`flight` remains parked (no producer; booking schedule-change G2–G4 still dark). Do not revive a Flight face from presentation alone.
 
 Home data is deterministic. Small schema-enforced LLM calls may add grounded
 judgment (`pick_judgment.py`, `deck_take.py`); failure keeps deterministic copy.
@@ -262,8 +262,10 @@ route string, lifecycle state, or arbitrary metadata shape.
 
 ## 9. Deliberate open work
 
-- Activate Compare or Flight only after their backend substrate and routing are
-  real; do not revive their dormant components from presentation alone.
+- **Flight stays parked** until booking schedule-change (G2–G4) is real and a
+  `layout='flight'` producer can emit from that substrate. Do not revive a
+  Flight face from presentation alone. Compare is live via stay candidates
+  (`stay_compare` → `focus.layout='compare'` → stay vote).
 - Add new Home mechanics families only with a real producer and complete card
   substrate. Dormant Trust and Transact faces were removed pre-launch.
 - **Progressive card-field streaming stays deferred** (design-decisions
