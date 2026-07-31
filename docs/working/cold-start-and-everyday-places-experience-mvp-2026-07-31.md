@@ -390,10 +390,10 @@ itinerary machinery wherever their invariants are identical.
 Do not create a parallel `outings` stack for the MVP.
 
 Generalize the existing durable planning aggregate with an explicit semantic
-discriminator, provisionally:
+discriminator:
 
 ```text
-plan_kind = travel | local
+trip_kind = travel | local
 ```
 
 The existing trip record, itinerary graph, member model, group conversation,
@@ -401,9 +401,36 @@ proposal system, plan-event ledger, map, and live situation engine can remain
 the canonical implementation underneath. The UI and read models should project
 the correct language and capabilities for each kind.
 
-The exact field name requires schema review. The important ruling is that the
-kind is explicit rather than inferred from duration. A single-day excursion
-away from home can be travel; a weekend in the home city can be local.
+The important ruling is that the kind is explicit rather than inferred from
+duration. A single-day excursion away from home can be travel; a weekend in
+the home city can be local.
+
+> **Field name and user-facing noun ratified 2026-07-31.** The discriminator
+> is `trip_kind`, not `plan_kind` — the codebase already overloads "plan" for
+> the AI-generated itinerary output (`PlanningRequest`, `generate_plan`,
+> engineers say "the plan" to mean that artifact), and reusing the word for
+> the trip/local split would collide with it in every conversation about the
+> schema. Values stay `travel | local`, matching the vocabulary Places already
+> uses (`AROUND_ME`/`HOME` scopes, this doc's own "everyday places" framing).
+>
+> No new user-facing noun is required. Real trips are not shown to users as
+> "Trip: Japan" — they are shown by their own name. A local plan should work
+> the same way: its own title ("Saturday in Fort Greene," not "Local Trip:
+> ..."), with the Trips tab staying one umbrella IA rather than forking into a
+> second tab or section. The only surface that needs new language is the
+> creation flow, which should ask a soft question ("nearby, or somewhere
+> you're going?") rather than present a category label. If any surface needs
+> one umbrella word for copy (empty states, notifications), prefer "Plans"
+> over "Outings" or "Hangouts" — it does not undersell the real coordination
+> (proposals, cost-splitting) that still happens underneath, and it is the
+> word this thread reached for unprompted.
+>
+> This resolves open decisions 2 and 3 in §22.
+>
+> **The reuse-vs-fork call itself is founder-confirmed 2026-07-31** — not
+> only the naming. §9's recommendation stands as ratified: generalize the
+> existing trip aggregate with `trip_kind`, do not build a parallel `outings`
+> stack.
 
 ### 9.2 Why not a second domain
 
@@ -480,12 +507,33 @@ The underlying substrate is stronger than the current experience suggests.
 
 #### Home and memory
 
-- Trips Home can already project ambient `happening_nearby` and
-  `place_context` material;
+- the concierge home feed has a taste-aware “near you” producer that works
+  **without a trip** (`_PRIO_NEAR_YOU_NO_TRIP`), plus trip-free cold-start
+  invitation cards (`_starter_cards`), and honest empty behavior;
 - Vesper Home owns persistent sessions;
 - Places and Atlas provide saved, visited, historical, and place-reading
-  substrate;
-- the home feed has a taste-aware “near you” producer and honest empty behavior.
+  substrate.
+
+> **Corrected 2026-07-31.** An earlier draft of this section claimed Trips Home
+> can already project ambient `happening_nearby` and `place_context` material.
+> That is not the case, and the distinction is load-bearing for this proposal.
+> Those two archetypes exist only in the **legacy per-trip home feed**
+> (`backend/home/cards.py`, built by `_experience_to_card` /
+> `_angle_to_card`), which is served exclusively by
+> `GET /api/trips/{trip_id}/home_cards`
+> ([home routes](../../travel-agent/backend/api/routes/home.py) —
+> `get_trip_home_cards` near line 63). The trip id is in the URL path, so that
+> feed cannot run in the no-trip state cold start is defined by. Neither
+> archetype appears anywhere in the `concierge_feed` vocabulary that actually
+> powers the Trips Home ranked stack.
+>
+> The consequence for planning: **trip-free editorial place material is net-new
+> work, not a wiring exercise.** What genuinely exists trip-free is the
+> taste-ranked `near_you` producer and the cold starters — real and useful, but
+> operational rather than editorial. §5.2's familiar-city editorial value and
+> §14.1's “evergreen place understanding” job therefore have no current
+> producer to extend and should be sized as new build against the §14.2 NYC
+> corpus, not as reuse.
 
 ### 10.2 What is missing
 
@@ -1026,25 +1074,78 @@ for transactions it does not yet own.
 
 ## 22. Open founder decisions
 
-1. Is this local group loop officially part of the experience MVP, or an
-   immediately following expansion?
-2. What user-facing noun should represent a local durable object: `plan`,
-   `night`, `weekend`, or contextual titles only?
-3. What is the internal discriminator name: `plan_kind`, `trip_kind`, or a
-   broader aggregate rename?
-4. Does a committed local plan appear in Trips Home's ranked stack, or does it
-   live primarily in Vesper until it becomes time-bound/actionable?
-5. Is New York the sole content pilot?
+1. ~~Is this local group loop officially part of the experience MVP~~ —
+   **resolved 2026-07-31**: yes, in the MVP, not a following expansion.
+2. ~~What user-facing noun should represent a local durable object~~ —
+   **resolved 2026-07-31** (§9.1): none; contextual titles only, no umbrella
+   noun surfaced to users.
+3. ~~What is the internal discriminator name~~ — **resolved 2026-07-31**
+   (§9.1): `trip_kind`.
+4. ~~Does a committed local plan appear in Trips Home's ranked stack~~ —
+   **resolved 2026-07-31**: yes, in the ranked stack. Vesper Home's role is
+   distinct — ad-hoc, ambient, near-you signal (the `here` row), not a
+   committed plan. A local plan is a Trips Home object from the moment it's
+   real; Vesper Home never becomes its home.
+5. ~~Is New York the sole content pilot?~~ — **resolved 2026-07-31**: no —
+   the pilot should not be architected as NYC-exclusive, even if NYC is where
+   content work starts first in practice.
 6. Which event sources and manual-curation practices are legally and
    operationally acceptable for the pilot?
 7. What minimum inventory/freshness threshold is required before the product
    may promise a rave or event-led night?
-8. Is pre-commit friend invitation a launch requirement or may the first slice
-   promote the local plan immediately before inviting?
+
+   > **Light research 2026-07-31 (not a ruling — informs the ruling above).**
+   > Six sources are already schema-permitted
+   > (`ck_experiences_experiences_source`): `ticketmaster`, `bandsintown`,
+   > `edmtrain`, `viator`, `getyourguide`, `amadeus_tours`, plus `local` and
+   > `curator`. Of those, only four have a built ingester
+   > (`backend/ingestion/{ticketmaster,bandsintown,amadeus_tours,viator}.py`)
+   > — `edmtrain` and `getyourguide` are permitted by schema but nothing
+   > ingests them.
+   >
+   > **Current live inventory is far below any usable threshold.** A direct
+   > count against the `experiences` table: 1 Ticketmaster row, 1 Bandsintown
+   > row, 0 Viator/Amadeus Tours rows despite both having working ingesters,
+   > and ~38 `curator` rows. Of all one-off (dated) experiences across every
+   > source, only **2 have a future `starts_at`** as of today. The product
+   > cannot honestly promise "a rave near you this weekend" on this inventory
+   > in any city, NYC included — this is an ingestion-and-ops gap, not a code
+   > gap (the ingesters exist; they are not being run against fresh data on a
+   > schedule for the pilot).
+   >
+   > **Legal terms, spot-checked on the two sources with the most restrictive
+   > public terms:** Ticketmaster's Discovery/Partner API terms prohibit
+   > reselling, sublicensing, or deriving direct commercial/monetary gain from
+   > the API's data outside terms-defined exceptions
+   > ([Partner API Terms of Use](https://developer.ticketmaster.com/support/terms-of-use/partner/)) —
+   > worth explicit legal review before this data underwrites a paid product
+   > surface. Bandsintown's commercial/partner-scope use (beyond free
+   > artist-lookup) requires a negotiated partnership agreement, not a
+   > self-serve key
+   > ([Data Application Terms of Use](https://corp.bandsintown.com/data-applications-terms)).
+   > Viator and Amadeus Tours are already integrated as affiliate/booking
+   > partners elsewhere in the product, so their terms are presumably already
+   > cleared — not re-verified here. This was a light pass, not legal review;
+   > flag before committing content-dependent product claims to either
+   > source.
+
+8. ~~Is pre-commit friend invitation a launch requirement~~ — **resolved
+   2026-07-31**: no fixed order. A local plan may be created before or after
+   friends are invited.
 9. Which local interactions are allowed to update durable taste automatically,
    and which require user confirmation?
+
+   > **Tentative lean 2026-07-31, not yet a ruling:** simple engagement
+   > (clicks/taps into a suggestion) may be enough to update taste
+   > automatically; stronger commitments likely still want confirmation. Not
+   > firm — revisit before implementation.
+
 10. What visual artifact will become the design source of truth for the cold,
     situated, local-plan, and local-live states?
+
+    > **Process decided 2026-07-31, artifact not yet produced:** this gets
+    > designed in Claude Design, inside the existing **Vesper Trips Home —
+    > Stack Model (Sans)** project, rather than specified in prose here.
 
 ## 23. Immediate next artifact
 
@@ -1107,6 +1208,10 @@ Line numbers describe the 2026-07-31 working-tree snapshot and may move.
 | First-turn chat uses cached location and warms the next turn asynchronously | [useConciergeChat](../../travel-app/hooks/useConciergeChat.ts) — message location near line 736 |
 | Nearby discovery is corpus-first with provider fallback | [Nearby discovery](../../travel-agent/backend/places/discovery.py) |
 | Generic provider rows require taste evidence and may honestly return empty | [Taste ranking](../../travel-agent/backend/places/taste.py) |
+| `happening_nearby` / `place_context` are **legacy per-trip** archetypes, not concierge-feed kinds | [Legacy home cards](../../travel-agent/backend/home/cards.py) — `_experience_to_card` near line 165, `_angle_to_card` near line 271 |
+| Those archetypes are reachable only through a trip-scoped URL, so they cannot serve cold start | [Home routes](../../travel-agent/backend/api/routes/home.py) — `GET /api/trips/{trip_id}/home_cards`, `get_trip_home_cards` near line 63 |
+| Taste-aware nearby genuinely works with no trip at all | [Feed priorities](../../travel-agent/backend/home/concierge_feed/models.py) — `_PRIO_NEAR_YOU_NO_TRIP` near line 170 |
+| Trip-free cold-start invitation cards already exist in the concierge feed | [Feed producers](../../travel-agent/backend/home/concierge_feed/producers.py) — `_starter_cards` near line 2674 |
 | Current trip creation is explicitly framed as `BEGIN A TRIP` | [Trip begin](../../travel-app/app/trip-begin.tsx) — header near line 131 |
 | Current Vesper cold prompts are dominated by future travel | [Vesper Workbench](../../travel-app/components/vesper-workbench/VesperWorkbench.tsx) — `GHOST_COPY` near line 52 |
 | Current cold Trips language frames the year as blank | [Trips Home model](../../travel-app/components/trips/TripsHomeModel.ts) — `tripsStandfirst` near line 128 |

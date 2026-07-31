@@ -9323,9 +9323,129 @@
           "concierge-home"
         ],
         "summary": "Get Trips Home Stack",
-        "description": "Return Trips' slim view over the existing shared ranked feed.",
+        "description": "Return Trips' slim view over the existing shared ranked feed.\n\nForwards the same ambient params `GET /api/concierge/home` accepts \u2014 until\n2026-07-31 this endpoint hardcoded every one of them to None, so `weather`\ncould never fire here (no home-derived fallback exists for it, unlike\nnear_you) and `near_you` was permanently home-city-derived even during a\nlive-GPS request. Trips-home's tier-4 companionship floor is why this\nmatters: it is the intended home for exactly this ambient material.",
         "operationId": "get_trips_home_stack_api_concierge_home_trips_stack_get",
         "parameters": [
+          {
+            "name": "lat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "maximum": 90,
+                  "minimum": -90
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Lat"
+            }
+          },
+          {
+            "name": "lng",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "maximum": 180,
+                  "minimum": -180
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Lng"
+            }
+          },
+          {
+            "name": "weather_condition",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 80
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Weather Condition"
+            }
+          },
+          {
+            "name": "temperature_c",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Temperature C"
+            }
+          },
+          {
+            "name": "precipitation_mm",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Precipitation Mm"
+            }
+          },
+          {
+            "name": "wind_kph",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Wind Kph"
+            }
+          },
+          {
+            "name": "place_label",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 120
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Place Label"
+            }
+          },
           {
             "name": "authorization",
             "in": "header",
@@ -9573,7 +9693,7 @@
           "discover"
         ],
         "summary": "Discover Map",
-        "description": "Discover spatial-browse pins for venues, experiences, places, and friends.\n\nCatalog pins carry the cheap judgment preview available for their entity\ntype. Venue pins additionally carry affinity; venue and experience pins\ncarry saved/planned state. Fresh trip-companion locations are a separate,\napproximate coordination signal and never masquerade as itinerary items.\n\nTwo scopes. ``place_slug`` plots the city subtree; ``lat``/``lng`` plots\nwhat's within ``radius_m``. With neither, returns an empty pin set (honest\nabsence) rather than guessing a location. The full Take is a tap-time fetch\non the client peek card \u2014 pins carry only the cheap preview.",
+        "description": "Discover spatial-browse pins for venues, experiences, places, and friends.\n\nCatalog pins carry the cheap judgment preview available for their entity\ntype. Venue pins additionally carry affinity; venue and experience pins\ncarry saved/planned state. Fresh trip-companion locations are a separate,\napproximate coordination signal and never masquerade as itinerary items.\n\nTwo scopes. ``place_slug`` plots the city subtree; ``lat``/``lng`` plots\nwhat's within ``radius_m``. With neither, returns an empty pin set (honest\nabsence) rather than guessing a location. The full Take is a tap-time fetch\non the client peek card \u2014 pins carry only the cheap preview.\n\n``date_from``/``date_to`` compose a temporal window on top of either\nspatial scope \u2014 e.g. \"experiences near me this weekend\" \u2014 and only affect\nexperience pins; recurring/on-demand experiences have no single date and\nare unaffected, and venue/place pins have no date to filter on at all.",
         "operationId": "discover_map_api_discover_map_get",
         "parameters": [
           {
@@ -9662,6 +9782,44 @@
               "title": "Radius M"
             },
             "description": "Nearby-scope radius (metres)."
+          },
+          {
+            "name": "date_from",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Experience pins only \u2014 earliest date to include. Defaults to today: a one-off experience that has already happened is never shown as a live pin unless a caller explicitly asks for the past.",
+              "title": "Date From"
+            },
+            "description": "Experience pins only \u2014 earliest date to include. Defaults to today: a one-off experience that has already happened is never shown as a live pin unless a caller explicitly asks for the past."
+          },
+          {
+            "name": "date_to",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Experience pins only \u2014 latest date to include, if bounded.",
+              "title": "Date To"
+            },
+            "description": "Experience pins only \u2014 latest date to include, if bounded."
           },
           {
             "name": "limit",
@@ -45063,6 +45221,28 @@
             "type": "boolean",
             "title": "Approximate",
             "default": false
+          },
+          "starts_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Starts At"
+          },
+          "ends_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ends At"
           }
         },
         "type": "object",
@@ -59667,7 +59847,9 @@
           "title": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 240,
+                "minLength": 1
               },
               {
                 "type": "null"
@@ -61737,11 +61919,6 @@
               }
             ],
             "title": "Canonical Venue Id"
-          },
-          "entity_type": {
-            "type": "string",
-            "title": "Entity Type",
-            "default": "venue"
           },
           "name": {
             "type": "string",
@@ -75370,6 +75547,27 @@
         ],
         "title": "TripVesperDelegationUpdate"
       },
+      "TripsHomeConfirmAction": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "proposal_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Proposal Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "proposal_id"
+        ],
+        "title": "TripsHomeConfirmAction",
+        "description": "A crown-only signal that this item resolves with an inline\naccept/reject rather than a navigation.\n\nPresent only when the crowned card's Deck substrate is a binary decision\n(``structured.layout == \"proposal_approval\"``) \u2014 Trips still never copies\n``structured``/``focus`` themselves onto the wire; the other two layouts\nthat also resolve to a ``proposal`` destination (``traveler_readiness``,\n``choice_vote``) are not one accept/reject call and stay navigation-only."
+      },
       "TripsHomeDestination": {
         "properties": {
           "type": {
@@ -75597,6 +75795,16 @@
               }
             ],
             "title": "Voice"
+          },
+          "confirm": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TripsHomeConfirmAction"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
