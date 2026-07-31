@@ -65812,6 +65812,26 @@
           "action": {
             "$ref": "#/components/schemas/ConciergeHomeAction"
           },
+          "focus": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DeckFocus"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "structured": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DeckStructured"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "voice": {
             "anyOf": [
               {
@@ -65904,6 +65924,26 @@
           },
           "action": {
             "$ref": "#/components/schemas/ConciergeHomeAction"
+          },
+          "focus": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DeckFocus"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "structured": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DeckStructured"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
