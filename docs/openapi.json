@@ -41142,7 +41142,8 @@
               "open_memory",
               "open_story",
               "open_atlas_artifact",
-              "open_atlas"
+              "open_atlas",
+              "open_trip_chat"
             ],
             "title": "Type"
           },
@@ -41315,7 +41316,11 @@
               "starter",
               "pre_trip_prep",
               "atlas_homecoming",
-              "stay_compare"
+              "stay_compare",
+              "group_room",
+              "agent_work",
+              "audio_tour",
+              "intake_offer"
             ],
             "title": "Kind"
           },
@@ -49951,6 +49956,18 @@
                 "type": "null"
               }
             ]
+          },
+          "row_line": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Row Line",
+            "description": "The docked-row fact for the Trips-home stack, when this card can dock as a row. Authored HERE because this is where the counts are in scope."
           }
         },
         "type": "object",
@@ -61720,6 +61737,11 @@
               }
             ],
             "title": "Canonical Venue Id"
+          },
+          "entity_type": {
+            "type": "string",
+            "title": "Entity Type",
+            "default": "venue"
           },
           "name": {
             "type": "string",
@@ -75363,6 +75385,7 @@
               "story",
               "atlas_artifact",
               "atlas",
+              "group_room",
               "vesper"
             ],
             "title": "Type"
@@ -75513,7 +75536,11 @@
               "starter",
               "pre_trip_prep",
               "atlas_homecoming",
-              "stay_compare"
+              "stay_compare",
+              "group_room",
+              "agent_work",
+              "audio_tour",
+              "intake_offer"
             ],
             "title": "Kind"
           },
@@ -75611,7 +75638,11 @@
               "starter",
               "pre_trip_prep",
               "atlas_homecoming",
-              "stay_compare"
+              "stay_compare",
+              "group_room",
+              "agent_work",
+              "audio_tour",
+              "intake_offer"
             ],
             "title": "Kind"
           },
