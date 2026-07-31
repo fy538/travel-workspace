@@ -2,7 +2,7 @@
 
 **Status:** current cross-repo source of truth
 
-**Last verified:** 2026-07-17
+**Last verified:** 2026-07-30
 
 **Implementations:** `travel-app` + `travel-agent`
 
@@ -30,6 +30,7 @@ Live Deck faces:
 | Substrate | Face | Purpose | Primary completion |
 |---|---|---|---|
 | `focus.layout=pick` | `DeckPickFace` | Choose one grounded venue | confirmed mutation |
+| `focus.layout=compare` | `DeckCompareFace` | Lean between ≥2 active stay candidates | stay vote (`POST …/stay-candidates/{id}/vote`) |
 | `focus.layout=call` | `DeckCallFace` | Booking, conflict, or reschedule call | confirmed mutation or seeded chat |
 | `focus.layout=brief` | `DeckBriefFace` | Review a drafted plan | navigation / seeded chat |
 | `focus.layout=near_you` | `DeckNearYouFace` | Nearby shortlist with Vesper’s read | Maps handoff / confirmed save |
@@ -37,8 +38,7 @@ Live Deck faces:
 | `structured.layout=settle` | `DeckStructuredFace` | Close owed expense shares | confirmed mutation |
 | `structured.layout=readiness` | `DeckStructuredFace` | Pre-departure open-loop check | navigation |
 
-`compare` and `flight` are not implemented. Their dormant presentation code was
-removed pre-launch; add them only alongside a trustworthy producer and data contract.
+`flight` remains parked (no producer; booking schedule-change G2–G4 still dark). Do not revive a Flight face from presentation alone.
 
 Home data is deterministic. Small schema-enforced LLM calls may add grounded
 judgment (`pick_judgment.py`, `deck_take.py`); failure keeps deterministic copy.
@@ -58,6 +58,15 @@ tool / system producer
 The database `message_type` CHECK is authoritative. New visual variants should
 normally reuse an allowed message type plus `metadata.card_type`; add a database
 message type only when storage or aggregation semantics genuinely differ.
+
+**Contract ownership (P3):** `docs/contracts/chat-card-types.json` is the
+allowlist for `metadata.card_type` values, the FE `MessageAttachment` type list,
+and `CHAT_ATTACHMENT_NO_ARRIVAL` reasons. `scripts/sync-chat-card-types-contract.py`
+generates FE/BE registries; `make chat-card-types-check` fails on drift. Pilot
+payload schemas live under `docs/contracts/chat-attachments/` (currently
+`booking_proposal_snapshot` and `map_route`) and generate Zod + Pydantic
+validators — expand that set when a card payload needs shared shape proof.
+Do not invent new DB `message_type` values for visual variants alone.
 
 ## 2. Current chat registry
 
@@ -79,7 +88,7 @@ registry. A row absent here is not a supported chat card.
 | `atlas_draft` | `AtlasDraftCard` | `notification/atlas_draft` | `post_atlas_draft` | inspect an owner-scoped pending candidate, open canonical Atlas review |
 | `error_recovery` | `ErrorRecoveryCard` | `notification/error_recovery` | durable planning workflow | background retry status or revised-request handoff |
 | `booking_confirmation` | `BookingConfirmationCard` | `booking_confirmation` | `confirm_booking` | receipt, provider link/call/session |
-| `booking_proposal` | `BookingProposalCardFetched` | `booking_proposal` | `propose_booking` | confirm/decline fetched proposal |
+| `booking_proposal` | `BookingProposalCardFetched` | `booking_proposal` | `propose_booking` | confirm/decline after live fetch; display snapshot may paint first |
 | `document_edit` | `DocumentEditCard` | notification metadata | document/planning tools | open exact day when available |
 | `narration` | `NarrationCard` | `narration` | narration endpoint | audio and cited narration |
 | `trip_creation_proposal` | `TripCreationProposalCard` | notification metadata | `propose_trip_creation` | versioned, idempotent trip creation |
@@ -122,6 +131,17 @@ Route payload rules:
 - Unknown backend Home actions may fall back to seeded chat, never an invented
   route.
 
+### Deliberate non-attachments
+
+These are real `messages` rows but **not** `MessageAttachment` types. Do not
+add them to the chat registry (§2) without a product decision that they need
+card chrome, actions, or a typed destination.
+
+| Persistence | Producer | Thread treatment |
+|---|---|---|
+| `booking_update` message_type | `booking_subscribers.py` on `booking.*` events | Ambient agent prose (`content`); metadata holds `booking_event` + payload for idempotency/debug. Full booking detail lives on trip / booking surfaces. **Not** a card — see §9. |
+| `notification` + `card_type=group_event` | group systems | Centered system line, not a card. |
+
 ## 4. Shared interaction state machine
 
 Consequential cards use `utils/cardInteractionState.ts`:
@@ -163,7 +183,21 @@ completion events add the persisted card/message ID when available. The
 reservation remains through prose streaming and briefly across the history
 handoff, then the exact attachment enters with the shared soft-card animation.
 
-Only known card-producing tools reserve space. Ordinary prose answers do not.
+Only known card-producing tools reserve space (`docs/contracts/card-arrival.json`).
+Ordinary prose answers do not. Attachment types that are produced outside the
+streamed tool loop (async workflows, narrate, proactive notifications, side
+effects of another tool) are listed in
+`docs/contracts/chat-card-types.json` → `no_arrival` (generated into
+`travel-app/utils/chat/cardCatalogContract.ts` as `CHAT_ATTACHMENT_NO_ARRIVAL`)
+with an explicit reason — every registry type must be either arrival-reserved
+or no-arrival. Do not invent mid-turn shells for no-arrival types.
+
+**Early handoff (P2):** when `tool_complete` supplies a `card_id` that is not yet
+in the local thread, the client fetches a recent conversation history slice and
+upserts that durable row so the placeholder can morph without waiting solely on
+turn-end invalidate. Full history refetch and the 8s materialization timeout
+remain authority. Device proof:
+`docs/working/card-arrival-device-cert-2026-07-30.md`.
 
 Deck behavior:
 
@@ -210,20 +244,41 @@ route string, lifecycle state, or arbitrary metadata shape.
 
 1. Define the backend creator and plain-text fallback.
 2. Emit from a sanctioned tool or system producer.
-3. Add or update the `MessageAttachment` data type.
-4. Parse and validate in `messageMapping.ts`.
-5. Register the component in `AttachmentRenderer.tsx`.
-6. Declare its action behavior and typed destination.
-7. Use the shared interaction state machine for any consequential action.
-8. Add body ownership when the attachment renders the message prose.
-9. Add arrival-tool mapping if it is produced during a streamed turn.
-10. Test mapping, failure/retry semantics, navigation, reduced motion, Dynamic
+3. Add the `metadata.card_type` (and FE attachment name) to
+   `docs/contracts/chat-card-types.json`; run
+   `python3 scripts/sync-chat-card-types-contract.py`.
+4. Add or update the `MessageAttachment` data type.
+5. Parse and validate in `messageMapping.ts` (use a pilot schema under
+   `docs/contracts/chat-attachments/` when the payload should be shared).
+6. Register the component in `AttachmentRenderer.tsx`.
+7. Declare its action behavior and typed destination.
+8. Use the shared interaction state machine for any consequential action.
+9. Add body ownership when the attachment renders the message prose.
+10. Add arrival-tool mapping in `docs/contracts/card-arrival.json` if it is
+    produced during a streamed turn; otherwise add a `no_arrival` reason.
+11. Test mapping, failure/retry semantics, navigation, reduced motion, Dynamic
     Type, and narrow-screen overflow.
-11. Update this catalog in the same change.
+12. Update this catalog in the same change.
 
 ## 9. Deliberate open work
 
-- Activate Compare or Flight only after their backend substrate and routing are
-  real; do not revive their dormant components from presentation alone.
+- **Flight stays parked** until booking schedule-change (G2–G4) is real and a
+  `layout='flight'` producer can emit from that substrate. Do not revive a
+  Flight face from presentation alone. Compare is live via stay candidates
+  (`stay_compare` → `focus.layout='compare'` → stay vote).
 - Add new Home mechanics families only with a real producer and complete card
   substrate. Dormant Trust and Transact faces were removed pre-launch.
+- **Progressive card-field streaming stays deferred** (design-decisions
+  agent-chat C.3). Arrival envelopes remain content-free identity/type hints;
+  first-paint latency work uses reserved shells plus history reconciliation
+  (and, when prioritized, slim authenticated handoff / targeted message fetch)
+  — not partial mutable card bodies on SSE. Reopen only with an explicit new
+  design decision and an allowlist (e.g. research/preview), never for
+  receipts or consequential mutations.
+- **`booking_update` is ambient prose, not a chat card** (decided 2026-07-30).
+  Keep the DB `message_type` for storage, idempotency, and subscriber emits;
+  keep FE mapping as ordinary agent text (no `MessageAttachment`). Promote to
+  a registry card only if product later needs a typed destination or
+  structured receipt beyond `booking_confirmation` / `booking_proposal`.
+  Cross-link: `travel-agent/docs/working/State of Booking 2026.md` (Concierge
+  subscriber).

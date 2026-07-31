@@ -11,7 +11,7 @@ include dogfood.mk
 .PHONY: new-worktree land-worktree worktrees
 .PHONY: contract-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate mock-slug-parity
 .PHONY: certify-fast certify-logic certify-corpus certify-visual certify-visual-cloud certify-live maestro-flow-check journey-registry-check dogfood-status corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-journey-live-api qa-persona dogfood-status-sync
-.PHONY: preflight-eas fly-secrets verify docs-governance-check docs-child-governance-check docs-inventory-check docs-inventory-report docs-spine-check docs-status-check docs-status-sync docs-links-check docs-check compatibility-check card-arrival-check
+.PHONY: preflight-eas fly-secrets verify docs-governance-check docs-child-governance-check docs-inventory-check docs-inventory-report docs-spine-check docs-status-check docs-status-sync docs-links-check docs-check compatibility-check card-arrival-check chat-card-types-check
 
 # ── Development ───────────────────────────────────────────────────────────────
 
@@ -165,6 +165,9 @@ compatibility-check: ## Gate: every marked compatibility exception has an owned,
 card-arrival-check: ## Gate: generated frontend/backend card-arrival registries match the workspace contract
 	@python3 scripts/sync-card-arrival-contract.py --check
 
+chat-card-types-check: ## Gate: generated chat card-type allowlists + pilot schemas match workspace contracts
+	@python3 scripts/sync-chat-card-types-contract.py --check
+
 certify-logic: ## Tier-2 certify ladder: journey scenario pytest (requires Postgres, excludes corpus-dependent tests)
 	@cd travel-agent && SKIP_AUTH=true PYTHONPATH=. pytest tests/scenarios/ \
 	  -m "requires_postgres and not requires_dogfood_wedge" -q
@@ -269,7 +272,7 @@ verify: ## Single cross-repo pre-push gate (absorbs offline-qa + mock-real-parit
 	@echo "▸ Workspace governance and evidence-integrity gates..."
 	@$(MAKE) maestro-flow-check journey-registry-check flag-registry-check \
 		docs-spine-check docs-status-check docs-links-check docs-child-governance-check \
-		compatibility-check card-arrival-check
+		compatibility-check card-arrival-check chat-card-types-check
 	@echo "✓ verify: all cross-repo gates green"
 
 status: ## Show git status for workspace + child repos

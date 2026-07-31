@@ -45,7 +45,7 @@ The **Deck** is the dark "N TO CLEAR" modal that opens from Vesper Home when you
     focus.layout==='pick'    → DeckPickFace.tsx               │
     focus.layout==='call'    → DeckCallFace.tsx (held/conflict/reschedule)
     focus.layout==='brief'   → DeckBriefFace.tsx              │  run-through:
-    focus.layout==='compare' → DeckCompareFace.tsx  (FE only) │  utils/deckRunthrough.ts
+    focus.layout==='compare' → DeckCompareFace.tsx  (stay_compare) │  utils/deckRunthrough.ts
     structured.layout==='vote|settle|readiness|flight' → DeckStructuredFace.tsx
     neither                  → HeroCardFace → CardLive/CardSignal/… (glance fidelity — the FALLBACK)
 ```
@@ -88,9 +88,9 @@ Every canon face **has a frontend component**. The gaps are in what feeds them. 
 | **Vote** | yes | ✅ DeckStructuredFace | ✅ `structured=vote` (open proposals) | real proposal/votes | ❌ none | **WIRED**, no voice, thin seed (§2.4) |
 | **Settle** | yes | ✅ DeckStructuredFace | ✅ `structured=settle` | real creditor+**currency** | ❌ **no take-line field at all** | **WIRED but thinnest** (§2.1) |
 | **Readiness** | yes | ✅ DeckStructuredFace | ✅ `structured=readiness` (≤7d + open) | real gap counts | ❌ templated | **WIRED**, suppressed on all-clear |
-| **Comparison** | yes | ✅ DeckCompareFace | ❌ **never emits `compare`** | — | — | **ORPHAN** — parked in canon 146 §03b (awaiting BE producer) |
-| **Flight** | yes | ✅ DeckStructuredFace | ❌ **never emits `flight`** | (only a readiness row) | — | **ORPHAN** — parked in canon 146 §03b (awaiting BE producer) |
-| **near_you / "right now"** | ✅ **DeckNearYou (new, canon 146)** | ✗ (still borrows `CardLive` glance) | ✅ `near_you` (focus=pick if ≥2 venues, else prose) | real venues, or nothing outside seeded cities | canon has one now | **FACE DRAWN, NOT BUILT** (§2.3, D4) |
+| **Comparison** | yes | ✅ DeckCompareFace | ✅ `focus=compare` (`stay_compare`, ≥2 active stay candidates) | real `trip_stay_candidates` | ⚠️ templated | **WIRED** — primary completion = stay vote; lock/`choose` stays on Stay surface |
+| **Flight** | yes | ❌ no live face | ❌ **never emits `flight`** | booking schedule-change G2–G4 still dark | — | **PARKED** — do not ship until schedule-change substrate is real |
+| **near_you / "right now"** | ✅ **DeckNearYou (new, canon 146)** | ✅ DeckNearYouFace | ✅ `near_you` | real venues, or nothing outside seeded cities | canon has one now | **WIRED** |
 
 **Run-through:** built (`utils/deckRunthrough.ts`, `advanceDeckAfter` at `FocusHome.tsx:230`) — cards advance; only the primary CTA + Ask Vesper close the deck. The "N TO CLEAR" counter is honest. *(This corrects an earlier audit that said run-through was missing.)*
 
@@ -106,9 +106,10 @@ Only `focus=pick` cards get a grounded take line (`pick_judgment.py`). **Settle 
 ### 2.2 Currency: the ¥ gauge is a hardcoded FE glyph, not currency
 `DeckPickFace.tsx:46` renders the `¥` character in a fixed 1–5 gauge **regardless of city** (docstring: "a fixed 1-5 ¥ gauge … not a live number"). The backend `DeckPickCandidate` model has **no currency field** — just a price-symbol string + integer tier (`vesper_cards.py:79`). Rome seed stores **EUR** throughout; the ¥ is injected purely by the FE. (Settle *is* currency-correct — `deck_payloads.py:465` maps EUR→€.) Canon's own gauge uses ¥ **because its example is Kyoto** — so "is the tier gauge currency-aware or a neutral mark?" is a genuine open design question, not just a bug.
 
-### 2.3 Two faces are orphaned; one card kind has no face
-- **Compare** and **Flight** faces exist in FE but the backend never emits those layouts (the literals don't exist in `vesper_cards.py`). FE has UI the backend can't drive.
-- **near_you** ("What fits near Jersey City") has no dedicated deck face — when it can't form a Pick (< 2 venues) it falls through to `CardLive`, a *one-line glance card* blown up full-screen, so it reads ~90% empty. Outside the ~40 seeded corpus cities near_you has **no venues at all** and can only offer to open a chat (Jersey City = the dev's real GPS, zero seeded venues nearby).
+### 2.3 One face parked; near_you was the ambient gap
+- **Compare is wired** (P4): Home emits `focus.layout='compare'` from ≥2 active stay candidates (`stay_compare`); Deck renders `DeckCompareFace`; tap casts a stay lean via existing vote API. Locking a stay (`/choose`) stays on the Stay comparison surface.
+- **Flight remains ORPHAN / parked**: no `layout='flight'` producer; booking schedule-change G2–G4 is still dark. Do not revive a Flight face until that substrate is real.
+- **near_you** historically fell through to a starved glance when thin; suppress-when-thin + dedicated face are the D4 path.
 
 ### 2.4 The dogfood seed is QA-scaffolding, and there are two parallel worlds
 The shipped deck is **elif@dogfood.local / `elif-rome` pack**. Findings:
@@ -146,8 +147,8 @@ The five rulings the rest of the plan depends on. All decided:
 
 ### Phase D3 — Orphaned faces: Compare & Flight *(wire or formally park)*
 *(Canon 146 §03b already records both as "ORPHAN — canon-ready, awaiting a backend producer." This phase is the code side of that.)*
-- **Comparison [BE/DATA]:** the FE `DeckCompareFace` is built but no backend emits `layout='compare'`. Wire a producer that emits Compare when there's a genuine two-option decision (e.g. two stay candidates in a vote) — needs the stay candidate/vote substrate to exist (§D5). If not prioritized, mark the FE face dormant with a comment so it doesn't read as a live-but-broken path.
-- **Flight [BE][GATED]:** FE face + a readiness *row* exist; no `layout='flight'` producer. This needs flight schedule-change data (booking G2–G4, backend, currently gated dark). Either build the producer behind that gate or keep flight as a readiness row only. Tag and defer; don't leave it looking shippable.
+- **Comparison [BE/FE] — DONE (P4):** `stay_compare` producer emits `focus.layout='compare'` when a trip has ≥2 active stay candidates, stay not booked/chosen, and vote phase ≠ `decided`. FE `DeckCompareFace` restored; primary completion = `POST …/stay-candidates/{id}/vote` with stay-decision readback. Claim level: backend canary + unit/mock — not device-certified until a dogfood persona has ≥2 candidates and a release-build pass.
+- **Flight [BE][GATED] — PARKED:** no `layout='flight'` producer. Needs flight schedule-change data (booking G2–G4, backend, currently gated dark). Keep parked; don't leave it looking shippable.
 
 ### Phase D4 — The near_you / ambient deck face *(decision 4 = build a real face)*
 - **Spec:** build to canon 146 `DeckNearYou` (`vesper-home-deck.jsx`) — real nearby venues + walk time + why-it-fits + grounded take line ("Ramiro's a 6-minute walk…"), near-you actions (Take me there / Save / Ask), suppress-when-thin (no card without ≥1 nearby venue).
@@ -175,14 +176,14 @@ Rewrite the dogfood seed across **every** persona (elif, mara, dao, reza, mike, 
 ## 4. Definition of done — a dogfood-grade deck
 A tester logged in as elif or mara, in a seeded city, sees a deck where:
 1. Every card is **decision-grade** — real venue/person names, a real stake, correct **currency-aware** price (€ for Rome, ¥ for Kyoto), and a Vesper **take line on every face** (not just Pick).
-2. **No orphans** — no face renders that the backend can't fill; Compare/Flight are either wired to real substrate or formally parked.
+2. **No orphans** — no face renders that the backend can't fill; Compare is wired to stay candidates; Flight remains formally parked until booking G2–G4.
 3. **near_you** renders its own **real ambient face** in a corpus city; with no nearby venues it produces **no card**.
 4. **Suppress-when-thin holds** — a card that can't form its rich face is dropped, never shown as a starved glance/prose card.
 5. The **run-through** clears N real cards; the "N TO CLEAR" counter is true.
 6. **Fallback** (backend degraded + FE templates) reads as calm quiet cards, never broken or empty-rich-face.
 
 ## 5. File index (jump-in points)
-- **FE faces/dispatch:** `travel-app/components/decision-deck/{Deck,DeckPickFace,DeckCallFace,DeckBriefFace,DeckStructuredFace,FocusHome}.tsx`; run-through `utils/deckRunthrough.ts`; feed `data/conciergeHome.ts`; mapper `app/(tabs)/concierge/index.tsx:1033`; FE fallback `hooks/useConciergeHomeState.ts`.
+- **FE faces/dispatch:** `travel-app/components/decision-deck/{Deck,DeckPickFace,DeckCompareFace,DeckCallFace,DeckBriefFace,DeckStructuredFace,FocusHome}.tsx`; run-through `utils/deckRunthrough.ts`; feed `data/conciergeHome.ts`; mapper `app/(tabs)/concierge/index.tsx:1033`; FE fallback `hooks/useConciergeHomeState.ts`.
 - **BE producer:** `travel-agent/backend/api/routes/concierge_home.py:229`; assembler `backend/home/concierge_feed/producers.py`; face builders `backend/home/deck_payloads.py`; models `backend/core/models/vesper_cards.py` + `backend/home/concierge_feed/models.py`; ranking/held/Catch `backend/home/concierge_feed/ranking.py`; Pick LLM `backend/home/pick_judgment.py`; surfaces `backend/core/surfaces/definitions.py`; venue query `backend/core/db/entities.py:782`.
 - **Dogfood data:** `travel-agent/tools/dogfood/content/manifests/elif-rome.yaml` (+ `elif-rome-slug-bridge.yaml`), `scenarios.yaml`, `corpus_governance.py`; real dossiers `travel-agent/content/staging/<city>/*.md`.
 - **Canon:** `~/Downloads/vesper 146/project/` — faces `vesper-home-deck.jsx` (incl. currency-aware Pick gauge + `DeckNearYou`), mapping `deck-readiness-taxonomy.jsx`, rail entry `vesper-deck-entry.jsx`, and the **Deck Content Contract in `vesper-canon-consolidation-app.jsx` §03b**. (Use the highest `vesper NNN` present if a newer bundle exists.)

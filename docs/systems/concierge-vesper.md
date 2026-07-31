@@ -3,7 +3,7 @@
 > Surface: Vesper
 > Maturity (for MVP): MVP-required
 > Status: wired (not yet validated end-to-end on-device against live backend)
-> Last updated: 2026-06-27
+> Last updated: 2026-07-30
 
 ## Purpose
 The conversational spine of the product — a place-aware companion that chats, calls
@@ -45,7 +45,7 @@ Memory & Preference** — Concierge only reads it and emits observations.
 - Dark/flagged: narration text ships (persists as `message_type='narration'`); the live mic path is dark — the `voice` process is defined in `fly.toml`, but its machines remain at `count=0`, the required `VOICE_*` credentials are unset, and the client gate (`EXPO_PUBLIC_VOICE_ENABLED`) stays false with the SDK uninstalled.
 
 ## Canonical docs
-- why → `product/Concierge Behavior Spec.md` · how → `architecture/Conversation System Architecture.md` · what(be) → `backend/concierge/FEATURE.md` · what(fe) → `page-specs/agent-chat.md`.
+- why → `product/Concierge Behavior Spec.md` · how → `architecture/Conversation System Architecture.md` · what(be) → `backend/concierge/FEATURE.md` · what(fe) → `travel-app/docs/page-specs/agent-chat.md` (§2 transport) + `travel-app/docs/design-decisions/agent-chat.md` (locked UX) · **cards / arrival SSOT** → [`Card Catalog.md`](../Card%20Catalog.md) + [`contracts/card-arrival.json`](../contracts/card-arrival.json).
 - Tests: `tests/concierge/*`, eval `configs/` (~21 concierge scenarios) + CI replay baselines.
 
 ## Cross-cutting constraints
@@ -54,4 +54,5 @@ Memory & Preference** — Concierge only reads it and emits observations.
 ## Open risks / known gaps
 - The privacy-egress invariant is the **unrecoverable-trust-event** risk — the highest-value thing to verify with a live group walk (journey 04).
 - `conversation_locations` is a **phantom table** (reverted feature) — any query against it fails at runtime.
-- Streaming SSE on RN uses a custom fetch parser (`utils/sse.ts`); the on-device streaming path is unvalidated.
+- Streaming SSE on RN uses a custom fetch parser (`utils/sse.ts`); the on-device streaming path is **still unvalidated on a release-profile device**. Cert lane + runbook: [`docs/working/card-arrival-device-cert-2026-07-30.md`](../working/card-arrival-device-cert-2026-07-30.md). Early card handoff (recent-history upsert on materialized `card_envelope`) is implemented in `useCardArrivalReconciliation` — mock Maestro `36-chat-card-arrival.yaml` covers visual morph only.
+- Page-spec Round 1 narrative elsewhere may still describe pre-envelope attachment timing; treat **§2 Backend contract** in `page-specs/agent-chat.md` and the Card Catalog as authoritative for transport and cards.

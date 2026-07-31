@@ -33871,7 +33871,8 @@
               "near_you",
               "starter",
               "pre_trip_prep",
-              "atlas_homecoming"
+              "atlas_homecoming",
+              "stay_compare"
             ],
             "title": "Kind"
           },
@@ -35735,6 +35736,7 @@
             "type": "string",
             "enum": [
               "pick",
+              "compare",
               "call",
               "brief",
               "near_you"
@@ -35837,7 +35839,7 @@
           "layout"
         ],
         "title": "DeckFocus",
-        "description": "Level-2 decision substrate — the \"help me decide\" content behind a card.\n\nDistinct from ``DeckStructured`` (raw options/rows): focus carries Vesper's\nJUDGMENT layer rendered full-screen in the Deck. The home glance presents the\ndecision; this helps make it.\n\n``layout`` is the decision SHAPE — ``pick`` (choose one of N), ``call`` (a\nyes/no with a deadline / a conflict), ``brief`` (review a drafted thing), or\n``near_you`` (ambient what's-good-around-you). Each layout fills its own\nsub-payload; the others stay None. Structure is real data; the Pick's\nreasoning/tradeoff come from a grounded LLM pass.\n\nORPHAN (canon 146 §03b / D3): ``compare`` is FE-only today — not a layout\nliteral here. Wire a producer when D5 supplies a genuine two-option stay\ndecision; until then the FE face is dormant."
+        "description": "Level-2 decision substrate — the \"help me decide\" content behind a card.\n\nDistinct from ``DeckStructured`` (raw options/rows): focus carries Vesper's\nJUDGMENT layer rendered full-screen in the Deck. The home glance presents the\ndecision; this helps make it.\n\n``layout`` is the decision SHAPE — ``pick`` (choose one of N), ``compare``\n(two stay candidates side-by-side), ``call`` (a yes/no with a deadline /\na conflict), ``brief`` (review a drafted thing), or ``near_you`` (ambient\nwhat's-good-around-you). Each layout fills its own sub-payload; the others\nstay None. Structure is real data; the Pick's reasoning/tradeoff come from\na grounded LLM pass. Compare projects durable stay-candidate rows (no LLM)."
       },
       "DeckNearYouPlace": {
         "properties": {
@@ -65766,7 +65768,8 @@
               "near_you",
               "starter",
               "pre_trip_prep",
-              "atlas_homecoming"
+              "atlas_homecoming",
+              "stay_compare"
             ],
             "title": "Kind"
           },
@@ -65808,6 +65811,26 @@
           },
           "action": {
             "$ref": "#/components/schemas/ConciergeHomeAction"
+          },
+          "focus": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DeckFocus"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "structured": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DeckStructured"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "voice": {
             "anyOf": [
@@ -65858,7 +65881,8 @@
               "near_you",
               "starter",
               "pre_trip_prep",
-              "atlas_homecoming"
+              "atlas_homecoming",
+              "stay_compare"
             ],
             "title": "Kind"
           },
@@ -65900,6 +65924,26 @@
           },
           "action": {
             "$ref": "#/components/schemas/ConciergeHomeAction"
+          },
+          "focus": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DeckFocus"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "structured": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DeckStructured"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
