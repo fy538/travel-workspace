@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chat-attachments/booking_proposal_snapshot.schema.json",
+  "title": "BookingProposalDisplaySnapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "venue_name": { "type": ["string", "null"] },
+    "venue_id": { "type": ["integer", "null"] },
+    "booking_method": { "type": ["string", "null"] },
+    "category": { "type": ["string", "null"] },
+    "provider": { "type": ["string", "null"] },
+    "deep_link": { "type": ["string", "null"] },
+    "phone_number": { "type": ["string", "null"] },
+    "requested_datetime": { "type": ["string", "null"] },
+    "party_size": { "type": ["integer", "null"] },
+    "expires_at": { "type": ["string", "null"] }
+  }
+}

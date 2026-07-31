@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "policy": "Keep message_type=notification (and other overloaded carriers) plus metadata.card_type. Do not add DB message_types for visual variants unless storage/aggregation semantics differ.",
+  "metadata_card_types": {
+    "reaction": {
+      "message_type": "reaction_card",
+      "attachment": "reaction_card",
+      "thread": "card"
+    },
+    "trip_shapes": {
+      "message_type": "reaction_card",
+      "attachment": "trip_shapes",
+      "thread": "card"
+    },
+    "vote": {
+      "message_type": "vote_widget",
+      "attachment": "vote_widget",
+      "thread": "card"
+    },
+    "notification": {
+      "message_type": "notification",
+      "attachment": "notification_card",
+      "thread": "card"
+    },
+    "taste_dna_reflection": {
+      "message_type": "notification",
+      "attachment": "taste_dna_reflection",
+      "thread": "card"
+    },
+    "change_applied": {
+      "message_type": "change_applied",
+      "attachment": "change_applied",
+      "thread": "card"
+    },
+    "plan_ready": {
+      "message_type": "notification",
+      "attachment": "plan_ready",
+      "thread": "card"
+    },
+    "map_route": {
+      "message_type": "notification",
+      "attachment": "map_route",
+      "thread": "card"
+    },
+    "comparison_card": {
+      "message_type": "notification",
+      "attachment": "comparison_card",
+      "thread": "card"
+    },
+    "atlas_draft": {
+      "message_type": "notification",
+      "attachment": "atlas_draft",
+      "thread": "card"
+    },
+    "error_recovery": {
+      "message_type": "notification",
+      "attachment": "error_recovery",
+      "thread": "card"
+    },
+    "booking_proposal": {
+      "message_type": "booking_proposal",
+      "attachment": "booking_proposal",
+      "thread": "card"
+    },
+    "booking_confirmation": {
+      "message_type": "booking_confirmation",
+      "attachment": "booking_confirmation",
+      "thread": "card"
+    },
+    "group_event": {
+      "message_type": "notification",
+      "attachment": null,
+      "thread": "system_line"
+    },
+    "document_edit": {
+      "message_type": "notification",
+      "attachment": "document_edit",
+      "thread": "card",
+      "notes": "FE mapper + Catalog support; promote a BE writer only with a real producer"
+    },
+    "itinerary_operation": {
+      "message_type": "notification",
+      "attachment": "itinerary_operation",
+      "thread": "card",
+      "notes": "FE mapper + Catalog support; promote a BE writer only with a real producer"
+    }
+  },
+  "attachments": [
+    "venue_card",
+    "reaction_card",
+    "trip_shapes",
+    "vote_widget",
+    "notification_card",
+    "taste_dna_reflection",
+    "change_applied",
+    "plan_ready",
+    "map_route",
+    "comparison_card",
+    "atlas_draft",
+    "error_recovery",
+    "booking_confirmation",
+    "booking_proposal",
+    "document_edit",
+    "narration",
+    "trip_creation_proposal",
+    "lazy_research",
+    "itinerary_operation"
+  ],
+  "no_arrival": {
+    "change_applied": "Side-effect of propose_change auto-apply / vote resolution — not its own streamed tool; propose_change already reserves vote_widget",
+    "error_recovery": "Posted by planning_workflow async recovery, outside the chat tool loop",
+    "notification_card": "Proactive / automation systems; appears after history deliver, not mid-tool",
+    "taste_dna_reflection": "Post-turn reflection hook, not a card-producing agent tool",
+    "document_edit": "Planning/doc metadata variant without a dedicated mid-turn producer tool",
+    "narration": "Narrate endpoint persists a narration row; not the concierge tool stream",
+    "lazy_research": "Research worker posts text + metadata.kind after background work",
+    "itinerary_operation": "Itinerary op prep via notification metadata; not a card-arrival tool"
+  },
+  "pilot_attachment_schemas": [
+    "booking_proposal_snapshot",
+    "map_route"
+  ]
+}

@@ -139,7 +139,7 @@ jobs:
         run: make maestro-flow-check
 
       - name: Compatibility and card-arrival contract guards
-        run: make compatibility-check card-arrival-check
+        run: make compatibility-check card-arrival-check chat-card-types-check
 
       - name: Journey-list drift guard
         # Pure file-glob (no DB): fails if scenarios.mjs and tests/scenarios/

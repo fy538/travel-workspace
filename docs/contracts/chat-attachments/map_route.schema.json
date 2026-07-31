@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chat-attachments/map_route.schema.json",
+  "title": "MapRouteCardMetadata",
+  "description": "Top-level required fields for notification+map_route cards. Nested stops/segments remain FE-mapped; additionalProperties allowed.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["card_type", "trip_id", "day_number", "geometry_source", "unplaced_stop_count", "stops", "segments"],
+  "properties": {
+    "card_type": { "const": "map_route" },
+    "trip_id": { "type": "string", "minLength": 1 },
+    "day_number": { "type": "integer", "minimum": 1 },
+    "geometry_source": { "type": "string", "enum": ["routed", "straight_line"] },
+    "unplaced_stop_count": { "type": "integer", "minimum": 0 },
+    "stops": { "type": "array", "minItems": 2 },
+    "segments": { "type": "array" },
+    "timezone": { "type": "string" },
+    "date": { "type": "string" },
+    "theme": { "type": "string" },
+    "route_quality": { "type": "string" }
+  }
+}
