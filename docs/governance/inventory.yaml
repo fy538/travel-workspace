@@ -330,3 +330,7 @@ overrides:
   docs/working/vesper-home-list-kinds-scope-2026-07-29.md:
     disposition: keep_reference
     rationale: Implementation scoping and build order for Vesper Home's four list kinds; expires 2026-08-28.
+
+  docs/working/vesper-home-world-row-presentation-2026-08-01.md:
+    disposition: keep_reference
+    rationale: Active presentation spec and field-gap record for Vesper Home's world row; promote into the vesper-home surface contract once built and device-verified, or archive at expiry.

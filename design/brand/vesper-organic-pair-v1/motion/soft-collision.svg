@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <title>Vesper Organic Pair v1 — soft collision</title>
+  <rect width="1024" height="1024" fill="#EFEAE0"/>
+  <g fill="#1B1714" transform="translate(119 135) scale(6.4)">
+    <g>
+      <animateTransform attributeName="transform" type="translate" dur="4.4s" repeatCount="indefinite" values="-3 -2;-3 -2;5 3;1 .5;-3 -2;-3 -2;5 3;1 .5;-3 -2" keyTimes="0;.10;.26;.34;.48;.60;.76;.84;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1;.2 0 .2 1;.2 0 .2 1;.4 0 .2 1;.4 0 .2 1;.2 0 .2 1;.2 0 .2 1"/>
+      <g transform="translate(46 52) rotate(32)"><g>
+        <animateTransform attributeName="transform" type="scale" dur="4.4s" repeatCount="indefinite" values="1 1;1 1;.84 1.05;.96 1.01;1 1;1 1;.84 1.05;.96 1.01;1 1" keyTimes="0;.10;.26;.34;.48;.60;.76;.84;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1;.2 0 .2 1;.2 0 .2 1;.4 0 .2 1;.4 0 .2 1;.2 0 .2 1;.2 0 .2 1"/>
+        <g transform="rotate(-32) translate(-46 -52)"><path d="M14 40C16 24 30 15 46 18L63 22C77 26 83 39 79 52L74 68C70 80 58 86 45 82L28 77C17 74 11 63 13 51Z"/></g>
+      </g></g>
+    </g>
+    <g>
+      <animateTransform attributeName="transform" type="translate" dur="4.4s" repeatCount="indefinite" values="4 3;4 3;-7 -4;-1 -.5;4 3;4 3;-7 -4;-1 -.5;4 3" keyTimes="0;.10;.26;.34;.48;.60;.76;.84;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1;.2 0 .2 1;.2 0 .2 1;.4 0 .2 1;.4 0 .2 1;.2 0 .2 1;.2 0 .2 1"/>
+      <g transform="translate(92 80) rotate(32)"><g>
+        <animateTransform attributeName="transform" type="scale" dur="4.4s" repeatCount="indefinite" values="1 1;1 1;.82 1.06;.95 1.02;1 1;1 1;.82 1.06;.95 1.02;1 1" keyTimes="0;.10;.26;.34;.48;.60;.76;.84;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1;.2 0 .2 1;.2 0 .2 1;.4 0 .2 1;.4 0 .2 1;.2 0 .2 1;.2 0 .2 1"/>
+        <g transform="rotate(-32) translate(-92 -80)"><path transform="translate(-7 -4)" d="M85.5 72.5C87.5 64 96 60 104.5 63L111.5 66.5C119 70.5 120.5 79 116.5 86.5L112 97C108 104.5 99.5 107.5 91.5 103.5L85 100C77.5 96 75.5 87.5 79.5 79.5Z"/></g>
+      </g></g>
+    </g>
+  </g>
+</svg>

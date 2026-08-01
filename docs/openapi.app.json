@@ -25425,6 +25425,196 @@
         }
       }
     },
+    "/api/concierge/home/workbench/rotate": {
+      "post": {
+        "tags": [
+          "vesper-workbench"
+        ],
+        "summary": "Rotate Vesper Workbench",
+        "description": "Advance the current user's personal band once, idempotently.",
+        "operationId": "rotate_vesper_workbench_api_concierge_home_workbench_rotate_post",
+        "parameters": [
+          {
+            "name": "lat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "maximum": 90,
+                  "minimum": -90
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Lat"
+            }
+          },
+          {
+            "name": "lng",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "maximum": 180,
+                  "minimum": -180
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Lng"
+            }
+          },
+          {
+            "name": "weather_condition",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 80
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Weather Condition"
+            }
+          },
+          {
+            "name": "temperature_c",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Temperature C"
+            }
+          },
+          {
+            "name": "precipitation_mm",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Precipitation Mm"
+            }
+          },
+          {
+            "name": "wind_kph",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Wind Kph"
+            }
+          },
+          {
+            "name": "place_label",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 120
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Place Label"
+            }
+          },
+          {
+            "name": "weather_unavailable",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Weather Unavailable"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VesperWorkbenchRotateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VesperWorkbenchEnvelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/concierge/home/workbench/voice": {
       "post": {
         "tags": [
@@ -67502,6 +67692,18 @@
             ],
             "title": "Home Neighborhood"
           },
+          "home_airport_iata": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[A-Z]{3}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Home Airport Iata"
+          },
           "followers_see_stories": {
             "type": "boolean",
             "title": "Followers See Stories",
@@ -67890,6 +68092,18 @@
               }
             ],
             "title": "Home Neighborhood"
+          },
+          "home_airport_iata": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[A-Z]{3}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Home Airport Iata"
           }
         },
         "type": "object",
@@ -68378,6 +68592,16 @@
               }
             ]
           },
+          "rotation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/WorkbenchRotation"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "coverage": {
             "$ref": "#/components/schemas/WorkbenchCoverage"
           }
@@ -68391,6 +68615,21 @@
           "coverage"
         ],
         "title": "VesperWorkbenchEnvelope"
+      },
+      "VesperWorkbenchRotateRequest": {
+        "properties": {
+          "selection_id": {
+            "type": "string",
+            "maxLength": 96,
+            "minLength": 16,
+            "title": "Selection Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "selection_id"
+        ],
+        "title": "VesperWorkbenchRotateRequest"
       },
       "VesperWorkbenchVoice": {
         "properties": {
@@ -69074,16 +69313,15 @@
             "minLength": 1,
             "title": "Edge Label"
           },
+          "reason": {
+            "type": "string",
+            "maxLength": 140,
+            "minLength": 1,
+            "title": "Reason"
+          },
           "source_as_of": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "string",
+            "format": "date-time",
             "title": "Source As Of"
           }
         },
@@ -69096,7 +69334,9 @@
           "starts_on",
           "ends_on",
           "edge_at",
-          "edge_label"
+          "edge_label",
+          "reason",
+          "source_as_of"
         ],
         "title": "WorkbenchHereItem"
       },
@@ -69308,6 +69548,68 @@
         ],
         "title": "WorkbenchRead"
       },
+      "WorkbenchRotation": {
+        "properties": {
+          "selection_id": {
+            "type": "string",
+            "maxLength": 96,
+            "minLength": 16,
+            "title": "Selection Id"
+          },
+          "current_kind": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "sessions",
+                  "season",
+                  "route",
+                  "here"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current Kind"
+          },
+          "selected_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Selected At"
+          },
+          "rotate_after": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Rotate After"
+          },
+          "may_advance": {
+            "type": "boolean",
+            "title": "May Advance",
+            "default": false
+          },
+          "reason": {
+            "type": "string",
+            "enum": [
+              "initial",
+              "held",
+              "scheduled",
+              "manual",
+              "ineligible_failover"
+            ],
+            "title": "Reason"
+          }
+        },
+        "type": "object",
+        "required": [
+          "selection_id",
+          "selected_at",
+          "rotate_after",
+          "reason"
+        ],
+        "title": "WorkbenchRotation",
+        "description": "Server-owned presentation cursor for the one-kind workbench band.\n\nThe client may use ``rotate_after`` to offer/trigger a refresh, but never\nsupplies or chooses a kind. ``selection_id`` is opaque and makes an\nexplicit advance idempotent for retries and concurrent devices."
+      },
       "WorkbenchRouteItem": {
         "properties": {
           "kind": {
@@ -69362,21 +69664,33 @@
             "title": "Edge Label"
           },
           "observed_fare": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 80
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
             "title": "Observed Fare"
           },
           "observed_at": {
             "type": "string",
             "format": "date-time",
             "title": "Observed At"
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 140,
+            "minLength": 1,
+            "title": "Reason"
+          },
+          "outbound_duration_minutes": {
+            "type": "integer",
+            "maximum": 1440.0,
+            "exclusiveMinimum": 0.0,
+            "title": "Outbound Duration Minutes"
+          },
+          "outbound_stops": {
+            "type": "integer",
+            "maximum": 4.0,
+            "minimum": 0.0,
+            "title": "Outbound Stops"
           }
         },
         "type": "object",
@@ -69389,7 +69703,11 @@
           "travel_ends_on",
           "edge_at",
           "edge_label",
-          "observed_at"
+          "observed_fare",
+          "observed_at",
+          "reason",
+          "outbound_duration_minutes",
+          "outbound_stops"
         ],
         "title": "WorkbenchRouteItem"
       },
@@ -69529,16 +69847,15 @@
             "minLength": 1,
             "title": "Edge Label"
           },
+          "reason": {
+            "type": "string",
+            "maxLength": 140,
+            "minLength": 1,
+            "title": "Reason"
+          },
           "source_as_of": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "string",
+            "format": "date-time",
             "title": "Source As Of"
           }
         },
@@ -69549,7 +69866,9 @@
           "starts_on",
           "ends_on",
           "edge_at",
-          "edge_label"
+          "edge_label",
+          "reason",
+          "source_as_of"
         ],
         "title": "WorkbenchSeasonItem"
       },

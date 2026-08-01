@@ -82,7 +82,7 @@ this plan explicitly.
 |---|---|
 | Endpoint ownership | Add a dedicated Vesper Workbench route under `/api/concierge/home/workbench`; do not overload the Trips-owned card queue DTO. |
 | Migration shape | Additive. Keep `/api/concierge/home` and `/trips-stack` intact while Vesper moves off the legacy feed. |
-| List precedence V1 | Eligible sessions win the band. Revisit only after a trustworthy session edge exists. |
+| List precedence | The personal server-owned rotation selects one eligible kind: `sessions → route → season → here`. Sessions are no longer permanently dominant; stale, unavailable, expired, and unauthorized kinds are skipped. |
 | World build order | `season → route → here`. Sessions ship before all three. |
 | First world source | A reviewed, versioned seasonal-window catalog; no new vendor and no runtime generation. |
 | Route origin | No inference from a display string. Route stays dark until a canonical origin-airport contract exists. |
@@ -157,6 +157,18 @@ VesperWorkbenchEnvelope
 `coverage` is diagnostic truth for the client and telemetry. It must not become
 visible debug copy in production.
 
+### Personal rotation
+
+`rotation` is an additive optional object on the envelope. It carries only an
+opaque `selection_id`, the selected kind, its server timestamps, a
+`may_advance` gate, and a reason. The app cannot name a desired kind.
+
+`POST /api/concierge/home/workbench/rotate` accepts exactly that opaque
+selection id plus the same ambient context as the read. The server serializes
+the per-user cursor, rejects early advancement, and treats replayed or stale
+ids as no-ops. A normal `GET` never rotates the band; when it returns
+`may_advance: true`, the app may submit the id and render the returned envelope.
+
 ### Facts
 
 Facts are display-ready but retain typed provenance:
@@ -215,10 +227,19 @@ Kind-specific payloads remain typed:
 
 - **session:** conversation id, authorized scope, trip id, state line, stamp,
   unread, activity, participant summaries;
-- **season:** place scope, window label, start/end, edge label;
-- **route:** canonical origin/destination, travel window, observed fare,
-  currency, observed-at, search-window edge;
-- **here:** canonical place scope, dated window, source, start/end, edge label.
+- **season:** place scope, window label, start/end, edge label, required reviewed
+  reason, and required source-as-of for every emitted row;
+- **route:** canonical origin/destination, travel window, required
+  provider-derived reason, observed fare/currency, observed-at, search-window
+  edge, outbound duration minutes, and outbound stops — all offer facts taken
+  from the same concrete hydrated offer;
+- **here:** canonical place scope, dated window, source, start/end, edge label,
+  required reviewed reason, and required source-as-of for every emitted row.
+
+Every eligible world item has a grounded second line. A producer that cannot
+supply its required reason/freshness facts — or route's outbound duration and
+stops — omits the candidate. The client never fills the gap from generic
+descriptions, travel-window dates, stale discovery results, or generated prose.
 
 Avoid one giant optional-field object. Use a discriminated Pydantic union so
 generated TypeScript preserves the actual row contract.
@@ -343,6 +364,10 @@ place_scope / hemisphere scope
 start_date
 end_date
 edge_label
+reason
+source_label
+source_url
+source_as_of
 source_note
 reviewed_at
 expires_at
@@ -355,7 +380,17 @@ Catalog validation rejects:
 - impossible date ranges;
 - duplicate ids;
 - rows past editorial expiry;
-- claims whose source note is empty.
+- claims whose source note, label, URL, or source-as-of is empty;
+- reasons outside the producer-owned presentation budget.
+
+Reasons are short reviewed claims, not runtime generation. Climate claims may
+be derived from official NOAA/WMO normals; phenomenon-specific claims use the
+relevant primary authority. A claim such as `emptiest month` is ineligible
+without separate visitation or occupancy evidence — climate data alone cannot
+establish it.
+
+- [NOAA U.S. Climate Normals](https://www.ncei.noaa.gov/products/land-based-station/us-climate-normals)
+- [WMO Global Climate Normals](https://www.ncei.noaa.gov/products/wmo-climate-normals)
 
 The runtime loader is bounded and cached. A later editorial database is a
 separate decision; it is not required to prove the producer.
@@ -371,12 +406,29 @@ Route is dark until two gates pass:
 
 The producer then:
 
-- queries once per canonical origin and search day;
+- queries Flight Inspiration Search once per canonical origin and search day
+  to discover candidate destinations and dates;
+- hydrates only a bounded set of winning candidates through Flight Offers
+  Search, using the discovery result's offer-search parameters/link;
+- selects one concrete offer per emitted row and takes fare, reason, outbound
+  duration, outbound stops and observed-at atomically from that offer;
 - caches across users;
 - stores observed-at and the searched travel window;
 - omits stale results;
 - never describes a search-window end as a fare expiry;
 - returns no row when origin confidence is insufficient.
+
+The existing Amadeus and Duffel adapters already normalize duration and stops,
+but their aggregate `duration_minutes`/`stops` cover every itinerary or slice.
+The workbench projection must read the first/outbound itinerary specifically;
+it must not show outbound-plus-return as a flight duration. Harden the shared
+ISO-duration parser for day-bearing values such as `P1DT2H`, and test direct,
+connecting, round-trip, and same-offer fare/duration cases before enabling the
+producer.
+
+- [Amadeus Flight Inspiration specification](https://github.com/amadeus4dev/amadeus-open-api-specification/blob/main/spec/yaml/FlightInspirationSearch_v1_swagger_specification.yaml)
+- [Amadeus Flight Offers specification](https://github.com/amadeus4dev/amadeus-open-api-specification/blob/main/spec/json/FlightOffersSearch_v2_swagger_specification.json)
+- [Duffel Offer Requests](https://duffel.com/docs/api/v2/offer-requests)
 
 ### Here
 
@@ -389,7 +441,22 @@ The first producer is not a generic events search. It admits only:
 - approved source;
 - start and reliable end;
 - current, non-expired review;
+- a required short reason backed by a source label, URL and source-as-of;
 - a destination-neutral title that does not imply ticket availability.
+
+V1 uses a dedicated editorial-window catalog. Do not project raw vendor
+descriptions from the general `experiences` table into the reason field: the
+current Ticketmaster end is optional, Bandsintown ingestion writes no end, and
+the inventory/legal operating model is not ready to make generic event search
+the first Here producer. Official organizer and public-agency sources are the
+preferred pilot substrate. NYC Tourism's Summer 2026 Restaurant Week release,
+for example, supports the bounded line
+`600+ restaurants · $30 / $45 / $60 prix fixe`; it does not support the
+fixture's `most take walk-ins`, so that phrase stays absent.
+
+- [NYC Restaurant Week Summer 2026](https://www.business.nyctourism.com/press-media/press-releases/nyc-restaurant-week-summer-2026)
+- [NYC Event Calendar API](https://api-portal.nyc.gov/)
+- [NYC Summer Streets](https://www.nyc.gov/html/dot/html/pr2026/summer-streets-to-return-to-all-five-boroughs.shtml)
 
 Vendor evaluation comes after measuring how many candidate rows have usable end
 dates. A ticketing API should not be integrated merely to increase raw event
@@ -397,13 +464,15 @@ count.
 
 ## Selection and consistency
 
-The selector is pure and clock-injected.
+Candidate selection is pure and clock-injected; the per-user cursor is resolved
+transactionally before the pure one-kind projection.
 
-1. If eligible sessions exist, select `sessions`, preserving their deterministic
-   rank order, maximum three.
-2. Otherwise remove elapsed, stale, unavailable, and disabled world candidates.
-3. Sort world candidates by edge ascending.
-4. The nearest candidate's kind wins.
+1. Each producer returns only truthful, current candidates and status.
+2. Remove elapsed, stale, unavailable, disabled, and unauthorized candidates.
+3. Resolve the durable user-owned Workbench cursor under a transaction lock.
+4. Hold its selected kind on ordinary reads. Once the dwell has elapsed, only
+   the authenticated opaque-id rotate request advances one eligible position
+   in `sessions → route → season → here`.
 5. Return up to three candidates of that kind only.
 6. Never fill remaining slots from another kind.
 7. Resolve the second fact from the selected list.
@@ -695,6 +764,29 @@ implementation layer.**
   behavior are proved separately against local Postgres. This is not
   Clerk-authenticated, EAS, physical-device, or deployed multi-worker
   certification.
+- The initial Season and one-city Here implementation is now present behind
+  sessions precedence: both use bounded reviewed catalogs, required
+  producer-authored reasons, source freshness, exact approved place aliases,
+  editorial expiry, fail-absent projection, and a catalog validation command.
+  This is implementation/static evidence only; refreshed world-row device
+  captures are still required before either producer receives a device-proven
+  completion claim.
+- The Route origin contract is explicit and user-owned in the authoritative
+  home-location slot. No city or coordinate inference is performed. Route
+  remains disabled: the Flight Inspiration integration still requires explicit
+  approval, provider/cost spike, shared-cache work, and fresh-offer canaries.
+- Personal rotation is implemented as an additive, per-user Postgres cursor
+  with a six-hour server dwell and the order
+  `sessions → route → season → here`. The app neither owns an index nor runs a
+  timer: it refreshes, receives the exact server selection, and submits a
+  server-gated opaque id only when it is due. Replays and early requests hold
+  the existing turn. This is focused implementation/contract evidence; no
+  world-row rotation device capture has been recorded.
+- A kind enters the rotating band only with three current, truthful rows. The
+  presently reviewed Season and Here catalogs each have one row, so they remain
+  an honest non-rotating fallback; Route stays disabled. Authoring/provider
+  gates, rather than filler content, are therefore the remaining inputs before
+  the live sequence can visibly reach all four kinds.
 
 ### Program sizing
 
@@ -793,11 +885,13 @@ single Alembic head; participant/privacy device cases pass.
 
 ### Phase 6 — season producer
 
-- Author and review the initial seasonal catalog.
-- Add schema/catalog validation and expiry tooling.
+- Author and review the initial seasonal catalog with required reason and
+  primary-source provenance.
+- Add schema/catalog validation, reason-budget lint, and expiry tooling.
 - Match rows to canonical place/hemisphere context.
 - Enable the world selector behind sessions precedence.
-- Add one-row, three-row, elapsed, ambiguous-place, and no-coverage tests.
+- Add one-row, three-row, multi-place, missing-reason/provenance, elapsed,
+  ambiguous-place, and no-coverage tests.
 - Re-shoot the realistic cold/home launch against season rather than the
   design's unavailable `here` specimen.
 
@@ -807,11 +901,15 @@ hand-waved production rows.
 ### Phase 7 — route discovery gate and producer
 
 - Decide and implement the canonical origin-airport contract.
-- Run a provider spike against Flight Inspiration Search.
+- Run a provider spike across Flight Inspiration Search followed by bounded
+  Flight Offers hydration.
 - Obtain explicit approval for the external API addition.
 - Implement shared origin/day cache, freshness, rate/cost telemetry, and
   fail-absent behavior.
-- Add real-provider canaries without asserting fare expiry.
+- Project reason, outbound duration and outbound stops from the same offer as
+  the displayed fare; never reuse the normalized round-trip duration total.
+- Add real-provider canaries without asserting fare expiry, plus fixtures for
+  direct/connecting, round-trip, day-bearing duration, and hydration failure.
 
 **Exit:** route remains disabled until origin truth, provider behavior, cost,
 and stale suppression all pass.
@@ -819,9 +917,11 @@ and stale suppression all pass.
 ### Phase 8 — here pilot
 
 - Measure end-date coverage for the candidate source set.
-- Author the New York editorial pilot with approvals and expiry.
+- Author the New York editorial-window pilot with required reason,
+  primary-source provenance, approvals and expiry.
 - Add the here producer and canonical city matching.
-- Prove one-row quiet weeks and no-coverage behavior.
+- Prove one-row quiet weeks, missing-reason/provenance omission, and
+  no-coverage behavior.
 - Evaluate vendor expansion only after the pilot data identifies the actual
   coverage gap.
 
@@ -854,9 +954,11 @@ all named and current; no “done” claim rests on backend tests alone.
 - producer exception isolation;
 - stale versus empty distinction;
 - voice token ownership, expiry, cache, and fallback;
-- season catalog validation;
-- route freshness/cost/provider parsing;
-- here approval/end-date eligibility;
+- season catalog validation, reason/provenance eligibility, and multi-place
+  rows;
+- route freshness/cost/provider parsing, same-offer fare/duration atomicity,
+  outbound-only duration, connections, and day-bearing ISO durations;
+- here approval/end-date/reason/provenance eligibility;
 - OpenAPI snapshot and app projection.
 
 ### Frontend

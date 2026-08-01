@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1180" viewBox="0 0 1800 1180">
+  <rect width="1800" height="1180" fill="#F7F5F0"/>
+  <defs>
+    <path id="large" d="M14 40C16 24 30 15 46 18L63 22C77 26 83 39 79 52L74 68C70 80 58 86 45 82L28 77C17 74 11 63 13 51Z"/>
+    <path id="small" transform="translate(-7 -4)" d="M85.5 72.5C87.5 64 96 60 104.5 63L111.5 66.5C119 70.5 120.5 79 116.5 86.5L112 97C108 104.5 99.5 107.5 91.5 103.5L85 100C77.5 96 75.5 87.5 79.5 79.5Z"/>
+    <symbol id="pair" viewBox="0 0 120 120"><use href="#large"/><use href="#small"/></symbol>
+    <style>
+      .title { font: 600 26px -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; letter-spacing: 4px; fill: #1B1714; }
+      .sub { font: 400 16px -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; fill: #6E6862; }
+      .section { font: 600 12px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 2px; fill: #8C857D; }
+      .name { font: 600 17px -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; fill: #1B1714; }
+      .body { font: 400 15px -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; fill: #6E6862; }
+      .micro { font: 500 12px -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; fill: #6E6862; }
+      .card { fill: #FFFFFF; stroke: #E2DDD4; stroke-width: 1; }
+      .hair { stroke: rgba(27,23,20,.10); stroke-width: 1; }
+    </style>
+  </defs>
+
+  <text x="70" y="62" class="title">VESPER / PRODUCT CONTEXT 01</text>
+  <text x="70" y="96" class="sub">Organic Pair v1 · enlarged optical placement · representative contexts based on current Vesper Home and Chat</text>
+
+  <text x="70" y="142" class="section">01 / LAUNCHER RECOGNITION</text>
+  <rect x="70" y="162" width="520" height="430" rx="30" class="card"/>
+  <rect x="95" y="187" width="470" height="330" rx="26" fill="#D8E1DE"/>
+  <circle cx="160" cy="248" r="48" fill="#97AFA8"/><path d="M137 258C151 235 177 232 188 254" fill="none" stroke="#F7F5F0" stroke-width="8" stroke-linecap="round"/>
+  <rect x="242" y="200" width="96" height="96" rx="24" fill="#EFEAE0"/>
+  <g fill="#1B1714" transform="translate(253 211) scale(.62)"><use href="#large"/><use href="#small"/></g>
+  <rect x="420" y="200" width="96" height="96" rx="24" fill="#C9A99B"/><circle cx="468" cy="248" r="23" fill="#F5EEE8"/>
+  <rect x="112" y="347" width="96" height="96" rx="24" fill="#536575"/><path d="M140 397L160 370L181 397" fill="none" stroke="#EDF1F2" stroke-width="7" stroke-linejoin="round"/>
+  <rect x="242" y="347" width="96" height="96" rx="24" fill="#E4D7C7"/><circle cx="290" cy="395" r="23" fill="#8C6C57"/>
+  <rect x="420" y="347" width="96" height="96" rx="24" fill="#D7DBC9"/><path d="M445 412C454 373 482 370 492 385" fill="none" stroke="#52684E" stroke-width="8" stroke-linecap="round"/>
+  <text x="290" y="319" class="micro" text-anchor="middle">Vesper</text>
+  <text x="95" y="552" class="name">Home-screen presence</text>
+  <text x="95" y="576" class="body">The 63% mark reads confidently among neighboring icons.</text>
+
+  <text x="630" y="142" class="section">02 / LAUNCH</text>
+  <rect x="630" y="162" width="360" height="770" rx="52" fill="#D9D4CB"/>
+  <rect x="642" y="174" width="336" height="746" rx="44" fill="#EFEAE0"/>
+  <rect x="758" y="190" width="104" height="28" rx="14" fill="#1B1714"/>
+  <g fill="#1B1714" transform="translate(696 388) scale(1.9)"><use href="#large"/><use href="#small"/></g>
+  <text x="810" y="645" text-anchor="middle" style="font:600 25px Georgia, serif; letter-spacing:7px; fill:#1B1714">VESPER</text>
+  <text x="810" y="684" text-anchor="middle" class="body">quiet reveal · one motion · then still</text>
+  <text x="810" y="886" text-anchor="middle" class="micro">Paper 20 · Ink 00</text>
+
+  <text x="1030" y="142" class="section">03 / IN-APP IDENTITY</text>
+  <rect x="1030" y="162" width="700" height="430" rx="30" class="card"/>
+  <rect x="1060" y="192" width="640" height="166" rx="22" fill="#EFEAE0"/>
+  <text x="1088" y="226" class="section">VESPER HOME / HEADER</text>
+  <g fill="#1B1714" transform="translate(1086 245) scale(.34)"><use href="#large"/><use href="#small"/></g>
+  <text x="1142" y="289" style="font:600 19px -apple-system, BlinkMacSystemFont, sans-serif; letter-spacing:5px; fill:#1B1714">VESPER</text>
+  <text x="1625" y="289" class="body">History</text>
+  <line x1="1088" y1="315" x2="1672" y2="315" class="hair"/>
+  <text x="1088" y="340" class="micro" style="letter-spacing:3px">NEW YORK · SATURDAY</text>
+
+  <rect x="1060" y="386" width="640" height="176" rx="22" fill="#EFEAE0"/>
+  <text x="1088" y="420" class="section">PRIVATE CHAT / HEADER</text>
+  <circle cx="1114" cy="482" r="25" fill="#F7F2E7" stroke="rgba(27,23,20,.10)"/>
+  <path d="M1122 467L1107 482L1122 497" fill="none" stroke="#1B1714" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#1B1714" transform="translate(1160 450) scale(.40)"><use href="#large"/><use href="#small"/></g>
+  <text x="1228" y="477" class="name">Vesper</text>
+  <text x="1228" y="501" class="body">private</text>
+  <circle cx="1655" cy="482" r="25" fill="#F7F2E7" stroke="rgba(27,23,20,.10)"/><circle cx="1655" cy="473" r="2.8" fill="#1B1714"/><circle cx="1655" cy="482" r="2.8" fill="#1B1714"/><circle cx="1655" cy="491" r="2.8" fill="#1B1714"/>
+
+  <text x="70" y="648" class="section">04 / MOTION ROLES</text>
+  <rect x="70" y="668" width="950" height="430" rx="30" class="card"/>
+  <g transform="translate(100 705)">
+    <rect width="200" height="160" rx="22" fill="#EFEAE0"/><g fill="#1B1714" transform="translate(142 20) scale(.75)"><use href="#large"/><use href="#small"/></g>
+    <path d="M54 118C35 92 39 62 57 45" fill="none" stroke="#6E6862" stroke-width="2"/><path d="M53 43L64 42L59 52" fill="none" stroke="#6E6862" stroke-width="2"/>
+    <text x="0" y="195" class="name">Half-turn return</text><text x="0" y="219" class="body">Refresh · reconsider</text>
+  </g>
+  <g transform="translate(330 705)">
+    <rect width="200" height="160" rx="22" fill="#EFEAE0"/><g fill="#1B1714" transform="translate(53 28) scale(.78)"><use href="#large"/><use href="#small"/></g>
+    <text x="0" y="195" class="name">Two half-turns</text><text x="0" y="219" class="body">Mode transition</text>
+  </g>
+  <g transform="translate(560 705)">
+    <rect width="200" height="160" rx="22" fill="#EFEAE0"/><g fill="#1B1714" transform="translate(53 28) scale(.78)"><use href="#large"/><use href="#small"/></g>
+    <circle cx="100" cy="80" r="62" fill="none" stroke="#B5AFA5" stroke-width="2" stroke-dasharray="88 18"/>
+    <text x="0" y="195" class="name">Full turn</text><text x="0" y="219" class="body">Bounded loading only</text>
+  </g>
+  <g transform="translate(790 705)">
+    <rect width="200" height="160" rx="22" fill="#EFEAE0"/><g fill="#1B1714" transform="translate(45 16) scale(.84)"><use href="#large"/><use href="#small"/></g>
+    <path d="M38 80H64M162 80H136" stroke="#6E6862" stroke-width="2"/><path d="M64 80L57 75M64 80L57 85M136 80L143 75M136 80L143 85" stroke="#6E6862" stroke-width="2"/>
+    <text x="0" y="195" class="name">Soft collision</text><text x="0" y="219" class="body">Connection · shared moment</text>
+  </g>
+  <line x1="100" y1="955" x2="990" y2="955" class="hair"/>
+  <text x="100" y="985" class="body">Reduce Motion: render the final resting frame immediately.</text>
+  <text x="100" y="1012" class="body">Review loops repeat; production behaviors should be event-triggered and bounded.</text>
+
+  <text x="1060" y="648" class="section">05 / READOUT</text>
+  <rect x="1060" y="668" width="670" height="430" rx="30" fill="#1B1714"/>
+  <g fill="#EFEAE0" transform="translate(1110 705) scale(.72)"><use href="#large"/><use href="#small"/></g>
+  <text x="1235" y="757" style="font:600 20px Georgia, serif; letter-spacing:5px; fill:#EFEAE0">VESPER</text>
+  <line x1="1110" y1="825" x2="1680" y2="825" stroke="rgba(239,234,224,.18)"/>
+  <text x="1110" y="865" style="font:600 17px -apple-system, sans-serif; fill:#EFEAE0">What holds up</text>
+  <text x="1110" y="898" style="font:400 15px -apple-system, sans-serif; fill:#B5AFA5">• Launcher recognition is materially stronger at 63%.</text>
+  <text x="1110" y="927" style="font:400 15px -apple-system, sans-serif; fill:#B5AFA5">• The mark fits the app’s paper-and-ink material language.</text>
+  <text x="1110" y="956" style="font:400 15px -apple-system, sans-serif; fill:#B5AFA5">• Small header use remains legible without internal detail.</text>
+  <text x="1110" y="985" style="font:400 15px -apple-system, sans-serif; fill:#B5AFA5">• Motion can carry meaning without changing the logo.</text>
+  <text x="1110" y="1034" style="font:600 17px -apple-system, sans-serif; fill:#EFEAE0">Next gate</text>
+  <text x="1110" y="1064" style="font:400 15px -apple-system, sans-serif; fill:#B5AFA5">Platform exports + device capture before shipping replacement.</text>
+
+  <text x="70" y="1142" class="micro">Identity study only · shipping assets unchanged · existing product gold semantics remain outside this icon decision</text>
+</svg>
