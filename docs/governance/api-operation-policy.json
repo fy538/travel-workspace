@@ -8,6 +8,22 @@
     "review_by": null
   },
   "operations": {
+    "POST /api/trips/{trip_id}/itinerary/days/{day_id}/add-venue-preview": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "previewPlacesVenueAdd",
+          "source": "app-places-feed/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "itinerary",
+      "reason": "Places selects a real venue; Trips owns the revision-bound preview and canonical commit.",
+      "removal_trigger": null,
+      "review_by": null
+    },
     "DELETE /admin/users/{user_id}/constraints/{constraint_type}/{value}": {
       "audience": "operator",
       "consumers": [
