@@ -4,7 +4,7 @@ status: active
 owner: founder / product / backend / frontend
 created: 2026-08-01
 expires: 2026-08-31
-why_new: The engine and world-row plans describe the architecture and presentation, but their execution status predates the server-owned rotation, Season/Here catalogs, Duffel Route producer, and Home Airport editor now in the worktree. This plan records the remaining work from today's code to a four-kind, three-row, live-provider dogfood rotation without reopening settled decisions.
+why_new: The engine and world-row plans describe the architecture and presentation, but their execution status predates the server-owned rotation, Season/Here catalogs, and Duffel Route producer. This plan records the remaining work from today's code to a four-kind, three-row, live-provider dogfood rotation without reopening settled decisions.
 promotes_to:
   - travel-agent/backend/home/vesper_workbench/FEATURE.md
   - travel-app/docs/surfaces/vesper-home/contract.md
@@ -45,27 +45,23 @@ Already implemented in the current worktree:
   replay protection, ineligible failover, and app transition;
 - two-line world-row presentation, route grid, Dynamic Type-aware density,
   reduced-motion replacement, and one-kind rendering;
-- one reviewed Season row and one reviewed New York Here row;
+- three reviewed global Season rows and three reviewed New York Here rows;
 - automatic Duffel Route candidate universe for JFK, exact offer-expiry cache,
   monthly request cap, outbound-only duration/stops projection, and fail-dark
   behavior;
-- user-owned canonical `home_airport_iata` backend field and Account editor;
-- local migration `vesp_route01` applied; Route locally enabled for JFK with a
+- automatic supported-origin resolution from canonical Home, with an optional
+  backend-only `home_airport_iata` override;
+- ordinary Home GETs are cache-only; due Route handoffs use a shared refresh
+  lease, cooldown, durable cap, and bounded provider concurrency;
+- the app schedules foreground refresh at the server-issued rotation deadline;
+- content-free Route diagnostics and catalog validation are implemented;
+- the live Duffel canary and real Postgres envelope produced three Route rows
+  from the automatically resolved New York → JFK origin;
+- local migration `vesp_route02` applied; Route locally enabled for JFK with a
   24-request monthly ceiling.
 
 Known gaps:
 
-- Season and Here each have one eligible catalog row, so neither can enter the
-  three-row ring;
-- no local dogfood user currently has JFK persisted, so no end-to-end Route
-  Home response has been produced;
-- the current Route producer may spend on an ordinary Home GET, lacks a shared
-  refresh lease/negative cache, and can exhaust its cap through repeated empty
-  refreshes;
-- Route's six-hour cursor dwell can outlive Duffel's offer expiry;
-- a screen left open does not schedule a refresh at `rotate_after`; it advances
-  only on a later focus/refetch;
-- provider/rotation observability from the engine plan is not implemented;
 - world-row mock captures exist, but no complete four-kind rotating device run
   or live Route device receipt exists;
 - workspace contract-check is presently blocked by unrelated concurrent Places
@@ -94,8 +90,9 @@ Known gaps:
    needs three overlapping, officially sourced, reliable-end-date windows.
 9. **Sessions:** included in the same ring; one to three truthful rows are
    eligible. Dogfood fixtures will supply three to prove equal visual density.
-10. **Origin:** explicit `home_airport_iata` only. Never infer it from city,
-    coordinates, trip title, or current location.
+10. **Origin:** resolve only from canonical Home through exact reviewed city
+    aliases or a bounded nearest-supported-market coordinate lookup. Send only
+    the airport code to Duffel. Never use trip title or current location.
 11. **Interaction:** world rows remain informational in V1. No invented deep
     link, chat seed, or booking action.
 12. **QA timing:** an explicitly local/test-only accelerated dwell may exercise
@@ -109,7 +106,7 @@ Known gaps:
 - Review and checkpoint only the Vesper files in each child repository.
 - Record the current Alembic head and local Route flags without printing the
   Duffel credential.
-- Add the Home Airport editor test before relying on it for dogfood.
+- Verify unsupported or absent canonical Home keeps Route dark.
 - Do not regenerate or commit unrelated OpenAPI/Places diffs from this lane.
 
 Exit: Vesper changes are reviewable by explicit filename and neither child
@@ -194,7 +191,7 @@ Backend:
 
 Frontend:
 
-- Account editor add/edit/remove/validation and profile invalidation;
+- automatic Home-to-origin exact-alias, bounded-distance, and fail-dark tests;
 - timer scheduling/cancellation, due POST, replay, focus refresh, and account
   boundary tests;
 - three-row fixtures for Sessions, Route, Season, and Here;
@@ -213,7 +210,8 @@ lint, and Vesper-specific contract checks pass.
 
 ### Batch 5 — real dogfood and device receipt
 
-1. Use Account → Home Base to set the dogfood account to JFK.
+1. Verify the dogfood account's canonical New York Home resolves to JFK without
+   an airport setup step.
 2. Run the operator canary once; record provider request count, valid winners,
    earliest expiry, and confirmation that no order/hold/payment was created.
 3. Fetch the real Workbench envelope against migrated Postgres and prove three
