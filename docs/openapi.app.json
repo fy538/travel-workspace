@@ -15946,6 +15946,97 @@
         }
       }
     },
+    "/api/trips/{trip_id}/itinerary/days/{day_id}/add-venue-preview": {
+      "post": {
+        "tags": [
+          "places",
+          "itinerary-operations"
+        ],
+        "summary": "Preview Places Venue Add",
+        "description": "Construct a Places selection as a canonical, reviewable Trips operation.\n\nThe client supplies no revision, participants, owner, title, or operation\nidentity. Those are all read from the authoritative Trips/corpus state.",
+        "operationId": "preview_places_venue_add_api_trips__trip_id__itinerary_days__day_id__add_venue_preview_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "day_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Day Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlacesVenueAddPreviewRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItineraryOperationPreview"
+                }
+              }
+            }
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItineraryOperationPreviewError"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItineraryOperationPreviewError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/postjoin-payoff/acknowledge": {
       "post": {
         "tags": [
@@ -20323,86 +20414,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GroupMemoryResponse"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/trips/{trip_id}/itinerary/days/{day_id}/add-venue-preview": {
-      "post": {
-        "tags": [
-          "trips"
-        ],
-        "summary": "Preview Places Venue Add",
-        "description": "Construct a Places selection as a canonical, reviewable Trips operation.\n\nThe client supplies no revision, participants, owner, title, or operation\nidentity. Those are all read from the authoritative Trips/corpus state.",
-        "operationId": "preview_places_venue_add_api_trips__trip_id__itinerary_days__day_id__add_venue_preview_post",
-        "parameters": [
-          {
-            "name": "trip_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Trip Id"
-            }
-          },
-          {
-            "name": "day_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Day Id"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PlacesVenueAddPreviewRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ItineraryOperationPreview"
                 }
               }
             }
