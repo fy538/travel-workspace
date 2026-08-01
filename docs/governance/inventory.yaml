@@ -130,6 +130,10 @@ overrides:
     disposition: keep_reference
     rationale: Active Places implementation plan and design-rulings record; expires 2026-08-27 and promotes to a Places charter.
 
+  docs/working/places-section-contract-2026-08-01.md:
+    disposition: keep_reference
+    rationale: Approved implementation handoff for the posture-driven Places feed; promote durable API rules into the backend Places FEATURE and frontend Places workspace contract, then archive when the migration is complete.
+
   docs/working/trips-home-promotion-model-2026-07-27.md:
     disposition: keep_reference
     rationale: Active successor model for Trips home; expires 2026-08-26 and promotes into the Trips-home surface contract.

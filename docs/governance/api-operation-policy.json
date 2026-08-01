@@ -477,6 +477,21 @@
       "removal_trigger": null,
       "review_by": null
     },
+    "GET /api/places/feed": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_transport",
+          "name": "PlacesFeedDarkTransport"
+        }
+      ],
+      "feature_flag": "PLACES_SECTIONS_ENABLED",
+      "lifecycle": "active",
+      "owner": "places",
+      "reason": "Flag-gated additive contract for the posture-driven Places feed; the client keeps the existing root until producer and parity gates pass.",
+      "removal_trigger": "Remove this route and its transport only if the sectioned Places migration is abandoned before activation.",
+      "review_by": "2026-10-30"
+    },
     "PUT /api/places/scope": {
       "audience": "app",
       "consumers": [

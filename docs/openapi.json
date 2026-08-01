@@ -20829,6 +20829,56 @@
         }
       }
     },
+    "/api/places/feed": {
+      "get": {
+        "tags": [
+          "places"
+        ],
+        "summary": "Get Places Feed",
+        "description": "Return the dark, posture-driven Places feed when explicitly enabled.",
+        "operationId": "get_places_feed_api_places_feed_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlacesFeed"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/places": {
       "get": {
         "tags": [
@@ -61618,6 +61668,149 @@
         ],
         "title": "PlacesAreaPreview"
       },
+      "PlacesCard": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Id"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/PlacesCardKind"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Title"
+          },
+          "meta": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Meta"
+          },
+          "kicker": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Kicker"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "verb": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesCardVerb"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "place": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesRankedItem"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "angle": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesReadingItem"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "city": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesStarterCity"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "friend": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesFriendActivity"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "memory": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesMemoryRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "title"
+        ],
+        "title": "PlacesCard",
+        "description": "One feed card with kind-validated optional payload slots.\n\nThis deliberately follows the shipping wide-card precedent rather than a\ntagged union. The validator retains equivalent kind/payload safety."
+      },
+      "PlacesCardKind": {
+        "type": "string",
+        "enum": [
+          "place",
+          "angle",
+          "friend",
+          "memory",
+          "notice",
+          "prompt",
+          "city"
+        ],
+        "title": "PlacesCardKind"
+      },
+      "PlacesCardVerb": {
+        "type": "string",
+        "enum": [
+          "add_to_day",
+          "save",
+          "book",
+          "open",
+          "answer",
+          "clear"
+        ],
+        "title": "PlacesCardVerb"
+      },
       "PlacesContext": {
         "properties": {
           "scope": {
@@ -61744,6 +61937,86 @@
         ],
         "title": "PlacesExperienceTiming"
       },
+      "PlacesFeed": {
+        "properties": {
+          "posture": {
+            "type": "string",
+            "enum": [
+              "starter",
+              "between",
+              "planning",
+              "ready",
+              "urgent",
+              "live",
+              "returned",
+              "quiet"
+            ],
+            "title": "Posture"
+          },
+          "context": {
+            "$ref": "#/components/schemas/PlacesContext"
+          },
+          "sections": {
+            "items": {
+              "$ref": "#/components/schemas/PlacesSection"
+            },
+            "type": "array",
+            "maxItems": 4,
+            "title": "Sections"
+          }
+        },
+        "type": "object",
+        "required": [
+          "posture",
+          "context",
+          "sections"
+        ],
+        "title": "PlacesFeed",
+        "description": "The sectioned Places page; ``sections`` is the only ordering authority."
+      },
+      "PlacesFriendActivity": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "display_name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Display Name"
+          },
+          "initial": {
+            "type": "string",
+            "maxLength": 2,
+            "minLength": 1,
+            "title": "Initial"
+          },
+          "sentence": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Sentence"
+          },
+          "place_names": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 6,
+            "title": "Place Names"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "display_name",
+          "initial",
+          "sentence",
+          "place_names"
+        ],
+        "title": "PlacesFriendActivity",
+        "description": "A privacy-eligible friend's activity and its bounded place preview."
+      },
       "PlacesGuidePreview": {
         "properties": {
           "dossier_id": {
@@ -61822,6 +62095,53 @@
           "unknown"
         ],
         "title": "PlacesMarkerKnowledge"
+      },
+      "PlacesMemoryRef": {
+        "properties": {
+          "source_type": {
+            "type": "string",
+            "enum": [
+              "artifact",
+              "trip"
+            ],
+            "title": "Source Type"
+          },
+          "source_id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Source Id"
+          },
+          "occurred_on": {
+            "type": "string",
+            "format": "date",
+            "title": "Occurred On"
+          },
+          "years_ago": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Years Ago"
+          },
+          "place_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "source_type",
+          "source_id",
+          "occurred_on",
+          "years_ago"
+        ],
+        "title": "PlacesMemoryRef",
+        "description": "Stable reference to one accepted artifact or completed trip memory."
       },
       "PlacesOperationalFreshness": {
         "type": "string",
@@ -62668,6 +62988,100 @@
         ],
         "title": "PlacesSearchScopeKind"
       },
+      "PlacesSection": {
+        "properties": {
+          "reason": {
+            "$ref": "#/components/schemas/PlacesSectionReason"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Label"
+          },
+          "count": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Count"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "treatment": {
+            "$ref": "#/components/schemas/PlacesSectionTreatment"
+          },
+          "door": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesSectionDoor"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "cards": {
+            "items": {
+              "$ref": "#/components/schemas/PlacesCard"
+            },
+            "type": "array",
+            "title": "Cards"
+          }
+        },
+        "type": "object",
+        "required": [
+          "reason",
+          "label",
+          "treatment",
+          "cards"
+        ],
+        "title": "PlacesSection"
+      },
+      "PlacesSectionDoor": {
+        "properties": {
+          "total": {
+            "type": "integer",
+            "minimum": 5.0,
+            "title": "Total"
+          },
+          "target": {
+            "type": "string",
+            "enum": [
+              "saved",
+              "reading",
+              "nearby",
+              "guide"
+            ],
+            "title": "Target"
+          },
+          "scope_label": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Scope Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "total",
+          "target",
+          "scope_label"
+        ],
+        "title": "PlacesSectionDoor",
+        "description": "A count door to a dedicated compact-row scanning surface."
+      },
       "PlacesSectionKind": {
         "type": "string",
         "enum": [
@@ -62681,6 +63095,36 @@
         ],
         "title": "PlacesSectionKind",
         "description": "The fixed Places composition order.\n\nOptional sections are omitted from their payload slot, never returned as a\nfabricated empty card. Keeping the order in the contract prevents each\nclient from reconstructing the design grammar independently."
+      },
+      "PlacesSectionReason": {
+        "type": "string",
+        "enum": [
+          "gap",
+          "expiry",
+          "group_waiting",
+          "nearby_set",
+          "neighbourhood",
+          "anniversary",
+          "unfinished_guide",
+          "friend_activity",
+          "saved_unvisited",
+          "changed",
+          "harvest",
+          "starter"
+        ],
+        "title": "PlacesSectionReason",
+        "description": "Why a section is on the page, independent of its content type."
+      },
+      "PlacesSectionTreatment": {
+        "type": "string",
+        "enum": [
+          "conviction",
+          "single",
+          "fork",
+          "choice"
+        ],
+        "title": "PlacesSectionTreatment",
+        "description": "Server-owned feed layout; rows exist only behind a door or in search."
       },
       "PlacesStarterCity": {
         "properties": {
@@ -79410,7 +79854,7 @@
           "reason"
         ],
         "title": "WorkbenchRotation",
-        "description": "Server-owned presentation cursor for the one-kind workbench band.\n\nThe client may use ``rotate_after`` to offer/trigger a refresh, but never\nsupplies or chooses a kind. ``selection_id`` is opaque and makes an\nexplicit advance idempotent for retries and concurrent devices."
+        "description": "Server-owned presentation cursor for the one-kind workbench band.\n\nThe client may submit ``selection_id`` only when ``may_advance`` is true;\nit never supplies or chooses a kind. The opaque id makes an explicit\nadvance idempotent for retries and concurrent devices."
       },
       "WorkbenchRouteItem": {
         "properties": {

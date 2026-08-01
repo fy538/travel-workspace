@@ -1,8 +1,26 @@
+---
+doc_type: working
+status: active
+owner: founder / backend / frontend
+created: 2026-08-01
+expires: 2026-08-31
+why_new: The approved Vesper 405 Places direction replaces a fixed-slot root with a posture-driven section feed and needs one cross-repo contract for ordering, treatment, row doors, privacy-safe ownership, rollout parity, and backend-to-mobile sequencing.
+promotes_to:
+  - travel-agent/backend/places/FEATURE.md
+  - travel-app/docs/surfaces/places-workspace/contract.md
+supersedes: []
+depends_on:
+  - docs/working/places-truth-layer-2026-08-01.md
+source_of_truth_for:
+  - places-section-feed-implementation-handoff
+  - places-section-treatment-contract
+---
+
 # Places sectioned feed — implementation handoff
 
 **2026-08-01.** Written to be handed to an agent with no prior context. Read
-§0 → §1 → §6 before writing any code; §6 contains one question that changes
-the contract and must be answered by the founder first.
+§0 → §1 → §6 before writing any code; §6 records the founder's resolved door
+decision and the contract consequences that follow from it.
 
 **Deliverable:** turn the Places root from a fixed-slot projection into a
 posture-driven sectioned feed, per the design board.
@@ -121,7 +139,7 @@ grep -rn "section_order" --include="*.ts" --include="*.tsx" . | grep -v node_mod
 # → only schema.gen.ts, a mock, and a test fixture. No component.
 ```
 
-This is the exact failure Decision 2 (§5) exists to prevent recurring.
+This is the exact failure Decision 2 (§4) exists to prevent recurring.
 
 ---
 
@@ -169,7 +187,7 @@ from backend.core.models.places_projection import (
     PlacesReadingItem,
     PlacesStarterCity,
 )
-from backend.home.trips_stack import TripsHomePosture
+from backend.core.models.travel_posture import TravelPosture
 
 
 class PlacesSectionReason(StrEnum):
@@ -201,9 +219,9 @@ class PlacesSectionTreatment(StrEnum):
     """How the section renders. SERVER-OWNED — see Decision 2."""
 
     CONVICTION = "conviction"   # exactly 1 place, full-bleed image
+    SINGLE     = "single"       # exactly 1 non-conviction card
     FORK       = "fork"         # exactly 2 angles, side by side
     CHOICE     = "choice"       # 2-4 cards
-    ROWS       = "rows"         # behind a door, or search. NEVER in the feed.
 
 
 class PlacesCardKind(StrEnum):
@@ -250,6 +268,10 @@ class PlacesMemoryRef(BaseModel):
 class PlacesSectionDoor(BaseModel):
     """More than four qualified. Rule 10: the count is the way in.
 
+    A door always opens a dedicated scanning surface rendered as compact rows.
+    Rows are not a PlacesSectionTreatment because they are unrepresentable in
+    the feed itself; the target selects the existing list/read model to open.
+
     Prior art: PlacesReadingDoor (places_projection.py:192) already does
     exactly this for reading — same idea, narrower type.
     """
@@ -276,19 +298,39 @@ class PlacesCard(BaseModel):
     meta: str | None = None      # sans caption under the title
     kicker: str | None = None    # mono stamp — MACHINE FACTS ONLY (rule 05)
     reason: str | None = None    # serif. Vesper's judgment. CONVICTION only.
-    fact: str | None = None      # mono, right-aligned. ROWS only.
-
     verb: PlacesCardVerb | None = None
 
-    # Payload by kind — exactly one is set. The first three already exist in
-    # places_projection.py and are reused as-is; the last two are new above.
+    # Payload by kind. Place/angle/city/friend/memory require exactly their
+    # matching payload. Notice and prompt are scalar-only and require none.
     place:  PlacesRankedItem   | None = None
     angle:  PlacesReadingItem  | None = None
     city:   PlacesStarterCity  | None = None
     friend: PlacesFriendActivity | None = None
     memory: PlacesMemoryRef      | None = None
 
-    priority: int
+    @model_validator(mode="after")
+    def _payload_matches_kind(self) -> PlacesCard:
+        payloads = {
+            "place": self.place,
+            "angle": self.angle,
+            "city": self.city,
+            "friend": self.friend,
+            "memory": self.memory,
+        }
+        populated = [name for name, value in payloads.items() if value is not None]
+        required = {
+            PlacesCardKind.PLACE: "place",
+            PlacesCardKind.ANGLE: "angle",
+            PlacesCardKind.CITY: "city",
+            PlacesCardKind.FRIEND: "friend",
+            PlacesCardKind.MEMORY: "memory",
+        }.get(self.kind)
+        if required is None:
+            if populated:
+                raise ValueError(f"{self.kind.value} cards cannot carry a typed payload")
+        elif populated != [required]:
+            raise ValueError(f"{self.kind.value} cards require only the {required} payload")
+        return self
 
 
 class PlacesSection(BaseModel):
@@ -299,7 +341,6 @@ class PlacesSection(BaseModel):
     treatment: PlacesSectionTreatment
     door: PlacesSectionDoor | None = None
     cards: list[PlacesCard]
-    priority: int                     # board §5 ladder
 
     @model_validator(mode="after")
     def _cardinality_matches_treatment(self) -> PlacesSection:
@@ -308,13 +349,18 @@ class PlacesSection(BaseModel):
             raise ValueError("rule 09: an empty section does not render")
         if self.treatment is PlacesSectionTreatment.CONVICTION and n != 1:
             raise ValueError("rule 10: a conviction is exactly one card")
+        if (
+            self.treatment is PlacesSectionTreatment.CONVICTION
+            and self.cards[0].kind is not PlacesCardKind.PLACE
+        ):
+            raise ValueError("rule 03: conviction is reserved for a place")
+        if self.treatment is PlacesSectionTreatment.SINGLE and n != 1:
+            raise ValueError("rule 10: a single is exactly one card")
         if self.treatment is PlacesSectionTreatment.FORK and n != 2:
             raise ValueError("rule 10: a fork is exactly two")
         if self.treatment is PlacesSectionTreatment.CHOICE and not 2 <= n <= 4:
             raise ValueError("rule 10: a choice set is 2-4 cards")
-        if self.treatment is PlacesSectionTreatment.ROWS:
-            raise ValueError("rule 10: rows never appear in the feed")
-        if self.door is not None and n > 3:
+        if self.door is not None and n != 3:
             raise ValueError("rule 10: >4 qualified means 3 cards and a door")
         return self
 
@@ -322,7 +368,7 @@ class PlacesSection(BaseModel):
 class PlacesFeed(BaseModel):
     """The sectioned Places page. THE LIST IS THE ORDER."""
 
-    posture: TripsHomePosture
+    posture: TravelPosture
     context: PlacesContext
     sections: list[PlacesSection] = Field(max_length=4)   # board §5 ceiling
 
@@ -338,14 +384,17 @@ class PlacesFeed(BaseModel):
 
 ### Three deliberate choices
 
-**The list is the order.** No parallel `section_order` array. The existing one
-is dead (§1) and a second ordering that can disagree with the payload is a bug
+**The list is the order.** No parallel `section_order` array and no wire-level
+`priority`. Producers may rank internal candidates, but the emitted list is the
+only client-visible ordering authority. The existing parallel order is dead
+(§1), and a second ordering value that can disagree with the payload is a bug
 generator.
 
 **One wide card, not a tagged union.** Matches `ConciergeHomeCard`.
 
-**Every checkable rule is a validator.** Rules 03, 09, 10 fail at the model
-boundary, so a producer that breaks the design grammar cannot render wrong.
+**Every checkable rule is a validator.** Rules 03, 09, 10 and kind-to-payload
+consistency fail at the model boundary, so a producer that breaks the design
+grammar cannot render wrong.
 
 ---
 
@@ -374,21 +423,52 @@ Three reasons, heaviest first:
 
 **Accepted cost:** a treatment change needs a backend deploy.
 
-**Required regression test (Step 3):** the `section_order` failure is
+**Required regression test (Step 4):** the `section_order` failure is
 invisible only because nothing asserts on it. Add a test that renders each
 posture's payload through the real client assembler and asserts the rendered
 treatment matches the server's, so the same drift cannot recur silently.
 
 ---
 
-## 5 · Process hazards — read before touching a repo
+## 5 · Decision 3 — ownership, migration, and the shell
 
-**⚠️ Concurrent sessions are active in both repos.** As of writing:
+**The section feed ultimately owns the whole root content composition, not only
+the old `places` slot.** Search, persisted scope, return context, and map access
+remain stable shell utilities around it. Guide, reading, starter, place,
+experience, area, memory, and social material become ranked sections as their
+producers land; they do not remain a second fixed content stack beneath or
+above the feed.
+
+**Places proposes; Trips commits.** `ADD_TO_DAY` expresses the card's intent but
+does not grant Places a parallel itinerary writer. The action opens the
+Trips-owned preview/commit path, where canonical itinerary validation,
+authorization, group visibility, and receipts already live. Places never
+writes a stop directly and never turns a personal save or memory into shared
+trip data merely by rendering it.
+
+**Rollout waits for minimum parity.** Step 4 may expose the new renderer in
+tests and explicitly enabled dev builds. User activation waits until the feed
+covers `starter`, `quiet`, and the floor and preserves search/map entrances.
+One anniversary card is an end-to-end proof, not a replacement for today's
+richer root.
+
+**Typography erratum.** Rule 05 wins over the current design specimen:
+section labels are sans caps; counts, times, distances, durations, and ids are
+mono. `places-system.jsx::SectionMarker` currently renders its label with
+`Mono`; do not port that accidental mismatch into React Native.
+
+---
+
+## 5A · Process hazards — read before touching a repo
+
+**Use the isolated worktrees already created for this program.** As of the
+approved contract revision:
 
 ```
-travel-agent   main                              (dirty working tree)
-travel-app     codex/map-platform-consolidation  (dirty working tree)
-               + 2 other worktrees
+travel-agent        main                         clean
+agent-places-feed   codex/places-sections-feed  Step 1 backend worktree
+travel-app          main                         clean
+app-places-feed     codex/places-sections-feed  frontend contract worktree
 ```
 
 - **Never `git checkout`, `git stash`, or `git checkout -- <file>`** in these
@@ -396,10 +476,11 @@ travel-app     codex/map-platform-consolidation  (dirty working tree)
 - **Work in a git worktree:**
   ```bash
   cd ~/travel-workspace/travel-agent
-  git worktree add ../agent-places-feed -b places/sections-feed main
-  cd ../agent-places-feed && ln -s ../travel-agent/.venv .venv
+  git worktree add ../agent-places-feed -b codex/places-sections-feed main
   ```
-  (Frontend: symlink `node_modules` the same way.)
+  The backend worktree runs the shared environment explicitly via
+  `../travel-agent/.venv/bin/python`; the frontend worktree may symlink the
+  ignored `node_modules` directory.
 - **Commit with explicit pathspecs**, never `git commit -a`.
 
 **Hooks that will block you** (`travel-agent/.pre-commit-config.yaml`):
@@ -407,7 +488,7 @@ travel-app     codex/map-platform-consolidation  (dirty working tree)
 | Stage | Hook | What to do |
 |---|---|---|
 | commit | ruff, size budgets, broad-exception ratchet, import boundaries | Keep new files small; add zero bare `except` |
-| **pre-push** | `check-openapi-snapshot` | Any model change requires regenerating `docs/openapi.json`. Run `make sync-types` (needs backend running) or `make sync-types-snapshot` |
+| **pre-push** | `check-openapi-snapshot` | Any route-visible model change requires regenerating `docs/openapi.json`. Run `make sync-types` (needs backend running) or `make sync-types-snapshot` |
 | pre-push | docs headers + freshness | **Update `backend/places/FEATURE.md`** — it has a required header block with `Last updated:` |
 
 Two ratchets (broad-exceptions count, `producers.py` size budget) were
@@ -426,20 +507,25 @@ cd ~/travel-workspace && make typecheck
 
 ---
 
-## 6 · 🔴 BLOCKING: answer this before Step 3
+## 6 · ✅ RESOLVED — doors open row lists
 
-**Board §9 question 07 — does a section's door open a list of rows, or a
-scrolled feed of cards?**
+**Founder decision, 2026-08-01:** a section's door opens a dedicated list of
+compact rows, not a scrolled continuation of feed cards.
 
-The contract above assumes **rows**: `PlacesSectionTreatment.ROWS` and
-`PlacesCard.fact` exist only to serve that answer.
+The feed shows three rich cards when more than four items qualify. Its count is
+the door. Tapping it opens the full bounded result on a scanning surface using
+the appropriate existing row family (`PlaceRow`, reading rows, or the matching
+saved/guide list). Returning restores the feed and its scroll position.
 
-If the answer is **cards**, both are deleted, and `PlaceRow` leaves the
-component system entirely — `components/places/core/PlacesCore.tsx` loses a
-component and `CORRESPONDENCE.md` loses a row.
+Contract consequences:
 
-**This is the only open question that changes the contract.** Ask the founder.
-The other six open questions in board §9 do not touch this work.
+- `ROWS` is **not** a `PlacesSectionTreatment`; rows are unrepresentable inside
+  `PlacesFeed`.
+- `PlacesCard.fact` is deleted; row-only presentation data belongs to the door
+  destination's response model.
+- `PlacesSectionDoor.target` selects the list destination. The client does not
+  infer a destination from the section reason.
+- Search and door destinations are the only Places surfaces that render rows.
 
 ---
 
@@ -460,39 +546,61 @@ cd ~/travel-workspace/travel-app  && git merge-base --is-ancestor 615f7cdd main 
 Both should succeed. If either does not, stop and ask — the tree has moved
 since this doc was written.
 
-Then cut your worktrees per §5. Do not work in the shared trees.
+Then cut your worktrees per §5A. Do not work in the shared trees.
 
 ### Step 1 — the contract module  *(no producers, no client)*
 
-**Write:** `backend/core/models/places_sections.py` exactly as §3.
+**Write:**
+
+- `backend/core/models/travel_posture.py` — the neutral `TravelPosture`
+  literal shared by Trips and Places.
+- `backend/home/trips_stack.py` — retain `TripsHomePosture` as a compatibility
+  alias to `TravelPosture`; do not duplicate the literal.
+- `backend/core/models/places_sections.py` exactly as §3.
+- `backend/places/FEATURE.md` — record that the additive contract exists but is
+  not imported by a route yet.
 
 **Test:** `tests/places/test_sections_contract.py`. One test per validator,
 each asserting the *failure*:
 
 - `CONVICTION` with 2 cards raises
+- `CONVICTION` with a non-place card raises
+- `SINGLE` with 0 or 2 cards raises
 - `FORK` with 1 or 3 raises
 - `CHOICE` with 1 or 5 raises
-- `ROWS` anywhere in a feed raises
 - 0 cards raises (rule 09)
-- `door` set with 4 cards raises
+- `door` set with 2 or 4 cards raises
 - `PlacesFeed` with 2 conviction sections raises (rule 03)
 - `PlacesFeed` with 5 sections raises (§5 ceiling)
+- each typed card kind rejects a missing, mismatched, or additional payload
+- `NOTICE` and `PROMPT` reject every typed payload
+- serialized cards and sections expose no `priority` field
 
 **Done when:** `pytest tests/places/test_sections_contract.py` is green and
 every validator has a test that fails without it. Ablate each validator and
 confirm its test goes red — do not skip this.
 
-**Not yet wired to any route.** Nothing imports this module yet.
+**Not yet wired to any route.** Only its contract tests import the module.
+Because the new model is unreachable from FastAPI at this step, the public
+OpenAPI snapshot is intentionally unchanged. Step 2 introduces the schema by
+adding the route and owns the first snapshot/type regeneration.
 
-### Step 2 — the route, dark
+### Step 2 — the route, initially dark
 
 **Write:**
 - `backend/core/feature_flags.py` → `places_sections_enabled()` reading
-  `PLACES_SECTIONS_ENABLED`, default OFF.
+  `PLACES_SECTIONS_ENABLED`, initially default OFF.
+- `backend/home/posture.py` → the shared, deterministic, no-LLM posture owner.
+  It reads canonical trip lifecycle facts cheaply and exposes
+  `resolve_travel_posture(user_id, today) -> TravelPosture`. Trips Home and
+  Places must consume this owner rather than maintaining independent lifecycle
+  classifiers; Trips may layer card-specific urgency onto the shared baseline.
 - `backend/api/routes/places.py` → `GET /api/places/feed` returning
   `PlacesFeed`, `Depends(get_current_user)`, 404 when the flag is off.
 - `backend/places/sections.py` → `build_places_feed(user_id) -> PlacesFeed`
-  returning `sections=[]` for now.
+  returning `sections=[]` for now and obtaining `posture` from the shared
+  resolver. Do not call the Concierge Home HTTP handler or any LLM enrichment
+  path to learn posture.
 
 **Careful:** `PlacesFeed(sections=[])` is legal (the ceiling is a max, not a
 min) but renders nothing. That is correct per rule 09.
@@ -523,18 +631,20 @@ Mapping `OnThisDayRow` → `PlacesCard`:
 |---|---|
 | `title` | `title` |
 | `place_label` | `meta` |
-| `years_ago` | `kicker` — e.g. `"THIS WEEK LAST YEAR · 6 DAYS"` (mono, rule 05) |
+| `years_ago` | `kicker` — `"A YEAR AGO TODAY"` or `"N YEARS AGO TODAY"` (mono, rule 05) |
 | `source_type`, `source_id`, `occurred_on`, `years_ago`, `place_label` | `memory` (`PlacesMemoryRef`) |
 | — | `kind=MEMORY`, `verb=OPEN` |
 
-Section: `reason=ANNIVERSARY`, `label="A YEAR AGO TODAY"`,
+Section: `reason=ANNIVERSARY`, `label="ON THIS DAY"`,
 `count=<place label or city>`, `treatment=CHOICE` if 2–3 rows.
 
 **One row is the interesting case.** A single memory card is *not* a
 `CONVICTION` — conviction is reserved for a place you can act on, and rule 03
-budgets one per page. Use `CHOICE` with one card, or extend the validator to
-allow it. **Decide explicitly and write the reason in a comment** — this is
-the first real test of Decision 2's logic.
+budgets one per page. Use `SINGLE`. Do not weaken `CHOICE` to accept one.
+
+The existing `OnThisDayRow` has no trip or artifact duration. Do not render the
+board specimen's `"THIS WEEK LAST YEAR · 6 DAYS"` until a producer owns grounded
+start/end dates; `years_ago` is the only honest machine fact available now.
 
 **Test:** `tests/places/test_sections_anniversary.py` — zero rows → `None`
 (not an empty section); one row → valid section; three rows → three cards.
@@ -554,24 +664,29 @@ anniversary section for a seeded user.
   | treatment | component |
   |---|---|
   | `conviction` | new `ConvictionCard` |
+  | `single` | the card-kind component at quiet single-card depth |
   | `fork` | new `Fork` / `AngleCard` |
   | `choice` | new `Candidate` |
-  | `rows` | existing `PlaceRow` — **must never appear in the feed** |
 
   Port these from `places-system.jsx`. The JSX there is web React with inline
   styles; translate to React Native + `constants/textVariants.ts`. **Do not
   re-derive the type scale** — the board transcribed it from
   `textVariants.ts`, so map back to the same variants.
 
-- `PlacesWorkspace.tsx` — render `PlacesFeed` when the flag is on and the
-  payload is non-empty; otherwise fall back to `CoreSurface` unchanged.
+- `PlacesWorkspace.tsx` — preserve the scope/search shell and map access. In
+  locally enabled builds, capability-probe `/api/places/feed`; a 404, failure,
+  or empty feed falls back to `CoreSurface` unchanged. The server flag remains
+  fail-closed. Do not silently issue the new request in builds where the client
+  rollout flag is off.
 
 **Test:** `__tests__/components/places/PlacesFeed.test.tsx` — **the Decision 2
 regression test.** For each treatment, assert the rendered component matches
 the server's `treatment` field. Assert the client never promotes.
 
-**Done when:** both paths render, the flag switches between them, and
-`npm test` + `make typecheck` are green.
+**Done when:** both paths render in tests/dev, the flag switches between them,
+and `npm test` + `make typecheck` are green. This step proves the path but does
+**not** authorize user activation: an anniversary-only feed would replace a
+richer current root with one memory card.
 
 ### Step 5 — the rest of the floor
 
@@ -592,10 +707,15 @@ The other three floor sections do not depend on distance and are not blocked.
 
 ### Step 6 — deletion trigger  *(stated now so it is not forgotten)*
 
-When `PlacesFeed` covers `starter`, `quiet` and the floor: delete the fixed
+When `PlacesFeed` covers `starter`, `quiet` and the floor, and preserves the
+root's search/map entrances: delete the fixed
 slots and `section_order` from `PlacesProjection`, delete `CoreSurface`, and
 update `CORRESPONDENCE.md`. **Two parallel section systems is worse than
 either one.** Do not let this linger behind a flag indefinitely.
+
+This parity threshold is also the earliest point at which the feed may be
+enabled for users. Before then it remains a dev/test path behind both rollout
+gates.
 
 ---
 

@@ -30,6 +30,26 @@
 
 flags:
   # ── travel-agent (backend) ──────────────────────────────────────────────
+  - name: PLACES_SECTIONS_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:131
+    default: true
+    category: release
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    notes: Default-on Places feed route; set false for an immediate rollback to the established Places projection.
+
+  - name: PLACES_SECTIONS_FEED_ENABLED
+    repo: travel-app
+    location: constants/featureFlags.ts:25
+    default: true
+    category: release
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    notes: Default-on Places section-feed renderer; requires backend PLACES_SECTIONS_ENABLED and can be flipped false for immediate client rollback.
+
   - name: ATLAS_LLM_ENABLED
     repo: travel-agent
     location: backend/core/feature_flags.py:20
