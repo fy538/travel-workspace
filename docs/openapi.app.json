@@ -53002,6 +53002,26 @@
                 "type": "null"
               }
             ]
+          },
+          "experience": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesExperiencePreview"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "area": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesAreaPreview"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -53022,7 +53042,9 @@
           "memory",
           "notice",
           "prompt",
-          "city"
+          "city",
+          "experience",
+          "area"
         ],
         "title": "PlacesCardKind"
       },
@@ -54337,7 +54359,11 @@
           "saved_unvisited",
           "changed",
           "harvest",
-          "starter"
+          "starter",
+          "guide",
+          "experiences",
+          "areas",
+          "saved"
         ],
         "title": "PlacesSectionReason",
         "description": "Why a section is on the page, independent of its content type."
