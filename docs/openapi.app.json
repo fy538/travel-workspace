@@ -11887,66 +11887,6 @@
         }
       }
     },
-    "/api/trips/{trip_id}/invites/eligibility": {
-      "get": {
-        "tags": [
-          "trip-invites"
-        ],
-        "summary": "Invite Eligibility",
-        "description": "Read-only mirror of the mint-time substance gate.\n\nLets a surface decide whether to *offer* an invite before the user taps\n(and hits the 409 ``trip_needs_substance``). Organizer-only, matching\n``mint_invite`` — the affordance is the organizer's.",
-        "operationId": "invite_eligibility_api_trips__trip_id__invites_eligibility_get",
-        "parameters": [
-          {
-            "name": "trip_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Trip Id"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InviteEligibilityResponse"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/trips/{trip_id}/invites/{token}": {
       "delete": {
         "tags": [
@@ -25435,6 +25375,16 @@
             }
           },
           {
+            "name": "weather_unavailable",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Weather Unavailable"
+            }
+          },
+          {
             "name": "authorization",
             "in": "header",
             "required": false,
@@ -34028,6 +33978,7 @@
               "memory_echo",
               "weather",
               "near_you",
+              "local_take",
               "starter",
               "pre_trip_prep",
               "atlas_homecoming",
@@ -35503,6 +35454,15 @@
             ],
             "title": "Autonomy Level",
             "default": "L2_decide"
+          },
+          "trip_kind": {
+            "type": "string",
+            "enum": [
+              "travel",
+              "local"
+            ],
+            "title": "Trip Kind",
+            "default": "travel"
           }
         },
         "type": "object",
@@ -53207,6 +53167,11 @@
             ],
             "title": "Canonical Venue Id"
           },
+          "entity_type": {
+            "type": "string",
+            "title": "Entity Type",
+            "default": "venue"
+          },
           "name": {
             "type": "string",
             "minLength": 1,
@@ -61893,6 +61858,15 @@
             ],
             "title": "Source"
           },
+          "trip_kind": {
+            "type": "string",
+            "enum": [
+              "travel",
+              "local"
+            ],
+            "title": "Trip Kind",
+            "default": "travel"
+          },
           "concierge_note": {
             "anyOf": [
               {
@@ -66084,6 +66058,7 @@
               "memory_echo",
               "weather",
               "near_you",
+              "local_take",
               "starter",
               "pre_trip_prep",
               "atlas_homecoming",
@@ -66196,6 +66171,7 @@
               "memory_echo",
               "weather",
               "near_you",
+              "local_take",
               "starter",
               "pre_trip_prep",
               "atlas_homecoming",
@@ -66266,6 +66242,21 @@
       },
       "TripsHomeStackProjection": {
         "properties": {
+          "posture": {
+            "type": "string",
+            "enum": [
+              "starter",
+              "between",
+              "planning",
+              "ready",
+              "urgent",
+              "live",
+              "returned",
+              "quiet"
+            ],
+            "title": "Posture",
+            "default": "quiet"
+          },
           "crown": {
             "anyOf": [
               {
@@ -68420,7 +68411,7 @@
           },
           "text": {
             "type": "string",
-            "maxLength": 190,
+            "maxLength": 96,
             "minLength": 1,
             "title": "Text"
           },
@@ -69290,14 +69281,14 @@
         "properties": {
           "floor": {
             "type": "string",
-            "maxLength": 190,
+            "maxLength": 96,
             "minLength": 1,
             "title": "Floor"
           },
           "max_chars": {
             "type": "integer",
             "title": "Max Chars",
-            "default": 190
+            "default": 96
           },
           "voice_token": {
             "anyOf": [

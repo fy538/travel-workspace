@@ -31360,6 +31360,16 @@
             }
           },
           {
+            "name": "weather_unavailable",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Weather Unavailable"
+            }
+          },
+          {
             "name": "authorization",
             "in": "header",
             "required": false,
@@ -41471,6 +41481,7 @@
               "memory_echo",
               "weather",
               "near_you",
+              "local_take",
               "starter",
               "pre_trip_prep",
               "atlas_homecoming",
@@ -42982,6 +42993,15 @@
             ],
             "title": "Autonomy Level",
             "default": "L2_decide"
+          },
+          "trip_kind": {
+            "type": "string",
+            "enum": [
+              "travel",
+              "local"
+            ],
+            "title": "Trip Kind",
+            "default": "travel"
           }
         },
         "type": "object",
@@ -61920,6 +61940,11 @@
             ],
             "title": "Canonical Venue Id"
           },
+          "entity_type": {
+            "type": "string",
+            "title": "Entity Type",
+            "default": "venue"
+          },
           "name": {
             "type": "string",
             "minLength": 1,
@@ -71424,6 +71449,15 @@
             ],
             "title": "Source"
           },
+          "trip_kind": {
+            "type": "string",
+            "enum": [
+              "travel",
+              "local"
+            ],
+            "title": "Trip Kind",
+            "default": "travel"
+          },
           "concierge_note": {
             "anyOf": [
               {
@@ -75731,6 +75765,7 @@
               "memory_echo",
               "weather",
               "near_you",
+              "local_take",
               "starter",
               "pre_trip_prep",
               "atlas_homecoming",
@@ -75843,6 +75878,7 @@
               "memory_echo",
               "weather",
               "near_you",
+              "local_take",
               "starter",
               "pre_trip_prep",
               "atlas_homecoming",
@@ -75913,6 +75949,21 @@
       },
       "TripsHomeStackProjection": {
         "properties": {
+          "posture": {
+            "type": "string",
+            "enum": [
+              "starter",
+              "between",
+              "planning",
+              "ready",
+              "urgent",
+              "live",
+              "returned",
+              "quiet"
+            ],
+            "title": "Posture",
+            "default": "quiet"
+          },
           "crown": {
             "anyOf": [
               {
@@ -78104,7 +78155,7 @@
           },
           "text": {
             "type": "string",
-            "maxLength": 190,
+            "maxLength": 96,
             "minLength": 1,
             "title": "Text"
           },
@@ -79032,14 +79083,14 @@
         "properties": {
           "floor": {
             "type": "string",
-            "maxLength": 190,
+            "maxLength": 96,
             "minLength": 1,
             "title": "Floor"
           },
           "max_chars": {
             "type": "integer",
             "title": "Max Chars",
-            "default": 190
+            "default": 96
           },
           "voice_token": {
             "anyOf": [

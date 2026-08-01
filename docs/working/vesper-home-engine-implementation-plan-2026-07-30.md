@@ -144,7 +144,7 @@ VesperWorkbenchEnvelope
     trip_id?: authorized trip id
   read:
     floor: deterministic, display-ready line
-    max_chars: 190
+    max_chars: 96
     voice_token?: opaque, short-lived Wave-2 token
   facts: WorkbenchFact[0..2]
   seam?: WorkbenchSeam

@@ -633,6 +633,16 @@
       "removal_trigger": null,
       "review_by": null
     },
+    "GET /api/trips/{trip_id}/invites/eligibility": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "invites",
+      "reason": "The transport facade exists, but no product screen currently calls this read-only preflight. Keep the backend mint-time substance gate authoritative; adopt this endpoint with a named invite journey or remove the unused facade and operation.",
+      "removal_trigger": "Confirm zero deployed traffic, then delete unless an active invite journey adopts this preflight with a named app consumer.",
+      "review_by": "2026-08-15"
+    },
     "GET /api/trips/{trip_id}/expenses/suggest-category": {
       "audience": "app",
       "consumers": [],
