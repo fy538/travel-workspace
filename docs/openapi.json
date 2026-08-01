@@ -20835,7 +20835,7 @@
           "places"
         ],
         "summary": "Get Places Feed",
-        "description": "Return the dark, posture-driven Places feed when explicitly enabled.",
+        "description": "Return the posture-driven Places feed used by the default root.",
         "operationId": "get_places_feed_api_places_feed_get",
         "parameters": [
           {
@@ -61817,6 +61817,16 @@
               }
             ]
           },
+          "action": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesCardAction"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "place": {
             "anyOf": [
               {
@@ -61896,6 +61906,103 @@
         ],
         "title": "PlacesCard",
         "description": "One feed card with kind-validated optional payload slots.\n\nThis deliberately follows the shipping wide-card precedent rather than a\ntagged union. The validator retains equivalent kind/payload safety."
+      },
+      "PlacesCardAction": {
+        "properties": {
+          "target": {
+            "$ref": "#/components/schemas/PlacesCardActionTarget"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "day_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Day Id"
+          },
+          "venue_id": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Venue Id"
+          },
+          "proposal_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proposal Id"
+          },
+          "booking_session_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Booking Session Id"
+          },
+          "notice_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notice Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "target"
+        ],
+        "title": "PlacesCardAction",
+        "description": "Typed destination for a card verb that cannot be resolved locally."
+      },
+      "PlacesCardActionTarget": {
+        "type": "string",
+        "enum": [
+          "itinerary_day",
+          "proposal",
+          "booking_session",
+          "trip_debrief",
+          "notice"
+        ],
+        "title": "PlacesCardActionTarget",
+        "description": "Canonical owner of a non-local Places card action.\n\nTargets carry domain identity, never an app route. Places can therefore\nhand off work to Trips, Booking, or a future acknowledgement owner without\nbecoming another writer for those systems."
       },
       "PlacesCardKind": {
         "type": "string",
