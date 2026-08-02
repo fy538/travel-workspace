@@ -24,6 +24,22 @@
       "removal_trigger": null,
       "review_by": null
     },
+    "GET /api/venues/{venue_id}/media/exact-photo": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "getVenueExactPhoto",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "media",
+      "reason": "Venue detail requests fresh provider-bound exact-place media and renders its attribution without persisting the provider URL.",
+      "removal_trigger": "Remove when the exact-place media surface is replaced by a provider-approved successor.",
+      "review_by": "2026-11-02"
+    },
     "DELETE /admin/users/{user_id}/constraints/{constraint_type}/{value}": {
       "audience": "operator",
       "consumers": [
