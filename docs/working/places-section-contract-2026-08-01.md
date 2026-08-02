@@ -358,6 +358,10 @@ class PlacesSection(BaseModel):
             raise ValueError("rule 10: a single is exactly one card")
         if self.treatment is PlacesSectionTreatment.FORK and n != 2:
             raise ValueError("rule 10: a fork is exactly two")
+        if self.treatment is PlacesSectionTreatment.FORK and any(
+            card.kind is not PlacesCardKind.ANGLE for card in self.cards
+        ):
+            raise ValueError("rule 10: a fork is reserved for two angle cards")
         if self.treatment is PlacesSectionTreatment.CHOICE and not 2 <= n <= 4:
             raise ValueError("rule 10: a choice set is 2-4 cards")
         if self.door is not None and n != 3:
@@ -566,7 +570,7 @@ each asserting the *failure*:
 - `CONVICTION` with 2 cards raises
 - `CONVICTION` with a non-place card raises
 - `SINGLE` with 0 or 2 cards raises
-- `FORK` with 1 or 3 raises
+- `FORK` with 1 or 3 cards, or anything other than two angle cards, raises
 - `CHOICE` with 1 or 5 raises
 - 0 cards raises (rule 09)
 - `door` set with 2 or 4 cards raises
