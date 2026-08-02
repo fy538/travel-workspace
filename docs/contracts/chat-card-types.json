@@ -83,6 +83,12 @@
       "attachment": "itinerary_operation",
       "thread": "card",
       "notes": "FE mapper + Catalog support; promote a BE writer only with a real producer"
+    },
+    "composed_card": {
+      "message_type": "notification",
+      "attachment": "composed_card",
+      "thread": "card",
+      "notes": "Validated CardBlueprint v1 composed from server-authored, audience-safe artifacts; the model never supplies executable UI or actions."
     }
   },
   "attachments": [
@@ -104,7 +110,8 @@
     "narration",
     "trip_creation_proposal",
     "lazy_research",
-    "itinerary_operation"
+    "itinerary_operation",
+    "composed_card"
   ],
   "no_arrival": {
     "change_applied": "Side-effect of propose_change auto-apply / vote resolution — not its own streamed tool; propose_change already reserves vote_widget",
@@ -114,7 +121,8 @@
     "document_edit": "Planning/doc metadata variant without a dedicated mid-turn producer tool",
     "narration": "Narrate endpoint persists a narration row; not the concierge tool stream",
     "lazy_research": "Research worker posts text + metadata.kind after background work",
-    "itinerary_operation": "Itinerary op prep via notification metadata; not a card-arrival tool"
+    "itinerary_operation": "Itinerary op prep via notification metadata; not a card-arrival tool",
+    "composed_card": "Presentation is selected after grounded artifacts are available; it is intentionally not tied to one streamed tool."
   },
   "pilot_attachment_schemas": [
     "booking_proposal_snapshot",
