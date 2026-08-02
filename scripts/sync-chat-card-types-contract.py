@@ -17,11 +17,15 @@ def _ts_string_union(values: list[str]) -> str:
     return " | ".join(json.dumps(v) for v in values)
 
 
-def _format_python(source: str, *, filename: str) -> str:
+def _format_python(source: str, *, filename: str, config_path: Path | None = None) -> str:
     """Keep generated Python stable after the backend's mandatory formatter."""
 
+    command = ["ruff", "format"]
+    if config_path is not None and config_path.exists():
+        command.extend(["--config", str(config_path)])
+    command.extend(["--stdin-filename", filename, "-"])
     result = subprocess.run(
-        ["ruff", "format", "--stdin-filename", filename, "-"],
+        command,
         input=source,
         text=True,
         capture_output=True,
@@ -62,7 +66,7 @@ def render_ts_types(data: dict) -> str:
     )
 
 
-def render_py_types(data: dict) -> str:
+def render_py_types(data: dict, *, config_path: Path | None = None) -> str:
     meta = data["metadata_card_types"]
     attachments = data["attachments"]
     no_arrival = data["no_arrival"]
@@ -99,7 +103,9 @@ def render_py_types(data: dict) -> str:
         "    if card_type not in KNOWN_METADATA_CARD_TYPES:\n"
         "        raise ValueError(f\"Unknown metadata.card_type: {card_type!r}\")\n"
     )
-    return _format_python(source, filename="chat_card_types_generated.py")
+    return _format_python(
+        source, filename="chat_card_types_generated.py", config_path=config_path
+    )
 
 
 def _zod_line(name: str, spec: dict, *, required: bool) -> str:
@@ -160,7 +166,9 @@ def _py_field(name: str, spec: dict, *, required: bool) -> str:
     return f"    {name}: {ann} | None = None"
 
 
-def render_schemas(pilot_names: list[str]) -> tuple[str, str]:
+def render_schemas(
+    pilot_names: list[str], *, config_path: Path | None = None
+) -> tuple[str, str]:
     ts_parts = [
         "// Generated from docs/contracts/chat-attachments/*.schema.json. Do not hand-edit.\n",
         "import { z } from 'zod';\n\n",
@@ -214,7 +222,9 @@ def render_schemas(pilot_names: list[str]) -> tuple[str, str]:
         "    model.model_validate(payload)\n"
     )
     return "".join(ts_parts), _format_python(
-        "".join(py_parts), filename="chat_attachment_schemas_generated.py"
+        "".join(py_parts),
+        filename="chat_attachment_schemas_generated.py",
+        config_path=config_path,
     )
 
 
@@ -244,11 +254,16 @@ def main() -> int:
     py_schemas = args.travel_agent_root / "backend/concierge/chat_attachment_schemas_generated.py"
     expected = {
         ts_types: render_ts_types(data),
-        py_types: render_py_types(data),
+        py_types: render_py_types(
+            data, config_path=args.travel_agent_root / "pyproject.toml"
+        ),
         **dict(
             zip(
                 (ts_schemas, py_schemas),
-                render_schemas(list(data.get("pilot_attachment_schemas") or [])),
+                render_schemas(
+                    list(data.get("pilot_attachment_schemas") or []),
+                    config_path=args.travel_agent_root / "pyproject.toml",
+                ),
                 strict=True,
             )
         ),
