@@ -994,6 +994,21 @@
       "removal_trigger": null,
       "review_by": null
     },
+    "GET /metrics/media": {
+      "audience": "infrastructure",
+      "consumers": [
+        {
+          "kind": "infrastructure",
+          "name": "operator-observability"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "media",
+      "reason": "Operational diagnostics for exact-place media provider health.",
+      "removal_trigger": null,
+      "review_by": null
+    },
     "GET /metrics/discover": {
       "audience": "infrastructure",
       "consumers": [
