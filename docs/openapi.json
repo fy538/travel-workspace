@@ -63002,6 +63002,16 @@
               }
             ],
             "title": "Photo Url"
+          },
+          "media": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResolvedMedia"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -63392,6 +63402,16 @@
             "type": "boolean",
             "title": "Saved",
             "default": false
+          },
+          "media": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResolvedMedia"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -63534,6 +63554,16 @@
               }
             ],
             "title": "Cover Photo"
+          },
+          "media": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResolvedMedia"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -63996,6 +64026,16 @@
             ],
             "title": "Locality"
           },
+          "media": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResolvedMedia"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "photo_url": {
             "anyOf": [
               {
@@ -64151,6 +64191,16 @@
               }
             ],
             "title": "Read Minutes"
+          },
+          "media": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResolvedMedia"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -64648,6 +64698,16 @@
             "type": "string",
             "minLength": 1,
             "title": "Coverage Note"
+          },
+          "media": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResolvedMedia"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
