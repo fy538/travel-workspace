@@ -3,18 +3,20 @@
 > Surface: Vesper (the world-model substrate)
 > Maturity (for MVP): MVP-required
 > Status: wired
-> Last updated: 2026-06-27
+> Last updated: 2026-08-02
 
 ## Purpose
-The traveler world model: capture behavioral signals, synthesize a per-user
-**Personal Memory** document, and merge members into a trip **group profile** the
-concierge reasons over. Serves belief #4 (*behavior over stated preference*) and the
-moat thesis — the accumulating model of travelers/groups/trips/places is the durable
-asset.
+The place-relationship world model: capture evidence about how people and
+recurring groups choose, experience, revisit, and respond to places; synthesize
+a per-user **Personal Memory** projection; and compile purpose-bound context for
+local and travel decisions. It serves belief #4 (*behavior over stated
+preference*) and the moat thesis — outcome-backed relationships among people,
+groups, plans, and places are the durable asset.
 
 ## Spans (cross-repo)
 - Backend: [`travel-agent/backend/preference_engine/`](../../travel-agent/backend/preference_engine/FEATURE.md) (17) + observation/memory CRUD in `core/db/observations.py`, `core/db/traveler.py`; reflection/synthesis live in `concierge/reflection.py` + `refresh_memory.py`.
-- Frontend: surfaced via Atlas (`app/atlas/dna*`, `constraints`, `learned/[id]`), not a standalone tab.
+- Frontend: controlled through Atlas/You and applied through Vesper, Places,
+  local plans, and trips; memory is not a standalone destination.
 - Tables of record: `observations`, `personal_memories` (versioned markdown), `hard_constraints`, `trip_group_profiles`, `traveler_place_affinity`, `user_facts`.
 
 ## Public interface (what other systems may call / read)
@@ -24,7 +26,9 @@ asset.
 - **Never:** other systems must not write `personal_memories` directly — synthesis is the only writer; observations are the only inbound signal.
 
 ## Owns (source of truth)
-Personal Memory, observations, hard constraints, group profiles, place affinity.
+Personal Memory, observations, hard constraints, group profiles, and place
+affinity. Place and outcome history owned elsewhere may be consumed as evidence;
+this charter does not duplicate their source-of-truth records.
 **Personal Memory is the canonical preference document** — not observations, not
 vectors.
 
@@ -34,6 +38,11 @@ vectors.
 - **Hard constraints are separate** from taste (dietary/accessibility/language live in `hard_constraints`, treated as binding, not preference).
 - **Privacy tiering:** individual constraints are sacred; only allow-listed shared interests / binding constraints enter group context (the egress boundary Concierge enforces downstream).
 - **Behavior outranks claims:** a dwell/visit signal outweighs a stated interest.
+- **Application proves value:** stored evidence is useful only when it changes a
+  later local or travel decision and the outcome can be measured.
+- **Context transfers carefully:** local evidence may inform travel and travel
+  evidence may inform local decisions, but scope, companions, occasion, and
+  confidence must remain explicit.
 
 ## Failure modes
 - Missing Personal Memory → generated on demand in `get_traveler_context()`.
@@ -55,3 +64,8 @@ vectors.
 - **Artifact quality is unvalidated** — the memory surface "is it worth keeping?" claim has no eval gate yet (flagged 🔶 in the vision ledger).
 - The group-profile merge is the upstream half of the privacy-egress invariant; a leak here propagates everywhere. Verify alongside Concierge journey 04.
 - Place affinity recency-decay (added 06-18) affects cross-trip recall ("Vesper knew") — confirm it doesn't surface stale affinities.
+- The no-trip/local path does not consistently receive the same memory contract
+  as trip planning. This blocks the hometown-trust loop and local→travel proof.
+- Current validation is trip-heavy. Add evaluation for a local choice improving
+  a later travel decision and for the same evidence behaving differently with
+  different companions or occasions.

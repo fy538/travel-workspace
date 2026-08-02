@@ -29,10 +29,11 @@ source_of_truth_for:
 
 # Cold Start and the Everyday Places Experience MVP
 
-> **Working proposal, not shipped canon.** This document consolidates the
-> product discussion through 2026-07-31 and a read-only audit of the current
-> backend and mobile code. It intentionally distinguishes vision, proposal,
-> existing capability, and certified behavior. Nothing described as proposed
+> **Product direction promoted; implementation remains proposed.** The
+> relationship-with-places, hometown-trust, narrow local-group-loop, and
+> local→travel transfer principles were incorporated into the canonical
+> Product Thesis and Product Vision on 2026-08-02. This document still owns the
+> proposed full-stack implementation boundary. Nothing described as proposed
 > here should be read as implemented or device-proven.
 
 ## 1. Executive decision

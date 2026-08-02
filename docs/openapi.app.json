@@ -54681,6 +54681,11 @@
             "minLength": 1,
             "title": "Slug"
           },
+          "guide_count": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Guide Count"
+          },
           "coverage_note": {
             "type": "string",
             "minLength": 1,
@@ -54692,6 +54697,7 @@
           "place_id",
           "name",
           "slug",
+          "guide_count",
           "coverage_note"
         ],
         "title": "PlacesStarterCity",
@@ -69420,7 +69426,7 @@
           },
           "text": {
             "type": "string",
-            "maxLength": 96,
+            "maxLength": 64,
             "minLength": 1,
             "title": "Text"
           },
@@ -70291,14 +70297,14 @@
         "properties": {
           "floor": {
             "type": "string",
-            "maxLength": 96,
+            "maxLength": 64,
             "minLength": 1,
             "title": "Floor"
           },
           "max_chars": {
             "type": "integer",
             "title": "Max Chars",
-            "default": 96
+            "default": 64
           },
           "voice_token": {
             "anyOf": [

@@ -14,7 +14,7 @@
         {
           "kind": "app_url",
           "name": "previewPlacesVenueAdd",
-          "source": "app-places-feed/utils/api/http.ts"
+          "source": "travel-app/utils/api/http.ts"
         }
       ],
       "feature_flag": null,
@@ -483,7 +483,7 @@
         {
           "kind": "app_source",
           "name": "PlacesWorkspaceProjection",
-          "source": "travel-app/components/places/PlacesWorkspace.tsx"
+          "source": "travel-app/utils/api/http.ts"
         }
       ],
       "feature_flag": null,
@@ -514,7 +514,7 @@
         {
           "kind": "app_source",
           "name": "PlacesWorkspaceScopeRail",
-          "source": "travel-app/components/places/PlacesWorkspace.tsx"
+          "source": "travel-app/utils/api/http.ts"
         }
       ],
       "feature_flag": null,
