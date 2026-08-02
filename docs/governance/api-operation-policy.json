@@ -10,73 +10,73 @@
   "operations": {
     "DELETE /api/pending-chat-turns/{pending_turn_id}": {
       "audience": "app",
-      "consumers": [],
+      "consumers": [{"kind": "app_url", "name": "cancelPendingChatTurn", "source": "travel-app/utils/api/http.ts"}],
       "feature_flag": "PENDING_CHAT_TURNS_ENABLED",
-      "lifecycle": "dark",
+      "lifecycle": "active",
       "owner": "conversations",
-      "reason": "Durable pending-turn transport is server-complete but remains dark until the mobile queue replaces its in-memory handoff.",
-      "removal_trigger": "Remove if the staged-turn transport is abandoned before mobile activation.",
-      "review_by": "2026-10-30"
+      "reason": "Actor- and device-scoped recovery for an accepted chat send that has not yet reached canonical conversation admission.",
+      "removal_trigger": null,
+      "review_by": null
     },
     "GET /api/pending-chat-turns": {
       "audience": "app",
-      "consumers": [],
+      "consumers": [{"kind": "app_url", "name": "listPendingChatTurns", "source": "travel-app/utils/api/http.ts"}],
       "feature_flag": "PENDING_CHAT_TURNS_ENABLED",
-      "lifecycle": "dark",
+      "lifecycle": "active",
       "owner": "conversations",
-      "reason": "Durable pending-turn transport is server-complete but remains dark until the mobile queue replaces its in-memory handoff.",
-      "removal_trigger": "Remove if the staged-turn transport is abandoned before mobile activation.",
-      "review_by": "2026-10-30"
+      "reason": "Actor- and device-scoped recovery for an accepted chat send that has not yet reached canonical conversation admission.",
+      "removal_trigger": null,
+      "review_by": null
     },
     "GET /api/pending-chat-turns/{pending_turn_id}": {
       "audience": "app",
-      "consumers": [],
+      "consumers": [{"kind": "app_url", "name": "getPendingChatTurn", "source": "travel-app/utils/api/http.ts"}],
       "feature_flag": "PENDING_CHAT_TURNS_ENABLED",
-      "lifecycle": "dark",
+      "lifecycle": "active",
       "owner": "conversations",
-      "reason": "Durable pending-turn transport is server-complete but remains dark until the mobile queue replaces its in-memory handoff.",
-      "removal_trigger": "Remove if the staged-turn transport is abandoned before mobile activation.",
-      "review_by": "2026-10-30"
+      "reason": "Actor- and device-scoped recovery for an accepted chat send that has not yet reached canonical conversation admission.",
+      "removal_trigger": null,
+      "review_by": null
     },
     "POST /api/pending-chat-turns": {
       "audience": "app",
-      "consumers": [],
+      "consumers": [{"kind": "app_url", "name": "stagePendingChatTurn", "source": "travel-app/utils/api/http.ts"}],
       "feature_flag": "PENDING_CHAT_TURNS_ENABLED",
-      "lifecycle": "dark",
+      "lifecycle": "active",
       "owner": "conversations",
-      "reason": "Durable pending-turn transport is server-complete but remains dark until the mobile queue replaces its in-memory handoff.",
-      "removal_trigger": "Remove if the staged-turn transport is abandoned before mobile activation.",
-      "review_by": "2026-10-30"
+      "reason": "Actor- and device-scoped recovery for an accepted chat send that has not yet reached canonical conversation admission.",
+      "removal_trigger": null,
+      "review_by": null
     },
     "POST /api/pending-chat-turns/{pending_turn_id}/bind": {
       "audience": "app",
-      "consumers": [],
+      "consumers": [{"kind": "app_url", "name": "bindPendingChatTurn", "source": "travel-app/utils/api/http.ts"}],
       "feature_flag": "PENDING_CHAT_TURNS_ENABLED",
-      "lifecycle": "dark",
+      "lifecycle": "active",
       "owner": "conversations",
-      "reason": "Durable pending-turn transport is server-complete but remains dark until the mobile queue replaces its in-memory handoff.",
-      "removal_trigger": "Remove if the staged-turn transport is abandoned before mobile activation.",
-      "review_by": "2026-10-30"
+      "reason": "Actor- and device-scoped recovery for an accepted chat send that has not yet reached canonical conversation admission.",
+      "removal_trigger": null,
+      "review_by": null
     },
     "POST /api/pending-chat-turns/{pending_turn_id}/reconcile": {
       "audience": "app",
-      "consumers": [],
+      "consumers": [{"kind": "app_url", "name": "reconcilePendingChatTurn", "source": "travel-app/utils/api/http.ts"}],
       "feature_flag": "PENDING_CHAT_TURNS_ENABLED",
-      "lifecycle": "dark",
+      "lifecycle": "active",
       "owner": "conversations",
-      "reason": "Durable pending-turn transport is server-complete but remains dark until the mobile queue replaces its in-memory handoff.",
-      "removal_trigger": "Remove if the staged-turn transport is abandoned before mobile activation.",
-      "review_by": "2026-10-30"
+      "reason": "Actor- and device-scoped recovery for an accepted chat send that has not yet reached canonical conversation admission.",
+      "removal_trigger": null,
+      "review_by": null
     },
     "POST /api/pending-chat-turns/{pending_turn_id}/send": {
       "audience": "app",
-      "consumers": [],
+      "consumers": [{"kind": "app_url", "name": "streamPendingChatTurn", "source": "travel-app/utils/api/http.ts"}],
       "feature_flag": "PENDING_CHAT_TURNS_ENABLED",
-      "lifecycle": "dark",
+      "lifecycle": "active",
       "owner": "conversations",
-      "reason": "Durable pending-turn transport is server-complete but remains dark until the mobile queue replaces its in-memory handoff.",
-      "removal_trigger": "Remove if the staged-turn transport is abandoned before mobile activation.",
-      "review_by": "2026-10-30"
+      "reason": "Actor- and device-scoped recovery for an accepted chat send that has not yet reached canonical conversation admission.",
+      "removal_trigger": null,
+      "review_by": null
     },
     "POST /api/trips/{trip_id}/itinerary/days/{day_id}/add-venue-preview": {
       "audience": "app",

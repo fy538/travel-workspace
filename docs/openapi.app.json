@@ -11659,6 +11659,470 @@
         }
       }
     },
+    "/api/pending-chat-turns": {
+      "post": {
+        "tags": [
+          "pending_chat_turns"
+        ],
+        "summary": "Stage Turn",
+        "description": "Persist a user-confirmed send before a route handoff or queue wait.",
+        "operationId": "stage_turn_api_pending_chat_turns_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PendingChatTurnCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PendingChatTurnSummary"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "pending_chat_turns"
+        ],
+        "summary": "List Turns",
+        "operationId": "list_turns_api_pending_chat_turns_get",
+        "parameters": [
+          {
+            "name": "device_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Device Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PendingChatTurnSummary"
+                  },
+                  "title": "Response List Turns Api Pending Chat Turns Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/pending-chat-turns/{pending_turn_id}/bind": {
+      "post": {
+        "tags": [
+          "pending_chat_turns"
+        ],
+        "summary": "Bind Turn",
+        "description": "Re-authorize and seal a staged turn to exactly one conversation.",
+        "operationId": "bind_turn_api_pending_chat_turns__pending_turn_id__bind_post",
+        "parameters": [
+          {
+            "name": "pending_turn_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Pending Turn Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PendingChatTurnBindRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PendingChatTurnSummary"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/pending-chat-turns/{pending_turn_id}/send": {
+      "post": {
+        "tags": [
+          "pending_chat_turns"
+        ],
+        "summary": "Send Turn",
+        "description": "Submit a bound payload through the sole canonical conversation writer.\n\nThe pending-turn UUID supplies the stable message idempotency identity.\nWe deliberately leave the record ``bound`` until canonical message\nreconciliation observes the persisted message in the next phase.",
+        "operationId": "send_turn_api_pending_chat_turns__pending_turn_id__send_post",
+        "parameters": [
+          {
+            "name": "pending_turn_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Pending Turn Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PendingChatTurnSendRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Send Turn Api Pending Chat Turns  Pending Turn Id  Send Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/pending-chat-turns/{pending_turn_id}/reconcile": {
+      "post": {
+        "tags": [
+          "pending_chat_turns"
+        ],
+        "summary": "Reconcile Turn",
+        "description": "Repair the outbox state after an interrupted stream or process restart.",
+        "operationId": "reconcile_turn_api_pending_chat_turns__pending_turn_id__reconcile_post",
+        "parameters": [
+          {
+            "name": "pending_turn_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Pending Turn Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PendingChatTurnSendRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PendingChatTurnSummary"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/pending-chat-turns/{pending_turn_id}": {
+      "get": {
+        "tags": [
+          "pending_chat_turns"
+        ],
+        "summary": "Get Turn",
+        "operationId": "get_turn_api_pending_chat_turns__pending_turn_id__get",
+        "parameters": [
+          {
+            "name": "pending_turn_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Pending Turn Id"
+            }
+          },
+          {
+            "name": "device_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Device Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PendingChatTurnDetail"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "pending_chat_turns"
+        ],
+        "summary": "Cancel Turn",
+        "operationId": "cancel_turn_api_pending_chat_turns__pending_turn_id__delete",
+        "parameters": [
+          {
+            "name": "pending_turn_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Pending Turn Id"
+            }
+          },
+          {
+            "name": "device_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Device Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PendingChatTurnSummary"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/narration/interactions": {
       "post": {
         "tags": [
@@ -52889,6 +53353,332 @@
         ],
         "title": "PayoffBlockAside",
         "description": "One itinerary-row inflection line for the invitee post-join payoff.\n\n``block_id`` must reference a real block from the trip's current\nitinerary — the generator validates this post-hoc against the actual\nblock-id set it was given (invitee-postjoin design, Slice H)."
+      },
+      "PendingChatTurnBindRequest": {
+        "properties": {
+          "device_id": {
+            "type": "string",
+            "title": "Device Id"
+          },
+          "conversation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Conversation Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "device_id",
+          "conversation_id"
+        ],
+        "title": "PendingChatTurnBindRequest"
+      },
+      "PendingChatTurnCreate": {
+        "properties": {
+          "client_turn_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Client Turn Id"
+          },
+          "device_id": {
+            "type": "string",
+            "maxLength": 256,
+            "minLength": 16,
+            "title": "Device Id"
+          },
+          "audience": {
+            "type": "string",
+            "enum": [
+              "personal",
+              "group"
+            ],
+            "title": "Audience"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 10000,
+            "title": "Text",
+            "default": ""
+          },
+          "attachments": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "maxItems": 3,
+            "title": "Attachments"
+          },
+          "metadata": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Metadata"
+          },
+          "origin": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Origin",
+            "default": "chat"
+          }
+        },
+        "type": "object",
+        "required": [
+          "client_turn_id",
+          "device_id",
+          "audience"
+        ],
+        "title": "PendingChatTurnCreate"
+      },
+      "PendingChatTurnDetail": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "client_turn_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Client Turn Id"
+          },
+          "audience": {
+            "type": "string",
+            "enum": [
+              "personal",
+              "group"
+            ],
+            "title": "Audience"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "conversation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Conversation Id"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "staged",
+              "bound",
+              "accepted",
+              "cancelled",
+              "expired",
+              "scope_rejected"
+            ],
+            "title": "State"
+          },
+          "accepted_message_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Accepted Message Id"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Expires At"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "attachments": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Attachments"
+          },
+          "metadata": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Metadata"
+          },
+          "origin": {
+            "type": "string",
+            "title": "Origin"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "client_turn_id",
+          "audience",
+          "trip_id",
+          "conversation_id",
+          "state",
+          "accepted_message_id",
+          "expires_at",
+          "created_at",
+          "text",
+          "attachments",
+          "metadata",
+          "origin"
+        ],
+        "title": "PendingChatTurnDetail"
+      },
+      "PendingChatTurnSendRequest": {
+        "properties": {
+          "device_id": {
+            "type": "string",
+            "title": "Device Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "device_id"
+        ],
+        "title": "PendingChatTurnSendRequest"
+      },
+      "PendingChatTurnSummary": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "client_turn_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Client Turn Id"
+          },
+          "audience": {
+            "type": "string",
+            "enum": [
+              "personal",
+              "group"
+            ],
+            "title": "Audience"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "conversation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Conversation Id"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "staged",
+              "bound",
+              "accepted",
+              "cancelled",
+              "expired",
+              "scope_rejected"
+            ],
+            "title": "State"
+          },
+          "accepted_message_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Accepted Message Id"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Expires At"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "client_turn_id",
+          "audience",
+          "trip_id",
+          "conversation_id",
+          "state",
+          "accepted_message_id",
+          "expires_at",
+          "created_at"
+        ],
+        "title": "PendingChatTurnSummary"
       },
       "PendingInviteAnswer": {
         "properties": {
