@@ -39437,6 +39437,11 @@
             ],
             "title": "Note"
           },
+          "share_with_friends": {
+            "type": "boolean",
+            "title": "Share With Friends",
+            "default": false
+          },
           "saved_at": {
             "type": "string",
             "format": "date-time",
@@ -39492,6 +39497,11 @@
               }
             ],
             "title": "Note"
+          },
+          "share_with_friends": {
+            "type": "boolean",
+            "title": "Share With Friends",
+            "default": false
           }
         },
         "type": "object",
