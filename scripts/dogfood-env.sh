@@ -13,7 +13,9 @@ set -euo pipefail
 PROFILE="${PROFILE:-local}"
 ALLOW_MIXED="${ALLOW_MIXED:-0}"
 
-LOCAL_DATABASE_URL="${LOCAL_DATABASE_URL:-postgresql://vesper:localdev@localhost:5432/vesper}"
+# docker-compose maps Postgres to 15432 by default specifically so a host
+# Postgres on 5432 cannot be mistaken for the dogfood world.
+LOCAL_DATABASE_URL="${LOCAL_DATABASE_URL:-postgresql://vesper:localdev@localhost:15432/vesper}"
 LOCAL_QDRANT_URL="${LOCAL_QDRANT_URL:-http://localhost:6333}"
 
 _is_local_host() {
