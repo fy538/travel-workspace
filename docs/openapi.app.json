@@ -54296,7 +54296,8 @@
           "lead": {
             "anyOf": [
               {
-                "type": "boolean"
+                "type": "boolean",
+                "const": true
               },
               {
                 "type": "null"
@@ -54325,6 +54326,19 @@
                 "type": "null"
               }
             ]
+          },
+          "action_label": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 32,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Action Label"
           },
           "action": {
             "anyOf": [
@@ -70944,7 +70958,7 @@
           },
           "text": {
             "type": "string",
-            "maxLength": 64,
+            "maxLength": 44,
             "minLength": 1,
             "title": "Text"
           },
@@ -71815,14 +71829,15 @@
         "properties": {
           "floor": {
             "type": "string",
-            "maxLength": 64,
+            "maxLength": 44,
             "minLength": 1,
             "title": "Floor"
           },
           "max_chars": {
             "type": "integer",
+            "const": 44,
             "title": "Max Chars",
-            "default": 64
+            "default": 44
           },
           "voice_token": {
             "anyOf": [
