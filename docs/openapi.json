@@ -20879,6 +20879,65 @@
         }
       }
     },
+    "/api/places/notices/{notice_id}/clear": {
+      "post": {
+        "tags": [
+          "places"
+        ],
+        "summary": "Clear Notice",
+        "description": "Dismiss one owned Places notice without changing its underlying save.",
+        "operationId": "clear_notice_api_places_notices__notice_id__clear_post",
+        "parameters": [
+          {
+            "name": "notice_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Notice Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlacesNoticeClearResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/places": {
       "get": {
         "tags": [
@@ -62373,6 +62432,24 @@
         "title": "PlacesMemoryRef",
         "description": "Stable reference to one accepted artifact or completed trip memory."
       },
+      "PlacesNoticeClearResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "default": "cleared"
+          },
+          "notice_id": {
+            "type": "string",
+            "title": "Notice Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "notice_id"
+        ],
+        "title": "PlacesNoticeClearResponse"
+      },
       "PlacesOperationalFreshness": {
         "type": "string",
         "enum": [
@@ -80177,7 +80254,7 @@
           },
           "outbound_duration_minutes": {
             "type": "integer",
-            "maximum": 1440.0,
+            "maximum": 2880.0,
             "exclusiveMinimum": 0.0,
             "title": "Outbound Duration Minutes"
           },
