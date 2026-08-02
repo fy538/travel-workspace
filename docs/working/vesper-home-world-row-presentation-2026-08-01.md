@@ -1,6 +1,6 @@
 ---
 doc_type: working
-status: active
+status: promoted
 owner: founder / design / frontend
 created: 2026-08-01
 expires: 2026-08-31
@@ -17,6 +17,15 @@ source_of_truth_for:
 ---
 
 # Vesper Home — the world row, presentation spec
+
+> **Promoted 2026-08-01.** This document preserves the design research and its
+> historical pre-implementation census. Current behavior is governed by
+> `travel-app/docs/surfaces/vesper-home/contract.md` and
+> `travel-agent/backend/home/vesper_workbench/FEATURE.md`. The complete
+> Sessions/Route/Season/Here loop is reviewed on an iPhone 16 Pro simulator at
+> default type, 135% Dynamic Type, and Reduce Motion. Android remains
+> unreviewed. Device receipt:
+> `travel-app/docs/audits/vesper-home-rotation/2026-08-01/README.md`.
 
 > **The row exists, has no data, and renders its edge twice.**
 >

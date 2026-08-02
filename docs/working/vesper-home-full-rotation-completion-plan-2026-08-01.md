@@ -62,10 +62,14 @@ Already implemented in the current worktree:
 
 Known gaps:
 
-- world-row mock captures exist, but no complete four-kind rotating device run
-  or live Route device receipt exists;
-- workspace contract-check is presently blocked by unrelated concurrent Places
-  schema changes and must be rerun after that lane is synchronized.
+- the complete four-kind loop is reviewed on an iPhone 16 Pro / iOS 18.2
+  simulator at default type, 135% Dynamic Type, and Reduce Motion; Android is
+  still unreviewed because no emulator or connected device is available;
+- the device receipt is an explicit mock walk through the real client
+  deadline/mutation path. The live Duffel proof remains a separate
+  backend/Postgres canary, not a live-provider device receipt;
+- Clerk-authenticated, EAS/physical-device, and broad production-provider
+  reliability remain outside this internal dogfood receipt.
 
 ## Decisions frozen for this execution
 
@@ -255,6 +259,25 @@ reached, rollback is immediate, and no stale planning claim remains.
 | Backend canary | migrated Postgres, cap/lease/cache, fresh Duffel winners, no booking calls |
 | Device | iPhone + Android settled captures, continuous rotation, expiry failover |
 | Rollout | dogfood flag/cohort, diagnostics, rollback, spend ceiling |
+
+## Execution receipt — 2026-08-01
+
+- Backend Vesper and Route focused suites pass (36 tests), the catalog checker
+  passes, and the migrated local Postgres/Duffel canary returned three fresh
+  Route winners without a booking mutation.
+- Workspace OpenAPI synchronization and the active-mobile contract projection
+  are current; `make contract-check` passes.
+- Frontend focused Workbench/density/timer suites, TypeScript, scenario
+  registry, and design-reference checks pass.
+- The registered six-state Vesper Home capture completed on iOS. A dedicated
+  accelerated receipt additionally proves
+  `sessions → route → season → here → sessions` at default type, retains all
+  three selected rows at 135% Dynamic Type, and passes with Reduce Motion.
+- The iOS receipt lives at
+  `travel-app/docs/audits/vesper-home-rotation/2026-08-01/README.md`.
+- Android is the sole missing device lane. This plan is complete at the local
+  iOS simulator + static/backend-canary layer, not cross-platform or physical-
+  device certification.
 
 ## Execution order and stopping policy
 

@@ -655,6 +655,19 @@ clearly dev-scoped and cannot ship as live truth.
 **Started 2026-07-30 — Phases 0–5 implemented and device-proven at the local
 implementation layer.**
 
+**Latest update — 2026-08-01.** The chronological bullets below retain interim
+states for audit history. Their old claims that world producers are disabled,
+Route requires an explicit airport, the app has no deadline timer, or no world
+row has device evidence are superseded by the canonical backend/app contracts
+and the four-kind completion plan. Season and New York Here each supply three
+reviewed rows; Route resolves canonical Home to an approved dogfood origin and
+uses fresh Duffel offers; the server owns the cursor/deadline and the app owns
+one rescheduled deadline timer. An iPhone 16 Pro / iOS 18.2 simulator passes
+the full `sessions → route → season → here → sessions` loop at default type,
+135% Dynamic Type, and Reduce Motion. Android, physical-device, EAS, and broad
+provider-production certification remain open. Receipt:
+`travel-app/docs/audits/vesper-home-rotation/2026-08-01/README.md`.
+
 - Added the additive Wave-1 models and authenticated
   `/api/concierge/home/workbench` route.
 - Added the bounded `backend/home/vesper_workbench/` package with session
