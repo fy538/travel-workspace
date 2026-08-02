@@ -1025,6 +1025,21 @@
       "removal_trigger": null,
       "review_by": null
     },
+    "GET /metrics/media": {
+      "audience": "infrastructure",
+      "consumers": [
+        {
+          "kind": "infrastructure",
+          "name": "operator-observability"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Operational diagnostics and observability consumer.",
+      "removal_trigger": null,
+      "review_by": null
+    },
     "GET /metrics/llm-accounting": {
       "audience": "infrastructure",
       "consumers": [
