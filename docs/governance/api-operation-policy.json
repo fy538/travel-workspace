@@ -438,6 +438,22 @@
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
       "review_by": "2026-08-15"
     },
+    "GET /api/conversations/{conversation_id}/messages/{message_id}/card-actions/{action_ref}": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "resolveComposedCardAction",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "conversations",
+      "reason": "A private, read-only composed-card action is re-authorized against durable conversation context before the app opens its canonical reader.",
+      "removal_trigger": null,
+      "review_by": null
+    },
     "GET /api/discover/trending": {
       "audience": "app",
       "consumers": [],
@@ -1010,6 +1026,21 @@
       "review_by": null
     },
     "GET /metrics/discover": {
+      "audience": "infrastructure",
+      "consumers": [
+        {
+          "kind": "infrastructure",
+          "name": "operator-observability"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Operational diagnostics and observability consumer.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /metrics/media": {
       "audience": "infrastructure",
       "consumers": [
         {

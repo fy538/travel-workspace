@@ -5848,6 +5848,85 @@
         }
       }
     },
+    "/api/conversations/{conversation_id}/messages/{message_id}/card-actions/{action_ref}": {
+      "get": {
+        "tags": [
+          "conversations"
+        ],
+        "summary": "Resolve Composed Card Action",
+        "description": "Re-authorize a private card action and resolve its current destination.\n\nA card persists an opaque action reference—not a client route. This route\nrechecks conversation membership and current artifact availability at tap\ntime, so an old message cannot invent or retain a stale destination.",
+        "operationId": "resolve_composed_card_action_api_conversations__conversation_id__messages__message_id__card_actions__action_ref__get",
+        "parameters": [
+          {
+            "name": "conversation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Conversation Id"
+            }
+          },
+          {
+            "name": "message_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Message Id"
+            }
+          },
+          {
+            "name": "action_ref",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Action Ref"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardActionResolution"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/concierge/home": {
       "get": {
         "tags": [
@@ -32960,6 +33039,126 @@
         ],
         "title": "CaptureMomentRequest",
         "description": "Body for POST /api/trips/{tid}/observations.\n\nThe capture-nudge card surfaces a soft prompt at evening-during-trip;\nthe user types a short reflection and submits. The body is text-only\nin Phase 4 — photo capture lands in Phase 5 once the media pipeline\n(S3 / CDN / size limits) is in place.\n\n``content`` is the captured text. ``importance`` is exposed so future\nsurfaces (voice agent transcribed memories, multi-line journal) can\nbias persistence; the home capture-nudge passes the default 5."
+      },
+      "CardActionDestination": {
+        "properties": {
+          "kind": {
+            "$ref": "#/components/schemas/CardActionDestinationKind"
+          },
+          "place_slug": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Slug"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "proposal_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proposal Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind"
+        ],
+        "title": "CardActionDestination",
+        "description": "A server-resolved, read-only card destination."
+      },
+      "CardActionDestinationKind": {
+        "type": "string",
+        "enum": [
+          "place",
+          "trip_plan",
+          "trip_proposal"
+        ],
+        "title": "CardActionDestinationKind",
+        "description": "Canonical reader surfaces a resolved action may open.\n\nThese are domain destinations rather than client routes.  The mobile\napplication owns its own route mapping after the server has re-authorized\nthe requested action against the persisted message."
+      },
+      "CardActionResolution": {
+        "properties": {
+          "action_ref": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Action Ref"
+          },
+          "status": {
+            "$ref": "#/components/schemas/CardActionResolutionStatus"
+          },
+          "destination": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CardActionDestination"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CardActionUnavailableReason"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "action_ref",
+          "status"
+        ],
+        "title": "CardActionResolution",
+        "description": "The current authorized result of tapping a persisted card action."
+      },
+      "CardActionResolutionStatus": {
+        "type": "string",
+        "enum": [
+          "ready",
+          "unavailable",
+          "expired"
+        ],
+        "title": "CardActionResolutionStatus"
+      },
+      "CardActionUnavailableReason": {
+        "type": "string",
+        "enum": [
+          "unknown_action",
+          "artifact_unavailable",
+          "unsupported"
+        ],
+        "title": "CardActionUnavailableReason"
       },
       "CartResponse": {
         "properties": {

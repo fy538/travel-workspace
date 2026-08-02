@@ -68,6 +68,23 @@ payload schemas live under `docs/contracts/chat-attachments/` (currently
 validators — expand that set when a card payload needs shared shape proof.
 Do not invent new DB `message_type` values for visual variants alone.
 
+### Composed cards (v1 pilot)
+
+`composed_card` is a declarative, native-rendered presentation path for a
+server-authored `CardBlueprintV1`. It deliberately separates tool execution,
+grounded artifacts, and visual composition: a tool is not a card type, several
+artifacts may make one card, and a tool may yield prose only. The blueprint may
+select approved semantic blocks, but it cannot contain executable UI, styling
+instructions, route strings, or mutation payloads. The app owns dimensions,
+accessibility, visual language, and action execution.
+
+The shared schema is `docs/contracts/chat-card-blueprint.v1.schema.json`. v1 is
+read-oriented only; booking, proposal, itinerary, and receipt mutations retain
+their specialized components and canonical action paths until separately proven.
+`body_mode` says whether the card replaces the durable text fallback (`card`) or
+accompanies it (`message`), so a compact research/status companion cannot hide a
+useful longer answer.
+
 ## 2. Current chat registry
 
 This table mirrors the `MessageAttachment` union and `AttachmentRenderer`
@@ -92,7 +109,7 @@ registry. A row absent here is not a supported chat card.
 | `document_edit` | `DocumentEditCard` | notification metadata | document/planning tools | open exact day when available |
 | `narration` | `NarrationCard` | `narration` | narration endpoint | audio and cited narration |
 | `trip_creation_proposal` | `TripCreationProposalCard` | notification metadata | `propose_trip_creation` | versioned, idempotent trip creation |
-| `lazy_research` | `ResearchCard` | text metadata | research worker | informational status |
+| `lazy_research` | `ResearchCard` | text metadata | research worker | informational status; composed companion may offer one server-resolved, read-only Place handoff while its artifact remains current |
 | `itinerary_operation` | `ItineraryOperationCard` | notification metadata | itinerary operation preparation | review in canonical itinerary flow |
 
 There are no supported legacy chat `itinerary` or `map_card` attachments.

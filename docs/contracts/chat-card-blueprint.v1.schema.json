@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://travel.app/contracts/chat-card-blueprint.v1.schema.json",
+  "title": "CardBlueprintV1",
+  "description": "A declarative, native-rendered Vesper chat card. It is presentation data, never executable UI or mutation authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "blueprint_id", "version", "surface", "audience", "intent", "tone", "artifact_refs", "blocks", "actions"],
+  "properties": {
+    "schema_version": {"const": "card-blueprint.v1"},
+    "blueprint_id": {"type": "string", "minLength": 1, "maxLength": 160},
+    "version": {"type": "integer", "minimum": 1},
+    "surface": {"const": "vesper_chat"},
+    "audience": {"enum": ["private", "group"]},
+    "intent": {"enum": ["glance", "recommendation", "shortlist", "comparison", "timeline", "review", "progress", "receipt", "handoff"]},
+    "tone": {"enum": ["warm", "soft", "success", "warning", "private"]},
+    "artifact_refs": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 6,
+      "items": {"$ref": "#/$defs/artifact_ref"}
+    },
+    "blocks": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "items": {"$ref": "#/$defs/block"}
+    },
+    "body_mode": {"enum": ["card", "message"], "default": "card", "description": "Whether this card replaces the durable text fallback or accompanies it."},
+    "actions": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {"$ref": "#/$defs/action"}
+    },
+    "lifecycle_ref": {"type": "string", "minLength": 1, "maxLength": 160},
+    "expires_at": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "artifact_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "id"],
+      "properties": {
+        "type": {"enum": ["venue", "route", "stay_comparison", "research", "itinerary_operation", "proposal", "booking", "receipt"]},
+        "id": {"type": "string", "minLength": 1, "maxLength": 160},
+        "version": {"type": "integer", "minimum": 1}
+      }
+    },
+    "text": {"type": "string", "minLength": 1, "maxLength": 280},
+    "block": {
+      "oneOf": [
+        {"$ref": "#/$defs/header_block"},
+        {"$ref": "#/$defs/title_block"},
+        {"$ref": "#/$defs/narrative_block"},
+        {"$ref": "#/$defs/fact_list_block"},
+        {"$ref": "#/$defs/chip_row_block"},
+        {"$ref": "#/$defs/option_list_block"},
+        {"$ref": "#/$defs/status_block"},
+        {"$ref": "#/$defs/source_line_block"}
+      ]
+    },
+    "header_block": {
+      "type": "object", "additionalProperties": false,
+      "required": ["kind", "label"],
+      "properties": {"kind": {"const": "header"}, "label": {"$ref": "#/$defs/text"}, "right": {"type": "string", "maxLength": 80}}
+    },
+    "title_block": {
+      "type": "object", "additionalProperties": false,
+      "required": ["kind", "text"],
+      "properties": {"kind": {"const": "title"}, "text": {"$ref": "#/$defs/text"}}
+    },
+    "narrative_block": {
+      "type": "object", "additionalProperties": false,
+      "required": ["kind", "text"],
+      "properties": {"kind": {"const": "narrative"}, "text": {"$ref": "#/$defs/text"}}
+    },
+    "fact_list_block": {
+      "type": "object", "additionalProperties": false,
+      "required": ["kind", "items"],
+      "properties": {
+        "kind": {"const": "fact_list"},
+        "items": {"type": "array", "minItems": 1, "maxItems": 4, "items": {"type": "object", "additionalProperties": false, "required": ["label", "value"], "properties": {"label": {"type": "string", "maxLength": 48}, "value": {"type": "string", "maxLength": 120}}}}
+      }
+    },
+    "chip_row_block": {
+      "type": "object", "additionalProperties": false,
+      "required": ["kind", "items"],
+      "properties": {"kind": {"const": "chip_row"}, "items": {"type": "array", "minItems": 1, "maxItems": 5, "items": {"type": "string", "minLength": 1, "maxLength": 48}}}
+    },
+    "option_list_block": {
+      "type": "object", "additionalProperties": false,
+      "required": ["kind", "items"],
+      "properties": {"kind": {"const": "option_list"}, "items": {"type": "array", "minItems": 1, "maxItems": 4, "items": {"type": "object", "additionalProperties": false, "required": ["title"], "properties": {"title": {"type": "string", "maxLength": 100}, "detail": {"type": "string", "maxLength": 160}, "emphasis": {"enum": ["primary", "normal"]}}}}}
+    },
+    "status_block": {
+      "type": "object", "additionalProperties": false,
+      "required": ["kind", "label", "state"],
+      "properties": {"kind": {"const": "status"}, "label": {"$ref": "#/$defs/text"}, "state": {"enum": ["ready", "working", "committed", "warning", "superseded"]}}
+    },
+    "source_line_block": {
+      "type": "object", "additionalProperties": false,
+      "required": ["kind", "text"],
+      "properties": {"kind": {"const": "source_line"}, "text": {"type": "string", "minLength": 1, "maxLength": 120}}
+    },
+    "action": {
+      "type": "object", "additionalProperties": false,
+      "required": ["action_ref", "role", "label"],
+      "properties": {"action_ref": {"type": "string", "minLength": 1, "maxLength": 160}, "role": {"enum": ["primary", "secondary"]}, "label": {"type": "string", "minLength": 1, "maxLength": 48}}
+    }
+  }
+}

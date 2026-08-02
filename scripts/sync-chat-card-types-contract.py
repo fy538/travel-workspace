@@ -5,20 +5,33 @@ from __future__ import annotations
 
 import argparse
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 TYPES_SOURCE = ROOT / "docs/contracts/chat-card-types.json"
 SCHEMA_DIR = ROOT / "docs/contracts/chat-attachments"
-TS_TYPES = ROOT / "travel-app/utils/chat/chatCardTypes.generated.ts"
-# Core (not concierge): create_message is the persist choke point for card_type.
-PY_TYPES = ROOT / "travel-agent/backend/core/chat_card_types_generated.py"
-TS_SCHEMAS = ROOT / "travel-app/utils/chat/attachmentSchemas.generated.ts"
-PY_SCHEMAS = ROOT / "travel-agent/backend/concierge/chat_attachment_schemas_generated.py"
 
 
 def _ts_string_union(values: list[str]) -> str:
     return " | ".join(json.dumps(v) for v in values)
+
+
+def _format_python(source: str, *, filename: str, config_path: Path | None = None) -> str:
+    """Keep generated Python stable after the backend's mandatory formatter."""
+
+    command = ["ruff", "format"]
+    if config_path is not None and config_path.exists():
+        command.extend(["--config", str(config_path)])
+    command.extend(["--stdin-filename", filename, "-"])
+    result = subprocess.run(
+        command,
+        input=source,
+        text=True,
+        capture_output=True,
+        check=True,
+    )
+    return result.stdout
 
 
 def render_ts_types(data: dict) -> str:
@@ -53,7 +66,7 @@ def render_ts_types(data: dict) -> str:
     )
 
 
-def render_py_types(data: dict) -> str:
+def render_py_types(data: dict, *, config_path: Path | None = None) -> str:
     meta = data["metadata_card_types"]
     attachments = data["attachments"]
     no_arrival = data["no_arrival"]
@@ -68,7 +81,7 @@ def render_py_types(data: dict) -> str:
     no_arrival_rows = "\n".join(
         f"    {json.dumps(k)}: {json.dumps(v)}," for k, v in no_arrival.items()
     )
-    return (
+    source = (
         '"""Generated from docs/contracts/chat-card-types.json. Do not hand-edit."""\n\n'
         "from __future__ import annotations\n\n"
         "KNOWN_METADATA_CARD_TYPES: frozenset[str] = frozenset(\n"
@@ -89,6 +102,9 @@ def render_py_types(data: dict) -> str:
         "        return\n"
         "    if card_type not in KNOWN_METADATA_CARD_TYPES:\n"
         "        raise ValueError(f\"Unknown metadata.card_type: {card_type!r}\")\n"
+    )
+    return _format_python(
+        source, filename="chat_card_types_generated.py", config_path=config_path
     )
 
 
@@ -150,7 +166,9 @@ def _py_field(name: str, spec: dict, *, required: bool) -> str:
     return f"    {name}: {ann} | None = None"
 
 
-def render_schemas(pilot_names: list[str]) -> tuple[str, str]:
+def render_schemas(
+    pilot_names: list[str], *, config_path: Path | None = None
+) -> tuple[str, str]:
     ts_parts = [
         "// Generated from docs/contracts/chat-attachments/*.schema.json. Do not hand-edit.\n",
         "import { z } from 'zod';\n\n",
@@ -203,21 +221,49 @@ def render_schemas(pilot_names: list[str]) -> tuple[str, str]:
         "        raise KeyError(f\"No pilot schema named {schema_name!r}\")\n"
         "    model.model_validate(payload)\n"
     )
-    return "".join(ts_parts), "".join(py_parts)
+    return "".join(ts_parts), _format_python(
+        "".join(py_parts),
+        filename="chat_attachment_schemas_generated.py",
+        config_path=config_path,
+    )
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true")
+    parser.add_argument(
+        "--travel-agent-root",
+        type=Path,
+        default=ROOT / "travel-agent",
+        help="Travel Agent checkout to receive generated Python contracts.",
+    )
+    parser.add_argument(
+        "--travel-app-root",
+        type=Path,
+        default=ROOT / "travel-app",
+        help="Travel App checkout to receive generated TypeScript contracts.",
+    )
     args = parser.parse_args()
     data = json.loads(TYPES_SOURCE.read_text())
+    # Worktree-aware output roots keep contract generation from modifying a
+    # concurrently edited primary checkout. The workspace contract itself
+    # remains the single source of truth.
+    ts_types = args.travel_app_root / "utils/chat/chatCardTypes.generated.ts"
+    py_types = args.travel_agent_root / "backend/core/chat_card_types_generated.py"
+    ts_schemas = args.travel_app_root / "utils/chat/attachmentSchemas.generated.ts"
+    py_schemas = args.travel_agent_root / "backend/concierge/chat_attachment_schemas_generated.py"
     expected = {
-        TS_TYPES: render_ts_types(data),
-        PY_TYPES: render_py_types(data),
+        ts_types: render_ts_types(data),
+        py_types: render_py_types(
+            data, config_path=args.travel_agent_root / "pyproject.toml"
+        ),
         **dict(
             zip(
-                (TS_SCHEMAS, PY_SCHEMAS),
-                render_schemas(list(data.get("pilot_attachment_schemas") or [])),
+                (ts_schemas, py_schemas),
+                render_schemas(
+                    list(data.get("pilot_attachment_schemas") or []),
+                    config_path=args.travel_agent_root / "pyproject.toml",
+                ),
                 strict=True,
             )
         ),
@@ -229,16 +275,26 @@ def main() -> int:
     ]
     if args.check:
         if stale:
+            labels = []
+            for path in stale:
+                try:
+                    labels.append(str(path.relative_to(ROOT)))
+                except ValueError:
+                    labels.append(str(path))
             print(
                 "Stale chat-card-types generated files: "
-                + ", ".join(str(p.relative_to(ROOT)) for p in stale)
+                + ", ".join(labels)
             )
             return 1
         return 0
     for path, content in expected.items():
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(content)
-        print(f"Wrote {path.relative_to(ROOT)}")
+        try:
+            label = path.relative_to(ROOT)
+        except ValueError:
+            label = path
+        print(f"Wrote {label}")
     return 0
 
 
