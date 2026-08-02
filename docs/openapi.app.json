@@ -26296,6 +26296,85 @@
           }
         }
       }
+    },
+    "/api/conversations/{conversation_id}/messages/{message_id}/card-actions/{action_ref}": {
+      "get": {
+        "tags": [
+          "conversations"
+        ],
+        "summary": "Resolve Composed Card Action",
+        "description": "Re-authorize a private card action and resolve its current destination.\n\nA card persists an opaque action reference—not a client route. This route\nrechecks conversation membership and current artifact availability at tap\ntime, so an old message cannot invent or retain a stale destination.",
+        "operationId": "resolve_composed_card_action_api_conversations__conversation_id__messages__message_id__card_actions__action_ref__get",
+        "parameters": [
+          {
+            "name": "conversation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Conversation Id"
+            }
+          },
+          {
+            "name": "message_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Message Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          },
+          {
+            "name": "action_ref",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Action Ref"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardActionResolution"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -71993,6 +72072,131 @@
         ],
         "title": "Provenance",
         "description": "Where a result came from and how sensitive it is.\n\n``label`` is the short, ALL-CAPS-in-UI string the row displays\n(e.g. \"FROM YOUR ATLAS\", \"YOUR TRIP\", \"SHARED BY ANA\", \"DISCOVER GUIDE\").\n``privacy`` gates rendering: a ``private`` row must always show its label."
+      },
+      "CardActionDestination": {
+        "additionalProperties": false,
+        "description": "A server-resolved, read-only card destination.",
+        "properties": {
+          "kind": {
+            "$ref": "#/components/schemas/CardActionDestinationKind"
+          },
+          "place_slug": {
+            "anyOf": [
+              {
+                "maxLength": 160,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Place Slug"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Trip Id"
+          },
+          "proposal_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Proposal Id"
+          }
+        },
+        "required": [
+          "kind"
+        ],
+        "title": "CardActionDestination",
+        "type": "object"
+      },
+      "CardActionDestinationKind": {
+        "description": "Canonical reader surfaces a resolved action may open.\n\nThese are domain destinations rather than client routes.  The mobile\napplication owns its own route mapping after the server has re-authorized\nthe requested action against the persisted message.",
+        "enum": [
+          "place",
+          "trip_plan",
+          "trip_proposal"
+        ],
+        "title": "CardActionDestinationKind",
+        "type": "string"
+      },
+      "CardActionResolutionStatus": {
+        "enum": [
+          "ready",
+          "unavailable",
+          "expired"
+        ],
+        "title": "CardActionResolutionStatus",
+        "type": "string"
+      },
+      "CardActionUnavailableReason": {
+        "enum": [
+          "unknown_action",
+          "artifact_unavailable",
+          "unsupported"
+        ],
+        "title": "CardActionUnavailableReason",
+        "type": "string"
+      },
+      "CardActionResolution": {
+        "additionalProperties": false,
+        "description": "The current authorized result of tapping a persisted card action.",
+        "properties": {
+          "action_ref": {
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Action Ref",
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/CardActionResolutionStatus"
+          },
+          "destination": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CardActionDestination"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CardActionUnavailableReason"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          }
+        },
+        "required": [
+          "action_ref",
+          "status"
+        ],
+        "title": "CardActionResolution",
+        "type": "object"
       }
     }
   }

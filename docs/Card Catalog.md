@@ -109,7 +109,7 @@ registry. A row absent here is not a supported chat card.
 | `document_edit` | `DocumentEditCard` | notification metadata | document/planning tools | open exact day when available |
 | `narration` | `NarrationCard` | `narration` | narration endpoint | audio and cited narration |
 | `trip_creation_proposal` | `TripCreationProposalCard` | notification metadata | `propose_trip_creation` | versioned, idempotent trip creation |
-| `lazy_research` | `ResearchCard` | text metadata | research worker | informational status |
+| `lazy_research` | `ResearchCard` | text metadata | research worker | informational status; composed companion may offer one server-resolved, read-only Place handoff while its artifact remains current |
 | `itinerary_operation` | `ItineraryOperationCard` | notification metadata | itinerary operation preparation | review in canonical itinerary flow |
 
 There are no supported legacy chat `itinerary` or `map_card` attachments.
