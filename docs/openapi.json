@@ -16589,14 +16589,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "title": "Response Send Turn Api Pending Chat Turns  Pending Turn Id  Send Post"
-                }
-              }
-            }
+            "description": "Successful Response"
           },
           "422": {
             "description": "Validation Error",
@@ -62115,6 +62108,14 @@
             "title": "Text",
             "default": ""
           },
+          "images": {
+            "items": {
+              "$ref": "#/components/schemas/PendingChatTurnImage"
+            },
+            "type": "array",
+            "maxItems": 4,
+            "title": "Images"
+          },
           "attachments": {
             "items": {
               "additionalProperties": true,
@@ -62234,6 +62235,16 @@
             "type": "string",
             "title": "Text"
           },
+          "images": {
+            "items": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Images"
+          },
           "attachments": {
             "items": {
               "additionalProperties": true,
@@ -62271,11 +62282,34 @@
           "expires_at",
           "created_at",
           "text",
+          "images",
           "attachments",
           "metadata",
           "origin"
         ],
         "title": "PendingChatTurnDetail"
+      },
+      "PendingChatTurnImage": {
+        "properties": {
+          "base64": {
+            "type": "string",
+            "maxLength": 2500000,
+            "minLength": 1,
+            "title": "Base64"
+          },
+          "mime_type": {
+            "type": "string",
+            "pattern": "^image/(jpeg|jpg|png|webp|gif)$",
+            "title": "Mime Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "base64",
+          "mime_type"
+        ],
+        "title": "PendingChatTurnImage",
+        "description": "Bounded inline vision payload retained only until canonical admission."
       },
       "PendingChatTurnSendRequest": {
         "properties": {
@@ -63083,6 +63117,29 @@
               }
             ],
             "title": "Reason"
+          },
+          "lead": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lead"
+          },
+          "duration_minutes": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration Minutes"
           },
           "verb": {
             "anyOf": [
@@ -64162,6 +64219,18 @@
               }
             ],
             "title": "Meters"
+          },
+          "duration_minutes": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration Minutes"
           },
           "source": {
             "type": "string",
