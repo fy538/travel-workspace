@@ -38,12 +38,17 @@ As a traveler hitting a real-world failure (expired booking hold, offline edit, 
 4. Open a declined / expired / already-consumed invite → a clear terminal state, not a join that half-succeeds.
 5. Hit a member-restricted write as a non-organizer → 403 surfaces a "ask the organizer" path, not a dead button.
 6. Lose auth mid-session (401) → re-auth prompt, no blank screen or partial-state corruption.
+7. A planning write loses its canonical context fence → the accepted chat turn
+   settles as a rejected no-write outcome, offers review of the latest plan,
+   and allows an explicit fresh follow-up; it never retries the stale turn.
 
 ## Expected Outcome
 
 - Every failure renders honest, actionable copy and a recovery affordance.
 - No fake-success: money, bookings, and plan mutations never show "done" when they failed.
 - Read models stay consistent after a rejected write (no orphaned/ghost state).
+- A stale planning turn remains visible and truthful after SSE completion,
+  reload, reconnect, or idempotent replay; no plan change is implied.
 
 ## Must Never Happen
 
@@ -51,11 +56,18 @@ As a traveler hitting a real-world failure (expired booking hold, offline edit, 
 - A stale or offline write silently overwrites a newer change.
 - A failed action leaves a half-applied state (orphaned expense, ghost member, dangling hold).
 - An error renders as a blank screen or an infinite spinner with no recovery.
+- A stale planning fence is surfaced as a generic retry, silently replays the
+  old idempotency key, or exposes context/revision/private-source detail in a
+  group-visible message.
 
 ## AI Trace Prompt
 
 ```text
-Trace each failure path (Duffel 410 hold-expiry, 409 stale-write, offline edit conflict, declined/expired/consumed invite, 401/403) from the API status into the FE. Identify any path that renders fake success, swallows the error, leaves half-applied state, or offers no recovery affordance.
+Trace each failure path (Duffel 410 hold-expiry, 409 stale-write, canonical
+planning-context stale fence, offline edit conflict, declined/expired/consumed
+invite, 401/403) from the API status into the FE. Identify any path that
+renders fake success, swallows the error, leaves half-applied state, or offers
+no recovery affordance.
 ```
 
 ## First Automation Target
