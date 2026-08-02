@@ -45,7 +45,7 @@ Use these when asking Codex, Claude Code, QA, or a human dogfooder to inspect th
 | 04 | [Private Constraint To Group-Safe Plan](04-private-constraint-to-group-safe-plan.md) | Privacy contract across private, group, proposal, notification, and booking surfaces |
 | 05 | [Group Planning To Proposal To Plan Mutation](05-group-planning-to-proposal-to-plan-mutation.md) | Advise → Propose → Act loop **and** direct Change Studio edits |
 | 06 | [Itinerary, Map, Details, Chat, and Changes Coherence](06-home-plan-map-changes-coherence.md) | Read-model consistency after **any** trip mutation |
-| 07 | [Discover To Contextual Vesper To Trip Action](07-discover-to-contextual-vesper-to-trip-action.md) | ConversationSeed, place context, and add-to-trip routing |
+| 07 | [Places To Contextual Vesper To Trip Action](07-discover-to-contextual-vesper-to-trip-action.md) | Typed place context, review-first Vesper, and canonical Trips receipts |
 | 08 | [Live Trip What-Now Companion](08-live-trip-what-now-companion.md) | Active-trip usefulness, Vesper Home live mode, map/location context |
 | 09 | [Notifications And Proactive Routing](09-notifications-and-proactive-routing.md) | Push/feed routing, cadence, read state, and privacy-safe copy |
 | 10 | [Booking, Stay, And Expense Trust Loop](10-booking-stay-expense-trust-loop.md) | Provider/session drift, hold-settle contracts, opt-in expense sharing |

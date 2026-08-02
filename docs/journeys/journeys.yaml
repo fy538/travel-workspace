@@ -92,7 +92,7 @@ journeys:
           BE: [travel-agent/tests/core/test_map_state_builder.py]
           VIS: [travel-app/.maestro/49b-journey-06-mutation-reconciliation.yaml]
   - id: J07
-    title: Discover to Contextual Vesper to Trip Action
+    title: Places to Contextual Vesper to Trip Action
     doc: 07-discover-to-contextual-vesper-to-trip-action.md
     tier: golden-path
   - id: J08

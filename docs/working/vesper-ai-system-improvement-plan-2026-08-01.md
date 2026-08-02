@@ -444,6 +444,57 @@ Turns likely to pass through strict composition, privacy filtering, receipt
 reconciliation, or output regeneration should stabilize user-facing prose
 before emitting it as canonical content.
 
+#### B1.1 Implemented narrow slice — stale canonical planning context (2026-08-02)
+
+The canonical planner already refuses a write when its selected context is no
+longer current. This is now modeled as a **completed rejected turn**, not a
+transport error and not a retry of the old request.
+
+The closed public contract is:
+
+```json
+{
+  "turn_outcome": {
+    "version": 1,
+    "scope": "planning",
+    "code": "planning_context_stale",
+    "status": "rejected",
+    "write_state": "not_committed",
+    "recovery": "refresh_then_new_turn"
+  }
+}
+```
+
+Its constraints are intentional:
+
+- The outcome contains no plan revision, changed component, tool argument,
+  private source, original user text, or raw provider/tool failure.
+- The accepted user message remains durable; the assistant ends as `sent` with
+  a deterministic, content-free explanation. It is emitted in terminal SSE
+  metadata and persists with the assistant message, so history reload and an
+  idempotent replay agree with the live stream.
+- The agent loop stops after the stale tool result. It cannot make a second
+  provider call to narrate, retry, or turn the rejected state into an
+  ungrounded promise.
+- The private UI offers **Review latest plan** and **Try from latest**. The
+  latter only seeds the composer with the accepted source message; it never
+  auto-sends and therefore creates a new turn/idempotency key only when the
+  traveler explicitly sends it.
+- In a group, every member can review the current plan, but only the member
+  whose message initiated the rejected turn receives the composer-reseed
+  control. The shared outcome remains independent of private context.
+- Generic `retry` remains reserved for transport recovery. It must not be
+  wired to this state because it preserves the original turn identity and
+  stale context.
+
+Automated evidence for this slice: focused agent-loop, planner-fence,
+idempotent-replay, SSE-projection, message-mapping, and private/group recovery
+component tests; TypeScript typecheck. This is not device, real-provider, or
+two-device group certification. The remaining release gate is a real backend
+stale-fence scenario that verifies the canonical trip stays unchanged, the
+terminal outcome reaches a device, a reload preserves it, and the reseeded
+follow-up succeeds only as a fresh turn.
+
 ### B2. Preserve safety replacements
 
 Immediate replacement remains required when preliminary text could violate
