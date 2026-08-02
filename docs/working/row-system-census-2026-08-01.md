@@ -268,6 +268,95 @@ board would fix.
 5. ~~Places is the best first conversion target.~~ **Withdrawn 2026-08-01** — see
    §11.
 
+## 12. Step 3 + step 4 outcomes (2026-08-01)
+
+**Step 3 shipped:** `CommandRow` and `ChoiceRow` in `components/ui/rows/`,
+closing the last two of the eight declared registers. `ActionRow`/
+`SelectionRow` are now one-line re-exports; all 15 existing call sites
+untouched. Surfaced a real bones gap in the process — `RowCore` had no way to
+render a disabled-but-still-a-real-Pressable row (only "has onPress" vs "has
+no action at all"), which matters because `fireEvent.press` in tests walks
+the full ancestor chain for a handler and only stops at a responder that
+reports itself unavailable; a plain-View fallback removes that stop and lets
+the walk reach past the row to an outer instance's own prop. Added a
+`disabled` prop to `RowCore` to fix it, rather than routing around the test.
+
+**Step 4 (converting a real cluster) forced a revision of §6/Group D.** That
+grouping was a naming-based hypothesis from the census pass, never verified
+by reading. Having now read `BookingReceiptRow`, `CoverageItemRow`,
+`BalanceRow`, `ClaimRow`, `DiffRow`, `ExampleRow`, and the dev `Row` in
+`billing-sandbox.tsx`: **they are not one register, or even two.** Every one
+has a different shape (horizontal label:value; leading-dot+title+subtitle;
+multi-avatar transfer with a trailing action chip; an expandable card with
+its own action buttons; a before→after diff; an icon+text bullet; a
+label-above-value debug pair) and most have exactly one consumer. Forcing
+them onto a shared register would be premature abstraction, not
+consolidation — leaving them off-canon is the correct outcome here, not a
+gap. `CoverageItemRow` is the one exception worth a future look (it
+genuinely fits Ledger's leading-mark shape) but exposed that `RowCore` has no
+zero-padding density tier, needed before that specific conversion — not worth
+adding for a single caller yet.
+
+**What did convert:** `CandidateRow` in `InboundCandidatePicker.tsx` — no
+register wrapper, composed directly on `RowCore` (the row itself has no
+press; only its trailing `Button` is interactive, which is exactly the
+plain-View-with-trailing-content shape the bones already support). Off the
+ratchet's exception list.
+
+**Two more real conversions identified but deliberately not rushed this
+pass**, because each needs a small, genuine `CommandRow`/`ChoiceRow` API
+extension rather than a mechanical port:
+- `StyleOptionRow` (`components/atlas/StylePickerSheet.tsx`) — fits `ChoiceRow`
+  exactly (radio, selected, indicator) but has a compound title (name +
+  tagline on one line, example below) that `ChoiceRow`'s current
+  `title`/`subtitle` strings can't express without a children-override option.
+- `StartRow` (`components/trip-creation/TripCreationPrimitives.tsx`) — fits
+  `CommandRow` closely but needs a raised-plate leading treatment, not just a
+  bare icon; `CommandRow.leadingIcon` only takes an `IconName` today, not an
+  arbitrary node.
+
+Both are good next steps for whoever picks this back up — small, scoped API
+additions, not new registers.
+
+## 13. Correction: both did NOT need register API extensions (2026-08-01, cont'd)
+
+§12's assessment was wrong on inspection. Reading `StyleOptionRow` and
+`StartRow` in full (not just skimming for shape) showed **both are better
+converted directly onto `RowCore`, bypassing `ChoiceRow`/`CommandRow`
+entirely** — the "Page composes directly on Bones" path Row System.md already
+allows, same pattern as `CandidateRow`. Neither register needed touching.
+
+What actually needed fixing was the bones themselves, twice:
+
+- **No zero-padding density tier.** Both rows have padding that matches no
+  existing preset (`StyleOptionRow`: uniform `spacing.md`; `StartRow`:
+  `spacing.md`/`spacing.lg` split) because their chrome (an always-bordered
+  tile; a named "Canon 126" plate spec) is genuinely bespoke, not a register
+  candidate. Added `density: 'none'` → 0, so a caller's own `style` can be the
+  sole source of truth without literally overriding a nonzero computed value.
+  This is the same gap `CoverageItemRow` hit in §6/Group D — now fixed
+  properly instead of worked around.
+- **`pressScale`/`pressScaleTo` weren't forwarded.** `RowCore` already forwards
+  `haptic`/`activeOpacity` to the underlying `Tap` but silently dropped these
+  two. `StartRow` uses `pressScale` by name in its own "Canon 126" comment —
+  converting it would have silently removed a named, deliberate animation.
+  Now forwarded on both Tap paths.
+
+**One conversion caught a real, pre-existing, zero-tolerance project ratchet.**
+`StartRow`'s divider ran full-bleed under its leading plate in the shipped
+design. `ledgerRowContract.test.ts` forbids `dividerInset={0}` on any
+`RowCore`/`DateRailRow` consumer, codebase-wide, with **no allowlist at all** —
+and it was passing before this change, meaning no other consumer had ever
+needed the exception. Converting `StartRow` would have made it the first.
+Fixed by adopting the inset-to-leading-column divider instead — a small,
+real, visible geometry change (the divider now stops under the icon/plate
+rather than running edge-to-edge), consciously accepted as the canonical
+outcome rather than fought around.
+
+Both converted, both existing tests (`StylePickerSheet.test.tsx`,
+`TripCreationStages.test.tsx`) pass unmodified, both files off the ratchet's
+exception list.
+
 ## 11. The Places board overrides the Places recommendation
 
 `PLACES.html` / `places-system.jsx` in the Claude Design *Vesper* project
