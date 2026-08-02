@@ -81,6 +81,9 @@ accessibility, visual language, and action execution.
 The shared schema is `docs/contracts/chat-card-blueprint.v1.schema.json`. v1 is
 read-oriented only; booking, proposal, itinerary, and receipt mutations retain
 their specialized components and canonical action paths until separately proven.
+`body_mode` says whether the card replaces the durable text fallback (`card`) or
+accompanies it (`message`), so a compact research/status companion cannot hide a
+useful longer answer.
 
 ## 2. Current chat registry
 

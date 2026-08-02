@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -14,6 +15,19 @@ SCHEMA_DIR = ROOT / "docs/contracts/chat-attachments"
 
 def _ts_string_union(values: list[str]) -> str:
     return " | ".join(json.dumps(v) for v in values)
+
+
+def _format_python(source: str, *, filename: str) -> str:
+    """Keep generated Python stable after the backend's mandatory formatter."""
+
+    result = subprocess.run(
+        ["ruff", "format", "--stdin-filename", filename, "-"],
+        input=source,
+        text=True,
+        capture_output=True,
+        check=True,
+    )
+    return result.stdout
 
 
 def render_ts_types(data: dict) -> str:
@@ -63,7 +77,7 @@ def render_py_types(data: dict) -> str:
     no_arrival_rows = "\n".join(
         f"    {json.dumps(k)}: {json.dumps(v)}," for k, v in no_arrival.items()
     )
-    return (
+    source = (
         '"""Generated from docs/contracts/chat-card-types.json. Do not hand-edit."""\n\n'
         "from __future__ import annotations\n\n"
         "KNOWN_METADATA_CARD_TYPES: frozenset[str] = frozenset(\n"
@@ -85,6 +99,7 @@ def render_py_types(data: dict) -> str:
         "    if card_type not in KNOWN_METADATA_CARD_TYPES:\n"
         "        raise ValueError(f\"Unknown metadata.card_type: {card_type!r}\")\n"
     )
+    return _format_python(source, filename="chat_card_types_generated.py")
 
 
 def _zod_line(name: str, spec: dict, *, required: bool) -> str:
@@ -198,7 +213,9 @@ def render_schemas(pilot_names: list[str]) -> tuple[str, str]:
         "        raise KeyError(f\"No pilot schema named {schema_name!r}\")\n"
         "    model.model_validate(payload)\n"
     )
-    return "".join(ts_parts), "".join(py_parts)
+    return "".join(ts_parts), _format_python(
+        "".join(py_parts), filename="chat_attachment_schemas_generated.py"
+    )
 
 
 def main() -> int:
@@ -243,9 +260,15 @@ def main() -> int:
     ]
     if args.check:
         if stale:
+            labels = []
+            for path in stale:
+                try:
+                    labels.append(str(path.relative_to(ROOT)))
+                except ValueError:
+                    labels.append(str(path))
             print(
                 "Stale chat-card-types generated files: "
-                + ", ".join(str(p.relative_to(ROOT)) for p in stale)
+                + ", ".join(labels)
             )
             return 1
         return 0

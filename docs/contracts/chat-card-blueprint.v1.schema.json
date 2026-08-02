@@ -26,6 +26,7 @@
       "maxItems": 8,
       "items": {"$ref": "#/$defs/block"}
     },
+    "body_mode": {"enum": ["card", "message"], "default": "card", "description": "Whether this card replaces the durable text fallback or accompanies it."},
     "actions": {
       "type": "array",
       "maxItems": 3,
