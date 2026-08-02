@@ -34428,6 +34428,7 @@
         "enum": [
           "itinerary",
           "map",
+          "places",
           "discover",
           "chat",
           "background",
@@ -54181,6 +54182,18 @@
               }
             ]
           },
+          "action_receipt_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Action Receipt Id"
+          },
           "recovery": {
             "$ref": "#/components/schemas/PredictedRecovery"
           }
@@ -63334,6 +63347,28 @@
             "type": "string",
             "title": "Name"
           },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          },
           "category": {
             "anyOf": [
               {
@@ -63344,6 +63379,17 @@
               }
             ],
             "title": "Category"
+          },
+          "place_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Name"
           },
           "availability": {
             "$ref": "#/components/schemas/PlacesExperienceAvailability"
@@ -63397,6 +63443,41 @@
               }
             ],
             "title": "Recurring Pattern"
+          },
+          "price_min": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Min"
+          },
+          "price_max": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Max"
+          },
+          "price_currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Currency"
           },
           "saved": {
             "type": "boolean",
@@ -63521,6 +63602,17 @@
             "type": "string",
             "title": "Title"
           },
+          "preview": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Preview"
+          },
           "place_name": {
             "anyOf": [
               {
@@ -63542,6 +63634,18 @@
               }
             ],
             "title": "Place Slug"
+          },
+          "read_minutes": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Read Minutes"
           },
           "cover_photo": {
             "anyOf": [
@@ -64157,6 +64261,17 @@
             "type": "string",
             "minLength": 1,
             "title": "Title"
+          },
+          "preview": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Preview"
           },
           "place_name": {
             "anyOf": [

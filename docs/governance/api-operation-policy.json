@@ -8,6 +8,76 @@
     "review_by": null
   },
   "operations": {
+    "DELETE /api/pending-chat-turns/{pending_turn_id}": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "PENDING_CHAT_TURNS_ENABLED",
+      "lifecycle": "dark",
+      "owner": "conversations",
+      "reason": "Durable pending-turn transport is server-complete but remains dark until the mobile queue replaces its in-memory handoff.",
+      "removal_trigger": "Remove if the staged-turn transport is abandoned before mobile activation.",
+      "review_by": "2026-10-30"
+    },
+    "GET /api/pending-chat-turns": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "PENDING_CHAT_TURNS_ENABLED",
+      "lifecycle": "dark",
+      "owner": "conversations",
+      "reason": "Durable pending-turn transport is server-complete but remains dark until the mobile queue replaces its in-memory handoff.",
+      "removal_trigger": "Remove if the staged-turn transport is abandoned before mobile activation.",
+      "review_by": "2026-10-30"
+    },
+    "GET /api/pending-chat-turns/{pending_turn_id}": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "PENDING_CHAT_TURNS_ENABLED",
+      "lifecycle": "dark",
+      "owner": "conversations",
+      "reason": "Durable pending-turn transport is server-complete but remains dark until the mobile queue replaces its in-memory handoff.",
+      "removal_trigger": "Remove if the staged-turn transport is abandoned before mobile activation.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/pending-chat-turns": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "PENDING_CHAT_TURNS_ENABLED",
+      "lifecycle": "dark",
+      "owner": "conversations",
+      "reason": "Durable pending-turn transport is server-complete but remains dark until the mobile queue replaces its in-memory handoff.",
+      "removal_trigger": "Remove if the staged-turn transport is abandoned before mobile activation.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/pending-chat-turns/{pending_turn_id}/bind": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "PENDING_CHAT_TURNS_ENABLED",
+      "lifecycle": "dark",
+      "owner": "conversations",
+      "reason": "Durable pending-turn transport is server-complete but remains dark until the mobile queue replaces its in-memory handoff.",
+      "removal_trigger": "Remove if the staged-turn transport is abandoned before mobile activation.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/pending-chat-turns/{pending_turn_id}/reconcile": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "PENDING_CHAT_TURNS_ENABLED",
+      "lifecycle": "dark",
+      "owner": "conversations",
+      "reason": "Durable pending-turn transport is server-complete but remains dark until the mobile queue replaces its in-memory handoff.",
+      "removal_trigger": "Remove if the staged-turn transport is abandoned before mobile activation.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/pending-chat-turns/{pending_turn_id}/send": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "PENDING_CHAT_TURNS_ENABLED",
+      "lifecycle": "dark",
+      "owner": "conversations",
+      "reason": "Durable pending-turn transport is server-complete but remains dark until the mobile queue replaces its in-memory handoff.",
+      "removal_trigger": "Remove if the staged-turn transport is abandoned before mobile activation.",
+      "review_by": "2026-10-30"
+    },
     "POST /api/trips/{trip_id}/itinerary/days/{day_id}/add-venue-preview": {
       "audience": "app",
       "consumers": [

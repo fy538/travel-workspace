@@ -27293,6 +27293,7 @@
         "enum": [
           "itinerary",
           "map",
+          "places",
           "discover",
           "chat",
           "background",
@@ -45457,6 +45458,18 @@
                 "type": "null"
               }
             ]
+          },
+          "action_receipt_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Action Receipt Id"
           },
           "recovery": {
             "$ref": "#/components/schemas/PredictedRecovery"

@@ -40,6 +40,16 @@ flags:
     status: active
     notes: Default-on Places feed route; set false for an immediate rollback to the established Places projection.
 
+  - name: PENDING_CHAT_TURNS_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:pending_chat_turns_enabled
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    notes: Gates the durable pending-turn transport until the mobile outbox adopts it; default-off prevents an unproven alternate chat writer from being reachable.
+
   - name: PLACES_SECTIONS_FEED_ENABLED
     repo: travel-app
     location: constants/featureFlags.ts:25
