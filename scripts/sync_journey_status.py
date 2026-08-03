@@ -147,7 +147,7 @@ def build_block(personas: tuple[str, ...], by_id: dict[str, dict]) -> str:
         "| # | Persona | Trip | Status | Invariant |",
         "|---|---|---|---|---|",
     ]
-    ran = passed = 0  # ran = lived-certified (pass|fail); skips are not "ran"
+    ran = passed = 0  # ran = persona-replayed (pass|fail); skips are not "ran"
     skipped: list[str] = []
     unmapped: list[str] = []
     for jid in _ALL_JOURNEYS:
@@ -181,12 +181,12 @@ def build_block(personas: tuple[str, ...], by_id: dict[str, dict]) -> str:
     note_suffix = (" · " + " · ".join(notes)) if notes else ""
     return (
         f"{_BEGIN}\n"
-        "### Persona journey certification (auto-generated)\n\n"
+        "### Persona journey replay (auto-generated)\n\n"
         f"Source: `dogfood_journey_persona_cert.py --json` for {persona_list} "
         "(seeded world, `AI_MODE=replay`, token-free). Regenerate: "
         "`make dogfood-status-sync`. Drift guard: `make dogfood-status-sync CHECK=1`.\n\n"
         f"{table}\n\n"
-        f"**Persona-cert summary:** {passed} / {ran} lived-certified journeys pass{note_suffix}.\n"
+        f"**Persona-replay summary:** {passed} / {ran} seeded replay journeys pass{note_suffix}.\n"
         f"{_END}"
     )
 
@@ -261,7 +261,7 @@ def _branch_fidelity_cell(journey: dict, code: str, by_id: dict[str, dict]) -> s
 def build_matrix_block(by_id: dict[str, dict]) -> str:
     """Generated fidelity Matrix for the WHOLE journey set (from journeys.yaml):
     rows = every journey; columns = contract(FE)/logic(BE) derived from which
-    test files exist, + visual (Maestro dedicated flow) + lived from the
+    test files exist, + visual (Maestro dedicated flow) + seeded replay from the
     persona-cert results in ``by_id``. This replaces the old hand-typed Matrix —
     always accurate, covers J13–J19."""
     from check_journey_registry import _be_test_ids, _fe_mockwalk_ids
@@ -272,7 +272,7 @@ def build_matrix_block(by_id: dict[str, dict]) -> str:
     lived_glyph = {"pass": "✅", "fail": "🔴", "skip": "⤵️"}
 
     rows = [
-        "| # | Journey | Tier | Contract (FE) | Logic (BE) | Visual (Maestro) | Lived (persona-cert) |",
+        "| # | Journey | Tier | Contract (FE) | Logic (BE) | Visual (Maestro) | Persona replay (seeded) |",
         "|---|---|---|---|---|---|---|",
     ]
     for j in journeys:
