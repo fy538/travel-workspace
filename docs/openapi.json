@@ -80754,7 +80754,7 @@
           },
           "text": {
             "type": "string",
-            "maxLength": 44,
+            "maxLength": 50,
             "minLength": 1,
             "title": "Text"
           },
@@ -81683,15 +81683,15 @@
         "properties": {
           "floor": {
             "type": "string",
-            "maxLength": 44,
+            "maxLength": 50,
             "minLength": 1,
             "title": "Floor"
           },
           "max_chars": {
             "type": "integer",
-            "const": 44,
+            "const": 50,
             "title": "Max Chars",
-            "default": 44
+            "default": 50
           },
           "voice_token": {
             "anyOf": [
