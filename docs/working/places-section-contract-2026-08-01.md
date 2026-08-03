@@ -33,21 +33,42 @@ posture-driven sectioned feed, per the design board.
 
 | What | Path |
 |---|---|
-| The board (open in a browser) | `/Users/feihuyan/Downloads/vesper 405/project/PLACES.html` |
-| **The spec, as code comments** | `/Users/feihuyan/Downloads/vesper 405/project/places-system.jsx` |
-| Prior canon (superseded, read for contrast) | `.../vesper 405/project/PLACES - CORE.html` |
+| The board (open in a browser) | `.../project/PLACES.html` |
+| **The grammar, as code comments** | `.../project/places-system.jsx` |
+| The Candidate card | `.../project/places-candidate.jsx` |
+| `Prompt` · `NoticeRow` · `MemoryCard` | `.../project/places-blocks.jsx` |
+| §10 the foot bar | `.../project/places-foot.jsx` |
+| §11 density | `.../project/places-density.jsx` |
+| §12 the flush plate | `.../project/places-plate.jsx` |
+| §13 the object plate | `.../project/places-object.jsx` |
+| Prior canon (superseded, read for contrast) | `.../project/PLACES - CORE.html` |
 
-`places-system.jsx` is the real source of truth. It is one self-contained
-file — tokens, every component, and long comment blocks that state each rule
-and *why* it was chosen. Read the header comment and the `LayoutRules`
-function first; between them they contain the whole design grammar.
+> ⚠️ **This doc was written on 2026-08-01 against a snapshot that no longer
+> matches the board.** It described `places-system.jsx` as "one self-contained
+> file"; since then the components were extracted into the six sibling files
+> above, and four new sections (§10–§13) were added. This header and §2A are
+> current as of **2026-08-03**; the rest of the doc has not been re-read
+> line-by-line against the board. Treat §3–§7 as still-correct on the
+> *contract* and *sequence*, and the board as authoritative on *visual
+> treatment* wherever the two disagree.
 
-> ⚠️ `vesper 405` is a **snapshot taken 2026-08-01 16:39.** Before starting,
-> run `ls -dt ~/Downloads/vesper\ * | head -3`. If a higher-numbered folder
-> exists, use it — the founder re-exports on every design change.
+`places-system.jsx` still holds the tokens, the chrome, the screens and
+`LayoutRules` — read its header comment and `LayoutRules` first; between them
+they contain the whole design grammar. But it no longer defines the card
+components. **Load order matters** and is recorded in `PLACES.html`:
+`design-canvas → places-system → places-candidate → places-blocks →
+places-foot → places-density → places-plate → places-object`.
 
-Rules referenced throughout this doc as "rule NN" are the ten in
-`LayoutRules`. The four that constrain the contract:
+> ⚠️ The export folder is versioned. Before starting, run
+> `ls -dt ~/Downloads/vesper\ * | head -3` and use the highest-numbered folder
+> — the founder re-exports on every design change. **As of 2026-08-03 the
+> newest export predates §10–§13; if the folder you find does not contain
+> `places-plate.jsx`, ask the founder to re-export before planning any visual
+> work.**
+
+Rules referenced throughout this doc as "rule NN" are the **fourteen** in
+`LayoutRules` (this doc originally said ten; rules 11–14 were added after it
+was written). The ones that constrain the contract:
 
 - **Rule 03** — one conviction (full-bleed card) per screen.
 - **Rule 09** — an empty section does not render. No divider, no label, no
@@ -57,6 +78,14 @@ Rules referenced throughout this doc as "rule NN" are the ten in
   live only behind that door and in search.
 - **Rule 05** — mono is machine facts only (times, counts, distances); labels
   and names are sans caps.
+- **Rule 12 — never pad a slot.** A field with nothing grounded to say renders
+  *nothing*. Do not add a fallback string to fill a line. This is the rule most
+  likely to be violated by a well-meaning producer.
+- **Rule 14 — a size change invalidates every layout decided at the old size.**
+  §12 took 88pt of card width for the plate, which broke the three-element foot
+  bar §10 had designed at the old width. Two adopted rules were in conflict and
+  the conflict shipped. If you change a dimension, re-measure every layout
+  inside it.
 
 ---
 
@@ -80,6 +109,7 @@ All paths relative to `~/travel-workspace/`.
 | Card precedent | `backend/home/concierge_feed/models.py:689` — `ConciergeHomeCard` |
 | Cross-card arbitration | `backend/home/concierge_feed/ranking.py` (876 lines) |
 | Anniversary query (**already exists**) | `backend/core/db/atlas_anniversary.py:34` — `list_on_this_day(user_id, today, limit=3) -> list[OnThisDayRow]` |
+| Kicker precedent (**shipped 2026-08-03**) | `backend/places/gaps.py` — `_gap_kicker()`. Read its docstring before writing any other kicker producer; it is the worked example of rule 12. |
 
 `OnThisDayRow` = `source_type ("artifact"\|"trip") · source_id · title ·
 place_label · occurred_on · years_ago`.
@@ -156,6 +186,81 @@ is a separate task — do not do it as part of this work.
 | `been` is a missing field to build | **`been` was deliberately CUT.** `PlacesRelationshipTruth` docstring: *"Grounded five-marker contract after the unowned Been marker was cut."* Re-adding it is a product reversal — escalate, do not just build it. |
 | Search grouping needs `entity_type` + dossiers in the index | Also needs a new response type. `PlacesSearchResponse.items` is `list[PlacesRankedItem]` — homogeneous, and structurally cannot carry a dossier or an area. Not a group-by over the current payload. **Out of scope for this handoff.** |
 | Sites work sits on two unmerged branches | **Both halves are merged to `main`.** Backend: `ebe8b753 merge: land Places site collision guards`. Frontend: `615f7cdd` is an ancestor of `main`, and `entity_type` is on `PlacesRankedItem` in `utils/api/schema.gen.ts`. Nothing to merge. |
+
+---
+
+## 2A · What changed after this doc was written  *(added 2026-08-03)*
+
+Four sections were added to the board between 08-01 and 08-03. None of them
+changes the **section contract** in §3 or the **sequence** in §7. All four
+change what a card looks like, and two of them change what a producer must
+supply. Read this before implementing any card renderer.
+
+### §10 — the foot bar carries ONE fact, not three
+
+Exactly 1 of 16 Candidate cards on the original board carried attribution, and
+it was the lead card on the flagship screen — so the design got judged on the
+one card that had it. §10 defined a priority-ordered foot slot. **§12 then took
+88pt of width for the plate and the three-element foot no longer fits** (this
+is rule 14's worked example). The foot now renders **one fact plus the verb**,
+picked in priority order: social faces → trust → duration.
+
+Consequence for producers: do not send three foot fields expecting all three to
+render. Send them in priority order and expect one.
+
+### §11 — density is the box, not the slots
+
+The founder rendered the shipped card, said it looked empty, and after two
+fixes said it still did. Both fixes moved *text* inside a box whose proportions
+were never checked: **108pt tall with a 50pt image**, against a `PlaceRow` at
+36pt. The measured options were compact 73pt · image-led 207pt · reasoned
+133pt. This is why §12 exists — it fills area **without** a producer, a photo
+pipeline, or an invented sentence.
+
+### §12 — the flush plate, ADOPTED at 88  ⚠️ has a blocking prerequisite
+
+The illustration bleeds to the **top and left edges** instead of sitting inside
+the padding. **88pt is the adopted width — it is the last width at which
+nothing truncates, measured.** 112 clips the meta line by 9pt; 140 clips the
+title.
+
+Applied per component:
+
+| Component | Plate | Edges | Why |
+|---|---|---|---|
+| `Candidate` | 88×88 | all four | no full-width row below |
+| `NoticeRow` | 88×88 | all four | same |
+| `Prompt` | 88×88 | **top + left only** | the chips row needs the full 348pt; three chips need ~260 and a full-height plate would leave 235 |
+| `MemoryCard` | 88×88 | **top + left only** | the serif note needs full width |
+
+> 🔴 **BLOCKING: do not ship the plate to the app until the illustration
+> resolver is fixed.** The plate is now roughly a third of every card, and
+> today a gelateria and a museum resolve to the same picture. Shipping the
+> plate first makes that error three times more visible. This is **build step 0**
+> in §6 of the board — it is now the highest-leverage visual work on the
+> surface.
+
+### §12b — every Candidate is the same size
+
+`lead` no longer changes the card's dimensions. It changes **shadow and border
+only**. Size belongs to the ladder in §2 of the board (how many cards a section
+holds), not to an individual card's rank. A producer must not expect a `lead`
+card to be given more room.
+
+### §13 — the object plate *(the page a card opens into)*
+
+The only board section about a surface the feed *leads to* rather than the feed
+itself. Read off the app first: **the venue screen has no type branching** — a
+restaurant, a cafe and a museum already render the identical page, and
+`venue_type` produces one word in the meta line. The fracture is a level up:
+three shells carry one object (venue ~1413 ln full screen · experience ~846 ln
+`BottomSheet` promoted to a route by a 124-line wrapper · stay ~714 ln
+`ScreenScaffold` using none of the Take kit). Venue and experience already
+share `SpotTake`, `SpotPlanningRail` and `SpotFacts`; **only the wrapper
+diverges**, which is both the cheap part and the part you see first.
+
+This section is **out of scope for this handoff** — it is a separate call the
+founder has not closed. Do not fold it into the section-feed work.
 
 ---
 
@@ -297,6 +402,17 @@ class PlacesCard(BaseModel):
     title: str = Field(min_length=1)
     meta: str | None = None      # sans caption under the title
     kicker: str | None = None    # mono stamp — MACHINE FACTS ONLY (rule 05)
+                                 # Relationship state counts as a machine fact
+                                 # here: the board renders "SAVED FOR ROME",
+                                 # "SAVED 11 MONTHS AGO", "SAVED, NEVER BEEN"
+                                 # in mono. What rule 05 forbids is a *judgment*
+                                 # in this slot. See `_gap_kicker` (shipped).
+                                 # NOTE: the board's phrasings each carry a
+                                 # second fact (which trip, how long ago);
+                                 # `_gap_kicker`'s "YOU SAVED THIS" does not.
+                                 # Prefer the board's shape when the data is
+                                 # there — it earns the slot, rather than
+                                 # merely filling it.
     reason: str | None = None    # serif. Vesper's judgment. CONVICTION only.
     verb: PlacesCardVerb | None = None
 
@@ -731,3 +847,9 @@ gates.
 - **Reinstating `been`.** It was cut deliberately. Escalate if a section needs
   it — `HARVEST` can only produce `loved` until that is reversed.
 - Board §9 questions 01–06.
+- **Board §13, the object plate.** The page a card opens into. Three shells
+  carry one object and only the wrapper diverges; it is a real and cheap
+  consolidation, but it is a separate call the founder has not closed. See §2A.
+- **Shipping the §12 flush plate to the app.** Blocked on the illustration
+  resolver — see the 🔴 note in §2A. Building it in the design board is done;
+  putting it in front of users is not.
