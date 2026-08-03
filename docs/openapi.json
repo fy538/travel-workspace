@@ -29680,6 +29680,187 @@
         }
       }
     },
+    "/api/me/profile-phrases": {
+      "get": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "Get My Profile Phrases",
+        "description": "List every phrase \u2014 Vesper's and the user's own \u2014 for the 'Edit how\nyou appear' screen, each with its current on/off state.",
+        "operationId": "get_my_profile_phrases_api_me_profile_phrases_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfilePhrasesResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "Add My Profile Phrase",
+        "description": "Add a phrase of your own. It sits alongside Vesper's, not replacing\nthem (C3, 2026-08-03).",
+        "operationId": "add_my_profile_phrase_api_me_profile_phrases_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddProfilePhraseRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfilePhrase"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/me/profile-phrases/{phrase_id}": {
+      "patch": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "Set My Profile Phrase Visible",
+        "description": "Toggle one of your own phrases on or off. Only ever touches phrases\nyou wrote \u2014 Vesper's toggle through ``POST /api/me/dna-phrases/dispute``\n(``user_state: \"active\"`` to turn back on, ``\"disputed\"`` to hide).",
+        "operationId": "set_my_profile_phrase_visible_api_me_profile_phrases__phrase_id__patch",
+        "parameters": [
+          {
+            "name": "phrase_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Phrase Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetProfilePhraseVisibleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfilePhrase"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/users/{user_id}": {
       "patch": {
         "tags": [
@@ -34629,6 +34810,19 @@
           "decision_owner_id"
         ],
         "title": "AddPayload"
+      },
+      "AddProfilePhraseRequest": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Text"
+          }
+        },
+        "type": "object",
+        "required": [
+          "text"
+        ],
+        "title": "AddProfilePhraseRequest"
       },
       "AffiliateLinkResponse": {
         "properties": {
@@ -67287,6 +67481,59 @@
         "title": "ProfileFactDisputeRequest",
         "description": "Body for ``POST /api/me/profile-fact/dispute``.\n\nRecords a \"not quite\" reaction on a non-phrase profile fact \u2014 a\ntaste-dimension reading or an interest noun. Companion to\n``dispute_dna_phrase``; lives in the \"What I know about you\"\ntransparency surface that disputes multiple facets from one screen.\n\n``kind`` discriminates the observation copy. ``value`` is the\nuser-visible string the user just disputed (e.g. ``\"Planner\"`` or\n``\"seafood\"``). ``label`` is optional context \u2014 for taste dims it\ncarries the dimension name (``\"energy\"`` / ``\"planning\"`` / \u2026) so\nthe observation reads naturally; ignored for interests."
       },
+      "ProfilePhrase": {
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "vesper",
+              "user"
+            ],
+            "title": "Source"
+          },
+          "visible": {
+            "type": "boolean",
+            "title": "Visible"
+          }
+        },
+        "type": "object",
+        "required": [
+          "text",
+          "source",
+          "visible"
+        ],
+        "title": "ProfilePhrase",
+        "description": "One phrase on the self-edit 'Edit how you appear' screen \u2014 Vesper's\nor the user's own, each independently toggleable.\n\n``id`` is only set for user-authored phrases (``source == \"user\"``); a\nVesper phrase's stable identity is its own text, matching how\n``POST /api/me/dna-phrases/dispute`` already keys it \u2014 toggling a Vesper\nphrase's visibility goes through that endpoint, not this one."
+      },
+      "ProfilePhrasesResponse": {
+        "properties": {
+          "phrases": {
+            "items": {
+              "$ref": "#/components/schemas/ProfilePhrase"
+            },
+            "type": "array",
+            "title": "Phrases"
+          }
+        },
+        "type": "object",
+        "title": "ProfilePhrasesResponse"
+      },
       "PromoteToTripRequest": {
         "properties": {
           "force": {
@@ -71327,6 +71574,19 @@
         "type": "object",
         "title": "SetPhoneRequest",
         "description": "E.164 format (e.g. +14155551234). Pass null to clear."
+      },
+      "SetProfilePhraseVisibleRequest": {
+        "properties": {
+          "visible": {
+            "type": "boolean",
+            "title": "Visible"
+          }
+        },
+        "type": "object",
+        "required": [
+          "visible"
+        ],
+        "title": "SetProfilePhraseVisibleRequest"
       },
       "SettleBatchItem": {
         "properties": {
