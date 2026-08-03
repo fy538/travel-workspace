@@ -64828,7 +64828,7 @@
           "kind"
         ],
         "title": "PlacesScope",
-        "description": "The server-owned scope selection.\n\nCity scope accepts either a corpus place id or an explicit coordinate pair.\nThe latter is what makes an arbitrary, never-saved city reachable."
+        "description": "The server-owned scope selection.\n\nCity scope accepts either a corpus place id or an explicit coordinate pair.\nArea scope always names a corpus place, so it cannot pretend that an\narbitrary coordinate is a known neighbourhood."
       },
       "PlacesScopeKind": {
         "type": "string",
@@ -64838,6 +64838,7 @@
           "anywhere",
           "saved",
           "city",
+          "area",
           "trip"
         ],
         "title": "PlacesScopeKind"
