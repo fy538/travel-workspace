@@ -63039,6 +63039,18 @@
             "type": "string",
             "title": "Place Type"
           },
+          "preview": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Preview"
+          },
           "photo_url": {
             "anyOf": [
               {
