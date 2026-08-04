@@ -37,12 +37,12 @@ As an organizer, I want to create a trip and invite my friends, so that the grou
 
 1. Organizer starts a concrete trip from `/trip-begin`.
 2. App creates the trip and routes to the itinerary-first shell. Without dates,
-   it shows Trip Shape rather than fabricated days.
+   it shows Trip Setup rather than fabricated days.
 3. Organizer opens trip info or invite management.
 4. Organizer creates an invite link.
 5. Invitee opens `/invite/[token]`.
 6. If signed out, invitee signs in and returns to invite landing.
-7. Invitee accepts and lands in the correct trip's Itinerary/Trip Shape.
+7. Invitee accepts and lands in the correct trip's Itinerary/Trip Setup.
 8. Organizer and invitee both see membership reflected in the workspace.
 
 ## Expected Outcome

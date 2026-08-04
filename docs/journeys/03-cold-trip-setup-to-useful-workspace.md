@@ -15,7 +15,7 @@ As a traveler with a new trip draft, I want to fill in just enough structure for
 
 ## Why This Journey Matters
 
-- The itinerary-first shell must bridge an undated Trip Shape into a useful
+- The itinerary-first shell must bridge incomplete Trip Setup into a useful
   first dated draft without becoming a blank planner.
 - Bugs here often look like empty states, dead facets, or stale mode transitions.
 - Dogfooders may not notice if a seeded trip works but a fresh blank trip is incoherent.
@@ -39,7 +39,7 @@ As a traveler with a new trip draft, I want to fill in just enough structure for
 ## Canonical Steps
 
 1. Create or open a blank/draft trip.
-2. Confirm the itinerary shell renders Trip Shape setup for place, dates, known
+2. Confirm the itinerary shell renders Trip Setup for place, dates, known
    anchors, and people without fake dated days.
 3. Select or enter a place.
 4. Select date shape or dates.
@@ -52,7 +52,7 @@ As a traveler with a new trip draft, I want to fill in just enough structure for
 
 ## Expected Outcome
 
-- User-visible state: Trip Shape becomes a dated first draft; setup needs update
+- User-visible state: Trip Setup becomes a dated first draft; setup needs update
   honestly and specialized pre-trip surfaces become reachable without a Folio
   dashboard.
 - Data state: patched trip fields persist and hydrate after reload.
@@ -71,7 +71,7 @@ As a traveler with a new trip draft, I want to fill in just enough structure for
 ## AI Trace Prompt
 
 ```text
-Trace the cold Itinerary Trip Shape path. For each setup action, identify route
+Trace the cold Itinerary Trip Setup path. For each setup action, identify route
 params, hooks, canonical materialization behavior, organizer permissions, and
 lifecycle transition logic. Verify that Trip Details continuations preserve the
 exact itinerary return state. Report any display-only affordances that look
@@ -85,5 +85,5 @@ Mock-mode journey test:
 - create blank trip
 - patch place and dates
 - reload trip
-- verify Trip Shape becomes one dated first draft
+- verify Trip Setup becomes one dated first draft
 - verify setup links preserve `tripId`
