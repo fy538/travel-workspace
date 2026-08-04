@@ -21808,6 +21808,65 @@
         }
       }
     },
+    "/api/places/{place_id}/saved-count": {
+      "get": {
+        "tags": [
+          "places"
+        ],
+        "summary": "Get Place Saved Count",
+        "description": "Return the current user's explicit venue-save count within one place.\n\nPowers the venue object page's \"IN VESPER'S WORLD\" neighborhood row\n(places-object-page-data-gap doc, D4 row 1) \u2014 a real fact\n(\"N places saved\") in place of generic category copy. Auth-scoped\ndeliberately: unlike ``GET /api/venues/{id}``, this is inherently\nper-user, so it stays its own endpoint rather than widening a public,\nnoauth route.",
+        "operationId": "get_place_saved_count_api_places__place_id__saved_count_get",
+        "parameters": [
+          {
+            "name": "place_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Place Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlaceSavedCountResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/places/search": {
       "get": {
         "tags": [
@@ -32342,6 +32401,46 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/VenueExactPhotoResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/venues/{venue_id}/similar": {
+      "get": {
+        "summary": "Get Similar Venue",
+        "description": "The nearest verified venue of the same type, for the object page's\n\"More like this\" row (D4 row 2, places-object-page-data-gap doc).\n\nReturns an all-null body rather than 404 when the source venue exists\nbut nothing similar is within range \u2014 this is a \"nothing to show\"\nresult, not an error, and the FE row is omission-safe either way.\nStill 404s when venue_id itself doesn't exist, matching the base\nvenue endpoint's contract.",
+        "operationId": "get_similar_venue_api_venues__venue_id__similar_get",
+        "parameters": [
+          {
+            "name": "venue_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Venue Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SimilarVenueResponse"
                 }
               }
             }
@@ -50283,6 +50382,28 @@
             ],
             "title": "Neighborhood Name"
           },
+          "lat": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lat"
+          },
+          "lng": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lng"
+          },
           "price_min": {
             "anyOf": [
               {
@@ -63519,6 +63640,19 @@
         "title": "PlaceMapNeighborhood",
         "description": "A child neighborhood that has editorial content, as a drill-in map pin.\n\nOnly neighborhoods that (a) contributed at least one dossier to this feed\nand (b) carry a centroid are surfaced \u2014 a pin therefore always corresponds\nto browsable content, never a bare administrative boundary."
       },
+      "PlaceSavedCountResponse": {
+        "properties": {
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "count"
+        ],
+        "title": "PlaceSavedCountResponse"
+      },
       "PlacementBranchSemantics": {
         "type": "string",
         "enum": [
@@ -72511,6 +72645,51 @@
         "title": "ShareView",
         "description": "Owner-facing view of a share \u2014 what the app shows after publishing."
       },
+      "SimilarVenueResponse": {
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "distance_minutes": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Distance Minutes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "distance_minutes"
+        ],
+        "title": "SimilarVenueResponse",
+        "description": "D4 row 2 (places-object-page-data-gap doc) \u2014 the nearest verified\nvenue of the same type, or an honest empty result when none is within\nrange."
+      },
       "SituationAmbientNearby": {
         "properties": {
           "candidate": {
@@ -81402,6 +81581,17 @@
             ],
             "title": "Neighborhood Name"
           },
+          "neighborhood_place_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Neighborhood Place Id"
+          },
           "cuisine_type": {
             "anyOf": [
               {
@@ -81561,6 +81751,7 @@
           "venue_type",
           "city_name",
           "neighborhood_name",
+          "neighborhood_place_id",
           "cuisine_type",
           "price_range",
           "price_per_person_estimate",
