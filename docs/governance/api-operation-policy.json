@@ -8,6 +8,16 @@
     "review_by": null
   },
   "operations": {
+    "GET /api/trips/{trip_id}/itinerary/cross-day-suggestions": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "itinerary",
+      "reason": "Backend computation is integrated and tested, but no mobile surface has adopted the suggestions yet; it must gain a named journey or be removed.",
+      "removal_trigger": "Activate only with a named mobile consumer and a user-visible suggestion review flow; otherwise remove it.",
+      "review_by": "2026-09-03"
+    },
     "DELETE /api/pending-chat-turns/{pending_turn_id}": {
       "audience": "app",
       "consumers": [{"kind": "app_url", "name": "cancelPendingChatTurn", "source": "travel-app/utils/api/http.ts"}],

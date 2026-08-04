@@ -15272,6 +15272,66 @@
         }
       }
     },
+    "/api/inbound-audio": {
+      "post": {
+        "tags": [
+          "inbound"
+        ],
+        "summary": "Upload Inbound Audio",
+        "description": "Accept one audio recording from the OS share sheet, quota-gate it,\nstore it, and enqueue the same background pipeline every other\nsource_kind uses (``process_inbound_item``).\n\n``trip_id`` is optional \u2014 share-sheet audio may arrive with no trip\ncontext, same as any other unattributed share (FEATURE.md's trip_id\nnote; audio inherits it unchanged \u2014 see scoping doc blocker 6).\n\nValidation order is deliberate: content-type allowlist, then read +\nsize-cap the bytes, THEN the daily quota gate, and only then\nstorage \u2014 cheap rejections never cost a quota slot, but the quota\ngate still runs before the one genuinely expensive step (storage +,\ndownstream, transcription). D3: \"refusing an upload is strictly\nbetter than half-processing one.\"",
+        "operationId": "upload_inbound_audio_api_inbound_audio_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_inbound_audio_api_inbound_audio_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InboundItem"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/inbound-email/sendgrid/{webhook_secret}": {
       "post": {
         "tags": [
@@ -29137,6 +29197,66 @@
         }
       }
     },
+    "/api/trips/{trip_id}/itinerary/cross-day-suggestions": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Cross Day Suggestions",
+        "description": "Advisory suggestions to relocate a stop into a different day (W3.3\nstage 2 \u2014 ``backend.core.itinerary_objective.optimize_across_days``).\n\nRead-only and pull-based, deliberately not baked into the polled\nmap-state route: the search is real compute across the whole itinerary,\nand unlike segment geometry its correctness does not depend on being\nfresh on every poll. Empty ``moves`` is the common and correct answer \u2014\nit means the trip does not currently need a cross-day repair, not that\nthe check failed.\n\nThere is no apply action here (see ``CrossDaySuggestion``'s docstring for\nwhy); this powers a \"your days look about right\" / advisory-only display.",
+        "operationId": "get_cross_day_suggestions_api_trips__trip_id__itinerary_cross_day_suggestions_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CrossDaySuggestionsResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/notifications/leave-by": {
       "get": {
         "tags": [
@@ -29797,7 +29917,7 @@
           "users"
         ],
         "summary": "Set My Profile Phrase Visible",
-        "description": "Toggle one of your own phrases on or off. Only ever touches phrases\nyou wrote \u2014 Vesper's toggle through ``POST /api/me/dna-phrases/dispute``\n(``user_state: \"active\"`` to turn back on, ``\"disputed\"`` to hide).",
+        "description": "Toggle one of your own phrases on or off. Only ever touches phrases\nyou wrote \u2014 Vesper's toggle through ``POST /api/me/dna-phrases/dispute``\n(``user_state: \"active\"`` to turn back on, ``\"disputed\"`` to hide).\n\nTurning one on is capped like adding one, so the cap can't be walked\naround by adding to the limit, hiding one, adding another, then\nre-showing it.",
         "operationId": "set_my_profile_phrase_visible_api_me_profile_phrases__phrase_id__patch",
         "parameters": [
           {
@@ -39257,6 +39377,32 @@
         ],
         "title": "Body_upload_artifact_photo_permanence_api_atlas_artifacts__artifact_id__photos_upload_post"
       },
+      "Body_upload_inbound_audio_api_inbound_audio_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_upload_inbound_audio_api_inbound_audio_post"
+      },
       "Body_upload_receipt_api_trips__trip_id__receipts_upload_post": {
         "properties": {
           "file": {
@@ -42841,6 +42987,17 @@
             ],
             "title": "Projection Role"
           },
+          "fact_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fact Key"
+          },
           "zone": {
             "type": "string",
             "enum": [
@@ -42874,7 +43031,8 @@
               "group_room",
               "agent_work",
               "audio_tour",
-              "intake_offer"
+              "intake_offer",
+              "invite_seat"
             ],
             "title": "Kind"
           },
@@ -43153,6 +43311,59 @@
           "text"
         ],
         "title": "ConciergeHomeLeadNote"
+      },
+      "ConciergeHomeSeat": {
+        "properties": {
+          "initial": {
+            "type": "string",
+            "title": "Initial"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "initial",
+          "label"
+        ],
+        "title": "ConciergeHomeSeat",
+        "description": "One person already in the trip. Display values only."
+      },
+      "ConciergeHomeSeats": {
+        "properties": {
+          "members": {
+            "items": {
+              "$ref": "#/components/schemas/ConciergeHomeSeat"
+            },
+            "type": "array",
+            "title": "Members"
+          },
+          "invited": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Invited",
+            "default": 0
+          },
+          "empty": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Empty"
+          },
+          "planned_total": {
+            "type": "integer",
+            "exclusiveMinimum": 1.0,
+            "title": "Planned Total"
+          }
+        },
+        "type": "object",
+        "required": [
+          "empty",
+          "planned_total"
+        ],
+        "title": "ConciergeHomeSeats",
+        "description": "Group-described vs group-present, as facts rather than prose.\n\nCarried by ``invite_seat`` so Trips can render the gap as a picture. A\nfacepile cannot round up, which is exactly why it is more honest here than\na sentence \u2014 and it shows the one thing the crown's own header facepile\ncannot, because that renders members only."
       },
       "ConfirmCartRequest": {
         "properties": {
@@ -44394,6 +44605,61 @@
           "created_by"
         ],
         "title": "CreateTripRequest"
+      },
+      "CrossDaySuggestion": {
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "title": "Block Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "from_day_number": {
+            "type": "integer",
+            "title": "From Day Number"
+          },
+          "to_day_number": {
+            "type": "integer",
+            "title": "To Day Number"
+          },
+          "quality_gain": {
+            "type": "number",
+            "title": "Quality Gain"
+          }
+        },
+        "type": "object",
+        "required": [
+          "block_id",
+          "title",
+          "from_day_number",
+          "to_day_number",
+          "quality_gain"
+        ],
+        "title": "CrossDaySuggestion",
+        "description": "One advisory suggestion to relocate a stop to a different day.\n\nDeliberately read-only: there is no ``canonical_preview`` and no apply\naction. ``optimize_day`` (the atomic operation backing\n``OptimizeRouteResponse``) validates that every child operation targets\nthe SAME day, so a cross-day move cannot be expressed as one atomic\ncompound today. Applying this needs either per-block ``move`` operations\nthreaded through the confirmation flow, or a new trip-scoped operation\ntype \u2014 a real gateway change, not something to build blind inside a\nresponse model. See docs/working/Map and Itinerary Integration.md \u00a7W3.3."
+      },
+      "CrossDaySuggestionsResponse": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "title": "Trip Id"
+          },
+          "moves": {
+            "items": {
+              "$ref": "#/components/schemas/CrossDaySuggestion"
+            },
+            "type": "array",
+            "title": "Moves"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id"
+        ],
+        "title": "CrossDaySuggestionsResponse",
+        "description": "Response for GET /api/trips/{trip_id}/itinerary/cross-day-suggestions."
       },
       "CrossTripThreadPriorTripView": {
         "properties": {
@@ -57628,11 +57894,118 @@
         ],
         "title": "MapBounds"
       },
+      "MapCrossing": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "from_stop_id": {
+            "type": "string",
+            "title": "From Stop Id"
+          },
+          "to_stop_id": {
+            "type": "string",
+            "title": "To Stop Id"
+          },
+          "from_city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "From City"
+          },
+          "to_city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "To City"
+          },
+          "from_day_number": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "From Day Number"
+          },
+          "to_day_number": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "To Day Number"
+          },
+          "date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date"
+          },
+          "mode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mode"
+          },
+          "state": {
+            "type": "string",
+            "title": "State",
+            "description": "``unplanned``: the itinerary crosses cities with no realistic transport (missing / walk / unknown) \u2014 the same condition the concierge's intercity nudge fires on. ``planned``: a transport mode is declared. A ``booked`` state is deliberately NOT emitted yet; it needs confirmed booking data, which arrives with Transport Roadmap Layer 3 (currently flag-dark). See docs/working/Map and Itinerary Integration.md \u00a7F4/W2.1.",
+            "default": "unplanned"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "from_stop_id",
+          "to_stop_id"
+        ],
+        "title": "MapCrossing",
+        "description": "A city\u2192city move, drawn at the trip level rather than inside a day.\n\nCrossings live here and not on :class:`MapDay` because they genuinely do\nnot belong to either day: the usual shape is \"last block of day 3 \u2192 first\nblock of day 4\", and ``MapDay.segments`` is built from one day's blocks, so\nit structurally cannot represent the edge. Before this existed, the single\nlargest spatial event in a multi-city trip was the one thing the map could\nnot show \u2014 it rendered two disconnected clusters.\n\nEndpoints are stop ids (same convention as :class:`MapSegment`) so the\nclient resolves them exactly the way it resolves a segment's ends.\n\nNever carries geometry. We cannot route an intercity leg (see\n``MapSegment.source``), so the client draws an abstract arc \u2014 a deliberate\n\"this is a jump, not a path\" gesture rather than a fake polyline."
+      },
       "MapDay": {
         "properties": {
           "day_number": {
             "type": "integer",
             "title": "Day Number"
+          },
+          "day_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Day Id"
           },
           "date": {
             "anyOf": [
@@ -58081,6 +58454,12 @@
               }
             ],
             "title": "Risk"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source",
+            "description": "Provenance of ``geometry`` \u2014 what the drawn line is entitled to claim. ``routed``: real path geometry from a routing provider for a mode it genuinely supports. ``estimated``: no geometry and none is coming \u2014 the declared mode (transit family, ferry, flight) is one our provider cannot route, so any line drawn is the client's own connector, not our claim. ``unknown``: no geometry YET \u2014 lazy enrichment hasn't run or hasn't succeeded; may become ``routed`` on a later poll. Deliberately a separate channel from the client's ``soft`` styling, which encodes commitment softness (tentative/proposed stops) \u2014 an orthogonal fact. See docs/working/Map and Itinerary Integration.md \u00a7F3.",
+            "default": "unknown"
           }
         },
         "type": "object",
@@ -64986,6 +65365,17 @@
             },
             "type": "array",
             "title": "Cards"
+          },
+          "fact_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fact Key"
           }
         },
         "type": "object",
@@ -76964,6 +77354,14 @@
               }
             ]
           },
+          "crossings": {
+            "items": {
+              "$ref": "#/components/schemas/MapCrossing"
+            },
+            "type": "array",
+            "title": "Crossings",
+            "description": "City\u2192city moves across the whole trip, in itinerary order. Trip-level rather than per-day because a crossing's endpoints normally sit on different days. Empty for single-city trips (the route skips detection entirely when the trip has one destination)."
+          },
           "member_stays": {
             "items": {
               "$ref": "#/components/schemas/MapMemberStay"
@@ -78487,7 +78885,10 @@
             "anyOf": [
               {
                 "type": "string",
-                "const": "bookings"
+                "enum": [
+                  "bookings",
+                  "people"
+                ]
               },
               {
                 "type": "null"
@@ -78545,6 +78946,199 @@
         ],
         "title": "TripsHomePromotion"
       },
+      "TripsHomeReceiptChecklist": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "checklist",
+            "title": "Kind",
+            "default": "checklist"
+          },
+          "closed_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Closed Count"
+          },
+          "total_count": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Total Count"
+          },
+          "rows": {
+            "items": {
+              "$ref": "#/components/schemas/TripsHomeReceiptRow"
+            },
+            "type": "array",
+            "title": "Rows"
+          },
+          "overflow_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Overflow Count",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "closed_count",
+          "total_count",
+          "rows"
+        ],
+        "title": "TripsHomeReceiptChecklist",
+        "description": "Open loops, from ``structured.plan_readiness``.\n\nOnly the OPEN rows travel: a crown receipt reports what still needs a\nhuman, and listing the closed ones would turn a fact into a progress\nmeter \u2014 the growth-hack the stack model pre-registered as a falsifier.\nThe counts are carried so the client can say \"2 of 6 closed\" without\nreceiving six rows.\n\nThe closed polarity of this same shape is how ``agent_work`` will render\n(``DeckReadinessRow.resolved`` already exists); that lands with its own\nproducer, not here."
+      },
+      "TripsHomeReceiptCounterparty": {
+        "properties": {
+          "initial": {
+            "type": "string",
+            "title": "Initial"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "amount_label": {
+            "type": "string",
+            "title": "Amount Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "initial",
+          "label",
+          "amount_label"
+        ],
+        "title": "TripsHomeReceiptCounterparty",
+        "description": "One person in a settle receipt. Display values only, pre-formatted."
+      },
+      "TripsHomeReceiptLedger": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "ledger",
+            "title": "Kind",
+            "default": "ledger"
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "user_owes",
+              "user_is_owed"
+            ],
+            "title": "Direction"
+          },
+          "counterparties": {
+            "items": {
+              "$ref": "#/components/schemas/TripsHomeReceiptCounterparty"
+            },
+            "type": "array",
+            "title": "Counterparties"
+          },
+          "total_label": {
+            "type": "string",
+            "title": "Total Label"
+          },
+          "overflow_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Overflow Count",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "direction",
+          "counterparties",
+          "total_label"
+        ],
+        "title": "TripsHomeReceiptLedger",
+        "description": "Who owes whom, from ``structured.settle``.\n\nMoney is never re-derived client-side: ``amount_label`` and\n``total_label`` arrive already formatted by the settle producer, which is\nthe same discipline ``DeckStructured`` documents for its own faces."
+      },
+      "TripsHomeReceiptPeople": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "people",
+            "title": "Kind",
+            "default": "people"
+          },
+          "members": {
+            "items": {
+              "$ref": "#/components/schemas/TripsHomeReceiptSeat"
+            },
+            "type": "array",
+            "title": "Members"
+          },
+          "invited": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Invited"
+          },
+          "empty": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Empty"
+          },
+          "planned_total": {
+            "type": "integer",
+            "exclusiveMinimum": 1.0,
+            "title": "Planned Total"
+          },
+          "overflow_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Overflow Count",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "members",
+          "invited",
+          "empty",
+          "planned_total"
+        ],
+        "title": "TripsHomeReceiptPeople",
+        "description": "The group as a picture: who is in, who was asked, what is unfilled.\n\n\u26a0\ufe0f Only ever populated for ``invite_seat``. The crown's own header already\nrenders a facepile of members, so a people receipt that showed members and\nnothing else would duplicate the element directly above it. What earns the\nslot is ``empty`` \u2014 seats the trip was DESCRIBED for that nobody has been\noffered \u2014 which the header facepile structurally cannot show.\n\n``invited`` is a count rather than names: an invite often carries only a\ncontact hint, and an avatar bearing an invented initial reads as a\ndifferent person."
+      },
+      "TripsHomeReceiptRow": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "detail": {
+            "type": "string",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "required": [
+          "label",
+          "detail"
+        ],
+        "title": "TripsHomeReceiptRow",
+        "description": "One readiness loop. ``detail`` is the producer's own phrasing."
+      },
+      "TripsHomeReceiptSeat": {
+        "properties": {
+          "initial": {
+            "type": "string",
+            "title": "Initial"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "initial",
+          "label"
+        ],
+        "title": "TripsHomeReceiptSeat",
+        "description": "One person already in the trip."
+      },
       "TripsHomeStackCrown": {
         "properties": {
           "id": {
@@ -78576,7 +79170,8 @@
               "group_room",
               "agent_work",
               "audio_tour",
-              "intake_offer"
+              "intake_offer",
+              "invite_seat"
             ],
             "title": "Kind"
           },
@@ -78643,6 +79238,35 @@
                 "type": "null"
               }
             ]
+          },
+          "receipt": {
+            "anyOf": [
+              {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/TripsHomeReceiptLedger"
+                  },
+                  {
+                    "$ref": "#/components/schemas/TripsHomeReceiptChecklist"
+                  },
+                  {
+                    "$ref": "#/components/schemas/TripsHomeReceiptPeople"
+                  }
+                ],
+                "discriminator": {
+                  "propertyName": "kind",
+                  "mapping": {
+                    "checklist": "#/components/schemas/TripsHomeReceiptChecklist",
+                    "ledger": "#/components/schemas/TripsHomeReceiptLedger",
+                    "people": "#/components/schemas/TripsHomeReceiptPeople"
+                  }
+                }
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Receipt"
           }
         },
         "type": "object",
@@ -78689,7 +79313,8 @@
               "group_room",
               "agent_work",
               "audio_tour",
-              "intake_offer"
+              "intake_offer",
+              "invite_seat"
             ],
             "title": "Kind"
           },
