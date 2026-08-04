@@ -16030,9 +16030,27 @@
           "places"
         ],
         "summary": "Get Places Feed",
-        "description": "Return the posture-driven Places feed used by the default root.",
+        "description": "Return the automatic root or a temporary Places context feed.",
         "operationId": "get_places_feed_api_places_feed_get",
         "parameters": [
+          {
+            "name": "context_handle",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Context Handle"
+            }
+          },
           {
             "name": "authorization",
             "in": "header",
@@ -16213,7 +16231,7 @@
           "places"
         ],
         "summary": "Get Places Saved",
-        "description": "Return personal saves inside the persisted Places scope.",
+        "description": "Return personal saves inside an explicit Places context.",
         "operationId": "get_places_saved_api_places_saved_get",
         "parameters": [
           {
@@ -16238,6 +16256,24 @@
               "minimum": 0,
               "default": 0,
               "title": "Offset"
+            }
+          },
+          {
+            "name": "context_handle",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Context Handle"
             }
           },
           {
@@ -16287,7 +16323,7 @@
           "places"
         ],
         "summary": "Get Places Reading",
-        "description": "Return manually approved reading inside the persisted Places scope.",
+        "description": "Return manually approved reading inside an explicit Places context.",
         "operationId": "get_places_reading_api_places_reading_get",
         "parameters": [
           {
@@ -16312,6 +16348,24 @@
               "minimum": 0,
               "default": 0,
               "title": "Offset"
+            }
+          },
+          {
+            "name": "context_handle",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Context Handle"
             }
           },
           {
@@ -16454,6 +16508,24 @@
               "minimum": 1,
               "default": 20,
               "title": "Limit"
+            }
+          },
+          {
+            "name": "context_handle",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Context Handle"
             }
           },
           {
@@ -54935,6 +55007,16 @@
           },
           "anchor": {
             "$ref": "#/components/schemas/PlacesAnchor"
+          },
+          "ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesContextRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -54944,6 +55026,47 @@
           "anchor"
         ],
         "title": "PlacesContext"
+      },
+      "PlacesContextRef": {
+        "properties": {
+          "handle": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Handle"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/PlacesScopeKind"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Label"
+          },
+          "role": {
+            "$ref": "#/components/schemas/PlacesContextRole"
+          }
+        },
+        "type": "object",
+        "required": [
+          "handle",
+          "kind",
+          "label",
+          "role"
+        ],
+        "title": "PlacesContextRef",
+        "description": "A safe continuation identity for one server-resolved Places context.\n\n``handle`` is intentionally opaque to clients.  It lets search, saved,\nreading, maps, and reader returns stay attached to the context that\nsurfaced them without treating a raw coordinate or a durable user setting\nas navigation state."
+      },
+      "PlacesContextRole": {
+        "type": "string",
+        "enum": [
+          "primary",
+          "supporting",
+          "personal"
+        ],
+        "title": "PlacesContextRole",
+        "description": "Why an automatically resolved context is present on the Places root."
       },
       "PlacesExperienceAvailability": {
         "type": "string",
@@ -55960,6 +56083,19 @@
             "type": "string",
             "title": "Scope Label"
           },
+          "context_handle": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Context Handle"
+          },
           "items": {
             "items": {
               "$ref": "#/components/schemas/PlacesReadingItem"
@@ -56050,6 +56186,19 @@
           "scope_label": {
             "type": "string",
             "title": "Scope Label"
+          },
+          "context_handle": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Context Handle"
           },
           "items": {
             "items": {
@@ -56193,6 +56342,19 @@
           },
           "scope": {
             "$ref": "#/components/schemas/PlacesSearchScope"
+          },
+          "context_handle": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Context Handle"
           },
           "items": {
             "items": {
