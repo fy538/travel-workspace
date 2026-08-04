@@ -8,6 +8,36 @@
     "review_by": null
   },
   "operations": {
+    "GET /api/trips/{trip_id}/location-sharing": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "location-consent",
+      "reason": "The consent flow is currently mediated through the named concierge tool and home-feed receipt; no mobile screen calls this direct status endpoint yet.",
+      "removal_trigger": "Adopt it from an explicit mobile location-settings journey or remove the unused direct endpoint after traffic review.",
+      "review_by": "2026-09-03"
+    },
+    "PUT /api/trips/{trip_id}/location-sharing": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "location-consent",
+      "reason": "The consent flow is currently mediated through the named concierge tool and home-feed receipt; no mobile screen calls this direct update endpoint yet.",
+      "removal_trigger": "Adopt it from an explicit mobile location-settings journey or remove the unused direct endpoint after traffic review.",
+      "review_by": "2026-09-03"
+    },
+    "PUT /api/me/location": {
+      "audience": "app",
+      "consumers": [{"kind": "app_source", "name": "writeLocationBack", "source": "travel-app/utils/locationService.ts"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "location",
+      "reason": "The shared location service writes the caller's own fix back for ambient, map, and nearby readers without changing browse context.",
+      "removal_trigger": null,
+      "review_by": null
+    },
     "GET /api/trips/{trip_id}/itinerary/cross-day-suggestions": {
       "audience": "app",
       "consumers": [],

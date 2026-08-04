@@ -22076,6 +22076,126 @@
         }
       }
     },
+    "/api/trips/{trip_id}/map/nearby": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Trip Map Nearby Taste",
+        "description": "Map Layer 2: taste-ranked nearby places at a live viewport coordinate.\n\nDistinct from ``saved_nearby`` on ``/map-state`` (the user's own bookmarks,\nfixed near the destination centroid) — this is fresh discovery, evaluated\nagainst ``lat``/``lng`` as the map pans or as the trip goes live. Wires\n``discover_nearby_ranked`` (``backend/places/taste.py``) — proximity →\ntaste floor — onto the map for the first time; every existing caller\n(Places, Home) is chat/card-shaped and strips coordinates before its\npayload reaches an LLM. ``keep_coords=True`` here is the one deliberate\nexception, gated behind trip membership like every other map-state read.\nSee docs/working/location-intelligence-2026-08-04.md, C5.\n\n``lat``/``lng`` are bounded the same way ``LocationReading`` bounds them\nelsewhere — an unbounded float lets NaN/inf through Pydantic and both\ndefeats ``discover_nearby_ranked``'s cache (a fresh NaN object never\nre-hits) and reaches PostGIS unguarded. Rate-limited like\n``discover_map`` (same shape of risk — a token fanning out\ndistinct-coordinate queries) but tighter, since this route can fall back\nto a live provider against a global daily budget where ``discover_map``\ncannot.",
+        "operationId": "get_trip_map_nearby_taste_api_trips__trip_id__map_nearby_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "lat",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "maximum": 90.0,
+              "minimum": -90.0,
+              "title": "Lat"
+            }
+          },
+          {
+            "name": "lng",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "maximum": 180.0,
+              "minimum": -180.0,
+              "title": "Lng"
+            }
+          },
+          {
+            "name": "radius_m",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 2000,
+              "minimum": 50,
+              "default": 500,
+              "title": "Radius M"
+            }
+          },
+          {
+            "name": "entity_types",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "venue,site",
+              "title": "Entity Types"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 30,
+              "minimum": 1,
+              "default": 12,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MapTasteNearbyPlace"
+                  },
+                  "title": "Response Get Trip Map Nearby Taste Api Trips  Trip Id  Map Nearby Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/postjoin-payoff": {
       "get": {
         "tags": [
@@ -23775,6 +23895,76 @@
                 }
               }
             }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/me/location": {
+      "put": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "Put My Location",
+        "description": "Stamp the caller's own last_location. Capture only — no side effect\non places_scope, no conversation requirement, nothing else changes.\n\nSelf-scoped by construction: ``actor.id`` comes from the auth\ndependency, never from the request body, so there is no argument a\ncaller could pass to write another user's position.",
+        "operationId": "put_my_location_api_me_location_put",
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Source"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationReading"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Successful Response"
           },
           "422": {
             "description": "Validation Error",
@@ -35429,7 +35619,8 @@
               "agent_work",
               "audio_tour",
               "intake_offer",
-              "invite_seat"
+              "invite_seat",
+              "location_sharing"
             ],
             "title": "Kind"
           },
@@ -50022,6 +50213,66 @@
         },
         "type": "object",
         "title": "MapStopAction"
+      },
+      "MapTasteNearbyPlace": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "entity_type": {
+            "type": "string",
+            "title": "Entity Type"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "point": {
+            "$ref": "#/components/schemas/MapPoint"
+          },
+          "venue_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Venue Type"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source"
+          },
+          "taste_score": {
+            "type": "number",
+            "title": "Taste Score"
+          },
+          "taste_signal": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Taste Signal"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "entity_type",
+          "name",
+          "point",
+          "source",
+          "taste_score"
+        ],
+        "title": "MapTasteNearbyPlace",
+        "description": "A taste-ranked place near a live map viewport coordinate (Layer 2 discovery).\n\nDistinct from ``MapSavedPlace`` (a bookmark the user already made, fixed\nnear the destination centroid): this is ``discover_nearby_ranked`` run\nagainst the map's current ``lat``/``lng`` — new places the taste floor\nsurfaced, not places the user already knows about. See\n``backend/api/routes/trips.py::get_trip_map_nearby_taste`` and\ndocs/working/location-intelligence-2026-08-04.md, C5.\n\n``id`` is a corpus integer id (as a string) for ``source=\"corpus\"`` rows,\nor a namespaced provider id (e.g. ``\"google:abc123\"``) otherwise — venue\nand site ids collide, so ``entity_type`` must gate any lookup keyed off\n``id``. Never carries ``fsq_id``/``google_place_id``/``wikidata_id`` —\nonly ``discover_nearby``'s ``keep_coords=True`` path (coordinates, not\nprovider identity) is exposed here."
       },
       "MarkOccurrencePayload": {
         "properties": {
@@ -69249,6 +69500,125 @@
         "title": "TripsHomeDestination",
         "description": "A stable, app-routable target for one ranked Home item.\n\nThis is deliberately navigation data only.  It never describes a write,\nso proposal, itinerary, booking, and expense mutations remain owned by\ntheir existing domain surfaces and canonical writers."
       },
+      "TripsHomeReceiptCall": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "call",
+            "title": "Kind",
+            "default": "call"
+          },
+          "subject": {
+            "type": "string",
+            "title": "Subject"
+          },
+          "subject_meta": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subject Meta"
+          },
+          "chips": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Chips"
+          },
+          "stakes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stakes"
+          },
+          "deadline_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deadline Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "subject"
+        ],
+        "title": "TripsHomeReceiptCall",
+        "description": "A named subject in trouble, from ``focus.call``.\n\nDistinct from ``diff``: a diff proposes a change (state A → state B,\napprove/decline). A call reports a break — a real subject, real flags,\na deadline — and its own foot is work-or-dismiss (find an alternative /\nkeep it anyway), never the confirm pair. Chips are truncated, not\ndropped-with-a-count: a chip is a real constraint (a named person, a\nheadcount), and losing one silently is worse than a card that never\nclaims to be exhaustive about how many there are."
+      },
+      "TripsHomeReceiptCandidate": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "meta": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Meta"
+          },
+          "leading": {
+            "type": "boolean",
+            "title": "Leading",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "TripsHomeReceiptCandidate",
+        "description": "One option in a pick or compare. ``meta`` joins whatever pre-formatted\nparts the producer set (price tier, walk time, distinguishing attribute)\nwith the same \" · \" convention already used elsewhere in this module —\njoining pre-formatted strings, never re-deriving one."
+      },
+      "TripsHomeReceiptCandidates": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "candidates",
+            "title": "Kind",
+            "default": "candidates"
+          },
+          "candidates": {
+            "items": {
+              "$ref": "#/components/schemas/TripsHomeReceiptCandidate"
+            },
+            "type": "array",
+            "title": "Candidates"
+          },
+          "overflow_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Overflow Count",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "candidates"
+        ],
+        "title": "TripsHomeReceiptCandidates",
+        "description": "2+ options and which one (if any) leads, from ``focus.pick``/``compare``.\n\nScoped to ``focus.pick``/``focus.compare`` only (``DeckPickCandidate``\nsubstrate: ``saved_cluster``, ``stay_compare``). ``near_you`` also reaches\nthe crown through ``focus``, but ``focus.near_you`` is a structurally\ndifferent payload (``DeckNearYouPlace``: no ``leading`` flag, a raw\n``walk_min`` int rather than a pre-formatted string) — force-fitting it\nhere would mean inventing a leader that doesn't exist. It stays on\n``stamp`` until it earns its own shape."
+      },
       "TripsHomeReceiptChecklist": {
         "properties": {
           "kind": {
@@ -69288,7 +69658,42 @@
           "rows"
         ],
         "title": "TripsHomeReceiptChecklist",
-        "description": "Open loops, from ``structured.plan_readiness``.\n\nOnly the OPEN rows travel: a crown receipt reports what still needs a\nhuman, and listing the closed ones would turn a fact into a progress\nmeter — the growth-hack the stack model pre-registered as a falsifier.\nThe counts are carried so the client can say \"2 of 6 closed\" without\nreceiving six rows.\n\nThe closed polarity of this same shape is how ``agent_work`` will render\n(``DeckReadinessRow.resolved`` already exists); that lands with its own\nproducer, not here."
+        "description": "Open loops, from ``structured.plan_readiness``.\n\nOnly the OPEN rows travel: a crown receipt reports what still needs a\nhuman, and listing the closed ones would turn a fact into a progress\nmeter — the growth-hack the stack model pre-registered as a falsifier.\nThe counts are carried so the client can say \"2 of 6 closed\" without\nreceiving six rows.\n\nA closed polarity of this same shape (named ✓-rows, resolved=True) was\nproposed for ``agent_work`` — cheap in principle, since\n``DeckReadinessRow.resolved`` already exists. BLOCKED on inspection: the\nproactive-event payload agent_work reads has no human-readable subject\nname, only a category (``subject_type``) and inconsistently-formatted\nfree text (``reason``). Building a ``label`` by parsing that text would\nviolate grounded-or-absent. Revisit only once the write side of that\nledger carries a real name."
+      },
+      "TripsHomeReceiptConditions": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "conditions",
+            "title": "Kind",
+            "default": "conditions"
+          },
+          "condition": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Condition"
+          },
+          "temperature_c": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Temperature C"
+          }
+        },
+        "type": "object",
+        "title": "TripsHomeReceiptConditions",
+        "description": "A condition glyph + temperature, from the ``weather`` card's own\n``conditions`` fact (``ConciergeHomeConditions`` — same excluded-field\ncontract as ``seats``/``audio``: the card has no Deck face).\n\n``condition`` is free text, not a canonical enum — the producer itself\nalready substring-matches this same field against known weather terms\nrather than reading a controlled vocabulary, so this shape keeps that\nsame contract rather than inventing a stricter one. At least one of the\ntwo fields is always real: ``ConciergeHomeConditions`` itself requires\nit, mirroring the producer's own entry gate."
       },
       "TripsHomeReceiptCounterparty": {
         "properties": {
@@ -69313,6 +69718,42 @@
         ],
         "title": "TripsHomeReceiptCounterparty",
         "description": "One person in a settle receipt. Display values only, pre-formatted."
+      },
+      "TripsHomeReceiptDiff": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "diff",
+            "title": "Kind",
+            "default": "diff"
+          },
+          "before": {
+            "type": "string",
+            "title": "Before"
+          },
+          "after": {
+            "type": "string",
+            "title": "After"
+          },
+          "impact": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Impact"
+          }
+        },
+        "type": "object",
+        "required": [
+          "before",
+          "after"
+        ],
+        "title": "TripsHomeReceiptDiff",
+        "description": "Before → after, from ``structured.proposal_approval``.\n\nRequires BOTH ``before`` and ``after`` to be real: ``_proposal_change_states``\nonly produces a genuine pair when the proposal description contains a\n\"→\"/\"->\" delimiter. Without one, ``current_state`` is None and there is\nnothing to diff — grounded or absent, not a one-sided \"after\" with no\n\"before\" to contrast it against.\n\nA diff PROPOSES a change; it never reports a break (that's ``call``,\nbelow) and never itself resolves anything — the confirm pair\n(``TripsHomeConfirmAction``) sits in the foot beside this, not inside it."
       },
       "TripsHomeReceiptLedger": {
         "properties": {
@@ -69499,6 +69940,74 @@
         "title": "TripsHomeReceiptShapeTheme",
         "description": "One stored day theme from the trip's current itinerary."
       },
+      "TripsHomeReceiptSpine": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "spine",
+            "title": "Kind",
+            "default": "spine"
+          },
+          "days": {
+            "items": {
+              "$ref": "#/components/schemas/TripsHomeReceiptSpineDay"
+            },
+            "type": "array",
+            "title": "Days"
+          }
+        },
+        "type": "object",
+        "required": [
+          "days"
+        ],
+        "title": "TripsHomeReceiptSpine",
+        "description": "The day-by-day shape of a drafted plan, from ``focus.brief``.\n\nProjects ``DeckBriefSubstrate.days`` verbatim — no cap of its own.\n``build_brief_focus`` already bounds the list to at most\n``_BRIEF_DRAFTED_ROW_CAP`` (5) real days plus one collapsed open-range\nrow, so there is nothing left to overflow, and each row already carries\nthe only real-vs-open distinction that exists once open days are\ncollapsed (no per-day boolean array survives past that collapse).\n\nScoped to ``planning_brief`` only. ``build_brief_focus``'s one real call\nsite (``producers.py``) sits exclusively inside ``planning_brief``'s\nelse-branch, firing only when ``_readiness_card`` returns None — none of\n``live_trip``/``daily_brief``/``trip_thread`` ever construct\n``focus.brief``. ``imminent_trip`` already has its own receipt\n(``TripsHomeReceiptShape``, fetched separately in the API route layer);\na competing spine there would be silently starved, since that layer only\nfetches shape when ``crown.receipt`` is already None."
+      },
+      "TripsHomeReceiptSpineDay": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "is_open": {
+            "type": "boolean",
+            "title": "Is Open",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "label",
+          "title"
+        ],
+        "title": "TripsHomeReceiptSpineDay",
+        "description": "One bar in the day strip — a real drafted day, or a collapsed range\nof still-open days (``label`` then carries the range, e.g. \"5–7\")."
+      },
+      "TripsHomeReceiptWaveform": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "waveform",
+            "title": "Kind",
+            "default": "waveform"
+          },
+          "duration_ms": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Duration Ms"
+          }
+        },
+        "type": "object",
+        "required": [
+          "duration_ms"
+        ],
+        "title": "TripsHomeReceiptWaveform",
+        "description": "A cached narration render is ready to play, from the ``audio_tour``\ncard's own ``audio`` fact (``ConciergeHomeAudio``, carried on its own\nexcluded field — same rationale as ``seats`` above: the card has no\nDeck face, so there is nothing in ``structured``/``focus`` to project\nthis from).\n\nCarries only the one real number: the render's duration. The bar\npattern in the design mock (Focus/Room/Range board, ``FRRCiteAudio``)\nis decorative filler with no backing amplitude data — no per-bar\nwaveform was ever computed anywhere in this pipeline, so this shape\ndoes not invent one. The client owns the decorative rendering; the\nreceipt owns the fact that makes it true.\n\nPopulated far less often than not, by design: ``audio_tour`` fires on\nthe FIRST look at a narratable stop, almost always before any render\nhas happened yet — grounded or absent means most audio_tour cards fall\nto stamp, same as a cold ``candidates``/``call`` card with no substrate."
+      },
       "TripsHomeStackCrown": {
         "properties": {
           "id": {
@@ -69531,7 +70040,8 @@
               "agent_work",
               "audio_tour",
               "intake_offer",
-              "invite_seat"
+              "invite_seat",
+              "location_sharing"
             ],
             "title": "Kind"
           },
@@ -69614,15 +70124,39 @@
                   },
                   {
                     "$ref": "#/components/schemas/TripsHomeReceiptShape"
+                  },
+                  {
+                    "$ref": "#/components/schemas/TripsHomeReceiptDiff"
+                  },
+                  {
+                    "$ref": "#/components/schemas/TripsHomeReceiptCall"
+                  },
+                  {
+                    "$ref": "#/components/schemas/TripsHomeReceiptCandidates"
+                  },
+                  {
+                    "$ref": "#/components/schemas/TripsHomeReceiptSpine"
+                  },
+                  {
+                    "$ref": "#/components/schemas/TripsHomeReceiptWaveform"
+                  },
+                  {
+                    "$ref": "#/components/schemas/TripsHomeReceiptConditions"
                   }
                 ],
                 "discriminator": {
                   "propertyName": "kind",
                   "mapping": {
+                    "call": "#/components/schemas/TripsHomeReceiptCall",
+                    "candidates": "#/components/schemas/TripsHomeReceiptCandidates",
                     "checklist": "#/components/schemas/TripsHomeReceiptChecklist",
+                    "conditions": "#/components/schemas/TripsHomeReceiptConditions",
+                    "diff": "#/components/schemas/TripsHomeReceiptDiff",
                     "ledger": "#/components/schemas/TripsHomeReceiptLedger",
                     "people": "#/components/schemas/TripsHomeReceiptPeople",
-                    "shape": "#/components/schemas/TripsHomeReceiptShape"
+                    "shape": "#/components/schemas/TripsHomeReceiptShape",
+                    "spine": "#/components/schemas/TripsHomeReceiptSpine",
+                    "waveform": "#/components/schemas/TripsHomeReceiptWaveform"
                   }
                 }
               },
@@ -69678,7 +70212,8 @@
               "agent_work",
               "audio_tour",
               "intake_offer",
-              "invite_seat"
+              "invite_seat",
+              "location_sharing"
             ],
             "title": "Kind"
           },
