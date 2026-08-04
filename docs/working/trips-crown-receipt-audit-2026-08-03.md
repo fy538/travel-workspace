@@ -47,12 +47,23 @@ source_of_truth_for:
 >   route only fetches `shape` when `crown.receipt` is already `None`.
 >
 > `agent_work`'s closed-polarity `checklist` (Sequence step 3) turned out
-> to be **blocked**, not "the price of a boolean": the proactive-events
-> payload `agent_work` reads has no human-readable subject name, only a
-> categorical `subject_type` and inconsistently-formatted free-text
-> `reason`. Building a `label` would mean parsing that text, which
-> violates grounded-or-absent. Stays on `stamp` until the write side of
-> that ledger carries a real name.
+> to be **blocked, then unblocked same day (`5c5baedd`)** — not "the price
+> of a boolean" as originally scoped, but not permanently stuck either. The
+> proactive-events payload `agent_work` reads had no human-readable
+> subject name, only a categorical `subject_type` and inconsistently-
+> formatted free-text `reason`; building a `label` by parsing that text
+> would have violated grounded-or-absent. Fixed at the **write side**
+> instead: a new optional `ProactiveCandidate.subject_label` field, wired
+> through the two producers that actually have one real named subject in
+> scope (`_produce_venue_disruption`, `_produce_feasibility_catch` — both
+> also weren't setting `reason` before this fix, a second latent gap found
+> in passing). The other three registered producers (`events_tonight`,
+> `itinerary_health`, `pre_trip_drip`) have no single named subject and
+> stay unlabeled by design — found subjects from them still count toward
+> the card's totals, they just don't earn a named row. No new receipt kind
+> was added — `_agent_work_card` now projects into the EXISTING
+> `checklist` shape via a new `ConciergeHomeChecks` excluded field, closed
+> polarity, same geometry as the open-polarity branch.
 
 ## One paragraph
 
