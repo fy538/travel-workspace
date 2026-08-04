@@ -2,8 +2,9 @@
 Travel Agent/
 Travel App/
 Travel Agent copy/
-travel-agent/
-travel-app/
+travel-agent
+travel-app
+worktrees
 
 # macOS
 .DS_Store
