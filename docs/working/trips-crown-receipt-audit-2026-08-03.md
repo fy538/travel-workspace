@@ -16,6 +16,44 @@ source_of_truth_for:
 > Audit, 2026-08-03. Read against HEAD of both repos on the day it was written.
 > Every file:line below was verified directly, not taken from prior notes.
 
+> **🏁 SHIPPED 2026-08-04.** All ten shapes below landed in
+> `backend/home/trips_stack.py` (`TripsHomeReceipt`, a 10-variant
+> discriminated union): `ledger`, `checklist` (people/invite_seat came in
+> the same push, not listed in the original 8-shape table above — see
+> `project_crown_receipt_union` memory), `shape` (imminent_trip, built by a
+> concurrent session), `diff`, `call`, `candidates`, `spine`, `waveform`,
+> `conditions`. Commits `603cbd34`/`ea6b4392` (invite_seat + people),
+> `a48f5cfc` (diff/call/candidates), `d205859c` (spine), `ce2bd77d`
+> (waveform — needed a real producer change, not just a projection: see
+> correction below), `44a877e7` (conditions — the one other producer
+> change, per Sequence step 5).
+>
+> Two corrections against this doc's original mapping, found during build:
+> - **`candidates`** ships scoped to `focus.pick`/`focus.compare` only.
+>   `near_you` was **excluded** — `focus.near_you` is a structurally
+>   different payload (`DeckNearYouPlace`: no `leading` flag, a raw
+>   `walk_min` int, not `DeckPickCandidate`'s pre-formatted strings).
+>   Force-fitting it would mean inventing a leader that doesn't exist.
+>   `near_you` still falls to `stamp`.
+> - **`spine`** ships scoped to `planning_brief` only, not the four kinds
+>   the table below lists. `build_brief_focus`'s one real call site
+>   (`producers.py`) sits exclusively inside `planning_brief`'s
+>   else-branch, firing only when `_readiness_card` returns `None` — none
+>   of `live_trip`/`daily_brief`/`trip_thread` ever construct
+>   `focus.brief`. `imminent_trip` already has its own separate mechanism
+>   (`TripsHomeReceiptShape`, fetched via a dedicated API-route DB call,
+>   built by a concurrent session before this correction was found) — a
+>   competing spine there would have been silently starved, since that
+>   route only fetches `shape` when `crown.receipt` is already `None`.
+>
+> `agent_work`'s closed-polarity `checklist` (Sequence step 3) turned out
+> to be **blocked**, not "the price of a boolean": the proactive-events
+> payload `agent_work` reads has no human-readable subject name, only a
+> categorical `subject_type` and inconsistently-formatted free-text
+> `reason`. Building a `label` would mean parsing that text, which
+> violates grounded-or-absent. Stays on `stamp` until the write side of
+> that ledger carries a real name.
+
 ## One paragraph
 
 The crown can be occupied by **23 card kinds**. It renders **one** receipt:
