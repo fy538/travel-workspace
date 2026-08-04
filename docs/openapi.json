@@ -15272,6 +15272,66 @@
         }
       }
     },
+    "/api/inbound-audio": {
+      "post": {
+        "tags": [
+          "inbound"
+        ],
+        "summary": "Upload Inbound Audio",
+        "description": "Accept one audio recording from the OS share sheet, quota-gate it,\nstore it, and enqueue the same background pipeline every other\nsource_kind uses (``process_inbound_item``).\n\n``trip_id`` is optional \u2014 share-sheet audio may arrive with no trip\ncontext, same as any other unattributed share (FEATURE.md's trip_id\nnote; audio inherits it unchanged \u2014 see scoping doc blocker 6).\n\nValidation order is deliberate: content-type allowlist, then read +\nsize-cap the bytes, THEN the daily quota gate, and only then\nstorage \u2014 cheap rejections never cost a quota slot, but the quota\ngate still runs before the one genuinely expensive step (storage +,\ndownstream, transcription). D3: \"refusing an upload is strictly\nbetter than half-processing one.\"",
+        "operationId": "upload_inbound_audio_api_inbound_audio_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_inbound_audio_api_inbound_audio_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InboundItem"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/inbound-email/sendgrid/{webhook_secret}": {
       "post": {
         "tags": [
@@ -29797,7 +29857,7 @@
           "users"
         ],
         "summary": "Set My Profile Phrase Visible",
-        "description": "Toggle one of your own phrases on or off. Only ever touches phrases\nyou wrote \u2014 Vesper's toggle through ``POST /api/me/dna-phrases/dispute``\n(``user_state: \"active\"`` to turn back on, ``\"disputed\"`` to hide).",
+        "description": "Toggle one of your own phrases on or off. Only ever touches phrases\nyou wrote \u2014 Vesper's toggle through ``POST /api/me/dna-phrases/dispute``\n(``user_state: \"active\"`` to turn back on, ``\"disputed\"`` to hide).\n\nTurning one on is capped like adding one, so the cap can't be walked\naround by adding to the limit, hiding one, adding another, then\nre-showing it.",
         "operationId": "set_my_profile_phrase_visible_api_me_profile_phrases__phrase_id__patch",
         "parameters": [
           {
@@ -34754,7 +34814,64 @@
         ],
         "title": "AddMemberRequest"
       },
-      "AddPayload": {
+      "AddPayload-Input": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "add",
+            "title": "Kind",
+            "default": "add"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/OperationEntityRef"
+          },
+          "placement": {
+            "$ref": "#/components/schemas/OperationPlacement"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/ParticipationScope"
+          },
+          "planned_participant_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Planned Participant Ids"
+          },
+          "decision_owner_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Decision Owner Id"
+          },
+          "structural_role": {
+            "$ref": "#/components/schemas/StructuralRole",
+            "default": "ordinary"
+          },
+          "content": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/OperationBlockContent"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "entity",
+          "placement",
+          "scope",
+          "planned_participant_ids",
+          "decision_owner_id"
+        ],
+        "title": "AddPayload"
+      },
+      "AddPayload-Output": {
         "properties": {
           "kind": {
             "type": "string",
@@ -38363,7 +38480,7 @@
         "title": "AtlasUnpackedStat",
         "description": "One figure on the 'where you went' card \u2014 a value + its unit label."
       },
-      "AtomicChildOperation": {
+      "AtomicChildOperation-Input": {
         "properties": {
           "target": {
             "$ref": "#/components/schemas/OperationTarget"
@@ -38371,16 +38488,16 @@
           "payload": {
             "oneOf": [
               {
-                "$ref": "#/components/schemas/AddPayload"
+                "$ref": "#/components/schemas/AddPayload-Input"
               },
               {
-                "$ref": "#/components/schemas/MovePayload"
+                "$ref": "#/components/schemas/MovePayload-Input"
               },
               {
-                "$ref": "#/components/schemas/ReorderPayload"
+                "$ref": "#/components/schemas/ReorderPayload-Input"
               },
               {
-                "$ref": "#/components/schemas/ReplacePayload"
+                "$ref": "#/components/schemas/ReplacePayload-Input"
               },
               {
                 "$ref": "#/components/schemas/RemovePayload"
@@ -38399,12 +38516,111 @@
             "discriminator": {
               "propertyName": "kind",
               "mapping": {
-                "add": "#/components/schemas/AddPayload",
+                "add": "#/components/schemas/AddPayload-Input",
                 "mark_occurrence": "#/components/schemas/MarkOccurrencePayload",
-                "move": "#/components/schemas/MovePayload",
+                "move": "#/components/schemas/MovePayload-Input",
                 "remove": "#/components/schemas/RemovePayload",
-                "reorder": "#/components/schemas/ReorderPayload",
-                "replace": "#/components/schemas/ReplacePayload",
+                "reorder": "#/components/schemas/ReorderPayload-Input",
+                "replace": "#/components/schemas/ReplacePayload-Input",
+                "restore": "#/components/schemas/RestorePayload",
+                "set_attendance": "#/components/schemas/SetAttendancePayload"
+              }
+            }
+          },
+          "precondition": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ShapePrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/TripContextPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/DayPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/BranchPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/BlockPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/ProposalPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/ProviderPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/CompoundPrecondition"
+              }
+            ],
+            "title": "Precondition",
+            "discriminator": {
+              "propertyName": "kind",
+              "mapping": {
+                "block": "#/components/schemas/BlockPrecondition",
+                "branch": "#/components/schemas/BranchPrecondition",
+                "compound": "#/components/schemas/CompoundPrecondition",
+                "day": "#/components/schemas/DayPrecondition",
+                "proposal": "#/components/schemas/ProposalPrecondition",
+                "provider": "#/components/schemas/ProviderPrecondition",
+                "shape": "#/components/schemas/ShapePrecondition",
+                "trip_context": "#/components/schemas/TripContextPrecondition"
+              }
+            }
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "target",
+          "payload",
+          "precondition"
+        ],
+        "title": "AtomicChildOperation"
+      },
+      "AtomicChildOperation-Output": {
+        "properties": {
+          "target": {
+            "$ref": "#/components/schemas/OperationTarget"
+          },
+          "payload": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/AddPayload-Output"
+              },
+              {
+                "$ref": "#/components/schemas/MovePayload-Output"
+              },
+              {
+                "$ref": "#/components/schemas/ReorderPayload-Output"
+              },
+              {
+                "$ref": "#/components/schemas/ReplacePayload-Output"
+              },
+              {
+                "$ref": "#/components/schemas/RemovePayload"
+              },
+              {
+                "$ref": "#/components/schemas/RestorePayload"
+              },
+              {
+                "$ref": "#/components/schemas/SetAttendancePayload"
+              },
+              {
+                "$ref": "#/components/schemas/MarkOccurrencePayload"
+              }
+            ],
+            "title": "Payload",
+            "discriminator": {
+              "propertyName": "kind",
+              "mapping": {
+                "add": "#/components/schemas/AddPayload-Output",
+                "mark_occurrence": "#/components/schemas/MarkOccurrencePayload",
+                "move": "#/components/schemas/MovePayload-Output",
+                "remove": "#/components/schemas/RemovePayload",
+                "reorder": "#/components/schemas/ReorderPayload-Output",
+                "replace": "#/components/schemas/ReplacePayload-Output",
                 "restore": "#/components/schemas/RestorePayload",
                 "set_attendance": "#/components/schemas/SetAttendancePayload"
               }
@@ -39256,6 +39472,32 @@
           "source_photo_id"
         ],
         "title": "Body_upload_artifact_photo_permanence_api_atlas_artifacts__artifact_id__photos_upload_post"
+      },
+      "Body_upload_inbound_audio_api_inbound_audio_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_upload_inbound_audio_api_inbound_audio_post"
       },
       "Body_upload_receipt_api_trips__trip_id__receipts_upload_post": {
         "properties": {
@@ -42841,6 +43083,17 @@
             ],
             "title": "Projection Role"
           },
+          "fact_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fact Key"
+          },
           "zone": {
             "type": "string",
             "enum": [
@@ -42874,7 +43127,8 @@
               "group_room",
               "agent_work",
               "audio_tour",
-              "intake_offer"
+              "intake_offer",
+              "invite_seat"
             ],
             "title": "Kind"
           },
@@ -43153,6 +43407,59 @@
           "text"
         ],
         "title": "ConciergeHomeLeadNote"
+      },
+      "ConciergeHomeSeat": {
+        "properties": {
+          "initial": {
+            "type": "string",
+            "title": "Initial"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "initial",
+          "label"
+        ],
+        "title": "ConciergeHomeSeat",
+        "description": "One person already in the trip. Display values only."
+      },
+      "ConciergeHomeSeats": {
+        "properties": {
+          "members": {
+            "items": {
+              "$ref": "#/components/schemas/ConciergeHomeSeat"
+            },
+            "type": "array",
+            "title": "Members"
+          },
+          "invited": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Invited",
+            "default": 0
+          },
+          "empty": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Empty"
+          },
+          "planned_total": {
+            "type": "integer",
+            "exclusiveMinimum": 1.0,
+            "title": "Planned Total"
+          }
+        },
+        "type": "object",
+        "required": [
+          "empty",
+          "planned_total"
+        ],
+        "title": "ConciergeHomeSeats",
+        "description": "Group-described vs group-present, as facts rather than prose.\n\nCarried by ``invite_seat`` so Trips can render the gap as a picture. A\nfacepile cannot round up, which is exactly why it is more honest here than\na sentence \u2014 and it shows the one thing the crown's own header facepile\ncannot, because that renders members only."
       },
       "ConfirmCartRequest": {
         "properties": {
@@ -54275,7 +54582,7 @@
             "title": "Preview Hash"
           },
           "operation": {
-            "$ref": "#/components/schemas/NormalizedItineraryOperation"
+            "$ref": "#/components/schemas/NormalizedItineraryOperation-Input"
           },
           "idempotency_key": {
             "type": "string",
@@ -54347,7 +54654,7 @@
             "title": "Preview Hash"
           },
           "normalized_operation": {
-            "$ref": "#/components/schemas/NormalizedItineraryOperation"
+            "$ref": "#/components/schemas/NormalizedItineraryOperation-Output"
           },
           "capability": {
             "$ref": "#/components/schemas/ActionCapability"
@@ -54464,7 +54771,7 @@
             "title": "Trip Id"
           },
           "normalized_operation": {
-            "$ref": "#/components/schemas/NormalizedItineraryOperation"
+            "$ref": "#/components/schemas/NormalizedItineraryOperation-Output"
           },
           "state": {
             "type": "string",
@@ -54615,7 +54922,7 @@
             "title": "Client Request Id"
           },
           "normalized_operation": {
-            "$ref": "#/components/schemas/NormalizedItineraryOperation"
+            "$ref": "#/components/schemas/NormalizedItineraryOperation-Output"
           },
           "bound_precondition": {
             "oneOf": [
@@ -54737,7 +55044,7 @@
       "ItineraryOperationPreviewRequest": {
         "properties": {
           "operation": {
-            "$ref": "#/components/schemas/NormalizedItineraryOperation"
+            "$ref": "#/components/schemas/NormalizedItineraryOperation-Input"
           },
           "client_request_id": {
             "type": "string",
@@ -54785,7 +55092,7 @@
             "title": "Status"
           },
           "normalized_operation": {
-            "$ref": "#/components/schemas/NormalizedItineraryOperation"
+            "$ref": "#/components/schemas/NormalizedItineraryOperation-Output"
           },
           "creation_policy_snapshot": {
             "$ref": "#/components/schemas/ActionCapability"
@@ -54920,7 +55227,7 @@
       "ItineraryOperationProposalCreateRequest": {
         "properties": {
           "operation": {
-            "$ref": "#/components/schemas/NormalizedItineraryOperation"
+            "$ref": "#/components/schemas/NormalizedItineraryOperation-Input"
           },
           "idempotency_key": {
             "type": "string",
@@ -57628,6 +57935,102 @@
         ],
         "title": "MapBounds"
       },
+      "MapCrossing": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "from_stop_id": {
+            "type": "string",
+            "title": "From Stop Id"
+          },
+          "to_stop_id": {
+            "type": "string",
+            "title": "To Stop Id"
+          },
+          "from_city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "From City"
+          },
+          "to_city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "To City"
+          },
+          "from_day_number": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "From Day Number"
+          },
+          "to_day_number": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "To Day Number"
+          },
+          "date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date"
+          },
+          "mode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mode"
+          },
+          "state": {
+            "type": "string",
+            "title": "State",
+            "description": "``unplanned``: the itinerary crosses cities with no realistic transport (missing / walk / unknown) \u2014 the same condition the concierge's intercity nudge fires on. ``planned``: a transport mode is declared. A ``booked`` state is deliberately NOT emitted yet; it needs confirmed booking data, which arrives with Transport Roadmap Layer 3 (currently flag-dark). See docs/working/Map and Itinerary Integration.md \u00a7F4/W2.1.",
+            "default": "unplanned"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "from_stop_id",
+          "to_stop_id"
+        ],
+        "title": "MapCrossing",
+        "description": "A city\u2192city move, drawn at the trip level rather than inside a day.\n\nCrossings live here and not on :class:`MapDay` because they genuinely do\nnot belong to either day: the usual shape is \"last block of day 3 \u2192 first\nblock of day 4\", and ``MapDay.segments`` is built from one day's blocks, so\nit structurally cannot represent the edge. Before this existed, the single\nlargest spatial event in a multi-city trip was the one thing the map could\nnot show \u2014 it rendered two disconnected clusters.\n\nEndpoints are stop ids (same convention as :class:`MapSegment`) so the\nclient resolves them exactly the way it resolves a segment's ends.\n\nNever carries geometry. We cannot route an intercity leg (see\n``MapSegment.source``), so the client draws an abstract arc \u2014 a deliberate\n\"this is a jump, not a path\" gesture rather than a fake polyline."
+      },
       "MapDay": {
         "properties": {
           "day_number": {
@@ -58640,7 +59043,7 @@
         "title": "MaterializeShapeBlock",
         "description": "One stable block in the accepted first-draft shape snapshot."
       },
-      "MaterializeShapeDay": {
+      "MaterializeShapeDay-Input": {
         "properties": {
           "id": {
             "type": "string",
@@ -58751,7 +59154,118 @@
         "title": "MaterializeShapeDay",
         "description": "One dated day in the accepted first-draft shape snapshot."
       },
-      "MaterializeShapePayload": {
+      "MaterializeShapeDay-Output": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "day_number": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Day Number"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "title": "Date"
+          },
+          "sort_order": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Sort Order"
+          },
+          "day_theme": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Day Theme"
+          },
+          "energy_target": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Energy Target"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          },
+          "opener": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Opener"
+          },
+          "closing": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Closing"
+          },
+          "fidelity": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "skeleton",
+                  "detailed"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fidelity"
+          },
+          "blocks": {
+            "items": {
+              "$ref": "#/components/schemas/MaterializeShapeBlock"
+            },
+            "type": "array",
+            "title": "Blocks"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "day_number",
+          "date",
+          "sort_order"
+        ],
+        "title": "MaterializeShapeDay",
+        "description": "One dated day in the accepted first-draft shape snapshot."
+      },
+      "MaterializeShapePayload-Input": {
         "properties": {
           "kind": {
             "type": "string",
@@ -58810,7 +59324,90 @@
           },
           "days": {
             "items": {
-              "$ref": "#/components/schemas/MaterializeShapeDay"
+              "$ref": "#/components/schemas/MaterializeShapeDay-Input"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Days"
+          },
+          "provenance": {
+            "type": "string",
+            "const": "accepted_shape",
+            "title": "Provenance",
+            "default": "accepted_shape"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "destination",
+          "start_date",
+          "end_date",
+          "itinerary_id",
+          "days"
+        ],
+        "title": "MaterializeShapePayload"
+      },
+      "MaterializeShapePayload-Output": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "materialize_shape",
+            "title": "Kind",
+            "default": "materialize_shape"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/ShapeDestinationRef"
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date",
+            "title": "Start Date"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date",
+            "title": "End Date"
+          },
+          "itinerary_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Itinerary Id"
+          },
+          "workflow_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Workflow Id"
+          },
+          "markdown_content": {
+            "type": "string",
+            "title": "Markdown Content",
+            "default": ""
+          },
+          "planning_reasoning_trace": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Planning Reasoning Trace"
+          },
+          "days": {
+            "items": {
+              "$ref": "#/components/schemas/MaterializeShapeDay-Output"
             },
             "type": "array",
             "minItems": 1,
@@ -59618,7 +60215,26 @@
         "title": "MoveConflict",
         "description": "A block on the target day that overlaps the proposed time window."
       },
-      "MovePayload": {
+      "MovePayload-Input": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "move",
+            "title": "Kind",
+            "default": "move"
+          },
+          "placement": {
+            "$ref": "#/components/schemas/OperationPlacement"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "placement"
+        ],
+        "title": "MovePayload"
+      },
+      "MovePayload-Output": {
         "properties": {
           "kind": {
             "type": "string",
@@ -60245,7 +60861,7 @@
         "title": "NearbyResponse",
         "description": "Nearby venues/sites around a geographic point."
       },
-      "NormalizedItineraryOperation": {
+      "NormalizedItineraryOperation-Input": {
         "properties": {
           "id": {
             "type": "string",
@@ -60273,19 +60889,19 @@
           "payload": {
             "oneOf": [
               {
-                "$ref": "#/components/schemas/MaterializeShapePayload"
+                "$ref": "#/components/schemas/MaterializeShapePayload-Input"
               },
               {
-                "$ref": "#/components/schemas/AddPayload"
+                "$ref": "#/components/schemas/AddPayload-Input"
               },
               {
-                "$ref": "#/components/schemas/MovePayload"
+                "$ref": "#/components/schemas/MovePayload-Input"
               },
               {
-                "$ref": "#/components/schemas/ReorderPayload"
+                "$ref": "#/components/schemas/ReorderPayload-Input"
               },
               {
-                "$ref": "#/components/schemas/ReplacePayload"
+                "$ref": "#/components/schemas/ReplacePayload-Input"
               },
               {
                 "$ref": "#/components/schemas/RemovePayload"
@@ -60306,27 +60922,177 @@
                 "$ref": "#/components/schemas/DissolveParallelPlanPayload"
               },
               {
-                "$ref": "#/components/schemas/OptimizeDayPayload"
+                "$ref": "#/components/schemas/OptimizeDayPayload-Input"
               },
               {
-                "$ref": "#/components/schemas/ReplanPayload"
+                "$ref": "#/components/schemas/ReplanPayload-Input"
               }
             ],
             "title": "Payload",
             "discriminator": {
               "propertyName": "kind",
               "mapping": {
-                "add": "#/components/schemas/AddPayload",
+                "add": "#/components/schemas/AddPayload-Input",
                 "create_parallel_plan": "#/components/schemas/ParallelPlanPayload",
                 "dissolve_parallel_plan": "#/components/schemas/DissolveParallelPlanPayload",
                 "mark_occurrence": "#/components/schemas/MarkOccurrencePayload",
-                "materialize_shape": "#/components/schemas/MaterializeShapePayload",
-                "move": "#/components/schemas/MovePayload",
-                "optimize_day": "#/components/schemas/OptimizeDayPayload",
+                "materialize_shape": "#/components/schemas/MaterializeShapePayload-Input",
+                "move": "#/components/schemas/MovePayload-Input",
+                "optimize_day": "#/components/schemas/OptimizeDayPayload-Input",
                 "remove": "#/components/schemas/RemovePayload",
-                "reorder": "#/components/schemas/ReorderPayload",
-                "replace": "#/components/schemas/ReplacePayload",
-                "replan": "#/components/schemas/ReplanPayload",
+                "reorder": "#/components/schemas/ReorderPayload-Input",
+                "replace": "#/components/schemas/ReplacePayload-Input",
+                "replan": "#/components/schemas/ReplanPayload-Input",
+                "restore": "#/components/schemas/RestorePayload",
+                "set_attendance": "#/components/schemas/SetAttendancePayload",
+                "update_parallel_plan": "#/components/schemas/ParallelPlanPayload"
+              }
+            }
+          },
+          "attribution": {
+            "$ref": "#/components/schemas/ActionAttribution"
+          },
+          "precondition": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ShapePrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/TripContextPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/DayPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/BranchPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/BlockPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/ProposalPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/ProviderPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/CompoundPrecondition"
+              }
+            ],
+            "title": "Precondition",
+            "discriminator": {
+              "propertyName": "kind",
+              "mapping": {
+                "block": "#/components/schemas/BlockPrecondition",
+                "branch": "#/components/schemas/BranchPrecondition",
+                "compound": "#/components/schemas/CompoundPrecondition",
+                "day": "#/components/schemas/DayPrecondition",
+                "proposal": "#/components/schemas/ProposalPrecondition",
+                "provider": "#/components/schemas/ProviderPrecondition",
+                "shape": "#/components/schemas/ShapePrecondition",
+                "trip_context": "#/components/schemas/TripContextPrecondition"
+              }
+            }
+          },
+          "provider_intent": {
+            "$ref": "#/components/schemas/ProviderIntent",
+            "default": "plan_only"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "type",
+          "target",
+          "payload",
+          "attribution",
+          "precondition"
+        ],
+        "title": "NormalizedItineraryOperation"
+      },
+      "NormalizedItineraryOperation-Output": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "inverse_of_operation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Inverse Of Operation Id"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ItineraryOperationType"
+          },
+          "target": {
+            "$ref": "#/components/schemas/OperationTarget"
+          },
+          "payload": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/MaterializeShapePayload-Output"
+              },
+              {
+                "$ref": "#/components/schemas/AddPayload-Output"
+              },
+              {
+                "$ref": "#/components/schemas/MovePayload-Output"
+              },
+              {
+                "$ref": "#/components/schemas/ReorderPayload-Output"
+              },
+              {
+                "$ref": "#/components/schemas/ReplacePayload-Output"
+              },
+              {
+                "$ref": "#/components/schemas/RemovePayload"
+              },
+              {
+                "$ref": "#/components/schemas/RestorePayload"
+              },
+              {
+                "$ref": "#/components/schemas/SetAttendancePayload"
+              },
+              {
+                "$ref": "#/components/schemas/MarkOccurrencePayload"
+              },
+              {
+                "$ref": "#/components/schemas/ParallelPlanPayload"
+              },
+              {
+                "$ref": "#/components/schemas/DissolveParallelPlanPayload"
+              },
+              {
+                "$ref": "#/components/schemas/OptimizeDayPayload-Output"
+              },
+              {
+                "$ref": "#/components/schemas/ReplanPayload-Output"
+              }
+            ],
+            "title": "Payload",
+            "discriminator": {
+              "propertyName": "kind",
+              "mapping": {
+                "add": "#/components/schemas/AddPayload-Output",
+                "create_parallel_plan": "#/components/schemas/ParallelPlanPayload",
+                "dissolve_parallel_plan": "#/components/schemas/DissolveParallelPlanPayload",
+                "mark_occurrence": "#/components/schemas/MarkOccurrencePayload",
+                "materialize_shape": "#/components/schemas/MaterializeShapePayload-Output",
+                "move": "#/components/schemas/MovePayload-Output",
+                "optimize_day": "#/components/schemas/OptimizeDayPayload-Output",
+                "remove": "#/components/schemas/RemovePayload",
+                "reorder": "#/components/schemas/ReorderPayload-Output",
+                "replace": "#/components/schemas/ReplacePayload-Output",
+                "replan": "#/components/schemas/ReplanPayload-Output",
                 "restore": "#/components/schemas/RestorePayload",
                 "set_attendance": "#/components/schemas/SetAttendancePayload",
                 "update_parallel_plan": "#/components/schemas/ParallelPlanPayload"
@@ -61561,7 +62327,7 @@
         ],
         "title": "OperationTarget"
       },
-      "OptimizeDayPayload": {
+      "OptimizeDayPayload-Input": {
         "properties": {
           "kind": {
             "type": "string",
@@ -61576,7 +62342,37 @@
           },
           "child_operations": {
             "items": {
-              "$ref": "#/components/schemas/AtomicChildOperation"
+              "$ref": "#/components/schemas/AtomicChildOperation-Input"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Child Operations"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "day_id",
+          "child_operations"
+        ],
+        "title": "OptimizeDayPayload"
+      },
+      "OptimizeDayPayload-Output": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "optimize_day",
+            "title": "Kind",
+            "default": "optimize_day"
+          },
+          "day_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Day Id"
+          },
+          "child_operations": {
+            "items": {
+              "$ref": "#/components/schemas/AtomicChildOperation-Output"
             },
             "type": "array",
             "minItems": 1,
@@ -64986,6 +65782,17 @@
             },
             "type": "array",
             "title": "Cards"
+          },
+          "fact_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fact Key"
           }
         },
         "type": "object",
@@ -69878,7 +70685,7 @@
         "type": "object",
         "title": "RemovePayload"
       },
-      "ReorderPayload": {
+      "ReorderPayload-Input": {
         "properties": {
           "kind": {
             "type": "string",
@@ -69897,7 +70704,65 @@
         ],
         "title": "ReorderPayload"
       },
-      "ReplacePayload": {
+      "ReorderPayload-Output": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "reorder",
+            "title": "Kind",
+            "default": "reorder"
+          },
+          "placement": {
+            "$ref": "#/components/schemas/OperationPlacement"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "placement"
+        ],
+        "title": "ReorderPayload"
+      },
+      "ReplacePayload-Input": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "replace",
+            "title": "Kind",
+            "default": "replace"
+          },
+          "chosen_entity": {
+            "$ref": "#/components/schemas/OperationEntityRef"
+          },
+          "placement": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/OperationPlacement"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "content": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/OperationBlockContent"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "chosen_entity"
+        ],
+        "title": "ReplacePayload"
+      },
+      "ReplacePayload-Output": {
         "properties": {
           "kind": {
             "type": "string",
@@ -69955,7 +70820,7 @@
         "title": "ReplaceTripDestinationsRequest",
         "description": "Canonical writer input for a trip route (ordered, no duplicate places)."
       },
-      "ReplanPayload": {
+      "ReplanPayload-Input": {
         "properties": {
           "kind": {
             "type": "string",
@@ -69970,7 +70835,45 @@
           },
           "child_operations": {
             "items": {
-              "$ref": "#/components/schemas/AtomicChildOperation"
+              "$ref": "#/components/schemas/AtomicChildOperation-Input"
+            },
+            "type": "array",
+            "title": "Child Operations"
+          },
+          "context_change": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TripContextMutation"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "reason"
+        ],
+        "title": "ReplanPayload"
+      },
+      "ReplanPayload-Output": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "replan",
+            "title": "Kind",
+            "default": "replan"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Reason"
+          },
+          "child_operations": {
+            "items": {
+              "$ref": "#/components/schemas/AtomicChildOperation-Output"
             },
             "type": "array",
             "title": "Child Operations"
@@ -76964,6 +77867,14 @@
               }
             ]
           },
+          "crossings": {
+            "items": {
+              "$ref": "#/components/schemas/MapCrossing"
+            },
+            "type": "array",
+            "title": "Crossings",
+            "description": "City\u2192city moves across the whole trip, in itinerary order. Trip-level rather than per-day because a crossing's endpoints normally sit on different days. Empty for single-city trips (the route skips detection entirely when the trip has one destination)."
+          },
           "member_stays": {
             "items": {
               "$ref": "#/components/schemas/MapMemberStay"
@@ -78487,7 +79398,10 @@
             "anyOf": [
               {
                 "type": "string",
-                "const": "bookings"
+                "enum": [
+                  "bookings",
+                  "people"
+                ]
               },
               {
                 "type": "null"
@@ -78545,6 +79459,256 @@
         ],
         "title": "TripsHomePromotion"
       },
+      "TripsHomeReceiptChecklist": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "checklist",
+            "title": "Kind",
+            "default": "checklist"
+          },
+          "closed_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Closed Count"
+          },
+          "total_count": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Total Count"
+          },
+          "rows": {
+            "items": {
+              "$ref": "#/components/schemas/TripsHomeReceiptRow"
+            },
+            "type": "array",
+            "title": "Rows"
+          },
+          "overflow_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Overflow Count",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "closed_count",
+          "total_count",
+          "rows"
+        ],
+        "title": "TripsHomeReceiptChecklist",
+        "description": "Open loops, from ``structured.plan_readiness``.\n\nOnly the OPEN rows travel: a crown receipt reports what still needs a\nhuman, and listing the closed ones would turn a fact into a progress\nmeter \u2014 the growth-hack the stack model pre-registered as a falsifier.\nThe counts are carried so the client can say \"2 of 6 closed\" without\nreceiving six rows.\n\nThe closed polarity of this same shape is how ``agent_work`` will render\n(``DeckReadinessRow.resolved`` already exists); that lands with its own\nproducer, not here."
+      },
+      "TripsHomeReceiptCounterparty": {
+        "properties": {
+          "initial": {
+            "type": "string",
+            "title": "Initial"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "amount_label": {
+            "type": "string",
+            "title": "Amount Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "initial",
+          "label",
+          "amount_label"
+        ],
+        "title": "TripsHomeReceiptCounterparty",
+        "description": "One person in a settle receipt. Display values only, pre-formatted."
+      },
+      "TripsHomeReceiptLedger": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "ledger",
+            "title": "Kind",
+            "default": "ledger"
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "user_owes",
+              "user_is_owed"
+            ],
+            "title": "Direction"
+          },
+          "counterparties": {
+            "items": {
+              "$ref": "#/components/schemas/TripsHomeReceiptCounterparty"
+            },
+            "type": "array",
+            "title": "Counterparties"
+          },
+          "total_label": {
+            "type": "string",
+            "title": "Total Label"
+          },
+          "overflow_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Overflow Count",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "direction",
+          "counterparties",
+          "total_label"
+        ],
+        "title": "TripsHomeReceiptLedger",
+        "description": "Who owes whom, from ``structured.settle``.\n\nMoney is never re-derived client-side: ``amount_label`` and\n``total_label`` arrive already formatted by the settle producer, which is\nthe same discipline ``DeckStructured`` documents for its own faces."
+      },
+      "TripsHomeReceiptPeople": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "people",
+            "title": "Kind",
+            "default": "people"
+          },
+          "members": {
+            "items": {
+              "$ref": "#/components/schemas/TripsHomeReceiptSeat"
+            },
+            "type": "array",
+            "title": "Members"
+          },
+          "invited": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Invited"
+          },
+          "empty": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Empty"
+          },
+          "planned_total": {
+            "type": "integer",
+            "exclusiveMinimum": 1.0,
+            "title": "Planned Total"
+          },
+          "overflow_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Overflow Count",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "members",
+          "invited",
+          "empty",
+          "planned_total"
+        ],
+        "title": "TripsHomeReceiptPeople",
+        "description": "The group as a picture: who is in, who was asked, what is unfilled.\n\n\u26a0\ufe0f Only ever populated for ``invite_seat``. The crown's own header already\nrenders a facepile of members, so a people receipt that showed members and\nnothing else would duplicate the element directly above it. What earns the\nslot is ``empty`` \u2014 seats the trip was DESCRIBED for that nobody has been\noffered \u2014 which the header facepile structurally cannot show.\n\n``invited`` is a count rather than names: an invite often carries only a\ncontact hint, and an avatar bearing an invented initial reads as a\ndifferent person."
+      },
+      "TripsHomeReceiptRow": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "detail": {
+            "type": "string",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "required": [
+          "label",
+          "detail"
+        ],
+        "title": "TripsHomeReceiptRow",
+        "description": "One readiness loop. ``detail`` is the producer's own phrasing."
+      },
+      "TripsHomeReceiptSeat": {
+        "properties": {
+          "initial": {
+            "type": "string",
+            "title": "Initial"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "initial",
+          "label"
+        ],
+        "title": "TripsHomeReceiptSeat",
+        "description": "One person already in the trip."
+      },
+      "TripsHomeReceiptShape": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "shape",
+            "title": "Kind",
+            "default": "shape"
+          },
+          "day_count": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Day Count"
+          },
+          "moment_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Moment Count"
+          },
+          "themes": {
+            "items": {
+              "$ref": "#/components/schemas/TripsHomeReceiptShapeTheme"
+            },
+            "type": "array",
+            "maxItems": 2,
+            "title": "Themes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "day_count",
+          "moment_count"
+        ],
+        "title": "TripsHomeReceiptShape",
+        "description": "A compact proof that an upcoming trip already has a real plan shape."
+      },
+      "TripsHomeReceiptShapeTheme": {
+        "properties": {
+          "day_number": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Day Number"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "day_number",
+          "label"
+        ],
+        "title": "TripsHomeReceiptShapeTheme",
+        "description": "One stored day theme from the trip's current itinerary."
+      },
       "TripsHomeStackCrown": {
         "properties": {
           "id": {
@@ -78576,7 +79740,8 @@
               "group_room",
               "agent_work",
               "audio_tour",
-              "intake_offer"
+              "intake_offer",
+              "invite_seat"
             ],
             "title": "Kind"
           },
@@ -78643,6 +79808,39 @@
                 "type": "null"
               }
             ]
+          },
+          "receipt": {
+            "anyOf": [
+              {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/TripsHomeReceiptLedger"
+                  },
+                  {
+                    "$ref": "#/components/schemas/TripsHomeReceiptChecklist"
+                  },
+                  {
+                    "$ref": "#/components/schemas/TripsHomeReceiptPeople"
+                  },
+                  {
+                    "$ref": "#/components/schemas/TripsHomeReceiptShape"
+                  }
+                ],
+                "discriminator": {
+                  "propertyName": "kind",
+                  "mapping": {
+                    "checklist": "#/components/schemas/TripsHomeReceiptChecklist",
+                    "ledger": "#/components/schemas/TripsHomeReceiptLedger",
+                    "people": "#/components/schemas/TripsHomeReceiptPeople",
+                    "shape": "#/components/schemas/TripsHomeReceiptShape"
+                  }
+                }
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Receipt"
           }
         },
         "type": "object",
@@ -78689,7 +79887,8 @@
               "group_room",
               "agent_work",
               "audio_tour",
-              "intake_offer"
+              "intake_offer",
+              "invite_seat"
             ],
             "title": "Kind"
           },
