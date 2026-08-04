@@ -18,11 +18,11 @@ from committed registries; follow the linked authority for evidence and detail.
 <!-- Run `make docs-status-sync` to update this block. -->
 | Signal | Current value | Authority |
 |---|---:|---|
-| API contract | 411 paths / 455 operations / 894 schemas | [`docs/openapi.json`](../openapi.json) |
+| API contract | 429 paths / 476 operations / 950 schemas | [`docs/openapi.json`](../openapi.json) |
 | Canonical journeys | 28 total / 12 golden path / 7 holistic extension | [`journeys.yaml`](../journeys/journeys.yaml) |
-| Feature flags | 42 registered / 41 active / 1 resolved | [`registry.yaml`](../flags/registry.yaml) |
+| Feature flags | 50 registered / 49 active / 1 resolved | [`registry.yaml`](../flags/registry.yaml) |
 | System charters | 20 Markdown documents | [`systems/`](../systems/) |
-| Documentation inventory | 281 files classified | [`inventory.yaml`](../governance/inventory.yaml) |
+| Documentation inventory | 297 files classified | [`inventory.yaml`](../governance/inventory.yaml) |
 <!-- END auto:current-state -->
 
 For readiness, use [Journey Status](../journeys/STATUS.md). For the bounded first

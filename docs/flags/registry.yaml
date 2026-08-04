@@ -30,6 +30,56 @@
 
 flags:
   # ── travel-agent (backend) ──────────────────────────────────────────────
+  - name: PLACES_EXPOSURE_ROTATION_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:85
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    notes: Enables bounded section rotation while the Places exposure policy is evaluated.
+
+  - name: CONCIERGE_EXPOSURE_FATIGUE_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:96
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    notes: Enables the bounded concierge exposure-fatigue penalty during ranking evaluation.
+
+  - name: CROSS_SURFACE_ECHO_DEFERRAL_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:109
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    notes: Defers repeated cross-surface content while its presentation policy is evaluated.
+
+  - name: PLANNING_CONTEXT_SNAPSHOT_PARITY_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:283
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    notes: Runs snapshot parity checks before the planning-context read path changes.
+
+  - name: PLANNING_CONTEXT_SNAPSHOT_CUTOVER_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:294
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    notes: Gates the planning-context snapshot read-path cutover after parity validation.
+
   - name: PLACES_SECTIONS_ENABLED
     repo: travel-agent
     location: backend/core/feature_flags.py:131

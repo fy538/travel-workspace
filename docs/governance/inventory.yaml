@@ -65,6 +65,7 @@ rules:
     disposition: keep_authoritative
     rationale: Active itinerary-redesign implementation and operational evidence; expires with the current rollout program.
 
+
 overrides:
   docs/README.md:
     disposition: keep_authoritative
@@ -338,3 +339,59 @@ overrides:
   docs/working/vesper-home-world-row-presentation-2026-08-01.md:
     disposition: keep_reference
     rationale: Active presentation spec and field-gap record for Vesper Home's world row; promote into the vesper-home surface contract once built and device-verified, or archive at expiry.
+
+  docs/working/card-arrival-device-cert-2026-07-30.md:
+    disposition: keep_reference
+    rationale: Device-certification evidence retained until the release validation gate closes.
+
+  docs/working/cold-start-and-everyday-places-experience-mvp-2026-07-31.md:
+    disposition: keep_reference
+    rationale: Active MVP framing for Places cold-start and everyday-use decisions.
+
+  docs/working/cold-start-loop-implementation-2026-07-31.md:
+    disposition: keep_reference
+    rationale: Supporting implementation record for the active cold-start loop.
+
+  docs/working/cross-surface-ranking-coherence-2026-08-03.md:
+    disposition: keep_reference
+    rationale: Active evidence on keeping ranking presentation coherent across product surfaces.
+
+  docs/working/ledger-section-rhythm-pending-2026-08-01.md:
+    disposition: keep_reference
+    rationale: Pending visual rhythm exploration retained as supporting design evidence.
+
+  docs/working/places-sites-reachability-2026-07-31.md:
+    disposition: keep_reference
+    rationale: Supporting reachability investigation for Places source and site connections.
+
+  docs/working/places-truth-layer-2026-08-01.md:
+    disposition: keep_reference
+    rationale: Active Places truth-layer analysis supporting contract implementation.
+
+  docs/working/places-uncarded-implementation-2026-08-03.md:
+    disposition: keep_reference
+    rationale: Supporting record for the uncarded Places implementation pass.
+
+  docs/working/post-trip-exit-artifact-2026-08-03.md:
+    disposition: keep_reference
+    rationale: Active product exploration for the post-trip exit artifact.
+
+  docs/working/pre-trip-commission-flow-2026-08-03.md:
+    disposition: keep_reference
+    rationale: Active exploration of the pre-trip commission flow.
+
+  docs/working/row-system-census-2026-08-01.md:
+    disposition: keep_reference
+    rationale: Supporting census for the row-system consolidation program.
+
+  docs/working/trips-crown-receipt-audit-2026-08-03.md:
+    disposition: keep_reference
+    rationale: Completed Trips crown receipt audit retained as living supporting evidence.
+
+  docs/working/vesper-ai-system-improvement-plan-2026-08-01.md:
+    disposition: keep_reference
+    rationale: Active Vesper system improvement plan retained as implementation support.
+
+  docs/working/vesper-home-full-rotation-completion-plan-2026-08-01.md:
+    disposition: keep_reference
+    rationale: Active Vesper home rotation completion plan retained until promotion or closure.
