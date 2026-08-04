@@ -21927,7 +21927,7 @@
           "places"
         ],
         "summary": "Get Places Search",
-        "description": "Search within persisted Places context without leaving the surface.",
+        "description": "Search a supplied Places context without changing the automatic root.",
         "operationId": "get_places_search_api_places_search_get",
         "parameters": [
           {
