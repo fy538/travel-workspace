@@ -63847,6 +63847,17 @@
             "type": "string",
             "title": "Slug"
           },
+          "city_slug": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "City Slug"
+          },
           "place_type": {
             "type": "string",
             "title": "Place Type"
