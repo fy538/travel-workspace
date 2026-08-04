@@ -1,9 +1,9 @@
 ---
-doc_type: working
-status: active
+doc_type: archive
+status: archived
 owner: founder / product
 created: 2026-08-03
-expires: 2026-09-02
+archived: 2026-08-04
 why_new: The Trips crown has 23 admissible card kinds and exactly one receipt rendering. No document owns the mapping between the two, and the ratified item contract's `receipt — which typed receipt variant renders when crowned` field was never implemented.
 promotes_to: a `TripsHomeReceipt` contract in the Trips stack projection plus a new `invite_seat` card kind
 supersedes: []
