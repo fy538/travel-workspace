@@ -9824,7 +9824,7 @@
           "discover"
         ],
         "summary": "Discover Map",
-        "description": "Discover spatial-browse pins for venues, experiences, places, and friends.\n\nCatalog pins carry the cheap judgment preview available for their entity\ntype. Venue pins additionally carry affinity; venue and experience pins\ncarry saved/planned state. Fresh trip-companion locations are a separate,\napproximate coordination signal and never masquerade as itinerary items.\n\nTwo scopes. ``place_slug`` plots the city subtree; ``lat``/``lng`` plots\nwhat's within ``radius_m``. With neither, returns an empty pin set (honest\nabsence) rather than guessing a location. The full Take is a tap-time fetch\non the client peek card \u2014 pins carry only the cheap preview.\n\n``date_from``/``date_to`` compose a temporal window on top of either\nspatial scope \u2014 e.g. \"experiences near me this weekend\" \u2014 and only affect\nexperience pins; recurring/on-demand experiences have no single date and\nare unaffected, and venue/place pins have no date to filter on at all.",
+        "description": "Discover spatial-browse pins for venues, experiences, places, and friends.\n\nCatalog pins carry the cheap judgment preview available for their entity\ntype. Venue pins additionally carry affinity; venue and experience pins\ncarry saved/planned state. Fresh trip-companion locations are a separate,\napproximate coordination signal and never masquerade as itinerary items.\n\nTwo direct scopes. ``place_slug`` plots the city subtree; ``lat``/``lng``\nplots what's within ``radius_m``. A Places ``context_handle`` is the\npreferred third entry: it resolves that same scope server-side, so a Places\ncontinuation never puts a precise anchor into navigation state. With none,\nreturns an empty pin set (honest absence) rather than guessing a location.\nThe full Take is a tap-time fetch on the client peek card \u2014 pins carry only\nthe cheap preview.\n\n``date_from``/``date_to`` compose a temporal window on top of either\nspatial scope \u2014 e.g. \"experiences near me this weekend\" \u2014 and only affect\nexperience pins; recurring/on-demand experiences have no single date and\nare unaffected, and venue/place pins have no date to filter on at all.",
         "operationId": "discover_map_api_discover_map_get",
         "parameters": [
           {
@@ -9899,6 +9899,26 @@
               "title": "Trip Id"
             },
             "description": "Optional trip context for exact in-plan markers and grounded handoffs."
+          },
+          {
+            "name": "context_handle",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Opaque Places context; resolves map scope server-side.",
+              "title": "Context Handle"
+            },
+            "description": "Opaque Places context; resolves map scope server-side."
           },
           {
             "name": "radius_m",
@@ -47109,6 +47129,18 @@
             ],
             "title": "Scope"
           },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
           "place_slug": {
             "anyOf": [
               {
@@ -64201,6 +64233,21 @@
         ],
         "title": "PlacesContext"
       },
+      "PlacesContextReason": {
+        "type": "string",
+        "enum": [
+          "live_trip",
+          "imminent_trip",
+          "deliberate_location",
+          "recent_return",
+          "home",
+          "future_trip",
+          "anywhere",
+          "continuation"
+        ],
+        "title": "PlacesContextReason",
+        "description": "The current fact that selected an automatic Places context."
+      },
       "PlacesContextRef": {
         "properties": {
           "handle": {
@@ -64220,6 +64267,10 @@
           },
           "role": {
             "$ref": "#/components/schemas/PlacesContextRole"
+          },
+          "selection_reason": {
+            "$ref": "#/components/schemas/PlacesContextReason",
+            "default": "continuation"
           }
         },
         "type": "object",
@@ -64452,6 +64503,12 @@
             "type": "array",
             "maxItems": 4,
             "title": "Sections"
+          },
+          "saved_total": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Saved Total",
+            "default": 0
           }
         },
         "type": "object",
