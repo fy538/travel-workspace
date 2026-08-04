@@ -16575,8 +16575,9 @@
           "places"
         ],
         "summary": "Update Places Scope",
-        "description": "Persist the current user's Places scope selection.",
+        "description": "Compatibility writer for rolling clients; the automatic root ignores it.",
         "operationId": "update_places_scope_api_places_scope_put",
+        "deprecated": true,
         "parameters": [
           {
             "name": "authorization",
@@ -16635,7 +16636,7 @@
           "places"
         ],
         "summary": "Update Places Position",
-        "description": "Acquire Around Me from a deliberate foreground location action.",
+        "description": "Record a deliberate foreground location action for automatic Places.",
         "operationId": "update_places_position_api_places_position_put",
         "parameters": [
           {
