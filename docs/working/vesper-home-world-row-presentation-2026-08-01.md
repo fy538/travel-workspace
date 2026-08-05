@@ -422,12 +422,12 @@ Carried from the study's §4, not resolved here:
   shared trip kicker into the cap, which works when every open session
   belongs to one trip and not otherwise.
 
-Two structural proposals in the study's §4 are **undecided and out of scope**:
-that the well should show either the list or the seam but never both, and
-that the seam and ambient weather may not belong on Vesper at all. Both
-answer "the page is a wall of text", which this row improves but does not
-resolve. Both need a founder ruling; the second needs a cross-surface one
-with Trips.
+The first structural proposal in the study's §4 was resolved on 2026-08-05:
+an open urgent seam is focus mode, so the well shows the seam and facts but
+suppresses the list and its authored read until the seam clears. The server's
+rotation cursor continues underneath; the focused seam does not consume a
+turn. The second proposal — whether the seam and ambient weather belong on
+Vesper at all — remains undecided and needs a cross-surface ruling with Trips.
 
 ## Exit
 

@@ -301,4 +301,6 @@ Places OpenAPI lane rather than overwriting its work.
 - world-row tap actions, chat seeding, booking, holds, or payments;
 - broad origin expansion beyond the approved dogfood cohort;
 - replacing the candidate catalog with a commercial inspiration/discovery API;
-- native voice work and any structural reallocation between seam/facts/list.
+- native voice work. The seam/list structural allocation was resolved on
+  2026-08-05: an open urgent seam suppresses the rotating band and owns the
+  read, while the server-owned rotation cursor continues underneath.
