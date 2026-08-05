@@ -8,6 +8,9 @@
 # Makefile so `make help`'s day-to-day surface isn't dominated by a
 # finished campaign's tooling.
 #
+# Day-to-day: `make help` lists only the main Makefile.
+# Attic/campaign: `make help-attic` lists these targets.
+#
 # Reusable city machinery that ISN'T campaign-specific stays in the main
 # Makefile: dogfood-city, dogfood-promote, corpus-check, dogfood-env-check,
 # dogfood-status, dogfood-status-sync, qa-persona, mock-slug-parity.

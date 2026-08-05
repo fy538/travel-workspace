@@ -288,8 +288,12 @@ status: ## Show git status for workspace + child repos
 
 # ── Help ──────────────────────────────────────────────────────────────────────
 
-help: ## Show this help
-	@grep -hE '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | \
+help: ## Show this help (active targets only; attic → make help-attic)
+	@grep -hE '^[a-zA-Z0-9_-]+:.*?## .*$$' Makefile | sort | \
+		awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-22s\033[0m %s\n", $$1, $$2}'
+
+help-attic: ## Show completed-campaign / attic dogfood targets (dogfood.mk)
+	@grep -hE '^[a-zA-Z0-9_-]+:.*?## .*$$' dogfood.mk | sort | \
 		awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-22s\033[0m %s\n", $$1, $$2}'
 
 .DEFAULT_GOAL := help

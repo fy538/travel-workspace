@@ -136,9 +136,17 @@ dogfood_print_stack() {
   safe_dsn="$(
     PYTHONPATH="$AGENT_DIR" python -c 'from tools.dogfood.ops_guard import redact_dsn; import os; print(redact_dsn(os.environ.get("DATABASE_URL", "")))'
   )"
+  if [[ "$PROFILE" == "fly" ]]; then
+    echo "======== DOGFOOD PROFILE=FLY (SHARED PROD DB + cloud Qdrant) ========"
+    echo "  Writes here are prod-data ops. Require --allow-prod / APPLY=1."
+  else
+    echo "======== DOGFOOD PROFILE=LOCAL (Docker PG + Docker Qdrant) ========"
+    echo "  Local green does NOT prove EAS dogfood / Fly readiness."
+  fi
   echo "▸ profile=$PROFILE  postgres_host=$DOGFOOD_PG_HOST  qdrant_host=$DOGFOOD_QDRANT_HOST"
   echo "  DATABASE_URL=${safe_dsn}"
   echo "  QDRANT_URL=${QDRANT_URL}"
+  echo "===================================================================="
 }
 
 dogfood_allow_prod_flag() {
