@@ -135,6 +135,10 @@ overrides:
     disposition: keep_reference
     rationale: Approved implementation handoff for the posture-driven Places feed; promote durable API rules into the backend Places FEATURE and frontend Places workspace contract, then archive when the migration is complete.
 
+  docs/working/home-surface-section-card-audit-2026-08-05.md:
+    disposition: keep_reference
+    rationale: Active cross-surface taxonomy audit; promote accepted card-family decisions into the relevant surface contracts, then archive at expiry.
+
   docs/working/trips-home-promotion-model-2026-07-27.md:
     disposition: keep_reference
     rationale: Active successor model for Trips home; expires 2026-08-26 and promotes into the Trips-home surface contract.

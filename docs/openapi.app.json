@@ -8754,6 +8754,7 @@
             "schema": {
               "type": "integer",
               "maximum": 200,
+              "minimum": 1,
               "default": 100,
               "title": "Limit"
             }
@@ -10250,6 +10251,7 @@
             "schema": {
               "type": "integer",
               "maximum": 200,
+              "minimum": 1,
               "default": 50,
               "title": "Limit"
             }
@@ -10395,6 +10397,7 @@
             "schema": {
               "type": "integer",
               "maximum": 200,
+              "minimum": 1,
               "default": 50,
               "title": "Limit"
             }
@@ -14173,6 +14176,7 @@
             "schema": {
               "type": "integer",
               "maximum": 200,
+              "minimum": 1,
               "default": 50,
               "title": "Limit"
             }
@@ -17524,6 +17528,7 @@
             "schema": {
               "type": "integer",
               "maximum": 200,
+              "minimum": 1,
               "default": 50,
               "title": "Limit"
             }
@@ -54935,6 +54940,19 @@
               }
             ],
             "title": "City Slug"
+          },
+          "location_label": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Location Label"
           },
           "place_type": {
             "type": "string",
