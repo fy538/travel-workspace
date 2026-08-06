@@ -242,8 +242,19 @@ def trips_receipt_kinds() -> Axis:
     # naive `Name\(` and made every declared receipt look produced.
     constructed = hits(be, [re.compile(r"(?<!class )\b(TripsHomeReceipt\w+)\(")])
 
+    # Both dispatch idioms. The receipt switch moved out of TripsStackCrown
+    # into TripsCrownReceiptBody (435ec53c) and uses `case "ledger":` rather
+    # than `receipt.kind === "ledger"` — matching only the latter reported
+    # nine shipped shapes as unrendered. Unlike the stack-kind axis, `case`
+    # is safe here: receipt kinds share no names with postures.
     fe = walk(APP / "components/trips", (".ts", ".tsx"), FE_EXCLUDE)
-    dispatched = hits(fe, [re.compile(r'kind\s*===\s*[\'"]([a-z_]+)[\'"]')])
+    dispatched = hits(
+        fe,
+        [
+            re.compile(r'kind\s*===\s*[\'"]([a-z_]+)[\'"]'),
+            re.compile(r'case\s+[\'"]([a-z_]+)[\'"]\s*:'),
+        ],
+    )
 
     variants = [
         Variant(kind, True, constructed.get(class_name, []), dispatched.get(kind, []), note=class_name)
@@ -254,8 +265,9 @@ def trips_receipt_kinds() -> Axis:
         "Trips",
         "crown receipt",
         "backend/home/trips_stack.py :: TripsHomeReceipt* discriminated union",
-        "components/trips/TripsStackCrown.tsx branches on receipt.kind — "
-        "one branch only; every other variant falls through to title + row_line.",
+        "All ten shipped 2026-08-05 (435ec53c). TripsStackCrown renders the "
+        "shape summary inline and delegates the other nine to "
+        "TripsCrownReceiptBody, which switches exhaustively on receipt.kind.",
         variants,
     )
 
@@ -374,9 +386,12 @@ def places_card_kinds() -> Axis:
         ],
     )
     axis.mechanism = (
-        "components/places/PlacesSectionFeed.tsx routes on PAYLOAD PRESENCE "
-        "(card.place / card.angle / …), not on card.kind. Backend validation "
-        "makes that safe today; a future scalar-only kind renders as a notice."
+        "FeedCardView switches exhaustively on card.kind with a `never` "
+        "default (since 2026-08-05), so adding a tenth kind fails the build "
+        "rather than silently rendering as a notice. Each case still requires "
+        "its payload, turning a kind↔payload mismatch into an absence. Nine "
+        "kinds resolve to eight renderers — notice and prompt legitimately "
+        "share one — over a single uncarded-row chassis."
     )
     return axis
 
@@ -838,6 +853,12 @@ COMPOSITION_SKIP = {
 }
 
 _GUARD_OPEN = re.compile(r"^\s*\{?\s*(.+?)\s*(?:\?|&&)\s*\(?\s*$")
+# The two roots compose in different dialects and the pass has to read both.
+# Trips branches INLINE with nested ternaries inside one tree; Places branches
+# at FUNCTION level with early returns — `if (isLoading) { return (…) }` — one
+# per page state. Without this, every early-return state reads as "always",
+# which is the opposite of the truth: they are the most guarded things there.
+_IF_OPEN = re.compile(r"^\s*if\s*\((.+)\)\s*\{\s*$")
 _ELSE_ARM = re.compile(r"^\s*\)\s*:\s*(?:\{?\s*(.+?)\s*\?\s*\(?)?\s*$")
 # `(?<![A-Za-z0-9_])` before the `<` so a generic type parameter is not read
 # as a JSX tag: `Partial<Record<HeroKind, string>>` and
@@ -846,7 +867,10 @@ _RENDER = re.compile(r"(?<![A-Za-z0-9_])<([A-Z][A-Za-z0-9_]*)")
 
 
 def composition(root_key: str) -> dict:
-    rel = ROOTS[root_key]
+    # A root is sometimes only a shell: the Places tab file is six lines and
+    # renders one component, so composition lives one level down. Accept a
+    # raw path as well as a named root.
+    rel = ROOTS.get(root_key, root_key)
     path = APP / rel
     src = read(path)
     if not src:
@@ -860,7 +884,11 @@ def composition(root_key: str) -> dict:
 
     rows: list[dict] = []
     stack: list[tuple[int, str]] = []  # (indent, guard)
-    seen: set[str] = set()
+    # Keyed by component AND guard chain, not by name. Deduping by name alone
+    # reports a component once at its first occurrence and silently drops
+    # every other state it appears in — it hid the zero-section EmptyHero in
+    # Places, which is exactly the state worth seeing.
+    seen: set[tuple[str, tuple[str, ...]]] = set()
 
     for lineno, line in enumerate(src.split("\n"), 1):
         if not line.strip() or line.strip().startswith(("//", "*", "/*")):
@@ -893,6 +921,12 @@ def composition(root_key: str) -> dict:
         while stack and indent < stack[-1][0]:
             stack.pop()
 
+        if_open = _IF_OPEN.match(line)
+        if if_open:
+            expr = if_open.group(1).strip()
+            stack.append((indent + 2, expr if len(expr) < 90 else expr[:87] + "…"))
+            continue
+
         guard_open = _GUARD_OPEN.match(line)
         if guard_open and "<" not in line and "=>" not in line:
             expr = guard_open.group(1).lstrip("{").strip()
@@ -901,10 +935,11 @@ def composition(root_key: str) -> dict:
                 continue
 
         for name in _RENDER.findall(line):
-            if name in COMPOSITION_SKIP or name in seen:
-                continue
-            seen.add(name)
             chain = [g for _, g in stack]
+            key = (name, tuple(chain))
+            if name in COMPOSITION_SKIP or key in seen:
+                continue
+            seen.add(key)
             rows.append(
                 {
                     "order": len(rows) + 1,
@@ -1103,6 +1138,12 @@ def main() -> int:
         help="one level out: what a root renders, in order, under which guard",
     )
     parser.add_argument(
+        "--file",
+        action="append",
+        metavar="PATH",
+        help="composition target, relative to travel-app (repeatable)",
+    )
+    parser.add_argument(
         "--surface",
         choices=["trips", "places", "vesper"],
         action="append",
@@ -1136,10 +1177,13 @@ def main() -> int:
                     [re.compile(r'treatment\s*===\s*[\'"]([a-z_]+)[\'"]')],
                 ),
                 "treatmentStyle() branches for fork and conviction and returns "
-                "nothing for single and choice — so the two treatments that "
-                "actually ship render as the DEFAULT, which is their intended "
-                "shape, while the two with bespoke styling have no producer. "
-                "Read INVISIBLE here as 'default-rendered', not 'unstyled'.",
+                "nothing for single and choice — so the two commonest "
+                "treatments render as the DEFAULT, which is their intended "
+                "shape. Read INVISIBLE here as 'default-rendered', not "
+                "'unstyled'. fork went live 2026-08-05 (two angle cards from "
+                "_collection_section). conviction is the last unproduced one "
+                "and is meant to stay that way until a non-proximity "
+                "confidence signal exists — see PlacesSectionTreatment.",
             ),
             places_card_kinds,
         ],
@@ -1147,7 +1191,8 @@ def main() -> int:
     }
 
     if args.composition:
-        results = [composition(k) for k in (args.surface or ["trips"])]
+        targets = args.file or args.surface or ["trips"]
+        results = [composition(k) for k in targets]
         for result in results:
             composition_report(result, verbose=args.verbose)
         if args.json:
