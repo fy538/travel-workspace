@@ -79791,6 +79791,8 @@
               "stay_workspace",
               "trip_details",
               "expenses",
+              "memory",
+              "story",
               "atlas_artifact",
               "atlas",
               "group_room",
