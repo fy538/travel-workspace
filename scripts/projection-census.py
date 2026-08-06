@@ -31,6 +31,30 @@ directories count. Type unions (schema.gen.ts), fixtures, personas, tests
 and dev galleries are excluded — a persona carrying kind="weather" proves a
 fixture exists, not that a renderer draws it differently.
 
+THE FOURTH QUESTION (--error-paths), added 2026-08-05 after this instrument
+missed something real. All three questions above describe a WORKING backend,
+so an entire class of UI was invisible to the census by construction. That
+cost a deletion: `trips-home-starter-fallback` was scored unreachable —
+correctly, on the evidence, since no producer can emit a null crown — and
+shipped as deleted. It was reachable. The ranking QUERY can error, which is
+a different claim from the producer returning nothing, and on a cold account
+that door was the only thing left on the page. A test caught it; this script
+had no question that could.
+
+  "The backend cannot return null" is not "the query cannot fail."
+
+--error-paths asks the missing question per root: what appears ONLY on
+failure, what DISAPPEARS on failure, and — because a surface can degrade by
+choosing different props rather than different branches (Vesper Home does) —
+which values are error-derived. Primitives count here even though
+composition skips them: the starter fallback is a bare View/Tap and a
+named-component scan cannot see it.
+
+Axes are also cheap blind spots. The first run had no DESTINATION axis, so
+two dead router arms (`memory`, `story` — declared, dispatched, never
+emitted) survived a full audit. An instrument finds only what its questions
+can express.
+
 Read-only. Touches no database and no network.
 
 Usage:
@@ -38,6 +62,8 @@ Usage:
   python3 scripts/projection-census.py --json OUT     # board input
   python3 scripts/projection-census.py --surface trips
   python3 scripts/projection-census.py --substrate    # the drawing list
+  python3 scripts/projection-census.py --composition  # what a root renders
+  python3 scripts/projection-census.py --error-paths  # what it renders on failure
 """
 
 from __future__ import annotations
@@ -129,6 +155,24 @@ def enum_members(path: Path, class_name: str) -> list[str]:
     return re.findall(r'^\s+[A-Z_0-9]+\s*=\s*"([^"]+)"', match.group(1), re.M)
 
 
+def ts_field_union(path: Path, type_name: str, field_name: str) -> list[str]:
+    """Parse a multi-line TS field union: `type: | 'a' | 'b' | 'c';`"""
+    body = read(path)
+    decl = re.search(
+        rf"(?:type|interface)\s+{re.escape(type_name)}\b(.*?)(?=\n(?:export|type|interface|function|const)\s|\Z)",
+        body,
+        re.S,
+    )
+    if not decl:
+        return []
+    field_match = re.search(
+        rf"{re.escape(field_name)}\??\s*:\s*((?:\s*\|?\s*'[a-z_]+')+)\s*;", decl.group(1), re.S
+    )
+    if not field_match:
+        return []
+    return re.findall(r"'([a-z_]+)'", field_match.group(1))
+
+
 # ---------------------------------------------------------------- model
 
 
@@ -216,6 +260,42 @@ def trips_stack_kinds() -> Axis:
         "backend/home/concierge_feed/models.py :: ConciergeHomeCardKind",
         "None. The crown and rows render generically from title/row_line; "
         "kind drives ranking, suppression and analytics, never a shape.",
+        [
+            Variant(name, True, produced.get(name, []), dispatched.get(name, []))
+            for name in declared
+        ],
+    )
+
+
+def trips_destinations() -> Axis:
+    """Where a Trips Home card can SEND you.
+
+    The other trips axes score what a card IS (kind) and what it SHOWS
+    (receipt). Neither can see a door. This axis exists because the first
+    census run had no destination pass, and two dead router arms — `memory`
+    and `story`, declared and dispatched, never emitted, both resolving to
+    the same route as `plan` — survived a full audit unnoticed.
+    """
+    model = APP / "utils/tripsHomeStackModel.ts"
+    declared = ts_field_union(model, "TripsHomeDestination", "type")
+
+    # The backend is the only producer: every destination is minted in
+    # _destination_for_card. A literal scan of that one file is exact —
+    # unlike card kinds, destinations are never routed through a dict.
+    stack = AGENT / "backend/home/trips_stack.py"
+    produced = hits([stack], [re.compile(r'type="([a-z_]+)"')])
+
+    # Dispatch for a destination is a ROUTE, not a shape: the switch arm in
+    # routeForTripsHomeDestination is the only thing that can act on one.
+    router = APP / "utils/tripsHomeDestination.ts"
+    dispatched = hits([router], [re.compile(r"case '([a-z_]+)':")])
+
+    return Axis(
+        "Trips",
+        "destination",
+        "travel-app/utils/tripsHomeStackModel.ts :: TripsHomeDestination.type",
+        "routeForTripsHomeDestination switches on type and returns an Href. "
+        "ORPHAN here means a router arm no card can ever reach.",
         [
             Variant(name, True, produced.get(name, []), dispatched.get(name, []))
             for name in declared
@@ -866,7 +946,7 @@ _ELSE_ARM = re.compile(r"^\s*\)\s*:\s*(?:\{?\s*(.+?)\s*\?\s*\(?)?\s*$")
 _RENDER = re.compile(r"(?<![A-Za-z0-9_])<([A-Z][A-Za-z0-9_]*)")
 
 
-def composition(root_key: str) -> dict:
+def composition(root_key: str, include_primitives: bool = False) -> dict:
     # A root is sometimes only a shell: the Places tab file is six lines and
     # renders one component, so composition lives one level down. Accept a
     # raw path as well as a named root.
@@ -937,13 +1017,18 @@ def composition(root_key: str) -> dict:
         for name in _RENDER.findall(line):
             chain = [g for _, g in stack]
             key = (name, tuple(chain))
-            if name in COMPOSITION_SKIP or key in seen:
+            primitive = name in COMPOSITION_SKIP
+            # The error pass needs primitives: a guarded region built only
+            # from View/Tap/VText is invisible to a named-component scan,
+            # which is exactly how the starter fallback went unseen.
+            if (primitive and not include_primitives) or key in seen:
                 continue
             seen.add(key)
             rows.append(
                 {
                     "order": len(rows) + 1,
                     "component": name,
+                    "primitive": primitive,
                     "line": lineno,
                     "guards": chain,
                     "source": imports.get(name, "—"),
@@ -976,6 +1061,174 @@ def _generation(chain: list[str]) -> str:
     if not chain:
         return "always"
     return "conditional"
+
+
+# A guard mentioning any of these admits (or suppresses) a component on the
+# basis of something having FAILED, rather than on the basis of what the data
+# says. Deliberately broad: a false positive costs one printed line, a false
+# negative is the whole reason this pass exists.
+_ERROR_TOKENS = re.compile(
+    r"(?<![A-Za-z0-9_])(?:"
+    r"[A-Za-z]*[Ee]rror|isError|[Ff]ail(?:ed|ure)?|[Ff]allback|[Ss]tale|"
+    r"[Oo]ffline|[Dd]egraded|[Rr]etry|[Uu]navailable|[Rr]ejected"
+    r")(?![A-Za-z0-9_])"
+)
+
+
+def _error_role(chain: list[str]) -> str:
+    """Does this component appear BECAUSE something failed, or vanish when it does?"""
+    positive = [g for g in chain if _ERROR_TOKENS.search(g) and not g.startswith("!")]
+    negative = [g for g in chain if _ERROR_TOKENS.search(g) and g.startswith("!")]
+    if positive:
+        return "error-only"
+    if negative:
+        return "error-suppressed"
+    return "error-agnostic"
+
+
+_CONST_ASSIGN = re.compile(r"^[ \t]*const (\w+)(?::[^=]+)? = (.*?);$", re.M | re.S)
+
+
+def error_values(src: str) -> list[dict]:
+    """Failure handled as a VALUE rather than a JSX branch.
+
+    Vesper Home is the case that forced this: it degrades correctly —
+    `unavailable = workbench.isError && !workbench.data`, then a different
+    readLine — but nothing in its JSX branches on an error token, so a
+    guard-chain scan reported "draws NOTHING when it fails", the opposite
+    of the truth. A surface can handle failure by choosing different
+    PROPS, and that is invisible to composition.
+    """
+    out: list[dict] = []
+    for match in _CONST_ASSIGN.finditer(src):
+        name, rhs = match.group(1), match.group(2)
+        if len(rhs) > 400 or not _ERROR_TOKENS.search(rhs):
+            continue
+        # The declaration itself, not every line of a long RHS.
+        line = src[: match.start()].count("\n") + 1
+        flat = " ".join(rhs.split())
+        out.append(
+            {"name": name, "line": line, "expr": flat if len(flat) <= 96 else flat[:93] + "…"}
+        )
+    return out
+
+
+def error_paths(root_key: str) -> dict:
+    """What a surface renders when its own reads FAIL.
+
+    The three census questions — declared / produced / dispatched — all
+    describe a working backend, so an entire class of UI was invisible to
+    this instrument by construction. On 2026-08-05 that cost a real
+    deletion: `trips-home-starter-fallback` was scored unreachable because
+    no producer emits a null crown, and shipped as deleted. It was
+    reachable — the ranking QUERY can error, which is a different thing
+    from the producer returning nothing. A test caught it, not this script.
+
+    The rule that follows: "the backend cannot return null" is not
+    "the query cannot fail". Enumerate the error path separately.
+    """
+    result = composition(root_key, include_primitives=True)
+    src = read(APP / result["root"]).split("\n")
+
+    kept: list[dict] = []
+    for row in result["rows"]:
+        role = _error_role(row["guards"])
+        row["error_role"] = role
+        if not row.get("primitive"):
+            kept.append(row)
+            continue
+        # A primitive earns a row only when it is the SUBJECT of an error
+        # branch and names itself with a testID — that testID is what a
+        # reviewer greps for, and what a test asserts on.
+        if role != "error-only":
+            continue
+        window = "\n".join(src[row["line"] - 1 : row["line"] + 12])
+        test_id = re.search(r'testID="([^"]+)"', window)
+        if not test_id:
+            continue
+        row["test_id"] = test_id.group(1)
+        kept.append(row)
+
+    result["rows"] = kept
+    result["values"] = error_values("\n".join(src))
+    # A six-line tab file that renders one component composes nothing; its
+    # error states live one level down. Saying "draws NOTHING when it fails"
+    # about a shell is a false alarm, not a finding.
+    result["shell"] = len(result["rows"]) + len(result["values"]) <= 2 and len(src) < 40
+    return result
+
+
+def error_paths_report(result: dict, verbose: bool = False) -> None:
+    rows = result["rows"]
+    only = [r for r in rows if r["error_role"] == "error-only"]
+    gone = [r for r in rows if r["error_role"] == "error-suppressed"]
+
+    print()
+    print("=" * 78)
+    print(f"ERROR PATHS — {result['root']}")
+    print("=" * 78)
+    print("  What this surface renders when its own reads FAIL. The")
+    print("  declared/produced/dispatched questions all assume a working")
+    print("  backend; this one does not.")
+    print("-" * 78)
+
+    values = result.get("values", [])
+
+    if result.get("shell"):
+        print("  This root is a SHELL — it renders one component and composes")
+        print("  nothing. Its error states live one level down; re-run with")
+        print("  --file <the component's path> to see them.")
+        print("-" * 78)
+        return
+
+    if not rows and not values:
+        print("  (no composition parsed)")
+        return
+
+    print(f"  APPEARS ONLY ON FAILURE ({len(only)})")
+    if only:
+        for row in only:
+            label = row.get("test_id") or row["component"]
+            print(f"    {label:<32} :{row['line']}")
+            for guard in row["guards"]:
+                if _ERROR_TOKENS.search(guard):
+                    print(f"        ↳ {guard}")
+    elif not values:
+        print("    (none) ⚠ this surface draws NOTHING specific when it fails.")
+        print("        Every component is either always-on or suppressed —")
+        print("        so a failed read degrades to a silently thinner page.")
+    else:
+        print("    (none in JSX — but see error-derived values below)")
+
+    print()
+    print(f"  DISAPPEARS ON FAILURE ({len(gone)})")
+    for row in gone:
+        print(f"    {row['component']:<26} :{row['line']}")
+        if verbose:
+            for guard in row["guards"]:
+                if _ERROR_TOKENS.search(guard):
+                    print(f"        ↳ {guard}")
+
+    if values:
+        print()
+        print(f"  ERROR-DERIVED VALUES ({len(values)})")
+        print("    Failure changes a PROP, not a branch — invisible to composition.")
+        for value in values:
+            print(f"    {value['name']:<32} :{value['line']}")
+            if verbose:
+                print(f"        ↳ {value['expr']}")
+
+    print("-" * 78)
+    print(
+        f"  error-only {len(only)}   error-suppressed {len(gone)}   "
+        f"error-agnostic {len(rows) - len(only) - len(gone)}   "
+        f"error-values {len(values)}"
+    )
+    print()
+    print("  ⚠ Before deleting anything in APPEARS ONLY ON FAILURE, prove the")
+    print("    read cannot fail — not that the producer cannot return empty.")
+    print("    Those are different claims and only the second one is usually")
+    print("    checked. Ask also: with this gone, what is left on the page?")
 
 
 def composition_report(result: dict, verbose: bool = False) -> None:
@@ -1138,6 +1391,11 @@ def main() -> int:
         help="one level out: what a root renders, in order, under which guard",
     )
     parser.add_argument(
+        "--error-paths",
+        action="store_true",
+        help="the fourth question: what a root renders when its own reads FAIL",
+    )
+    parser.add_argument(
         "--file",
         action="append",
         metavar="PATH",
@@ -1156,7 +1414,12 @@ def main() -> int:
         return 2
 
     builders = {
-        "trips": [trips_stack_kinds, trips_receipt_kinds, trips_plan_kind],
+        "trips": [
+            trips_stack_kinds,
+            trips_receipt_kinds,
+            trips_destinations,
+            trips_plan_kind,
+        ],
         "places": [
             lambda: _semantic(
                 places_axis(
@@ -1189,6 +1452,17 @@ def main() -> int:
         ],
         "vesper": [vesper_list_kinds],
     }
+
+    if args.error_paths:
+        targets = args.file or args.surface or ["trips"]
+        results = [error_paths(k) for k in targets]
+        for result in results:
+            error_paths_report(result, verbose=args.verbose)
+        if args.json:
+            out = Path(args.json)
+            out.write_text(json.dumps(results, indent=2) + "\n", encoding="utf-8")
+            print(f"\n  wrote {out}")
+        return 0
 
     if args.composition:
         targets = args.file or args.surface or ["trips"]
