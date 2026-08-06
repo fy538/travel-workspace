@@ -242,8 +242,19 @@ def trips_receipt_kinds() -> Axis:
     # naive `Name\(` and made every declared receipt look produced.
     constructed = hits(be, [re.compile(r"(?<!class )\b(TripsHomeReceipt\w+)\(")])
 
+    # Both dispatch idioms. The receipt switch moved out of TripsStackCrown
+    # into TripsCrownReceiptBody (435ec53c) and uses `case "ledger":` rather
+    # than `receipt.kind === "ledger"` — matching only the latter reported
+    # nine shipped shapes as unrendered. Unlike the stack-kind axis, `case`
+    # is safe here: receipt kinds share no names with postures.
     fe = walk(APP / "components/trips", (".ts", ".tsx"), FE_EXCLUDE)
-    dispatched = hits(fe, [re.compile(r'kind\s*===\s*[\'"]([a-z_]+)[\'"]')])
+    dispatched = hits(
+        fe,
+        [
+            re.compile(r'kind\s*===\s*[\'"]([a-z_]+)[\'"]'),
+            re.compile(r'case\s+[\'"]([a-z_]+)[\'"]\s*:'),
+        ],
+    )
 
     variants = [
         Variant(kind, True, constructed.get(class_name, []), dispatched.get(kind, []), note=class_name)
@@ -254,8 +265,9 @@ def trips_receipt_kinds() -> Axis:
         "Trips",
         "crown receipt",
         "backend/home/trips_stack.py :: TripsHomeReceipt* discriminated union",
-        "components/trips/TripsStackCrown.tsx branches on receipt.kind — "
-        "one branch only; every other variant falls through to title + row_line.",
+        "All ten shipped 2026-08-05 (435ec53c). TripsStackCrown renders the "
+        "shape summary inline and delegates the other nine to "
+        "TripsCrownReceiptBody, which switches exhaustively on receipt.kind.",
         variants,
     )
 
@@ -374,9 +386,12 @@ def places_card_kinds() -> Axis:
         ],
     )
     axis.mechanism = (
-        "components/places/PlacesSectionFeed.tsx routes on PAYLOAD PRESENCE "
-        "(card.place / card.angle / …), not on card.kind. Backend validation "
-        "makes that safe today; a future scalar-only kind renders as a notice."
+        "FeedCardView switches exhaustively on card.kind with a `never` "
+        "default (since 2026-08-05), so adding a tenth kind fails the build "
+        "rather than silently rendering as a notice. Each case still requires "
+        "its payload, turning a kind↔payload mismatch into an absence. Nine "
+        "kinds resolve to eight renderers — notice and prompt legitimately "
+        "share one — over a single uncarded-row chassis."
     )
     return axis
 
