@@ -37234,6 +37234,17 @@
               }
             ],
             "title": "Gap End"
+          },
+          "estimate_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Estimate Note"
           }
         },
         "type": "object",
@@ -53419,6 +53430,11 @@
             "title": "Distance Saved M",
             "default": 0
           },
+          "distance_is_estimated": {
+            "type": "boolean",
+            "title": "Distance Is Estimated",
+            "default": false
+          },
           "is_improvement": {
             "type": "boolean",
             "title": "Is Improvement",
@@ -53525,6 +53541,11 @@
               }
             ],
             "title": "Distance From Prev M"
+          },
+          "distance_is_estimated": {
+            "type": "boolean",
+            "title": "Distance Is Estimated",
+            "default": false
           }
         },
         "type": "object",
@@ -56926,7 +56947,7 @@
           "choice"
         ],
         "title": "PlacesSectionTreatment",
-        "description": "Server-owned feed layout; rows exist only behind a door or in search."
+        "description": "Server-owned feed layout; rows exist only behind a door or in search.\n\n⚠️ ``CONVICTION`` HAS NO PRODUCER, AND THAT IS THE CORRECT STATE.\n------------------------------------------------------------------\nThe client side is complete and dark: ``PlaceFeedCard`` carries a full\n``material=\"paperRaised\"`` branch keyed on ``presentation === \"conviction\"``,\nand ``treatmentStyle`` carries the section style. It is tempting to read\nthat as an unfinished wiring job and point a producer at it. Don't —\naudited 2026-08-05, none of the three structurally eligible reasons can\nemit one honestly. Conviction is exactly one card and that card must be\n``PLACE`` (rules 10/03), so only ``gap``, ``nearby_set`` and ``saved``\nqualify at all, and:\n\n- ``gap`` has no ranking signal on its path (``rank_by_taste`` is called\n  from nearby/projection/concierge, never from ``gaps.py``) AND its\n  producer explicitly declines to have one: \"this is one bounded decision\n  set, not a ranked podium\", with ``lead=True`` on every card so none is\n  privileged. A winner here would contradict a reasoned in-code ruling.\n- ``nearby_set`` does carry a taste score, but proximity-confounded —\n  \"spurious loyalty\" (Dick & Basu 1994). The honest signal is \"returned N\n  times despite M closer alternatives\", and nothing computes that\n  normalization. Without it a conviction card is a map of the commute.\n- ``saved`` would return the user's own bookmark as our judgement.\n\nSo the prerequisite is upstream of Places: a confidence signal that isn't\nproximity, most plausibly out of ``traveler_place_affinity``. Until one\nexists, an emitted conviction would be fabricated certainty — the same\nfailure ``grounded or absent`` prevents on the Trips crown receipts.\n\n``FORK`` is the opposite case: two ``ANGLE`` cards offered as two\nreadings makes no confidence claim, so it is honest by construction.\nEmitted from ``_collection_section`` since 2026-08-05."
       },
       "PlacesStarterCity": {
         "properties": {
