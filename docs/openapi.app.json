@@ -36099,6 +36099,16 @@
             "type": "integer",
             "minimum": 1.0,
             "title": "Expected Version"
+          },
+          "trip_kind": {
+            "type": "string",
+            "enum": [
+              "travel",
+              "local"
+            ],
+            "title": "Trip Kind",
+            "description": "The durable occasion kind. Use 'local' for an explicitly settled nearby or same-city occasion; travel remains the default.",
+            "default": "travel"
           }
         },
         "type": "object",
@@ -36133,6 +36143,15 @@
             "type": "string",
             "format": "uuid",
             "title": "Trip Id"
+          },
+          "trip_kind": {
+            "type": "string",
+            "enum": [
+              "travel",
+              "local"
+            ],
+            "title": "Trip Kind",
+            "default": "travel"
           },
           "title": {
             "anyOf": [
