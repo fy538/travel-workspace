@@ -30,8 +30,9 @@ fi
 (cd "$AGENT_DIR" && DATABASE_URL="$DATABASE_URL" PYTHONPATH=. .venv/bin/alembic upgrade head >/dev/null)
 (cd "$AGENT_DIR" && PYTHONPATH=. .venv/bin/python scripts/check_alembic_single_head.py >/dev/null)
 CURRENT_REVISION="$(cd "$AGENT_DIR" && DATABASE_URL="$DATABASE_URL" PYTHONPATH=. .venv/bin/alembic current)"
-grep -q 'occurrence01' <<<"$CURRENT_REVISION" || die "Local database is not at the occurrence01 head: $CURRENT_REVISION"
-pass "Postgres reachable; Alembic is at occurrence01 with one graph head"
+EXPECTED_MIGRATION_HEAD="ambientcycle01"
+grep -q "$EXPECTED_MIGRATION_HEAD" <<<"$CURRENT_REVISION" || die "Local database is not at the $EXPECTED_MIGRATION_HEAD head: $CURRENT_REVISION"
+pass "Postgres reachable; Alembic is at $EXPECTED_MIGRATION_HEAD with one graph head"
 
 log "Running deterministic backend canary"
 (cd "$AGENT_DIR" && DATABASE_URL="$DATABASE_URL" SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -m pytest -q \
