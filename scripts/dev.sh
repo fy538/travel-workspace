@@ -20,6 +20,13 @@ WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
 AGENT_DIR="$WORKSPACE_DIR/travel-agent"
 APP_DIR="$WORKSPACE_DIR/travel-app"
 
+# docker-compose publishes Postgres on 15432 by default.  The checked-in
+# travel-agent/.env is also used by some production-shaped commands and may
+# name 5432, so pass the dev DSN explicitly to migrations and the API.  An
+# explicitly supplied DATABASE_URL always wins.
+POSTGRES_HOST_PORT="${POSTGRES_HOST_PORT:-15432}"
+BACKEND_DEV_DATABASE_URL="${DATABASE_URL:-postgresql://vesper:localdev@localhost:${POSTGRES_HOST_PORT}/vesper}"
+
 # ── Flags ────────────────────────────────────────────────────────────────────
 
 RUN_EXPO=true
@@ -143,7 +150,7 @@ echo -e "  ${GREEN}✓${RESET} Postgres ready"
 
 if $RUN_MIGRATE; then
   log "Running database migrations..."
-  (cd "$AGENT_DIR" && PYTHONPATH=. alembic upgrade head 2>&1) | \
+  (cd "$AGENT_DIR" && DATABASE_URL="$BACKEND_DEV_DATABASE_URL" PYTHONPATH=. alembic upgrade head 2>&1) | \
     awk -v col="$BLUE" -v rst="$RESET" '{printf "%s[MIGRATE]%s %s\n", col, rst, $0; fflush()}'
   echo -e "  ${GREEN}✓${RESET} Migrations applied"
 fi
@@ -152,7 +159,7 @@ fi
 
 log "Starting API server..."
 stream_prefixed "API" "$BLUE" \
-  bash -c "cd '$AGENT_DIR' && PYTHONPATH=. uvicorn backend.api.main:app --reload --port 8000"
+  bash -c "cd '$AGENT_DIR' && DATABASE_URL='$BACKEND_DEV_DATABASE_URL' PYTHONPATH=. uvicorn backend.api.main:app --reload --port 8000"
 
 # Brief pause so the API banner prints before Expo output starts
 sleep 2

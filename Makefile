@@ -11,7 +11,7 @@ include dogfood.mk
 .PHONY: new-worktree land-worktree worktrees
 .PHONY: contract-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate mock-slug-parity
 .PHONY: certify-fast certify-logic certify-corpus certify-visual certify-visual-cloud certify-live maestro-flow-check journey-registry-check dogfood-status corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-journey-live-api qa-persona dogfood-status-sync
-.PHONY: preflight-eas fly-secrets verify docs-governance-check docs-child-governance-check docs-inventory-check docs-inventory-report docs-spine-check docs-status-check docs-status-sync docs-links-check docs-check compatibility-check card-arrival-check chat-card-types-check
+.PHONY: preflight-eas fly-secrets verify docs-governance-check docs-child-governance-check docs-inventory-check docs-inventory-report docs-spine-check docs-status-check docs-status-sync docs-links-check docs-check compatibility-check card-arrival-check chat-card-types-check pre-dogfood test-backend-postgres
 
 # ── Development ───────────────────────────────────────────────────────────────
 
@@ -104,13 +104,19 @@ reliability-gate: ## Gate on eval reliability baseline — exits 1 if any checks
 
 # ── Tests ─────────────────────────────────────────────────────────────────────
 
-test-backend: ## Run offline backend tests
-	@cd travel-agent && SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -m pytest tests/ -q -k "not requires_postgres and not requires_api_keys"
+test-backend: ## Run the backend canary against local Postgres; unseeded corpus suites skip
+	@cd travel-agent && DATABASE_URL="$${DATABASE_URL:-postgresql://vesper:localdev@localhost:15432/vesper}" SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -m pytest tests/ -q -k "not requires_postgres and not requires_api_keys and not requires_dogfood_wedge"
+
+test-backend-postgres: ## Run marker-gated Postgres integration tests against local Postgres
+	@cd travel-agent && DATABASE_URL="$${DATABASE_URL:-postgresql://vesper:localdev@localhost:15432/vesper}" SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -m pytest tests/ -q -m "requires_postgres and not requires_dogfood_wedge"
 
 test-frontend: ## Run frontend Jest tests
 	@cd travel-app && npx jest --no-coverage
 
-test-all: test-backend test-frontend ## Run all tests (offline)
+test-all: test-backend test-frontend ## Run all local backend-canary and frontend tests
+
+pre-dogfood: ## Run the repeatable pre-dogfood static, contract, and local-canary checks
+	@./scripts/pre-dogfood.sh
 
 certify-fast: ## Tier-1 certify ladder: corpus-check + contract + journey Jest + maestro-flow-check + offline backend pytest
 	@$(MAKE) corpus-check
