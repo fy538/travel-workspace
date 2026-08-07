@@ -30,6 +30,36 @@
 
 flags:
   # ── travel-agent (backend) ──────────────────────────────────────────────
+  - name: SPATIAL_REACHABILITY_NEARBY_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:37
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    notes: Enables the bounded nearby reachability/isochrone canary after cache and provider validation.
+
+  - name: AMBIENT_ATTENTION_DISPATCH_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:120
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    notes: Keeps ambient attention dispatch dark while shadow-cycle receipts are evaluated.
+
+  - name: HOME_AGENT_LOOP_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:132
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    notes: Enables the bounded Home composition loop only after shadow parity and device review.
+
   - name: PLACES_EXPOSURE_ROTATION_ENABLED
     repo: travel-agent
     location: backend/core/feature_flags.py:85
