@@ -20,7 +20,7 @@ from committed registries; follow the linked authority for evidence and detail.
 |---|---:|---|
 | API contract | 435 paths / 483 operations / 970 schemas | [`docs/openapi.json`](../openapi.json) |
 | Canonical journeys | 28 total / 12 golden path / 7 holistic extension | [`journeys.yaml`](../journeys/journeys.yaml) |
-| Feature flags | 50 registered / 49 active / 1 resolved | [`registry.yaml`](../flags/registry.yaml) |
+| Feature flags | 53 registered / 52 active / 1 resolved | [`registry.yaml`](../flags/registry.yaml) |
 | System charters | 20 Markdown documents | [`systems/`](../systems/) |
 | Documentation inventory | 298 files classified | [`inventory.yaml`](../governance/inventory.yaml) |
 <!-- END auto:current-state -->
