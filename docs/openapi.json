@@ -66867,11 +66867,10 @@
           "starter",
           "guide",
           "experiences",
-          "areas",
           "saved"
         ],
         "title": "PlacesSectionReason",
-        "description": "Why a section is on the page, independent of its content type."
+        "description": "Why a section is on the page, independent of its content type.\n\n``AREAS`` was removed 2026-08-07: a dead reason with no producer and a\nreserved rank slot that never filled. `PlacesCardKind.AREA`,\n`PlacesAreaPreview` and the client's `case \"area\":` renderer are all\nstill live \u2014 an area card ships today under ``NEIGHBOURHOOD``\n(see `sections.py`). Only the standalone reason was unreachable."
       },
       "PlacesSectionTreatment": {
         "type": "string",
