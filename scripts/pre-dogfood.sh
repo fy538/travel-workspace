@@ -44,6 +44,7 @@ log "Running deterministic backend canary"
   tests/core/test_occurrence_artifact.py \
   tests/core/test_occurrence_reconciliation.py \
   tests/scenarios/test_local_occasion_closure.py \
+  tests/scenarios/test_outcome_closure.py \
   tests/core/test_ambient_judgment.py \
   tests/core/test_ambient_dispatch.py \
   tests/home/test_m5_ambient_foundations.py \
