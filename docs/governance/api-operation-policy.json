@@ -9,47 +9,50 @@
   },
   "operations": {
     "GET /api/trips/{trip_id}/occurrence-artifact": {
-      "audience": "operator",
+      "audience": "app",
       "consumers": [
         {
-          "kind": "operator",
-          "name": "outcome-reconciliation-private-surface"
+          "kind": "app_url",
+          "name": "getTripOccurrenceArtifact",
+          "source": "travel-app/utils/api/http.ts"
         }
       ],
-      "feature_flag": null,
+      "feature_flag": "OUTCOME_ARTIFACT_ENABLED",
       "lifecycle": "active",
       "owner": "outcomes",
-      "reason": "Private artifact projection is a backend seam for the eventual post-occasion surface; mobile adoption follows device validation.",
+      "reason": "Private artifact projection is mounted for a review-only mobile confirmation surface; the client flag remains off until device validation.",
       "removal_trigger": null,
       "review_by": "2026-09-03"
     },
     "GET /api/trips/{trip_id}/occurrence-proposals": {
-      "audience": "operator",
+      "audience": "app",
       "consumers": [
         {
-          "kind": "operator",
-          "name": "outcome-reconciliation-private-surface"
+          "kind": "app_url",
+          "name": "listTripOccurrenceProposals",
+          "source": "travel-app/utils/api/http.ts"
         }
       ],
-      "feature_flag": null,
+      "feature_flag": "OUTCOME_ARTIFACT_ENABLED",
       "lifecycle": "active",
       "owner": "outcomes",
-      "reason": "Private proposal read surface is staged for the outcome artifact; mobile adoption follows device validation.",
+      "reason": "Private proposal reads support a review-only mobile confirmation surface; the client flag remains off until device validation.",
       "removal_trigger": null,
       "review_by": "2026-09-03"
     },
     "POST /api/trips/{trip_id}/occurrence-proposals/{proposal_id}/resolve": {
-      "audience": "operator",
+      "audience": "app",
       "consumers": [
         {
-          "kind": "operator",
-          "name": "outcome-reconciliation-private-surface"
+          "kind": "app_url",
+          "name": "resolveTripOccurrenceProposal",
+          "source": "travel-app/utils/api/http.ts"
         }
       ],
-      "feature_flag": null,
+      "feature_flag": "OUTCOME_ARTIFACT_ENABLED",
       "lifecycle": "active",
       "owner": "outcomes",
-      "reason": "Private confirm/reject/correct surface uses the canonical occurrence writer; mobile adoption follows device validation.",
+      "reason": "Private confirm/reject/correct uses the canonical occurrence writer; the client flag remains off until device validation.",
       "removal_trigger": null,
       "review_by": "2026-09-03"
     },
