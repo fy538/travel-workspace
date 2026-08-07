@@ -8,6 +8,21 @@
     "review_by": null
   },
   "operations": {
+    "GET /api/trips/{trip_id}/occurrence-artifact": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "outcome-reconciliation-private-surface"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "outcomes",
+      "reason": "Private artifact projection is a backend seam for the eventual post-occasion surface; mobile adoption follows device validation.",
+      "removal_trigger": null,
+      "review_by": "2026-09-03"
+    },
     "GET /api/trips/{trip_id}/occurrence-proposals": {
       "audience": "operator",
       "consumers": [

@@ -20920,6 +20920,67 @@
         }
       }
     },
+    "/api/trips/{trip_id}/occurrence-artifact": {
+      "get": {
+        "tags": [
+          "trip",
+          "outcomes"
+        ],
+        "summary": "Get Occurrence Artifact Endpoint",
+        "description": "Return the caller's private, proposal-aware outcome artifact.",
+        "operationId": "get_occurrence_artifact_endpoint_api_trips__trip_id__occurrence_artifact_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OccurrenceArtifact"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/occurrence-proposals": {
       "get": {
         "tags": [
@@ -62356,6 +62417,149 @@
           "created_at"
         ],
         "title": "Observation"
+      },
+      "OccurrenceArtifact": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "blocks": {
+            "items": {
+              "$ref": "#/components/schemas/OccurrenceArtifactBlock"
+            },
+            "type": "array",
+            "title": "Blocks"
+          },
+          "confirmed_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Confirmed Count",
+            "default": 0
+          },
+          "proposed_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Proposed Count",
+            "default": 0
+          },
+          "unmarked_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Unmarked Count",
+            "default": 0
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "trip_id",
+          "generated_at"
+        ],
+        "title": "OccurrenceArtifact",
+        "description": "Private post-occasion read model; never a second occurrence writer."
+      },
+      "OccurrenceArtifactBlock": {
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Block Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "time_start": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Start"
+          },
+          "time_end": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time End"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "confirmed",
+              "proposed",
+              "unmarked"
+            ],
+            "title": "State"
+          },
+          "score": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 5.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Score"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/OccurrenceArtifactEvidence"
+            },
+            "type": "array",
+            "title": "Evidence"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "block_id",
+          "title",
+          "state"
+        ],
+        "title": "OccurrenceArtifactBlock",
+        "description": "One planned block and what the evidence currently supports."
+      },
+      "OccurrenceArtifactEvidence": {
+        "properties": {
+          "evidence_type": {
+            "type": "string",
+            "title": "Evidence Type"
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Observed At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "evidence_type",
+          "observed_at"
+        ],
+        "title": "OccurrenceArtifactEvidence",
+        "description": "A compact provenance cue safe for the private artifact surface."
       },
       "OccurrenceProposalResponse": {
         "properties": {
