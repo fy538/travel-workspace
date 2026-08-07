@@ -8,6 +8,36 @@
     "review_by": null
   },
   "operations": {
+    "GET /api/trips/{trip_id}/occurrence-proposals": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "outcome-reconciliation-private-surface"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "outcomes",
+      "reason": "Private proposal read surface is staged for the outcome artifact; mobile adoption follows device validation.",
+      "removal_trigger": null,
+      "review_by": "2026-09-03"
+    },
+    "POST /api/trips/{trip_id}/occurrence-proposals/{proposal_id}/resolve": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "outcome-reconciliation-private-surface"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "outcomes",
+      "reason": "Private confirm/reject/correct surface uses the canonical occurrence writer; mobile adoption follows device validation.",
+      "removal_trigger": null,
+      "review_by": "2026-09-03"
+    },
     "GET /api/trips/{trip_id}/location-sharing": {
       "audience": "app",
       "consumers": [],

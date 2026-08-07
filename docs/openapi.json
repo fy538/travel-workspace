@@ -20920,6 +20920,152 @@
         }
       }
     },
+    "/api/trips/{trip_id}/occurrence-proposals": {
+      "get": {
+        "tags": [
+          "trip",
+          "outcomes"
+        ],
+        "summary": "List Occurrence Proposals Endpoint",
+        "description": "Return only this caller's pending, private outcome proposals.",
+        "operationId": "list_occurrence_proposals_endpoint_api_trips__trip_id__occurrence_proposals_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OccurrenceProposalResponse"
+                  },
+                  "title": "Response List Occurrence Proposals Endpoint Api Trips  Trip Id  Occurrence Proposals Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/occurrence-proposals/{proposal_id}/resolve": {
+      "post": {
+        "tags": [
+          "trip",
+          "outcomes"
+        ],
+        "summary": "Resolve Occurrence Proposal Endpoint",
+        "description": "Confirm, reject, or correct one proposal.\n\nConfirm/correct routes through ``commit_occurrence_operation`` so the\nexisting itinerary ledger, receipt, revision checks, and affinity path\nremain the only occurrence writer. Rejecting is a durable correction but\nnever writes ``skipped``.",
+        "operationId": "resolve_occurrence_proposal_endpoint_api_trips__trip_id__occurrence_proposals__proposal_id__resolve_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "proposal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Proposal Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveOccurrenceProposalRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OccurrenceProposalResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/users/{user_id}/notification-preferences": {
       "get": {
         "tags": [
@@ -43631,6 +43777,18 @@
             "title": "Lifecycle State",
             "default": "ready"
           },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
           "authorship": {
             "anyOf": [
               {
@@ -62199,6 +62357,89 @@
         ],
         "title": "Observation"
       },
+      "OccurrenceProposalResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "block_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Block Id"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "occasion_key": {
+            "type": "string",
+            "title": "Occasion Key"
+          },
+          "state": {
+            "type": "string",
+            "title": "State"
+          },
+          "score": {
+            "type": "number",
+            "title": "Score"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Payload"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "resolved_block_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolved Block Id"
+          },
+          "resolved_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolved At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "trip_id",
+          "block_id",
+          "user_id",
+          "occasion_key",
+          "state",
+          "score",
+          "payload",
+          "created_at"
+        ],
+        "title": "OccurrenceProposalResponse"
+      },
       "OccurrenceState": {
         "type": "string",
         "enum": [
@@ -71375,6 +71616,36 @@
         ],
         "title": "ResolutionOutcome"
       },
+      "ResolveOccurrenceProposalRequest": {
+        "properties": {
+          "decision": {
+            "type": "string",
+            "enum": [
+              "confirm",
+              "reject",
+              "correct"
+            ],
+            "title": "Decision"
+          },
+          "corrected_block_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Corrected Block Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "decision"
+        ],
+        "title": "ResolveOccurrenceProposalRequest"
+      },
       "ResolveOutcomeRequest": {
         "properties": {
           "outcome": {
@@ -80542,6 +80813,18 @@
             "type": "string",
             "title": "Cta Label"
           },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
           "tier": {
             "type": "integer",
             "enum": [
@@ -80713,6 +80996,18 @@
           "cta_label": {
             "type": "string",
             "title": "Cta Label"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
           },
           "tier": {
             "type": "integer",

@@ -35687,6 +35687,18 @@
             "title": "Lifecycle State",
             "default": "ready"
           },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
           "authorship": {
             "anyOf": [
               {
@@ -70127,6 +70139,18 @@
             "type": "string",
             "title": "Cta Label"
           },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
           "tier": {
             "type": "integer",
             "enum": [
@@ -70298,6 +70322,18 @@
           "cta_label": {
             "type": "string",
             "title": "Cta Label"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
           },
           "tier": {
             "type": "integer",
