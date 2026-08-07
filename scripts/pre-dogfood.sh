@@ -44,6 +44,7 @@ log "Running deterministic backend canary"
   tests/core/test_occurrence_artifact.py \
   tests/core/test_occurrence_reconciliation.py \
   tests/scenarios/test_local_occasion_closure.py \
+  tests/scenarios/test_local_occasion_transport.py \
   tests/scenarios/test_outcome_closure.py \
   tests/core/test_ambient_judgment.py \
   tests/core/test_ambient_dispatch.py \
@@ -62,6 +63,7 @@ log "Running app deterministic replay and contract checks"
   __tests__/components/trips/tripsHomeHeroModel.test.ts \
   __tests__/components/trip-plan/LocalPlanScreen.test.tsx \
   __tests__/journeys/local-occasion-closure.replay.test.tsx \
+  __tests__/journeys/local-occasion-transport.replay.test.tsx \
   __tests__/components/trip-plan/OccurrenceArtifactCard.test.tsx \
   __tests__/utils/invalidateHomeProjections.test.ts \
   __tests__/data/read-model-invalidations.test.ts)
