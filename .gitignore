@@ -23,6 +23,7 @@ worktrees
 .cache/
 .tmp/
 tmp/
+.tmp/journey-evidence/
 
 # Tool caches
 __pycache__/

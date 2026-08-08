@@ -10,7 +10,7 @@ include dogfood.mk
 .PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help
 .PHONY: new-worktree land-worktree worktrees
 .PHONY: contract-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate mock-slug-parity
-.PHONY: certify-fast certify-logic certify-corpus certify-visual certify-visual-cloud certify-live maestro-flow-check journey-registry-check dogfood-status corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-journey-live-api qa-persona dogfood-status-sync
+.PHONY: certify-fast certify-logic certify-corpus certify-visual certify-visual-cloud certify-live maestro-flow-check journey-registry-check journey-evidence-report dogfood-status corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-journey-live-api qa-persona dogfood-status-sync
 .PHONY: preflight-eas fly-secrets verify docs-governance-check docs-child-governance-check docs-inventory-check docs-inventory-report docs-spine-check docs-status-check docs-status-sync docs-links-check docs-check compatibility-check card-arrival-check chat-card-types-check pre-dogfood test-backend-postgres
 
 # ── Development ───────────────────────────────────────────────────────────────
@@ -129,6 +129,9 @@ certify-fast: ## Tier-1 certify ladder: corpus-check + contract + journey Jest +
 
 journey-registry-check: ## Gate: journeys.yaml ↔ docs ↔ README ↔ persona-cert agree on the journey set (offline, no DB)
 	@python3 scripts/check_journey_registry.py
+
+journey-evidence-report: ## Render commit-specific local/CI journey evidence receipts
+	@python3 scripts/journey_evidence.py report
 
 flag-registry-check: ## Gate: no feature flag in docs/flags/registry.yaml is past its review/removal date (offline, no DB)
 	@python3 scripts/check_flag_registry.py
