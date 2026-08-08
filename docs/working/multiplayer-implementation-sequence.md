@@ -33,6 +33,22 @@ revisit decision.
 Automated evidence and device evidence must remain separate claims. A phase is
 not live-certified until the required real-account device walk is recorded.
 
+## Execution status (2026-08-08)
+
+- Foundation certification remains pending on the real two-account/two-device
+  run; no device claim is being promoted from the automated suites.
+- Explicit circle identity is partially implemented: durable circle/member/
+  trip-link/event storage, owner authorization, cursor reads, mobile transport,
+  an explicit pair-confirmation flow, and a read-only detail route are live in
+  the code path. Mock mode stays empty/live-only and never fabricates circles.
+- Unified sync is partially implemented: circle events use a monotonic sequence
+  and cursor replay with membership checks. There is deliberately no new
+  realtime channel yet; the client refetches durable state.
+- Shared-agent context is behind `SOCIAL_CIRCLE_AGENT_CONTEXT_ENABLED` (off by
+  default). When enabled, only bounded kind/member-count/revision facts enter
+  the group trip context; member names, IDs, event payloads, and private memory
+  remain excluded. The group-action/weather vertical slice is not complete.
+
 ## Architecture rules
 
 1. Durable domain state is server-authoritative and ledgered.
