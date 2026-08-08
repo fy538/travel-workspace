@@ -61347,6 +61347,16 @@
             ],
             "title": "Proposed Entity Id"
           },
+          "proposed_entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "voting_enabled": {
             "type": "boolean",
             "title": "Voting Enabled",
