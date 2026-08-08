@@ -73781,35 +73781,6 @@
           },
           "intention": {
             "$ref": "#/components/schemas/AttendanceIntention"
-          },
-          "restore_absent_participation": {
-            "type": "boolean",
-            "title": "Restore Absent Participation",
-            "default": false
-          },
-          "response_to_request_id": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "uuid"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Response To Request Id"
-          },
-          "expected_request_revision": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "minimum": 1.0
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Expected Request Revision"
           }
         },
         "additionalProperties": false,
