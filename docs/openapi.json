@@ -206,6 +206,85 @@
         }
       }
     },
+    "/api/agent-workflows/{workflow_id}/commands": {
+      "post": {
+        "tags": [
+          "agent-workflows"
+        ],
+        "summary": "Request Agent Workflow Command",
+        "description": "Record a shared-workflow control intent behind a CAS revision fence.\n\nThis route is deliberately dark until the control-plane canary is enabled.\nIt records an intent and safe invalidation event only; no steer/pause/\nresume/cancel/handoff command changes a worker or itinerary yet.",
+        "operationId": "request_agent_workflow_command_api_agent_workflows__workflow_id__commands_post",
+        "parameters": [
+          {
+            "name": "workflow_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Workflow Id"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "X-Idempotency-Key"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkflowCommandCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkflowCommandResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/agent-workflows/{workflow_id}": {
       "get": {
         "tags": [
@@ -36697,6 +36776,88 @@
           "configured"
         ],
         "title": "AffiliateLinkResponse"
+      },
+      "AgentWorkflowCommand": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "workflow_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Workflow Id"
+          },
+          "requested_by": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Requested By"
+          },
+          "command_type": {
+            "type": "string",
+            "title": "Command Type"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Revision"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "title": "Idempotency Key"
+          },
+          "payload_json": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Payload Json"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "default": "pending"
+          },
+          "rejection_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rejection Code"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "applied_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Applied At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "workflow_id",
+          "requested_by",
+          "command_type",
+          "expected_revision",
+          "idempotency_key",
+          "created_at"
+        ],
+        "title": "AgentWorkflowCommand",
+        "description": "One explicit, idempotent request to control a shared workflow.\n\nThe command is only an intent record in this first slice. A worker or\ncontrol-plane adapter must still apply it and transition the status; the\nrevision fence prevents two observers from issuing a command against the\nsame stale workflow state."
       },
       "AliasResponse": {
         "properties": {
@@ -87955,6 +88116,56 @@
           "stamp"
         ],
         "title": "WorkbenchSessionItem"
+      },
+      "WorkflowCommandCreateRequest": {
+        "properties": {
+          "command_type": {
+            "type": "string",
+            "enum": [
+              "steer",
+              "pause",
+              "resume",
+              "cancel",
+              "handoff"
+            ],
+            "title": "Command Type"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Revision"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Payload"
+          }
+        },
+        "type": "object",
+        "required": [
+          "command_type",
+          "expected_revision"
+        ],
+        "title": "WorkflowCommandCreateRequest",
+        "description": "A revision-fenced shared workflow intent.\n\nThe payload is kept opaque to this transport slice and is never copied\ninto the shared workflow event stream. Individual command executors will\nimpose command-specific schemas before applying an intent."
+      },
+      "WorkflowCommandResponse": {
+        "properties": {
+          "command": {
+            "$ref": "#/components/schemas/AgentWorkflowCommand"
+          },
+          "next_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Next Revision"
+          }
+        },
+        "type": "object",
+        "required": [
+          "command",
+          "next_revision"
+        ],
+        "title": "WorkflowCommandResponse"
       },
       "WritebackVisibility": {
         "type": "string",

@@ -8,6 +8,16 @@
     "review_by": null
   },
   "operations": {
+    "POST /api/agent-workflows/{workflow_id}/commands": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "SHARED_WORKFLOW_CONTROL_ENABLED",
+      "lifecycle": "dark",
+      "owner": "multiplayer",
+      "reason": "Durable CAS-fenced workflow command recording is staged behind an explicit control-plane canary; no mobile caller until command application and device recovery are proven.",
+      "removal_trigger": "Either adopt from a shared-workflow control journey or remove the dark transport after the canary decision.",
+      "review_by": "2026-09-03"
+    },
     "POST /api/social-circles": {
       "audience": "app",
       "consumers": [{"kind": "app_url", "name": "createSocialCircle", "source": "travel-app/utils/api/http.ts"}],
