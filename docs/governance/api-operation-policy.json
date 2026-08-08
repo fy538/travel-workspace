@@ -9,8 +9,8 @@
   },
   "operations": {
     "POST /api/social-circles": {
-      "audience": "server",
-      "consumers": [{"kind": "backend_source", "name": "createSocialCircle", "source": "travel-agent/backend/api/routes/social_circles.py"}],
+      "audience": "app",
+      "consumers": [{"kind": "app_url", "name": "createSocialCircle", "source": "travel-app/utils/api/http.ts"}],
       "feature_flag": "SOCIAL_CIRCLES_ENABLED",
       "lifecycle": "active",
       "owner": "multiplayer",
@@ -19,8 +19,8 @@
       "review_by": "2026-09-03"
     },
     "GET /api/social-circles": {
-      "audience": "server",
-      "consumers": [{"kind": "backend_source", "name": "listSocialCircles", "source": "travel-agent/backend/api/routes/social_circles.py"}],
+      "audience": "app",
+      "consumers": [{"kind": "app_url", "name": "listSocialCircles", "source": "travel-app/utils/api/http.ts"}],
       "feature_flag": "SOCIAL_CIRCLES_ENABLED",
       "lifecycle": "active",
       "owner": "multiplayer",
@@ -29,8 +29,8 @@
       "review_by": "2026-09-03"
     },
     "GET /api/social-circles/{circle_id}": {
-      "audience": "server",
-      "consumers": [{"kind": "backend_source", "name": "readSocialCircle", "source": "travel-agent/backend/api/routes/social_circles.py"}],
+      "audience": "app",
+      "consumers": [{"kind": "app_url", "name": "readSocialCircle", "source": "travel-app/utils/api/http.ts"}],
       "feature_flag": "SOCIAL_CIRCLES_ENABLED",
       "lifecycle": "active",
       "owner": "multiplayer",
@@ -39,8 +39,8 @@
       "review_by": "2026-09-03"
     },
     "POST /api/social-circles/{circle_id}/members": {
-      "audience": "server",
-      "consumers": [{"kind": "backend_source", "name": "addSocialCircleMember", "source": "travel-agent/backend/api/routes/social_circles.py"}],
+      "audience": "app",
+      "consumers": [{"kind": "app_url", "name": "addSocialCircleMember", "source": "travel-app/utils/api/http.ts"}],
       "feature_flag": "SOCIAL_CIRCLES_ENABLED",
       "lifecycle": "active",
       "owner": "multiplayer",
@@ -49,8 +49,8 @@
       "review_by": "2026-09-03"
     },
     "POST /api/social-circles/{circle_id}/trips/{trip_id}": {
-      "audience": "server",
-      "consumers": [{"kind": "backend_source", "name": "linkSocialCircleTrip", "source": "travel-agent/backend/api/routes/social_circles.py"}],
+      "audience": "app",
+      "consumers": [{"kind": "app_url", "name": "linkSocialCircleTrip", "source": "travel-app/utils/api/http.ts"}],
       "feature_flag": "SOCIAL_CIRCLES_ENABLED",
       "lifecycle": "active",
       "owner": "multiplayer",
