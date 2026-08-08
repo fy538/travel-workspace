@@ -18,6 +18,26 @@
       "removal_trigger": "Either adopt from a shared-workflow control journey or remove the dark transport after the canary decision.",
       "review_by": "2026-09-03"
     },
+    "POST /api/trips/{trip_id}/proposals/{proposal_id}/guest-links": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "GUEST_PROPOSAL_CAPABILITIES_ENABLED",
+      "lifecycle": "dark",
+      "owner": "multiplayer",
+      "reason": "One-use proposal guest capability minting is staged behind the membership-upgrade and mobile handoff canary; no client caller until canonical vote continuity and device evidence pass.",
+      "removal_trigger": "Either adopt from the guest proposal journey or remove the dark transport after the canary decision.",
+      "review_by": "2026-09-03"
+    },
+    "POST /api/trips/{trip_id}/proposals/{proposal_id}/guest-links/{capability_token}/claim": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "GUEST_PROPOSAL_CAPABILITIES_ENABLED",
+      "lifecycle": "dark",
+      "owner": "multiplayer",
+      "reason": "Authenticated capability claim upgrades the recipient through the existing membership fan-out but deliberately does not write a vote; mobile handoff and two-observer recovery remain unproven.",
+      "removal_trigger": "Either adopt from the guest proposal journey or remove the dark transport after the canary decision.",
+      "review_by": "2026-09-03"
+    },
     "POST /api/social-circles": {
       "audience": "app",
       "consumers": [{"kind": "app_url", "name": "createSocialCircle", "source": "travel-app/utils/api/http.ts"}],

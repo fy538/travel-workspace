@@ -74,10 +74,10 @@ not live-certified until the required real-account device walk is recorded.
   group composition and two-observer device certification remain outstanding.
 - Guest participation audit is complete: expiring/revocable invite links,
   pre-auth intake, local-Plan RSVP, authenticated membership upgrade, and
-  attendance receipts already exist. Proposal links remain an
-  authentication-only handoff; a new purpose-bound capability record and
-  post-auth claim path are required before guest voting can safely enter the
-  canonical member-only vote ledger. See
+  attendance receipts already exist. The proposal-link gap now has a dark
+  purpose-bound capability record and post-auth membership claim path; the
+  mobile handoff and canonical member-only vote continuation are still
+  outstanding. See
   [`multiplayer-guest-participation-audit-2026-08-08.md`](multiplayer-guest-participation-audit-2026-08-08.md).
 - Shared workflow control has its first dark slice: `agent_workflow_commands`
   plus a compare-and-swap `control_revision`, idempotency, privacy-safe event
@@ -93,6 +93,15 @@ not live-certified until the required real-account device walk is recorded.
   scope, not a persistent presence toggle; no location history or relationship
   memory is created. Focused location/API/tool suites pass (103); two-device
   spatial certification remains pending.
+- Guest participation has its first dark capability slice: organizers can
+  mint an opaque, one-use, seven-day-bounded `proposal_vote` capability for
+  one open proposal; an authenticated recipient can claim it once, atomically
+  upgrade into ordinary trip membership, and receive the existing member-only
+  vote endpoint. Raw tokens are stored only as SHA-256 digests; cross-proposal
+  claims, expiry, replay by another user, and non-open proposals fail closed.
+  The claim never writes a guest vote or bypasses the canonical receipt path.
+  Focused capability/API/landing tests pass (11); mobile deep-link handoff, private
+  constraint capture, and two-observer vote certification remain outstanding.
 
 ## Architecture rules
 

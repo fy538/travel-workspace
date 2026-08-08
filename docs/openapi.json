@@ -23405,6 +23405,172 @@
         }
       }
     },
+    "/api/trips/{trip_id}/proposals/{proposal_id}/guest-links": {
+      "post": {
+        "tags": [
+          "proposals"
+        ],
+        "summary": "Mint Guest Proposal Link",
+        "description": "Mint a dark, one-use link that upgrades one authenticated guest.\n\nThe capability is scoped to this open proposal and never writes a vote.\nThe organizer remains the issuer; after claiming, the recipient uses the\nnormal member-only proposal endpoint and its existing receipt path.",
+        "operationId": "mint_guest_proposal_link_api_trips__trip_id__proposals__proposal_id__guest_links_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "proposal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Proposal Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/GuestCapabilityCreateRequest"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GuestCapabilityCreateResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/proposals/{proposal_id}/guest-links/{capability_token}/claim": {
+      "post": {
+        "tags": [
+          "proposals"
+        ],
+        "summary": "Claim Guest Proposal Link",
+        "description": "Claim a link after auth, then continue through the member vote path.",
+        "operationId": "claim_guest_proposal_link_api_trips__trip_id__proposals__proposal_id__guest_links__capability_token__claim_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "proposal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Proposal Id"
+            }
+          },
+          {
+            "name": "capability_token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Capability Token"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProposalGuestCapabilityClaim"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/proposals/{proposal_id}/vote": {
       "post": {
         "tags": [
@@ -53720,6 +53886,61 @@
         "title": "GroupedResults",
         "description": "One typed section: a header label plus its ranked items."
       },
+      "GuestCapabilityCreateRequest": {
+        "properties": {
+          "expires_in_hours": {
+            "type": "integer",
+            "maximum": 168.0,
+            "minimum": 1.0,
+            "title": "Expires In Hours",
+            "default": 72
+          }
+        },
+        "type": "object",
+        "title": "GuestCapabilityCreateRequest",
+        "description": "Bounded lifetime for a proposal guest handoff."
+      },
+      "GuestCapabilityCreateResponse": {
+        "properties": {
+          "capability_token": {
+            "type": "string",
+            "title": "Capability Token"
+          },
+          "share_url": {
+            "type": "string",
+            "title": "Share Url"
+          },
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "proposal_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Proposal Id"
+          },
+          "purpose": {
+            "type": "string",
+            "const": "proposal_vote",
+            "title": "Purpose",
+            "default": "proposal_vote"
+          },
+          "expires_at": {
+            "type": "string",
+            "title": "Expires At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "capability_token",
+          "share_url",
+          "trip_id",
+          "proposal_id",
+          "expires_at"
+        ],
+        "title": "GuestCapabilityCreateResponse"
+      },
       "HTTPValidationError": {
         "properties": {
           "detail": {
@@ -71918,6 +72139,54 @@
         ],
         "title": "ProposalDetail",
         "description": "Full proposal detail.\n\nWhen ``proposed_entity_type`` + ``proposed_entity_id`` are set, the\nmobile app deep-links the proposal card into that entity's detail\nview, where a per-viewer personalized Take is fetched via\n``POST /api/takes``. Both are null for proposals that don't point\nat a single entity (e.g. pure reschedule, \"add a day\").\n\n``voting_enabled`` mirrors the trip-level flag \u2014 the mobile app uses\nit to decide whether to render the vote widget (enabled) or a\nreaction-only view with an \"ask organizer to resolve\" affordance\n(disabled)."
+      },
+      "ProposalGuestCapabilityClaim": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "proposal_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Proposal Id"
+          },
+          "claimed_by": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Claimed By"
+          },
+          "purpose": {
+            "type": "string",
+            "const": "proposal_vote",
+            "title": "Purpose",
+            "default": "proposal_vote"
+          },
+          "membership_upgraded": {
+            "type": "boolean",
+            "title": "Membership Upgraded"
+          },
+          "replay": {
+            "type": "boolean",
+            "title": "Replay",
+            "default": false
+          },
+          "vote_endpoint": {
+            "type": "string",
+            "title": "Vote Endpoint"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "proposal_id",
+          "claimed_by",
+          "membership_upgraded",
+          "vote_endpoint"
+        ],
+        "title": "ProposalGuestCapabilityClaim",
+        "description": "Authenticated result after a capability upgrades membership."
       },
       "ProposalImpactAnalysis": {
         "properties": {
