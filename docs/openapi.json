@@ -21006,6 +21006,75 @@
         }
       }
     },
+    "/api/trips/{trip_id}/prior-occasion-context": {
+      "get": {
+        "tags": [
+          "trip",
+          "outcomes"
+        ],
+        "summary": "Get Prior Occasion Context Endpoint",
+        "description": "Return the private structural precedent used for this local Plan.",
+        "operationId": "get_prior_occasion_context_endpoint_api_trips__trip_id__prior_occasion_context_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/PriorOccasionContext"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Response Get Prior Occasion Context Endpoint Api Trips  Trip Id  Prior Occasion Context Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/occurrence-artifact": {
       "get": {
         "tags": [
@@ -65890,6 +65959,65 @@
         "title": "PlacesContextRole",
         "description": "Why an automatically resolved context is present on the Places root."
       },
+      "PlacesEncounterTruth": {
+        "properties": {
+          "count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Count",
+            "default": 0
+          },
+          "last_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Date"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "trip_title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Title"
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source"
+          }
+        },
+        "type": "object",
+        "title": "PlacesEncounterTruth",
+        "description": "Factual, non-preference evidence connecting this viewer to a venue.\n\nThe source distinguishes explicit member attendance from a shared Plan\noutcome. Neither establishes that the viewer selected or enjoyed it. The\nlatest originating Plan remains inspectable provenance rather than being\ncollapsed into an affinity score."
+      },
       "PlacesExperienceAvailability": {
         "type": "string",
         "enum": [
@@ -67003,11 +67131,14 @@
           },
           "saved_by_friend": {
             "$ref": "#/components/schemas/PlacesProvenanceTruth"
+          },
+          "encounter": {
+            "$ref": "#/components/schemas/PlacesEncounterTruth"
           }
         },
         "type": "object",
         "title": "PlacesRelationshipTruth",
-        "description": "Grounded five-marker contract after the unowned Been marker was cut."
+        "description": "Grounded relationship markers with factual encounter provenance."
       },
       "PlacesSavedPage": {
         "properties": {
@@ -69233,6 +69364,86 @@
         ],
         "title": "PrerenderHintResponse",
         "description": "Response shape for the speculative pre-render endpoint."
+      },
+      "PriorOccasionContext": {
+        "properties": {
+          "current_trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Current Trip Id"
+          },
+          "prior_trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Prior Trip Id"
+          },
+          "prior_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prior Date"
+          },
+          "overlapping_member_count": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Overlapping Member Count"
+          },
+          "current_member_count": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Current Member Count"
+          },
+          "planned_moment_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Planned Moment Count"
+          },
+          "confirmed_moment_count": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Confirmed Moment Count"
+          },
+          "source_type": {
+            "type": "string",
+            "title": "Source Type",
+            "default": "confirmed_occurrence"
+          },
+          "source_version": {
+            "type": "string",
+            "title": "Source Version"
+          },
+          "applied_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Applied At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "current_trip_id",
+          "prior_trip_id",
+          "overlapping_member_count",
+          "current_member_count",
+          "planned_moment_count",
+          "confirmed_moment_count",
+          "source_version"
+        ],
+        "title": "PriorOccasionContext",
+        "description": "A factual, provenance-backed structural precedent for a new Plan."
       },
       "Privacy": {
         "properties": {
