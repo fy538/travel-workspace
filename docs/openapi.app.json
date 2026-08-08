@@ -17589,6 +17589,65 @@
         }
       }
     },
+    "/api/proposal-guest-capabilities/{capability_token}/claim": {
+      "post": {
+        "tags": [
+          "proposals"
+        ],
+        "summary": "Claim Guest Proposal Capability",
+        "description": "Claim from the token alone; trip/proposal IDs stay out of the link.",
+        "operationId": "claim_guest_proposal_capability_api_proposal_guest_capabilities__capability_token__claim_post",
+        "parameters": [
+          {
+            "name": "capability_token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Capability Token"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProposalGuestCapabilityClaim"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/proposals": {
       "get": {
         "tags": [
@@ -61996,6 +62055,54 @@
         ],
         "title": "ProposalDetail",
         "description": "Full proposal detail.\n\nWhen ``proposed_entity_type`` + ``proposed_entity_id`` are set, the\nmobile app deep-links the proposal card into that entity's detail\nview, where a per-viewer personalized Take is fetched via\n``POST /api/takes``. Both are null for proposals that don't point\nat a single entity (e.g. pure reschedule, \"add a day\").\n\n``voting_enabled`` mirrors the trip-level flag — the mobile app uses\nit to decide whether to render the vote widget (enabled) or a\nreaction-only view with an \"ask organizer to resolve\" affordance\n(disabled)."
+      },
+      "ProposalGuestCapabilityClaim": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "proposal_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Proposal Id"
+          },
+          "claimed_by": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Claimed By"
+          },
+          "purpose": {
+            "type": "string",
+            "const": "proposal_vote",
+            "title": "Purpose",
+            "default": "proposal_vote"
+          },
+          "membership_upgraded": {
+            "type": "boolean",
+            "title": "Membership Upgraded"
+          },
+          "replay": {
+            "type": "boolean",
+            "title": "Replay",
+            "default": false
+          },
+          "vote_endpoint": {
+            "type": "string",
+            "title": "Vote Endpoint"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "proposal_id",
+          "claimed_by",
+          "membership_upgraded",
+          "vote_endpoint"
+        ],
+        "title": "ProposalGuestCapabilityClaim",
+        "description": "Authenticated result after a capability upgrades membership."
       },
       "ProposalImpactAnalysis": {
         "properties": {

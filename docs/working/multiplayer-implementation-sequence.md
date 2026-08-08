@@ -75,9 +75,10 @@ not live-certified until the required real-account device walk is recorded.
 - Guest participation audit is complete: expiring/revocable invite links,
   pre-auth intake, local-Plan RSVP, authenticated membership upgrade, and
   attendance receipts already exist. The proposal-link gap now has a dark
-  purpose-bound capability record and post-auth membership claim path; the
-  mobile handoff and canonical member-only vote continuation are still
-  outstanding. See
+  purpose-bound capability record, token-only authenticated claim path, and
+  SecureStore-backed mobile post-auth handoff into the canonical member-only
+  vote route. The runtime canary, private constraint capture, and two-observer
+  vote certification remain outstanding. See
   [`multiplayer-guest-participation-audit-2026-08-08.md`](multiplayer-guest-participation-audit-2026-08-08.md).
 - Shared workflow control has its first dark slice: `agent_workflow_commands`
   plus a compare-and-swap `control_revision`, idempotency, privacy-safe event
@@ -100,8 +101,9 @@ not live-certified until the required real-account device walk is recorded.
   vote endpoint. Raw tokens are stored only as SHA-256 digests; cross-proposal
   claims, expiry, replay by another user, and non-open proposals fail closed.
   The claim never writes a guest vote or bypasses the canonical receipt path.
-  Focused capability/API/landing tests pass (11); mobile deep-link handoff, private
-  constraint capture, and two-observer vote certification remain outstanding.
+  Focused backend capability/API/landing tests pass (64), and mobile handoff
+  persistence/teardown tests pass (24); runtime enablement, private constraint
+  capture, and two-observer vote certification remain outstanding.
 
 ## Architecture rules
 

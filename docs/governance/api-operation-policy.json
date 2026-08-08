@@ -28,15 +28,15 @@
       "removal_trigger": "Either adopt from the guest proposal journey or remove the dark transport after the canary decision.",
       "review_by": "2026-09-03"
     },
-    "POST /api/trips/{trip_id}/proposals/{proposal_id}/guest-links/{capability_token}/claim": {
+    "POST /api/proposal-guest-capabilities/{capability_token}/claim": {
       "audience": "app",
-      "consumers": [],
+      "consumers": [{"kind": "app_source", "name": "claimGuestProposalCapability", "source": "travel-app/utils/api/http.ts"}],
       "feature_flag": "GUEST_PROPOSAL_CAPABILITIES_ENABLED",
-      "lifecycle": "dark",
+      "lifecycle": "active",
       "owner": "multiplayer",
-      "reason": "Authenticated capability claim upgrades the recipient through the existing membership fan-out but deliberately does not write a vote; mobile handoff and two-observer recovery remain unproven.",
-      "removal_trigger": "Either adopt from the guest proposal journey or remove the dark transport after the canary decision.",
-      "review_by": "2026-09-03"
+      "reason": "Authenticated token-only capability claim upgrades the recipient through the existing membership fan-out but deliberately does not write a vote or expose trip/proposal coordinates in the bearer URL; runtime remains off until the mobile handoff and two-observer recovery pass.",
+      "removal_trigger": "Remove after the guest proposal journey is retired or replace the capability contract with a newer scoped handoff.",
+      "review_by": "2026-10-30"
     },
     "POST /api/social-circles": {
       "audience": "app",
