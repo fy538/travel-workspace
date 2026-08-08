@@ -59946,6 +59946,53 @@
         ],
         "title": "PlanEntityRef"
       },
+      "PlanGenerationState": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "not_started",
+              "building",
+              "retryable_failure",
+              "failed",
+              "completed"
+            ],
+            "title": "Status",
+            "default": "not_started"
+          },
+          "workflow_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Workflow Id"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At"
+          },
+          "can_retry": {
+            "type": "boolean",
+            "title": "Can Retry",
+            "default": false
+          }
+        },
+        "type": "object",
+        "title": "PlanGenerationState",
+        "description": "Durable planning-workflow truth projected into the Plan shell.\n\nThis is intentionally additive to the legacy ``generating`` boolean. The\nboolean remains for older clients; this projection lets newer clients\ndistinguish an active build from a terminal failure after a remount."
+      },
       "PlanItinerary": {
         "properties": {
           "itinerary_id": {
@@ -70880,6 +70927,9 @@
             "type": "boolean",
             "title": "Generating",
             "default": false
+          },
+          "generation": {
+            "$ref": "#/components/schemas/PlanGenerationState"
           },
           "canonical": {
             "anyOf": [
