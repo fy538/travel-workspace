@@ -3012,6 +3012,64 @@
             }
           }
         }
+      },
+      "get": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Get Timeline Entry Route",
+        "description": "Read one owner-scoped timeline row for mutation reconciliation.\n\nThe response intentionally includes removed rows. A restore request that\nloses its response can distinguish \"already visible\" from \"still removed\"\nwithout relying on a paginated removed-list refresh.",
+        "operationId": "get_timeline_entry_route_api_atlas_timeline__entry_id__get",
+        "parameters": [
+          {
+            "name": "entry_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Entry Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasTimelineEntry"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/api/atlas/timeline/{entry_id}/restore": {
