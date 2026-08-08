@@ -50383,6 +50383,19 @@
             ],
             "title": "Trip Id"
           },
+          "place_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Id"
+          },
           "day_id": {
             "anyOf": [
               {
