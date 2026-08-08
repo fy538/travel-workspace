@@ -43,7 +43,9 @@ not live-certified until the required real-account device walk is recorded.
   the code path. Mock mode stays empty/live-only and never fabricates circles.
 - Unified sync is partially implemented: circle events use a monotonic sequence
   and cursor replay with membership checks. There is deliberately no new
-  realtime channel yet; the client refetches durable state.
+  realtime channel yet; the client refetches durable state. The mobile replay
+  hook now deduplicates by sequence and surfaces in-memory gaps instead of
+  silently presenting an incomplete history.
 - Shared-agent context is behind `SOCIAL_CIRCLE_AGENT_CONTEXT_ENABLED` (off by
   default). When enabled, only bounded kind/member-count/revision facts enter
   the group trip context; member names, IDs, event payloads, and private memory
@@ -57,6 +59,10 @@ not live-certified until the required real-account device walk is recorded.
   product composition and certification, not a calendar or location-history
   model: no inferred free/busy, no persistent status toggle, and no automatic
   promotion of presence into relationship memory.
+- Weather rescue now has a shared pure matcher used by Home's weather risk
+  classification. It identifies the next future, grounded weather-sensitive
+  stop without mutating the Plan; provider freshness, group-safe composition,
+  proposal minting, and two-observer certification remain outstanding.
 
 ## Architecture rules
 
