@@ -50604,6 +50604,18 @@
           },
           "occurrence": {
             "$ref": "#/components/schemas/OccurrenceState"
+          },
+          "participant_user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Participant User Id"
           }
         },
         "additionalProperties": false,
