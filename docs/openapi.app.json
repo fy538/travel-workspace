@@ -12629,7 +12629,15 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/InviteViewResponse"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/InviteViewResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/SharedPlanInviteViewResponse"
+                    }
+                  ],
+                  "title": "Response View Invite Api Invites  Token  Get"
                 }
               }
             }
@@ -45013,6 +45021,22 @@
             ],
             "title": "Contact Channel"
           },
+          "participation_status": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "in",
+                  "maybe",
+                  "out"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Participation Status"
+          },
           "client_submission_id": {
             "anyOf": [
               {
@@ -45147,6 +45171,38 @@
         ],
         "title": "InviteListItem",
         "description": "Serializable summary of one invite row, returned by list endpoints.\n\nUsed by the organizer's \"Pending invites\" UI — each item carries\nenough state to render a status pill (sent / answered / joined /\nrevoked / expired) and the small momentum signal of a chip answer\nwhen the recipient has already engaged pre-auth."
+      },
+      "InviteParticipationSummary": {
+        "properties": {
+          "in_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "In Count",
+            "default": 0
+          },
+          "maybe_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Maybe Count",
+            "default": 0
+          },
+          "out_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Out Count",
+            "default": 0
+          },
+          "response_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Response Count",
+            "default": 0
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "InviteParticipationSummary",
+        "description": "Safe aggregate of local-plan responses for a shared group link.\n\nThis is deliberately counts only. Names and every free-text intake field\nstay out of the public projection; a response is not membership and does\nnot grant any trip visibility."
       },
       "InvitePlanPreview": {
         "properties": {
@@ -63737,6 +63793,75 @@
         ],
         "title": "ShareView",
         "description": "Owner-facing view of a share — what the app shows after publishing."
+      },
+      "SharedPlanInviteViewResponse": {
+        "properties": {
+          "token": {
+            "type": "string",
+            "title": "Token"
+          },
+          "trip": {
+            "$ref": "#/components/schemas/InviteTripSummary"
+          },
+          "snapshot": {
+            "$ref": "#/components/schemas/SharedPlanSnapshot"
+          },
+          "status": {
+            "type": "string",
+            "const": "active",
+            "title": "Status"
+          },
+          "is_group_share": {
+            "type": "boolean",
+            "const": true,
+            "title": "Is Group Share",
+            "default": true
+          },
+          "participation_summary": {
+            "$ref": "#/components/schemas/InviteParticipationSummary"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "token",
+          "trip",
+          "snapshot",
+          "status",
+          "participation_summary"
+        ],
+        "title": "SharedPlanInviteViewResponse",
+        "description": "Public view for a multi-use local Plan share.\n\nKept separate from :class:`InviteViewResponse` so widening this narrow\nlocal-plan surface cannot silently widen the ordinary trip-invite\ncontract. It exposes response aggregates, never individual responses."
+      },
+      "SharedPlanSnapshot": {
+        "properties": {
+          "snapshot_text": {
+            "type": "string",
+            "title": "Snapshot Text"
+          },
+          "og_title": {
+            "type": "string",
+            "title": "Og Title"
+          },
+          "og_description": {
+            "type": "string",
+            "title": "Og Description"
+          },
+          "mode": {
+            "type": "string",
+            "title": "Mode",
+            "default": "full"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "snapshot_text",
+          "og_title",
+          "og_description"
+        ],
+        "title": "SharedPlanSnapshot",
+        "description": "The reduced, no-poll snapshot for a forwardable local Plan link."
       },
       "SimilarVenueResponse": {
         "properties": {
