@@ -42140,6 +42140,16 @@
               }
             ],
             "title": "Expires At"
+          },
+          "decision_context": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlaceDecisionContext"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -56490,6 +56500,94 @@
           "phone_verified"
         ],
         "title": "PhoneResponse"
+      },
+      "PlaceDecisionContext": {
+        "properties": {
+          "projection_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Projection Id"
+          },
+          "entity_type": {
+            "type": "string",
+            "title": "Entity Type"
+          },
+          "entity_id": {
+            "type": "string",
+            "title": "Entity Id"
+          },
+          "projection_version": {
+            "type": "integer",
+            "title": "Projection Version"
+          },
+          "policy_version": {
+            "type": "string",
+            "title": "Policy Version"
+          },
+          "values": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Values"
+          },
+          "claim_ids": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "object",
+            "title": "Claim Ids"
+          },
+          "conflicts": {
+            "additionalProperties": {
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "type": "array"
+            },
+            "type": "object",
+            "title": "Conflicts"
+          },
+          "freshness": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "object",
+            "title": "Freshness"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "projection_id",
+          "entity_type",
+          "entity_id",
+          "projection_version",
+          "policy_version",
+          "generated_at"
+        ],
+        "title": "PlaceDecisionContext",
+        "description": "Safe, replayable evidence envelope supplied to a recommendation."
       },
       "PlaceDossierItem": {
         "properties": {
