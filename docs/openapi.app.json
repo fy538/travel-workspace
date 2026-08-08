@@ -38737,6 +38737,16 @@
             ],
             "title": "Entity Ref"
           },
+          "canonical_entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "name": {
             "type": "string",
             "title": "Name"
@@ -38923,6 +38933,28 @@
               }
             ],
             "title": "Entity Ref"
+          },
+          "canonical_entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "stay_candidate_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stay Candidate Id"
           },
           "venue_id": {
             "anyOf": [
