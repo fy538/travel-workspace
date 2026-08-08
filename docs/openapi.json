@@ -41908,6 +41908,16 @@
             "type": "integer",
             "title": "Venue Id"
           },
+          "entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "capability": {
             "additionalProperties": true,
             "type": "object",
