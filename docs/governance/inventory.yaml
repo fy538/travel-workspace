@@ -67,6 +67,10 @@ rules:
 
 
 overrides:
+  docs/working/place-identity-rollout-2026-08-08.md:
+    disposition: keep_reference
+    rationale: Active, expiring cross-repo implementation and rollout evidence for the accepted place-identity decision; archive after production gates close or promote repeatable operations into a runbook.
+
   docs/working/shared-plan-handoff-execution-2026-08-07.md:
     disposition: keep_reference
     rationale: Active, expiring execution ledger for the bounded shared-plan handoff pilot; it records validation gates without superseding product policy.
