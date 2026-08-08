@@ -55659,6 +55659,16 @@
             ],
             "title": "Experience Id"
           },
+          "entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "title": {
             "type": "string",
             "title": "Title"
@@ -69199,6 +69209,16 @@
           "id": {
             "type": "string",
             "title": "Id"
+          },
+          "entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "price_per_person_estimate": {
             "anyOf": [
