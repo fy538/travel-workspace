@@ -85,6 +85,14 @@ not live-certified until the required real-account device walk is recorded.
   transport behind `SHARED_WORKFLOW_CONTROL_ENABLED`. It records intent only;
   no worker, itinerary, fluid-authority, or live command application is
   enabled. Focused workflow tests pass (16); device recovery remains pending.
+- Spatial sessions now carry an explicit purpose (`trip_coordination`,
+  `meetup`, or `arrival`) alongside the existing mode, expiry, revocation,
+  precision, trip-member audience, and terminal-trip gates. The purpose is
+  replaced on every new grant, exposed in the API/tool receipt, and rejected
+  by the database constraint when unrecognized. This is a bounded session
+  scope, not a persistent presence toggle; no location history or relationship
+  memory is created. Focused location/API/tool suites pass (103); two-device
+  spatial certification remains pending.
 
 ## Architecture rules
 

@@ -60430,6 +60430,16 @@
               "precise"
             ],
             "title": "Mode"
+          },
+          "purpose": {
+            "type": "string",
+            "enum": [
+              "trip_coordination",
+              "meetup",
+              "arrival"
+            ],
+            "title": "Purpose",
+            "default": "trip_coordination"
           }
         },
         "type": "object",
@@ -60454,6 +60464,15 @@
               "precise"
             ],
             "title": "Mode"
+          },
+          "purpose": {
+            "type": "string",
+            "enum": [
+              "trip_coordination",
+              "meetup",
+              "arrival"
+            ],
+            "title": "Purpose"
           },
           "granted_at": {
             "anyOf": [
@@ -60482,12 +60501,19 @@
           "is_active": {
             "type": "boolean",
             "title": "Is Active"
+          },
+          "audience": {
+            "type": "string",
+            "const": "trip_members",
+            "title": "Audience",
+            "default": "trip_members"
           }
         },
         "type": "object",
         "required": [
           "trip_id",
           "mode",
+          "purpose",
           "is_active"
         ],
         "title": "LocationSharingStatus",
