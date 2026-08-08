@@ -1,0 +1,54 @@
+# Product-thesis proof registry. P ids are intentionally separate from the
+# legacy J series: they prove the present Experience → Plan → Trip thesis,
+# while J ids retain historical regression and assurance ownership.
+proofs:
+  - id: P01
+    title: Occasion to accepted Move or Plan
+    status: active
+    required_layers: [contract, database, device_mock]
+    anchors:
+      contract: [travel-app/__tests__/journeys/local-occasion-closure.replay.test.tsx]
+      database: [travel-agent/tests/scenarios/test_local_occasion_closure.py]
+      device_mock: []
+  - id: P02
+    title: Spatially credible decision
+    status: active
+    required_layers: [contract, database]
+    anchors:
+      contract: [travel-app/__tests__/journeys/local-occasion-transport.replay.test.tsx]
+      database:
+        - travel-agent/tests/scenarios/test_local_occasion_transport.py
+        - travel-agent/tests/concierge/test_spatial_situation.py
+        - travel-agent/tests/core/test_reachability.py
+      device_mock: []
+  - id: P03
+    title: Plan to lived outcome
+    status: active
+    required_layers: [contract, database, device_mock]
+    anchors:
+      contract: [travel-app/__tests__/components/trip-plan/OccurrenceArtifactCard.test.tsx]
+      database: [travel-agent/tests/scenarios/test_outcome_closure.py]
+      device_mock: []
+  - id: P04
+    title: Second occasion compounds
+    status: active
+    required_layers: [contract, database, ai_eval]
+    anchors:
+      contract: [travel-app/__tests__/journeys/local-occasion-closure.replay.test.tsx]
+      database: [travel-agent/tests/eval/test_experience_loop_metrics.py]
+      ai_eval: []
+  - id: P05
+    title: Thin participant handoff
+    status: dark
+    required_layers: [contract, database, device_mock]
+    anchors: {}
+  - id: P06
+    title: Consent and silence
+    status: dark
+    required_layers: [contract, database, device_mock, ai_eval]
+    anchors: {}
+  - id: P07
+    title: Live rescue
+    status: dark
+    required_layers: [contract, database, device_mock, staging]
+    anchors: {}

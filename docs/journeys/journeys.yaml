@@ -12,6 +12,15 @@
 # registries still need it. tier: golden-path (J01–J12, the lifecycle spine)
 # vs holistic-extension (J13–J19, the dimensions the spine misses).
 
+# J identifiers preserve historical customer and regression coverage. They are
+# not the current product-thesis spine; see product-proofs.yaml for P01–P07.
+# Every J id must appear exactly once below. The registry check enforces this
+# mapping so a legacy journey cannot silently become release-critical by name.
+taxonomy:
+  customer_regression: [J07, J08, J10, J14, J18, J20, J21, J22, J23]
+  assurance_pack: [J04, J05, J06, J09, J13, J15, J16, J24]
+  historical: [J01, J02, J03, J11, J12, J17, J19, J25, J26, J27, J28]
+
 journeys:
   - id: J01
     title: Vague Idea to Vesper-Shaped Trip

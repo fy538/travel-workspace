@@ -84,6 +84,13 @@ matrix reports missing branch evidence rather than inheriting a green parent.
 | 27 | [Atlas Provenance To Correct Or Forget](27-atlas-provenance-to-correct-or-forget.md) | Inspectable and reversible learned memory |
 | 28 | [Atlas History To Hide Restore And Recover](28-atlas-history-to-hide-restore-and-recover.md) | Archive reasons, restoration, and long-history coherence |
 
+### Current product proof spine (P01–P07)
+
+The J registry preserves regression and assurance history. The current product
+thesis is separately owned by [the P01–P07 proof spine](PRODUCT_PROOF_SPINE.md)
+and its machine-readable [proof registry](product-proofs.yaml). P01–P04 are
+active; P05–P07 are explicit dark debt, not implied coverage.
+
 ### First-session boundary
 
 Authentication remains a cross-journey boundary; first-use trust and value are
