@@ -53983,6 +53983,16 @@
             ],
             "title": "Pending Intake Summary"
           },
+          "participation_summary": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/InviteParticipationSummary"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "plan_preview_enabled": {
             "type": "boolean",
             "title": "Plan Preview Enabled",
