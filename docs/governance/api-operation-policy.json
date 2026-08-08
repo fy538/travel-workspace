@@ -8,6 +8,22 @@
     "review_by": null
   },
   "operations": {
+    "GET /api/trips/{trip_id}/editorial-map": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "getTripEditorialMap",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "editorial-map",
+      "reason": "The cache-only Trips Home route is consumed through the API facade; the indirect URL is declared here so contract projection remains source-checked.",
+      "removal_trigger": null,
+      "review_by": null
+    },
     "GET /api/trips/{trip_id}/occurrence-artifact": {
       "audience": "app",
       "consumers": [
