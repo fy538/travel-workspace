@@ -1666,6 +1666,16 @@
       "removal_trigger": null,
       "review_by": null
     },
+    "POST /api/trips/{trip_id}/booking/sessions/{session_id}/offers/{offer_id}/cancel/quote": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "EXPO_PUBLIC_LIVE_BOOKING_ENABLED",
+      "lifecycle": "dark",
+      "owner": "booking",
+      "reason": "Read-only provider cancellation quotes are implemented behind the live-booking gate and stay dark until provider reconciliation and a real multi-member walk are credible.",
+      "removal_trigger": "Promote only after signed provider reconciliation, quote-bound approval, and device-certified multi-member cancellation evidence; otherwise remove the route and its contract shadows.",
+      "review_by": "2026-09-03"
+    },
     "POST /api/trips/{trip_id}/booking/link-domain-attribution/confirm": {
       "audience": "app",
       "consumers": [
@@ -1896,6 +1906,21 @@
       "lifecycle": "active",
       "owner": "integrations",
       "reason": "Provider callback surface.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "POST /webhooks/booking/{provider}": {
+      "audience": "webhook",
+      "consumers": [
+        {
+          "kind": "webhook",
+          "name": "booking-provider"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "booking",
+      "reason": "Signed provider callback enters the durable booking webhook inbox; mobile clients never call this route directly.",
       "removal_trigger": null,
       "review_by": null
     },

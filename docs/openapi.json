@@ -206,6 +206,48 @@
         }
       }
     },
+    "/webhooks/booking/{provider}": {
+      "post": {
+        "tags": [
+          "webhooks"
+        ],
+        "summary": "Booking Provider Webhook",
+        "operationId": "booking_provider_webhook_webhooks_booking__provider__post",
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Provider"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingProviderWebhookResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/agent-workflows/{workflow_id}": {
       "get": {
         "tags": [
@@ -8334,6 +8376,86 @@
         }
       }
     },
+    "/api/trips/{trip_id}/booking/sessions/{session_id}/offers/{offer_id}/cancel/quote": {
+      "post": {
+        "tags": [
+          "booking"
+        ],
+        "summary": "Quote Offer Cancellation",
+        "description": "Read a provider cancellation/refund quote without changing the booking.",
+        "operationId": "quote_offer_cancellation_api_trips__trip_id__booking_sessions__session_id__offers__offer_id__cancel_quote_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Session Id"
+            }
+          },
+          {
+            "name": "offer_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Offer Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancellationQuoteResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/booking/sessions/{session_id}/offers/{offer_id}/cancel": {
       "post": {
         "tags": [
@@ -8390,6 +8512,23 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/CancelOfferRequest"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Body"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -41519,6 +41658,144 @@
         ],
         "title": "BookingDecisionResponse"
       },
+      "BookingExpenseAdjustment": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "expense_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Expense Id"
+          },
+          "booking_offer_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Booking Offer Id"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "provider_refund",
+              "provider_fee"
+            ],
+            "title": "Kind"
+          },
+          "amount": {
+            "type": "number",
+            "title": "Amount"
+          },
+          "currency": {
+            "type": "string",
+            "title": "Currency"
+          },
+          "settlement_amount": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Settlement Amount"
+          },
+          "settlement_currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Settlement Currency"
+          },
+          "exchange_rate": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Exchange Rate"
+          },
+          "rate_source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rate Source"
+          },
+          "provider_cancellation_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider Cancellation Id"
+          },
+          "provider_request_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider Request Id"
+          },
+          "fact_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fact Version"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "title": "Idempotency Key"
+          },
+          "metadata_": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Metadata"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "expense_id",
+          "booking_offer_id",
+          "kind",
+          "amount",
+          "currency",
+          "idempotency_key",
+          "created_at"
+        ],
+        "title": "BookingExpenseAdjustment"
+      },
       "BookingOffer": {
         "properties": {
           "id": {
@@ -41960,6 +42237,29 @@
         ],
         "title": "BookingProposal"
       },
+      "BookingProviderWebhookResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "provider": {
+            "type": "string",
+            "title": "Provider"
+          },
+          "event_id": {
+            "type": "string",
+            "title": "Event Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "provider",
+          "event_id"
+        ],
+        "title": "BookingProviderWebhookResponse"
+      },
       "BookingReadinessCheckResponse": {
         "properties": {
           "key": {
@@ -42191,6 +42491,29 @@
         ],
         "title": "BridgeRenderResponse",
         "description": "Inline base64 audio data URL for the bridge.\n\nPhase 6b.3 v1 returns the audio inline so the client can hand\nit directly to ``adapter.setSource()`` without an extra round-trip.\nPhase 8 can switch to CDN URLs once R2 is wired and bridge audio\nstarts being cached server-side."
+      },
+      "CancelOfferRequest": {
+        "properties": {
+          "cancellation_id": {
+            "type": "string",
+            "title": "Cancellation Id"
+          },
+          "quote_fingerprint": {
+            "type": "string",
+            "title": "Quote Fingerprint"
+          },
+          "final_human_approval": {
+            "type": "boolean",
+            "title": "Final Human Approval",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "cancellation_id",
+          "quote_fingerprint"
+        ],
+        "title": "CancelOfferRequest"
       },
       "CancelOfferResponse": {
         "properties": {
@@ -42510,6 +42833,82 @@
           "booking_status"
         ],
         "title": "CancellationOperatorResolutionResponse"
+      },
+      "CancellationQuoteResponse": {
+        "properties": {
+          "offer_id": {
+            "type": "string",
+            "title": "Offer Id"
+          },
+          "provider": {
+            "type": "string",
+            "title": "Provider"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "cancellation_id": {
+            "type": "string",
+            "title": "Cancellation Id"
+          },
+          "provider_booking_id": {
+            "type": "string",
+            "title": "Provider Booking Id"
+          },
+          "refund_amount": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Refund Amount"
+          },
+          "refund_currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Refund Currency"
+          },
+          "quote_expires_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Quote Expires At"
+          },
+          "quote_fingerprint": {
+            "type": "string",
+            "title": "Quote Fingerprint"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "offer_id",
+          "provider",
+          "status",
+          "cancellation_id",
+          "provider_booking_id",
+          "quote_fingerprint",
+          "message"
+        ],
+        "title": "CancellationQuoteResponse"
       },
       "CancellationReviewError": {
         "properties": {
@@ -52233,6 +52632,13 @@
             },
             "type": "array",
             "title": "Disputes"
+          },
+          "booking_adjustments": {
+            "items": {
+              "$ref": "#/components/schemas/BookingExpenseAdjustment"
+            },
+            "type": "array",
+            "title": "Booking Adjustments"
           }
         },
         "type": "object",
@@ -63726,6 +64132,17 @@
           "revision": {
             "type": "string",
             "title": "Revision"
+          },
+          "notification_trace_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notification Trace Id"
           },
           "expires_at": {
             "anyOf": [

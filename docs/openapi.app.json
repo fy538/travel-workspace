@@ -5342,6 +5342,23 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/CancelOfferRequest"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Body"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -34104,6 +34121,144 @@
         ],
         "title": "BookingDecisionResponse"
       },
+      "BookingExpenseAdjustment": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "expense_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Expense Id"
+          },
+          "booking_offer_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Booking Offer Id"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "provider_refund",
+              "provider_fee"
+            ],
+            "title": "Kind"
+          },
+          "amount": {
+            "type": "number",
+            "title": "Amount"
+          },
+          "currency": {
+            "type": "string",
+            "title": "Currency"
+          },
+          "settlement_amount": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Settlement Amount"
+          },
+          "settlement_currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Settlement Currency"
+          },
+          "exchange_rate": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Exchange Rate"
+          },
+          "rate_source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rate Source"
+          },
+          "provider_cancellation_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider Cancellation Id"
+          },
+          "provider_request_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider Request Id"
+          },
+          "fact_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fact Version"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "title": "Idempotency Key"
+          },
+          "metadata_": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Metadata"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "expense_id",
+          "booking_offer_id",
+          "kind",
+          "amount",
+          "currency",
+          "idempotency_key",
+          "created_at"
+        ],
+        "title": "BookingExpenseAdjustment"
+      },
       "BookingOffer": {
         "properties": {
           "id": {
@@ -34696,6 +34851,29 @@
         ],
         "title": "BridgeRenderResponse",
         "description": "Inline base64 audio data URL for the bridge.\n\nPhase 6b.3 v1 returns the audio inline so the client can hand\nit directly to ``adapter.setSource()`` without an extra round-trip.\nPhase 8 can switch to CDN URLs once R2 is wired and bridge audio\nstarts being cached server-side."
+      },
+      "CancelOfferRequest": {
+        "properties": {
+          "cancellation_id": {
+            "type": "string",
+            "title": "Cancellation Id"
+          },
+          "quote_fingerprint": {
+            "type": "string",
+            "title": "Quote Fingerprint"
+          },
+          "final_human_approval": {
+            "type": "boolean",
+            "title": "Final Human Approval",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "cancellation_id",
+          "quote_fingerprint"
+        ],
+        "title": "CancelOfferRequest"
       },
       "CancelOfferResponse": {
         "properties": {
@@ -43557,6 +43735,13 @@
             },
             "type": "array",
             "title": "Disputes"
+          },
+          "booking_adjustments": {
+            "items": {
+              "$ref": "#/components/schemas/BookingExpenseAdjustment"
+            },
+            "type": "array",
+            "title": "Booking Adjustments"
           }
         },
         "type": "object",
@@ -54455,6 +54640,17 @@
           "revision": {
             "type": "string",
             "title": "Revision"
+          },
+          "notification_trace_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notification Trace Id"
           },
           "expires_at": {
             "anyOf": [
