@@ -69,6 +69,13 @@ not live-certified until the required real-account device walk is recorded.
   stop without mutating the Plan, plus a fail-closed current-conditions
   provider adapter. Group-safe composition, proposal minting, and
   two-observer certification remain outstanding.
+- Guest participation audit is complete: expiring/revocable invite links,
+  pre-auth intake, local-Plan RSVP, authenticated membership upgrade, and
+  attendance receipts already exist. Proposal links remain an
+  authentication-only handoff; a new purpose-bound capability record and
+  post-auth claim path are required before guest voting can safely enter the
+  canonical member-only vote ledger. See
+  [`multiplayer-guest-participation-audit-2026-08-08.md`](multiplayer-guest-participation-audit-2026-08-08.md).
 
 ## Architecture rules
 
