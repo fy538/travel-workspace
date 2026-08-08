@@ -39644,7 +39644,8 @@
               "voice_turn_completed",
               "location_used_for_chat",
               "private_detail_redacted",
-              "private_constraint_used"
+              "private_constraint_used",
+              "relationship_visibility_changed"
             ],
             "title": "Kind"
           },
@@ -71792,11 +71793,17 @@
               "precise"
             ],
             "title": "Granularity"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Revision"
           }
         },
         "type": "object",
         "required": [
-          "granularity"
+          "granularity",
+          "expected_revision"
         ],
         "title": "RelationshipVisibilityRequest",
         "description": "Body for changing the authenticated caller's own disclosure grant."
@@ -71832,13 +71839,19 @@
           "is_active": {
             "type": "boolean",
             "title": "Is Active"
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Revision"
           }
         },
         "type": "object",
         "required": [
           "grantee_user_id",
           "granularity",
-          "is_active"
+          "is_active",
+          "revision"
         ],
         "title": "RelationshipVisibilityStatus",
         "description": "API response for a caller-owned directional grant.\n\nThe API exposes only grants made *by* the caller. It never exposes another\nperson's grant, or whether the relationship is mutual."
@@ -73539,6 +73552,11 @@
           },
           "intention": {
             "$ref": "#/components/schemas/AttendanceIntention"
+          },
+          "restore_absent_participation": {
+            "type": "boolean",
+            "title": "Restore Absent Participation",
+            "default": false
           }
         },
         "additionalProperties": false,

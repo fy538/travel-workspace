@@ -1047,14 +1047,14 @@
       "consumers": [
         {
           "kind": "app_source",
-          "name": "RelationshipVisibilityConsentClient",
-          "source": "travel-app/utils/api/http.ts"
+          "name": "AtlasPrivacyScreen",
+          "source": "travel-app/app/you/privacy.tsx"
         }
       ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "product-engineering",
-      "reason": "Self-only client transport for explicit, directional relationship visibility consent; no inbound or mutuality read is exposed.",
+      "reason": "The Privacy screen reads the caller's explicit directional nearby-sharing choices; no inbound grant or mutuality result is exposed.",
       "removal_trigger": null,
       "review_by": null
     },
@@ -1063,14 +1063,14 @@
       "consumers": [
         {
           "kind": "app_source",
-          "name": "RelationshipVisibilityConsentClient",
-          "source": "travel-app/utils/api/http.ts"
+          "name": "AtlasPrivacyScreen",
+          "source": "travel-app/app/you/privacy.tsx"
         }
       ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "product-engineering",
-      "reason": "Self-only client transport for an explicit, immediately revocable directional grant.",
+      "reason": "The Privacy screen lets the caller grant or immediately revoke coarse nearby visibility with optimistic revision protection.",
       "removal_trigger": null,
       "review_by": null
     },
