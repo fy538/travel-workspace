@@ -39,6 +39,10 @@ log "Running deterministic backend canary"
   tests/api/test_conversations_api.py \
   tests/concierge/test_turn_loader.py \
   tests/concierge/test_spatial_situation.py \
+  tests/concierge/test_distance_tool_semantics.py \
+  tests/core/test_ai_runs.py \
+  tests/core/test_experience_scope.py \
+  tests/planning/test_planning_profiles.py \
   tests/core/test_reachability.py \
   tests/core/test_isochrone.py \
   tests/core/test_occurrence_artifact.py \
@@ -58,6 +62,7 @@ pass "Backend local-plan, spatial-provider, artifact, privacy, and invalidation 
 log "Running app deterministic replay and contract checks"
 (cd "$APP_DIR" && npx jest --runInBand \
   __tests__/utils/api/mock.test.ts \
+  __tests__/constants/featureFlags.test.ts \
   __tests__/utils/localPlanPresentation.test.ts \
   __tests__/components/trips/LocalPlansCard.test.tsx \
   __tests__/components/trips/tripsHomeHeroModel.test.ts \
@@ -74,6 +79,16 @@ log "Running app deterministic replay and contract checks"
 (cd "$APP_DIR" && npm run --silent mutation-key-ownership)
 pass "App replay surfaces, types, API boundaries, and cache ownership passed"
 
+log "Checking dogfood-only local experience gates"
+(cd "$APP_DIR" && node -e '
+  const eas = require("./eas.json");
+  const env = eas.build?.dogfood?.env ?? {};
+  if (env.EXPO_PUBLIC_IS_INTERNAL_BUILD !== "true") process.exit(1);
+  if (env.EXPO_PUBLIC_LOCAL_PLAN_DOGFOOD_ENABLED !== "true") process.exit(1);
+  if (env.EXPO_PUBLIC_OUTCOME_ARTIFACT_ENABLED !== "true") process.exit(1);
+') || die "Dogfood profile must explicitly enable the internal local loop and private outcome artifact."
+pass "Dogfood profile explicitly enables the internal-only Friday-night loop"
+
 log "Running cross-repo static gates"
 (cd "$WORKSPACE_DIR" && ./scripts/contract-check.sh >/dev/null)
 (cd "$WORKSPACE_DIR" && python3 scripts/check_journey_registry.py >/dev/null)
@@ -82,4 +97,4 @@ log "Running cross-repo static gates"
 pass "OpenAPI projection, journey registry, and Maestro structure passed"
 
 printf '\nPASS: static, mock, and local-backend canary layers are green.\n'
-printf 'DEVICE GATE NOT RUN: no simulator or physical device was used; feature flags remain unchanged.\n'
+printf 'DEVICE GATE NOT RUN: dogfood-only flags are enabled, but no simulator or physical device was used.\n'

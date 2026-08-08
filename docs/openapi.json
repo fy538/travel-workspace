@@ -21213,6 +21213,87 @@
         }
       }
     },
+    "/api/trips/{trip_id}/occurrence-artifact/blocks/{block_id}/relationship-outcome": {
+      "put": {
+        "tags": [
+          "trip",
+          "outcomes"
+        ],
+        "summary": "Record Experience Outcome Endpoint",
+        "description": "Record or correct only the caller's relationship outcome.\n\nA shared itinerary mark is not enough. The write succeeds only when the\ncanonical participation record says this person confirmed the occurrence.",
+        "operationId": "record_experience_outcome_endpoint_api_trips__trip_id__occurrence_artifact_blocks__block_id__relationship_outcome_put",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "block_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Block Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordExperienceOutcomeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperienceOutcomeFeedback"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/users/{user_id}/notification-preferences": {
       "get": {
         "tags": [
@@ -51132,6 +51213,78 @@
         ],
         "title": "ExperienceListResponse"
       },
+      "ExperienceOutcomeFeedback": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "block_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Block Id"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "place_verdict": {
+            "type": "string",
+            "enum": [
+              "would_repeat",
+              "good_once",
+              "not_for_me"
+            ],
+            "title": "Place Verdict"
+          },
+          "companion_fit": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "worked",
+                  "mixed",
+                  "not_for_this_group"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Companion Fit"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "trip_id",
+          "block_id",
+          "user_id",
+          "place_verdict",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "ExperienceOutcomeFeedback",
+        "description": "One person's correctable verdict about one confirmed experience.\n\nThis is deliberately not group truth and not a free-text memory. The\ncompact vocabulary is safe to carry into private planning context without\nexposing why another participant felt differently."
+      },
       "ExperienceResponse": {
         "properties": {
           "id": {
@@ -60126,6 +60279,18 @@
           },
           "occurrence": {
             "$ref": "#/components/schemas/OccurrenceState"
+          },
+          "participant_user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Participant User Id"
           }
         },
         "additionalProperties": false,
@@ -62887,6 +63052,16 @@
             },
             "type": "array",
             "title": "Evidence"
+          },
+          "relationship_outcome": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ExperienceOutcomeFeedback"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "additionalProperties": false,
@@ -71518,6 +71693,42 @@
         "type": "object",
         "title": "RecommendationPayload",
         "description": "Structured reasoning attached to a concierge recommendation."
+      },
+      "RecordExperienceOutcomeRequest": {
+        "properties": {
+          "place_verdict": {
+            "type": "string",
+            "enum": [
+              "would_repeat",
+              "good_once",
+              "not_for_me"
+            ],
+            "title": "Place Verdict"
+          },
+          "companion_fit": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "worked",
+                  "mixed",
+                  "not_for_this_group"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Companion Fit"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "place_verdict"
+        ],
+        "title": "RecordExperienceOutcomeRequest",
+        "description": "One lightweight, private reflection on a confirmed experience."
       },
       "RecordGeofenceEventRequest": {
         "properties": {
