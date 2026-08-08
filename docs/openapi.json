@@ -5277,6 +5277,23 @@
             }
           },
           {
+            "name": "place_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Place Id"
+            }
+          },
+          {
             "name": "accepted_only",
             "in": "query",
             "required": false,
@@ -5309,10 +5326,10 @@
                   "type": "null"
                 }
               ],
-              "description": "Opaque pagination cursor \u2014 the ``id`` of the last entry from the previous page. Cursors are scoped to the same ``year``/``undated``/city/``accepted_only`` filter as the request that produced them; reusing a cursor from another scope returns 422. Omit on the first page.",
+              "description": "Opaque pagination cursor \u2014 the ``id`` of the last entry from the previous page. Cursors are scoped to the same ``year``/``undated``/place/``accepted_only`` filter as the request that produced them; reusing a cursor from another scope returns 422. Omit on the first page.",
               "title": "Cursor"
             },
-            "description": "Opaque pagination cursor \u2014 the ``id`` of the last entry from the previous page. Cursors are scoped to the same ``year``/``undated``/city/``accepted_only`` filter as the request that produced them; reusing a cursor from another scope returns 422. Omit on the first page."
+            "description": "Opaque pagination cursor \u2014 the ``id`` of the last entry from the previous page. Cursors are scoped to the same ``year``/``undated``/place/``accepted_only`` filter as the request that produced them; reusing a cursor from another scope returns 422. Omit on the first page."
           },
           {
             "name": "authorization",
@@ -5361,7 +5378,7 @@
           "atlas"
         ],
         "summary": "Get Atlas Timeline Summary",
-        "description": "Long View's index counts \u2014 the same ``atlas_timeline_entries``\nprojection the timeline endpoint reads, grouped by year (Time\nmode's year chapters) or by normalized city (Places mode's whole-corpus\nnode counts). Not the taste/composition engine \u2014 this indexes memories,\nit doesn't compose a reading from place-affinity signals.",
+        "description": "Long View's index counts \u2014 the same ``atlas_timeline_entries``\nprojection the timeline endpoint reads, grouped by year (Time\nmode's year chapters) or by canonical place identity with normalized-label\nfallback (Places mode's whole-corpus node counts). Not the taste/composition engine \u2014 this indexes memories,\nit doesn't compose a reading from place-affinity signals.",
         "operationId": "get_atlas_timeline_summary_api_atlas_timeline_summary_get",
         "parameters": [
           {
@@ -39420,6 +39437,27 @@
           "count": {
             "type": "integer",
             "title": "Count"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "canonical_place_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -39513,6 +39551,16 @@
               }
             ],
             "title": "Place Label"
+          },
+          "canonical_place_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "media_count": {
             "type": "integer",
