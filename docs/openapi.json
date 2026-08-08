@@ -60830,6 +60830,16 @@
             "type": "string",
             "title": "Entity Type"
           },
+          "entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "entity_id": {
             "anyOf": [
               {
@@ -60957,6 +60967,16 @@
               }
             ],
             "title": "Href"
+          },
+          "entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "payload": {
             "anyOf": [
