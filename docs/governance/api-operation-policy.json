@@ -28,6 +28,16 @@
       "removal_trigger": null,
       "review_by": "2026-09-03"
     },
+    "GET /api/social-circles/{circle_id}/events": {
+      "audience": "server",
+      "consumers": [{"kind": "backend_source", "name": "listSocialCircleEvents", "source": "travel-agent/backend/api/routes/social_circles.py"}],
+      "feature_flag": "SOCIAL_CIRCLES_ENABLED",
+      "lifecycle": "active",
+      "owner": "multiplayer",
+      "reason": "Ordered circle mutations are exposed for a cursor-based replay canary before mobile sync consumption is enabled.",
+      "removal_trigger": null,
+      "review_by": "2026-09-03"
+    },
     "GET /api/social-circles/{circle_id}": {
       "audience": "app",
       "consumers": [{"kind": "app_url", "name": "readSocialCircle", "source": "travel-app/utils/api/http.ts"}],
