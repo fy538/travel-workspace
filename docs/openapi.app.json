@@ -4748,6 +4748,139 @@
         }
       }
     },
+    "/api/trips/{trip_id}/booking/venues/{venue_id}/availability": {
+      "get": {
+        "tags": [
+          "booking"
+        ],
+        "summary": "Get Restaurant Availability",
+        "description": "Read fresh OpenTable availability for one verified restaurant mapping.\n\nThis endpoint creates no booking session, hold, or reservation.  A caller\nmust enter the canonical booking-session path before any provider-affecting\naction.  In particular, a provider timeout is deliberately represented as\n``provider_unavailable`` rather than a false ``no_availability`` result.",
+        "operationId": "get_restaurant_availability_api_trips__trip_id__booking_venues__venue_id__availability_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "venue_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Venue Id"
+            }
+          },
+          {
+            "name": "start_date_time",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Restaurant-local ISO time on a 15-minute boundary, without a timezone offset.",
+              "title": "Start Date Time"
+            },
+            "description": "Restaurant-local ISO time on a 15-minute boundary, without a timezone offset."
+          },
+          {
+            "name": "party_size",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "maximum": 20,
+              "minimum": 1,
+              "title": "Party Size"
+            }
+          },
+          {
+            "name": "forward_minutes",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 720,
+              "minimum": 0,
+              "default": 120,
+              "title": "Forward Minutes"
+            }
+          },
+          {
+            "name": "backward_minutes",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 720,
+              "minimum": 0,
+              "default": 120,
+              "title": "Backward Minutes"
+            }
+          },
+          {
+            "name": "table_type",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 32
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Table Type"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RestaurantAvailabilityResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/booking/sessions/{session_id}/offers": {
       "get": {
         "tags": [
@@ -12629,7 +12762,15 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/InviteViewResponse"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/InviteViewResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/SharedPlanInviteViewResponse"
+                    }
+                  ],
+                  "title": "Response View Invite Api Invites  Token  Get"
                 }
               }
             }
@@ -45594,6 +45735,22 @@
             ],
             "title": "Contact Channel"
           },
+          "participation_status": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "in",
+                  "maybe",
+                  "out"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Participation Status"
+          },
           "client_submission_id": {
             "anyOf": [
               {
@@ -45708,6 +45865,16 @@
             ],
             "title": "Pending Intake Summary"
           },
+          "participation_summary": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/InviteParticipationSummary"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "plan_preview_enabled": {
             "type": "boolean",
             "title": "Plan Preview Enabled",
@@ -45728,6 +45895,38 @@
         ],
         "title": "InviteListItem",
         "description": "Serializable summary of one invite row, returned by list endpoints.\n\nUsed by the organizer's \"Pending invites\" UI — each item carries\nenough state to render a status pill (sent / answered / joined /\nrevoked / expired) and the small momentum signal of a chip answer\nwhen the recipient has already engaged pre-auth."
+      },
+      "InviteParticipationSummary": {
+        "properties": {
+          "in_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "In Count",
+            "default": 0
+          },
+          "maybe_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Maybe Count",
+            "default": 0
+          },
+          "out_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Out Count",
+            "default": 0
+          },
+          "response_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Response Count",
+            "default": 0
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "InviteParticipationSummary",
+        "description": "Safe aggregate of local-plan responses for a shared group link.\n\nThis is deliberately counts only. Names and every free-text intake field\nstay out of the public projection; a response is not membership and does\nnot grant any trip visibility."
       },
       "InvitePlanPreview": {
         "properties": {
@@ -62900,6 +63099,150 @@
         "title": "ResolvedMedia",
         "description": "A renderable visual with an explicit factual claim and provenance.\n\n``provider_asset_id`` is only an identity/audit handle. Callers must not\npersist it when ``cache_directive`` is ``no_store`` (Google photo resource\nnames are short-lived and may not be cached)."
       },
+      "RestaurantAvailabilityResponse": {
+        "properties": {
+          "venue_id": {
+            "type": "integer",
+            "title": "Venue Id"
+          },
+          "provider": {
+            "type": "string",
+            "title": "Provider",
+            "default": "opentable"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "no_availability",
+              "not_mapped",
+              "not_configured",
+              "provider_unavailable"
+            ],
+            "title": "Status"
+          },
+          "slots": {
+            "items": {
+              "$ref": "#/components/schemas/RestaurantAvailabilitySlotResponse"
+            },
+            "type": "array",
+            "title": "Slots"
+          },
+          "checked_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Checked At"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "venue_id",
+          "status",
+          "slots"
+        ],
+        "title": "RestaurantAvailabilityResponse"
+      },
+      "RestaurantAvailabilitySlotResponse": {
+        "properties": {
+          "time": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time"
+          },
+          "summary": {
+            "type": "string",
+            "title": "Summary"
+          },
+          "dining_areas": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Dining Areas"
+          },
+          "booking_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Booking Url"
+          },
+          "cancellation_policy": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cancellation Policy"
+          },
+          "checked_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Checked At"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Expires At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "time",
+          "summary",
+          "dining_areas",
+          "booking_url",
+          "cancellation_policy",
+          "checked_at",
+          "expires_at"
+        ],
+        "title": "RestaurantAvailabilitySlotResponse",
+        "description": "One fresh, provider-returned restaurant slot.\n\n``time`` is the restaurant's local wall time.  The OpenTable API accepts\nand returns local restaurant times, so attaching an inferred timezone here\nwould risk presenting a different reservation time to the traveler."
+      },
       "RestaurantBookingAttemptView": {
         "properties": {
           "id": {
@@ -64550,6 +64893,75 @@
         ],
         "title": "ShareView",
         "description": "Owner-facing view of a share — what the app shows after publishing."
+      },
+      "SharedPlanInviteViewResponse": {
+        "properties": {
+          "token": {
+            "type": "string",
+            "title": "Token"
+          },
+          "trip": {
+            "$ref": "#/components/schemas/InviteTripSummary"
+          },
+          "snapshot": {
+            "$ref": "#/components/schemas/SharedPlanSnapshot"
+          },
+          "status": {
+            "type": "string",
+            "const": "active",
+            "title": "Status"
+          },
+          "is_group_share": {
+            "type": "boolean",
+            "const": true,
+            "title": "Is Group Share",
+            "default": true
+          },
+          "participation_summary": {
+            "$ref": "#/components/schemas/InviteParticipationSummary"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "token",
+          "trip",
+          "snapshot",
+          "status",
+          "participation_summary"
+        ],
+        "title": "SharedPlanInviteViewResponse",
+        "description": "Public view for a multi-use local Plan share.\n\nKept separate from :class:`InviteViewResponse` so widening this narrow\nlocal-plan surface cannot silently widen the ordinary trip-invite\ncontract. It exposes response aggregates, never individual responses."
+      },
+      "SharedPlanSnapshot": {
+        "properties": {
+          "snapshot_text": {
+            "type": "string",
+            "title": "Snapshot Text"
+          },
+          "og_title": {
+            "type": "string",
+            "title": "Og Title"
+          },
+          "og_description": {
+            "type": "string",
+            "title": "Og Description"
+          },
+          "mode": {
+            "type": "string",
+            "title": "Mode",
+            "default": "full"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "snapshot_text",
+          "og_title",
+          "og_description"
+        ],
+        "title": "SharedPlanSnapshot",
+        "description": "The reduced, no-poll snapshot for a forwardable local Plan link."
       },
       "SimilarVenueResponse": {
         "properties": {
