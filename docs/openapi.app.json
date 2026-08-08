@@ -6918,6 +6918,22 @@
         "operationId": "create_conversation_api_conversations_post",
         "parameters": [
           {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Idempotency-Key"
+            }
+          },
+          {
             "name": "authorization",
             "in": "header",
             "required": false,
@@ -15421,6 +15437,66 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MessageReportResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/notification-deliveries/{delivery_id}/resolve": {
+      "get": {
+        "tags": [
+          "notification-outcomes"
+        ],
+        "summary": "Resolve Notification Delivery",
+        "description": "Resolve a push tap into the recipient's current canonical destination.",
+        "operationId": "resolve_notification_delivery_api_notification_deliveries__delivery_id__resolve_get",
+        "parameters": [
+          {
+            "name": "delivery_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Delivery Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationResolutionResponse"
                 }
               }
             }
@@ -54337,6 +54413,78 @@
         "title": "NotificationFeed",
         "description": "Aggregated notifications for a user."
       },
+      "NotificationResolutionResponse": {
+        "properties": {
+          "delivery_id": {
+            "type": "string",
+            "title": "Delivery Id"
+          },
+          "notification_type": {
+            "type": "string",
+            "title": "Notification Type"
+          },
+          "destination": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Destination"
+          },
+          "visibility_state": {
+            "type": "string",
+            "title": "Visibility State"
+          },
+          "work_state": {
+            "type": "string",
+            "title": "Work State"
+          },
+          "truth_state": {
+            "type": "string",
+            "title": "Truth State"
+          },
+          "projection_state": {
+            "type": "string",
+            "title": "Projection State"
+          },
+          "current": {
+            "type": "boolean",
+            "title": "Current"
+          },
+          "refresh_required": {
+            "type": "boolean",
+            "title": "Refresh Required"
+          },
+          "revision": {
+            "type": "string",
+            "title": "Revision"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "delivery_id",
+          "notification_type",
+          "destination",
+          "visibility_state",
+          "work_state",
+          "truth_state",
+          "projection_state",
+          "current",
+          "refresh_required",
+          "revision"
+        ],
+        "title": "NotificationResolutionResponse",
+        "description": "Current authenticated projection for a notification tap.\n\nThe push payload is only a routing hint. Clients must use this response\nbefore rendering or acting so a stale, canceled, or superseded push cannot\nmake an old snapshot look current."
+      },
       "NotificationState": {
         "properties": {
           "id": {
@@ -57791,7 +57939,6 @@
               "$ref": "#/components/schemas/PlacesSection"
             },
             "type": "array",
-            "maxItems": 4,
             "title": "Sections"
           },
           "saved_total": {
@@ -60502,6 +60649,42 @@
               }
             ]
           },
+          "evaluated_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evaluated At"
+          },
+          "next_transition_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Transition At"
+          },
+          "valid_until": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid Until"
+          },
           "unresolved_count": {
             "type": "integer",
             "title": "Unresolved Count",
@@ -60633,6 +60816,16 @@
               }
             ],
             "title": "Timezone"
+          },
+          "timezone_source": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LifecycleTimezoneSource"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "daily_budget_cents": {
             "anyOf": [
@@ -63989,6 +64182,17 @@
             "type": "integer",
             "title": "Venue Id"
           },
+          "timezone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timezone"
+          },
           "provider": {
             "type": "string",
             "title": "Provider",
@@ -66287,6 +66491,53 @@
               }
             ],
             "title": "Timezone"
+          },
+          "timezone_source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timezone Source"
+          },
+          "evaluated_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evaluated At"
+          },
+          "next_transition_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Transition At"
+          },
+          "valid_until": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid Until"
           },
           "current_day_number": {
             "anyOf": [
