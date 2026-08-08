@@ -48,6 +48,15 @@ not live-certified until the required real-account device walk is recorded.
   default). When enabled, only bounded kind/member-count/revision facts enter
   the group trip context; member names, IDs, event payloads, and private memory
   remain excluded. The group-action/weather vertical slice is not complete.
+- Availability and location are not blank-slate systems: the codebase already
+  has canonical block attendance (`attending` / `maybe` / `not_attending` /
+  `undecided`) through the itinerary operation gateway, explicit local-Plan
+  invite RSVP (`in` / `maybe` / `out`), and trip-scoped location disclosure
+  (`off` / `coarse` / `precise`) with revocation, expiry, terminal-trip gates,
+  and mutual-grant ambient coincidence checks. The remaining step-6 gap is
+  product composition and certification, not a calendar or location-history
+  model: no inferred free/busy, no persistent status toggle, and no automatic
+  promotion of presence into relationship memory.
 
 ## Architecture rules
 
