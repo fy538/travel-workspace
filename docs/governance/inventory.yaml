@@ -67,6 +67,10 @@ rules:
 
 
 overrides:
+  docs/working/shared-plan-handoff-execution-2026-08-07.md:
+    disposition: keep_reference
+    rationale: Active, expiring execution ledger for the bounded shared-plan handoff pilot; it records validation gates without superseding product policy.
+
   docs/README.md:
     disposition: keep_authoritative
     rationale: Entry point and lifecycle map for the workspace documentation.

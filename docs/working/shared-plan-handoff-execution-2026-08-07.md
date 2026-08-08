@@ -20,8 +20,8 @@ organizer's local Plan → existing group chat → closed RSVP → organizer's P
 
 The shared object remains a useful projection of a durable local Plan. It is
 not a new social object, chat, poll, availability grid, membership grant, or
-anonymous group identity. This follows [Product Model §13.2](../product/Product%20Model.md)
-and [multiplayer strategy §5.2](multiplayer-strategy-2026-08-07.md).
+anonymous group identity. This follows the Product Model and the settled
+multiplayer strategy boundaries.
 
 ## Implemented code layer
 

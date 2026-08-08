@@ -50,6 +50,16 @@ flags:
     status: active
     notes: Keeps ambient attention dispatch dark while shadow-cycle receipts are evaluated.
 
+  - name: AMBIENT_COINCIDENCE_CANDIDATES_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:126
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    notes: Gates candidate generation until ambient coincidence quality and consent boundaries are reviewed.
+
   - name: HOME_AGENT_LOOP_ENABLED
     repo: travel-agent
     location: backend/core/feature_flags.py:132
