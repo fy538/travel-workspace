@@ -22665,6 +22665,112 @@
         }
       }
     },
+    "/api/trips/{trip_id}/editorial-map": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Trip Editorial Map",
+        "description": "Return a cache-only, group-safe Trips editorial map composition.\n\nThis intentionally does not call the live route resolver and does not\ninclude viewer-shaped map layers (private stays, saves, or photos). The\ninteractive ``map-state`` endpoint remains the detailed map surface; this\nroute is a small companion read for a feed card.",
+        "operationId": "get_trip_editorial_map_api_trips__trip_id__editorial_map_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "surface",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "const": "trips_home",
+              "type": "string",
+              "default": "trips_home",
+              "title": "Surface"
+            }
+          },
+          {
+            "name": "kind",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "const": "day_route",
+              "type": "string",
+              "default": "day_route",
+              "title": "Kind"
+            }
+          },
+          {
+            "name": "if-none-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "If-None-Match"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/TripEditorialMapCard"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Response Get Trip Editorial Map Api Trips  Trip Id  Editorial Map Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/map/nearby": {
       "get": {
         "tags": [
@@ -41444,6 +41550,504 @@
           "angle"
         ],
         "title": "DossierLeadItem"
+      },
+      "EditorialMapAction": {
+        "properties": {
+          "target": {
+            "type": "string",
+            "enum": [
+              "trip_map",
+              "places_map"
+            ],
+            "title": "Target"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 1,
+            "title": "Label",
+            "default": "Open map"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "day_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Day Id"
+          },
+          "block_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Block Id"
+          },
+          "place_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Id"
+          },
+          "feature_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Feature Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "target"
+        ],
+        "title": "EditorialMapAction"
+      },
+      "EditorialMapBounds": {
+        "properties": {
+          "north": {
+            "type": "number",
+            "maximum": 90.0,
+            "minimum": -90.0,
+            "title": "North"
+          },
+          "south": {
+            "type": "number",
+            "maximum": 90.0,
+            "minimum": -90.0,
+            "title": "South"
+          },
+          "east": {
+            "type": "number",
+            "maximum": 180.0,
+            "minimum": -180.0,
+            "title": "East"
+          },
+          "west": {
+            "type": "number",
+            "maximum": 180.0,
+            "minimum": -180.0,
+            "title": "West"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "north",
+          "south",
+          "east",
+          "west"
+        ],
+        "title": "EditorialMapBounds",
+        "description": "A WGS84 bounding box; ``east < west`` denotes an antimeridian crossing."
+      },
+      "EditorialMapClaim": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "subtitle": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subtitle"
+          },
+          "facts": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 3,
+            "title": "Facts"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "title"
+        ],
+        "title": "EditorialMapClaim"
+      },
+      "EditorialMapComposition": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "editorial_map.v1",
+            "title": "Schema Version",
+            "default": "editorial_map.v1"
+          },
+          "composition_id": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 1,
+            "title": "Composition Id"
+          },
+          "surface": {
+            "type": "string",
+            "enum": [
+              "trips_home",
+              "places",
+              "chat",
+              "public_story"
+            ],
+            "title": "Surface"
+          },
+          "audience": {
+            "type": "string",
+            "enum": [
+              "trip_group",
+              "private_user",
+              "public_redacted"
+            ],
+            "title": "Audience"
+          },
+          "story_kind": {
+            "type": "string",
+            "enum": [
+              "day_route",
+              "place_area",
+              "reachable_cluster"
+            ],
+            "title": "Story Kind"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "day_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Day Id"
+          },
+          "day_number": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Day Number"
+          },
+          "canonical_projection_version": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Canonical Projection Version"
+          },
+          "source_hash": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$",
+            "title": "Source Hash"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "fresh_until": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fresh Until"
+          },
+          "claim": {
+            "$ref": "#/components/schemas/EditorialMapClaim"
+          },
+          "viewport": {
+            "$ref": "#/components/schemas/EditorialMapViewport"
+          },
+          "features": {
+            "items": {
+              "$ref": "#/components/schemas/EditorialMapFeature"
+            },
+            "type": "array",
+            "maxItems": 24,
+            "title": "Features"
+          },
+          "omitted_stop_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Omitted Stop Count",
+            "default": 0
+          },
+          "action": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EditorialMapAction"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "accessibility_summary": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 240
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Accessibility Summary"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "composition_id",
+          "surface",
+          "audience",
+          "story_kind",
+          "source_hash",
+          "generated_at",
+          "claim",
+          "viewport"
+        ],
+        "title": "EditorialMapComposition",
+        "description": "The shared contract consumed by any editorial-map renderer."
+      },
+      "EditorialMapFeature": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Id"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "stop",
+              "route",
+              "connector",
+              "area",
+              "crossing"
+            ],
+            "title": "Role"
+          },
+          "source_id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Source Id"
+          },
+          "geometry": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Geometry"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "ordinal": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ordinal"
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "canonical",
+              "routed",
+              "estimated",
+              "unknown"
+            ],
+            "title": "Source",
+            "default": "unknown"
+          },
+          "fact_status": {
+            "type": "string",
+            "enum": [
+              "fresh",
+              "stale",
+              "degraded",
+              "unknown"
+            ],
+            "title": "Fact Status",
+            "default": "unknown"
+          },
+          "observed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed At"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "minutes": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Minutes"
+          },
+          "distance_km": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Distance Km"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "role",
+          "source_id",
+          "geometry"
+        ],
+        "title": "EditorialMapFeature",
+        "description": "One drawable feature and the evidence state behind it."
+      },
+      "EditorialMapViewport": {
+        "properties": {
+          "bounds": {
+            "$ref": "#/components/schemas/EditorialMapBounds"
+          },
+          "padding": {
+            "type": "integer",
+            "maximum": 256.0,
+            "minimum": 0.0,
+            "title": "Padding",
+            "default": 24
+          },
+          "crosses_antimeridian": {
+            "type": "boolean",
+            "title": "Crosses Antimeridian",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "bounds"
+        ],
+        "title": "EditorialMapViewport"
       },
       "EntitySave": {
         "properties": {
@@ -69256,6 +69860,46 @@
         ],
         "title": "TripDigest",
         "description": "A daily, trip-summary, or planning-context structured digest.\n\n`content` is the LLM's structured JSON output; `rendered_markdown` is a\npre-formatted textual view populated at generation time so consumers\n(planner prompt, admin UI) don't need to re-render the payload."
+      },
+      "TripEditorialMapCard": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "day_route",
+            "title": "Kind",
+            "default": "day_route"
+          },
+          "trip_id": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Trip Id"
+          },
+          "day_id": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Day Id"
+          },
+          "day_number": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Day Number"
+          },
+          "composition": {
+            "$ref": "#/components/schemas/EditorialMapComposition"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "trip_id",
+          "day_id",
+          "day_number",
+          "composition"
+        ],
+        "title": "TripEditorialMapCard",
+        "description": "Trips Home's nullable, cacheable companion card."
       },
       "TripGroupProfileSurface": {
         "properties": {
