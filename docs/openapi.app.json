@@ -72809,6 +72809,16 @@
             "type": "string",
             "title": "Entity Id"
           },
+          "entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "title": {
             "type": "string",
             "title": "Title"
