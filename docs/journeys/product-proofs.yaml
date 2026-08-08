@@ -36,7 +36,7 @@ proofs:
     anchors:
       contract: [travel-app/__tests__/journeys/local-occasion-closure.replay.test.tsx]
       database: [travel-agent/tests/eval/test_experience_loop_metrics.py]
-      ai_eval: []
+      ai_eval: [travel-agent/tests/eval/test_product_proof_eval.py]
   - id: P05
     title: Thin participant handoff
     status: dark

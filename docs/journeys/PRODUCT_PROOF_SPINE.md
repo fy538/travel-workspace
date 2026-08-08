@@ -78,3 +78,20 @@ evidence requirements are added to `product-proofs.yaml`.
 
 No P proof is physical-device certified by this document. Consult run receipts
 for revision-specific execution evidence.
+
+## AI evaluation task bank
+
+The backend owns 24 replay-safe tasks across P01–P04 and the future P06
+consent/silence risk. Each task grades observed effects, terminal state,
+evidence references, and shared text; it does not grade fluent prose alone.
+Privacy and silence tasks require three independent observed trials. The runner
+accepts adapter-produced trial JSON and never calls a model or provider itself:
+
+```bash
+cd travel-agent
+.venv/bin/python -m eval.product_proofs.run_eval --trials /path/to/observed-trials.json
+```
+
+An absent trial is a failed evaluation task, not a pass. The task bank is not
+itself a claim that an agent was evaluated; record an `ai_eval` receipt only
+after a real adapter has produced and graded observed trials.
