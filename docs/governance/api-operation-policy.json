@@ -1042,6 +1042,38 @@
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
       "review_by": "2026-08-15"
     },
+    "GET /api/users/me/relationship-visibility": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "AtlasPrivacyApiClient",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "product-engineering",
+      "reason": "The Privacy screen reads the caller's explicit directional nearby-sharing choices; no inbound grant or mutuality result is exposed.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "PUT /api/users/me/relationship-visibility/{grantee_user_id}": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "AtlasPrivacyApiClient",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "product-engineering",
+      "reason": "The Privacy screen lets the caller grant or immediately revoke coarse nearby visibility with optimistic revision protection.",
+      "removal_trigger": null,
+      "review_by": null
+    },
     "GET /api/users/{user_id}/memory-learning-candidates": {
       "audience": "app",
       "consumers": [
