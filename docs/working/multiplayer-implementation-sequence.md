@@ -65,10 +65,13 @@ not live-certified until the required real-account device walk is recorded.
   model: no inferred free/busy, no persistent status toggle, and no automatic
   promotion of presence into relationship memory.
 - Weather rescue now has a shared pure matcher used by Home's weather risk
-  classification. It identifies the next future, grounded weather-sensitive
-  stop without mutating the Plan, plus a fail-closed current-conditions
-  provider adapter. Group-safe composition, proposal minting, and
-  two-observer certification remain outstanding.
+  classification, a fail-closed current-conditions provider, a bounded
+  group-safe proposal draft, and a dark proactive producer. When
+  `WEATHER_RESCUE_PROPOSALS_ENABLED` is enabled, it requires an in-trip current
+  observation, matches one grounded future stop, finds one nearby verified
+  indoor/covered venue, mints a canonical replace proposal idempotently, and
+  emits a `WEATHER_RESCUE` group candidate. It never mutates the Plan directly;
+  group composition and two-observer device certification remain outstanding.
 - Guest participation audit is complete: expiring/revocable invite links,
   pre-auth intake, local-Plan RSVP, authenticated membership upgrade, and
   attendance receipts already exist. Proposal links remain an
