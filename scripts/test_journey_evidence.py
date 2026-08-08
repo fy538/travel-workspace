@@ -34,6 +34,18 @@ def test_evidence_state_is_current_stale_or_unrun() -> None:
     assert subject.evidence_state([_receipt(app_sha="app-old")], "P01", "contract", revisions) == "stale"
 
 
+def test_newer_receipt_supersedes_an_older_failure() -> None:
+    revisions = {
+        "workspace_sha": "workspace-current",
+        "app_sha": "app-current",
+        "backend_sha": "backend-current",
+    }
+    failed = _receipt(status="fail", recorded_at="2026-08-07T10:00:00+00:00")
+    passed = _receipt(status="pass", recorded_at="2026-08-07T10:01:00+00:00")
+
+    assert subject.evidence_state([failed, passed], "P01", "contract", revisions) == "pass"
+
+
 def test_load_receipts_ignores_invalid_receipts(tmp_path: Path) -> None:
     valid = tmp_path / "valid.json"
     valid.write_text(__import__("json").dumps(_receipt()))

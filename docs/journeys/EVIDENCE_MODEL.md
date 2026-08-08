@@ -54,3 +54,19 @@ make journey-evidence-report
 Receipts are intentionally not committed. CI retains them as build artifacts;
 local receipts are short-lived evidence for the exact checkout. Do not edit
 `STATUS.md` to turn an older receipt into current certification.
+
+## Founder gate
+
+Use the layered gate instead of mentally combining old test results:
+
+```bash
+make dogfood-fast     # under two minutes: deterministic contracts
+make dogfood-local    # local Postgres and pivot canaries
+make dogfood-device   # requires DOGFOOD_DEVICE_COMMAND for the current build
+make dogfood-staging  # requires DOGFOOD_STAGING_COMMAND for deployed services
+make journey-evidence-report
+```
+
+`dogfood-device` and `dogfood-staging` deliberately stop when their explicit
+environment command is absent. They do not record a substitute simulator,
+TestClient, or file-presence result as device or staging evidence.
