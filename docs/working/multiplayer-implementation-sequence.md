@@ -37,6 +37,11 @@ not live-certified until the required real-account device walk is recorded.
 
 - Foundation certification remains pending on the real two-account/two-device
   run; no device claim is being promoted from the automated suites.
+- Latest focused validation: social-circle/concierge backend suites and the
+  deterministic weather/provider suites pass; the mobile social suite passes
+  18 tests with TypeScript and ESLint clean. A broader backend proposal API
+  subset currently stops at environment setup (`json_repair` is not installed)
+  for 8 tests; this is recorded as an environment blocker, not a product pass.
 - Explicit circle identity is partially implemented: durable circle/member/
   trip-link/event storage, owner authorization, cursor reads, mobile transport,
   an explicit pair-confirmation flow, and a read-only detail route are live in
@@ -61,8 +66,9 @@ not live-certified until the required real-account device walk is recorded.
   promotion of presence into relationship memory.
 - Weather rescue now has a shared pure matcher used by Home's weather risk
   classification. It identifies the next future, grounded weather-sensitive
-  stop without mutating the Plan; provider freshness, group-safe composition,
-  proposal minting, and two-observer certification remain outstanding.
+  stop without mutating the Plan, plus a fail-closed current-conditions
+  provider adapter. Group-safe composition, proposal minting, and
+  two-observer certification remain outstanding.
 
 ## Architecture rules
 
