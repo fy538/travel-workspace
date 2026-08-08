@@ -66794,6 +66794,13 @@
             },
             "type": "array",
             "title": "Members"
+          },
+          "trip_links": {
+            "items": {
+              "$ref": "#/components/schemas/SocialCircleTripLink"
+            },
+            "type": "array",
+            "title": "Trip Links"
           }
         },
         "type": "object",
