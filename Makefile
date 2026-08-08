@@ -105,10 +105,10 @@ reliability-gate: ## Gate on eval reliability baseline — exits 1 if any checks
 # ── Tests ─────────────────────────────────────────────────────────────────────
 
 test-backend: ## Run the backend canary against local Postgres; unseeded corpus suites skip
-	@cd travel-agent && DATABASE_URL="$${DATABASE_URL:-postgresql://vesper:localdev@localhost:15432/vesper}" SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -m pytest tests/ -q -k "not requires_postgres and not requires_api_keys and not requires_dogfood_wedge"
+	@cd travel-agent && TRAVEL_APP_ROOT="$(CURDIR)/travel-app" DATABASE_URL="$${DATABASE_URL:-postgresql://vesper:localdev@localhost:15432/vesper}" SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -m pytest tests/ -q -k "not requires_postgres and not requires_api_keys and not requires_dogfood_wedge"
 
 test-backend-postgres: ## Run marker-gated Postgres integration tests against local Postgres
-	@cd travel-agent && DATABASE_URL="$${DATABASE_URL:-postgresql://vesper:localdev@localhost:15432/vesper}" SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -m pytest tests/ -q -m "requires_postgres and not requires_dogfood_wedge"
+	@cd travel-agent && TRAVEL_APP_ROOT="$(CURDIR)/travel-app" DATABASE_URL="$${DATABASE_URL:-postgresql://vesper:localdev@localhost:15432/vesper}" SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -m pytest tests/ -q -m "requires_postgres and not requires_dogfood_wedge"
 
 test-frontend: ## Run frontend Jest tests
 	@cd travel-app && npx jest --no-coverage
