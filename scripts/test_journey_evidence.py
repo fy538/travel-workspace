@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from unittest.mock import patch
 
 import journey_evidence as subject
 
@@ -73,3 +74,15 @@ def test_blocked_receipt_requires_a_reason() -> None:
         assert "skip_reason" in str(exc)
     else:
         raise AssertionError("expected a blocked receipt without a reason to fail validation")
+
+
+def test_revision_marks_tracked_modifications_as_dirty(tmp_path: Path) -> None:
+    class _Result:
+        def __init__(self, returncode: int) -> None:
+            self.returncode = returncode
+
+    with (
+        patch.object(subject.subprocess, "check_output", return_value="abc123\n"),
+        patch.object(subject.subprocess, "run", side_effect=[_Result(1), _Result(0)]),
+    ):
+        assert subject._revision(tmp_path) == "abc123-dirty"

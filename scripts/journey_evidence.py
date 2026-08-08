@@ -44,9 +44,27 @@ class ReceiptError(ValueError):
 
 def _revision(path: Path) -> str:
     try:
-        return subprocess.check_output(
+        sha = subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=path, text=True, stderr=subprocess.DEVNULL
         ).strip()
+        # A receipt for HEAD is not evidence for a checkout with tracked
+        # modifications. Do not include untracked files: they may be a local
+        # artifact, but tracked source/index changes can alter the behavior
+        # the receipt is intended to prove.
+        dirty = any(
+            subprocess.run(
+                command,
+                cwd=path,
+                check=False,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            ).returncode
+            for command in (
+                ["git", "diff", "--quiet"],
+                ["git", "diff", "--cached", "--quiet"],
+            )
+        )
+        return f"{sha}-dirty" if dirty else sha
     except (OSError, subprocess.CalledProcessError):
         return "unknown"
 
