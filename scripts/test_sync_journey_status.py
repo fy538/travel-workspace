@@ -25,10 +25,10 @@ def test_branch_fidelity_cell_distinguishes_complete_partial_and_absent() -> Non
             "evidence": {"FE": [existing]},
         },
     )
-    assert subject._branch_fidelity_cell(complete, "FE", {}) == "✅ 2/2"
+    assert subject._branch_fidelity_cell(complete, "FE", {}) == "○ unrun 0/2"
 
     complete["branches"][1]["evidence"]["FE"] = []
-    assert subject._branch_fidelity_cell(complete, "FE", {}) == "◐ 1/2"
+    assert subject._branch_fidelity_cell(complete, "FE", {}) == "○ unrun 0/2"
     assert subject._branch_fidelity_cell(complete, "BE", {}) is None
 
 
@@ -61,15 +61,15 @@ def test_trial_branch_registry_reports_expected_honest_fractions() -> None:
         "J28": {"status": "pass"},
     }
 
-    assert subject._branch_fidelity_cell(journeys["J06"], "VIS", lived) == "✅ 7/7"
+    assert subject._branch_fidelity_cell(journeys["J06"], "VIS", lived) == "○ unrun 0/7"
     lived["J06"] = {"status": "pass"}
     assert subject._branch_fidelity_cell(journeys["J06"], "LIVE", lived) == "✅ 4/4"
     assert subject._branch_fidelity_cell(journeys["J10"], "LIVE", lived) == "✅ 8/8"
-    assert subject._branch_fidelity_cell(journeys["J11"], "VIS", lived) == "✅ 6/6"
+    assert subject._branch_fidelity_cell(journeys["J11"], "VIS", lived) == "○ unrun 0/6"
     assert subject._branch_fidelity_cell(journeys["J11"], "LIVE", lived) == "✅ 6/6"
-    assert subject._branch_fidelity_cell(journeys["J24"], "FE", lived) == "✅ 7/7"
-    assert subject._branch_fidelity_cell(journeys["J24"], "BE", lived) == "✅ 7/7"
-    assert subject._branch_fidelity_cell(journeys["J24"], "VIS", lived) == "✅ 7/7"
+    assert subject._branch_fidelity_cell(journeys["J24"], "FE", lived) == "○ unrun 0/7"
+    assert subject._branch_fidelity_cell(journeys["J24"], "BE", lived) == "○ unrun 0/7"
+    assert subject._branch_fidelity_cell(journeys["J24"], "VIS", lived) == "○ unrun 0/7"
     lived["J24"] = {"status": "pass"}
     assert subject._branch_fidelity_cell(journeys["J24"], "LIVE", lived) == "✅ 5/5"
 

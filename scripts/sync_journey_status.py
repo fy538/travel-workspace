@@ -213,14 +213,20 @@ def _visual_ids() -> set[str]:
 
 
 def _branch_anchor_state(anchor: str, by_id: dict[str, dict]) -> str:
-    """Return pass/fail/missing for one registered branch evidence anchor."""
+    """Return the evidence state for one registered branch anchor.
+
+    A repository path proves only that a test or flow has been *defined*. It is
+    never execution evidence. Until a receipt-backed runner is introduced, the
+    matrix must therefore render those anchors as unrun instead of claiming a
+    pass simply because the file exists.
+    """
     if anchor.startswith("persona-cert:"):
         jid = anchor.removeprefix("persona-cert:")
         row = by_id.get(jid)
         if row is None or row.get("status") == "skip":
             return "missing"
         return "pass" if row.get("status") == "pass" else "fail"
-    return "pass" if (_REPO_ROOT / anchor).exists() else "missing"
+    return "unrun" if (_REPO_ROOT / anchor).exists() else "missing"
 
 
 def _branch_fidelity_cell(journey: dict, code: str, by_id: dict[str, dict]) -> str | None:
@@ -240,6 +246,7 @@ def _branch_fidelity_cell(journey: dict, code: str, by_id: dict[str, dict]) -> s
 
     passed = 0
     failed = False
+    unrun = False
     for branch in branches:
         anchors = branch.get("evidence", {}).get(code, [])
         states = [_branch_anchor_state(anchor, by_id) for anchor in anchors]
@@ -247,12 +254,16 @@ def _branch_fidelity_cell(journey: dict, code: str, by_id: dict[str, dict]) -> s
             passed += 1
         if "fail" in states:
             failed = True
+        if "unrun" in states:
+            unrun = True
 
     total = len(branches)
     if failed:
         return f"🔴 {passed}/{total}"
     if passed == total:
         return f"✅ {passed}/{total}"
+    if unrun:
+        return f"○ unrun {passed}/{total}"
     if passed:
         return f"◐ {passed}/{total}"
     return f"— 0/{total}"
@@ -293,9 +304,9 @@ def build_matrix_block(by_id: dict[str, dict]) -> str:
         lived_cell = _branch_fidelity_cell(j, "LIVE", by_id)
         rows.append(
             f"| {jid} | {j['title']} | {tier} | "
-            f"{contract or ('✅' if jid in fe else '—')} | "
-            f"{logic or ('✅' if jid in be else '—')} | "
-            f"{visual_cell or ('✅' if jid in visual else '—')} | "
+            f"{contract or ('○ unrun' if jid in fe else '—')} | "
+            f"{logic or ('○ unrun' if jid in be else '—')} | "
+            f"{visual_cell or ('○ unrun' if jid in visual else '—')} | "
             f"{lived_cell or lived} |"
         )
     table = "\n".join(rows)
@@ -303,10 +314,11 @@ def build_matrix_block(by_id: dict[str, dict]) -> str:
         f"{_MX_BEGIN}\n"
         "### Journey fidelity matrix (auto-generated)\n\n"
         "Source: `docs/journeys/journeys.yaml` × registered branch evidence where "
-        "declared; legacy rows use FE mock-walk / BE pytest / dedicated Maestro "
-        "file presence × live persona-cert. "
+        "declared. A file on disk is shown as `○ unrun`; it becomes `✅` only "
+        "when the relevant evidence runner records a pass. Persona replay is "
+        "executed seeded-world evidence, not a deployed or device run. "
         "Regenerate: `make dogfood-status-sync`. Set integrity: `make journey-registry-check`. "
-        "Legend: ✅ all required branches · ◐ partial · ⤵️ skip · 🔴 fail · — none.\n\n"
+        "Legend: ✅ pass · ○ unrun · ◐ partial · ⤵️ skip · 🔴 fail · — none.\n\n"
         f"{table}\n"
         f"{_MX_END}"
     )

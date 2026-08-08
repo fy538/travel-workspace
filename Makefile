@@ -175,7 +175,8 @@ chat-card-types-check: ## Gate: generated chat card-type allowlists + pilot sche
 	@python3 scripts/sync-chat-card-types-contract.py --check
 
 certify-logic: ## Tier-2 certify ladder: journey scenario pytest (requires Postgres, excludes corpus-dependent tests)
-	@cd travel-agent && SKIP_AUTH=true PYTHONPATH=. pytest tests/scenarios/ \
+	@python3 scripts/run_required_pytest.py --cwd travel-agent -- \
+	  env DATABASE_URL="$${DATABASE_URL:-postgresql://vesper:localdev@localhost:15432/vesper}" SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -m pytest tests/scenarios/ \
 	  -m "requires_postgres and not requires_dogfood_wedge" -q
 
 certify-corpus: ## Tier-2b certify ladder: discover_queries compose tests (requires seeded wedge corpus)
