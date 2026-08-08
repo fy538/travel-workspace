@@ -1790,6 +1790,76 @@
         }
       }
     },
+    "/api/atlas/candidates/{candidate_id}/canonical-place": {
+      "patch": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Correct Candidate Canonical Place",
+        "description": "Correct or clear canonical geography while preserving intake evidence.",
+        "operationId": "correct_candidate_canonical_place_api_atlas_candidates__candidate_id__canonical_place_patch",
+        "parameters": [
+          {
+            "name": "candidate_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Candidate Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AtlasCanonicalPlaceCorrection"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasCandidate"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/atlas/candidates/{candidate_id}/approve": {
       "post": {
         "tags": [
@@ -29829,6 +29899,101 @@
             ],
             "title": "Place Label"
           },
+          "raw_place_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Raw Place Label"
+          },
+          "raw_place_source": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "device_reverse_geocode",
+                  "backend_reverse_geocode",
+                  "user",
+                  "legacy_unknown"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Raw Place Source"
+          },
+          "place_label_source": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "device_reverse_geocode",
+                  "backend_reverse_geocode",
+                  "user",
+                  "legacy_unknown"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Label Source"
+          },
+          "canonical_place_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "canonical_place_match_method": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "exact_label",
+                  "manual"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Canonical Place Match Method"
+          },
+          "canonical_place_confidence": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Canonical Place Confidence"
+          },
+          "canonical_place_resolved_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Canonical Place Resolved At"
+          },
           "reflection": {
             "anyOf": [
               {
@@ -30238,6 +30403,101 @@
             ],
             "title": "Place Guess"
           },
+          "raw_place_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Raw Place Label"
+          },
+          "raw_place_source": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "device_reverse_geocode",
+                  "backend_reverse_geocode",
+                  "user",
+                  "legacy_unknown"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Raw Place Source"
+          },
+          "place_label_source": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "device_reverse_geocode",
+                  "backend_reverse_geocode",
+                  "user",
+                  "legacy_unknown"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Label Source"
+          },
+          "canonical_place_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "canonical_place_match_method": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "exact_label",
+                  "manual"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Canonical Place Match Method"
+          },
+          "canonical_place_confidence": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Canonical Place Confidence"
+          },
+          "canonical_place_resolved_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Canonical Place Resolved At"
+          },
           "place_count": {
             "type": "integer",
             "title": "Place Count"
@@ -30410,6 +30670,21 @@
             ],
             "title": "Place Guess"
           },
+          "place_label_source": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "device_reverse_geocode",
+                  "user"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Label Source"
+          },
           "place_count": {
             "type": "integer",
             "title": "Place Count",
@@ -30559,6 +30834,38 @@
         ],
         "title": "AtlasCandidatesResponse",
         "description": "Response for ``POST /api/atlas/candidates`` — persisted candidates with ids."
+      },
+      "AtlasCanonicalPlaceCorrection": {
+        "properties": {
+          "canonical_place_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 280
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          }
+        },
+        "type": "object",
+        "required": [
+          "canonical_place_ref"
+        ],
+        "title": "AtlasCanonicalPlaceCorrection",
+        "description": "Owner correction of Atlas's canonical association; raw evidence remains."
       },
       "AtlasDisclosureCreateBody": {
         "properties": {
@@ -41462,6 +41769,38 @@
           "angle"
         ],
         "title": "DossierLeadItem"
+      },
+      "EntityRef": {
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/EntityRefType"
+          },
+          "id": {
+            "type": "string",
+            "maxLength": 512,
+            "minLength": 1,
+            "title": "Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "type",
+          "id"
+        ],
+        "title": "EntityRef",
+        "description": "Application-owned identity; ``type`` and ``id`` are inseparable."
+      },
+      "EntityRefType": {
+        "type": "string",
+        "enum": [
+          "place",
+          "venue",
+          "site",
+          "accommodation",
+          "experience",
+          "custom"
+        ]
       },
       "EntitySave": {
         "properties": {
