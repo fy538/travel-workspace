@@ -12629,15 +12629,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/InviteViewResponse"
-                    },
-                    {
-                      "$ref": "#/components/schemas/SharedPlanInviteViewResponse"
-                    }
-                  ],
-                  "title": "Response View Invite Api Invites  Token  Get"
+                  "$ref": "#/components/schemas/InviteViewResponse"
                 }
               }
             }
@@ -26284,6 +26276,132 @@
         }
       }
     },
+    "/api/users/me/relationship-visibility": {
+      "get": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "List My Relationship Visibility",
+        "description": "List only the authenticated user's outgoing disclosure choices.",
+        "operationId": "list_my_relationship_visibility_api_users_me_relationship_visibility_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelationshipVisibilityStatus"
+                  },
+                  "title": "Response List My Relationship Visibility Api Users Me Relationship Visibility Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/me/relationship-visibility/{grantee_user_id}": {
+      "put": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "Update My Relationship Visibility",
+        "description": "Set the caller's own grant; no person may set or inspect another's.",
+        "operationId": "update_my_relationship_visibility_api_users_me_relationship_visibility__grantee_user_id__put",
+        "parameters": [
+          {
+            "name": "grantee_user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Grantee User Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RelationshipVisibilityRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RelationshipVisibilityStatus"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/users/{user_id}/insight": {
       "get": {
         "tags": [
@@ -32132,6 +32250,7 @@
         "type": "string",
         "enum": [
           "attending",
+          "maybe",
           "not_attending",
           "undecided"
         ],
@@ -45021,22 +45140,6 @@
             ],
             "title": "Contact Channel"
           },
-          "participation_status": {
-            "anyOf": [
-              {
-                "type": "string",
-                "enum": [
-                  "in",
-                  "maybe",
-                  "out"
-                ]
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Participation Status"
-          },
           "client_submission_id": {
             "anyOf": [
               {
@@ -45151,16 +45254,6 @@
             ],
             "title": "Pending Intake Summary"
           },
-          "participation_summary": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/InviteParticipationSummary"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
           "plan_preview_enabled": {
             "type": "boolean",
             "title": "Plan Preview Enabled",
@@ -45181,38 +45274,6 @@
         ],
         "title": "InviteListItem",
         "description": "Serializable summary of one invite row, returned by list endpoints.\n\nUsed by the organizer's \"Pending invites\" UI — each item carries\nenough state to render a status pill (sent / answered / joined /\nrevoked / expired) and the small momentum signal of a chip answer\nwhen the recipient has already engaged pre-auth."
-      },
-      "InviteParticipationSummary": {
-        "properties": {
-          "in_count": {
-            "type": "integer",
-            "minimum": 0.0,
-            "title": "In Count",
-            "default": 0
-          },
-          "maybe_count": {
-            "type": "integer",
-            "minimum": 0.0,
-            "title": "Maybe Count",
-            "default": 0
-          },
-          "out_count": {
-            "type": "integer",
-            "minimum": 0.0,
-            "title": "Out Count",
-            "default": 0
-          },
-          "response_count": {
-            "type": "integer",
-            "minimum": 0.0,
-            "title": "Response Count",
-            "default": 0
-          }
-        },
-        "additionalProperties": false,
-        "type": "object",
-        "title": "InviteParticipationSummary",
-        "description": "Safe aggregate of local-plan responses for a shared group link.\n\nThis is deliberately counts only. Names and every free-text intake field\nstay out of the public projection; a response is not membership and does\nnot grant any trip visibility."
       },
       "InvitePlanPreview": {
         "properties": {
@@ -61747,6 +61808,67 @@
         "title": "RelatedDossierItem",
         "description": "Lightweight dossier stub for the Keep Reading carousel."
       },
+      "RelationshipVisibilityRequest": {
+        "properties": {
+          "granularity": {
+            "type": "string",
+            "enum": [
+              "none",
+              "coarse",
+              "precise"
+            ],
+            "title": "Granularity"
+          }
+        },
+        "type": "object",
+        "required": [
+          "granularity"
+        ],
+        "title": "RelationshipVisibilityRequest",
+        "description": "Body for changing the authenticated caller's own disclosure grant."
+      },
+      "RelationshipVisibilityStatus": {
+        "properties": {
+          "grantee_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Grantee User Id"
+          },
+          "granularity": {
+            "type": "string",
+            "enum": [
+              "none",
+              "coarse",
+              "precise"
+            ],
+            "title": "Granularity"
+          },
+          "granted_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Granted At"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active"
+          }
+        },
+        "type": "object",
+        "required": [
+          "grantee_user_id",
+          "granularity",
+          "is_active"
+        ],
+        "title": "RelationshipVisibilityStatus",
+        "description": "API response for a caller-owned directional grant.\n\nThe API exposes only grants made *by* the caller. It never exposes another\nperson's grant, or whether the relationship is mutual."
+      },
       "ReleaseRequest": {
         "properties": {
           "lease_id": {
@@ -63803,75 +63925,6 @@
         ],
         "title": "ShareView",
         "description": "Owner-facing view of a share — what the app shows after publishing."
-      },
-      "SharedPlanInviteViewResponse": {
-        "properties": {
-          "token": {
-            "type": "string",
-            "title": "Token"
-          },
-          "trip": {
-            "$ref": "#/components/schemas/InviteTripSummary"
-          },
-          "snapshot": {
-            "$ref": "#/components/schemas/SharedPlanSnapshot"
-          },
-          "status": {
-            "type": "string",
-            "const": "active",
-            "title": "Status"
-          },
-          "is_group_share": {
-            "type": "boolean",
-            "const": true,
-            "title": "Is Group Share",
-            "default": true
-          },
-          "participation_summary": {
-            "$ref": "#/components/schemas/InviteParticipationSummary"
-          }
-        },
-        "additionalProperties": false,
-        "type": "object",
-        "required": [
-          "token",
-          "trip",
-          "snapshot",
-          "status",
-          "participation_summary"
-        ],
-        "title": "SharedPlanInviteViewResponse",
-        "description": "Public view for a multi-use local Plan share.\n\nKept separate from :class:`InviteViewResponse` so widening this narrow\nlocal-plan surface cannot silently widen the ordinary trip-invite\ncontract. It exposes response aggregates, never individual responses."
-      },
-      "SharedPlanSnapshot": {
-        "properties": {
-          "snapshot_text": {
-            "type": "string",
-            "title": "Snapshot Text"
-          },
-          "og_title": {
-            "type": "string",
-            "title": "Og Title"
-          },
-          "og_description": {
-            "type": "string",
-            "title": "Og Description"
-          },
-          "mode": {
-            "type": "string",
-            "title": "Mode",
-            "default": "full"
-          }
-        },
-        "additionalProperties": false,
-        "type": "object",
-        "required": [
-          "snapshot_text",
-          "og_title",
-          "og_description"
-        ],
-        "title": "SharedPlanSnapshot",
-        "description": "The reduced, no-poll snapshot for a forwardable local Plan link."
       },
       "SimilarVenueResponse": {
         "properties": {
