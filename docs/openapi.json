@@ -52914,6 +52914,18 @@
         "title": "GeofenceEvent",
         "description": "One geofence trigger the server observed.\n\nAppend-only: every row represents a moment in time, immutable after\ninsert. ``manually_narrated`` is the catch-all for cases where the\nuser tapped the entity card without ever entering its geofence \u2014 we\nstill record it so the observability dashboard reflects total\nnarration attempts, geofence-driven or not."
       },
+      "GeometryPrecision": {
+        "type": "string",
+        "enum": [
+          "exact",
+          "rooftop",
+          "entrance",
+          "interpolated",
+          "area",
+          "unknown"
+        ],
+        "title": "GeometryPrecision"
+      },
       "GlobalDossierFeedResponse": {
         "properties": {
           "items": {
@@ -75960,6 +75972,60 @@
               }
             ],
             "title": "Entity Id"
+          },
+          "entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "geometry_precision": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/GeometryPrecision"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "distance_source": {
+            "anyOf": [
+              {
+                "type": "string",
+                "const": "haversine"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Distance Source"
+          },
+          "location_freshness": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Location Freshness"
+          },
+          "location_accuracy_m": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Location Accuracy M"
           },
           "plan_block_id": {
             "anyOf": [
