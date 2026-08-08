@@ -56,6 +56,22 @@
       "removal_trigger": null,
       "review_by": "2026-09-03"
     },
+    "PUT /api/trips/{trip_id}/occurrence-artifact/blocks/{block_id}/relationship-outcome": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "recordTripExperienceOutcome",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": "OUTCOME_ARTIFACT_ENABLED",
+      "lifecycle": "active",
+      "owner": "outcomes",
+      "reason": "A confirmed participant can answer one private, correctable relationship question in the dogfood artifact; no group verdict or automatic negative affinity is written.",
+      "removal_trigger": null,
+      "review_by": "2026-09-03"
+    },
     "GET /api/trips/{trip_id}/location-sharing": {
       "audience": "app",
       "consumers": [],
