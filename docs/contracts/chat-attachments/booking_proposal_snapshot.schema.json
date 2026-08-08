@@ -14,6 +14,24 @@
     "phone_number": { "type": ["string", "null"] },
     "requested_datetime": { "type": ["string", "null"] },
     "party_size": { "type": ["integer", "null"] },
-    "expires_at": { "type": ["string", "null"] }
+    "expires_at": { "type": ["string", "null"] },
+    "provider_disclosure": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "fields": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["dietary_needs", "accessibility"] }
+        },
+        "values": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      },
+      "required": ["fields", "values"]
+    }
   }
 }
