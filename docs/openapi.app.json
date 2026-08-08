@@ -4363,7 +4363,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BookingSession"
+                  "$ref": "#/components/schemas/BookingSessionView"
                 }
               }
             }
@@ -4730,7 +4730,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BookingSession"
+                  "$ref": "#/components/schemas/BookingSessionView"
                 }
               }
             }
@@ -5402,7 +5402,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/RestaurantBookingAttempt"
+                    "$ref": "#/components/schemas/RestaurantBookingAttemptView"
                   },
                   "title": "Response List Restaurant Attempts Api Trips  Trip Id  Booking Sessions  Session Id  Restaurant Attempts Get"
                 }
@@ -33732,7 +33732,7 @@
         ],
         "title": "BookingProposal"
       },
-      "BookingSession": {
+      "BookingSessionView": {
         "properties": {
           "id": {
             "type": "string",
@@ -33770,23 +33770,6 @@
             "title": "Status",
             "default": "pending"
           },
-          "preferences_snapshot": {
-            "additionalProperties": true,
-            "type": "object",
-            "title": "Preferences Snapshot"
-          },
-          "seed_offer": {
-            "anyOf": [
-              {
-                "additionalProperties": true,
-                "type": "object"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Seed Offer"
-          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -33819,7 +33802,8 @@
           "created_at",
           "updated_at"
         ],
-        "title": "BookingSession"
+        "title": "BookingSessionView",
+        "description": "Trip-member-safe booking session projection.\n\nProvider commands and private traveler context remain on the internal\n``BookingSession`` record. A trip member needs lifecycle and controller\nattribution to follow a shared booking, not its seed notes or frozen\npreference snapshot."
       },
       "BranchPrecondition": {
         "properties": {
@@ -43774,6 +43758,24 @@
             "type": "string",
             "format": "uuid",
             "title": "Offer Id"
+          },
+          "checkout_status": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "pending",
+                  "confirmed",
+                  "failed",
+                  "cancelled",
+                  "manual_action_required"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Checkout Status"
           }
         },
         "type": "object",
@@ -62112,7 +62114,7 @@
         "title": "ResolvedMedia",
         "description": "A renderable visual with an explicit factual claim and provenance.\n\n``provider_asset_id`` is only an identity/audit handle. Callers must not\npersist it when ``cache_directive`` is ``no_store`` (Google photo resource\nnames are short-lived and may not be cached)."
       },
-      "RestaurantBookingAttempt": {
+      "RestaurantBookingAttemptView": {
         "properties": {
           "id": {
             "type": "string",
@@ -62146,63 +62148,21 @@
             "type": "integer",
             "title": "Party Size"
           },
-          "special_requests": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Special Requests"
-          },
-          "phone_number": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Phone Number"
-          },
-          "call_sid": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Call Sid"
-          },
-          "transcript": {
-            "items": {
-              "additionalProperties": true,
-              "type": "object"
-            },
-            "type": "array",
-            "title": "Transcript"
-          },
-          "confirmation_details": {
-            "anyOf": [
-              {
-                "additionalProperties": true,
-                "type": "object"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Confirmation Details"
-          },
           "attempt_number": {
             "type": "integer",
             "title": "Attempt Number",
             "default": 1
+          },
+          "reconciliation_status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reconciliation Status"
           },
           "created_at": {
             "type": "string",
@@ -62226,7 +62186,8 @@
           "created_at",
           "updated_at"
         ],
-        "title": "RestaurantBookingAttempt"
+        "title": "RestaurantBookingAttemptView",
+        "description": "Group-safe lifecycle for a restaurant provider contact.\n\nPhone numbers, special requests, transcripts, provider identifiers, and\nconfirmation evidence are controller-only operational data. This view is\nintentionally limited to the shared timing/status facts."
       },
       "RestorePayload": {
         "properties": {
