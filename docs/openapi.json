@@ -76927,6 +76927,66 @@
         "title": "TakeGenerationRequest",
         "description": "Body for POST /api/takes \u2014 request to generate (or fetch cached) a Take."
       },
+      "WhyThisSource": {
+        "properties": {
+          "source_type": {
+            "type": "string",
+            "enum": [
+              "personal_memory",
+              "past_trip",
+              "angle_affinity",
+              "group_signal",
+              "saved_entity",
+              "hard_constraint"
+            ],
+            "title": "Source Type"
+          },
+          "source_id": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 1,
+            "title": "Source Id"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "source_type",
+          "source_id",
+          "label"
+        ],
+        "title": "WhyThisSource",
+        "description": "Content-free evidence pointer shown in a private Why-this receipt."
+      },
+      "WhyThisReceipt": {
+        "properties": {
+          "summary": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Summary"
+          },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/WhyThisSource"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Source Refs"
+          }
+        },
+        "type": "object",
+        "required": [
+          "summary"
+        ],
+        "title": "WhyThisReceipt",
+        "description": "A safe explanation of which evidence grounded a Personal Take."
+      },
       "TakePayload": {
         "properties": {
           "stance": {
@@ -76995,6 +77055,16 @@
             },
             "type": "array",
             "title": "Hypotheses"
+          },
+          "why_this": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/WhyThisReceipt"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "suggested_actions": {
             "items": {
