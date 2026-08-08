@@ -60146,6 +60146,78 @@
             "type": "string",
             "title": "Mode"
           },
+          "requested_mode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Requested Mode"
+          },
+          "resolved_mode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolved Mode"
+          },
+          "fact_provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fact Provider"
+          },
+          "fact_status": {
+            "type": "string",
+            "title": "Fact Status",
+            "description": "Freshness/provenance state of the derived travel fact: fresh, stale, degraded, or unknown. Unknown is not a claim that the planned transition is currently routable.",
+            "default": "unknown"
+          },
+          "fact_observed_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fact Observed At"
+          },
+          "fact_expires_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fact Expires At"
+          },
+          "fact_degraded_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fact Degraded Reason"
+          },
           "minutes": {
             "anyOf": [
               {
@@ -70363,8 +70435,15 @@
             "title": "Itinerary Id"
           },
           "proposed_by": {
-            "type": "string",
-            "format": "uuid",
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Proposed By"
           },
           "proposed_by_agent": {
@@ -70821,8 +70900,15 @@
             "title": "Status"
           },
           "proposed_by": {
-            "type": "string",
-            "format": "uuid",
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Proposed By"
           },
           "proposed_by_agent": {
@@ -84070,8 +84156,15 @@
             "title": "Status"
           },
           "proposed_by": {
-            "type": "string",
-            "format": "uuid",
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Proposed By"
           },
           "proposed_by_agent": {
