@@ -50611,7 +50611,8 @@
             "type": "string",
             "enum": [
               "direct",
-              "provider_materialized"
+              "provider_materialized",
+              "redirected"
             ],
             "title": "Resolution Method",
             "default": "direct"
