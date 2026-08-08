@@ -76,6 +76,12 @@ not live-certified until the required real-account device walk is recorded.
   post-auth claim path are required before guest voting can safely enter the
   canonical member-only vote ledger. See
   [`multiplayer-guest-participation-audit-2026-08-08.md`](multiplayer-guest-participation-audit-2026-08-08.md).
+- Shared workflow control has its first dark slice: `agent_workflow_commands`
+  plus a compare-and-swap `control_revision`, idempotency, privacy-safe event
+  invalidation, and an authenticated `POST /api/agent-workflows/{id}/commands`
+  transport behind `SHARED_WORKFLOW_CONTROL_ENABLED`. It records intent only;
+  no worker, itinerary, fluid-authority, or live command application is
+  enabled. Focused workflow tests pass (16); device recovery remains pending.
 
 ## Architecture rules
 
