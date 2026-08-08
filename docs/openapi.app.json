@@ -12785,6 +12785,92 @@
         }
       }
     },
+    "/api/temporal-coordination/{request_id}/respond": {
+      "post": {
+        "tags": [
+          "trip-invites"
+        ],
+        "summary": "Respond To Invite Attendance",
+        "description": "Answer a thin prompt through the canonical itinerary operation writer.",
+        "operationId": "respond_to_invite_attendance_api_temporal_coordination__request_id__respond_post",
+        "parameters": [
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Request Id"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Idempotency-Key"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InviteAttendanceResponseRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InviteAttendanceResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/itinerary/operations/preview": {
       "post": {
         "tags": [
@@ -44843,6 +44929,16 @@
             "type": "boolean",
             "title": "Intake Claimed",
             "default": false
+          },
+          "attendance_prompt": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/InviteAttendancePrompt"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -44851,6 +44947,114 @@
           "member_role"
         ],
         "title": "InviteAcceptResponse"
+      },
+      "InviteAttendancePrompt": {
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Request Id"
+          },
+          "block_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Block Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "scheduled_for": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Scheduled For"
+          },
+          "observing_timezone": {
+            "type": "string",
+            "title": "Observing Timezone"
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Revision"
+          }
+        },
+        "type": "object",
+        "required": [
+          "request_id",
+          "block_id",
+          "title",
+          "scheduled_for",
+          "observing_timezone",
+          "revision"
+        ],
+        "title": "InviteAttendancePrompt"
+      },
+      "InviteAttendanceResponse": {
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Request Id"
+          },
+          "operation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Operation Id"
+          },
+          "intention": {
+            "type": "string",
+            "enum": [
+              "attending",
+              "maybe",
+              "not_attending"
+            ],
+            "title": "Intention"
+          },
+          "state": {
+            "type": "string",
+            "const": "committed",
+            "title": "State"
+          },
+          "action_receipt_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Action Receipt Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "request_id",
+          "operation_id",
+          "intention",
+          "state",
+          "action_receipt_id"
+        ],
+        "title": "InviteAttendanceResponse"
+      },
+      "InviteAttendanceResponseRequest": {
+        "properties": {
+          "intention": {
+            "type": "string",
+            "enum": [
+              "attending",
+              "maybe",
+              "not_attending"
+            ],
+            "title": "Intention"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Revision"
+          }
+        },
+        "type": "object",
+        "required": [
+          "intention",
+          "expected_revision"
+        ],
+        "title": "InviteAttendanceResponseRequest"
       },
       "InviteClaimIntake": {
         "properties": {
@@ -45039,6 +45243,31 @@
               }
             ],
             "title": "Plan Preview Enabled"
+          },
+          "attendance_block_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attendance Block Id"
+          },
+          "attendance_timezone": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attendance Timezone"
           }
         },
         "type": "object",
@@ -63328,6 +63557,30 @@
             "type": "boolean",
             "title": "Restore Absent Participation",
             "default": false
+          },
+          "response_to_request_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Response To Request Id"
+          },
+          "expected_request_revision": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Request Revision"
           }
         },
         "additionalProperties": false,

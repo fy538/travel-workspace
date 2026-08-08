@@ -1047,8 +1047,8 @@
       "consumers": [
         {
           "kind": "app_source",
-          "name": "AtlasPrivacyScreen",
-          "source": "travel-app/app/you/privacy.tsx"
+          "name": "AtlasPrivacyApiClient",
+          "source": "travel-app/utils/api/http.ts"
         }
       ],
       "feature_flag": null,
@@ -1063,8 +1063,8 @@
       "consumers": [
         {
           "kind": "app_source",
-          "name": "AtlasPrivacyScreen",
-          "source": "travel-app/app/you/privacy.tsx"
+          "name": "AtlasPrivacyApiClient",
+          "source": "travel-app/utils/api/http.ts"
         }
       ],
       "feature_flag": null,
