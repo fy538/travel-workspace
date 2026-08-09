@@ -707,3 +707,15 @@ The roadmap is being executed in separate parent, backend, and frontend integrat
 | 2 | Cross-surface integration evidence | `9f18bd0d` app lane; API-boundary, surface-index, external-canon, and characterization checks pass; canonical design remains `/Users/feihuyan/Downloads/vesper-home-surfaces` | Static/mock; backend-real canary, simulator/device, and page-rhythm acceptance remain |
 
 The current integration branches are intentionally not called shipped. A feature becomes eligible for acceptance only after the roadmap's contract, backend-real, and device gates produce evidence for the exact state and journey being claimed.
+
+## 21. Evidence snapshot and blockers
+
+Recorded after the final static/mock pass on 2026-08-09:
+
+- Frontend integration lane: 12 home-surface suites, 81 tests passed; API-boundary check passed with zero escape hatches; surface index reports 40 registered surfaces; external-canon verification passed 3/3. The only design-ref output is the pre-existing warning for the historical Discover HTML asset, not a new reference copied into this work.
+- Backend integration lane: `tests/home` is 605 passed / 1 skipped; offline Places tests are 389 passed / 39 PostgreSQL tests deselected; touched Places modules pass Ruff, formatting, and Pyright with 0 errors and 0 warnings.
+- Cross-repo contract: `make contract-check` passed with the complete snapshot, active mobile projection, generated TypeScript comparison, and canonical place identity seams.
+- `make docs-check` remains red for four pre-existing child documents without YAML frontmatter and four unrelated workspace documents not yet classified in the inventory. Home-surface governance and links pass independently; those unrelated documents were deliberately not absorbed into this program.
+- One PostgreSQL-backed Places test remains unavailable in the local environment because the running database lacks the newer `itinerary_projection_outbox.lease_token` column. This is a migration/environment gate, not an offline producer failure.
+- A full TypeScript invocation from the isolated app worktree cannot resolve `expo/tsconfig.base` because that worktree intentionally has no local `node_modules`; the focused Jest lane runs against the shared dependency install. This is an environment limitation, so no full typecheck claim is made from that invocation.
+- No backend-real canary, simulator/device capture, cross-platform rhythm review, or founder/design acceptance has been claimed. Those are the next explicit gates for the named journeys and adopted families.
