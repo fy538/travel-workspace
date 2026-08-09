@@ -701,5 +701,7 @@ The roadmap is being executed in separate parent, backend, and frontend integrat
 | 1 | Shared viewport-aware exposure boundary | `1de051c8`; 4 focused tests pass | UI infrastructure; roots still need real viewport integration |
 | 1 | Additive module contract and generated app types | `7b57094` (workspace), `6f80b043` (app); snapshots are additive | Contract/static; app integration and device validation remain |
 | 2 | Pure Trips section plan and Places presentation model | `9a2ac692`, `10d4972c`; Trips plan 4/4 and Places model 8/8 focused tests pass | Pure adapter/static; root renderers and rhythm/state gates remain |
+| 2 | Trips renderer cutover, empty-wrapper rhythm, and measured section exposure | `5a9f1f39`, `ce90e3d2`; combined Trips/Details/registry suites pass | Static/mock; no simulator/device viewport proof |
+| 2 | Places renderer cutover, engagement ownership, and measured section exposure | `3b9bf942`, `5ba0b960`; 30 app-focused tests pass in the combined lane | Static/mock; no simulator/device viewport proof |
 
 The current integration branches are intentionally not called shipped. A feature becomes eligible for acceptance only after the roadmap's contract, backend-real, and device gates produce evidence for the exact state and journey being claimed.
