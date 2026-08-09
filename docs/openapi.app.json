@@ -52078,6 +52078,78 @@
             "title": "Source",
             "description": "Provenance of ``geometry`` — what the drawn line is entitled to claim. ``routed``: real path geometry from a routing provider for a mode it genuinely supports. ``estimated``: no geometry and none is coming — the declared mode (transit family, ferry, flight) is one our provider cannot route, so any line drawn is the client's own connector, not our claim. ``unknown``: no geometry YET — lazy enrichment hasn't run or hasn't succeeded; may become ``routed`` on a later poll. Deliberately a separate channel from the client's ``soft`` styling, which encodes commitment softness (tentative/proposed stops) — an orthogonal fact. See docs/working/Map and Itinerary Integration.md §F3.",
             "default": "unknown"
+          },
+          "requested_mode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Requested Mode"
+          },
+          "resolved_mode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolved Mode"
+          },
+          "fact_provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fact Provider"
+          },
+          "fact_status": {
+            "type": "string",
+            "title": "Fact Status",
+            "description": "Freshness/provenance state of the derived travel fact: fresh, stale, degraded, or unknown. Unknown is not a claim that the planned transition is currently routable.",
+            "default": "unknown"
+          },
+          "fact_observed_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fact Observed At"
+          },
+          "fact_expires_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fact Expires At"
+          },
+          "fact_degraded_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fact Degraded Reason"
           }
         },
         "type": "object",
@@ -61901,8 +61973,15 @@
             "title": "Itinerary Id"
           },
           "proposed_by": {
-            "type": "string",
-            "format": "uuid",
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Proposed By"
           },
           "proposed_by_agent": {
@@ -62359,8 +62438,15 @@
             "title": "Status"
           },
           "proposed_by": {
-            "type": "string",
-            "format": "uuid",
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Proposed By"
           },
           "proposed_by_agent": {
@@ -67827,6 +67913,66 @@
         "title": "TakeGenerationRequest",
         "description": "Body for POST /api/takes — request to generate (or fetch cached) a Take."
       },
+      "WhyThisSource": {
+        "properties": {
+          "source_type": {
+            "type": "string",
+            "enum": [
+              "personal_memory",
+              "past_trip",
+              "angle_affinity",
+              "group_signal",
+              "saved_entity",
+              "hard_constraint"
+            ],
+            "title": "Source Type"
+          },
+          "source_id": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 1,
+            "title": "Source Id"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "source_type",
+          "source_id",
+          "label"
+        ],
+        "title": "WhyThisSource",
+        "description": "Content-free evidence pointer shown in a private Why-this receipt."
+      },
+      "WhyThisReceipt": {
+        "properties": {
+          "summary": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Summary"
+          },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/WhyThisSource"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Source Refs"
+          }
+        },
+        "type": "object",
+        "required": [
+          "summary"
+        ],
+        "title": "WhyThisReceipt",
+        "description": "A safe explanation of which evidence grounded a Personal Take."
+      },
       "TakePayload": {
         "properties": {
           "stance": {
@@ -67895,6 +68041,16 @@
             },
             "type": "array",
             "title": "Hypotheses"
+          },
+          "why_this": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/WhyThisReceipt"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "suggested_actions": {
             "items": {
@@ -74876,8 +75032,15 @@
             "title": "Status"
           },
           "proposed_by": {
-            "type": "string",
-            "format": "uuid",
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Proposed By"
           },
           "proposed_by_agent": {
