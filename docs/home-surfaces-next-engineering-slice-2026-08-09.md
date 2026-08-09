@@ -286,6 +286,21 @@ The next bounded state slice is also landed on the frontend branch:
   pre-existing repository debt, not a home-surface regression. The global size
   ratchet likewise fails on unrelated legacy files and is not being masked by
   this slice. Both remain explicit follow-up work rather than release claims.
+- Narrow-width QA found and fixed a real navigation defect: `b5bdf220` makes
+  Places collection headers always return to the serialized Places owner rather
+  than trusting unrelated history. The flow now records the intermediate
+  Reading list and uses the object's actual `Go back` affordance (`8a020907`,
+  `7720216a`).
+- The QA runner now requires a zero-exit Maestro flow in addition to PNG
+  presence (`aea28f1d`). This invalidated an earlier false-positive Places
+  receipt that had captured pixels after a failed post-reader-back assertion.
+  After the fix, Trips and Places both pass on the 375-point SE-class iOS
+  simulator (`20260809T204542Z-trips-home`,
+  `20260809T204412Z-places-workspace`) and on the 393-point iPhone 16
+  simulator (`20260809T204810Z-trips-home`,
+  `20260809T204640Z-places-workspace`). These are mock-mode iOS receipts;
+  Android, large Dynamic Type, authenticated/backend-real app mode, and
+  offline/background dwell remain open.
 
 ## Phase 2 — Complete the page-composition authorities
 
