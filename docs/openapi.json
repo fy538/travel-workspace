@@ -85558,6 +85558,17 @@
             "type": "boolean",
             "title": "Active"
           },
+          "turn_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Turn Id"
+          },
           "user_id": {
             "anyOf": [
               {
