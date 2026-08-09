@@ -50,7 +50,24 @@ why_new: Investigates a bounded question that no existing note owns.
 """
         )
         messages = [finding.message for finding in validate(path)]
-        self.assertIn("working document expires must be within 30 days of created", messages)
+        self.assertIn(
+            "working document expires must be within 30 days of created", messages
+        )
+
+    def test_quoted_iso_dates_are_accepted(self) -> None:
+        path = self._document(
+            """---
+doc_type: working
+status: active
+owner: engineering
+created: '2026-07-09'
+expires: '2026-08-08'
+why_new: Investigates a bounded question that no existing note owns.
+---
+# Working
+"""
+        )
+        self.assertEqual(validate(path), [])
 
     def test_decision_requires_decided_date(self) -> None:
         path = self._document(

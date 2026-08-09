@@ -18,36 +18,37 @@ from committed registries; follow the linked authority for evidence and detail.
 <!-- Run `make docs-status-sync` to update this block. -->
 | Signal | Current value | Authority |
 |---|---:|---|
-| API contract | 457 paths / 507 operations / 1028 schemas | [`docs/openapi.json`](../openapi.json) |
+| API contract | 458 paths / 508 operations / 1030 schemas | [`docs/openapi.json`](../openapi.json) |
 | Canonical journeys | 28 total / 12 golden path / 7 holistic extension | [`journeys.yaml`](../journeys/journeys.yaml) |
 | Feature flags | 59 registered / 58 active / 1 resolved | [`registry.yaml`](../flags/registry.yaml) |
 | System charters | 20 Markdown documents | [`systems/`](../systems/) |
-| Documentation inventory | 316 files classified | [`inventory.yaml`](../governance/inventory.yaml) |
+| Documentation inventory | 318 files classified | [`inventory.yaml`](../governance/inventory.yaml) |
 
 ### V1 intent versus executable evidence
 
-Code evidence reports only whether the manifest's named implementation paths
-exist. Default posture comes from the flag registry. Neither column is a
-certification claim; Journey Status and device receipts own readiness.
+Implementation means the manifest's named paths are tracked by their owning
+repository. Release defaults come from the flag registry, not the deployed
+environment. Readiness exposes known seeded-replay failures but remains
+uncertified until a current-revision receipt exists.
 
-| Capability | V1 intent | Code evidence | Default posture | Certification |
-|---|---|---:|---|---|
-| Auth and onboarding | **IN** | 1/1 paths present | No release flag declared | [J01, J02](../journeys/STATUS.md) |
-| Trip creation, invite, membership, and roles | **IN** | 2/2 paths present | No release flag declared | [J02, J03, J04](../journeys/STATUS.md) |
-| Planning, itinerary, proposals, and revert | **IN** | 2/2 paths present | No release flag declared | [J01, J05, J06](../journeys/STATUS.md) |
-| Concierge, personal memory, and group synthesis | **IN** | 3/3 paths present | No release flag declared | [J04, J07](../journeys/STATUS.md) |
-| Trip Home, living itinerary, map, and Now behavior | **IN** | 2/2 paths present | No release flag declared | [J06, J08, J09](../journeys/STATUS.md) |
-| Post-trip Story and Trip photos | **IN** | 2/2 paths present | No release flag declared | [J11](../journeys/STATUS.md) |
-| Expenses and settlement | **IN** | 2/2 paths present | No release flag declared | [J10, J12](../journeys/STATUS.md) |
-| Places, Atlas, Discover, and universal search | **IN** | 4/4 paths present | Enabled by default | [J07](../journeys/STATUS.md) |
-| Profiles, people search, follow, and following | **IN** | 2/2 paths present | No release flag declared | [J13](../journeys/STATUS.md) |
-| Booking record, mark-as-booked, and external handoff | **PARTIAL** | 2/2 paths present | No release flag declared | [J10](../journeys/STATUS.md) |
-| Live booking transaction execution | **OUT** | 2/2 paths present | Dark by default | [J10](../journeys/STATUS.md) |
-| Live voice, narration, and microphone entry points | **OUT** | 2/2 paths present | Dark by default | [J18](../journeys/STATUS.md) |
-| Rendered postcards and postcard sub-surfaces | **OUT** | 2/2 paths present | Dark by default | [J11](../journeys/STATUS.md) |
-| Ambient and nearby proactive experiences | **OUT** | 2/2 paths present | Dark by default | [J09](../journeys/STATUS.md) |
-| Public story links and social distribution | **OUT** | 2/2 paths present | Dark by default | [J19](../journeys/STATUS.md) |
-| Agent-initiated venue-disruption proposals | **OUT** | 2/2 paths present | Dark by default | [J05, J09](../journeys/STATUS.md) |
+| Capability | V1 intent | Implementation | Release default | Production-enabled | Readiness |
+|---|---|---:|---|---|---|
+| Auth and onboarding | **IN** | 1/1 tracked paths | No release flag declared | Unverified externally | [UNCERTIFIED — replay passes; current-revision receipt required](../journeys/STATUS.md) (J01, J02) |
+| Trip creation, invite, membership, and roles | **IN** | 2/2 tracked paths | No release flag declared | Unverified externally | [UNCERTIFIED — replay passes; current-revision receipt required](../journeys/STATUS.md) (J02, J03, J04) |
+| Planning, itinerary, proposals, and revert | **IN** | 2/2 tracked paths | No release flag declared | Unverified externally | [UNCERTIFIED — replay passes; current-revision receipt required](../journeys/STATUS.md) (J01, J05, J06) |
+| Concierge, personal memory, and group synthesis | **IN** | 3/3 tracked paths | No release flag declared | Unverified externally | [UNCERTIFIED — replay passes; current-revision receipt required](../journeys/STATUS.md) (J04, J07) |
+| Trip Home, living itinerary, map, and Now behavior | **IN** | 2/2 tracked paths | No release flag declared | Unverified externally | [BLOCKED — seeded replay fails J08](../journeys/STATUS.md) (J06, J08, J09) |
+| Post-trip Story and Trip photos | **IN** | 2/2 tracked paths | No release flag declared | Unverified externally | [UNCERTIFIED — replay passes; current-revision receipt required](../journeys/STATUS.md) (J11) |
+| Expenses and settlement | **IN** | 2/2 tracked paths | No release flag declared | Unverified externally | [UNCERTIFIED — replay passes; current-revision receipt required](../journeys/STATUS.md) (J10, J12) |
+| Places, Atlas, Discover, and universal search | **IN** | 4/4 tracked paths | Enabled by default | Unverified externally | [UNCERTIFIED — replay passes; current-revision receipt required](../journeys/STATUS.md) (J07) |
+| Profiles, people search, follow, and following | **IN** | 2/2 tracked paths | No release flag declared | Unverified externally | [UNCERTIFIED — replay passes; current-revision receipt required](../journeys/STATUS.md) (J13) |
+| Booking record, mark-as-booked, and external handoff | **PARTIAL** | 2/2 tracked paths | No release flag declared | Unverified externally | [UNCERTIFIED — replay passes; current-revision receipt required](../journeys/STATUS.md) (J10) |
+| Live booking transaction execution | **OUT** | 2/2 tracked paths | Dark by default | Not claimed; release defaults dark | [OUT — not a v1 certification target](../journeys/STATUS.md) (J10) |
+| Live voice, narration, and microphone entry points | **OUT** | 2/2 tracked paths | Dark by default | Not claimed; release defaults dark | [OUT — not a v1 certification target](../journeys/STATUS.md) (J18) |
+| Rendered postcards and postcard sub-surfaces | **OUT** | 2/2 tracked paths | Dark by default | Not claimed; release defaults dark | [OUT — not a v1 certification target](../journeys/STATUS.md) (J11) |
+| Ambient and nearby proactive experiences | **OUT** | 2/2 tracked paths | Dark by default | Not claimed; release defaults dark | [OUT — not a v1 certification target](../journeys/STATUS.md) (J09) |
+| Public story links and social distribution | **OUT** | 2/2 tracked paths | Dark by default | Not claimed; release defaults dark | [OUT — not a v1 certification target](../journeys/STATUS.md) (J19) |
+| Agent-initiated venue-disruption proposals | **OUT** | 2/2 tracked paths | Dark by default | Not claimed; release defaults dark | [OUT — not a v1 certification target](../journeys/STATUS.md) (J05, J09) |
 <!-- END auto:current-state -->
 
 For readiness, use [Journey Status](../journeys/STATUS.md). For the bounded first

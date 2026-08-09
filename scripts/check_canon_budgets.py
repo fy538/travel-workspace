@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Keep first-read canon concise enough to function as an orientation path."""
+
 from __future__ import annotations
 
 import re
@@ -14,7 +15,7 @@ BUDGETS = {
     "travel-agent/docs/product/What We Believe.md": 2500,
     "travel-agent/docs/product/Product Architecture Principles.md": 2800,
     "travel-agent/docs/architecture/Unified Context Graph.md": 1600,
-    "travel-app/docs/Design Language.md": 4500,
+    "travel-app/docs/Design Language.md": 3500,
     "travel-app/docs/Brand Identity.md": 2500,
 }
 

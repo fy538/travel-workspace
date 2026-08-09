@@ -67,6 +67,14 @@ rules:
 
 
 overrides:
+  docs/home-surfaces-canonical-execution-plan-2026-08-09.md:
+    disposition: keep_reference
+    rationale: Active expiring rebaseline for the external home-surface design bundle; it coordinates execution without replacing product or surface authority.
+
+  docs/home-surfaces-engineering-foundation-plan-2026-08-09.md:
+    disposition: keep_reference
+    rationale: Active expiring implementation plan for the current home-surface foundation; archive or promote durable rules when the program closes.
+
   docs/home-surfaces-integration-code-review-2026-08-09.md:
     disposition: keep_reference
     rationale: Active point-in-time review of the August home-surface integration lanes; archive after its findings are resolved or transferred into durable system contracts.

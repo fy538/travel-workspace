@@ -4,9 +4,10 @@ Single source of truth for everything that requires a human decision, account ac
 calendar time between today and first TestFlight. Delegable code work is broken out in
 Section 3; founder-console work no agent can do is in Section 2.
 
-**Last verified:** 2026-07-26 (against git logs in all three repos, GitHub Actions annotations, and live probes of
-`vesper-backend.fly.dev` + the launch/ docs). Supersedes the 2026-05-22 version, most of
-which is now done or was misdiagnosed.
+**Last verified:** 2026-08-09 against the release and journey authorities,
+current GitHub Actions state, and live `/health`, `/ready`, and `/privacy`
+probes. External-console rows remain explicitly unverified. Supersedes the
+2026-05-22 version, most of which is now done or was misdiagnosed.
 
 **Status legend:** 🔴 blocks first TestFlight · 🟠 before external cohort · 🟡 before public
 launch · ✅ done (evidence cited) · ❓ FOUNDER-MUST-CONFIRM (external console — not visible
@@ -16,20 +17,17 @@ from the repo)
 
 ## Honest status (one paragraph)
 
-Backend is **live and healthy** at `https://vesper-backend.fly.dev` (`/health`, `/ready` →
-Postgres+Qdrant ok). Real Clerk auth is **verified active** (garbage token → 401; Step 0 of
-the dogfood runbook confirmed `SKIP_AUTH=false` + JWKS reachable on Fly, 2026-07-04). The v1
-scope is **locked and flag-gated** ([V1 release contract](release/v1-scope.md); FE flag layer
-+ BE story-share guard merged 2026-07-01). Journeys are **12/12 agent-certified but 0/12
-device-certified on a real build** — that device walk is the headline gate. Of the original
-A0–A10 owner list, **most is done**: EAS projectId bound, AASA live on Fly, Google/Foursquare
-keys set, eval baselines filled, secret hooks installed. The genuinely open critical-path items
-are few: **(1)** cut a production EAS/TestFlight build (A) + device-walk J01–J12 on it (B);
-**(2)** verify the release build preserves the repaired privacy and microphone-permission posture;
-**(3)** confirm the founder-console prerequisites
-(App Store Connect app, APNs key, key rotation) that no agent can see (A). The **single biggest
-blocker is the production EAS build** — nothing downstream (device cert, TestFlight submit,
-Apple review) can start without it, and it needs a founder Apple/Expo login.
+Backend `/health`, `/ready`, and `/privacy` returned HTTP 200 on 2026-08-09.
+Real Clerk auth was last verified separately on 2026-07-04. The v1 scope is
+locked and flag-gated ([V1 release contract](release/v1-scope.md)), but release
+readiness is **not certified**: all 28 journey contracts and their test/flow
+anchors are defined, current receipt-backed execution is unrecorded, seeded
+replay passes 27/28 with **J08 failing**, and the required physical-device lane
+is **0/3 current** for J04/J05/J10. The critical path is therefore: restore a
+reliable green child-repo CI signal; fix/rerun J08; cut a production EAS build;
+record current-revision and two-device evidence; then submit to TestFlight.
+App Store Connect, APNs, Clerk review credentials, and key rotation remain
+founder-console confirmations.
 
 **Scope correction that shrinks this list:** the app's `associatedDomains` is
 `applinks:vesper-backend.fly.dev` and the live, valid AASA is served **from the Fly host**
@@ -46,15 +44,15 @@ The critical path only. `(A)` = founder-only ops · `(B)` = delegable engineerin
 
 | # | Item | A/B | Status |
 |---|------|-----|--------|
-| 0 | **Restore GitHub Actions billing/spend capacity for the child repos.** Every Travel Agent CI job currently fails before step 1 with GitHub's annotation: “recent account payments have failed or your spending limit needs to be increased.” Workspace Reliability is green and proves the code/docs gates can run, but child-repo branch signal remains unavailable until the account billing setting is fixed. | **A** | 🔴 FOUNDER-MUST-FIX — [Billing & plans](https://github.com/settings/billing); then rerun Travel Agent CI run `29069359543` |
-| 1 | **Verify `/privacy` stays reachable in the release build** — `https://vesper-backend.fly.dev/privacy` returned HTTP 200 with the privacy policy on 2026-07-26. Apple requires this URL to remain live; recheck after the next backend deployment. | **B** | ✅ live probe verified 2026-07-26; release-build / post-deploy recheck remains |
+| 0 | **Restore a reliable green child-repo CI signal.** App CI run `31322965305` executed on 2026-08-09 but failed multiple code/contract gates; the latest backend CI runs `31232999675` and `31120695581` remain queued with no jobs. Determine whether the backend queue is account capacity, concurrency, or Actions configuration, then rerun both current heads. | **A/B** | 🔴 open — app executes but is red; backend is queued |
+| 1 | **Verify `/privacy` stays reachable in the release build** — `https://vesper-backend.fly.dev/privacy` returned HTTP 200 with the privacy policy on 2026-08-09. Apple requires this URL to remain live; recheck after the next backend deployment. | **B** | ✅ live probe verified 2026-08-09; release-build / post-deploy recheck remains |
 | 2 | **Verify v1 microphone posture in the release build** — voice remains flag-OFF. `app.config.js` now strips stale microphone and audio-background capabilities when voice is disabled, while preserving the explicit dogfood voice opt-in. | **B** | ✅ static Expo introspection verified 2026-07-26; inspect the generated production IPA before submission |
 | 3 | **Confirm App Store Connect app exists** (bundle `com.fyan.vesper`, iOS 17+) + set `INVITE_IOS_APP_STORE_ID` / `INVITE_APP_STORE_URL` in Fly secrets. Old A5. | **A** | ❓ FOUNDER-MUST-CONFIRM (external console) |
 | 4 | **Confirm APNs auth key uploaded to Expo** (old A6) — required for push on a physical device. | **A** | ❓ FOUNDER-MUST-CONFIRM (external console) |
 | 5 | **Rotate Anthropic + Tavily keys** before any build leaves the machine, set fresh keys in Fly secrets, revoke old (old B1 / deploy-surface #3). | **A** | ❓ FOUNDER-MUST-CONFIRM (external console) |
 | 6 | **Add Clerk review-only test phone** `+15555555555` / OTP `424242` (per Apple Review Notes) so the reviewer doesn't hit a real OTP send. | **A** | ❓ FOUNDER-MUST-CONFIRM (Clerk dashboard) |
 | 7 | **Cut production iOS build** — `eas build --platform ios --profile production`. Needs founder Apple/Expo auth. Note: the `production` EAS profile currently has **no Clerk key** (dogfood profile uses `pk_test` on the `picked-firefly-95` dev tenant) — either wire a `pk_live` prod tenant or point the first build at the working dogfood config. | **A** | 🔴 open |
-| 8 | **Device-walk J01–J12 on that build** — the `0/12 full-cert` gap. Runbook exists (`docs/working/journey-live-full-cert-04-05-10.md`); J04/J05/J10 need two real Clerk accounts on two devices. This is also the dogfood two-device pre-flight walk. | **B** (founder-assisted on-device taps) | 🔴 open — medium |
+| 8 | **Record the required J04/J05/J10 two-device certification on that build.** The current lane is `0/3`; the runbook is `docs/working/journey-live-full-cert-04-05-10.md`. A broader J01–J12 release walk remains useful QA, but it is not interchangeable with these three credentialed receipts. | **B** (founder-assisted on-device taps) | 🔴 open — medium |
 | 9 | **Submit to TestFlight** from App Store Connect once the build passes the device walk. | **A** | 🔴 open |
 
 **Not blockers (verified done or off-path):** custom domain / DNS, SendGrid, Twilio, Google
@@ -67,13 +65,13 @@ Play — all deferred (Section 5). Eval baselines — done (Section 4). Secret h
 
 | Item | Status | Evidence / note |
 |------|--------|-----------------|
-| GitHub Actions billing / spending limit | 🔴 FOUNDER-MUST-FIX | Travel Agent run `29069359543`: all seven independent jobs failed in 2–3 seconds with zero steps; check-run annotations explicitly name failed account payments or an insufficient spending limit. Workspace run `29069383856` passed, so this is not workflow syntax or the docs commit. |
+| GitHub Actions execution | 🔴 REQUIRES TRIAGE | App CI currently executes, disproving the older claim that every child job is billing-blocked. Backend runs remain queued without jobs. Check Actions concurrency and account capacity, then rerun current heads; do not reuse the obsolete `29069359543` diagnosis as current evidence. |
 | Custom domain `travelagent.app` → Fly | ❓ OPEN but **OFF critical path** | Live probe: apex serves a marketing lander (`/lander` redirect), not the backend; AASA/health there fail. App uses Fly host directly — see scope correction above. Deferred to Section 5. |
 | App Store Connect app + listing | ❓ FOUNDER-MUST-CONFIRM | Copy ready in `docs/launch/App Store Connect Copy.md`. **Bundle must be `com.fyan.vesper`** (matches app.json + live AASA) — the launch docs' `com.travelagent.app` is stale; use the app.json value. |
 | APNs auth key (.p8) → Expo | ❓ FOUNDER-MUST-CONFIRM | `EXPO_ACCESS_TOKEN` is set in Fly; `EXPO_PUSH_ENABLED` default is `false` (registry.yaml) — confirm the Fly secret is `true` for real push. |
 | Clerk prod config | ⚠️ PARTLY DONE / decision needed | Clerk verified live on Fly (401 on garbage token, Step 0 2026-07-04). **But that's the `picked-firefly-95` dev tenant (`pk_test`).** Fine for the dogfood cohort; a real public launch needs a `pk_live` prod tenant wired into the `production` EAS profile. Also add the review test-phone (Section 1 #6). |
 | Rotate live API keys (Anthropic, Tavily) | ❓ FOUNDER-MUST-CONFIRM | Deploy-surface #3. Do before any build ships. |
-| Final privacy policy published + reachable | 🔴 OPEN | `docs/legal/privacy.md` exists in repo (06-28) but `/privacy` 503s in prod (Section 1 #1 — that's the delegable fix; confirming it's live after redeploy is the founder's tick). |
+| Final privacy policy published + reachable | ✅ LIVE; RECHECK AT BUILD | `/privacy` returned HTTP 200 with HTML on 2026-08-09. Re-probe after the release-candidate backend deployment and before submission. |
 | EAS / TestFlight build submission | 🔴 OPEN | Section 1 #7/#9. Requires Apple Developer + Expo login. |
 | Cohort recruitment (first 10 testers) | 🟠 OPEN | Plan is written: `docs/launch/TestFlight Tester Onboarding.md` §C/§D + `dogfood-loop-validation-2026-07-04.md` Part 2. Do NOT self-seed groups (that contaminates the re-invite signal — the one bet being measured). |
 | Anthropic monthly spend cap set in console | ❓ FOUNDER-MUST-CONFIRM | Pre-flight sanity checklist item. |
@@ -84,7 +82,7 @@ Play — all deferred (Section 5). Eval baselines — done (Section 4). Secret h
 
 | Item | Size | Note |
 |------|------|------|
-| **Fix `/privacy` 503** (Section 1 #1) | S | Ensure `docs/legal/privacy.md` is in the deployed image; redeploy; verify 200. Likely a Dockerfile copy / build-context gap. |
+| **Re-probe `/privacy` after the release deployment** (Section 1 #1) | S | It returned 200 on 2026-08-09. Preserve that result through the release-candidate deployment and record the probe. |
 | **Strip mic-permission string** from v1 `app.json` (Section 1 #2) | S | Voice is flag-OFF for v1; the string invites an App Review question. Confirm no residual mic entitlement in the config plugin. |
 | **Device-cert automation / runbook execution** (Section 1 #8) | M | The taps are on-device (founder), but the agent preps the seed data, the two-account setup, the funnel-event assertions, and triages any break (deeplink → AASA; 401 → JWKS; missing `invite.consumed` → event emission). |
 | **Reachability audit on a release build** | M | v1 DoD open item: walk every entry point on the actual EAS build, confirm no OUT surface (voice/booking-txn/postcards/ambient/story-share) is reachable and no IN surface lost a load-bearing dep (Discover→trip-create, Atlas→Story, Search→profiles). Needs the build from Section 1 #7. |
@@ -177,7 +175,7 @@ backend the device build points at *before* the walk. `(A)` = founder-only ops.
 - [ ] `SKIP_AUTH=false` (BE) **and** `EXPO_PUBLIC_SKIP_AUTH=false` (app). ✅ verified on Fly.
 - [ ] `EXPO_PUBLIC_API_URL` is HTTPS → `vesper-backend.fly.dev` (not localhost).
 - [ ] AASA returns valid JSON on the Fly host. ✅ verified.
-- [ ] `curl vesper-backend.fly.dev/privacy` → **200** (currently 503 — §1 #1).
+- [ ] `curl vesper-backend.fly.dev/privacy` → **200** (verified 2026-08-09; rerun for the release candidate).
 - [ ] `app.json` mic string removed for v1 (voice OUT). *(§1 #2)*
 - [ ] Bundle ID `com.fyan.vesper` matches App Store Connect. *(§2)*
 - [ ] `EXPO_PUSH_ENABLED=true` in Fly + APNs key uploaded. *(§2)*

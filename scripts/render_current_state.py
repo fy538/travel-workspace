@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Render the derived block in docs/status/current-state.md."""
+
 from __future__ import annotations
 
 import argparse
@@ -10,7 +11,14 @@ from pathlib import Path
 import yaml
 
 from check_doc_inventory import load_inventory, validate
-from render_release_scope import evidence_posture, flag_posture, load_release
+from render_release_scope import (
+    evidence_posture,
+    flag_posture,
+    load_persona_replay,
+    load_release,
+    production_posture,
+    readiness_posture,
+)
 
 ROOT = Path(__file__).resolve().parent.parent
 DOC = ROOT / "docs/status/current-state.md"
@@ -22,9 +30,13 @@ METHODS = {"get", "put", "post", "delete", "patch", "options", "head", "trace"}
 def render() -> str:
     api = json.loads((ROOT / "docs/openapi.json").read_text())
     paths = api.get("paths", {})
-    operations = sum(sum(method in METHODS for method in value) for value in paths.values())
+    operations = sum(
+        sum(method in METHODS for method in value) for value in paths.values()
+    )
     schemas = len(api.get("components", {}).get("schemas", {}))
-    journeys = yaml.safe_load((ROOT / "docs/journeys/journeys.yaml").read_text())["journeys"]
+    journeys = yaml.safe_load((ROOT / "docs/journeys/journeys.yaml").read_text())[
+        "journeys"
+    ]
     tiers = Counter(item["tier"] for item in journeys)
     flags = yaml.safe_load((ROOT / "docs/flags/registry.yaml").read_text())["flags"]
     statuses = Counter(item["status"] for item in flags)
@@ -33,10 +45,12 @@ def render() -> str:
         raise ValueError("inventory is invalid: " + "; ".join(problems))
     systems = len(list((ROOT / "docs/systems").glob("*.md")))
     _, capabilities, release_flags = load_release()
+    replay = load_persona_replay()
     lines = [
         BEGIN,
         "<!-- Run `make docs-status-sync` to update this block. -->",
-        "| Signal | Current value | Authority |", "|---|---:|---|",
+        "| Signal | Current value | Authority |",
+        "|---|---:|---|",
         f"| API contract | {len(paths)} paths / {operations} operations / {schemas} schemas | [`docs/openapi.json`](../openapi.json) |",
         f"| Canonical journeys | {len(journeys)} total / {tiers['golden-path']} golden path / {tiers['holistic-extension']} holistic extension | [`journeys.yaml`](../journeys/journeys.yaml) |",
         f"| Feature flags | {len(flags)} registered / {statuses['active']} active / {statuses['resolved']} resolved | [`registry.yaml`](../flags/registry.yaml) |",
@@ -45,22 +59,26 @@ def render() -> str:
         "",
         "### V1 intent versus executable evidence",
         "",
-        "Code evidence reports only whether the manifest's named implementation paths",
-        "exist. Default posture comes from the flag registry. Neither column is a",
-        "certification claim; Journey Status and device receipts own readiness.",
+        "Implementation means the manifest's named paths are tracked by their owning",
+        "repository. Release defaults come from the flag registry, not the deployed",
+        "environment. Readiness exposes known seeded-replay failures but remains",
+        "uncertified until a current-revision receipt exists.",
         "",
-        "| Capability | V1 intent | Code evidence | Default posture | Certification |",
-        "|---|---|---:|---|---|",
+        "| Capability | V1 intent | Implementation | Release default | Production-enabled | Readiness |",
+        "|---|---|---:|---|---|---|",
     ]
     for row in capabilities:
         journeys = ", ".join(row.get("journey_ids", [])) or "—"
         lines.append(
             f"| {row['name']} | **{row['intent'].upper()}** | {evidence_posture(row)} | "
-            f"{flag_posture(row, release_flags)} | [{journeys}](../journeys/STATUS.md) |"
+            f"{flag_posture(row, release_flags)} | {production_posture(row, release_flags)} | "
+            f"[{readiness_posture(row, replay)}](../journeys/STATUS.md) ({journeys}) |"
         )
-    lines.extend([
-        END,
-    ])
+    lines.extend(
+        [
+            END,
+        ]
+    )
     return "\n".join(lines)
 
 
