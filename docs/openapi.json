@@ -248,6 +248,85 @@
         }
       }
     },
+    "/api/agent-workflows/{workflow_id}/commands": {
+      "post": {
+        "tags": [
+          "agent-workflows"
+        ],
+        "summary": "Request Agent Workflow Command",
+        "description": "Record a shared-workflow control intent behind a CAS revision fence.\n\nThis route is deliberately dark until the control-plane canary is enabled.\nIt records an intent and safe invalidation event only; no steer/pause/\nresume/cancel/handoff command changes a worker or itinerary yet.",
+        "operationId": "request_agent_workflow_command_api_agent_workflows__workflow_id__commands_post",
+        "parameters": [
+          {
+            "name": "workflow_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Workflow Id"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "X-Idempotency-Key"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkflowCommandCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkflowCommandResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/agent-workflows/{workflow_id}": {
       "get": {
         "tags": [
@@ -23525,6 +23604,134 @@
         }
       }
     },
+    "/api/proposal-guest-capabilities/{capability_token}/claim": {
+      "post": {
+        "tags": [
+          "proposals"
+        ],
+        "summary": "Claim Guest Proposal Capability",
+        "description": "Claim from the token alone; trip/proposal IDs stay out of the link.",
+        "operationId": "claim_guest_proposal_capability_api_proposal_guest_capabilities__capability_token__claim_post",
+        "parameters": [
+          {
+            "name": "capability_token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Capability Token"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProposalGuestCapabilityClaim"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/proposal-guest-capabilities/{capability_token}/private-constraint": {
+      "post": {
+        "tags": [
+          "proposals"
+        ],
+        "summary": "Capture Guest Proposal Constraint",
+        "description": "Capture one account-private constraint after the token is claimed.",
+        "operationId": "capture_guest_proposal_constraint_api_proposal_guest_capabilities__capability_token__private_constraint_post",
+        "parameters": [
+          {
+            "name": "capability_token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Capability Token"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProposalGuestConstraintCaptureRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProposalGuestConstraintCapture"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/proposals": {
       "get": {
         "tags": [
@@ -23658,6 +23865,172 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProposalDetail"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/proposals/{proposal_id}/guest-links": {
+      "post": {
+        "tags": [
+          "proposals"
+        ],
+        "summary": "Mint Guest Proposal Link",
+        "description": "Mint a dark, one-use link that upgrades one authenticated guest.\n\nThe capability is scoped to this open proposal and never writes a vote.\nThe organizer remains the issuer; after claiming, the recipient uses the\nnormal member-only proposal endpoint and its existing receipt path.",
+        "operationId": "mint_guest_proposal_link_api_trips__trip_id__proposals__proposal_id__guest_links_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "proposal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Proposal Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/GuestCapabilityCreateRequest"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GuestCapabilityCreateResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/proposals/{proposal_id}/guest-links/{capability_token}/revoke": {
+      "post": {
+        "tags": [
+          "proposals"
+        ],
+        "summary": "Revoke Guest Proposal Link",
+        "description": "Revoke an unused guest link through the organizer's audit boundary.",
+        "operationId": "revoke_guest_proposal_link_api_trips__trip_id__proposals__proposal_id__guest_links__capability_token__revoke_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "proposal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Proposal Id"
+            }
+          },
+          {
+            "name": "capability_token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Capability Token"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProposalGuestCapabilityRevocation"
                 }
               }
             }
@@ -37152,6 +37525,88 @@
           "configured"
         ],
         "title": "AffiliateLinkResponse"
+      },
+      "AgentWorkflowCommand": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "workflow_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Workflow Id"
+          },
+          "requested_by": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Requested By"
+          },
+          "command_type": {
+            "type": "string",
+            "title": "Command Type"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Revision"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "title": "Idempotency Key"
+          },
+          "payload_json": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Payload Json"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "default": "pending"
+          },
+          "rejection_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rejection Code"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "applied_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Applied At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "workflow_id",
+          "requested_by",
+          "command_type",
+          "expected_revision",
+          "idempotency_key",
+          "created_at"
+        ],
+        "title": "AgentWorkflowCommand",
+        "description": "One explicit, idempotent request to control a shared workflow.\n\nThe command is only an intent record in this first slice. A worker or\ncontrol-plane adapter must still apply it and transition the status; the\nrevision fence prevents two observers from issuing a command against the\nsame stale workflow state."
       },
       "AliasResponse": {
         "properties": {
@@ -54806,6 +55261,61 @@
         "title": "GroupedResults",
         "description": "One typed section: a header label plus its ranked items."
       },
+      "GuestCapabilityCreateRequest": {
+        "properties": {
+          "expires_in_hours": {
+            "type": "integer",
+            "maximum": 168.0,
+            "minimum": 1.0,
+            "title": "Expires In Hours",
+            "default": 72
+          }
+        },
+        "type": "object",
+        "title": "GuestCapabilityCreateRequest",
+        "description": "Bounded lifetime for a proposal guest handoff."
+      },
+      "GuestCapabilityCreateResponse": {
+        "properties": {
+          "capability_token": {
+            "type": "string",
+            "title": "Capability Token"
+          },
+          "share_url": {
+            "type": "string",
+            "title": "Share Url"
+          },
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "proposal_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Proposal Id"
+          },
+          "purpose": {
+            "type": "string",
+            "const": "proposal_vote",
+            "title": "Purpose",
+            "default": "proposal_vote"
+          },
+          "expires_at": {
+            "type": "string",
+            "title": "Expires At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "capability_token",
+          "share_url",
+          "trip_id",
+          "proposal_id",
+          "expires_at"
+        ],
+        "title": "GuestCapabilityCreateResponse"
+      },
       "HTTPValidationError": {
         "properties": {
           "detail": {
@@ -61516,6 +62026,16 @@
               "precise"
             ],
             "title": "Mode"
+          },
+          "purpose": {
+            "type": "string",
+            "enum": [
+              "trip_coordination",
+              "meetup",
+              "arrival"
+            ],
+            "title": "Purpose",
+            "default": "trip_coordination"
           }
         },
         "type": "object",
@@ -61540,6 +62060,15 @@
               "precise"
             ],
             "title": "Mode"
+          },
+          "purpose": {
+            "type": "string",
+            "enum": [
+              "trip_coordination",
+              "meetup",
+              "arrival"
+            ],
+            "title": "Purpose"
           },
           "granted_at": {
             "anyOf": [
@@ -61568,12 +62097,19 @@
           "is_active": {
             "type": "boolean",
             "title": "Is Active"
+          },
+          "audience": {
+            "type": "string",
+            "const": "trip_members",
+            "title": "Audience",
+            "default": "trip_members"
           }
         },
         "type": "object",
         "required": [
           "trip_id",
           "mode",
+          "purpose",
           "is_active"
         ],
         "title": "LocationSharingStatus",
@@ -73160,6 +73696,204 @@
         ],
         "title": "ProposalDetail",
         "description": "Full proposal detail.\n\nWhen ``proposed_entity_type`` + ``proposed_entity_id`` are set, the\nmobile app deep-links the proposal card into that entity's detail\nview, where a per-viewer personalized Take is fetched via\n``POST /api/takes``. Both are null for proposals that don't point\nat a single entity (e.g. pure reschedule, \"add a day\").\n\n``voting_enabled`` mirrors the trip-level flag \u2014 the mobile app uses\nit to decide whether to render the vote widget (enabled) or a\nreaction-only view with an \"ask organizer to resolve\" affordance\n(disabled)."
+      },
+      "ProposalGuestCapabilityClaim": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "proposal_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Proposal Id"
+          },
+          "claimed_by": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Claimed By"
+          },
+          "purpose": {
+            "type": "string",
+            "const": "proposal_vote",
+            "title": "Purpose",
+            "default": "proposal_vote"
+          },
+          "membership_upgraded": {
+            "type": "boolean",
+            "title": "Membership Upgraded"
+          },
+          "replay": {
+            "type": "boolean",
+            "title": "Replay",
+            "default": false
+          },
+          "vote_endpoint": {
+            "type": "string",
+            "title": "Vote Endpoint"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "proposal_id",
+          "claimed_by",
+          "membership_upgraded",
+          "vote_endpoint"
+        ],
+        "title": "ProposalGuestCapabilityClaim",
+        "description": "Authenticated result after a capability upgrades membership."
+      },
+      "ProposalGuestCapabilityRevocation": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "proposal_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Proposal Id"
+          },
+          "purpose": {
+            "type": "string",
+            "const": "proposal_vote",
+            "title": "Purpose",
+            "default": "proposal_vote"
+          },
+          "status": {
+            "type": "string",
+            "const": "revoked",
+            "title": "Status",
+            "default": "revoked"
+          },
+          "revoked_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Revoked At"
+          },
+          "replay": {
+            "type": "boolean",
+            "title": "Replay",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "proposal_id",
+          "revoked_at"
+        ],
+        "title": "ProposalGuestCapabilityRevocation",
+        "description": "Organizer receipt after a capability is revoked."
+      },
+      "ProposalGuestConstraintCapture": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "proposal_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Proposal Id"
+          },
+          "captured_by": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Captured By"
+          },
+          "purpose": {
+            "type": "string",
+            "const": "proposal_vote",
+            "title": "Purpose",
+            "default": "proposal_vote"
+          },
+          "constraint_type": {
+            "type": "string",
+            "enum": [
+              "allergy",
+              "dietary",
+              "accessibility",
+              "language",
+              "visa",
+              "medical"
+            ],
+            "title": "Constraint Type"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "absolute",
+              "strong",
+              "preference"
+            ],
+            "title": "Severity"
+          },
+          "captured_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Captured At"
+          },
+          "replay": {
+            "type": "boolean",
+            "title": "Replay",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "proposal_id",
+          "captured_by",
+          "constraint_type",
+          "severity",
+          "captured_at"
+        ],
+        "title": "ProposalGuestConstraintCapture",
+        "description": "Receipt for the private one-shot constraint capture."
+      },
+      "ProposalGuestConstraintCaptureRequest": {
+        "properties": {
+          "constraint_type": {
+            "type": "string",
+            "enum": [
+              "allergy",
+              "dietary",
+              "accessibility",
+              "language",
+              "visa",
+              "medical"
+            ],
+            "title": "Constraint Type"
+          },
+          "value": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Value"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "absolute",
+              "strong",
+              "preference"
+            ],
+            "title": "Severity",
+            "default": "absolute"
+          }
+        },
+        "type": "object",
+        "required": [
+          "constraint_type",
+          "value"
+        ],
+        "title": "ProposalGuestConstraintCaptureRequest",
+        "description": "One private hard constraint offered after a capability claim."
       },
       "ProposalImpactAnalysis": {
         "properties": {
@@ -89569,6 +90303,56 @@
           "stamp"
         ],
         "title": "WorkbenchSessionItem"
+      },
+      "WorkflowCommandCreateRequest": {
+        "properties": {
+          "command_type": {
+            "type": "string",
+            "enum": [
+              "steer",
+              "pause",
+              "resume",
+              "cancel",
+              "handoff"
+            ],
+            "title": "Command Type"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Revision"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Payload"
+          }
+        },
+        "type": "object",
+        "required": [
+          "command_type",
+          "expected_revision"
+        ],
+        "title": "WorkflowCommandCreateRequest",
+        "description": "A revision-fenced shared workflow intent.\n\nThe payload is kept opaque to this transport slice and is never copied\ninto the shared workflow event stream. Individual command executors will\nimpose command-specific schemas before applying an intent."
+      },
+      "WorkflowCommandResponse": {
+        "properties": {
+          "command": {
+            "$ref": "#/components/schemas/AgentWorkflowCommand"
+          },
+          "next_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Next Revision"
+          }
+        },
+        "type": "object",
+        "required": [
+          "command",
+          "next_revision"
+        ],
+        "title": "WorkflowCommandResponse"
       },
       "WritebackVisibility": {
         "type": "string",
