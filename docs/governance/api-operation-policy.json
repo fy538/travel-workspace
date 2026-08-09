@@ -1333,6 +1333,21 @@
       "removal_trigger": null,
       "review_by": null
     },
+    "GET /metrics/places-feed": {
+      "audience": "infrastructure",
+      "consumers": [
+        {
+          "kind": "infrastructure",
+          "name": "operator-observability"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "places",
+      "reason": "Content-free Places feed producer health diagnostics.",
+      "removal_trigger": null,
+      "review_by": null
+    },
     "GET /metrics/media": {
       "audience": "infrastructure",
       "consumers": [

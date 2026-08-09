@@ -6239,6 +6239,60 @@
         }
       }
     },
+    "/metrics/places-feed": {
+      "get": {
+        "tags": [
+          "metrics"
+        ],
+        "summary": "Get Places Feed Metrics",
+        "description": "Bounded, content-free health data for Places feed producers.",
+        "operationId": "get_places_feed_metrics_metrics_places_feed_get",
+        "parameters": [
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/PlacesFeedProducerMetrics"
+                  },
+                  "title": "Response Get Places Feed Metrics Metrics Places Feed Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/metrics/llm-accounting": {
       "get": {
         "tags": [
@@ -69385,6 +69439,58 @@
         ],
         "title": "PlacesFeed",
         "description": "The sectioned Places page; ``sections`` is the only ordering authority."
+      },
+      "PlacesFeedDurationMetrics": {
+        "properties": {
+          "p50": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "P50"
+          },
+          "p95": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "P95"
+          }
+        },
+        "type": "object",
+        "required": [
+          "p50",
+          "p95"
+        ],
+        "title": "PlacesFeedDurationMetrics"
+      },
+      "PlacesFeedProducerMetrics": {
+        "properties": {
+          "states": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "States"
+          },
+          "duration_ms": {
+            "$ref": "#/components/schemas/PlacesFeedDurationMetrics"
+          }
+        },
+        "type": "object",
+        "required": [
+          "states",
+          "duration_ms"
+        ],
+        "title": "PlacesFeedProducerMetrics"
       },
       "PlacesFeedUnavailableProducer": {
         "type": "string",
