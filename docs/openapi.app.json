@@ -14718,6 +14718,60 @@
         }
       }
     },
+    "/api/me/relationship-memory/claims": {
+      "get": {
+        "tags": [
+          "memory"
+        ],
+        "summary": "List My Relationship Memory Claims",
+        "description": "Return the caller's bounded private claims for explicit sharing choices.",
+        "operationId": "list_my_relationship_memory_claims_api_me_relationship_memory_claims_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelationshipMemoryClaim"
+                  },
+                  "title": "Response List My Relationship Memory Claims Api Me Relationship Memory Claims Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/me/memory": {
       "get": {
         "tags": [
@@ -65171,6 +65225,160 @@
         ],
         "title": "RelatedDossierItem",
         "description": "Lightweight dossier stub for the Keep Reading carousel."
+      },
+      "RelationshipMemoryClaim": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "subject_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Subject User Id"
+          },
+          "relationship_scope_kind": {
+            "type": "string",
+            "enum": [
+              "personal",
+              "circle",
+              "trip_roster"
+            ],
+            "title": "Relationship Scope Kind"
+          },
+          "relationship_scope_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Relationship Scope Id"
+          },
+          "subject_type": {
+            "type": "string",
+            "title": "Subject Type"
+          },
+          "subject_key": {
+            "type": "string",
+            "title": "Subject Key"
+          },
+          "subject_label": {
+            "type": "string",
+            "title": "Subject Label"
+          },
+          "claim_type": {
+            "type": "string",
+            "enum": [
+              "place_verdict",
+              "companion_fit",
+              "shared_statement"
+            ],
+            "title": "Claim Type"
+          },
+          "claim_value": {
+            "type": "string",
+            "title": "Claim Value"
+          },
+          "source_type": {
+            "type": "string",
+            "title": "Source Type"
+          },
+          "source_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Source Id"
+          },
+          "source_claim_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Claim Id"
+          },
+          "supersedes_claim_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Supersedes Claim Id"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "private",
+              "circle"
+            ],
+            "title": "Visibility"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "active",
+              "superseded",
+              "retracted"
+            ],
+            "title": "State"
+          },
+          "confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence"
+          },
+          "evidence_refs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence Refs"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "subject_user_id",
+          "relationship_scope_kind",
+          "subject_type",
+          "subject_key",
+          "subject_label",
+          "claim_type",
+          "claim_value",
+          "source_type",
+          "source_id",
+          "visibility",
+          "state",
+          "confidence",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "RelationshipMemoryClaim",
+        "description": "One governed claim; corrections supersede rather than erase history."
       },
       "RelationshipVisibilityRequest": {
         "properties": {
