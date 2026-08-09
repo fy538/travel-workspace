@@ -5373,6 +5373,24 @@
         }
       }
     },
+    "/api/trips/{trip_id}/booking/sessions/{session_id}/offers/{offer_id}/cancel/quote": {
+      "post": {
+        "tags": ["booking"],
+        "summary": "Quote Offer Cancellation",
+        "description": "Read a provider cancellation/refund quote without changing the booking.",
+        "operationId": "quote_offer_cancellation_api_trips__trip_id__booking_sessions__session_id__offers__offer_id__cancel_quote_post",
+        "parameters": [
+          {"name": "trip_id", "in": "path", "required": true, "schema": {"type": "string", "format": "uuid", "title": "Trip Id"}},
+          {"name": "session_id", "in": "path", "required": true, "schema": {"type": "string", "format": "uuid", "title": "Session Id"}},
+          {"name": "offer_id", "in": "path", "required": true, "schema": {"type": "string", "format": "uuid", "title": "Offer Id"}},
+          {"name": "authorization", "in": "header", "required": false, "schema": {"anyOf": [{"type": "string"}, {"type": "null"}], "title": "Authorization"}}
+        ],
+        "responses": {
+          "200": {"description": "Successful Response", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/CancellationQuoteResponse"}}}},
+          "422": {"description": "Validation Error", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/HTTPValidationError"}}}}
+        }
+      }
+    },
     "/api/trips/{trip_id}/booking/sessions/{session_id}/offers/{offer_id}/cancel": {
       "post": {
         "tags": [
@@ -35688,6 +35706,23 @@
         ],
         "title": "BridgeRenderResponse",
         "description": "Inline base64 audio data URL for the bridge.\n\nPhase 6b.3 v1 returns the audio inline so the client can hand\nit directly to ``adapter.setSource()`` without an extra round-trip.\nPhase 8 can switch to CDN URLs once R2 is wired and bridge audio\nstarts being cached server-side."
+      },
+      "CancellationQuoteResponse": {
+        "properties": {
+          "offer_id": {"type": "string", "title": "Offer Id"},
+          "provider": {"type": "string", "title": "Provider"},
+          "status": {"type": "string", "title": "Status"},
+          "cancellation_id": {"type": "string", "title": "Cancellation Id"},
+          "provider_booking_id": {"type": "string", "title": "Provider Booking Id"},
+          "refund_amount": {"anyOf": [{"type": "number"}, {"type": "null"}], "title": "Refund Amount"},
+          "refund_currency": {"anyOf": [{"type": "string"}, {"type": "null"}], "title": "Refund Currency"},
+          "quote_expires_at": {"anyOf": [{"type": "string"}, {"type": "null"}], "title": "Quote Expires At"},
+          "quote_fingerprint": {"type": "string", "title": "Quote Fingerprint"},
+          "message": {"type": "string", "title": "Message"}
+        },
+        "type": "object",
+        "required": ["offer_id", "provider", "status", "cancellation_id", "provider_booking_id", "quote_fingerprint", "message"],
+        "title": "CancellationQuoteResponse"
       },
       "CancelOfferRequest": {
         "properties": {
