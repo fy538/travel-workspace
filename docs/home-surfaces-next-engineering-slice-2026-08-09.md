@@ -230,6 +230,42 @@ The matrix is currently an explicit authority/test seam, not a new visual
 surface. Phase 3 must prove its state outcomes against backend-real payloads
 and a device before any new family is activated.
 
+### Phase 3 progress record — 2026-08-09
+
+The adopted baseline now has backend-real and branch-specific iOS evidence,
+but it is not yet a release acceptance receipt:
+
+- The fresh backend branch passed 186 focused tests against the committed
+  Postgres-backed harness. This includes the seeded Trips-home canary
+  (`test_real_backend_trips_home_substrates`) plus Places projection, feed,
+  fallback, and section-contract coverage. Producer failures remain bounded
+  as `available`, `empty`, or `unavailable` rather than disappearing from the
+  page model.
+- The workspace contract gates remain green: `443 active`, `8 dark`, and `56
+  retiring` operations; the app projection is current at `359 paths`, `395
+  operations`, and `931 schemas`.
+- The external canonical bundle was verified in place with
+  `HOME_SURFACES_CANON_DIR=/Users/feihuyan/Downloads/vesper-home-surfaces
+  npm run qa:design:check` (`manifests=29`, `pairs=91`,
+  `externalCanonVerified=2`). No design bundle was copied into either repo.
+- A fresh iOS 18.2 iPhone 16 Pro simulator binary was built from
+  `codex/home-surfaces-app-next` and connected to its Metro server. The
+  returned Trips capture passed with the full screen plus hero/trail crops in
+  run `20260809T200523Z-trips-home`; the default Places capture passed in run
+  `20260809T200957Z-places-workspace`. The corresponding harness corrections
+  are committed as `9bdd9444` (Trips) and `2304b9c7` (Places).
+- The captured pixels confirm the current direction rather than the retired
+  copy: Trips uses the compact `TRIPS` chrome, a system-sans productive layer,
+  and a bounded EB Garamond journal voice; Places uses a destination mast,
+  editorial guide lead, and saved-place rows. The old QA strings were stale,
+  not evidence that those surfaces were absent.
+
+Remaining Phase 3 gates are explicit: Android, 320/360/393-equivalent widths,
+large Dynamic Type, backend-real/authenticated app captures, offline/error and
+background/foreground dwell states, and a fresh review of Places content under
+the floating nav. Until those receipts exist, this is evidence of current
+behavior—not a claim that either surface is device-certified.
+
 ## Phase 2 — Complete the page-composition authorities
 
 ### NS-TR-P — Trips composition plan v2
