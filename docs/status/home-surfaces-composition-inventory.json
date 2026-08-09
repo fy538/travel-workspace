@@ -5,6 +5,7 @@
   "source_audit": "docs/home-surfaces-audit-2026-08-09.md",
   "as_of": "2026-08-09",
   "evidence_boundary": "Static/source audit only. F, B, and V remain unverified unless a later evidence receipt updates the item.",
+  "evidence_receipts": [],
   "items": [
     {
       "id": "places-a-register-anatomy",

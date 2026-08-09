@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 import re
 import sys
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -16,6 +17,8 @@ EVIDENCE_STATES = {"verified", "partial", "not_verified", "not_applicable"}
 ADOPTION_STATES = {"adopted", "exploratory", "relocated", "rejected", "unresolved"}
 SURFACES = {"trips-home", "places-workspace"}
 SHA256 = re.compile(r"^[0-9a-f]{64}$")
+EVIDENCE_RECEIPT_LAYERS = {"F", "B", "V"}
+EVIDENCE_RECEIPT_KINDS = {"fixture_review", "backend_canary", "device_capture"}
 
 
 def _load(path: Path) -> dict:
@@ -30,11 +33,14 @@ def _load(path: Path) -> dict:
     return data
 
 
-def validate() -> list[str]:
+def validate(
+    authority_path: Path = AUTHORITY_PATH,
+    inventory_path: Path = INVENTORY_PATH,
+) -> list[str]:
     problems: list[str] = []
     try:
-        authority = _load(AUTHORITY_PATH)
-        inventory = _load(INVENTORY_PATH)
+        authority = _load(authority_path)
+        inventory = _load(inventory_path)
     except ValueError as exc:
         return [str(exc)]
 
@@ -94,6 +100,52 @@ def validate() -> list[str]:
         problems.append("inventory: items must be a non-empty array")
         return problems
 
+    receipts = inventory.get("evidence_receipts")
+    receipt_keys: set[tuple[str, str]] = set()
+    if not isinstance(receipts, list):
+        problems.append("inventory: evidence_receipts must be an array")
+        receipts = []
+    for index, receipt in enumerate(receipts):
+        prefix = f"inventory: evidence_receipts[{index}]"
+        if not isinstance(receipt, dict):
+            problems.append(f"{prefix} must be an object")
+            continue
+        receipt_id = receipt.get("id")
+        item_id = receipt.get("item_id")
+        layer = receipt.get("layer")
+        kind = receipt.get("kind")
+        source = receipt.get("source")
+        recorded_at = receipt.get("recorded_at")
+        summary = receipt.get("summary")
+        if not isinstance(receipt_id, str) or not receipt_id.strip():
+            problems.append(f"{prefix}.id must be a non-empty string")
+        if not isinstance(item_id, str) or not item_id.strip():
+            problems.append(f"{prefix}.item_id must be a non-empty string")
+        if layer not in EVIDENCE_RECEIPT_LAYERS:
+            problems.append(f"{prefix}.layer must be one of F/B/V")
+        if kind not in EVIDENCE_RECEIPT_KINDS:
+            problems.append(f"{prefix}.kind must be a governed receipt kind")
+        if not isinstance(source, str) or not source.strip() or Path(source).is_absolute() or ".." in Path(source).parts:
+            problems.append(f"{prefix}.source must be a non-empty workspace-relative path")
+        if not isinstance(summary, str) or not summary.strip():
+            problems.append(f"{prefix}.summary must be a non-empty string")
+        if not isinstance(recorded_at, str):
+            problems.append(f"{prefix}.recorded_at must be an ISO date")
+        else:
+            try:
+                date.fromisoformat(recorded_at)
+            except ValueError:
+                problems.append(f"{prefix}.recorded_at must be an ISO date")
+        if kind == "device_capture" and (
+            not isinstance(receipt.get("platform"), str) or not receipt["platform"].strip()
+        ):
+            problems.append(f"{prefix}.platform is required for a device_capture")
+        if isinstance(item_id, str) and isinstance(layer, str):
+            key = (item_id, layer)
+            if key in receipt_keys:
+                problems.append(f"{prefix} duplicates a receipt for {item_id}/{layer}")
+            receipt_keys.add(key)
+
     required_strings = {
         "id",
         "surface",
@@ -143,11 +195,19 @@ def validate() -> list[str]:
             for key, state in evidence.items():
                 if state not in EVIDENCE_STATES:
                     problems.append(f"{prefix}.evidence.{key} has unknown state {state!r}")
-            if evidence["V"] == "verified":
-                problems.append(f"{prefix}.evidence.V cannot be verified by this static audit seed")
+            if isinstance(item_id, str):
+                for layer in EVIDENCE_RECEIPT_LAYERS:
+                    if evidence[layer] == "verified" and (item_id, layer) not in receipt_keys:
+                        problems.append(
+                            f"{prefix}.evidence.{layer}=verified requires an evidence receipt"
+                        )
 
     if covered_surfaces != SURFACES:
         problems.append("inventory: both governed surfaces must have at least one item")
+    receipt_item_ids = {item_id for item_id, _layer in receipt_keys}
+    unknown_receipt_ids = receipt_item_ids - ids
+    for item_id in sorted(unknown_receipt_ids):
+        problems.append(f"inventory: evidence receipt references unknown item {item_id}")
     return problems
 
 

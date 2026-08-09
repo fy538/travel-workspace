@@ -101,5 +101,12 @@
     "not_verified": "No evidence in the audit establishes this level.",
     "not_applicable": "The level is intentionally inapplicable to this composition."
   },
+  "evidence_receipt_contract": {
+    "location": "docs/status/home-surfaces-composition-inventory.json#evidence_receipts",
+    "required_when_verified": ["F", "B", "V"],
+    "required_fields": ["id", "item_id", "layer", "kind", "source", "recorded_at", "summary"],
+    "device_capture_requires": ["platform"],
+    "source_policy": "Sources must be workspace-relative durable artifacts; canonical design exports remain external and must not be copied into the repository."
+  },
   "completion_rule": "No user-visible composition is complete, shipped, certified, or accepted without naming the evidence layer. V=verified requires a physical-device receipt and is not established by this authority record or the static audit."
 }
