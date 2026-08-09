@@ -23314,6 +23314,75 @@
         }
       }
     },
+    "/api/proposal-guest-capabilities/{capability_token}/private-constraint": {
+      "post": {
+        "tags": [
+          "proposals"
+        ],
+        "summary": "Capture Guest Proposal Constraint",
+        "description": "Capture one account-private constraint after the token is claimed.",
+        "operationId": "capture_guest_proposal_constraint_api_proposal_guest_capabilities__capability_token__private_constraint_post",
+        "parameters": [
+          {
+            "name": "capability_token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Capability Token"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProposalGuestConstraintCaptureRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProposalGuestConstraintCapture"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/proposals": {
       "get": {
         "tags": [
@@ -72167,6 +72236,112 @@
         ],
         "title": "ProposalGuestCapabilityClaim",
         "description": "Authenticated result after a capability upgrades membership."
+      },
+      "ProposalGuestConstraintCapture": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "proposal_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Proposal Id"
+          },
+          "captured_by": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Captured By"
+          },
+          "purpose": {
+            "type": "string",
+            "const": "proposal_vote",
+            "title": "Purpose",
+            "default": "proposal_vote"
+          },
+          "constraint_type": {
+            "type": "string",
+            "enum": [
+              "allergy",
+              "dietary",
+              "accessibility",
+              "language",
+              "visa",
+              "medical"
+            ],
+            "title": "Constraint Type"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "absolute",
+              "strong",
+              "preference"
+            ],
+            "title": "Severity"
+          },
+          "captured_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Captured At"
+          },
+          "replay": {
+            "type": "boolean",
+            "title": "Replay",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "proposal_id",
+          "captured_by",
+          "constraint_type",
+          "severity",
+          "captured_at"
+        ],
+        "title": "ProposalGuestConstraintCapture",
+        "description": "Receipt for the private one-shot constraint capture."
+      },
+      "ProposalGuestConstraintCaptureRequest": {
+        "properties": {
+          "constraint_type": {
+            "type": "string",
+            "enum": [
+              "allergy",
+              "dietary",
+              "accessibility",
+              "language",
+              "visa",
+              "medical"
+            ],
+            "title": "Constraint Type"
+          },
+          "value": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Value"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "absolute",
+              "strong",
+              "preference"
+            ],
+            "title": "Severity",
+            "default": "absolute"
+          }
+        },
+        "type": "object",
+        "required": [
+          "constraint_type",
+          "value"
+        ],
+        "title": "ProposalGuestConstraintCaptureRequest",
+        "description": "One private hard constraint offered after a capability claim."
       },
       "ProposalImpactAnalysis": {
         "properties": {

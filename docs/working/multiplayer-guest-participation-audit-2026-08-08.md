@@ -56,22 +56,33 @@ Authenticated proposal voting already has the important mutation protections:
 - resolved-proposal conflict handling;
 - aggregate-only public copy on the handoff/card surface.
 
-## Deliberate gap
+## Follow-on slice now implemented behind the canary
 
-There is no proposal-specific capability link that lets a signed-out person
-vote, provide one private constraint, or receive a decision receipt. Adding a
-public `POST` that writes directly to `change_proposals.votes` would bypass
-the member foreign-key/eligibility model, receipt provenance, and the existing
-canonical mutation path.
+The proposal-specific capability link is now a separate ledger rather than a
+direct vote bypass:
 
-The next implementation slice must therefore introduce a separate,
-purpose-bound capability record (token hash, proposal/trip scope, expiry,
-revocation, redemption state, and idempotency) plus an explicit post-auth
-claim/upgrade flow. A guest vote must either become an authenticated member
-before entering the canonical vote gateway or be represented by a first-class
-guest participant model with equivalent authorization, attribution, and
-receipt semantics. Until that design is implemented and device-tested, the
-proposal handoff remains authentication-only.
+- organizers mint one opaque, one-use, seven-day-bounded `proposal_vote`
+  capability for one open proposal;
+- the token-only authenticated claim locks the ledger, upgrades ordinary trip
+  membership, repairs the existing membership fan-out, and returns the normal
+  member-only vote endpoint;
+- the claimed actor may capture exactly one account-private hard constraint;
+  the value is stored only in the private capability/constraint state and the
+  response returns type/severity metadata, never the raw value to a group;
+- retries are replay-safe, cross-user claims fail closed, and no capability
+  operation writes a vote directly.
+
+Adding a public `POST` that writes directly to `change_proposals.votes` would
+still bypass the member foreign-key/eligibility model, receipt provenance, and
+the existing canonical mutation path, so that design remains explicitly
+forbidden.
+
+## Remaining gap
+
+The runtime feature flag remains off until the mobile handoff, private-capture
+prompt, and two-observer vote recovery are device-certified. Decision outcome
+receipts continue through the existing proposal creation/resolution receipt
+path; the guest capability itself is not a second receipt or vote store.
 
 ## Evidence
 
@@ -92,6 +103,6 @@ proposal handoff remains authentication-only.
 ## Exit decision for this sequence step
 
 Guest RSVP is sufficiently implemented to carry forward. Guest proposal
-voting is an explicit follow-on slice; it is not certified or implied by the
-existing public handoff. No new guest mutation endpoint is shipped in this
-audit commit.
+participation now has a dark, purpose-bound claim and private-constraint slice;
+it is not device-certified or enabled in production, and remains distinct from
+the existing public handoff and canonical member vote path.

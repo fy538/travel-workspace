@@ -77,8 +77,9 @@ not live-certified until the required real-account device walk is recorded.
   attendance receipts already exist. The proposal-link gap now has a dark
   purpose-bound capability record, token-only authenticated claim path, and
   SecureStore-backed mobile post-auth handoff into the canonical member-only
-  vote route. The runtime canary, private constraint capture, and two-observer
-  vote certification remain outstanding. See
+  vote route, plus a one-shot account-private constraint capture that never
+  returns the raw value to the group. The runtime canary, mobile capture
+  device proof, and two-observer vote certification remain outstanding. See
   [`multiplayer-guest-participation-audit-2026-08-08.md`](multiplayer-guest-participation-audit-2026-08-08.md).
 - Shared workflow control has its first dark slice: `agent_workflow_commands`
   plus a compare-and-swap `control_revision`, idempotency, privacy-safe event
@@ -100,10 +101,12 @@ not live-certified until the required real-account device walk is recorded.
   upgrade into ordinary trip membership, and receive the existing member-only
   vote endpoint. Raw tokens are stored only as SHA-256 digests; cross-proposal
   claims, expiry, replay by another user, and non-open proposals fail closed.
-  The claim never writes a guest vote or bypasses the canonical receipt path.
-  Focused backend capability/API/landing tests pass (64), and mobile handoff
-  persistence/teardown tests pass (24); runtime enablement, private constraint
-  capture, and two-observer vote certification remain outstanding.
+  The same claimed capability can capture exactly one account-private hard
+  constraint in the ledger transaction; the claim never writes a guest vote or
+  bypasses the canonical receipt path. Focused backend capability/API tests
+  pass (7 for the capability/constraint slice), and mobile handoff
+  persistence/teardown tests pass (24); runtime enablement, capture device
+  proof, and two-observer vote certification remain outstanding.
 
 ## Architecture rules
 

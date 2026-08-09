@@ -38,6 +38,16 @@
       "removal_trigger": "Remove after the guest proposal journey is retired or replace the capability contract with a newer scoped handoff.",
       "review_by": "2026-10-30"
     },
+    "POST /api/proposal-guest-capabilities/{capability_token}/private-constraint": {
+      "audience": "app",
+      "consumers": [{"kind": "app_source", "name": "captureGuestProposalConstraint", "source": "travel-app/utils/api/http.ts"}],
+      "feature_flag": "GUEST_PROPOSAL_CAPABILITIES_ENABLED",
+      "lifecycle": "active",
+      "owner": "multiplayer",
+      "reason": "One account-private constraint may be captured only after the opaque capability is claimed; runtime remains off until the mobile prompt and two-observer recovery are certified.",
+      "removal_trigger": "Remove after the guest proposal journey is retired or replace the capability contract with a newer scoped handoff.",
+      "review_by": "2026-10-30"
+    },
     "POST /api/social-circles": {
       "audience": "app",
       "consumers": [{"kind": "app_url", "name": "createSocialCircle", "source": "travel-app/utils/api/http.ts"}],
