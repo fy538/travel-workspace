@@ -59951,6 +59951,14 @@
             "type": "array",
             "title": "Sections"
           },
+          "unavailable_producers": {
+            "items": {
+              "$ref": "#/components/schemas/PlacesFeedUnavailableProducer"
+            },
+            "type": "array",
+            "maxItems": 11,
+            "title": "Unavailable Producers"
+          },
           "saved_total": {
             "type": "integer",
             "minimum": 0.0,
@@ -59966,6 +59974,24 @@
         ],
         "title": "PlacesFeed",
         "description": "The sectioned Places page; ``sections`` is the only ordering authority."
+      },
+      "PlacesFeedUnavailableProducer": {
+        "type": "string",
+        "enum": [
+          "anniversary",
+          "starter",
+          "scoped_content",
+          "experiences",
+          "saved",
+          "gap",
+          "friends",
+          "urgency",
+          "returns",
+          "nearby",
+          "reading"
+        ],
+        "title": "PlacesFeedUnavailableProducer",
+        "description": "Optional feed source that could not answer within this response budget.\n\nThis is deliberately a small closed vocabulary, not an error payload.  It\nlets a client distinguish an honestly empty feed from a partial feed while\nrevealing neither exception detail nor any content that the source failed\nto load."
       },
       "PlacesFriendActivity": {
         "properties": {
@@ -75371,6 +75397,121 @@
         ],
         "title": "TripVesperDelegationUpdate"
       },
+      "TripsHomeConditionsModule": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "const": "weather",
+            "title": "Kind"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "row_line": {
+            "type": "string",
+            "title": "Row Line"
+          },
+          "cta_label": {
+            "type": "string",
+            "title": "Cta Label"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "tier": {
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "title": "Tier"
+          },
+          "depth": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Depth"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/TripsHomeDestination"
+          },
+          "module_id": {
+            "type": "string",
+            "title": "Module Id"
+          },
+          "content_id": {
+            "type": "string",
+            "title": "Content Id"
+          },
+          "content_revision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Content Revision"
+          },
+          "availability": {
+            "type": "string",
+            "const": "available",
+            "title": "Availability",
+            "default": "available"
+          },
+          "role": {
+            "type": "string",
+            "const": "conditions",
+            "title": "Role",
+            "default": "conditions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "title",
+          "row_line",
+          "cta_label",
+          "tier",
+          "depth",
+          "destination",
+          "module_id",
+          "content_id"
+        ],
+        "title": "TripsHomeConditionsModule"
+      },
       "TripsHomeConfirmAction": {
         "properties": {
           "trip_id": {
@@ -75391,6 +75532,121 @@
         ],
         "title": "TripsHomeConfirmAction",
         "description": "A crown-only signal that this item resolves with an inline\naccept/reject rather than a navigation.\n\nPresent only when the crowned card's Deck substrate is a binary decision\n(``structured.layout == \"proposal_approval\"``) — Trips still never copies\n``structured``/``focus`` themselves onto the wire; the other two layouts\nthat also resolve to a ``proposal`` destination (``traveler_readiness``,\n``choice_vote``) are not one accept/reject call and stay navigation-only."
+      },
+      "TripsHomeCountdownModule": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "const": "imminent_trip",
+            "title": "Kind"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "row_line": {
+            "type": "string",
+            "title": "Row Line"
+          },
+          "cta_label": {
+            "type": "string",
+            "title": "Cta Label"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "tier": {
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "title": "Tier"
+          },
+          "depth": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Depth"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/TripsHomeDestination"
+          },
+          "module_id": {
+            "type": "string",
+            "title": "Module Id"
+          },
+          "content_id": {
+            "type": "string",
+            "title": "Content Id"
+          },
+          "content_revision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Content Revision"
+          },
+          "availability": {
+            "type": "string",
+            "const": "available",
+            "title": "Availability",
+            "default": "available"
+          },
+          "role": {
+            "type": "string",
+            "const": "countdown",
+            "title": "Role",
+            "default": "countdown"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "title",
+          "row_line",
+          "cta_label",
+          "tier",
+          "depth",
+          "destination",
+          "module_id",
+          "content_id"
+        ],
+        "title": "TripsHomeCountdownModule"
       },
       "TripsHomeDestination": {
         "properties": {
@@ -75492,6 +75748,236 @@
         ],
         "title": "TripsHomeDestination",
         "description": "A stable, app-routable target for one ranked Home item.\n\nThis is deliberately navigation data only.  It never describes a write,\nso proposal, itinerary, booking, and expense mutations remain owned by\ntheir existing domain surfaces and canonical writers."
+      },
+      "TripsHomeGroupModule": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "const": "group_room",
+            "title": "Kind"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "row_line": {
+            "type": "string",
+            "title": "Row Line"
+          },
+          "cta_label": {
+            "type": "string",
+            "title": "Cta Label"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "tier": {
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "title": "Tier"
+          },
+          "depth": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Depth"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/TripsHomeDestination"
+          },
+          "module_id": {
+            "type": "string",
+            "title": "Module Id"
+          },
+          "content_id": {
+            "type": "string",
+            "title": "Content Id"
+          },
+          "content_revision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Content Revision"
+          },
+          "availability": {
+            "type": "string",
+            "const": "available",
+            "title": "Availability",
+            "default": "available"
+          },
+          "role": {
+            "type": "string",
+            "const": "group",
+            "title": "Role",
+            "default": "group"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "title",
+          "row_line",
+          "cta_label",
+          "tier",
+          "depth",
+          "destination",
+          "module_id",
+          "content_id"
+        ],
+        "title": "TripsHomeGroupModule"
+      },
+      "TripsHomeNowModule": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "const": "live_trip",
+            "title": "Kind"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "row_line": {
+            "type": "string",
+            "title": "Row Line"
+          },
+          "cta_label": {
+            "type": "string",
+            "title": "Cta Label"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "tier": {
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "title": "Tier"
+          },
+          "depth": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Depth"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/TripsHomeDestination"
+          },
+          "module_id": {
+            "type": "string",
+            "title": "Module Id"
+          },
+          "content_id": {
+            "type": "string",
+            "title": "Content Id"
+          },
+          "content_revision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Content Revision"
+          },
+          "availability": {
+            "type": "string",
+            "const": "available",
+            "title": "Availability",
+            "default": "available"
+          },
+          "role": {
+            "type": "string",
+            "const": "now",
+            "title": "Role",
+            "default": "now"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "title",
+          "row_line",
+          "cta_label",
+          "tier",
+          "depth",
+          "destination",
+          "module_id",
+          "content_id"
+        ],
+        "title": "TripsHomeNowModule"
       },
       "TripsHomeReceiptCall": {
         "properties": {
@@ -76293,6 +76779,14 @@
       },
       "TripsHomeStackProjection": {
         "properties": {
+          "projection_state": {
+            "type": "string",
+            "enum": [
+              "ranked",
+              "empty"
+            ],
+            "title": "Projection State"
+          },
           "posture": {
             "type": "string",
             "enum": [
@@ -76318,6 +76812,43 @@
               }
             ]
           },
+          "modules": {
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/TripsHomeNowModule"
+                },
+                {
+                  "$ref": "#/components/schemas/TripsHomeCountdownModule"
+                },
+                {
+                  "$ref": "#/components/schemas/TripsHomeConditionsModule"
+                },
+                {
+                  "$ref": "#/components/schemas/TripsHomeGroupModule"
+                }
+              ],
+              "discriminator": {
+                "propertyName": "kind",
+                "mapping": {
+                  "group_room": "#/components/schemas/TripsHomeGroupModule",
+                  "imminent_trip": "#/components/schemas/TripsHomeCountdownModule",
+                  "live_trip": "#/components/schemas/TripsHomeNowModule",
+                  "weather": "#/components/schemas/TripsHomeConditionsModule"
+                }
+              }
+            },
+            "type": "array",
+            "title": "Modules"
+          },
+          "queue": {
+            "items": {
+              "$ref": "#/components/schemas/TripsHomeStackItem"
+            },
+            "type": "array",
+            "maxItems": 2,
+            "title": "Queue"
+          },
           "rows": {
             "items": {
               "$ref": "#/components/schemas/TripsHomeStackItem"
@@ -76333,6 +76864,7 @@
         },
         "type": "object",
         "required": [
+          "projection_state",
           "generated_at"
         ],
         "title": "TripsHomeStackProjection"
