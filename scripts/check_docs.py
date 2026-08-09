@@ -30,6 +30,7 @@ CHECKS: dict[str, list[str]] = {
     "status": [PYTHON, "scripts/render_current_state.py"],
     "links": [PYTHON, "scripts/check_living_doc_links.py"],
     "compatibility": [PYTHON, "scripts/check_compatibility_ledger.py"],
+    "home-surfaces": [PYTHON, "scripts/check_home_surfaces_governance.py"],
 }
 
 

@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "authority_id": "vesper-home-surfaces-2026-08-09",
+  "status": "active",
+  "decision_date": "2026-08-09",
+  "scope": ["trips-home", "places-workspace"],
+  "canonical_bundle": {
+    "name": "vesper-home-surfaces",
+    "custody": "external_operator_supplied",
+    "local_directory_env": "HOME_SURFACES_CANON_DIR",
+    "repository_copy_allowed": false,
+    "ci_requires_external_directory": false,
+    "copy_policy": "Canonical HTML, screenshots, and design exports must not be copied into the workspace, frontend, or backend repositories. Repository fixtures are derived application states only.",
+    "files": [
+      {
+        "path": "HANDOFF.md",
+        "role": "handoff",
+        "sha256": "95f473c7612b196870555953ec245cbed6446f4715bc30e847f37de245f8274c"
+      },
+      {
+        "path": "project/Canon - Home Surfaces.dc.html",
+        "role": "shared_canon",
+        "sha256": "acbbab333a993cff924b3decea68e1071fc338c3315bd4f8bb283931cfe8fa80"
+      },
+      {
+        "path": "project/Places - The Page.dc.html",
+        "role": "places_page",
+        "sha256": "150ddea633181d8a4633a7722db438de3ff77d7c0bc6b2287f2773cf1dc0ad3c"
+      },
+      {
+        "path": "project/Trips - The Page.dc.html",
+        "role": "trips_page",
+        "sha256": "2ed150f782098f89ad3da070246fa305fc691518ca912edead5d235a3676e746"
+      },
+      {
+        "path": "project/Places - As Built.dc.html",
+        "role": "places_as_built_context",
+        "sha256": "aa34dff916b07b8cac0648339eb65744da6a3b4a3a5a528c0677567c782f12d8"
+      },
+      {
+        "path": "project/Trips - As Built.dc.html",
+        "role": "trips_as_built_context",
+        "sha256": "74efd20f7414449f48e673c52060159908ed3274a98579f7a82e9e8c8369cee3"
+      },
+      {
+        "path": "project/Build Manifest - Both Surfaces.dc.html",
+        "role": "historical_build_manifest_context",
+        "sha256": "a0baaab269b2cf1ddb240bc8562cd15283062baaa06b1260af6d087dce8edcc4"
+      }
+    ]
+  },
+  "superseded_authorities": [
+    {
+      "name": "vesper 378",
+      "scope": "travel-app Makefile default and generic design fingerprint input",
+      "disposition": "historical_reference_only"
+    },
+    {
+      "name": "vesper 401 / Vesper Trips Home - Stack Model (Sans)",
+      "scope": "Trips Home composition",
+      "disposition": "historical_implementation_evidence_only"
+    },
+    {
+      "name": "vesper 405 / PLACES — THE BOARD",
+      "scope": "Places root composition and card family",
+      "disposition": "historical_implementation_evidence_only"
+    },
+    {
+      "name": "checked-in Trips and Places design-ref screenshots",
+      "scope": "visual QA comparison",
+      "disposition": "historical_implementation_evidence_only"
+    }
+  ],
+  "authority_rules": {
+    "design_intent": "The external Page boards govern adopted design intent, grouping, composition, and visual direction.",
+    "implementation_fact": "Current source and generated contracts govern what is actually coded, produced, reachable, and wired.",
+    "status_reporting": "The composition inventory records adoption and D/C/P/R/A/F/B/V independently; no single implemented boolean is allowed.",
+    "local_qa": "Local visual QA may use HOME_SURFACES_CANON_DIR only after every configured file hash verifies.",
+    "ci": "CI validates this record, the inventory, application fixtures, and app-capture evidence without requiring a personal Downloads directory."
+  },
+  "adoption_vocabulary": {
+    "adopted": "Approved product direction; implementation evidence is still tracked separately.",
+    "exploratory": "Design study, not an implementation commitment.",
+    "relocated": "The need is real but another surface owns the composition.",
+    "rejected": "Explicitly not part of the intended product direction.",
+    "unresolved": "Requires a recorded product/design decision before feature implementation."
+  },
+  "evidence_vocabulary": {
+    "D": "Designed in the canonical Page board.",
+    "C": "A component or render branch exists.",
+    "P": "A grounded backend or local producer exists.",
+    "R": "The real projection can deliver the payload to the component.",
+    "A": "Navigation, mutation, dismissal, and error lifecycle are wired.",
+    "F": "A deterministic application fixture was reviewed against this exact design authority.",
+    "B": "Verified with backend-real projection data.",
+    "V": "Observed and accepted on a supported physical device/platform."
+  },
+  "evidence_states": {
+    "verified": "The cited static or executed evidence establishes this level for the named composition.",
+    "partial": "Some substrate or variants meet the level, but the composition does not meet it end to end.",
+    "not_verified": "No evidence in the audit establishes this level.",
+    "not_applicable": "The level is intentionally inapplicable to this composition."
+  },
+  "completion_rule": "No user-visible composition is complete, shipped, certified, or accepted without naming the evidence layer. V=verified requires a physical-device receipt and is not established by this authority record or the static audit."
+}
