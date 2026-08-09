@@ -8,26 +8,6 @@
     "review_by": null
   },
   "operations": {
-    "GET /api/trips/{trip_id}/planning/suggested-saves": {
-      "audience": "app",
-      "consumers": [{"kind": "app_url", "name": "getTripSaveSuggestions", "source": "travel-app/utils/api/http.ts"}],
-      "feature_flag": null,
-      "lifecycle": "active",
-      "owner": "planning",
-      "reason": "The app planning transport reads only viewer-authorized, explicitly shared trip-member saves; it never mutates the itinerary.",
-      "removal_trigger": null,
-      "review_by": null
-    },
-    "PATCH /api/users/{user_id}/saves/{entity_type}/{entity_id}": {
-      "audience": "app",
-      "consumers": [{"kind": "app_url", "name": "setSaveVisibility", "source": "travel-app/utils/api/http.ts"}],
-      "feature_flag": null,
-      "lifecycle": "active",
-      "owner": "saves",
-      "reason": "The app save transport carries an explicit per-save consent bit; private remains the default and callers can revoke it without deleting the save.",
-      "removal_trigger": null,
-      "review_by": null
-    },
     "POST /api/agent-workflows/{workflow_id}/commands": {"audience":"app","consumers":[],"feature_flag":"SHARED_WORKFLOW_CONTROL_ENABLED","lifecycle":"dark","owner":"multiplayer","reason":"Server-side control ledger remains dark pending a verified client recovery flow.","removal_trigger":"Add a device-validated client or remove the transport.","review_by":"2026-10-30"},
     "POST /api/proposal-guest-capabilities/{capability_token}/claim": {"audience":"app","consumers":[],"feature_flag":"GUEST_PROPOSAL_CAPABILITIES_ENABLED","lifecycle":"dark","owner":"multiplayer","reason":"Guest capability backend is retained but has no approved mobile consumer.","removal_trigger":"Restore only with a device-validated recipient flow.","review_by":"2026-10-30"},
     "POST /api/proposal-guest-capabilities/{capability_token}/private-constraint": {"audience":"app","consumers":[],"feature_flag":"GUEST_PROPOSAL_CAPABILITIES_ENABLED","lifecycle":"dark","owner":"multiplayer","reason":"Private constraint capture remains unavailable until its consent flow is device-validated.","removal_trigger":"Restore only with a device-validated recipient flow.","review_by":"2026-10-30"},
@@ -92,36 +72,6 @@
       "lifecycle": "active",
       "owner": "multiplayer",
       "reason": "Backend-first explicit circle identity contract; mobile adoption follows after the storage and authorization canary is proven.",
-      "removal_trigger": null,
-      "review_by": "2026-09-03"
-    },
-    "POST /api/social-circles/{circle_id}/leave": {
-      "audience": "app",
-      "consumers": [{"kind": "app_url", "name": "leaveSocialCircle", "source": "travel-app/utils/api/http.ts"}],
-      "feature_flag": "SOCIAL_CIRCLES_ENABLED",
-      "lifecycle": "active",
-      "owner": "multiplayer",
-      "reason": "Explicit member withdrawal is part of the circle consent lifecycle and is surfaced from the mobile detail screen.",
-      "removal_trigger": null,
-      "review_by": "2026-09-03"
-    },
-    "DELETE /api/social-circles/{circle_id}/members/{user_id}": {
-      "audience": "app",
-      "consumers": [{"kind": "app_url", "name": "removeSocialCircleMember", "source": "travel-app/utils/api/http.ts"}],
-      "feature_flag": "SOCIAL_CIRCLES_ENABLED",
-      "lifecycle": "active",
-      "owner": "multiplayer",
-      "reason": "Owner-only revocation is retained in the transport for explicit circle lifecycle control; UI exposure follows the member-management surface.",
-      "removal_trigger": null,
-      "review_by": "2026-09-03"
-    },
-    "POST /api/social-circles/{circle_id}/archive": {
-      "audience": "app",
-      "consumers": [{"kind": "app_url", "name": "archiveSocialCircle", "source": "travel-app/utils/api/http.ts"}],
-      "feature_flag": "SOCIAL_CIRCLES_ENABLED",
-      "lifecycle": "active",
-      "owner": "multiplayer",
-      "reason": "The circle owner can explicitly archive the relationship from the mobile detail screen.",
       "removal_trigger": null,
       "review_by": "2026-09-03"
     },
