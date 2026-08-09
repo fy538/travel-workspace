@@ -107,6 +107,11 @@ not live-certified until the required real-account device walk is recorded.
   pass (7 for the capability/constraint slice), and mobile handoff
   persistence/teardown tests pass (24); runtime enablement, capture device
   proof, and two-observer vote certification remain outstanding.
+- Decision receipts remain one canonical proposal target: the existing
+  creation/resolution action-receipt writer and mobile invalidation/refetch
+  path were re-run through J05/J06 plus proposal data tests (28) and the
+  backend proposal-gateway receipt proof (1); no second guest receipt store
+  was introduced.
 
 ## Architecture rules
 

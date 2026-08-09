@@ -99,6 +99,9 @@ path; the guest capability itself is not a second receipt or vote store.
 - `tests/api/test_proposals_api.py` and
   `tests/core/test_itinerary_proposal_gateway.py` cover member-gated,
   idempotent canonical voting.
+- The existing decision-receipt continuity is covered by
+  `travel-app/__tests__/data/proposals.test.ts`, J05/J06 cross-surface journey
+  tests (28 focused app tests), and the backend proposal-gateway receipt proof.
 
 ## Exit decision for this sequence step
 
