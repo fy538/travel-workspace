@@ -67,6 +67,10 @@ rules:
 
 
 overrides:
+  docs/home-surfaces-section-card-ledger-2026-08-09.md:
+    disposition: keep_reference
+    rationale: Active source-derived implementation ledger for current Places and Trips card families; surface contracts and generated schemas retain authority.
+
   docs/home-surfaces-canonical-execution-plan-2026-08-09.md:
     disposition: keep_reference
     rationale: Active expiring rebaseline for the external home-surface design bundle; it coordinates execution without replacing product or surface authority.
