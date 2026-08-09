@@ -266,6 +266,27 @@ background/foreground dwell states, and a fresh review of Places content under
 the floating nav. Until those receipts exist, this is evidence of current
 behavior—not a claim that either surface is device-certified.
 
+### Incremental state and governance record — 2026-08-09
+
+The next bounded state slice is also landed on the frontend branch:
+
+- `34f58766` promotes the matrix's Trips and Places page-state decisions to
+  exported pure builders and consumes them at both roots. The render branches
+  remain behavior-preserving, but request-state interpretation now has one
+  runtime seam instead of living only in tests. Terminal Trips errors win over
+  a simultaneously reported loading flag.
+- The focused home suite now passes 80 tests, with TypeScript, API-boundary,
+  query/mutation ownership, spacing, typography, and color gates green.
+- `141382b9` removed a dead `conditionsTemp` typography role and its stale raw
+  size exception. `696f39e8` named the Places action-pill's exact 7/12 inset
+  geometry, returning the spacing inventory to its established `361/361`
+  floor without raising the baseline.
+- The containment ratchet still reports `166` hand-rolled containers against
+  a `162` floor. That exact count reproduces on current `origin/main`; it is
+  pre-existing repository debt, not a home-surface regression. The global size
+  ratchet likewise fails on unrelated legacy files and is not being masked by
+  this slice. Both remain explicit follow-up work rather than release claims.
+
 ## Phase 2 — Complete the page-composition authorities
 
 ### NS-TR-P — Trips composition plan v2
