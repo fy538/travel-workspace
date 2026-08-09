@@ -95,8 +95,10 @@ excluded from metadata enforcement because their values are placeholders.
 
 ## Repository ownership
 
-- The workspace owns product canon, cross-repo journeys and systems, release
-  state, and cross-repo decisions.
+- The workspace owns the canonical index and lifecycle, cross-repo journeys and
+  systems, release state, and cross-repo decisions. The product-canon prose
+  lives in `travel-agent/docs/product/` and is registered here rather than
+  duplicated.
 - `travel-agent` owns backend architecture, data/agent contracts, evals, and
   backend operations.
 - `travel-app` owns surface contracts, navigation/interaction conventions,
@@ -146,9 +148,9 @@ reviewed queue for later consolidation and cleanup.
 
 ## Phase 3 canonical spine
 
-`spine.yaml` names exactly eight living entry points: thesis, beliefs, V1 scope,
-current state, journey status, systems, owner actions, and decisions. The workspace
-index must expose all eight, their paths must exist outside the archive, and each
+`spine.yaml` names exactly nine living entry points: thesis, product model,
+beliefs, V1 scope, current state, journey status, systems, owner actions, and
+decisions. The workspace index must expose all nine, their paths must exist outside the archive, and each
 workspace-owned entry must be classified `keep_authoritative` in the inventory.
 
 `docs/status/current-state.md` is intentionally narrow. Its generated block reports

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the eight canonical documentation entry points."""
+"""Validate the nine canonical documentation entry points."""
 from pathlib import Path
 import sys
 import yaml
@@ -8,7 +8,17 @@ from check_doc_inventory import classify, load_inventory
 
 ROOT = Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "docs/governance/spine.yaml"
-EXPECTED = {"product-thesis", "beliefs", "v1-scope", "current-state", "journey-status", "systems", "owner-actions", "decisions"}
+EXPECTED = {
+    "product-thesis",
+    "product-model",
+    "beliefs",
+    "v1-scope",
+    "current-state",
+    "journey-status",
+    "systems",
+    "owner-actions",
+    "decisions",
+}
 
 
 def main() -> int:
@@ -16,8 +26,8 @@ def main() -> int:
     problems = []
     ids = [item.get("id") for item in entries]
     paths = [item.get("path") for item in entries]
-    if len(entries) != 8 or set(ids) != EXPECTED or len(ids) != len(set(ids)):
-        problems.append("catalog must contain the eight unique canonical IDs")
+    if len(entries) != 9 or set(ids) != EXPECTED or len(ids) != len(set(ids)):
+        problems.append("catalog must contain the nine unique canonical IDs")
     if len(paths) != len(set(paths)):
         problems.append("catalog paths must be unique")
     inventory = load_inventory()
@@ -39,7 +49,7 @@ def main() -> int:
         print("docs-spine:", problem, file=sys.stderr)
     if problems:
         return 1
-    print("docs-spine OK: eight entry points exist, are authoritative, and are indexed")
+    print("docs-spine OK: nine entry points exist, are authoritative, and are indexed")
     return 0
 
 

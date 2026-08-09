@@ -4,6 +4,10 @@ entries:
     title: Product Thesis
     path: travel-agent/docs/product/Product Thesis.md
     owns: The product's core promise and strategic thesis.
+  - id: product-model
+    title: Product Model
+    path: travel-agent/docs/product/Product Model.md
+    owns: The lived-experience object model, spatial grounding, harness timescales, and occasion proof loop.
   - id: beliefs
     title: What We Believe
     path: travel-agent/docs/product/What We Believe.md

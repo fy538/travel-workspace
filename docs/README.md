@@ -12,7 +12,7 @@ source_of_truth_for: [workspace-docs-navigation]
 # Workspace Documentation
 
 This workspace coordinates **Travel Agent** (backend and orchestration) and
-**Travel App** (Expo client) for Vesper. Start with the eight documents below;
+**Travel App** (Expo client) for Vesper. Start with the nine documents below;
 everything else is a contract, supporting reference, active working note, or history.
 
 ## Canonical spine
@@ -20,6 +20,7 @@ everything else is a contract, supporting reference, active working note, or his
 | Question | Entry point | Owns |
 |---|---|---|
 | Why this product? | [Product Thesis](../travel-agent/docs/product/Product%20Thesis.md) | `travel-agent/docs/product/Product Thesis.md` — core promise and strategy |
+| How does the product model fit together? | [Product Model](../travel-agent/docs/product/Product%20Model.md) | `travel-agent/docs/product/Product Model.md` — Experience → Plan → Trip → Move, spatial grounding, and proof loop |
 | What principles guide it? | [What We Believe](../travel-agent/docs/product/What%20We%20Believe.md) | `travel-agent/docs/product/What We Believe.md` — durable product beliefs |
 | What ships first? | [V1 Scope](working/mvp-scope-and-flag-manifest-2026-06-30.md) | `docs/working/mvp-scope-and-flag-manifest-2026-06-30.md` — bounded release scope |
 | What exists now? | [Current State](status/current-state.md) | `docs/status/current-state.md` — derived implementation signals |
