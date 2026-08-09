@@ -67,6 +67,14 @@ rules:
 
 
 overrides:
+  docs/home-surfaces-audit-2026-08-09.md:
+    disposition: keep_reference
+    rationale: Active post-pivot source audit for Places and Trips that records implementation evidence without replacing the external design authority.
+
+  docs/home-surfaces-engineering-roadmap-2026-08-09.md:
+    disposition: keep_reference
+    rationale: Active execution plan for the audited home-surface program; it expires with the current implementation wave and does not replace product decisions.
+
   docs/working/place-identity-rollout-2026-08-08.md:
     disposition: keep_reference
     rationale: Active, expiring cross-repo implementation and rollout evidence for the accepted place-identity decision; archive after production gates close or promote repeatable operations into a runbook.
