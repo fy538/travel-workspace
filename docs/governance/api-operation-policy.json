@@ -10,23 +10,23 @@
   "operations": {
     "GET /api/trips/{trip_id}/planning/suggested-saves": {
       "audience": "app",
-      "consumers": [],
+      "consumers": [{"kind": "app_url", "name": "getTripSaveSuggestions", "source": "travel-app/utils/api/http.ts"}],
       "feature_flag": null,
-      "lifecycle": "retiring",
+      "lifecycle": "active",
       "owner": "planning",
-      "reason": "The server-side suggested-saves computation has no current mobile consumer; retaining it as active would overstate the product surface.",
-      "removal_trigger": "Adopt it through a named, device-validated planning journey or remove the unused endpoint after traffic review.",
-      "review_by": "2026-09-03"
+      "reason": "The app planning transport reads only viewer-authorized, explicitly shared trip-member saves; it never mutates the itinerary.",
+      "removal_trigger": null,
+      "review_by": null
     },
     "PATCH /api/users/{user_id}/saves/{entity_type}/{entity_id}": {
       "audience": "app",
-      "consumers": [],
+      "consumers": [{"kind": "app_url", "name": "setSaveVisibility", "source": "travel-app/utils/api/http.ts"}],
       "feature_flag": null,
-      "lifecycle": "retiring",
+      "lifecycle": "active",
       "owner": "saves",
-      "reason": "The save-visibility transport is not called by a current product surface, so it must not be represented as an adopted mutation journey.",
-      "removal_trigger": "Adopt it from an explicit, privacy-reviewed save-visibility flow or remove the transport after traffic review.",
-      "review_by": "2026-09-03"
+      "reason": "The app save transport carries an explicit per-save consent bit; private remains the default and callers can revoke it without deleting the save.",
+      "removal_trigger": null,
+      "review_by": null
     },
     "POST /api/agent-workflows/{workflow_id}/commands": {"audience":"app","consumers":[],"feature_flag":"SHARED_WORKFLOW_CONTROL_ENABLED","lifecycle":"dark","owner":"multiplayer","reason":"Server-side control ledger remains dark pending a verified client recovery flow.","removal_trigger":"Add a device-validated client or remove the transport.","review_by":"2026-10-30"},
     "POST /api/proposal-guest-capabilities/{capability_token}/claim": {"audience":"app","consumers":[],"feature_flag":"GUEST_PROPOSAL_CAPABILITIES_ENABLED","lifecycle":"dark","owner":"multiplayer","reason":"Guest capability backend is retained but has no approved mobile consumer.","removal_trigger":"Restore only with a device-validated recipient flow.","review_by":"2026-10-30"},

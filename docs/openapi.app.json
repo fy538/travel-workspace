@@ -18636,6 +18636,100 @@
             }
           }
         }
+      },
+      "patch": {
+        "tags": [
+          "saves"
+        ],
+        "summary": "Set Save Visibility",
+        "description": "Set a save's explicit social visibility without changing the save.",
+        "operationId": "set_save_visibility_api_users__user_id__saves__entity_type___entity_id__patch",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "entity_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "enum": [
+                "venue",
+                "accommodation",
+                "experience",
+                "site",
+                "neighborhood",
+                "trip_story"
+              ],
+              "type": "string",
+              "title": "Entity Type"
+            }
+          },
+          {
+            "name": "entity_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Entity Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EntitySaveVisibilityUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntitySave"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/api/social-circles": {
@@ -22779,6 +22873,66 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TripPhotoOptInResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/planning/suggested-saves": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Trip Suggested Saves",
+        "description": "Viewer-relative member saves inside this trip's city.\n\nThe viewer's own private saves remain visible to them. A save made by\nanother member resurfaces for the group only after that member explicitly\nenables ``share_with_friends``; nothing is auto-added to the plan.",
+        "operationId": "get_trip_suggested_saves_api_trips__trip_id__planning_suggested_saves_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripSaveSuggestionsResponse"
                 }
               }
             }
@@ -44027,6 +44181,20 @@
           "entity_id"
         ],
         "title": "EntitySaveCreate"
+      },
+      "EntitySaveVisibilityUpdate": {
+        "properties": {
+          "share_with_friends": {
+            "type": "boolean",
+            "title": "Share With Friends"
+          }
+        },
+        "type": "object",
+        "required": [
+          "share_with_friends"
+        ],
+        "title": "EntitySaveVisibilityUpdate",
+        "description": "The explicit, per-save consent bit used by social readers."
       },
       "EntityTake": {
         "properties": {
@@ -74290,6 +74458,78 @@
         ],
         "title": "TripReadingPublicSection",
         "description": "Citation-free section contract safe for trip-member clients."
+      },
+      "TripSaveSuggestion": {
+        "properties": {
+          "entity_type": {
+            "type": "string",
+            "title": "Entity Type"
+          },
+          "entity_id": {
+            "type": "string",
+            "title": "Entity Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "category": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category"
+          },
+          "saved_by_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Saved By User Id"
+          },
+          "saved_by_display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Saved By Display Name"
+          },
+          "saved_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Saved At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_type",
+          "entity_id",
+          "name",
+          "saved_by_user_id",
+          "saved_at"
+        ],
+        "title": "TripSaveSuggestion",
+        "description": "One viewer-authorized member save inside a trip's city.\n\nThe viewer may see their own private save; another member's save requires\nexplicit per-save sharing. This is a planning suggestion, never an\nautomatic itinerary mutation."
+      },
+      "TripSaveSuggestionsResponse": {
+        "properties": {
+          "suggestions": {
+            "items": {
+              "$ref": "#/components/schemas/TripSaveSuggestion"
+            },
+            "type": "array",
+            "title": "Suggestions"
+          }
+        },
+        "type": "object",
+        "title": "TripSaveSuggestionsResponse",
+        "description": "``GET /api/trips/{trip_id}/planning/suggested-saves`` response body."
       },
       "TripSettlement": {
         "properties": {
