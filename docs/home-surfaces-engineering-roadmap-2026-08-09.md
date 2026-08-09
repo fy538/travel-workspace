@@ -686,3 +686,20 @@ Compatibility code is temporary product code and must have an explicit deletion 
 | HS-CL03 | Tighten size/containment/spacing/typography ratchets to the new lower measured baseline. | Architecture and first-family work is accepted. | Ratchets decrease; no exception list grows to preserve deleted code. |
 
 The coordinator opens cleanup tickets when compatibility paths are introduced. “Remove later” without an owner, deployment condition, and test is not an acceptable migration plan.
+
+## 20. Execution ledger (2026-08-09)
+
+The roadmap is being executed in separate parent, backend, and frontend integration lanes. The entries below are commits and evidence, not release acceptance:
+
+| Batch | Landed work | Commit/evidence | Layer and remaining gate |
+|---|---|---|---|
+| 0 | Design authority, composition inventory, external-canon QA wiring | `d9b29bf`, `b841d8c2`, `7b296d3`; governance checks pass | Governance/static; no device claim |
+| 0 | Places and Trips characterization suites | `0ce6374a`, `57b1592c`, `51991c40`, `2500e18f`, `44b30c40`; expected-red defects recorded | Static/mock characterization; defects drove Batch 1 |
+| 1 | Trips destination/receipt honesty and People route reachability | `225225ba`, `1145e8b0`; Trips/Details focused suites green | Static/mock; backend canary and device route proof remain |
+| 1 | Trips dedicated modules and queue projection | `ced9643f`; 80 focused backend tests, ruff/format/pyright pass | Backend static/offline; schema/client cutover follows |
+| 1 | Places bounded producer orchestration | `1560b15d`; 57 focused, 394 offline Places tests pass; one unrelated stale-DB failure | Backend static/offline; DB migration/device gates remain |
+| 1 | Shared viewport-aware exposure boundary | `1de051c8`; 4 focused tests pass | UI infrastructure; roots still need real viewport integration |
+| 1 | Additive module contract and generated app types | `7b57094` (workspace), `6f80b043` (app); snapshots are additive | Contract/static; app integration and device validation remain |
+| 2 | Pure Trips section plan and Places presentation model | `9a2ac692`, `10d4972c`; Trips plan 4/4 and Places model 8/8 focused tests pass | Pure adapter/static; root renderers and rhythm/state gates remain |
+
+The current integration branches are intentionally not called shipped. A feature becomes eligible for acceptance only after the roadmap's contract, backend-real, and device gates produce evidence for the exact state and journey being claimed.
