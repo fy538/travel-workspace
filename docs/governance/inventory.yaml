@@ -67,6 +67,10 @@ rules:
 
 
 overrides:
+  docs/home-surfaces-integration-code-review-2026-08-09.md:
+    disposition: keep_reference
+    rationale: Active point-in-time review of the August home-surface integration lanes; archive after its findings are resolved or transferred into durable system contracts.
+
   docs/home-surfaces-audit-2026-08-09.md:
     disposition: keep_reference
     rationale: Active post-pivot source audit for Places and Trips that records implementation evidence without replacing the external design authority.
