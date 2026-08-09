@@ -185,6 +185,30 @@ render-context interfaces.
 - Focused screenshots show no intentional visual delta; this is regression
   evidence, not design acceptance.
 
+### Phase 1 landing record — 2026-08-09
+
+The physical strangler is complete on the reconciled frontend branch:
+
+- Trips route boundary committed as `6e4277bc`; the Expo Router entry is now a
+  12-line adapter over named controller/body modules. The controller owns data,
+  state, actions, and telemetry; the body owns composition and styles.
+- Places style system and shared card primitives committed as `50d2e82b` and
+  `aff547b9`.
+- Candidate, editorial, experience, area, social, memory, and notice/prompt
+  renderers committed one family at a time through `c87e57b3`. The feed is now
+  550 lines of ordered iteration, section framing, viewport exposure, layout
+  choice, and exhaustive registry dispatch; it contains no leaf card function.
+- The architecture ratchet is committed as `cd1f08c5`. It caps the route/feed
+  boundaries and requires a physical renderer for every registry family.
+- The post-extraction focused Places/Trips suites remain green (129 tests in
+  the full focused pass); TypeScript passes. This is still integration evidence,
+  not device acceptance.
+
+The next debt is not another visual family. It is the state contract: every
+planned section needs an explicit render state, stable identity/revision,
+grounding/rejection reason, action/passivity, and adjacency role so roots do not
+silently derive different page rhythms from the same backend projection.
+
 ## Phase 2 — Complete the page-composition authorities
 
 ### NS-TR-P — Trips composition plan v2
