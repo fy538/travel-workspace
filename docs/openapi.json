@@ -23620,6 +23620,85 @@
         }
       }
     },
+    "/api/trips/{trip_id}/proposals/{proposal_id}/guest-links/{capability_token}/revoke": {
+      "post": {
+        "tags": [
+          "proposals"
+        ],
+        "summary": "Revoke Guest Proposal Link",
+        "description": "Revoke an unused guest link through the organizer's audit boundary.",
+        "operationId": "revoke_guest_proposal_link_api_trips__trip_id__proposals__proposal_id__guest_links__capability_token__revoke_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "proposal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Proposal Id"
+            }
+          },
+          {
+            "name": "capability_token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Capability Token"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProposalGuestCapabilityRevocation"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/proposals/{proposal_id}/vote": {
       "post": {
         "tags": [
@@ -72236,6 +72315,50 @@
         ],
         "title": "ProposalGuestCapabilityClaim",
         "description": "Authenticated result after a capability upgrades membership."
+      },
+      "ProposalGuestCapabilityRevocation": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "proposal_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Proposal Id"
+          },
+          "purpose": {
+            "type": "string",
+            "const": "proposal_vote",
+            "title": "Purpose",
+            "default": "proposal_vote"
+          },
+          "status": {
+            "type": "string",
+            "const": "revoked",
+            "title": "Status",
+            "default": "revoked"
+          },
+          "revoked_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Revoked At"
+          },
+          "replay": {
+            "type": "boolean",
+            "title": "Replay",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id",
+          "proposal_id",
+          "revoked_at"
+        ],
+        "title": "ProposalGuestCapabilityRevocation",
+        "description": "Organizer receipt after a capability is revoked."
       },
       "ProposalGuestConstraintCapture": {
         "properties": {
