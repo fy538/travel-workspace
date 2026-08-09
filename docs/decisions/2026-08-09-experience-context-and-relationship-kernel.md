@@ -66,8 +66,11 @@ existing access.
 
 Relationship memory is not copied from a Trip or inferred from membership. It
 is promoted only from explicit member-authored shared statements or confirmed
-per-person outcomes. A future relationship-memory claim ledger is the source
-of truth; a bounded group-safe memory version is only a projection.
+per-person outcomes. `relationship_memory_claims` is the source of truth; a
+bounded group-safe memory version is only a projection. Claims carry source
+references, scope, visibility, confidence, and correction state. The first
+outcome adapter writes private personal claims atomically with the outcome;
+sharing one into a confirmed circle is a separate, explicit consent action.
 
 ## Propagation rules
 
@@ -88,7 +91,10 @@ event.
 2. Add the shared contracts and ownership telemetry without behavior changes.
 3. Correct social-circle invitation, acceptance, pair identity, and lifecycle.
 4. Expose companion-fit outcome capture and emit authoritative outcome events.
-5. Add the governed relationship-memory claim ledger and projection.
+5. Add the governed relationship-memory claim ledger and projection. **Done:**
+   private outcome claims are append-and-supersede, Context Compiler reads the
+   active private projection, and circle sharing requires a confirmed-member
+   action with an auditable circle event.
 6. Migrate context consumers and retire redundant read paths incrementally.
 7. Prove one end-to-end pair Plan → occurrence → outcome → memory → proactive
    recommendation slice before expanding multiplayer behavior.

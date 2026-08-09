@@ -18829,6 +18829,148 @@
         }
       }
     },
+    "/api/social-circles/{circle_id}/memory-claims": {
+      "get": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "Read Circle Memory Claims",
+        "operationId": "read_circle_memory_claims_api_social_circles__circle_id__memory_claims_get",
+        "parameters": [
+          {
+            "name": "circle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Circle Id"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SharedRelationshipMemoryClaim"
+                  },
+                  "title": "Response Read Circle Memory Claims Api Social Circles  Circle Id  Memory Claims Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "Share Circle Memory Claim",
+        "operationId": "share_circle_memory_claim_api_social_circles__circle_id__memory_claims_post",
+        "parameters": [
+          {
+            "name": "circle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Circle Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShareRelationshipMemoryClaimRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SharedRelationshipMemoryClaim"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/social-circles/{circle_id}": {
       "get": {
         "tags": [
@@ -67106,6 +67248,21 @@
         "title": "ShareEventCreate",
         "description": "Body of ``POST /api/public/stories/{slug}/share-events``."
       },
+      "ShareRelationshipMemoryClaimRequest": {
+        "properties": {
+          "claim_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Claim Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "claim_id"
+        ],
+        "title": "ShareRelationshipMemoryClaimRequest",
+        "description": "Explicit consent action for promoting one private claim."
+      },
       "ShareStats": {
         "properties": {
           "opens": {
@@ -67342,6 +67499,82 @@
         ],
         "title": "SharedPlanSnapshot",
         "description": "The reduced, no-poll snapshot for a forwardable local Plan link."
+      },
+      "SharedRelationshipMemoryClaim": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "circle_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Circle Id"
+          },
+          "shared_by_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Shared By User Id"
+          },
+          "subject_type": {
+            "type": "string",
+            "title": "Subject Type"
+          },
+          "subject_key": {
+            "type": "string",
+            "title": "Subject Key"
+          },
+          "subject_label": {
+            "type": "string",
+            "title": "Subject Label"
+          },
+          "claim_type": {
+            "type": "string",
+            "enum": [
+              "place_verdict",
+              "companion_fit",
+              "shared_statement"
+            ],
+            "title": "Claim Type"
+          },
+          "claim_value": {
+            "type": "string",
+            "title": "Claim Value"
+          },
+          "source_claim_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Source Claim Id"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "circle_id",
+          "shared_by_user_id",
+          "subject_type",
+          "subject_key",
+          "subject_label",
+          "claim_type",
+          "claim_value",
+          "source_claim_id",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "SharedRelationshipMemoryClaim",
+        "description": "Group-safe projection created by an explicit member share action."
       },
       "SimilarVenueResponse": {
         "properties": {
