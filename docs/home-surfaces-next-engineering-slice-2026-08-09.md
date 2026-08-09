@@ -101,6 +101,34 @@ conflicts.
 - Remaining repository-wide failures are reproduced and classified against the
   same current-main base.
 
+### Phase 0 landing record — 2026-08-09
+
+Phase 0 is complete on fresh current-main worktrees. The replay was deliberately
+selective rather than a wholesale merge:
+
+- Frontend `codex/home-surfaces-app-next` landed the home commits through
+  `3ca102ab` (viewport exposure, pure plans/models, renderer registry, Trips
+  body extraction, partial-producer UI, and the current backend-generated
+  schema).
+- Backend `codex/home-surfaces-backend-next` landed the home commits through
+  `c6279d99` (Places orchestration, dedicated Trips projection, bounded
+  producer failures, and projection identity/revision validation). The broad
+  unrelated social-consent commit was skipped because current-main removed
+  those routes from the registered API surface.
+- Workspace contract snapshots and governance were regenerated and committed
+  as `56c64c7`. The policy now contains only operations registered by the
+  reconciled backend; the audit reports `443 active`, `8 dark`, and `56
+  retiring` operations.
+- Focused backend suites passed: 106 tests. Focused Places/Trips frontend
+  suites passed: 129 tests. Frontend TypeScript and generated-schema freshness
+  checks passed. This is integration evidence, not device acceptance.
+
+One semantic conflict was corrected after typechecking: current-main's
+`useTripEditorialMap` remains an un-gated one-argument hook, so the stale
+historical feature-flag call was removed and the extracted body now receives the
+controller's `editorialMapCard`. The generated schema was produced only after
+the backend replay; no historical schema snapshot was cherry-picked.
+
 ## Phase 1 — Finish the strangler architecture
 
 This phase is behavior-preserving and may run in three parallel lanes after
