@@ -83,10 +83,9 @@ Wedge journeys = the group-trip path (journeys 02 → 05). "Serves" cites
 
 ## Release scope
 
-The v1 flag manifest and DoD checklist live at
-[`docs/working/mvp-scope-and-flag-manifest-2026-06-30.md`](../working/mvp-scope-and-flag-manifest-2026-06-30.md).
-It is the authoritative record of what ships in v1, what is hidden, and
-the remaining device-cert gates.
+The generated [V1 release contract](../release/v1-scope.md) owns what ships and
+what stays dark. [Journey Status](../journeys/STATUS.md) owns certification;
+system charters should link to those authorities instead of restating readiness.
 
 ---
 

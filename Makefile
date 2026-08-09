@@ -11,7 +11,7 @@ include dogfood.mk
 .PHONY: new-worktree land-worktree worktrees
 .PHONY: contract-check place-identity-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate mock-slug-parity
 .PHONY: certify-fast certify-logic certify-corpus certify-visual certify-visual-cloud certify-live maestro-flow-check journey-registry-check journey-evidence-report dogfood-status corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-journey-live-api qa-persona dogfood-status-sync
-.PHONY: preflight-eas fly-secrets verify docs-governance-check docs-child-governance-check docs-inventory-check docs-inventory-report docs-spine-check docs-status-check docs-status-sync docs-links-check docs-home-surfaces-check docs-check compatibility-check card-arrival-check chat-card-types-check pre-dogfood dogfood-fast dogfood-local dogfood-device dogfood-staging test-backend-postgres
+.PHONY: preflight-eas fly-secrets verify docs-governance-check docs-child-governance-check docs-inventory-check docs-inventory-report docs-spine-check docs-release-check docs-release-sync docs-status-check docs-status-sync docs-links-check docs-home-surfaces-check docs-check compatibility-check card-arrival-check chat-card-types-check pre-dogfood dogfood-fast dogfood-local dogfood-device dogfood-staging test-backend-postgres
 
 # ── Development ───────────────────────────────────────────────────────────────
 
@@ -163,6 +163,12 @@ docs-inventory-report: ## Print the complete documentation disposition report
 docs-spine-check: ## Gate: the eight canonical documentation entry points exist and are indexed
 	@python3 scripts/check_docs_spine.py
 
+docs-release-check: ## Gate: generated V1 scope matches release intent, flags, journeys, and code evidence
+	@python3 scripts/render_release_scope.py
+
+docs-release-sync: ## Refresh the generated V1 release contract
+	@python3 scripts/render_release_scope.py --write
+
 docs-status-check: ## Gate: generated current-state signals match executable registries
 	@python3 scripts/render_current_state.py
 
@@ -299,7 +305,7 @@ verify: ## Single cross-repo pre-push gate (absorbs offline-qa + mock-real-parit
 	@cd travel-app && npm run test:offline
 	@echo "▸ Workspace governance and evidence-integrity gates..."
 	@$(MAKE) maestro-flow-check journey-registry-check flag-registry-check \
-		docs-spine-check docs-status-check docs-links-check docs-child-governance-check \
+		docs-spine-check docs-release-check docs-status-check docs-links-check docs-child-governance-check \
 		compatibility-check card-arrival-check chat-card-types-check
 	@echo "✓ verify: all cross-repo gates green"
 

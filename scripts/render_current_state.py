@@ -10,6 +10,7 @@ from pathlib import Path
 import yaml
 
 from check_doc_inventory import load_inventory, validate
+from render_release_scope import evidence_posture, flag_posture, load_release
 
 ROOT = Path(__file__).resolve().parent.parent
 DOC = ROOT / "docs/status/current-state.md"
@@ -31,6 +32,7 @@ def render() -> str:
     if problems:
         raise ValueError("inventory is invalid: " + "; ".join(problems))
     systems = len(list((ROOT / "docs/systems").glob("*.md")))
+    _, capabilities, release_flags = load_release()
     lines = [
         BEGIN,
         "<!-- Run `make docs-status-sync` to update this block. -->",
@@ -40,8 +42,25 @@ def render() -> str:
         f"| Feature flags | {len(flags)} registered / {statuses['active']} active / {statuses['resolved']} resolved | [`registry.yaml`](../flags/registry.yaml) |",
         f"| System charters | {systems} Markdown documents | [`systems/`](../systems/) |",
         f"| Documentation inventory | {len(inventory)} files classified | [`inventory.yaml`](../governance/inventory.yaml) |",
-        END,
+        "",
+        "### V1 intent versus executable evidence",
+        "",
+        "Code evidence reports only whether the manifest's named implementation paths",
+        "exist. Default posture comes from the flag registry. Neither column is a",
+        "certification claim; Journey Status and device receipts own readiness.",
+        "",
+        "| Capability | V1 intent | Code evidence | Default posture | Certification |",
+        "|---|---|---:|---|---|",
     ]
+    for row in capabilities:
+        journeys = ", ".join(row.get("journey_ids", [])) or "—"
+        lines.append(
+            f"| {row['name']} | **{row['intent'].upper()}** | {evidence_posture(row)} | "
+            f"{flag_posture(row, release_flags)} | [{journeys}](../journeys/STATUS.md) |"
+        )
+    lines.extend([
+        END,
+    ])
     return "\n".join(lines)
 
 

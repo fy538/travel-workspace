@@ -19,7 +19,7 @@ from the repo)
 Backend is **live and healthy** at `https://vesper-backend.fly.dev` (`/health`, `/ready` →
 Postgres+Qdrant ok). Real Clerk auth is **verified active** (garbage token → 401; Step 0 of
 the dogfood runbook confirmed `SKIP_AUTH=false` + JWKS reachable on Fly, 2026-07-04). The v1
-scope is **locked and flag-gated** (`mvp-scope-and-flag-manifest-2026-06-30.md`; FE flag layer
+scope is **locked and flag-gated** ([V1 release contract](release/v1-scope.md); FE flag layer
 + BE story-share guard merged 2026-07-01). Journeys are **12/12 agent-certified but 0/12
 device-certified on a real build** — that device walk is the headline gate. Of the original
 A0–A10 owner list, **most is done**: EAS projectId bound, AASA live on Fly, Google/Foursquare

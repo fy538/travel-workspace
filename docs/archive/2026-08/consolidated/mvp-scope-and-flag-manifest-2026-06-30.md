@@ -1,3 +1,16 @@
+---
+doc_type: archive
+status: archived
+owner: founder / engineering
+created: 2026-06-30
+archived: 2026-08-09
+why_new: Preserves the original hand-maintained V1 scope, implementation ledger, and decision notes after release intent moved to a machine-readable contract.
+supersedes: []
+---
+
+> Historical source preserved in full. Current release intent lives in
+> [the generated V1 release contract](../../../release/v1-scope.md).
+
 # Vesper v1 — MVP Scope & Flag Manifest
 
 > Status: scope locked — flag gating LIVE as of 2026-07-01

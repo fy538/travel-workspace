@@ -27,6 +27,7 @@ CHECKS: dict[str, list[str]] = {
     "child-governance": [PYTHON, "scripts/check_child_doc_governance.py"],
     "inventory": [PYTHON, "scripts/check_doc_inventory.py", "--steady"],
     "spine": [PYTHON, "scripts/check_docs_spine.py"],
+    "release": [PYTHON, "scripts/render_release_scope.py"],
     "status": [PYTHON, "scripts/render_current_state.py"],
     "links": [PYTHON, "scripts/check_living_doc_links.py"],
     "compatibility": [PYTHON, "scripts/check_compatibility_ledger.py"],
