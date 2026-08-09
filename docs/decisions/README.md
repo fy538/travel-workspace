@@ -18,6 +18,7 @@ Durable choices that constrain future work belong here. Use the
 
 | Date | Decision | Status |
 |---|---|---|
+| 2026-08-09 | [Adopt the lived-experience company model](2026-08-09-lived-experience-company-model.md) | accepted |
 | 2026-08-08 | [Use typed place identity, durable resolution, and fact provenance](2026-08-08-place-identity-and-provenance.md) | accepted |
 | 2026-07-25 | [Attention identity and type registry](2026-07-25-attention-identity-and-type-registry.md) | accepted |
 | 2026-07-09 | [Separate public reasons from private influences in receipts](2026-07-09-trust-receipt-boundary.md) | accepted |
