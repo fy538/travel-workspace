@@ -11,7 +11,7 @@ include dogfood.mk
 .PHONY: new-worktree land-worktree worktrees
 .PHONY: contract-check place-identity-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate mock-slug-parity
 .PHONY: certify-fast certify-logic certify-corpus certify-visual certify-visual-cloud certify-live maestro-flow-check journey-registry-check journey-evidence-report dogfood-status corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-journey-live-api qa-persona dogfood-status-sync
-.PHONY: preflight-eas fly-secrets verify docs-governance-check docs-child-governance-check docs-inventory-check docs-inventory-report docs-spine-check docs-status-check docs-status-sync docs-links-check docs-check compatibility-check card-arrival-check chat-card-types-check pre-dogfood dogfood-fast dogfood-local dogfood-device dogfood-staging test-backend-postgres
+.PHONY: preflight-eas fly-secrets verify docs-governance-check docs-child-governance-check docs-inventory-check docs-inventory-report docs-spine-check docs-status-check docs-status-sync docs-links-check docs-home-surfaces-check docs-check compatibility-check card-arrival-check chat-card-types-check pre-dogfood dogfood-fast dogfood-local dogfood-device dogfood-staging test-backend-postgres
 
 # ── Development ───────────────────────────────────────────────────────────────
 
@@ -174,6 +174,9 @@ docs-child-governance-check: ## Gate: new child-repo docs satisfy workspace life
 
 docs-links-check: ## Gate: relative links in living workspace docs resolve
 	@python3 scripts/check_living_doc_links.py
+
+docs-home-surfaces-check: ## Gate: external design authority and D/C/P/R/A/F/B/V inventory agree
+	@python3 scripts/check_home_surfaces_governance.py
 
 docs-check: ## Run all documentation governance gates
 	@python3 scripts/check_docs.py --all
