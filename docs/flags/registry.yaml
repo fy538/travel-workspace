@@ -540,6 +540,56 @@ flags:
     status: active
     notes: Latency prototype — shrinks the final synthesis reasoning_trace (the slowest single call, ~50% of wall-clock). Off by default; env-flippable for A/B measurement only, not yet a product decision.
 
+  - name: SHARED_WORKFLOW_CONTROL_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:78
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    notes: Enables CAS-fenced workflow command recording only; command application and live authority remain disabled until the shared-control canary and device recovery review pass.
+
+  - name: SOCIAL_CIRCLE_AGENT_CONTEXT_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:53
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    notes: Gates bounded, explicit-circle facts entering shared-agent context while privacy and device evidence are reviewed.
+
+  - name: GROUP_ATTENDANCE_CONTEXT_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:65
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    notes: Gates aggregate attendance counts entering shared-agent context; individual choices and notes remain excluded.
+
+  - name: WEATHER_RESCUE_PROPOSALS_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:274
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    notes: Gates current-weather rescue proposal production until freshness, group-safe composition, canonical apply, and two-observer device evidence pass.
+
+  - name: GUEST_PROPOSAL_CAPABILITIES_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:278
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    notes: Gates one-use, purpose-bound proposal guest links and authenticated membership upgrade until mobile handoff, canonical vote continuity, and two-observer device evidence pass.
+
   - name: VOICE_ENABLED
     repo: travel-app
     location: utils/voiceEnabled.ts:12

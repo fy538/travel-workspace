@@ -85,3 +85,6 @@ else
   cat "$TMP_DIFF"
   fail "schema.gen.ts is out of date. Run: make sync-types-snapshot"
 fi
+
+header "Verify canonical place identity seams"
+python3 "$WORKSPACE_DIR/scripts/check_place_identity_contract.py"

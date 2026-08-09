@@ -8,21 +8,115 @@
     "review_by": null
   },
   "operations": {
-    "GET /api/trips/{trip_id}/editorial-map": {
+    "POST /api/agent-workflows/{workflow_id}/commands": {
       "audience": "app",
-      "consumers": [
-        {
-          "kind": "app_url",
-          "name": "getTripEditorialMap",
-          "source": "travel-app/utils/api/http.ts"
-        }
-      ],
-      "feature_flag": null,
+      "consumers": [],
+      "feature_flag": "SHARED_WORKFLOW_CONTROL_ENABLED",
+      "lifecycle": "dark",
+      "owner": "multiplayer",
+      "reason": "Durable CAS-fenced workflow command recording is staged behind an explicit control-plane canary; no mobile caller until command application and device recovery are proven.",
+      "removal_trigger": "Either adopt from a shared-workflow control journey or remove the dark transport after the canary decision.",
+      "review_by": "2026-09-03"
+    },
+    "POST /api/trips/{trip_id}/proposals/{proposal_id}/guest-links": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "GUEST_PROPOSAL_CAPABILITIES_ENABLED",
+      "lifecycle": "dark",
+      "owner": "multiplayer",
+      "reason": "One-use proposal guest capability minting is staged behind the membership-upgrade and mobile handoff canary; no client caller until canonical vote continuity and device evidence pass.",
+      "removal_trigger": "Either adopt from the guest proposal journey or remove the dark transport after the canary decision.",
+      "review_by": "2026-09-03"
+    },
+    "POST /api/trips/{trip_id}/proposals/{proposal_id}/guest-links/{capability_token}/revoke": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "GUEST_PROPOSAL_CAPABILITIES_ENABLED",
+      "lifecycle": "dark",
+      "owner": "multiplayer",
+      "reason": "Organizer revocation is staged with the guest proposal capability canary; no client caller until the organizer control and device recovery evidence are proven.",
+      "removal_trigger": "Either adopt from the guest proposal journey or remove the dark transport after the canary decision.",
+      "review_by": "2026-09-03"
+    },
+    "POST /api/proposal-guest-capabilities/{capability_token}/claim": {
+      "audience": "app",
+      "consumers": [{"kind": "app_source", "name": "claimGuestProposalCapability", "source": "travel-app/utils/api/http.ts"}],
+      "feature_flag": "GUEST_PROPOSAL_CAPABILITIES_ENABLED",
       "lifecycle": "active",
-      "owner": "editorial-map",
-      "reason": "The cache-only Trips Home route is consumed through the API facade; the indirect URL is declared here so contract projection remains source-checked.",
+      "owner": "multiplayer",
+      "reason": "Authenticated token-only capability claim upgrades the recipient through the existing membership fan-out but deliberately does not write a vote or expose trip/proposal coordinates in the bearer URL; runtime remains off until the mobile handoff and two-observer recovery pass.",
+      "removal_trigger": "Remove after the guest proposal journey is retired or replace the capability contract with a newer scoped handoff.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/proposal-guest-capabilities/{capability_token}/private-constraint": {
+      "audience": "app",
+      "consumers": [{"kind": "app_source", "name": "captureGuestProposalConstraint", "source": "travel-app/utils/api/http.ts"}],
+      "feature_flag": "GUEST_PROPOSAL_CAPABILITIES_ENABLED",
+      "lifecycle": "active",
+      "owner": "multiplayer",
+      "reason": "One account-private constraint may be captured only after the opaque capability is claimed; runtime remains off until the mobile prompt and two-observer recovery are certified.",
+      "removal_trigger": "Remove after the guest proposal journey is retired or replace the capability contract with a newer scoped handoff.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/social-circles": {
+      "audience": "app",
+      "consumers": [{"kind": "app_url", "name": "createSocialCircle", "source": "travel-app/utils/api/http.ts"}],
+      "feature_flag": "SOCIAL_CIRCLES_ENABLED",
+      "lifecycle": "active",
+      "owner": "multiplayer",
+      "reason": "Backend-first explicit circle identity contract; mobile adoption follows after the storage and authorization canary is proven.",
       "removal_trigger": null,
-      "review_by": null
+      "review_by": "2026-09-03"
+    },
+    "GET /api/social-circles": {
+      "audience": "app",
+      "consumers": [{"kind": "app_url", "name": "listSocialCircles", "source": "travel-app/utils/api/http.ts"}],
+      "feature_flag": "SOCIAL_CIRCLES_ENABLED",
+      "lifecycle": "active",
+      "owner": "multiplayer",
+      "reason": "Backend-first explicit circle identity contract; mobile adoption follows after the storage and authorization canary is proven.",
+      "removal_trigger": null,
+      "review_by": "2026-09-03"
+    },
+    "GET /api/social-circles/{circle_id}/events": {
+      "audience": "app",
+      "consumers": [{"kind": "app_url", "name": "listSocialCircleEvents", "source": "travel-app/utils/api/http.ts"}],
+      "feature_flag": "SOCIAL_CIRCLES_ENABLED",
+      "lifecycle": "active",
+      "owner": "multiplayer",
+      "reason": "Ordered circle mutations support cursor-based replay for a mobile sync canary; realtime transport remains intentionally deferred.",
+      "removal_trigger": null,
+      "review_by": "2026-09-03"
+    },
+    "GET /api/social-circles/{circle_id}": {
+      "audience": "app",
+      "consumers": [{"kind": "app_url", "name": "readSocialCircle", "source": "travel-app/utils/api/http.ts"}],
+      "feature_flag": "SOCIAL_CIRCLES_ENABLED",
+      "lifecycle": "active",
+      "owner": "multiplayer",
+      "reason": "Backend-first explicit circle identity contract; mobile adoption follows after the storage and authorization canary is proven.",
+      "removal_trigger": null,
+      "review_by": "2026-09-03"
+    },
+    "POST /api/social-circles/{circle_id}/members": {
+      "audience": "app",
+      "consumers": [{"kind": "app_url", "name": "addSocialCircleMember", "source": "travel-app/utils/api/http.ts"}],
+      "feature_flag": "SOCIAL_CIRCLES_ENABLED",
+      "lifecycle": "active",
+      "owner": "multiplayer",
+      "reason": "Backend-first explicit circle identity contract; mobile adoption follows after the storage and authorization canary is proven.",
+      "removal_trigger": null,
+      "review_by": "2026-09-03"
+    },
+    "POST /api/social-circles/{circle_id}/trips/{trip_id}": {
+      "audience": "app",
+      "consumers": [{"kind": "app_url", "name": "linkSocialCircleTrip", "source": "travel-app/utils/api/http.ts"}],
+      "feature_flag": "SOCIAL_CIRCLES_ENABLED",
+      "lifecycle": "active",
+      "owner": "multiplayer",
+      "reason": "Backend-first explicit circle identity contract; mobile adoption follows after the storage and authorization canary is proven.",
+      "removal_trigger": null,
+      "review_by": "2026-09-03"
     },
     "GET /api/trips/{trip_id}/occurrence-artifact": {
       "audience": "app",
@@ -1666,16 +1760,6 @@
       "removal_trigger": null,
       "review_by": null
     },
-    "POST /api/trips/{trip_id}/booking/sessions/{session_id}/offers/{offer_id}/cancel/quote": {
-      "audience": "app",
-      "consumers": [],
-      "feature_flag": "EXPO_PUBLIC_LIVE_BOOKING_ENABLED",
-      "lifecycle": "dark",
-      "owner": "booking",
-      "reason": "Read-only provider cancellation quotes are implemented behind the live-booking gate and stay dark until provider reconciliation and a real multi-member walk are credible.",
-      "removal_trigger": "Promote only after signed provider reconciliation, quote-bound approval, and device-certified multi-member cancellation evidence; otherwise remove the route and its contract shadows.",
-      "review_by": "2026-09-03"
-    },
     "POST /api/trips/{trip_id}/booking/link-domain-attribution/confirm": {
       "audience": "app",
       "consumers": [
@@ -1906,21 +1990,6 @@
       "lifecycle": "active",
       "owner": "integrations",
       "reason": "Provider callback surface.",
-      "removal_trigger": null,
-      "review_by": null
-    },
-    "POST /webhooks/booking/{provider}": {
-      "audience": "webhook",
-      "consumers": [
-        {
-          "kind": "webhook",
-          "name": "booking-provider"
-        }
-      ],
-      "feature_flag": null,
-      "lifecycle": "active",
-      "owner": "booking",
-      "reason": "Signed provider callback enters the durable booking webhook inbox; mobile clients never call this route directly.",
       "removal_trigger": null,
       "review_by": null
     },
