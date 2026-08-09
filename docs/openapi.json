@@ -25418,6 +25418,196 @@
         }
       }
     },
+    "/api/social-circles/{circle_id}/leave": {
+      "post": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "Leave Circle",
+        "description": "Withdraw the authenticated member's relationship consent.",
+        "operationId": "leave_circle_api_social_circles__circle_id__leave_post",
+        "parameters": [
+          {
+            "name": "circle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Circle Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialCircleMember"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/social-circles/{circle_id}/members/{user_id}": {
+      "delete": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "Remove Circle Member",
+        "description": "Allow the owner to revoke an invitation or remove a member.",
+        "operationId": "remove_circle_member_api_social_circles__circle_id__members__user_id__delete",
+        "parameters": [
+          {
+            "name": "circle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Circle Id"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialCircleMember"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/social-circles/{circle_id}/archive": {
+      "post": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "Archive Circle",
+        "description": "Archive the circle and revoke its future relationship projections.",
+        "operationId": "archive_circle_api_social_circles__circle_id__archive_post",
+        "parameters": [
+          {
+            "name": "circle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Circle Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialCircle"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/social-circles/{circle_id}/trips/{trip_id}": {
       "post": {
         "tags": [
@@ -52119,6 +52309,24 @@
               }
             ],
             "title": "City Slug"
+          },
+          "angle_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Angle Id"
+          },
+          "provenance": {
+            "items": {
+              "$ref": "#/components/schemas/DossierEvidenceRef"
+            },
+            "type": "array",
+            "title": "Provenance"
           }
         },
         "type": "object",
@@ -52138,6 +52346,121 @@
         ],
         "title": "DossierDetail",
         "description": "Full dossier content + metadata."
+      },
+      "DossierEvidenceRef": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "dossier_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dossier Id"
+          },
+          "angle_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Angle Id"
+          },
+          "evidence_kind": {
+            "type": "string",
+            "enum": [
+              "observation",
+              "claim",
+              "judgment"
+            ],
+            "title": "Evidence Kind"
+          },
+          "evidence_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evidence Id"
+          },
+          "evidence_key": {
+            "type": "string",
+            "title": "Evidence Key"
+          },
+          "assertion": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Assertion"
+          },
+          "source_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Url"
+          },
+          "publisher": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Publisher"
+          },
+          "retrieved_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Retrieved At"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "evidence_kind",
+          "evidence_key",
+          "created_at"
+        ],
+        "title": "DossierEvidenceRef",
+        "description": "Safe, traveler-facing receipt for one editorial assertion."
       },
       "DossierExemplarItem": {
         "properties": {
@@ -54405,6 +54728,18 @@
               }
             ],
             "title": "Companion Fit"
+          },
+          "companion_scope": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Companion Scope"
           },
           "created_at": {
             "type": "string",
@@ -65144,6 +65479,35 @@
             "title": "Citations",
             "default": []
           },
+          "grounded": {
+            "type": "boolean",
+            "title": "Grounded",
+            "default": true
+          },
+          "angle_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Angle Ids",
+            "default": []
+          },
+          "dossier_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Dossier Ids",
+            "default": []
+          },
+          "fragment_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Fragment Ids",
+            "default": []
+          },
           "message_id": {
             "anyOf": [
               {
@@ -68687,6 +69051,17 @@
           "id": {
             "type": "integer",
             "title": "Id"
+          },
+          "angle_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Angle Id"
           },
           "place_slug": {
             "type": "string",
@@ -76328,6 +76703,18 @@
             "format": "uuid",
             "title": "Source Id"
           },
+          "source_scope": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Scope"
+          },
           "source_claim_id": {
             "anyOf": [
               {
@@ -79893,6 +80280,11 @@
               "archived"
             ],
             "title": "Status"
+          },
+          "confirmed": {
+            "type": "boolean",
+            "title": "Confirmed",
+            "default": false
           },
           "revision": {
             "type": "integer",
