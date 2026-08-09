@@ -204,6 +204,25 @@ files present at those commits keep their native child-repo conventions, while e
 later Markdown path must satisfy the workspace lifecycle schema. Do not advance a
 baseline to bypass admission—the baseline is history, not a moving allowlist.
 
+## Phase 8 authority consolidation
+
+The 2026-08-09 consolidation assigned one owner to each company concept and
+made the shortest company-orientation path Product Thesis → Product Model →
+Current State. The nine-entry spine is an authority registry, not a required
+reading sequence.
+
+`make docs-canon-check` prevents the first-read canon from expanding back into
+overlapping essays. Product Thesis, Product Model, Product Vision, What We
+Believe, Architecture Principles, Unified Context Graph, Design Language, and
+Brand Identity each have a reviewed maximum. New detail should move to the
+authority that owns it, a system/surface contract, or a historical snapshot—not
+raise a budget casually.
+
+V1 intent now lives in `docs/release/v1-scope.yaml`; its Markdown view and the
+capability projection in Current State are generated. Code-path presence and
+default flag posture are evidence signals, not release certification. Journey
+Status and device receipts retain that authority.
+
 ## Enforcement
 
 Run:
@@ -213,6 +232,8 @@ make docs-governance-check
 make docs-inventory-check
 make docs-inventory-report
 make docs-spine-check
+make docs-canon-check
+make docs-release-check
 make docs-status-check
 make docs-child-governance-check
 make docs-links-check
