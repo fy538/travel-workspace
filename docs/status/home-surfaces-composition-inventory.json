@@ -38,7 +38,7 @@
       "reachability": "GET /api/places/feed.",
       "renderer": "Candidate/place family in PlacesSectionFeed.",
       "action": "Place detail, save, or Trips-owned add-to-day handoff.",
-      "telemetry": "Places section impression/engagement; viewport semantics not yet valid.",
+      "telemetry": "Viewport-aware Places section impression/engagement with backend fact identity; static/mock evidence only.",
       "blockers": ["lead flag has no distinct visual effect", "post-pivot fixture review"],
       "evidence": {"D": "verified", "C": "verified", "P": "verified", "R": "verified", "A": "verified", "F": "not_verified", "B": "not_verified", "V": "not_verified"}
     },
@@ -92,7 +92,7 @@
       "reachability": "GET /api/places/feed.",
       "renderer": "Experience family with responsive degradation.",
       "action": "Experience detail/save.",
-      "telemetry": "Section engagement; viewport semantics not yet valid.",
+      "telemetry": "Viewport-aware section impression/engagement with backend fact identity; static/mock evidence only.",
       "blockers": ["post-pivot fixture review", "iOS and Android dynamic-type review"],
       "evidence": {"D": "verified", "C": "verified", "P": "verified", "R": "verified", "A": "verified", "F": "not_verified", "B": "not_verified", "V": "not_verified"}
     },
@@ -146,7 +146,7 @@
       "reachability": "GET /api/places/feed.",
       "renderer": "Editorial/reading family and fork.",
       "action": "Guide/dossier reader or count door.",
-      "telemetry": "Section engagement; viewport semantics not yet valid.",
+      "telemetry": "Viewport-aware section impression/engagement with backend fact identity; static/mock evidence only.",
       "blockers": ["post-pivot review against new spine direction"],
       "evidence": {"D": "verified", "C": "verified", "P": "verified", "R": "verified", "A": "verified", "F": "not_verified", "B": "not_verified", "V": "not_verified"}
     },
@@ -182,7 +182,7 @@
       "reachability": "GET /api/places/feed.",
       "renderer": "MemoryFeedCard.",
       "action": "Artifact or trip destination.",
-      "telemetry": "Section engagement; viewport semantics not yet valid.",
+      "telemetry": "Viewport-aware section impression/engagement with backend fact identity; static/mock evidence only.",
       "blockers": ["typography role correction", "post-pivot fixture review"],
       "evidence": {"D": "verified", "C": "verified", "P": "verified", "R": "verified", "A": "verified", "F": "not_verified", "B": "not_verified", "V": "not_verified"}
     },
@@ -218,8 +218,8 @@
       "reachability": "GET /api/places/feed.",
       "renderer": "FriendFeedCard.",
       "action": "Passive; no honest target currently exists.",
-      "telemetry": "Impression only; engagement is not wired.",
-      "blockers": ["viewport telemetry", "honest action target before actionability"],
+      "telemetry": "Viewport-aware impression; friend rows remain passive because no honest action target exists.",
+      "blockers": ["device viewport evidence", "honest action target before actionability"],
       "evidence": {"D": "verified", "C": "verified", "P": "verified", "R": "verified", "A": "not_verified", "F": "not_verified", "B": "not_verified", "V": "not_verified"}
     },
     {
@@ -272,7 +272,7 @@
       "reachability": "Trips root stack query.",
       "renderer": "TripsHomeCrown and receipt variants.",
       "action": "Typed canonical destination; binary proposal uses canonical resolver.",
-      "telemetry": "Trips stack events; viewport semantics not yet valid.",
+      "telemetry": "Viewport-aware Trips section impression/engagement with stable section/content identity; static/mock evidence only.",
       "blockers": ["post-pivot fixture review", "device evidence"],
       "evidence": {"D": "verified", "C": "verified", "P": "verified", "R": "verified", "A": "verified", "F": "not_verified", "B": "not_verified", "V": "not_verified"}
     },
@@ -303,13 +303,13 @@
       "adoption": "unresolved",
       "design_source": "Trips - The Page / Group B; audit 6.2",
       "evidence_requirement": "Coherent live/current facts and canonical itinerary-day receipt for any day pips.",
-      "producer": "Now/countdown cards plus side-channel trip dates; temporal strip absent.",
-      "contract": "D2 kinds currently carried only in capped rows; no day receipt.",
-      "reachability": "Unreliable because four D2 kinds are mined from two rows.",
+      "producer": "Typed live_trip/imminent_trip modules plus side-channel trip dates; temporal strip absent.",
+      "contract": "Discriminated dedicated modules selected before the capped generic queue; no day receipt.",
+      "reachability": "Now/countdown modules are reachable from the dedicated projection; temporal strip remains absent.",
       "renderer": "Now and Countdown components; temporal strip absent.",
       "action": "Typed trip/plan destination where row survives.",
-      "telemetry": "Manually duplicated Trips list; viewport semantics invalid.",
-      "blockers": ["typed modules before queue cap", "day receipt or simpler adopted countdown", "section plan"],
+      "telemetry": "Viewport-aware planned-section telemetry with stable module identity; static/mock evidence only.",
+      "blockers": ["day receipt or simpler adopted countdown", "device evidence"],
       "evidence": {"D": "verified", "C": "partial", "P": "partial", "R": "partial", "A": "partial", "F": "not_verified", "B": "not_verified", "V": "not_verified"}
     },
     {
@@ -323,11 +323,11 @@
       "evidence_requirement": "Authorized trip roster and typed group destination.",
       "producer": "group_room card plus separately loaded roster.",
       "contract": "D2 row and group_room destination.",
-      "reachability": "Unreliable under the two-row cap.",
+      "reachability": "Dedicated group_room module is selected before the two-row generic queue cap.",
       "renderer": "TripsGroupSection.",
       "action": "Canonical trip group room.",
-      "telemetry": "Trips section events; engagement not centrally wired.",
-      "blockers": ["typed module projection", "coherent authorized view model"],
+      "telemetry": "Viewport-aware planned-section impression/engagement; static/mock evidence only.",
+      "blockers": ["coherent authorized view model", "device/privacy evidence"],
       "evidence": {"D": "verified", "C": "verified", "P": "verified", "R": "partial", "A": "verified", "F": "not_verified", "B": "not_verified", "V": "not_verified"}
     },
     {
@@ -345,7 +345,7 @@
       "renderer": "TripsHomeTrail.",
       "action": "Share link and contacts doors.",
       "telemetry": "Trips section events.",
-      "blockers": ["viewport telemetry", "post-pivot fixture review"],
+      "blockers": ["device viewport evidence", "post-pivot fixture review"],
       "evidence": {"D": "verified", "C": "verified", "P": "verified", "R": "verified", "A": "verified", "F": "not_verified", "B": "not_applicable", "V": "not_verified"}
     },
     {
@@ -358,12 +358,12 @@
       "design_source": "Trips - The Page / Group C; audit 6.3",
       "evidence_requirement": "Authorized membership facts and exact People destination.",
       "producer": "invite_seat card exists; dedicated Your People producer absent.",
-      "contract": "Backend/generated details_section supports people; handwritten frontend shadow drops it.",
-      "reachability": "Invite seat can appear but routes incorrectly; dedicated section absent.",
-      "renderer": "Crown/generic forms only.",
-      "action": "Currently hardcoded to Bookings instead of People.",
-      "telemetry": "No dedicated composition identity.",
-      "blockers": ["generated destination preservation", "dedicated composition adoption", "privacy trace"],
+      "contract": "Generated details_section supports people; typed frontend destination preserves it.",
+      "reachability": "People destination reaches the real Travelers section; dedicated Your People producer remains absent.",
+      "renderer": "Trips Details Travelers section plus crown destination adapter.",
+      "action": "Canonical People/Traveler editor continuation.",
+      "telemetry": "Trips crown/section events with stable destination identity; static/mock evidence only.",
+      "blockers": ["dedicated composition adoption", "privacy trace", "device route evidence"],
       "evidence": {"D": "verified", "C": "partial", "P": "partial", "R": "partial", "A": "partial", "F": "not_verified", "B": "not_verified", "V": "not_verified"}
     },
     {
@@ -377,11 +377,11 @@
       "evidence_requirement": "Same-revision trip condition facts with explicit unavailable state.",
       "producer": "conditions card plus ambient weather side channel.",
       "contract": "D2 row without coherent combined receipt.",
-      "reachability": "Unreliable under the two-row cap.",
+      "reachability": "Dedicated weather module is selected before the two-row generic queue cap.",
       "renderer": "TripsConditionsSection.",
       "action": "Typed trip/plan destination.",
-      "telemetry": "Trips section events; viewport semantics invalid.",
-      "blockers": ["typed module", "coherent side-data adapter"],
+      "telemetry": "Viewport-aware planned-section events with stable module identity; static/mock evidence only.",
+      "blockers": ["coherent side-data adapter", "device/weather-state evidence"],
       "evidence": {"D": "verified", "C": "verified", "P": "verified", "R": "partial", "A": "verified", "F": "not_verified", "B": "not_verified", "V": "not_verified"}
     },
     {
@@ -412,12 +412,12 @@
       "design_source": "Trips - The Page / Group E; audit 6.5",
       "evidence_requirement": "Ranked non-crown item with typed destination and stable depth.",
       "producer": "project_trips_home_stack rows.",
-      "contract": "TripsHomeStackProjection rows capped at two.",
+      "contract": "TripsHomeStackProjection dedicated modules plus a capped generic queue; legacy rows remain compatibility-only.",
       "reachability": "Trips root.",
       "renderer": "TripsHomeStackRows.",
       "action": "Typed object destination and separate trip depth control.",
       "telemetry": "Trips stack events.",
-      "blockers": ["separate generic queue from dedicated modules", "viewport telemetry"],
+      "blockers": ["device viewport evidence", "legacy compatibility removal gate"],
       "evidence": {"D": "verified", "C": "verified", "P": "verified", "R": "verified", "A": "verified", "F": "not_verified", "B": "not_verified", "V": "not_verified"}
     },
     {
