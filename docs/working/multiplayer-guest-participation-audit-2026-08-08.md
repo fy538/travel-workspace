@@ -71,6 +71,9 @@ direct vote bypass:
   response returns type/severity metadata, never the raw value to a group;
 - retries are replay-safe, cross-user claims fail closed, and no capability
   operation writes a vote directly.
+- if the claimed account is deleted, the capability row cascades away with its
+  private constraint state; no private value is left stranded in the proposal
+  ledger.
 
 Adding a public `POST` that writes directly to `change_proposals.votes` would
 still bypass the member foreign-key/eligibility model, receipt provenance, and
