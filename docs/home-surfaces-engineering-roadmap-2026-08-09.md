@@ -10,7 +10,7 @@ why_new: Converts the post-pivot home-surfaces audit into dependency-safe, paral
 # Places and Trips Home Surfaces — Engineering Roadmap
 
 **Date:** 2026-08-09  
-**Status:** Execution plan; implementation has not started under this roadmap  
+**Status:** Execution in progress; static/mock integration is landed, backend-real and device gates remain
 **Primary audit:** [`home-surfaces-audit-2026-08-09.md`](./home-surfaces-audit-2026-08-09.md)  
 **Canonical design:** External bundle at `/Users/feihuyan/Downloads/vesper-home-surfaces`  
 **Delivery model:** One integration coordinator plus at most three parallel coding agents
@@ -698,10 +698,12 @@ The roadmap is being executed in separate parent, backend, and frontend integrat
 | 1 | Trips destination/receipt honesty and People route reachability | `225225ba`, `1145e8b0`; Trips/Details focused suites green | Static/mock; backend canary and device route proof remain |
 | 1 | Trips dedicated modules and queue projection | `ced9643f`; 80 focused backend tests, ruff/format/pyright pass | Backend static/offline; schema/client cutover follows |
 | 1 | Places bounded producer orchestration | `1560b15d`; 57 focused, 394 offline Places tests pass; one unrelated stale-DB failure | Backend static/offline; DB migration/device gates remain |
+| 1 | Places producer type boundary cleanup | `421d1ff3`; full `tests/home` suite 605 passed, 1 skipped; pyright 0 warnings on touched modules | Backend static/offline; repository-wide ratchets still have unrelated baseline failures |
 | 1 | Shared viewport-aware exposure boundary | `1de051c8`; 4 focused tests pass | UI infrastructure; roots still need real viewport integration |
 | 1 | Additive module contract and generated app types | `7b57094` (workspace), `6f80b043` (app); snapshots are additive | Contract/static; app integration and device validation remain |
 | 2 | Pure Trips section plan and Places presentation model | `9a2ac692`, `10d4972c`; Trips plan 4/4 and Places model 8/8 focused tests pass | Pure adapter/static; root renderers and rhythm/state gates remain |
-| 2 | Trips renderer cutover, empty-wrapper rhythm, and measured section exposure | `5a9f1f39`, `ce90e3d2`; combined Trips/Details/registry suites pass | Static/mock; no simulator/device viewport proof |
-| 2 | Places renderer cutover, engagement ownership, and measured section exposure | `3b9bf942`, `5ba0b960`; 30 app-focused tests pass in the combined lane | Static/mock; no simulator/device viewport proof |
+| 2 | Trips renderer cutover, empty-wrapper rhythm, and measured section exposure | `5a9f1f39`, `ce90e3d2`, `9f18bd0d`; combined Trips/Details/registry suites pass, including ranked-state fallback | Static/mock; no simulator/device viewport proof |
+| 2 | Places renderer cutover, engagement ownership, and measured section exposure | `3b9bf942`, `5ba0b960`; 30 Places-focused tests pass and the combined home lane is 12 suites / 85 tests | Static/mock; no simulator/device viewport proof |
+| 2 | Cross-surface integration evidence | `9f18bd0d` app lane; API-boundary, surface-index, external-canon, and characterization checks pass; canonical design remains `/Users/feihuyan/Downloads/vesper-home-surfaces` | Static/mock; backend-real canary, simulator/device, and page-rhythm acceptance remain |
 
 The current integration branches are intentionally not called shipped. A feature becomes eligible for acceptance only after the roadmap's contract, backend-real, and device gates produce evidence for the exact state and journey being claimed.
