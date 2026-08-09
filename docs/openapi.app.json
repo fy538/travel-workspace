@@ -18694,6 +18694,59 @@
         }
       }
     },
+    "/api/social-circles/invitations": {
+      "get": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "List Circle Invitations",
+        "operationId": "list_circle_invitations_api_social_circles_invitations_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SocialCircleInvitation"
+                  },
+                  "title": "Response List Circle Invitations Api Social Circles Invitations Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/social-circles/{circle_id}/events": {
       "get": {
         "tags": [
@@ -18882,6 +18935,124 @@
         },
         "responses": {
           "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialCircleMember"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/social-circles/{circle_id}/accept": {
+      "post": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "Accept Circle Invitation",
+        "operationId": "accept_circle_invitation_api_social_circles__circle_id__accept_post",
+        "parameters": [
+          {
+            "name": "circle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Circle Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialCircleMember"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/social-circles/{circle_id}/decline": {
+      "post": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "Decline Circle Invitation",
+        "operationId": "decline_circle_invitation_api_social_circles__circle_id__decline_post",
+        "parameters": [
+          {
+            "name": "circle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Circle Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
@@ -68062,6 +68233,22 @@
         ],
         "title": "SocialCircleEventPage"
       },
+      "SocialCircleInvitation": {
+        "properties": {
+          "circle": {
+            "$ref": "#/components/schemas/SocialCircle"
+          },
+          "membership": {
+            "$ref": "#/components/schemas/SocialCircleMember"
+          }
+        },
+        "type": "object",
+        "required": [
+          "circle",
+          "membership"
+        ],
+        "title": "SocialCircleInvitation"
+      },
       "SocialCircleMember": {
         "properties": {
           "circle_id": {
@@ -68087,9 +68274,58 @@
             "enum": [
               "invited",
               "active",
+              "declined",
               "left"
             ],
             "title": "Status"
+          },
+          "invited_by": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Invited By"
+          },
+          "invited_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Invited At"
+          },
+          "confirmed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confirmed At"
+          },
+          "declined_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Declined At"
           },
           "source_trip_id": {
             "anyOf": [
