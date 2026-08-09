@@ -510,19 +510,14 @@ surface; no backend-real or physical-device acceptance is implied.
 | Backend home surfaces | `b36eedb0`, `00bffa05`, `05b811ac`, `1ba6c993` |
 | App home surfaces | `4e690f37`, `5d399fd5`, `6734ad2c`, `8e0874b8` |
 
-### Deliberately unresolved integration boundary
+### Completed schema integration
 
-The backend's new `PlacesFeed.unavailable_producers` field is additive and
-validated, but the generated frontend schema and its presentation behavior
-have **not** been committed yet. The canonical OpenAPI export additionally
-depends on a concurrent, uncommitted save-model change in the primary backend
-worktree. Publishing generated artifacts from that dirty source would
-incorrectly capture another change set. A throwaway combined worktree proved
-the contract projection and audit (`367` paths, `404` operations, `937`
-schemas) can succeed once that change is committed. The follow-on must run the
-normal schema train and then make the Places presentation distinguish an empty
-feed from a partial producer outage; it must not add a handwritten frontend
-wire shadow.
+After the concurrent save-model change was committed, the schema train ran
+from committed backend sources only. The complete projection contains `368`
+paths, `406` operations, and `940` schemas. The generated app schema is
+current, and the Places presentation now distinguishes an honestly empty feed
+from a partial producer outage with a retryable, content-free notice. No
+handwritten frontend wire model was added.
 
 ### Post-remediation verification
 
@@ -531,7 +526,9 @@ wire shadow.
 | Backend Trips projection tests | Pass: 36 focused tests |
 | Backend Places offline tests | Pass: 393; full suite retains one pre-existing Postgres-schema failure (`itinerary_projection_outbox.lease_token`) |
 | Frontend focused regression tests after integration | Pass: 49 tests across Trips plan/render and Places feed/registry suites |
-| Frontend full Jest suite | Pass; pre-existing React `act()` console warnings remain |
+| Schema-integrated focused regression tests | Pass: 65 tests across Trips plan/render and Places feed/registry/presentation/workspace suites |
+| Generated schema check | Pass: app schema matches `docs/openapi.app.json` |
+| Frontend full Jest suite | Not clean: six unrelated pre-existing/environment-sensitive failures (memory queue, Atlas mock export, persona fixture, navigation contract, concierge assertion, and workspace-doc path assumptions). The touched 65-test Trips/Places suite passes. React `act()` console warnings also remain. |
 | Frontend typecheck and test-contract typecheck | Pass |
 | API boundary and query/mutation ownership checks | Pass |
 | API operation audit | Pass: current snapshot 454 active / 8 dark / 56 retiring; combined export 452 active / 8 dark / 58 retiring |
