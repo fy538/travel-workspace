@@ -209,6 +209,27 @@ planned section needs an explicit render state, stable identity/revision,
 grounding/rejection reason, action/passivity, and adjacency role so roots do not
 silently derive different page rhythms from the same backend projection.
 
+### Phase 2 progress record — 2026-08-09
+
+The first composition-authority slice is landed on the frontend branch:
+
+- `4fc31079` makes Trips plan entries and Places presentation sections carry
+  explicit render state, content revision, grounded copy, action/passivity,
+  containment, rhythm, and rejection metadata. Existing backend order and
+  transport identity remain authoritative.
+- `d9acd6da` adds `buildHomeSurfaceStateMatrix`, a pure whole-page matrix that
+  derives page state and previous/next adjacency for both surfaces while
+  retaining rejected sections as unavailable entries.
+- `c9bd205c` wires Places' direct-feed fallback through
+  `buildPlacesPresentationModel`, removing the last local identity/revision
+  reconstruction from the renderer.
+- The matrix and composition regression suites pass (78 tests before the final
+  Places wiring, 54 tests after it); TypeScript remains green.
+
+The matrix is currently an explicit authority/test seam, not a new visual
+surface. Phase 3 must prove its state outcomes against backend-real payloads
+and a device before any new family is activated.
+
 ## Phase 2 — Complete the page-composition authorities
 
 ### NS-TR-P — Trips composition plan v2
