@@ -48,12 +48,11 @@ The trip, before the asking
 ## Promotional text (170 chars max — editable without re-review)
 
 ```
-For the friend who plans everything. Vesper handles the group ask, the
-booking, the day-of nudge — and remembers the place so the next trip is
-sharper than the last.
+For the friend who plans everything. Vesper keeps the group, shared plan,
+and day-of changes coherent—then remembers what mattered for the next trip.
 ```
 
-> 168 chars. Speaks directly to the Organizer archetype (the launch
+> 149 chars. Speaks directly to the Organizer archetype (the launch
 > wedge). Mentions the compounding memory thesis without naming the
 > mechanism. Stays specific.
 
@@ -65,10 +64,10 @@ sharper than the last.
 Vesper brings place-aware, multiplayer AI to the group trip—for the friend who
 usually plans everything.
 
-You name the trip. Vesper handles the rest — quietly working the group,
-holding the calendar, learning what each person actually wants without
-exposing anyone's constraints to the chat. The plan that comes back is
-specific to who you are, who you're going with, and where you're going.
+You name the trip. Vesper quietly works with the group, holds the shared
+itinerary, and learns what each person actually wants without exposing private
+constraints to the chat. The plan that comes back is specific to who you are,
+who you're going with, and where you're going.
 
 Vesper stays oriented to the people, place, and shared Plan, and learns from
 what actually mattered so the next experience needs less explanation.
@@ -84,13 +83,13 @@ WHAT VESPER DOES
   and surfaces a plan everyone can live with, without anyone having to
   spell out what they don't want to do.
 
-• Books restaurants, hotels, activities. Sends a brief to the venue
-  about your group so the host knows you're a birthday or that two
-  guests don't eat shellfish — without you having to explain it.
+• Keeps plans and booking details together. Add an existing reservation
+  or follow an external provider link, then keep the shared itinerary
+  current for everyone. Vesper does not make booking commitments.
 
-• Narrates the place as you arrive. Optional voice companion that knows
-  what's worth saying about the bairro you just walked into — and when
-  to stay silent.
+• Helps when the plan changes. Proposed itinerary edits remain reviewable,
+  and accepted changes update the shared plan instead of creating another
+  competing version in chat.
 
 • Renders the trip back as a memory artifact. After you come home,
   Vesper writes the trip up in your voice with your photos slotted in.
@@ -118,10 +117,9 @@ money. Planning tools make a checklist. Group apps trade messages.
 None of them know you. None of them remember what mattered. None of
 them work the room.
 
-Vesper builds a relationship across trips. Trip 1 is the introduction.
-By Trip 3 it knows you better than your group does — which restaurant
-you'll skip, which neighborhood you'll lose an afternoon in, which
-constraint you don't want to repeat out loud.
+Vesper can carry forward what mattered across trips: which places fit,
+what the group changed, and which constraints should not need repeating.
+That evidence is useful only when it makes the next decision better.
 
 
 PRIVACY
@@ -136,14 +134,14 @@ For the full picture: settings.travelagent.app/privacy.
 
 REQUIREMENTS
 
-iOS 17 or later. iPhone. A real trip — Vesper is meaningless without
-one.
+iOS 17 or later. iPhone. The current release is designed around a real
+group trip.
 
 
-Vesper plans the trip. You enjoy it.
+One group. One shared trip that stays coherent.
 ```
 
-> 2780 chars. Headlines and section breaks follow Apple's plain-text
+> Character count verified below the 4000-character limit. Headlines and section breaks follow Apple's plain-text
 > formatting (newlines render as paragraph breaks). Pulls language
 > verbatim from Brand Identity §2 (essence) and §10 (voice samples).
 
