@@ -485,3 +485,56 @@ grounded producer
 ```
 
 Until that chain exists, component presence should continue to be reported separately from production, reachability, actionability, fidelity, backend-real proof, and device proof.
+
+## 11. Remediation update — 2026-08-09
+
+The correction work below is intentionally recorded separately from the
+original audit. It distinguishes a fixed code-path from an accepted product
+surface; no backend-real or physical-device acceptance is implied.
+
+| Finding group | Result | Implementation/evidence |
+|---|---|---|
+| Trips projection and state (P1-01, P1-02, P2-02, P2-04, P2-08, P2-09) | Corrected in static/mock lanes | Backend rejects duplicate semantic/module/content identities, separates valid empty from integrity failure, fingerprints visible content, and exposes all module fixtures. The app renders rejected/missing crowns as degraded, retains an unranked fallback, keeps module-specific side data scoped, and treats route rejection as an observable integrity state. |
+| Places producer outcomes (P1-03, P1-04) | Corrected in backend lane | Optional producer failures now produce a closed, content-free unavailable-producer list; bounded executor work cancels queued timeouts and contains defined operational failures without swallowing programmer errors. |
+| Places exposure/lifecycle (P2-05, P2-06, P2-07) | Corrected in app lane | The shared viewport registry accounts for chrome occlusion and foreground activity, waits for post-load measurement, deduplicates across search remounts, and only publishes visibility-set changes rather than per-frame scroll state. |
+| Evidence governance (P1-05) | Corrected in workspace lane | F/B/V verification now requires a typed receipt reference; verified visual/device states require an immutable capture receipt instead of being categorically impossible. |
+| Trips composition authority (P2-01) | Corrected at the selection/render seam | `buildTripsHomeSectionPlan` is consumed through a pure render model. It owns the selected slots; the root no longer performs first-wins `.find` selection, and route adaptation cannot silently remove rejected content. |
+| Places renderer architecture (P2-10) | Corrected at the family seam | A `satisfies Record<PlacesCardKind, PlacesCardRendererFamily>` registry makes every generated card kind choose exactly one renderer family at compile time. Candidate, editorial, and experience presentation rules are pure modules; the feed remains the only exposure/controller boundary. |
+| API contract registry | Corrected | Two pre-existing unadopted planning/save routes are explicitly `retiring`, rather than being represented as active mobile journeys. The complete combined contract audit passes. |
+
+### Commits
+
+| Repository/lane | Commits |
+|---|---|
+| Workspace governance | `361e809`, `627c006` |
+| Backend home surfaces | `b36eedb0`, `00bffa05`, `05b811ac`, `1ba6c993` |
+| App home surfaces | `4e690f37`, `5d399fd5`, `6734ad2c`, `8e0874b8` |
+
+### Deliberately unresolved integration boundary
+
+The backend's new `PlacesFeed.unavailable_producers` field is additive and
+validated, but the generated frontend schema and its presentation behavior
+have **not** been committed yet. The canonical OpenAPI export additionally
+depends on a concurrent, uncommitted save-model change in the primary backend
+worktree. Publishing generated artifacts from that dirty source would
+incorrectly capture another change set. A throwaway combined worktree proved
+the contract projection and audit (`367` paths, `404` operations, `937`
+schemas) can succeed once that change is committed. The follow-on must run the
+normal schema train and then make the Places presentation distinguish an empty
+feed from a partial producer outage; it must not add a handwritten frontend
+wire shadow.
+
+### Post-remediation verification
+
+| Check | Result |
+|---|---|
+| Backend Trips projection tests | Pass: 36 focused tests |
+| Backend Places offline tests | Pass: 393; full suite retains one pre-existing Postgres-schema failure (`itinerary_projection_outbox.lease_token`) |
+| Frontend focused regression tests after integration | Pass: 49 tests across Trips plan/render and Places feed/registry suites |
+| Frontend full Jest suite | Pass; pre-existing React `act()` console warnings remain |
+| Frontend typecheck and test-contract typecheck | Pass |
+| API boundary and query/mutation ownership checks | Pass |
+| API operation audit | Pass: current snapshot 454 active / 8 dark / 56 retiring; combined export 452 active / 8 dark / 58 retiring |
+| External canonical design check | Pass: 2 operator-owned home-surface bundles verified from `/Users/feihuyan/Downloads/vesper-home-surfaces` |
+| Design/size ratchets | Size, containment, and spacing still have baseline-wide unrelated debt; new Trips functions are under the 800-line limit. |
+| Backend-real/device acceptance | Not run; still required before acceptance. |
