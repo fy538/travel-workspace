@@ -1,5 +1,11 @@
 # App Store Connect Copy — Vesper
 
+> **Release scope, not company category (2026-08-09):** This copy describes the
+> current trip-centered first release. The company model is a proactive,
+> multiplayer, place-aware AI for real-world experiences; group travel is the
+> launch wedge. Keep App Store claims constrained to behavior the submitted
+> build actually demonstrates.
+
 Paste targets for App Store Connect → App Information / App Store / iOS App.
 Voice is locked in `Travel App/docs/Brand Identity.md` §10 — confident,
 specific, restrained. Not aspirational-luxe, not productivity-coded, not
@@ -17,8 +23,8 @@ below into the matching field. The character counts are the App Store
 Vesper
 ```
 
-> Six characters. The product is the concierge relationship and shares
-> the agent's name — single noun, single mental object (Brand Identity §1).
+> Six characters. The product and its intelligence share one name—single noun,
+> single mental object (Brand Identity §1).
 
 ---
 
@@ -56,16 +62,16 @@ sharper than the last.
 ## Description (4000 chars max)
 
 ```
-Vesper is a place-aware travel concierge for the friend who plans
-everything.
+Vesper brings place-aware, multiplayer AI to the group trip—for the friend who
+usually plans everything.
 
 You name the trip. Vesper handles the rest — quietly working the group,
 holding the calendar, learning what each person actually wants without
 exposing anyone's constraints to the chat. The plan that comes back is
 specific to who you are, who you're going with, and where you're going.
 
-Vesper isn't another AI assistant. It's a concierge relationship that
-gets sharper every trip.
+Vesper stays oriented to the people, place, and shared Plan, and learns from
+what actually mattered so the next experience needs less explanation.
 
 
 WHAT VESPER DOES
