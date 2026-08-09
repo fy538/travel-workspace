@@ -8,55 +8,17 @@
     "review_by": null
   },
   "operations": {
-    "POST /api/agent-workflows/{workflow_id}/commands": {
-      "audience": "app",
-      "consumers": [],
-      "feature_flag": "SHARED_WORKFLOW_CONTROL_ENABLED",
-      "lifecycle": "dark",
-      "owner": "multiplayer",
-      "reason": "Durable CAS-fenced workflow command recording is staged behind an explicit control-plane canary; no mobile caller until command application and device recovery are proven.",
-      "removal_trigger": "Either adopt from a shared-workflow control journey or remove the dark transport after the canary decision.",
-      "review_by": "2026-09-03"
+    "GET /api/trips/{trip_id}/editorial-map": {
+      "audience": "app", "consumers": [], "feature_flag": "BOOKING_DUFFEL_LIVE_BOOKING_ENABLED", "lifecycle": "dark", "owner": "maps",
+      "reason": "Server contract remains dark until a mobile consumer and device evidence are added.", "removal_trigger": "Add a verified mobile consumer or remove the endpoint.", "review_by": "2026-10-30"
     },
-    "POST /api/trips/{trip_id}/proposals/{proposal_id}/guest-links": {
-      "audience": "app",
-      "consumers": [],
-      "feature_flag": "GUEST_PROPOSAL_CAPABILITIES_ENABLED",
-      "lifecycle": "dark",
-      "owner": "multiplayer",
-      "reason": "One-use proposal guest capability minting is staged behind the membership-upgrade and mobile handoff canary; no client caller until canonical vote continuity and device evidence pass.",
-      "removal_trigger": "Either adopt from the guest proposal journey or remove the dark transport after the canary decision.",
-      "review_by": "2026-09-03"
+    "POST /api/trips/{trip_id}/booking/sessions/{session_id}/offers/{offer_id}/cancel/quote": {
+      "audience": "app", "consumers": [], "feature_flag": "BOOKING_DUFFEL_LIVE_BOOKING_ENABLED", "lifecycle": "dark", "owner": "booking",
+      "reason": "Cancellation quotes remain server-only until the client confirmation flow is device-validated.", "removal_trigger": "Add a verified mobile consumer or remove the endpoint.", "review_by": "2026-10-30"
     },
-    "POST /api/trips/{trip_id}/proposals/{proposal_id}/guest-links/{capability_token}/revoke": {
-      "audience": "app",
-      "consumers": [],
-      "feature_flag": "GUEST_PROPOSAL_CAPABILITIES_ENABLED",
-      "lifecycle": "dark",
-      "owner": "multiplayer",
-      "reason": "Organizer revocation is staged with the guest proposal capability canary; no client caller until the organizer control and device recovery evidence are proven.",
-      "removal_trigger": "Either adopt from the guest proposal journey or remove the dark transport after the canary decision.",
-      "review_by": "2026-09-03"
-    },
-    "POST /api/proposal-guest-capabilities/{capability_token}/claim": {
-      "audience": "app",
-      "consumers": [{"kind": "app_source", "name": "claimGuestProposalCapability", "source": "travel-app/utils/api/http.ts"}],
-      "feature_flag": "GUEST_PROPOSAL_CAPABILITIES_ENABLED",
-      "lifecycle": "active",
-      "owner": "multiplayer",
-      "reason": "Authenticated token-only capability claim upgrades the recipient through the existing membership fan-out but deliberately does not write a vote or expose trip/proposal coordinates in the bearer URL; runtime remains off until the mobile handoff and two-observer recovery pass.",
-      "removal_trigger": "Remove after the guest proposal journey is retired or replace the capability contract with a newer scoped handoff.",
-      "review_by": "2026-10-30"
-    },
-    "POST /api/proposal-guest-capabilities/{capability_token}/private-constraint": {
-      "audience": "app",
-      "consumers": [{"kind": "app_source", "name": "captureGuestProposalConstraint", "source": "travel-app/utils/api/http.ts"}],
-      "feature_flag": "GUEST_PROPOSAL_CAPABILITIES_ENABLED",
-      "lifecycle": "active",
-      "owner": "multiplayer",
-      "reason": "One account-private constraint may be captured only after the opaque capability is claimed; runtime remains off until the mobile prompt and two-observer recovery are certified.",
-      "removal_trigger": "Remove after the guest proposal journey is retired or replace the capability contract with a newer scoped handoff.",
-      "review_by": "2026-10-30"
+    "POST /webhooks/booking/{provider}": {
+      "audience": "app", "consumers": [], "feature_flag": "BOOKING_DUFFEL_LIVE_BOOKING_ENABLED", "lifecycle": "dark", "owner": "booking",
+      "reason": "Signed provider ingress is not a mobile surface.", "removal_trigger": "Enable only with a verified provider integration.", "review_by": "2026-10-30"
     },
     "POST /api/social-circles": {
       "audience": "app",

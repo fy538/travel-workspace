@@ -1790,6 +1790,76 @@
         }
       }
     },
+    "/api/atlas/candidates/{candidate_id}/canonical-place": {
+      "patch": {
+        "tags": [
+          "atlas"
+        ],
+        "summary": "Correct Candidate Canonical Place",
+        "description": "Correct or clear canonical geography while preserving intake evidence.",
+        "operationId": "correct_candidate_canonical_place_api_atlas_candidates__candidate_id__canonical_place_patch",
+        "parameters": [
+          {
+            "name": "candidate_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Candidate Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AtlasCanonicalPlaceCorrection"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AtlasCandidate"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/atlas/candidates/{candidate_id}/approve": {
       "post": {
         "tags": [
@@ -2699,6 +2769,23 @@
             }
           },
           {
+            "name": "place_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Place Id"
+            }
+          },
+          {
             "name": "accepted_only",
             "in": "query",
             "required": false,
@@ -2731,10 +2818,10 @@
                   "type": "null"
                 }
               ],
-              "description": "Opaque pagination cursor — the ``id`` of the last entry from the previous page. Cursors are scoped to the same ``year``/``undated``/city/``accepted_only`` filter as the request that produced them; reusing a cursor from another scope returns 422. Omit on the first page.",
+              "description": "Opaque pagination cursor — the ``id`` of the last entry from the previous page. Cursors are scoped to the same ``year``/``undated``/place/``accepted_only`` filter as the request that produced them; reusing a cursor from another scope returns 422. Omit on the first page.",
               "title": "Cursor"
             },
-            "description": "Opaque pagination cursor — the ``id`` of the last entry from the previous page. Cursors are scoped to the same ``year``/``undated``/city/``accepted_only`` filter as the request that produced them; reusing a cursor from another scope returns 422. Omit on the first page."
+            "description": "Opaque pagination cursor — the ``id`` of the last entry from the previous page. Cursors are scoped to the same ``year``/``undated``/place/``accepted_only`` filter as the request that produced them; reusing a cursor from another scope returns 422. Omit on the first page."
           },
           {
             "name": "authorization",
@@ -2783,7 +2870,7 @@
           "atlas"
         ],
         "summary": "Get Atlas Timeline Summary",
-        "description": "Long View's index counts — the same ``atlas_timeline_entries``\nprojection the timeline endpoint reads, grouped by year (Time\nmode's year chapters) or by normalized city (Places mode's whole-corpus\nnode counts). Not the taste/composition engine — this indexes memories,\nit doesn't compose a reading from place-affinity signals.",
+        "description": "Long View's index counts — the same ``atlas_timeline_entries``\nprojection the timeline endpoint reads, grouped by year (Time\nmode's year chapters) or by canonical place identity with normalized-label\nfallback (Places mode's whole-corpus node counts). Not the taste/composition engine — this indexes memories,\nit doesn't compose a reading from place-affinity signals.",
         "operationId": "get_atlas_timeline_summary_api_atlas_timeline_summary_get",
         "parameters": [
           {
@@ -18241,6 +18328,24 @@
             }
           },
           {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Idempotency-Key"
+            }
+          },
+          {
             "name": "authorization",
             "in": "header",
             "required": false,
@@ -18465,6 +18570,395 @@
         "responses": {
           "204": {
             "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/social-circles": {
+      "post": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "Create Circle",
+        "operationId": "create_circle_api_social_circles_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SocialCircleCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialCircleDetail"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "List Circles",
+        "operationId": "list_circles_api_social_circles_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SocialCircle"
+                  },
+                  "title": "Response List Circles Api Social Circles Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/social-circles/{circle_id}/events": {
+      "get": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "Read Circle Events",
+        "operationId": "read_circle_events_api_social_circles__circle_id__events_get",
+        "parameters": [
+          {
+            "name": "circle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Circle Id"
+            }
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "title": "After"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 100,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialCircleEventPage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/social-circles/{circle_id}": {
+      "get": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "Read Circle",
+        "operationId": "read_circle_api_social_circles__circle_id__get",
+        "parameters": [
+          {
+            "name": "circle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Circle Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialCircleDetail"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/social-circles/{circle_id}/members": {
+      "post": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "Add Circle Member",
+        "operationId": "add_circle_member_api_social_circles__circle_id__members_post",
+        "parameters": [
+          {
+            "name": "circle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Circle Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SocialCircleMemberAddRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialCircleMember"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/social-circles/{circle_id}/trips/{trip_id}": {
+      "post": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "Link Circle Trip",
+        "operationId": "link_circle_trip_api_social_circles__circle_id__trips__trip_id__post",
+        "parameters": [
+          {
+            "name": "circle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Circle Id"
+            }
+          },
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialCircleTripLink"
+                }
+              }
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -22892,112 +23386,6 @@
         }
       }
     },
-    "/api/trips/{trip_id}/editorial-map": {
-      "get": {
-        "tags": [
-          "trips"
-        ],
-        "summary": "Get Trip Editorial Map",
-        "description": "Return a cache-only, group-safe Trips editorial map composition.\n\nThis intentionally does not call the live route resolver and does not\ninclude viewer-shaped map layers (private stays, saves, or photos). The\ninteractive ``map-state`` endpoint remains the detailed map surface; this\nroute is a small companion read for a feed card.",
-        "operationId": "get_trip_editorial_map_api_trips__trip_id__editorial_map_get",
-        "parameters": [
-          {
-            "name": "trip_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Trip Id"
-            }
-          },
-          {
-            "name": "surface",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "const": "trips_home",
-              "type": "string",
-              "default": "trips_home",
-              "title": "Surface"
-            }
-          },
-          {
-            "name": "kind",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "const": "day_route",
-              "type": "string",
-              "default": "day_route",
-              "title": "Kind"
-            }
-          },
-          {
-            "name": "if-none-match",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "If-None-Match"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/TripEditorialMapCard"
-                    },
-                    {
-                      "type": "null"
-                    }
-                  ],
-                  "title": "Response Get Trip Editorial Map Api Trips  Trip Id  Editorial Map Get"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/trips/{trip_id}/map/nearby": {
       "get": {
         "tags": [
@@ -25451,7 +25839,7 @@
           "users"
         ],
         "summary": "Reset Personal Memory",
-        "description": "Erase everything the concierge has *learned* about the user.\n\nTrips, messages, expenses, hard constraints, follows, and saves are\nall preserved. Only synthesized + observed preference data is wiped.\nSee ``backend.core.db.traveler.reset_personal_data`` for the full\nlist of tables touched.",
+        "description": "Reset synthesized Personal Memory and source observations.\n\nTrips, messages, expenses, user facts, Atlas artifacts, hard constraints,\nfollows, saves, and place-affinity history are preserved. Only synthesized\nPersonal Memory and its source observations are wiped.\nSee ``backend.core.db.traveler.reset_personal_data`` for the full\nlist of tables touched.",
         "operationId": "reset_personal_memory_api_users__user_id__personal_memory_delete",
         "parameters": [
           {
@@ -30144,6 +30532,101 @@
             ],
             "title": "Place Label"
           },
+          "raw_place_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Raw Place Label"
+          },
+          "raw_place_source": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "device_reverse_geocode",
+                  "backend_reverse_geocode",
+                  "user",
+                  "legacy_unknown"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Raw Place Source"
+          },
+          "place_label_source": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "device_reverse_geocode",
+                  "backend_reverse_geocode",
+                  "user",
+                  "legacy_unknown"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Label Source"
+          },
+          "canonical_place_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "canonical_place_match_method": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "exact_label",
+                  "manual"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Canonical Place Match Method"
+          },
+          "canonical_place_confidence": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Canonical Place Confidence"
+          },
+          "canonical_place_resolved_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Canonical Place Resolved At"
+          },
           "reflection": {
             "anyOf": [
               {
@@ -30553,6 +31036,101 @@
             ],
             "title": "Place Guess"
           },
+          "raw_place_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Raw Place Label"
+          },
+          "raw_place_source": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "device_reverse_geocode",
+                  "backend_reverse_geocode",
+                  "user",
+                  "legacy_unknown"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Raw Place Source"
+          },
+          "place_label_source": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "device_reverse_geocode",
+                  "backend_reverse_geocode",
+                  "user",
+                  "legacy_unknown"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Label Source"
+          },
+          "canonical_place_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "canonical_place_match_method": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "exact_label",
+                  "manual"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Canonical Place Match Method"
+          },
+          "canonical_place_confidence": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Canonical Place Confidence"
+          },
+          "canonical_place_resolved_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Canonical Place Resolved At"
+          },
           "place_count": {
             "type": "integer",
             "title": "Place Count"
@@ -30725,6 +31303,21 @@
             ],
             "title": "Place Guess"
           },
+          "place_label_source": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "device_reverse_geocode",
+                  "user"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Label Source"
+          },
           "place_count": {
             "type": "integer",
             "title": "Place Count",
@@ -30874,6 +31467,38 @@
         ],
         "title": "AtlasCandidatesResponse",
         "description": "Response for ``POST /api/atlas/candidates`` — persisted candidates with ids."
+      },
+      "AtlasCanonicalPlaceCorrection": {
+        "properties": {
+          "canonical_place_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 280
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          }
+        },
+        "type": "object",
+        "required": [
+          "canonical_place_ref"
+        ],
+        "title": "AtlasCanonicalPlaceCorrection",
+        "description": "Owner correction of Atlas's canonical association; raw evidence remains."
       },
       "AtlasDisclosureCreateBody": {
         "properties": {
@@ -32238,6 +32863,27 @@
           "count": {
             "type": "integer",
             "title": "Count"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "canonical_place_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -32331,6 +32977,16 @@
               }
             ],
             "title": "Place Label"
+          },
+          "canonical_place_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "media_count": {
             "type": "integer",
@@ -34590,6 +35246,16 @@
           "venue_id": {
             "type": "integer",
             "title": "Venue Id"
+          },
+          "entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "capability": {
             "additionalProperties": true,
@@ -38848,6 +39514,16 @@
             ],
             "title": "Entity Ref"
           },
+          "canonical_entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "name": {
             "type": "string",
             "title": "Name"
@@ -39034,6 +39710,28 @@
               }
             ],
             "title": "Entity Ref"
+          },
+          "canonical_entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "stay_candidate_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stay Candidate Id"
           },
           "venue_id": {
             "anyOf": [
@@ -42450,6 +43148,38 @@
         ],
         "title": "EditorialMapViewport"
       },
+      "EntityRef": {
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/EntityRefType"
+          },
+          "id": {
+            "type": "string",
+            "maxLength": 512,
+            "minLength": 1,
+            "title": "Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "type",
+          "id"
+        ],
+        "title": "EntityRef",
+        "description": "Application-owned identity; ``type`` and ``id`` are inseparable."
+      },
+      "EntityRefType": {
+        "type": "string",
+        "enum": [
+          "place",
+          "venue",
+          "site",
+          "accommodation",
+          "experience",
+          "custom"
+        ]
+      },
       "EntitySave": {
         "properties": {
           "id": {
@@ -42477,6 +43207,27 @@
           "entity_id": {
             "type": "string",
             "title": "Entity Id"
+          },
+          "requested_entity_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Requested Entity Id"
+          },
+          "resolution_method": {
+            "type": "string",
+            "enum": [
+              "direct",
+              "provider_materialized",
+              "redirected"
+            ],
+            "title": "Resolution Method",
+            "default": "direct"
           },
           "source": {
             "anyOf": [
@@ -42677,6 +43428,16 @@
               }
             ],
             "title": "Expires At"
+          },
+          "decision_context": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlaceDecisionContext"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -44838,6 +45599,18 @@
         ],
         "title": "GeofenceEvent",
         "description": "One geofence trigger the server observed.\n\nAppend-only: every row represents a moment in time, immutable after\ninsert. ``manually_narrated`` is the catch-all for cases where the\nuser tapped the entity card without ever entering its geofence — we\nstill record it so the observability dashboard reflects total\nnarration attempts, geofence-driven or not."
+      },
+      "GeometryPrecision": {
+        "type": "string",
+        "enum": [
+          "exact",
+          "rooftop",
+          "entrance",
+          "interpolated",
+          "area",
+          "unknown"
+        ],
+        "title": "GeometryPrecision"
       },
       "GlobalDossierFeedResponse": {
         "properties": {
@@ -47427,6 +48200,16 @@
               }
             ],
             "title": "Experience Id"
+          },
+          "entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "title": {
             "type": "string",
@@ -52078,78 +52861,6 @@
             "title": "Source",
             "description": "Provenance of ``geometry`` — what the drawn line is entitled to claim. ``routed``: real path geometry from a routing provider for a mode it genuinely supports. ``estimated``: no geometry and none is coming — the declared mode (transit family, ferry, flight) is one our provider cannot route, so any line drawn is the client's own connector, not our claim. ``unknown``: no geometry YET — lazy enrichment hasn't run or hasn't succeeded; may become ``routed`` on a later poll. Deliberately a separate channel from the client's ``soft`` styling, which encodes commitment softness (tentative/proposed stops) — an orthogonal fact. See docs/working/Map and Itinerary Integration.md §F3.",
             "default": "unknown"
-          },
-          "requested_mode": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Requested Mode"
-          },
-          "resolved_mode": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Resolved Mode"
-          },
-          "fact_provider": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Fact Provider"
-          },
-          "fact_status": {
-            "type": "string",
-            "title": "Fact Status",
-            "description": "Freshness/provenance state of the derived travel fact: fresh, stale, degraded, or unknown. Unknown is not a claim that the planned transition is currently routable.",
-            "default": "unknown"
-          },
-          "fact_observed_at": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Fact Observed At"
-          },
-          "fact_expires_at": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Fact Expires At"
-          },
-          "fact_degraded_reason": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Fact Degraded Reason"
           }
         },
         "type": "object",
@@ -52273,6 +52984,16 @@
           "entity_type": {
             "type": "string",
             "title": "Entity Type"
+          },
+          "entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "entity_id": {
             "anyOf": [
@@ -52401,6 +53122,16 @@
               }
             ],
             "title": "Href"
+          },
+          "entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "payload": {
             "anyOf": [
@@ -57162,6 +57893,94 @@
         ],
         "title": "PhoneResponse"
       },
+      "PlaceDecisionContext": {
+        "properties": {
+          "projection_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Projection Id"
+          },
+          "entity_type": {
+            "type": "string",
+            "title": "Entity Type"
+          },
+          "entity_id": {
+            "type": "string",
+            "title": "Entity Id"
+          },
+          "projection_version": {
+            "type": "integer",
+            "title": "Projection Version"
+          },
+          "policy_version": {
+            "type": "string",
+            "title": "Policy Version"
+          },
+          "values": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Values"
+          },
+          "claim_ids": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "object",
+            "title": "Claim Ids"
+          },
+          "conflicts": {
+            "additionalProperties": {
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "type": "array"
+            },
+            "type": "object",
+            "title": "Conflicts"
+          },
+          "freshness": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "object",
+            "title": "Freshness"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "projection_id",
+          "entity_type",
+          "entity_id",
+          "projection_version",
+          "policy_version",
+          "generated_at"
+        ],
+        "title": "PlaceDecisionContext",
+        "description": "Safe, replayable evidence envelope supplied to a recommendation."
+      },
       "PlaceDossierItem": {
         "properties": {
           "id": {
@@ -60501,6 +61320,16 @@
               }
             ],
             "title": "Booking Url"
+          },
+          "entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -62149,6 +62978,16 @@
               }
             ],
             "title": "Proposed Entity Id"
+          },
+          "proposed_entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "voting_enabled": {
             "type": "boolean",
@@ -66449,6 +67288,60 @@
             ],
             "title": "Entity Id"
           },
+          "entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "geometry_precision": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/GeometryPrecision"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "distance_source": {
+            "anyOf": [
+              {
+                "type": "string",
+                "const": "haversine"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Distance Source"
+          },
+          "location_freshness": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Location Freshness"
+          },
+          "location_accuracy_m": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Location Accuracy M"
+          },
           "plan_block_id": {
             "anyOf": [
               {
@@ -66934,6 +67827,400 @@
         ],
         "title": "SituationVoiceSession",
         "description": "Public-safe summary of the active voice-guide arc."
+      },
+      "SocialCircle": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "created_by": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created By"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "pair",
+              "group",
+              "household",
+              "other"
+            ],
+            "title": "Kind"
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Name"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "archived"
+            ],
+            "title": "Status"
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Revision"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "status",
+          "revision",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "SocialCircle"
+      },
+      "SocialCircleCreateRequest": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "pair",
+              "group",
+              "household",
+              "other"
+            ],
+            "title": "Kind",
+            "default": "group"
+          },
+          "display_name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Display Name"
+          },
+          "member_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "maxItems": 20,
+            "title": "Member Ids"
+          },
+          "source_trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Trip Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "display_name"
+        ],
+        "title": "SocialCircleCreateRequest"
+      },
+      "SocialCircleDetail": {
+        "properties": {
+          "circle": {
+            "$ref": "#/components/schemas/SocialCircle"
+          },
+          "members": {
+            "items": {
+              "$ref": "#/components/schemas/SocialCircleMember"
+            },
+            "type": "array",
+            "title": "Members"
+          },
+          "trip_links": {
+            "items": {
+              "$ref": "#/components/schemas/SocialCircleTripLink"
+            },
+            "type": "array",
+            "title": "Trip Links"
+          }
+        },
+        "type": "object",
+        "required": [
+          "circle",
+          "members"
+        ],
+        "title": "SocialCircleDetail"
+      },
+      "SocialCircleEvent": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "circle_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Circle Id"
+          },
+          "sequence": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Sequence"
+          },
+          "event_type": {
+            "type": "string",
+            "title": "Event Type"
+          },
+          "actor_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Actor Id"
+          },
+          "payload_json": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Payload Json"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "circle_id",
+          "sequence",
+          "event_type",
+          "created_at"
+        ],
+        "title": "SocialCircleEvent"
+      },
+      "SocialCircleEventPage": {
+        "properties": {
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/SocialCircleEvent"
+            },
+            "type": "array",
+            "title": "Events"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          },
+          "has_more": {
+            "type": "boolean",
+            "title": "Has More",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "events"
+        ],
+        "title": "SocialCircleEventPage"
+      },
+      "SocialCircleMember": {
+        "properties": {
+          "circle_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Circle Id"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "owner",
+              "member"
+            ],
+            "title": "Role"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "invited",
+              "active",
+              "left"
+            ],
+            "title": "Status"
+          },
+          "source_trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Trip Id"
+          },
+          "joined_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Joined At"
+          },
+          "left_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Left At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "circle_id",
+          "user_id",
+          "role",
+          "status",
+          "joined_at"
+        ],
+        "title": "SocialCircleMember"
+      },
+      "SocialCircleMemberAddRequest": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "source_trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Trip Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id"
+        ],
+        "title": "SocialCircleMemberAddRequest"
+      },
+      "SocialCircleTripLink": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "circle_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Circle Id"
+          },
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "link_source": {
+            "type": "string",
+            "enum": [
+              "explicit",
+              "suggested"
+            ],
+            "title": "Link Source"
+          },
+          "confirmed_by": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confirmed By"
+          },
+          "confirmed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confirmed At"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "circle_id",
+          "trip_id",
+          "link_source",
+          "created_at"
+        ],
+        "title": "SocialCircleTripLink"
       },
       "SourceRef": {
         "properties": {
@@ -67912,66 +69199,6 @@
         ],
         "title": "TakeGenerationRequest",
         "description": "Body for POST /api/takes — request to generate (or fetch cached) a Take."
-      },
-      "WhyThisSource": {
-        "properties": {
-          "source_type": {
-            "type": "string",
-            "enum": [
-              "personal_memory",
-              "past_trip",
-              "angle_affinity",
-              "group_signal",
-              "saved_entity",
-              "hard_constraint"
-            ],
-            "title": "Source Type"
-          },
-          "source_id": {
-            "type": "string",
-            "maxLength": 240,
-            "minLength": 1,
-            "title": "Source Id"
-          },
-          "label": {
-            "type": "string",
-            "maxLength": 100,
-            "minLength": 1,
-            "title": "Label"
-          }
-        },
-        "type": "object",
-        "required": [
-          "source_type",
-          "source_id",
-          "label"
-        ],
-        "title": "WhyThisSource",
-        "description": "Content-free evidence pointer shown in a private Why-this receipt."
-      },
-      "WhyThisReceipt": {
-        "properties": {
-          "summary": {
-            "type": "string",
-            "maxLength": 160,
-            "minLength": 1,
-            "title": "Summary"
-          },
-          "source_refs": {
-            "items": {
-              "$ref": "#/components/schemas/WhyThisSource"
-            },
-            "type": "array",
-            "maxItems": 8,
-            "title": "Source Refs"
-          }
-        },
-        "type": "object",
-        "required": [
-          "summary"
-        ],
-        "title": "WhyThisReceipt",
-        "description": "A safe explanation of which evidence grounded a Personal Take."
       },
       "TakePayload": {
         "properties": {
@@ -73716,6 +74943,16 @@
             "type": "string",
             "title": "Entity Id"
           },
+          "entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "title": {
             "type": "string",
             "title": "Title"
@@ -76381,6 +77618,66 @@
         ],
         "title": "WeekRibbonReceipt",
         "description": "WeekRibbon — the lived week, one cell per day (Returned · Shape)."
+      },
+      "WhyThisReceipt": {
+        "properties": {
+          "summary": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Summary"
+          },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/WhyThisSource"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Source Refs"
+          }
+        },
+        "type": "object",
+        "required": [
+          "summary"
+        ],
+        "title": "WhyThisReceipt",
+        "description": "A safe explanation of which evidence grounded a Personal Take.\n\nThe receipt deliberately carries opaque IDs and generic labels only. It\nnever copies the private claim, memory prose, or the model's hypothesis."
+      },
+      "WhyThisSource": {
+        "properties": {
+          "source_type": {
+            "type": "string",
+            "enum": [
+              "personal_memory",
+              "past_trip",
+              "angle_affinity",
+              "group_signal",
+              "saved_entity",
+              "hard_constraint"
+            ],
+            "title": "Source Type"
+          },
+          "source_id": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 1,
+            "title": "Source Id"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "source_type",
+          "source_id",
+          "label"
+        ],
+        "title": "WhyThisSource",
+        "description": "Content-free evidence pointer shown in a private Why-this receipt."
       },
       "WorkbenchContext": {
         "properties": {
