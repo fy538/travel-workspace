@@ -1,47 +1,47 @@
 {
   "schema_version": 1,
   "program": "convergence-ai-next-round-2026-08-10",
-  "status": "assembling",
+  "status": "ready",
   "created_at": "2026-08-10",
   "base": {
-    "workspace_sha": "47d5188248752a65c012291622094683cde31cda",
+    "workspace_sha": "47d51880f0fd6dfccf63b989242f8b9c2459b9e5",
     "backend_sha": "e42fc3a3d2a1fccc12ae932c9964f0ef69b35599",
     "app_sha": "aba00ae32946d279411836a0337f2df0d41c2cde"
   },
   "lanes": {
     "causal_spine": {
       "branch": "codex/convergence-causal-spine",
-      "workspace_sha": null,
-      "backend_sha": null,
-      "app_sha": null
+      "workspace_sha": "47d51880f0fd6dfccf63b989242f8b9c2459b9e5",
+      "backend_sha": "3cb2c66d440dce0b4e70f9d37fa3d793ae6f1fd3",
+      "app_sha": "aba00ae32946d279411836a0337f2df0d41c2cde"
     },
     "ai_evidence": {
       "branch": "codex/convergence-ai-evidence",
-      "workspace_sha": null,
-      "backend_sha": null,
-      "app_sha": null
+      "workspace_sha": "47d51880f0fd6dfccf63b989242f8b9c2459b9e5",
+      "backend_sha": "cf0a5c712416a883ffe9950baeb4658c11f436ae",
+      "app_sha": "aba00ae32946d279411836a0337f2df0d41c2cde"
     },
     "group_trip": {
       "branch": "codex/convergence-group-trip",
-      "workspace_sha": null,
-      "backend_sha": null,
-      "app_sha": null
+      "workspace_sha": "47d51880f0fd6dfccf63b989242f8b9c2459b9e5",
+      "backend_sha": "827937b829dc542a8769f0fbb53a059e3edaab7d",
+      "app_sha": "7e063ecd33131826b285816199d107e4bbabeb19"
     },
     "integration_evidence": {
       "branch": "codex/convergence-integration-evidence",
-      "workspace_sha": null,
-      "backend_sha": null,
-      "app_sha": null
+      "workspace_sha": "76140716c0acab818702c6e5727945263abbbc60",
+      "backend_sha": "6843284099d3a4b40a7fd92460b6737fe630ee96",
+      "app_sha": "302050f4e881d9278061447709794bd7e0216a06"
     }
   },
   "candidate": {
-    "workspace_sha": null,
-    "backend_sha": null,
-    "app_sha": null,
-    "migration_revision": null,
+    "workspace_sha": "76140716c0acab818702c6e5727945263abbbc60",
+    "backend_sha": "6843284099d3a4b40a7fd92460b6737fe630ee96",
+    "app_sha": "302050f4e881d9278061447709794bd7e0216a06",
+    "migration_revision": "receiptidem01",
     "backend_deploy_digest": null,
     "app_build_id": null,
-    "seed_corpus_hash": null
+    "seed_corpus_hash": "sha256:2064b775c5e76e77ab5215923d401ce199962debced77a91a553a414d4fae2e7"
   },
   "controls": {
     "shadow_default": "off",
@@ -57,14 +57,14 @@
     "proactive_delivery": "off"
   },
   "evidence": {
-    "source": "not_run",
-    "database": "not_run",
+    "source": "pass",
+    "database": "pass",
     "device_mock": "not_run",
-    "staging": "not_run",
-    "physical": "not_run",
-    "ai_eval": "not_run",
-    "human": "not_run",
-    "causal": "not_run"
+    "staging": "blocked",
+    "physical": "blocked",
+    "ai_eval": "blocked",
+    "human": "blocked",
+    "causal": "pass"
   },
   "external_blockers": [
     "human_anchor_adjudication",
