@@ -139,6 +139,10 @@ overrides:
     disposition: keep_reference
     rationale: Active, expiring post-consolidation implementation plan for Places and Trips Home; external design authority, generated contracts, and durable surface/system contracts remain authoritative.
 
+  docs/working/home-surfaces-adoption-decision-docket-2026-08-10.md:
+    disposition: keep_reference
+    rationale: Active, expiring product-adoption docket for unresolved Home-surface compositions; it records required decisions and evidence gates without authorizing new contracts or writers.
+
   docs/working/intentional-convergence-engineering-plan-2026-08-10.md:
     disposition: keep_reference
     rationale: Active, expiring cross-repo execution plan that reconciles the August pivot audits and verified code/evidence gaps into ordered trust, convergence, proof-loop, and certification work; canonical product, release, journey, and system documents remain authoritative.
