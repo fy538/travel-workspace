@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Layered pre-dogfood gate for the P01–P04 product proof spine.
+# Layered pre-dogfood gate for the product proof spine.
 #
 # This records only evidence the invoked command actually establishes. A local
 # database run is not device evidence; a missing staging/device command is a
@@ -29,7 +29,7 @@ Physical evidence is never accepted from an arbitrary
 shell command; use `make dogfood-physical RUN_LIVE=1` so hardware and artifacts
 are verified by the first-class runner.
 For staging, set DOGFOOD_STAGING_COMMAND and DOGFOOD_STAGING_PROOFS (a
-comma-separated list of P01–P04) explicitly. Missing commands or proof lists
+comma-separated list of registered P01–P07 proof IDs) explicitly. Missing commands or proof lists
 are a blocked run and never produce a pass receipt.
 EOF
 }
@@ -63,7 +63,7 @@ run_and_record() {
   proof_args=("$@")
   for arg in "${proof_args[@]}"; do
     case "$arg" in
-      P01|P02|P03|P04) ;;
+      P01|P02|P03|P04|P05|P06|P07) ;;
       *) printf '✗ Unknown proof id: %s\n' "$arg" >&2; return 2 ;;
     esac
   done
@@ -135,7 +135,7 @@ parse_proofs() {
   IFS=',' read -r -a PARSED_PROOFS <<<"$raw"
   [[ "${#PARSED_PROOFS[@]}" -gt 0 ]] || return 2
   for item in "${PARSED_PROOFS[@]}"; do
-    [[ "$item" =~ ^P0[1-4]$ ]] || { printf '✗ Invalid proof id in list: %s\n' "$item" >&2; return 2; }
+    [[ "$item" =~ ^P0[1-7]$ ]] || { printf '✗ Invalid proof id in list: %s\n' "$item" >&2; return 2; }
   done
 }
 

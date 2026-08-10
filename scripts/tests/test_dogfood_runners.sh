@@ -16,6 +16,15 @@ set -e
 
 [[ "$staging_status" -eq 2 ]]
 [[ "$staging_output" == *"proof list is required"* ]]
+
+set +e
+staging_p07_output="$(DOGFOOD_STAGING_PROOFS=P07 ./scripts/dogfood-gate.sh staging 2>&1)"
+staging_p07_status=$?
+set -e
+[[ "$staging_p07_status" -eq 2 ]]
+[[ "$staging_p07_output" == *"DOGFOOD_STAGING_COMMAND"* ]]
+[[ "$staging_p07_output" != *"Invalid proof id"* ]]
+
 [[ "$physical_status" -eq 2 ]]
 [[ "$physical_output" == *"Arbitrary physical commands cannot produce evidence"* ]]
 
