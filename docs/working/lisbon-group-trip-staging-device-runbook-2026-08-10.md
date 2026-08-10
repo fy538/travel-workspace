@@ -63,8 +63,8 @@ owned under `P05-doorway-support`, not `P05`; steps 3–7 below remain required
 before the product proof can pass.
 
 The 2026-08-10 deployed checkpoint uses backend
-`7b7f67361f21e6d86ca4e4c43f54dd79bbb89075`, Fly digest
-`sha256:bba4766d3907cafddff123e891af395db9b05440120cf353f7a910e450a58d1e`,
+`7b7f673610416447aca363fc592d74475fa20f1f`, Fly digest
+`sha256:da11da3529dea8161345a48e7ef9a765f5527a3eef1aa6c98cc790eaf02e6113`,
 migration `receiptidem01`, existing internal iOS build
 `aa524cdb-7b34-4f27-9864-425df19a2e47`, and exact-SHA OTA group
 `a8ae572d-f59c-481c-b768-3359ecbc35b6`. Treat the binary and OTA as one mobile

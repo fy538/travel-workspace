@@ -623,9 +623,9 @@ doorway into a private, review-first composer. It is recorded as
 redemption, the deployed proposal lifecycle, two-observer projection
 convergence, outcome privacy/correction, or physical hardware.
 
-Deployment checkpoint, 2026-08-10: backend SHA `7b7f67361f21e6d86ca4e4c43f54dd79bbb89075`
+Deployment checkpoint, 2026-08-10: backend SHA `7b7f673610416447aca363fc592d74475fa20f1f`
 is running on Fly image digest
-`sha256:bba4766d3907cafddff123e891af395db9b05440120cf353f7a910e450a58d1e`
+`sha256:da11da3529dea8161345a48e7ef9a765f5527a3eef1aa6c98cc790eaf02e6113`
 at Alembic head `receiptidem01`. The separate controlled proof Trip
 `f47e582d-85a6-454e-8a2d-be3a199f0b09` is the only entry in
 `WEATHER_RESCUE_TRIP_IDS`; the global producer remains disabled.
