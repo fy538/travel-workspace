@@ -43,6 +43,72 @@ Any row that writes a Plan, proposal, booking, expense, or shared message must
 use the existing canonical writer, ledgered receipt, and privacy boundary. A
 private member signal never becomes group-visible source text.
 
+## Recommended verdicts
+
+These are staff-level recommendations, not recorded founder decisions. A product
+owner still needs to confirm each verdict before its inventory row changes from
+`unresolved` or `exploratory`.
+
+| Composition | Recommendation | Recommended scope and rationale |
+|---|---|---|
+| `places-a-register-anatomy` | **Explore behind a flag** | Start with `verdict`, `caveat`, `change`, and `log`, which can be grounded in existing evidence. Defer `recommendation` and `apparatus` until confidence and register-specific evidence exist. |
+| `places-b-door` | **Adopt current count door** | The qualified totals and canonical list destinations already exist. Defer the proposed quiet-panel grouping until it has a distinct server-owned arrangement identity. |
+| `places-b-comparison-stack-stub` | **Explore one comparison** | Prototype only the two-place comparison with normalized shared facts. Defer physical stack and ticket-stub treatments; they add material vocabulary before domain value is proven. |
+| `places-c-root-map` | **Relocate for this cycle** | Keep root geographic composition with Trips/Map until Places ownership and a feed projection are explicit. Do not add a Places-root map merely because a selector exists. |
+| `places-d-new-reading-registers` | **Explore mirrored spine** | The mirrored spine is the cleanest extension of existing reading identity. Defer lens/deck/quote variants. Reject the overlay-lens variant for this cycle because it conflicts with the corrected source direction. |
+| `places-e-postcard-return` | **Defer** | There is no accepted return selector or consistently readable artifact/Story destination. Existing anniversary memory remains the honest return expression. |
+| `places-f-cosign-again-marker` | **Defer** | A people-to-place aggregate needs consent, recurrence semantics, and a privacy review. A trip association alone must not imply mutual endorsement. |
+| `places-g-personal-record` | **Defer** | Visit and return history are not trustworthy enough. Saves and encounters must not be presented as lived recurrence or belonging. |
+| `trips-a-near-you` | **Adopt for dogfood** | Add the dedicated receipt and prove fresh/stale/denied/offline location states before wider release. The existing generic crown path is sufficient substrate for a narrow slice. |
+| `trips-b-temporal-strip` | **Defer** | No day-receipt domain contract exists, and Now plus Countdown already cover the adopted temporal jobs without a third band. |
+| `trips-c-invite-people` | **Adopt invite seat; defer standalone Your People** | The invite seat has an authorized roster and canonical Travelers destination. A larger Your People module should wait for a coherent member-scoped read model and privacy trace. |
+| `trips-d-evidence-decision` | **Adopt one bounded module** | Start with `open-loops` or a grounded work receipt that routes through the existing proposal/Plan owner. Defer price ladder and comparison table until comparable provider facts exist. |
+| `trips-e-draft-shelf` | **Defer** | A shelf cannot precede the definition, lifecycle, and destination of a real draft entity. |
+| `trips-f-hosting` | **Defer** | Hosting is a domain program, not a card treatment. Define ownership, participant roles, and lifecycle before surface work. |
+| `trips-g-pretrip-approach` | **Explore Saved Unplaced** | A bounded doorway to real saved entities is honest. Defer This Week/This Weekend until temporal selectors can prove the occasion rather than manufacture urgency. |
+| `trips-h-return` | **Defer** | A real Story/read destination and grounded retrospective change facts are prerequisites. Plan must not impersonate the missing destination. |
+| `trips-j-today-mapped` | **Adopt for dogfood, not production** | It is the most complete dark slice. Add an intentional build profile, exact query gating, backend-real proof, and physical permission-state evidence before production adoption. |
+| `trips-j-map-expansion` | **Reject from Trips Home this cycle** | Whole-trip, member-stay, photo, and reachable-cluster concepts require a separate Map-domain program with coherence and privacy policy. They should not accumulate as Home modules. |
+| `trips-k-trip-feel-static` | **Keep exploratory** | Retain only as a private prompt while the UI truthfully reflects `recorded=false`, dismiss, retry, and failure. Do not call a conversation handoff durable learning. |
+| `trips-k-trip-feel-stateful` | **Defer** | Persistence needs a private-state policy, canonical writer, resumption/revision contract, and visible receipt before a stateful renderer exists. |
+
+### Recommended portfolio result
+
+- **Adopt now:** Places count door; Trips Near You dogfood; invite seat; one
+  bounded decision-evidence module; Today Mapped dogfood.
+- **Explore behind flags:** non-recommendation Places registers; one two-place
+  comparison; mirrored reading spine; Saved Unplaced; static private Trip Feel.
+- **Relocate or reject this cycle:** Places root map; overlay lens; Trips Home map
+  expansions.
+- **Defer pending domain truth:** postcard return, co-sign/Again, personal record,
+  temporal strip, draft shelf, hosting, This Week/Weekend, Trips Return, and
+  stateful Trip Feel.
+
+## Cross-cutting product rulings
+
+The following decisions affect current adopted components as well as the new
+families:
+
+1. **Places lead hierarchy — preserve equal alternatives for now.** The current
+   `lead` boolean does not mean one winner. If hierarchy is adopted later, add a
+   new server-owned `presentation_role: lead | peer`; do not reinterpret the
+   existing field or change the equal 92-point geometry silently.
+2. **Places notice/prompt ownership — keep current producers until relocation has
+   a real destination.** Hiding them before Trips or another surface owns the
+   job would remove functionality rather than relocate it.
+3. **Places material direction — keep the current uncarded memory/prompt source
+   treatment.** Reconcile stale local prose to the external Page/As-Built and
+   source instead of restoring tonal paper by implication.
+4. **Conditions — keep it passive.** A transport destination does not by itself
+   authorize a weather CTA.
+5. **Trips starter continuation — prefer the adopted private Vesper thread.**
+   Update the old J01 trip-begin expectation after founder confirmation; do not
+   fork a second starter action solely to satisfy historical QA.
+6. **Evidence vocabulary — stable identity and mutable revision stay separate.**
+   Copy changes must not remint a composition as a different fact.
+7. **Acceptance — use fixture, backend-real, and physical-device layers.** A
+   source-complete renderer or simulator screenshot is not a shipped verdict.
+
 ## Packet A — Places registers and arrangements
 
 | Composition | Current usable substrate | Required decision before implementation |
