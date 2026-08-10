@@ -75,6 +75,36 @@
       "removal_trigger": null,
       "review_by": "2026-09-03"
     },
+    "POST /api/social-circles/{circle_id}/leave": {
+      "audience": "app",
+      "consumers": [{"kind": "app_url", "name": "leaveSocialCircle", "source": "travel-app/utils/api/http.ts"}],
+      "feature_flag": "SOCIAL_CIRCLES_ENABLED",
+      "lifecycle": "active",
+      "owner": "multiplayer",
+      "reason": "Explicit member withdrawal is part of the circle consent lifecycle and is surfaced from the mobile detail screen.",
+      "removal_trigger": null,
+      "review_by": "2026-09-03"
+    },
+    "DELETE /api/social-circles/{circle_id}/members/{user_id}": {
+      "audience": "app",
+      "consumers": [{"kind": "app_url", "name": "removeSocialCircleMember", "source": "travel-app/utils/api/http.ts"}],
+      "feature_flag": "SOCIAL_CIRCLES_ENABLED",
+      "lifecycle": "active",
+      "owner": "multiplayer",
+      "reason": "Owner-only revocation is retained in the transport for explicit circle lifecycle control; UI exposure follows the member-management surface.",
+      "removal_trigger": null,
+      "review_by": "2026-09-03"
+    },
+    "POST /api/social-circles/{circle_id}/archive": {
+      "audience": "app",
+      "consumers": [{"kind": "app_url", "name": "archiveSocialCircle", "source": "travel-app/utils/api/http.ts"}],
+      "feature_flag": "SOCIAL_CIRCLES_ENABLED",
+      "lifecycle": "active",
+      "owner": "multiplayer",
+      "reason": "The circle owner can explicitly archive the relationship from the mobile detail screen.",
+      "removal_trigger": null,
+      "review_by": "2026-09-03"
+    },
     "POST /api/social-circles/{circle_id}/trips/{trip_id}": {
       "audience": "app",
       "consumers": [{"kind": "app_url", "name": "linkSocialCircleTrip", "source": "travel-app/utils/api/http.ts"}],

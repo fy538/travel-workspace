@@ -20506,6 +20506,60 @@
         }
       }
     },
+    "/api/me/relationship-memory/claims": {
+      "get": {
+        "tags": [
+          "memory"
+        ],
+        "summary": "List My Relationship Memory Claims",
+        "description": "Return the caller's bounded private claims for explicit sharing choices.",
+        "operationId": "list_my_relationship_memory_claims_api_me_relationship_memory_claims_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelationshipMemoryClaim"
+                  },
+                  "title": "Response List My Relationship Memory Claims Api Me Relationship Memory Claims Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/me/memory": {
       "get": {
         "tags": [
@@ -24841,6 +24895,59 @@
         }
       }
     },
+    "/api/social-circles/invitations": {
+      "get": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "List Circle Invitations",
+        "operationId": "list_circle_invitations_api_social_circles_invitations_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SocialCircleInvitation"
+                  },
+                  "title": "Response List Circle Invitations Api Social Circles Invitations Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/social-circles/{circle_id}/events": {
       "get": {
         "tags": [
@@ -24906,6 +25013,148 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SocialCircleEventPage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/social-circles/{circle_id}/memory-claims": {
+      "get": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "Read Circle Memory Claims",
+        "operationId": "read_circle_memory_claims_api_social_circles__circle_id__memory_claims_get",
+        "parameters": [
+          {
+            "name": "circle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Circle Id"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SharedRelationshipMemoryClaim"
+                  },
+                  "title": "Response Read Circle Memory Claims Api Social Circles  Circle Id  Memory Claims Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "Share Circle Memory Claim",
+        "operationId": "share_circle_memory_claim_api_social_circles__circle_id__memory_claims_post",
+        "parameters": [
+          {
+            "name": "circle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Circle Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShareRelationshipMemoryClaimRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SharedRelationshipMemoryClaim"
                 }
               }
             }
@@ -25034,6 +25283,314 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SocialCircleMember"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/social-circles/{circle_id}/accept": {
+      "post": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "Accept Circle Invitation",
+        "operationId": "accept_circle_invitation_api_social_circles__circle_id__accept_post",
+        "parameters": [
+          {
+            "name": "circle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Circle Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialCircleMember"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/social-circles/{circle_id}/decline": {
+      "post": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "Decline Circle Invitation",
+        "operationId": "decline_circle_invitation_api_social_circles__circle_id__decline_post",
+        "parameters": [
+          {
+            "name": "circle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Circle Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialCircleMember"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/social-circles/{circle_id}/leave": {
+      "post": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "Leave Circle",
+        "description": "Withdraw the authenticated member's relationship consent.",
+        "operationId": "leave_circle_api_social_circles__circle_id__leave_post",
+        "parameters": [
+          {
+            "name": "circle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Circle Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialCircleMember"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/social-circles/{circle_id}/members/{user_id}": {
+      "delete": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "Remove Circle Member",
+        "description": "Allow the owner to revoke an invitation or remove a member.",
+        "operationId": "remove_circle_member_api_social_circles__circle_id__members__user_id__delete",
+        "parameters": [
+          {
+            "name": "circle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Circle Id"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialCircleMember"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/social-circles/{circle_id}/archive": {
+      "post": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "Archive Circle",
+        "description": "Archive the circle and revoke its future relationship projections.",
+        "operationId": "archive_circle_api_social_circles__circle_id__archive_post",
+        "parameters": [
+          {
+            "name": "circle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Circle Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialCircle"
                 }
               }
             }
@@ -51752,6 +52309,24 @@
               }
             ],
             "title": "City Slug"
+          },
+          "angle_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Angle Id"
+          },
+          "provenance": {
+            "items": {
+              "$ref": "#/components/schemas/DossierEvidenceRef"
+            },
+            "type": "array",
+            "title": "Provenance"
           }
         },
         "type": "object",
@@ -51771,6 +52346,121 @@
         ],
         "title": "DossierDetail",
         "description": "Full dossier content + metadata."
+      },
+      "DossierEvidenceRef": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "dossier_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dossier Id"
+          },
+          "angle_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Angle Id"
+          },
+          "evidence_kind": {
+            "type": "string",
+            "enum": [
+              "observation",
+              "claim",
+              "judgment"
+            ],
+            "title": "Evidence Kind"
+          },
+          "evidence_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evidence Id"
+          },
+          "evidence_key": {
+            "type": "string",
+            "title": "Evidence Key"
+          },
+          "assertion": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Assertion"
+          },
+          "source_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Url"
+          },
+          "publisher": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Publisher"
+          },
+          "retrieved_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Retrieved At"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "evidence_kind",
+          "evidence_key",
+          "created_at"
+        ],
+        "title": "DossierEvidenceRef",
+        "description": "Safe, traveler-facing receipt for one editorial assertion."
       },
       "DossierExemplarItem": {
         "properties": {
@@ -54038,6 +54728,18 @@
               }
             ],
             "title": "Companion Fit"
+          },
+          "companion_scope": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Companion Scope"
           },
           "created_at": {
             "type": "string",
@@ -64777,6 +65479,35 @@
             "title": "Citations",
             "default": []
           },
+          "grounded": {
+            "type": "boolean",
+            "title": "Grounded",
+            "default": true
+          },
+          "angle_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Angle Ids",
+            "default": []
+          },
+          "dossier_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Dossier Ids",
+            "default": []
+          },
+          "fragment_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Fragment Ids",
+            "default": []
+          },
           "message_id": {
             "anyOf": [
               {
@@ -68320,6 +69051,17 @@
           "id": {
             "type": "integer",
             "title": "Id"
+          },
+          "angle_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Angle Id"
           },
           "place_slug": {
             "type": "string",
@@ -75894,6 +76636,172 @@
         "title": "RelatedDossierItem",
         "description": "Lightweight dossier stub for the Keep Reading carousel."
       },
+      "RelationshipMemoryClaim": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "subject_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Subject User Id"
+          },
+          "relationship_scope_kind": {
+            "type": "string",
+            "enum": [
+              "personal",
+              "circle",
+              "trip_roster"
+            ],
+            "title": "Relationship Scope Kind"
+          },
+          "relationship_scope_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Relationship Scope Id"
+          },
+          "subject_type": {
+            "type": "string",
+            "title": "Subject Type"
+          },
+          "subject_key": {
+            "type": "string",
+            "title": "Subject Key"
+          },
+          "subject_label": {
+            "type": "string",
+            "title": "Subject Label"
+          },
+          "claim_type": {
+            "type": "string",
+            "enum": [
+              "place_verdict",
+              "companion_fit",
+              "shared_statement"
+            ],
+            "title": "Claim Type"
+          },
+          "claim_value": {
+            "type": "string",
+            "title": "Claim Value"
+          },
+          "source_type": {
+            "type": "string",
+            "title": "Source Type"
+          },
+          "source_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Source Id"
+          },
+          "source_scope": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Scope"
+          },
+          "source_claim_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Claim Id"
+          },
+          "supersedes_claim_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Supersedes Claim Id"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "private",
+              "circle"
+            ],
+            "title": "Visibility"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "active",
+              "superseded",
+              "retracted"
+            ],
+            "title": "State"
+          },
+          "confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence"
+          },
+          "evidence_refs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence Refs"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "subject_user_id",
+          "relationship_scope_kind",
+          "subject_type",
+          "subject_key",
+          "subject_label",
+          "claim_type",
+          "claim_value",
+          "source_type",
+          "source_id",
+          "visibility",
+          "state",
+          "confidence",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "RelationshipMemoryClaim",
+        "description": "One governed claim; corrections supersede rather than erase history."
+      },
       "RelationshipVisibilityRequest": {
         "properties": {
           "granularity": {
@@ -78341,6 +79249,21 @@
         "title": "ShareEventCreate",
         "description": "Body of ``POST /api/public/stories/{slug}/share-events``."
       },
+      "ShareRelationshipMemoryClaimRequest": {
+        "properties": {
+          "claim_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Claim Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "claim_id"
+        ],
+        "title": "ShareRelationshipMemoryClaimRequest",
+        "description": "Explicit consent action for promoting one private claim."
+      },
       "ShareStats": {
         "properties": {
           "opens": {
@@ -78577,6 +79500,82 @@
         ],
         "title": "SharedPlanSnapshot",
         "description": "The reduced, no-poll snapshot for a forwardable local Plan link."
+      },
+      "SharedRelationshipMemoryClaim": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "circle_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Circle Id"
+          },
+          "shared_by_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Shared By User Id"
+          },
+          "subject_type": {
+            "type": "string",
+            "title": "Subject Type"
+          },
+          "subject_key": {
+            "type": "string",
+            "title": "Subject Key"
+          },
+          "subject_label": {
+            "type": "string",
+            "title": "Subject Label"
+          },
+          "claim_type": {
+            "type": "string",
+            "enum": [
+              "place_verdict",
+              "companion_fit",
+              "shared_statement"
+            ],
+            "title": "Claim Type"
+          },
+          "claim_value": {
+            "type": "string",
+            "title": "Claim Value"
+          },
+          "source_claim_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Source Claim Id"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "circle_id",
+          "shared_by_user_id",
+          "subject_type",
+          "subject_key",
+          "subject_label",
+          "claim_type",
+          "claim_value",
+          "source_claim_id",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "SharedRelationshipMemoryClaim",
+        "description": "Group-safe projection created by an explicit member share action."
       },
       "SimilarVenueResponse": {
         "properties": {
@@ -79282,6 +80281,11 @@
             ],
             "title": "Status"
           },
+          "confirmed": {
+            "type": "boolean",
+            "title": "Confirmed",
+            "default": false
+          },
           "revision": {
             "type": "integer",
             "minimum": 1.0,
@@ -79468,6 +80472,22 @@
         ],
         "title": "SocialCircleEventPage"
       },
+      "SocialCircleInvitation": {
+        "properties": {
+          "circle": {
+            "$ref": "#/components/schemas/SocialCircle"
+          },
+          "membership": {
+            "$ref": "#/components/schemas/SocialCircleMember"
+          }
+        },
+        "type": "object",
+        "required": [
+          "circle",
+          "membership"
+        ],
+        "title": "SocialCircleInvitation"
+      },
       "SocialCircleMember": {
         "properties": {
           "circle_id": {
@@ -79493,9 +80513,58 @@
             "enum": [
               "invited",
               "active",
+              "declined",
               "left"
             ],
             "title": "Status"
+          },
+          "invited_by": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Invited By"
+          },
+          "invited_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Invited At"
+          },
+          "confirmed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confirmed At"
+          },
+          "declined_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Declined At"
           },
           "source_trip_id": {
             "anyOf": [
