@@ -25963,7 +25963,7 @@
           "search"
         ],
         "summary": "Nearby",
-        "description": "Find venues and sites near a geographic point.\n\nUses PostGIS ST_DWithin with GiST index \u2014 typically <30ms.",
+        "description": "Find catalog entities near a geographic point.\n\nUses PostGIS ST_DWithin with GiST index \u2014 typically <30ms.",
         "operationId": "nearby_api_search_nearby_get",
         "parameters": [
           {
@@ -26060,6 +26060,27 @@
               "title": "Has Angles"
             },
             "description": "Only return venues that have at least one published angle."
+          },
+          {
+            "name": "entity_types",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Optional entity types. transport_hub is explicit opt-in; omitting this parameter preserves the recommendation-only default.",
+              "title": "Entity Types"
+            },
+            "description": "Optional entity types. transport_hub is explicit opt-in; omitting this parameter preserves the recommendation-only default."
           }
         ],
         "responses": {
@@ -63539,6 +63560,11 @@
             "type": "boolean",
             "title": "Has Photos",
             "default": false
+          },
+          "has_transport_hubs": {
+            "type": "boolean",
+            "title": "Has Transport Hubs",
+            "default": false
           }
         },
         "type": "object",
@@ -63788,28 +63814,6 @@
           "saved_at": {
             "type": "string",
             "title": "Saved At"
-          },
-          "note": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Note"
-          },
-          "category": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Category"
           }
         },
         "type": "object",
@@ -64323,6 +64327,71 @@
         ],
         "title": "MapTasteNearbyPlace",
         "description": "A taste-ranked place near a live map viewport coordinate (Layer 2 discovery).\n\nDistinct from ``MapSavedPlace`` (a bookmark the user already made, fixed\nnear the destination centroid): this is ``discover_nearby_ranked`` run\nagainst the map's current ``lat``/``lng`` \u2014 new places the taste floor\nsurfaced, not places the user already knows about. See\n``backend/api/routes/trips.py::get_trip_map_nearby_taste`` and\ndocs/working/location-intelligence-2026-08-04.md, C5.\n\n``id`` is a corpus integer id (as a string) for ``source=\"corpus\"`` rows,\nor a namespaced provider id (e.g. ``\"google:abc123\"``) otherwise \u2014 venue\nand site ids collide, so ``entity_type`` must gate any lookup keyed off\n``id``. Never carries ``fsq_id``/``google_place_id``/``wikidata_id`` \u2014\nonly ``discover_nearby``'s ``keep_coords=True`` path (coordinates, not\nprovider identity) is exposed here."
+      },
+      "MapTransportHub": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "slug": {
+            "type": "string",
+            "title": "Slug"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "hub_type": {
+            "type": "string",
+            "title": "Hub Type"
+          },
+          "geometry_precision": {
+            "type": "string",
+            "title": "Geometry Precision"
+          },
+          "place_slug": {
+            "type": "string",
+            "title": "Place Slug"
+          },
+          "point": {
+            "$ref": "#/components/schemas/MapPoint"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "category": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "slug",
+          "name",
+          "hub_type",
+          "geometry_precision",
+          "place_slug",
+          "point"
+        ],
+        "title": "MapTransportHub",
+        "description": "A canonical rail/port/airport anchor near a trip destination.\n\nHubs are factual logistics context. They are intentionally separate from\nsaved/recommended places and from itinerary stops."
       },
       "MarkOccurrencePayload": {
         "properties": {
@@ -66066,7 +66135,8 @@
             "enum": [
               "venue",
               "site",
-              "accommodation"
+              "accommodation",
+              "transport_hub"
             ],
             "title": "Entity Type"
           },
@@ -66222,7 +66292,7 @@
           "lng"
         ],
         "title": "NearbyItem",
-        "description": "A venue or site near a given point."
+        "description": "A catalog entity near a given point."
       },
       "NearbyResponse": {
         "properties": {
@@ -66259,7 +66329,7 @@
           "latency_ms"
         ],
         "title": "NearbyResponse",
-        "description": "Nearby venues/sites around a geographic point."
+        "description": "Nearby catalog entities around a geographic point."
       },
       "NormalizedItineraryOperation": {
         "properties": {
@@ -78941,7 +79011,7 @@
               }
             ],
             "title": "Entity Types",
-            "description": "Entity types to search: [\"venue\", \"experience\", \"site\", \"accommodation\", \"angle\", \"dossier\"]. \"event\" is a legacy alias for \"experience\". Defaults to all."
+            "description": "Entity types to search: [\"venue\", \"experience\", \"site\", \"accommodation\", \"transport_hub\", \"angle\", \"dossier\"]. \"event\" is a legacy alias for \"experience\". Defaults to all."
           },
           "limit": {
             "type": "integer",
@@ -79016,6 +79086,7 @@
               "experience",
               "site",
               "accommodation",
+              "transport_hub",
               "place",
               "angle",
               "dossier"
@@ -79084,6 +79155,17 @@
               }
             ],
             "title": "Accommodation Type"
+          },
+          "hub_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hub Type"
           },
           "star_rating": {
             "anyOf": [
@@ -85647,6 +85729,14 @@
             "type": "array",
             "title": "Saved Nearby",
             "description": "User-saved venues within ~5 km of the destination centroid (Layer 2). Empty when the trip has no destination or the user has no saves near it. Sourced from ``entity_saves`` JOIN ``venues`` via ST_DWithin."
+          },
+          "transport_hubs": {
+            "items": {
+              "$ref": "#/components/schemas/MapTransportHub"
+            },
+            "type": "array",
+            "title": "Transport Hubs",
+            "description": "Canonical logistics anchors under every destination in the trip route. They are context pins, not recommendations or itinerary commitments."
           },
           "neighborhoods": {
             "items": {
