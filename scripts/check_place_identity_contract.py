@@ -15,7 +15,15 @@ DEFAULT_SNAPSHOTS = (
 )
 ENTITY_REF = "#/components/schemas/EntityRef"
 ENTITY_REF_TYPE = "#/components/schemas/EntityRefType"
-EXPECTED_TYPES = ("place", "venue", "site", "accommodation", "experience", "custom")
+EXPECTED_TYPES = (
+    "place",
+    "venue",
+    "site",
+    "accommodation",
+    "experience",
+    "transport_hub",
+    "custom",
+)
 IDENTITY_SEAMS = (
     ("MapStop", "entity_ref"),
     ("MapStopAction", "entity_ref"),
