@@ -123,6 +123,14 @@ overrides:
     disposition: keep_reference
     rationale: Active, expiring execution ledger for the bounded shared-plan handoff pilot; it records validation gates without superseding product policy.
 
+  docs/working/thesis-to-experience-convergence-audit-2026-08-09.md:
+    disposition: keep_reference
+    rationale: Active, expiring cross-repo investigation of the gap between the accepted product thesis, implemented substrate, and experienced loops; canonical product, release, journey, and system documents remain authoritative.
+
+  docs/working/home-surfaces-post-consolidation-engineering-plan-2026-08-09.md:
+    disposition: keep_reference
+    rationale: Active, expiring post-consolidation implementation plan for Places and Trips Home; external design authority, generated contracts, and durable surface/system contracts remain authoritative.
+
   docs/README.md:
     disposition: keep_authoritative
     rationale: Entry point and lifecycle map for the workspace documentation.
