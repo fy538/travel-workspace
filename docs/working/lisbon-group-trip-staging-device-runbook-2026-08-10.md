@@ -58,19 +58,21 @@ Use an internal build against a controlled backend seeded from the fixed
 fixture. Record `device_mock`, never `physical`.
 
 The local simulator support flow has separately confirmed the production Plan
-doorway and private review-first handoff on a clean revision. Its receipt is
-owned under `P05-doorway-support`, not `P05`; steps 3–7 below remain required
-before the product proof can pass.
+doorway and private review-first handoff. The latest artifact is
+`/Users/feihuyan/.maestro/tests/2026-08-10_132226`, but its pass receipt was
+correctly rejected because the backend checkout had concurrent staged changes.
+Treat it as artifact-only `P05-doorway-support`, not immutable evidence and not
+`P05`; steps 3–7 below remain required before the product proof can pass.
 
-The 2026-08-10 deployed checkpoint uses backend
-`7b7f673610416447aca363fc592d74475fa20f1f`, Fly digest
-`sha256:da11da3529dea8161345a48e7ef9a765f5527a3eef1aa6c98cc790eaf02e6113`,
+The latest 2026-08-10 deployed support checkpoint uses backend
+`1abb5a951800c8aa853ee1c427508d209eba34e2`, Fly digest
+`sha256:102646659b6ac835e7e60678bbc1d479041cc63b8b4247d109467e0ad8b5dbbf`,
 migration `receiptidem01`, existing internal iOS build
 `aa524cdb-7b34-4f27-9864-425df19a2e47`, and exact-SHA OTA group
 `a8ae572d-f59c-481c-b768-3359ecbc35b6`. Treat the binary and OTA as one mobile
 identity. Controlled Trip `f47e582d-85a6-454e-8a2d-be3a199f0b09` is seeded,
 verified, and is the only weather-rescue allowlist entry. The global producer
-remains off until the staging operator begins the governed walk.
+is off after the controlled support lifecycle.
 
 The original four-member canonical-world Trip was not modified. The separate
 controlled Trip has exactly the fixture actors and roles, one canonical
@@ -79,6 +81,14 @@ block `a0cad209-addd-5378-9f74-ad27db8619bf`. Re-run
 `python scripts/provision_lisbon_group_disruption.py` as a read-only preflight
 immediately before enabling the producer; any roster or plan drift blocks the
 walk.
+
+The controlled support lifecycle used an explicitly synthetic rain observation,
+canonical participant vote and organizer apply, two viewer projections, and a
+canonical inverse revert. Proposal
+`c2414f6c-b2a5-430e-9377-2d3d49f37cc3` is withdrawn after a succeeded apply,
+and the original site is restored. This proves rollback support only. It does
+not satisfy the live-provider/future-block requirement and is not P07 staging
+evidence.
 
 1. Organizer opens the live Lisbon Plan and sees `Take us somewhere` only when
    there is a server-resolved current block.
@@ -110,7 +120,8 @@ JSON are rejected by the evidence tooling.
 ## Receipt commands
 
 The staging and physical commands are operator-owned because they deploy and
-touch real accounts. Use `make dogfood-staging` with
+touch real accounts. The staging proof parser now accepts every registered
+P01–P07 ID while the fast/local suites remain P01–P04. Use `make dogfood-staging` with
 `DOGFOOD_STAGING_PROOFS=P07`; use `scripts/journey_evidence.py record` for the
 controlled P05/P07 device-mock command. Extend the physical runner's governed
 proof list before running it; do not relabel the existing J04/J05/J10 receipt.
