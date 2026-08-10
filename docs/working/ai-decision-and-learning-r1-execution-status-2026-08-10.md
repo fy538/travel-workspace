@@ -56,11 +56,37 @@ The backend branch is a linear, reviewable series:
 9. `847b3fd40` — private proactive eligibility and pre-study power assumptions.
 10. `3d6ed13cf` — injection suite and human-gated evaluator promotion.
 11. `3349de7ad` — typed, copy-free structured policy adapter.
+12. `643345c46` — review hardening for content-free shadow receipts, proof
+    references, intervention propensities, decision-set validation, and group
+    utility baselines.
+
+## Review hardening (2026-08-10)
+
+The AI-R1 implementation review identified and closed the following false-green
+paths before any runtime consumer is considered:
+
+- shadow-ledger records now accept only closed action/failure vocabularies and
+  opaque identifiers; unsafe scope-revision metadata is omitted;
+- device evidence requires a non-blank immutable artifact reference, and
+  physical-device evidence also requires a non-blank run receipt;
+- any observed plan/proposal/booking/expense/itinerary mutation requires a
+  canonical writer and receipt, even if the trial omitted an explicit action;
+- intervention probabilities must name only a registered candidate or
+  no-send, the selected treatment must have positive propensity, and ineligible
+  decisions must record an exclusion reason;
+- `show_options` is valid without inventing one target, but requires a
+  non-empty option set; and
+- group baselines reject empty, nonnumeric, nonfinite, or inconsistent member
+  utility rosters rather than selecting or crashing.
+
+These are validator and audit-envelope changes only. They do not convert any
+M/S result into device, human, backend-real, causal, or release evidence.
 
 ## Verification performed
 
-- Focused AI-DL and shadow-ledger tests: **44 passed** on the Travel Agent
-  AI-R1 branch.
+- Focused AI-DL, shadow-ledger, adjacent AI-run/proactive-event, and
+  product-proof tests: **73 passed** on the Travel Agent AI-R1 branch after
+  `643345c46`.
 - Ruff checks and formatting passed for every changed file.
 - Each commit passed the repository pre-commit checks.
 
