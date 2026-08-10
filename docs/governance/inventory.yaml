@@ -175,6 +175,10 @@ overrides:
     disposition: keep_reference
     rationale: Active, expiring execution record for the post-cleanup AI control-plane slices; canonical backend architecture and evidence receipts remain authoritative.
 
+  docs/working/convergence-final-evidence-operator-package-2026-08-10.md:
+    disposition: keep_reference
+    rationale: Active, expiring operator package for convergence evidence review; executable checks and canonical system contracts remain authoritative.
+
   docs/working/ai-decision-and-learning-research-agenda-2026-08-10.md:
     disposition: keep_reference
     rationale: Active, expiring research agenda for AI decision and learning; it records hypotheses without authorizing product behavior.
