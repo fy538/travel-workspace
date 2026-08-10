@@ -20,6 +20,8 @@ set -e
 [[ "$physical_output" == *"PHYSICAL_APP_BUILD_ID"* ]]
 
 grep -q '^dogfood-physical:' Makefile
+grep -q 'record_physical_external' scripts/dogfood-gate.sh
+grep -q -- '--app-build-id' scripts/dogfood-gate.sh
 ! grep -q 'Record pass/fail in docs/journeys/STATUS.md' scripts/certify-live.sh
 
 printf 'dogfood runner wiring and fail-closed checks passed.\n'
