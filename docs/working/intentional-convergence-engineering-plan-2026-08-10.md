@@ -81,6 +81,41 @@ verification. Workspace governance/status files also changed concurrently.
 Those moving worktrees are **not** an integration baseline. Every implementation
 lane below starts in a dedicated worktree from recorded clean heads.
 
+### Execution ledger — 2026-08-10
+
+Round 0 is complete on the main-derived candidate. The candidate is now:
+
+| Repository | Candidate revision |
+| --- | --- |
+| workspace | `bc97fa15fe2d835da20cd05068835a45fe4cea62` |
+| backend | `a533ebcb2d1f8d52f97d1f5e7af17d00bc75813f` |
+| mobile | `9ea3f44eb11f193b15959a50e25f9271108b005b` |
+
+The exact backend/mobile SHAs above are the revisions used for the Round 1
+focused checks; the workspace SHA remains the coordinator revision. Landed
+work is intentionally split into small commits:
+
+- G0 evidence integrity and status/flag governance: `d504d2f`, `0a2575a`,
+  `e936fae`, `aa2b8b0`, `e8df013`, `594b4d8`, `2d0d7b9`;
+- G0 metadata and documentation truth: `5b32842b`, `b5b871820`, `59de99e`,
+  `bc97fa1`;
+- baseline fixture correction: `84930858f` (binds a readiness assertion to
+  the explicit dark-by-default Duffel live-booking flag);
+- H1 degraded Concierge Home truth: `0ddffd2be`;
+- H2/H3 mobile Home and Places truth: `84b47e68`, `07c7618b`, `a61b9eb0`,
+  `a0074f39`, `9ea3f44e`;
+- R1 roster-drift revocation and unavailable-profile indistinguishability:
+  `c7e9d7133`, `92ce61d2e`;
+- K1 live experience/Trip-roster serving identity: `a533ebcb2`.
+
+Verification so far: `make certify-fast` is green (including 17,112 offline
+backend tests, 33 mobile journey suites/171 tests, and 316 Maestro flows), the
+Round 1 focused backend set is 148 passed/9 skipped, the five Home truth mobile
+suites are 52/52, TypeScript compiles, and contract/docs gates are green.
+This is deterministic/static and backend-real evidence only. The committed
+attestation index is still empty; no device-mock, physical, staging, or AI-eval
+receipt has been promoted for this candidate.
+
 Evidence terms are strict:
 
 - **S:** source/static or type evidence;
@@ -173,6 +208,34 @@ These are sprint-authorized correctness work, not product exploration.
 | Home engineering plan | Authorized correctness and hardening backlog. |
 | Profile/relationship document | Product hypothesis and fixture-prototype brief only. |
 | Cross-slice audit | Revision-anchored seam findings, reverified before dispatch. |
+
+### 3.6 Round 1 implementation status
+
+The following P0 defects are now implemented with regression coverage:
+
+- **T-01:** degraded Concierge Home is marked internally and the Trips Stack
+  returns a retryable authorization-safe unavailable response instead of an
+  authoritative empty projection; committed-trip fallback remains client-owned.
+- **T-02–T-04:** Trips ranking identity includes rounded precipitation/wind;
+  committed, ranked, placeholder, offline, and re-keyed ambient states are
+  distinct; Day Map and Ambient work are flag-gated.
+- **T-05:** Places treats zero-renderable producer failure as unavailable and
+  applies one deterministic notice-precedence rule.
+- **T-06–T-07:** roster-drift invalidates shared companion-fit claims regardless
+  of author, and missing/private profiles share one generic unavailable detail.
+- **T-08:** physical evidence remains fail-closed through the G0 runner package;
+  no physical receipt exists yet.
+
+**K1 is additive, not a universal-model migration.** `AIRunContext` now carries
+both `ExperienceScope` and a revisioned Trip-roster `RelationshipScope` at live
+chat entry; child runs inherit them. Circle scope construction remains an
+explicit authorized caller responsibility, and a Trip never guesses a circle.
+
+**O1 remains next.** Recent outcome summaries and planner/compiler enrichment
+still need the shared `apply | weak_precedent | withhold` applicability resolver,
+including the changed-roster and corrected-outcome negative oracles. Profile
+production endpoints and Round 2 map/projection work remain blocked until O1 is
+complete.
 
 ## 4. Target architecture
 
