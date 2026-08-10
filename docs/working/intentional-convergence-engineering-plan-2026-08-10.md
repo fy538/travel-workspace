@@ -87,8 +87,8 @@ Round 0 is complete on the main-derived candidate. The candidate is now:
 
 | Repository | Candidate revision |
 | --- | --- |
-| workspace | `bc97fa15fe2d835da20cd05068835a45fe4cea62` |
-| backend | `a533ebcb2d1f8d52f97d1f5e7af17d00bc75813f` |
+| workspace | `a830d7275511b89abbce911c5a7e01960c3ae01d` |
+| backend | `98490418fbba2fd07b714d9c9efba5f2b0f88227` |
 | mobile | `9ea3f44eb11f193b15959a50e25f9271108b005b` |
 
 The exact backend/mobile SHAs above are the revisions used for the Round 1
@@ -107,11 +107,14 @@ work is intentionally split into small commits:
 - R1 roster-drift revocation and unavailable-profile indistinguishability:
   `c7e9d7133`, `92ce61d2e`;
 - K1 live experience/Trip-roster serving identity: `a533ebcb2`.
+- O1 exact-roster outcome applicability across private planner and compiler
+  paths: `98490418f`.
 
 Verification so far: `make certify-fast` is green (including 17,112 offline
 backend tests, 33 mobile journey suites/171 tests, and 316 Maestro flows), the
-Round 1 focused backend set is 148 passed/9 skipped, the five Home truth mobile
-suites are 52/52, TypeScript compiles, and contract/docs gates are green.
+Round 1 focused backend set is 148 passed/9 skipped plus 92 outcome/compiler
+tests, the five Home truth mobile suites are 52/52, TypeScript compiles, and
+contract/docs gates are green.
 This is deterministic/static and backend-real evidence only. The committed
 attestation index is still empty; no device-mock, physical, staging, or AI-eval
 receipt has been promoted for this candidate.
@@ -231,11 +234,12 @@ both `ExperienceScope` and a revisioned Trip-roster `RelationshipScope` at live
 chat entry; child runs inherit them. Circle scope construction remains an
 explicit authorized caller responsibility, and a Trip never guesses a circle.
 
-**O1 remains next.** Recent outcome summaries and planner/compiler enrichment
-still need the shared `apply | weak_precedent | withhold` applicability resolver,
-including the changed-roster and corrected-outcome negative oracles. Profile
-production endpoints and Round 2 map/projection work remain blocked until O1 is
-complete.
+**O1 is complete for the current kernel.** Recent outcome summaries retain
+`companion_scope`; private formatter/planner paths and Context Compiler source
+admission withhold malformed, stale, or changed-roster companion-fit evidence.
+The pure policy exposes `apply | weak_precedent | withhold`; only exact-roster
+evidence currently applies. The remaining Round 2 work is map/projection
+convergence and durable causal propagation, not a profile production build.
 
 ## 4. Target architecture
 
