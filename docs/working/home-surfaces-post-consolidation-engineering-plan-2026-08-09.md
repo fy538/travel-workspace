@@ -1136,6 +1136,10 @@ intentionally not an F/B/V receipt.
 | Trips Local Plans / Day Map rhythm | Failed map leaves suppress themselves before cluster layout and Local Plans/Day Map have an explicit internal gap. | App `2e65b2e8` |
 | Root consolidation | Places state/search responsibilities moved into focused components; Trips actions and settled performance effects moved out of the controller. | App `b06571a2`, `a8230c3e`, `d9ea207b` |
 | Governance | Inventory rows are independently adoptable: Time and Trip Feel are split, and technical source completion is not confused with adoption or acceptance. | Workspace `f7427f7`, `929a538` |
+| Projection resilience | A failed supplemental Trips posture read no longer discards an otherwise grounded ranked home projection. | Backend `08adf7a67` |
+| Private Places prompt routing | Malformed cached prompt payloads are inert unless they carry the private trip-debrief continuation; they cannot navigate into booking or proposal owners. | App `0b8ecfeb` |
+| Trips fixture and QA parity | Cardless mock Trips uses the backend-equivalent starter crown; active capture expectations no longer require the retired cold-invitation UI. | App `99178d57` |
+| Cross-repo guard coherence | The identity contract guard recognizes the already-published `transport_hub` reference type. | Workspace `6f603bd` |
 
 ### Verification on the settled source tree
 
