@@ -143,6 +143,26 @@ overrides:
     disposition: keep_reference
     rationale: Active, expiring cross-repo execution plan that reconciles the August pivot audits and verified code/evidence gaps into ordered trust, convergence, proof-loop, and certification work; canonical product, release, journey, and system documents remain authoritative.
 
+  docs/working/ai-decision-and-learning-engineering-plan-2026-08-10.md:
+    disposition: keep_reference
+    rationale: Active, expiring engineering plan for the bounded AI decision-and-learning workstream; accepted product, system, and release authorities remain canonical.
+
+  docs/working/ai-decision-and-learning-r0-baseline-inventory-2026-08-10.md:
+    disposition: keep_reference
+    rationale: Active, expiring inventory of AI-R0 baseline evidence and gaps; promoted evidence registries and executable tests remain authoritative.
+
+  docs/working/ai-decision-and-learning-r0-fixture-manifest-2026-08-10.md:
+    disposition: keep_reference
+    rationale: Active, expiring fixture manifest for deterministic AI-R0 evaluation; executable manifests and validators own runtime truth.
+
+  docs/working/ai-decision-and-learning-r0-handoff-2026-08-10.md:
+    disposition: keep_reference
+    rationale: Active, expiring handoff record for the AI-R0 evaluation slice; it does not supersede release or certification evidence.
+
+  docs/working/ai-decision-and-learning-research-agenda-2026-08-10.md:
+    disposition: keep_reference
+    rationale: Active, expiring research agenda for AI decision and learning; it records hypotheses without authorizing product behavior.
+
   docs/README.md:
     disposition: keep_authoritative
     rationale: Entry point and lifecycle map for the workspace documentation.
