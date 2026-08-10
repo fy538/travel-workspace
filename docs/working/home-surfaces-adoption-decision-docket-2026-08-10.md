@@ -45,9 +45,10 @@ private member signal never becomes group-visible source text.
 
 ## Recommended verdicts
 
-These are staff-level recommendations, not recorded founder decisions. A product
-owner still needs to confirm each verdict before its inventory row changes from
-`unresolved` or `exploratory`.
+These recommendations were approved by the founder in this workspace on
+2026-08-10. They are the implementation authority for the scoped variants
+below. The inventory must split mixed rows before a family is marked adopted;
+the decision itself does not grant evidence credit.
 
 | Composition | Recommendation | Recommended scope and rationale |
 |---|---|---|
