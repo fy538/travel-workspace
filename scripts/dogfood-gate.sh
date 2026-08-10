@@ -19,13 +19,14 @@ Usage: scripts/dogfood-gate.sh {fast|local|device|physical|staging}
 fast     Deterministic client contracts and static registry checks (P01–P04 contract anchors).
 local    fast plus the Postgres/local-plan canary (P01–P04 database anchors).
 device   local plus an explicitly supplied P01/P03 device-mock command.
-physical First-class physical P01/P03 command; use dogfood-physical for the live runner.
+physical Reserved; fails closed and directs operators to dogfood-physical.
 staging  an explicitly supplied deployed-environment command and proof list.
 
 For device, set DOGFOOD_DEVICE_COMMAND to the exact command that exercises the
 device-mock environment. It records only P01/P03 (the proofs whose registry
-requires device_mock). For physical, set DOGFOOD_PHYSICAL_COMMAND when using
-this low-level runner; the Make target normally invokes the physical script.
+requires device_mock). Physical evidence is never accepted from an arbitrary
+shell command; use `make dogfood-physical RUN_LIVE=1` so hardware and artifacts
+are verified by the first-class runner.
 For staging, set DOGFOOD_STAGING_COMMAND and DOGFOOD_STAGING_PROOFS (a
 comma-separated list of P01–P04) explicitly. Missing commands or proof lists
 are a blocked run and never produce a pass receipt.
@@ -43,31 +44,6 @@ record() {
   "${EVIDENCE_TOOL[@]}" record \
     --layer "$layer" --status "$status" --environment "$environment" \
     --command "$command" --duration-seconds "$duration" "${args[@]}" >/dev/null
-}
-
-record_physical_external() {
-  local status="$1" environment="$2" command="$3" duration="$4"
-  shift 4
-  local args=(
-    --layer physical --status "$status" --environment "$environment"
-    --command "$command" --duration-seconds "$duration"
-    --app-build-id "${PHYSICAL_APP_BUILD_ID}"
-    --backend-deploy-digest "${PHYSICAL_BACKEND_DEPLOY_DIGEST}"
-    --migration-revision "${PHYSICAL_MIGRATION_REVISION}"
-    --seed-corpus-hash "${PHYSICAL_SEED_CORPUS_HASH}"
-    --oracle-hash "${PHYSICAL_ORACLE_HASH}"
-    --flow-hash "${PHYSICAL_FLOW_HASH}"
-    --reviewer "${PHYSICAL_REVIEWER}"
-  )
-  local proof device identity artifact
-  for proof in "$@"; do args+=(--journey "$proof"); done
-  IFS=',' read -r -a devices <<<"${PHYSICAL_DEVICES}"
-  IFS=',' read -r -a identities <<<"${PHYSICAL_IDENTITIES}"
-  IFS=',' read -r -a artifacts <<<"${PHYSICAL_ARTIFACTS}"
-  for device in "${devices[@]}"; do args+=(--device "$device"); done
-  for identity in "${identities[@]}"; do args+=(--identity "$identity"); done
-  for artifact in "${artifacts[@]}"; do args+=(--artifact "$artifact"); done
-  "${EVIDENCE_TOOL[@]}" record "${args[@]}" >/dev/null
 }
 
 run_and_record() {
@@ -148,31 +124,6 @@ run_external() {
     printf '  No %s receipt was written; this checkout remains UNRUN/BLOCKED at that layer.\n' "$layer" >&2
     return 2
   fi
-  if [[ "$layer" == "physical" ]]; then
-    local metadata_key metadata_value
-    for metadata_key in PHYSICAL_APP_BUILD_ID PHYSICAL_BACKEND_DEPLOY_DIGEST \
-      PHYSICAL_MIGRATION_REVISION PHYSICAL_SEED_CORPUS_HASH PHYSICAL_DEVICES \
-      PHYSICAL_IDENTITIES PHYSICAL_ORACLE_HASH PHYSICAL_FLOW_HASH \
-      PHYSICAL_REVIEWER PHYSICAL_ARTIFACTS; do
-      metadata_value="${!metadata_key:-}"
-      if [[ -z "$metadata_value" ]]; then
-        printf '✗ physical gate requires %s; no physical pass/fail receipt can be written.\n' "$metadata_key" >&2
-        return 2
-      fi
-    done
-  fi
-  if [[ "$layer" == "physical" ]]; then
-    local started status exit_code
-    started="$(date +%s)"
-    set +e
-    run_shell_command "$command"
-    exit_code=$?
-    set -e
-    if [[ "$exit_code" -eq 0 ]]; then status=pass; else status=fail; fi
-    record_physical_external "$status" "$environment" "$command" \
-      "$(( $(date +%s) - started ))" "${proofs[@]}"
-    return "$exit_code"
-  fi
   run_and_record "$layer" "$environment" "$command" run_shell_command "$command" -- "${proofs[@]}"
 }
 
@@ -195,8 +146,9 @@ case "${1:-}" in
     run_external device DOGFOOD_DEVICE_COMMAND device_mock founder-device P01 P03
     ;;
   physical)
-    physical_proofs=(P01 P03)
-    run_external physical DOGFOOD_PHYSICAL_COMMAND physical founder-physical "${physical_proofs[@]}"
+    printf '✗ Arbitrary physical commands cannot produce evidence.\n' >&2
+    printf '  Run: make dogfood-physical RUN_LIVE=1\n' >&2
+    exit 2
     ;;
   staging)
     parse_proofs "${DOGFOOD_STAGING_PROOFS:-}"

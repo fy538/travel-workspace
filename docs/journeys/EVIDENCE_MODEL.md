@@ -41,7 +41,10 @@ Unknown or `-dirty` revisions may describe a failed or blocked diagnostic, but
 cannot certify a pass. Physical pass/fail receipts additionally require the
 exact app build, backend deploy, migration, seed/corpus digest, device and
 sanitized identity list, oracle and flow hashes, reviewer, and content-addressed
-artifact hashes.
+artifact hashes. The physical runner resolves at least two unique hardware UDIDs
+from the host inventory, passes those UDIDs explicitly to Maestro, derives the
+oracle/flow hashes from governed files, and hashes artifacts created after the
+run began. Caller-authored device labels or digest strings are not accepted.
 
 A raw receipt is `STALE` whenever any recorded revision differs from the
 current checkout. A committed promoted index names the tested workspace
@@ -100,8 +103,9 @@ The fast/local gates record only the P01–P04 contract/database anchors they
 actually execute. `dogfood-device` records `device_mock` only for P01/P03 and
 deliberately stops when its explicit environment command is absent. The
 first-class `dogfood-physical` runner records `physical` evidence only after
-all required live assertions and receipt metadata are present; dry or skipped
-runs are `BLOCKED`. `dogfood-staging` requires an explicit command and
+all required live assertions, verified physical hardware, and fresh artifacts
+are present; dry or skipped runs are `BLOCKED`. The low-level gate deliberately
+rejects arbitrary physical shell commands. `dogfood-staging` requires an explicit command and
 comma-separated `DOGFOOD_STAGING_PROOFS` list. None of these commands records a
 substitute simulator, TestClient, or file-presence result as higher-layer
 evidence.

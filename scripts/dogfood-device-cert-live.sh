@@ -4,8 +4,8 @@
 # This runner validates the live prerequisites and then executes the five
 # Maestro flows required by the J04/J05/J10 runbook. A dry run is deliberately
 # a blocked result: it never claims physical evidence. A physical pass/fail
-# receipt is written only when the caller supplies the complete identity and
-# artifact metadata required by scripts/journey_evidence.py.
+# receipt is written only when the runner resolves two physical UDIDs and
+# hashes artifacts created during this exact run.
 #
 # Usage:
 #   RUN_LIVE=0 scripts/dogfood-device-cert-live.sh   # validate, exit 2 (blocked)
@@ -16,12 +16,10 @@
 #   PHYSICAL_BACKEND_DEPLOY_DIGEST
 #   PHYSICAL_MIGRATION_REVISION
 #   PHYSICAL_SEED_CORPUS_HASH=sha256:<64 hex>
-#   PHYSICAL_DEVICES="device/OS,device/OS"
+#   PHYSICAL_DEVICE_UDIDS="hardware-udid-1,hardware-udid-2"
 #   PHYSICAL_IDENTITIES="mara@dogfood.local,dao@dogfood.local"
-#   PHYSICAL_ORACLE_HASH=sha256:<64 hex>
-#   PHYSICAL_FLOW_HASH=sha256:<64 hex>
 #   PHYSICAL_REVIEWER
-#   PHYSICAL_ARTIFACTS="flow.zip=sha256:<64 hex>,screenshot.png=sha256:<64 hex>"
+#   PHYSICAL_ARTIFACT_PATHS="/path/flow.zip,/path/screenshot.png"
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -29,6 +27,9 @@ WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
 APP_DIR="$WORKSPACE_DIR/travel-app"
 FLY_HOST="${PRELAUNCH_HOST:-https://vesper-backend.fly.dev}"
 RUN_LIVE="${RUN_LIVE:-0}"
+CERT_STARTED_EPOCH="$(date +%s)"
+EVIDENCE_HELPER="$SCRIPT_DIR/physical_evidence.py"
+ORACLE_PATH="$WORKSPACE_DIR/docs/working/journey-live-full-cert-04-05-10.md"
 
 bold() { printf "\033[1m%s\033[0m\n" "$1"; }
 ok() { printf "  \033[32m✓\033[0m %s\n" "$1"; }
@@ -37,6 +38,8 @@ warn() { printf "  \033[33m⚠\033[0m %s\n" "$1"; }
 step() { printf "\n  %s\n" "$1"; }
 
 declare -a RESULTS=()
+declare -a PHYSICAL_DEVICE_UDID_LIST=()
+declare -a PHYSICAL_DEVICE_DESCRIPTORS=()
 record_check() { RESULTS+=("$1|$2|$3"); }
 
 split_csv() {
@@ -49,6 +52,35 @@ split_csv() {
   done
 }
 
+resolve_physical_devices() {
+  local raw_udids="${PHYSICAL_DEVICE_UDIDS:-}" output value existing
+  local seen_udids=()
+  if ! split_csv "$raw_udids" || [[ "${#CSV_ITEMS[@]}" -lt 2 ]]; then
+    printf 'PHYSICAL_DEVICE_UDIDS must name at least two unique connected hardware UDIDs.\n' >&2
+    return 1
+  fi
+  PHYSICAL_DEVICE_UDID_LIST=("${CSV_ITEMS[@]}")
+  for value in "${PHYSICAL_DEVICE_UDID_LIST[@]}"; do
+    for existing in "${seen_udids[@]}"; do
+      [[ "$existing" != "$value" ]] || {
+        printf 'Duplicate physical UDID: %s\n' "$value" >&2
+        return 1
+      }
+    done
+    seen_udids+=("$value")
+  done
+  local device_args=()
+  for value in "${PHYSICAL_DEVICE_UDID_LIST[@]}"; do device_args+=(--udid "$value"); done
+  if ! output="$(python3 "$EVIDENCE_HELPER" devices "${device_args[@]}")"; then
+    return 1
+  fi
+  PHYSICAL_DEVICE_DESCRIPTORS=()
+  while IFS= read -r value; do
+    [[ -n "$value" ]] && PHYSICAL_DEVICE_DESCRIPTORS+=("$value")
+  done <<<"$output"
+  [[ "${#PHYSICAL_DEVICE_DESCRIPTORS[@]}" -eq "${#PHYSICAL_DEVICE_UDID_LIST[@]}" ]]
+}
+
 physical_metadata_args() {
   PHYSICAL_METADATA_ARGS=()
   local missing=()
@@ -56,19 +88,15 @@ physical_metadata_args() {
   [[ -n "${PHYSICAL_BACKEND_DEPLOY_DIGEST:-}" ]] || missing+=(backend_deploy_digest)
   [[ -n "${PHYSICAL_MIGRATION_REVISION:-}" ]] || missing+=(migration_revision)
   [[ -n "${PHYSICAL_SEED_CORPUS_HASH:-}" ]] || missing+=(seed_corpus_hash)
-  [[ -n "${PHYSICAL_ORACLE_HASH:-}" ]] || missing+=(oracle_hash)
-  [[ -n "${PHYSICAL_FLOW_HASH:-}" ]] || missing+=(flow_hash)
   [[ -n "${PHYSICAL_REVIEWER:-}" ]] || missing+=(reviewer)
-  local devices=() identities=() artifacts=()
-  if ! split_csv "${PHYSICAL_DEVICES:-}"; then missing+=(devices); fi
-  devices=("${CSV_ITEMS[@]}")
+  local identities=() artifact_paths=() artifacts=() value output
+  if [[ "${#PHYSICAL_DEVICE_DESCRIPTORS[@]}" -lt 2 ]]; then missing+=(devices); fi
   if ! split_csv "${PHYSICAL_IDENTITIES:-}"; then missing+=(identities); fi
   identities=("${CSV_ITEMS[@]}")
-  if ! split_csv "${PHYSICAL_ARTIFACTS:-}"; then missing+=(artifacts); fi
-  artifacts=("${CSV_ITEMS[@]}")
-  [[ "${#devices[@]}" -gt 0 ]] || missing+=(devices)
-  [[ "${#identities[@]}" -gt 0 ]] || missing+=(identities)
-  [[ "${#artifacts[@]}" -gt 0 ]] || missing+=(artifacts)
+  if ! split_csv "${PHYSICAL_ARTIFACT_PATHS:-}"; then missing+=(artifacts); fi
+  artifact_paths=("${CSV_ITEMS[@]}")
+  [[ "${#identities[@]}" -ge 2 ]] || missing+=(identities)
+  [[ "${#artifact_paths[@]}" -gt 0 ]] || missing+=(artifacts)
   if [[ "${#missing[@]}" -gt 0 ]]; then
     printf 'Missing physical receipt metadata: %s\n' "${missing[*]}" >&2
     return 1
@@ -78,11 +106,21 @@ physical_metadata_args() {
   PHYSICAL_METADATA_ARGS+=(--backend-deploy-digest "${PHYSICAL_BACKEND_DEPLOY_DIGEST}")
   PHYSICAL_METADATA_ARGS+=(--migration-revision "${PHYSICAL_MIGRATION_REVISION}")
   PHYSICAL_METADATA_ARGS+=(--seed-corpus-hash "${PHYSICAL_SEED_CORPUS_HASH}")
-  PHYSICAL_METADATA_ARGS+=(--oracle-hash "${PHYSICAL_ORACLE_HASH}")
-  PHYSICAL_METADATA_ARGS+=(--flow-hash "${PHYSICAL_FLOW_HASH}")
+  PHYSICAL_METADATA_ARGS+=(--oracle-hash "$(python3 "$EVIDENCE_HELPER" digest --path "$ORACLE_PATH")")
+  local flow_args=()
+  for value in "${FLOWS[@]}"; do flow_args+=(--path "$APP_DIR/.maestro/$value"); done
+  PHYSICAL_METADATA_ARGS+=(--flow-hash "$(python3 "$EVIDENCE_HELPER" bundle "${flow_args[@]}")")
   PHYSICAL_METADATA_ARGS+=(--reviewer "${PHYSICAL_REVIEWER}")
-  for value in "${devices[@]}"; do PHYSICAL_METADATA_ARGS+=(--device "$value"); done
+  for value in "${PHYSICAL_DEVICE_DESCRIPTORS[@]}"; do
+    PHYSICAL_METADATA_ARGS+=(--device "$value")
+  done
   for value in "${identities[@]}"; do PHYSICAL_METADATA_ARGS+=(--identity "$value"); done
+  local artifact_args=()
+  for value in "${artifact_paths[@]}"; do artifact_args+=(--path "$value"); done
+  if ! output="$(python3 "$EVIDENCE_HELPER" artifacts --not-before "$CERT_STARTED_EPOCH" "${artifact_args[@]}")"; then
+    return 1
+  fi
+  while IFS= read -r value; do [[ -n "$value" ]] && artifacts+=("$value"); done <<<"$output"
   for value in "${artifacts[@]}"; do PHYSICAL_METADATA_ARGS+=(--artifact "$value"); done
 }
 
@@ -91,7 +129,8 @@ record_physical_receipt() {
   local command="RUN_LIVE=${RUN_LIVE} scripts/dogfood-device-cert-live.sh"
   local args=(
     record --layer physical --status "$status" --environment founder-physical
-    --command "$command" --journey P01 --journey P03
+    --command "$command" --journey P01 --journey P03 \
+    --journey J04 --journey J05 --journey J10
   )
   if [[ "$status" == "blocked" ]]; then
     args+=(--reason "$reason")
@@ -152,6 +191,16 @@ FLOWS=(
 )
 for flow in "${FLOWS[@]}"; do printf "    - %s\n" "$flow"; done
 
+if [[ "$RUN_LIVE" == "1" ]]; then
+  if resolve_physical_devices; then
+    ok "Resolved ${#PHYSICAL_DEVICE_DESCRIPTORS[@]} physical devices by UDID"
+    record_check device-binding PASS "hardware inventory resolved"
+  else
+    warn "physical hardware identity could not be verified"
+    record_check device-binding BLOCKED "UDID missing, duplicate, disconnected, or virtual"
+  fi
+fi
+
 prereq_failed=0
 for result in "${RESULTS[@]}"; do
   [[ "$result" == *"|FAIL|"* || "$result" == *"|BLOCKED|"* ]] && prereq_failed=1
@@ -172,8 +221,8 @@ else
   cd "$APP_DIR"
   step "5/5 Run device flows — HUMAN OTP ENTRY REQUIRED"
   run_flow() {
-    local file="$1" label="$2"
-    if maestro test "$APP_DIR/.maestro/$file"; then
+    local udid="$1" file="$2" label="$3"
+    if maestro test --udid "$udid" "$APP_DIR/.maestro/$file"; then
       ok "$label passed"
       record_check "$label" PASS "$file"
     else
@@ -181,11 +230,16 @@ else
       record_check "$label" FAIL "$file"
     fi
   }
-  run_flow "29-journey-04-device-member-private-phrase.yaml" "I4-part-A-member-send"
-  run_flow "30-journey-04-device-organizer-group-safe-check.yaml" "I4-group-safe-assert"
-  run_flow "31-journey-10-device-organizer-stay-expense.yaml" "I10-part-A-organizer-create"
-  run_flow "32-journey-10-device-member-stay-visibility-check.yaml" "I10-visibility-assert"
-  run_flow "33-journey-05-device-two-account-proposal-loop.yaml" "I5-I6-I7-I8-proposal-loop"
+  run_flow "${PHYSICAL_DEVICE_UDID_LIST[0]}" \
+    "29-journey-04-device-member-private-phrase.yaml" "I4-part-A-member-send"
+  run_flow "${PHYSICAL_DEVICE_UDID_LIST[1]}" \
+    "30-journey-04-device-organizer-group-safe-check.yaml" "I4-group-safe-assert"
+  run_flow "${PHYSICAL_DEVICE_UDID_LIST[1]}" \
+    "31-journey-10-device-organizer-stay-expense.yaml" "I10-part-A-organizer-create"
+  run_flow "${PHYSICAL_DEVICE_UDID_LIST[0]}" \
+    "32-journey-10-device-member-stay-visibility-check.yaml" "I10-visibility-assert"
+  run_flow "${PHYSICAL_DEVICE_UDID_LIST[1]}" \
+    "33-journey-05-device-two-account-proposal-loop.yaml" "I5-I6-I7-I8-proposal-loop"
 fi
 
 bold "Physical certification summary"
