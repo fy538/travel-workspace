@@ -623,11 +623,12 @@ doorway into a private, review-first composer. It is recorded as
 redemption, the deployed proposal lifecycle, two-observer projection
 convergence, outcome privacy/correction, or physical hardware.
 
-Deployment checkpoint, 2026-08-10: backend SHA `743259b091ba7ee8bfc6b5ab8275297a3332d2b7`
+Deployment checkpoint, 2026-08-10: backend SHA `7b7f67361f21e6d86ca4e4c43f54dd79bbb89075`
 is running on Fly image digest
-`sha256:eb2bd02a7c13ee0cbba5c02696c164280367c6392a122a4863c6570b9044c64e`
-at Alembic head `receiptidem01`. Weather rescue is enabled only for fixed trip
-`ebb3a70e-b4ae-4181-a249-7b787513371a`; an unrelated UUID resolves disabled.
+`sha256:bba4766d3907cafddff123e891af395db9b05440120cf353f7a910e450a58d1e`
+at Alembic head `receiptidem01`. The separate controlled proof Trip
+`f47e582d-85a6-454e-8a2d-be3a199f0b09` is the only entry in
+`WEATHER_RESCUE_TRIP_IDS`; the global producer remains disabled.
 The exact app SHA `2c9169d81acaa40a853c52ef353146d05d87ac0b` was published to the
 `dogfood` channel as iOS update group
 `a8ae572d-f59c-481c-b768-3359ecbc35b6`. A new binary was not created because
@@ -635,12 +636,13 @@ the EAS account's monthly iOS quota was exhausted; the compatible existing
 internal binary remains the native host. These are deployment identities, not
 staging or physical journey evidence.
 
-Post-deploy roster audit found that this pre-existing Trip currently has four
-members, while the fixed proof contract requires the exact two-person roster.
-Weather rescue was therefore rolled back to globally disabled; a runtime check
-for the allowlisted UUID now returns false. Create a separate controlled Trip
-or deliberately reconcile the fixture before enabling the producer again. Do
-not remove real members merely to make the proof pass.
+The original canonical-world Trip remains untouched with its existing four
+members. The controlled Trip was provisioned through atomic trip creation,
+single-use invite redemption, and canonical itinerary replay. Read-only
+verification reports exactly Mara as organizer and Tom as member, plus the
+fixture-bound source and protected blocks. Runtime checks resolve both the new
+and old Trip as disabled while the global switch is off. Enabling the producer
+is a later staging-walk action, not evidence by itself.
 
 Until those receipts exist, P05/P07 remain dark, AI shadow remains off, and no
 device, staging, human, model-quality, causal-impact, or release certification

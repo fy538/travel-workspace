@@ -62,20 +62,23 @@ doorway and private review-first handoff on a clean revision. Its receipt is
 owned under `P05-doorway-support`, not `P05`; steps 3–7 below remain required
 before the product proof can pass.
 
-The 2026-08-10 deployed checkpoint uses Fly digest
-`sha256:eb2bd02a7c13ee0cbba5c02696c164280367c6392a122a4863c6570b9044c64e`,
+The 2026-08-10 deployed checkpoint uses backend
+`7b7f67361f21e6d86ca4e4c43f54dd79bbb89075`, Fly digest
+`sha256:bba4766d3907cafddff123e891af395db9b05440120cf353f7a910e450a58d1e`,
 migration `receiptidem01`, existing internal iOS build
 `aa524cdb-7b34-4f27-9864-425df19a2e47`, and exact-SHA OTA group
 `a8ae572d-f59c-481c-b768-3359ecbc35b6`. Treat the binary and OTA as one mobile
-identity. The fixed Trip is allowlisted but still must be seeded and verified
-before either P05 or P07 may advance.
+identity. Controlled Trip `f47e582d-85a6-454e-8a2d-be3a199f0b09` is seeded,
+verified, and is the only weather-rescue allowlist entry. The global producer
+remains off until the staging operator begins the governed walk.
 
-Roster verification subsequently found four deployed members versus the
-contract's exact two-person roster. The global weather-rescue switch was rolled
-back off and remains off. The existing Trip must not be destructively trimmed
-for evidence; provision a separate controlled cohort or revise the fixed
-contract intentionally, then re-run the exact-roster preflight before enabling
-the producer.
+The original four-member canonical-world Trip was not modified. The separate
+controlled Trip has exactly the fixture actors and roles, one canonical
+itinerary, source block `660002d9-3f0d-5aab-947b-93344bef6adf`, and protected
+block `a0cad209-addd-5378-9f74-ad27db8619bf`. Re-run
+`python scripts/provision_lisbon_group_disruption.py` as a read-only preflight
+immediately before enabling the producer; any roster or plan drift blocks the
+walk.
 
 1. Organizer opens the live Lisbon Plan and sees `Take us somewhere` only when
    there is a server-resolved current block.
