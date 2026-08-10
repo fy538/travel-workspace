@@ -35,7 +35,7 @@
     }
   },
   "candidate": {
-    "workspace_sha": "21976a12558f22a9e14e55cfd28a1b94f93099c2",
+    "workspace_sha": "1f93fb84bd5963b8de252e8d9daa7c5a1461d4d4",
     "backend_sha": "1abb5a951800c8aa853ee1c427508d209eba34e2",
     "app_sha": "2c9169d81acaa40a853c52ef353146d05d87ac0b",
     "migration_revision": "receiptidem01",
