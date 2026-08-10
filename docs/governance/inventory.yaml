@@ -127,9 +127,17 @@ overrides:
     disposition: keep_reference
     rationale: Active, expiring cross-repo investigation of the gap between the accepted product thesis, implemented substrate, and experienced loops; canonical product, release, journey, and system documents remain authoritative.
 
+  docs/working/cross-slice-engineering-coherence-audit-2026-08-09.md:
+    disposition: keep_reference
+    rationale: Active, expiring revision-anchored audit of engineering and polish seams across Map, Places, Trips Home, AI, live context, multiplayer, booking, expenses, and release evidence; durable product and system contracts remain authoritative.
+
   docs/working/home-surfaces-post-consolidation-engineering-plan-2026-08-09.md:
     disposition: keep_reference
     rationale: Active, expiring post-consolidation implementation plan for Places and Trips Home; external design authority, generated contracts, and durable surface/system contracts remain authoritative.
+
+  docs/working/intentional-convergence-engineering-plan-2026-08-10.md:
+    disposition: keep_reference
+    rationale: Active, expiring cross-repo execution plan that reconciles the August pivot audits and verified code/evidence gaps into ordered trust, convergence, proof-loop, and certification work; canonical product, release, journey, and system documents remain authoritative.
 
   docs/README.md:
     disposition: keep_authoritative
