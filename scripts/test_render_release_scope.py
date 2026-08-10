@@ -53,6 +53,18 @@ class ReleaseScopeValidationTests(unittest.TestCase):
         posture = subject.readiness_posture(live_trip, subject.load_persona_replay())
         self.assertEqual(posture, "BLOCKED — seeded replay fails J08")
 
+    def test_promoted_evidence_requires_current_candidate(self) -> None:
+        with patch.object(subject, "load_index", return_value={
+            "schema_version": 1,
+            "candidate": {
+                "workspace_sha": "old",
+                "app_sha": "old",
+                "backend_sha": "old",
+            },
+            "attestations": [],
+        }):
+            self.assertEqual(subject.load_promoted_evidence(), {})
+
 
 if __name__ == "__main__":
     unittest.main()

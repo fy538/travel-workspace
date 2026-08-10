@@ -9,6 +9,9 @@ from pathlib import Path
 
 import yaml
 
+import journey_evidence
+from promote_journey_evidence import load_index
+
 ROOT = Path(__file__).resolve().parent.parent
 MANIFEST = ROOT / "docs/release/v1-scope.yaml"
 DOC = ROOT / "docs/release/v1-scope.md"
@@ -224,7 +227,33 @@ def load_persona_replay() -> dict[str, str]:
     return states
 
 
-def readiness_posture(row: dict, replay: dict[str, str]) -> str:
+def load_promoted_evidence() -> dict[str, set[str]]:
+    """Return current-revision passing layers keyed by journey identifier."""
+    index = load_index()
+    candidate = index.get("candidate") or {}
+    current = journey_evidence.current_revisions()
+    if candidate != current:
+        return {}
+
+    states: dict[str, set[str]] = {}
+    for attestation in index.get("attestations", []):
+        receipt = attestation.get("receipt") if isinstance(attestation, dict) else None
+        if not isinstance(receipt, dict):
+            continue
+        try:
+            journey_evidence.validate_receipt(receipt)
+        except journey_evidence.ReceiptError:
+            continue
+        if receipt.get("status") != "pass":
+            continue
+        for journey_id in receipt.get("journeys", []):
+            states.setdefault(journey_id, set()).add(receipt["layer"])
+    return states
+
+
+def readiness_posture(
+    row: dict, replay: dict[str, str], promoted: dict[str, set[str]] | None = None
+) -> str:
     if row.get("intent") == "out":
         return "OUT — not a v1 certification target"
     journey_ids = row.get("journey_ids", [])
@@ -238,12 +267,16 @@ def readiness_posture(row: dict, replay: dict[str, str]) -> str:
         return "BLOCKED — seeded replay fails " + ", ".join(failed)
     if missing:
         return "UNCERTIFIED — replay missing " + ", ".join(missing)
+    promoted = promoted or {}
+    if journey_ids and all(promoted.get(journey_id) for journey_id in journey_ids):
+        return "PASS — current-revision promoted receipt"
     return "UNCERTIFIED — replay passes; current-revision receipt required"
 
 
 def render() -> str:
     release, capabilities, flags = load_release()
     replay = load_persona_replay()
+    promoted = load_promoted_evidence()
     lines = [
         "---",
         "doc_type: contract",
@@ -291,7 +324,7 @@ def render() -> str:
         lines.append(
             f"| {row['name']} | **{row['intent'].upper()}** | {evidence_posture(row)} | "
             f"{flag_posture(row, flags)} | {production_posture(row, flags)} | "
-            f"[{readiness_posture(row, replay)}](../journeys/STATUS.md) ({journeys}) |"
+            f"[{readiness_posture(row, replay, promoted)}](../journeys/STATUS.md) ({journeys}) |"
         )
     lines.extend(["", "## Boundary notes", ""])
     lines.extend(f"- **{row['name']}:** {row['note']}" for row in capabilities)
