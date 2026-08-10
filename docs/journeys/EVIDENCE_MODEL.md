@@ -70,9 +70,13 @@ python scripts/journey_evidence.py record \
 make journey-evidence-report
 ```
 
-Receipts are intentionally not committed. CI retains them as build artifacts;
-local receipts are short-lived evidence for the exact checkout. Do not edit
-`STATUS.md` to turn an older receipt into current certification.
+Raw receipts are intentionally not committed. CI retains them as build
+artifacts; local receipts are short-lived evidence for the exact checkout. A
+coordinator may explicitly promote current clean passes with
+`scripts/promote_journey_evidence.py` into the committed
+`evidence-attestations.json` index. Generated release and current-state views
+consume only that promoted index. Do not edit `STATUS.md` to turn an older raw
+receipt into current certification.
 
 ## Founder gate
 

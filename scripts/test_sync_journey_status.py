@@ -78,3 +78,10 @@ def test_journey_set_is_derived_from_the_manifest() -> None:
     assert len(subject._ALL_JOURNEYS) == 28
     assert subject._ALL_JOURNEYS[0] == "J01"
     assert subject._ALL_JOURNEYS[-1] == "J28"
+
+
+def test_promoted_evidence_block_is_honest_when_index_is_empty() -> None:
+    block = subject.build_evidence_block()
+    assert "Promoted execution evidence" in block
+    assert "○ unrun" in block
+    assert "no promoted receipt" in block
