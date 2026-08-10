@@ -93,15 +93,16 @@ Use the layered gate instead of mentally combining old test results:
 ```bash
 make dogfood-fast     # under two minutes: deterministic contracts
 make dogfood-local    # local Postgres and pivot canaries
-make dogfood-device   # requires DOGFOOD_DEVICE_COMMAND for the current build
-make dogfood-physical RUN_LIVE=1  # fail-closed physical P01/P03 walk + receipt metadata
+make dogfood-device   # requires DOGFOOD_DEVICE_COMMAND and DOGFOOD_DEVICE_PROOFS
+make dogfood-physical RUN_LIVE=1  # fail-closed physical J04/J05/J10 walk + receipt metadata
 make dogfood-staging  # requires DOGFOOD_STAGING_COMMAND for deployed services
 make journey-evidence-report
 ```
 
 The fast/local gates record only the P01–P04 contract/database anchors they
-actually execute. `dogfood-device` records `device_mock` only for P01/P03 and
-deliberately stops when its explicit environment command is absent. The
+actually execute. `dogfood-device` records `device_mock` only for the explicit
+proof list supplied by the operator and deliberately stops when its command or
+proof list is absent. The
 first-class `dogfood-physical` runner records `physical` evidence only after
 all required live assertions, verified physical hardware, and fresh artifacts
 are present; dry or skipped runs are `BLOCKED`. The low-level gate deliberately

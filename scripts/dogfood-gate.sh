@@ -18,13 +18,14 @@ Usage: scripts/dogfood-gate.sh {fast|local|device|physical|staging}
 
 fast     Deterministic client contracts and static registry checks (P01–P04 contract anchors).
 local    fast plus the Postgres/local-plan canary (P01–P04 database anchors).
-device   local plus an explicitly supplied P01/P03 device-mock command.
+device   local plus an explicitly supplied proof-specific device-mock command.
 physical Reserved; fails closed and directs operators to dogfood-physical.
 staging  an explicitly supplied deployed-environment command and proof list.
 
-For device, set DOGFOOD_DEVICE_COMMAND to the exact command that exercises the
-device-mock environment. It records only P01/P03 (the proofs whose registry
-requires device_mock). Physical evidence is never accepted from an arbitrary
+For device, set DOGFOOD_DEVICE_COMMAND and DOGFOOD_DEVICE_PROOFS to the exact
+current-build command and the comma-separated proof IDs whose registered
+device-mock flows it actually exercises. The command never infers proof IDs.
+Physical evidence is never accepted from an arbitrary
 shell command; use `make dogfood-physical RUN_LIVE=1` so hardware and artifacts
 are verified by the first-class runner.
 For staging, set DOGFOOD_STAGING_COMMAND and DOGFOOD_STAGING_PROOFS (a
@@ -143,7 +144,8 @@ case "${1:-}" in
   local) run_local ;;
   device)
     run_local
-    run_external device DOGFOOD_DEVICE_COMMAND device_mock founder-device P01 P03
+    parse_proofs "${DOGFOOD_DEVICE_PROOFS:-}"
+    run_external device DOGFOOD_DEVICE_COMMAND device_mock founder-device "${PARSED_PROOFS[@]}"
     ;;
   physical)
     printf '✗ Arbitrary physical commands cannot produce evidence.\n' >&2

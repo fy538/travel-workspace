@@ -127,10 +127,10 @@ dogfood-fast: ## Run and record deterministic P01–P04 contract evidence
 dogfood-local: ## Run and record deterministic plus Postgres P01–P04 evidence
 	@./scripts/dogfood-gate.sh local
 
-dogfood-device: ## Run local gate, then the explicit current-build device-mock command (P01/P03)
+dogfood-device: ## Run local gate, then a proof-specific current-build device-mock command
 	@./scripts/dogfood-gate.sh device
 
-dogfood-physical: ## Run the fail-closed physical P01/P03 certification runner (RUN_LIVE=1 required)
+dogfood-physical: ## Run the fail-closed physical J04/J05/J10 certification runner (RUN_LIVE=1 required)
 	@chmod +x ./scripts/dogfood-device-cert-live.sh
 	@RUN_LIVE="$${RUN_LIVE:-0}" ./scripts/dogfood-device-cert-live.sh
 

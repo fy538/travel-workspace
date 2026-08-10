@@ -129,8 +129,7 @@ record_physical_receipt() {
   local command="RUN_LIVE=${RUN_LIVE} scripts/dogfood-device-cert-live.sh"
   local args=(
     record --layer physical --status "$status" --environment founder-physical
-    --command "$command" --journey P01 --journey P03 \
-    --journey J04 --journey J05 --journey J10
+    --command "$command" --journey J04 --journey J05 --journey J10
   )
   if [[ "$status" == "blocked" ]]; then
     args+=(--reason "$reason")
@@ -144,7 +143,7 @@ record_physical_receipt() {
   python3 "$SCRIPT_DIR/journey_evidence.py" "${args[@]}" >/dev/null
 }
 
-bold "Physical device certification — J04 / J05 / J10 (P01/P03 physical evidence)"
+bold "Physical device certification — J04 / J05 / J10"
 
 step "1/5 Validate Maestro flow files (YAML parse + registry check)"
 if python3 "$SCRIPT_DIR/validate-maestro-flows.py" --app-dir "$APP_DIR"; then

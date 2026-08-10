@@ -113,7 +113,7 @@ def test_valid_physical_receipt_accepts_explicit_identity() -> None:
         backend_deploy_digest="fly-release-456",
         migration_revision="20260810_01",
         seed_corpus_hash="sha256:" + "a" * 64,
-        devices=["iPhone 15|iOS 18.6"],
+        devices=["ios|00008110-REAL|iPhone 15 / iOS 18.6", "android|R58N-REAL|Pixel 9 / Android 16"],
         identities=["founder-a", "founder-b"],
         oracle_hash="sha256:" + "b" * 64,
         flow_hash="sha256:" + "c" * 64,
@@ -121,3 +121,36 @@ def test_valid_physical_receipt_accepts_explicit_identity() -> None:
         artifacts=[{"name": "maestro-video", "sha256": "sha256:" + "d" * 64}],
     )
     subject.validate_receipt(receipt)
+
+
+def test_physical_receipt_rejects_single_or_duplicate_hardware() -> None:
+    receipt = _receipt(
+        layer="physical",
+        app_build_id="eas-build-123",
+        backend_deploy_digest="fly-release-456",
+        migration_revision="20260810_01",
+        seed_corpus_hash="sha256:" + "a" * 64,
+        devices=["ios|00008110-REAL|iPhone 15 / iOS 18.6"],
+        identities=["founder-a", "founder-b"],
+        oracle_hash="sha256:" + "b" * 64,
+        flow_hash="sha256:" + "c" * 64,
+        reviewer="feihuyan",
+        artifacts=[{"name": "maestro-video", "sha256": "sha256:" + "d" * 64}],
+    )
+    try:
+        subject.validate_receipt(receipt)
+    except subject.ReceiptError as exc:
+        assert "at least two" in str(exc)
+    else:
+        raise AssertionError("expected a single physical device to fail")
+
+    receipt["devices"] = [
+        "ios|00008110-REAL|iPhone 15 / iOS 18.6",
+        "ios|00008110-REAL|iPhone 15 / iOS 18.6",
+    ]
+    try:
+        subject.validate_receipt(receipt)
+    except subject.ReceiptError as exc:
+        assert "unique" in str(exc)
+    else:
+        raise AssertionError("expected duplicate physical devices to fail")

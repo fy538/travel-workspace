@@ -148,14 +148,27 @@ def validate_receipt(receipt: dict[str, Any]) -> None:
         for key in ("oracle_hash", "flow_hash", "seed_corpus_hash"):
             if not _SHA256.fullmatch(str(receipt[key])):
                 raise ReceiptError(f"{key} must be a sha256:<64-hex> digest")
-        if not isinstance(receipt["devices"], list) or not all(
-            isinstance(device, str) and device for device in receipt["devices"]
+        devices = receipt["devices"]
+        if not isinstance(devices, list) or len(devices) < 2 or not all(
+            isinstance(device, str)
+            and len(device.split("|", maxsplit=2)) == 3
+            and all(part.strip() for part in device.split("|", maxsplit=2))
+            for device in devices
         ):
-            raise ReceiptError("physical devices must be a non-empty list of strings")
-        if not isinstance(receipt["identities"], list) or not all(
-            isinstance(identity, str) and identity for identity in receipt["identities"]
+            raise ReceiptError(
+                "physical devices must contain at least two resolved "
+                "platform|udid|label descriptors"
+            )
+        if len(set(devices)) != len(devices):
+            raise ReceiptError("physical devices must be unique")
+
+        identities = receipt["identities"]
+        if not isinstance(identities, list) or len(identities) < 2 or not all(
+            isinstance(identity, str) and identity.strip() for identity in identities
         ):
-            raise ReceiptError("physical identities must be a non-empty list of strings")
+            raise ReceiptError("physical identities must contain at least two non-empty values")
+        if len(set(identities)) != len(identities):
+            raise ReceiptError("physical identities must be unique")
         artifacts = receipt["artifacts"]
         if not isinstance(artifacts, list) or not artifacts:
             raise ReceiptError("physical artifacts must be a non-empty list")
