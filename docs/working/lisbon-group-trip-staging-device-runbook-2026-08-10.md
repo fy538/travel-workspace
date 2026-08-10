@@ -43,7 +43,7 @@ Before any staging walk, fill every non-source identity in
 | Mobile | exact EAS/internal build ID |
 | Database | applied Alembic revision |
 | World | fixed fixture/corpus SHA-256 |
-| Flags | backend weather rescue on; internal app and Group Trip doorway on |
+| Flags | backend weather rescue on with the exact Trip in `WEATHER_RESCUE_TRIP_IDS`; internal app and Group Trip doorway on |
 
 The rollback is all-off: `WEATHER_RESCUE_PROPOSALS_ENABLED=false`,
 `EXPO_PUBLIC_GROUP_TRIP_MICRO_JOURNEY_ENABLED=false`, or a non-internal build.

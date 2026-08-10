@@ -585,10 +585,10 @@ flags:
     expires: 2026-10-30
     status: active
     target_journey: P07
-    cohort: explicitly enabled internal Trip cohort only
-    kill_switch: unset or false prevents weather rescue proposal production while preserving ordinary Plan reads
+    cohort: exact UUIDs in WEATHER_RESCUE_TRIP_IDS while the global flag is explicitly enabled
+    kill_switch: unset or false, or an empty WEATHER_RESCUE_TRIP_IDS allowlist, prevents weather rescue proposal production while preserving ordinary Plan reads
     promotion_removal_question: By 2026-10-30, did grounded rescue, canonical lifecycle, privacy, and two-observer device evidence justify promotion?
-    notes: Gates current-weather rescue proposal production until freshness, group-safe composition, canonical apply, and two-observer device evidence pass.
+    notes: Gates current-weather rescue proposal production until freshness, group-safe composition, canonical apply, and two-observer device evidence pass. Malformed allowlist values are ignored and an empty cohort fails closed.
 
   - name: GUEST_PROPOSAL_CAPABILITIES_ENABLED
     repo: travel-agent
