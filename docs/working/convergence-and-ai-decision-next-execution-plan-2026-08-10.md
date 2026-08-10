@@ -623,9 +623,9 @@ doorway into a private, review-first composer. It is recorded as
 redemption, the deployed proposal lifecycle, two-observer projection
 convergence, outcome privacy/correction, or physical hardware.
 
-Deployment checkpoint, 2026-08-10: backend SHA `7b7f673610416447aca363fc592d74475fa20f1f`
-is running on Fly image digest
-`sha256:da11da3529dea8161345a48e7ef9a765f5527a3eef1aa6c98cc790eaf02e6113`
+Latest deployed support checkpoint, 2026-08-10: backend SHA
+`1abb5a951800c8aa853ee1c427508d209eba34e2` is running on Fly image digest
+`sha256:102646659b6ac835e7e60678bbc1d479041cc63b8b4247d109467e0ad8b5dbbf`
 at Alembic head `receiptidem01`. The separate controlled proof Trip
 `f47e582d-85a6-454e-8a2d-be3a199f0b09` is the only entry in
 `WEATHER_RESCUE_TRIP_IDS`; the global producer remains disabled.
@@ -641,8 +641,15 @@ members. The controlled Trip was provisioned through atomic trip creation,
 single-use invite redemption, and canonical itinerary replay. Read-only
 verification reports exactly Mara as organizer and Tom as member, plus the
 fixture-bound source and protected blocks. Runtime checks resolve both the new
-and old Trip as disabled while the global switch is off. Enabling the producer
-is a later staging-walk action, not evidence by itself.
+and old Trip as disabled while the global switch is off.
+
+One controlled support lifecycle temporarily enabled only the exact Trip,
+injected an explicitly synthetic rain observation, exercised canonical vote,
+apply, two-viewer projection, and inverse revert, then turned the global flag
+back off. Read-only verification reports proposal
+`c2414f6c-b2a5-430e-9377-2d3d49f37cc3` withdrawn after a succeeded apply with
+`canonical_inverse`; the original site is restored. This is staging support,
+not a live-provider or device result, so P07 remains dark.
 
 Until those receipts exist, P05/P07 remain dark, AI shadow remains off, and no
 device, staging, human, model-quality, causal-impact, or release certification

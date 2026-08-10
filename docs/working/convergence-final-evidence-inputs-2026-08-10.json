@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "status": "provider_observed_retention_source_complete_external_device_work_blocked",
+  "created_at": "2026-08-10",
+  "lisbon": {
+    "trip_id": "f47e582d-85a6-454e-8a2d-be3a199f0b09",
+    "organizer_id": "31ccbc41-123c-4fb3-b433-7be7f10f9bb2",
+    "participant_id": "407332ba-42fa-49e3-bb02-85a331ecd14d",
+    "fixture_sha256": "9e2166a68c36ede18dc2038ba3ff61d9891b61332330f754deeccd94e544524b",
+    "support_proposal_id": "c2414f6c-b2a5-430e-9377-2d3d49f37cc3",
+    "support_boundary": "staging_support_not_live_provider_or_device",
+    "weather_rescue_global": "off"
+  },
+  "deployed_support": {
+    "backend_sha": "1abb5a951800c8aa853ee1c427508d209eba34e2",
+    "backend_image": "deployment-01KZPAM17J5TZJVBQC9Z8R54YQ",
+    "backend_digest": "sha256:102646659b6ac835e7e60678bbc1d479041cc63b8b4247d109467e0ad8b5dbbf",
+    "migration_revision": "receiptidem01"
+  },
+  "device_mock_support": {
+    "status": "artifact_only_revision_dirty",
+    "journey": "P05-doorway-support",
+    "artifact": "/Users/feihuyan/.maestro/tests/2026-08-10_132226",
+    "flow_sha256": "b9b6e2413b5e71fa79c700005fd47e71c733d7e68b2fd9e3c8808ec65364ed93",
+    "promotes": []
+  },
+  "human_review": {
+    "case_count": 16,
+    "independent_reviewers_required": 2,
+    "adjudicator_required_on_disagreement": true,
+    "reviewer_ids": [],
+    "adjudicator_id": null,
+    "owner_decision": "skip",
+    "status": "waived_not_h_evidence",
+    "promotion_effect": "shadow_promotion_blocked_without_human_calibration"
+  },
+  "provider_comparison": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-4-6",
+    "model_role_alignment": "concierge_conversation",
+    "credential_location": "out_of_band_only",
+    "max_cases": 16,
+    "attempts_per_case": 1,
+    "max_input_tokens_per_case": 1500,
+    "max_output_tokens_per_case": 120,
+    "timeout_ms": 10000,
+    "max_total_cost_usd": 2.0,
+    "spend_approved": true,
+    "retain_freeform": false,
+    "runner_backend_sha": "d9fe6c4112246605bd4728e2de42c19a7ae0afb1",
+    "preflight_worst_case_cost_usd": 0.449001,
+    "retained_run_cost_usd": 0.089499,
+    "discarded_run_cost_usd": 0.089409,
+    "program_cost_usd": 0.178908,
+    "observed_cases": 16,
+    "acceptable_cases": 8,
+    "hard_gate_failures": 2,
+    "mean_latency_ms": 2299.3609667500436,
+    "artifact": "travel-agent/eval/ai_decision_learning/artifacts/private_grounded_disruption/provider-run-2026-08-10.json",
+    "artifact_sha256": "2e0e4e4b6d158ac8a3601d326f929a879ffb5049e6576f6395bc24ad04fc9ffa",
+    "readiness_recommendation": "iterate",
+    "status": "observed_not_promoted"
+  },
+  "telemetry_proposal": {
+    "content_free_only": true,
+    "raw_metadata_retention_days": 14,
+    "aggregate_retention_days": 90,
+    "private_content_retention": "prohibited",
+    "approver": "owner",
+    "decision": "approved_source_enforced_not_deployed",
+    "source_backend_sha": "bb3a645bdcbd3d7a21ab01a144723d5daa0b5976",
+    "raw_receipt_selector": {
+      "event_type": "ai_decision_shadow",
+      "trigger_source": "ai_decision_learning"
+    },
+    "nightly_schedule_utc": "03:35",
+    "aggregate_materialization": "none"
+  },
+  "physical": {
+    "required_unique_udids": 2,
+    "required_unique_identities": 2,
+    "known_old_build_provisioned_udids": ["00008140-001210CE2013C01C"],
+    "current_build_id": "aa524cdb-7b34-4f27-9864-425df19a2e47",
+    "current_update_group": "a8ae572d-f59c-481c-b768-3359ecbc35b6",
+    "p05_p07_governed_flows_available": false,
+    "second_iphone_available": false,
+    "eas_capacity_decision": "wait_for_quota_reset",
+    "status": "blocked_no_second_device"
+  },
+  "evidence_claims": {
+    "P05": "dark",
+    "P07": "dark",
+    "ai_shadow": "off",
+    "physical": "blocked"
+  }
+}
