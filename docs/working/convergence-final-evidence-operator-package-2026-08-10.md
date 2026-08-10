@@ -130,10 +130,10 @@ protocol requires at least two independent reviewers.
 
 No Anthropic credential is present in the current environment. The selected
 model is Anthropic `claude-sonnet-4-6`, matching the backend's
-`concierge_conversation` registry role. The existing
-`UnconstrainedBaselineAdapter` is injection-only; there is no bounded provider
-runner yet. Therefore no provider call should be improvised from a shell
-one-liner.
+`concierge_conversation` registry role. Backend
+`d352e1e71e58c00414b7d88471821a7a9f53b914` contains the bounded operator
+runner. Its no-cost preflight binds all 16 cases and reports a retry-inclusive
+worst-case cost of USD 0.449001, below the approved USD 2 ceiling.
 
 Approve these controls before implementing or running the adapter:
 
@@ -153,9 +153,26 @@ errors, abstentions, invalid/unavailable counts, latency, cost, and human
 disagreements separate. A model judge cannot override privacy, authority,
 freshness, scope, mutation, or receipt gates.
 
-Provider/model and the USD ceiling are approved. The remaining inputs are a
-credential supplied out of band and the bounded runner implementation. Until
-both exist, the correct result is blocked.
+Provider/model, the USD ceiling, and the runner are ready. The remaining input
+is a credential supplied out of band. Until it exists, the correct result is
+blocked.
+
+Run from the backend checkout after setting `ANTHROPIC_API_KEY` in the process
+environment (never in a command, artifact, or commit):
+
+```bash
+cd /Users/feihuyan/travel-workspace/travel-agent
+PYTHONPATH=. .venv/bin/python scripts/run_ai_dl_provider_comparison.py \
+  --run-live \
+  --corpus eval/ai_decision_learning/artifacts/private_grounded_disruption/v1/corpus.json \
+  --output eval/ai_decision_learning/artifacts/private_grounded_disruption/provider-run-2026-08-10.json
+```
+
+The runner disables Langfuse content export and VCR recording, forces a typed
+tool action, records only content-free observations, refuses model/corpus drift,
+and refuses to overwrite an existing artifact. A successful A-layer report
+still leaves the readiness decision at `iterate` because human calibration was
+waived rather than completed.
 
 ## Telemetry-retention decision proposal
 

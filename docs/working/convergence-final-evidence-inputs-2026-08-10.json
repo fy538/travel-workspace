@@ -47,7 +47,9 @@
     "max_total_cost_usd": 2.0,
     "spend_approved": true,
     "retain_freeform": false,
-    "status": "approved_waiting_for_credential_and_runner"
+    "runner_backend_sha": "d352e1e71e58c00414b7d88471821a7a9f53b914",
+    "preflight_worst_case_cost_usd": 0.449001,
+    "status": "approved_waiting_for_credential"
   },
   "telemetry_proposal": {
     "content_free_only": true,
