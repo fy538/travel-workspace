@@ -44219,6 +44219,7 @@
           "site",
           "accommodation",
           "experience",
+          "transport_hub",
           "custom"
         ]
       },
@@ -46732,6 +46733,7 @@
           "rooftop",
           "entrance",
           "interpolated",
+          "representative",
           "area",
           "unknown"
         ],
@@ -62123,6 +62125,63 @@
         ],
         "title": "PlanCrossTripCosts"
       },
+      "PlanCurrentOpenWindow": {
+        "properties": {
+          "day_id": {
+            "type": "string",
+            "title": "Day Id"
+          },
+          "day_number": {
+            "type": "integer",
+            "title": "Day Number"
+          },
+          "starts_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Starts At"
+          },
+          "ends_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Ends At"
+          },
+          "remaining_minutes": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Remaining Minutes"
+          },
+          "previous_block_id": {
+            "type": "string",
+            "title": "Previous Block Id"
+          },
+          "previous_block_title": {
+            "type": "string",
+            "title": "Previous Block Title"
+          },
+          "next_block_id": {
+            "type": "string",
+            "title": "Next Block Id"
+          },
+          "next_block_title": {
+            "type": "string",
+            "title": "Next Block Title"
+          }
+        },
+        "type": "object",
+        "required": [
+          "day_id",
+          "day_number",
+          "starts_at",
+          "ends_at",
+          "remaining_minutes",
+          "previous_block_id",
+          "previous_block_title",
+          "next_block_id",
+          "next_block_title"
+        ],
+        "title": "PlanCurrentOpenWindow",
+        "description": "A live, bounded interval suitable for a review-first add proposal."
+      },
       "PlanDay": {
         "properties": {
           "day_id": {
@@ -62992,6 +63051,16 @@
             "anyOf": [
               {
                 "$ref": "#/components/schemas/PlanNextItem"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "current_open_window": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlanCurrentOpenWindow"
               },
               {
                 "type": "null"
