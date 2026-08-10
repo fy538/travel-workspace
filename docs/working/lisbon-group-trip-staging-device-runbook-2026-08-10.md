@@ -62,6 +62,14 @@ doorway and private review-first handoff on a clean revision. Its receipt is
 owned under `P05-doorway-support`, not `P05`; steps 3–7 below remain required
 before the product proof can pass.
 
+The 2026-08-10 deployed checkpoint uses Fly digest
+`sha256:eb2bd02a7c13ee0cbba5c02696c164280367c6392a122a4863c6570b9044c64e`,
+migration `receiptidem01`, existing internal iOS build
+`aa524cdb-7b34-4f27-9864-425df19a2e47`, and exact-SHA OTA group
+`a8ae572d-f59c-481c-b768-3359ecbc35b6`. Treat the binary and OTA as one mobile
+identity. The fixed Trip is allowlisted but still must be seeded and verified
+before either P05 or P07 may advance.
+
 1. Organizer opens the live Lisbon Plan and sees `Take us somewhere` only when
    there is a server-resolved current block.
 2. The doorway opens a private review-first chat containing the grounded-route

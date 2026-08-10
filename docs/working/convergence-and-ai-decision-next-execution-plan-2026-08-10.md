@@ -623,6 +623,18 @@ doorway into a private, review-first composer. It is recorded as
 redemption, the deployed proposal lifecycle, two-observer projection
 convergence, outcome privacy/correction, or physical hardware.
 
+Deployment checkpoint, 2026-08-10: backend SHA `743259b091ba7ee8bfc6b5ab8275297a3332d2b7`
+is running on Fly image digest
+`sha256:eb2bd02a7c13ee0cbba5c02696c164280367c6392a122a4863c6570b9044c64e`
+at Alembic head `receiptidem01`. Weather rescue is enabled only for fixed trip
+`ebb3a70e-b4ae-4181-a249-7b787513371a`; an unrelated UUID resolves disabled.
+The exact app SHA `2c9169d81acaa40a853c52ef353146d05d87ac0b` was published to the
+`dogfood` channel as iOS update group
+`a8ae572d-f59c-481c-b768-3359ecbc35b6`. A new binary was not created because
+the EAS account's monthly iOS quota was exhausted; the compatible existing
+internal binary remains the native host. These are deployment identities, not
+staging or physical journey evidence.
+
 Until those receipts exist, P05/P07 remain dark, AI shadow remains off, and no
 device, staging, human, model-quality, causal-impact, or release certification
 is claimed from the source and backend-real results above.
