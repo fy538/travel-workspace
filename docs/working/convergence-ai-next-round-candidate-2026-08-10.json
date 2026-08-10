@@ -29,13 +29,13 @@
     },
     "integration_evidence": {
       "branch": "codex/convergence-integration-evidence",
-      "workspace_sha": "f6a57490aa787773d4bdb5f3c36b4920af605f66",
+      "workspace_sha": "39902d1fa58e2ff7f1752ea986a63c54a3ac6549",
       "backend_sha": "743259b091ba7ee8bfc6b5ab8275297a3332d2b7",
       "app_sha": "2c9169d81acaa40a853c52ef353146d05d87ac0b"
     }
   },
   "candidate": {
-    "workspace_sha": "f6a57490aa787773d4bdb5f3c36b4920af605f66",
+    "workspace_sha": "39902d1fa58e2ff7f1752ea986a63c54a3ac6549",
     "backend_sha": "743259b091ba7ee8bfc6b5ab8275297a3332d2b7",
     "app_sha": "2c9169d81acaa40a853c52ef353146d05d87ac0b",
     "migration_revision": "receiptidem01",
@@ -71,6 +71,7 @@
     "shadow_telemetry_retention_approval",
     "model_provider_credential_and_spend_policy",
     "eas_ios_monthly_build_quota_or_paid_plan",
+    "controlled_lisbon_exact_roster_cohort",
     "two_physical_devices_and_identities"
   ]
 }
