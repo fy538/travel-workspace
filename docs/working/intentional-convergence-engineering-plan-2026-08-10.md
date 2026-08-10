@@ -8,9 +8,14 @@ expires: 2026-09-09
 why_new: Consolidates the August product-pivot audits, current code verification, MVP trust invariants, and release-evidence gaps into one ordered cross-repo engineering program.
 source_of_truth_for:
   - intentional-convergence-engineering-round-2026-08
+related:
+  - convergence-and-ai-decision-next-execution-plan-2026-08-10.md
 ---
 
 # Intentional convergence engineering plan
+
+> Post-merge execution continues in the
+> [convergence and AI decision-learning next execution round](convergence-and-ai-decision-next-execution-plan-2026-08-10.md).
 
 ## 1. Executive decision
 

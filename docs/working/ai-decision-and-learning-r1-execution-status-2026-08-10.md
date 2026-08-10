@@ -10,6 +10,7 @@ related:
   - ai-decision-and-learning-engineering-plan-2026-08-10.md
   - ai-decision-and-learning-research-agenda-2026-08-10.md
   - intentional-convergence-engineering-plan-2026-08-10.md
+  - convergence-and-ai-decision-next-execution-plan-2026-08-10.md
 ---
 
 # AI decision-and-learning R1 execution status

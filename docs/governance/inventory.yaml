@@ -143,6 +143,10 @@ overrides:
     disposition: keep_reference
     rationale: Active, expiring cross-repo execution plan that reconciles the August pivot audits and verified code/evidence gaps into ordered trust, convergence, proof-loop, and certification work; canonical product, release, journey, and system documents remain authoritative.
 
+  docs/working/convergence-and-ai-decision-next-execution-plan-2026-08-10.md:
+    disposition: keep_reference
+    rationale: Active, expiring post-merge execution plan joining causal convergence, private AI shadow readiness, the Lisbon Group Trip proof, and fail-closed evidence promotion; canonical product, release, journey, and system documents remain authoritative.
+
   docs/working/ai-decision-and-learning-engineering-plan-2026-08-10.md:
     disposition: keep_reference
     rationale: Active, expiring engineering plan for the bounded AI decision-and-learning workstream; accepted product, system, and release authorities remain canonical.

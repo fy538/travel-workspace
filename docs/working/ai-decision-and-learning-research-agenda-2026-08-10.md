@@ -11,9 +11,13 @@ source_of_truth_for:
 related:
   - intentional-convergence-engineering-plan-2026-08-10.md
   - ai-decision-and-learning-engineering-plan-2026-08-10.md
+  - convergence-and-ai-decision-next-execution-plan-2026-08-10.md
 ---
 
 # AI decision and learning research agenda
+
+> The first post-merge research-to-engineering round is specified in the
+> [convergence and AI decision-learning next execution plan](convergence-and-ai-decision-next-execution-plan-2026-08-10.md).
 
 ## 1. Executive decision
 
