@@ -580,3 +580,26 @@ Start with R0.1. The flaky replay currently prevents the principal backend-real
 proof from being a stable gate. Once its schedule-local fixture is deterministic,
 implement R1's current-window projection. Do not begin visual polish or device
 evidence before the private-to-group proposal seam in R2.3 is closed.
+
+## 12. Execution record — 2026-08-10
+
+The following source-controlled closure work has landed and is verified by its
+focused unit, component, or backend-real tests:
+
+| Scope | Landed revision | Result |
+| --- | --- | --- |
+| Workspace plan and claim correction | `d346af0`, `01358c5` | The prior doorway/replay overclaim is explicitly retired. |
+| Schedule-local weather replay | backend `2feffe3c4` | The Lisbon fixture uses a controlled destination-local clock; weather selection no longer crosses a local-date boundary. |
+| Current bounded opening | backend `9faf77301` | Plan status now projects server-owned previous/next boundaries and remaining time. |
+| Trusted entry and location intent | backend `712ddfd08` | A `trip_open_window` seed is membership-checked and re-resolved from live Plan truth; it earns private location retrieval. |
+| Mobile doorway and spatial handoff | app `76fee5cc` | The CTA appears in the bounded between-block state, emits only boundary IDs, and preserves private spatial seed evidence. |
+| Private review → group proposal | backend `017a11734` | A linked personal Trip turn may prepare a proposal; the same group-safe review card lands in both the group room and initiating private thread. |
+| Bounded proposal execution | backend `490b15335` | A micro-journey may only be a review-required add whose current boundaries, day, and timezone-aware interval still fit. |
+| Accepted-map handoff | app `943544a2` | An applied receipt opens the canonical Map face rather than a chat-authored route. |
+| API contract | workspace `eddb942` | OpenAPI snapshots and generated mobile types expose `PlanCurrentOpenWindow`. |
+
+This closes the current-window, spatial handoff, review bridge, bounded-add,
+and canonical-map source seams. It does **not** yet constitute the combined
+backend-real replay from initial add through weather replacement and later
+outcome reuse, nor any controlled/physical-device proof. Those remain evidence
+gates, not claims inferred from the source commits above.
