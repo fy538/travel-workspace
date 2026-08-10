@@ -47,7 +47,7 @@ this plan was written:
 
 | Repository | Starting revision |
 | --- | --- |
-| workspace | `d031f39cdd7264e50c114c59c5a697762eede08c` |
+| workspace | `47d51880f0fd6dfccf63b989242f8b9c2459b9e5` |
 | backend | `e42fc3a3d2a1fccc12ae932c9964f0ef69b35599` |
 | mobile | `aba00ae32946d279411836a0337f2df0d41c2cde` |
 
@@ -580,3 +580,43 @@ The integration owner maintains the dependency board and does not implement a
 second copy of lane work. Its job is to keep contracts singular, revisions
 known, evidence honest, and the two proof tracks converging on the same product
 event.
+
+## 15. Execution outcome — 2026-08-10
+
+The four lanes have been integrated on the named candidate branches. The
+machine-readable candidate manifest owns the final triple-SHA after its final
+projection commit; this section records the lane outcomes and evidence boundary.
+
+| Lane | Final source revision | Outcome |
+| --- | --- | --- |
+| A — causal spine | backend `3cb2c66d440dce0b4e70f9d37fa3d793ae6f1fd3` | Content-free causal reference, receipt reconstruction, scoped Situation dependencies, and a disabled private shadow adapter. |
+| B — AI evidence | backend `cf0a5c712416a883ffe9950baeb4658c11f436ae` | Sixteen synthetic disruption cases, frozen annotation protocol, deterministic/structured comparisons, and an immutable `iterate` decision. No A/H evidence. |
+| C — Group Trip | backend `827937b82`; app `7e063ecd` | Fixed Lisbon contract/replay, real invite redemption, canonical weather proposal lifecycle, two-observer projection convergence, exact-roster private outcomes, and a dark internal doorway. |
+| D — integration | candidate manifest | One regenerated OpenAPI/type contract, registered dark flags/proof anchors, deployment-status guards, and a fail-closed staging/two-device runbook. |
+
+Integration closed the cross-lane seam that the parallel branches could not
+own independently: the weather decision root now propagates one stable
+correlation through proposal creation, human acceptance, the applied itinerary
+operation, and each private outcome receipt. The Postgres Lisbon replay
+reconstructs that chain without copying private verdicts or rationale into
+group-visible evidence.
+
+The checked-in AI readiness decision remains `iterate`. The structured reference
+policy produced M-layer evidence; no unconstrained provider observations or
+human anchors exist. Shadow attachment is source-complete and remains disabled
+by its global flag, policy flag, empty trip allowlist, timeout, and zero-default
+cost ceiling.
+
+The remaining work is deliberately outside source implementation:
+
+- adjudicate human anchors and approve telemetry retention/review scope;
+- authorize provider/model spend and collect real A-layer comparisons;
+- deploy the exact candidate and record backend/build/migration/seed identity;
+- run controlled P05/P07 device evidence;
+- run the two-identity physical walk with real hardware and fresh artifacts;
+- make separate promotion decisions for Group Trip, shadow observation, the
+  local second occasion, and any future private canary.
+
+Until those receipts exist, P05/P07 remain dark, AI shadow remains off, and no
+device, staging, human, model-quality, causal-impact, or release certification
+is claimed from the source and backend-real results above.

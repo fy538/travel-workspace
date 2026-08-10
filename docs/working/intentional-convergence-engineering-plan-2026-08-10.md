@@ -169,7 +169,7 @@ started from these clean `main` revisions:
 
 | Repository | Dispatch revision |
 | --- | --- |
-| workspace | `47d5188248752a65c012291622094683cde31cda` |
+| workspace | `47d51880f0fd6dfccf63b989242f8b9c2459b9e5` |
 | backend | `e42fc3a3d2a1fccc12ae932c9964f0ef69b35599` |
 | mobile | `aba00ae32946d279411836a0337f2df0d41c2cde` |
 
