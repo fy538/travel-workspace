@@ -10,20 +10,25 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WORKSPACE_DIR="$(dirname "$SCRIPT_DIR")"
 EVIDENCE_TOOL=(python3 "$SCRIPT_DIR/journey_evidence.py")
-PROOFS=(P01 P02 P03 P04)
+PROOF_IDS=(P01 P02 P03 P04)
 
 usage() {
   cat <<'EOF'
-Usage: scripts/dogfood-gate.sh {fast|local|device|staging}
+Usage: scripts/dogfood-gate.sh {fast|local|device|physical|staging}
 
-fast     Deterministic client contracts and static registry checks.
-local    fast plus the Postgres/local-plan canary.
-device   local plus an explicitly supplied P01/P03 device command.
-staging  an explicitly supplied deployed-environment command.
+fast     Deterministic client contracts and static registry checks (P01–P04 contract anchors).
+local    fast plus the Postgres/local-plan canary (P01–P04 database anchors).
+device   local plus an explicitly supplied P01/P03 device-mock command.
+physical First-class physical P01/P03 command; use dogfood-physical for the live runner.
+staging  an explicitly supplied deployed-environment command and proof list.
 
-For device or staging, set DOGFOOD_DEVICE_COMMAND or DOGFOOD_STAGING_COMMAND
-to the exact command that exercises the intended environment. The command is
-stored in the evidence receipt; it must use the current build and test identity.
+For device, set DOGFOOD_DEVICE_COMMAND to the exact command that exercises the
+device-mock environment. It records only P01/P03 (the proofs whose registry
+requires device_mock). For physical, set DOGFOOD_PHYSICAL_COMMAND when using
+this low-level runner; the Make target normally invokes the physical script.
+For staging, set DOGFOOD_STAGING_COMMAND and DOGFOOD_STAGING_PROOFS (a
+comma-separated list of P01–P04) explicitly. Missing commands or proof lists
+are a blocked run and never produce a pass receipt.
 EOF
 }
 
@@ -41,12 +46,33 @@ record() {
 }
 
 run_and_record() {
-  local layer="$1" environment="$2" label="$3"
-  shift 3
+  local layer="$1" environment="$2" label="$3" runner="$4"
+  shift 4
+  local runner_args=() proof_args=() arg
+  while [[ "$#" -gt 0 && "$1" != "--" ]]; do
+    runner_args+=("$1")
+    shift
+  done
+  [[ "$#" -gt 0 && "$1" == "--" ]] || {
+    printf '✗ Internal runner error: missing proof separator for %s.\n' "$label" >&2
+    return 2
+  }
+  shift
+  proof_args=("$@")
+  for arg in "${proof_args[@]}"; do
+    case "$arg" in
+      P01|P02|P03|P04) ;;
+      *) printf '✗ Unknown proof id: %s\n' "$arg" >&2; return 2 ;;
+    esac
+  done
+  [[ "${#proof_args[@]}" -gt 0 ]] || {
+    printf '✗ Runner %s must declare at least one proof id.\n' "$label" >&2
+    return 2
+  }
   local started status exit_code
   started="$(date +%s)"
   set +e
-  "$@"
+  "$runner" "${runner_args[@]}"
   exit_code=$?
   set -e
   if [[ "$exit_code" -eq 0 ]]; then
@@ -54,12 +80,13 @@ run_and_record() {
   else
     status=fail
   fi
-  record "$layer" "$status" "$environment" "$label" "$(( $(date +%s) - started ))" "${PROOFS[@]}"
+  record "$layer" "$status" "$environment" "$label" "$(( $(date +%s) - started ))" "${proof_args[@]}"
   return "$exit_code"
 }
 
 run_fast() {
-  run_and_record contract local "dogfood-fast deterministic product-proof contracts" run_fast_contracts
+  run_and_record contract local "dogfood-fast deterministic product-proof contracts" run_fast_contracts \
+    -- P01 P02 P03 P04
 }
 
 run_fast_contracts() {
@@ -78,18 +105,49 @@ run_fast_contracts() {
 
 run_local() {
   run_fast
-  run_and_record database local "scripts/pre-dogfood.sh" "$SCRIPT_DIR/pre-dogfood.sh"
+  run_and_record database local "scripts/pre-dogfood.sh" "$SCRIPT_DIR/pre-dogfood.sh" \
+    -- P01 P02 P03 P04
+}
+
+run_shell_command() {
+  bash -lc "$1"
 }
 
 run_external() {
   local mode="$1" command_variable="$2" layer="$3" environment="$4"
+  shift 4
+  local proofs=("$@")
   local command="${!command_variable:-}"
   if [[ -z "$command" ]]; then
     printf '✗ %s gate needs %s to be set to the exact current-build command.\n' "$mode" "$command_variable" >&2
-    printf '  No %s receipt was written; this checkout remains UNRUN at that layer.\n' "$layer" >&2
+    printf '  No %s receipt was written; this checkout remains UNRUN/BLOCKED at that layer.\n' "$layer" >&2
     return 2
   fi
-  run_and_record "$layer" "$environment" "$command" bash -lc "$command"
+  if [[ "$layer" == "physical" ]]; then
+    local metadata_key metadata_value
+    for metadata_key in PHYSICAL_APP_BUILD_ID PHYSICAL_BACKEND_DEPLOY_DIGEST \
+      PHYSICAL_MIGRATION_REVISION PHYSICAL_SEED_CORPUS_HASH PHYSICAL_DEVICES \
+      PHYSICAL_IDENTITIES PHYSICAL_ORACLE_HASH PHYSICAL_FLOW_HASH \
+      PHYSICAL_REVIEWER PHYSICAL_ARTIFACTS; do
+      metadata_value="${!metadata_key:-}"
+      if [[ -z "$metadata_value" ]]; then
+        printf '✗ physical gate requires %s; no physical pass/fail receipt can be written.\n' "$metadata_key" >&2
+        return 2
+      fi
+    done
+  fi
+  run_and_record "$layer" "$environment" "$command" run_shell_command "$command" -- "${proofs[@]}"
+}
+
+parse_proofs() {
+  local raw="$1" item
+  PARSED_PROOFS=()
+  [[ -n "$raw" ]] || { printf '✗ A comma-separated proof list is required.\n' >&2; return 2; }
+  IFS=',' read -r -a PARSED_PROOFS <<<"$raw"
+  [[ "${#PARSED_PROOFS[@]}" -gt 0 ]] || return 2
+  for item in "${PARSED_PROOFS[@]}"; do
+    [[ "$item" =~ ^P0[1-4]$ ]] || { printf '✗ Invalid proof id in list: %s\n' "$item" >&2; return 2; }
+  done
 }
 
 case "${1:-}" in
@@ -97,8 +155,15 @@ case "${1:-}" in
   local) run_local ;;
   device)
     run_local
-    run_external device DOGFOOD_DEVICE_COMMAND device_mock founder-device
+    run_external device DOGFOOD_DEVICE_COMMAND device_mock founder-device P01 P03
     ;;
-  staging) run_external staging DOGFOOD_STAGING_COMMAND staging staging ;;
+  physical)
+    physical_proofs=(P01 P03)
+    run_external physical DOGFOOD_PHYSICAL_COMMAND physical founder-physical "${physical_proofs[@]}"
+    ;;
+  staging)
+    parse_proofs "${DOGFOOD_STAGING_PROOFS:-}"
+    run_external staging DOGFOOD_STAGING_COMMAND staging staging "${PARSED_PROOFS[@]}"
+    ;;
   *) usage; exit 2 ;;
 esac

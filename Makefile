@@ -11,7 +11,7 @@ include dogfood.mk
 .PHONY: new-worktree land-worktree worktrees
 .PHONY: contract-check place-identity-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate mock-slug-parity
 .PHONY: certify-fast certify-logic certify-corpus certify-visual certify-visual-cloud certify-live maestro-flow-check journey-registry-check journey-evidence-report dogfood-status corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-journey-live-api qa-persona dogfood-status-sync
-.PHONY: preflight-eas fly-secrets verify docs-governance-check docs-child-governance-check docs-inventory-check docs-inventory-report docs-spine-check docs-canon-check docs-release-check docs-release-sync docs-status-check docs-status-sync docs-links-check docs-home-surfaces-check docs-check compatibility-check card-arrival-check chat-card-types-check pre-dogfood dogfood-fast dogfood-local dogfood-device dogfood-staging test-backend-postgres
+.PHONY: preflight-eas fly-secrets verify docs-governance-check docs-child-governance-check docs-inventory-check docs-inventory-report docs-spine-check docs-canon-check docs-release-check docs-release-sync docs-status-check docs-status-sync docs-links-check docs-home-surfaces-check docs-check compatibility-check card-arrival-check chat-card-types-check pre-dogfood dogfood-fast dogfood-local dogfood-device dogfood-physical dogfood-staging test-backend-postgres
 
 # ── Development ───────────────────────────────────────────────────────────────
 
@@ -127,8 +127,12 @@ dogfood-fast: ## Run and record deterministic P01–P04 contract evidence
 dogfood-local: ## Run and record deterministic plus Postgres P01–P04 evidence
 	@./scripts/dogfood-gate.sh local
 
-dogfood-device: ## Run local gate, then the explicit current-build device command
+dogfood-device: ## Run local gate, then the explicit current-build device-mock command (P01/P03)
 	@./scripts/dogfood-gate.sh device
+
+dogfood-physical: ## Run the fail-closed physical P01/P03 certification runner (RUN_LIVE=1 required)
+	@chmod +x ./scripts/dogfood-device-cert-live.sh
+	@RUN_LIVE="$${RUN_LIVE:-0}" ./scripts/dogfood-device-cert-live.sh
 
 dogfood-staging: ## Run the explicit deployed-environment product-proof command
 	@./scripts/dogfood-gate.sh staging
@@ -228,7 +232,7 @@ certify-visual-cloud: ## Activate Maestro Cloud PR gate: add secrets to GitHub r
 	@echo "Once set, PRs will auto-gate on the pr-smoke lane via Maestro Cloud managed devices."
 	@echo "The workflow skips gracefully if the secret is absent, so it never blocks PRs before configured."
 
-certify-live: ## Tier-4 dogfood preflight + live-walk checklist (human: two Clerk accounts)
+certify-live: ## Tier-4 dogfood preflight (fail-closed; physical run is make dogfood-physical)
 	@chmod +x ./scripts/certify-live.sh ./scripts/attic/seed-s4-fly.sh
 	@./scripts/certify-live.sh
 
