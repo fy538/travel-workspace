@@ -3,6 +3,7 @@ doc_type: working
 status: active
 owner: frontend / backend / product
 created: 2026-08-09
+last_reviewed: 2026-08-10
 expires: 2026-09-08
 why_new: Reconciles the post-consolidation Places and Trips implementation, the August external design authority, and the latest read-only code-review findings into one executable engineering plan.
 source_of_truth_for:
@@ -29,6 +30,396 @@ and provable before selecting another design family.
 
 This is a working execution plan, not a claim that either surface has passed
 backend-real or physical-device acceptance.
+
+## Rebaseline addendum — 2026-08-10
+
+This addendum is the current execution authority for the rest of this document.
+The original August 9 investigation remains below as useful history, but its
+open/closed finding statuses and pinned revisions are superseded here.
+
+### Revisions and validation
+
+| Repository / authority | Current pinned identity | Worktree state |
+|---|---|---|
+| Workspace | `travel-workspace` at `78e4a8e34bed22e288b669aa9e03cf14869801d4` | clean `main`, aligned with `origin/main` |
+| Frontend | `travel-app` at `c9becf7032199c1eeb8d947e2fc5df0a5f4444da` | clean `main`, aligned with `origin/main` |
+| Backend | `travel-agent` at `1bde69535841f849ccdc55550a1d1c6c71fec59d` | clean `main`, aligned with `origin/main` |
+| External design authority | `vesper-home-surfaces-2026-08-09` | operator-owned, external only |
+| Composition inventory | `home-surfaces-composition-v1`, as of 2026-08-09 | 33 rows, 0 evidence receipts |
+
+The canonical Places and Trips Page/As-Built pairs were revalidated locally
+from `/Users/feihuyan/Downloads/vesper-home-surfaces` using
+`HOME_SURFACES_CANON_DIR`. The Trips check verified seven registered pairs and
+the Places check verified six. The 30 registered polish scenarios also passed
+schema validation. The bundle was not copied into application source.
+
+The current frontend passes the home-surface source budgets. Important current
+ratchets are:
+
+| Owner | Current / limit | Meaning |
+|---|---:|---|
+| `TripsHomeController.ts` | 823 / 825 | effectively no safe headroom |
+| `TripsHomeBody.tsx` | 745 / 842 | improved, but still a hot composition owner |
+| `PlacesWorkspace.tsx` | 758 / 769 | effectively no safe headroom |
+| `PlacesSectionFeed.tsx` | 282 / 334 | acceptable executor headroom |
+| `PlacesFeedCardView.tsx` | 172 / 176 | registry boundary needs care |
+
+The immediately preceding focused baseline remains green for the unchanged
+home-surface source: 100 frontend tests across nine suites, frontend typecheck,
+home-surface budgets, and 57 targeted backend Trips fallback tests. These are
+source/fixture checks only. No backend-real or physical-device acceptance was
+performed, and no `F`, `B`, or `V` receipt may be inferred from them.
+
+### How to read the design bundle now
+
+The bundle has three different kinds of authority and they must not be merged
+into one checklist:
+
+1. **Page boards** define current design intent and the allowed composition
+   vocabulary.
+2. **As-Built/source files** describe implementation fact at their recorded
+   date; current repository source wins when those historical files are stale.
+3. **The composition inventory** records adoption and evidence. A component can
+   be coded and wired while its family remains `unresolved` and unproven.
+
+Several handoff facts are now historical rather than current:
+
+- Places now produces grounded `reason`, `note`, and exact collection `count`
+  values. The handoff's “zero producer” statement no longer describes source.
+- Local Plans now has an explicit `trip_kind=local` aggregate and promotion
+  path. The Page board's earlier question about whether a local plan is a trip
+  is settled by current product/source behavior unless product reopens it.
+- Today Mapped has authenticated cache-only backend selection, an app query,
+  gating, and a renderer. That makes it technically wired, not automatically
+  adopted or accepted: its inventory row is still unresolved and has no proof.
+- Encounter/occurrence and affinity substrates are richer, but neither
+  `saved_unvisited` nor non-proximity conviction is an accepted semantic
+  producer. The client must not infer either state.
+- `reachable_cluster` remains vocabulary/substrate only; it has no complete
+  selector-to-renderer vertical slice.
+
+### Current implementation map
+
+#### Places
+
+The current data path is:
+
+`backend producers/ranking → generated Places feed → strict renderability →`
+`presentation sections → responsive feed render plan → section/card registry`
+
+This is the correct architectural direction. Backend order remains the sole
+ranking authority; malformed wide-wire payloads are excluded before identity
+and exposure are calculated; rail/fork/stack behavior is pure and responsive;
+and section impressions are gated by viewport, focus, foreground, and dwell.
+
+| Canonical group | Current implementation | Engineering/adoption result |
+|---|---|---|
+| A — One Place | candidate/list row is built; grounded reasons now have producer and renderer substrate | Keep the existing row. Select any additional verdict/log/apparatus register explicitly; do not build all six variants by default. |
+| B — Several Places | list and experience rail are built; door producer/wiring exists; lead/peer, comparison, stack, stub remain unsettled | Door needs an adoption ruling and proof. Lead hierarchy has conflicting authorities and must not be silently changed. |
+| C — Composed Plan | area/map selection substrate exists; day/trip cross-reference relocated to Trips | Keep root map dark until ownership, permission, empty/offline, and privacy policy are decided. |
+| D — Reading | existing cover/fork is built | Mirrored spine, lens switcher, dial, and overlay remain design-only. |
+| E — Memory | anniversary is built | Postcard, shelf, row, and Go Back remain unresolved. |
+| F — People | friend strip is built | Co-sign, Again, and trip marker remain unresolved and need privacy/provenance review. |
+| G — Personal Record | no accepted record family | Belonging/tally/rhythm/Rest require explicit product semantics and producers. |
+
+The canonical Places rhythm currently represented in source—7-point card
+spacing, 12-point row rhythm, 32-point section rhythm, and one section rule—is
+the baseline to preserve. Page-rhythm explorations B–H are not an implicit
+refactor brief.
+
+#### Trips
+
+The current data path is:
+
+`trips/ambient queries → controller → transport section plan → route-safe render`
+`model → physical page plan → exhaustive body phases → leaf renderers`
+
+The thin route and physical page plan are meaningful consolidation gains. The
+remaining problem is that the controller still returns a discovery-heavy flat
+surface and contains almost no budget headroom.
+
+| Canonical group | Current implementation | Engineering/adoption result |
+|---|---|---|
+| A — Crown | all current receipt bodies are supported through the crown renderer | Preserve receipt semantics and canonical writers; focus on state/device proof. |
+| B — Time | Now and Countdown are built; temporal strip is not | Split the mixed inventory row before calling this family implemented. |
+| C — Room | Group and Trail/Connect are built | Invite seat and Your People remain unresolved. |
+| D — Evidence | Conditions is built and intentionally passive | Comparison foot, work receipt, open loops, price ladder, and table remain unresolved. |
+| E — Stack | bounded Also In Play queue is built | Depth/draft shelf remain unresolved; queue exposure identity still needs correction. |
+| F — What Is the Plan | Local Plans is built on the local-trip aggregate | Hosting and additional registers remain unresolved. |
+| G — Approach | Companion is built | This Week/Weekend and Saved Unplaced remain unresolved. |
+| H — Return | no adopted return composition | Since You Last Looked/Return need new semantics and producer decisions. |
+| I — Voice | mast, Standing Ask, Voice Ask, and offers have current implementations/gates | Standing Ask membership must use authoritative posture rather than legacy hero kind. |
+| J — Maps | Today Mapped is full-stack wired behind its own gate | Keep expansion variants dark; decide adoption and prove Today Mapped before adding collaborative/photo/location maps. |
+| K — Trip Feel | a static selector/card exists | Persistence, resumption, receded state, and “what remains” are not implemented as a stateful family. |
+
+### Reconciled review findings
+
+The five original Phase 1 correctness defects have landed: honest degraded feed
+handling, stable rain/wind weather keys, offline/cache precedence, the dedicated
+editorial-map gate with dark-query behavior, and a Places unavailable state.
+Six important Phase 2 findings also landed: queue and legacy-row proposal cache
+subtraction, ambient placeholder sanitization/auth guards, dark ambient query
+suppression, partial/stale banner precedence, exhaustive guide-door routing,
+and separation of candidate detail versus save semantics.
+
+The following work remains actionable.
+
+| Priority | Surface | Finding | Required result |
+|---|---|---|---|
+| P1 | Places | A zero-renderable unavailable/partial response can compose redundant availability messaging, and offline copy can imply a preserved feed when no cards are renderable. | One root-state authority selects exactly one truthful notice/hero/feed state from transport, cache, renderability, and connectivity. |
+| P1 | Trips | Standing Ask still derives membership/revision from legacy `heroKind`, which can conflict with authoritative server posture. | Derive the section from normalized projection posture and cover conflicting urgent/crownless states. |
+| P2 | Trips | Loading “See all N trips →” is visually a door but is noninteractive text. | Make it an actual typed action or remove door styling/copy while loading. |
+| P2 | Trips | Aggregate queue exposure identity is composed from content revisions rather than stable fact/content IDs. | Separate stable entity identity from mutable revision and retain max-two aggregation. |
+| P2 | Trips | Local Plans and Day Map share a wrapper without child rhythm; a failed map image can retain empty allocated space. | Plan renderability before allocation and apply an explicit cluster gap without changing global page rhythm. |
+| P2 | Places | Loading visibly replaces authored standfirst copy with “Finding your places.” despite the surface contract requiring transport status to be accessibility-only. | Preserve an authored/static visual floor and expose transport status through accessibility semantics. |
+| P2 | Places | Full-width editorial supporting previews use System Sans caption 12 instead of the canonical bounded literary register. | Add/use an approved semantic serif preview role near the Page's 16/1.4 target; do not repurpose generic caption. |
+| P2 | Places | Grounded candidate reason can extend to two lines, but default/narrow/large-type optical rhythm has no evidence. | Verify plate height, truncation, and sibling alignment with deterministic long-copy fixtures and physical devices. |
+| P3 | Both | Hot root owners sit on their line ratchets and still expose prop-bag/discovery architecture. | Extract behavior-preserving adapters/controllers with at least 20% measured headroom. |
+| P3 | Governance | Mixed inventory rows and zero receipts obscure what is implemented versus adopted versus accepted. | Split rows, record decisions, and issue immutable F/B/V receipts only from qualifying evidence. |
+
+### Design conflicts that require a ruling
+
+These are not safe “polish fixes”:
+
+- **Places lead hierarchy:** the Page board proposes strong scale/orientation
+  hierarchy, a local contract records a different 62/50 plate treatment, and
+  current source intentionally renders equal 92-point geometry while producers
+  mark every item as lead. Product/design must define lead semantics and select
+  one geometry before engineering changes it.
+- **Places tonal material:** one local contract describes memory/prompt paper,
+  while the Page/As-Built and current source use uncarded treatment. Source
+  remains the implementation truth until the contract is reconciled.
+- **Places notice/prompt ownership:** the Page suggests moving the spine to
+  Trips/Plans, while current backend producers still intentionally emit these
+  families. Relocation requires a producer and destination decision, not merely
+  hiding the cards.
+- **Today Mapped:** technical implementation exists, but product adoption,
+  privacy/permission behavior, and evidence remain open. “Rendered in source”
+  is not equivalent to “adopted.”
+- **Conditions interaction:** the transport plan can carry a route, but the
+  canonical/current UI is deliberately passive. Do not invent a weather CTA.
+
+### Revised engineering roadmap
+
+#### R0 — Make the ledger honest
+
+One governance owner updates the composition inventory before new family work:
+
+1. Split Trips Time into adopted Now, adopted Countdown, and unresolved
+   Temporal Strip rows.
+2. Split Trip Feel's current static selector from stateful persistence,
+   resumption, receded, and “what remains” variants.
+3. Record Today Mapped as technically source-complete but adoption-unresolved;
+   keep map expansions separate.
+4. Reconcile Local Plans with the current `trip_kind=local` product model.
+5. Record grounded Places `reason`/`note`/`count` producer progress without
+   silently adopting new register compositions.
+6. Add explicit product-decision fields: verdict, owner, rationale,
+   prerequisite, and review date.
+
+Exit gate: every inventory row describes one independently adoptable family;
+`D/C/P/R/A` and `F/B/V` states are not conflated.
+
+#### R1 — Correct state and semantic truth
+
+These packages are behavior changes and should land before visual work.
+
+**R1-P — Places root-state authority**
+
+- Add a pure state selector over request status, cached transport content,
+  renderable section count, unavailable producers, refresh failure, and offline
+  status.
+- Produce one mutually exclusive result for loading, unavailable, empty,
+  partial-with-content, stale-with-content, offline-with-content, and ready.
+- Delete duplicate notice/hero decisions from `PlacesWorkspace` after parity
+  tests exist.
+- Test the all-optional-producers-unavailable case and offline zero-renderable
+  case explicitly.
+
+**R1-T — Trips posture and loading action**
+
+- Normalize authoritative server posture once in the controller composition
+  layer.
+- Make Standing Ask visibility, revision, and copy consume that posture.
+- Characterize urgent, crownless, cached, partial, and fallback combinations.
+- Resolve “See all N trips” as a real action or honest non-door copy.
+
+**R1-Q — Stable queue telemetry identity**
+
+- Give the aggregate queue separate stable content IDs and mutable revision.
+- Preserve the current two-item visible cap and one physical exposure boundary.
+- Ensure copy-only revision changes do not remint entity identity.
+
+Exit gate: focused tests, typecheck, source budgets, and no invented product
+state. These commits make no visual/device acceptance claim.
+
+#### R2 — Polish only the adopted baseline
+
+**R2-P — Places typography and loading voice**
+
+- Keep visible loading voice authored/static; use accessibility state for
+  transport progress.
+- Introduce a named editorial-supporting semantic text role, or a bounded local
+  spec style if no system role fits. Target the Page's EB Garamond-like
+  16-point/1.4 register without globally changing caption.
+- Exercise ordinary and maximal editorial copy at narrow width and large type.
+- Add long grounded-reason fixtures for candidate rows.
+
+**R2-T — Trips cluster rhythm and failed-media allocation**
+
+- Compute Day Map leaf renderability, including valid media, before the body
+  allocates its wrapper.
+- Add a local, tokenized gap between Local Plans and Today Mapped when both
+  render.
+- Verify one-leaf and zero-leaf clusters do not retain phantom margin.
+- Check footer/floating-create clearance without changing the overall page
+  rhythm.
+
+Exit gate: deterministic screenshot fixtures at approximately 320, 360, and
+393 points plus baseline and enlarged text. Screenshots are regression evidence,
+not physical-device acceptance.
+
+#### R3 — Restore architectural headroom
+
+Behavior and architecture commits must remain separate.
+
+**R3-P — Places workspace decomposition**
+
+- Extract query/location orchestration from root rendering.
+- Extract the mutually exclusive root-state presenter from R1-P.
+- Package search/map/saved/reading doors into a typed navigation adapter.
+- Remove the production-dead legacy `utils/placesWorkspace.ts` model after its
+  remaining tests are migrated.
+- Keep ranking, section order, card mutations, and leaf route destinations
+  unchanged.
+
+**R3-T — Trips controller/body decomposition**
+
+- Replace the approximately 80-field controller return with cohesive `page`,
+  `sections`, `actions`, `chrome`, and `telemetry` adapters.
+- Move query interpretation and composition into pure builders; keep hooks and
+  effects in the controller.
+- Extract phase renderers from the body without changing SoftReveal/crown
+  containment or canonical writers.
+- Retain the page plan as the sole physical-order authority.
+
+Exit gate: each hot owner has at least 20% ratchet headroom, focused behavior
+tests are unchanged, full typecheck passes, and architecture contracts prevent
+responsibility from migrating back into the roots.
+
+#### R4 — Founder/product decision packets
+
+No new family is coded until its packet receives `adopt`, `defer`, `reject`, or
+`relocate` plus an owner and rationale.
+
+1. **Places registers:** choose among verdict, log, apparatus, caveat, and
+   recommendation; settle door and lead/peer semantics.
+2. **Places composition/record:** root map, reading variants, return/memory,
+   social variants, and personal record.
+3. **Trips time/people:** temporal strip, Near You, invite seat, Your People.
+4. **Trips evidence/depth/local:** comparison evidence, depth/draft shelf,
+   Local Plans extensions, and hosting.
+5. **Trips maps/return:** Today Mapped adoption, map expansions, pretrip, and
+   Return.
+6. **Trips Trip Feel:** persistence, resumption, receded state, and remaining
+   work.
+
+Recommended no-regret posture:
+
+- adopt and prove grounded Places reason/note/count inside already accepted
+  row/collection patterns;
+- evaluate Today Mapped as the only map slice before any collaborative,
+  member-location, photo-location, or reachable-now expansion;
+- defer conviction and `saved_unvisited` until accepted producer semantics
+  exist;
+- defer hosting, return/personal record, collaborative maps, and stateful Trip
+  Feel until their privacy/domain decisions are explicit;
+- do not create client-side section ranking or server-provided style/component
+  metadata.
+
+#### R5 — Build selected vertical slices
+
+Each adopted family travels as one vertical slice:
+
+`semantic producer → additive schema → generated types → client selector/state →`
+`renderer/action → fixture proof → backend-real proof → device proof`
+
+Likely slice shapes:
+
+- **Today Mapped hardening:** mostly existing schema/plumbing; concentrate on
+  permission, offline/cache, media failure, privacy, and proof.
+- **One Places register:** reuse grounded reason/note/count only if the selected
+  Page composition can be represented without client inference.
+- **Stateful Trip Feel:** requires a single canonical writer, persistence and
+  revision semantics, unavailable/cached behavior, and resumption policy before
+  UI variants.
+- **Temporal/depth/draft:** first define whether state is authoritative backend
+  truth, bounded local draft, or derived read model; do not start from the card.
+
+For schema-bearing slices, merge order is backend additive contract, workspace
+OpenAPI snapshots/generated app types, frontend consumption, backend deployment,
+then app rollout. Destructive removals wait for minimum-client and cache-expiry
+policy.
+
+#### R6 — Evidence and acceptance
+
+For every adopted visible family:
+
+- `F`: exact fixture, authority hash, width, font scale, state, and screenshot;
+- `B`: authenticated backend-real projection with real IDs/revisions/routes,
+  including partial and cached/offline behavior;
+- `V`: physical iOS and Android, baseline and a large Dynamic Type setting,
+  online, offline-with-cache, offline-cold, loading, empty, partial, error, and
+  relevant permission-denied/background-foreground paths.
+
+Receipts are immutable, workspace-relative, and name item ID, layer, kind,
+source, date, summary, and platform for `V`. A source-complete family remains
+unaccepted while any required receipt is absent.
+
+### Parallel execution and file ownership
+
+Use no more than three implementation lanes plus one integration coordinator.
+Parallelism is by repository and hot-file ownership, not by arbitrary card
+count.
+
+| Wave | Lane A | Lane B | Lane C | Dependency |
+|---|---|---|---|---|
+| A | R1-P Places state | R1-T Trips posture/action | R0 inventory/governance | independent; coordinator owns cross-doc reconciliation |
+| B | R2-P Places typography/voice | R2-T Trips rhythm/media | R1-Q queue identity | begins after relevant R1 behavior lands |
+| C | R3-P Places architecture | R3-T Trips architecture | fixture/evidence harness | interface freeze after Waves A/B |
+| D | product decision workshop | producer/privacy investigation | evidence-state audit | no speculative UI implementation |
+| E | one backend/schema owner | one frontend owner per selected surface | backend-real/device QA | only for adopted slices |
+
+Exclusive hot-file locks:
+
+- one owner at a time for `PlacesWorkspace.tsx` and its root-state tests;
+- one owner at a time for `TripsHomeController.ts` and controller contracts;
+- one owner at a time for `TripsHomeBody.tsx` and phase renderer ownership;
+- one schema owner for backend models, OpenAPI snapshots, and generated types;
+- one inventory owner for adoption/evidence fields.
+
+Every commit reports base SHA, explicit touched paths, focused tests, broader
+verification, compatibility statement, and evidence limitations. Stage by
+filename, never broad-add. Integration order follows dependency order; old
+branches/worktrees are historical evidence and are not merged merely because
+they contain a similarly named fix.
+
+### Immediate next engineering slice
+
+Start with Wave A. It is the smallest set that makes the current surface honest
+before visual tuning:
+
+1. land R0's inventory split and status reconciliation in the workspace;
+2. land R1-P as a pure Places root-state selector plus root consumption;
+3. land R1-T as authoritative Trips posture plus the loading-action correction;
+4. land R1-Q separately if it does not collide with the Trips controller owner;
+5. rerun focused suites, full frontend typecheck, home-surface budgets, design
+   hash checks, and composition inventory validation;
+6. only then begin the typography/rhythm wave.
+
+This ordering avoids polishing dishonest states, keeps behavior fixes separate
+from consolidation, and leaves unresolved Page-board families dark until the
+product decision packet is complete.
 
 ## 2. Review baseline
 
