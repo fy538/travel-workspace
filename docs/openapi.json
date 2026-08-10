@@ -70868,7 +70868,7 @@
               "$ref": "#/components/schemas/PlacesFeedUnavailableProducer"
             },
             "type": "array",
-            "maxItems": 11,
+            "maxItems": 12,
             "title": "Unavailable Producers"
           },
           "saved_total": {
@@ -70952,7 +70952,8 @@
           "urgency",
           "returns",
           "nearby",
-          "reading"
+          "reading",
+          "saved_unplaced"
         ],
         "title": "PlacesFeedUnavailableProducer",
         "description": "Optional feed source that could not answer within this response budget.\n\nThis is deliberately a small closed vocabulary, not an error payload.  It\nlets a client distinguish an honestly empty feed from a partial feed while\nrevealing neither exception detail nor any content that the source failed\nto load."
@@ -72268,6 +72269,16 @@
               }
             ]
           },
+          "destination": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesSectionDestination"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "cards": {
             "items": {
               "$ref": "#/components/schemas/PlacesCard"
@@ -72285,6 +72296,19 @@
               }
             ],
             "title": "Fact Key"
+          },
+          "revision_key": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 300,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Revision Key"
           }
         },
         "type": "object",
@@ -72295,6 +72319,21 @@
           "cards"
         ],
         "title": "PlacesSection"
+      },
+      "PlacesSectionDestination": {
+        "properties": {
+          "target": {
+            "type": "string",
+            "const": "saved",
+            "title": "Target"
+          }
+        },
+        "type": "object",
+        "required": [
+          "target"
+        ],
+        "title": "PlacesSectionDestination",
+        "description": "A typed reader destination owned by the Places surface.\n\nThis is intentionally not a client route.  It gives a private collection\nsection one canonical Places reader without making the feed infer route\nstrings or take ownership of another domain's mutation."
       },
       "PlacesSectionDoor": {
         "properties": {
@@ -72354,6 +72393,7 @@
           "unfinished_guide",
           "friend_activity",
           "saved_unvisited",
+          "saved_unplaced",
           "changed",
           "harvest",
           "starter",
