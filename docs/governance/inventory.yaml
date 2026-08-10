@@ -159,6 +159,10 @@ overrides:
     disposition: keep_reference
     rationale: Active, expiring handoff record for the AI-R0 evaluation slice; it does not supersede release or certification evidence.
 
+  docs/working/ai-decision-and-learning-r1-execution-status-2026-08-10.md:
+    disposition: keep_reference
+    rationale: Blocked, expiring record of the AI-R1 offline and dark-path implementation boundary; it does not authorize runtime shadowing, a canary, or group-visible behavior.
+
   docs/working/ai-decision-and-learning-research-agenda-2026-08-10.md:
     disposition: keep_reference
     rationale: Active, expiring research agenda for AI decision and learning; it records hypotheses without authorizing product behavior.
