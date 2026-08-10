@@ -70,6 +70,13 @@ migration `receiptidem01`, existing internal iOS build
 identity. The fixed Trip is allowlisted but still must be seeded and verified
 before either P05 or P07 may advance.
 
+Roster verification subsequently found four deployed members versus the
+contract's exact two-person roster. The global weather-rescue switch was rolled
+back off and remains off. The existing Trip must not be destructively trimmed
+for evidence; provision a separate controlled cohort or revise the fixed
+contract intentionally, then re-run the exact-roster preflight before enabling
+the producer.
+
 1. Organizer opens the live Lisbon Plan and sees `Take us somewhere` only when
    there is a server-resolved current block.
 2. The doorway opens a private review-first chat containing the grounded-route

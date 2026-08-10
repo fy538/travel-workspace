@@ -635,6 +635,13 @@ the EAS account's monthly iOS quota was exhausted; the compatible existing
 internal binary remains the native host. These are deployment identities, not
 staging or physical journey evidence.
 
+Post-deploy roster audit found that this pre-existing Trip currently has four
+members, while the fixed proof contract requires the exact two-person roster.
+Weather rescue was therefore rolled back to globally disabled; a runtime check
+for the allowlisted UUID now returns false. Create a separate controlled Trip
+or deliberately reconcile the fixture before enabling the producer again. Do
+not remove real members merely to make the proof pass.
+
 Until those receipts exist, P05/P07 remain dark, AI shadow remains off, and no
 device, staging, human, model-quality, causal-impact, or release certification
 is claimed from the source and backend-real results above.
