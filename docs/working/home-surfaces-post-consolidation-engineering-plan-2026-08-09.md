@@ -45,7 +45,7 @@ open/closed finding statuses and pinned revisions are superseded here.
 | Frontend | `travel-app` at `c9becf7032199c1eeb8d947e2fc5df0a5f4444da` | clean `main`, aligned with `origin/main` |
 | Backend | `travel-agent` at `1bde69535841f849ccdc55550a1d1c6c71fec59d` | clean `main`, aligned with `origin/main` |
 | External design authority | `vesper-home-surfaces-2026-08-09` | operator-owned, external only |
-| Composition inventory | `home-surfaces-composition-v1`, as of 2026-08-09 | 33 rows, 0 evidence receipts |
+| Composition inventory | `home-surfaces-compositions-2026-08-10` | 36 atomic rows, 0 evidence receipts |
 
 The canonical Places and Trips Page/As-Built pairs were revalidated locally
 from `/Users/feihuyan/Downloads/vesper-home-surfaces` using
@@ -446,11 +446,12 @@ the basis for further dispatch.
 
 ### 3.1 Inventory status
 
-The current machine inventory has 33 rows:
+The current machine inventory has 36 atomic rows:
 
 | Adoption state | Count |
 |---|---:|
-| Adopted | 13 |
+| Adopted | 15 |
+| Exploratory | 1 |
 | Unresolved | 19 |
 | Relocated | 1 |
 
@@ -458,9 +459,9 @@ Its evidence boundary is still static/source-only:
 
 | Evidence layer | Current result |
 |---|---|
-| Fixture/visual, `F` | 33 not verified |
-| Backend-real, `B` | 31 not verified, 2 not applicable |
-| Physical device, `V` | 33 not verified |
+| Fixture/visual, `F` | 36 not verified |
+| Backend-real, `B` | 34 not verified, 2 not applicable |
+| Physical device, `V` | 36 not verified |
 | Immutable evidence receipts | 0 |
 
 Several inventory rows combine implemented and missing variants. For example,
