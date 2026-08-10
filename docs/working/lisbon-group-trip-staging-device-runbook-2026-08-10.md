@@ -34,6 +34,21 @@ The fixed scenario is owned by:
   live-group doorway proof only; it does not exercise the Lisbon mutation
   lifecycle and cannot pass P05 or P07 by itself).
 
+## Source-status correction — 2026-08-10
+
+This runbook describes the intended controlled-device proof, not current
+source completion. At this revision the production doorway is still limited to
+an active itinerary block; it does **not** yet represent the bounded
+between-block opening used by the Lisbon demo. The current seed also does not
+yet preserve spatial context through conversation creation, and the private
+review-to-group-proposal bridge has not landed. Therefore steps 1–2 below are
+blocked pending the source-controlled closure work in
+[canonical demo convergence closure plan](canonical-demo-convergence-closure-plan-2026-08-10.md).
+
+The earlier simulator artifact remains useful diagnostic material only. It
+must not be read as proof that a free-window micro-journey, nearby grounding,
+proposal bridge, add operation, or route handoff was exercised.
+
 ## Exact staging identity
 
 Before any staging walk, fill every non-source identity in
@@ -90,8 +105,8 @@ and the original site is restored. This proves rollback support only. It does
 not satisfy the live-provider/future-block requirement and is not P07 staging
 evidence.
 
-1. Organizer opens the live Lisbon Plan and sees `Take us somewhere` only when
-   there is a server-resolved current block.
+1. Organizer opens the live Lisbon Plan and sees `Take us somewhere` during a
+   server-resolved, bounded current opening before the protected dinner.
 2. The doorway opens a private review-first chat containing the grounded-route
    request. No plan mutation or group post occurs from the tap.
 3. A thin participant joins through the real invite redemption path and can

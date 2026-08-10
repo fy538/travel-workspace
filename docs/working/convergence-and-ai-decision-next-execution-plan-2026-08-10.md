@@ -42,6 +42,27 @@ generated files, merge order, deployment identity, and evidence promotion.
 
 ## 2. Recorded starting point
 
+### 2.1 Closure correction — 2026-08-10
+
+The earlier “bounded Lisbon micro-journey doorway” line is a target, not a
+completed source fact. The audited source path has these specific gaps:
+
+- the mobile `Take us somewhere` action is shown only while a block is active;
+  it cannot begin in the useful between-block opening;
+- its seed binds the active/next block, not an explicit bounded open window;
+- the create-conversation reconstruction drops supplied spatial context;
+- a private conversation cannot select the governed `propose_change` tool,
+  although the proposal handler itself supports private, review-first authorship;
+- the itinerary gap assistant and Places use different actionable-candidate
+  policy; and
+- the Lisbon replay covered replacement convergence, not a gap add, proposal
+  bridge, or route-opening handoff.
+
+The active implementation and evidence order is now the revision-bound
+[canonical demo convergence closure plan](canonical-demo-convergence-closure-plan-2026-08-10.md).
+Nothing in this plan or its runbook should describe the above source work as
+already implemented until the named commits and checks land.
+
 All three canonical checkouts were clean and aligned with `origin/main` when
 this plan was written:
 
