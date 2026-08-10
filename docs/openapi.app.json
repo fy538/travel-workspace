@@ -60347,7 +60347,7 @@
               "$ref": "#/components/schemas/PlacesFeedUnavailableProducer"
             },
             "type": "array",
-            "maxItems": 12,
+            "maxItems": 13,
             "title": "Unavailable Producers"
           },
           "saved_total": {
@@ -60380,7 +60380,8 @@
           "returns",
           "nearby",
           "reading",
-          "saved_unplaced"
+          "saved_unplaced",
+          "registers"
         ],
         "title": "PlacesFeedUnavailableProducer",
         "description": "Optional feed source that could not answer within this response budget.\n\nThis is deliberately a small closed vocabulary, not an error payload.  It\nlets a client distinguish an honestly empty feed from a partial feed while\nrevealing neither exception detail nor any content that the source failed\nto load."
