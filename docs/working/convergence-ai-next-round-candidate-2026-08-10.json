@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "program": "convergence-ai-next-round-2026-08-10",
-  "status": "ready",
+  "status": "external_evidence_blocked",
   "created_at": "2026-08-10",
   "base": {
     "workspace_sha": "47d51880f0fd6dfccf63b989242f8b9c2459b9e5",
@@ -35,11 +35,11 @@
     }
   },
   "candidate": {
-    "workspace_sha": "503bc8c81c9602efc9e5b0ddb5a61bede6a61ff6",
-    "backend_sha": "7b7f673610416447aca363fc592d74475fa20f1f",
+    "workspace_sha": "21976a12558f22a9e14e55cfd28a1b94f93099c2",
+    "backend_sha": "1abb5a951800c8aa853ee1c427508d209eba34e2",
     "app_sha": "2c9169d81acaa40a853c52ef353146d05d87ac0b",
     "migration_revision": "receiptidem01",
-    "backend_deploy_digest": "sha256:da11da3529dea8161345a48e7ef9a765f5527a3eef1aa6c98cc790eaf02e6113",
+    "backend_deploy_digest": "sha256:102646659b6ac835e7e60678bbc1d479041cc63b8b4247d109467e0ad8b5dbbf",
     "app_build_id": "eas-build:aa524cdb-7b34-4f27-9864-425df19a2e47+ios-update:a8ae572d-f59c-481c-b768-3359ecbc35b6",
     "seed_corpus_hash": "sha256:9e2166a68c36ede18dc2038ba3ff61d9891b61332330f754deeccd94e544524b"
   },
@@ -75,6 +75,8 @@
     "shadow_telemetry_retention_approval",
     "model_provider_credential_and_spend_policy",
     "eas_ios_monthly_build_quota_or_paid_plan",
-    "two_physical_devices_and_identities"
+    "two_physical_devices_and_identities",
+    "governed_p05_p07_two_account_device_flows",
+    "future_block_with_live_provider_disruption"
   ]
 }
