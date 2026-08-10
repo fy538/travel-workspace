@@ -61,6 +61,38 @@ def test_ready_requires_all_lane_heads_and_candidate_revisions() -> None:
         subject.validate_manifest(manifest)
 
 
+def _pinned_manifest(*, status: str) -> dict:
+    manifest = _manifest()
+    manifest["status"] = status
+    sha = "b" * 40
+    for lane in manifest["lanes"].values():
+        lane.update({key: sha for key in subject.SHA_KEYS})
+    manifest["candidate"].update({key: sha for key in subject.SHA_KEYS})
+    return manifest
+
+
+def test_deployed_requires_exact_deployment_identity() -> None:
+    manifest = _pinned_manifest(status="deployed")
+    manifest["evidence"]["staging"] = "pass"
+    with pytest.raises(subject.CandidateError, match="deployment identity"):
+        subject.validate_manifest(manifest)
+
+
+def test_observed_requires_an_observation_layer() -> None:
+    manifest = _pinned_manifest(status="observed")
+    manifest["candidate"].update(
+        {
+            "migration_revision": "20260810_01",
+            "backend_deploy_digest": "sha256:backend",
+            "app_build_id": "eas-build-123",
+            "seed_corpus_hash": "sha256:seed",
+        }
+    )
+    manifest["evidence"]["staging"] = "pass"
+    with pytest.raises(subject.CandidateError, match="observed candidate"):
+        subject.validate_manifest(manifest)
+
+
 def test_assembling_manifest_rejects_pass_evidence() -> None:
     manifest = _manifest()
     manifest["evidence"]["source"] = "pass"

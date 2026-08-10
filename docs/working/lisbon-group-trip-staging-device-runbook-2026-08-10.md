@@ -1,0 +1,94 @@
+---
+doc_type: working
+status: active
+owner: engineering / product / evidence
+created: 2026-08-10
+last_verified: 2026-08-10
+expires: 2026-09-09
+why_new: Defines the fail-closed deployed and two-device proof boundary for the fixed Lisbon Group Trip disruption without promoting source or Postgres evidence to device evidence.
+source_of_truth_for:
+  - lisbon-group-trip-staging-device-proof-2026-08
+related:
+  - convergence-and-ai-decision-next-execution-plan-2026-08-10.md
+  - journey-live-full-cert-04-05-10.md
+  - ../journeys/EVIDENCE_MODEL.md
+  - ../journeys/product-proofs.yaml
+---
+
+# Lisbon Group Trip staging and device proof
+
+## Claim boundary
+
+The source candidate defines and replays the Lisbon rain-rescue scenario. It is
+not controlled-device, staging, or physical evidence. P05 and P07 remain dark
+until revision-bound receipts exist for the layers they require.
+
+The fixed scenario is owned by:
+
+- `travel-agent/tests/fixtures/lisbon_group_disruption.json`;
+- `travel-agent/tests/scenarios/test_lisbon_group_disruption_contract.py`;
+- `travel-agent/tests/scenarios/test_lisbon_group_disruption_replay.py`;
+- `travel-app/__tests__/utils/takeSomewhere.test.ts`;
+- `travel-app/__tests__/components/trip-plan/NowModeStrip.test.tsx`.
+
+## Exact staging identity
+
+Before any staging walk, fill every non-source identity in
+`convergence-ai-next-round-candidate-2026-08-10.json`:
+
+| Identity | Required value |
+| --- | --- |
+| Workspace/backend/app | exact clean candidate SHAs |
+| Backend | immutable image or deploy digest |
+| Mobile | exact EAS/internal build ID |
+| Database | applied Alembic revision |
+| World | fixed fixture/corpus SHA-256 |
+| Flags | backend weather rescue on; internal app and Group Trip doorway on |
+
+The rollback is all-off: `WEATHER_RESCUE_PROPOSALS_ENABLED=false`,
+`EXPO_PUBLIC_GROUP_TRIP_MICRO_JOURNEY_ENABLED=false`, or a non-internal build.
+AI decision shadow flags remain false throughout this product proof.
+
+## Controlled-device walk
+
+Use an internal build against a controlled backend seeded from the fixed
+fixture. Record `device_mock`, never `physical`.
+
+1. Organizer opens the live Lisbon Plan and sees `Take us somewhere` only when
+   there is a server-resolved current block.
+2. The doorway opens a private review-first chat containing the grounded-route
+   request. No plan mutation or group post occurs from the tap.
+3. A thin participant joins through the real invite redemption path and can
+   read the same open rescue proposal.
+4. The participant approves; the organizer accepts. Both observers' Plan, Map,
+   and Now show the same replacement block and projection revision.
+5. Reject and expiry forks preserve the original block. The revert fork restores
+   it on every shared projection and leaves a visible receipt.
+6. Each identity privately confirms the occurrence and records an outcome. One
+   participant's verdict or rationale is absent from every group surface.
+7. Correct one private outcome and verify only that person's private artifact
+   changes. A changed roster withholds companion-fit reuse.
+
+Any skipped assertion makes the affected proof blocked, not pass.
+
+## Physical two-device walk
+
+Reuse the hardware, identity, artifact, and receipt discipline in
+`journey-live-full-cert-04-05-10.md`, but execute the fixed P05/P07 assertions
+above. The operator must supply two unique hardware UDIDs, two unique real
+identities, build/deploy/migration/seed identity, oracle and flow hashes,
+reviewer, and fresh content-addressed screenshots or video. Simulator labels,
+unresolved device names, pre-existing artifacts, and manually authored receipt
+JSON are rejected by the evidence tooling.
+
+## Receipt commands
+
+The staging and physical commands are operator-owned because they deploy and
+touch real accounts. Use `make dogfood-staging` with
+`DOGFOOD_STAGING_PROOFS=P07`; use `scripts/journey_evidence.py record` for the
+controlled P05/P07 device-mock command. Extend the physical runner's governed
+proof list before running it; do not relabel the existing J04/J05/J10 receipt.
+
+Promotion order is strict: source/database → staging → controlled device →
+physical. P05 needs contract, database, and device-mock. P07 needs those plus
+staging. Physical evidence is a separate stronger claim and never inferred.

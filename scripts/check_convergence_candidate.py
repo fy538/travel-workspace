@@ -26,6 +26,7 @@ SHA_KEYS = ("workspace_sha", "backend_sha", "app_sha")
 LANES = {"causal_spine", "ai_evidence", "group_trip", "integration_evidence"}
 STATUSES = {"assembling", "ready", "deployed", "observed"}
 EVIDENCE_STATES = {"not_run", "blocked", "fail", "pass", "stale"}
+DEPLOYED_STATUSES = {"deployed", "observed"}
 CONTROL_OFF_KEYS = {
     "group_visible_ai_dl",
     "durable_inferred_learning",
@@ -97,6 +98,24 @@ def validate_manifest(manifest: dict[str, Any]) -> None:
         if candidate[key] is not None and not _is_sha(candidate[key]):
             raise CandidateError(f"candidate.{key} must be null or a full Git SHA")
 
+    if status in DEPLOYED_STATUSES:
+        deployment_keys = (
+            "migration_revision",
+            "backend_deploy_digest",
+            "app_build_id",
+            "seed_corpus_hash",
+        )
+        missing_deployment = [
+            key
+            for key in deployment_keys
+            if not isinstance(candidate[key], str) or not candidate[key].strip()
+        ]
+        if missing_deployment:
+            raise CandidateError(
+                "deployed/observed candidate requires deployment identity: "
+                + ", ".join(missing_deployment)
+            )
+
     if status != "assembling":
         incomplete_lanes = [
             lane_name
@@ -138,6 +157,14 @@ def validate_manifest(manifest: dict[str, Any]) -> None:
         raise CandidateError(f"invalid evidence states: {invalid_evidence}")
     if status == "assembling" and any(value == "pass" for value in evidence.values()):
         raise CandidateError("assembling manifest cannot claim passing candidate evidence")
+    if status in DEPLOYED_STATUSES and evidence.get("staging") != "pass":
+        raise CandidateError("deployed/observed candidate requires passing staging evidence")
+    if status == "observed" and not any(
+        evidence.get(layer) == "pass" for layer in ("device_mock", "physical", "ai_eval")
+    ):
+        raise CandidateError(
+            "observed candidate requires device_mock, physical, or ai_eval evidence"
+        )
 
     blockers = manifest.get("external_blockers")
     if not isinstance(blockers, list) or not all(

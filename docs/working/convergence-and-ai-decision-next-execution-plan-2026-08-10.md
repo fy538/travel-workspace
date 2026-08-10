@@ -14,6 +14,7 @@ related:
   - ai-decision-and-learning-research-agenda-2026-08-10.md
   - ai-decision-and-learning-r1-execution-status-2026-08-10.md
   - journey-live-full-cert-04-05-10.md
+  - lisbon-group-trip-staging-device-runbook-2026-08-10.md
 ---
 
 # Convergence and AI decision-learning: next execution round
