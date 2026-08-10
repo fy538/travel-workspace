@@ -15,16 +15,19 @@ related:
 
 # AI decision-and-learning R1 execution status
 
-> **Merge note (2026-08-10):** the AI-R1 backend lane is merged on backend
-> `main` at `e42fc3a3d2a1fccc12ae932c9964f0ef69b35599`; workspace planning/status
-> is on `main` at `47d5188248752a65c012291622094683cde31cda`; mobile remains
-> `aba00ae32946d279411836a0337f2df0d41c2cde`. The runtime gates below remain
-> blocked and are not relaxed by the merge.
+> **Integration note (2026-08-10):** this document preserves the AI-R1 merge
+> record. The subsequent convergence round added a separate disabled,
+> allowlisted private shadow attachment and a 16-case disruption corpus. Exact
+> integrated revisions now live in
+> `convergence-ai-next-round-candidate-2026-08-10.json`. The v1 evidence decision
+> remains `iterate`; runtime flags remain off.
 
 ## Integration base and ownership
 
-This work ran in the dedicated AI-DL lane required by the engineering plan.
-It did not modify the four A–D convergence worktrees or add a mobile consumer.
+This work ran in the dedicated historical AI-DL lane required by the engineering
+plan. It did not modify the original four A–D convergence worktrees or add a
+mobile consumer. The later next-round lanes are tracked by the candidate
+manifest, not retroactively folded into this branch record.
 
 | Repository | Base revision | AI-R1 branch |
 | --- | --- | --- |
@@ -40,7 +43,7 @@ private device or group multi-device prerequisites for a mobile surface.
 | Phase/package | Implemented now | Evidence and boundary |
 | --- | --- | --- |
 | AI-0 / AI-001–003 | Frozen schema contracts, product-proof adapter, deterministic hard validators, corpus manifest, trial reports, versioned artifact registry, and human-anchor schema | Offline S/M contracts and fixture tests. No real human-anchor review has been recorded. |
-| AI-1 / AI-004–006 | Deterministic Decision Set baseline, typed structured-response adapter, policy comparison runner, adaptive routing policy, content-free ledger adapter | The ledger helper has no production caller. No provider was invoked and no shadow decision has been recorded against a real concierge turn. |
+| AI-1 / AI-004–006 | Deterministic Decision Set baseline, typed structured-response adapter, policy comparison runner, adaptive routing policy, content-free ledger adapter | AI-R1 itself had no production caller. A later isolated integration added a disabled private attachment; no provider observation or human anchor is thereby established. |
 | AI-2 / AI-007–008 | Conservative promotion/retrieval projection; correction/temporal/active applicability checks; exact companion-roster retrieval guard | No new candidate store or runtime learning writer was created. The existing relationship-memory authority remains the writer. |
 | AI-3 / AI-009–010 | Group aggregation baselines, counterfactual privacy predicate, group-composer hard gate | Offline-only. No group composition, proposal, or mutation path is invoked by AI-DL. |
 | AI-4 / AI-011–012 | Private-only eligibility assessment, no-send/propensity validation, content-free shadow receipt adapter, sample-size assumption helper | No runtime eligibility consumer, study protocol, consent enrollment, or delivery log exists. |
@@ -101,10 +104,11 @@ These are S/M-level implementation checks. They do not establish backend-real
 shadow coverage (B), device behavior (D/V), human-anchor agreement (H), or
 causal impact (C).
 
-## Gate before any runtime shadow consumer
+## Gate before enabling runtime shadow observation
 
-Do not connect `record_shadow_decision` or the structured adapter to concierge
-serving until all of the following are recorded:
+The adapter is attached dark and fail-open. Do not enable its global/policy
+flags or an allowlisted observation cohort until all of the following are
+recorded:
 
 1. A narrow private Decision Set family, allowlisted surface, and policy/model
    revisions are selected by product and AI systems.
@@ -114,8 +118,8 @@ serving until all of the following are recorded:
    review scope.
 4. Backend observability confirms shadow latency/cost limits and the ledger
    failure path remains non-blocking.
-5. The integration owner explicitly enables a registered, independently
-   kill-switchable shadow-only consumer.
+5. The integration owner explicitly approves the registered, independently
+   kill-switchable shadow-only consumer and named trip allowlist.
 
 ## Gates before a canary or group-visible behavior
 
