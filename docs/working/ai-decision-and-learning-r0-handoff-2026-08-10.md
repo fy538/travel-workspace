@@ -126,6 +126,19 @@ The package has no runtime-agent, database, notification, group-composer, or
 mobile imports. This is M/A-adjacent offline contract evidence only; it is not
 B, D, V, C, or a product release claim.
 
+The broader existing eval suite was also run from the isolated worktree:
+
+```text
+tests/eval -k 'not qdrant' → 755 passed, 19 deselected
+tests/eval (full)          → 773 passed, 1 failed
+```
+
+The sole full-suite failure is the pre-existing live-provider test
+`TestEvalQdrantProviderLive.test_search_venues_hits_real_qdrant`. Local Qdrant
+was available but had no seeded Brooklyn collection, so the provider returned
+zero rows. No Qdrant code or fixture was changed for AI-R0; this remains an
+environment-bound baseline and not an AI-DL regression.
+
 ## 6. Next owner action
 
 The next engineering session should:
