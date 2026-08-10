@@ -705,3 +705,27 @@ on:
 The default when these are unresolved is conservative: evaluate offline,
 remain silent in production, retain no unjustified durable claim, and route no
 new mutation or group-visible message.
+
+## 15. Post-integration safety hardening — 2026-08-10
+
+The dedicated `codex/ai-suite-coherence` backend lane adds the following
+defense-in-depth changes on top of the merged AI-DL R1 substrate:
+
+- a typed, content-free `DecisionFrame` / `DecisionRecord` boundary and a
+  registered private grounded-disruption decision family;
+- one request-scoped serving-scope resolution reused by the message boundary
+  and turn loader, so an Experience Scope is not independently re-resolved
+  mid-turn;
+- private-by-default observation writes: a category or trip association alone
+  can never make a memory visible to other members;
+- actor-bound observation writes: legacy organizer-proxy `target_user_id`
+  input is absent from the model schema and rejected before either name
+  resolution or persistence.
+
+These are source and focused backend-test results only. They do **not** change
+the AI-DL promotion decision: the live shadow attachment still needs an
+authorized, grounded DecisionFrame adapter at the selected serving boundary,
+plus the already-recorded telemetry, provider, and human-review approvals.
+Until then the global/policy gates, empty allowlist, and zero cost ceiling keep
+the shadow path inert; no visible response, proposal, notification, or memory
+write is authorized by this hardening work.
