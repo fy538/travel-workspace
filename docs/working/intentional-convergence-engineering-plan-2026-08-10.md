@@ -83,11 +83,11 @@ lane below starts in a dedicated worktree from recorded clean heads.
 
 ### Execution ledger — 2026-08-10
 
-Round 0 is complete on the main-derived candidate. The candidate is now:
+Rounds 0 and 1 are complete on the main-derived candidate. The candidate is now:
 
 | Repository | Candidate revision |
 | --- | --- |
-| workspace | `a830d7275511b89abbce911c5a7e01960c3ae01d` |
+| workspace | `e09ba42bb5de8968d58625545f22cda674328730` |
 | backend | `98490418fbba2fd07b714d9c9efba5f2b0f88227` |
 | mobile | `9ea3f44eb11f193b15959a50e25f9271108b005b` |
 
@@ -111,10 +111,11 @@ work is intentionally split into small commits:
   paths: `98490418f`.
 
 Verification so far: `make certify-fast` is green (including 17,112 offline
-backend tests, 33 mobile journey suites/171 tests, and 316 Maestro flows), the
-Round 1 focused backend set is 148 passed/9 skipped plus 92 outcome/compiler
-tests, the five Home truth mobile suites are 52/52, TypeScript compiles, and
-contract/docs gates are green.
+backend tests, 33 mobile journey suites/171 tests, and 316 Maestro flows), and
+the post-O1 full offline backend run is 17,121 passed/14 skipped/1 xpassed.
+The Round 1 focused backend set is 148 passed/9 skipped plus 92
+outcome/compiler tests, the five Home truth mobile suites are 52/52, TypeScript
+compiles, and contract/docs gates are green.
 This is deterministic/static and backend-real evidence only. The committed
 attestation index is still empty; no device-mock, physical, staging, or AI-eval
 receipt has been promoted for this candidate.
