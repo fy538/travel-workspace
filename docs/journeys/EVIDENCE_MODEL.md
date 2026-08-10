@@ -86,10 +86,17 @@ Use the layered gate instead of mentally combining old test results:
 make dogfood-fast     # under two minutes: deterministic contracts
 make dogfood-local    # local Postgres and pivot canaries
 make dogfood-device   # requires DOGFOOD_DEVICE_COMMAND for the current build
+make dogfood-physical RUN_LIVE=1  # fail-closed physical P01/P03 walk + receipt metadata
 make dogfood-staging  # requires DOGFOOD_STAGING_COMMAND for deployed services
 make journey-evidence-report
 ```
 
-`dogfood-device` and `dogfood-staging` deliberately stop when their explicit
-environment command is absent. They do not record a substitute simulator,
-TestClient, or file-presence result as device or staging evidence.
+The fast/local gates record only the P01–P04 contract/database anchors they
+actually execute. `dogfood-device` records `device_mock` only for P01/P03 and
+deliberately stops when its explicit environment command is absent. The
+first-class `dogfood-physical` runner records `physical` evidence only after
+all required live assertions and receipt metadata are present; dry or skipped
+runs are `BLOCKED`. `dogfood-staging` requires an explicit command and
+comma-separated `DOGFOOD_STAGING_PROOFS` list. None of these commands records a
+substitute simulator, TestClient, or file-presence result as higher-layer
+evidence.
