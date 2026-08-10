@@ -34,6 +34,26 @@ five independent gates. A pass in one gate must not promote another.
 P05 and P07 remain dark. AI shadow remains off. No source, database, staging
 support, simulator, or document result is physical evidence.
 
+## Owner decisions recorded 2026-08-10
+
+- **Telemetry:** approved as proposed: content-free metadata for 14 days and
+  aggregates for 90 days, with no prompt, response, private rationale, tool
+  arguments, or user-visible copy retained.
+- **Provider comparison:** approved for Anthropic
+  `claude-sonnet-4-6`, the backend registry's
+  `concierge_conversation` model, with a hard USD 2 total ceiling.
+- **Human anchors:** skipped because no reviewers are available. An AI judgment
+  does not substitute for independent human review. The program therefore has
+  no H evidence, the readiness decision remains `iterate`, and runtime shadow
+  promotion remains blocked.
+- **EAS:** wait for the quota reset rather than buying capacity now.
+- **Physical:** no second iPhone is available. Two-device P05/P07 evidence
+  remains blocked even after the build quota resets.
+
+These decisions permit implementing and running only the bounded offline model
+comparison once a credential is supplied. They do not enable runtime shadow or
+change any journey/evidence claim.
+
 ## Completed controlled Lisbon support
 
 The isolated Trip is `f47e582d-85a6-454e-8a2d-be3a199f0b09`, with organizer
@@ -108,9 +128,11 @@ protocol requires at least two independent reviewers.
 
 ## Provider/model comparison round
 
-No Anthropic or OpenAI credential is present in the current environment. The
-existing `UnconstrainedBaselineAdapter` is injection-only; there is no approved
-provider runner. Therefore no provider call should be improvised from a shell
+No Anthropic credential is present in the current environment. The selected
+model is Anthropic `claude-sonnet-4-6`, matching the backend's
+`concierge_conversation` registry role. The existing
+`UnconstrainedBaselineAdapter` is injection-only; there is no bounded provider
+runner yet. Therefore no provider call should be improvised from a shell
 one-liner.
 
 Approve these controls before implementing or running the adapter:
@@ -131,8 +153,9 @@ errors, abstentions, invalid/unavailable counts, latency, cost, and human
 disagreements separate. A model judge cannot override privacy, authority,
 freshness, scope, mutation, or receipt gates.
 
-Required owner input: provider, exact model, credential supplied out of band,
-and explicit USD ceiling approval. Until then the correct result is blocked.
+Provider/model and the USD ceiling are approved. The remaining inputs are a
+credential supplied out of band and the bounded runner implementation. Until
+both exist, the correct result is blocked.
 
 ## Telemetry-retention decision proposal
 
@@ -151,8 +174,8 @@ Approval authorizes observation only. It does not authorize a provider call,
 visible output, a canary, a mutation, notification delivery, group behavior, or
 durable inferred learning.
 
-Required owner input: product/privacy approver and either approve this policy,
-approve with changes, or reject it.
+The owner approved this policy on 2026-08-10. Implementation must still enforce
+the windows and prohibited fields before any runtime observation is enabled.
 
 ## Full controlled-device and physical walks
 

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "awaiting_external_inputs",
+  "status": "partially_approved_external_execution_blocked",
   "created_at": "2026-08-10",
   "lisbon": {
     "trip_id": "f47e582d-85a6-454e-8a2d-be3a199f0b09",
@@ -30,11 +30,14 @@
     "adjudicator_required_on_disagreement": true,
     "reviewer_ids": [],
     "adjudicator_id": null,
-    "status": "blocked"
+    "owner_decision": "skip",
+    "status": "waived_not_h_evidence",
+    "promotion_effect": "shadow_promotion_blocked_without_human_calibration"
   },
   "provider_comparison": {
-    "provider": null,
-    "model": null,
+    "provider": "anthropic",
+    "model": "claude-sonnet-4-6",
+    "model_role_alignment": "concierge_conversation",
     "credential_location": "out_of_band_only",
     "max_cases": 16,
     "attempts_per_case": 1,
@@ -42,16 +45,17 @@
     "max_output_tokens_per_case": 120,
     "timeout_ms": 10000,
     "max_total_cost_usd": 2.0,
+    "spend_approved": true,
     "retain_freeform": false,
-    "status": "blocked"
+    "status": "approved_waiting_for_credential_and_runner"
   },
   "telemetry_proposal": {
     "content_free_only": true,
     "raw_metadata_retention_days": 14,
     "aggregate_retention_days": 90,
     "private_content_retention": "prohibited",
-    "approver": null,
-    "decision": "pending"
+    "approver": "owner",
+    "decision": "approved"
   },
   "physical": {
     "required_unique_udids": 2,
@@ -60,7 +64,9 @@
     "current_build_id": "aa524cdb-7b34-4f27-9864-425df19a2e47",
     "current_update_group": "a8ae572d-f59c-481c-b768-3359ecbc35b6",
     "p05_p07_governed_flows_available": false,
-    "status": "blocked"
+    "second_iphone_available": false,
+    "eas_capacity_decision": "wait_for_quota_reset",
+    "status": "blocked_no_second_device"
   },
   "evidence_claims": {
     "P05": "dark",
