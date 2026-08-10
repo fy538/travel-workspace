@@ -15,6 +15,12 @@ related:
 
 # AI decision-and-learning R1 execution status
 
+> **Merge note (2026-08-10):** the AI-R1 backend lane is merged on backend
+> `main` at `e42fc3a3d2a1fccc12ae932c9964f0ef69b35599`; workspace planning/status
+> is on `main` at `47d5188248752a65c012291622094683cde31cda`; mobile remains
+> `aba00ae32946d279411836a0337f2df0d41c2cde`. The runtime gates below remain
+> blocked and are not relaxed by the merge.
+
 ## Integration base and ownership
 
 This work ran in the dedicated AI-DL lane required by the engineering plan.

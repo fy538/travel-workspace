@@ -161,7 +161,7 @@ overrides:
 
   docs/working/ai-decision-and-learning-r0-handoff-2026-08-10.md:
     disposition: keep_reference
-    rationale: Active, expiring handoff record for the AI-R0 evaluation slice; it does not supersede release or certification evidence.
+    rationale: Superseded, expiring historical handoff record for the pre-integration AI-R0 evaluation slice; AI-R1 status and the next execution plan own current dispatch truth.
 
   docs/working/ai-decision-and-learning-r1-execution-status-2026-08-10.md:
     disposition: keep_reference

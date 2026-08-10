@@ -1,6 +1,6 @@
 ---
 doc_type: working
-status: active
+status: superseded
 owner: AI systems / convergence integration
 created: 2026-08-10
 last_verified: 2026-08-10
@@ -12,9 +12,18 @@ related:
   - ai-decision-and-learning-r0-fixture-manifest-2026-08-10.md
   - ai-decision-and-learning-r0-baseline-inventory-2026-08-10.md
   - ai-decision-and-learning-engineering-plan-2026-08-10.md
+  - ai-decision-and-learning-r1-execution-status-2026-08-10.md
+  - convergence-and-ai-decision-next-execution-plan-2026-08-10.md
+superseded_by:
+  - ai-decision-and-learning-r1-execution-status-2026-08-10.md
+  - convergence-and-ai-decision-next-execution-plan-2026-08-10.md
 ---
 
 # AI-R0 handoff and A–D integration gate
+
+> **Historical handoff:** A–D and AI-R1 have since merged. This document keeps
+> the original pre-integration bases and isolation decision for audit lineage;
+> it is not the current runtime or dispatch gate.
 
 ## 1. Handoff verdict
 

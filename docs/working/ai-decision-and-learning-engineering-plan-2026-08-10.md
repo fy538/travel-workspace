@@ -19,6 +19,11 @@ related:
 > Post-merge execution continues in the
 > [convergence and AI decision-learning next execution round](convergence-and-ai-decision-next-execution-plan-2026-08-10.md).
 
+> **Post-merge note (2026-08-10):** A–D and AI-DL R1 are on `main`. Sections
+> describing work “while A–D are active” are retained as historical isolation
+> rules. The current implementation base and lane ownership are recorded in the
+> linked next-round plan; no runtime shadow or canary is implied by the merge.
+
 ## 1. Executive decision
 
 Create a fifth, explicitly separate program named **Workstream AI-DL — Decision

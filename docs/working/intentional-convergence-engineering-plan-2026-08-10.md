@@ -127,8 +127,9 @@ receipt has been promoted for this candidate.
 
 ### Post-lane hardening candidate — 2026-08-10
 
-The four parallel lanes are on `main`. The subsequent targeted hardening work
-is currently committed locally as this clean triple-SHA candidate:
+The four parallel lanes and subsequent targeted hardening are on `main`. The
+following clean triple-SHA records the post-lane hardening boundary before the
+AI-DL R1 merge:
 
 | Repository | Candidate revision | Added scope |
 | --- | --- | --- |
@@ -159,6 +160,23 @@ Evidence terms are strict:
 
 Passing a lower layer never implies a higher layer. “Complete,” “certified,”
 “accepted,” and “release-ready” must name the exact layer and receipt.
+
+### Next-round dispatch base — 2026-08-10
+
+AI-DL R1 is also merged. The proof-and-observation round defined in the
+[next execution plan](convergence-and-ai-decision-next-execution-plan-2026-08-10.md)
+started from these clean `main` revisions:
+
+| Repository | Dispatch revision |
+| --- | --- |
+| workspace | `47d5188248752a65c012291622094683cde31cda` |
+| backend | `e42fc3a3d2a1fccc12ae932c9964f0ef69b35599` |
+| mobile | `aba00ae32946d279411836a0337f2df0d41c2cde` |
+
+Four isolated lanes now own causal spine, AI evidence, Group Trip product
+proof, and integration/evidence work. The original A–D dispatch instructions
+below remain as historical execution context; they are not the active task
+packet.
 
 ## 3. Reconciled assessment
 
@@ -267,8 +285,11 @@ explicit authorized caller responsibility, and a Trip never guesses a circle.
 `companion_scope`; private formatter/planner paths and Context Compiler source
 admission withhold malformed, stale, or changed-roster companion-fit evidence.
 The pure policy exposes `apply | weak_precedent | withhold`; only exact-roster
-evidence currently applies. The remaining Round 2 work is map/projection
-convergence and durable causal propagation, not a profile production build.
+evidence currently applies. M1/M2 map projection and spatial handoff, P1/P2
+projection/action semantics, I1 durable upload identity, and O2 shared outcome
+policy have since landed. K2 durable causal propagation and its persisted
+decision-to-outcome join remain the Round 2 exit gap; this does not authorize a
+profile production build.
 
 ## 4. Target architecture
 
@@ -1017,9 +1038,13 @@ Round 1 is successful when all of the following are true:
 - no manual release-status promotion;
 - no “done” claim based only on source, mock, backend, or seeded replay tests.
 
-## 14. Immediate dispatch packet
+## 14. Historical A–D dispatch packet
 
-The next engineering round begins with four task briefs:
+This section records the completed first convergence dispatch. Do not create a
+new copy of these lanes. Current work is dispatched by the
+[convergence and AI decision-learning next execution plan](convergence-and-ai-decision-next-execution-plan-2026-08-10.md).
+
+The completed engineering round began with four task briefs:
 
 1. **Evidence and integration integrity:** G0.1–G0.5.
 2. **Home truth:** H1–H3, followed by projection/action fixes that do not cross
@@ -1027,9 +1052,9 @@ The next engineering round begins with four task briefs:
 3. **Context and trust:** R1, K1, and O1.
 4. **Map and projection convergence:** M1, M2, P1, and the route-fact policy.
 
-Before dispatch, the coordinator records clean heads and assigns hot files.
-After the four lanes merge, the team creates one clean integration candidate and
-runs G1/G2. Product-loop work begins only from that candidate.
+The coordinator recorded clean heads and assigned hot files. The lanes merged,
+their hardening landed, and the next proof round now builds from the dispatch
+revisions recorded above.
 
 The next product milestone is not “more Vesper systems exist.” It is:
 
