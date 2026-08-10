@@ -73,6 +73,10 @@ It has 16 synthetic cases and zero human anchors. Do not edit the corpus or
 protocol after reviewers see candidate outputs; any content change requires a
 new corpus version.
 
+Copy `ai-dl-human-anchor-review-template-v1.json` once per reviewer and keep the
+completed copies outside the shared repo until adjudication. The checked-in
+blank template is not H evidence.
+
 1. Assign reviewer IDs outside the repo. Reviewers must work independently.
 2. Give each reviewer the frozen corpus and protocol, but not the other
    reviewer's labels or a preferred model answer.

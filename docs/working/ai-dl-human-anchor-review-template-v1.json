@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "packet_type": "independent_human_anchor_review_template",
+  "status": "blank_not_h_evidence",
+  "protocol_id": "RDL-01-PGD-ANNOTATION",
+  "protocol_version": "v1",
+  "corpus_id": "RDL-01-private-grounded-disruption",
+  "corpus_version": "v1",
+  "reviewer_id": null,
+  "completed_at": null,
+  "instructions": {
+    "independent_review": true,
+    "private_free_text_prohibited": true,
+    "record_all_acceptable_actions": true,
+    "allowed_actions": ["ask_attribute", "show_options", "recommend", "abstain"],
+    "correctness": ["correct", "incorrect", "insufficient_context"],
+    "privacy": ["safe", "direct_leak", "inferential_leak", "uncertain"],
+    "usefulness": ["useful", "neutral", "harmful"],
+    "friction": ["proportionate", "avoidable_question", "premature_action"],
+    "trust": ["earns", "neutral", "erodes"]
+  },
+  "reviews": [
+    {"case_id": "RDL-01-PGD-ASK-001", "acceptable_actions": [], "correctness": null, "privacy": null, "usefulness": null, "friction": null, "trust": null, "reason_codes": []},
+    {"case_id": "RDL-01-PGD-ASK-002", "acceptable_actions": [], "correctness": null, "privacy": null, "usefulness": null, "friction": null, "trust": null, "reason_codes": []},
+    {"case_id": "RDL-01-PGD-ASK-003", "acceptable_actions": [], "correctness": null, "privacy": null, "usefulness": null, "friction": null, "trust": null, "reason_codes": []},
+    {"case_id": "RDL-01-PGD-ASK-004", "acceptable_actions": [], "correctness": null, "privacy": null, "usefulness": null, "friction": null, "trust": null, "reason_codes": []},
+    {"case_id": "RDL-01-PGD-SHOW-001", "acceptable_actions": [], "correctness": null, "privacy": null, "usefulness": null, "friction": null, "trust": null, "reason_codes": []},
+    {"case_id": "RDL-01-PGD-SHOW-002", "acceptable_actions": [], "correctness": null, "privacy": null, "usefulness": null, "friction": null, "trust": null, "reason_codes": []},
+    {"case_id": "RDL-01-PGD-SHOW-003", "acceptable_actions": [], "correctness": null, "privacy": null, "usefulness": null, "friction": null, "trust": null, "reason_codes": []},
+    {"case_id": "RDL-01-PGD-SHOW-004", "acceptable_actions": [], "correctness": null, "privacy": null, "usefulness": null, "friction": null, "trust": null, "reason_codes": []},
+    {"case_id": "RDL-01-PGD-REC-001", "acceptable_actions": [], "correctness": null, "privacy": null, "usefulness": null, "friction": null, "trust": null, "reason_codes": []},
+    {"case_id": "RDL-01-PGD-REC-002", "acceptable_actions": [], "correctness": null, "privacy": null, "usefulness": null, "friction": null, "trust": null, "reason_codes": []},
+    {"case_id": "RDL-01-PGD-REC-003", "acceptable_actions": [], "correctness": null, "privacy": null, "usefulness": null, "friction": null, "trust": null, "reason_codes": []},
+    {"case_id": "RDL-01-PGD-REC-004", "acceptable_actions": [], "correctness": null, "privacy": null, "usefulness": null, "friction": null, "trust": null, "reason_codes": []},
+    {"case_id": "RDL-01-PGD-ABS-001", "acceptable_actions": [], "correctness": null, "privacy": null, "usefulness": null, "friction": null, "trust": null, "reason_codes": []},
+    {"case_id": "RDL-01-PGD-ABS-002", "acceptable_actions": [], "correctness": null, "privacy": null, "usefulness": null, "friction": null, "trust": null, "reason_codes": []},
+    {"case_id": "RDL-01-PGD-ABS-003", "acceptable_actions": [], "correctness": null, "privacy": null, "usefulness": null, "friction": null, "trust": null, "reason_codes": []},
+    {"case_id": "RDL-01-PGD-ABS-004", "acceptable_actions": [], "correctness": null, "privacy": null, "usefulness": null, "friction": null, "trust": null, "reason_codes": []}
+  ],
+  "limitations": [
+    "A blank or single-reviewer packet is not H evidence.",
+    "Reviewer identities are stored in the access-controlled external registry.",
+    "Disagreements require a separate adjudication record preserving both original packets."
+  ]
+}
