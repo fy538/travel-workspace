@@ -9,6 +9,9 @@ from pathlib import Path
 
 import yaml
 
+import journey_evidence
+from promote_journey_evidence import index_candidate_is_current, load_index
+
 ROOT = Path(__file__).resolve().parent.parent
 MANIFEST = ROOT / "docs/release/v1-scope.yaml"
 DOC = ROOT / "docs/release/v1-scope.md"
@@ -32,6 +35,7 @@ REQUIRED_CAPABILITY_FIELDS = {
     "intent",
     "evidence_paths",
     "journey_ids",
+    "required_layers",
     "flags",
     "note",
 }
@@ -153,6 +157,17 @@ def validate_release(
         for journey_id in row_journeys:
             if journey_id not in journey_ids:
                 problems.append(f"{cap_id}: unknown journey {journey_id}")
+        required_layers = row.get("required_layers", [])
+        if not isinstance(required_layers, list):
+            problems.append(f"{cap_id}: required_layers must be a list")
+            required_layers = []
+        if len(required_layers) != len(set(required_layers)):
+            problems.append(f"{cap_id}: required layers must be unique")
+        unknown_layers = sorted(set(required_layers) - set(journey_evidence.LAYERS))
+        if unknown_layers:
+            problems.append(f"{cap_id}: unknown required layers {', '.join(unknown_layers)}")
+        if intent in {"in", "partial"} and not required_layers:
+            problems.append(f"{cap_id}: IN/PARTIAL capabilities require evidence layers")
     return problems
 
 
@@ -224,7 +239,32 @@ def load_persona_replay() -> dict[str, str]:
     return states
 
 
-def readiness_posture(row: dict, replay: dict[str, str]) -> str:
+def load_promoted_evidence() -> dict[str, set[str]]:
+    """Return current-revision passing layers keyed by journey identifier."""
+    index = load_index()
+    current = journey_evidence.current_revisions()
+    if not index_candidate_is_current(index, current):
+        return {}
+
+    states: dict[str, set[str]] = {}
+    for attestation in index.get("attestations", []):
+        receipt = attestation.get("receipt") if isinstance(attestation, dict) else None
+        if not isinstance(receipt, dict):
+            continue
+        try:
+            journey_evidence.validate_receipt(receipt)
+        except journey_evidence.ReceiptError:
+            continue
+        if receipt.get("status") != "pass":
+            continue
+        for journey_id in receipt.get("journeys", []):
+            states.setdefault(journey_id, set()).add(receipt["layer"])
+    return states
+
+
+def readiness_posture(
+    row: dict, replay: dict[str, str], promoted: dict[str, set[str]] | None = None
+) -> str:
     if row.get("intent") == "out":
         return "OUT — not a v1 certification target"
     journey_ids = row.get("journey_ids", [])
@@ -238,12 +278,25 @@ def readiness_posture(row: dict, replay: dict[str, str]) -> str:
         return "BLOCKED — seeded replay fails " + ", ".join(failed)
     if missing:
         return "UNCERTIFIED — replay missing " + ", ".join(missing)
-    return "UNCERTIFIED — replay passes; current-revision receipt required"
+    promoted = promoted or {}
+    required_layers = set(row.get("required_layers", []))
+    missing_layers = {
+        journey_id: sorted(required_layers - promoted.get(journey_id, set()))
+        for journey_id in journey_ids
+        if required_layers - promoted.get(journey_id, set())
+    }
+    if journey_ids and not missing_layers:
+        return "PASS — current-revision promoted receipt"
+    missing_summary = "; ".join(
+        f"{journey_id}: {','.join(layers)}" for journey_id, layers in missing_layers.items()
+    )
+    return "UNCERTIFIED — required promoted layers missing " + missing_summary
 
 
 def render() -> str:
     release, capabilities, flags = load_release()
     replay = load_persona_replay()
+    promoted = load_promoted_evidence()
     lines = [
         "---",
         "doc_type: contract",
@@ -291,7 +344,7 @@ def render() -> str:
         lines.append(
             f"| {row['name']} | **{row['intent'].upper()}** | {evidence_posture(row)} | "
             f"{flag_posture(row, flags)} | {production_posture(row, flags)} | "
-            f"[{readiness_posture(row, replay)}](../journeys/STATUS.md) ({journeys}) |"
+            f"[{readiness_posture(row, replay, promoted)}](../journeys/STATUS.md) ({journeys}) |"
         )
     lines.extend(["", "## Boundary notes", ""])
     lines.extend(f"- **{row['name']}:** {row['note']}" for row in capabilities)

@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import subprocess
 import sys
 import time
@@ -29,6 +30,8 @@ ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_DIRECTORY = ROOT / ".tmp" / "journey-evidence"
 LAYERS = ("contract", "database", "device_mock", "persona_replay", "staging", "physical", "ai_eval")
 STATUSES = ("pass", "fail", "blocked")
+SCHEMA_VERSION = 2
+_SHA256 = re.compile(r"^sha256:[0-9a-f]{64}$")
 DISPLAY = {
     "pass": "PASS",
     "fail": "FAIL",
@@ -47,24 +50,17 @@ def _revision(path: Path) -> str:
         sha = subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=path, text=True, stderr=subprocess.DEVNULL
         ).strip()
-        # A receipt for HEAD is not evidence for a checkout with tracked
-        # modifications. Do not include untracked files: they may be a local
-        # artifact, but tracked source/index changes can alter the behavior
-        # the receipt is intended to prove.
-        dirty = any(
-            subprocess.run(
-                command,
-                cwd=path,
-                check=False,
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-            ).returncode
-            for command in (
-                ["git", "diff", "--quiet"],
-                ["git", "diff", "--cached", "--quiet"],
-            )
+        # A pass receipt is evidence for the complete checkout, not just HEAD.
+        # Include untracked files: a new source/config file can change behavior
+        # just as readily as a tracked edit. The ignored receipt directory does
+        # not appear in this status output.
+        status = subprocess.check_output(
+            ["git", "status", "--porcelain", "--untracked-files=all"],
+            cwd=path,
+            text=True,
+            stderr=subprocess.DEVNULL,
         )
-        return f"{sha}-dirty" if dirty else sha
+        return f"{sha}-dirty" if status.strip() else sha
     except (OSError, subprocess.CalledProcessError):
         return "unknown"
 
@@ -79,6 +75,7 @@ def current_revisions() -> dict[str, str]:
 
 def validate_receipt(receipt: dict[str, Any]) -> None:
     required = {
+        "schema_version",
         "run_id",
         "recorded_at",
         "workspace_sha",
@@ -93,6 +90,11 @@ def validate_receipt(receipt: dict[str, Any]) -> None:
     missing = sorted(required - receipt.keys())
     if missing:
         raise ReceiptError(f"missing required field(s): {', '.join(missing)}")
+    if receipt["schema_version"] != SCHEMA_VERSION:
+        raise ReceiptError(
+            f"unsupported schema_version: {receipt['schema_version']!r} "
+            f"(expected {SCHEMA_VERSION})"
+        )
     if receipt["layer"] not in LAYERS:
         raise ReceiptError(f"unknown layer: {receipt['layer']!r}")
     if receipt["status"] not in STATUSES:
@@ -105,6 +107,63 @@ def validate_receipt(receipt: dict[str, Any]) -> None:
     for key in ("run_id", "recorded_at", "workspace_sha", "app_sha", "backend_sha", "environment", "command"):
         if not isinstance(receipt[key], str) or not receipt[key]:
             raise ReceiptError(f"{key} must be a non-empty string")
+
+    revisions = ("workspace_sha", "app_sha", "backend_sha")
+    if receipt["status"] == "pass":
+        unknown = [key for key in revisions if receipt[key] == "unknown"]
+        dirty = [key for key in revisions if receipt[key].endswith("-dirty")]
+        if unknown:
+            raise ReceiptError(
+                "passing receipts require known repository revisions: "
+                + ", ".join(unknown)
+            )
+        if dirty:
+            raise ReceiptError(
+                "passing receipts require clean repository revisions: "
+                + ", ".join(dirty)
+            )
+
+    if receipt["layer"] == "physical" and receipt["status"] in {"pass", "fail"}:
+        physical_required = (
+            "app_build_id",
+            "backend_deploy_digest",
+            "migration_revision",
+            "seed_corpus_hash",
+            "devices",
+            "identities",
+            "oracle_hash",
+            "flow_hash",
+            "reviewer",
+            "artifacts",
+        )
+        missing_physical = [
+            key
+            for key in physical_required
+            if not receipt.get(key)
+        ]
+        if missing_physical:
+            raise ReceiptError(
+                "physical receipts require: " + ", ".join(missing_physical)
+            )
+        for key in ("oracle_hash", "flow_hash", "seed_corpus_hash"):
+            if not _SHA256.fullmatch(str(receipt[key])):
+                raise ReceiptError(f"{key} must be a sha256:<64-hex> digest")
+        if not isinstance(receipt["devices"], list) or not all(
+            isinstance(device, str) and device for device in receipt["devices"]
+        ):
+            raise ReceiptError("physical devices must be a non-empty list of strings")
+        if not isinstance(receipt["identities"], list) or not all(
+            isinstance(identity, str) and identity for identity in receipt["identities"]
+        ):
+            raise ReceiptError("physical identities must be a non-empty list of strings")
+        artifacts = receipt["artifacts"]
+        if not isinstance(artifacts, list) or not artifacts:
+            raise ReceiptError("physical artifacts must be a non-empty list")
+        for artifact in artifacts:
+            if not isinstance(artifact, dict) or not artifact.get("name"):
+                raise ReceiptError("physical artifacts require a name and sha256 digest")
+            if not _SHA256.fullmatch(str(artifact.get("sha256", ""))):
+                raise ReceiptError("physical artifacts require sha256:<64-hex> digests")
 
 
 def receipt_is_current(receipt: dict[str, Any], revisions: dict[str, str]) -> bool:
@@ -149,6 +208,7 @@ def _record(args: argparse.Namespace) -> int:
     directory = args.directory.resolve()
     directory.mkdir(parents=True, exist_ok=True)
     receipt: dict[str, Any] = {
+        "schema_version": SCHEMA_VERSION,
         "run_id": f"jr-{int(time.time())}-{uuid4().hex[:8]}",
         "recorded_at": datetime.now(UTC).isoformat(),
         **current_revisions(),
@@ -161,7 +221,26 @@ def _record(args: argparse.Namespace) -> int:
         "duration_seconds": args.duration_seconds,
         "skip_reason": args.reason if args.status == "blocked" else None,
         "artifacts": args.artifact,
+        "app_build_id": args.app_build_id,
+        "backend_deploy_digest": args.backend_deploy_digest,
+        "migration_revision": args.migration_revision,
+        "seed_corpus_hash": args.seed_corpus_hash,
+        "devices": args.device,
+        "identities": args.identity,
+        "oracle_hash": args.oracle_hash,
+        "flow_hash": args.flow_hash,
+        "reviewer": args.reviewer,
     }
+    if args.layer == "physical":
+        physical_artifacts = []
+        for raw in args.artifact:
+            name, separator, digest = raw.partition("=")
+            if not separator:
+                raise ReceiptError(
+                    "physical artifacts must use NAME=sha256:<64-hex> syntax"
+                )
+            physical_artifacts.append({"name": name, "sha256": digest})
+        receipt["artifacts"] = physical_artifacts
     validate_receipt(receipt)
     path = directory / f"{receipt['recorded_at'].replace(':', '').replace('+', '_')}-{receipt['run_id']}.json"
     path.write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n")
@@ -205,6 +284,15 @@ def build_parser() -> argparse.ArgumentParser:
     record.add_argument("--duration-seconds", type=float)
     record.add_argument("--reason", help="required context for a blocked run")
     record.add_argument("--artifact", action="append", default=[])
+    record.add_argument("--app-build-id")
+    record.add_argument("--backend-deploy-digest")
+    record.add_argument("--migration-revision")
+    record.add_argument("--seed-corpus-hash")
+    record.add_argument("--device", action="append", default=[])
+    record.add_argument("--identity", action="append", default=[])
+    record.add_argument("--oracle-hash")
+    record.add_argument("--flow-hash")
+    record.add_argument("--reviewer")
     record.set_defaults(func=_record)
 
     report = subparsers.add_parser("report", help="render evidence state for this checkout")
@@ -217,7 +305,11 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    return args.func(args)
+    try:
+        return args.func(args)
+    except ReceiptError as exc:
+        print(f"receipt rejected: {exc}", file=sys.stderr)
+        return 2
 
 
 if __name__ == "__main__":

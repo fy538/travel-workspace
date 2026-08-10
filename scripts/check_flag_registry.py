@@ -1,10 +1,21 @@
 #!/usr/bin/env python3
-"""Feature-flag registry guard — two checks against the canonical registry
-(docs/flags/registry.yaml): every `active` flag hasn't blown past its
-review/removal date, and every ad-hoc env-flag lever read in the
-travel-agent backend has a registry row at all. Pure file-parse, NO DB —
-runs at pre-push alongside the other heavier/more-context checks (see
-workspace .pre-commit-config.yaml).
+"""Feature-flag registry guard — checks the canonical registry
+(docs/flags/registry.yaml) against both child repositories.
+
+The guard checks expiry dates, backend ad-hoc env-flag calls, and direct app
+flag constants in ``travel-app/constants/featureFlags.ts``. The mobile
+convention is deliberately narrow: app flags must be direct ``export const``
+declarations in that canonical module and must end in ``_ENABLED`` or
+``_STUB``. This avoids treating arbitrary Expo configuration (billing, map
+styles, API URLs, and similar settings) as a feature flag. Re-exports from
+helper modules and inline environment reads are legacy exceptions until they
+are moved behind the canonical module.
+
+The default invocation is a full cross-repo check and fails closed when either
+child checkout or the canonical mobile module is absent. Use ``--expiry-only``
+only for a standalone registry-date check when child repositories are not
+available. Pure file-parse, NO DB — runs at pre-push alongside the other
+heavier/more-context checks (see workspace .pre-commit-config.yaml).
 
 Why this exists: as of 2026-07-06, 26 feature flags across travel-agent and
 travel-app had zero owner or expiration metadata anywhere in the code —
@@ -46,10 +57,12 @@ API keys, etc.) rather than sharpening the actual gap.
 Usage::
 
     python3 scripts/check_flag_registry.py
+    python3 scripts/check_flag_registry.py --expiry-only
 """
 
 from __future__ import annotations
 
+import argparse
 import re
 import sys
 from datetime import date
@@ -59,7 +72,10 @@ import yaml
 
 _REPO = Path(__file__).resolve().parent.parent
 _REGISTRY = _REPO / "docs" / "flags" / "registry.yaml"
+_AGENT_REPO = _REPO / "travel-agent"
 _AGENT_BACKEND = _REPO / "travel-agent" / "backend"
+_APP_REPO = _REPO / "travel-app"
+_APP_FLAG_FILE = _APP_REPO / "constants" / "featureFlags.ts"
 
 # Matches the ad-hoc-lever convention: a literal ALL_CAPS name passed
 # directly to one of the three flag-read helpers. Does NOT match
@@ -68,43 +84,115 @@ _AGENT_BACKEND = _REPO / "travel-agent" / "backend"
 # a literal name) or any Pydantic-Settings-style flag definition.
 _FLAG_CALL = re.compile(r"\b(?:truthy_env|falsy_env|_truthy)\(\s*[\"']([A-Z][A-Z0-9_]*)[\"']")
 
+# The mobile flag convention is intentionally anchored to the canonical
+# module. A normal exported constant in that file is not necessarily a flag
+# (for example, ``INTERNAL_BUILD`` is private), so require a lifecycle suffix.
+_APP_FLAG_DECLARATION = re.compile(
+    r"^\s*export\s+const\s+([A-Z][A-Z0-9_]*(?:_ENABLED|_STUB))\b"
+)
+
 
 def _load_flags() -> list[dict]:
     data = yaml.safe_load(_REGISTRY.read_text()) or {}
     return data.get("flags", [])
 
 
-def _scan_ad_hoc_flag_calls() -> dict[str, list[str]]:
+def _scan_ad_hoc_flag_calls(
+    backend_root: Path = _AGENT_BACKEND,
+    workspace_root: Path = _REPO,
+) -> dict[str, list[str]]:
     """Find every `truthy_env`/`falsy_env`/`_truthy` call site with a
     literal flag name under the travel-agent backend. Returns
     ``{flag_name: ["path/to/file.py:123", ...]}``. Empty dict (not an
     error) when the travel-agent repo isn't checked out at this sibling
     path — this script must still run standalone for the expiry check."""
-    if not _AGENT_BACKEND.is_dir():
+    if not backend_root.is_dir():
         return {}
 
     sites: dict[str, list[str]] = {}
-    for path in _AGENT_BACKEND.rglob("*.py"):
-        parts = path.relative_to(_AGENT_BACKEND).parts
+    for path in backend_root.rglob("*.py"):
+        parts = path.relative_to(backend_root).parts
         if "tests" in parts or "__pycache__" in parts:
             continue
         text = path.read_text(errors="ignore")
         for lineno, line in enumerate(text.splitlines(), start=1):
             for m in _FLAG_CALL.finditer(line):
-                rel = path.relative_to(_REPO / "travel-agent")
+                rel = path.relative_to(workspace_root)
                 sites.setdefault(m.group(1), []).append(f"{rel}:{lineno}")
     return sites
 
 
-def _check_unregistered_flags(flags: list[dict]) -> list[tuple[str, list[str]]]:
+def _scan_app_flag_declarations(
+    flag_file: Path = _APP_FLAG_FILE,
+    workspace_root: Path = _REPO,
+) -> dict[str, list[str]]:
+    """Find canonical mobile flag declarations.
+
+    The source file is intentionally a single explicit input rather than a
+    repository-wide environment-variable grep. This keeps ordinary Expo
+    configuration out of the feature-flag lifecycle check and makes the
+    convention easy for an engineer to discover.
+    """
+    if not flag_file.is_file():
+        return {}
+
+    sites: dict[str, list[str]] = {}
+    rel = flag_file.relative_to(workspace_root)
+    for lineno, line in enumerate(flag_file.read_text(errors="ignore").splitlines(), start=1):
+        match = _APP_FLAG_DECLARATION.match(line)
+        if match:
+            sites.setdefault(match.group(1), []).append(f"{rel}:{lineno}")
+    return sites
+
+
+def _missing_cross_repo_inputs(
+    agent_repo: Path = _AGENT_REPO,
+    agent_backend: Path = _AGENT_BACKEND,
+    app_repo: Path = _APP_REPO,
+    app_flag_file: Path = _APP_FLAG_FILE,
+) -> list[str]:
+    """Return missing inputs required by the default full check."""
+    missing: list[str] = []
+    if not agent_repo.is_dir():
+        missing.append("travel-agent/")
+    elif not agent_backend.is_dir():
+        missing.append("travel-agent/backend/")
+    if not app_repo.is_dir():
+        missing.append("travel-app/")
+    elif not app_flag_file.is_file():
+        missing.append("travel-app/constants/featureFlags.ts")
+    return missing
+
+
+def _check_unregistered_flags(
+    flags: list[dict],
+    *,
+    backend_root: Path = _AGENT_BACKEND,
+    app_flag_file: Path = _APP_FLAG_FILE,
+    workspace_root: Path = _REPO,
+) -> list[tuple[str, list[str]]]:
     registered = {f["name"] for f in flags if "name" in f}
-    found = _scan_ad_hoc_flag_calls()
+    found: dict[str, list[str]] = {}
+    for source in (
+        _scan_ad_hoc_flag_calls(backend_root, workspace_root),
+        _scan_app_flag_declarations(app_flag_file, workspace_root),
+    ):
+        for name, sites in source.items():
+            found.setdefault(name, []).extend(sites)
     return sorted(
         (name, sites) for name, sites in found.items() if name not in registered
     )
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--expiry-only",
+        action="store_true",
+        help="check registry dates without requiring child repositories",
+    )
+    args = parser.parse_args(argv)
+
     if not _REGISTRY.exists():
         print(f"FLAG REGISTRY MISSING: {_REGISTRY}", file=sys.stderr)
         return 1
@@ -150,12 +238,39 @@ def main() -> int:
     else:
         print(f"OK — {len(flags)} flags checked, none overdue.")
 
-    unregistered = _check_unregistered_flags(flags)
+    if args.expiry_only:
+        print("SKIP — child-repository flag discovery (--expiry-only).")
+        return 0 if ok else 1
+
+    missing = _missing_cross_repo_inputs(
+        _AGENT_REPO, _AGENT_BACKEND, _APP_REPO, _APP_FLAG_FILE
+    )
+    if missing:
+        ok = False
+        print(
+            "\nCROSS-REPO FLAG CHECK BLOCKED: required child input(s) missing:",
+            file=sys.stderr,
+        )
+        for path in missing:
+            print(f"  - {path}", file=sys.stderr)
+        print(
+            "\nThe full check fails closed. Check out both child repositories, or "
+            "run --expiry-only for registry-date validation only.",
+            file=sys.stderr,
+        )
+        return 1
+
+    unregistered = _check_unregistered_flags(
+        flags,
+        backend_root=_AGENT_BACKEND,
+        app_flag_file=_APP_FLAG_FILE,
+        workspace_root=_REPO,
+    )
     if unregistered:
         ok = False
         print(
-            f"\n{len(unregistered)} flag(s) read in travel-agent/backend but missing from "
-            "the registry:",
+            f"\n{len(unregistered)} flag(s) discovered in the backend or canonical "
+            "mobile flag module but missing from the registry:",
             file=sys.stderr,
         )
         for name, sites in unregistered:
@@ -169,8 +284,8 @@ def main() -> int:
             "category, notes) — see the file header for field meanings.",
             file=sys.stderr,
         )
-    elif _AGENT_BACKEND.is_dir():
-        print("OK — no unregistered ad-hoc flags found in travel-agent/backend.")
+    else:
+        print("OK — no unregistered backend or mobile flags found.")
 
     return 0 if ok else 1
 

@@ -640,4 +640,3 @@ The next highest-leverage work is therefore seam hardening, not another feature
 family: one map assembly boundary, one spatial handoff contract, one projection
 dependency graph, durable idempotency for trust loops, and evidence that the
 whole flow converges on device.
-

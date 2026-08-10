@@ -30,13 +30,28 @@ CI artifacts under `.tmp/journey-evidence/`.
 
 Every receipt records:
 
+- `schema_version` (currently `2`)
 - `run_id` and UTC `recorded_at`
 - exact `workspace_sha`, `app_sha`, and `backend_sha`
 - layer, environment, journeys, optional branches, command, status, duration
 - optional blocked reason and artifact references
 
-A receipt is `STALE` whenever any recorded revision differs from the current
-checkout. It cannot certify a later app or backend build.
+Passing receipts require all three repository revisions to be known and clean.
+Unknown or `-dirty` revisions may describe a failed or blocked diagnostic, but
+cannot certify a pass. Physical pass/fail receipts additionally require the
+exact app build, backend deploy, migration, seed/corpus digest, device and
+sanitized identity list, oracle and flow hashes, reviewer, and content-addressed
+artifact hashes. The physical runner resolves at least two unique hardware UDIDs
+from the host inventory, passes those UDIDs explicitly to Maestro, derives the
+oracle/flow hashes from governed files, and hashes artifacts created after the
+run began. Caller-authored device labels or digest strings are not accepted.
+
+A raw receipt is `STALE` whenever any recorded revision differs from the
+current checkout. A committed promoted index names the tested workspace
+subject commit and may remain current through exactly one single-parent
+attestation/projection commit whose diff is restricted to the governed index
+and generated status documents. Any product/tooling change, merge commit, or
+later app/backend revision makes it stale.
 
 The only execution states are `PASS`, `FAIL`, `BLOCKED`, `UNRUN`, and `STALE`.
 `DEFINED` belongs to the journey registry, not the receipt report.
@@ -48,12 +63,28 @@ python scripts/journey_evidence.py record \
   --layer contract --status pass --journey P01 --environment local \
   --command 'npx jest __tests__/proofs/p01.test.tsx --runInBand'
 
+# Physical evidence requires the exact candidate and hashed artifacts.
+python scripts/journey_evidence.py record \
+  --layer physical --status pass --journey P01 --environment founder-device \
+  --command 'maestro test .maestro/p01.yaml' \
+  --app-build-id eas-build-123 --backend-deploy-digest fly-release-456 \
+  --migration-revision 20260810_01 \
+  --seed-corpus-hash sha256:<64-hex> \
+  --device 'iPhone 15|iOS 18.6' --identity founder-a --identity founder-b \
+  --oracle-hash sha256:<64-hex> --flow-hash sha256:<64-hex> \
+  --reviewer feihuyan --artifact 'maestro-video=sha256:<64-hex>'
+
 make journey-evidence-report
 ```
 
-Receipts are intentionally not committed. CI retains them as build artifacts;
-local receipts are short-lived evidence for the exact checkout. Do not edit
-`STATUS.md` to turn an older receipt into current certification.
+Raw receipts are intentionally not committed. CI retains them as build
+artifacts; local receipts are short-lived evidence for the exact checkout. A
+coordinator may explicitly promote current clean passes with
+`scripts/promote_journey_evidence.py` into the committed
+`evidence-attestations.json` index. Generated release and current-state views
+consume only that promoted index. Do not edit `STATUS.md` to turn an older raw
+receipt into current certification. Consumers recompute every embedded receipt
+digest before using the index; the stored hash is not decorative metadata.
 
 ## Founder gate
 
@@ -63,10 +94,18 @@ Use the layered gate instead of mentally combining old test results:
 make dogfood-fast     # under two minutes: deterministic contracts
 make dogfood-local    # local Postgres and pivot canaries
 make dogfood-device   # requires DOGFOOD_DEVICE_COMMAND for the current build
+make dogfood-physical RUN_LIVE=1  # fail-closed physical P01/P03 walk + receipt metadata
 make dogfood-staging  # requires DOGFOOD_STAGING_COMMAND for deployed services
 make journey-evidence-report
 ```
 
-`dogfood-device` and `dogfood-staging` deliberately stop when their explicit
-environment command is absent. They do not record a substitute simulator,
-TestClient, or file-presence result as device or staging evidence.
+The fast/local gates record only the P01–P04 contract/database anchors they
+actually execute. `dogfood-device` records `device_mock` only for P01/P03 and
+deliberately stops when its explicit environment command is absent. The
+first-class `dogfood-physical` runner records `physical` evidence only after
+all required live assertions, verified physical hardware, and fresh artifacts
+are present; dry or skipped runs are `BLOCKED`. The low-level gate deliberately
+rejects arbitrary physical shell commands. `dogfood-staging` requires an explicit command and
+comma-separated `DOGFOOD_STAGING_PROOFS` list. None of these commands records a
+substitute simulator, TestClient, or file-presence result as higher-layer
+evidence.

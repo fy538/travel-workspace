@@ -22,6 +22,7 @@ capabilities:
     intent: in
     evidence_paths: [travel-app/app/onboarding.tsx]
     journey_ids: [J01, J02]
+    required_layers: [physical]
     flags: []
     note: Real Clerk accounts are the device path; the persona-JWT HTTP harness is non-blocking automation.
 
@@ -30,6 +31,7 @@ capabilities:
     intent: in
     evidence_paths: [travel-agent/backend/api/routes/trips.py, travel-app/app/(tabs)/trips]
     journey_ids: [J02, J03, J04]
+    required_layers: [physical]
     flags: []
     note: Full-group behavior is in scope and requires multi-device evidence.
 
@@ -38,6 +40,7 @@ capabilities:
     intent: in
     evidence_paths: [travel-agent/backend/planning_agent, travel-agent/backend/api/routes/proposals.py]
     journey_ids: [J01, J05, J06]
+    required_layers: [physical]
     flags: []
     note: Explicit propose, approve, apply, and revert are in; autonomous disruption production remains dark.
 
@@ -46,6 +49,7 @@ capabilities:
     intent: in
     evidence_paths: [travel-agent/backend/concierge, travel-agent/backend/preference_engine, travel-app/app/(tabs)/concierge]
     journey_ids: [J04, J07]
+    required_layers: [physical]
     flags: []
     note: Privacy-mediated synthesis is part of the launch proof.
 
@@ -54,6 +58,7 @@ capabilities:
     intent: in
     evidence_paths: [travel-app/app/(tabs)/trips, travel-agent/backend/api/routes/trips.py]
     journey_ids: [J06, J08, J09]
+    required_layers: [physical]
     flags: []
     note: Cross-surface coherence and current-condition honesty are release-critical.
 
@@ -62,6 +67,7 @@ capabilities:
     intent: in
     evidence_paths: ["travel-app/app/(tabs)/trips/[tripId]/story.tsx", travel-agent/backend/api/routes/trip_photos.py]
     journey_ids: [J11]
+    required_layers: [physical]
     flags: []
     note: The private/shared-with-members story is in; public distribution and postcard rendering are separate dark capabilities.
 
@@ -70,6 +76,7 @@ capabilities:
     intent: in
     evidence_paths: [travel-agent/backend/expenses, travel-app/app/trip-expenses]
     journey_ids: [J10, J12]
+    required_layers: [physical]
     flags: []
     note: Settlement completes the shared Trip loop.
 
@@ -78,6 +85,7 @@ capabilities:
     intent: in
     evidence_paths: [travel-app/app/(tabs)/atlas, travel-app/app/(tabs)/discover, travel-app/app/search.tsx, travel-agent/backend/api/routes/universal_search.py]
     journey_ids: [J07]
+    required_layers: [physical]
     flags: [PLACES_SECTIONS_ENABLED, PLACES_SECTIONS_FEED_ENABLED]
     note: Core place and memory surfaces are in; dark sub-surfaces remain governed below.
 
@@ -86,6 +94,7 @@ capabilities:
     intent: in
     evidence_paths: ["travel-app/app/profile/[userId].tsx", travel-agent/backend/api/routes/social_circles.py]
     journey_ids: [J13]
+    required_layers: [physical]
     flags: []
     note: Public story distribution is not implied by profiles or relationship edges.
 
@@ -94,6 +103,7 @@ capabilities:
     intent: partial
     evidence_paths: ["travel-app/app/booking/[sessionId].tsx", travel-agent/backend/api/routes/booking.py]
     journey_ids: [J10]
+    required_layers: [physical]
     flags: []
     note: Honest non-transacting handoff is in; provider transaction execution is out.
 
@@ -102,6 +112,7 @@ capabilities:
     intent: out
     evidence_paths: [travel-agent/backend/booking_agent, "travel-app/app/booking/[sessionId].tsx"]
     journey_ids: [J10]
+    required_layers: []
     flags: [BOOKING_DUFFEL_LIVE_BOOKING_ENABLED, EXPO_PUBLIC_LIVE_BOOKING_ENABLED]
     note: Duffel cart, hold, and execution remain dark for v1.
 
@@ -110,6 +121,7 @@ capabilities:
     intent: out
     evidence_paths: [travel-agent/backend/voice, travel-app/utils/voiceEnabled.ts]
     journey_ids: [J18]
+    required_layers: []
     flags: [VOICE_ENABLED, DOSSIER_VOICE_STUB]
     note: Code exists but the live experience remains outside v1 until end-to-end certification.
 
@@ -118,6 +130,7 @@ capabilities:
     intent: out
     evidence_paths: [travel-agent/backend/postcard, travel-app/app/atlas/unpacked-card.tsx]
     journey_ids: [J11]
+    required_layers: []
     flags: [POSTCARD_RENDER_ENABLED, POSTCARDS_ENABLED]
     note: Post-trip Story is in; image-generation artifacts are dark.
 
@@ -126,6 +139,7 @@ capabilities:
     intent: out
     evidence_paths: [travel-agent/backend/notifications, travel-app/constants/featureFlags.ts]
     journey_ids: [J09]
+    required_layers: []
     flags: [AMBIENT_ENABLED, AMBIENT_ATTENTION_DISPATCH_ENABLED, AMBIENT_COINCIDENCE_CANDIDATES_ENABLED]
     note: The company vision includes earned proactivity; broad ambient dispatch is not a v1 claim.
 
@@ -134,6 +148,7 @@ capabilities:
     intent: out
     evidence_paths: [travel-agent/backend/api/routes/story_shares.py, travel-app/app/trip-story/share.tsx]
     journey_ids: [J19]
+    required_layers: []
     flags: [STORY_SHARING_ENABLED, STORY_SHARE_ENABLED]
     note: Requires public-taste and privacy certification before exposure.
 
@@ -142,5 +157,6 @@ capabilities:
     intent: out
     evidence_paths: [travel-agent/backend/core/venue_disruption.py, travel-agent/backend/concierge/proactive.py]
     journey_ids: [J05, J09]
+    required_layers: []
     flags: [VENUE_DISRUPTION_PROPOSALS_ENABLED]
     note: Explicit proposals are in; this producer remains dark until precision and cohort evidence justify it.
