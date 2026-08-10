@@ -29,15 +29,15 @@
     },
     "integration_evidence": {
       "branch": "codex/convergence-integration-evidence",
-      "workspace_sha": "e4cfd3863aac2276a5b3cfbcaac1817d1fc98e6c",
+      "workspace_sha": "de310d19c27105c50afcb4ceccdbccbb834e2323",
       "backend_sha": "743259b091ba7ee8bfc6b5ab8275297a3332d2b7",
-      "app_sha": "9d7c6c8515701214b41f638976d54ed10f9a2152"
+      "app_sha": "2c9169d81acaa40a853c52ef353146d05d87ac0b"
     }
   },
   "candidate": {
-    "workspace_sha": "e4cfd3863aac2276a5b3cfbcaac1817d1fc98e6c",
+    "workspace_sha": "de310d19c27105c50afcb4ceccdbccbb834e2323",
     "backend_sha": "743259b091ba7ee8bfc6b5ab8275297a3332d2b7",
-    "app_sha": "9d7c6c8515701214b41f638976d54ed10f9a2152",
+    "app_sha": "2c9169d81acaa40a853c52ef353146d05d87ac0b",
     "migration_revision": "receiptidem01",
     "backend_deploy_digest": null,
     "app_build_id": null,
