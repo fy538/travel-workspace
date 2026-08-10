@@ -603,3 +603,502 @@ and canonical-map source seams. It does **not** yet constitute the combined
 backend-real replay from initial add through weather replacement and later
 outcome reuse, nor any controlled/physical-device proof. Those remain evidence
 gates, not claims inferred from the source commits above.
+
+## 13. Open-work replan: actionability, composition, and compounding
+
+### 13.1 Reconciliation correction
+
+The post-execution audit found one successful-path contradiction that the
+execution record above does not prove closed:
+
+- the public `propose_change` schema defines add `start_time` and `end_time` as
+  destination-local `HH:MM` values;
+- `create_add_operation_proposal` also consumes those values as local wall
+  times and combines them with the canonical itinerary day and destination
+  timezone;
+- the `trip_open_window` guard currently parses the same fields as complete,
+  timezone-aware ISO datetimes;
+- the only bounded-window proposal test exits earlier on a cross-Trip mismatch
+  and therefore never exercises a valid bounded add.
+
+The landed guard establishes the intended policy boundary, but a successful
+bounded proposal is not yet reachable through the published tool contract.
+Repairing this mismatch and adding a successful-path test is order zero below.
+It does not require changing the wire contract: the guard should resolve the
+canonical itinerary day and destination timezone, convert local wall times to
+instants through the same planning-time authority as the proposal producer,
+and compare those instants with the current open window.
+
+### 13.2 One product loop, not three projects
+
+The remaining work should be executed as one causal proof:
+
+```mermaid
+flowchart LR
+  A["Raw nearby candidates"] --> B["Shared actionability decisions"]
+  B --> C["One bounded composition"]
+  C --> D["Canonical review proposal"]
+  D --> E["Accepted Plan occurrence"]
+  E --> F["Private correctable outcome"]
+  F --> G["Applicability policy"]
+  G --> H["Different later decision"]
+```
+
+The proof fails if the later decision merely receives more prompt prose. It
+must be possible to trace a changed eligibility, ranking, abstention, or
+composition decision to the first occasion's active outcome claim. Correction
+must change that decision again, and a superseded or inapplicable claim must
+not continue to influence it.
+
+## 14. Track A — one actionable-now place policy
+
+### 14.1 Product contract
+
+`Actionable now` is a decision state, not a synonym for nearby or recommended.
+Every candidate evaluated for an immediate Move receives one of three results:
+
+| Result | Meaning | Allowed product behavior |
+| --- | --- | --- |
+| `ready` | Current evidence proves the candidate can support this bounded decision. | May be selected and proposed as start-ready. |
+| `needs_verification` | The candidate may work, but one volatile fact is missing, stale, or unknown. | May be checked explicitly; may not be proposed as start-ready yet. |
+| `ineligible` | A known fact contradicts this decision or a required invariant is absent. | Omit from the actionable set; retain structured reasons for audit/eval. |
+
+Unknown is never closed and never open. Stale is never fresh. A useful system
+may abstain when it cannot establish readiness; candidate coverage is not a
+license to lower the truth bar.
+
+### 14.2 Shared domain types
+
+Add a dependency-light module such as
+`backend/places/actionability.py` containing:
+
+- `PlaceActionabilityUseCase`: initially `start_now` and
+  `schedule_in_bounded_window`;
+- `PlaceActionabilityState`: `ready`, `needs_verification`, `ineligible`;
+- `PlaceActionabilityReason`: a closed vocabulary including
+  `missing_canonical_identity`, `unverified_corpus_identity`,
+  `missing_geometry`, `placeholder_geometry`, `unknown_duration`,
+  `duration_exceeds_window`, `non_actionable_category`, `already_in_plan`,
+  `permanently_closed`, `closed_at_evaluated_time`, `hours_unknown`,
+  `hours_stale`, `outside_candidate_radius`, `route_unknown`,
+  `route_stale`, `route_degraded`, `insufficient_arrival_buffer`, and
+  `private_outcome_excludes_candidate`;
+- `PlaceActionabilityEvidence`, carrying only typed source references,
+  freshness timestamps, and confidence/knowledge state—not presentation copy;
+- `PlaceActionabilityDecision`, carrying state, reason codes, evaluated-at,
+  and evidence references.
+
+The model should distinguish corpus verification, operational freshness, and
+route confidence. `taste_score` is ranking evidence, not truth confidence.
+Distance in meters is candidate retrieval evidence, not proof of a routable
+transition.
+
+### 14.3 One candidate service
+
+Create one async service boundary, for example
+`get_gap_candidate_decisions(...)`, that owns:
+
+1. Trip membership and day ownership;
+2. destination-subtree and nearby retrieval through `get_gap_suggestions`;
+3. canonical venue identity, category, geometry, and visit-duration checks;
+4. already-in-Plan and relationship enrichment;
+5. cache-only operational enrichment for the list path;
+6. the shared actionability classifier;
+7. bounded, typed output ordered by readiness and existing ranking evidence.
+
+Both consumers must call this service:
+
+- `backend/places/gaps.py` renders Add cards only from `ready` decisions;
+- `backend/concierge/tool_handlers/itinerary_edit.py` returns `ready` and
+  `needs_verification` decisions plus reason codes, so the agent may run one
+  explicit live status check and re-evaluate a candidate.
+
+The concierge handler currently lacks `user_id` and is synchronous. Thread the
+authenticated user into it, make the dispatch await the service, and remove its
+direct raw call to `get_gap_suggestions`. A list read must not fan out into live
+provider calls. One explicitly selected `needs_verification` candidate may be
+upgraded only through the existing venue-status provider/cache path.
+
+### 14.4 Operational truth rules
+
+For `start_now`:
+
+- known permanent closure is `ineligible`;
+- fresh `open_now=false` is `ineligible`;
+- fresh `open_now=true` may satisfy the operational gate;
+- stale `open_now`, missing status, or unknown hours is
+  `needs_verification`, never `ready`;
+- a successful live refresh is normalized into the same operational model and
+  re-run through the same classifier;
+- provider failure preserves `needs_verification` or produces abstention; it
+  never converts unknown into open.
+
+For a future bounded window, `open_now` alone is insufficient. Regular and
+exceptional hours must cover the proposed visit interval, with exceptional
+hours taking precedence. Until that interval evaluator exists, future-window
+operational truth remains `needs_verification` rather than borrowing current
+status.
+
+### 14.5 Route and proximity boundary
+
+The shared place policy establishes only candidate readiness. Final
+micro-journey readiness additionally requires two fresh route facts:
+
+1. resolved origin -> candidate anchor;
+2. candidate anchor -> protected next commitment.
+
+Reuse `backend/core/distance/resolve_distance` and
+`backend/core/feasibility/evaluator.py`. A Haversine fallback or degraded route
+may support qualified copy but may not prove a hard arrival boundary. The
+composition evaluator, not SQL's one-kilometer radius, owns the final travel
+and buffer decision.
+
+### 14.6 Tests and gates
+
+Add:
+
+- a pure truth-table test for every actionability state/reason;
+- freshness-boundary tests at exactly the TTL and one instant beyond it;
+- permanent/fresh-closed/stale/unknown/open operational cases;
+- duration, category, geometry, already-in-Plan, and membership cases;
+- a parity test proving Places and Concierge consume identical decisions for
+  the same fixture rows;
+- a no-provider-fanout assertion for the list path;
+- a live-refresh upgrade test and provider-failure abstention test;
+- a privacy test proving private outcome reasons are never serialized in the
+  group-safe candidate payload.
+
+**Track A exit:** no candidate can be presented or proposed as start-ready by
+one consumer while the shared policy classifies it as unknown or ineligible.
+
+## 15. Track B — first-class bounded micro-journey composition
+
+### 15.1 Product contract
+
+For this release, a micro-journey is one committed anchor plus a route-shaped
+experience around it. It is not a multi-stop itinerary and does not create a
+new durable aggregate:
+
+```text
+origin
+  -> connective path
+  -> one committed anchor
+  -> at most one optional, non-commitment flourish
+  -> protected ending / next commitment
+```
+
+The anchor becomes one itinerary block after acceptance. The path and ending
+are consequences of canonical route and Plan truth. A flourish is an optional
+grounded lens or along-route cue; it is not a second promised stop, does not
+receive an itinerary block, and must disappear when evidence or slack is weak.
+
+### 15.2 Typed composition contract
+
+Add a pure typed contract, for example under
+`backend/core/models/micro_journey.py`:
+
+- `BoundedWindowRef`: Trip/day and previous/next boundary IDs, evaluated-at,
+  starts-at, ends-at;
+- `JourneyOrigin`: permissioned current location or explicit
+  `previous_plan_stop` fallback, with private provenance stripped from the
+  group-safe projection;
+- `JourneyAnchor`: canonical entity reference, visit duration, operational
+  actionability decision, and scheduled local interval;
+- `JourneyLeg`: from/to references, requested/resolved mode, fresh duration,
+  distance, provider, observed/expires timestamps, degradation state, and
+  evidence reference;
+- `JourneyFlourish`: optional title/lens/source reference and zero commitment
+  semantics;
+- `JourneyEnding`: protected next-block reference, expected arrival, and
+  arrival-buffer minutes;
+- `MicroJourneyComposition`: version, status (`ready` or `abstain`), reason
+  codes, the fields above, and a group-safe evidence summary.
+
+This object may be embedded as versioned metadata on the canonical proposal so
+review and receipts can explain the decision. It is not an independently
+mutable record and must not become a second Plan writer.
+
+### 15.3 Deterministic composition service
+
+Implement a pure evaluator plus an async evidence-loading adapter:
+
+1. Re-resolve the current open window and authenticated membership.
+2. Resolve origin from fresh, permitted private location; otherwise use the
+   previous placed Plan stop and label that fallback.
+3. Load the selected canonical candidate through Track A.
+4. Resolve both route legs for the intended mode and departure instants.
+5. Compute:
+
+   `outbound travel + visit duration + inbound travel + arrival buffer <= remaining window`.
+
+6. Require a fresh operational decision covering the visit interval.
+7. Add a flourish only when it lies on the proven path, has explicit evidence,
+   and consumes no required schedule slack. The first implementation may
+   always return `None`; absence is valid.
+8. Return `abstain` with closed reason codes when any hard fact is unavailable
+   or contradictory.
+
+The pure evaluator should accept injected facts and a clock. The adapter owns
+DB/provider calls. This keeps exact feasibility testable without Mapbox or an
+LLM and lets backend-real tests inject controlled fresh route facts.
+
+### 15.4 Canonical proposal integration
+
+Do not let model-authored times become the authority for a bounded entry.
+Within the existing `propose_change` path when the seed is
+`trip_open_window`:
+
+- require `proposal_type=add`, review mode, one canonical venue/site entity,
+  no custom entity, and no alternative list masquerading as the primary
+  decision;
+- require the selected entity to have been surfaced by the shared candidate
+  tool in the current turn;
+- run the composition service again at proposal creation;
+- derive exact local `HH:MM` start/end values from the ready composition;
+- persist the versioned group-safe composition metadata with the canonical
+  proposal;
+- pass only those server-derived values into
+  `create_add_operation_proposal`;
+- re-run current-window, place, operational, route, and day-revision checks at
+  apply time, failing visibly when the opportunity changed.
+
+First repair the current `HH:MM` versus full-ISO mismatch by using the proposal
+producer's existing planning-time parser for the guard. Then add a successful
+bounded proposal test before adding richer composition behavior.
+
+### 15.5 AI decision surface
+
+The typed entry intent, not the exact words “Take us somewhere,” earns this
+tool surface. Limit it to:
+
+- current itinerary/day;
+- shared gap-candidate decisions;
+- one selected venue-status refresh when required;
+- composition/route evidence;
+- the canonical proposal tool.
+
+The model's responsibility is judgment among eligible candidates and concise
+group-safe explanation. The backend's responsibility is feasibility,
+freshness, authority, and exact mutation. The response must lead with one
+composition. Alternatives are available only after the user asks or the first
+choice fails.
+
+### 15.6 Composition evaluation rubric
+
+Grade observed structured output, not prose fluency:
+
+| Dimension | Hard requirement |
+| --- | --- |
+| Anchor count | Exactly one committed anchor. |
+| Time | Entire composition and buffer fit the current server window. |
+| Route | Both legs are fresh, non-degraded, and mode-honest. |
+| Operations | Anchor is `ready` under Track A at the intended interval. |
+| Ending | Protected next commitment is unchanged and arrival buffer is explicit. |
+| Flourish | Zero or one; grounded, optional, and never represented as committed. |
+| Multiplayer | Shared proposal contains no private reason or precise location. |
+| Agency | No Plan write before review; repeat execution is idempotent. |
+| Failure | Missing truth produces a specific abstention, not an approximate success. |
+
+Fixture cases must cover exact fit, thin buffer, route failure, degraded route,
+candidate closure between selection and proposal, stale window, stale day
+revision, missing GPS fallback, no placed fallback, private constraint shaping,
+and duplicate tool execution.
+
+**Track B exit:** a valid doorway produces one reviewable, typed composition
+and canonical add proposal; every invalid branch abstains or fails without a
+Plan write.
+
+## 16. Track C — prove second-occasion compounding
+
+### 16.1 Verified baseline and precise gap
+
+The repository already has most of the storage and privacy substrate:
+
+- confirmed personal occurrence is required before outcome capture;
+- `experience_outcome_feedback` stores correctable `place_verdict` and
+  optional `companion_fit`;
+- outcome writes atomically project append-and-supersede private
+  `relationship_memory_claims`;
+- the Context Compiler reads active private claims;
+- companion-fit reuse has an exact-roster gate;
+- `get_prior_occasion_context` supplies a weak structural precedent for local
+  Plans;
+- P04 has a task bank, but no observed AI-evaluation receipt.
+
+The gap is causal application. Place-verdict claims enter current context
+without one shared current-place/current-occasion/recency policy, the prior
+occasion reader primarily matches roster overlap, and no replay proves that a
+first outcome changes a later eligible decision.
+
+### 16.2 Current occasion decision context
+
+Introduce a read-only `DecisionOccasionContext` adapter built from existing
+truth, not a new table:
+
+- current Trip/Plan ID and `trip_kind`;
+- canonical `place_id` when present;
+- durable `occasion` vocabulary (`celebration`, `decompress`, `explore`,
+  `work_play`, `reunion`, `other`);
+- current member IDs;
+- current candidate entity when evaluating a specific choice;
+- evaluated-at instant and policy version.
+
+Load corresponding source context for an outcome by joining its source outcome
+and Trip/Plan: source place, occasion, occurrence roster, timestamps,
+correction/supersession state, and evidence refs. Prefer read-time joins over a
+new copied provenance column unless profiling shows the join is untenable.
+
+### 16.3 One applicability authority
+
+Make `resolve_experience_outcome_applicability` the shared authority for:
+
+- direct recent-outcome prompt projection;
+- relationship-memory claims loaded by the Context Compiler;
+- candidate eligibility/ranking in Track A;
+- prior-occasion structure in the planning adapter;
+- the second-occasion eval trace.
+
+Extend its inputs/outputs only as needed, preserving closed reason codes. The
+policy should distinguish:
+
+- exact candidate place verdict: may directly promote `would_repeat`, suppress
+  `good_once`/`not_for_me`, or qualify a choice;
+- different candidate: may not infer a category-level taste from one venue
+  outcome;
+- companion fit: applies only to the exact confirmed roster and an applicable
+  occasion; otherwise withhold or mark weak precedent without companion prose;
+- prior structural occurrence: may influence density only as a weak precedent,
+  never as evidence that anyone liked it;
+- corrected active claim: replaces the earlier claim;
+- superseded, retracted, stale, or provenance-incomplete claim: withheld.
+
+The group-safe proposal may say that a choice fits the group, but it may not
+quote, identify, or reveal a private verdict. Actionability decisions exposed
+to shared surfaces should use a neutral reason such as
+`member_fit_constraint`, while the private audit retains the source claim ID.
+
+### 16.4 Minimal credible two-occasion proof
+
+Do not begin with an unsupported claim that Vesper has learned a universal
+taste. Use the existing outcome vocabulary to prove something it can actually
+mean:
+
+1. Occasion 1 is a local `explore` Plan for an exact two-person roster.
+2. The bounded composition proposes canonical Venue A and the group accepts.
+3. Both members' personal occurrence is confirmed.
+4. The test actor records `good_once` for Venue A and `worked` for the exact
+   companion roster.
+5. Occasion 2 uses the same city, occasion kind, roster, time shape, and raw
+   candidate set. Generic ranking places Venue A first and Venue B second.
+6. The active `good_once` claim makes Venue A ineligible for a repeat while
+   preserving its factual history; Venue B becomes the selected anchor.
+7. The decision trace cites the outcome/claim evidence privately; group copy
+   does not expose the verdict or its author.
+8. Correct the first outcome to `would_repeat` and replay the exact same second
+   occasion. The prior claim is superseded, Venue A becomes eligible again,
+   and the decision changes according to the active claim.
+
+Required forks:
+
+- changed roster: companion fit is withheld; personal place verdict remains
+  usable only for its owner and must not be attributed;
+- changed occasion: companion/structural precedent weakens or withholds under
+  the declared policy; an exact personal place verdict remains place-specific;
+- different destination and different candidate: no category preference is
+  invented;
+- retracted/corrected claim: old evidence has zero active effect;
+- missing outcome: occurrence alone does not become affection;
+- no viable alternative after applying the outcome: abstain rather than
+  silently reselect the excluded place.
+
+### 16.5 Evaluation and measurement
+
+Add one backend-real scenario that records both the baseline and learned run:
+
+- identical current inputs and candidate set;
+- active outcome claim IDs and revisions;
+- applicability decisions and reason codes;
+- selected anchor or abstention;
+- proposal and operation IDs when committed;
+- shared-text privacy scan;
+- correction replay result;
+- explicit `None` for coordination-cost fields that were not measured.
+
+Produce observed trials for P04-01 through P04-04 rather than authored passing
+JSON. P04-04 must not claim “less coordination” until an explicit comparable
+measure exists. Candidate-choice change, fewer required clarifications, and
+coordination minutes are separate metrics; unknown remains unknown.
+
+An AI/provider evaluation then runs at least three trials for each privacy- or
+correction-sensitive branch. The grader should require the same evidence-bound
+effect across runs, while allowing wording variation.
+
+**Track C exit:** occasion 1 produces a correctable private claim; that claim
+causally changes an otherwise identical occasion-2 decision; correction changes
+the decision again; inapplicable or superseded evidence has no effect; and no
+private verdict appears on a shared surface.
+
+## 17. Ordered implementation and commit plan
+
+| Order | Commit | Principal result | Depends on |
+| ---: | --- | --- | --- |
+| 1 | `fix(concierge): align bounded add with local wall-time contract` | Valid `HH:MM` add is compared to the canonical UTC window and reaches the canonical producer. | existing R1/R2 work |
+| 2 | `test(concierge): prove successful bounded add proposal` | Membership, current boundary, review mode, entity, interval, and no-write failure forks are covered. | 1 |
+| 3 | `feat(places): define actionable place decisions` | Shared tri-state model, closed reasons, and pure truth table. | none |
+| 4 | `refactor(places): share gap candidate service` | Places and Concierge consume one enriched candidate policy; authenticated async handler replaces raw DB serialization. | 3 |
+| 5 | `test(places): prove actionable consumer parity` | Operational freshness, provider abstention, privacy, and no-fanout gates. | 4 |
+| 6 | `feat(plan): model bounded micro-journey composition` | Typed contract and pure two-leg/time/buffer evaluator. | 3 |
+| 7 | `feat(concierge): compose bounded add from server truth` | Proposal path re-resolves actionability/routes and derives exact mutation inputs. | 4, 6 |
+| 8 | `eval(concierge): gate micro-journey composition` | Hard rubric and deterministic/provider cases prevent list-like or infeasible output. | 7 |
+| 9 | `fix(outcomes): apply current occasion context consistently` | Context Compiler, recent outcomes, candidate policy, and prior occasion share one applicability authority. | 3–4 |
+| 10 | `test(outcomes): replay correction and applicability forks` | Exact place/roster/occasion, correction, retraction, and privacy rules are backend-real. | 9 |
+| 11 | `eval(outcomes): prove second-occasion decision change` | Identical-input baseline/learned/corrected trace supplies observed P04 evidence. | 7–10 |
+| 12 | `test(trips): join composition outcome and later occasion` | Canonical add -> occurrence -> outcome -> second bounded decision closes the causal loop. | 11 |
+| 13 | `docs: record compounding-loop evidence boundary` | Execution record distinguishes deterministic, backend-real, AI-eval, controlled, and physical proof. | exact tested candidate |
+
+Commits 3–5 and 6's pure model may be developed independently after order 2,
+but commits should land in dependency order. Do not start the second-occasion
+provider evaluation until deterministic actionability and correction forks pass.
+
+## 18. Release gates and product metrics
+
+### 18.1 Source gates
+
+- full actionability truth table and consumer parity;
+- successful and failed bounded add through the published tool schema;
+- composition invariant/property tests over window durations and route facts;
+- Context Compiler privacy, roster, occasion, correction, and retraction tests;
+- OpenAPI/type sync when public payloads change;
+- backend size, async, migration, and focused scenario gates;
+- mobile typecheck and focused Plan/Map/outcome surface tests.
+
+### 18.2 Evidence gates
+
+- deterministic replay: no provider and no model;
+- backend-real replay: Postgres sources, canonical proposal/operation/outcome
+  rows, injected controlled operational and route facts;
+- provider/model eval: observed trials with revision-bound inputs and grader;
+- controlled-device run: organizer and participant projections plus privacy
+  negative oracle;
+- physical-device run remains a separate later promotion gate.
+
+### 18.3 Metrics worth collecting
+
+- actionable candidate precision sampled against manually verified truth;
+- abstention rate by reason (`hours_unknown`, `route_unknown`, no fit, private
+  fit exclusion);
+- live verification upgrade rate and provider failure rate;
+- time from doorway tap to reviewable proposal;
+- proposal acceptance, rejection, expiry, and stale-at-apply rates;
+- route/buffer invalidation between selection and apply;
+- occurrence confirmation and outcome-correction rates;
+- fraction of second occasions with applicable evidence;
+- fraction whose selected action changes because of that evidence;
+- privacy violations and superseded-claim influence, both with a target of
+  zero.
+
+Do not optimize for fewer abstentions before false start-ready rate is known.
+Do not call a recommendation “better” merely because it changed. The first
+credible claim is narrower: Vesper used permitted evidence, changed a concrete
+decision in the expected direction, remained correctable, and preserved
+privacy.
