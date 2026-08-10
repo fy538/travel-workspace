@@ -720,7 +720,10 @@ defense-in-depth changes on top of the merged AI-DL R1 substrate:
   can never make a memory visible to other members;
 - actor-bound observation writes: legacy organizer-proxy `target_user_id`
   input is absent from the model schema and rejected before either name
-  resolution or persistence.
+  resolution or persistence; and
+- group observation visibility is accepted only from the relevant trip group
+  conversation, not when a model asserts in a private chat that a fact was
+  shared elsewhere.
 
 These are source and focused backend-test results only. They do **not** change
 the AI-DL promotion decision: the live shadow attachment still needs an
