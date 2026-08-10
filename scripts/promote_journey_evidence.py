@@ -11,7 +11,9 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import hmac
 import json
+import subprocess
 import sys
 from datetime import UTC, datetime
 from pathlib import Path
@@ -23,6 +25,14 @@ import journey_evidence as evidence
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_OUTPUT = ROOT / "docs" / "journeys" / "evidence-attestations.json"
 INDEX_SCHEMA_VERSION = 1
+ATTESTATION_PROJECTION_PATHS = frozenset(
+    {
+        "docs/journeys/evidence-attestations.json",
+        "docs/journeys/STATUS.md",
+        "docs/release/v1-scope.md",
+        "docs/status/current-state.md",
+    }
+)
 
 
 def _canonical_json(value: Any) -> str:
@@ -32,6 +42,63 @@ def _canonical_json(value: Any) -> str:
 def receipt_digest(receipt: dict[str, Any]) -> str:
     payload = {key: value for key, value in receipt.items() if key != "_path"}
     return "sha256:" + hashlib.sha256(_canonical_json(payload).encode()).hexdigest()
+
+
+def _git_lines(root: Path, *args: str) -> list[str]:
+    output = subprocess.check_output(
+        ["git", *args],
+        cwd=root,
+        text=True,
+        stderr=subprocess.DEVNULL,
+    )
+    return [line for line in output.splitlines() if line]
+
+
+def index_candidate_is_current(
+    index: dict[str, Any],
+    current: dict[str, str],
+    *,
+    workspace_root: Path = ROOT,
+) -> bool:
+    """Return whether a committed index still describes this checkout.
+
+    The attestation file cannot contain the SHA of the commit that contains
+    itself.  A promoted candidate is therefore current when app/backend still
+    match exactly and the workspace HEAD is either the tested subject itself or
+    one single-parent projection commit whose complete diff is restricted to
+    the governed attestation/generated-status paths.
+    """
+
+    candidate = index.get("candidate") or {}
+    if not candidate or set(candidate) != {"workspace_sha", "app_sha", "backend_sha"}:
+        return False
+    if any(
+        current.get(key) == "unknown" or str(current.get(key, "")).endswith("-dirty")
+        for key in ("workspace_sha", "app_sha", "backend_sha")
+    ):
+        return False
+    if any(candidate.get(key) != current.get(key) for key in ("app_sha", "backend_sha")):
+        return False
+
+    subject_sha = candidate.get("workspace_sha")
+    current_sha = current.get("workspace_sha")
+    if subject_sha == current_sha:
+        return True
+    if not isinstance(subject_sha, str) or not isinstance(current_sha, str):
+        return False
+    try:
+        parents = _git_lines(workspace_root, "rev-list", "--parents", "-n", "1", current_sha)
+        if len(parents) != 1:
+            return False
+        revision_tokens = parents[0].split()
+        if len(revision_tokens) != 2 or revision_tokens[1] != subject_sha:
+            return False
+        changed_paths = set(
+            _git_lines(workspace_root, "diff", "--name-only", subject_sha, current_sha, "--")
+        )
+    except (OSError, subprocess.CalledProcessError):
+        return False
+    return bool(changed_paths) and changed_paths <= ATTESTATION_PROJECTION_PATHS
 
 
 def build_index(receipts: list[dict[str, Any]], revisions: dict[str, str]) -> dict[str, Any]:
@@ -72,6 +139,26 @@ def load_index(path: Path = DEFAULT_OUTPUT) -> dict[str, Any]:
         raise ValueError(f"unsupported attestation index schema: {data.get('schema_version')!r}")
     if not isinstance(data.get("attestations"), list):
         raise ValueError("attestation index requires an attestations list")
+    candidate = data.get("candidate") or {}
+    if candidate and set(candidate) != {"workspace_sha", "app_sha", "backend_sha"}:
+        raise ValueError("attestation index candidate must contain the triple-SHA identity")
+    for position, attestation in enumerate(data["attestations"]):
+        if not isinstance(attestation, dict):
+            raise ValueError(f"attestation {position} must be an object")
+        receipt = attestation.get("receipt")
+        digest = attestation.get("receipt_sha256")
+        if not isinstance(receipt, dict) or not isinstance(digest, str):
+            raise ValueError(f"attestation {position} requires a receipt and receipt_sha256")
+        try:
+            evidence.validate_receipt(receipt)
+        except evidence.ReceiptError as exc:
+            raise ValueError(f"attestation {position} has an invalid receipt: {exc}") from exc
+        if receipt.get("status") != "pass":
+            raise ValueError(f"attestation {position} must embed a passing receipt")
+        if candidate and not evidence.receipt_is_current(receipt, candidate):
+            raise ValueError(f"attestation {position} receipt does not match the candidate")
+        if not hmac.compare_digest(digest, receipt_digest(receipt)):
+            raise ValueError(f"attestation {position} receipt digest mismatch")
     return data
 
 

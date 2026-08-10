@@ -30,7 +30,7 @@ from pathlib import Path
 import yaml
 
 import journey_evidence
-from promote_journey_evidence import load_index
+from promote_journey_evidence import index_candidate_is_current, load_index
 
 _REPO_ROOT = Path(__file__).resolve().parent.parent
 _AGENT_ROOT = Path(os.environ.get("JOURNEY_AGENT_ROOT", _REPO_ROOT / "travel-agent")).resolve()
@@ -332,9 +332,9 @@ def build_matrix_block(by_id: dict[str, dict]) -> str:
 def build_evidence_block() -> str:
     """Render promoted receipt attestations without treating raw files as proof."""
     index = load_index()
-    candidate = index.get("candidate") or {}
     current = journey_evidence.current_revisions()
-    current_candidate = bool(candidate) and candidate == current
+    candidate = index.get("candidate") or {}
+    current_candidate = index_candidate_is_current(index, current)
     attestations = index.get("attestations", [])
     rows = [
         "| Journey/Proof | Layer | Result | Receipt |",

@@ -43,8 +43,12 @@ exact app build, backend deploy, migration, seed/corpus digest, device and
 sanitized identity list, oracle and flow hashes, reviewer, and content-addressed
 artifact hashes.
 
-A receipt is `STALE` whenever any recorded revision differs from the current
-checkout. It cannot certify a later app or backend build.
+A raw receipt is `STALE` whenever any recorded revision differs from the
+current checkout. A committed promoted index names the tested workspace
+subject commit and may remain current through exactly one single-parent
+attestation/projection commit whose diff is restricted to the governed index
+and generated status documents. Any product/tooling change, merge commit, or
+later app/backend revision makes it stale.
 
 The only execution states are `PASS`, `FAIL`, `BLOCKED`, `UNRUN`, and `STALE`.
 `DEFINED` belongs to the journey registry, not the receipt report.
@@ -76,7 +80,8 @@ coordinator may explicitly promote current clean passes with
 `scripts/promote_journey_evidence.py` into the committed
 `evidence-attestations.json` index. Generated release and current-state views
 consume only that promoted index. Do not edit `STATUS.md` to turn an older raw
-receipt into current certification.
+receipt into current certification. Consumers recompute every embedded receipt
+digest before using the index; the stored hash is not decorative metadata.
 
 ## Founder gate
 

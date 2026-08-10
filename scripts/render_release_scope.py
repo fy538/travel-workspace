@@ -10,7 +10,7 @@ from pathlib import Path
 import yaml
 
 import journey_evidence
-from promote_journey_evidence import load_index
+from promote_journey_evidence import index_candidate_is_current, load_index
 
 ROOT = Path(__file__).resolve().parent.parent
 MANIFEST = ROOT / "docs/release/v1-scope.yaml"
@@ -35,6 +35,7 @@ REQUIRED_CAPABILITY_FIELDS = {
     "intent",
     "evidence_paths",
     "journey_ids",
+    "required_layers",
     "flags",
     "note",
 }
@@ -156,6 +157,17 @@ def validate_release(
         for journey_id in row_journeys:
             if journey_id not in journey_ids:
                 problems.append(f"{cap_id}: unknown journey {journey_id}")
+        required_layers = row.get("required_layers", [])
+        if not isinstance(required_layers, list):
+            problems.append(f"{cap_id}: required_layers must be a list")
+            required_layers = []
+        if len(required_layers) != len(set(required_layers)):
+            problems.append(f"{cap_id}: required layers must be unique")
+        unknown_layers = sorted(set(required_layers) - set(journey_evidence.LAYERS))
+        if unknown_layers:
+            problems.append(f"{cap_id}: unknown required layers {', '.join(unknown_layers)}")
+        if intent in {"in", "partial"} and not required_layers:
+            problems.append(f"{cap_id}: IN/PARTIAL capabilities require evidence layers")
     return problems
 
 
@@ -230,9 +242,8 @@ def load_persona_replay() -> dict[str, str]:
 def load_promoted_evidence() -> dict[str, set[str]]:
     """Return current-revision passing layers keyed by journey identifier."""
     index = load_index()
-    candidate = index.get("candidate") or {}
     current = journey_evidence.current_revisions()
-    if candidate != current:
+    if not index_candidate_is_current(index, current):
         return {}
 
     states: dict[str, set[str]] = {}
@@ -268,9 +279,18 @@ def readiness_posture(
     if missing:
         return "UNCERTIFIED — replay missing " + ", ".join(missing)
     promoted = promoted or {}
-    if journey_ids and all(promoted.get(journey_id) for journey_id in journey_ids):
+    required_layers = set(row.get("required_layers", []))
+    missing_layers = {
+        journey_id: sorted(required_layers - promoted.get(journey_id, set()))
+        for journey_id in journey_ids
+        if required_layers - promoted.get(journey_id, set())
+    }
+    if journey_ids and not missing_layers:
         return "PASS — current-revision promoted receipt"
-    return "UNCERTIFIED — replay passes; current-revision receipt required"
+    missing_summary = "; ".join(
+        f"{journey_id}: {','.join(layers)}" for journey_id, layers in missing_layers.items()
+    )
+    return "UNCERTIFIED — required promoted layers missing " + missing_summary
 
 
 def render() -> str:

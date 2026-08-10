@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
+from unittest.mock import patch
 
 import promote_journey_evidence as subject
 
@@ -66,3 +68,75 @@ def test_committed_empty_index_is_valid(tmp_path) -> None:
     path = tmp_path / "index.json"
     path.write_text(json.dumps({"schema_version": 1, "attestations": []}))
     assert subject.load_index(path)["attestations"] == []
+
+
+def test_load_index_rejects_receipt_digest_mismatch(tmp_path: Path) -> None:
+    receipt = _receipt()
+    path = tmp_path / "index.json"
+    path.write_text(
+        json.dumps(
+            {
+                "schema_version": 1,
+                "candidate": {
+                    "workspace_sha": "workspace-current",
+                    "app_sha": "app-current",
+                    "backend_sha": "backend-current",
+                },
+                "attestations": [
+                    {"receipt_sha256": "sha256:" + "0" * 64, "receipt": receipt}
+                ],
+            }
+        )
+    )
+
+    try:
+        subject.load_index(path)
+    except ValueError as exc:
+        assert "digest mismatch" in str(exc)
+    else:
+        raise AssertionError("expected a forged receipt digest to fail")
+
+
+def test_projection_commit_keeps_subject_candidate_current(tmp_path: Path) -> None:
+    index = {
+        "candidate": {
+            "workspace_sha": "subject-sha",
+            "app_sha": "app-current",
+            "backend_sha": "backend-current",
+        }
+    }
+    current = {
+        "workspace_sha": "projection-sha",
+        "app_sha": "app-current",
+        "backend_sha": "backend-current",
+    }
+    with patch.object(
+        subject,
+        "_git_lines",
+        side_effect=[
+            ["projection-sha subject-sha"],
+            ["docs/journeys/evidence-attestations.json", "docs/release/v1-scope.md"],
+        ],
+    ):
+        assert subject.index_candidate_is_current(index, current, workspace_root=tmp_path)
+
+
+def test_non_projection_commit_makes_subject_candidate_stale(tmp_path: Path) -> None:
+    index = {
+        "candidate": {
+            "workspace_sha": "subject-sha",
+            "app_sha": "app-current",
+            "backend_sha": "backend-current",
+        }
+    }
+    current = {
+        "workspace_sha": "later-sha",
+        "app_sha": "app-current",
+        "backend_sha": "backend-current",
+    }
+    with patch.object(
+        subject,
+        "_git_lines",
+        side_effect=[["later-sha subject-sha"], ["Makefile"]],
+    ):
+        assert not subject.index_candidate_is_current(index, current, workspace_root=tmp_path)

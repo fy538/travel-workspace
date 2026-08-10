@@ -65,6 +65,23 @@ class ReleaseScopeValidationTests(unittest.TestCase):
         }):
             self.assertEqual(subject.load_promoted_evidence(), {})
 
+    def test_release_pass_requires_every_declared_layer(self) -> None:
+        row = {
+            "intent": "in",
+            "journey_ids": ["J04"],
+            "required_layers": ["database", "physical"],
+        }
+        replay = {"J04": "pass"}
+
+        self.assertEqual(
+            subject.readiness_posture(row, replay, {"J04": {"contract", "database"}}),
+            "UNCERTIFIED — required promoted layers missing J04: physical",
+        )
+        self.assertEqual(
+            subject.readiness_posture(row, replay, {"J04": {"database", "physical"}}),
+            "PASS — current-revision promoted receipt",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
