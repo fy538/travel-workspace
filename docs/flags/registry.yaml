@@ -584,6 +584,10 @@ flags:
     owner: fy538
     expires: 2026-10-30
     status: active
+    target_journey: P07
+    cohort: explicitly enabled internal Trip cohort only
+    kill_switch: unset or false prevents weather rescue proposal production while preserving ordinary Plan reads
+    promotion_removal_question: By 2026-10-30, did grounded rescue, canonical lifecycle, privacy, and two-observer device evidence justify promotion?
     notes: Gates current-weather rescue proposal production until freshness, group-safe composition, canonical apply, and two-observer device evidence pass.
 
   - name: GUEST_PROPOSAL_CAPABILITIES_ENABLED
@@ -664,6 +668,20 @@ flags:
       Internal-only Trips Home editorial map gate. The query and membership
       path must remain dark together until map/time truth is certified.
 
+  - name: GROUP_TRIP_MICRO_JOURNEY_ENABLED
+    repo: travel-app
+    location: constants/featureFlags.ts:GROUP_TRIP_MICRO_JOURNEY_ENABLED
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-09-09
+    status: active
+    target_journey: P05,P07
+    cohort: internal builds with an explicit app flag only
+    kill_switch: Set EXPO_PUBLIC_GROUP_TRIP_MICRO_JOURNEY_ENABLED=false; the gate also requires INTERNAL_BUILD=true.
+    promotion_removal_question: By 2026-09-09, did the bounded doorway and fixed Lisbon rescue earn controlled-device and staging proof, or should the doorway remain dark or be removed?
+    notes: Opens only a private review-first handoff grounded in the canonical Plan; it grants no client mutation, push, group-output, or inferred-memory authority.
+
   - name: OUTCOME_ARTIFACT_ENABLED
     repo: travel-app
     location: constants/featureFlags.ts:39
@@ -725,3 +743,73 @@ flags:
     expires: 2026-10-11
     status: active
     notes: Telemetry-only shadow comparison for the context compiler; grants no runtime authority. Registered 2026-07-17 during interaction-audit registry cleanup.
+
+  - name: AI_DECISION_SHADOW_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:ai_decision_shadow_enabled
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-09-09
+    status: active
+    target_journey: P07
+    cohort: none until explicitly enabled with the private disruption gate and exact Trip allowlist
+    kill_switch: unset or false disables every AI-DL shadow attempt without changing the existing serving path
+    promotion_removal_question: By 2026-09-09, did adjudicated offline evidence and approved telemetry controls justify bounded private shadow observation?
+    notes: Global AI-DL shadow kill switch. It grants no visible response, mutation, notification, group-output, or memory-write authority.
+
+  - name: AI_DECISION_SHADOW_PRIVATE_DISRUPTION_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:ai_decision_shadow_private_disruption_enabled
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-09-09
+    status: active
+    target_journey: P07
+    cohort: exact allowlisted private Trip concierge turns only
+    kill_switch: unset or false disables the private disruption policy even when the global shadow switch is enabled
+    promotion_removal_question: By 2026-09-09, did the private disruption policy beat or complement the deterministic baseline without hard-gate regression?
+    notes: Policy-specific gate for ask/show/recommend/abstain shadow decisions; proposal and execution remain forbidden.
+
+  - name: AI_DECISION_SHADOW_TRIP_IDS
+    repo: travel-agent
+    location: backend/core/feature_flags.py:ai_decision_shadow_trip_ids
+    default: empty
+    category: experiment
+    owner: fy538
+    expires: 2026-09-09
+    status: active
+    target_journey: P07
+    cohort: explicit comma-separated Trip UUID allowlist; empty means no eligible Trips
+    kill_switch: clear the value to make the eligible cohort empty
+    promotion_removal_question: By 2026-09-09, is an exact Trip allowlist still required or should the entire shadow experiment be stopped?
+    notes: Malformed UUIDs are ignored; the setting never grants product or mutation authority.
+
+  - name: AI_DECISION_SHADOW_TIMEOUT_MS
+    repo: travel-agent
+    location: backend/core/feature_flags.py:ai_decision_shadow_timeout_seconds
+    default: 250
+    category: ops
+    owner: fy538
+    expires: 2026-09-09
+    status: active
+    target_journey: P07
+    cohort: enabled private disruption shadow attempts only
+    kill_switch: set the global AI_DECISION_SHADOW_ENABLED switch false; timeout is clamped to 25-1000 ms
+    promotion_removal_question: By 2026-09-09, do observed latency and timeout rates justify retaining this ceiling?
+    notes: Operational ceiling for a fail-open observer; timeout cannot block or replace the visible serving path.
+
+  - name: AI_DECISION_SHADOW_MAX_COST_MICRO_USD
+    repo: travel-agent
+    location: backend/core/ai_decision_shadow.py:ai_decision_shadow_max_cost_micro_usd
+    default: 0
+    category: ops
+    owner: fy538
+    expires: 2026-09-09
+    status: active
+    target_journey: P07
+    cohort: enabled private disruption shadow attempts only
+    kill_switch: zero prevents provider-backed shadow execution; the global shadow switch remains the primary off control
+    promotion_removal_question: By 2026-09-09, is any nonzero provider budget justified by the frozen comparison protocol?
+    notes: Cost ceiling for private shadow observation; no delivery, mutation, group, or memory cost is authorized.

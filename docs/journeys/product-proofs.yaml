@@ -41,7 +41,14 @@ proofs:
     title: Thin participant handoff
     status: dark
     required_layers: [contract, database, device_mock]
-    anchors: {}
+    anchors:
+      contract:
+        - travel-agent/tests/scenarios/test_lisbon_group_disruption_contract.py
+        - travel-app/__tests__/utils/takeSomewhere.test.ts
+        - travel-app/__tests__/components/trip-plan/NowModeStrip.test.tsx
+      database:
+        - travel-agent/tests/scenarios/test_lisbon_group_disruption_replay.py
+      device_mock: []
   - id: P06
     title: Consent and silence
     status: dark
@@ -51,4 +58,12 @@ proofs:
     title: Live rescue
     status: dark
     required_layers: [contract, database, device_mock, staging]
-    anchors: {}
+    anchors:
+      contract:
+        - travel-agent/tests/scenarios/test_lisbon_group_disruption_contract.py
+        - travel-app/__tests__/utils/takeSomewhere.test.ts
+        - travel-app/__tests__/components/trip-plan/NowModeStrip.test.tsx
+      database:
+        - travel-agent/tests/scenarios/test_lisbon_group_disruption_replay.py
+      device_mock: []
+      staging: []
