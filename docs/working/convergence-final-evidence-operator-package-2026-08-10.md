@@ -50,9 +50,8 @@ support, simulator, or document result is physical evidence.
 - **Physical:** no second iPhone is available. Two-device P05/P07 evidence
   remains blocked even after the build quota resets.
 
-These decisions permit implementing and running only the bounded offline model
-comparison once a credential is supplied. They do not enable runtime shadow or
-change any journey/evidence claim.
+These decisions permitted the bounded synthetic model comparison. They do not
+enable runtime shadow or change any journey/device claim.
 
 ## Completed controlled Lisbon support
 
@@ -128,12 +127,10 @@ protocol requires at least two independent reviewers.
 
 ## Provider/model comparison round
 
-No Anthropic credential is present in the current environment. The selected
-model is Anthropic `claude-sonnet-4-6`, matching the backend's
-`concierge_conversation` registry role. Backend
-`d352e1e71e58c00414b7d88471821a7a9f53b914` contains the bounded operator
-runner. Its no-cost preflight binds all 16 cases and reports a retry-inclusive
-worst-case cost of USD 0.449001, below the approved USD 2 ceiling.
+The selected model was Anthropic `claude-sonnet-4-6`, matching the backend's
+`concierge_conversation` registry role. The bounded runner used the sealed Fly
+credential without retrieving or displaying it. Its no-cost preflight bound all
+16 cases and reported a retry-inclusive worst-case cost below the USD 2 ceiling.
 
 Approve these controls before implementing or running the adapter:
 
@@ -153,9 +150,11 @@ errors, abstentions, invalid/unavailable counts, latency, cost, and human
 disagreements separate. A model judge cannot override privacy, authority,
 freshness, scope, mutation, or receipt gates.
 
-Provider/model, the USD ceiling, and the runner are ready. The remaining input
-is a credential supplied out of band. Until it exists, the correct result is
-blocked.
+The first run cost USD 0.089409 but was discarded because the model placed prose
+in `reason_code`, violating the approved retention boundary. The runner was
+hardened to a closed reason-code vocabulary and the remote temporary package
+was removed. The retained run cost USD 0.089499; total program spend was USD
+0.178908.
 
 Run from the backend checkout after setting `ANTHROPIC_API_KEY` in the process
 environment (never in a command, artifact, or commit):
@@ -170,9 +169,20 @@ PYTHONPATH=. .venv/bin/python scripts/run_ai_dl_provider_comparison.py \
 
 The runner disables Langfuse content export and VCR recording, forces a typed
 tool action, records only content-free observations, refuses model/corpus drift,
-and refuses to overwrite an existing artifact. A successful A-layer report
-still leaves the readiness decision at `iterate` because human calibration was
-waived rather than completed.
+and refuses to overwrite an existing artifact. The retained A-layer result is:
+
+- 16/16 observed, zero invalid or unavailable;
+- 8/16 acceptable;
+- two hard-gate failures, both `evidence_scope_mismatch`;
+- mean latency 2,299 ms;
+- seven abstentions;
+- readiness recommendation `iterate`.
+
+This matches the deterministic baseline's 8/16 acceptable count, improves its
+four hard-gate failures to two, and trails the local structured reference's
+16/16 mock result. Human calibration was waived, so this is not promotion
+authority. The immutable content-free artifact is
+`travel-agent/eval/ai_decision_learning/artifacts/private_grounded_disruption/provider-run-2026-08-10.json`.
 
 ## Telemetry-retention decision proposal
 

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "partially_approved_external_execution_blocked",
+  "status": "provider_observed_external_device_work_blocked",
   "created_at": "2026-08-10",
   "lisbon": {
     "trip_id": "f47e582d-85a6-454e-8a2d-be3a199f0b09",
@@ -47,9 +47,19 @@
     "max_total_cost_usd": 2.0,
     "spend_approved": true,
     "retain_freeform": false,
-    "runner_backend_sha": "d352e1e71e58c00414b7d88471821a7a9f53b914",
+    "runner_backend_sha": "d9fe6c4112246605bd4728e2de42c19a7ae0afb1",
     "preflight_worst_case_cost_usd": 0.449001,
-    "status": "approved_waiting_for_credential"
+    "retained_run_cost_usd": 0.089499,
+    "discarded_run_cost_usd": 0.089409,
+    "program_cost_usd": 0.178908,
+    "observed_cases": 16,
+    "acceptable_cases": 8,
+    "hard_gate_failures": 2,
+    "mean_latency_ms": 2299.3609667500436,
+    "artifact": "travel-agent/eval/ai_decision_learning/artifacts/private_grounded_disruption/provider-run-2026-08-10.json",
+    "artifact_sha256": "2e0e4e4b6d158ac8a3601d326f929a879ffb5049e6576f6395bc24ad04fc9ffa",
+    "readiness_recommendation": "iterate",
+    "status": "observed_not_promoted"
   },
   "telemetry_proposal": {
     "content_free_only": true,
@@ -57,7 +67,7 @@
     "aggregate_retention_days": 90,
     "private_content_retention": "prohibited",
     "approver": "owner",
-    "decision": "approved"
+    "decision": "approved_not_yet_enforced"
   },
   "physical": {
     "required_unique_udids": 2,

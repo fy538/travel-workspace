@@ -66,13 +66,13 @@
     "device_mock": "not_run",
     "staging": "blocked",
     "physical": "blocked",
-    "ai_eval": "blocked",
+    "ai_eval": "observed_iterate",
     "human": "waived_not_h_evidence",
     "causal": "pass"
   },
   "external_blockers": [
     "human_calibration_absent_shadow_promotion_blocked",
-    "anthropic_provider_credential",
+    "shadow_telemetry_retention_enforcement",
     "eas_ios_monthly_build_quota_or_paid_plan",
     "two_physical_devices_and_identities",
     "governed_p05_p07_two_account_device_flows",
