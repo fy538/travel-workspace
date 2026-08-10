@@ -21,11 +21,12 @@ Backend `/health`, `/ready`, and `/privacy` returned HTTP 200 on 2026-08-09.
 Real Clerk auth was last verified separately on 2026-07-04. The v1 scope is
 locked and flag-gated ([V1 release contract](release/v1-scope.md)), but release
 readiness is **not certified**: all 28 journey contracts and their test/flow
-anchors are defined, current receipt-backed execution is unrecorded, seeded
-replay passes 27/28 with **J08 failing**, and the required physical-device lane
-is **0/3 current** for J04/J05/J10. The critical path is therefore: restore a
-reliable green child-repo CI signal; fix/rerun J08; cut a production EAS build;
-record current-revision and two-device evidence; then submit to TestFlight.
+anchors are defined, current receipt-backed execution is unrecorded, and the
+required physical-device lane is **0/3 current** for J04/J05/J10. Seeded replay
+is **28/28 passing** as of 2026-08-10 (`make certify-logic` at `travel-agent
+b56b38823`) — J08 is fixed and is no longer a blocker. The critical path is
+therefore: restore a reliable green child-repo CI signal; cut a production EAS
+build; record current-revision and two-device evidence; then submit to TestFlight.
 App Store Connect, APNs, Clerk review credentials, and key rotation remain
 founder-console confirmations.
 

@@ -249,7 +249,7 @@ Candidate: `not promoted`
 | Backend logic evidence | 28 / 28 tests are **defined**; no receipt-backed execution is recorded in this matrix yet |
 | Branch-aware coverage | 82 branches are registered. File anchors are definition evidence only; the fidelity matrix records unrun until execution evidence exists. |
 | Visual journey evidence | 28 / 28 dedicated flows are **defined**; no device execution is implied by file discovery |
-| Seeded persona replay evidence | **27 / 28 pass**, 1 fail (J08) in the current seeded replay. This token-free replay is neither release-profile nor device evidence. |
+| Seeded persona replay evidence | **28 / 28 pass** — observed 2026-08-10 via `make certify-logic` at `travel-agent b56b38823` (`93 passed, 9 deselected in 36.97s`; 9 deselected are `requires_dogfood_wedge`, covered by `certify-corpus`). J08 passes; it was repaired by `2b61d7980` (2026-08-08). J27/J28 failed on the first run of this rerun and were repaired the same day — both were stale test fixtures against the `atlasgeo01` canonical-geography change, not product defects. This token-free replay is neither release-profile nor device evidence. |
 | Maestro wedge flows (24/25) | Historical result only; rerun before relying on it for a current build. |
 | Five-pack dogfood (agent gates) | Historical result only; not current device certification. |
 | Legacy golden parent gates | Existing parent evidence is retained as history. J06/J10/J11 branch manifests are the more precise definition of intended coverage. |
@@ -279,6 +279,7 @@ Live dogfood (S4 seed + two-account walk) is human/ops — see `docs/working/dog
 
 See [README.md](README.md). **28 / 28** canonical journeys have frontend,
 backend, and visual evidence definitions, not current execution receipts. The
-committed seeded replay is **27 / 28 passing with J08 failing**; the older 4 / 4
-scoped TestClient result is historical. Promotion requires fresh
-revision-bound receipts, resolution of J08, and the J04/J05/J10 two-device lane.
+seeded replay is **28 / 28 passing**, observed 2026-08-10 at `travel-agent
+b56b38823`. The older 4 / 4 scoped TestClient result is historical. J08 is no
+longer a blocker. Promotion now requires fresh revision-bound receipts and the
+J04/J05/J10 two-device lane.
