@@ -188,11 +188,39 @@ The integration owner alone synchronizes `docs/openapi.json`,
 compatibility deploys before app reliance; removal waits for client/cache expiry
 and device proof.
 
+## Execution ledger — 2026-08-10
+
+The approved source slices are now integrated. This is **source completion**,
+not a release or design-acceptance claim. The machine-readable ledger in
+`docs/status/home-surfaces-composition-inventory.json` records the exact
+variant, gate, source commits, and still-unverified evidence layers.
+
+| Family | State | Guardrail retained |
+|---|---|---|
+| Places Count Door | Integrated | only the count door; no quiet panel or client grouping |
+| Trips Near You | Integrated | internal dogfood plus server foreground/permission/freshness receipt |
+| Trips Today Mapped | Integrated | internal dogfood, member/online/valid-map gate, Plan-owned route |
+| Trips Invite Seat | Integrated | confirmed organizer only; canonical People owner mints invites |
+| Trips Open Loops | Integrated | server readiness checklist only; Plan is the single action |
+| Places registers | Integrated, default-off | verdict/change/log only; no recommendation/caveat/apparatus |
+| Places comparison | Contract-only, dark | no published explicit pair with complete facts |
+| Places reading spine | Integrated, internal opt-in | existing two-angle fork only; large-type fallback retained |
+| Places Saved Unplaced | Integrated, internal opt-in | owner explicit saves without catalog scope; Places-only ownership |
+| Trips Trip Feel | Integrated, internal opt-in | local mounted state only; never saved, shared, or sent |
+
+The earlier misplaced Trips Saved Unplaced experiment was intentionally not
+integrated; the implemented version is Places-feed owned.
+
 ## Current stop conditions
 
-- There are 19 unresolved and one exploratory composition rows. They are not
-  coding debt until a verdict exists.
-- Physical-device evidence remains unavailable while the connected iPhones are
-  offline; simulator/mock evidence must not be promoted to `V=verified`.
-- A backend-real canary is required before any named family is called
-  backend-validated; generated fixtures are not a substitute.
+- Fixture (`F`), authenticated backend-real (`B`), and physical-device (`V`)
+  evidence remain unverified for every new family. A mock/simulator or green
+  source suite must not be promoted to a release verdict.
+- The connected iPhones remain unavailable for physical capture. Device proof
+  still needs normal and large Dynamic Type, online/offline cache, permission,
+  image-failure, bottom-tab/FAB, and narrow-width paths.
+- The comparison contract stays dark until a source-authored public candidate
+  set supplies its complete comparable fact set; it must not infer pairs from
+  saved, location, taste, trip, or group data.
+- Deferred/rejected/relocated variants remain out of scope until a new founder
+  decision and domain contract exist.

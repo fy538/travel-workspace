@@ -7,6 +7,88 @@
   "as_of": "2026-08-10",
   "evidence_boundary": "Static/source audit only. F, B, and V remain unverified unless a later evidence receipt updates the item.",
   "evidence_receipts": [],
+  "execution_ledger": [
+    {
+      "family": "places-count-door",
+      "scope": "count-door only; quiet-panel remains unadopted",
+      "source_state": "integrated",
+      "visibility": "current typed door",
+      "commits": ["1499cc6b"],
+      "evidence": {"F": "not_verified", "B": "not_verified", "V": "not_verified"}
+    },
+    {
+      "family": "trips-near-you",
+      "scope": "foreground crown receipt only",
+      "source_state": "integrated",
+      "visibility": "internal dogfood, permission/freshness receipt required",
+      "commits": ["b9098e0bd", "854eb117", "6c5e6fb3"],
+      "evidence": {"F": "not_verified", "B": "not_verified", "V": "not_verified"}
+    },
+    {
+      "family": "trips-today-mapped",
+      "scope": "Plan-owned map face only",
+      "source_state": "integrated",
+      "visibility": "internal dogfood; online/member/valid-map gate",
+      "commits": ["34758460"],
+      "evidence": {"F": "not_verified", "B": "not_verified", "V": "not_verified"}
+    },
+    {
+      "family": "trips-invite-seat",
+      "scope": "organizer-only empty seat to canonical People owner",
+      "source_state": "integrated",
+      "visibility": "existing projection authority",
+      "commits": ["fa8d120f"],
+      "evidence": {"F": "not_verified", "B": "not_verified", "V": "not_verified"}
+    },
+    {
+      "family": "trips-open-loops",
+      "scope": "one bounded readiness/checklist receipt",
+      "source_state": "integrated",
+      "visibility": "server-produced when grounded",
+      "commits": ["e236dd0d9", "a1c6faac", "db5f0f84"],
+      "evidence": {"F": "not_verified", "B": "not_verified", "V": "not_verified"}
+    },
+    {
+      "family": "places-non-recommendation-registers",
+      "scope": "verdict, change, log only; no caveat/apparatus/recommendation",
+      "source_state": "integrated",
+      "visibility": "default-off",
+      "commits": ["74fc220c5", "052d972f", "8d71ceed"],
+      "evidence": {"F": "not_verified", "B": "not_verified", "V": "not_verified"}
+    },
+    {
+      "family": "places-two-place-comparison",
+      "scope": "one explicit source-authored pair with complete comparable facts",
+      "source_state": "contract_only",
+      "visibility": "dark: no published candidate set",
+      "commits": ["23314bb30"],
+      "evidence": {"F": "not_verified", "B": "not_verified", "V": "not_verified"}
+    },
+    {
+      "family": "places-mirrored-reading-spine",
+      "scope": "existing two-angle fork only",
+      "source_state": "integrated",
+      "visibility": "internal explicit opt-in",
+      "commits": ["bfaa66d6"],
+      "evidence": {"F": "not_verified", "B": "not_verified", "V": "not_verified"}
+    },
+    {
+      "family": "places-saved-unplaced",
+      "scope": "owner explicit saves without catalog scope only",
+      "source_state": "integrated",
+      "visibility": "internal explicit opt-in",
+      "commits": ["dcfefec99", "cc176079", "b1ca1529"],
+      "evidence": {"F": "not_verified", "B": "not_verified", "V": "not_verified"}
+    },
+    {
+      "family": "trips-trip-feel-static",
+      "scope": "local-only mounted-view exploration",
+      "source_state": "integrated",
+      "visibility": "internal explicit opt-in",
+      "commits": ["1db882ce"],
+      "evidence": {"F": "not_verified", "B": "not_verified", "V": "not_verified"}
+    }
+  ],
   "items": [
     {
       "id": "places-a-register-anatomy",
