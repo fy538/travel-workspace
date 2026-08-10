@@ -88,6 +88,21 @@ blank template is not H evidence.
 6. Create a new adjudicated artifact version; never mutate v1 into apparent H
    evidence. Calibration and readiness are recomputed against the new version.
 
+Validate the two completed copies with:
+
+```bash
+python3 scripts/check_ai_dl_human_reviews.py \
+  --corpus travel-agent/eval/ai_decision_learning/artifacts/private_grounded_disruption/v1/corpus.json \
+  --review /secure/path/reviewer-a.json \
+  --review /secure/path/reviewer-b.json \
+  --adjudication /secure/path/adjudication.json
+```
+
+Omit `--adjudication` on the first comparison. The command exits 2 and lists
+the exact disagreement case IDs when adjudication is required. It rejects
+incomplete packets, duplicate reviewers, prose reason fields, unbound
+adjudication, and a reviewer acting as adjudicator.
+
 Required owner input: two reviewer IDs and one adjudicator ID. The source
 protocol requires at least two independent reviewers.
 
