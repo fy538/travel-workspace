@@ -9962,6 +9962,44 @@
             }
           },
           {
+            "name": "location_permission",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "granted",
+                    "denied",
+                    "unavailable"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Location Permission"
+            }
+          },
+          {
+            "name": "location_reported_at",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Location Reported At"
+            }
+          },
+          {
             "name": "authorization",
             "in": "header",
             "required": false,
@@ -10129,6 +10167,44 @@
                 }
               ],
               "title": "Place Label"
+            }
+          },
+          {
+            "name": "location_permission",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "granted",
+                    "denied",
+                    "unavailable"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Location Permission"
+            }
+          },
+          {
+            "name": "location_reported_at",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Location Reported At"
             }
           },
           {
@@ -88153,6 +88229,80 @@
         ],
         "title": "TripsHomeGroupModule"
       },
+      "TripsHomeNearYouState": {
+        "properties": {
+          "module_id": {
+            "type": "string",
+            "const": "trips:near_you:foreground",
+            "title": "Module Id",
+            "default": "trips:near_you:foreground"
+          },
+          "availability": {
+            "type": "string",
+            "enum": [
+              "available",
+              "permission_denied",
+              "location_unavailable",
+              "location_stale",
+              "no_results"
+            ],
+            "title": "Availability"
+          },
+          "permission": {
+            "type": "string",
+            "enum": [
+              "granted",
+              "denied",
+              "unavailable"
+            ],
+            "title": "Permission"
+          },
+          "freshness": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "live",
+                  "recent",
+                  "stale",
+                  "absent"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Freshness"
+          },
+          "content_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Content Id"
+          },
+          "content_revision": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 1,
+            "title": "Content Revision"
+          }
+        },
+        "type": "object",
+        "required": [
+          "availability",
+          "permission",
+          "content_revision"
+        ],
+        "title": "TripsHomeNearYouState",
+        "description": "The safe foreground-location outcome for the Trips Near-You slice.\n\nThis is present only when a new client explicitly reports foreground\nlocation permission.  It gives the app an honest unavailable state without\nexposing a coordinate, a raw acquisition timestamp, or a home-derived\nfallback as though it were current location."
+      },
       "TripsHomeNowModule": {
         "properties": {
           "id": {
@@ -88608,6 +88758,75 @@
         "title": "TripsHomeReceiptLedger",
         "description": "Who owes whom, from ``structured.settle``.\n\nMoney is never re-derived client-side: ``amount_label`` and\n``total_label`` arrive already formatted by the settle producer, which is\nthe same discipline ``DeckStructured`` documents for its own faces."
       },
+      "TripsHomeReceiptNearYou": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "near_you",
+            "title": "Kind",
+            "default": "near_you"
+          },
+          "source": {
+            "type": "string",
+            "const": "foreground",
+            "title": "Source",
+            "default": "foreground"
+          },
+          "freshness": {
+            "type": "string",
+            "enum": [
+              "live",
+              "recent"
+            ],
+            "title": "Freshness"
+          },
+          "places": {
+            "items": {
+              "$ref": "#/components/schemas/TripsHomeReceiptNearYouPlace"
+            },
+            "type": "array",
+            "maxItems": 3,
+            "minItems": 1,
+            "title": "Places"
+          }
+        },
+        "type": "object",
+        "required": [
+          "freshness",
+          "places"
+        ],
+        "title": "TripsHomeReceiptNearYou",
+        "description": "Grounded nearby proof, available only for a fresh foreground reading.\n\n``source`` and ``freshness`` deliberately describe the authority for the\nclaim without serialising the reading itself.  In particular, this shape\nhas no latitude, longitude, timestamp, provider identity, save/loved tag,\nor free-text reason derived from a person's private profile."
+      },
+      "TripsHomeReceiptNearYouPlace": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "walk_min": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 240.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Walk Min"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "TripsHomeReceiptNearYouPlace",
+        "description": "One public place fact in a foreground Near-You crown receipt.\n\nThis is intentionally much narrower than ``DeckNearYouPlace``.  The\ncrown needs named, walkable evidence, not venue ids, provider ids, a\ncoordinate, or the private taste/saves reasoning that selected a place."
+      },
       "TripsHomeReceiptPeople": {
         "properties": {
           "kind": {
@@ -88957,6 +89176,9 @@
                     "$ref": "#/components/schemas/TripsHomeReceiptCandidates"
                   },
                   {
+                    "$ref": "#/components/schemas/TripsHomeReceiptNearYou"
+                  },
+                  {
                     "$ref": "#/components/schemas/TripsHomeReceiptSpine"
                   },
                   {
@@ -88975,6 +89197,7 @@
                     "conditions": "#/components/schemas/TripsHomeReceiptConditions",
                     "diff": "#/components/schemas/TripsHomeReceiptDiff",
                     "ledger": "#/components/schemas/TripsHomeReceiptLedger",
+                    "near_you": "#/components/schemas/TripsHomeReceiptNearYou",
                     "people": "#/components/schemas/TripsHomeReceiptPeople",
                     "shape": "#/components/schemas/TripsHomeReceiptShape",
                     "spine": "#/components/schemas/TripsHomeReceiptSpine",
@@ -89186,6 +89409,16 @@
             },
             "type": "array",
             "title": "Rows"
+          },
+          "near_you": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TripsHomeNearYouState"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "generated_at": {
             "type": "string",
