@@ -27,8 +27,9 @@ five independent gates. A pass in one gate must not promote another.
 | --- | --- | --- |
 | Lisbon backend support | **support observed** | Canonical proposal apply and inverse-revert ran on the controlled two-member staging Trip. This is not live-provider, device, P05, or P07 evidence. |
 | Controlled device | **doorway support observed** | Full two-account proposal, projection, private outcome, correction, and revert assertions on a clean pinned revision. |
-| AI provider comparison | **blocked** | Approved provider/model, credentials, and a bounded spend envelope; typed outputs only. |
-| Human anchors | **blocked** | Two independent reviewers plus an adjudicator for disagreements. |
+| AI provider comparison | **observed; iterate** | The bounded A-layer run completed 16/16 cases with 8 acceptable and two hard-gate failures. It does not authorize shadow promotion. |
+| Human anchors | **waived; absent** | The owner skipped review. No H evidence or calibration exists, so shadow promotion remains blocked. |
+| Shadow telemetry retention | **source complete; not deployed** | Deploy backend `bb3a645bd`, then observe the scheduled 14-day raw-receipt sweep before runtime shadow can be considered. |
 | Physical proof / new iOS build | **blocked** | Two provisioned physical devices and identities, then an exact-SHA build after EAS capacity is available. |
 
 P05 and P07 remain dark. AI shadow remains off. No source, database, staging
@@ -184,7 +185,7 @@ four hard-gate failures to two, and trails the local structured reference's
 authority. The immutable content-free artifact is
 `travel-agent/eval/ai_decision_learning/artifacts/private_grounded_disruption/provider-run-2026-08-10.json`.
 
-## Telemetry-retention decision proposal
+## Telemetry-retention decision and enforcement
 
 Recommended initial policy for the private, content-free shadow only:
 
@@ -201,8 +202,19 @@ Approval authorizes observation only. It does not authorize a provider call,
 visible output, a canary, a mutation, notification delivery, group behavior, or
 durable inferred learning.
 
-The owner approved this policy on 2026-08-10. Implementation must still enforce
-the windows and prohibited fields before any runtime observation is enabled.
+The owner approved this policy on 2026-08-10. Backend
+`bb3a645bdcbd3d7a21ab01a144723d5daa0b5976` now enforces the raw-receipt side
+in source: a nightly 03:35 UTC worker and the manual privacy purge delete only
+`proactive_events` rows whose event type is `ai_decision_shadow` and trigger
+source is `ai_decision_learning` after 14 days. The selector requires both
+markers so it cannot erase unrelated proactive history. The sweep emits only
+aggregate count and window telemetry.
+
+There is no materialized shadow aggregate store today, so there is nothing to
+age out at 90 days. The 90-day aggregate limit remains a ceiling for any future
+aggregate schema or external sink configuration. Source completion is not
+deployment evidence: runtime shadow stays off until this backend revision is
+deployed and one scheduled sweep is observed.
 
 ## Full controlled-device and physical walks
 
@@ -254,12 +266,15 @@ differ. Human OTP entry remains an operator action.
 3. Run the complete controlled two-account device flow and record P05/P07 only
    for the assertions actually covered.
 4. Build for two provisioned devices and run fresh physical assertions.
-5. Complete human adjudication and the approved provider comparison.
-6. Approve telemetry policy; only then consider the dark private shadow.
+5. Deploy the retention source revision and observe one scheduled sweep.
+6. Keep human calibration explicitly absent and the provider result at
+   `iterate`; neither is a promotion pass.
 7. Make separate decisions for Group Trip, shadow observation, the local second
    occasion, and any future private canary.
 
-The fastest owner actions are: name the human reviewers, choose the provider and
-cost ceiling, approve or revise telemetry retention, register a second iPhone,
-and restore EAS build capacity. Engineering can then execute the remaining
-commands without weakening the evidence boundary.
+The remaining external actions are to wait for EAS capacity, obtain a second
+physical iPhone and identity if P05/P07 physical proof is still required, and
+provide a real future-block provider disruption. Human calibration remains
+waived by owner decision. Engineering can deploy and observe the retention
+sweep without weakening the evidence boundary, but cannot promote shadow from
+the current `iterate` result.

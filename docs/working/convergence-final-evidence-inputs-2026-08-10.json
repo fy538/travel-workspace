@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "provider_observed_external_device_work_blocked",
+  "status": "provider_observed_retention_source_complete_external_device_work_blocked",
   "created_at": "2026-08-10",
   "lisbon": {
     "trip_id": "f47e582d-85a6-454e-8a2d-be3a199f0b09",
@@ -67,7 +67,14 @@
     "aggregate_retention_days": 90,
     "private_content_retention": "prohibited",
     "approver": "owner",
-    "decision": "approved_not_yet_enforced"
+    "decision": "approved_source_enforced_not_deployed",
+    "source_backend_sha": "bb3a645bdcbd3d7a21ab01a144723d5daa0b5976",
+    "raw_receipt_selector": {
+      "event_type": "ai_decision_shadow",
+      "trigger_source": "ai_decision_learning"
+    },
+    "nightly_schedule_utc": "03:35",
+    "aggregate_materialization": "none"
   },
   "physical": {
     "required_unique_udids": 2,

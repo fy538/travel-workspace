@@ -72,7 +72,7 @@
   },
   "external_blockers": [
     "human_calibration_absent_shadow_promotion_blocked",
-    "shadow_telemetry_retention_enforcement",
+    "deploy_shadow_telemetry_retention_and_observe_nightly_sweep",
     "eas_ios_monthly_build_quota_or_paid_plan",
     "two_physical_devices_and_identities",
     "governed_p05_p07_two_account_device_flows",
