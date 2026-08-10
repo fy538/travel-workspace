@@ -3,7 +3,7 @@
 > Surface: Trips
 > Maturity (for MVP): Built-dark
 > Status: partial/dark
-> Last updated: 2026-07-16
+> Last updated: 2026-08-09
 
 ## Purpose
 The multi-provider booking spine — searches flights, hotels, restaurants, transit,
@@ -19,8 +19,8 @@ quiet vegetarian, it's Sarah's birthday.
 
 ## Public interface (what other systems may call / read)
 - **Inbound (FE/agent → BE):** Concierge `propose_booking` / `confirm_booking` / `book_now` tools (via `capability.py`) · `GET /api/trips/{trip_id}/booking/readiness` (after trip-membership check) · `GET /api/trips/{trip_id}/booking/affiliate-links/travel-insurance`.
-- **Inbound (event):** `itinerary.committed` → `subscribers._on_itinerary_committed` warms a pending session (idempotency key `concierge:{itinerary_id}:{autonomy}`) → dispatcher polls every 5s and runs the graph.
-- **Consumes:** Planning/Itinerary (the blocks it searches against), Group/Social (party composition for the brief), the shared resilience decorators.
+- **Inbound (event):** `itinerary.committed` is plan-only and does not start provider work. An explicit concierge/proposal/REST booking request creates a session (idempotently) → dispatcher polls every 5s and runs the graph.
+- **Consumes:** Planning/Itinerary (the blocks it searches against), Group/Social (party composition for the brief), provider capability/readiness contracts, and the shared resilience decorators.
 - **Never:** add a new provider until restaurants + venue briefing are real (provider freeze, per Booking Product Strategy); never mark a deep-link offer "confirmed" automatically.
 
 ## Owns (source of truth)
@@ -49,6 +49,7 @@ receipts, but the itinerary blocks remain owned by Planning/Itinerary.
 - **Consent is a named durable ledger** — every included traveler may answer only their own approved/declined state; the controller alone may remind a pending traveler or narrow the scope to self. Approved, pending, declined, and excluded rows plus reminder evidence survive reads so view-only travelers never have to infer who is blocking provider confirmation.
 - **Shared provider truth survives account deletion without the person** — confirmed/cancelled offers, live holds, ambiguous reconciliation claims, active restaurant contact, protected dependencies, and non-terminal provider sagas transfer to a remaining shared-trip member. Retained rows are minimized to operational evidence and anonymized; traveler preferences, passenger/contact/payment data, notes, transcripts, venue briefs, deep links, and the deleted account UUID do not survive. Draft/unused booking state and solo-trip bookings are deleted.
 - **Trip archival stops forward booking work, not recovery** — archived trips reject new sessions, proposal decisions, offer selection/refresh, hold settlement, cart confirmation, and restaurant-contact retry with a stable `trip_archived` conflict. Reads, provider-truth reconciliation, cancellation, and hold release remain available so archival cannot trap an existing external liability.
+- **Coverage is evidence-bound** — the booking coverage read model marks a block covered from a booked state, an exact block-anchored capture, or a unique venue-only capture. Repeated same-venue blocks remain in progress until the capture is anchored; a user-stated accommodation is not booking proof.
 - **Manual recovery is not an override** — an operator may resolve an active restaurant attempt only after automatic reconciliation is explicitly complete. The attempt number, current attempt status, and offer status are locked and rechecked; a late webhook or conflicting terminal state wins.
 - **Signed voice callbacks are one terminalization boundary** — Bland HMAC-SHA256 signs the raw callback body. Signed metadata must equal the URL's `attempt_id` plus `attempt_number`, and the signed `call_id` must equal the durable provider reference before parsing. Attempt status, normalized offer status, provider-outcome event, and confirmation writeback queue then commit atomically. Negative attempt outcomes normalize to offer `failed`.
 
@@ -63,6 +64,46 @@ receipts, but the itinerary blocks remain owned by Planning/Itinerary.
 - Operator resolution write fails after either state update → the entire transaction rolls back, including attempt, offer, and audit event; the same resolution id can be retried safely.
 - Confirmation commits but itinerary/receipt projection crashes → durable per-attempt writeback state retains completed steps; the supervised loop reclaims an expired lease and resumes without contacting the restaurant or changing provider truth.
 - Signed restaurant callback audit write fails → attempt, offer, and projection queue all roll back. Provider retry can safely re-run the same callback; concurrent duplicates produce one event.
+
+## Current architecture after the product pivot
+
+The product is **Experience → Plan → Trip**. The itinerary ledger owns committed
+plan blocks and their projections. Booking is an optional, controller-owned
+boundary around provider work: it owns sessions, normalized offers, external
+mutation claims, provider reconciliation evidence, cancellation truth, receipts,
+and the booking-coverage read model. A plan commit never implies a booking or
+search side effect. This is the deliberate seam that keeps provider mutation dark
+while the venue-brief and human-handoff loop are proven.
+
+### Provider operation matrix
+
+The backend contract lives in `booking_agent/providers/base.py::ProviderCapabilities`
+and is surfaced by `GET /api/trips/{trip_id}/booking/readiness` as the
+`provider_operation_boundaries` check. Credentials indicate configured supply;
+they do not grant mutation authority.
+
+| Provider family | Search / handoff | Reconcile | Checkout / cancellation | Product posture |
+|---|---|---|---|---|
+| Duffel | Implemented | Implemented | Implemented but gated by live flag + final approval | Keep dark until read-only reconciliation and multi-member walk are credible |
+| Amadeus | Search/price + deep link | Not implemented | Not implemented | Handoff only |
+| Rome2Rio / Viator | Search/deep link | Not implemented | Affiliate/deep-link only | Handoff only; attribution still gated |
+| Restaurant / OpenTable | Discovery/availability + handoff | Channel-specific | No reservation mutation | Venue brief and provider/channel proof first |
+
+### Code map and ownership
+
+| Concern | Backend source of truth | Client / projection surface |
+|---|---|---|
+| Session, offer, status transitions | `booking_agent/db/booking_crud.py`, booking state machines | `data/booking.ts`, booking session screen |
+| Provider mutation and unknown outcome | `tasks/provider_checkout.py`, `checkout_reconciliation.py`, `provider_operations.py` | recovery cards and read-only reconcile action |
+| Cancellation quote/approval/recovery | `api/routes/booking.py`, `db/cancellation_crud.py`, `core/booking_approval.py` | quote review dialog, cancellation recovery state |
+| Restaurant contact / confirmation projection | `restaurant_attempts`, `db/restaurant_recovery.py`, writeback workers | booking receipt and activity |
+| Accommodation evidence | `core/db/trip_accommodations.py`, `core/booking_coverage.py` | stay/booking coverage lanes |
+| Capability and rollout | `providers/base.py`, `capability.py`, `readiness.py` | readiness/check surfaces; no optimistic mutation CTA |
+| Planning seam | `booking_agent/subscribers.py` (plan-only) | Trip/itinerary remains canonical planning truth |
+
+Any new provider or mutation path must update the capability contract, readiness
+matrix, state-machine transitions, durable projection/recovery tests, and the
+explicit provider-freeze decision together.
 
 ## Maturity & validation
 - Serves journey: 10 (booking / stay / expense / trust loop).
