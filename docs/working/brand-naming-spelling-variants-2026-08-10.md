@@ -106,7 +106,7 @@ speech test. The useful pattern is:
 |---|---|---|---|---|
 | **Pareya** | `parea` / παρέα | A group of friends and the act of spending time together; unusually strong for multiplayer and shared presence | `pareya.ai` open; `.com` registered/parked | **Best Greek-derived survivor** |
 | **Koyno** | `koino` / κοινό | Common, shared, or public; suggests a shared world and collective intelligence | `koyno.ai` open; `.com` registered | Interesting, but pronunciation and “coin-o” association need testing |
-| **Oyko** | `oikos` / οἶκος | House, household, or dwelling; relationship with the places of ordinary life | `oyko.ai` open; `.com` registered | Compact, but visually unfamiliar and home-limited |
+| **Oyko** | `oikos` / οἶκος | House, household, or dwelling; relationship with the places of ordinary life | `oyko.ai` open; `.com` registered | **Stop:** exact-name loyalty and customer-engagement software collision |
 | **Metaxi** | `metaxy` / μεταξύ | Between or among; the relational space between people, places, and moments | `metaxi.ai` open; `.com` registered | Conceptually strong; pronunciation likely too difficult |
 | **Edho** | `edo` / εδώ | Here | `edho.ai` open; `.com` registered | Very direct; the added `h` creates pronunciation uncertainty |
 | **Alethya** | `aletheia` / ἀλήθεια | Truth or unconcealment; relevant to provenance and grounded recommendations | `alethya.ai` open; `.com` registered | Rich thesis connection, but too long and pronunciation-heavy |
@@ -114,6 +114,24 @@ speech test. The useful pattern is:
 | **Steky** | `steki` / στέκι | A habitual haunt, favorite spot, or place where someone regularly spends time with their group | `steky.ai` open; `.com` registered | Excellent meaning, but sounds identical to crowded `Steki` and adjacent `Stekio` software |
 | **Seyma** | `sema` / σῆμα | Sign or signal | `seyma.ai` open; `.com` registered | Fits push intelligence, but is also a common personal name and existing company name |
 | **Khorin** | `chora` / χώρα | Space, land, territory, or place | `khorin.ai` open; `.com` registered | Too far from the root and not pronunciation-safe |
+
+### Second Greek pass: happening and becoming
+
+The most productive new semantic territory was not classical mythology. It was
+ordinary modern Greek for what is happening in the world now.
+
+| Candidate | Greek source | Meaning and product connection | Domain screen | Current read |
+|---|---|---|---|---|
+| **Symven** | `symvainei` / συμβαίνει | “It happens,” “it occurs,” or “it is taking place”; directly answers the product question “what is happening here?” | Exact `.com` and `.ai` open | **Advance to language test.** Best new Greek play; distinctive and compact, with a possible health-tech or pharmaceutical feel to test |
+| **Simven** | `symvainei` / συμβαίνει | Same semantic source with the least decorative spelling | Exact `.com` and `.ai` open | **Language-test beside Symven.** Easier-looking, but less ownable and less visibly rooted |
+| **Gineti** | `ginetai` / γίνεται | “It happens,” “it becomes,” and contextually “it is possible”; connects change, possibility, and the unfolding world | Exact `.com` and `.ai` open | Strong semantics, but English readers may say “jih-NET-ee” rather than the Greek-like “YEE-neh-tee” |
+| **Yineti** | `ginetai` / γίνεται | Same source, respelled to cue the Greek initial sound | Exact `.com` and `.ai` open | More pronunciation-faithful, but visually more invented; keep only as a comparison control |
+| **Koyno** | `koino` / κοινό | Common, shared, or public; suggests a shared world and collective intelligence | `koyno.ai` open; `.com` registered | Still relevant to multiplayer, but “coin-o” is the likely English reading |
+
+`Symven` and `Simven` had no meaningful exact-name consumer company, app, or
+preliminary US trademark-search collision in this screen. `SIMVEN` does occur
+as an obscure inventory-system acronym in Indonesian documents, so the result
+is clean rather than literally nonexistent. Domain status remains point-in-time.
 
 ### Greek-root rejections discovered in this pass
 
@@ -125,6 +143,13 @@ speech test. The useful pattern is:
 | **Faros / Faroz** | The Pharos-derived spelling is easy to understand, but `Faros` is taken and `Faroz` loses the calm, premium quality of the source. |
 | **Astyr** | Attractive Aster respelling, but already registered as an active US word mark. |
 | **Metaxa** | Familiar Greek-derived form, but strongly occupied by the spirits brand and not semantically faithful enough to justify the noise. |
+| **Vrisko** | The Greek “I find” is attractive, but Vrisko is already a mature Greek local-search product with nearby businesses, places, maps, and routing—a direct category collision. |
+| **Kefy** | Derived from `kefi` (joy or high spirits), but an active AI marketing-automation product uses the exact spelling. |
+| **Simeo** | Derived from `simeio` (point, spot, or sign), but active travel/eSIM and asset-software businesses use the exact name. |
+| **Epafi** | Greek for contact, but an active smart contact-management product uses the exact name. |
+| **Vlepo** | Greek for “I see,” but active property/hospitality and livestream software products use the exact name. |
+| **Plateya** | A play on `plateia`, the public square, but an active French staffing/back-office platform uses the exact name. |
+| **Oyko** | A compact `oikos` play, but an active loyalty-card and customer-engagement app uses the exact name. |
 
 ## Ranked slate after this pass
 
@@ -133,19 +158,22 @@ These are exploration leaders, not adoption recommendations:
 1. **Settin** — best contextual/world-model expression.
 2. **Stirin** — best proactive and ambient-intelligence expression.
 3. **Pareya** — best Greek-derived and multiplayer expression.
-4. **Elswher** — cleanest exact-domain availability; discovery-led.
-5. **Amungst** — strongest exact-domain multiplayer control.
-6. **Tydin** — promising push-intelligence wildcard.
+4. **Symven** — best new “what is happening here?” expression; needs speech
+   and category-association testing.
+5. **Elswher** — cleanest exact-domain availability; discovery-led.
+6. **Amungst** — strongest exact-domain multiplayer control.
+7. **Tydin** — promising push-intelligence wildcard.
 
 The Greek search did not outperform **Settin** or **Stirin** overall. Its main
-contribution is **Pareya**, plus the useful semantic territory around `steki`:
-people developing a recurring relationship with a place they return to. That
-territory may inspire positioning even if the literal word is not usable.
+contributions are **Pareya**, **Symven**, and the useful semantic territory
+around `steki`: people developing a recurring relationship with a place they
+return to. That territory may inspire positioning even if the literal word is
+not usable.
 
 ## Next validation gate
 
-Run one blind language test on `Settin`, `Stirin`, `Pareya`, `Elswher`,
-`Amungst`, and `Tydin`:
+Run one blind language test on `Settin`, `Stirin`, `Pareya`, `Symven`, `Simven`,
+`Elswher`, `Amungst`, and `Tydin`:
 
 1. show the name without its source word or etymology;
 2. ask for immediate pronunciation;
@@ -170,6 +198,10 @@ searches and native-speaker review.
   https://atlas.perseus.tufts.edu/dictionaries/entry/urn%3Acite2%3Ascaife-viewer%3Adictionaries.v1%3Alsj-n71075/
 - Greek `parea`, a group of friends or company:
   https://univext.com/en/resources/greek/words/11540/company-group
+- Greek `symvainei`, “it happens,” “it occurs,” or “it is taking place”:
+  https://www.greek-language.gr/greekLang/modern_greek/tools/lexica/triantafyllides/search.html?lq=%CF%83%CF%85%CE%BC%CE%B2%CE%B1%CE%AF%CE%BD%CE%B5%CE%B9
+- Greek `ginetai`, “it happens,” “it becomes,” or “it is possible”:
+  https://en.wiktionary.org/wiki/%CE%B3%CE%AF%CE%BD%CE%B5%CF%84%CE%B1%CE%B9
 - Bekon location-based social product: https://www.bekon.io/
 - Bekon Social: https://apps.apple.com/us/app/bekon-social/id6761499740
 - Enterprise AI Bekon: https://www.trybekon.com/
@@ -183,5 +215,12 @@ searches and native-speaker review.
   https://play.google.com/store/apps/details?id=io.dipla.app
 - Nostia social travel app: https://nostia.io/
 - Stekio software: https://www.stekio.com/about-us/
+- Vrisko local-search product: https://www.vrisko.gr/
+- Kefy AI marketing automation: https://www.kefy.app/
+- Simeo travel eSIM product: https://www.simeo.ca/en/about
+- Epafi smart contacts: https://epafi.app/
+- Vlepo property and hospitality software: https://www.vlepo.id/
+- Plateya back-office platform: https://www.plateya.fr/accueil
+- Oyko loyalty software: https://www.oykoapp.com/
 - USPTO likelihood of confusion:
   https://www.uspto.gov/trademarks/search/likelihood-confusion
