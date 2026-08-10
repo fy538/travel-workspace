@@ -29,7 +29,10 @@ The fixed scenario is owned by:
 - `travel-agent/tests/scenarios/test_lisbon_group_disruption_contract.py`;
 - `travel-agent/tests/scenarios/test_lisbon_group_disruption_replay.py`;
 - `travel-app/__tests__/utils/takeSomewhere.test.ts`;
-- `travel-app/__tests__/components/trip-plan/NowModeStrip.test.tsx`.
+- `travel-app/__tests__/components/trip-plan/NowModeStrip.test.tsx`;
+- `travel-app/.maestro/72-group-trip-doorway-device-mock.yaml` (supporting
+  live-group doorway proof only; it does not exercise the Lisbon mutation
+  lifecycle and cannot pass P05 or P07 by itself).
 
 ## Exact staging identity
 
@@ -53,6 +56,11 @@ AI decision shadow flags remain false throughout this product proof.
 
 Use an internal build against a controlled backend seeded from the fixed
 fixture. Record `device_mock`, never `physical`.
+
+The local simulator support flow has separately confirmed the production Plan
+doorway and private review-first handoff on a clean revision. Its receipt is
+owned under `P05-doorway-support`, not `P05`; steps 3–7 below remain required
+before the product proof can pass.
 
 1. Organizer opens the live Lisbon Plan and sees `Take us somewhere` only when
    there is a server-resolved current block.

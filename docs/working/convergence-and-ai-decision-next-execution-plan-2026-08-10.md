@@ -617,6 +617,12 @@ The remaining work is deliberately outside source implementation:
 - make separate promotion decisions for Group Trip, shadow observation, the
   local second occasion, and any future private canary.
 
+One controlled iOS-simulator support flow now passes the production live-Plan
+doorway into a private, review-first composer. It is recorded as
+`P05-doorway-support`, deliberately not as P05/P07: it does not cover invite
+redemption, the deployed proposal lifecycle, two-observer projection
+convergence, outcome privacy/correction, or physical hardware.
+
 Until those receipts exist, P05/P07 remain dark, AI shadow remains off, and no
 device, staging, human, model-quality, causal-impact, or release certification
 is claimed from the source and backend-real results above.
