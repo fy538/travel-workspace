@@ -29583,6 +29583,58 @@
         ],
         "title": "AIOpsStatusResponse"
       },
+      "AIRunSourceRevisions": {
+        "properties": {
+          "membership": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Membership"
+          },
+          "relationship": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Relationship"
+          },
+          "privacy": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Privacy"
+          },
+          "itinerary": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Itinerary"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "AIRunSourceRevisions",
+        "description": "Content-free revisions that bound the evidence used by one run."
+      },
       "AccommodationPatchRequest": {
         "properties": {
           "freeform_label": {
@@ -39882,6 +39934,176 @@
         ],
         "title": "DayPrecondition"
       },
+      "DecisionCausalRef": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "decision_causal_ref.v1",
+            "title": "Schema Version",
+            "default": "decision_causal_ref.v1"
+          },
+          "root_run_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Root Run Id"
+          },
+          "attempt_run_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Attempt Run Id"
+          },
+          "parent_run_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Run Id"
+          },
+          "workflow_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@+-]{0,159}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Workflow Id"
+          },
+          "correlation_id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@+-]{0,159}$",
+            "title": "Correlation Id"
+          },
+          "occasion_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@+-]{0,159}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occasion Id"
+          },
+          "experience_scope": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ExperienceScope"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "relationship_scope": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RelationshipScope"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "policy_revision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@+-]{0,159}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Policy Revision"
+          },
+          "source_revisions": {
+            "$ref": "#/components/schemas/AIRunSourceRevisions",
+            "default": {}
+          },
+          "dependencies": {
+            "items": {
+              "$ref": "#/components/schemas/DecisionDependencyRef"
+            },
+            "type": "array",
+            "title": "Dependencies",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "root_run_id",
+          "attempt_run_id",
+          "correlation_id"
+        ],
+        "title": "DecisionCausalRef",
+        "description": "Minimum content-free join carried across a bounded decision chain.\n\n``attempt_run_id`` identifies one execution attempt. ``root_run_id``\nidentifies the root attempt for a parent/child run tree. ``workflow_id``\nis stable across retries when a caller has a durable workflow; otherwise\n``correlation_id`` falls back to the root run ID.  None of these IDs grant\nmutation authority."
+      },
+      "DecisionDependencyRef": {
+        "properties": {
+          "source": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{0,79}$",
+            "title": "Source"
+          },
+          "authority": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{0,79}$",
+            "title": "Authority"
+          },
+          "freshness_class": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{0,79}$",
+            "title": "Freshness Class"
+          },
+          "revision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@+-]{0,159}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Revision"
+          },
+          "required": {
+            "type": "boolean",
+            "title": "Required",
+            "default": false
+          },
+          "available": {
+            "type": "boolean",
+            "title": "Available",
+            "default": true
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "source",
+          "authority",
+          "freshness_class"
+        ],
+        "title": "DecisionDependencyRef",
+        "description": "Content-free identity for one dependency admitted to a decision.\n\nThe reference names an owning authority and revision, never the value that\nauthority returned.  ``available=False`` is an honest negative assertion;\nit must not be paired with a fabricated revision."
+      },
       "DeckBriefDay": {
         "properties": {
           "label": {
@@ -45766,6 +45988,64 @@
           "status"
         ],
         "title": "ExperienceResponse"
+      },
+      "ExperienceScope": {
+        "properties": {
+          "kind": {
+            "$ref": "#/components/schemas/ExperienceScopeKind"
+          },
+          "scope_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Scope Id"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "conversation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Conversation Id"
+          },
+          "durable_plan": {
+            "type": "boolean",
+            "title": "Durable Plan",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind",
+          "scope_id"
+        ],
+        "title": "ExperienceScope",
+        "description": "Content-free identity for the real-world situation an AI run serves."
+      },
+      "ExperienceScopeKind": {
+        "type": "string",
+        "enum": [
+          "trip",
+          "local_plan",
+          "ambient"
+        ],
+        "title": "ExperienceScopeKind"
       },
       "ExtendRequest": {
         "properties": {
@@ -65513,6 +65793,18 @@
               }
             ],
             "title": "Companion Fit"
+          },
+          "source_proposal_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Proposal Id"
           }
         },
         "additionalProperties": false,
@@ -65996,6 +66288,47 @@
         ],
         "title": "RelationshipMemoryClaim",
         "description": "One governed claim; corrections supersede rather than erase history."
+      },
+      "RelationshipScope": {
+        "properties": {
+          "kind": {
+            "$ref": "#/components/schemas/RelationshipScopeKind"
+          },
+          "scope_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Scope Id"
+          },
+          "revision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind",
+          "scope_id"
+        ],
+        "title": "RelationshipScope",
+        "description": "Stable identity of the relationship context used by one AI workflow."
+      },
+      "RelationshipScopeKind": {
+        "type": "string",
+        "enum": [
+          "circle",
+          "trip_roster"
+        ],
+        "title": "RelationshipScopeKind"
       },
       "RelationshipVisibilityRequest": {
         "properties": {
@@ -69036,6 +69369,51 @@
         ],
         "title": "SituationPlanBlock",
         "description": "Compact reference to the block most relevant right now."
+      },
+      "SituationServingIdentity": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "trip_situation_serving.v1",
+            "title": "Schema Version",
+            "default": "trip_situation_serving.v1"
+          },
+          "scope_kind": {
+            "type": "string",
+            "const": "trip",
+            "title": "Scope Kind",
+            "default": "trip"
+          },
+          "scope_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Scope Id"
+          },
+          "dependencies": {
+            "items": {
+              "$ref": "#/components/schemas/DecisionDependencyRef"
+            },
+            "type": "array",
+            "title": "Dependencies"
+          },
+          "causal_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DecisionCausalRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "scope_id",
+          "dependencies"
+        ],
+        "title": "SituationServingIdentity",
+        "description": "Content-free identity of the sources compiled for this snapshot."
       },
       "SituationTimeline": {
         "properties": {
@@ -74686,6 +75064,16 @@
           },
           "ambient_nearby": {
             "$ref": "#/components/schemas/SituationAmbientNearby"
+          },
+          "serving_identity": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SituationServingIdentity"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "generated_at": {
             "type": "string",
