@@ -8,6 +8,7 @@ import journey_evidence as subject
 
 def _receipt(**overrides: object) -> dict[str, object]:
     base: dict[str, object] = {
+        "schema_version": subject.SCHEMA_VERSION,
         "run_id": "jr-1",
         "recorded_at": "2026-08-07T12:00:00+00:00",
         "workspace_sha": "workspace-current",
@@ -77,12 +78,46 @@ def test_blocked_receipt_requires_a_reason() -> None:
 
 
 def test_revision_marks_tracked_modifications_as_dirty(tmp_path: Path) -> None:
-    class _Result:
-        def __init__(self, returncode: int) -> None:
-            self.returncode = returncode
-
     with (
-        patch.object(subject.subprocess, "check_output", return_value="abc123\n"),
-        patch.object(subject.subprocess, "run", side_effect=[_Result(1), _Result(0)]),
+        patch.object(
+            subject.subprocess,
+            "check_output",
+            side_effect=["abc123\n", " M tracked.py\n"],
+        ),
     ):
         assert subject._revision(tmp_path) == "abc123-dirty"
+
+
+def test_passing_receipt_rejects_dirty_revision() -> None:
+    try:
+        subject.validate_receipt(_receipt(workspace_sha="workspace-current-dirty"))
+    except subject.ReceiptError as exc:
+        assert "clean repository revisions" in str(exc)
+    else:
+        raise AssertionError("expected a dirty passing receipt to fail validation")
+
+
+def test_physical_receipt_requires_build_and_artifact_identity() -> None:
+    try:
+        subject.validate_receipt(_receipt(layer="physical"))
+    except subject.ReceiptError as exc:
+        assert "physical receipts require" in str(exc)
+    else:
+        raise AssertionError("expected an incomplete physical receipt to fail")
+
+
+def test_valid_physical_receipt_accepts_explicit_identity() -> None:
+    receipt = _receipt(
+        layer="physical",
+        app_build_id="eas-build-123",
+        backend_deploy_digest="fly-release-456",
+        migration_revision="20260810_01",
+        seed_corpus_hash="sha256:" + "a" * 64,
+        devices=["iPhone 15|iOS 18.6"],
+        identities=["founder-a", "founder-b"],
+        oracle_hash="sha256:" + "b" * 64,
+        flow_hash="sha256:" + "c" * 64,
+        reviewer="feihuyan",
+        artifacts=[{"name": "maestro-video", "sha256": "sha256:" + "d" * 64}],
+    )
+    subject.validate_receipt(receipt)

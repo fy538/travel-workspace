@@ -30,10 +30,18 @@ CI artifacts under `.tmp/journey-evidence/`.
 
 Every receipt records:
 
+- `schema_version` (currently `2`)
 - `run_id` and UTC `recorded_at`
 - exact `workspace_sha`, `app_sha`, and `backend_sha`
 - layer, environment, journeys, optional branches, command, status, duration
 - optional blocked reason and artifact references
+
+Passing receipts require all three repository revisions to be known and clean.
+Unknown or `-dirty` revisions may describe a failed or blocked diagnostic, but
+cannot certify a pass. Physical pass/fail receipts additionally require the
+exact app build, backend deploy, migration, seed/corpus digest, device and
+sanitized identity list, oracle and flow hashes, reviewer, and content-addressed
+artifact hashes.
 
 A receipt is `STALE` whenever any recorded revision differs from the current
 checkout. It cannot certify a later app or backend build.
@@ -47,6 +55,17 @@ The only execution states are `PASS`, `FAIL`, `BLOCKED`, `UNRUN`, and `STALE`.
 python scripts/journey_evidence.py record \
   --layer contract --status pass --journey P01 --environment local \
   --command 'npx jest __tests__/proofs/p01.test.tsx --runInBand'
+
+# Physical evidence requires the exact candidate and hashed artifacts.
+python scripts/journey_evidence.py record \
+  --layer physical --status pass --journey P01 --environment founder-device \
+  --command 'maestro test .maestro/p01.yaml' \
+  --app-build-id eas-build-123 --backend-deploy-digest fly-release-456 \
+  --migration-revision 20260810_01 \
+  --seed-corpus-hash sha256:<64-hex> \
+  --device 'iPhone 15|iOS 18.6' --identity founder-a --identity founder-b \
+  --oracle-hash sha256:<64-hex> --flow-hash sha256:<64-hex> \
+  --reviewer feihuyan --artifact 'maestro-video=sha256:<64-hex>'
 
 make journey-evidence-report
 ```
