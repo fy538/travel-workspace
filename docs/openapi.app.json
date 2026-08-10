@@ -59838,6 +59838,16 @@
                 "type": "null"
               }
             ]
+          },
+          "register": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesRegister"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -61219,6 +61229,121 @@
         ],
         "title": "PlacesReadingPage"
       },
+      "PlacesRegister": {
+        "properties": {
+          "role": {
+            "$ref": "#/components/schemas/PlacesRegisterRole"
+          },
+          "evidence": {
+            "$ref": "#/components/schemas/PlacesRegisterEvidence"
+          },
+          "lines": {
+            "items": {
+              "$ref": "#/components/schemas/PlacesRegisterLine"
+            },
+            "type": "array",
+            "maxItems": 3,
+            "minItems": 1,
+            "title": "Lines"
+          },
+          "footnote": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 240,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Footnote"
+          }
+        },
+        "type": "object",
+        "required": [
+          "role",
+          "evidence",
+          "lines"
+        ],
+        "title": "PlacesRegister",
+        "description": "Structured lower block beneath a single, uncarded place anatomy."
+      },
+      "PlacesRegisterEvidence": {
+        "properties": {
+          "fact_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Fact Key"
+          },
+          "revision_key": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Revision Key"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/PlacesRegisterEvidenceKind"
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Observed At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "fact_key",
+          "revision_key",
+          "kind",
+          "observed_at"
+        ],
+        "title": "PlacesRegisterEvidence",
+        "description": "Stable fact identity plus mutable source revision for one register."
+      },
+      "PlacesRegisterEvidenceKind": {
+        "type": "string",
+        "enum": [
+          "dossier_spot",
+          "place_status",
+          "personal_affinity"
+        ],
+        "title": "PlacesRegisterEvidenceKind",
+        "description": "Closed, source-owned evidence vocabulary for a register."
+      },
+      "PlacesRegisterLine": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "maxLength": 32,
+            "minLength": 1,
+            "title": "Label"
+          },
+          "value": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Value"
+          }
+        },
+        "type": "object",
+        "required": [
+          "label",
+          "value"
+        ],
+        "title": "PlacesRegisterLine"
+      },
+      "PlacesRegisterRole": {
+        "type": "string",
+        "enum": [
+          "verdict",
+          "change",
+          "log"
+        ],
+        "title": "PlacesRegisterRole",
+        "description": "Allowed non-recommendation registers for the Places exploration.\n\nRecommendation and apparatus are deliberately not values here: the former\nlacks a non-proximity confidence signal and the latter lacks attributable\nsources per claim. A missing predicate must yield no register, not a\ngeneric fallback."
+      },
       "PlacesRelationshipTruth": {
         "properties": {
           "saved": {
@@ -61661,7 +61786,8 @@
           "starter",
           "guide",
           "experiences",
-          "saved"
+          "saved",
+          "register"
         ],
         "title": "PlacesSectionReason",
         "description": "Why a section is on the page, independent of its content type.\n\n``AREAS`` was removed 2026-08-07: a dead reason with no producer and a\nreserved rank slot that never filled. `PlacesCardKind.AREA`,\n`PlacesAreaPreview` and the client's `case \"area\":` renderer are all\nstill live — an area card ships today under ``NEIGHBOURHOOD``\n(see `sections.py`). Only the standalone reason was unreachable."
