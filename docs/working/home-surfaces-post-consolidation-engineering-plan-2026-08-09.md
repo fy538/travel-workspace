@@ -1121,7 +1121,51 @@ The broader program succeeds only when adopted families also have backend-real
 and physical-device receipts. Another component existing in the source tree is
 not a completion criterion.
 
-## 12. Source landmarks
+## 12. Execution record — 2026-08-10
+
+This record distinguishes source-layer implementation from acceptance. It is
+intentionally not an F/B/V receipt.
+
+### Landed implementation packages
+
+| Package | Result | Commits |
+|---|---|---|
+| Places root truth | One pure selector now chooses cold offline, error, loading, unavailable, empty, and feed states from request/cache/renderability/availability truth. Zero-renderable unavailable and offline snapshots no longer mount a dishonest empty feed. | App `1615f7b7` |
+| Trips posture and queue semantics | Standing Ask now derives from normalized projection posture; loading no longer impersonates an action; aggregate queue identity is durable across copy-only revisions. | App `e856761b`, `008ff522` |
+| Places typography and loading voice | The visual loading floor remains authored while transport detail is accessibility-only. Full-width editorial preview copy uses the bounded semantic serif role. | App `b934cfee` |
+| Trips Local Plans / Day Map rhythm | Failed map leaves suppress themselves before cluster layout and Local Plans/Day Map have an explicit internal gap. | App `2e65b2e8` |
+| Root consolidation | Places state/search responsibilities moved into focused components; Trips actions and settled performance effects moved out of the controller. | App `b06571a2`, `a8230c3e`, `d9ea207b` |
+| Governance | Inventory rows are independently adoptable: Time and Trip Feel are split, and technical source completion is not confused with adoption or acceptance. | Workspace `f7427f7`, `929a538` |
+
+### Verification on the settled source tree
+
+- Frontend focused regression suites, typecheck, home-surface budgets, and
+  `verify:fast` pass. The latter finished with lint warnings but no errors.
+- Backend `tests/home` plus `tests/places`: **1084 passed, 1 skipped**.
+- Generated API contract check passes; Places identity contract remains
+  10 kinds × 2 payloads.
+- Home-surface governance validation passes for all 36 inventory items;
+  external-authority hash checks pass for both current surfaces.
+
+### Acceptance still intentionally open
+
+- The design-ledger inventory remains at `F=not_verified` for all 36 items,
+  `B=not_verified` for the 34 applicable items, and `V=not_verified` for all
+  36. No backend-real or physical-device receipt was fabricated from unit
+  tests or a simulator.
+- Both detected physical iPhones are offline. They must be connected before
+  the required physical-device matrix can be run.
+- The simulator polish runner began with `trips-home` and its cold-invitation
+  scenario failed because the expected `trips-home-cold-invitation` test ID was
+  not present after launch. This is a capture-harness/app-fixture discrepancy
+  to diagnose before screenshot evidence can be trusted; it is not an
+  acceptance result.
+- The 19 unresolved families and the Trip Feel stateful follow-up remain
+  product/adoption decisions, not engineering defects that can safely be
+  invented. The lead hierarchy, map expansion/privacy, return registers, and
+  notice/prompt relocation remain explicitly blocked by those decisions.
+
+## 13. Source landmarks
 
 ### Authority and status
 
