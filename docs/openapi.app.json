@@ -5375,19 +5375,81 @@
     },
     "/api/trips/{trip_id}/booking/sessions/{session_id}/offers/{offer_id}/cancel/quote": {
       "post": {
-        "tags": ["booking"],
+        "tags": [
+          "booking"
+        ],
         "summary": "Quote Offer Cancellation",
         "description": "Read a provider cancellation/refund quote without changing the booking.",
         "operationId": "quote_offer_cancellation_api_trips__trip_id__booking_sessions__session_id__offers__offer_id__cancel_quote_post",
         "parameters": [
-          {"name": "trip_id", "in": "path", "required": true, "schema": {"type": "string", "format": "uuid", "title": "Trip Id"}},
-          {"name": "session_id", "in": "path", "required": true, "schema": {"type": "string", "format": "uuid", "title": "Session Id"}},
-          {"name": "offer_id", "in": "path", "required": true, "schema": {"type": "string", "format": "uuid", "title": "Offer Id"}},
-          {"name": "authorization", "in": "header", "required": false, "schema": {"anyOf": [{"type": "string"}, {"type": "null"}], "title": "Authorization"}}
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Session Id"
+            }
+          },
+          {
+            "name": "offer_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Offer Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
         ],
         "responses": {
-          "200": {"description": "Successful Response", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/CancellationQuoteResponse"}}}},
-          "422": {"description": "Validation Error", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/HTTPValidationError"}}}}
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancellationQuoteResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -14736,6 +14798,60 @@
         }
       }
     },
+    "/api/me/relationship-memory/claims": {
+      "get": {
+        "tags": [
+          "memory"
+        ],
+        "summary": "List My Relationship Memory Claims",
+        "description": "Return the caller's bounded private claims for explicit sharing choices.",
+        "operationId": "list_my_relationship_memory_claims_api_me_relationship_memory_claims_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelationshipMemoryClaim"
+                  },
+                  "title": "Response List My Relationship Memory Claims Api Me Relationship Memory Claims Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/me/memory": {
       "get": {
         "tags": [
@@ -18529,7 +18645,7 @@
           "saves"
         ],
         "summary": "Delete Save",
-        "description": "Remove a save.\n\nNo venue_voted_down / tombstone event is emitted — affinity scores are\nintentionally append-only (a save records genuine interest; withdrawing it\nlater doesn't negate that signal). If explicit downvotes are added in a\nfuture voting mechanic, emit venue_voted_down here.",
+        "description": "Remove a save.\n\nRemoving a save is a neutral correction, not a dislike. Venue removal is\nrecorded so downstream interpretation and opportunity consumers can close\nsave-derived state without manufacturing a negative preference.",
         "operationId": "delete_save_api_users__user_id__saves__entity_type___entity_id__delete",
         "parameters": [
           {
@@ -18712,6 +18828,59 @@
         }
       }
     },
+    "/api/social-circles/invitations": {
+      "get": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "List Circle Invitations",
+        "operationId": "list_circle_invitations_api_social_circles_invitations_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SocialCircleInvitation"
+                  },
+                  "title": "Response List Circle Invitations Api Social Circles Invitations Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/social-circles/{circle_id}/events": {
       "get": {
         "tags": [
@@ -18777,6 +18946,148 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SocialCircleEventPage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/social-circles/{circle_id}/memory-claims": {
+      "get": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "Read Circle Memory Claims",
+        "operationId": "read_circle_memory_claims_api_social_circles__circle_id__memory_claims_get",
+        "parameters": [
+          {
+            "name": "circle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Circle Id"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SharedRelationshipMemoryClaim"
+                  },
+                  "title": "Response Read Circle Memory Claims Api Social Circles  Circle Id  Memory Claims Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "Share Circle Memory Claim",
+        "operationId": "share_circle_memory_claim_api_social_circles__circle_id__memory_claims_post",
+        "parameters": [
+          {
+            "name": "circle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Circle Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShareRelationshipMemoryClaimRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SharedRelationshipMemoryClaim"
                 }
               }
             }
@@ -18905,6 +19216,244 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SocialCircleMember"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/social-circles/{circle_id}/accept": {
+      "post": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "Accept Circle Invitation",
+        "operationId": "accept_circle_invitation_api_social_circles__circle_id__accept_post",
+        "parameters": [
+          {
+            "name": "circle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Circle Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialCircleMember"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/social-circles/{circle_id}/decline": {
+      "post": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "Decline Circle Invitation",
+        "operationId": "decline_circle_invitation_api_social_circles__circle_id__decline_post",
+        "parameters": [
+          {
+            "name": "circle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Circle Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialCircleMember"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/social-circles/{circle_id}/leave": {
+      "post": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "Leave Circle",
+        "description": "Withdraw the authenticated member's relationship consent.",
+        "operationId": "leave_circle_api_social_circles__circle_id__leave_post",
+        "parameters": [
+          {
+            "name": "circle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Circle Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialCircleMember"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/social-circles/{circle_id}/archive": {
+      "post": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "Archive Circle",
+        "description": "Archive the circle and revoke its future relationship projections.",
+        "operationId": "archive_circle_api_social_circles__circle_id__archive_post",
+        "parameters": [
+          {
+            "name": "circle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Circle Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocialCircle"
                 }
               }
             }
@@ -23590,7 +24139,7 @@
           "trips"
         ],
         "summary": "Get Trip Map Share",
-        "description": "P4: mint a short-lived (24h) HMAC-signed URL for the interactive map preview page.\n\nThe URL points to a public Mapbox GL JS page that any recipient can open\nwithout logging in. The HMAC token is the only authentication gate; it\nexpires after 24 hours and cannot be refreshed without another authenticated\ncall to this endpoint.\n\nNo DB writes — the token is a signed payload derived entirely from the\ntrip ID and the current timestamp. ``MAP_SHARE_SECRET`` env var must be\nset in production; falls back to a dev-only string.",
+        "description": "P4: mint a short-lived (24h) HMAC-signed URL for the interactive map preview page.\n\nThe URL points to a public Mapbox GL JS page that any recipient can open\nwithout logging in. The HMAC protects integrity; a durable share artifact\ncontrols revocation and expires after 24 hours.\n\n``MAP_SHARE_SECRET`` env var must be set in production; it falls back to a\ndev-only string only outside production.",
         "operationId": "get_trip_map_share_api_trips__trip_id__share_get",
         "parameters": [
           {
@@ -25261,6 +25810,23 @@
                 }
               ],
               "title": "Source"
+            }
+          },
+          {
+            "name": "trip_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Trip Id"
             }
           },
           {
@@ -34946,8 +35512,15 @@
             "title": "Session Id"
           },
           "block_id": {
-            "type": "string",
-            "format": "uuid",
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Block Id"
           },
           "provider": {
@@ -35131,7 +35704,6 @@
         "required": [
           "id",
           "session_id",
-          "block_id",
           "provider",
           "category",
           "created_at",
@@ -35536,23 +36108,6 @@
         "title": "BridgeRenderResponse",
         "description": "Inline base64 audio data URL for the bridge.\n\nPhase 6b.3 v1 returns the audio inline so the client can hand\nit directly to ``adapter.setSource()`` without an extra round-trip.\nPhase 8 can switch to CDN URLs once R2 is wired and bridge audio\nstarts being cached server-side."
       },
-      "CancellationQuoteResponse": {
-        "properties": {
-          "offer_id": {"type": "string", "title": "Offer Id"},
-          "provider": {"type": "string", "title": "Provider"},
-          "status": {"type": "string", "title": "Status"},
-          "cancellation_id": {"type": "string", "title": "Cancellation Id"},
-          "provider_booking_id": {"type": "string", "title": "Provider Booking Id"},
-          "refund_amount": {"anyOf": [{"type": "number"}, {"type": "null"}], "title": "Refund Amount"},
-          "refund_currency": {"anyOf": [{"type": "string"}, {"type": "null"}], "title": "Refund Currency"},
-          "quote_expires_at": {"anyOf": [{"type": "string"}, {"type": "null"}], "title": "Quote Expires At"},
-          "quote_fingerprint": {"type": "string", "title": "Quote Fingerprint"},
-          "message": {"type": "string", "title": "Message"}
-        },
-        "type": "object",
-        "required": ["offer_id", "provider", "status", "cancellation_id", "provider_booking_id", "quote_fingerprint", "message"],
-        "title": "CancellationQuoteResponse"
-      },
       "CancelOfferRequest": {
         "properties": {
           "cancellation_id": {
@@ -35723,6 +36278,82 @@
         ],
         "title": "CancelTurnResponse",
         "description": "Result of an ownership-scoped explicit turn cancellation request."
+      },
+      "CancellationQuoteResponse": {
+        "properties": {
+          "offer_id": {
+            "type": "string",
+            "title": "Offer Id"
+          },
+          "provider": {
+            "type": "string",
+            "title": "Provider"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "cancellation_id": {
+            "type": "string",
+            "title": "Cancellation Id"
+          },
+          "provider_booking_id": {
+            "type": "string",
+            "title": "Provider Booking Id"
+          },
+          "refund_amount": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Refund Amount"
+          },
+          "refund_currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Refund Currency"
+          },
+          "quote_expires_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Quote Expires At"
+          },
+          "quote_fingerprint": {
+            "type": "string",
+            "title": "Quote Fingerprint"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "offer_id",
+          "provider",
+          "status",
+          "cancellation_id",
+          "provider_booking_id",
+          "quote_fingerprint",
+          "message"
+        ],
+        "title": "CancellationQuoteResponse"
       },
       "CapabilityKey": {
         "type": "string",
@@ -42469,6 +43100,24 @@
               }
             ],
             "title": "City Slug"
+          },
+          "angle_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Angle Id"
+          },
+          "provenance": {
+            "items": {
+              "$ref": "#/components/schemas/DossierEvidenceRef"
+            },
+            "type": "array",
+            "title": "Provenance"
           }
         },
         "type": "object",
@@ -42488,6 +43137,121 @@
         ],
         "title": "DossierDetail",
         "description": "Full dossier content + metadata."
+      },
+      "DossierEvidenceRef": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "dossier_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dossier Id"
+          },
+          "angle_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Angle Id"
+          },
+          "evidence_kind": {
+            "type": "string",
+            "enum": [
+              "observation",
+              "claim",
+              "judgment"
+            ],
+            "title": "Evidence Kind"
+          },
+          "evidence_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evidence Id"
+          },
+          "evidence_key": {
+            "type": "string",
+            "title": "Evidence Key"
+          },
+          "assertion": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Assertion"
+          },
+          "source_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Url"
+          },
+          "publisher": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Publisher"
+          },
+          "retrieved_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Retrieved At"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "evidence_kind",
+          "evidence_key",
+          "created_at"
+        ],
+        "title": "DossierEvidenceRef",
+        "description": "Safe, traveler-facing receipt for one editorial assertion."
       },
       "DossierExemplarItem": {
         "properties": {
@@ -43291,6 +44055,9 @@
             "title": "Share With Friends",
             "default": false
           },
+          "origin_context": {
+            "$ref": "#/components/schemas/SaveOriginContext"
+          },
           "saved_at": {
             "type": "string",
             "format": "date-time",
@@ -43351,6 +44118,16 @@
             "type": "boolean",
             "title": "Share With Friends",
             "default": false
+          },
+          "origin_context": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SaveOriginContext"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -44615,6 +45392,18 @@
               }
             ],
             "title": "Companion Fit"
+          },
+          "companion_scope": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Companion Scope"
           },
           "created_at": {
             "type": "string",
@@ -52234,18 +53023,26 @@
         "properties": {
           "north": {
             "type": "number",
+            "maximum": 90.0,
+            "minimum": -90.0,
             "title": "North"
           },
           "south": {
             "type": "number",
+            "maximum": 90.0,
+            "minimum": -90.0,
             "title": "South"
           },
           "east": {
             "type": "number",
+            "maximum": 180.0,
+            "minimum": -180.0,
             "title": "East"
           },
           "west": {
             "type": "number",
+            "maximum": 180.0,
+            "minimum": -180.0,
             "title": "West"
           }
         },
@@ -52674,10 +53471,14 @@
         "properties": {
           "lat": {
             "type": "number",
+            "maximum": 90.0,
+            "minimum": -90.0,
             "title": "Lat"
           },
           "lng": {
             "type": "number",
+            "maximum": 180.0,
+            "minimum": -180.0,
             "title": "Lng"
           }
         },
@@ -54699,6 +55500,35 @@
             },
             "type": "array",
             "title": "Citations",
+            "default": []
+          },
+          "grounded": {
+            "type": "boolean",
+            "title": "Grounded",
+            "default": true
+          },
+          "angle_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Angle Ids",
+            "default": []
+          },
+          "dossier_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Dossier Ids",
+            "default": []
+          },
+          "fragment_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Fragment Ids",
             "default": []
           },
           "message_id": {
@@ -58021,6 +58851,17 @@
           "id": {
             "type": "integer",
             "title": "Id"
+          },
+          "angle_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Angle Id"
           },
           "place_slug": {
             "type": "string",
@@ -64920,6 +65761,172 @@
         "title": "RelatedDossierItem",
         "description": "Lightweight dossier stub for the Keep Reading carousel."
       },
+      "RelationshipMemoryClaim": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "subject_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Subject User Id"
+          },
+          "relationship_scope_kind": {
+            "type": "string",
+            "enum": [
+              "personal",
+              "circle",
+              "trip_roster"
+            ],
+            "title": "Relationship Scope Kind"
+          },
+          "relationship_scope_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Relationship Scope Id"
+          },
+          "subject_type": {
+            "type": "string",
+            "title": "Subject Type"
+          },
+          "subject_key": {
+            "type": "string",
+            "title": "Subject Key"
+          },
+          "subject_label": {
+            "type": "string",
+            "title": "Subject Label"
+          },
+          "claim_type": {
+            "type": "string",
+            "enum": [
+              "place_verdict",
+              "companion_fit",
+              "shared_statement"
+            ],
+            "title": "Claim Type"
+          },
+          "claim_value": {
+            "type": "string",
+            "title": "Claim Value"
+          },
+          "source_type": {
+            "type": "string",
+            "title": "Source Type"
+          },
+          "source_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Source Id"
+          },
+          "source_scope": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Scope"
+          },
+          "source_claim_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Claim Id"
+          },
+          "supersedes_claim_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Supersedes Claim Id"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "private",
+              "circle"
+            ],
+            "title": "Visibility"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "active",
+              "superseded",
+              "retracted"
+            ],
+            "title": "State"
+          },
+          "confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence"
+          },
+          "evidence_refs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence Refs"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "subject_user_id",
+          "relationship_scope_kind",
+          "subject_type",
+          "subject_key",
+          "subject_label",
+          "claim_type",
+          "claim_value",
+          "source_type",
+          "source_id",
+          "visibility",
+          "state",
+          "confidence",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "RelationshipMemoryClaim",
+        "description": "One governed claim; corrections supersede rather than erase history."
+      },
       "RelationshipVisibilityRequest": {
         "properties": {
           "granularity": {
@@ -65894,6 +66901,152 @@
         ],
         "title": "SaveBoardResponse",
         "description": "The id of the saved (or revived) kept board. Saves are idempotent on\n(user, facet_set), so a repeat save returns the same id."
+      },
+      "SaveOriginContext": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "v1",
+            "title": "Schema Version",
+            "default": "v1"
+          },
+          "surface": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Surface"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "conversation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Conversation Id"
+          },
+          "message_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message Id"
+          },
+          "recommendation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Recommendation Id"
+          },
+          "discover_session_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Discover Session Id"
+          },
+          "guide_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Guide Id"
+          },
+          "inbound_item_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Inbound Item Id"
+          },
+          "circle_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Circle Id"
+          },
+          "shared_by_user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Shared By User Id"
+          },
+          "place_scope_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Scope Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "SaveOriginContext",
+        "description": "Content-free references describing where a save gesture came from.\n\nThis is deliberately an origin envelope, not an intent schema. It carries\nonly bounded classifications and opaque IDs that the server can resolve;\nclients must not put message text, search prose, or inferred meaning here."
       },
       "SavedBoardCover": {
         "properties": {
@@ -66996,6 +68149,21 @@
         "title": "ShareEventCreate",
         "description": "Body of ``POST /api/public/stories/{slug}/share-events``."
       },
+      "ShareRelationshipMemoryClaimRequest": {
+        "properties": {
+          "claim_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Claim Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "claim_id"
+        ],
+        "title": "ShareRelationshipMemoryClaimRequest",
+        "description": "Explicit consent action for promoting one private claim."
+      },
       "ShareStats": {
         "properties": {
           "opens": {
@@ -67232,6 +68400,82 @@
         ],
         "title": "SharedPlanSnapshot",
         "description": "The reduced, no-poll snapshot for a forwardable local Plan link."
+      },
+      "SharedRelationshipMemoryClaim": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "circle_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Circle Id"
+          },
+          "shared_by_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Shared By User Id"
+          },
+          "subject_type": {
+            "type": "string",
+            "title": "Subject Type"
+          },
+          "subject_key": {
+            "type": "string",
+            "title": "Subject Key"
+          },
+          "subject_label": {
+            "type": "string",
+            "title": "Subject Label"
+          },
+          "claim_type": {
+            "type": "string",
+            "enum": [
+              "place_verdict",
+              "companion_fit",
+              "shared_statement"
+            ],
+            "title": "Claim Type"
+          },
+          "claim_value": {
+            "type": "string",
+            "title": "Claim Value"
+          },
+          "source_claim_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Source Claim Id"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "circle_id",
+          "shared_by_user_id",
+          "subject_type",
+          "subject_key",
+          "subject_label",
+          "claim_type",
+          "claim_value",
+          "source_claim_id",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "SharedRelationshipMemoryClaim",
+        "description": "Group-safe projection created by an explicit member share action."
       },
       "SimilarVenueResponse": {
         "properties": {
@@ -67937,6 +69181,11 @@
             ],
             "title": "Status"
           },
+          "confirmed": {
+            "type": "boolean",
+            "title": "Confirmed",
+            "default": false
+          },
           "revision": {
             "type": "integer",
             "minimum": 1.0,
@@ -68123,6 +69372,22 @@
         ],
         "title": "SocialCircleEventPage"
       },
+      "SocialCircleInvitation": {
+        "properties": {
+          "circle": {
+            "$ref": "#/components/schemas/SocialCircle"
+          },
+          "membership": {
+            "$ref": "#/components/schemas/SocialCircleMember"
+          }
+        },
+        "type": "object",
+        "required": [
+          "circle",
+          "membership"
+        ],
+        "title": "SocialCircleInvitation"
+      },
       "SocialCircleMember": {
         "properties": {
           "circle_id": {
@@ -68148,9 +69413,58 @@
             "enum": [
               "invited",
               "active",
+              "declined",
               "left"
             ],
             "title": "Status"
+          },
+          "invited_by": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Invited By"
+          },
+          "invited_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Invited At"
+          },
+          "confirmed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confirmed At"
+          },
+          "declined_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Declined At"
           },
           "source_trip_id": {
             "anyOf": [
@@ -73000,6 +74314,17 @@
             "type": "boolean",
             "title": "Active"
           },
+          "turn_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Turn Id"
+          },
           "user_id": {
             "anyOf": [
               {
@@ -73112,6 +74437,78 @@
         ],
         "title": "TripReadingPublicSection",
         "description": "Citation-free section contract safe for trip-member clients."
+      },
+      "TripSaveSuggestion": {
+        "properties": {
+          "entity_type": {
+            "type": "string",
+            "title": "Entity Type"
+          },
+          "entity_id": {
+            "type": "string",
+            "title": "Entity Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "category": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category"
+          },
+          "saved_by_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Saved By User Id"
+          },
+          "saved_by_display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Saved By Display Name"
+          },
+          "saved_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Saved At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_type",
+          "entity_id",
+          "name",
+          "saved_by_user_id",
+          "saved_at"
+        ],
+        "title": "TripSaveSuggestion",
+        "description": "One viewer-authorized member save inside a trip's city.\n\nThe viewer may see their own private save; another member's save requires\nexplicit per-save sharing. This is a planning suggestion, never an\nautomatic itinerary mutation."
+      },
+      "TripSaveSuggestionsResponse": {
+        "properties": {
+          "suggestions": {
+            "items": {
+              "$ref": "#/components/schemas/TripSaveSuggestion"
+            },
+            "type": "array",
+            "title": "Suggestions"
+          }
+        },
+        "type": "object",
+        "title": "TripSaveSuggestionsResponse",
+        "description": "``GET /api/trips/{trip_id}/planning/suggested-saves`` response body."
       },
       "TripSettlement": {
         "properties": {
@@ -74303,7 +75700,7 @@
           "type"
         ],
         "title": "TripsHomeDestination",
-        "description": "A stable, app-routable target for one ranked Home item.\n\nThis is deliberately navigation data only.  It never describes a write,\nso proposal, itinerary, booking, and expense mutations remain owned by\ntheir existing domain surfaces and canonical writers."
+        "description": "A stable, app-routable target for one ranked Home item.\n\nThis is navigation data only. Proposal, itinerary, booking, and expense\nmutations remain owned by their canonical domain surfaces."
       },
       "TripsHomeGroupModule": {
         "properties": {

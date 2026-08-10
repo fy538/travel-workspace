@@ -18,8 +18,24 @@
       "reason": "Server contract remains dark until a mobile consumer and device evidence are added.", "removal_trigger": "Add a verified mobile consumer or remove the endpoint.", "review_by": "2026-10-30"
     },
     "POST /api/trips/{trip_id}/booking/sessions/{session_id}/offers/{offer_id}/cancel/quote": {
-      "audience": "app", "consumers": [], "feature_flag": "BOOKING_DUFFEL_LIVE_BOOKING_ENABLED", "lifecycle": "dark", "owner": "booking",
-      "reason": "Cancellation quotes remain server-only until the client confirmation flow is device-validated.", "removal_trigger": "Add a verified mobile consumer or remove the endpoint.", "review_by": "2026-10-30"
+      "audience": "app", "consumers": [{"kind":"app_url","name":"quoteBookingCancellation","source":"travel-app/utils/api/http.ts"}], "feature_flag": "BOOKING_DUFFEL_LIVE_BOOKING_ENABLED", "lifecycle": "active", "owner": "booking",
+      "reason": "The booking confirmation screen requires a reviewed provider quote before it can submit a cancellation.", "removal_trigger": null, "review_by": "2026-10-30"
+    },
+    "DELETE /api/trips/{trip_id}/share": {
+      "audience": "app", "consumers": [], "feature_flag": "STORY_SHARE_ENABLED", "lifecycle": "dark", "owner": "maps",
+      "reason": "Map-share revocation transport has no approved mobile action yet.", "removal_trigger": "Add a device-validated revocation action or remove the endpoint.", "review_by": "2026-10-30"
+    },
+    "DELETE /api/social-circles/{circle_id}/members/{user_id}": {
+      "audience": "app", "consumers": [], "feature_flag": "SOCIAL_CIRCLE_AGENT_CONTEXT_ENABLED", "lifecycle": "dark", "owner": "multiplayer",
+      "reason": "Owner removal transport is retained, but no approved mobile lifecycle action reaches it.", "removal_trigger": "Add a device-validated owner removal flow or remove the endpoint.", "review_by": "2026-10-30"
+    },
+    "GET /api/trips/{trip_id}/planning/suggested-saves": {
+      "audience": "app", "consumers": [], "feature_flag": "PLACES_SECTIONS_FEED_ENABLED", "lifecycle": "dark", "owner": "places",
+      "reason": "Explicitly shared-save suggestions remain backend substrate until the trip planning UI is validated.", "removal_trigger": "Add a device-validated planning consumer or remove the endpoint.", "review_by": "2026-10-30"
+    },
+    "PATCH /api/users/{user_id}/saves/{entity_type}/{entity_id}": {
+      "audience": "app", "consumers": [], "feature_flag": "SOCIAL_CIRCLE_AGENT_CONTEXT_ENABLED", "lifecycle": "dark", "owner": "multiplayer",
+      "reason": "Per-save sharing consent is retained as a privacy substrate, but no approved mobile control reaches it.", "removal_trigger": "Add a device-validated consent control or remove the endpoint.", "review_by": "2026-10-30"
     },
     "POST /webhooks/booking/{provider}": {
       "audience": "app", "consumers": [], "feature_flag": "BOOKING_DUFFEL_LIVE_BOOKING_ENABLED", "lifecycle": "dark", "owner": "booking",
