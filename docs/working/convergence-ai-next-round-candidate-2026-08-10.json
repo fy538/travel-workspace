@@ -29,18 +29,18 @@
     },
     "integration_evidence": {
       "branch": "codex/convergence-integration-evidence",
-      "workspace_sha": "de310d19c27105c50afcb4ceccdbccbb834e2323",
+      "workspace_sha": "f6a57490aa787773d4bdb5f3c36b4920af605f66",
       "backend_sha": "743259b091ba7ee8bfc6b5ab8275297a3332d2b7",
       "app_sha": "2c9169d81acaa40a853c52ef353146d05d87ac0b"
     }
   },
   "candidate": {
-    "workspace_sha": "de310d19c27105c50afcb4ceccdbccbb834e2323",
+    "workspace_sha": "f6a57490aa787773d4bdb5f3c36b4920af605f66",
     "backend_sha": "743259b091ba7ee8bfc6b5ab8275297a3332d2b7",
     "app_sha": "2c9169d81acaa40a853c52ef353146d05d87ac0b",
     "migration_revision": "receiptidem01",
-    "backend_deploy_digest": null,
-    "app_build_id": null,
+    "backend_deploy_digest": "sha256:eb2bd02a7c13ee0cbba5c02696c164280367c6392a122a4863c6570b9044c64e",
+    "app_build_id": "eas-build:aa524cdb-7b34-4f27-9864-425df19a2e47+ios-update:a8ae572d-f59c-481c-b768-3359ecbc35b6",
     "seed_corpus_hash": "sha256:2064b775c5e76e77ab5215923d401ce199962debced77a91a553a414d4fae2e7"
   },
   "controls": {
@@ -70,8 +70,7 @@
     "human_anchor_adjudication",
     "shadow_telemetry_retention_approval",
     "model_provider_credential_and_spend_policy",
-    "backend_deployment_authority",
-    "eas_apple_clerk_operator_access",
+    "eas_ios_monthly_build_quota_or_paid_plan",
     "two_physical_devices_and_identities"
   ]
 }
