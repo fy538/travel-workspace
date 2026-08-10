@@ -341,6 +341,9 @@ fail closed.
 - Regenerate OpenAPI and mobile types once, after backend behavior is fixed.
 - Record schema/migration head, flag defaults, rollback controls, and seed hash.
 - Produce a machine-readable triple-SHA candidate manifest.
+- Treat the workspace SHA as the integration subject revision; one subsequent
+  single-parent, manifest-only projection commit may record that SHA without
+  changing the candidate's product/tooling identity.
 
 #### D3 — staging package
 

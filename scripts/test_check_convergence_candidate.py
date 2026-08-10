@@ -82,3 +82,33 @@ def test_round_controls_remain_dark(key: str, value: str) -> None:
     manifest["controls"][key] = value
     with pytest.raises(subject.CandidateError):
         subject.validate_manifest(manifest)
+
+
+def test_workspace_projection_requires_single_parent_and_manifest_only(monkeypatch) -> None:
+    candidate_sha = "a" * 40
+    projection_sha = "b" * 40
+    outputs = iter(
+        [
+            f"{projection_sha} {candidate_sha}\n",
+            "docs/working/convergence-ai-next-round-candidate-2026-08-10.json\n",
+        ]
+    )
+    monkeypatch.setattr(subject.subprocess, "check_output", lambda *args, **kwargs: next(outputs))
+    assert subject._workspace_projection_matches(
+        subject_sha=candidate_sha, actual_sha=projection_sha
+    )
+
+
+def test_workspace_projection_rejects_product_change(monkeypatch) -> None:
+    candidate_sha = "a" * 40
+    projection_sha = "b" * 40
+    outputs = iter(
+        [
+            f"{projection_sha} {candidate_sha}\n",
+            "backend/product.py\n",
+        ]
+    )
+    monkeypatch.setattr(subject.subprocess, "check_output", lambda *args, **kwargs: next(outputs))
+    assert not subject._workspace_projection_matches(
+        subject_sha=candidate_sha, actual_sha=projection_sha
+    )

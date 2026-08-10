@@ -31,6 +31,9 @@ CONTROL_OFF_KEYS = {
     "durable_inferred_learning",
     "proactive_delivery",
 }
+WORKSPACE_PROJECTION_PATHS = {
+    "docs/working/convergence-ai-next-round-candidate-2026-08-10.json",
+}
 
 
 class CandidateError(ValueError):
@@ -160,6 +163,37 @@ def _dirty(path: Path) -> bool:
     )
 
 
+def _workspace_projection_matches(*, subject_sha: str, actual_sha: str) -> bool:
+    """Allow one manifest-only commit after the pinned workspace subject.
+
+    A committed manifest cannot contain its own commit SHA. The evidence model
+    therefore permits exactly one single-parent projection commit whose only
+    changed path is this manifest. Product, tooling, merge, or generated-status
+    changes are not projection-only and invalidate the match.
+    """
+
+    parent_line = subprocess.check_output(
+        ["git", "rev-list", "--parents", "-n", "1", actual_sha],
+        cwd=ROOT,
+        text=True,
+        stderr=subprocess.DEVNULL,
+    ).strip()
+    parts = parent_line.split()
+    if parts != [actual_sha, subject_sha]:
+        return False
+    changed_paths = {
+        path
+        for path in subprocess.check_output(
+            ["git", "diff", "--name-only", f"{subject_sha}..{actual_sha}"],
+            cwd=ROOT,
+            text=True,
+            stderr=subprocess.DEVNULL,
+        ).splitlines()
+        if path
+    }
+    return changed_paths == WORKSPACE_PROJECTION_PATHS
+
+
 def validate_current_checkout(manifest: dict[str, Any]) -> None:
     candidate = manifest["candidate"]
     if any(candidate[key] is None for key in SHA_KEYS):
@@ -175,6 +209,9 @@ def validate_current_checkout(manifest: dict[str, Any]) -> None:
         if _dirty(path):
             raise CandidateError(f"{key} checkout is dirty")
         actual = _revision(path)
+        if key == "workspace_sha" and actual != candidate[key]:
+            if _workspace_projection_matches(subject_sha=candidate[key], actual_sha=actual):
+                continue
         if actual != candidate[key]:
             raise CandidateError(
                 f"{key} mismatch: manifest={candidate[key]}, checkout={actual}"
