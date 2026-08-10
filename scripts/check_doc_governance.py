@@ -95,7 +95,15 @@ def _normalize_paths(raw_paths: list[str]) -> list[Path]:
 
 
 def staged_additions() -> list[Path]:
-    names = _git("diff", "--cached", "--diff-filter=A", "--name-only", "--", "docs/*.md", "docs/**/*.md")
+    names = _git(
+        "diff",
+        "--cached",
+        "--diff-filter=A",
+        "--name-only",
+        "--",
+        "docs/*.md",
+        "docs/**/*.md",
+    )
     return _normalize_paths(names.splitlines())
 
 
@@ -113,7 +121,15 @@ def local_additions() -> list[Path]:
 
 
 def additions_since(base: str) -> list[Path]:
-    names = _git("diff", "--diff-filter=A", "--name-only", f"{base}...HEAD", "--", "docs/*.md", "docs/**/*.md")
+    names = _git(
+        "diff",
+        "--diff-filter=A",
+        "--name-only",
+        f"{base}...HEAD",
+        "--",
+        "docs/*.md",
+        "docs/**/*.md",
+    )
     return _normalize_paths(names.splitlines())
 
 
@@ -126,7 +142,9 @@ def _frontmatter(path: Path) -> tuple[dict[str, Any] | None, str | None]:
     if not lines or lines[0].strip() != "---":
         return None, "missing YAML frontmatter (file must start with ---)"
     try:
-        closing = next(i for i, line in enumerate(lines[1:], start=1) if line.strip() == "---")
+        closing = next(
+            i for i, line in enumerate(lines[1:], start=1) if line.strip() == "---"
+        )
     except StopIteration:
         return None, "YAML frontmatter has no closing ---"
     try:
@@ -143,7 +161,7 @@ def _as_date(value: Any, field: str) -> tuple[date | None, str | None]:
         return value, None
     if isinstance(value, str):
         try:
-            return date.fromisoformat(value)
+            return date.fromisoformat(value), None
         except ValueError:
             pass
     return None, f"{field} must be an ISO date (YYYY-MM-DD)"
@@ -156,25 +174,37 @@ def validate(path: Path) -> list[Finding]:
     assert meta is not None
     findings: list[Finding] = []
 
-    missing = sorted(field for field in REQUIRED_COMMON if meta.get(field) in (None, "", []))
+    missing = sorted(
+        field for field in REQUIRED_COMMON if meta.get(field) in (None, "", [])
+    )
     if missing:
-        findings.append(Finding(path, "missing required field(s): " + ", ".join(missing)))
+        findings.append(
+            Finding(path, "missing required field(s): " + ", ".join(missing))
+        )
 
     doc_type = meta.get("doc_type")
     if doc_type not in ALLOWED_TYPES:
         findings.append(
-            Finding(path, f"doc_type must be one of: {', '.join(sorted(ALLOWED_TYPES))}")
+            Finding(
+                path, f"doc_type must be one of: {', '.join(sorted(ALLOWED_TYPES))}"
+            )
         )
         return findings
 
     status = meta.get("status")
     if status not in ALLOWED_STATUSES[doc_type]:
         allowed = ", ".join(sorted(ALLOWED_STATUSES[doc_type]))
-        findings.append(Finding(path, f"status for {doc_type} must be one of: {allowed}"))
+        findings.append(
+            Finding(path, f"status for {doc_type} must be one of: {allowed}")
+        )
 
     why_new = meta.get("why_new")
     if isinstance(why_new, str) and len(why_new.strip()) < 20:
-        findings.append(Finding(path, "why_new must be a concrete explanation (at least 20 characters)"))
+        findings.append(
+            Finding(
+                path, "why_new must be a concrete explanation (at least 20 characters)"
+            )
+        )
 
     created, created_error = _as_date(meta.get("created"), "created")
     if created_error:
@@ -190,9 +220,15 @@ def validate(path: Path) -> list[Finding]:
         if error:
             findings.append(Finding(path, error))
         elif created and expires and expires > created + timedelta(days=30):
-            findings.append(Finding(path, "working document expires must be within 30 days of created"))
+            findings.append(
+                Finding(
+                    path, "working document expires must be within 30 days of created"
+                )
+            )
         elif created and expires and expires < created:
-            findings.append(Finding(path, "working document expires cannot precede created"))
+            findings.append(
+                Finding(path, "working document expires cannot precede created")
+            )
 
     if doc_type == "decision":
         _, error = _as_date(meta.get("decided"), "decided")

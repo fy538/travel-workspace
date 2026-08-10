@@ -16,7 +16,7 @@ source_of_truth_for: [phone-auth-implementation-plan-2026-07]
 alongside the existing email-code and Google/Apple OAuth.
 
 **Status:** plan only — not a committed decision. Phone auth is **not** in the
-locked v1 scope (`mvp-scope-and-flag-manifest-2026-06-30.md`) and is **not**
+locked [V1 scope](../release/v1-scope.md) and is **not**
 required for App Review (guideline 4.8 is already satisfied by Apple + Google
 Sign-In). Treat this as a post-cohort-1 product decision. This document exists
 so that if we say yes, the path is de-risked and the design brief is ready.

@@ -10,7 +10,12 @@
 ## 0. Orientation
 
 ### 0.1 What this project is
-Vesper is a place-aware travel concierge (React Native / Expo app + Python backend). Two independent git repos live under `~/travel-workspace/`:
+> **Historical product framing (2026-08-09):** This dated alignment plan was
+> authored during the travel-concierge phase. Preserve its implementation
+> evidence, but use Product Thesis and Product Model for current category and
+> product-object decisions.
+
+Vesper's then-current release was a place-aware travel concierge (React Native / Expo app + Python backend). Two independent git repos live under `~/travel-workspace/`:
 - `travel-app/` — the Expo client (this plan's target). Currently on branch `main`.
 - `travel-agent/` — backend/AI. **Out of scope** except where an item is explicitly tagged `[BACKEND]`.
 

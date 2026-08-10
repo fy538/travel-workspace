@@ -260,4 +260,8 @@ Live dogfood (S4 seed + two-account walk) is human/ops — see `docs/working/dog
 
 ## Promotion Rules
 
-See [README.md](README.md). **28 / 28** canonical journeys have frontend, backend, visual, and lived-persona evidence; **4 / 4** scoped live-API journeys pass through TestClient. Promotion to physical-device certified remains pending only for J04/J05/J10 because that lane requires two real signed-in devices.
+See [README.md](README.md). **28 / 28** canonical journeys have frontend,
+backend, and visual evidence definitions, not current execution receipts. The
+committed seeded replay is **27 / 28 passing with J08 failing**; the older 4 / 4
+scoped TestClient result is historical. Promotion requires fresh
+revision-bound receipts, resolution of J08, and the J04/J05/J10 two-device lane.

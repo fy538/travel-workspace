@@ -4,14 +4,18 @@ entries:
     title: Product Thesis
     path: travel-agent/docs/product/Product Thesis.md
     owns: The product's core promise and strategic thesis.
+  - id: product-model
+    title: Product Model
+    path: travel-agent/docs/product/Product Model.md
+    owns: The lived-experience object model, spatial grounding, harness timescales, and occasion proof loop.
   - id: beliefs
     title: What We Believe
     path: travel-agent/docs/product/What We Believe.md
     owns: Durable product principles used to make tradeoffs.
   - id: v1-scope
     title: V1 Scope
-    path: docs/working/mvp-scope-and-flag-manifest-2026-06-30.md
-    owns: The bounded first-release scope and flag posture.
+    path: docs/release/v1-scope.md
+    owns: The generated bounded first-release intent and flag posture.
   - id: current-state
     title: Current State
     path: docs/status/current-state.md

@@ -9,7 +9,12 @@
 ## 0. Orientation
 
 ### 0.1 What Atlas is, and what this overhaul does
-Vesper is a place-aware travel concierge (React Native / Expo app in `travel-app/`, Python backend in `travel-agent/`, two independent git repos under `~/travel-workspace/`). **Atlas is the 4th tab** (tabs are Trips · Vesper · Discover · Atlas) — and it stays a top-level tab named "Atlas" (this was decided; do not rename or demote it).
+> **Historical product framing (2026-08-09):** This implementation plan was
+> written for the travel-concierge phase and preserves that scoped context. The
+> current company framing lives in Product Thesis and Product Model; technical
+> instructions below remain evidence, not category authority.
+
+Vesper's then-current release was a place-aware travel concierge (React Native / Expo app in `travel-app/`, Python backend in `travel-agent/`, two independent git repos under `~/travel-workspace/`). **Atlas is the 4th tab** (tabs are Trips · Vesper · Discover · Atlas) — and it stays a top-level tab named "Atlas" (this was decided; do not rename or demote it).
 
 The overhaul reframes Atlas from what it currently ships — **a "composition engine / year-recap product" that opens on a Vesper-composed "featured reading," dark and empty for new users** — into a **warm, place-first "living atlas of places"**: your relationship with places (been · loved · want · your takes · your home city), populated from day one, where composed "readings" are things you *open*, never the home's front door.
 

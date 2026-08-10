@@ -1,5 +1,10 @@
 # TestFlight Tester Onboarding
 
+> **Release scope, not company category (2026-08-09):** These instructions test
+> the current group-travel wedge. They intentionally ask testers to use a real
+> Trip and do not claim that every local or ambient expression in the broader
+> Product Model is shipped.
+
 Two paste-targets in one doc:
 
 1. **What to Test** — pastes into TestFlight's "What to Test" field
@@ -17,10 +22,10 @@ Two paste-targets in one doc:
 ```
 Thanks for taking Vesper for a real trip.
 
-Vesper is a travel concierge — it plans the trip with you, talks to
-your group on your behalf, and remembers the place so the next trip
-is sharper than the last. The most useful thing you can do is plan a
-real trip you'd actually take in the next 6-8 weeks.
+Vesper is place-aware AI for a real group trip. It understands each person
+privately, keeps one shared Plan coherent, helps as conditions change, and
+remembers what mattered. The most useful thing you can do is plan a real trip
+you'd actually take in the next 6-8 weeks.
 
 WHAT TO DO
 
@@ -104,11 +109,10 @@ Hi {first_name},
 
 You're one of the first 10 people I'm putting Vesper in front of.
 
-The pitch in one line: Vesper plans the trip, talks to your group on
-your behalf, and remembers the place so the next trip is sharper than
-the last. It's the concierge relationship a great travel writer has —
-the one who knows your taste, your dynamics, and the third-best
-restaurant in the neighborhood.
+The pitch in one line: Vesper understands each person privately, shapes one
+shared Trip, and helps it stay coherent as reality changes. It aims for the
+situated attention of a knowledgeable friend—the one who knows your taste,
+your dynamics, the place, and when the optimized plan should be abandoned.
 
 What I'm actually asking of you: pick a real trip. Something you'd
 take in the next 6-8 weeks with at least two other people. Walk

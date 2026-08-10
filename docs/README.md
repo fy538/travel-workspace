@@ -12,16 +12,24 @@ source_of_truth_for: [workspace-docs-navigation]
 # Workspace Documentation
 
 This workspace coordinates **Travel Agent** (backend and orchestration) and
-**Travel App** (Expo client) for Vesper. Start with the eight documents below;
-everything else is a contract, supporting reference, active working note, or history.
+**Travel App** (Expo client) for Vesper. The nine documents below are an
+**authority registry**, not a required cover-to-cover reading list. Everything
+else is a contract, supporting reference, active working note, or history.
+
+For a company orientation, read [Product Thesis](../travel-agent/docs/product/Product%20Thesis.md)
+→ [Product Model](../travel-agent/docs/product/Product%20Model.md) →
+[Current State](status/current-state.md). Product and design readers can then add
+Product Vision and the app Design Language; engineers can add Architecture
+Principles, Unified Context Graph, and the relevant system charter.
 
 ## Canonical spine
 
 | Question | Entry point | Owns |
 |---|---|---|
 | Why this product? | [Product Thesis](../travel-agent/docs/product/Product%20Thesis.md) | `travel-agent/docs/product/Product Thesis.md` — core promise and strategy |
+| How does the product model fit together? | [Product Model](../travel-agent/docs/product/Product%20Model.md) | `travel-agent/docs/product/Product Model.md` — Experience → Plan → Trip → Move, spatial grounding, and proof loop |
 | What principles guide it? | [What We Believe](../travel-agent/docs/product/What%20We%20Believe.md) | `travel-agent/docs/product/What We Believe.md` — durable product beliefs |
-| What ships first? | [V1 Scope](working/mvp-scope-and-flag-manifest-2026-06-30.md) | `docs/working/mvp-scope-and-flag-manifest-2026-06-30.md` — bounded release scope |
+| What ships first? | [V1 Scope](release/v1-scope.md) | `docs/release/v1-scope.md` — generated bounded release intent |
 | What exists now? | [Current State](status/current-state.md) | `docs/status/current-state.md` — derived implementation signals |
 | Can users complete the journeys? | [Journey Status](journeys/STATUS.md) | `docs/journeys/STATUS.md` — certification evidence |
 | What must each system guarantee? | [Systems Index](systems/README.md) | `docs/systems/README.md` — cross-repo contracts |

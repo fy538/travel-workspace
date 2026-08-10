@@ -95,8 +95,10 @@ excluded from metadata enforcement because their values are placeholders.
 
 ## Repository ownership
 
-- The workspace owns product canon, cross-repo journeys and systems, release
-  state, and cross-repo decisions.
+- The workspace owns the canonical index and lifecycle, cross-repo journeys and
+  systems, release state, and cross-repo decisions. The product-canon prose
+  lives in `travel-agent/docs/product/` and is registered here rather than
+  duplicated.
 - `travel-agent` owns backend architecture, data/agent contracts, evals, and
   backend operations.
 - `travel-app` owns surface contracts, navigation/interaction conventions,
@@ -146,9 +148,9 @@ reviewed queue for later consolidation and cleanup.
 
 ## Phase 3 canonical spine
 
-`spine.yaml` names exactly eight living entry points: thesis, beliefs, V1 scope,
-current state, journey status, systems, owner actions, and decisions. The workspace
-index must expose all eight, their paths must exist outside the archive, and each
+`spine.yaml` names exactly nine living entry points: thesis, product model,
+beliefs, V1 scope, current state, journey status, systems, owner actions, and
+decisions. The workspace index must expose all nine, their paths must exist outside the archive, and each
 workspace-owned entry must be classified `keep_authoritative` in the inventory.
 
 `docs/status/current-state.md` is intentionally narrow. Its generated block reports
@@ -202,6 +204,25 @@ files present at those commits keep their native child-repo conventions, while e
 later Markdown path must satisfy the workspace lifecycle schema. Do not advance a
 baseline to bypass admission—the baseline is history, not a moving allowlist.
 
+## Phase 8 authority consolidation
+
+The 2026-08-09 consolidation assigned one owner to each company concept and
+made the shortest company-orientation path Product Thesis → Product Model →
+Current State. The nine-entry spine is an authority registry, not a required
+reading sequence.
+
+`make docs-canon-check` prevents the first-read canon from expanding back into
+overlapping essays. Product Thesis, Product Model, Product Vision, What We
+Believe, Architecture Principles, Unified Context Graph, Design Language, and
+Brand Identity each have a reviewed maximum. New detail should move to the
+authority that owns it, a system/surface contract, or a historical snapshot—not
+raise a budget casually.
+
+V1 intent now lives in `docs/release/v1-scope.yaml`; its Markdown view and the
+capability projection in Current State are generated. Code-path presence and
+default flag posture are evidence signals, not release certification. Journey
+Status and device receipts retain that authority.
+
 ## Enforcement
 
 Run:
@@ -211,6 +232,8 @@ make docs-governance-check
 make docs-inventory-check
 make docs-inventory-report
 make docs-spine-check
+make docs-canon-check
+make docs-release-check
 make docs-status-check
 make docs-child-governance-check
 make docs-links-check
