@@ -88418,6 +88418,126 @@
         ],
         "title": "TripsHomeNowModule"
       },
+      "TripsHomeOpenLoopsModule": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "const": "planning_brief",
+            "title": "Kind"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "row_line": {
+            "type": "string",
+            "title": "Row Line"
+          },
+          "cta_label": {
+            "type": "string",
+            "title": "Cta Label"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "tier": {
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "title": "Tier"
+          },
+          "depth": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Depth"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/TripsHomeDestination"
+          },
+          "module_id": {
+            "type": "string",
+            "title": "Module Id"
+          },
+          "content_id": {
+            "type": "string",
+            "title": "Content Id"
+          },
+          "content_revision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Content Revision"
+          },
+          "availability": {
+            "type": "string",
+            "const": "available",
+            "title": "Availability",
+            "default": "available"
+          },
+          "role": {
+            "type": "string",
+            "const": "open_loops",
+            "title": "Role",
+            "default": "open_loops"
+          },
+          "receipt": {
+            "$ref": "#/components/schemas/TripsHomeReceiptChecklist"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "title",
+          "row_line",
+          "cta_label",
+          "tier",
+          "depth",
+          "destination",
+          "module_id",
+          "content_id",
+          "receipt"
+        ],
+        "title": "TripsHomeOpenLoopsModule",
+        "description": "A bounded, evidence-first doorway to real pre-trip open loops.\n\nThis is narrower than a generic planning module. It exists only when the\nranked ``planning_brief`` already carries validated ``plan_readiness``\nsubstrate with unresolved rows. The receipt is projected evidence, never a\nsecond Plan/proposal writer: ``destination`` remains the canonical Plan\nowner.\n\n``content_id`` stays on the durable readiness fact (currently\n``departure_readiness:{trip_id}``), while ``content_revision`` includes the\nprojected receipt so a changed open loop is exposed as a new revision\nwithout reminting the fact itself."
+      },
       "TripsHomePromotion": {
         "properties": {
           "card_id": {
@@ -89380,6 +89500,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/TripsHomeGroupModule"
+                },
+                {
+                  "$ref": "#/components/schemas/TripsHomeOpenLoopsModule"
                 }
               ],
               "discriminator": {
@@ -89388,6 +89511,7 @@
                   "group_room": "#/components/schemas/TripsHomeGroupModule",
                   "imminent_trip": "#/components/schemas/TripsHomeCountdownModule",
                   "live_trip": "#/components/schemas/TripsHomeNowModule",
+                  "planning_brief": "#/components/schemas/TripsHomeOpenLoopsModule",
                   "weather": "#/components/schemas/TripsHomeConditionsModule"
                 }
               }
