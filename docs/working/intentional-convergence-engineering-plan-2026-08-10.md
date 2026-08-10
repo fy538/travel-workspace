@@ -120,6 +120,29 @@ This is deterministic/static and backend-real evidence only. The committed
 attestation index is still empty; no device-mock, physical, staging, or AI-eval
 receipt has been promoted for this candidate.
 
+### Post-lane hardening candidate — 2026-08-10
+
+The four parallel lanes are on `main`. The subsequent targeted hardening work
+is currently committed locally as this clean triple-SHA candidate:
+
+| Repository | Candidate revision | Added scope |
+| --- | --- | --- |
+| workspace | `377582bf0ffe63a686396d9b9783db91d7320050` | Physical-receipt cardinality and device-proof attribution integrity. |
+| backend | `5491ca97231fc2d7c2efe730daad8f35d3b00f5d` | One shared outcome-applicability policy and durable receipt-upload identity migration. |
+| mobile | `aba00ae32946d279411836a0337f2df0d41c2cde` | Unchanged; the required local-Plan, RSVP, and outcome UI surfaces were already present. |
+
+The targeted source/mock checks for these additions are green: 22 workspace
+evidence tests, 9 outcome/compiler safety tests, and 122 expense/API tests.
+The migration has one Alembic head and backend async/size checks pass in the
+configured project environment. These are S/M-layer facts only; they do not
+create a D/V receipt or promote a proof.
+
+The next unavailable boundary is intentionally external: G3–G5 needs a
+deployed backend revision, a build of the exact app SHA, two distinct physical
+devices and identities, plus the real second-participant interaction. No local
+script, simulated account, or manually authored receipt may substitute for
+that evidence.
+
 Evidence terms are strict:
 
 - **S:** source/static or type evidence;
