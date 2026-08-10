@@ -65,8 +65,10 @@ def index_candidate_is_current(
     The attestation file cannot contain the SHA of the commit that contains
     itself.  A promoted candidate is therefore current when app/backend still
     match exactly and the workspace HEAD is either the tested subject itself or
-    one single-parent projection commit whose complete diff is restricted to
-    the governed attestation/generated-status paths.
+    a descendant whose complete diff is restricted to governed attestation and
+    generated-status paths. This permits the index and its projections to land
+    in separate commits without allowing product or runner changes to inherit
+    an older certification.
     """
 
     candidate = index.get("candidate") or {}
@@ -87,12 +89,7 @@ def index_candidate_is_current(
     if not isinstance(subject_sha, str) or not isinstance(current_sha, str):
         return False
     try:
-        parents = _git_lines(workspace_root, "rev-list", "--parents", "-n", "1", current_sha)
-        if len(parents) != 1:
-            return False
-        revision_tokens = parents[0].split()
-        if len(revision_tokens) != 2 or revision_tokens[1] != subject_sha:
-            return False
+        _git_lines(workspace_root, "merge-base", "--is-ancestor", subject_sha, current_sha)
         changed_paths = set(
             _git_lines(workspace_root, "diff", "--name-only", subject_sha, current_sha, "--")
         )

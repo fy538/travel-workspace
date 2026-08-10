@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 from unittest.mock import patch
 
@@ -97,7 +98,7 @@ def test_load_index_rejects_receipt_digest_mismatch(tmp_path: Path) -> None:
         raise AssertionError("expected a forged receipt digest to fail")
 
 
-def test_projection_commit_keeps_subject_candidate_current(tmp_path: Path) -> None:
+def test_projection_commit_chain_keeps_subject_candidate_current(tmp_path: Path) -> None:
     index = {
         "candidate": {
             "workspace_sha": "subject-sha",
@@ -114,7 +115,7 @@ def test_projection_commit_keeps_subject_candidate_current(tmp_path: Path) -> No
         subject,
         "_git_lines",
         side_effect=[
-            ["projection-sha subject-sha"],
+            [],
             ["docs/journeys/evidence-attestations.json", "docs/release/v1-scope.md"],
         ],
     ):
@@ -137,6 +138,27 @@ def test_non_projection_commit_makes_subject_candidate_stale(tmp_path: Path) -> 
     with patch.object(
         subject,
         "_git_lines",
-        side_effect=[["later-sha subject-sha"], ["Makefile"]],
+        side_effect=[[], ["Makefile"]],
+    ):
+        assert not subject.index_candidate_is_current(index, current, workspace_root=tmp_path)
+
+
+def test_non_descendant_projection_diff_makes_subject_candidate_stale(tmp_path: Path) -> None:
+    index = {
+        "candidate": {
+            "workspace_sha": "subject-sha",
+            "app_sha": "app-current",
+            "backend_sha": "backend-current",
+        }
+    }
+    current = {
+        "workspace_sha": "unrelated-sha",
+        "app_sha": "app-current",
+        "backend_sha": "backend-current",
+    }
+    with patch.object(
+        subject,
+        "_git_lines",
+        side_effect=subprocess.CalledProcessError(1, ["git", "merge-base"]),
     ):
         assert not subject.index_candidate_is_current(index, current, workspace_root=tmp_path)

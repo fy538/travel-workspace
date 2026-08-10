@@ -46,11 +46,13 @@ class ReleaseScopeValidationTests(unittest.TestCase):
             any("evidence path is not tracked" in problem for problem in problems)
         )
 
-    def test_known_replay_failure_blocks_affected_capability(self) -> None:
+    def test_replay_failure_blocks_affected_capability(self) -> None:
         live_trip = next(
             row for row in self.payload["capabilities"] if row["id"] == "live-trip"
         )
-        posture = subject.readiness_posture(live_trip, subject.load_persona_replay())
+        replay = subject.load_persona_replay()
+        replay["J08"] = "fail"
+        posture = subject.readiness_posture(live_trip, replay)
         self.assertEqual(posture, "BLOCKED — seeded replay fails J08")
 
     def test_promoted_evidence_requires_current_candidate(self) -> None:
