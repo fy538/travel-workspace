@@ -11,7 +11,7 @@ include dogfood.mk
 .PHONY: new-worktree land-worktree worktrees
 .PHONY: contract-check place-identity-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate mock-slug-parity
 .PHONY: certify-fast certify-logic certify-corpus certify-visual certify-visual-cloud certify-live maestro-flow-check journey-registry-check journey-evidence-report dogfood-status corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-journey-live-api qa-persona dogfood-status-sync
-.PHONY: preflight-eas fly-secrets verify docs-governance-check docs-child-governance-check docs-inventory-check docs-inventory-report docs-spine-check docs-canon-check docs-release-check docs-release-sync docs-status-check docs-status-sync docs-links-check docs-home-surfaces-check docs-check compatibility-check card-arrival-check chat-card-types-check pre-dogfood dogfood-fast dogfood-local dogfood-device dogfood-physical dogfood-staging test-backend-postgres journey-evidence-promote
+.PHONY: preflight-eas fly-secrets verify docs-governance-check docs-child-governance-check docs-inventory-check docs-inventory-report docs-spine-check docs-canon-check docs-release-check docs-release-sync docs-status-check docs-status-sync docs-links-check docs-home-surfaces-check docs-check compatibility-check card-arrival-check chat-card-types-check pre-dogfood dogfood-fast dogfood-local dogfood-device dogfood-physical dogfood-staging test-backend-postgres journey-evidence-promote convergence-candidate-check
 
 # ── Development ───────────────────────────────────────────────────────────────
 
@@ -184,6 +184,9 @@ docs-status-check: ## Gate: generated current-state signals match executable reg
 
 docs-status-sync: ## Refresh the generated current-state signal table
 	@python3 scripts/check_docs.py --write-status
+
+convergence-candidate-check: ## Validate the post-merge convergence/AI candidate manifest
+	@python3 scripts/check_convergence_candidate.py
 
 docs-child-governance-check: ## Gate: new child-repo docs satisfy workspace lifecycle metadata
 	@python3 scripts/check_child_doc_governance.py

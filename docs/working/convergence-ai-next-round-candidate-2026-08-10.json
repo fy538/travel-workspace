@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "program": "convergence-ai-next-round-2026-08-10",
+  "status": "assembling",
+  "created_at": "2026-08-10",
+  "base": {
+    "workspace_sha": "47d5188248752a65c012291622094683cde31cda",
+    "backend_sha": "e42fc3a3d2a1fccc12ae932c9964f0ef69b35599",
+    "app_sha": "aba00ae32946d279411836a0337f2df0d41c2cde"
+  },
+  "lanes": {
+    "causal_spine": {
+      "branch": "codex/convergence-causal-spine",
+      "workspace_sha": null,
+      "backend_sha": null,
+      "app_sha": null
+    },
+    "ai_evidence": {
+      "branch": "codex/convergence-ai-evidence",
+      "workspace_sha": null,
+      "backend_sha": null,
+      "app_sha": null
+    },
+    "group_trip": {
+      "branch": "codex/convergence-group-trip",
+      "workspace_sha": null,
+      "backend_sha": null,
+      "app_sha": null
+    },
+    "integration_evidence": {
+      "branch": "codex/convergence-integration-evidence",
+      "workspace_sha": null,
+      "backend_sha": null,
+      "app_sha": null
+    }
+  },
+  "candidate": {
+    "workspace_sha": null,
+    "backend_sha": null,
+    "app_sha": null,
+    "migration_revision": null,
+    "backend_deploy_digest": null,
+    "app_build_id": null,
+    "seed_corpus_hash": null
+  },
+  "controls": {
+    "shadow_default": "off",
+    "shadow_surface": "private_trip_concierge",
+    "shadow_allowed_actions": [
+      "ask_attribute",
+      "show_options",
+      "recommend",
+      "abstain"
+    ],
+    "group_visible_ai_dl": "off",
+    "durable_inferred_learning": "off",
+    "proactive_delivery": "off"
+  },
+  "evidence": {
+    "source": "not_run",
+    "database": "not_run",
+    "device_mock": "not_run",
+    "staging": "not_run",
+    "physical": "not_run",
+    "ai_eval": "not_run",
+    "human": "not_run",
+    "causal": "not_run"
+  },
+  "external_blockers": [
+    "human_anchor_adjudication",
+    "shadow_telemetry_retention_approval",
+    "model_provider_credential_and_spend_policy",
+    "backend_deployment_authority",
+    "eas_apple_clerk_operator_access",
+    "two_physical_devices_and_identities"
+  ]
+}
