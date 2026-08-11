@@ -46,6 +46,16 @@ flags:
     status: active
     notes: Enables the bounded nearby reachability/isochrone canary after cache and provider validation.
 
+  - name: NEARBY_TRAVEL_TIME_RANKING_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:49
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    notes: Ranks discover_nearby_ranked candidates by real Mapbox Matrix travel time instead of straight-line distance; fails open to the existing distance score per-candidate on any provider/response issue.
+
   - name: AMBIENT_ATTENTION_DISPATCH_ENABLED
     repo: travel-agent
     location: backend/core/feature_flags.py:120
