@@ -32,8 +32,12 @@ walk without presenting seeded or unavailable material as live truth.
 
 ## Operator steps (not performed by source control)
 
-1. Deploy the backend commits and run the normal OpenAPI/type synchronization
-   after the workspace API-operation registry baseline is green.
+1. Deploy the backend commits. The full OpenAPI snapshot now includes the
+   content-free Comparison availability endpoint; generated mobile types remain
+   deliberately deferred because the workspace API-operation registry currently
+   reports 356 unrelated classification failures. Do not hand-maintain a client
+   type or consume this endpoint until that baseline is repaired and the normal
+   `sync-types` workflow is green.
 2. On the dogfood backend, set only:
 
    ```text
