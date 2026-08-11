@@ -1,6 +1,7 @@
 {
-  "version": 1,
-  "policy": "Keep message_type=notification (and other overloaded carriers) plus metadata.card_type. Do not add DB message_types for visual variants unless storage/aggregation semantics differ.",
+  "version": 2,
+  "policy": "Keep message_type=notification (and other overloaded carriers) plus metadata.card_type. Do not add DB message_types for visual variants unless storage/aggregation semantics differ. A card type is never removed from `attachments` outright — retire it in `attachment_lifecycle` first (see docs/Card Catalog.md §8.1); historical messages keep rendering their durable text fallback via RetiredCardFallback.",
+  "lifecycle_statuses": ["active", "deprecated", "retired"],
   "metadata_card_types": {
     "reaction": {
       "message_type": "reaction_card",
@@ -113,6 +114,28 @@
     "itinerary_operation",
     "composed_card"
   ],
+  "attachment_lifecycle": {
+    "venue_card": { "status": "active" },
+    "reaction_card": { "status": "active" },
+    "trip_shapes": { "status": "active" },
+    "vote_widget": { "status": "active" },
+    "notification_card": { "status": "active" },
+    "taste_dna_reflection": { "status": "active" },
+    "change_applied": { "status": "active" },
+    "plan_ready": { "status": "active" },
+    "map_route": { "status": "active" },
+    "comparison_card": { "status": "active" },
+    "atlas_draft": { "status": "active" },
+    "error_recovery": { "status": "active" },
+    "booking_confirmation": { "status": "active" },
+    "booking_proposal": { "status": "active" },
+    "document_edit": { "status": "active" },
+    "narration": { "status": "active" },
+    "trip_creation_proposal": { "status": "active" },
+    "lazy_research": { "status": "active" },
+    "itinerary_operation": { "status": "active" },
+    "composed_card": { "status": "active" }
+  },
   "no_arrival": {
     "change_applied": "Side-effect of propose_change auto-apply / vote resolution — not its own streamed tool; propose_change already reserves vote_widget",
     "error_recovery": "Posted by planning_workflow async recovery, outside the chat tool loop",
