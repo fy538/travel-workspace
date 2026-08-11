@@ -3,8 +3,9 @@ doc_type: contract
 status: active
 owner: product-engineering
 created: 2026-08-07
-last_verified: 2026-08-07
+last_verified: 2026-08-10
 why_new: Defines revision-bound execution evidence so test files cannot be mistaken for passing journey runs.
+source_of_truth_for: [journey-evidence-layers, evidence-receipt-contract]
 ---
 
 # Journey execution evidence model
