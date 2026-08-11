@@ -23591,7 +23591,7 @@
           "itinerary-operations"
         ],
         "summary": "Preview Places Venue Add",
-        "description": "Construct a Places selection as a canonical, reviewable Trips operation.\n\nThe client supplies no revision, participants, owner, title, or operation\nidentity. Those are all read from the authoritative Trips/corpus state.",
+        "description": "Construct a bounded Places selection as a canonical, reviewable operation.\n\nThe opaque receipt binds the card to a venue and adjacent-block opening,\nbut it is never enough on its own: the server reloads current Plan,\ncandidate, operating-hours, and two-leg route facts first. A stale or\nunprovable receipt is not silently converted into an unscheduled day add.",
         "operationId": "preview_places_venue_add_api_trips__trip_id__itinerary_days__day_id__add_venue_preview_post",
         "parameters": [
           {
@@ -70421,6 +70421,19 @@
             ],
             "title": "Venue Id"
           },
+          "bounded_opportunity_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 4096,
+                "minLength": 32
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bounded Opportunity Id"
+          },
           "proposal_id": {
             "anyOf": [
               {
@@ -72468,18 +72481,19 @@
       },
       "PlacesVenueAddPreviewRequest": {
         "properties": {
-          "venue_id": {
-            "type": "integer",
-            "minimum": 1.0,
-            "title": "Venue Id"
+          "bounded_opportunity_id": {
+            "type": "string",
+            "maxLength": 4096,
+            "minLength": 32,
+            "title": "Bounded Opportunity Id"
           }
         },
         "type": "object",
         "required": [
-          "venue_id"
+          "bounded_opportunity_id"
         ],
         "title": "PlacesVenueAddPreviewRequest",
-        "description": "A Places-originated venue selection; Trips supplies all write authority."
+        "description": "A displayed bounded Places selection; Trips supplies all write authority."
       },
       "PlanBlock": {
         "properties": {
