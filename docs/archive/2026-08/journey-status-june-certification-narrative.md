@@ -57,7 +57,7 @@ truth: `docs/journeys/STATUS.md` and `docs/journeys/evidence-attestations.json`.
 
 ## Tier A latent corpus (`proof_only`)
 
-Automated spot-check: `make tier-a-spot-check` — **PASSED** 2026-06-29 (local PG + local Qdrant).  
+Automated spot-check: `make tier-a-spot-check` — **PASSED** 2026-06-29 (local PG + local Qdrant).
 Fly spot-check: `make tier-a-spot-check PROFILE=fly` — **PASSED** 2026-06-29 (cloud Qdrant + Fly catalog).
 
 | City | Local import | Spot-check | Fly catalog | MOCK_DESTINATIONS |
@@ -68,12 +68,12 @@ Fly spot-check: `make tier-a-spot-check PROFILE=fly` — **PASSED** 2026-06-29 (
 | Amalfi Coast | ✅ 214 MD | ✅ | ✅ | ✅ |
 | Nice | ✅ 119 MD | ✅ | ✅ | ✅ |
 
-Import: `make import-latent-corpus TIER=a APPLY=1 PROFILE=local` (complete).  
+Import: `make import-latent-corpus TIER=a APPLY=1 PROFILE=local` (complete).
 Fly promote: `make import-latent-corpus TIER=a APPLY=1 PROFILE=fly` (complete — catalog + global `place_angles` embed).
 
 ## Tier B latent corpus (`proof_only`, 27 cities)
 
-Automated spot-check: `make tier-b-spot-check` — **PASSED** 2026-06-29 (local PG + local Qdrant, all 27 cities).  
+Automated spot-check: `make tier-b-spot-check` — **PASSED** 2026-06-29 (local PG + local Qdrant, all 27 cities).
 Fly spot-check: `make tier-b-spot-check PROFILE=fly` — **PASSED** 2026-06-29 (cloud Qdrant + Fly catalog).
 
 | Stage | Status |
@@ -83,7 +83,7 @@ Fly spot-check: `make tier-b-spot-check PROFILE=fly` — **PASSED** 2026-06-29 (
 | Fly promote | ✅ (~55m) |
 | Fly spot-check | ✅ all 27 |
 
-Import: `make import-latent-corpus TIER=b APPLY=1 PROFILE=local` (complete).  
+Import: `make import-latent-corpus TIER=b APPLY=1 PROFILE=local` (complete).
 Fly promote: `make import-latent-corpus TIER=b APPLY=1 PROFILE=fly` (complete).
 
 Cities: athens, bilbao, bologna, bordeaux, cagliari, catania, dubrovnik, florence, genoa, granada, ibiza, lecce, lyon, madrid, malaga, mallorca, marseille, milan, naples, palermo, porto, san-sebastian, seville, split, thessaloniki, valencia, valletta.
@@ -122,4 +122,3 @@ Login (if running): `elif@dogfood.local` / `mara@dogfood.local` · API: `https:/
 - [ ] **Venice** — ad-hoc trip; search "cicchetti bacaro"
 - [ ] **Amalfi Coast** — ad-hoc trip; search "limoncello terrace"
 - [ ] **Nice** — ad-hoc trip; search "socca old town"
-
