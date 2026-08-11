@@ -182,6 +182,15 @@ Roles after consolidation:
 
 ## 6. Execution plan
 
+> **Status 2026-08-10: Phases A, B, and C are complete.** Rulings A1–A5 landed
+> in `c5c6ecf`; Phase B in `c7e009e` and `e2fcda27e`; the follow-on cuts (front
+> door, spine entry, Demo Evidence Matrix retirement, §14 dedupe, Journey Status
+> trim) in `249599d` and `a0907104a`. The phases below are kept as the record of
+> what was decided and why, not as outstanding work. Remaining open item: the
+> historical-J archive pass, deliberately deferred because it needs a
+> registry-checker rule.
+
+
 ### Phase A — rulings (founder, ~1.5h, blocks everything)
 
 1. **A1.** Adopt the 7-layer EVIDENCE_MODEL as the only layer model; retire
@@ -230,18 +239,31 @@ Roles after consolidation:
 
 ## 7. Success test
 
-After Phases A+B, these questions must each have exactly one answer and one
-authority:
+**Superseded 2026-08-10, same day.** This section originally listed seven
+questions. Five of them were not questions — they were *sources* that another
+answer consults. Consolidating to three is the live standard, and it lives in
+[`docs/README.md`](../README.md), not here.
 
-| Question | Answer lives in |
-|---|---|
-| What is the milestone? | M1 — Plan Repair |
-| Is X done? | evidence-attestations.json (promoted receipts only) |
-| What story do we demo? | Demo Journey Canon §13 |
-| What proves the thesis? | P01–P07 |
-| What layer is this evidence? | EVIDENCE_MODEL (7 layers) |
-| Can this flag be lit? | v1-scope.yaml (post-A2/A3/A4) |
-| Did we break something old? | J seeded replay (28/28 floor) |
+| Question | Answer | When you ask it |
+|---|---|---|
+| What am I building? | [M1 — Plan Repair](../release/m1-plan-repair.md) | picking work |
+| Am I done? | promoted receipts in `evidence-attestations.json` | claiming work |
+| What must I not break? | v1-scope dark surfaces · J replay floor | shipping work |
 
-If any question has two answers after this pass, the consolidation failed and
-the second answer should be deleted, not reconciled.
+Why the other four collapsed:
+
+- **Demo Journey Canon §13** and **P01–P07** are M1's upstream sources. M1's act
+  table *is* the demo story with each act's proof named. Consult them when
+  editing M1, not during daily work.
+- **EVIDENCE_MODEL** is the vocabulary "am I done" is answered in, not a
+  separate question. Nobody asks "what layer is this" standalone.
+- **"Can this flag be lit?"** and **"did we break something old?"** are one
+  instinct — *am I allowed to do this* — with two lookups.
+
+Three is the floor. Folding "am I done" into M1's exit criteria would be a
+regression: M1 says which receipts are *required*, the index says which
+*exist*. That intent/evidence separation is the discipline this whole audit
+exists to protect.
+
+If any question has two answers, the consolidation failed and the second answer
+should be deleted, not reconciled.

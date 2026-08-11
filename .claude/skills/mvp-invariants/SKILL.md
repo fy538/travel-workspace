@@ -1,12 +1,12 @@
 ---
 name: mvp-invariants
-description: This project's house rules for shipping milestone-relevant code — apply this whenever touching an M1 demo act, a P-series proof (P01-P07), a canonical journey (J01-J28), any code that sends text or data to a group/notification/booking surface, any Plan/proposal/booking/expense/itinerary mutation, or when about to say something is "done," "shipped," "complete," or "certified." Also use when writing or reviewing code that composes a message visible to more than one Plan member, or when lighting a feature flag. This project has a real history of three recurring failure modes — private data leaking to a group, "done" claimed on green backend tests without a device receipt, and documents citing files or symbols that no longer exist — so treat this as required reading before any of the triggers above.
-version: 2.0.0
+description: This project's house rules for shipping milestone-relevant code — apply this whenever touching an M1 demo act, a P-series proof (P01-P07), a canonical journey (J01-J28), any code that sends text or data to a group/notification/booking surface, any Plan/proposal/booking/expense/itinerary mutation, or when about to say something is "done," "shipped," "complete," or "certified." Also use when writing or reviewing code that composes a message visible to more than one Plan member, when lighting a feature flag, or when about to introduce a new ID series in a plan. This project has a real history of three recurring failure modes — private data leaking to a group, "done" claimed on green backend tests without a device receipt, and documents citing files or symbols that no longer exist — so treat this as required reading before any of the triggers above.
+version: 2.1.0
 ---
 
 # MVP Invariants — Travel Workspace
 
-Six rules, each with a documented incident or repeated audit finding behind it.
+Seven rules, each with a documented incident or repeated audit finding behind it.
 This is the five-minute version; the linked authority owns the detail.
 
 **Orientation:** the milestone is
@@ -112,6 +112,30 @@ repair).
 a file, symbol, flag, or test — open it or grep it in the same pass. A
 `last_verified` date that was stamped without re-reading the code is worse than
 no date, because it launders staleness as freshness.
+
+**Also verify the claims already in the file you are editing**, not only the
+lines you touch. Every stale-doc defect found on 2026-08-10 came from the same
+move: editing around a region without reading it — trimming a status document
+without reading its header, writing a success test and not revisiting it when
+the answer changed.
+
+## 7. Do not mint a new ID series
+
+This repo already carries `J01–J28`, `P01–P07`, and M1 Acts 1–4. Recent plans
+added `C-01–C-12`, `F1–F5`, `W1–W4`, `AI-0–AI-7`, and `G0/H1/R1/K1/O1`. Each is
+locally sensible and collectively they are the main reason the system reads as
+confusing.
+
+**Apply it:**
+
+- In prose, name the **M1 act** ("the Act 1 gap"), not a new letter.
+- `P` ids belong in `product-proofs.yaml` and evidence receipts.
+- `J` ids belong in the registry, test files, and Maestro flows.
+- A working plan may number its own steps 1..n. It should not create a
+  namespaced series that later documents must learn.
+
+If you genuinely need a new series, it belongs in a registry with an owner —
+not in a working document.
 
 ---
 

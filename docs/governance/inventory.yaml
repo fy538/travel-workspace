@@ -295,9 +295,6 @@ overrides:
     disposition: keep_reference
     rationale: Active Vesper home workbench model; expires 2026-08-27 and promotes to the Vesper-home surface contract.
 
-  docs/working/stabilization-candidate-2026-07-26.md:
-    disposition: keep_authoritative
-    rationale: Active cross-repository candidate receipt for the 2026-07-26 stabilization cycle; expires 2026-08-09 and archives after the named SHA set is promoted or superseded.
 
   docs/working/compatibility-ledger-2026-07.md:
     disposition: keep_authoritative

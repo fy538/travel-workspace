@@ -1,10 +1,10 @@
 ---
-doc_type: working
-status: active
+doc_type: archive
+status: archived
 owner: engineering
 created: 2026-07-26
 last_verified: 2026-07-26
-expires: 2026-08-09
+archived: 2026-08-10
 why_new: Record the immutable cross-repository candidate selected for the post-2026-07-26 integration stabilization cycle, including its remote safety branch and known gate baseline.
 promotes_to: docs/journeys/STATUS.md and release evidence after the candidate passes its required certification layers
 supersedes: []
@@ -12,6 +12,12 @@ source_of_truth_for:
   - stabilization-candidate-2026-07-26
   - candidate-sha-set-2026-07-26
 ---
+
+> **Archived 2026-08-10.** Expired 2026-08-09 with no live consumers. The
+> stabilization cycle it described is closed; current certification is
+> [Journey Status](../../journeys/STATUS.md) and promoted receipts in
+> `evidence-attestations.json`.
+
 
 # Stabilization Candidate — 2026-07-26
 
