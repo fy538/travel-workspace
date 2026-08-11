@@ -141,7 +141,24 @@ Do **not** add numbered journeys for these until they enter dogfood scope. Track
 
 ## How To Use These With AI Agents
 
-**Layer 1 — static trace** (default; no live LLM):
+> **Evidence vocabulary (2026-08-10 ruling A1).** The seven layers in
+> [EVIDENCE_MODEL.md](EVIDENCE_MODEL.md) are the **only** canonical evidence
+> vocabulary — they are what `scripts/journey_evidence.py`, the receipt
+> contract, and the promoted `evidence-attestations.json` index speak. The
+> prompts below are agent working modes, not evidence layers. Retired
+> four-layer names map across as:
+>
+> | Retired name | Canonical layer(s) |
+> |---|---|
+> | static trace | *(no layer — reading, not execution)* |
+> | mock walk | `contract` |
+> | backend canary | `database`, `persona_replay` |
+> | live dogfood | `device_mock`, `staging`, `physical` |
+>
+> Never record a claim in retired-name terms. Only a receipt at a canonical
+> layer proves execution.
+
+**Prompt A — static trace** (default; no live LLM):
 
 ```text
 Read docs/journeys/<journey>.md and trace the journey through Travel App and Travel Agent.
@@ -152,14 +169,14 @@ Do not call live LLM-backed endpoints.
 Output: findings table + top 3 missing deterministic tests.
 ```
 
-**Layer 2 — mock walk** (Jest smoke / scripted navigation, not Maestro):
+**Prompt B — mock walk** (Jest smoke / scripted navigation, not Maestro):
 
 ```text
 Walk docs/journeys/<journey>.md in mock mode.
 Report broken navigation, no-op CTAs, empty states that should not be empty, stale UI after mutations, and mismatches against Expected Outcome.
 ```
 
-**Layer 3 — backend canary** (Postgres, no LLM where possible):
+**Prompt C — backend canary** (Postgres, no LLM where possible):
 
 ```text
 Run or extend the journey's real-backend checklist / dogfood canary tests.
@@ -168,21 +185,23 @@ Report pass/fail with fixture ids.
 
 ## Certification ladder
 
-Certification is cumulative; a higher layer never substitutes for a lower one:
+Certification is owned by [EVIDENCE_MODEL.md](EVIDENCE_MODEL.md). It defines
+the seven layers, the receipt contract, the `PASS`/`FAIL`/`BLOCKED`/`UNRUN`/
+`STALE` states, and the promotion path into `evidence-attestations.json`. Do
+not restate that ladder here.
 
-1. Registry and static-contract checks prove the journey is named and traceable.
-2. Mock walks prove navigation, surface states, and deterministic client behavior.
-3. Backend scenario tests prove persistence, privacy, idempotency, and reversal.
-4. Live API checks prove deployed transport and environment wiring.
-5. On-device walks prove the real auth, pixels, and multi-device interaction.
+Two rules that remain this document's to repeat:
 
-Verdicts are `pass`, `fail`, or `blocked` with named evidence. “Implemented” is not
-a certification result. `STATUS.md` is the promotion board; individual run logs are
-dated evidence and belong in the archive when superseded.
+- A journey file or test name proves coverage is **defined**, never executed.
+- “Implemented” is not a certification result. `STATUS.md` is the promotion
+  board; individual run logs are dated evidence and belong in the archive when
+  superseded.
 
-**Layer 4 — live dogfood** (Maestro, device, real providers):
+**Prompt D — live dogfood** (Maestro, device, real providers):
 
-Only after Layers 1–3 are green or risks are explicitly de-afforded.
+Only after Prompts A–C are green or risks are explicitly de-afforded. Record
+the result at its real layer (`device_mock`, `staging`, or `physical`) — never
+as “live dogfood”.
 
 **Orthogonal slice tracers** (run on PRs touching API seams, not instead of journeys):
 

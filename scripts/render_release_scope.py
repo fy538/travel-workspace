@@ -145,8 +145,23 @@ def validate_release(
             )
         if intent == "out" and any(value is not False for value in known_defaults):
             problems.append(f"{cap_id}: OUT capability flags must all default false")
-        if intent == "in" and any(value is not True for value in known_defaults):
-            problems.append(f"{cap_id}: IN capability flags must all default true")
+        # An IN capability may carry a dark flag only when the manifest states
+        # the condition under which it lights. Without `gate`, an IN row with a
+        # dark flag silently overclaims readiness.
+        in_with_dark_flag = intent == "in" and any(
+            value is not True for value in known_defaults
+        )
+        gate = row.get("gate")
+        if in_with_dark_flag and not (isinstance(gate, str) and gate.strip()):
+            problems.append(
+                f"{cap_id}: IN capability with a dark flag requires a non-empty "
+                "gate naming the condition under which it lights"
+            )
+        if gate is not None and not in_with_dark_flag:
+            problems.append(
+                f"{cap_id}: gate is only valid on an IN capability that carries "
+                "a dark flag"
+            )
 
         row_journeys = row.get("journey_ids", [])
         if not isinstance(row_journeys, list) or not row_journeys:
@@ -213,6 +228,8 @@ def flag_posture(row: dict, flags: dict[str, dict]) -> str:
 def production_posture(row: dict, flags: dict[str, dict]) -> str:
     if row.get("intent") == "out" and flag_posture(row, flags) == "Dark by default":
         return "Not claimed; release defaults dark"
+    if row.get("gate") and flag_posture(row, flags) != "Enabled by default":
+        return "Not claimed; in scope but gated"
     return "Unverified externally"
 
 
@@ -347,7 +364,11 @@ def render() -> str:
             f"[{readiness_posture(row, replay, promoted)}](../journeys/STATUS.md) ({journeys}) |"
         )
     lines.extend(["", "## Boundary notes", ""])
-    lines.extend(f"- **{row['name']}:** {row['note']}" for row in capabilities)
+    lines.extend(
+        f"- **{row['name']}:** {row['note']}"
+        + (f" _Gate: {row['gate']}_" if row.get("gate") else "")
+        for row in capabilities
+    )
     lines.extend(
         [
             "",

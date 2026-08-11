@@ -99,9 +99,21 @@ overrides:
     disposition: keep_reference
     rationale: Active bounded landing and proof plan for the home-surface integration branches; archive or promote its durable evidence when the slice closes.
 
+  docs/release/m1-plan-repair.md:
+    disposition: keep_authoritative
+    rationale: The single primary milestone, derived from the canonical demo journey; owns M1 scope, act-to-proof mapping, and exit criteria.
+
   docs/release/v1-scope.md:
     disposition: keep_authoritative
     rationale: Generated human view of the machine-readable V1 release intent and production flag boundary.
+
+  docs/working/definition-of-done-consolidation-2026-08-10.md:
+    disposition: keep_reference
+    rationale: Dated audit of every coexisting definition of done plus the 2026-08-10 consolidation rulings; M1 and the V1 contract own the resulting truth.
+
+  docs/working/home-surfaces-dogfood-handoff-2026-08-10.md:
+    disposition: keep_reference
+    rationale: Expiring operator runbook for activating the August home-surface explorations; Journey Status and the evidence index remain the readiness authorities.
 
   docs/working/booking-expense-provider-certification-2026-08-08.md:
     disposition: keep_reference
