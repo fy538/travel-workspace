@@ -27736,6 +27736,127 @@
         }
       }
     },
+    "/api/spatial/reachability": {
+      "get": {
+        "tags": [
+          "spatial"
+        ],
+        "summary": "Get Reachability",
+        "description": "Everywhere reachable from an origin within a time budget, by mode.\n\nThis is the honest replacement for a radius. A circle drawn on a map claims\nthat everything inside it is equally close, which is false anywhere with a\nriver, a hill, a motorway, or a one-way system \u2014 precisely the places people\ntravel to. The catchment is what the ranking already uses; this endpoint\nlets the map show it.\n\nIsochrones answer *outward* reachability from an origin. They do not prove a\nreturn trip or an arrival-time search, which is why the underlying primitive\naccepts departures only.\n\nTransit is deliberately absent (Phase B1, a separate provider decision).\nAsking for it returns ``status='unknown'`` with a reason rather than\nsilently substituting walking, which would badly overstate a catchment.",
+        "operationId": "get_reachability_api_spatial_reachability_get",
+        "parameters": [
+          {
+            "name": "lat",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "maximum": 90,
+              "minimum": -90,
+              "description": "Origin latitude.",
+              "title": "Lat"
+            },
+            "description": "Origin latitude."
+          },
+          {
+            "name": "lng",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "maximum": 180,
+              "minimum": -180,
+              "description": "Origin longitude.",
+              "title": "Lng"
+            },
+            "description": "Origin longitude."
+          },
+          {
+            "name": "minutes",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 60,
+              "exclusiveMinimum": 0,
+              "description": "Time budget in minutes. Clamped to the provider ceiling.",
+              "default": 15,
+              "title": "Minutes"
+            },
+            "description": "Time budget in minutes. Clamped to the provider ceiling."
+          },
+          {
+            "name": "mode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Travel mode \u2014 walk, drive, or bike.",
+              "default": "walk",
+              "title": "Mode"
+            },
+            "description": "Travel mode \u2014 walk, drive, or bike."
+          },
+          {
+            "name": "depart_at",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Departure time. Drive catchments are traffic-dependent and bucketed by departure; walk and bike are effectively time-independent.",
+              "title": "Depart At"
+            },
+            "description": "Departure time. Drive catchments are traffic-dependent and bucketed by departure; walk and bike are effectively time-independent."
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReachabilityResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/takes": {
       "post": {
         "tags": [
@@ -77065,6 +77186,71 @@
         "type": "object",
         "title": "Query"
       },
+      "ReachabilityResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "description": "'ok' when a polygon is present. 'unknown' when reachability could not be determined \u2014 unsupported mode, provider failure, or an open circuit breaker. 'unknown' NEVER means 'nothing is reachable'; a client must fall back to its radius presentation, not draw an empty catchment."
+          },
+          "mode": {
+            "type": "string",
+            "title": "Mode"
+          },
+          "minutes": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Minutes"
+          },
+          "geometry": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Geometry"
+          },
+          "provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "mode"
+        ],
+        "title": "ReachabilityResponse",
+        "description": "A reachability catchment, or an honest statement that we don't have one."
+      },
       "ReactRequest": {
         "properties": {
           "user_id": {
@@ -88579,7 +88765,8 @@
               "atlas_artifact",
               "atlas",
               "group_room",
-              "vesper"
+              "vesper",
+              "places_saved"
             ],
             "title": "Type"
           },
@@ -89707,6 +89894,98 @@
         "title": "TripsHomeReceiptWaveform",
         "description": "A cached narration render is ready to play, from the ``audio_tour``\ncard's own ``audio`` fact (``ConciergeHomeAudio``, carried on its own\nexcluded field \u2014 same rationale as ``seats`` above: the card has no\nDeck face, so there is nothing in ``structured``/``focus`` to project\nthis from).\n\nCarries only the one real number: the render's duration. The bar\npattern in the design mock (Focus/Room/Range board, ``FRRCiteAudio``)\nis decorative filler with no backing amplitude data \u2014 no per-bar\nwaveform was ever computed anywhere in this pipeline, so this shape\ndoes not invent one. The client owns the decorative rendering; the\nreceipt owns the fact that makes it true.\n\nPopulated far less often than not, by design: ``audio_tour`` fires on\nthe FIRST look at a narratable stop, almost always before any render\nhas happened yet \u2014 grounded or absent means most audio_tour cards fall\nto stamp, same as a cold ``candidates``/``call`` card with no substrate."
       },
+      "TripsHomeSavedUnplacedModule": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "saved_unplaced",
+            "title": "Kind",
+            "default": "saved_unplaced"
+          },
+          "role": {
+            "type": "string",
+            "const": "saved_unplaced",
+            "title": "Role",
+            "default": "saved_unplaced"
+          },
+          "module_id": {
+            "type": "string",
+            "const": "trips:saved_unplaced",
+            "title": "Module Id",
+            "default": "trips:saved_unplaced"
+          },
+          "content_id": {
+            "type": "string",
+            "const": "saved_unplaced:owner",
+            "title": "Content Id",
+            "default": "saved_unplaced:owner"
+          },
+          "content_revision": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 1,
+            "title": "Content Revision"
+          },
+          "availability": {
+            "type": "string",
+            "const": "available",
+            "title": "Availability",
+            "default": "available"
+          },
+          "reason": {
+            "type": "string",
+            "const": "missing_catalog_place_scope",
+            "title": "Reason",
+            "default": "missing_catalog_place_scope"
+          },
+          "total": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Total"
+          },
+          "places": {
+            "items": {
+              "$ref": "#/components/schemas/TripsHomeSavedUnplacedPlace"
+            },
+            "type": "array",
+            "maxItems": 3,
+            "minItems": 1,
+            "title": "Places"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/TripsHomeDestination"
+          }
+        },
+        "type": "object",
+        "required": [
+          "content_revision",
+          "total",
+          "places",
+          "destination"
+        ],
+        "title": "TripsHomeSavedUnplacedModule",
+        "description": "Private, bounded entry to saves without an enclosing catalog place.\n\nThis is deliberately independent of the ranked Concierge queue: saved\nrecency is a deterministic display bound, not a Home recommendation or a\nquiet-board ranking.  It is emitted only by its owner-scoped producer and\nremains dark unless the explicit runtime flag is enabled."
+      },
+      "TripsHomeSavedUnplacedPlace": {
+        "properties": {
+          "entity_ref": {
+            "$ref": "#/components/schemas/EntityRef"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_ref",
+          "name"
+        ],
+        "title": "TripsHomeSavedUnplacedPlace",
+        "description": "One owner-visible saved venue without a catalog Places scope.\n\nThe entity reference is the actual, typed destination.  A null\n``venues.place_id`` establishes only that no enclosing catalog hierarchy\nis known; it says nothing about whether the traveler has visited it,\nwhether it is close, or why it was saved."
+      },
       "TripsHomeStackCrown": {
         "properties": {
           "id": {
@@ -90053,6 +90332,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/TripsHomeOpenLoopsModule"
+                },
+                {
+                  "$ref": "#/components/schemas/TripsHomeSavedUnplacedModule"
                 }
               ],
               "discriminator": {
@@ -90062,6 +90344,7 @@
                   "imminent_trip": "#/components/schemas/TripsHomeCountdownModule",
                   "live_trip": "#/components/schemas/TripsHomeNowModule",
                   "planning_brief": "#/components/schemas/TripsHomeOpenLoopsModule",
+                  "saved_unplaced": "#/components/schemas/TripsHomeSavedUnplacedModule",
                   "weather": "#/components/schemas/TripsHomeConditionsModule"
                 }
               }
