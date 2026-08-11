@@ -27,7 +27,9 @@ proofs:
     required_layers: [contract, database, device_mock]
     anchors:
       contract: [travel-app/__tests__/components/trip-plan/OccurrenceArtifactCard.test.tsx]
-      database: [travel-agent/tests/scenarios/test_outcome_closure.py]
+      database:
+        - travel-agent/tests/scenarios/test_outcome_closure.py
+        - travel-agent/tests/scenarios/test_second_occasion_compounds.py
       device_mock: []
   - id: P04
     title: Second occasion compounds
@@ -35,8 +37,13 @@ proofs:
     required_layers: [contract, database, ai_eval]
     anchors:
       contract: [travel-app/__tests__/journeys/local-occasion-closure.replay.test.tsx]
-      database: [travel-agent/tests/eval/test_experience_loop_metrics.py]
-      ai_eval: [travel-agent/tests/eval/test_product_proof_eval.py]
+      database:
+        - travel-agent/tests/scenarios/test_second_occasion_compounds.py
+        - travel-agent/tests/eval/test_experience_loop_metrics.py
+      # The current grader test validates a hand-authored trace; it does not
+      # execute an agent. Keep this explicit gap empty until a trace-producing
+      # deterministic or live adapter is registered.
+      ai_eval: []
   - id: P05
     title: Thin participant handoff
     status: dark

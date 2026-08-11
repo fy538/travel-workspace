@@ -47,9 +47,18 @@ log "Running deterministic backend canary"
   tests/core/test_isochrone.py \
   tests/core/test_occurrence_artifact.py \
   tests/core/test_occurrence_reconciliation.py \
+  tests/api/test_plan_state.py \
+  tests/concierge/test_change_proposals.py \
+  tests/concierge/test_structured_messages.py \
+  tests/scenarios/test_lisbon_alpha_front_half.py \
+  tests/scenarios/test_lisbon_alpha_provisioning.py \
+  tests/scenarios/test_lisbon_group_disruption_contract.py \
+  tests/scenarios/test_lisbon_group_disruption_replay.py \
   tests/scenarios/test_local_occasion_closure.py \
   tests/scenarios/test_local_occasion_transport.py \
   tests/scenarios/test_outcome_closure.py \
+  tests/scenarios/test_second_occasion_compounds.py \
+  tests/core/test_occasion_context.py \
   tests/core/test_ambient_judgment.py \
   tests/core/test_ambient_dispatch.py \
   tests/home/test_m5_ambient_foundations.py \
@@ -57,7 +66,7 @@ log "Running deterministic backend canary"
   tests/concierge/test_privacy_redactor.py \
   tests/concierge/test_contextual_privacy.py \
   tests/core/test_smaudit_privacy_egress.py)
-pass "Backend local-plan, spatial-provider, artifact, privacy, and invalidation canary passed"
+pass "Backend rescue, proposal-delivery, local-plan, outcome-compounding, privacy, and invalidation canary passed"
 
 log "Running app deterministic replay and contract checks"
 (cd "$APP_DIR" && npx jest --runInBand \
@@ -70,6 +79,17 @@ log "Running app deterministic replay and contract checks"
   __tests__/journeys/local-occasion-closure.replay.test.tsx \
   __tests__/journeys/local-occasion-transport.replay.test.tsx \
   __tests__/components/trip-plan/OccurrenceArtifactCard.test.tsx \
+  __tests__/screens/conversation-create.smoke.test.tsx \
+  __tests__/utils/conversationCreateIntent.test.ts \
+  __tests__/utils/takeSomewhere.test.ts \
+  __tests__/utils/invalidateProposalReadModels.test.ts \
+  __tests__/hooks/useTripAuthorityObserver.test.tsx \
+  __tests__/utils/tripEventStream.test.ts \
+  __tests__/components/react-query-app-state-bridge.test.tsx \
+  __tests__/data/proposals.test.ts \
+  __tests__/hooks/usePlanProposalUndo.test.ts \
+  __tests__/components/trip/proposal-detail/ProposalDetailScreen.test.tsx \
+  __tests__/config/groupTripBuildProfiles.test.ts \
   __tests__/utils/invalidateHomeProjections.test.ts \
   __tests__/data/read-model-invalidations.test.ts)
 (cd "$APP_DIR" && npm run --silent typecheck)
@@ -82,12 +102,28 @@ pass "App replay surfaces, types, API boundaries, and cache ownership passed"
 log "Checking dogfood-only local experience gates"
 (cd "$APP_DIR" && node -e '
   const eas = require("./eas.json");
-  const env = eas.build?.dogfood?.env ?? {};
+  const profile = eas.build?.["m1-dogfood"] ?? {};
+  const env = profile.env ?? {};
+  if (profile.extends !== "dogfood") process.exit(1);
+  if (profile.channel !== "m1-dogfood") process.exit(1);
   if (env.EXPO_PUBLIC_IS_INTERNAL_BUILD !== "true") process.exit(1);
+  if (env.EXPO_PUBLIC_USE_MOCK_API !== "false") process.exit(1);
+  if (env.EXPO_PUBLIC_SKIP_AUTH !== "false") process.exit(1);
+  if (env.EXPO_PUBLIC_GROUP_TRIP_MICRO_JOURNEY_ENABLED !== "true") process.exit(1);
   if (env.EXPO_PUBLIC_LOCAL_PLAN_DOGFOOD_ENABLED !== "true") process.exit(1);
   if (env.EXPO_PUBLIC_OUTCOME_ARTIFACT_ENABLED !== "true") process.exit(1);
-') || die "Dogfood profile must explicitly enable the internal local loop and private outcome artifact."
-pass "Dogfood profile explicitly enables the internal-only Friday-night loop"
+  for (const flag of [
+    "EXPO_PUBLIC_TRIP_EDITORIAL_MAP_ENABLED",
+    "EXPO_PUBLIC_TRIPS_NEAR_YOU_DOGFOOD_ENABLED",
+    "EXPO_PUBLIC_TRIP_FEEL_STATIC_EXPLORATION_ENABLED",
+    "EXPO_PUBLIC_PLACES_READING_SPINE_ENABLED",
+    "EXPO_PUBLIC_PLACES_SAVED_UNPLACED_ENABLED",
+    "EXPO_PUBLIC_VOICE_ENABLED",
+  ]) {
+    if (env[flag] !== "false") process.exit(1);
+  }
+') || die "M1 dogfood profile must enable only the Plan-repair spine and explicitly darken unrelated experiments."
+pass "M1 dogfood profile isolates the Plan-repair, outcome, and private-artifact spine"
 
 log "Running cross-repo static gates"
 (cd "$WORKSPACE_DIR" && ./scripts/contract-check.sh >/dev/null)
