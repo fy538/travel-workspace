@@ -55420,6 +55420,18 @@
             ],
             "title": "Companion Scope"
           },
+          "source_proposal_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Proposal Id"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -87301,7 +87313,7 @@
           "active"
         ],
         "title": "TripPresenceResponse",
-        "description": "Tier 0 group live-presence (docs/working/Chat Waiting Experience Plan.md,\nWorkstream A) \u2014 is anyone's turn with Vesper in flight on this trip right\nnow? Polled by other group members' chat screen so they can render\n\"{name} is asking Vesper\u2026\" without any new streaming/websocket infra."
+        "description": "Tier 0 group live-presence (docs/archive/Chat Waiting Experience Plan.md,\nWorkstream A) \u2014 is anyone's turn with Vesper in flight on this trip right\nnow? Polled by other group members' chat screen so they can render\n\"{name} is asking Vesper\u2026\" without any new streaming/websocket infra."
       },
       "TripReadingPublic": {
         "properties": {

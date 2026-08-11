@@ -1666,13 +1666,13 @@
       "consumers": [
         {
           "kind": "app_url",
-          "name": "useConciergeChat",
-          "source": "travel-app/hooks/useConciergeChat.ts"
+          "name": "useConciergeChatTransport",
+          "source": "travel-app/hooks/useConciergeChatTransport.ts"
         },
         {
           "kind": "app_url",
-          "name": "useGroupChat",
-          "source": "travel-app/hooks/useGroupChat.ts"
+          "name": "useGroupChatTransport",
+          "source": "travel-app/hooks/useGroupChatTransport.ts"
         }
       ],
       "feature_flag": null,
