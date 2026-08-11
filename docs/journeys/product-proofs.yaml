@@ -75,6 +75,7 @@ proofs:
     anchors:
       contract:
         - travel-agent/tests/scenarios/test_lisbon_group_disruption_contract.py
+        - travel-agent/tests/eval/test_lisbon_rescue_contract.py
         - travel-app/__tests__/utils/takeSomewhere.test.ts
         - travel-app/__tests__/components/trip-plan/NowModeStrip.test.tsx
       database:
