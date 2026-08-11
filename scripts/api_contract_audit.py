@@ -38,6 +38,9 @@ APP_ROOT = WORKSPACE_ROOT / "travel-app"
 HTTP_TS = APP_ROOT / "utils" / "api" / "http.ts"
 
 HTTP_METHODS = frozenset({"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD"})
+NON_FACADE_METHOD_NAMES = frozenset(
+    {"catch", "for", "if", "import", "switch", "while", "with"}
+)
 AUDIENCES = frozenset(
     {"app", "public_web", "operator", "server", "infrastructure", "webhook"}
 )
@@ -243,7 +246,7 @@ def _method_for_call(callee: str, call_body: str) -> str:
     explicit = re.search(r"\bmethod\s*:\s*['\"]([A-Z]+)['\"]", call_body)
     if explicit:
         return explicit.group(1)
-    if callee in {"_uploadFile", "streamSSE"}:
+    if callee in {"_uploadFile", "uploadFile", "streamSSE"}:
         return "POST"
     return "GET"
 
@@ -292,18 +295,35 @@ def _relative(path: Path) -> str:
         return resolved.as_posix()
 
 
-def _http_method_at(source: str, position: int) -> str | None:
-    object_start = source.find("export const httpApi")
-    if object_start < 0 or position < object_start:
-        return None
+def _transport_method_at(source: str, position: int) -> str | None:
+    """Return the public-facade method enclosing a transport call.
+
+    ``http.ts`` owns the core literal while focused ``http*Endpoints.ts``
+    modules extend it via ``Object.assign``.  Both use object-method syntax,
+    so determine the symbol from the nearest such method rather than from the
+    file that happens to hold the implementation.
+    """
     candidates = list(
         re.finditer(
-            r"^  (?:async )?([A-Za-z_]\w*)\s*\(",
-            source[object_start:position],
+            r"^\s*(?:async )?([A-Za-z_]\w*)\s*\(",
+            source[:position],
             re.MULTILINE,
         )
     )
-    return candidates[-1].group(1) if candidates else None
+    for candidate in reversed(candidates):
+        name = candidate.group(1)
+        # A transport call can be guarded inside a facade method.  Control
+        # flow has the same ``name(...)`` surface shape as an object method,
+        # but must not replace the public method symbol in the registry.
+        if name not in NON_FACADE_METHOD_NAMES:
+            return name
+    return None
+
+
+def _transport_source_files(app_root: Path) -> list[Path]:
+    """Return implementations of the stable HTTP facade, including splits."""
+    directory = app_root / "utils" / "api"
+    return sorted(path for path in directory.glob("http*.ts") if path.is_file())
 
 
 def _product_method_callers(
@@ -339,17 +359,17 @@ def discover_mobile_consumers(
 ]:
     consumers: dict[tuple[str, str], set[Consumer]] = defaultdict(set)
     calls_by_method: dict[str, set[tuple[str, str]]] = defaultdict(set)
-    http_ts = app_root / "utils" / "api" / "http.ts"
-    if http_ts.exists():
-        source = http_ts.read_text(encoding="utf-8")
+    transport_sources = _transport_source_files(app_root)
+    for transport_source in transport_sources:
+        source = transport_source.read_text(encoding="utf-8")
         for callee, url, body, position in _iter_call_bodies(
-            source, {"_request", "_uploadFile"}
+            source, {"_request", "_uploadFile", "request", "uploadFile"}
         ):
             method = _method_for_call(callee, body)
             normalized = (method, normalize_path(url))
-            symbol = _http_method_at(source, position)
+            symbol = _transport_method_at(source, position)
             consumers[normalized].add(
-                Consumer("app_transport", _relative(http_ts), symbol)
+                Consumer("app_transport", _relative(transport_source), symbol)
             )
             if symbol:
                 calls_by_method[symbol].add(normalized)
@@ -371,7 +391,7 @@ def discover_mobile_consumers(
                 for part in path.parts
             ):
                 continue
-            if path in {http_ts, app_root / "utils" / "api" / "schema.gen.ts"}:
+            if path in {*transport_sources, app_root / "utils" / "api" / "schema.gen.ts"}:
                 continue
             source = path.read_text(encoding="utf-8", errors="ignore")
             for callee, url, body, _ in _iter_call_bodies(

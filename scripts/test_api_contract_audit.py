@@ -255,6 +255,83 @@ class APIContractAuditTests(unittest.TestCase):
             {"app_transport", "app_source"},
         )
 
+    def test_mobile_discovery_follows_split_http_extension_modules(self) -> None:
+        directory = tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parent.parent)
+        self.addCleanup(directory.cleanup)
+        app_root = Path(directory.name)
+        api_dir = app_root / "utils" / "api"
+        api_dir.mkdir(parents=True)
+        (api_dir / "http.ts").write_text(
+            "export const httpApi = {\n"
+            "  async listThings() {\n"
+            "    type Thing =\n"
+            "      import('./schema.gen').Thing;\n"
+            "    return _request('/api/things');\n"
+            "  },\n"
+            "};\n",
+            encoding="utf-8",
+        )
+        (api_dir / "httpExtendedEndpoints.ts").write_text(
+            "export function extendHttpApi(api, request) {\n"
+            "  Object.assign(api, {\n"
+            "    async createThing() {\n"
+            "      if (true) {\n"
+            "      return request('/api/things', { method: 'POST' });\n"
+            "      }\n"
+            "    },\n"
+            "  });\n"
+            "}\n",
+            encoding="utf-8",
+        )
+        (api_dir / "httpMemoryEndpoints.ts").write_text(
+            "export function extendHttpMemoryEndpoints(api, request, uploadFile) {\n"
+            "  Object.assign(api, {\n"
+            "    async uploadThing(data) {\n"
+            "      return uploadFile('/api/uploads', data);\n"
+            "    },\n"
+            "  });\n"
+            "}\n",
+            encoding="utf-8",
+        )
+        screen = app_root / "app" / "things.tsx"
+        screen.parent.mkdir(parents=True)
+        screen.write_text(
+            "api.listThings(); api.createThing(); api.uploadThing(data);\n",
+            encoding="utf-8",
+        )
+
+        consumers, endpoints = discover_mobile_consumers(app_root)
+
+        self.assertEqual(
+            endpoints,
+            {
+                ("GET", "/api/things"),
+                ("POST", "/api/things"),
+                ("POST", "/api/uploads"),
+            },
+        )
+        for endpoint, source_name, symbol in (
+            (("POST", "/api/things"), "httpExtendedEndpoints.ts", "createThing"),
+            (("POST", "/api/uploads"), "httpMemoryEndpoints.ts", "uploadThing"),
+        ):
+            endpoint_consumers = consumers[endpoint]
+            self.assertTrue(
+                any(
+                    consumer.kind == "app_transport"
+                    and consumer.symbol == symbol
+                    and consumer.source.endswith(f"utils/api/{source_name}")
+                    for consumer in endpoint_consumers
+                )
+            )
+            self.assertIn(
+                symbol,
+                {
+                    consumer.symbol
+                    for consumer in endpoint_consumers
+                    if consumer.kind == "app_source"
+                },
+            )
+
     def test_current_workspace_policy_is_green(self) -> None:
         findings, counts, _ = audit()
         operations, _ = load_openapi(OPENAPI_SNAPSHOT)
