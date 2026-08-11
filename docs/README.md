@@ -11,8 +11,38 @@ source_of_truth_for: [workspace-docs-navigation]
 
 # Workspace Documentation
 
+## Start here — three questions
+
+Daily engineering work only ever asks three things. Each has exactly one answer.
+
+| Question | Answer | When you ask it |
+|---|---|---|
+| **What am I building?** | [M1 — Plan Repair](release/m1-plan-repair.md) | picking work |
+| **Am I done?** | [`evidence-attestations.json`](journeys/evidence-attestations.json) — promoted receipts only | claiming work |
+| **What must I not break?** | [V1 scope](release/v1-scope.md) for dark surfaces · [Journey Status](journeys/STATUS.md) for the regression floor | shipping work |
+
+M1 is the single milestone: the four-act demo journey, each act mapped to its
+proof, flags, and rollback. If work does not serve one of its acts, it is not
+this milestone.
+
+Three things follow from that table and are worth stating once:
+
+- **A green test is not done.** A test name proves coverage is *defined*. Only a
+  promoted receipt at the layer named in
+  [the evidence model](journeys/EVIDENCE_MODEL.md) proves execution.
+- **Intent, evidence, and regression stay separate.** M1 says which receipts are
+  required; the attestation index says which exist; the J replay floor says
+  whether something old broke. Collapsing any two rebuilds the confusion this
+  structure exists to remove.
+- **Lighting a flag outside its declared `gate:` is a scope change**, not a
+  config change.
+
+Everything below is orientation and supporting authority, not daily lookup.
+
+## Company orientation
+
 This workspace coordinates **Travel Agent** (backend and orchestration) and
-**Travel App** (Expo client) for Vesper. The nine documents below are an
+**Travel App** (Expo client) for Vesper. The documents below are an
 **authority registry**, not a required cover-to-cover reading list. Everything
 else is a contract, supporting reference, active working note, or history.
 
@@ -26,6 +56,7 @@ Principles, Unified Context Graph, and the relevant system charter.
 
 | Question | Entry point | Owns |
 |---|---|---|
+| What am I building now? | [M1 — Plan Repair](release/m1-plan-repair.md) | `docs/release/m1-plan-repair.md` — the single milestone, its four demo acts, and exit criteria |
 | Why this product? | [Product Thesis](../travel-agent/docs/product/Product%20Thesis.md) | `travel-agent/docs/product/Product Thesis.md` — core promise and strategy |
 | How does the product model fit together? | [Product Model](../travel-agent/docs/product/Product%20Model.md) | `travel-agent/docs/product/Product Model.md` — Experience → Plan → Trip → Move, spatial grounding, and proof loop |
 | What principles guide it? | [What We Believe](../travel-agent/docs/product/What%20We%20Believe.md) | `travel-agent/docs/product/What We Believe.md` — durable product beliefs |

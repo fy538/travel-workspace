@@ -132,8 +132,7 @@ M1 is done when **all** of the following hold at one clean revision:
 1. `evidence-attestations.json` contains promoted receipts for P01–P05 and P07
    at the layers named above.
 2. P06 has anchors, and its consent/silence oracles pass.
-3. One uninterrupted recording satisfies the acceptance test in
-   [Demo Evidence Matrix](../../travel-agent/docs/fundraising/Demo%20Evidence%20Matrix.md).
+3. One uninterrupted recording satisfies the acceptance test below.
 4. A cold reader unfamiliar with Vesper repeats what it does, for whom, and why
    now — **without** summarizing it as an AI trip planner.
 5. Every lit flag has a named rollback and a recorded off-state.
@@ -141,9 +140,35 @@ M1 is done when **all** of the following hold at one clean revision:
 Criterion 4 is a real gate. `Demo Journey Canon` §17 names category collapse as
 the leading qualitative failure.
 
+### Recording acceptance test
+
+A recording is acceptable only when all five hold:
+
+1. One uninterrupted capture; no hidden manual state changes.
+2. Every tap is visible and text is readable at normal playback speed.
+3. No API keys, personal messages, precise private location, or production user
+   data appear.
+4. The narration distinguishes **visible proof** from **backend
+   implementation**. Never splice an uncertified capability into the visible
+   story as though it were on screen; say what is implemented and not yet
+   demonstrable, or say nothing.
+5. Any shared link works while signed out and does not expose founder identity
+   or drafts.
+
+This is a product demo, not a traction demo. Say “this is implemented,” never
+“users rely on this.” Claim boundaries per capability are derived from promoted
+receipts in `evidence-attestations.json` — a capability with no receipt at the
+layer being shown may be described, not demonstrated.
+
 ## Explicitly out of M1
 
-Named so they stop competing for the same weeks:
+**Group formation is the named gap, not an oversight.** M1 opens on a Plan that
+already exists. A real organizer creating a Plan and inviting real people
+(J02/J03) is required before an external cohort, and is owned by
+[Demo Journey Canon §14.1](../../travel-agent/docs/product/Demo%20Journey%20Canon.md).
+It becomes an M1 act only if the demo itself must show group formation.
+
+The rest are named so they stop competing for the same weeks:
 
 - broad ambient dispatch and any nearby feed;
 - live booking transaction execution;

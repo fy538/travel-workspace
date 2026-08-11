@@ -1,5 +1,9 @@
 version: 1
 entries:
+  - id: m1-plan-repair
+    title: M1 — Plan Repair
+    path: docs/release/m1-plan-repair.md
+    owns: The single primary milestone, its four demo acts, and its exit criteria.
   - id: product-thesis
     title: Product Thesis
     path: travel-agent/docs/product/Product Thesis.md

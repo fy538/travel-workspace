@@ -1,5 +1,20 @@
 # Owner Action Items
 
+> **This list serves the store release, which is not the current milestone.**
+> [M1 — Plan Repair](release/m1-plan-repair.md) owns current engineering
+> priorities; this document owns human and external-account blockers on the
+> path to first TestFlight. They overlap in exactly one place today: the
+> **production EAS build (Section 1 #7)** is a prerequisite for both M1's
+> device receipts and for TestFlight. Work an item here when it is that build,
+> or when the store release becomes the milestone.
+>
+> **A4 note (2026-08-10):** release physical certification now comes from the
+> J04/J05/J10 two-device lane plus M1 proof receipts, not per-capability
+> journey walks. Section 1 #8 is unchanged and still correct. One consequence
+> to re-open deliberately when the store release becomes the milestone: invite
+> acceptance (J02/J03) no longer carries a `physical` requirement — its current
+> coverage is M1 Act 3 / P05 at `device_mock`.
+
 Single source of truth for everything that requires a human decision, account access, or
 calendar time between today and first TestFlight. Delegable code work is broken out in
 Section 3; founder-console work no agent can do is in Section 2.
