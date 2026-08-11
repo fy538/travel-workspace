@@ -18,7 +18,7 @@ source_of_truth_for: [v1-release-scope]
 
 ## Promise
 
-A vague idea becomes one useful group Trip; members can refine it through governed proposals; it remains useful while traveling; it comes home as a story; and the group can settle up.
+This contract governs which surfaces may ship lit and which must stay dark for the first store release. It is a shipping boundary, not a roadmap and not a product promise. The company promise lives in Product Thesis; the current milestone lives in M1 — Plan Repair (docs/release/m1-plan-repair.md).
 
 ## Governing principles
 
@@ -26,6 +26,8 @@ A vague idea becomes one useful group Trip; members can refine it through govern
 - Planning and group participation are the wedge; live transaction execution is not required for v1.
 - A capability is not production-enabled merely because code exists.
 - Journey and device evidence, not this manifest, certify release readiness.
+- Journey IDs are informational anchors for coverage; they do not drive device certification.
+- Physical evidence for this release comes from the J04/J05/J10 two-device lane plus M1 proof receipts, not from per-capability journey walks.
 
 ## Capability boundary
 
@@ -45,11 +47,15 @@ uncertified until a current-revision receipt exists.
 | Expenses and settlement | **IN** | 2/2 tracked paths | No release flag declared | Unverified externally | [UNCERTIFIED — required promoted layers missing J10: physical; J12: physical](../journeys/STATUS.md) (J10, J12) |
 | Places, Atlas, Discover, and universal search | **IN** | 4/4 tracked paths | Enabled by default | Unverified externally | [UNCERTIFIED — required promoted layers missing J07: physical](../journeys/STATUS.md) (J07) |
 | Profiles, people search, follow, and following | **IN** | 2/2 tracked paths | No release flag declared | Unverified externally | [UNCERTIFIED — required promoted layers missing J13: physical](../journeys/STATUS.md) (J13) |
+| Grounded live Plan repair | **IN** | 2/2 tracked paths | Dark by default | Not claimed; in scope but gated | [UNCERTIFIED — required promoted layers missing J05: device_mock,staging; J06: device_mock,staging; J08: device_mock,staging](../journeys/STATUS.md) (J05, J06, J08) |
+| Open-interval micro-journey doorway | **IN** | 2/2 tracked paths | Dark by default | Not claimed; in scope but gated | [UNCERTIFIED — required promoted layers missing J08: device_mock](../journeys/STATUS.md) (J08) |
+| Local Plans beyond travel | **IN** | 2/2 tracked paths | Dark by default | Not claimed; in scope but gated | [UNCERTIFIED — required promoted layers missing J07: device_mock; J14: device_mock](../journeys/STATUS.md) (J07, J14) |
+| One permissioned relationship opening | **IN** | 2/2 tracked paths | Dark by default | Not claimed; in scope but gated | [UNCERTIFIED — required promoted layers missing J09: ai_eval,device_mock](../journeys/STATUS.md) (J09) |
 | Booking record, mark-as-booked, and external handoff | **PARTIAL** | 2/2 tracked paths | No release flag declared | Unverified externally | [UNCERTIFIED — required promoted layers missing J10: physical](../journeys/STATUS.md) (J10) |
 | Live booking transaction execution | **OUT** | 2/2 tracked paths | Dark by default | Not claimed; release defaults dark | [OUT — not a v1 certification target](../journeys/STATUS.md) (J10) |
 | Live voice, narration, and microphone entry points | **OUT** | 2/2 tracked paths | Dark by default | Not claimed; release defaults dark | [OUT — not a v1 certification target](../journeys/STATUS.md) (J18) |
 | Rendered postcards and postcard sub-surfaces | **OUT** | 2/2 tracked paths | Dark by default | Not claimed; release defaults dark | [OUT — not a v1 certification target](../journeys/STATUS.md) (J11) |
-| Ambient and nearby proactive experiences | **OUT** | 2/2 tracked paths | Dark by default | Not claimed; release defaults dark | [OUT — not a v1 certification target](../journeys/STATUS.md) (J09) |
+| Broad ambient dispatch and nearby feeds | **OUT** | 2/2 tracked paths | Dark by default | Not claimed; release defaults dark | [OUT — not a v1 certification target](../journeys/STATUS.md) (J09) |
 | Public story links and social distribution | **OUT** | 2/2 tracked paths | Dark by default | Not claimed; release defaults dark | [OUT — not a v1 certification target](../journeys/STATUS.md) (J19) |
 | Agent-initiated venue-disruption proposals | **OUT** | 2/2 tracked paths | Dark by default | Not claimed; release defaults dark | [OUT — not a v1 certification target](../journeys/STATUS.md) (J05, J09) |
 
@@ -64,11 +70,15 @@ uncertified until a current-revision receipt exists.
 - **Expenses and settlement:** Settlement completes the shared Trip loop.
 - **Places, Atlas, Discover, and universal search:** Core place and memory surfaces are in; dark sub-surfaces remain governed below.
 - **Profiles, people search, follow, and following:** Public story distribution is not implied by profiles or relationship edges.
+- **Grounded live Plan repair:** M1 Act 1. A disruption becomes one grounded, group-safe replace proposal through the canonical proposal path; it never mutates the Plan directly. _Gate: Allowlisted by WEATHER_RESCUE_TRIP_IDS; lights per-Trip only, never globally._
+- **Open-interval micro-journey doorway:** The sixty-second cold demo. One anchor plus its connective route between two commitments; not a generated multi-stop itinerary. _Gate: Internal builds only; requires a bounded open window, not an active block._
+- **Local Plans beyond travel:** M1 Act 4. Proof that Experience/Plan/Move persists beyond tourism into bounded everyday occasions. _Gate: Dogfood cohort only; no external cohort until M1 Act 4 outcome capture is certified._
+- **One permissioned relationship opening:** M1 Act 4 closing beat. A permitted opening between two people crosses the tentative-to-shared Plan boundary honestly. This is ambient-as-person-trigger, not a feed; a scrollable list is the tell that it became the thing Surfacing Strategy killed. _Gate: Dark until P06 (consent and silence) has anchors and its negative oracles pass. Double-opt-in only; one decline produces silence._
 - **Booking record, mark-as-booked, and external handoff:** Honest non-transacting handoff is in; provider transaction execution is out.
 - **Live booking transaction execution:** Duffel cart, hold, and execution remain dark for v1.
 - **Live voice, narration, and microphone entry points:** Code exists but the live experience remains outside v1 until end-to-end certification.
 - **Rendered postcards and postcard sub-surfaces:** Post-trip Story is in; image-generation artifacts are dark.
-- **Ambient and nearby proactive experiences:** The company vision includes earned proactivity; broad ambient dispatch is not a v1 claim.
+- **Broad ambient dispatch and nearby feeds:** Split from the former `ambient` capability on 2026-08-10. Broad dispatch and any generic nearby feed remain out; the single permissioned relationship opening is governed separately as `relationship-opening`.
 - **Public story links and social distribution:** Requires public-taste and privacy certification before exposure.
 - **Agent-initiated venue-disruption proposals:** Explicit proposals are in; this producer remains dark until precision and cohort evidence justify it.
 

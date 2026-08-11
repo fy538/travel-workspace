@@ -24,8 +24,16 @@ DEFAULT_MANIFEST = (
 )
 SHA_KEYS = ("workspace_sha", "backend_sha", "app_sha")
 LANES = {"causal_spine", "ai_evidence", "group_trip", "integration_evidence"}
-STATUSES = {"assembling", "ready", "deployed", "observed"}
-EVIDENCE_STATES = {"not_run", "blocked", "fail", "pass", "stale"}
+STATUSES = {"assembling", "ready", "deployed", "observed", "external_evidence_blocked"}
+EVIDENCE_STATES = {
+    "not_run",
+    "blocked",
+    "fail",
+    "pass",
+    "stale",
+    "observed_iterate",
+    "waived_not_h_evidence",
+}
 DEPLOYED_STATUSES = {"deployed", "observed"}
 CONTROL_OFF_KEYS = {
     "group_visible_ai_dl",

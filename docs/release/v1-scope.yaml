@@ -7,14 +7,17 @@ release:
   last_verified: 2026-08-09
   owner: founder / engineering
   promise: >-
-    A vague idea becomes one useful group Trip; members can refine it through
-    governed proposals; it remains useful while traveling; it comes home as a
-    story; and the group can settle up.
+    This contract governs which surfaces may ship lit and which must stay dark
+    for the first store release. It is a shipping boundary, not a roadmap and
+    not a product promise. The company promise lives in Product Thesis; the
+    current milestone lives in M1 — Plan Repair (docs/release/m1-plan-repair.md).
   principles:
     - Harden the IN set; keep excluded code dark rather than deleting it.
     - Planning and group participation are the wedge; live transaction execution is not required for v1.
     - A capability is not production-enabled merely because code exists.
     - Journey and device evidence, not this manifest, certify release readiness.
+    - "Journey IDs are informational anchors for coverage; they do not drive device certification."
+    - "Physical evidence for this release comes from the J04/J05/J10 two-device lane plus M1 proof receipts, not from per-capability journey walks."
 
 capabilities:
   - id: auth-onboarding
@@ -98,6 +101,46 @@ capabilities:
     flags: []
     note: Public story distribution is not implied by profiles or relationship edges.
 
+  - id: plan-repair
+    name: Grounded live Plan repair
+    intent: in
+    evidence_paths: [travel-agent/backend/core/weather_rescue.py, travel-agent/backend/concierge/proactive.py]
+    journey_ids: [J05, J06, J08]
+    required_layers: [device_mock, staging]
+    flags: [WEATHER_RESCUE_PROPOSALS_ENABLED]
+    gate: Allowlisted by WEATHER_RESCUE_TRIP_IDS; lights per-Trip only, never globally.
+    note: M1 Act 1. A disruption becomes one grounded, group-safe replace proposal through the canonical proposal path; it never mutates the Plan directly.
+
+  - id: micro-journey
+    name: Open-interval micro-journey doorway
+    intent: in
+    evidence_paths: [travel-app/utils/takeSomewhere.ts, travel-app/components/trip-plan/NowModeStrip.tsx]
+    journey_ids: [J08]
+    required_layers: [device_mock]
+    flags: [GROUP_TRIP_MICRO_JOURNEY_ENABLED]
+    gate: Internal builds only; requires a bounded open window, not an active block.
+    note: The sixty-second cold demo. One anchor plus its connective route between two commitments; not a generated multi-stop itinerary.
+
+  - id: local-plan
+    name: Local Plans beyond travel
+    intent: in
+    evidence_paths: [travel-app/components/trip-plan/LocalPlanScreen.tsx, travel-agent/backend/core/experience_scope.py]
+    journey_ids: [J07, J14]
+    required_layers: [device_mock]
+    flags: [LOCAL_PLAN_DOGFOOD_ENABLED]
+    gate: Dogfood cohort only; no external cohort until M1 Act 4 outcome capture is certified.
+    note: M1 Act 4. Proof that Experience/Plan/Move persists beyond tourism into bounded everyday occasions.
+
+  - id: relationship-opening
+    name: One permissioned relationship opening
+    intent: in
+    evidence_paths: [travel-agent/backend/notifications, travel-app/constants/featureFlags.ts]
+    journey_ids: [J09]
+    required_layers: [device_mock, ai_eval]
+    flags: [AMBIENT_COINCIDENCE_CANDIDATES_ENABLED]
+    gate: Dark until P06 (consent and silence) has anchors and its negative oracles pass. Double-opt-in only; one decline produces silence.
+    note: M1 Act 4 closing beat. A permitted opening between two people crosses the tentative-to-shared Plan boundary honestly. This is ambient-as-person-trigger, not a feed; a scrollable list is the tell that it became the thing Surfacing Strategy killed.
+
   - id: booking-handoff
     name: Booking record, mark-as-booked, and external handoff
     intent: partial
@@ -134,14 +177,14 @@ capabilities:
     flags: [POSTCARD_RENDER_ENABLED, POSTCARDS_ENABLED]
     note: Post-trip Story is in; image-generation artifacts are dark.
 
-  - id: ambient
-    name: Ambient and nearby proactive experiences
+  - id: ambient-broad
+    name: Broad ambient dispatch and nearby feeds
     intent: out
     evidence_paths: [travel-agent/backend/notifications, travel-app/constants/featureFlags.ts]
     journey_ids: [J09]
     required_layers: []
-    flags: [AMBIENT_ENABLED, AMBIENT_ATTENTION_DISPATCH_ENABLED, AMBIENT_COINCIDENCE_CANDIDATES_ENABLED]
-    note: The company vision includes earned proactivity; broad ambient dispatch is not a v1 claim.
+    flags: [AMBIENT_ENABLED, AMBIENT_ATTENTION_DISPATCH_ENABLED]
+    note: Split from the former `ambient` capability on 2026-08-10. Broad dispatch and any generic nearby feed remain out; the single permissioned relationship opening is governed separately as `relationship-opening`.
 
   - id: story-sharing
     name: Public story links and social distribution

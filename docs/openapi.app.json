@@ -17829,7 +17829,7 @@
           "itinerary-operations"
         ],
         "summary": "Preview Places Venue Add",
-        "description": "Construct a Places selection as a canonical, reviewable Trips operation.\n\nThe client supplies no revision, participants, owner, title, or operation\nidentity. Those are all read from the authoritative Trips/corpus state.",
+        "description": "Construct a bounded Places selection as a canonical, reviewable operation.\n\nThe opaque receipt binds the card to a venue and adjacent-block opening,\nbut it is never enough on its own: the server reloads current Plan,\ncandidate, operating-hours, and two-leg route facts first. A stale or\nunprovable receipt is not silently converted into an unscheduled day add.",
         "operationId": "preview_places_venue_add_api_trips__trip_id__itinerary_days__day_id__add_venue_preview_post",
         "parameters": [
           {
@@ -45725,6 +45725,18 @@
             ],
             "title": "Companion Scope"
           },
+          "source_proposal_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Proposal Id"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -59900,6 +59912,19 @@
             ],
             "title": "Venue Id"
           },
+          "bounded_opportunity_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 4096,
+                "minLength": 32
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bounded Opportunity Id"
+          },
           "proposal_id": {
             "anyOf": [
               {
@@ -60347,7 +60372,7 @@
               "$ref": "#/components/schemas/PlacesFeedUnavailableProducer"
             },
             "type": "array",
-            "maxItems": 12,
+            "maxItems": 13,
             "title": "Unavailable Producers"
           },
           "saved_total": {
@@ -60380,7 +60405,8 @@
           "returns",
           "nearby",
           "reading",
-          "saved_unplaced"
+          "saved_unplaced",
+          "registers"
         ],
         "title": "PlacesFeedUnavailableProducer",
         "description": "Optional feed source that could not answer within this response budget.\n\nThis is deliberately a small closed vocabulary, not an error payload.  It\nlets a client distinguish an honestly empty feed from a partial feed while\nrevealing neither exception detail nor any content that the source failed\nto load."
@@ -61894,18 +61920,19 @@
       },
       "PlacesVenueAddPreviewRequest": {
         "properties": {
-          "venue_id": {
-            "type": "integer",
-            "minimum": 1.0,
-            "title": "Venue Id"
+          "bounded_opportunity_id": {
+            "type": "string",
+            "maxLength": 4096,
+            "minLength": 32,
+            "title": "Bounded Opportunity Id"
           }
         },
         "type": "object",
         "required": [
-          "venue_id"
+          "bounded_opportunity_id"
         ],
         "title": "PlacesVenueAddPreviewRequest",
-        "description": "A Places-originated venue selection; Trips supplies all write authority."
+        "description": "A displayed bounded Places selection; Trips supplies all write authority."
       },
       "PlanBlock": {
         "properties": {
@@ -75140,7 +75167,7 @@
           "active"
         ],
         "title": "TripPresenceResponse",
-        "description": "Tier 0 group live-presence (docs/working/Chat Waiting Experience Plan.md,\nWorkstream A) — is anyone's turn with Vesper in flight on this trip right\nnow? Polled by other group members' chat screen so they can render\n\"{name} is asking Vesper…\" without any new streaming/websocket infra."
+        "description": "Tier 0 group live-presence (docs/archive/Chat Waiting Experience Plan.md,\nWorkstream A) — is anyone's turn with Vesper in flight on this trip right\nnow? Polled by other group members' chat screen so they can render\n\"{name} is asking Vesper…\" without any new streaming/websocket infra."
       },
       "TripReadingPublic": {
         "properties": {

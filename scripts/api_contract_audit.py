@@ -35,7 +35,6 @@ OPENAPI_SNAPSHOT = WORKSPACE_ROOT / "docs" / "openapi.json"
 POLICY_PATH = WORKSPACE_ROOT / "docs" / "governance" / "api-operation-policy.json"
 FLAG_REGISTRY = WORKSPACE_ROOT / "docs" / "flags" / "registry.yaml"
 APP_ROOT = WORKSPACE_ROOT / "travel-app"
-HTTP_TS = APP_ROOT / "utils" / "api" / "http.ts"
 
 HTTP_METHODS = frozenset({"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD"})
 AUDIENCES = frozenset(
@@ -243,7 +242,7 @@ def _method_for_call(callee: str, call_body: str) -> str:
     explicit = re.search(r"\bmethod\s*:\s*['\"]([A-Z]+)['\"]", call_body)
     if explicit:
         return explicit.group(1)
-    if callee in {"_uploadFile", "streamSSE"}:
+    if callee in {"_uploadFile", "uploadFile", "streamSSE"}:
         return "POST"
     return "GET"
 
@@ -292,18 +291,58 @@ def _relative(path: Path) -> str:
         return resolved.as_posix()
 
 
-def _http_method_at(source: str, position: int) -> str | None:
-    object_start = source.find("export const httpApi")
-    if object_start < 0 or position < object_start:
+def _transport_method_at(source: str, position: int) -> str | None:
+    """Return the facade method enclosing a transport call.
+
+    The HTTP API is intentionally split across ``http.ts`` and focused
+    ``http*Endpoints.ts`` extension modules.  Every module keeps the same
+    object-method syntax, whether the object is the core ``httpApi`` literal
+    or an ``Object.assign(api, {...})`` extension.  Looking for the nearest
+    method declaration keeps consumer discovery aligned with that stable
+    public facade rather than treating file layout as contract semantics.
+    """
+    starts = [
+        source.rfind(marker, 0, position)
+        for marker in ("const coreHttpApi = {", "export const httpApi = {", "Object.assign(")
+    ]
+    object_start = max(starts)
+    if object_start < 0:
         return None
-    candidates = list(
-        re.finditer(
-            r"^  (?:async )?([A-Za-z_]\w*)\s*\(",
+    control_flow = frozenset(
+        {"if", "for", "while", "switch", "catch", "with", "import"}
+    )
+    candidates = (
+        match
+        for match in re.finditer(
+            r"^\s*(?:async\s+)?([A-Za-z_]\w*)\s*\(",
             source[object_start:position],
             re.MULTILINE,
         )
+        if match.group(1) not in control_flow
     )
-    return candidates[-1].group(1) if candidates else None
+    return _last_method(candidates)
+
+
+def _last_method(candidates: Iterable[re.Match[str]]) -> str | None:
+    """Return the last method name without accepting control-flow blocks."""
+
+    last: str | None = None
+    for candidate in candidates:
+        last = candidate.group(1)
+    return last
+
+
+def _transport_source_files(app_root: Path) -> list[Path]:
+    """Return every implementation module behind the one public HTTP facade.
+
+    Keep this deliberately narrow: API transport modules are named
+    ``http*.ts`` and live beside the generated schema.  We must not scan the
+    whole API directory because mocks, contracts, and helpers can contain
+    route-shaped strings without being production transport consumers.
+    """
+
+    directory = app_root / "utils" / "api"
+    return sorted(path for path in directory.glob("http*.ts") if path.is_file())
 
 
 def _product_method_callers(
@@ -339,17 +378,17 @@ def discover_mobile_consumers(
 ]:
     consumers: dict[tuple[str, str], set[Consumer]] = defaultdict(set)
     calls_by_method: dict[str, set[tuple[str, str]]] = defaultdict(set)
-    http_ts = app_root / "utils" / "api" / "http.ts"
-    if http_ts.exists():
-        source = http_ts.read_text(encoding="utf-8")
+    transport_sources = _transport_source_files(app_root)
+    for transport_source in transport_sources:
+        source = transport_source.read_text(encoding="utf-8")
         for callee, url, body, position in _iter_call_bodies(
-            source, {"_request", "_uploadFile"}
+            source, {"_request", "_uploadFile", "request", "uploadFile"}
         ):
             method = _method_for_call(callee, body)
             normalized = (method, normalize_path(url))
-            symbol = _http_method_at(source, position)
+            symbol = _transport_method_at(source, position)
             consumers[normalized].add(
-                Consumer("app_transport", _relative(http_ts), symbol)
+                Consumer("app_transport", _relative(transport_source), symbol)
             )
             if symbol:
                 calls_by_method[symbol].add(normalized)
@@ -371,7 +410,7 @@ def discover_mobile_consumers(
                 for part in path.parts
             ):
                 continue
-            if path in {http_ts, app_root / "utils" / "api" / "schema.gen.ts"}:
+            if path in {*transport_sources, app_root / "utils" / "api" / "schema.gen.ts"}:
                 continue
             source = path.read_text(encoding="utf-8", errors="ignore")
             for callee, url, body, _ in _iter_call_bodies(

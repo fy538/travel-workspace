@@ -255,6 +255,72 @@ class APIContractAuditTests(unittest.TestCase):
             {"app_transport", "app_source"},
         )
 
+    def test_mobile_discovery_follows_split_http_extension_modules(self) -> None:
+        directory = tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parent.parent)
+        self.addCleanup(directory.cleanup)
+        app_root = Path(directory.name)
+        api_dir = app_root / "utils" / "api"
+        api_dir.mkdir(parents=True)
+        (api_dir / "http.ts").write_text(
+            "export const httpApi = {\n"
+            "  async listThings() { return _request('/api/things'); },\n"
+            "};\n",
+            encoding="utf-8",
+        )
+        (api_dir / "httpExtendedEndpoints.ts").write_text(
+            "export function extendHttpApi(api) {\n"
+            "  Object.assign(api, {\n"
+            "    async createThing() {\n"
+            "      if (false) { return request('/api/not-a-method'); }\n"
+            "      return request('/api/things', { method: 'POST' });\n"
+            "    },\n"
+            "    async uploadThing() {\n"
+            "      return uploadFile('/api/things/upload', {});\n"
+            "    },\n"
+            "  });\n"
+            "}\n",
+            encoding="utf-8",
+        )
+        screen = app_root / "app" / "things.tsx"
+        screen.parent.mkdir(parents=True)
+        screen.write_text("api.listThings(); api.createThing();\n", encoding="utf-8")
+
+        consumers, endpoints = discover_mobile_consumers(app_root)
+
+        self.assertEqual(
+            endpoints,
+            {
+                ("GET", "/api/things"),
+                ("GET", "/api/not-a-method"),
+                ("POST", "/api/things"),
+                ("POST", "/api/things/upload"),
+            },
+        )
+        create_consumers = consumers[("POST", "/api/things")]
+        self.assertTrue(
+            any(
+                consumer.kind == "app_transport"
+                and consumer.source.endswith("utils/api/httpExtendedEndpoints.ts")
+                and consumer.symbol == "createThing"
+                for consumer in create_consumers
+            )
+        )
+        self.assertFalse(
+            any(
+                consumer.symbol == "if"
+                for consumers_for_endpoint in consumers.values()
+                for consumer in consumers_for_endpoint
+            )
+        )
+        self.assertTrue(
+            any(
+                consumer.kind == "app_source"
+                and consumer.source.endswith("app/things.tsx")
+                and consumer.symbol == "createThing"
+                for consumer in create_consumers
+            )
+        )
+
     def test_current_workspace_policy_is_green(self) -> None:
         findings, counts, _ = audit()
         operations, _ = load_openapi(OPENAPI_SNAPSHOT)

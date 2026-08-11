@@ -34,10 +34,15 @@ def _format_python(source: str, *, filename: str, config_path: Path | None = Non
     return result.stdout
 
 
+def _lifecycle_status(lifecycle: dict, name: str) -> str:
+    return (lifecycle.get(name) or {}).get("status", "active")
+
+
 def render_ts_types(data: dict) -> str:
     meta = data["metadata_card_types"]
     attachments = data["attachments"]
     no_arrival = data["no_arrival"]
+    lifecycle = data.get("attachment_lifecycle") or {}
     meta_keys = list(meta.keys())
     rows = []
     for key, item in meta.items():
@@ -49,10 +54,18 @@ def render_ts_types(data: dict) -> str:
     no_arrival_rows = "\n".join(
         f"  {json.dumps(k)}: {json.dumps(v)}," for k, v in no_arrival.items()
     )
+    status_rows = "\n".join(
+        f"  {json.dumps(name)}: {json.dumps(_lifecycle_status(lifecycle, name))},"
+        for name in attachments
+    )
+    retired_types = [
+        name for name in attachments if _lifecycle_status(lifecycle, name) == "retired"
+    ]
     return (
         "// Generated from docs/contracts/chat-card-types.json. Do not hand-edit.\n"
         f"export type GeneratedMetadataCardType = {_ts_string_union(meta_keys)};\n"
         f"export type GeneratedChatAttachmentType = {_ts_string_union(attachments)};\n"
+        'export type ChatAttachmentLifecycleStatus = "active" | "deprecated" | "retired";\n'
         "export const GENERATED_METADATA_CARD_TYPES = "
         f"{json.dumps(meta_keys, indent=2)} as const;\n"
         "export const GENERATED_CHAT_ATTACHMENT_TYPES = "
@@ -63,6 +76,15 @@ def render_ts_types(data: dict) -> str:
         "export const GENERATED_CHAT_ATTACHMENT_NO_ARRIVAL = {\n"
         + no_arrival_rows
         + "\n} as const;\n"
+        "// Retiring a type never removes it from the union above — it only flips\n"
+        "// this map to \"retired\", which routes AttachmentRenderer to\n"
+        "// RetiredCardFallback instead of the real component. See Card Catalog §8.1.\n"
+        "export const GENERATED_CHAT_ATTACHMENT_STATUS: "
+        "Record<GeneratedChatAttachmentType, ChatAttachmentLifecycleStatus> = {\n"
+        + status_rows
+        + "\n} as const;\n"
+        "export const GENERATED_RETIRED_CHAT_ATTACHMENT_TYPES = "
+        f"{json.dumps(retired_types, indent=2)} as const;\n"
     )
 
 
@@ -70,6 +92,7 @@ def render_py_types(data: dict, *, config_path: Path | None = None) -> str:
     meta = data["metadata_card_types"]
     attachments = data["attachments"]
     no_arrival = data["no_arrival"]
+    lifecycle = data.get("attachment_lifecycle") or {}
     meta_keys = list(meta.keys())
     info_rows = []
     for key, item in meta.items():
@@ -81,6 +104,11 @@ def render_py_types(data: dict, *, config_path: Path | None = None) -> str:
     no_arrival_rows = "\n".join(
         f"    {json.dumps(k)}: {json.dumps(v)}," for k, v in no_arrival.items()
     )
+    status_by_name = {name: _lifecycle_status(lifecycle, name) for name in attachments}
+    status_rows = "\n".join(
+        f"    {json.dumps(name)}: {json.dumps(status)}," for name, status in status_by_name.items()
+    )
+    retired_types = [name for name, status in status_by_name.items() if status == "retired"]
     source = (
         '"""Generated from docs/contracts/chat-card-types.json. Do not hand-edit."""\n\n'
         "from __future__ import annotations\n\n"
@@ -96,6 +124,14 @@ def render_py_types(data: dict, *, config_path: Path | None = None) -> str:
         "CHAT_ATTACHMENT_NO_ARRIVAL: dict[str, str] = {\n"
         + no_arrival_rows
         + "\n}\n\n"
+        "# Retiring a type never removes it from CHAT_ATTACHMENT_TYPES above — it\n"
+        "# only flips this map to \"retired\". See Card Catalog §8.1.\n"
+        "CHAT_ATTACHMENT_STATUS: dict[str, str] = {\n"
+        + status_rows
+        + "\n}\n\n"
+        "RETIRED_CHAT_ATTACHMENT_TYPES: frozenset[str] = frozenset(\n"
+        f"    {retired_types!r}\n"
+        ")\n\n"
         "def require_known_card_type(card_type: str | None) -> None:\n"
         '    """Raise ValueError when metadata.card_type is set but not allowlisted."""\n'
         "    if card_type is None:\n"
@@ -210,7 +246,10 @@ def render_schemas(
         )
         model_map.append((name, title))
 
-    py_parts.append("PILOT_ATTACHMENT_SCHEMA_MODELS = {\n")
+    # Keep the generated registry precise enough for strict backend mypy.  The
+    # generated schema classes all inherit BaseModel, so the dynamic lookup
+    # retains the model_validate contract without hand-editing generated code.
+    py_parts.append("PILOT_ATTACHMENT_SCHEMA_MODELS: dict[str, type[BaseModel]] = {\n")
     for name, title in model_map:
         py_parts.append(f"    {json.dumps(name)}: {title},\n")
     py_parts.append("}\n\n")
@@ -245,6 +284,25 @@ def main() -> int:
     )
     args = parser.parse_args()
     data = json.loads(TYPES_SOURCE.read_text())
+
+    # Every attachment must have exactly one lifecycle entry, and vice versa.
+    # This is what makes "retire, never delete" enforceable: a type cannot
+    # silently disappear from `attachments` without also dropping its
+    # lifecycle row (and generated retired-type consumers would then miss
+    # it), and a lifecycle row cannot reference a name nothing declares.
+    attachment_names = set(data["attachments"])
+    lifecycle_names = set((data.get("attachment_lifecycle") or {}).keys())
+    if attachment_names != lifecycle_names:
+        missing = attachment_names - lifecycle_names
+        orphaned = lifecycle_names - attachment_names
+        parts = []
+        if missing:
+            parts.append(f"missing attachment_lifecycle entries: {sorted(missing)}")
+        if orphaned:
+            parts.append(f"orphaned attachment_lifecycle entries: {sorted(orphaned)}")
+        print("chat-card-types.json lifecycle drift — " + "; ".join(parts))
+        return 1
+
     # Worktree-aware output roots keep contract generation from modifying a
     # concurrently edited primary checkout. The workspace contract itself
     # remains the single source of truth.

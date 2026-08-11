@@ -37,6 +37,46 @@ class ReleaseScopeValidationTests(unittest.TestCase):
         problems = subject.validate_release(self.payload, flags, self.journey_ids)
         self.assertIn("voice: OUT capability flags must all default false", problems)
 
+    def test_in_capability_with_dark_flag_requires_a_gate(self) -> None:
+        payload = copy.deepcopy(self.payload)
+        row = next(
+            item for item in payload["capabilities"] if item["id"] == "plan-repair"
+        )
+        del row["gate"]
+        problems = subject.validate_release(payload, self.flag_rows, self.journey_ids)
+        self.assertIn(
+            "plan-repair: IN capability with a dark flag requires a non-empty "
+            "gate naming the condition under which it lights",
+            problems,
+        )
+
+    def test_blank_gate_does_not_satisfy_the_requirement(self) -> None:
+        payload = copy.deepcopy(self.payload)
+        row = next(
+            item for item in payload["capabilities"] if item["id"] == "plan-repair"
+        )
+        row["gate"] = "   "
+        problems = subject.validate_release(payload, self.flag_rows, self.journey_ids)
+        self.assertTrue(any("requires a non-empty" in problem for problem in problems))
+
+    def test_gate_is_rejected_when_there_is_nothing_to_gate(self) -> None:
+        payload = copy.deepcopy(self.payload)
+        row = next(item for item in payload["capabilities"] if item["id"] == "expenses")
+        row["gate"] = "not applicable"
+        problems = subject.validate_release(payload, self.flag_rows, self.journey_ids)
+        self.assertIn(
+            "expenses: gate is only valid on an IN capability that carries a dark flag",
+            problems,
+        )
+
+    def test_gated_in_capability_is_not_claimed_as_production_enabled(self) -> None:
+        _, capabilities, flags = subject.load_release()
+        row = next(item for item in capabilities if item["id"] == "plan-repair")
+        self.assertEqual(
+            subject.production_posture(row, flags),
+            "Not claimed; in scope but gated",
+        )
+
     def test_untracked_evidence_does_not_count_as_implementation(self) -> None:
         with patch.object(subject, "_path_is_tracked", return_value=False):
             problems = subject.validate_release(

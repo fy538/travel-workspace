@@ -148,10 +148,13 @@ reviewed queue for later consolidation and cleanup.
 
 ## Phase 3 canonical spine
 
-`spine.yaml` names exactly nine living entry points: thesis, product model,
+`spine.yaml` names exactly ten living entry points: M1, thesis, product model,
 beliefs, V1 scope, current state, journey status, systems, owner actions, and
-decisions. The workspace index must expose all nine, their paths must exist outside the archive, and each
-workspace-owned entry must be classified `keep_authoritative` in the inventory.
+decisions. The set is closed — a document becomes an entry point only by an
+explicit edit to `spine.yaml` and `check_docs_spine.EXPECTED`, so a new
+authority cannot appear by accident. The workspace index must expose all ten,
+their paths must exist outside the archive, and each workspace-owned entry must
+be classified `keep_authoritative` in the inventory.
 
 `docs/status/current-state.md` is intentionally narrow. Its generated block reports
 facts from executable registries instead of copying narrative readiness claims into
@@ -208,8 +211,9 @@ baseline to bypass admission—the baseline is history, not a moving allowlist.
 
 The 2026-08-09 consolidation assigned one owner to each company concept and
 made the shortest company-orientation path Product Thesis → Product Model →
-Current State. The nine-entry spine is an authority registry, not a required
-reading sequence.
+Current State. The 2026-08-10 consolidation added M1 as the tenth entry and
+made the shortest *execution* path M1 → Product Proof Spine → Journey Evidence
+Model. The spine is an authority registry, not a required reading sequence.
 
 `make docs-canon-check` prevents the first-read canon from expanding back into
 overlapping essays. Product Thesis, Product Model, Product Vision, What We

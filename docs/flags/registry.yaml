@@ -46,6 +46,16 @@ flags:
     status: active
     notes: Enables the bounded nearby reachability/isochrone canary after cache and provider validation.
 
+  - name: NEARBY_TRAVEL_TIME_RANKING_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:49
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    notes: Ranks discover_nearby_ranked candidates by real Mapbox Matrix travel time instead of straight-line distance; fails open to the existing distance score per-candidate on any provider/response issue.
+
   - name: AMBIENT_ATTENTION_DISPATCH_ENABLED
     repo: travel-agent
     location: backend/core/feature_flags.py:120
@@ -667,6 +677,90 @@ flags:
     notes: >
       Internal-only Trips Home editorial map gate. The query and membership
       path must remain dark together until map/time truth is certified.
+
+  - name: TRIPS_NEAR_YOU_DOGFOOD_ENABLED
+    repo: travel-app
+    location: constants/featureFlags.ts:47
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    target_journey: J08
+    cohort: internal-founder-dogfood
+    kill_switch: Set EXPO_PUBLIC_TRIPS_NEAR_YOU_DOGFOOD_ENABLED=false; the gate also requires INTERNAL_BUILD=true.
+    promotion_removal_question: By 2026-10-30, does the foreground near-you receipt have current location, map, and device proof, or should this dark entry be removed?
+    notes: Internal-only foreground location receipt; the client never invents a nearby result.
+
+  - name: PLACES_READING_SPINE_ENABLED
+    repo: travel-app
+    location: constants/featureFlags.ts:59
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    target_journey: J07
+    cohort: internal-founder-dogfood
+    kill_switch: Set EXPO_PUBLIC_PLACES_READING_SPINE_ENABLED=false; the gate also requires INTERNAL_BUILD=true.
+    promotion_removal_question: By 2026-10-30, does the mirrored reading treatment have visual and accessibility evidence, or should it remain absent?
+    notes: Presentation-only exploratory Places treatment; it introduces no new content authority.
+
+  - name: PLACES_SAVED_UNPLACED_ENABLED
+    repo: travel-app
+    location: constants/featureFlags.ts:70
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    target_journey: J07
+    cohort: internal-founder-dogfood
+    kill_switch: Set EXPO_PUBLIC_PLACES_SAVED_UNPLACED_ENABLED=false; the gate also requires INTERNAL_BUILD=true.
+    promotion_removal_question: By 2026-10-30, does the owner-only saved-unplaced projection earn device evidence with its backend source, or should both gates be removed?
+    notes: Client presentation gate paired with the backend Saved Unplaced producer.
+
+  - name: TRIP_FEEL_STATIC_EXPLORATION_ENABLED
+    repo: travel-app
+    location: constants/featureFlags.ts:81
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    target_journey: J08
+    cohort: internal-founder-dogfood
+    kill_switch: Set EXPO_PUBLIC_TRIP_FEEL_STATIC_EXPLORATION_ENABLED=false; the gate also requires INTERNAL_BUILD=true.
+    promotion_removal_question: By 2026-10-30, did the static visual exploration earn a server-owned fact contract, or should the exploratory surface be removed?
+    notes: Internal visual exploration only; it has no write, telemetry, or conversational authority.
+
+  - name: PLACES_REGISTERS_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:141
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    target_journey: J07
+    cohort: internal-founder-dogfood
+    kill_switch: Unset PLACES_REGISTERS_ENABLED or set it false.
+    promotion_removal_question: By 2026-10-30, do evidence-first registers have source, privacy, and device proof, or should the adapter remain dark?
+    notes: Backend gate for source-backed Places register exploration; it grants no recommendation or mutation authority.
+
+  - name: PLACES_TWO_PLACE_COMPARISON_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:152
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    target_journey: J07
+    cohort: internal-founder-dogfood
+    kill_switch: Unset PLACES_TWO_PLACE_COMPARISON_ENABLED or set it false.
+    promotion_removal_question: By 2026-10-30, does the comparison adapter have durable candidate-set provenance, or should it remain unreachable?
+    notes: Dark catalog comparison adapter; a flag alone never grants Places feed membership.
 
   - name: GROUP_TRIP_MICRO_JOURNEY_ENABLED
     repo: travel-app

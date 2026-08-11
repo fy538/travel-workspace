@@ -22918,6 +22918,56 @@
         }
       }
     },
+    "/api/places/comparison": {
+      "get": {
+        "tags": [
+          "places"
+        ],
+        "summary": "Get Places Comparison",
+        "description": "Return the public catalog comparison availability, never a derived pair.\n\nThis additive endpoint is intentionally authenticated for a consistent\nPlaces delivery boundary, but does not read the authenticated user.  Until\na durable catalog publication owns one explicit ordered pair, it returns a\ncontent-free unavailable state.  In particular it must not mine saved\nplaces, taste, trip, location, membership, or private/group data merely to\nfill the comparison vertical.",
+        "operationId": "get_places_comparison_api_places_comparison_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlacesComparisonResult"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/places/feed": {
       "get": {
         "tags": [
@@ -23591,7 +23641,7 @@
           "itinerary-operations"
         ],
         "summary": "Preview Places Venue Add",
-        "description": "Construct a Places selection as a canonical, reviewable Trips operation.\n\nThe client supplies no revision, participants, owner, title, or operation\nidentity. Those are all read from the authoritative Trips/corpus state.",
+        "description": "Construct a bounded Places selection as a canonical, reviewable operation.\n\nThe opaque receipt binds the card to a venue and adjacent-block opening,\nbut it is never enough on its own: the server reloads current Plan,\ncandidate, operating-hours, and two-leg route facts first. A stale or\nunprovable receipt is not silently converted into an unscheduled day add.",
         "operationId": "preview_places_venue_add_api_trips__trip_id__itinerary_days__day_id__add_venue_preview_post",
         "parameters": [
           {
@@ -55370,6 +55420,18 @@
             ],
             "title": "Companion Scope"
           },
+          "source_proposal_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Proposal Id"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -70421,6 +70483,19 @@
             ],
             "title": "Venue Id"
           },
+          "bounded_opportunity_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 4096,
+                "minLength": 32
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bounded Opportunity Id"
+          },
           "proposal_id": {
             "anyOf": [
               {
@@ -70503,6 +70578,275 @@
           "clear"
         ],
         "title": "PlacesCardVerb"
+      },
+      "PlacesComparableFacts": {
+        "properties": {
+          "price_min_cents": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Price Min Cents"
+          },
+          "price_max_cents": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Price Max Cents"
+          },
+          "price_currency": {
+            "type": "string",
+            "maxLength": 3,
+            "minLength": 3,
+            "title": "Price Currency"
+          },
+          "reservation_lead_days": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Reservation Lead Days"
+          },
+          "outdoor_seating": {
+            "type": "boolean",
+            "title": "Outdoor Seating"
+          },
+          "wheelchair_accessible": {
+            "type": "boolean",
+            "title": "Wheelchair Accessible"
+          },
+          "avg_meal_duration_minutes": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Avg Meal Duration Minutes"
+          },
+          "kid_friendly": {
+            "type": "string",
+            "maxLength": 48,
+            "minLength": 1,
+            "title": "Kid Friendly"
+          },
+          "dietary_vegetarian": {
+            "type": "string",
+            "maxLength": 48,
+            "minLength": 1,
+            "title": "Dietary Vegetarian"
+          },
+          "dietary_vegan": {
+            "type": "string",
+            "maxLength": 48,
+            "minLength": 1,
+            "title": "Dietary Vegan"
+          },
+          "dietary_gluten_free": {
+            "type": "string",
+            "maxLength": 48,
+            "minLength": 1,
+            "title": "Dietary Gluten Free"
+          }
+        },
+        "type": "object",
+        "required": [
+          "price_min_cents",
+          "price_max_cents",
+          "price_currency",
+          "reservation_lead_days",
+          "outdoor_seating",
+          "wheelchair_accessible",
+          "avg_meal_duration_minutes",
+          "kid_friendly",
+          "dietary_vegetarian",
+          "dietary_vegan",
+          "dietary_gluten_free"
+        ],
+        "title": "PlacesComparableFacts",
+        "description": "The full design-defined fact set shared by both sides of the pair."
+      },
+      "PlacesComparableVenue": {
+        "properties": {
+          "venue_id": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Venue Id"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/PlacesComparisonDetailDestination"
+          },
+          "facts": {
+            "$ref": "#/components/schemas/PlacesComparableFacts"
+          },
+          "source_revision_key": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Source Revision Key"
+          },
+          "source_observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Source Observed At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "venue_id",
+          "name",
+          "destination",
+          "facts",
+          "source_revision_key",
+          "source_observed_at"
+        ],
+        "title": "PlacesComparableVenue",
+        "description": "One unranked, catalog-owned side of a comparison."
+      },
+      "PlacesComparisonDetailDestination": {
+        "properties": {
+          "target": {
+            "type": "string",
+            "const": "venue_detail",
+            "title": "Target",
+            "default": "venue_detail"
+          },
+          "venue_id": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Venue Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "venue_id"
+        ],
+        "title": "PlacesComparisonDetailDestination",
+        "description": "Typed catalog destination; deliberately not a client route string."
+      },
+      "PlacesComparisonEvidence": {
+        "properties": {
+          "fact_key": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Fact Key"
+          },
+          "revision_key": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Revision Key"
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Observed At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "fact_key",
+          "revision_key",
+          "observed_at"
+        ],
+        "title": "PlacesComparisonEvidence",
+        "description": "Stable comparison identity separated from changing catalog revisions."
+      },
+      "PlacesComparisonResult": {
+        "properties": {
+          "state": {
+            "$ref": "#/components/schemas/PlacesComparisonState"
+          },
+          "comparison": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesTwoPlaceComparison"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "unavailable_reason": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesComparisonUnavailableReason"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "state"
+        ],
+        "title": "PlacesComparisonResult",
+        "description": "Dark adapter result; absent is explicit and contains no place content."
+      },
+      "PlacesComparisonScope": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "catalog_place",
+            "title": "Kind",
+            "default": "catalog_place"
+          },
+          "place_id": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Place Id"
+          },
+          "candidate_set_revision_key": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Candidate Set Revision Key"
+          },
+          "ordered_venue_ids": {
+            "prefixItems": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "integer"
+              }
+            ],
+            "type": "array",
+            "maxItems": 2,
+            "minItems": 2,
+            "title": "Ordered Venue Ids"
+          }
+        },
+        "type": "object",
+        "required": [
+          "place_id",
+          "candidate_set_revision_key",
+          "ordered_venue_ids"
+        ],
+        "title": "PlacesComparisonScope",
+        "description": "A catalog-owned scope and explicit pair order.\n\nThe scope accepts only a canonical catalog place.  In particular it has no\nuser, group, trip, location, save, affinity, or ranking input.  The future\npublished candidate-set owner selects the pair and its display order;\nthis adapter must never choose or reorder it."
+      },
+      "PlacesComparisonState": {
+        "type": "string",
+        "enum": [
+          "ready",
+          "unavailable"
+        ],
+        "title": "PlacesComparisonState",
+        "description": "Whether the dark comparison adapter produced a truthful payload."
+      },
+      "PlacesComparisonUnavailableReason": {
+        "type": "string",
+        "enum": [
+          "disabled",
+          "no_published_candidate_set",
+          "not_exactly_two_candidates",
+          "candidate_set_mismatch",
+          "scope_mismatch",
+          "incomplete_comparable_facts"
+        ],
+        "title": "PlacesComparisonUnavailableReason",
+        "description": "Closed, content-free reasons a comparison is absent."
       },
       "PlacesContext": {
         "properties": {
@@ -70868,7 +71212,7 @@
               "$ref": "#/components/schemas/PlacesFeedUnavailableProducer"
             },
             "type": "array",
-            "maxItems": 12,
+            "maxItems": 13,
             "title": "Unavailable Producers"
           },
           "saved_total": {
@@ -70953,7 +71297,8 @@
           "returns",
           "nearby",
           "reading",
-          "saved_unplaced"
+          "saved_unplaced",
+          "registers"
         ],
         "title": "PlacesFeedUnavailableProducer",
         "description": "Optional feed source that could not answer within this response budget.\n\nThis is deliberately a small closed vocabulary, not an error payload.  It\nlets a client distinguish an honestly empty feed from a partial feed while\nrevealing neither exception detail nor any content that the source failed\nto load."
@@ -72465,20 +72810,59 @@
         "title": "PlacesStarterCity",
         "description": "A corpus city with approved editorial coverage, never personalization."
       },
-      "PlacesVenueAddPreviewRequest": {
+      "PlacesTwoPlaceComparison": {
         "properties": {
-          "venue_id": {
-            "type": "integer",
-            "minimum": 1.0,
-            "title": "Venue Id"
+          "kind": {
+            "type": "string",
+            "const": "two_place_comparison",
+            "title": "Kind",
+            "default": "two_place_comparison"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/PlacesComparisonScope"
+          },
+          "evidence": {
+            "$ref": "#/components/schemas/PlacesComparisonEvidence"
+          },
+          "places": {
+            "prefixItems": [
+              {
+                "$ref": "#/components/schemas/PlacesComparableVenue"
+              },
+              {
+                "$ref": "#/components/schemas/PlacesComparableVenue"
+              }
+            ],
+            "type": "array",
+            "maxItems": 2,
+            "minItems": 2,
+            "title": "Places"
           }
         },
         "type": "object",
         "required": [
-          "venue_id"
+          "scope",
+          "evidence",
+          "places"
+        ],
+        "title": "PlacesTwoPlaceComparison",
+        "description": "One two-place comparison, with no ranking or material treatment."
+      },
+      "PlacesVenueAddPreviewRequest": {
+        "properties": {
+          "bounded_opportunity_id": {
+            "type": "string",
+            "maxLength": 4096,
+            "minLength": 32,
+            "title": "Bounded Opportunity Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "bounded_opportunity_id"
         ],
         "title": "PlacesVenueAddPreviewRequest",
-        "description": "A Places-originated venue selection; Trips supplies all write authority."
+        "description": "A displayed bounded Places selection; Trips supplies all write authority."
       },
       "PlanBlock": {
         "properties": {
@@ -86929,7 +87313,7 @@
           "active"
         ],
         "title": "TripPresenceResponse",
-        "description": "Tier 0 group live-presence (docs/working/Chat Waiting Experience Plan.md,\nWorkstream A) \u2014 is anyone's turn with Vesper in flight on this trip right\nnow? Polled by other group members' chat screen so they can render\n\"{name} is asking Vesper\u2026\" without any new streaming/websocket infra."
+        "description": "Tier 0 group live-presence (docs/archive/Chat Waiting Experience Plan.md,\nWorkstream A) \u2014 is anyone's turn with Vesper in flight on this trip right\nnow? Polled by other group members' chat screen so they can render\n\"{name} is asking Vesper\u2026\" without any new streaming/websocket infra."
       },
       "TripReadingPublic": {
         "properties": {

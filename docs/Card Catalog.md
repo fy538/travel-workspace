@@ -2,7 +2,7 @@
 
 **Status:** current cross-repo source of truth
 
-**Last verified:** 2026-07-30
+**Last verified:** 2026-08-10
 
 **Implementations:** `travel-app` + `travel-agent`
 
@@ -277,6 +277,50 @@ route string, lifecycle state, or arbitrary metadata shape.
 11. Test mapping, failure/retry semantics, navigation, reduced motion, Dynamic
     Type, and narrow-screen overflow.
 12. Update this catalog in the same change.
+
+### 8.1 Deprecating or retiring a card
+
+A card type is **never removed outright** from `attachments` or
+`metadata_card_types`. Persisted messages are immutable history; dropping a
+type from the generated union would either delete a call site's compile-time
+knowledge of it or — for a `body_mode: 'card'` composed card, whose durable
+text fallback is deliberately suppressed once a client can render the native
+body — leave historical messages with nothing to show at all.
+
+Instead, retirement is a status change in
+`docs/contracts/chat-card-types.json`'s `attachment_lifecycle` map:
+
+1. **`deprecated`** — no new producer should target this type; it still
+   renders its real component normally. Use this while a successor is being
+   proven out.
+2. **`retired`** — `AttachmentRenderer` renders `RetiredCardFallback`
+   (the message's persisted `content` text, as ordinary prose) instead of the
+   real component, for every existing and future message of that type. Stop
+   producing it first; retiring does not stop production on its own.
+
+To retire a type:
+
+1. Confirm no producer still emits it (`grep` the creator function; check
+   `no_arrival` / `card-arrival.json` reservations).
+2. Set its `attachment_lifecycle` status to `"retired"` in
+   `docs/contracts/chat-card-types.json`. Optionally record `successor` if
+   another type replaces it.
+3. Run `python3 scripts/sync-chat-card-types-contract.py` — regenerates
+   `GENERATED_CHAT_ATTACHMENT_STATUS` and `GENERATED_RETIRED_CHAT_ATTACHMENT_TYPES`
+   on both sides. `make chat-card-types-check` fails if `attachments` and
+   `attachment_lifecycle` ever disagree on membership (a type without a
+   lifecycle entry, or a lifecycle entry naming nothing).
+4. The registry entry, `MessageAttachment` union member, and
+   `messageMapping.ts` branch all stay — they are what keeps historical
+   messages type-safe and mappable. Do not delete them.
+5. Update this catalog's §2 registry row to note the retirement and successor.
+
+A retired type's component and any producer-side code become genuinely dead
+and may be deleted in application code once no message row references it and
+the retirement has been live long enough to be confident of that (query the
+`messages` table for the `message_type`/`card_type` pair). The contract entry
+itself still never disappears — it is the permanent record that the type
+existed.
 
 ## 9. Deliberate open work
 

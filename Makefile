@@ -108,7 +108,7 @@ reliability-gate: ## Gate on eval reliability baseline — exits 1 if any checks
 # ── Tests ─────────────────────────────────────────────────────────────────────
 
 test-backend: ## Run the backend canary against local Postgres; unseeded corpus suites skip
-	@cd travel-agent && TRAVEL_APP_ROOT="$(CURDIR)/travel-app" DATABASE_URL="$${DATABASE_URL:-postgresql://vesper:localdev@localhost:15432/vesper}" SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -m pytest tests/ -q -k "not requires_postgres and not requires_api_keys and not requires_dogfood_wedge"
+	@cd travel-agent && TRAVEL_APP_ROOT="$(CURDIR)/travel-app" DATABASE_URL="$${DATABASE_URL:-postgresql://vesper:localdev@localhost:15432/vesper}" SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -m pytest tests/ -q -n auto --dist loadfile -k "not requires_postgres and not requires_api_keys and not requires_dogfood_wedge"
 
 test-backend-postgres: ## Run marker-gated Postgres integration tests against local Postgres
 	@cd travel-agent && TRAVEL_APP_ROOT="$(CURDIR)/travel-app" DATABASE_URL="$${DATABASE_URL:-postgresql://vesper:localdev@localhost:15432/vesper}" SKIP_AUTH=true PYTHONPATH=. .venv/bin/python -m pytest tests/ -q -m "requires_postgres and not requires_dogfood_wedge"
@@ -142,7 +142,7 @@ certify-fast: ## Tier-1 certify ladder: corpus-check + contract + journey Jest +
 	@$(MAKE) contract-check
 	@$(MAKE) journey-registry-check
 	@cd travel-app && npm run --silent qa:logic:check-drift
-	@cd travel-app && npm test -- __tests__/journeys/ --runInBand
+	@cd travel-app && npm test -- --silent
 	@$(MAKE) maestro-flow-check
 	@$(MAKE) test-backend
 

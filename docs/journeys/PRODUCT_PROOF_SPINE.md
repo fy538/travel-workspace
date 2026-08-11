@@ -3,8 +3,9 @@ doc_type: contract
 status: active
 owner: product-engineering
 created: 2026-08-07
-last_verified: 2026-08-07
+last_verified: 2026-08-10
 why_new: Defines the small product-thesis proof spine independently from the historical J regression registry.
+source_of_truth_for: [product-proof-spine, p-series-evidence-requirements]
 ---
 
 # Product proof spine
@@ -71,10 +72,34 @@ evidence requirements are added to `product-proofs.yaml`.
 
 ## Relationship to J assurance packs
 
-- J04 protects the privacy boundary used by P01/P03/P04.
-- J05 and J06 protect mutation and cross-surface coherence used by P01/P03.
-- J13, J15, and J16 protect failure, reversal, and data-lifecycle boundaries.
-- J08 and J22 are retained regressions relevant to future P07 rescue work.
+The J and P registries answer different questions and are deliberately not
+renumbered onto each other. J asks *did we break something that used to work*;
+P asks *does the current thesis hold*. The join below exists so the two can be
+read together — it is a coverage map, not an equivalence.
+
+| Proof | M1 act | J journeys that protect its boundaries | J tier |
+|---|---|---|---|
+| P01 | secondary cold demo | J05, J06 (mutation, cross-surface coherence) · J07, J14 | assurance · customer/historical |
+| P02 | Act 2 | J07 (place-to-action) · J08 (live plan/map agreement) | customer_regression |
+| P03 | Act 4 | J04 (privacy boundary) · J05, J06 (mutation) · J11 (memory control) | assurance · historical |
+| P04 | Act 4 | J04 (privacy boundary) · J17 (cross-trip recall) | assurance · holistic |
+| P05 | Act 3 | J02, J03 (invite, membership) · J18 (signed-out join) · J24 (agency governance) | historical · customer |
+| P06 | cross-cutting | J04 (privacy) · J09 (proactive routing) · J15, J16 (reversal, data lifecycle) | assurance |
+| P07 | Act 1 | J08, J22 (retained rescue regressions) · J05, J06 (proposal path) | customer · assurance |
+
+Reading rules:
+
+1. A green J does **not** advance a P. J evidence is seeded replay at contract
+   and database layers; P evidence requires the layers named in
+   `product-proofs.yaml`.
+2. A red J **does** block the P rows that depend on it — a broken mutation path
+   invalidates any proof asserting a governed change.
+3. J journeys with no P column entry (J01, J10, J12, J13, J19, J20, J21, J23,
+   J25–J28) are pure regression floor. They are not certification targets for
+   M1 and should not accrue device evidence on M1's account.
+
+Milestone authority for the act column is
+[M1 — Plan Repair](../release/m1-plan-repair.md).
 
 No P proof is physical-device certified by this document. Consult run receipts
 for revision-specific execution evidence.

@@ -17,8 +17,12 @@
       "audience": "app", "consumers": [], "feature_flag": "BOOKING_DUFFEL_LIVE_BOOKING_ENABLED", "lifecycle": "dark", "owner": "maps",
       "reason": "Server contract remains dark until a mobile consumer and device evidence are added.", "removal_trigger": "Add a verified mobile consumer or remove the endpoint.", "review_by": "2026-10-30"
     },
+    "GET /api/places/comparison": {
+      "audience": "app", "consumers": [], "feature_flag": "NEARBY_TRAVEL_TIME_RANKING_ENABLED", "lifecycle": "dark", "owner": "places",
+      "reason": "The bounded two-place comparison transport is retained for the nearby-ranking rollout, but has no approved mobile presentation yet.", "removal_trigger": "Add an explicit verified mobile comparison flow or remove the endpoint.", "review_by": "2026-10-30"
+    },
     "POST /api/trips/{trip_id}/booking/sessions/{session_id}/offers/{offer_id}/cancel/quote": {
-      "audience": "app", "consumers": [{"kind":"app_url","name":"quoteBookingCancellation","source":"travel-app/utils/api/http.ts"}], "feature_flag": "BOOKING_DUFFEL_LIVE_BOOKING_ENABLED", "lifecycle": "active", "owner": "booking",
+      "audience": "app", "consumers": [{"kind":"app_url","name":"quoteBookingCancellation","source":"travel-app/utils/api/httpExtendedEndpoints.ts"}], "feature_flag": "BOOKING_DUFFEL_LIVE_BOOKING_ENABLED", "lifecycle": "active", "owner": "booking",
       "reason": "The booking confirmation screen requires a reviewed provider quote before it can submit a cancellation.", "removal_trigger": null, "review_by": "2026-10-30"
     },
     "DELETE /api/trips/{trip_id}/share": {
@@ -1662,13 +1666,13 @@
       "consumers": [
         {
           "kind": "app_url",
-          "name": "useConciergeChat",
-          "source": "travel-app/hooks/useConciergeChat.ts"
+          "name": "useConciergeChatTransport",
+          "source": "travel-app/hooks/useConciergeChatTransport.ts"
         },
         {
           "kind": "app_url",
-          "name": "useGroupChat",
-          "source": "travel-app/hooks/useGroupChat.ts"
+          "name": "useGroupChatTransport",
+          "source": "travel-app/hooks/useGroupChatTransport.ts"
         }
       ],
       "feature_flag": null,
