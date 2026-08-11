@@ -210,7 +210,10 @@ def render_schemas(
         )
         model_map.append((name, title))
 
-    py_parts.append("PILOT_ATTACHMENT_SCHEMA_MODELS = {\n")
+    # Keep the generated registry precise enough for strict backend mypy.  The
+    # generated schema classes all inherit BaseModel, so the dynamic lookup
+    # retains the model_validate contract without hand-editing generated code.
+    py_parts.append("PILOT_ATTACHMENT_SCHEMA_MODELS: dict[str, type[BaseModel]] = {\n")
     for name, title in model_map:
         py_parts.append(f"    {json.dumps(name)}: {title},\n")
     py_parts.append("}\n\n")
