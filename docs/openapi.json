@@ -12265,59 +12265,6 @@
         }
       }
     },
-    "/api/conversations/{conversation_id}/events": {
-      "get": {
-        "tags": [
-          "conversation-room-members"
-        ],
-        "summary": "Stream Room Events",
-        "description": "Push opaque history and authority invalidations for one standalone room.",
-        "operationId": "stream_room_events_api_conversations__conversation_id__events_get",
-        "parameters": [
-          {
-            "name": "conversation_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Conversation Id"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/conversations/{conversation_id}/participants/me": {
       "delete": {
         "tags": [
@@ -33419,6 +33366,57 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NudgeResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/me/profile-portrait": {
+      "get": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "Get Self Profile Portrait",
+        "description": "Return one fresh, self-only portrait assembled from source authorities.",
+        "operationId": "get_self_profile_portrait_api_me_profile_portrait_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelfProfileProjection"
                 }
               }
             }
@@ -78733,19 +78731,12 @@
             ],
             "title": "Joined Year"
           },
-          "taste_phrases": {
+          "authored_lines": {
             "items": {
               "type": "string"
             },
             "type": "array",
-            "title": "Taste Phrases"
-          },
-          "interests": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array",
-            "title": "Interests"
+            "title": "Authored Lines"
           },
           "stories": {
             "items": {
@@ -78783,7 +78774,7 @@
           "display_name"
         ],
         "title": "PublicProfile",
-        "description": "Public-safe view of another traveler \u2014 what a viewer sees before they\nfollow. DEFAULT-DENY: taste_phrases are the display-safe concierge phrases\n(never hard constraints / budget / health), and stories are only the\nowner's follower/link-visible ones."
+        "description": "Explicit public view of another traveler.\n\nThis is a small authored projection, not a summary of Personal Memory.\n``authored_lines`` are the owner's visible profile-phrase rows; no Vesper\ninference or extracted interest is admitted to this audience."
       },
       "PublicProfilePlace": {
         "properties": {
@@ -82517,6 +82508,455 @@
         ],
         "title": "SearchResultItem",
         "description": "A single search result \u2014 venue, experience, site, or accommodation."
+      },
+      "SelfProfileAuthoredLine": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "visible_publicly": {
+            "type": "boolean",
+            "title": "Visible Publicly"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "text",
+          "visible_publicly"
+        ],
+        "title": "SelfProfileAuthoredLine"
+      },
+      "SelfProfileGroup": {
+        "properties": {
+          "member_count": {
+            "type": "integer",
+            "minimum": 3.0,
+            "title": "Member Count"
+          },
+          "companion_fit": {
+            "type": "string",
+            "enum": [
+              "worked",
+              "mixed",
+              "not_for_this_group"
+            ],
+            "title": "Companion Fit"
+          }
+        },
+        "type": "object",
+        "required": [
+          "member_count",
+          "companion_fit"
+        ],
+        "title": "SelfProfileGroup"
+      },
+      "SelfProfileIdentity": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          },
+          "since_year": {
+            "type": "integer",
+            "title": "Since Year"
+          },
+          "home_city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Home City"
+          },
+          "avatar_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Avatar Url"
+          },
+          "cover_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cover Url"
+          },
+          "followers_count": {
+            "type": "integer",
+            "title": "Followers Count",
+            "default": 0
+          },
+          "following_count": {
+            "type": "integer",
+            "title": "Following Count",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "display_name",
+          "since_year"
+        ],
+        "title": "SelfProfileIdentity"
+      },
+      "SelfProfilePerson": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          },
+          "trips_shared": {
+            "type": "integer",
+            "title": "Trips Shared"
+          },
+          "companion_fit": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "worked",
+                  "mixed",
+                  "not_for_this_group"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Companion Fit"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "display_name",
+          "trips_shared"
+        ],
+        "title": "SelfProfilePerson"
+      },
+      "SelfProfilePlace": {
+        "properties": {
+          "entity_type": {
+            "type": "string",
+            "enum": [
+              "venue",
+              "place"
+            ],
+            "title": "Entity Type"
+          },
+          "entity_id": {
+            "type": "string",
+            "title": "Entity Id"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          },
+          "city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "City"
+          },
+          "photo_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Photo Url"
+          },
+          "scale": {
+            "type": "string",
+            "enum": [
+              "Venue",
+              "Area",
+              "City"
+            ],
+            "title": "Scale"
+          },
+          "verdict": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "would_repeat",
+                  "good_once",
+                  "not_for_me"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Verdict"
+          },
+          "saved_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Saved At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_type",
+          "entity_id",
+          "display_name",
+          "scale",
+          "saved_at"
+        ],
+        "title": "SelfProfilePlace"
+      },
+      "SelfProfileProjection": {
+        "properties": {
+          "identity": {
+            "$ref": "#/components/schemas/SelfProfileIdentity"
+          },
+          "authored_lines": {
+            "items": {
+              "$ref": "#/components/schemas/SelfProfileAuthoredLine"
+            },
+            "type": "array",
+            "title": "Authored Lines"
+          },
+          "authored_lines_state": {
+            "type": "string",
+            "enum": [
+              "ready",
+              "empty",
+              "unavailable"
+            ],
+            "title": "Authored Lines State",
+            "default": "empty"
+          },
+          "timeline": {
+            "items": {
+              "$ref": "#/components/schemas/AtlasTimelineEntry"
+            },
+            "type": "array",
+            "title": "Timeline"
+          },
+          "timeline_state": {
+            "type": "string",
+            "enum": [
+              "ready",
+              "empty",
+              "unavailable"
+            ],
+            "title": "Timeline State",
+            "default": "empty"
+          },
+          "places": {
+            "items": {
+              "$ref": "#/components/schemas/SelfProfilePlace"
+            },
+            "type": "array",
+            "title": "Places"
+          },
+          "places_state": {
+            "type": "string",
+            "enum": [
+              "ready",
+              "empty",
+              "unavailable"
+            ],
+            "title": "Places State",
+            "default": "empty"
+          },
+          "unfinished": {
+            "items": {
+              "$ref": "#/components/schemas/SelfProfileUnfinishedItem"
+            },
+            "type": "array",
+            "title": "Unfinished"
+          },
+          "unfinished_state": {
+            "type": "string",
+            "enum": [
+              "ready",
+              "empty",
+              "unavailable"
+            ],
+            "title": "Unfinished State",
+            "default": "empty"
+          },
+          "people": {
+            "items": {
+              "$ref": "#/components/schemas/SelfProfilePerson"
+            },
+            "type": "array",
+            "title": "People"
+          },
+          "groups": {
+            "items": {
+              "$ref": "#/components/schemas/SelfProfileGroup"
+            },
+            "type": "array",
+            "title": "Groups"
+          },
+          "people_state": {
+            "type": "string",
+            "enum": [
+              "ready",
+              "empty",
+              "unavailable"
+            ],
+            "title": "People State",
+            "default": "empty"
+          },
+          "stories": {
+            "items": {
+              "$ref": "#/components/schemas/SelfProfileStory"
+            },
+            "type": "array",
+            "title": "Stories"
+          },
+          "stories_state": {
+            "type": "string",
+            "enum": [
+              "ready",
+              "empty",
+              "unavailable"
+            ],
+            "title": "Stories State",
+            "default": "empty"
+          }
+        },
+        "type": "object",
+        "required": [
+          "identity"
+        ],
+        "title": "SelfProfileProjection",
+        "description": "Bounded private portrait for the authenticated subject."
+      },
+      "SelfProfileStory": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "hero_title": {
+            "type": "string",
+            "title": "Hero Title"
+          },
+          "hero_subtitle": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hero Subtitle"
+          },
+          "photo_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Photo Url"
+          },
+          "composed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Composed At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "trip_id",
+          "hero_title",
+          "composed_at"
+        ],
+        "title": "SelfProfileStory"
+      },
+      "SelfProfileUnfinishedItem": {
+        "properties": {
+          "entity_type": {
+            "type": "string",
+            "enum": [
+              "venue",
+              "place"
+            ],
+            "title": "Entity Type"
+          },
+          "entity_id": {
+            "type": "string",
+            "title": "Entity Id"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          },
+          "note": {
+            "type": "string",
+            "title": "Note"
+          },
+          "saved_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Saved At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_type",
+          "entity_id",
+          "display_name",
+          "note",
+          "saved_at"
+        ],
+        "title": "SelfProfileUnfinishedItem"
       },
       "SerializedActionReceipt": {
         "properties": {

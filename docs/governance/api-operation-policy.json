@@ -8,6 +8,22 @@
     "review_by": null
   },
   "operations": {
+    "GET /api/me/profile-portrait": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "getSelfProfilePortrait",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "profile-system",
+      "reason": "Authenticated private portrait composed from existing user, Atlas, outcome, people, and Story authorities.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
     "DELETE /api/conversations/{conversation_id}/participants/me": {
       "audience": "app",
       "consumers": [
@@ -53,22 +69,6 @@
       "lifecycle": "active",
       "owner": "multiplayer",
       "reason": "Room Info lets the sole owner choose a successor and leave through one confirmed action.",
-      "removal_trigger": null,
-      "review_by": "2026-09-12"
-    },
-    "GET /api/conversations/{conversation_id}/events": {
-      "audience": "app",
-      "consumers": [
-        {
-          "kind": "app_url",
-          "name": "subscribeToConversationEvents",
-          "source": "travel-app/utils/conversationEventStream.ts"
-        }
-      ],
-      "feature_flag": "GROUP_TRIP_MICRO_JOURNEY_ENABLED",
-      "lifecycle": "active",
-      "owner": "multiplayer",
-      "reason": "Standalone group rooms use the authenticated identifier-only event stream to refresh durable history and authority state.",
       "removal_trigger": null,
       "review_by": "2026-09-12"
     },
