@@ -27736,6 +27736,127 @@
         }
       }
     },
+    "/api/spatial/reachability": {
+      "get": {
+        "tags": [
+          "spatial"
+        ],
+        "summary": "Get Reachability",
+        "description": "Everywhere reachable from an origin within a time budget, by mode.\n\nThis is the honest replacement for a radius. A circle drawn on a map claims\nthat everything inside it is equally close, which is false anywhere with a\nriver, a hill, a motorway, or a one-way system \u2014 precisely the places people\ntravel to. The catchment is what the ranking already uses; this endpoint\nlets the map show it.\n\nIsochrones answer *outward* reachability from an origin. They do not prove a\nreturn trip or an arrival-time search, which is why the underlying primitive\naccepts departures only.\n\nTransit is deliberately absent (Phase B1, a separate provider decision).\nAsking for it returns ``status='unknown'`` with a reason rather than\nsilently substituting walking, which would badly overstate a catchment.",
+        "operationId": "get_reachability_api_spatial_reachability_get",
+        "parameters": [
+          {
+            "name": "lat",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "maximum": 90,
+              "minimum": -90,
+              "description": "Origin latitude.",
+              "title": "Lat"
+            },
+            "description": "Origin latitude."
+          },
+          {
+            "name": "lng",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "maximum": 180,
+              "minimum": -180,
+              "description": "Origin longitude.",
+              "title": "Lng"
+            },
+            "description": "Origin longitude."
+          },
+          {
+            "name": "minutes",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 60,
+              "exclusiveMinimum": 0,
+              "description": "Time budget in minutes. Clamped to the provider ceiling.",
+              "default": 15,
+              "title": "Minutes"
+            },
+            "description": "Time budget in minutes. Clamped to the provider ceiling."
+          },
+          {
+            "name": "mode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Travel mode \u2014 walk, drive, or bike.",
+              "default": "walk",
+              "title": "Mode"
+            },
+            "description": "Travel mode \u2014 walk, drive, or bike."
+          },
+          {
+            "name": "depart_at",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Departure time. Drive catchments are traffic-dependent and bucketed by departure; walk and bike are effectively time-independent.",
+              "title": "Depart At"
+            },
+            "description": "Departure time. Drive catchments are traffic-dependent and bucketed by departure; walk and bike are effectively time-independent."
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReachabilityResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/takes": {
       "post": {
         "tags": [
@@ -77755,6 +77876,71 @@
         },
         "type": "object",
         "title": "Query"
+      },
+      "ReachabilityResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "description": "'ok' when a polygon is present. 'unknown' when reachability could not be determined \u2014 unsupported mode, provider failure, or an open circuit breaker. 'unknown' NEVER means 'nothing is reachable'; a client must fall back to its radius presentation, not draw an empty catchment."
+          },
+          "mode": {
+            "type": "string",
+            "title": "Mode"
+          },
+          "minutes": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Minutes"
+          },
+          "geometry": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Geometry"
+          },
+          "provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "mode"
+        ],
+        "title": "ReachabilityResponse",
+        "description": "A reachability catchment, or an honest statement that we don't have one."
       },
       "ReactRequest": {
         "properties": {
