@@ -89,6 +89,7 @@ proofs:
         - travel-app/__tests__/components/trip-plan/OccurrenceArtifactCard.test.tsx
         - travel-app/__tests__/components/trip/proposal-detail/ProposalDetailScreen.test.tsx
         - travel-agent/tests/concierge/test_conversation_seed.py
+        - travel-agent/tests/concierge/test_change_proposals.py
       database:
         - travel-agent/tests/api/test_experience_outcome_feedback.py
         - travel-agent/tests/core/test_experience_outcomes.py

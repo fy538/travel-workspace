@@ -31,10 +31,14 @@ One person opens Lisbon with the explicit curiosity:
 > How do cities adapt to difficult terrain?
 
 They select the approved lens on movement across Lisbon's hills. The resulting
-Move contains at most three canonical anchors, one observation prompt per
-anchor, current route/time/availability evidence, and enough buffer to remain
-credible. If a relevant anchor becomes infeasible, the repair preserves the
-terrain-and-movement inquiry rather than substituting a popular attraction.
+Move contains one canonical anchor, its two route legs, current
+route/time/availability evidence, and enough buffer to remain credible. Any
+observation invitation is conversational: it is not a persisted place fact,
+route, or claim about what the person experienced. If the Plan changes, a
+canonical rebase retains the private Dossier/lens intent. If the opening or
+evidence no longer supports the encounter, Vesper must prepare a newly
+grounded Move or say that none is available; it must not silently substitute a
+popular but unrelated attraction.
 
 After the person confirms the occurrence, they may privately record what they
 noticed and the thread they would follow next. The next occasion can use that
@@ -49,8 +53,8 @@ boundaries.
    context. The server resolves all meaningful content from canonical ids.
 3. A Move must be spatially feasible and evidence-backed. Unknown operational
    facts remain unknown; the product must not invent a route or opening.
-4. The observation prompt invites attention; it is never presented as a fact
-   about the user's experience.
+4. An observation invitation invites attention; it is never persisted or
+   presented as a fact about the person's experience.
 5. Free-text reflection is private by default. It is not public place truth,
    group truth, or telemetry content.
 6. A later occasion must explain its use of a reflection without quoting or
@@ -61,7 +65,7 @@ boundaries.
 | Layer | What it proves |
 | --- | --- |
 | contract | Lens identity survives the mobile handoff and canonical Move composition; privacy and repair invariants fail closed. |
-| database | One confirmed personal outcome has a correct, retractable private reflection and can influence only a permitted second occasion. |
+| database | One confirmed personal outcome has a correctable, removable private reflection and can influence only a permitted second occasion. |
 | device_mock | A person can complete Place → Dossier → Vesper → Plan/Map → reflection in one internal build. |
 | human_outcome | The person can name something specific they noticed or learned that they would otherwise have missed; qualitative feedback does not describe the experience as intrusive homework. |
 
@@ -75,14 +79,17 @@ records receipts and counts, not the person's private question or reflection.
    review-first Vesper thread. Confirm the thread shows the correct bounded
    request and does not treat their words as a sourced place fact.
 2. **Move.** Vesper prepares one proposal. Account A opens its **This Move**
-   receipt and the map doorway. Record whether every displayed route duration
-   was fresh, whether operating/availability claims had an authority, and
-   whether unknown conditions stayed unknown. Do not mark the run successful
-   merely because prose sounds plausible.
+   receipt; after the Move is applied to the Plan, they can open the focused
+   map doorway. Record whether every displayed route duration was fresh,
+   whether operating/availability claims had an authority, and whether unknown
+   conditions stayed unknown. Do not mark the run successful merely because
+   prose sounds plausible.
 3. **Repair.** Change one relevant condition (hours, route freshness, weather,
    or the open window) in the seeded world. Ask Vesper to repair the Move.
-   The replacement must retain the original question/lens or explicitly say
-   that no grounded repair exists. A popular but unrelated substitute fails.
+   A canonical rebase must retain the private Dossier/lens intent. When a
+   fresh bounded composition is required, the replacement must retain the
+   original question/lens or explicitly say that no grounded repair exists. A
+   popular but unrelated substitute fails.
 4. **Private outcome.** After a confirmed moment, Account A records a verdict,
    optional observation, and optional next thread. Verify that the Plan has not
    silently changed and that the free text is not shown in a group surface.
@@ -111,8 +118,8 @@ The existing systems contribute distinct evidence rather than one blended
 | System | Permitted role in P08 | Must not do |
 | --- | --- | --- |
 | Dossier / provenance | Supply an authored, attributed lens | Claim it is personally true because it was clicked |
-| Plan + route + Mapbox | Bound the Move and expose its route receipt | Invent travel time or hide stale legs |
-| Availability + weather | Constrain or repair an outdoor/operationally sensitive Move | Turn a stale condition into a current recommendation |
+| Plan + route + Mapbox | Bound the Move and expose its route receipt once applied | Invent travel time, show an un-applied proposal as a map stop, or hide stale legs |
+| Availability + weather | Constrain a bounded addition; require a fresh composition when conditions change | Turn a stale condition into a current recommendation |
 | Location / proximity | Existing consented context may help establish feasibility | Trigger a P08 interruption or continuous tracking |
 | Concierge AI | Synthesize, abstain, and prepare a reviewable proposal | Mutate Plan or manufacture source authority |
 | Multiplayer | Let a group decide a canonical Plan change | Share a person's curiosity, interpretation, or reflection |
