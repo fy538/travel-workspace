@@ -6881,8 +6881,9 @@
           "discover"
         ],
         "summary": "Discover Map",
-        "description": "Discover spatial-browse pins for venues, experiences, places, and friends.\n\nCatalog pins carry the cheap judgment preview available for their entity\ntype. Venue pins additionally carry affinity; venue and experience pins\ncarry saved/planned state. Fresh trip-companion locations are a separate,\napproximate coordination signal and never masquerade as itinerary items.\n\nTwo direct scopes. ``place_slug`` plots the city subtree; ``lat``/``lng``\nplots what's within ``radius_m``. A Places ``context_handle`` is the\npreferred third entry: it resolves that same scope server-side, so a Places\ncontinuation never puts a precise anchor into navigation state. With none,\nreturns an empty pin set (honest absence) rather than guessing a location.\nThe full Take is a tap-time fetch on the client peek card — pins carry only\nthe cheap preview.\n\n``date_from``/``date_to`` compose a temporal window on top of either\nspatial scope — e.g. \"experiences near me this weekend\" — and only affect\nexperience pins; recurring/on-demand experiences have no single date and\nare unaffected, and venue/place pins have no date to filter on at all.",
+        "description": "Discover spatial-browse pins for venues, experiences, places, and friends.\n\ncompatibility_id: discover-map-api-bridge\n\nCatalog pins carry the cheap judgment preview available for their entity\ntype. Venue pins additionally carry affinity; venue and experience pins\ncarry saved/planned state. Fresh trip-companion locations are a separate,\napproximate coordination signal and never masquerade as itinerary items.\n\nTwo direct scopes. ``place_slug`` plots the city subtree; ``lat``/``lng``\nplots what's within ``radius_m``. A Places ``context_handle`` is the\npreferred third entry: it resolves that same scope server-side, so a Places\ncontinuation never puts a precise anchor into navigation state. With none,\nreturns an empty pin set (honest absence) rather than guessing a location.\nThe full Take is a tap-time fetch on the client peek card — pins carry only\nthe cheap preview.\n\n``date_from``/``date_to`` compose a temporal window on top of either\nspatial scope — e.g. \"experiences near me this weekend\" — and only affect\nexperience pins; recurring/on-demand experiences have no single date and\nare unaffected, and venue/place pins have no date to filter on at all.",
         "operationId": "discover_map_api_discover_map_get",
+        "deprecated": true,
         "parameters": [
           {
             "name": "place_slug",
@@ -17139,6 +17140,175 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TripGroupProfileSurface"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/places/map": {
+      "get": {
+        "tags": [
+          "places"
+        ],
+        "summary": "Get Places Map",
+        "description": "Return the Places spatial-browse projection.\n\nThe implementation remains temporarily shared with the retiring Discover\nroute so deployed clients keep one map truth during the API migration.",
+        "operationId": "get_places_map_api_places_map_get",
+        "parameters": [
+          {
+            "name": "place_slug",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Scope pins to this city/place subtree (city + neighborhoods).",
+              "title": "Place Slug"
+            },
+            "description": "Scope pins to this city/place subtree (city + neighborhoods)."
+          },
+          {
+            "name": "lat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Viewer latitude — nearby scope.",
+              "title": "Lat"
+            },
+            "description": "Viewer latitude — nearby scope."
+          },
+          {
+            "name": "lng",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Viewer longitude — nearby scope.",
+              "title": "Lng"
+            },
+            "description": "Viewer longitude — nearby scope."
+          },
+          {
+            "name": "trip_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Optional trip context for exact in-plan markers and grounded handoffs.",
+              "title": "Trip Id"
+            },
+            "description": "Optional trip context for exact in-plan markers and grounded handoffs."
+          },
+          {
+            "name": "context_handle",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Opaque Places context; resolves map scope server-side.",
+              "title": "Context Handle"
+            },
+            "description": "Opaque Places context; resolves map scope server-side."
+          },
+          {
+            "name": "radius_m",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "maximum": 20000,
+              "exclusiveMinimum": 0,
+              "description": "Nearby-scope radius (metres).",
+              "default": 2500.0,
+              "title": "Radius M"
+            },
+            "description": "Nearby-scope radius (metres)."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 200,
+              "exclusiveMinimum": 0,
+              "default": 60,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiscoverMapResponse"
                 }
               }
             }
