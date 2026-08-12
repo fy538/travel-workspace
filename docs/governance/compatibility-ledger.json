@@ -10,5 +10,51 @@
     ],
     "annotation": "compatibility_id: <ledger-id>"
   },
-  "entries": []
+  "entries": [
+    {
+      "id": "discover-url-bridge",
+      "status": "retiring",
+      "reason": "deployed_version_boundary",
+      "owner": "mobile",
+      "canonical": "Places workspace at /(tabs)/places",
+      "paths": [
+        "travel-app/app/(tabs)/discover/index.tsx"
+      ],
+      "markers": [
+        "compatibility_id: discover-url-bridge"
+      ],
+      "removal_trigger": "Confirm no supported released client or tracked deep link still opens the legacy Discover root, then remove the route.",
+      "expires": "2026-09-15"
+    },
+    {
+      "id": "atlas-tab-url-bridge",
+      "status": "retiring",
+      "reason": "deployed_version_boundary",
+      "owner": "mobile",
+      "canonical": "You at /you",
+      "paths": [
+        "travel-app/app/(tabs)/atlas/index.tsx"
+      ],
+      "markers": [
+        "compatibility_id: atlas-tab-url-bridge"
+      ],
+      "removal_trigger": "Confirm no supported released client or tracked deep link still opens the former Atlas tab root, then remove the route.",
+      "expires": "2026-09-15"
+    },
+    {
+      "id": "discover-map-api-bridge",
+      "status": "retiring",
+      "reason": "deployed_version_boundary",
+      "owner": "places",
+      "canonical": "GET /api/places/map",
+      "paths": [
+        "travel-agent/backend/api/routes/discover.py"
+      ],
+      "markers": [
+        "compatibility_id: discover-map-api-bridge"
+      ],
+      "removal_trigger": "Confirm zero supported-client and deployed traffic to GET /api/discover/map after the Places contract is published, then delete the route.",
+      "expires": "2026-09-15"
+    }
+  ]
 }
