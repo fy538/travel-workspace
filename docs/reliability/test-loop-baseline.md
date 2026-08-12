@@ -53,7 +53,7 @@ branch lands; see the commit that added it.
 | `contract-check` | `make contract-check` | 2 | 9.75s | passes through snapshot/projection/schema-diff/place-identity (~9.3s of the 9.75s); fails only at the new A1 schema-bridge step, which doesn't exist on `main` yet |
 | `frontend-verify-full` | `npm run verify:full` (travel-app) | 1 | 15.56s | fails at `home-surface-budgets` inside `verify:fast`, before `verify:pr`'s Jest run or `npm test -- --ci` ever starts (pre-existing, flagged) |
 | `backend-mypy-supplementary` | `mypy --config-file mypy.ini backend/` | 1 | 8.28s | supplementary — bypasses the ruff-format gate to get real mypy timing; found 5 real errors (pre-existing, flagged), not a timing artifact |
-| `backend-offline-pytest-supplementary` | `pytest tests/ -q -k "not requires_postgres and not requires_api_keys"` | — | — | still running at the time this note was written; append the completed record before promoting this note out of `working/` |
+| `backend-offline-pytest-supplementary` | `pytest tests/ -q -k "not requires_postgres and not requires_api_keys"` | 0 | 445.50s (~7.4 min) | 17,776 passed, 0 failed, 30 skipped — supplementary (bypasses the ruff-format gate), but the suite itself is genuinely green, unlike `backend-ci` and `frontend-verify-full` above |
 
 "Supplementary" labels bypass one already-flagged, out-of-scope pre-existing gate failure purely
 to get real timing signal for the rest of that pipeline — they do not represent what `make ci`
@@ -74,8 +74,11 @@ Recorded plainly rather than silently narrowed:
   inventoried here. Do not describe the measured set above as "the full suite."
 - **Flaky-test detection (10 reruns on any command with cross-run variance)** — not applicable
   yet with only 1 repetition; blocked on the 3-repetition requirement above.
-- **`backend-offline-pytest-supplementary`'s full record** — pending completion; see the JSON
-  file for the authoritative up-to-date result once it lands.
+
+The one piece of unambiguously good news in this baseline: 17,776 offline backend tests pass
+cleanly in 7.4 minutes. The two things actually blocking a green `make verify` are narrow and
+already named (agent.py formatting, tripsHomeSectionPlan.ts budget) — not a systemically broken
+test suite underneath them.
 
 ## Fast-path router (`make verify-changed`)
 

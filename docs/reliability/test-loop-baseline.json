@@ -172,5 +172,47 @@
     "wall_time_seconds": 8.284,
     "log_path": "docs/reliability/runs/backend-mypy-supplementary-20260812T042053Z.log",
     "test_counts": null
+  },
+  {
+    "schema_version": 1,
+    "label": "backend-offline-pytest-supplementary",
+    "command": [
+      "bash",
+      "-c",
+      "cd travel-agent && PYTHONPATH=. .venv/bin/python -m mypy --config-file mypy.ini backend/ > /dev/null 2>&1; cd ../travel-agent && PYTHONPATH=. .venv/bin/python -m pytest tests/ -q -k 'not requires_postgres and not requires_api_keys'"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "26c7f3b6b77fa98f78353e6fb8cb7848824d143d",
+        "dirty": false
+      },
+      "travel-agent": {
+        "commit": "f1c28431c647dde3d85f3b345ee22325c624615e",
+        "dirty": true
+      },
+      "travel-app": {
+        "commit": "834935f9e2599098d0e24ee5f1efaf3fc4d004ae",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 445.498,
+    "log_path": "docs/reliability/runs/backend-offline-pytest-supplementary-20260812T042200Z.log",
+    "test_counts": {
+      "framework": "pytest",
+      "collected": null,
+      "passed": 17776,
+      "failed": 0,
+      "skipped": 30,
+      "errors": 0
+    }
   }
 ]
