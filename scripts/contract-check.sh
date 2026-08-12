@@ -88,3 +88,9 @@ fi
 
 header "Verify canonical place identity seams"
 python3 "$WORKSPACE_DIR/scripts/check_place_identity_contract.py"
+
+header "Verify hand-typed API facade derives from the generated schema"
+(
+  cd "$APP_DIR"
+  npm run --silent schema-bridge
+)
