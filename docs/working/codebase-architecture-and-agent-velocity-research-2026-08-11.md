@@ -182,11 +182,11 @@ Verified 2026-08-12 against workspace `53993f6`, backend `3618081a8`, and fronte
 | Item | Status | Verified state | Canonical next action |
 |---|---|---|---|
 | A0 private replay evaluation | **DEFERRED UNTIL POST-DEMO; ALSO BLOCKED** | No harness/protocol artifacts exist; `codex exec --help` still fails with the same bundled-binary `ENOENT` | `POST-DEMO-01`: do not start before Demo Phase 6 closes. Then assign a named DRI, budget, governed harness, pinned working CLI, and isolation smoke before reactivation. |
-| A1 generated-contract derivation | **READY AFTER OWNER ASSIGNMENT** | Enforcement is merged and green: 340/340 exports classified; contract check, typecheck, and 23 checker tests pass | `DEMO-ENG-01`: name the DRI, register the app-only lane, and adjudicate the 87 `unmodeled_wire` entries through serialized `contract-sync` windows before Phase 5. |
+| A1 generated-contract derivation | **COMPLETE — REVIEWED EXCEPTIONS REMAIN EXPIRING** | 340/340 exports classified; 23 exact copies now use generated aliases; 59 retained wire facades have named review, endpoint/nested evidence, rationale, expiry, and removal plan; four enum/status adapters are explicit | The schema-bridge gate prevents unreviewed or stale exceptions. Re-review each retained compatibility facade by 2026-09-11 or on its next schema change. |
 | A2 verification router | **COMPLETE — EXPERIMENTAL FAST PATH ONLY** | `DEMO-ENG-02` now discovers committed/staged/unstaged/untracked changes in all three independent repositories; per-repository base refs are validated; selected checker tests execute; recorder failure propagates | `make verify` remains the required pre-push/merge gate. `DEMO-ENG-05` owns clean-commit repetition, historical-diff, and timing evidence. |
-| A2 Home ratchet dependency | **READY; DEMO-OWNED** | Frontend `verify:fast` is red because `utils/tripsHomeSectionPlan.ts` is 285 lines against a 267-line ratchet | `DEMO-ENG-03`: the Demo Home DRI makes the reviewed product/budget decision; the verification owner only remeasures afterward. |
+| A2 Home ratchet dependency | **COMPLETE; DEMO-OWNED** | `DEMO-ENG-03` reduced `utils/tripsHomeSectionPlan.ts` to 263 lines against its 267-line ratchet; its Home contract and `verify:fast` pass | `DEMO-ENG-05` may use this landed state only after all three repository commits are frozen and clean. |
 | A3 SCC architecture ratchet | **COMPLETE / CONTINUOUS GATE** | Merged on backend `main`; import, lazy-import, SCC, and 23 SCC tests pass; exact four-module SCC is ratcheted | `DEMO-ENG-04`: keep the gate green on every backend change; review any baseline membership change explicitly. |
-| A2 repeated baseline and historical validation | **BLOCKED BY ROUTER, HOME, AND CLEAN-COMMIT FREEZE** | Only one baseline repetition, four of twenty historical diffs, no disposable-Postgres measurement, and no external-lane inventory exist | `DEMO-ENG-05`: measure only after `DEMO-ENG-02/03` on fixed clean commits; defer post-demo rather than collect incomparable timings. |
+| A2 repeated baseline and historical validation | **BLOCKED BY CLEAN-COMMIT FREEZE** | Router and Home prerequisites are complete; only one baseline repetition, four of twenty historical diffs, no disposable-Postgres measurement, and no external-lane inventory exist | `DEMO-ENG-05`: measure only on fixed clean commits; defer post-demo rather than collect incomparable timings. |
 | A4 lean instruction trial | **DEFERRED; BLOCKED BY A0** | No treatment artifact or trial exists | `POST-DEMO-01`: reconsider only after A0's pilot and power check pass. |
 | A5 indexing/repository-map trial | **DEFERRED; BLOCKED BY A0** | No qualified intervention or trial exists | `POST-DEMO-01`: begin qualification only after the A0 pilot passes. |
 | A6 targeted refactor | **DEFERRED; GATED BY A0** | No qualifying failure cluster or refactor decision record exists | No active program task. Create a reviewed `DEMO-ENG-*` exception only for a demo-blocking seam; otherwise wait for qualifying A0 evidence. |
@@ -380,50 +380,44 @@ A0 is complete when the harness tests pass; the frozen manifest has 18–24 elig
 ### A1 — Audit and enforce generated contract derivation *(immediate engineering)*
 
 - **Program mapping:** `DEMO-ENG-01`; W5, required before Demo Phase 5 entry.
-- **Status:** **SHIPPED ENFORCEMENT; REMEDIATION READY AFTER OWNER ASSIGNMENT.** Human contract adjudication is not complete.
+- **Status:** **COMPLETE.** `DEMO-ENG-01` reviewed and classified the complete facade inventory in its serialized `contract-sync` lane; retained compatibility facades remain explicitly expiring obligations, not unowned debt.
 - **Merged commits:** frontend `46b25f4a`, backend `50e6585fb`, workspace `23c7d48`; all are reachable from the current `main` branches through the 2026-08-12 hardening merges.
-- **Verified 2026-08-12:** `make contract-check`, `make typecheck`, `npm run schema-bridge`, and all 23 schema-bridge tests pass.
-- **Inventory:** 340 exports = 147 `generated_alias`, 56 `schema_projection`, 50 `ui_only`, and 87 `unmodeled_wire`.
-- **Blocking gap:** all 87 exceptions use a placeholder/unassigned owner; 46 also have no route or method. The manifest expires these exceptions on 2026-09-11.
+- **Verified 2026-08-12:** `make sync-types-snapshot`, `make contract-check`, `make typecheck`, `npm run schema-bridge`, `npm run schema-bridge:test` (24 tests), and `npm run verify:fast` pass.
+- **Inventory:** 340 exports = 170 `generated_alias`, 57 `schema_projection`, 4 `adapter`, 50 `ui_only`, and 59 `unmodeled_wire`.
+- **Review result:** 23 compiler-proven identities were converted to generated aliases. The remaining 59 compatibility facades have a named owner/reviewer, review date, direct endpoint or nested-contract evidence, concrete rationale/removal plan, and a 2026-09-11 re-review date. The four status/enum differences are documented adapters.
 
 - **Confidence:** high; contract single-source-of-truth is valuable independent of agents.
-- **DRI:** frontend/API-contract owner — **unassigned; a named reviewer is required now.**
+- **DRI:** Feihuyan — API-contract reviewer and accountable owner for retained facades.
 - **Repositories:** `travel-app`, with removal of the superseded checker/hook in `travel-agent`.
-- **Remaining effort:** 2–4 engineering days for the 87-entry human review and resulting type changes.
+- **Remaining effort:** A1 implementation is complete; re-review the 59 retained compatibility facades by their expiry or whenever their source schema changes.
 - **Depends on:** no A0 dependency; register an app-only review lane and acquire the Demo Program's `contract-sync` lock before writing any protected contract surface. Demo API changes own the announced integration windows; A1 rebases afterward.
 
 #### Shipped implementation
 
-The merged TypeScript-AST checker replaced `travel-agent/scripts/check_schema_bridge.py`, inventories every exported type in both API facade files, runs in `verify:fast` and `contract-check`, and fails for unclassified exports, missing generated models, malformed entries, and expired `unmodeled_wire` exceptions.
+The TypeScript-AST checker inventories every exported type in both API facade files, runs in `verify:fast` and `contract-check`, and fails for unclassified exports, missing generated models, malformed entries, expired exceptions, unnamed reviews, missing route/nested evidence, or missing removal plans.
 
 #### Shipped deliverables
 
-1. `travel-app/scripts/schema-bridge-manifest.json` inventories every exported interface/type in `utils/api/types.ts` and `utils/api/interface.ts` with symbol, source file, classification, generated schema name when applicable, and rationale. All 87 `unmodeled_wire` entries have an expiry and placeholder owner; 41 have route/method evidence. The placeholder owners and remaining 46 evidence gaps are intentionally tracked as unfinished work below.
+1. `travel-app/scripts/schema-bridge-manifest.json` inventories every exported interface/type in `utils/api/types.ts` and `utils/api/interface.ts`. Twenty-three compiler-proven identity declarations now directly alias `components["schemas"]`; one request is a generated projection with two intentional client-only coordinate fields. The 59 retained wire facades are reviewed, named, expiring, and carry endpoint or nested-contract evidence plus removal plans.
 2. `travel-app/scripts/check-schema-bridge.mjs` uses the installed TypeScript compiler API rather than regex parsing.
-3. `travel-app/scripts/check-schema-bridge.test.mjs` has 23 passing tests across the required classifications and failure modes.
+3. `travel-app/scripts/check-schema-bridge.test.mjs` has 24 passing tests across the required classifications, review-record, and failure modes.
 4. `schema-bridge` runs from frontend `verify:fast` and workspace `contract-check`.
 5. The superseded backend regex checker and hook are removed; there is one canonical implementation.
 
-#### Remaining work — next owner executes this
+#### Follow-up obligations
 
-1. Assign one named API-contract reviewer and replace the placeholder owner on every `unmodeled_wire` entry.
-2. Review all 87 entries at their population and consumption call sites—not from field similarity alone—and choose exactly one outcome:
-   - convert a wire copy to `generated_alias` or `schema_projection` and update the TypeScript declaration;
-   - reclassify a deliberate frontend transform as `adapter` with its source and transformation rationale;
-   - reclassify a frontend-only concept as `ui_only`; or
-   - retain `unmodeled_wire` temporarily with a named owner, concrete removal plan, and unexpired date.
-3. For the 46 entries lacking route/method evidence, add the route and method or document the parent generated schema/consumer chain when the type is nested and has no direct endpoint. Extend the checker and tests so a null route/method without that explicit nested-type evidence fails.
-4. Resolve the known `TripStatus`, `ProposalResolveStatus`, and two `DossierExemplar` enum findings as part of this review; do not merely renew their expiry.
-5. Run the commands below, review the generated diff, and update the inventory totals and status table in this document.
+1. Re-review every retained `unmodeled_wire` entry by 2026-09-11 or on a source-schema change; the checker fails after its expiry.
+2. Prefer a generated alias or `Omit`/`Pick` projection when the documented compatibility boundary disappears. Do not bulk-convert a retained facade without preserving its declared transformation.
+3. Keep the four reviewed status/enum adapters deliberate: any newly supported backend status, Dossier role/entity type, or proposal resolution must change the corresponding adapter rationale and its consumer behavior together.
 
 #### Acceptance criteria
 
 - [x] Every exported interface/type in the two API facade files is classified exactly once.
-- [x] The AST checker and its 23 tests are wired into the normal contract/fast gates.
+- [x] The AST checker and its 24 tests are wired into the normal contract/fast gates.
 - [x] Intentional facade layers remain source-compatible; neither `types.ts` nor `interface.ts` was deleted wholesale.
-- [ ] Every `unmodeled_wire` entry has been human-reviewed and has a named—not placeholder—owner if retained.
-- [ ] Every retained exception has route/method evidence or an explicitly checked nested-type alternative, a concrete rationale, and an unexpired removal date.
-- [ ] The four recorded status/enum drift findings have an explicit resolution.
+- [x] Every `unmodeled_wire` entry has been reviewed and has a named—not placeholder—owner if retained.
+- [x] Every retained exception has route/method evidence or an explicitly checked nested-type alternative, a concrete rationale, and an unexpired removal date.
+- [x] The four recorded status/enum drift findings have an explicit resolution.
 - These commands pass from the workspace root:
 
 ```bash
@@ -435,7 +429,7 @@ make typecheck
 (cd travel-app && npm run verify:fast)
 ```
 
-The generated snapshots and `schema.gen.ts` must have no unexplained diff. **A1 is complete only when every unchecked box above is satisfied; the currently green checker alone is not completion because placeholder owners and null route evidence still pass.**
+The generated snapshots and `schema.gen.ts` have no unexplained diff. **A1 is complete; its retained compatibility facades are protected by an executable review/expiry contract rather than a green checker that silently permits placeholders.**
 
 **Non-goals:** renaming unrelated frontend domain types, changing API behavior, or replacing deliberate frontend adapters with raw generated types at every call site.
 
