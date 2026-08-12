@@ -127,10 +127,17 @@ pass "M1 dogfood profile isolates the Plan-repair, outcome, and private-artifact
 
 log "Running cross-repo static gates"
 (cd "$WORKSPACE_DIR" && ./scripts/contract-check.sh >/dev/null)
-(cd "$WORKSPACE_DIR" && python3 scripts/check_journey_registry.py >/dev/null)
 (cd "$WORKSPACE_DIR" && python3 scripts/validate-maestro-flows.py --app-dir travel-app >/dev/null)
 (cd "$APP_DIR" && .maestro/../scripts/maestro/check-syntax.sh >/dev/null)
-pass "OpenAPI projection, journey registry, and Maestro structure passed"
+pass "OpenAPI projection and Maestro structure passed"
+
+log "Verifying active product-proof anchors actually pass (not just exist)"
+# Postgres is already up and migrated above, so this is the right place to
+# also EXECUTE every active proof's registered anchors — a registered anchor
+# that exists but is currently red must block dogfood certification, not
+# silently count as validated evidence.
+(cd "$WORKSPACE_DIR" && python3 scripts/check_journey_registry.py --verify-passes)
+pass "Journey registry in sync and every active proof anchor executed clean"
 
 printf '\nPASS: static, mock, and local-backend canary layers are green.\n'
 printf 'DEVICE GATE NOT RUN: dogfood-only flags are enabled, but no simulator or physical device was used.\n'
