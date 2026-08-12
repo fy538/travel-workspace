@@ -39690,6 +39690,18 @@
             "format": "uuid",
             "title": "Created By"
           },
+          "owner_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Owner Id"
+          },
           "status": {
             "type": "string",
             "title": "Status"
@@ -39764,6 +39776,7 @@
               "format": "uuid"
             },
             "type": "array",
+            "maxItems": 0,
             "title": "Participant Ids"
           },
           "planning_intent_bootstrap": {
@@ -49530,6 +49543,18 @@
               }
             ],
             "title": "Invitee Note"
+          },
+          "target_user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target User Id"
           },
           "max_uses": {
             "type": "integer",

@@ -8,6 +8,36 @@
     "review_by": null
   },
   "operations": {
+    "DELETE /api/conversations/{conversation_id}/participants/me": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "GROUP_TRIP_MICRO_JOURNEY_ENABLED",
+      "lifecycle": "dark",
+      "owner": "multiplayer",
+      "reason": "Standalone-room lifecycle transport is implemented and contract-synced, but remains dark until the Room Info control surface has device-validated leave confirmation.",
+      "removal_trigger": "Expose the reviewed Room Info leave flow or remove the transport.",
+      "review_by": "2026-09-12"
+    },
+    "DELETE /api/conversations/{conversation_id}/participants/{user_id}": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "GROUP_TRIP_MICRO_JOURNEY_ENABLED",
+      "lifecycle": "dark",
+      "owner": "multiplayer",
+      "reason": "Standalone-room moderation transport is implemented and contract-synced, but remains dark until the Room Info roster action has device-validated permission states.",
+      "removal_trigger": "Expose the reviewed Room Info moderation flow or remove the transport.",
+      "review_by": "2026-09-12"
+    },
+    "POST /api/conversations/{conversation_id}/owner-handoff-and-leave": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "GROUP_TRIP_MICRO_JOURNEY_ENABLED",
+      "lifecycle": "dark",
+      "owner": "multiplayer",
+      "reason": "Standalone-room ownership handoff is implemented and contract-synced, but remains dark until the Room Info successor chooser has device-validated confirmation.",
+      "removal_trigger": "Expose the reviewed Room Info handoff flow or remove the transport.",
+      "review_by": "2026-09-12"
+    },
     "POST /api/agent-workflows/{workflow_id}/commands": {
       "audience": "app",
       "consumers": [],
