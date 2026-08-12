@@ -18,6 +18,7 @@ Durable choices that constrain future work belong here. Use the
 
 | Date | Decision | Status |
 |---|---|---|
+| 2026-08-12 | [Retire Discover and Atlas as product surfaces](2026-08-12-retire-discover-and-atlas-product-surfaces.md) | accepted |
 | 2026-08-11 | [Entity and place are two axes, not two categories](2026-08-11-entity-and-place-two-axes.md) | accepted |
 | 2026-08-11 | [Ship the entity status block as correct plumbing over an unwired pipe](2026-08-11-entity-status-block.md) | accepted |
 | 2026-08-11 | [One entity read contract, landed additively](2026-08-11-entity-envelope.md) | accepted |

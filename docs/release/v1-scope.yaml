@@ -83,14 +83,14 @@ capabilities:
     flags: []
     note: Settlement completes the shared Trip loop.
 
-  - id: places-surfaces
-    name: Places, Atlas, Discover, and universal search
+  - id: places-and-search
+    name: Places and universal search
     intent: in
-    evidence_paths: [travel-app/app/(tabs)/atlas, travel-app/app/(tabs)/discover, travel-app/app/search.tsx, travel-agent/backend/api/routes/universal_search.py]
+    evidence_paths: [travel-app/app/(tabs)/places, travel-app/components/places, travel-app/app/search.tsx, travel-agent/backend/api/routes/places.py, travel-agent/backend/api/routes/universal_search.py]
     journey_ids: [J07]
     required_layers: [physical]
     flags: [PLACES_SECTIONS_ENABLED, PLACES_SECTIONS_FEED_ENABLED]
-    note: Core place and memory surfaces are in; dark sub-surfaces remain governed below.
+    note: Places owns exploration, search, maps, editorial context, and saved places. Discover and Atlas are retired product surfaces.
 
   - id: social-profiles
     name: Profiles, people search, follow, and following

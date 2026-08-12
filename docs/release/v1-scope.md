@@ -45,7 +45,7 @@ uncertified until a current-revision receipt exists.
 | Trip Home, living itinerary, map, and Now behavior | **IN** | 2/2 tracked paths | No release flag declared | Unverified externally | [UNCERTIFIED — required promoted layers missing J06: physical; J08: physical; J09: physical](../journeys/STATUS.md) (J06, J08, J09) |
 | Post-trip Story and Trip photos | **IN** | 2/2 tracked paths | No release flag declared | Unverified externally | [UNCERTIFIED — required promoted layers missing J11: physical](../journeys/STATUS.md) (J11) |
 | Expenses and settlement | **IN** | 2/2 tracked paths | No release flag declared | Unverified externally | [UNCERTIFIED — required promoted layers missing J10: physical; J12: physical](../journeys/STATUS.md) (J10, J12) |
-| Places, Atlas, Discover, and universal search | **IN** | 4/4 tracked paths | Enabled by default | Unverified externally | [UNCERTIFIED — required promoted layers missing J07: physical](../journeys/STATUS.md) (J07) |
+| Places and universal search | **IN** | 5/5 tracked paths | Enabled by default | Unverified externally | [UNCERTIFIED — required promoted layers missing J07: physical](../journeys/STATUS.md) (J07) |
 | Profiles, people search, follow, and following | **IN** | 2/2 tracked paths | No release flag declared | Unverified externally | [UNCERTIFIED — required promoted layers missing J13: physical](../journeys/STATUS.md) (J13) |
 | Grounded live Plan repair | **IN** | 2/2 tracked paths | Dark by default | Not claimed; in scope but gated | [UNCERTIFIED — required promoted layers missing J05: device_mock,staging; J06: device_mock,staging; J08: device_mock,staging](../journeys/STATUS.md) (J05, J06, J08) |
 | Open-interval micro-journey doorway | **IN** | 2/2 tracked paths | Dark by default | Not claimed; in scope but gated | [UNCERTIFIED — required promoted layers missing J08: device_mock](../journeys/STATUS.md) (J08) |
@@ -68,7 +68,7 @@ uncertified until a current-revision receipt exists.
 - **Trip Home, living itinerary, map, and Now behavior:** Cross-surface coherence and current-condition honesty are release-critical.
 - **Post-trip Story and Trip photos:** The private/shared-with-members story is in; public distribution and postcard rendering are separate dark capabilities.
 - **Expenses and settlement:** Settlement completes the shared Trip loop.
-- **Places, Atlas, Discover, and universal search:** Core place and memory surfaces are in; dark sub-surfaces remain governed below.
+- **Places and universal search:** Places owns exploration, search, maps, editorial context, and saved places. Discover and Atlas are retired product surfaces.
 - **Profiles, people search, follow, and following:** Public story distribution is not implied by profiles or relationship edges.
 - **Grounded live Plan repair:** M1 Act 1. A disruption becomes one grounded, group-safe replace proposal through the canonical proposal path; it never mutates the Plan directly. _Gate: Allowlisted by WEATHER_RESCUE_TRIP_IDS; lights per-Trip only, never globally._
 - **Open-interval micro-journey doorway:** The sixty-second cold demo. One anchor plus its connective route between two commitments; not a generated multi-stop itinerary. _Gate: Internal builds only; requires a bounded open window, not an active block._
