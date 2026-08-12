@@ -99,14 +99,23 @@ test suite underneath them.
 
 ## Fast-path router (`make verify-changed`)
 
-`scripts/verify_changed.py` (wrapped by `scripts/verify-changed.sh`) classifies files changed
-since `BASE_REF` and selects the smallest command set that covers the change, falling back to
-the full `make verify` for anything unrecognized or historically risky. `make verify` remains
-the required pre-push/merge gate — this is a local speed-up in front of it, not a replacement.
+`scripts/verify_changed.py` (wrapped by `scripts/verify-changed.sh`) independently diffs the
+workspace, backend, and frontend Git repositories, then classifies their prefixed paths and
+selects the smallest command set that covers the change. Every repository requires its own
+explicit base ref; the router never applies a commit ID from one repository to another or
+guesses `main`. It falls back to the full `make verify` for anything unrecognized or
+historically risky. `make verify` remains the required pre-push/merge gate — this is a local
+speed-up in front of it, not a replacement.
 
 ```bash
-make verify-changed BASE_REF=origin/main            # run it
-make verify-changed BASE_REF=origin/main DRY_RUN=1   # show the selection without running it
+make verify-changed \
+  WORKSPACE_BASE_REF=origin/main \
+  AGENT_BASE_REF=origin/main \
+  APP_BASE_REF=origin/main                            # run it
+make verify-changed \
+  WORKSPACE_BASE_REF=origin/main \
+  AGENT_BASE_REF=origin/main \
+  APP_BASE_REF=origin/main DRY_RUN=1                 # show the selection without running it
 ```
 
 ### Decision table
@@ -117,10 +126,13 @@ make verify-changed BASE_REF=origin/main DRY_RUN=1   # show the selection withou
 | `unknown` | anything not matched by another class | `make verify` (same short-circuit) |
 | `frontend` | `travel-app/**/*.{ts,tsx}` | `npm run verify:fast` + `npx jest --findRelatedTests <changed files>` |
 | `backend` | `travel-agent/**/*.py` | `make -C travel-agent ci` — **no dependency-to-test mapper exists yet** (see below), so this is the full backend CI, not a narrowed subset |
-| `docs` | `docs/**/*.md` | `make docs-links-check docs-spine-check docs-canon-check`, plus any checker's own test file the doc text references by name (e.g. mentioning `check_import_scc.py` also runs its test) |
+| `docs` | `docs/**/*.md` | `make docs-links-check docs-spine-check docs-canon-check`, plus each referenced checker's real executable test command (e.g. `python3 -m pytest tests/scripts/test_check_import_scc.py`) |
 
 A change set spanning multiple classes gets the union of their commands, unless any file is
-`high_risk`/`unknown`, in which case the whole set falls back to `make verify` alone.
+`high_risk`/`unknown`, in which case the whole set falls back to `make verify` alone. The router
+also reads committed, staged, unstaged, and untracked changes from every repository. If a
+coordinated workspace checkout does not contain both child repositories, it refuses to launch a
+full gate against unrelated canonical checkouts and exits nonzero instead.
 
 **Why backend changes aren't narrowed further:** the doc's acceptance bar calls this out
 explicitly — "until a tested dependency-to-test mapper exists, uncertain backend changes select
@@ -159,7 +171,7 @@ constructs) is follow-on work, not part of this pass.
 ## What's real here, unconditionally
 
 Independent of every gap above: `scripts/measure_verification.py` and `scripts/verify_changed.py`
-are both fully unit-tested (22 and 31 tests respectively), both pass, and both were exercised
-against this actual repository's real state — not fixtures standing in for it. The routing logic
-is deterministic and covers every path class named in the spec plus the unknown-path fallback.
+are both unit-tested and exercised against this workspace's real three-repository state. The
+router covers committed, staged, unstaged, and untracked child-repository changes; the recorder
+now records all three commit states and propagates a completed command's nonzero exit code.
 What's missing is repetition count and historical-diff validation depth, not working code.

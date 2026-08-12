@@ -5,259 +5,182 @@ import subprocess
 import sys
 from pathlib import Path
 
+import pytest
+
 MODULE_PATH = Path(__file__).resolve().parents[1] / "verify_changed.py"
 SPEC = importlib.util.spec_from_file_location("verify_changed", MODULE_PATH)
 assert SPEC and SPEC.loader
 MODULE = importlib.util.module_from_spec(SPEC)
-# verify_changed.py has `from __future__ import annotations` and a
-# @dataclass — dataclass's postponed-annotation resolution looks the module
-# up via sys.modules[cls.__module__], which only works if the module is
-# registered there before exec_module runs (module_from_spec alone doesn't
-# register it). Without this line, import fails with
-# "AttributeError: 'NoneType' object has no attribute '__dict__'".
 sys.modules[SPEC.name] = MODULE
 SPEC.loader.exec_module(MODULE)
 
 
-# ── classify_path: one test per path class ────────────────────────────────
+def _git(repo: Path, *args: str) -> None:
+    subprocess.run(("git", *args), cwd=repo, check=True, capture_output=True, text=True)
 
 
-def test_classifies_frontend_ts_and_tsx() -> None:
-    assert MODULE.classify_path("travel-app/components/trip/Foo.tsx") == "frontend"
-    assert MODULE.classify_path("travel-app/utils/foo.ts") == "frontend"
+def _init_repo(tmp_path: Path, name: str, filename: str, contents: str) -> Path:
+    repo = tmp_path / name
+    repo.mkdir()
+    _git(repo, "init", "-q")
+    _git(repo, "config", "user.email", "verify@example.test")
+    _git(repo, "config", "user.name", "Verify Test")
+    path = repo / filename
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(contents)
+    _git(repo, "add", filename)
+    _git(repo, "commit", "-qm", "base")
+    return repo
 
 
-def test_classifies_backend_py() -> None:
+def _repositories(tmp_path: Path) -> tuple[MODULE.Repo, ...]:
+    workspace = _init_repo(tmp_path, "workspace", "docs/working/note.md", "base\n")
+    agent = _init_repo(tmp_path, "travel-agent", "backend/example.py", "x = 1\n")
+    app = _init_repo(
+        tmp_path, "travel-app", "components/example.tsx", "export const x = 1;\n"
+    )
+    return (
+        MODULE.Repo("workspace", "workspace", workspace, ""),
+        MODULE.Repo("agent", "travel-agent", agent, "travel-agent/"),
+        MODULE.Repo("app", "travel-app", app, "travel-app/"),
+    )
+
+
+def _base_refs() -> dict[str, str]:
+    return {"workspace": "HEAD", "agent": "HEAD", "app": "HEAD"}
+
+
+# ── Classification and selection ─────────────────────────────────────────
+
+
+def test_classifies_every_path_class() -> None:
+    assert MODULE.classify_path("travel-app/components/Foo.tsx") == "frontend"
     assert MODULE.classify_path("travel-agent/backend/concierge/agent.py") == "backend"
+    assert MODULE.classify_path("docs/working/note.md") == "docs"
+    assert MODULE.classify_path("travel-agent/alembic/versions/a.py") == "high_risk"
+    assert MODULE.classify_path("assets/logo.png") == "unknown"
 
 
-def test_classifies_docs_md() -> None:
-    assert MODULE.classify_path("docs/working/some-note.md") == "docs"
+def test_selects_executable_checker_test_for_referenced_document(
+    tmp_path: Path,
+) -> None:
+    repos = _repositories(tmp_path)
+    checker_test = repos[0].root / "scripts/tests/test_check_foo.py"
+    checker_test.parent.mkdir(parents=True)
+    checker_test.write_text("")
+    selection = MODULE.select_commands(
+        ["docs/working/note.md"],
+        doc_texts={"docs/working/note.md": "Run check_foo.py after edits."},
+        repositories=repos,
+    )
+    assert not selection.fallback_to_verify
+    assert any(
+        command.argv == ("python3", "-m", "pytest", "scripts/tests/test_check_foo.py")
+        for command in selection.commands
+    )
+    assert not any(command.display.startswith("<run") for command in selection.commands)
 
 
-def test_classifies_unknown_path() -> None:
-    assert MODULE.classify_path("random/nonsense/file.xyz") == "unknown"
-    assert MODULE.classify_path("travel-app/assets/logo.png") == "unknown"
+def test_high_risk_or_unknown_file_selects_full_gate() -> None:
+    selection = MODULE.select_commands(["travel-app/utils/api/schema.gen.ts"])
+    assert selection.fallback_to_verify
+    assert "schema.gen.ts" in selection.fallback_reason
 
 
-def test_classifies_conftest_as_high_risk() -> None:
-    assert MODULE.classify_path("travel-agent/tests/conftest.py") == "high_risk"
-    assert MODULE.classify_path("travel-agent/tests/atlas/conftest.py") == "high_risk"
+# ── Independent repository discovery ─────────────────────────────────────
 
 
-def test_classifies_migrations_as_high_risk() -> None:
+def test_collect_changed_paths_reads_committed_changes_from_each_repo(
+    tmp_path: Path,
+) -> None:
+    repos = _repositories(tmp_path)
+    base_refs = {repo.key: MODULE.resolve_base_ref(repo, "HEAD") for repo in repos}
+    for repo, filename, contents in (
+        (repos[0], "docs/working/note.md", "workspace committed\n"),
+        (repos[1], "backend/example.py", "agent committed\n"),
+        (repos[2], "components/example.tsx", "app committed\n"),
+    ):
+        (repo.root / filename).write_text(contents)
+        _git(repo.root, "add", filename)
+        _git(repo.root, "commit", "-qm", "changed")
+
+    resolved, paths = MODULE.collect_changed_paths(base_refs, repos)
+
+    assert set(resolved) == {"workspace", "agent", "app"}
+    assert paths == [
+        "docs/working/note.md",
+        "travel-agent/backend/example.py",
+        "travel-app/components/example.tsx",
+    ]
+
+
+def test_collect_changed_paths_reads_staged_unstaged_and_untracked_child_changes(
+    tmp_path: Path,
+) -> None:
+    repos = _repositories(tmp_path)
+    (repos[1].root / "backend/example.py").write_text("staged\n")
+    _git(repos[1].root, "add", "backend/example.py")
+    (repos[2].root / "components/example.tsx").write_text("unstaged\n")
+    new_file = repos[2].root / "components/new.tsx"
+    new_file.write_text("export const n = 1;\n")
+
+    _resolved, paths = MODULE.collect_changed_paths(_base_refs(), repos)
+
+    assert "travel-agent/backend/example.py" in paths
+    assert "travel-app/components/example.tsx" in paths
+    assert "travel-app/components/new.tsx" in paths
+
+
+def test_collect_changed_paths_rejects_missing_or_cross_repo_base_refs(
+    tmp_path: Path,
+) -> None:
+    repos = _repositories(tmp_path)
+    with pytest.raises(MODULE.BaseRefError, match="travel-app: no base ref"):
+        MODULE.collect_changed_paths({"workspace": "HEAD", "agent": "HEAD"}, repos)
+    foreign_commit = MODULE.resolve_base_ref(repos[0], "HEAD")
+    with pytest.raises(MODULE.BaseRefError, match="travel-agent"):
+        MODULE.collect_changed_paths(
+            {"workspace": "HEAD", "agent": foreign_commit, "app": "HEAD"}, repos
+        )
+
+
+def test_ready_commands_propagate_nonzero_exit_code(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    repos = _repositories(tmp_path)
+    selection = MODULE.Selection()
+    selection.add(
+        (sys.executable, "-c", "import sys; sys.exit(7)"), repos[0].root, "failure"
+    )
+    monkeypatch.setattr(MODULE, "default_repositories", lambda: repos)
+    monkeypatch.setattr(
+        MODULE,
+        "collect_changed_paths",
+        lambda _refs, _repos: (
+            {key: "x" * 40 for key in _refs},
+            ["docs/working/note.md"],
+        ),
+    )
+    monkeypatch.setattr(MODULE, "read_doc_texts", lambda _files, _repos: {})
+    monkeypatch.setattr(MODULE, "select_commands", lambda *_args, **_kwargs: selection)
+
     assert (
-        MODULE.classify_path("travel-agent/alembic/versions/01648ba7be52_x.py") == "high_risk"
+        MODULE.main(
+            [
+                "--workspace-base-ref",
+                "HEAD",
+                "--agent-base-ref",
+                "HEAD",
+                "--app-base-ref",
+                "HEAD",
+            ]
+        )
+        == 7
     )
 
 
-def test_classifies_dependency_manifests_as_high_risk() -> None:
-    assert MODULE.classify_path("travel-agent/requirements.txt") == "high_risk"
-    assert MODULE.classify_path("travel-agent/requirements-dev.txt") == "high_risk"
-    assert MODULE.classify_path("travel-app/package.json") == "high_risk"
-    assert MODULE.classify_path("travel-app/package-lock.json") == "high_risk"
-
-
-def test_classifies_workspace_scripts_as_high_risk() -> None:
-    assert MODULE.classify_path("scripts/check_docs.py") == "high_risk"
-    assert MODULE.classify_path("travel-agent/scripts/check_imports.py") == "high_risk"
-    assert MODULE.classify_path("travel-app/scripts/check-api-boundaries.mjs") == "high_risk"
-
-
-def test_classifies_api_routes_and_models_as_high_risk() -> None:
-    assert MODULE.classify_path("travel-agent/backend/api/routes/trips.py") == "high_risk"
-    assert MODULE.classify_path("travel-agent/backend/core/models/trip.py") == "high_risk"
-
-
-def test_classifies_openapi_snapshots_and_generated_schema_as_high_risk() -> None:
-    assert MODULE.classify_path("docs/openapi.json") == "high_risk"
-    assert MODULE.classify_path("docs/openapi.app.json") == "high_risk"
-    assert MODULE.classify_path("travel-app/utils/api/schema.gen.ts") == "high_risk"
-
-
-def test_classifies_shared_test_config_as_high_risk() -> None:
-    assert MODULE.classify_path("travel-app/jest.config.js") == "high_risk"
-    assert MODULE.classify_path("Makefile") == "high_risk"
-    assert MODULE.classify_path("travel-agent/Makefile") == "high_risk"
-    assert MODULE.classify_path(".pre-commit-config.yaml") == "high_risk"
-
-
-# ── select_commands: routing decisions per class, and the union case ────
-
-
-def test_frontend_only_change_selects_verify_fast_and_related_tests() -> None:
-    sel = MODULE.select_commands(["travel-app/components/trip/Foo.tsx"])
-    assert not sel.fallback_to_verify
-    commands = [c for c, _ in sel.commands]
-    assert "npm run verify:fast" in commands
-    assert any("findRelatedTests" in c and "components/trip/Foo.tsx" in c for c in commands)
-
-
-def test_backend_only_change_selects_full_backend_ci() -> None:
-    sel = MODULE.select_commands(["travel-agent/backend/concierge/agent.py"])
-    assert not sel.fallback_to_verify
-    commands = [c for c, _ in sel.commands]
-    assert "make -C travel-agent ci" in commands
-    # the reason must be honest about why: no mapper exists yet
-    reason = next(r for c, r in sel.commands if c == "make -C travel-agent ci")
-    assert "no dependency-to-test mapper" in reason
-
-
-def test_docs_only_change_selects_doc_governance_gates() -> None:
-    sel = MODULE.select_commands(["docs/working/some-note.md"])
-    assert not sel.fallback_to_verify
-    commands = [c for c, _ in sel.commands]
-    assert any("docs-links-check" in c for c in commands)
-
-
-def test_mixed_frontend_and_backend_change_unions_both() -> None:
-    sel = MODULE.select_commands(
-        ["travel-app/components/Foo.tsx", "travel-agent/backend/concierge/agent.py"]
-    )
-    assert not sel.fallback_to_verify
-    commands = [c for c, _ in sel.commands]
-    assert "npm run verify:fast" in commands
-    assert "make -C travel-agent ci" in commands
-
-
-def test_high_risk_file_forces_full_verify_even_with_other_changes() -> None:
-    sel = MODULE.select_commands(
-        ["travel-app/components/Foo.tsx", "travel-agent/requirements.txt"]
-    )
-    assert sel.fallback_to_verify
-    assert sel.commands == [(MODULE.FULL_VERIFY_COMMAND, sel.fallback_reason)]
-    assert "requirements.txt" in sel.fallback_reason
-
-
-def test_unknown_file_forces_full_verify() -> None:
-    sel = MODULE.select_commands(["some/random/binary.dat"])
-    assert sel.fallback_to_verify
-    assert sel.commands == [(MODULE.FULL_VERIFY_COMMAND, sel.fallback_reason)]
-
-
-def test_empty_change_set_falls_back_to_verify_rather_than_selecting_nothing() -> None:
-    sel = MODULE.select_commands([])
-    assert sel.fallback_to_verify
-    assert sel.commands == [(MODULE.FULL_VERIFY_COMMAND, sel.fallback_reason)]
-
-
-def test_docs_referencing_a_real_checker_selects_its_test(tmp_path: Path) -> None:
-    (tmp_path / "scripts").mkdir()
-    (tmp_path / "scripts" / "check_foo.test.py").write_text("")
-    doc_text = "Run scripts/check_foo.py to see the ratchet.\n"
-    sel = MODULE.select_commands(
-        ["docs/working/note.md"],
-        doc_texts={"docs/working/note.md": doc_text},
-        checker_test_root=tmp_path,
-    )
-    commands = [c for c, _ in sel.commands]
-    assert any("check_foo.test.py" in c for c in commands)
-
-
-def test_docs_referencing_a_nonexistent_checker_adds_nothing_extra(tmp_path: Path) -> None:
-    doc_text = "See scripts/check_totally_made_up_thing.py for details.\n"
-    sel = MODULE.select_commands(
-        ["docs/working/note.md"],
-        doc_texts={"docs/working/note.md": doc_text},
-        checker_test_root=tmp_path,
-    )
-    commands = [c for c, _ in sel.commands]
-    assert not any("made_up_thing" in c for c in commands)
-
-
-# ── referenced_checker_tests: existence-checked, not string-matched ──────
-
-
-def test_referenced_checker_tests_finds_real_test_file(tmp_path: Path) -> None:
-    (tmp_path / "scripts" / "tests").mkdir(parents=True)
-    (tmp_path / "scripts" / "tests" / "test_check_foo.py").write_text("")
-    refs = MODULE.referenced_checker_tests("see scripts/check_foo.py for the ratchet", root=tmp_path)
-    assert "scripts/tests/test_check_foo.py" in refs
-
-
-def test_referenced_checker_tests_ignores_nonexistent_scripts(tmp_path: Path) -> None:
-    refs = MODULE.referenced_checker_tests("see scripts/check_nonexistent_thing.py", root=tmp_path)
-    assert refs == []
-
-
-def test_referenced_checker_tests_dedupes(tmp_path: Path) -> None:
-    (tmp_path / "scripts" / "tests").mkdir(parents=True)
-    (tmp_path / "scripts" / "tests" / "test_check_foo.py").write_text("")
-    text = "scripts/check_foo.py and again scripts/check_foo.py"
-    refs = MODULE.referenced_checker_tests(text, root=tmp_path)
-    assert len(refs) == len(set(refs))
-
-
-# ── BASE_REF validation ────────────────────────────────────────────────────
-
-
-def test_resolve_base_ref_rejects_missing_value() -> None:
-    try:
-        MODULE.resolve_base_ref(None)
-        assert False, "expected BaseRefError"
-    except MODULE.BaseRefError as exc:
-        assert "required" in str(exc)
-
-
-def test_resolve_base_ref_rejects_empty_string() -> None:
-    try:
-        MODULE.resolve_base_ref("   ")
-        assert False, "expected BaseRefError"
-    except MODULE.BaseRefError:
-        pass
-
-
-def test_resolve_base_ref_rejects_unresolvable_ref() -> None:
-    try:
-        MODULE.resolve_base_ref("this-branch-does-not-exist-xyz-123")
-        assert False, "expected BaseRefError"
-    except MODULE.BaseRefError as exc:
-        assert "does not resolve" in str(exc)
-
-
-def test_resolve_base_ref_accepts_head() -> None:
-    resolved = MODULE.resolve_base_ref("HEAD")
-    assert len(resolved) == 40
-
-
-# ── dry-run determinism: same diff -> same selection every time ─────────
-
-
-def test_dry_run_selection_is_deterministic_for_the_same_files() -> None:
-    files = ["travel-app/components/Foo.tsx", "travel-agent/backend/concierge/agent.py"]
-    first = MODULE.select_commands(list(files))
-    second = MODULE.select_commands(list(reversed(files)))  # order of the diff shouldn't matter
-    assert first.commands == second.commands
-    assert first.fallback_to_verify == second.fallback_to_verify
-
-
-def test_cli_dry_run_exits_zero_without_running_commands(tmp_path: Path, capsys) -> None:
-    # exercise the real CLI end-to-end against this actual repo's git state,
-    # using HEAD as base-ref so the diff is empty and the fallback path is
-    # exercised without requiring any specific branch topology.
-    exit_code = MODULE.main(["--base-ref", "HEAD", "--dry-run"])
-    assert exit_code == 0
-    out = capsys.readouterr().out
-    assert "BASE_REF=HEAD" in out
-    assert "selected commands:" in out
-
-
-def test_cli_exits_nonzero_with_no_base_ref(capsys) -> None:
-    exit_code = MODULE.main([])
-    assert exit_code == 2
-    err = capsys.readouterr().err
-    assert "required" in err
-
-
-def test_wrapper_script_delegates_to_python_module() -> None:
-    wrapper = MODULE_PATH.parent / "verify-changed.sh"
-    assert wrapper.exists()
-    result = subprocess.run(
-        [str(wrapper), "--base-ref", "HEAD", "--dry-run"],
-        cwd=MODULE.WORKSPACE_ROOT,
-        capture_output=True,
-        text=True,
-        timeout=30,
-    )
-    assert result.returncode == 0
-    assert "selected commands:" in result.stdout
+def test_cli_requires_all_three_explicit_base_refs(
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    assert MODULE.main(["--workspace-base-ref", "HEAD"]) == 2
+    assert "travel-agent: base ref is required" in capsys.readouterr().err

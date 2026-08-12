@@ -17,7 +17,9 @@ SPEC.loader.exec_module(MODULE)
 
 def test_run_command_captures_success(tmp_path: Path) -> None:
     log_path = tmp_path / "ok.log"
-    result = MODULE.run_command([sys.executable, "-c", "print('hi')"], timeout=10, log_path=log_path)
+    result = MODULE.run_command(
+        [sys.executable, "-c", "print('hi')"], timeout=10, log_path=log_path
+    )
     assert result["exit_code"] == 0
     assert result["timed_out"] is False
     assert result["wall_time_seconds"] >= 0
@@ -27,7 +29,9 @@ def test_run_command_captures_success(tmp_path: Path) -> None:
 
 def test_run_command_captures_nonzero_exit(tmp_path: Path) -> None:
     log_path = tmp_path / "fail.log"
-    result = MODULE.run_command([sys.executable, "-c", "import sys; sys.exit(3)"], timeout=10, log_path=log_path)
+    result = MODULE.run_command(
+        [sys.executable, "-c", "import sys; sys.exit(3)"], timeout=10, log_path=log_path
+    )
     assert result["exit_code"] == 3
     assert result["timed_out"] is False
 
@@ -35,7 +39,9 @@ def test_run_command_captures_nonzero_exit(tmp_path: Path) -> None:
 def test_run_command_records_timeout_without_crashing(tmp_path: Path) -> None:
     log_path = tmp_path / "slow.log"
     result = MODULE.run_command(
-        [sys.executable, "-c", "import time; time.sleep(5)"], timeout=0.2, log_path=log_path
+        [sys.executable, "-c", "import time; time.sleep(5)"],
+        timeout=0.2,
+        log_path=log_path,
     )
     assert result["timed_out"] is True
     assert result["exit_code"] is None
@@ -44,7 +50,9 @@ def test_run_command_records_timeout_without_crashing(tmp_path: Path) -> None:
 
 def test_run_command_handles_missing_executable(tmp_path: Path) -> None:
     log_path = tmp_path / "missing.log"
-    result = MODULE.run_command(["this-command-does-not-exist-xyz"], timeout=10, log_path=log_path)
+    result = MODULE.run_command(
+        ["this-command-does-not-exist-xyz"], timeout=10, log_path=log_path
+    )
     assert result["exit_code"] == 127
     assert result["timed_out"] is False
     assert "not found" in log_path.read_text()
@@ -77,7 +85,9 @@ def test_parse_pytest_collected_count_when_present() -> None:
 
 
 def test_parse_jest_summary() -> None:
-    log = "Test Suites: 2 passed, 2 total\nTests:       15 passed, 15 total\nTime: 3.2s\n"
+    log = (
+        "Test Suites: 2 passed, 2 total\nTests:       15 passed, 15 total\nTime: 3.2s\n"
+    )
     counts = MODULE.parse_test_counts(log)
     assert counts["framework"] == "jest"
     assert counts["passed"] == 15
@@ -133,7 +143,12 @@ def test_build_record_has_the_documented_shape() -> None:
 
 
 def test_build_record_test_counts_is_none_when_log_text_is_none() -> None:
-    run_result = {"exit_code": 0, "timed_out": False, "wall_time_seconds": 0.1, "log_path": "x.log"}
+    run_result = {
+        "exit_code": 0,
+        "timed_out": False,
+        "wall_time_seconds": 0.1,
+        "log_path": "x.log",
+    }
     record = MODULE.build_record(
         label="x", cmd=["true"], run_result=run_result, repos={}, env={}, log_text=None
     )
@@ -189,6 +204,14 @@ def test_git_dirty_returns_none_for_nonexistent_path(tmp_path: Path) -> None:
     assert MODULE.git_dirty(tmp_path / "does-not-exist") is None
 
 
+def test_repo_snapshot_contains_all_three_real_repositories() -> None:
+    snapshot = MODULE.repo_snapshot()
+    assert set(snapshot) == {"workspace", "travel-agent", "travel-app"}
+    assert all(
+        entry["commit"] and len(entry["commit"]) == 40 for entry in snapshot.values()
+    )
+
+
 def test_git_commit_resolves_real_workspace_head() -> None:
     # sanity check against the actual repo this test lives in
     commit = MODULE.git_commit(MODULE.WORKSPACE_ROOT)
@@ -201,7 +224,16 @@ def test_git_commit_resolves_real_workspace_head() -> None:
 
 def test_main_runs_command_and_prints_valid_json(tmp_path: Path, capsys) -> None:
     exit_code = MODULE.main(
-        ["--label", "cli-test", "--log-dir", str(tmp_path), "--", sys.executable, "-c", "print('ok')"]
+        [
+            "--label",
+            "cli-test",
+            "--log-dir",
+            str(tmp_path),
+            "--",
+            sys.executable,
+            "-c",
+            "print('ok')",
+        ]
     )
     assert exit_code == 0
     out = capsys.readouterr().out
@@ -264,6 +296,24 @@ def test_main_returns_nonzero_and_records_timeout(tmp_path: Path, capsys) -> Non
     record = json.loads(capsys.readouterr().out)
     assert record["timed_out"] is True
     assert record["exit_code"] is None
+
+
+def test_main_propagates_completed_command_failure(tmp_path: Path, capsys) -> None:
+    exit_code = MODULE.main(
+        [
+            "--label",
+            "cli-failure",
+            "--log-dir",
+            str(tmp_path),
+            "--",
+            sys.executable,
+            "-c",
+            "import sys; sys.exit(13)",
+        ]
+    )
+    assert exit_code == 13
+    record = json.loads(capsys.readouterr().out)
+    assert record["exit_code"] == 13
 
 
 def test_main_rejects_missing_command() -> None:

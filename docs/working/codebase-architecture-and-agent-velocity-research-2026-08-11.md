@@ -183,7 +183,7 @@ Verified 2026-08-12 against workspace `53993f6`, backend `3618081a8`, and fronte
 |---|---|---|---|
 | A0 private replay evaluation | **DEFERRED UNTIL POST-DEMO; ALSO BLOCKED** | No harness/protocol artifacts exist; `codex exec --help` still fails with the same bundled-binary `ENOENT` | `POST-DEMO-01`: do not start before Demo Phase 6 closes. Then assign a named DRI, budget, governed harness, pinned working CLI, and isolation smoke before reactivation. |
 | A1 generated-contract derivation | **READY AFTER OWNER ASSIGNMENT** | Enforcement is merged and green: 340/340 exports classified; contract check, typecheck, and 23 checker tests pass | `DEMO-ENG-01`: name the DRI, register the app-only lane, and adjudicate the 87 `unmodeled_wire` entries through serialized `contract-sync` windows before Phase 5. |
-| A2 verification router | **READY AFTER OWNER ASSIGNMENT — DO NOT RELY ON `verify-changed` YET** | Router code and tests are merged, but it cannot discover changes inside the independent child repositories and skips referenced checker commands | `DEMO-ENG-02`: repair the router and prove it with three-repository integration tests. `make verify` remains authoritative meanwhile. |
+| A2 verification router | **COMPLETE — EXPERIMENTAL FAST PATH ONLY** | `DEMO-ENG-02` now discovers committed/staged/unstaged/untracked changes in all three independent repositories; per-repository base refs are validated; selected checker tests execute; recorder failure propagates | `make verify` remains the required pre-push/merge gate. `DEMO-ENG-05` owns clean-commit repetition, historical-diff, and timing evidence. |
 | A2 Home ratchet dependency | **READY; DEMO-OWNED** | Frontend `verify:fast` is red because `utils/tripsHomeSectionPlan.ts` is 285 lines against a 267-line ratchet | `DEMO-ENG-03`: the Demo Home DRI makes the reviewed product/budget decision; the verification owner only remeasures afterward. |
 | A3 SCC architecture ratchet | **COMPLETE / CONTINUOUS GATE** | Merged on backend `main`; import, lazy-import, SCC, and 23 SCC tests pass; exact four-module SCC is ratcheted | `DEMO-ENG-04`: keep the gate green on every backend change; review any baseline membership change explicitly. |
 | A2 repeated baseline and historical validation | **BLOCKED BY ROUTER, HOME, AND CLEAN-COMMIT FREEZE** | Only one baseline repetition, four of twenty historical diffs, no disposable-Postgres measurement, and no external-lane inventory exist | `DEMO-ENG-05`: measure only after `DEMO-ENG-02/03` on fixed clean commits; defer post-demo rather than collect incomparable timings. |
@@ -196,7 +196,7 @@ Verified 2026-08-12 against workspace `53993f6`, backend `3618081a8`, and fronte
 | Canonical task | May start when | Blocks or gates |
 |---|---|---|
 | `DEMO-ENG-01` / A1 | Named reviewer, registered app-only lane, and no conflicting `contract-sync` holder | Demo Phase 5 entry and contract-facade certification |
-| `DEMO-ENG-02` / A2 router | Named test-infrastructure DRI and registered root-only lane | Trusting `verify-changed`; it does not block product construction |
+| `DEMO-ENG-02` / A2 router | Complete | An experimental fast path is available; `make verify` remains authoritative |
 | `DEMO-ENG-03` / Home ratchet | Named Demo Home DRI and product scope agreed | Demo Phase 5 entry and credible frontend baseline measurement |
 | `DEMO-ENG-04` / A3 | Complete; run continuously | Every backend merge and any later architecture comparison |
 | `DEMO-ENG-05` / A2 measurement | `DEMO-ENG-02/03` complete and all three repository commits frozen and clean | Verification-loop optimization decisions; it may be deferred rather than block Phase 6 |
@@ -442,15 +442,15 @@ The generated snapshots and `schema.gen.ts` must have no unexplained diff. **A1 
 ### A2 — Measure and improve the trusted verification loop *(immediate engineering)*
 
 - **Program mapping:** router repair `DEMO-ENG-02`; Home dependency `DEMO-ENG-03`; repeated measurement and historical validation `DEMO-ENG-05`.
-- **Status:** **IN PROGRESS. Do not rely on `make verify-changed` as a safety gate yet.**
+- **Status:** **IN PROGRESS. `DEMO-ENG-02` is complete; `DEMO-ENG-05` remains blocked on the Home lane and a clean-commit freeze. `make verify` is still the safety gate.**
 - **Merged commits:** workspace `26c7f3b` and `f4f941e`, reachable from current `main` through `6fd16bf`.
 - **Verified 2026-08-12:** the measurement and router suites pass (53 tests). The recorded backend CI recheck passed in 493.34 seconds with 17,784 offline tests passing; this is one observation, not a median.
 - **Current frontend state:** `npm run verify:fast` is red because `utils/tripsHomeSectionPlan.ts` is 285 lines against a 267-line ratchet. Contract check, typecheck, API boundaries, and schema bridge pass before that failure.
 - **Evidence gap:** only one repetition per baseline command, four of twenty required historical diffs, no disposable-Postgres measurement, no external-lane inventory, and no valid `make verify` median.
-- **Router correctness gaps:** change discovery runs only in the workspace Git repository even though `travel-agent/` and `travel-app/` are ignored independent repositories; referenced checker tests are emitted as `<run ...>` hints but skipped by the executor; the measurement wrapper records a failing command but exits zero unless it times out.
+- **Router repair verified 2026-08-12:** change discovery now independently reads all three Git repositories and prefixes paths; each base ref is resolved only in its own repository; referenced checker tests become executable commands; the recorder propagates a completed command's nonzero exit. 32 targeted tests cover the router/recorder, including three temporary independent repositories and committed, staged, unstaged, and untracked child changes.
 
 - **Confidence:** high on the mechanism; baseline evidence is partial and not yet decision-grade.
-- **DRI:** workspace test-infrastructure owner — **unassigned**, with backend and frontend reviewers.
+- **DRI:** Feihuyan — workspace test-infrastructure owner, with backend and frontend reviewers.
 - **Repositories:** workspace plus both child repositories only where a new target is required.
 - **Remaining effort:** 3–5 engineering days across the router and Home lanes, plus approximately three full repetitions of the measured gates after both land.
 - **Depends on:** named owners, installed dependencies, registered isolated lanes, and—for `DEMO-ENG-05` only—one frozen set of clean commits in all three repositories.
@@ -476,12 +476,12 @@ Measure `make test-backend-postgres` separately against a disposable database. L
 
 #### Fast-path deliverables
 
-- [x] A root `make verify-changed BASE_REF=<ref>` target, dry-run output, classification rules, unit tests, and a documented decision table are merged.
-- [ ] Change discovery reads the workspace, backend, and frontend Git repositories independently and prefixes their paths before classification.
-- [ ] The CLI accepts and validates an explicit base ref for each repository; it must not apply one repository's commit ID to another repository.
-- [ ] Referenced checker tests are real executable commands, not skipped `<run ...>` hints.
-- [ ] The measurement command has an explicit exit policy: add a `--propagate-exit` mode for gate use, or document and enforce that the recorder may not be used as a gate.
-- [ ] Integration tests create three temporary independent Git repositories and prove committed, staged, unstaged, and untracked child-repository changes are discovered.
+- [x] A root `make verify-changed` target, dry-run output, classification rules, unit tests, and a documented decision table are merged.
+- [x] Change discovery reads the workspace, backend, and frontend Git repositories independently and prefixes their paths before classification.
+- [x] The CLI accepts and validates an explicit base ref for each repository; it must not apply one repository's commit ID to another repository.
+- [x] Referenced checker tests are real executable commands, not skipped `<run ...>` hints.
+- [x] The measurement command propagates the measured command's completed nonzero exit; it is now safe to use as a gate recorder.
+- [x] Integration tests create three temporary independent Git repositories and prove committed, staged, unstaged, and untracked child-repository changes are discovered.
 
 Minimum routing rules:
 
@@ -493,15 +493,12 @@ Minimum routing rules:
 
 #### Remaining work — execute in this order
 
-1. Register `DEMO-ENG-02`, `DEMO-ENG-03`, and `DEMO-ENG-05`. Assign the named workspace test-infrastructure DRI and Demo Home DRI, record exact base commits/worktrees, and acquire `verification-infra` or `home-composition` as appropriate.
-2. In parallel, execute these non-overlapping lanes:
-   - `DEMO-ENG-02`: repair the three router correctness gaps and add cross-repository integration tests in a root-only lane. Until this lands, label `verify-changed` experimental and continue using `make verify` for pre-push decisions.
-   - `DEMO-ENG-03`: in the Demo Home lane, reduce `utils/tripsHomeSectionPlan.ts` to at most 267 lines or deliberately approve and document a new budget. Do not silently raise the limit inside verification infrastructure.
-3. After both lanes merge and `make verify` is green, freeze one clean set of three repository commits for `DEMO-ENG-05`. Do not edit source or run this workload concurrently with a W6 cloud rehearsal.
-4. Run three back-to-back recorded repetitions of `make doctor`, `make -C travel-agent ci`, `make contract-check`, `npm run verify:full`, and `make verify`. Preserve every failure.
-5. Measure `make test-backend-postgres` against a disposable database and inventory the API-key, dogfood, device, and live-service lanes with owners and commands. Never point this measurement at Demo Program runtime state.
-6. Validate routing against at least twenty preselected historical diffs, including known defects and cross-repository contract changes. Any missed historical detecting test is blocking.
-7. Measure representative low-risk fast paths and compare their medians to the completed `make verify` median. Update both baseline artifacts, the Demo Program registry evidence, and this status table. If a stable measurement window is unavailable before Phase 6, mark `DEMO-ENG-05` deferred rather than collecting incomparable evidence.
+1. Complete `DEMO-ENG-03` in its Demo Home lane; it owns the line-budget product decision. Do not change that source file from verification infrastructure.
+2. After both the Home lane and its full gate are green, freeze one clean set of three repository commits for `DEMO-ENG-05`. Do not edit source or run this workload concurrently with a W6 cloud rehearsal.
+3. Run three back-to-back recorded repetitions of `make doctor`, `make -C travel-agent ci`, `make contract-check`, `npm run verify:full`, and `make verify`. Preserve every failure.
+4. Measure `make test-backend-postgres` against a disposable database and inventory the API-key, dogfood, device, and live-service lanes with owners and commands. Never point this measurement at Demo Program runtime state.
+5. Validate routing against at least twenty preselected historical diffs, including known defects and cross-repository contract changes. Any missed historical detecting test is blocking.
+6. Measure representative low-risk fast paths and compare their medians to the completed `make verify` median. Update both baseline artifacts, the Demo Program registry evidence, and this status table. If a stable measurement window is unavailable before Phase 6, mark `DEMO-ENG-05` deferred rather than collecting incomparable evidence.
 
 Use the recorder explicitly for each run, for example:
 

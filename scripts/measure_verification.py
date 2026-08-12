@@ -39,11 +39,28 @@ WORKSPACE_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_LOG_DIR = WORKSPACE_ROOT / "docs" / "reliability" / "runs"
 SCHEMA_VERSION = 1
 
-CHILD_REPOS = {
-    "workspace": WORKSPACE_ROOT,
-    "travel-agent": WORKSPACE_ROOT / "travel-agent",
-    "travel-app": WORKSPACE_ROOT / "travel-app",
-}
+
+def _child_repo_root(name: str) -> Path:
+    """Find a child repo from either the canonical root or a root worktree."""
+
+    workspace_name = WORKSPACE_ROOT.name.split("--", maxsplit=1)[0]
+    candidates = (
+        WORKSPACE_ROOT / name,
+        WORKSPACE_ROOT.parent / name,
+        WORKSPACE_ROOT.parent / workspace_name / name,
+    )
+    return next(
+        (candidate for candidate in candidates if (candidate / ".git").exists()),
+        candidates[0],
+    )
+
+
+def child_repositories() -> dict[str, Path]:
+    return {
+        "workspace": WORKSPACE_ROOT,
+        "travel-agent": _child_repo_root("travel-agent"),
+        "travel-app": _child_repo_root("travel-app"),
+    }
 
 
 # ── Repo / environment fingerprinting ───────────────────────────────────
@@ -62,7 +79,12 @@ def git_commit(repo_path: Path) -> str | None:
             timeout=10,
         )
         return out.stdout.strip()
-    except (subprocess.CalledProcessError, subprocess.TimeoutExpired, FileNotFoundError, OSError):
+    except (
+        subprocess.CalledProcessError,
+        subprocess.TimeoutExpired,
+        FileNotFoundError,
+        OSError,
+    ):
         return None
 
 
@@ -79,14 +101,19 @@ def git_dirty(repo_path: Path) -> bool | None:
             timeout=10,
         )
         return bool(out.stdout.strip())
-    except (subprocess.CalledProcessError, subprocess.TimeoutExpired, FileNotFoundError, OSError):
+    except (
+        subprocess.CalledProcessError,
+        subprocess.TimeoutExpired,
+        FileNotFoundError,
+        OSError,
+    ):
         return None
 
 
 def repo_snapshot() -> dict:
     return {
         name: {"commit": git_commit(path), "dirty": git_dirty(path)}
-        for name, path in CHILD_REPOS.items()
+        for name, path in child_repositories().items()
     }
 
 
@@ -186,14 +213,23 @@ def run_command(cmd: list[str], timeout: float | None, log_path: Path) -> dict:
         "exit_code": exit_code,
         "timed_out": timed_out,
         "wall_time_seconds": round(wall_time, 3),
-        "log_path": str(log_path.relative_to(WORKSPACE_ROOT)) if log_path.is_relative_to(WORKSPACE_ROOT) else str(log_path),
+        "log_path": str(log_path.relative_to(WORKSPACE_ROOT))
+        if log_path.is_relative_to(WORKSPACE_ROOT)
+        else str(log_path),
     }
 
 
 # ── Record assembly ──────────────────────────────────────────────────────
 
 
-def build_record(label: str, cmd: list[str], run_result: dict, repos: dict, env: dict, log_text: str | None) -> dict:
+def build_record(
+    label: str,
+    cmd: list[str],
+    run_result: dict,
+    repos: dict,
+    env: dict,
+    log_text: str | None,
+) -> dict:
     return {
         "schema_version": SCHEMA_VERSION,
         "label": label,
@@ -216,7 +252,9 @@ def append_record(path: Path, record: dict) -> None:
         except (json.JSONDecodeError, OSError):
             existing = []
         if not isinstance(existing, list):
-            raise ValueError(f"{path} exists and is not a JSON array — refusing to overwrite")
+            raise ValueError(
+                f"{path} exists and is not a JSON array — refusing to overwrite"
+            )
     else:
         existing = []
     existing.append(record)
@@ -227,10 +265,25 @@ def append_record(path: Path, record: dict) -> None:
 
 
 def main(argv: list[str]) -> int:
-    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--label", required=True, help="short identifier for this command, e.g. 'backend-ci'")
-    parser.add_argument("--append-to", metavar="PATH", help="JSON array file to append this run's record to")
-    parser.add_argument("--timeout", type=float, default=None, help="seconds before the command is killed")
+    parser = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    parser.add_argument(
+        "--label",
+        required=True,
+        help="short identifier for this command, e.g. 'backend-ci'",
+    )
+    parser.add_argument(
+        "--append-to",
+        metavar="PATH",
+        help="JSON array file to append this run's record to",
+    )
+    parser.add_argument(
+        "--timeout",
+        type=float,
+        default=None,
+        help="seconds before the command is killed",
+    )
     parser.add_argument("--log-dir", default=str(DEFAULT_LOG_DIR))
     parser.add_argument("cmd", nargs=argparse.REMAINDER, help="-- <command to run>")
     args = parser.parse_args(argv)
@@ -239,12 +292,17 @@ def main(argv: list[str]) -> int:
     if cmd and cmd[0] == "--":
         cmd = cmd[1:]
     if not cmd:
-        parser.error("no command given — usage: measure_verification.py --label X -- <command>")
+        parser.error(
+            "no command given — usage: measure_verification.py --label X -- <command>"
+        )
 
     ts = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
     log_path = Path(args.log_dir) / f"{args.label}-{ts}.log"
 
-    print(f"[measure_verification] running: {' '.join(shlex.quote(c) for c in cmd)}", file=sys.stderr)
+    print(
+        f"[measure_verification] running: {' '.join(shlex.quote(c) for c in cmd)}",
+        file=sys.stderr,
+    )
     run_result = run_command(cmd, args.timeout, log_path)
 
     log_text: str | None
@@ -269,9 +327,14 @@ def main(argv: list[str]) -> int:
         print(f"[measure_verification] appended to {args.append_to}", file=sys.stderr)
 
     if run_result["timed_out"]:
-        print(f"[measure_verification] TIMED OUT after {args.timeout}s", file=sys.stderr)
+        print(
+            f"[measure_verification] TIMED OUT after {args.timeout}s", file=sys.stderr
+        )
         return 1
-    return 0
+    # The recorder is often used for evidence collection, but it is also safe
+    # to use in a gate: a completed command's exit code is the recorder's exit
+    # code. A missing executable is recorded as 127 above, never swallowed.
+    return int(run_result["exit_code"] or 0)
 
 
 if __name__ == "__main__":

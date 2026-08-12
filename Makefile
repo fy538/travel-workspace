@@ -296,9 +296,15 @@ dogfood-status-sync: ## Regenerate the auto:persona-cert block in docs/journeys/
 
 # ── Composite gate ─────────────────────────────────────────────────────────────
 
-verify-changed: ## Fast-path pre-push gate scoped to files changed since BASE_REF: make verify-changed BASE_REF=origin/main [DRY_RUN=1]
-	@test -n "$(BASE_REF)" || { echo "BASE_REF is required, e.g. make verify-changed BASE_REF=origin/main"; exit 2; }
-	@./scripts/verify-changed.sh --base-ref "$(BASE_REF)" $(if $(DRY_RUN),--dry-run,)
+verify-changed: ## Experimental three-repo fast path: make verify-changed WORKSPACE_BASE_REF=x AGENT_BASE_REF=y APP_BASE_REF=z [DRY_RUN=1]
+	@test -n "$(WORKSPACE_BASE_REF)" || { echo "WORKSPACE_BASE_REF is required"; exit 2; }
+	@test -n "$(AGENT_BASE_REF)" || { echo "AGENT_BASE_REF is required"; exit 2; }
+	@test -n "$(APP_BASE_REF)" || { echo "APP_BASE_REF is required"; exit 2; }
+	@./scripts/verify-changed.sh \
+		--workspace-base-ref "$(WORKSPACE_BASE_REF)" \
+		--agent-base-ref "$(AGENT_BASE_REF)" \
+		--app-base-ref "$(APP_BASE_REF)" \
+		$(if $(DRY_RUN),--dry-run,)
 
 verify: ## Single cross-repo pre-push gate (absorbs offline-qa + mock-real-parity)
 	@echo "▸ Workspace doctor..."
