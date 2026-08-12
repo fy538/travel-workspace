@@ -81,6 +81,9 @@ boundaries.
 
 Run this with two real internal accounts and one Lisbon lens. The facilitator
 records receipts and counts, not the person's private question or reflection.
+The same internal build must enable both `EXPO_PUBLIC_DEPTH_ENCOUNTER_ENABLED`
+and `EXPO_PUBLIC_OUTCOME_ARTIFACT_ENABLED`; the reader doorway remains dark if
+the post-occasion half of the loop is unavailable.
 
 1. **Intent.** Account A opens an authored Dossier, enters an optional question
    in their own words, chooses 45, 75, or 120 minutes, and opens the
