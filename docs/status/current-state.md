@@ -18,11 +18,11 @@ from committed registries; follow the linked authority for evidence and detail.
 <!-- Run `make docs-status-sync` to update this block. -->
 | Signal | Current value | Authority |
 |---|---:|---|
-| API contract | 468 paths / 521 operations / 1068 schemas | [`docs/openapi.json`](../openapi.json) |
+| API contract | 471 paths / 524 operations / 1080 schemas | [`docs/openapi.json`](../openapi.json) |
 | Canonical journeys | 28 total / 12 golden path / 7 holistic extension | [`journeys.yaml`](../journeys/journeys.yaml) |
-| Feature flags | 76 registered / 75 active / 1 resolved | [`registry.yaml`](../flags/registry.yaml) |
+| Feature flags | 77 registered / 76 active / 1 resolved | [`registry.yaml`](../flags/registry.yaml) |
 | System charters | 20 Markdown documents | [`systems/`](../systems/) |
-| Documentation inventory | 340 files classified | [`inventory.yaml`](../governance/inventory.yaml) |
+| Documentation inventory | 345 files classified | [`inventory.yaml`](../governance/inventory.yaml) |
 
 ### V1 intent versus executable evidence
 

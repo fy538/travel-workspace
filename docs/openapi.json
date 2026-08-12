@@ -76978,6 +76978,30 @@
               }
             ],
             "title": "Trade Offs"
+          },
+          "micro_journey": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Micro Journey"
+          },
+          "weather_evidence": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Weather Evidence"
           }
         },
         "additionalProperties": true,
@@ -78493,6 +78517,11 @@
               }
             ],
             "title": "Next Thread"
+          },
+          "clear_depth_reflection": {
+            "type": "boolean",
+            "title": "Clear Depth Reflection",
+            "default": false
           },
           "source_proposal_id": {
             "anyOf": [
