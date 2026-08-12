@@ -190,6 +190,8 @@ Whichever is chosen, pin harness name, version, model ID, and reasoning level in
 
 On 2026-08-11, local `codex exec --help` failed because the installed package could not find its bundled native binary (`ENOENT`). Before building the harness, reinstall or repair the CLI, pin and record `codex --version`, and demonstrate one disposable smoke run. Do not silently switch between the desktop app, a different CLI release, or another model during an experiment.
 
+> **Re-checked 2026-08-12: still failing, identical `ENOENT`.** A0 remains blocked — not attempted. A1/A2/A3 above were executed without it, per the execution-order table's own dependency graph (none of them depend on A0). A4/A5/A6 remain correctly blocked on A0's pilot/report and are likewise not attempted. Repairing the CLI, assigning a DRI, and approving a spend ceiling are still open, and none of them are something to fabricate or route around.
+
 Official OpenAI documentation supports `codex exec` for non-interactive runs, `--ephemeral` to avoid persisted rollout files, `--ignore-user-config`/`--ignore-rules` for controlled automation, `--json` for JSONL events, and `--sandbox workspace-write` for unattended work confined to the workspace. Use those explicit flags rather than deprecated `--full-auto`. See [non-interactive mode](https://learn.chatgpt.com/docs/non-interactive-mode) and the [CLI flag reference](https://learn.chatgpt.com/docs/developer-commands?surface=cli).
 
 #### Files to create
@@ -314,6 +316,14 @@ A0 is complete when the harness tests pass; the frozen manifest has 18–24 elig
 
 ### A1 — Audit and enforce generated contract derivation *(immediate engineering)*
 
+> **Executed 2026-08-12** on branch `codex/agent-velocity-hardening` (all three repos), not yet
+> merged. `travel-app` commit `46b25f4a` (`check-schema-bridge.mjs` + manifest + tests),
+> `travel-agent` commit `50e6585fb` (removal), workspace commit `23c7d48` (contract-check.sh
+> wiring). Found real, previously-unknown contract drift while building the manifest — see the
+> commit message for `TripStatus`/`ProposalResolveStatus`/two `DossierExemplar` enums, each
+> recorded with an unassigned owner rather than a fabricated name. 87 of 340 exports landed as
+> `unmodeled_wire` needing human review before their expiry (2026-09-11).
+
 - **Confidence:** high; contract single-source-of-truth is valuable independent of agents.
 - **DRI:** frontend/API-contract owner.
 - **Repositories:** `travel-app`, with removal of the superseded checker/hook in `travel-agent`.
@@ -361,6 +371,14 @@ The generated snapshots and `schema.gen.ts` must have no unexplained diff. A1 is
 **Non-goals:** renaming unrelated frontend domain types, changing API behavior, or replacing deliberate frontend adapters with raw generated types at every call site.
 
 ### A2 — Measure and improve the trusted verification loop *(immediate engineering)*
+
+> **Executed 2026-08-12** on the workspace repo, branch `codex/agent-velocity-hardening`
+> (commits `26c7f3b`, `f4f941e`), NOT merged. Tools built and tested in full (53 tests total);
+> baseline measurement is **partial** — 1 of the required 3 repetitions, 4 of the required 20
+> historical diffs. Full gaps and current numbers: [`docs/reliability/test-loop-baseline.md`](../reliability/test-loop-baseline.md).
+> Headline: `make -C travel-agent ci` and `npm run verify:full` are both currently red on `main`
+> for two unrelated pre-existing reasons (flagged separately, not fixed here); the 17,776-test
+> offline suite underneath them is itself green in ~7.4 minutes.
 
 - **Confidence:** high on the mechanism; current baseline unknown.
 - **DRI:** workspace test-infrastructure owner, with backend and frontend reviewers.
@@ -413,6 +431,13 @@ Minimum routing rules:
 **Non-goals:** auto-generating tests, skipping flaky failures, or claiming coverage for marker/live/device lanes that were not run.
 
 ### A3 — Ratchet existing architecture enforcement *(immediate engineering)*
+
+> **Executed 2026-08-12** on branch `codex/agent-velocity-hardening` (`travel-agent` commit
+> `dc80d75e5`), not yet merged. Real baseline against the current graph reproduces the original
+> 4-file `home/concierge_feed` cycle (1,471 modules, 4,287 top-level edges — close to but not
+> identical to the original scratch-script counts, as expected since exclusion rules are now
+> exact rather than approximate). 23 tests. Wired into `lint`, `ci`, the cert-db gate,
+> pre-commit, and GitHub Actions.
 
 - **Confidence:** medium-high.
 - **DRI:** backend architecture owner.
