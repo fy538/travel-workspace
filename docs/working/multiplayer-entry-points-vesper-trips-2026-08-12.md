@@ -35,6 +35,33 @@ room identity and focused history convergence. The remaining experience work
 is the designed `Start together` affordance in Home’s composer plus a Room
 Info surface that exposes people, invite, owner handoff, leave, and promote.
 
+### Execution update — 2026-08-12
+
+The implementation has now closed the highest-risk seams identified in this
+working document:
+
+- **Authority survives a handoff.** Promotion reads the current `owner_id`,
+  not immutable `created_by`; the successor becomes Trip creator, itinerary
+  decision owner, organizer, and audit actor.
+- **Leaving is durable.** An append-only standalone-room membership ledger
+  prevents a previously redeemed link from restoring someone after a leave or
+  removal. Re-entry requires a fresh invite.
+- **The server owns room identity.** Conversation detail now returns each
+  participant's public display name. The mobile header facepile uses that
+  roster rather than a trip-only or mock projection.
+- **The room behaves as a group room.** In reactive mode, ordinary text is
+  persisted as human conversation. Vesper enters when directly addressed, or
+  when a room explicitly gives it proactive participation.
+- **The experienced surface has a compact Room Info route.** The header
+  facepile opens the roster and owner-only Add people action; it adds no card
+  to Vesper Home or Trips Home.
+
+The following remain intentionally outside this increment: a contact picker
+or durable friend graph, invite-management/revocation UI, owner handoff/leave
+UI, standalone-room SSE fan-out (the room still uses focused history
+reconciliation), and a device-captured visual verdict. Those are the next
+interaction and realtime layers, not unresolved authority or audience rules.
+
 **[proposed]** Multiplayer should be exposed from both Vesper Home and Trips
 Home, but the two entry points must not be duplicates:
 
@@ -295,12 +322,13 @@ The initial question is about the possibility, not the contact list:
 5. Vesper produces a grounded opening artifact: a concise framing, two
    plausible directions, an important timing/route constraint, or one useful
    question.
-6. The room becomes invite-eligible only when it has a destination or anchor.
-7. Vesper never manufactures filler merely to pass the gate.
+6. The room may be deliberately shared before it has a destination or anchor.
+7. Vesper never manufactures filler to justify membership; neutral room copy
+   is truthful until the people or idea give it a purpose.
 
-The backend already enforces this discipline with
-`conversation_has_substance`. A direct blank-room share should therefore not
-be the default flow.
+`conversation_has_substance` remains a prompt-quality signal, not a
+membership gate. A direct blank-room share is valid when the organizer chooses
+to bring people together first.
 
 ### 6.3 Bring people in
 
@@ -1464,30 +1492,11 @@ mechanism.
 
 ### 25.4 Open decision 15.2 is resolved by mechanism
 
-Section 15's second open question — *does a new room exist before the first
-invite, or is it created when a substantive invite is shared?* — and section
-19.3's Variable B are answered by code that already exists.
-
-`mint_conversation_invite` is gated on `conversation_has_substance`, whose own
-docstring names the rejected case exactly:
-
-> The gate is only for the pre-intent case (organizer opened a fresh chat and
-> immediately tried to invite friends before saying anything).
-
-A room-first flow that offers Share on an empty room returns
-`409 conversation_needs_substance` with `next_step: "concierge_turn"`. **B1 is
-not a preference; it is what the backend enforces.** Section 19.3's working
-preference should be recorded as settled.
-
-The gate is **deliberately lax** — it passes on any one of a destination, an
-anchor, or a `narrative_note` in `intent_state`. One line clears it. So the
-real shape is *tap → one sentence → share*, which is materially cheaper than
-section 6.2 implies. A room may still be made to *appear* immediately provided
-the share affordance stays inert until substance lands.
-
-This also answers section 15's tenth question. The honest eligibility read is
-the server's own `conversation_has_substance`, not a client inference from
-transcript shape.
+The old conclusion in this section is superseded by the execution update.
+Rooms are created before the first invite and may be shared while blank. The
+current mechanism is therefore *tap → share → let the people or idea give the
+room its purpose*, bounded by explicit admission, revocable invite primitives,
+owner authority, and neutral public copy—not a hidden destination requirement.
 
 ### 25.5 Considered and rejected: a "start a group chat" card with a people picker
 
