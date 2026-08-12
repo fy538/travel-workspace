@@ -30,7 +30,7 @@ _AGENT = _REPO / "travel-agent"
 _APP = _REPO / "travel-app"
 _EVIDENCE_CODES = {"FE", "BE", "VIS", "LIVE"}
 _TAXONOMY_KINDS = {"customer_regression", "assurance_pack", "historical"}
-_PROOF_LAYERS = {"contract", "database", "device_mock", "persona_replay", "staging", "physical", "ai_eval"}
+_PROOF_LAYERS = {"contract", "database", "device_mock", "persona_replay", "staging", "physical", "ai_eval", "human_outcome"}
 _PROOF_STATUSES = {"active", "dark"}
 
 
@@ -211,8 +211,8 @@ def _proof_registry_problems() -> tuple[list[str], int]:
                 for anchor in values:
                     if not isinstance(anchor, str) or not (_REPO / anchor).exists():
                         problems.append(f"{pid}: evidence anchor does not exist: {anchor}")
-    if seen != {f"P{number:02}" for number in range(1, 8)}:
-        problems.append("product-proofs.yaml: expected the complete P01–P07 proof spine")
+    if seen != {f"P{number:02}" for number in range(1, 9)}:
+        problems.append("product-proofs.yaml: expected the complete P01–P08 proof spine")
     return problems, len(proofs)
 
 

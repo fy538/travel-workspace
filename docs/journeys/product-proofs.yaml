@@ -83,7 +83,13 @@ proofs:
       # curiosity can survive Place → Dossier → Vesper → canonical Plan/Map,
       # be preserved through a grounded repair, and improve a later occasion.
       # It does not authorize ambient delivery or a generic content feed.
-      contract: []
-      database: []
+      contract:
+        - travel-app/__tests__/screens/dossier-detail.smoke.test.tsx
+        - travel-app/__tests__/components/trip-plan/OccurrenceArtifactCard.test.tsx
+        - travel-agent/tests/concierge/test_conversation_seed.py
+      database:
+        - travel-agent/tests/api/test_experience_outcome_feedback.py
+        - travel-agent/tests/core/test_experience_outcomes.py
+        - travel-agent/tests/scenarios/test_second_occasion_compounds.py
       device_mock: []
       human_outcome: []
