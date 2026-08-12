@@ -25454,6 +25454,66 @@
         }
       }
     },
+    "/api/social-circles/{circle_id}/together": {
+      "get": {
+        "tags": [
+          "social-circles"
+        ],
+        "summary": "Read Together Pair Projection",
+        "description": "Return only the current, explicit shared material for a pair.\n\nThe route is intentionally dark until the moderated consent/revocation\nevidence is accepted. Once enabled, every response is re-derived from the\ncircle's live roster and revision; it never trusts a client counterpart id.",
+        "operationId": "read_together_pair_projection_api_social_circles__circle_id__together_get",
+        "parameters": [
+          {
+            "name": "circle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Circle Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TogetherPairProjection"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/social-circles": {
       "post": {
         "tags": [
@@ -86119,6 +86179,59 @@
           "label"
         ],
         "title": "TasteDimension"
+      },
+      "TogetherPairProjection": {
+        "properties": {
+          "circle_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Circle Id"
+          },
+          "circle_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Circle Revision"
+          },
+          "counterpart_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Counterpart User Id"
+          },
+          "counterpart_display_name": {
+            "type": "string",
+            "title": "Counterpart Display Name"
+          },
+          "linked_trip_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Linked Trip Ids"
+          },
+          "shared_claims": {
+            "items": {
+              "$ref": "#/components/schemas/SharedRelationshipMemoryClaim"
+            },
+            "type": "array",
+            "title": "Shared Claims"
+          },
+          "availability": {
+            "type": "string",
+            "const": "complete",
+            "title": "Availability",
+            "default": "complete"
+          }
+        },
+        "type": "object",
+        "required": [
+          "circle_id",
+          "circle_revision",
+          "counterpart_user_id",
+          "counterpart_display_name"
+        ],
+        "title": "TogetherPairProjection",
+        "description": "A narrow, revision-bound view for a confirmed two-person circle.\n\nIt intentionally contains only circle-governed material: the counterpart's\ndisplay identity, current linked trip ids, and claims an active member\nexplicitly shared with the circle. It is not a private-profile export."
       },
       "TransferSharedPlanOwnerRequest": {
         "properties": {

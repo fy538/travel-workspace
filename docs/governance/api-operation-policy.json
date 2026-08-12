@@ -222,6 +222,16 @@
       "removal_trigger": null,
       "review_by": "2026-09-03"
     },
+    "GET /api/social-circles/{circle_id}/together": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "PROFILE_TOGETHER_PROJECTION_ENABLED",
+      "lifecycle": "dark",
+      "owner": "profile-system",
+      "reason": "The confirmed-pair read is implemented with live roster and shared-claim checks, but stays dark until the moderated consent and revocation evidence is recorded.",
+      "removal_trigger": "Record the consent-session evidence and add a device-validated confirmed-pair surface, or remove the route.",
+      "review_by": "2026-10-30"
+    },
     "GET /api/social-circles/{circle_id}": {
       "audience": "app",
       "consumers": [

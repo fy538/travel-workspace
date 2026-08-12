@@ -824,6 +824,20 @@ flags:
     promotion_removal_question: By 2026-09-09, did the bounded doorway and fixed Lisbon rescue earn controlled-device and staging proof, or should the doorway remain dark or be removed?
     notes: Opens only a private review-first handoff grounded in the canonical Plan; it grants no client mutation, push, group-output, or inferred-memory authority.
 
+  - name: PROFILE_TOGETHER_PROJECTION_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:together_profile_projection_enabled
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    target_journey: P05
+    cohort: moderated confirmed-pair dogfood only
+    kill_switch: Set PROFILE_TOGETHER_PROJECTION_ENABLED=false; the route returns a generic 404 before resolving a circle or member.
+    promotion_removal_question: By 2026-10-30, has the exact pair-consent and roster-revocation protocol earned controlled-device proof, or should the projection stay dark or be removed?
+    notes: Server gate for the narrow Together pair read. It never creates a relationship, upgrades a public profile, or exposes unshared relationship memory.
+
   - name: OUTCOME_ARTIFACT_ENABLED
     repo: travel-app
     location: constants/featureFlags.ts:39
