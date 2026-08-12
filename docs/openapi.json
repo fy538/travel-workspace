@@ -23037,6 +23037,44 @@
             "description": "Nearby-scope radius (metres)."
           },
           {
+            "name": "date_from",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Experience pins only \u2014 earliest date to include.",
+              "title": "Date From"
+            },
+            "description": "Experience pins only \u2014 earliest date to include."
+          },
+          {
+            "name": "date_to",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Experience pins only \u2014 latest date to include, if bounded.",
+              "title": "Date To"
+            },
+            "description": "Experience pins only \u2014 latest date to include, if bounded."
+          },
+          {
             "name": "limit",
             "in": "query",
             "required": false,
