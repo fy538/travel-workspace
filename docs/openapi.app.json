@@ -59347,13 +59347,18 @@
           "joined_at": {
             "type": "string",
             "title": "Joined At"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
           }
         },
         "type": "object",
         "required": [
           "user_id",
           "role",
-          "joined_at"
+          "joined_at",
+          "display_name"
         ],
         "title": "ParticipantResponse",
         "description": "A participant in a conversation."

@@ -11700,7 +11700,7 @@
           "conversations"
         ],
         "summary": "Promote To Trip",
-        "description": "Promote a pre-trip conversation into a committed trip.\n\nReads the conversation's ``intent_state`` scratchpad, creates a trip\nrow with best-effort field mapping (title / place_id / dates),\nlinks them both ways, copies conversation participants as trip\nmembers, and stamps ``intent_state.phase='committed'``.\n\nOnly the conversation creator may promote \u2014 the resulting trip is\nowned by that user (``trip.created_by = conversation.created_by``)\nso allowing anyone else to drive this would let an attacker spawn\ntrips under a victim's name. Normal participant auth is not strong\nenough here because trip creation is an ownership-changing action.\n\nFails with:\n- 403 if the caller isn't the conversation creator\n- 400 on not-found / home / already-promoted / not-ready",
+        "description": "Promote a pre-trip conversation into a committed trip.\n\nReads the conversation's ``intent_state`` scratchpad, creates a trip\nrow with best-effort field mapping (title / place_id / dates),\nlinks them both ways, copies conversation participants as trip\nmembers, and stamps ``intent_state.phase='committed'``.\n\nOnly the current room owner may promote. ``created_by`` remains immutable\nprovenance, while a standalone group may hand operational ownership to a\nparticipant before it becomes a Trip.\n\nFails with:\n- 403 if the caller isn't the current room owner\n- 400 on not-found / home / already-promoted / not-ready",
         "operationId": "promote_to_trip_api_conversations__conversation_id__promote_to_trip_post",
         "parameters": [
           {
@@ -18317,7 +18317,7 @@
           "trip-invites"
         ],
         "summary": "Mint Conversation Invite",
-        "description": "Mint an invite for a pre-trip conversation.\n\nGated on ``conversation_has_substance`` \u2014 mirrors the trip-invite\ngate but reads from intent_state rather than trip briefs. Keeps us\nfrom sending friends a landing page that says nothing about the\ntrip being shaped.",
+        "description": "Mint an invite for a pre-trip conversation.\n\nAn owner may invite people before the room has any place or trip context.\nThe invite landing page then uses neutral room copy until the group gives\nVesper an occasion to reason about.",
         "operationId": "mint_conversation_invite_api_conversations__conversation_id__invites_post",
         "parameters": [
           {
@@ -70257,13 +70257,18 @@
           "joined_at": {
             "type": "string",
             "title": "Joined At"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
           }
         },
         "type": "object",
         "required": [
           "user_id",
           "role",
-          "joined_at"
+          "joined_at",
+          "display_name"
         ],
         "title": "ParticipantResponse",
         "description": "A participant in a conversation."
