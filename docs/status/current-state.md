@@ -18,11 +18,11 @@ from committed registries; follow the linked authority for evidence and detail.
 <!-- Run `make docs-status-sync` to update this block. -->
 | Signal | Current value | Authority |
 |---|---:|---|
-| API contract | 471 paths / 524 operations / 1080 schemas | [`docs/openapi.json`](../openapi.json) |
+| API contract | 472 paths / 525 operations / 1080 schemas | [`docs/openapi.json`](../openapi.json) |
 | Canonical journeys | 28 total / 12 golden path / 7 holistic extension | [`journeys.yaml`](../journeys/journeys.yaml) |
 | Feature flags | 80 registered / 79 active / 1 resolved | [`registry.yaml`](../flags/registry.yaml) |
 | System charters | 20 Markdown documents | [`systems/`](../systems/) |
-| Documentation inventory | 346 files classified | [`inventory.yaml`](../governance/inventory.yaml) |
+| Documentation inventory | 348 files classified | [`inventory.yaml`](../governance/inventory.yaml) |
 
 ### V1 intent versus executable evidence
 
@@ -40,7 +40,7 @@ uncertified until a current-revision receipt exists.
 | Trip Home, living itinerary, map, and Now behavior | **IN** | 2/2 tracked paths | No release flag declared | Unverified externally | [UNCERTIFIED — required promoted layers missing J06: physical; J08: physical; J09: physical](../journeys/STATUS.md) (J06, J08, J09) |
 | Post-trip Story and Trip photos | **IN** | 2/2 tracked paths | No release flag declared | Unverified externally | [UNCERTIFIED — required promoted layers missing J11: physical](../journeys/STATUS.md) (J11) |
 | Expenses and settlement | **IN** | 2/2 tracked paths | No release flag declared | Unverified externally | [UNCERTIFIED — required promoted layers missing J10: physical; J12: physical](../journeys/STATUS.md) (J10, J12) |
-| Places, Atlas, Discover, and universal search | **IN** | 4/4 tracked paths | Enabled by default | Unverified externally | [UNCERTIFIED — required promoted layers missing J07: physical](../journeys/STATUS.md) (J07) |
+| Places and universal search | **IN** | 5/5 tracked paths | Enabled by default | Unverified externally | [UNCERTIFIED — required promoted layers missing J07: physical](../journeys/STATUS.md) (J07) |
 | Profiles, people search, follow, and following | **IN** | 2/2 tracked paths | No release flag declared | Unverified externally | [UNCERTIFIED — required promoted layers missing J13: physical](../journeys/STATUS.md) (J13) |
 | Grounded live Plan repair | **IN** | 2/2 tracked paths | Dark by default | Not claimed; in scope but gated | [UNCERTIFIED — required promoted layers missing J05: device_mock,staging; J06: device_mock,staging; J08: device_mock,staging](../journeys/STATUS.md) (J05, J06, J08) |
 | Open-interval micro-journey doorway | **IN** | 2/2 tracked paths | Dark by default | Not claimed; in scope but gated | [UNCERTIFIED — required promoted layers missing J08: device_mock](../journeys/STATUS.md) (J08) |
