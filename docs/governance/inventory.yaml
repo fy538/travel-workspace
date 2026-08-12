@@ -107,6 +107,10 @@ overrides:
     disposition: keep_authoritative
     rationale: Generated human view of the machine-readable V1 release intent and production flag boundary.
 
+  docs/working/codebase-architecture-and-agent-velocity-research-2026-08-11.md:
+    disposition: keep_reference
+    rationale: Dated structural measurement of both repos plus an adversarial review of the external evidence on agent-oriented restructuring; source code and the charter-invariant checkers own the resulting truth.
+
   docs/working/definition-of-done-consolidation-2026-08-10.md:
     disposition: keep_reference
     rationale: Dated audit of every coexisting definition of done plus the 2026-08-10 consolidation rulings; M1 and the V1 contract own the resulting truth.
