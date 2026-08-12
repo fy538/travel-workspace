@@ -46100,6 +46100,47 @@
             ],
             "title": "Companion Fit"
           },
+          "depth_verdict": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "more_interesting",
+                  "a_little_more",
+                  "not_more_interesting",
+                  "not_sure"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Depth Verdict"
+          },
+          "noticed": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Noticed"
+          },
+          "next_thread": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Thread"
+          },
           "companion_scope": {
             "anyOf": [
               {
@@ -66741,6 +66782,47 @@
               }
             ],
             "title": "Companion Fit"
+          },
+          "depth_verdict": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "more_interesting",
+                  "a_little_more",
+                  "not_more_interesting",
+                  "not_sure"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Depth Verdict"
+          },
+          "noticed": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Noticed"
+          },
+          "next_thread": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Thread"
           },
           "source_proposal_id": {
             "anyOf": [

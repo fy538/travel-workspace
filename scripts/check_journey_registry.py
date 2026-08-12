@@ -39,7 +39,7 @@ _AGENT = _REPO / "travel-agent"
 _APP = _REPO / "travel-app"
 _EVIDENCE_CODES = {"FE", "BE", "VIS", "LIVE"}
 _TAXONOMY_KINDS = {"customer_regression", "assurance_pack", "historical"}
-_PROOF_LAYERS = {"contract", "database", "device_mock", "persona_replay", "staging", "physical", "ai_eval"}
+_PROOF_LAYERS = {"contract", "database", "device_mock", "persona_replay", "staging", "physical", "ai_eval", "human_outcome"}
 _PROOF_STATUSES = {"active", "dark"}
 
 # Anchors are file paths recorded as evidence that a layer of a proof is real.
@@ -315,8 +315,8 @@ def _proof_registry_problems(verify_passes: bool = False) -> tuple[list[str], in
                         continue
                     if verify_passes:
                         anchors_to_verify.setdefault(anchor, []).append(f"{pid}:{layer}")
-    if seen != {f"P{number:02}" for number in range(1, 8)}:
-        problems.append("product-proofs.yaml: expected the complete P01–P07 proof spine")
+    if seen != {f"P{number:02}" for number in range(1, 9)}:
+        problems.append("product-proofs.yaml: expected the complete P01–P08 proof spine")
 
     anchor_summary: dict[str, int] | None = None
     if verify_passes:
