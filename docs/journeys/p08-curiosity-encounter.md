@@ -72,7 +72,7 @@ boundaries.
 
 | Layer | What it proves |
 | --- | --- |
-| contract | A Trip-scoped lens identity survives the mobile handoff; the complete Move budget, route, hours, and material weather facts fail closed or remain explicit. |
+| contract | A Trip-scoped lens identity and its approved venue-exemplar set survive the mobile handoff; the complete Move budget, route, hours, and material weather facts fail closed or remain explicit. |
 | database | One confirmed personal outcome has a correctable, removable private reflection and private Dossier causal join that can influence only a permitted second occasion. |
 | device_mock | A person can complete Trip Places → Dossier → Vesper → applied Plan/Map → reflection in one internal build. |
 | human_outcome | The person can name something specific they noticed or learned that they would otherwise have missed; qualitative feedback does not describe the experience as intrusive homework. |
@@ -129,7 +129,7 @@ The existing systems contribute distinct evidence rather than one blended
 
 | System | Permitted role in P08 | Must not do |
 | --- | --- | --- |
-| Dossier / provenance | Supply an authored, attributed lens | Claim it is personally true because it was clicked |
+| Dossier / provenance | Supply an authored, attributed lens and approved venue exemplars | Claim it is personally true because it was clicked or let an unrelated nearby venue impersonate the lens |
 | Plan + route + Mapbox | Bound the Move and expose its route receipt once applied | Invent travel time, show an un-applied proposal as a map stop, or hide stale legs |
 | Availability + weather | Constrain a bounded addition; rain can exclude a weather-sensitive anchor, while unavailable coverage stays explicit | Turn a stale or unavailable condition into a current recommendation |
 | Location / proximity | Existing consented context may help establish feasibility | Trigger a P08 interruption or continuous tracking |
@@ -153,7 +153,8 @@ evidence.
 
 ### Known boundary
 
-The current contract records and reuses the causal lens, but it does not yet
-have a deterministic lens-to-candidate matching model or autonomous semantic
-repair after a condition change. Treat interpretation fit as a human-outcome
-and evaluation criterion, never as an already-proven routing fact.
+The current contract requires an approved Dossier venue exemplar before it may
+prepare a Move, but it does not yet have autonomous semantic repair after a
+condition change. Treat the richness of the interpretation—not merely exemplar
+membership—as a human-outcome and evaluation criterion, never as an already-
+proven routing fact.
