@@ -4,7 +4,7 @@ status: active
 owner: founder / engineering
 created: 2026-08-11
 expires: 2026-09-10
-why_new: First holistic structural read of both repos, paired with three adversarial rounds of external research on agent-friendly codebases. No existing note covers cross-repo architecture quality or evaluates the evidence behind agent-velocity investments.
+why_new: Extends the July architecture-simplification audit with a point-in-time structural measurement, an adversarial review of research on coding-agent velocity, and a proposed private replay evaluation.
 promotes_to: null
 supersedes: []
 ---
@@ -12,162 +12,561 @@ supersedes: []
 # Codebase Architecture Quality and Agent-Velocity Research
 
 **Date:** 2026-08-11
+**Last revised:** 2026-08-11
 
-## Question or outcome
+## Question and conclusion
 
 Two questions, asked in sequence:
 
 1. Is the backend/frontend architecture structurally sound?
 2. Should we restructure the codebase to make AI coding agents faster, and what does the evidence actually support?
 
-The short answers: **yes, the architecture is sound but unguarded**, and **no, the evidence does not support restructuring for agents** — only one of the five candidate actions survives scrutiny, and it survives because it was good engineering independent of agents.
+The architecture is broadly sound and already has more enforcement than the first audit recognized. It also has real pressure points: deferred cross-boundary dependencies, a live import cycle, large mixed-responsibility packages, and verification loops whose speed and trustworthiness have not been measured cleanly.
+
+The evidence does **not** justify a broad restructuring program whose primary goal is agent velocity. It does justify a narrower sequence:
+
+1. establish a reproducible private replay evaluation;
+2. preserve and ratchet the dependency boundaries already enforced;
+3. improve trusted, fast verification;
+4. test leaner repository instructions and structural code indexing in controlled A/B trials; and
+5. refactor only seams that repeatedly cause localization, change-spread, or dependency failures.
+
+This updates the original recommendation materially: recent fixed-harness evidence makes structural indexing worth testing, but not worth adopting without a local trial.
 
 ---
 
-## Evidence
+## Scope, provenance, and limitations
 
-All measurements taken 2026-08-11 against the working tree at `~/travel-workspace`. Point-in-time, not durable state.
+The original structural measurements were taken on 2026-08-11 from the working trees under `/Users/feihuyan/travel-workspace`. The base commits now recorded for provenance are:
 
-### Part 1 — Structural audit
+| Repository | Base commit |
+|---|---|
+| Workspace | `0cd17045742be646a528b5f868716ef8cd7fe08c` |
+| Backend (`travel-agent`) | `a29b92d96a5840a1e7590c27a2705706823afecb` |
+| Frontend (`travel-app`) | `05e429d06a9bdb0b7366a464fa0e922709105cfb` |
 
-**Method.** Package/file sizing via `find`/`wc`. Import graph built with an AST parser over all 4,056 backend `.py` files, resolving relative and absolute imports to a module map, recording top-level and function-body (deferred) imports separately, then Tarjan SCC for cycles. Counterfactual run: hoist each deferred import to module top and test whether the target already reaches the source. Analysis scripts were ephemeral (session scratchpad); method described here is sufficient to reproduce.
+The measurements described below came from ephemeral scripts and may also have observed uncommitted working-tree state. The commits identify the repository bases; they do not make the original counts independently reproducible. Before any count is promoted into a durable invariant, the parser, exclusions, input commits, and output artifact must be committed and rerun.
 
-**Scale.**
+This note is also not the first cross-repository architecture review. It should be read alongside [`architecture-simplification-2026-07.md`](./architecture-simplification-2026-07.md), which already documents the generated-contract workflow and several of the same structural seams.
+
+---
+
+## Part 1 — Local structural audit
+
+### Original method and measurements
+
+The original audit used `find`/`wc` for sizing and an AST parser for backend imports. It resolved relative and absolute imports, distinguished module-level from function-body imports, computed strongly connected components with Tarjan's algorithm, and simulated hoisting deferred imports. Because the scripts were not retained, the following numbers are diagnostic observations rather than durable facts.
 
 | | Backend (`travel-agent`) | Frontend (`travel-app`) |
-|---|---|---|
-| Files | 4,056 `.py` | 2,553 `.ts`/`.tsx` |
-| LOC | 1,033,308 | 505,495 |
-| Modules in graph | 1,458 | — |
-| Tests | 19,043 collected | 1,038 test files |
+|---|---:|---:|
+| Files counted | 4,056 `.py` | 2,553 `.ts`/`.tsx` |
+| LOC counted | 1,033,308 | 505,495 |
+| Backend modules in graph | 1,458 | — |
+| Tests reported | 19,043 collected | 1,038 test files |
 
-**Frontend: structurally sound.**
+### What appears healthy
 
-- One state paradigm — react-query in 89 files, context in 28, zero Redux/zustand/jotai/recoil/mobx.
-- One data layer — 238 files import `utils/api`, 42 use raw `fetch`.
-- Feature-organised components, 46 subdirectories, real nesting.
-- Existing boundary enforcement: 58 checker scripts including `scripts/check-api-boundaries.mjs`, `check-query-key-ownership.mjs`, `check-mutation-key-ownership.mjs`.
+**Frontend**
 
-Blemishes: 8 overlapping `trip*` component directories (`trip/`, `trips/`, `trip-details/`, `trip-plan/`, `trip-map/`, `trip-itinerary/`, `trip-settings/`, `trip-creation/`) — a boundary never decided. 479 entries at repo root, mostly screenshot PNGs.
+- React Query is the dominant server-state mechanism; there is no competing Redux/Zustand/MobX-style application store.
+- API access is concentrated under `utils/api` and guarded by existing scripts such as `check-api-boundaries.mjs`, `check-query-key-ownership.mjs`, and `check-mutation-key-ownership.mjs`.
+- Feature-oriented component directories give the application a recognizable macro-structure.
 
-**Backend: correct macro shape, no enforcement.**
+**Backend**
 
-Good, and worth protecting:
+- `core.models` and `core.exceptions` behave like low-level foundations.
+- `api.routes` primarily points inward, as expected for an outer delivery layer.
+- The original AST graph found one top-level import cycle across 1,458 modules and 4,247 top-level edges: the four-file `home/concierge_feed` component.
+- Backend enforcement already exists. On 2026-08-11, both `scripts/check_imports.py --ci` and `scripts/check_lazy_imports.py --ci` passed. The latter found 60 cross-boundary lazy imports, all allowlisted, with no new or stale entries. Both checks are wired into pre-commit, CI, and Make targets.
 
-- `core.models` — 623 fan-in / 9 fan-out. Textbook foundation leaf.
-- `core.exceptions` — 73 fan-in / 0 fan-out. Pure leaf.
-- `core.db` fan-out is ~90% internal (378 `core.db`, 117 `core.models`, 15 `core.exceptions`).
-- `api.routes` — 686 out / 90 in. Correct direction for a top layer.
-- **Exactly one import cycle** across 1,458 modules and 4,247 top-level edges: `home/concierge_feed` (4 files). At this scale that is rare and valuable.
+### Pressure points worth investigating
 
-Problems:
+1. **`core/` and `concierge/` are broad namespaces.** The audit counted 194 loose Python files under `core/` and 128 under `concierge/`. That increases naming and navigation entropy, but file count alone is not evidence that moving files will improve delivery or agent success. Split only around a demonstrated responsibility boundary.
 
-1. **`core/` is a second application layer, not a kernel.** 191,458 LOC (37% of backend), **194 loose `.py` files** at its top level, 55 of them named after features (`booking_approval.py`, `booking_consent.py`, `atlas_unpacked_share.py`, `ambient_judgment.py`). It has no definition, so it cannot reject anything. `concierge/` has the same shape: 73,519 LOC, 128 loose files.
+2. **Deferred imports hide architectural pressure.** The original parser counted 2,030 function-body imports. Its counterfactual suggested that only 33 would create a cycle if hoisted, while hoisting everything would create large strongly connected components. Calling the remaining imports "cargo cult" was an unsupported inference: hoistability does not reveal the author's reason or the runtime cost of hoisting. The useful result is the smaller set of load-bearing deferred edges, which should be reproduced and tracked explicitly.
 
-2. **The acyclic graph is accidental.** 2,030 deferred (in-function) imports exist. Counterfactual test: **1,997 of 2,030 (98%) could be hoisted to module top with no cycle created.** Only 33 are load-bearing. The habit is cargo-cult, not analysis — meaning nothing defends the DAG. Hoisting everything yields 10 cycles across 258 files; the largest is a 221-file component spanning `core.db` (38), `concierge.tool_handlers` (26), `booking_agent.tasks` (8).
+3. **There are genuine low-to-high dependencies.** Examples recorded by the audit include `core/db/atlas.py` reaching into `atlas.projector` and related feature modules, `core/db/trips/crud.py` reaching into `atlas`, `digest`, and `concierge`, and `core/tools/registry.py` loading research-agent tools. These are candidates for explicit ports or orchestration ownership if they repeatedly enlarge changes.
 
-3. **Real dependency inversion at the bottom.** `core/db/atlas.py` imports `backend.atlas.projector` at 8 call sites plus `atlas.geography`, `atlas.dedup`, `atlas.kept_place_affinity`, `atlas.place_labels`. `core/db/trips/crud.py:222,856,911` reaches into `atlas.projector`, `digest.engine`, `concierge.reflection`. `core/tools/registry.py` pulls 5 of 8 tools from `research_agent.tools.*`. Almost all deferred, which is what keeps the cycle count at one.
+4. **Projection delivery has mixed semantics, not merely mixed syntax.** Some projections are invoked directly while others use `core/event_bus.py`. The bus is explicitly fire-and-forget, does not propagate subscriber failures, can drop async work, and relies on startup-time subscriber registration. Routing database projections through it is therefore not a mechanical cleanup; it could change persistence and failure semantics or silently do nothing in scripts. Do not standardize on the event bus without first choosing the required delivery guarantees.
 
-4. **Two mechanisms for one job.** `atlas.projector` is called directly from 5 files (`core/db/atlas.py`, `core/db/trip_templates.py`, `core/db/trips/crud.py`, `api/routes/itinerary_operations.py`, `api/routes/atlas.py`) while `itinerary_projection.ready` and `memory_projection.ready` route through `core/event_bus.py`. The bus is the right primitive (136 LOC, `emit`/`subscribe`) but adoption stalled: ~12 distinct event types, most emitted once.
+5. **Frontend contract truth is not simply duplicated.** `utils/api/types.ts` already imports `components` from `schema.gen.ts` and contains roughly 200 generated-schema references, plus adapters, refinements, and UI-only types. `utils/api/interface.ts` also imports the generated schema and has multiple active importers. The earlier claim that 102 names represented two independent hand-maintained truths, and that `interface.ts` was dead, was false. The remaining useful task is narrower: detect genuinely hand-copied wire types and ensure they derive from the generated schema where appropriate.
 
-5. **Frontend contract truth is duplicated.** `utils/api/schema.gen.ts` (generated, 43,287 lines, 1,352 component types, 65 importers) and `utils/api/types.ts` (hand-written, 320 types, 162 importers) **both define 102 of the same type names**. The hand-maintained copy has 2.5x the adoption of the generated one, and nothing syncs them. A backend field change regenerates one, leaves the other stale, and the app still typechecks. Also: `utils/api/interface.ts` is 3,113 lines with 2 importers (dead); 17,883 LOC of mock fixtures are imported by 15 non-test files.
+6. **The cited red baseline is stale.** The named test, `TestProposeChangeExecution::test_bounded_opening_persists_a_valid_local_wall_time_add`, passed on 2026-08-11 (`1 passed in 0.66s`). A full-suite runtime and baseline failure inventory were not measured, so the earlier estimate of a 30-minute suite and the assertion of a known red baseline should not drive prioritization.
 
-6. **Verification signal is not trustworthy.** 19,043 tests. A targeted run surfaced a failure on main (`tests/concierge/test_change_proposals.py::TestProposeChangeExecution::test_bounded_opening_persists_a_valid_local_wall_time_add`), consistent with the known red baseline. 213 tests took 27.9s with 14,553 deselected; extrapolated full-suite runtime is on the order of 30 minutes (estimate, not measured).
+7. **Frontend housekeeping remains real but low leverage.** The overlapping `trip*` directories and root-level screenshot assets may create navigation noise. Resolve them when a product or ownership boundary is being changed, not as an agent-specific reorganization project.
 
-**Corrections made during the audit** — recorded so the reasoning is auditable:
+### Corrections to the first audit
 
-- An initial pairwise grep suggested widespread cycles (`concierge↔notifications`, `home↔places`). AST analysis showed **one** cycle. The grep counted deferred imports as edges.
-- A first pass framed 46% deferred imports as evidence of tangled boundaries. The counterfactual showed 98% are freely hoistable — the tangle is 33 edges, not 491.
-- A recommendation to add import-boundary CI was partly redundant: the **frontend already has it** (`check-api-boundaries.mjs`). The gap is backend-only.
-
-### Part 2 — External research, three adversarial rounds
-
-Round 1 gathered supporting material. Rounds 2 and 3 attacked it. Summary of where each claim landed:
-
-| Claim | Source | Verdict |
-|---|---|---|
-| Agents degrade sharply with codebase size | RepoMod-Bench (independent): 91.3% pass <10K LOC vs 15.3% >50K LOC, 76-point collapse | **Direction confirmed.** Task is cross-language translation, harder than feature work; thresholds do not transfer |
-| 400K LOC is the threshold where grep-based navigation fails | Sourcegraph CodeScaleBench | **Weak.** Single vendor source; the Tessl post restates it, it is not a second source |
-| +0.259 reward / 96→5 tool calls from code intelligence | Sourcegraph CodeScaleBench | **Conflicted.** The evaluated tool is Sourcegraph's own MCP; only agent tested was Claude Code + Haiku 4.5, the configuration most helped by external retrieval. Benchmark and traces are public, which is better than most vendor work |
-| Harness/tooling investment improves agent quality | "Don't Blame the LLM": 35 sequential Qwen Code CLI releases, fixed model, 50 SWE-bench Verified tasks | **Disconfirming.** Resolve rate flat at ~30.5%, no significant improvement; tokens +70%. Context Management was among the highest-regression-risk components. Measures a vendor's harness, not our repo |
-| False premises drive 30.7% of decisive errors; median failure at step 7, hidden ~10 steps; 57.9% epistemic | "Failure as a Process" preprint — 1,794 trajectories, 21 scaffold×model combos, human annotation κ 0.78–0.94 | **Good study, wrong domain.** Runs on Terminal-Bench: 240 containerised CLI tasks. Authors state it covers "benchmark tasks rather than real-world repositories" |
-| Verification gives 2-3x quality | Boris Cherny, repeated across interviews | **Practitioner claim, not a measurement.** Direction corroborated by Spotify (judge vetoes ~25% of sessions, half self-correct) |
-| AI makes experienced devs 19% slower | METR RCT: 16 devs, 246 tasks, repos averaging 1M+ LOC | **Real but dated.** Tested Cursor Pro + Claude 3.5/3.7, Feb–Jun 2025 — a tooling generation before agentic CLIs. Devs believed they were 20% faster; perception was inverted |
-| METR's follow-up reverses that | METR, Feb 2026 | **Compromised.** They redesigned the experiment because adoption broke recruitment. Late-2025 range spans 18% speedup to 4% speedup, wide CIs, heavy selection bias. METR's own words: "only very weak evidence" |
-| AI raises throughput but hurts stability; review becomes the bottleneck | DORA 2025 (throughput +2–18%, stability down); Faros AI 2026 (median PR review time +441%, PR size +51.3%, 22,000 devs) | **Directionally supported, magnitude unreliable.** Faros is telemetry not survey, but compares low- vs high-adoption periods within orgs — not causal. Another source reports +91% for the same metric |
-| Salesforce output +151.3% | Search summary | **Unverified.** Passed through without provenance check; do not cite |
-
-**The pattern across all three rounds:** every claim that specifically supports *"restructure your codebase for agents"* is vendor-produced, benchmark-bound, or unmeasured. The claims that survive are ones that were good engineering before agents existed.
-
-**There is no clean causal measurement of the tools we actually use.** The only rigorous RCTs are METR's (dated, n=16, follow-up compromised) and older Copilot workplace trials. Anthropic has a randomized study underway with a 1,260-person baseline fielded early 2026; unpublished.
+- Pairwise grep overstated cycles because it counted deferred imports as top-level edges; the AST analysis found one top-level cycle.
+- Hoistability was initially interpreted as proof of poor import discipline. It shows only that many imports are not cycle-preventing.
+- Backend import enforcement was incorrectly described as missing. It already exists and passes.
+- The generated API schema was incorrectly described as a parallel, unused source of truth. It is already imported extensively by the frontend adapter layer.
+- `utils/api/interface.ts` was incorrectly described as dead.
+- A direct-to-event-bus migration was presented as behavior-preserving when the two paths have different delivery and failure guarantees.
+- The document claimed no previous cross-repository architecture note existed; the July architecture-simplification audit predates it.
+- The named failing test now passes.
 
 ---
 
-## Action items
+## Part 2 — Independent research review
 
-Ranked by evidence quality × cost, not by appeal.
+The question is not whether clean architecture is beneficial. It is whether changing this production architecture *for agents* will improve accepted, shipped work enough to justify the cost and risk. Evidence was ranked roughly as: controlled within-harness ablation or randomized field experiment; multi-model public benchmark; observational telemetry; vendor benchmark; practitioner report.
 
-### A1 — Collapse frontend contract truth to one source *(do this)*
+| Finding | Evidence and limitations | Decision implication |
+|---|---|---|
+| Repository exploration and dependency understanding constrain multi-file repair | [SWE-Explore](https://arxiv.org/abs/2606.07297) reports that localization metrics track downstream repair; [DependEval](https://aclanthology.org/2025.findings-acl.373/) finds substantial gaps in dependency understanding across 2,683 repositories and more than 25 models. These are benchmarks, not measurements of this workspace. | Measure task-relevant dependency span and localization, not total LOC alone. |
+| A structural code index can improve localization and resolution | In a fixed-harness, fixed-model, three-seed ablation, [Code Isn't Memory](https://arxiv.org/abs/2606.22417) reports localization `acc@5` improving from 44.3% to 84.5% and resolution from 41.9% to 50.4%, without a per-cell cost penalty. It uses one open-source harness, one model, and public benchmarks; the authors built the evaluated tool. | Upgrade indexing from "do not buy" to a controlled local A/B trial, especially for multi-file tasks. Do not assume transferability. |
+| Functional success can conceal architectural damage | [Needle in the Repo](https://arxiv.org/abs/2603.27745) evaluates 23 configurations and reports that 13.3% of outcomes passed functional tests but failed a structural oracle. Dependency control and responsibility decomposition were the hardest categories. Its probes are small controlled codebases. | Keep independent architectural oracles alongside functional tests. |
+| More always-on repository context may hurt | [Evaluating AGENTS.md](https://arxiv.org/abs/2602.11988) finds no general success improvement and more than 20% higher inference cost across generated and developer-authored context files. A smaller [AGENTS.md efficiency study](https://arxiv.org/abs/2601.20404) reports lower median runtime and token use. Task mix and instruction quality differ. | Keep instructions minimal, stable, and non-inferable; A/B test this workspace's manifest rather than generalizing either result. |
+| Generic harness evolution does not guarantee improvement | [Don't Blame the LLM](https://arxiv.org/abs/2607.03691) holds the model fixed across 35 Qwen Code CLI releases and finds a flat average resolution rate while token use rises. It studies one evolving vendor harness on 50 SWE-bench Verified tasks. | Require focused component ablations; do not treat "better tooling" as one undifferentiated intervention. |
+| Agent evaluation is noisy | [On Randomness in Agentic Evals](https://arxiv.org/abs/2602.07150) uses 60,000 trajectories and finds that single-run pass@1 estimates vary by 2.2–6.0 percentage points. | Run multiple independent attempts per task and report uncertainty, not one headline score. |
+| Existing tests can accept wrong patches | [UTBoost](https://arxiv.org/abs/2506.09289) reports insufficient tests in 36 SWE-bench tasks and 345 erroneous patches classified as passing. [Needle in the Repo](https://arxiv.org/abs/2603.27745) independently shows functional/structural divergence. | Use hidden tests plus structural checks and human adjudication for the private evaluation. |
+| Human productivity results are heterogeneous | A Microsoft study combining three field experiments and 4,867 developers reports [26.08% more completed tasks](https://www.microsoft.com/en-us/research/publication/the-effects-of-generative-ai-on-high-skilled-work-evidence-from-three-field-experiments-with-software-developers/). METR's randomized study of 16 experienced developers and 246 tasks found [early-2025 tools made work 19% slower](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/); its [2026 update](https://metr.org/blog/2026-02-24-uplift-update/) calls the newer evidence very weak because of selection effects. | Measure this team, tool generation, and task mix. Output volume, perceived speed, and accepted delivery are different outcomes. |
+| Public benchmark performance may not transfer | [SWA-Bench](https://proceedings.mlr.press/v267/vergopoulos25a.html) finds substantially lower success on application-level tasks than on SWE-bench-style maintenance. [SWE-rebench](https://arxiv.org/abs/2505.20411) documents contamination and benchmark-staleness concerns. | Historical private tasks are more decision-relevant than public leaderboard scores. |
 
-**Confidence: high — justified without any agent research.**
+### Synthesis
 
-Delete the 102 hand-written type twins in `utils/api/types.ts`, re-point importers at `utils/api/schema.gen.ts`, delete `utils/api/interface.ts` (3,113 lines, 2 importers). Add a checker that fails when a hand-written type shadows a generated one — the `check-api-boundaries.mjs` pattern already exists to copy.
+No source above provides clean causal evidence that broadly reorganizing an existing production repository improves agent-assisted delivery. Some sources show that larger or more distributed change surfaces are harder, but their task domains and thresholds do not transfer directly.
 
-*Rationale:* two definitions of one contract will drift, and the drift typechecks green. True regardless of whether agents ever help. This is the only item that survived all three research rounds, because it never depended on contested evidence.
+The more defensible mechanisms are:
 
-### A2 — Restore a green test baseline *(do this)*
+- faster and more accurate localization;
+- smaller task-relevant dependency spans;
+- concise, relevant repository constraints;
+- trusted executable feedback;
+- structural checks that catch maintainability regressions; and
+- measurement of accepted or shipped outcomes rather than generated LOC, tokens, or tool calls.
 
-**Confidence: high — same reasoning.**
+This supports normal architectural work at demonstrated high-change-spread seams. It does not support splitting `core/`, `concierge/`, or the frontend trip directories merely because they are large.
 
-Fix or explicitly quarantine the failing suites, starting with `tests/concierge/test_change_proposals.py`. A red baseline means "tests pass" cannot function as a signal for anyone, human or agent.
+---
 
-### A3 — Make the inner verification loop fast *(do this, after A2)*
+## Action items — executable work plan
 
-**Confidence: medium.** Mechanism well-supported, multiplier unproven, and the harness-evolution study is a caution against assuming tooling gains.
+Ranked by evidence quality, decision value, cost, and reversibility. Estimates are one-engineer elapsed working time and exclude unattended model runtime. A named person must replace each role-level DRI before work starts.
 
-Change-scoped test selection so verification is seconds rather than a ~30-minute full run. Cheap and sensible on its own terms.
+### Execution order and dependencies
 
-### A4 — Backend import-direction checker *(do this)*
+| Workstream | Item | May start when | Blocks |
+|---|---|---|---|
+| Immediate engineering | A1 contract derivation | An isolated frontend/backend worktree lane exists | Nothing; may run beside A0 |
+| Immediate engineering | A2 verification baseline | Dependencies are installed on a clean, named commit | A2 fast-path implementation |
+| Immediate engineering | A3 SCC ratchet | An isolated backend worktree lane exists | A6 architectural comparison |
+| Agent-velocity evaluation | A0 replay harness | A DRI, spend ceiling, and working pinned Codex CLI exist | A4 and A5 trials |
+| Agent-velocity evaluation | A4 instruction trial | A0 pilot passes | Instruction decision |
+| Agent-velocity evaluation | A5 indexing trial | A0 pilot passes and an intervention qualifies | Indexing decision |
+| Conditional architecture | A6 targeted refactor | A0 is complete and identifies a qualifying failure cluster | Any agent-specific restructuring |
 
-**Confidence: medium-high — protects a property we already have.**
+### Rules shared by every item
 
-Assert: `core.db` may not import feature packages at module top; total cycle count may not exceed 1 and must ratchet down; the 33 load-bearing deferred edges are an explicit, shrinking allowlist. Mirrors existing frontend checkers and the charter-invariant machinery.
+- Run `make status` before starting. Do not implement in a canonical child checkout that contains another session's work.
+- Use `./scripts/new-worktree.sh <lane>` or its `--agent-only`/`--app-only` form. Use one descriptive branch per child repository and stage explicit filenames only.
+- Record the exact input commit, command, tool version, start/end time, and pass/fail result in the named evidence artifact.
+- Do not weaken an existing full gate to make a fast gate pass. Fast paths supplement `make verify`; they do not replace the merge/pre-push gate until separately approved.
+- Treat source, prompts, diffs, and trajectories as private. Do not commit credentials, CLI authentication, raw model transcripts containing secrets, or hidden verifier patches into an agent-visible task checkout.
+- An item is complete only when its deliverables exist, its acceptance criteria pass, and its non-goals remain untouched.
 
-### A5 — Finish the two half-migrations *(schedule)*
+### A0 — Build a private historical-task replay evaluation *(first research item)*
 
-**Confidence: medium.**
+- **Confidence:** high that measurement is required; results unknown.
+- **DRI:** workspace evaluation owner.
+- **Repositories:** workspace implementation; read-only historical worktrees from both child repositories.
+- **Effort:** 5–8 engineering days for harness/task preparation, plus model runtime and two independent human review passes.
+- **Depends on:** assigned DRI, approved spend ceiling, installed dependencies, and working Codex CLI.
 
-Route `core/db → atlas.projector` calls through `core/event_bus.py`, or decide the bus is not the mechanism and remove it. A primitive at ~30% adoption is worse than either endpoint because every call site becomes a choice nobody documented. Same logic applies to generated types once A1 lands.
+#### Harness selection and transferability
 
-### A6 — Reduce navigation entropy *(schedule)*
+The protocol currently pins `codex exec`. Day-to-day agent work in this workspace also runs through other harnesses, and [Don't Blame the LLM](https://arxiv.org/abs/2607.03691) is direct evidence that harness identity and version change outcomes at a fixed model. A result measured on one harness therefore does not transfer to another by default, and an A4/A5 decision taken on the wrong harness governs a workflow it never observed.
 
-**Confidence: medium.** Supported in direction by the independent size research; specific thresholds not transferable.
+Before the pilot, the DRI must record which harness the decision is intended to govern and choose exactly one:
 
-Split `core/` (194 loose files) and `concierge/` (128) into named subpackages. Decide the `trip*` frontend boundary. Move 479 root-level PNGs out of the frontend repo root. Untangle `home/concierge_feed` before more surfaces depend on it — it is the one live cycle and is the ranker earmarked for trips-home adoption.
+- measure the harness actually used for the work the decision will change;
+- treat harness as a blocking stratum and run both arms on both harnesses, accepting roughly double the runtime and review cost; or
+- record explicitly that the findings apply only to the measured harness and may not be generalized.
 
-### A7 — Code intelligence indexing *(do not buy on the literature)*
+Whichever is chosen, pin harness name, version, model ID, and reasoning level in the variant manifest, verify them at run time alongside the prompt and variant hashes, and report results per harness. Never pool results across harnesses into a single headline number.
 
-**Confidence: low.**
+#### Current prerequisite blocker
 
-The benefit claim is vendor-sourced with an acknowledged conflict, and the one independent study of tooling evolution found no measurable gain across 35 releases. If pursued, run a time-boxed A/B on our own repo and measure it, rather than adopting on the published number.
+On 2026-08-11, local `codex exec --help` failed because the installed package could not find its bundled native binary (`ENOENT`). Before building the harness, reinstall or repair the CLI, pin and record `codex --version`, and demonstrate one disposable smoke run. Do not silently switch between the desktop app, a different CLI release, or another model during an experiment.
 
-### A8 — Instrument before and after *(do this alongside A1–A3)*
+Official OpenAI documentation supports `codex exec` for non-interactive runs, `--ephemeral` to avoid persisted rollout files, `--ignore-user-config`/`--ignore-rules` for controlled automation, `--json` for JSONL events, and `--sandbox workspace-write` for unattended work confined to the workspace. Use those explicit flags rather than deprecated `--full-auto`. See [non-interactive mode](https://learn.chatgpt.com/docs/non-interactive-mode) and the [CLI flag reference](https://learn.chatgpt.com/docs/developer-commands?surface=cli).
 
-**Confidence: high — this is the item that makes the rest knowable.**
+#### Files to create
 
-Track cycle time, PR size, time-to-first-review, and change failure rate before and after A1–A3. METR's most robust finding is that developer perception of AI speedup was measured pointing the *wrong way* — a 19% slowdown experienced as a 20% speedup. Our own instrumented numbers will be worth more than anything currently published.
+- `scripts/agent_velocity_eval.py` — `validate`, `pilot`, `run`, `verify`, `score`, and `report` subcommands.
+- `scripts/tests/test_agent_velocity_eval.py` — fixture, leakage, manifest, command-capture, and scoring tests.
+- `docs/reliability/agent-velocity/protocol.md` — frozen protocol, reviewer rubric, security rules, and approved decision thresholds.
+- `docs/reliability/agent-velocity/task-manifest.json` — immutable, agent-safe scored-task manifest; no reference commits or hidden verifier locations.
+- `docs/reliability/agent-velocity/task-manifest.schema.json` — schema enforced by `validate`.
+- `docs/reliability/agent-velocity/score.schema.json` — run and adjudication output schema.
+- `docs/reliability/agent-velocity/prompts/<task-id>.md` — problem statements reconstructed without solution details.
+- `docs/reliability/agent-velocity/variants/` — treatment definitions, hashes, and tool configuration; no hidden tests.
+- `docs/reliability/agent-velocity/results-summary.json` and `report.md` — sanitized aggregate output. Raw JSONL, patches, and hidden verifiers stay under a `mktemp -d` artifact directory outside the repository.
 
-**Explicitly not recommended:** restructuring the architecture primarily to serve coding agents. The evidence does not support a step change from codebase changes alone. A1–A6 are worth doing because they are correct engineering; any agent benefit is upside, and should be measured rather than assumed.
+#### Task manifest requirements
+
+Select 18–24 accepted tasks: 6–8 backend-only, 6–8 frontend-only, and 6–8 cross-repository/API-contract tasks. Across the full set, include at least six historical one-file changes, six two-to-three-file changes, and six four-or-more-file changes.
+
+Every committed, agent-safe task entry must contain:
+
+- stable task ID and category;
+- workspace, backend, and frontend base commits;
+- prompt path and SHA-256;
+- allowed repositories and required services;
+- time limit and maximum attempts;
+- historical change-size bucket, without listing solution files in the agent-visible prompt;
+- public regression-command identifiers, but not hidden verifier contents or paths;
+- exclusions and reason; and
+- human-adjudication rubric version.
+
+Keep reference commits, solution diffs, hidden verifier commands, and hidden patch locations in a separate evaluator-private manifest outside the repository. Commit only that private manifest's SHA-256 to the protocol before scored runs. The agent process must run in a dedicated container or VM that mounts the historical task workspace but cannot read the controller checkout, private manifest, reference repository, verifier, or prior-run artifacts. Validate that boundary with a canary file during the pilot; `workspace-write` alone is not the leakage boundary.
+
+Include a task only when its user-visible request can be reconstructed without the reference diff and its outcome can be checked deterministically. Exclude tasks requiring live production data, unrecorded manual UI judgment, unavailable API keys, or external services that cannot be replaced by a fixture. A database task is eligible only with a disposable database at the historical migration head.
+
+Freeze the manifest in review before scored runs. The runner must refuse a task when a base commit, prompt hash, variant hash, verifier, or required dependency is missing.
+
+#### Isolation and run procedure
+
+For each task and repetition, the runner must:
+
+1. create a new temporary workspace with `mktemp -d`;
+2. add detached worktrees at the task's three base commits, preserving the sibling `travel-agent`/`travel-app` layout, then expose only that temporary workspace to the agent container/VM;
+3. install or attach dependencies before model credentials enter the process environment;
+4. overlay only the selected treatment variant;
+5. invoke the pinned model, reasoning level, CLI version, approval policy, sandbox, prompt, and time limit;
+6. capture the complete argv, JSONL event stream, final message, wall time, token usage, exit status, and binary patch;
+7. remove model credentials before running repository-controlled verification;
+8. apply the produced patch to a separate verifier checkout, then add the hidden test patch there; and
+9. run hidden checks, regression checks, contract checks, and structural checks without exposing their content to the agent checkout.
+
+The runner's generated invocation must be equivalent to:
+
+```bash
+codex exec \
+  --ephemeral \
+  --ignore-user-config \
+  --ignore-rules \
+  --sandbox workspace-write \
+  --ask-for-approval never \
+  --json \
+  --model "$MODEL_ID" \
+  --config "model_reasoning_effort=$REASONING_EFFORT" \
+  --cd "$EVAL_WORKSPACE" \
+  --output-last-message "$RUN_DIR/final.txt" \
+  "$PROMPT"
+```
+
+The actual expanded argv—not only this template—must be stored with every run. Authentication must follow the official automation guidance and the selected isolation design. Never expose an API key or saved authentication file to agent-invoked repository processes; if the approved runner cannot enforce that boundary, A0 remains blocked. Redact secret-valued environment variables from captured metadata.
+
+#### Experiments and repetitions
+
+- Use three non-scored tasks to pilot fixture creation, timeout handling, patch capture, and blind review.
+- Run instruction and indexing experiments separately; never change two interventions in one arm.
+- Randomize arm order within each task.
+- Run three independent repetitions per task and arm.
+- Blind the two human reviewers to arm and repetition. Resolve disagreements by a third reviewer or a pre-named adjudicator.
+
+#### Scoring and decision rule
+
+A run is **accepted-correct** only when all hidden required checks pass, no regression command fails, no new architecture/contract violation appears, and human review records no blocking semantic or maintainability defect.
+
+Primary metric: accepted-correct runs divided by attempted runs. Secondary metrics: task-level success in at least two of three repetitions, wall time, reported token usage, cost if available, time to first edit of a reference-relevant file, files inspected, changed-file count, rework attempts, and human review findings.
+
+Use a paired bootstrap resampled by task—not by individual run—to report 95% confidence intervals. Preserve failures and timeouts in the denominator. Report all tasks and exclusions; do not remove a hard task after seeing results.
+
+The generic adoption rule for A4/A5 is:
+
+- **quality win:** at least an 8 percentage-point increase in accepted-correct rate, with no increase in blocking maintainability findings; or
+- **efficiency win:** at least a 15% reduction in median wall time or measured cost, while the task-clustered 95% interval for correctness excludes a loss worse than 5 percentage points and structural/contract violations do not increase.
+
+If neither condition is met, the result is inconclusive or negative and the current workflow remains unchanged.
+
+#### Statistical power
+
+The 8-point threshold has not been shown to be detectable at the planned sample size. [On Randomness in Agentic Evals](https://arxiv.org/abs/2602.07150) reports single-run pass@1 varying by 2.2–6.0 percentage points. With 18–24 tasks, three repetitions, and resampling clustered by task, the 95% interval may straddle 8 points, which would make "inconclusive" the most likely reported outcome regardless of whether the intervention has a real effect. That failure mode is expensive: it consumes the full harness build, model runtime, and two blinded review passes before revealing that the design could not answer the question.
+
+Before the first scored run, the DRI must:
+
+- estimate run-level and task-level variance from the three pilot tasks;
+- compute the minimum detectable effect at the planned task count, repetition count, and clustering, and record it in the protocol beside the adoption rule; and
+- if the minimum detectable effect exceeds 8 points, choose one of: raise the task count; restrict the primary analysis to the four-or-more-file and cross-repository strata where the mechanism predicts the largest effect and which A5 already reports separately; raise the adoption threshold to the detectable level; or pre-register the trial as descriptive rather than decisive.
+
+Report the point estimate and interval for every experiment, not only pass/fail against the threshold. "Inconclusive" is a pre-declared outcome that requires a named owner and a recorded next step — widen the sample, change the stratum, or stop — and may not be resolved by rerunning the same design until it clears the threshold.
+
+#### Commands and acceptance criteria
+
+After implementation, the following interface is required:
+
+```bash
+python3 scripts/agent_velocity_eval.py validate
+python3 -m unittest scripts.tests.test_agent_velocity_eval
+python3 scripts/agent_velocity_eval.py pilot --experiment instructions
+python3 scripts/agent_velocity_eval.py run --experiment instructions --repetitions 3
+python3 scripts/agent_velocity_eval.py run --experiment indexing --repetitions 3
+python3 scripts/agent_velocity_eval.py score
+python3 scripts/agent_velocity_eval.py report
+```
+
+A0 is complete when the harness tests pass; the frozen manifest has 18–24 eligible tasks; every scored cell has three attempts or a retained timeout/failure record; two blinded reviews exist per patch; the sanitized report can be regenerated from raw artifacts; and another engineer can reproduce one selected cell from the protocol.
+
+**Non-goals:** changing production architecture, using public benchmark scores as local results, comparing different models, or making either A4/A5 adoption decision before the complete report.
+
+### A1 — Audit and enforce generated contract derivation *(immediate engineering)*
+
+- **Confidence:** high; contract single-source-of-truth is valuable independent of agents.
+- **DRI:** frontend/API-contract owner.
+- **Repositories:** `travel-app`, with removal of the superseded checker/hook in `travel-agent`.
+- **Effort:** 2–4 engineering days.
+- **Depends on:** no A0 dependency; use an isolated cross-repository lane.
+
+#### Starting point
+
+`travel-agent/scripts/check_schema_bridge.py` already compares annotated frontend field names with `schema.gen.ts` and is wired into pre-push. It currently passes but covers only two `@schema` annotations (`StayCandidate` and `AtlasFacetSuggestions`), scans `types.ts` and `travel-app/types/*.ts`, does not scan `utils/api/interface.ts`, and validates field names rather than full TypeScript compatibility.
+
+#### Deliverables
+
+1. Add `travel-app/scripts/schema-bridge-manifest.json`. Inventory every exported interface/type in `utils/api/types.ts` and `utils/api/interface.ts` with:
+   - symbol and source file;
+   - classification: `generated_alias`, `schema_projection`, `adapter`, `ui_only`, or `unmodeled_wire`;
+   - generated schema name when applicable;
+   - route and method for `unmodeled_wire`;
+   - rationale; and
+   - owner plus expiry for every `unmodeled_wire` exception.
+2. Add `travel-app/scripts/check-schema-bridge.mjs` using the installed TypeScript compiler API rather than regex parsing. It must read and validate the manifest, enumerate exports from both facade files, reject unclassified exports, reject missing generated schema names, and fail stale `unmodeled_wire` exceptions.
+3. Add `travel-app/scripts/check-schema-bridge.test.mjs` covering every classification, multiline/nested declarations, aliases, missing models, duplicate entries, stale exceptions, and useful error locations.
+4. Add `schema-bridge` and `schema-bridge:test` package scripts, include `schema-bridge` in `verify:fast`, and invoke it from the workspace `contract-check` path.
+5. For `schema_projection`, replace copied field declarations with aliases or `Pick`/`Omit`/intersection derivations from `components["schemas"]` when that preserves semantics. Keep deliberate UI refinements and adapters explicit.
+6. Once the new AST-based checker passes on the same known annotations and the complete manifest, remove `travel-agent/scripts/check_schema_bridge.py` and its backend pre-push hook in the same cross-repository change. Do not leave two canonical implementations.
+
+#### Acceptance criteria
+
+- Every exported interface/type in the two API facade files is classified exactly once.
+- No `generated_alias` or `schema_projection` independently copies a complete generated wire shape.
+- Every remaining `unmodeled_wire` item names a route, owner, reason, and unexpired removal date.
+- Intentional adapters and UI-only types remain source-compatible; wholesale deletion of `types.ts` or `interface.ts` is prohibited.
+- These commands pass from the workspace root:
+
+```bash
+make sync-types-snapshot
+make contract-check
+make typecheck
+(cd travel-app && npm run schema-bridge)
+(cd travel-app && npm run schema-bridge:test)
+(cd travel-app && npm run verify:fast)
+```
+
+The generated snapshots and `schema.gen.ts` must have no unexplained diff. A1 is complete when the reviewed manifest and checker make any new unclassified wire-like export fail CI.
+
+**Non-goals:** renaming unrelated frontend domain types, changing API behavior, or replacing deliberate frontend adapters with raw generated types at every call site.
+
+### A2 — Measure and improve the trusted verification loop *(immediate engineering)*
+
+- **Confidence:** high on the mechanism; current baseline unknown.
+- **DRI:** workspace test-infrastructure owner, with backend and frontend reviewers.
+- **Repositories:** workspace plus both child repositories only where a new target is required.
+- **Effort:** 1–2 days for measurement; 3–5 days for a conservative fast path.
+- **Depends on:** installed dependencies and a clean, named commit in isolated worktrees.
+
+#### Baseline deliverables
+
+- `scripts/measure_verification.py` that records command, commit IDs, environment class, wall time, exit status, collected/passed/failed/skipped counts when available, and log path.
+- `scripts/tests/test_measure_verification.py` for timeout, nonzero exit, JSON schema, and partial-result behavior.
+- `docs/reliability/test-loop-baseline.json` as machine-readable evidence.
+- `docs/reliability/test-loop-baseline.md` summarizing the reference machine, exclusions, failures, flakes, and slowest lanes.
+
+Run the following three times on the same clean commits, with no source edits between repetitions:
+
+```bash
+make doctor
+make -C travel-agent ci
+make contract-check
+cd travel-app && npm run verify:full
+```
+
+Measure `make test-backend-postgres` separately against a disposable database. List API-key, dogfood, device, and live-service suites as separate coverage lanes; never describe the measured set as the "full suite" while one is excluded. If any nominally deterministic command changes outcome across three runs, run it ten times, record the failing test IDs, and fix or quarantine with an owner and expiry before optimizing selection.
+
+#### Fast-path deliverables
+
+- A root `make verify-changed BASE_REF=<ref>` target implemented by `scripts/verify-changed.sh` or an equivalently tested script.
+- A dry-run mode that prints changed files, selected commands, and the reason for each selection.
+- Unit tests for every path class and for unknown-path fallback.
+- A decision table in `docs/reliability/test-loop-baseline.md` mapping path classes to commands.
+
+Minimum routing rules:
+
+- Unknown paths, shared test configuration, `conftest.py`, migrations, dependency manifests, workspace scripts, API models/routes, `docs/openapi*.json`, or generated-schema tooling select `make verify`.
+- Frontend `.ts`/`.tsx` changes run `npm run verify:fast` and Jest `--findRelatedTests` for the changed files. If Jest finds no tests for production code, select the full frontend Jest lane.
+- Backend changes always run import/lazy-import/SCC gates plus lint. Until a tested dependency-to-test mapper exists, uncertain backend changes select `make -C travel-agent ci`.
+- Documentation-only changes run the existing documentation governance/link gates; executable examples additionally run their referenced checker tests.
+- The script must exit nonzero when `BASE_REF` is missing or unresolved; it may not guess `main` in a dirty concurrent worktree.
+
+#### Acceptance criteria
+
+- Baseline artifacts identify exact commits and contain all three repetitions, including failures and skips.
+- `verify-changed --dry-run` is deterministic for the same diff.
+- Every unrecognized or high-risk change falls back to `make verify`.
+- On a reviewed sample of at least 20 historical diffs, the fast path selects every test/gate that caught the historical defect; misses are blocking.
+- On the reference machine, the median low-risk fast-path run is at most five minutes and at most 50% of the median `make verify` duration. If it misses either target, retain the measurements but do not market the target as a fast loop.
+- `make verify` remains the required pre-push/merge gate until a separate decision changes that policy.
+
+**Non-goals:** auto-generating tests, skipping flaky failures, or claiming coverage for marker/live/device lanes that were not run.
+
+### A3 — Ratchet existing architecture enforcement *(immediate engineering)*
+
+- **Confidence:** medium-high.
+- **DRI:** backend architecture owner.
+- **Repository:** `travel-agent`.
+- **Effort:** 2–3 engineering days.
+- **Depends on:** isolated backend lane; no dependency on A0.
+
+#### Deliverables
+
+1. Add `travel-agent/scripts/check_import_scc.py`. Parse every `backend/**/*.py` file with Python AST, resolve internal relative/absolute imports, and include module-scope imports only. Exclude `TYPE_CHECKING` and function/class-body imports from the top-level graph, but report their counts separately.
+2. Add `travel-agent/scripts/check_import_scc_baseline.json` containing:
+   - schema version;
+   - source commit;
+   - explicit inclusions/exclusions;
+   - sorted module and edge counts;
+   - sorted member lists for every SCC with more than one module; and
+   - a SHA-256 of the canonicalized SCC list.
+3. Add `--write-baseline <path>` and `--ci` modes. `--ci` must fail on a new, removed, enlarged, shrunk, or membership-changed SCC so every change requires deliberate baseline review; an improvement is not silently discarded.
+4. Add `travel-agent/tests/scripts/test_check_import_scc.py` covering relative imports, aliases, multiline imports, `TYPE_CHECKING`, deferred imports, syntax errors, deterministic ordering, baseline drift, and two disjoint cycles with the same scalar count.
+5. Wire `--ci` into `travel-agent/Makefile` `gates`/`ci`, `.pre-commit-config.yaml`, and `.github/workflows/ci.yml` beside `check_imports.py` and `check_lazy_imports.py`.
+6. Document the exact baseline-update command and architectural justification requirement in `travel-agent/AGENTS.md` or the checker help text, not both unless one links to the other.
+
+#### Acceptance criteria
+
+- Two runs against the same commit produce byte-identical baseline JSON.
+- The current graph's SCC membership is reproduced; any discrepancy with the original four-file observation is documented rather than forced to match it.
+- A fixture that swaps one SCC member while preserving cycle count fails, proving this is not a scalar-count gate.
+- Existing checks still report no top-level boundary violations and exactly the current allowlisted lazy-import inventory with no new or stale items.
+- These commands pass:
+
+```bash
+cd travel-agent
+PYTHONPATH=. .venv/bin/python scripts/check_imports.py --ci
+PYTHONPATH=. .venv/bin/python scripts/check_lazy_imports.py --ci
+PYTHONPATH=. .venv/bin/python scripts/check_import_scc.py --ci
+PYTHONPATH=. .venv/bin/pytest tests/scripts/test_check_import_scc.py -q
+make ci
+```
+
+**Non-goals:** immediately eliminating the live SCC, rejecting all deferred imports, or changing package ownership rules inside this ticket.
+
+### A4 — Test a lean root instruction manifest *(controlled trial)*
+
+- **Confidence:** medium-low because published findings conflict.
+- **DRI:** A0 evaluation owner; workspace maintainer approves treatment content.
+- **Repository:** workspace evaluation variant only until the decision gate passes.
+- **Effort:** 1 day to author/review the variant, then A0 runtime and review.
+- **Depends on:** A0 pilot passing.
+
+#### Treatment definition
+
+- Control: the root `AGENTS.md` at the task's workspace base commit; child `AGENTS.md` files remain unchanged.
+- Treatment: `docs/reliability/agent-velocity/variants/lean-root-AGENTS.md`, capped at 60 nonblank lines.
+- Preserve only non-inferable constraints: separate child repositories, API schema/type-sync workflow, canonical verification commands, dirty-worktree/concurrent-session safety, explicit staging, and links to child rules.
+- Remove prose that only inventories discoverable files or repeats child documentation.
+- Record SHA-256 for both files in the variant manifest. The runner must verify the hashes before every run.
+
+#### Acceptance and rollout
+
+Run all A0 tasks, three repetitions per arm, randomized and blinded. Apply A0's generic adoption rule. Additionally, the treatment must have zero violations of repository separation, explicit-staging, or API contract workflow rules.
+
+If it wins, update only the root `AGENTS.md`, run `make verify`, and retain the old file plus trial report in the evaluation evidence. If it is negative or inconclusive, keep the current file. Do not opportunistically edit child instructions from this result.
+
+**Non-goals:** testing a model prompt rewrite, changing child rules, or reducing instructions merely to minimize token count.
+
+### A5 — Trial structural indexing or a deterministic repository map *(controlled trial)*
+
+- **Confidence:** medium; transferability unknown.
+- **DRI:** A0 evaluation owner with security/privacy reviewer.
+- **Repositories:** evaluation harness only until the decision gate passes.
+- **Effort:** up to 2 days for qualification/integration, then A0 runtime and review.
+- **Depends on:** A0 pilot passing and one intervention qualifying below.
+
+#### Qualification gate
+
+Time-box tool selection to one day. A structural index qualifies only if it:
+
+- exposes a real enabled/disabled toggle with the same model and harness;
+- can pin its version and configuration;
+- records indexing time and query/tool usage;
+- does not upload private source outside an approved processor/data policy;
+- can index detached historical worktrees without seeing later commits; and
+- can be fully removed from the treatment workspace between runs.
+
+If no product qualifies, use a deterministic repository-map treatment generated from AST/export/import metadata. Name the experiment `repository-map`, not `indexing`, because prompt injection of a map is a different intervention. Store the generator, tests, version, map hash, generation time, and byte/token size under the A0 harness.
+
+#### Acceptance and rollout
+
+Run all A0 tasks, three repetitions per arm, with special reporting for four-or-more-file and cross-repository tasks. Apply A0's generic adoption rule. Index construction time, maintenance cost, and any recurring license/service cost count against the efficiency result.
+
+Adopt only the pinned configuration that was tested. Add a removal command and verify that disabling/removing the tool restores the control environment. If negative or inconclusive, remove the integration and retain only the report. Do not purchase an annual plan or organization-wide license before the local result.
+
+**Non-goals:** comparing models, granting the treatment extra tools unrelated to navigation, or treating a generated map as proof about a commercial index.
+
+### A6 — Refactor one measured hot seam, then replay *(conditional)*
+
+- **Confidence:** low until A0 identifies a repeated failure cluster.
+- **DRI:** owner of the selected backend/frontend domain, with architecture reviewer.
+- **Repositories:** whichever child repositories the selected seam genuinely spans.
+- **Effort:** 3–10 engineering days after a scoped design review.
+- **Depends on:** completed A0 report and completed A3 SCC tooling.
+
+#### Entry gate
+
+A seam qualifies only when at least three distinct A0 tasks, or at least 20% of the applicable multi-file task stratum, exhibit the same localization, change-spread, or dependency failure and blinded review attributes the failure to that seam. Record the cluster and competing explanations in `docs/decisions/<date>-agent-velocity-refactor-<seam>.md`.
+
+The decision record must specify:
+
+- old and proposed dependency direction;
+- synchronous/asynchronous, transaction, delivery, retry, and failure semantics;
+- behavior-preserving test/contract surface;
+- exact files/packages in scope and explicit non-goals;
+- migration steps and rollback commit;
+- affected A0 task IDs; and
+- why a tool, documentation, or test improvement is insufficient.
+
+#### Implementation and comparison
+
+Create equivalent control and refactor branches from the same base. Add characterization tests before moving production code. Run A3 and `make verify` on both branches. Replay only the predeclared affected-task subset, three repetitions per branch, with the same A0 configuration and blinded review.
+
+For a `core.db` → `atlas.projector` seam, the default candidate is an explicit synchronous port owned by an orchestration layer. The current fire-and-forget event bus is not behaviorally equivalent unless the decision record redesigns and tests registration, delivery, retry, transaction, and exception semantics.
+
+#### Merge/stop rule
+
+Merge only when:
+
+- all characterization, regression, contract, and structural gates pass;
+- no affected task loses accepted-correct status;
+- median time to accepted correctness improves by at least 15% **or** median changed-file count for the affected tasks falls by at least 20%;
+- the SCC set and lazy-import allowlist do not grow; and
+- normal engineering review finds the resulting ownership boundary clearer independent of agents.
+
+If the comparison fails, archive the decision and measurements, delete or abandon the refactor branch, and stop treating that seam as an agent-velocity project. A normal product or reliability justification may still support separate future work.
+
+**Non-goals:** repository-wide package moves, renaming-only churn, combining several seams in one trial, or introducing eventual consistency where callers require synchronous persistence.
+
+### Explicitly not recommended
+
+- Splitting packages based only on LOC or files per directory.
+- Routing synchronous persistence work through the current event bus as a cleanup.
+- Deleting frontend type layers based only on overlapping names.
+- Purchasing or adopting indexing solely from a vendor benchmark or one public paper.
+- Evaluating interventions with one run per task, visible reference patches, or agent-written tests alone.
+- Using generated LOC, token consumption, or tool calls as the primary velocity metric.
 
 ---
 
 ## Exit
 
-Before `expires` (2026-09-10), choose exactly one:
+Before `expires` (2026-09-10), choose one:
 
-- **Promote** A4's rule set into the charter-invariant checkers and A1's constraint into a frontend checker — that is the durable half of this note;
-- **Record a decision** if we deliberately choose not to pursue agent-oriented restructuring, since the research supporting that choice is here and will not be re-derived cheaply;
-- **Archive** the research table as historical evidence once A1–A3 land and our own measurements supersede published claims; or
-- **Delete** if the checkers and instrumentation carry the truth in code.
+- **Promote** the reproducible import-graph/SCC checks and any validated generated-contract rule into durable tooling;
+- **Record a decision** to run or decline A0, including the task set, fixed conditions, and decision threshold;
+- **Archive** this review after its verified local findings are incorporated into the July architecture note or superseded by private replay results; or
+- **Extend** the expiry only if A0 is actively running and has a named owner.
 
-Default if untouched: archive Part 2, promote Part 1's measurements into an audit record, since structural numbers will go stale within weeks of active work.
+Default if untouched: archive the point-in-time structural counts as non-reproducible observations and retain the research synthesis as a decision record. Do not promote the original counts into invariants without rerunning a committed analysis artifact.
