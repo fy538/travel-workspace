@@ -35772,6 +35772,46 @@
         }
       }
     },
+    "/api/sites/{site_id}": {
+      "get": {
+        "summary": "Get Site Detail",
+        "description": "Return lean site detail for the site object page.\n\nJoins ``sites`` \u2192 ``places`` (neighborhood) and ``briefs`` (curator\ncontent). Returns 404 when the site ID does not exist.",
+        "operationId": "get_site_detail_api_sites__site_id__get",
+        "parameters": [
+          {
+            "name": "site_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Site Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SiteDetailResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/venues/{venue_id}": {
       "get": {
         "summary": "Get Venue Detail",
@@ -81277,6 +81317,288 @@
         "title": "SimilarVenueResponse",
         "description": "D4 row 2 (places-object-page-data-gap doc) \u2014 the nearest verified\nvenue of the same type, or an honest empty result when none is within\nrange."
       },
+      "SiteDetailResponse": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "site_type": {
+            "type": "string",
+            "title": "Site Type"
+          },
+          "city_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "City Name"
+          },
+          "neighborhood_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Neighborhood Name"
+          },
+          "neighborhood_place_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Neighborhood Place Id"
+          },
+          "period": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Period"
+          },
+          "significance_level": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Significance Level"
+          },
+          "visit_duration_minutes": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Visit Duration Minutes"
+          },
+          "admission_fee": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Admission Fee"
+          },
+          "min_price_per_person": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Min Price Per Person"
+          },
+          "max_price_per_person": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Price Per Person"
+          },
+          "hours": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hours"
+          },
+          "reservation_required": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reservation Required"
+          },
+          "reservation_lead_days": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reservation Lead Days"
+          },
+          "accessibility": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Accessibility"
+          },
+          "indoor_outdoor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Indoor Outdoor"
+          },
+          "rain_viable": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rain Viable"
+          },
+          "occasion_tags": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Occasion Tags"
+          },
+          "best_time_of_day": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Best Time Of Day"
+          },
+          "photo_urls": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Photo Urls"
+          },
+          "lat": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lat"
+          },
+          "lng": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lng"
+          },
+          "brief": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Brief"
+          },
+          "dossier_snippet": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dossier Snippet"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "site_type",
+          "city_name",
+          "neighborhood_name",
+          "neighborhood_place_id",
+          "period",
+          "significance_level",
+          "visit_duration_minutes",
+          "admission_fee",
+          "min_price_per_person",
+          "max_price_per_person",
+          "hours",
+          "reservation_required",
+          "reservation_lead_days",
+          "accessibility",
+          "indoor_outdoor",
+          "rain_viable",
+          "photo_urls",
+          "lat",
+          "lng",
+          "brief",
+          "dossier_snippet"
+        ],
+        "title": "SiteDetailResponse",
+        "description": "Shape returned by GET /api/sites/{site_id}.\n\nMirrors ``APISiteDetail`` in the frontend types. Shares its identity,\nplace-lineage, logistics and brief fields with ``VenueDetailResponse``\nby intent \u2014 the object page renders one plate for both \u2014 and differs\nonly in the per-kind tail (period, significance, admission)."
+      },
       "SituationAmbientNearby": {
         "properties": {
           "candidate": {
@@ -88579,7 +88901,8 @@
               "atlas_artifact",
               "atlas",
               "group_room",
-              "vesper"
+              "vesper",
+              "places_saved"
             ],
             "title": "Type"
           },
@@ -89707,6 +90030,98 @@
         "title": "TripsHomeReceiptWaveform",
         "description": "A cached narration render is ready to play, from the ``audio_tour``\ncard's own ``audio`` fact (``ConciergeHomeAudio``, carried on its own\nexcluded field \u2014 same rationale as ``seats`` above: the card has no\nDeck face, so there is nothing in ``structured``/``focus`` to project\nthis from).\n\nCarries only the one real number: the render's duration. The bar\npattern in the design mock (Focus/Room/Range board, ``FRRCiteAudio``)\nis decorative filler with no backing amplitude data \u2014 no per-bar\nwaveform was ever computed anywhere in this pipeline, so this shape\ndoes not invent one. The client owns the decorative rendering; the\nreceipt owns the fact that makes it true.\n\nPopulated far less often than not, by design: ``audio_tour`` fires on\nthe FIRST look at a narratable stop, almost always before any render\nhas happened yet \u2014 grounded or absent means most audio_tour cards fall\nto stamp, same as a cold ``candidates``/``call`` card with no substrate."
       },
+      "TripsHomeSavedUnplacedModule": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "saved_unplaced",
+            "title": "Kind",
+            "default": "saved_unplaced"
+          },
+          "role": {
+            "type": "string",
+            "const": "saved_unplaced",
+            "title": "Role",
+            "default": "saved_unplaced"
+          },
+          "module_id": {
+            "type": "string",
+            "const": "trips:saved_unplaced",
+            "title": "Module Id",
+            "default": "trips:saved_unplaced"
+          },
+          "content_id": {
+            "type": "string",
+            "const": "saved_unplaced:owner",
+            "title": "Content Id",
+            "default": "saved_unplaced:owner"
+          },
+          "content_revision": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 1,
+            "title": "Content Revision"
+          },
+          "availability": {
+            "type": "string",
+            "const": "available",
+            "title": "Availability",
+            "default": "available"
+          },
+          "reason": {
+            "type": "string",
+            "const": "missing_catalog_place_scope",
+            "title": "Reason",
+            "default": "missing_catalog_place_scope"
+          },
+          "total": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Total"
+          },
+          "places": {
+            "items": {
+              "$ref": "#/components/schemas/TripsHomeSavedUnplacedPlace"
+            },
+            "type": "array",
+            "maxItems": 3,
+            "minItems": 1,
+            "title": "Places"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/TripsHomeDestination"
+          }
+        },
+        "type": "object",
+        "required": [
+          "content_revision",
+          "total",
+          "places",
+          "destination"
+        ],
+        "title": "TripsHomeSavedUnplacedModule",
+        "description": "Private, bounded entry to saves without an enclosing catalog place.\n\nThis is deliberately independent of the ranked Concierge queue: saved\nrecency is a deterministic display bound, not a Home recommendation or a\nquiet-board ranking.  It is emitted only by its owner-scoped producer and\nremains dark unless the explicit runtime flag is enabled."
+      },
+      "TripsHomeSavedUnplacedPlace": {
+        "properties": {
+          "entity_ref": {
+            "$ref": "#/components/schemas/EntityRef"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_ref",
+          "name"
+        ],
+        "title": "TripsHomeSavedUnplacedPlace",
+        "description": "One owner-visible saved venue without a catalog Places scope.\n\nThe entity reference is the actual, typed destination.  A null\n``venues.place_id`` establishes only that no enclosing catalog hierarchy\nis known; it says nothing about whether the traveler has visited it,\nwhether it is close, or why it was saved."
+      },
       "TripsHomeStackCrown": {
         "properties": {
           "id": {
@@ -90053,6 +90468,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/TripsHomeOpenLoopsModule"
+                },
+                {
+                  "$ref": "#/components/schemas/TripsHomeSavedUnplacedModule"
                 }
               ],
               "discriminator": {
@@ -90062,6 +90480,7 @@
                   "imminent_trip": "#/components/schemas/TripsHomeCountdownModule",
                   "live_trip": "#/components/schemas/TripsHomeNowModule",
                   "planning_brief": "#/components/schemas/TripsHomeOpenLoopsModule",
+                  "saved_unplaced": "#/components/schemas/TripsHomeSavedUnplacedModule",
                   "weather": "#/components/schemas/TripsHomeConditionsModule"
                 }
               }

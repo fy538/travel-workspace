@@ -18,6 +18,7 @@ Durable choices that constrain future work belong here. Use the
 
 | Date | Decision | Status |
 |---|---|---|
+| 2026-08-11 | [Entity and place are two axes, not two categories](2026-08-11-entity-and-place-two-axes.md) | accepted |
 | 2026-08-09 | [Consolidate the product canon by authority, not by deletion](2026-08-09-documentation-authority-and-consolidation.md) | accepted |
 | 2026-08-09 | [Adopt the lived-experience company model](2026-08-09-lived-experience-company-model.md) | accepted |
 | 2026-08-08 | [Use typed place identity, durable resolution, and fact provenance](2026-08-08-place-identity-and-provenance.md) | accepted |
