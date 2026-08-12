@@ -58,9 +58,16 @@ proofs:
       device_mock: []
   - id: P06
     title: Consent and silence
-    status: dark
+    status: active
     required_layers: [contract, database, device_mock, ai_eval]
-    anchors: {}
+    anchors:
+      contract:
+        - travel-agent/tests/scenarios/test_lisbon_group_disruption_contract.py
+      database:
+        - travel-agent/tests/concierge/test_group_compose.py
+        - travel-agent/tests/notifications/test_group_interjection.py
+      device_mock: []
+      ai_eval: []
   - id: P07
     title: Live rescue
     status: dark
@@ -68,6 +75,7 @@ proofs:
     anchors:
       contract:
         - travel-agent/tests/scenarios/test_lisbon_group_disruption_contract.py
+        - travel-agent/tests/eval/test_lisbon_rescue_contract.py
         - travel-app/__tests__/utils/takeSomewhere.test.ts
         - travel-app/__tests__/components/trip-plan/NowModeStrip.test.tsx
       database:

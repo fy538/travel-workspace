@@ -8,46 +8,151 @@
     "review_by": null
   },
   "operations": {
-    "POST /api/agent-workflows/{workflow_id}/commands": {"audience":"app","consumers":[],"feature_flag":"SHARED_WORKFLOW_CONTROL_ENABLED","lifecycle":"dark","owner":"multiplayer","reason":"Server-side control ledger remains dark pending a verified client recovery flow.","removal_trigger":"Add a device-validated client or remove the transport.","review_by":"2026-10-30"},
-    "POST /api/proposal-guest-capabilities/{capability_token}/claim": {"audience":"app","consumers":[],"feature_flag":"GUEST_PROPOSAL_CAPABILITIES_ENABLED","lifecycle":"dark","owner":"multiplayer","reason":"Guest capability backend is retained but has no approved mobile consumer.","removal_trigger":"Restore only with a device-validated recipient flow.","review_by":"2026-10-30"},
-    "POST /api/proposal-guest-capabilities/{capability_token}/private-constraint": {"audience":"app","consumers":[],"feature_flag":"GUEST_PROPOSAL_CAPABILITIES_ENABLED","lifecycle":"dark","owner":"multiplayer","reason":"Private constraint capture remains unavailable until its consent flow is device-validated.","removal_trigger":"Restore only with a device-validated recipient flow.","review_by":"2026-10-30"},
-    "POST /api/trips/{trip_id}/proposals/{proposal_id}/guest-links": {"audience":"app","consumers":[],"feature_flag":"GUEST_PROPOSAL_CAPABILITIES_ENABLED","lifecycle":"dark","owner":"multiplayer","reason":"Guest-link minting is server-only until the recipient flow is validated.","removal_trigger":"Add a device-validated client or remove the transport.","review_by":"2026-10-30"},
-    "POST /api/trips/{trip_id}/proposals/{proposal_id}/guest-links/{capability_token}/revoke": {"audience":"app","consumers":[],"feature_flag":"GUEST_PROPOSAL_CAPABILITIES_ENABLED","lifecycle":"dark","owner":"multiplayer","reason":"Guest-link revocation is server-only while the capability surface is dark.","removal_trigger":"Add a device-validated client or remove the transport.","review_by":"2026-10-30"},
+    "POST /api/agent-workflows/{workflow_id}/commands": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "SHARED_WORKFLOW_CONTROL_ENABLED",
+      "lifecycle": "dark",
+      "owner": "multiplayer",
+      "reason": "Server-side control ledger remains dark pending a verified client recovery flow.",
+      "removal_trigger": "Add a device-validated client or remove the transport.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/proposal-guest-capabilities/{capability_token}/claim": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "GUEST_PROPOSAL_CAPABILITIES_ENABLED",
+      "lifecycle": "dark",
+      "owner": "multiplayer",
+      "reason": "Guest capability backend is retained but has no approved mobile consumer.",
+      "removal_trigger": "Restore only with a device-validated recipient flow.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/proposal-guest-capabilities/{capability_token}/private-constraint": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "GUEST_PROPOSAL_CAPABILITIES_ENABLED",
+      "lifecycle": "dark",
+      "owner": "multiplayer",
+      "reason": "Private constraint capture remains unavailable until its consent flow is device-validated.",
+      "removal_trigger": "Restore only with a device-validated recipient flow.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/trips/{trip_id}/proposals/{proposal_id}/guest-links": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "GUEST_PROPOSAL_CAPABILITIES_ENABLED",
+      "lifecycle": "dark",
+      "owner": "multiplayer",
+      "reason": "Guest-link minting is server-only until the recipient flow is validated.",
+      "removal_trigger": "Add a device-validated client or remove the transport.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/trips/{trip_id}/proposals/{proposal_id}/guest-links/{capability_token}/revoke": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "GUEST_PROPOSAL_CAPABILITIES_ENABLED",
+      "lifecycle": "dark",
+      "owner": "multiplayer",
+      "reason": "Guest-link revocation is server-only while the capability surface is dark.",
+      "removal_trigger": "Add a device-validated client or remove the transport.",
+      "review_by": "2026-10-30"
+    },
     "GET /api/trips/{trip_id}/editorial-map": {
-      "audience": "app", "consumers": [], "feature_flag": "BOOKING_DUFFEL_LIVE_BOOKING_ENABLED", "lifecycle": "dark", "owner": "maps",
-      "reason": "Server contract remains dark until a mobile consumer and device evidence are added.", "removal_trigger": "Add a verified mobile consumer or remove the endpoint.", "review_by": "2026-10-30"
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "BOOKING_DUFFEL_LIVE_BOOKING_ENABLED",
+      "lifecycle": "dark",
+      "owner": "maps",
+      "reason": "Server contract remains dark until a mobile consumer and device evidence are added.",
+      "removal_trigger": "Add a verified mobile consumer or remove the endpoint.",
+      "review_by": "2026-10-30"
     },
     "GET /api/places/comparison": {
-      "audience": "app", "consumers": [], "feature_flag": "NEARBY_TRAVEL_TIME_RANKING_ENABLED", "lifecycle": "dark", "owner": "places",
-      "reason": "The bounded two-place comparison transport is retained for the nearby-ranking rollout, but has no approved mobile presentation yet.", "removal_trigger": "Add an explicit verified mobile comparison flow or remove the endpoint.", "review_by": "2026-10-30"
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "NEARBY_TRAVEL_TIME_RANKING_ENABLED",
+      "lifecycle": "dark",
+      "owner": "places",
+      "reason": "The bounded two-place comparison transport is retained for the nearby-ranking rollout, but has no approved mobile presentation yet.",
+      "removal_trigger": "Add an explicit verified mobile comparison flow or remove the endpoint.",
+      "review_by": "2026-10-30"
     },
     "POST /api/trips/{trip_id}/booking/sessions/{session_id}/offers/{offer_id}/cancel/quote": {
-      "audience": "app", "consumers": [{"kind":"app_url","name":"quoteBookingCancellation","source":"travel-app/utils/api/httpExtendedEndpoints.ts"}], "feature_flag": "BOOKING_DUFFEL_LIVE_BOOKING_ENABLED", "lifecycle": "active", "owner": "booking",
-      "reason": "The booking confirmation screen requires a reviewed provider quote before it can submit a cancellation.", "removal_trigger": null, "review_by": "2026-10-30"
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "quoteBookingCancellation",
+          "source": "travel-app/utils/api/httpExtendedEndpoints.ts"
+        }
+      ],
+      "feature_flag": "BOOKING_DUFFEL_LIVE_BOOKING_ENABLED",
+      "lifecycle": "active",
+      "owner": "booking",
+      "reason": "The booking confirmation screen requires a reviewed provider quote before it can submit a cancellation.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
     },
     "DELETE /api/trips/{trip_id}/share": {
-      "audience": "app", "consumers": [], "feature_flag": "STORY_SHARE_ENABLED", "lifecycle": "dark", "owner": "maps",
-      "reason": "Map-share revocation transport has no approved mobile action yet.", "removal_trigger": "Add a device-validated revocation action or remove the endpoint.", "review_by": "2026-10-30"
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "STORY_SHARE_ENABLED",
+      "lifecycle": "dark",
+      "owner": "maps",
+      "reason": "Map-share revocation transport has no approved mobile action yet.",
+      "removal_trigger": "Add a device-validated revocation action or remove the endpoint.",
+      "review_by": "2026-10-30"
     },
     "DELETE /api/social-circles/{circle_id}/members/{user_id}": {
-      "audience": "app", "consumers": [], "feature_flag": "SOCIAL_CIRCLE_AGENT_CONTEXT_ENABLED", "lifecycle": "dark", "owner": "multiplayer",
-      "reason": "Owner removal transport is retained, but no approved mobile lifecycle action reaches it.", "removal_trigger": "Add a device-validated owner removal flow or remove the endpoint.", "review_by": "2026-10-30"
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "SOCIAL_CIRCLE_AGENT_CONTEXT_ENABLED",
+      "lifecycle": "dark",
+      "owner": "multiplayer",
+      "reason": "Owner removal transport is retained, but no approved mobile lifecycle action reaches it.",
+      "removal_trigger": "Add a device-validated owner removal flow or remove the endpoint.",
+      "review_by": "2026-10-30"
     },
     "GET /api/trips/{trip_id}/planning/suggested-saves": {
-      "audience": "app", "consumers": [], "feature_flag": "PLACES_SECTIONS_FEED_ENABLED", "lifecycle": "dark", "owner": "places",
-      "reason": "Explicitly shared-save suggestions remain backend substrate until the trip planning UI is validated.", "removal_trigger": "Add a device-validated planning consumer or remove the endpoint.", "review_by": "2026-10-30"
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "PLACES_SECTIONS_FEED_ENABLED",
+      "lifecycle": "dark",
+      "owner": "places",
+      "reason": "Explicitly shared-save suggestions remain backend substrate until the trip planning UI is validated.",
+      "removal_trigger": "Add a device-validated planning consumer or remove the endpoint.",
+      "review_by": "2026-10-30"
     },
     "PATCH /api/users/{user_id}/saves/{entity_type}/{entity_id}": {
-      "audience": "app", "consumers": [], "feature_flag": "SOCIAL_CIRCLE_AGENT_CONTEXT_ENABLED", "lifecycle": "dark", "owner": "multiplayer",
-      "reason": "Per-save sharing consent is retained as a privacy substrate, but no approved mobile control reaches it.", "removal_trigger": "Add a device-validated consent control or remove the endpoint.", "review_by": "2026-10-30"
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "SOCIAL_CIRCLE_AGENT_CONTEXT_ENABLED",
+      "lifecycle": "dark",
+      "owner": "multiplayer",
+      "reason": "Per-save sharing consent is retained as a privacy substrate, but no approved mobile control reaches it.",
+      "removal_trigger": "Add a device-validated consent control or remove the endpoint.",
+      "review_by": "2026-10-30"
     },
     "POST /webhooks/booking/{provider}": {
-      "audience": "app", "consumers": [], "feature_flag": "BOOKING_DUFFEL_LIVE_BOOKING_ENABLED", "lifecycle": "dark", "owner": "booking",
-      "reason": "Signed provider ingress is not a mobile surface.", "removal_trigger": "Enable only with a verified provider integration.", "review_by": "2026-10-30"
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "BOOKING_DUFFEL_LIVE_BOOKING_ENABLED",
+      "lifecycle": "dark",
+      "owner": "booking",
+      "reason": "Signed provider ingress is not a mobile surface.",
+      "removal_trigger": "Enable only with a verified provider integration.",
+      "review_by": "2026-10-30"
     },
     "POST /api/social-circles": {
       "audience": "app",
-      "consumers": [{"kind": "app_url", "name": "createSocialCircle", "source": "travel-app/utils/api/http.ts"}],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "createSocialCircle",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": "SOCIAL_CIRCLES_ENABLED",
       "lifecycle": "active",
       "owner": "multiplayer",
@@ -57,7 +162,13 @@
     },
     "GET /api/social-circles": {
       "audience": "app",
-      "consumers": [{"kind": "app_url", "name": "listSocialCircles", "source": "travel-app/utils/api/http.ts"}],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "listSocialCircles",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": "SOCIAL_CIRCLES_ENABLED",
       "lifecycle": "active",
       "owner": "multiplayer",
@@ -67,7 +178,13 @@
     },
     "GET /api/social-circles/{circle_id}/events": {
       "audience": "app",
-      "consumers": [{"kind": "app_url", "name": "listSocialCircleEvents", "source": "travel-app/utils/api/http.ts"}],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "listSocialCircleEvents",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": "SOCIAL_CIRCLES_ENABLED",
       "lifecycle": "active",
       "owner": "multiplayer",
@@ -77,7 +194,13 @@
     },
     "GET /api/social-circles/{circle_id}": {
       "audience": "app",
-      "consumers": [{"kind": "app_url", "name": "readSocialCircle", "source": "travel-app/utils/api/http.ts"}],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "readSocialCircle",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": "SOCIAL_CIRCLES_ENABLED",
       "lifecycle": "active",
       "owner": "multiplayer",
@@ -87,7 +210,13 @@
     },
     "POST /api/social-circles/{circle_id}/members": {
       "audience": "app",
-      "consumers": [{"kind": "app_url", "name": "addSocialCircleMember", "source": "travel-app/utils/api/http.ts"}],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "addSocialCircleMember",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": "SOCIAL_CIRCLES_ENABLED",
       "lifecycle": "active",
       "owner": "multiplayer",
@@ -97,7 +226,13 @@
     },
     "POST /api/social-circles/{circle_id}/trips/{trip_id}": {
       "audience": "app",
-      "consumers": [{"kind": "app_url", "name": "linkSocialCircleTrip", "source": "travel-app/utils/api/http.ts"}],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "linkSocialCircleTrip",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": "SOCIAL_CIRCLES_ENABLED",
       "lifecycle": "active",
       "owner": "multiplayer",
@@ -191,7 +326,13 @@
     },
     "PUT /api/me/location": {
       "audience": "app",
-      "consumers": [{"kind": "app_source", "name": "writeLocationBack", "source": "travel-app/utils/locationService.ts"}],
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "writeLocationBack",
+          "source": "travel-app/utils/locationService.ts"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "location",
@@ -221,7 +362,13 @@
     },
     "DELETE /api/pending-chat-turns/{pending_turn_id}": {
       "audience": "app",
-      "consumers": [{"kind": "app_url", "name": "cancelPendingChatTurn", "source": "travel-app/utils/api/http.ts"}],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "cancelPendingChatTurn",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": "PENDING_CHAT_TURNS_ENABLED",
       "lifecycle": "active",
       "owner": "conversations",
@@ -231,7 +378,13 @@
     },
     "GET /api/pending-chat-turns": {
       "audience": "app",
-      "consumers": [{"kind": "app_url", "name": "listPendingChatTurns", "source": "travel-app/utils/api/http.ts"}],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "listPendingChatTurns",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": "PENDING_CHAT_TURNS_ENABLED",
       "lifecycle": "active",
       "owner": "conversations",
@@ -241,7 +394,13 @@
     },
     "GET /api/pending-chat-turns/{pending_turn_id}": {
       "audience": "app",
-      "consumers": [{"kind": "app_url", "name": "getPendingChatTurn", "source": "travel-app/utils/api/http.ts"}],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "getPendingChatTurn",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": "PENDING_CHAT_TURNS_ENABLED",
       "lifecycle": "active",
       "owner": "conversations",
@@ -251,7 +410,13 @@
     },
     "POST /api/pending-chat-turns": {
       "audience": "app",
-      "consumers": [{"kind": "app_url", "name": "stagePendingChatTurn", "source": "travel-app/utils/api/http.ts"}],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "stagePendingChatTurn",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": "PENDING_CHAT_TURNS_ENABLED",
       "lifecycle": "active",
       "owner": "conversations",
@@ -261,7 +426,13 @@
     },
     "POST /api/pending-chat-turns/{pending_turn_id}/bind": {
       "audience": "app",
-      "consumers": [{"kind": "app_url", "name": "bindPendingChatTurn", "source": "travel-app/utils/api/http.ts"}],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "bindPendingChatTurn",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": "PENDING_CHAT_TURNS_ENABLED",
       "lifecycle": "active",
       "owner": "conversations",
@@ -271,7 +442,13 @@
     },
     "POST /api/pending-chat-turns/{pending_turn_id}/reconcile": {
       "audience": "app",
-      "consumers": [{"kind": "app_url", "name": "reconcilePendingChatTurn", "source": "travel-app/utils/api/http.ts"}],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "reconcilePendingChatTurn",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": "PENDING_CHAT_TURNS_ENABLED",
       "lifecycle": "active",
       "owner": "conversations",
@@ -281,7 +458,13 @@
     },
     "POST /api/pending-chat-turns/{pending_turn_id}/send": {
       "audience": "app",
-      "consumers": [{"kind": "app_url", "name": "streamPendingChatTurn", "source": "travel-app/utils/api/http.ts"}],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "streamPendingChatTurn",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": "PENDING_CHAT_TURNS_ENABLED",
       "lifecycle": "active",
       "owner": "conversations",
@@ -1333,8 +1516,8 @@
       ],
       "feature_flag": null,
       "lifecycle": "active",
-      "owner": "media",
-      "reason": "Operational diagnostics for exact-place media provider health.",
+      "owner": "operations",
+      "reason": "Operational diagnostics and observability consumer.",
       "removal_trigger": null,
       "review_by": null
     },
@@ -1365,21 +1548,6 @@
       "lifecycle": "active",
       "owner": "places",
       "reason": "Content-free Places feed producer health diagnostics.",
-      "removal_trigger": null,
-      "review_by": null
-    },
-    "GET /metrics/media": {
-      "audience": "infrastructure",
-      "consumers": [
-        {
-          "kind": "infrastructure",
-          "name": "operator-observability"
-        }
-      ],
-      "feature_flag": null,
-      "lifecycle": "active",
-      "owner": "operations",
-      "reason": "Operational diagnostics and observability consumer.",
       "removal_trigger": null,
       "review_by": null
     },
@@ -2039,6 +2207,16 @@
       "reason": "Provider callback surface — SendGrid Inbound Parse (unified ingestion Phase 3, docs/working/unified-ingestion-research-2026-07-27.md §12.7). Not under /webhooks/ because it needs the per-request path-secret pattern, not this repo's shared /webhooks/ auth middleware.",
       "removal_trigger": null,
       "review_by": null
+    },
+    "GET /api/sites/{site_id}": {
+      "audience": "app",
+      "lifecycle": "retiring",
+      "owner": "places",
+      "reason": "app/site/[siteId].tsx sources from GET /api/entities/site/{id} since the 2026-08-11 entity-envelope migration (data/sites.ts). The FE client method (api.getSiteDetail) was itself retired in the same effort (Slice 4) once a full-repo grep confirmed zero remaining callers — so unlike the usual transport-only case, there is no longer even an http.ts implementation to call. The standalone backend route is unchanged and still reachable — kept live for any other consumer and for its own route tests (tests/api/test_sites_route.py in travel-agent).",
+      "feature_flag": null,
+      "removal_trigger": "Delete this route once nothing calls it — check for any other caller before removing (see docs/decisions/2026-08-11-entity-envelope.md, Slice 4).",
+      "review_by": "2026-09-15",
+      "consumers": []
     }
   },
   "retired_operations": {

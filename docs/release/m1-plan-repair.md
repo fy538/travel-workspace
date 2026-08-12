@@ -184,16 +184,16 @@ roadmap**. M1 does not supersede its OUT rulings; where M1 needs a capability
 that contract marks OUT or leaves unclassified, that requires an explicit scope
 revision decision before the flag is lit.
 
-## Known contract collisions to resolve
+## Contract collisions — resolved 2026-08-10
 
-These are open and block nothing today, but must be ruled before Act 1 or Act 4
-ships:
+All three were ruled the same day this milestone was written (founder rulings
+A2–A3, `v1-scope.yaml` `c5c6ecf`). Kept here as the record, not as open work:
 
-| Collision | Detail |
+| Collision | Resolution |
 |---|---|
-| `ambient` marked OUT | Act 4's opening uses `AMBIENT_COINCIDENCE_CANDIDATES_ENABLED`, listed under an OUT capability |
-| `proactive-disruption` marked OUT | Act 1's producer, `_produce_weather_rescue`, lives in `backend/concierge/proactive.py`, an evidence path for that OUT capability |
-| Three flags unclassified | `WEATHER_RESCUE_PROPOSALS_ENABLED`, `GROUP_TRIP_MICRO_JOURNEY_ENABLED`, `LOCAL_PLAN_DOGFOOD_ENABLED` appear nowhere in `v1-scope.yaml` |
+| `ambient` marked OUT | Split into `ambient-broad` (stays OUT) and `relationship-opening` (now IN, gated dark until P06 has anchors) |
+| Three unclassified flags | `WEATHER_RESCUE_PROPOSALS_ENABLED`, `GROUP_TRIP_MICRO_JOURNEY_ENABLED`, `LOCAL_PLAN_DOGFOOD_ENABLED` are now IN under `plan-repair`, `micro-journey`, and `local-plan`, each with an explicit `gate:` |
+| `proactive-disruption` marked OUT | Not a contradiction: `proactive-disruption` (OUT) gates `VENUE_DISRUPTION_PROPOSALS_ENABLED`; `plan-repair` (IN) gates the different `WEATHER_RESCUE_PROPOSALS_ENABLED`. Residual, non-blocking: both list `backend/concierge/proactive.py` as an evidence path since it contains both producers — the postures don't collide, only the file does |
 
 ## Relationship to existing authorities
 
