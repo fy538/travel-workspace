@@ -918,6 +918,16 @@
       "removal_trigger": null,
       "review_by": null
     },
+    "GET /api/discover/feed": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "places",
+      "reason": "The retired Discover feed has no canonical mobile home; its remaining transport and test substrate are retained only until deployed traffic is confirmed absent.",
+      "removal_trigger": "Confirm zero supported-client and deployed traffic, then delete the feed route, client facade, mock, and implementation module together.",
+      "review_by": "2026-09-15"
+    },
     "GET /api/discover/trending": {
       "audience": "app",
       "consumers": [],

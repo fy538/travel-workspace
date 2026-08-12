@@ -10256,6 +10256,7 @@
         "summary": "Discover Feed",
         "description": "Sectioned Discover feed \u2014 read block + named editorial sections.\n\nPhase B/C: server assigns ``feed_shape_hint`` + rhythm; proximity shape\nfilters the places bucket when ``lat``/``lng`` are provided.",
         "operationId": "discover_feed_api_discover_feed_get",
+        "deprecated": true,
         "parameters": [
           {
             "name": "emphasis",
