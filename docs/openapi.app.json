@@ -29707,6 +29707,71 @@
           }
         }
       }
+    },
+    "/api/world-foundry/dogfood/entities/{entity_type}/{entity_id}/catalog-evidence": {
+      "get": {
+        "summary": "Get Dogfood Catalog Evidence",
+        "description": "Return dogfood-only provenance for one explicitly released entity.\n\nA 404 intentionally covers all denied cases: feature flag off, public or\nnon-cohort user, inactive/revoked release, out-of-scope entity, and missing\ncertificate.  This avoids making the internal release ledger an oracle.",
+        "operationId": "get_dogfood_catalog_evidence_api_world_foundry_dogfood_entities__entity_type___entity_id__catalog_evidence_get",
+        "parameters": [
+          {
+            "name": "entity_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Entity Type"
+            }
+          },
+          {
+            "name": "entity_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Entity Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DogfoodCatalogEvidenceResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -42834,6 +42899,94 @@
         ],
         "title": "DnaPhraseDisputeRequest",
         "description": "Body for ``POST /api/me/dna-phrases/dispute``.\n\nThe user tapped \"not quite\" on a phrase rendered by the Me-tab\nTravel DNA card. ``phrase`` is the exact rendered string so the\nobservation can carry the user-visible text into Personal Memory\nsynthesis verbatim."
+      },
+      "DogfoodCatalogEvidenceResponse": {
+        "properties": {
+          "entity_type": {
+            "type": "string",
+            "title": "Entity Type"
+          },
+          "entity_id": {
+            "type": "string",
+            "title": "Entity Id"
+          },
+          "release_key": {
+            "type": "string",
+            "title": "Release Key"
+          },
+          "certificate_key": {
+            "type": "string",
+            "title": "Certificate Key"
+          },
+          "tier": {
+            "type": "string",
+            "title": "Tier"
+          },
+          "explicit_unknowns": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Explicit Unknowns"
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/components/schemas/DogfoodCatalogSourceResponse"
+            },
+            "type": "array",
+            "title": "Sources"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_type",
+          "entity_id",
+          "release_key",
+          "certificate_key",
+          "tier",
+          "explicit_unknowns",
+          "sources"
+        ],
+        "title": "DogfoodCatalogEvidenceResponse"
+      },
+      "DogfoodCatalogSourceResponse": {
+        "properties": {
+          "publisher": {
+            "type": "string",
+            "title": "Publisher"
+          },
+          "source_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Url"
+          },
+          "retrieved_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Retrieved At"
+          },
+          "observed_fields": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Observed Fields"
+          }
+        },
+        "type": "object",
+        "required": [
+          "publisher",
+          "source_url",
+          "retrieved_at",
+          "observed_fields"
+        ],
+        "title": "DogfoodCatalogSourceResponse"
       },
       "DogfoodPreflightAppContextResponse": {
         "properties": {
