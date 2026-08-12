@@ -37007,6 +37007,9 @@
               }
             ],
             "title": "Lng"
+          },
+          "status": {
+            "$ref": "#/components/schemas/EntityStatusResponse"
           }
         },
         "type": "object",
@@ -37024,7 +37027,8 @@
           "website",
           "photo_urls",
           "lat",
-          "lng"
+          "lng",
+          "status"
         ],
         "title": "CatalogAccommodationResponse"
       },
@@ -44497,6 +44501,72 @@
         ],
         "title": "EntitySaveCreate"
       },
+      "EntityStatusResponse": {
+        "properties": {
+          "operating": {
+            "type": "string",
+            "enum": [
+              "open",
+              "closed",
+              "unknown"
+            ],
+            "title": "Operating"
+          },
+          "open_now": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Open Now"
+          },
+          "hours": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hours"
+          },
+          "as_of": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "As Of"
+          },
+          "sources": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Sources"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "operating",
+          "open_now",
+          "hours",
+          "as_of",
+          "sources"
+        ],
+        "title": "EntityStatusResponse",
+        "description": "Adjudicated operating truth for one catalog entity, or the honest\nabsence of it.\n\nEvery field is independently nullable because adjudication is per-field:\nan entity can have a resolved ``operating_status`` and no resolved\n``regular_hours`` at all, or vice versa. Do not treat a null field as\n\"false\" or \"closed\" — it means no claim has been adjudicated for it,\nwhich is a different fact from a claim resolving to \"closed\"."
+      },
       "EntityTake": {
         "properties": {
           "id": {
@@ -46105,6 +46175,16 @@
               }
             ],
             "title": "Why For You"
+          },
+          "entity_status": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityStatusResponse"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -69566,6 +69646,9 @@
               }
             ],
             "title": "Dossier Snippet"
+          },
+          "status": {
+            "$ref": "#/components/schemas/EntityStatusResponse"
           }
         },
         "type": "object",
@@ -69592,7 +69675,8 @@
           "lat",
           "lng",
           "brief",
-          "dossier_snippet"
+          "dossier_snippet",
+          "status"
         ],
         "title": "SiteDetailResponse",
         "description": "Shape returned by GET /api/sites/{site_id}.\n\nMirrors ``APISiteDetail`` in the frontend types. Shares its identity,\nplace-lineage, logistics and brief fields with ``VenueDetailResponse``\nby intent — the object page renders one plate for both — and differs\nonly in the per-kind tail (period, significance, admission)."
@@ -80399,6 +80483,9 @@
             },
             "type": "array",
             "title": "Occasion Tags"
+          },
+          "status": {
+            "$ref": "#/components/schemas/EntityStatusResponse"
           }
         },
         "type": "object",
@@ -80422,7 +80509,8 @@
           "hours",
           "dietary",
           "max_group_comfortable",
-          "occasion_tags"
+          "occasion_tags",
+          "status"
         ],
         "title": "VenueDetailResponse",
         "description": "Shape returned by GET /api/venues/{venue_id}.\n\nMirrors ``APIVenueDetail`` in the frontend types."
