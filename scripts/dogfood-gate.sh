@@ -74,7 +74,7 @@ run_and_record() {
   local started status exit_code
   started="$(date +%s)"
   set +e
-  "$runner" "${runner_args[@]}"
+  "$runner" "${runner_args[@]+"${runner_args[@]}"}"
   exit_code=$?
   set -e
   if [[ "$exit_code" -eq 0 ]]; then

@@ -600,6 +600,20 @@ flags:
     promotion_removal_question: By 2026-10-30, did grounded rescue, canonical lifecycle, privacy, and two-observer device evidence justify promotion?
     notes: Gates current-weather rescue proposal production until freshness, group-safe composition, canonical apply, and two-observer device evidence pass. Malformed allowlist values are ignored and an empty cohort fails closed.
 
+  - name: WEATHER_RESCUE_TRIP_IDS
+    repo: travel-agent
+    location: backend/core/feature_flags.py:333
+    default: "empty allowlist"
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    target_journey: P07
+    cohort: exact comma-separated Trip UUIDs; malformed entries are silently dropped, not an error
+    kill_switch: unset or empty; an empty allowlist makes WEATHER_RESCUE_PROPOSALS_ENABLED's cohort check fail closed regardless of the global flag's value
+    promotion_removal_question: Same as WEATHER_RESCUE_PROPOSALS_ENABLED, which this allowlist gates in tandem — resolve together.
+    notes: Read directly via os.environ.get, not the _truthy/falsy_env convention the boolean flags use — this is a comma-separated ID list, not a boolean. Previously undocumented in this registry despite gating whether Act 1 (weather rescue) can fire at all in the M1 demo; check_flag_registry.py's scan does not cover raw os.getenv reads, so this flag was invisible to the registry-drift gate until now. No value is currently set in any .env file or fly.toml; the controlled-demo trip id must be sourced from the provisioning script's output at demo time.
+
   - name: GUEST_PROPOSAL_CAPABILITIES_ENABLED
     repo: travel-agent
     location: backend/core/feature_flags.py:278
