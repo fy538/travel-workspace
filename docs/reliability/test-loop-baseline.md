@@ -17,26 +17,38 @@ every run: [`runs/`](runs/). Produced by [`scripts/measure_verification.py`](../
 
 ## Headline finding
 
-**The verification loop is currently red on `main`, in both repos, for two unrelated,
-pre-existing reasons that predate this measurement:**
+**Superseded 2026-08-12, same day.** The original headline below described `main` as red in
+both repos for two unrelated pre-existing reasons. Both were fixed and committed directly to
+`main` shortly after this note was first written (`travel-agent` commits `0400197d6` and
+`2aead3ea2` — not on the A1/A2/A3 feature branch, since fixing a shared gate blocks everyone,
+not just this work). **`make -C travel-agent ci` now passes end to end**: ruff, import/lazy-
+import/SCC boundaries, all structural gates, mypy (0 errors), the offline suite (17,784 passed,
+30 skipped, 56 xpassed in 440.85s), the tool-contract suite (1,016 passed in 7.48s), and the
+eval baseline replay — `✅ Preflight green. Safe to push.` in 493.3s total (~8.2 min). See the
+`backend-ci-recheck` record in the JSON.
 
-1. `make -C travel-agent ci` fails in 0.12s at `ruff format --check` —
-   `backend/concierge/agent.py` is out of formatting sync with the pinned ruff version.
-   Flagged separately (spawned task, not fixed here — not this note's file to touch blind).
+This is the number that should be used for the A2 speed target ("fast path ≤ 50% of median
+`make verify`") going forward — not the 0.12s fast-failure figure below, which only ever
+reflected a broken gate, not real pipeline cost. Still only one measurement, so the
+three-repetition gap remains open.
+
+**Original finding (2026-08-12, superseded above):** the verification loop was red on `main`,
+in both repos, for two unrelated, pre-existing reasons that predated this measurement:
+
+1. `make -C travel-agent ci` failed in 0.12s at `ruff format --check` —
+   `backend/concierge/agent.py` was out of formatting sync with the pinned ruff version. **Fixed**
+   (`0400197d6`).
 2. `npm run verify:full` (travel-app) fails in 15.6s at the `home-surface-budgets` check —
    `utils/tripsHomeSectionPlan.ts` is 285 lines against a 267-line budget. Matches the
-   existing memory note that both design ratchets fail on main; not fixed here.
+   existing memory note that both design ratchets fail on main. **Still open** — flagged
+   separately, not fixed here or since.
 
-Because both gates fail in the first few seconds, **neither command's later, slower steps have
-ever produced a passing baseline this session** — the pipeline's own gates prevented reaching
-mypy, the full pytest suite, or the full Jest suite through the normal command path. A red
-baseline is not a measurement problem to work around; it's the top-line result of this note.
-
-A third pre-existing defect was found while getting supplementary timing (below), unrelated to
-either of the above: `mypy` reports 5 real type errors in
-`backend/api/routes/occurrence_reconciliation.py:208` (a `**dict[str, object]` unpacked into a
-`to_thread` call whose target has more specific parameter types). Also flagged separately, not
-fixed here.
+A third pre-existing defect was found while getting supplementary timing: `mypy` reported 5 real
+type errors in `backend/api/routes/occurrence_reconciliation.py:208` (a `**dict[str, object]`
+unpacked into a `to_thread` call whose target has more specific parameter types). **Fixed**
+(`2aead3ea2`) — replaced with a `TypedDict(total=False)`, preserving the exact kwarg-presence
+behavior two existing tests depend on (an earlier attempt that always passed the fields
+explicitly was type-correct but broke those tests; caught before committing).
 
 `make contract-check` and `make doctor`, run against `main`, both pass cleanly — the OpenAPI
 snapshot, app projection, generated-schema diff, and place-identity seams are all current.
@@ -44,16 +56,21 @@ snapshot, app projection, generated-schema diff, and place-identity seams are al
 (`npm run schema-bridge`, added by A1) doesn't exist on `main` yet — expected until the A1
 branch lands; see the commit that added it.
 
+**Still open, unrelated to any of the above:** `npm run verify:full` on `main` remains red
+today at the `home-surface-budgets` step (item 2). The frontend side of this baseline has not
+been re-measured since that fix landed, because it hasn't landed.
+
 ## What was actually measured (1 repetition each, not 3)
 
 | Label | Command | Exit | Wall time | Notes |
 |---|---|---:|---:|---|
 | `doctor` | `make doctor` | 0 | 0.61s | clean |
-| `backend-ci` | `make -C travel-agent ci` | 2 | 0.12s | fails at `ruff format --check` (pre-existing, flagged) |
+| `backend-ci` | `make -C travel-agent ci` | 2 | 0.12s | **stale** — fails at `ruff format --check`; both blocking gates fixed same day, see `backend-ci-recheck` below |
 | `contract-check` | `make contract-check` | 2 | 9.75s | passes through snapshot/projection/schema-diff/place-identity (~9.3s of the 9.75s); fails only at the new A1 schema-bridge step, which doesn't exist on `main` yet |
-| `frontend-verify-full` | `npm run verify:full` (travel-app) | 1 | 15.56s | fails at `home-surface-budgets` inside `verify:fast`, before `verify:pr`'s Jest run or `npm test -- --ci` ever starts (pre-existing, flagged) |
-| `backend-mypy-supplementary` | `mypy --config-file mypy.ini backend/` | 1 | 8.28s | supplementary — bypasses the ruff-format gate to get real mypy timing; found 5 real errors (pre-existing, flagged), not a timing artifact |
-| `backend-offline-pytest-supplementary` | `pytest tests/ -q -k "not requires_postgres and not requires_api_keys"` | 0 | 445.50s (~7.4 min) | 17,776 passed, 0 failed, 30 skipped — supplementary (bypasses the ruff-format gate), but the suite itself is genuinely green, unlike `backend-ci` and `frontend-verify-full` above |
+| `frontend-verify-full` | `npm run verify:full` (travel-app) | 1 | 15.56s | fails at `home-surface-budgets` inside `verify:fast`, before `verify:pr`'s Jest run or `npm test -- --ci` ever starts (still pre-existing, still open — see Headline finding) |
+| `backend-mypy-supplementary` | `mypy --config-file mypy.ini backend/` | 1 | 8.28s | **superseded** — found 5 real errors, fixed same day (`2aead3ea2`); mypy is now clean, see `backend-ci-recheck` |
+| `backend-offline-pytest-supplementary` | `pytest tests/ -q -k "not requires_postgres and not requires_api_keys"` | 0 | 445.50s (~7.4 min) | 17,776 passed, 0 failed, 30 skipped — supplementary at the time (bypassed the ruff-format gate), now subsumed by `backend-ci-recheck`'s real end-to-end run |
+| `backend-ci-recheck` | `make -C travel-agent ci` | **0** | **493.34s (~8.2 min)** | **the current, real, end-to-end number.** Both blockers fixed and committed to `main`. Offline suite: 17,784 passed, 30 skipped, 56 xpassed in 440.85s. Tool-contract suite: 1,016 passed in 7.48s. Plus gates, mypy, eval-ci replay. `✅ Preflight green. Safe to push.` |
 
 "Supplementary" labels bypass one already-flagged, out-of-scope pre-existing gate failure purely
 to get real timing signal for the rest of that pipeline — they do not represent what `make ci`

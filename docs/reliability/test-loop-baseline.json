@@ -214,5 +214,55 @@
       "skipped": 30,
       "errors": 0
     }
+  },
+  {
+    "schema_version": 1,
+    "label": "backend-ci-recheck",
+    "command": [
+      "make",
+      "-C",
+      "travel-agent",
+      "ci"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "bcb36bc",
+        "dirty": false
+      },
+      "travel-agent": {
+        "commit": "2aead3ea2",
+        "dirty": false
+      },
+      "travel-app": {
+        "commit": "834935f9e2599098d0e24ee5f1efaf3fc4d004ae",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 493.342,
+    "log_path": "docs/reliability/runs/backend-ci-recheck-20260812T045321Z.log",
+    "test_counts": {
+      "framework": "pytest",
+      "note": "multiple pytest invocations in one make recipe; figures below are read directly from the log, not the auto-parser (which only captures the last summary line)",
+      "offline_suite": {
+        "passed": 17784,
+        "skipped": 30,
+        "deselected": 1262,
+        "xpassed": 56,
+        "wall_time_seconds": 440.85
+      },
+      "tool_contract_suite": {
+        "passed": 1016,
+        "wall_time_seconds": 7.48
+      }
+    }
   }
 ]
