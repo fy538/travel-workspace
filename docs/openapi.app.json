@@ -28598,19 +28598,28 @@
         }
       }
     },
-    "/api/sites/{site_id}": {
+    "/api/entities/{entity_type}/{entity_id}": {
       "get": {
-        "summary": "Get Site Detail",
-        "description": "Return lean site detail for the site object page.\n\nJoins ``sites`` → ``places`` (neighborhood) and ``briefs`` (curator\ncontent). Returns 404 when the site ID does not exist.",
-        "operationId": "get_site_detail_api_sites__site_id__get",
+        "summary": "Get Entity Detail",
+        "description": "Return the envelope for one catalog entity.\n\n404s for a non-catalog entity_type (``place``, ``transport_hub``, or\nanything unrecognized) with a reason that says so, and for a catalog\nentity_type whose id does not exist.",
+        "operationId": "get_entity_detail_api_entities__entity_type___entity_id__get",
         "parameters": [
           {
-            "name": "site_id",
+            "name": "entity_type",
             "in": "path",
             "required": true,
             "schema": {
-              "type": "integer",
-              "title": "Site Id"
+              "type": "string",
+              "title": "Entity Type"
+            }
+          },
+          {
+            "name": "entity_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Entity Id"
             }
           }
         ],
@@ -28620,7 +28629,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SiteDetailResponse"
+                  "$ref": "#/components/schemas/EntityEnvelope"
                 }
               }
             }
@@ -30196,6 +30205,112 @@
           "confidence"
         ],
         "title": "AccommodationResponse"
+      },
+      "AccommodationTail": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "accommodation",
+            "title": "Kind",
+            "default": "accommodation"
+          },
+          "accommodation_type": {
+            "type": "string",
+            "title": "Accommodation Type"
+          },
+          "star_rating": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Star Rating"
+          },
+          "style_tags": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Style Tags"
+          },
+          "price_per_night_min": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Per Night Min"
+          },
+          "price_per_night_max": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Per Night Max"
+          },
+          "amenities": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Amenities"
+          },
+          "wheelchair_accessible": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Wheelchair Accessible"
+          },
+          "booking_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Booking Url"
+          },
+          "website": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Website"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "accommodation_type",
+          "star_rating",
+          "price_per_night_min",
+          "price_per_night_max",
+          "wheelchair_accessible",
+          "booking_url",
+          "website"
+        ],
+        "title": "AccommodationTail"
       },
       "AccommodationWriteRequest": {
         "properties": {
@@ -44310,6 +44425,168 @@
         ],
         "title": "EditorialMapViewport"
       },
+      "EntityEnvelope": {
+        "properties": {
+          "ref": {
+            "$ref": "#/components/schemas/EntityRef"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "lineage": {
+            "$ref": "#/components/schemas/EntityLineageResponse"
+          },
+          "lat": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lat"
+          },
+          "lng": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lng"
+          },
+          "photo_urls": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Photo Urls"
+          },
+          "brief": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Brief"
+          },
+          "dossier_snippet": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dossier Snippet"
+          },
+          "status": {
+            "$ref": "#/components/schemas/EntityStatusResponse"
+          },
+          "tail": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/VenueTail"
+              },
+              {
+                "$ref": "#/components/schemas/SiteTail"
+              },
+              {
+                "$ref": "#/components/schemas/AccommodationTail"
+              },
+              {
+                "$ref": "#/components/schemas/ExperienceTail"
+              }
+            ],
+            "title": "Tail",
+            "discriminator": {
+              "propertyName": "kind",
+              "mapping": {
+                "accommodation": "#/components/schemas/AccommodationTail",
+                "experience": "#/components/schemas/ExperienceTail",
+                "site": "#/components/schemas/SiteTail",
+                "venue": "#/components/schemas/VenueTail"
+              }
+            }
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "ref",
+          "name",
+          "lineage",
+          "lat",
+          "lng",
+          "photo_urls",
+          "brief",
+          "dossier_snippet",
+          "status",
+          "tail"
+        ],
+        "title": "EntityEnvelope",
+        "description": "GET /api/entities/{entity_type}/{entity_id} response.\n\n``tail``'s ``kind`` always matches the requested ``entity_type`` — the\nroute resolves ``entity_type`` before building the tail, never after,\nso the two cannot disagree."
+      },
+      "EntityLineageResponse": {
+        "properties": {
+          "city_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "City Name"
+          },
+          "neighborhood_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Neighborhood Name"
+          },
+          "neighborhood_place_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Neighborhood Place Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "city_name",
+          "neighborhood_name",
+          "neighborhood_place_id"
+        ],
+        "title": "EntityLineageResponse",
+        "description": "Where the entity sits in the place hierarchy — never more than one\nlevel of neighborhood above it. See entity_lineage.py for why a joined\nplace_id is not trusted as a neighborhood without checking its type."
+      },
       "EntityRef": {
         "properties": {
           "type": {
@@ -46255,6 +46532,219 @@
           "ambient"
         ],
         "title": "ExperienceScopeKind"
+      },
+      "ExperienceTail": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "experience",
+            "title": "Kind",
+            "default": "experience"
+          },
+          "experience_type": {
+            "type": "string",
+            "title": "Experience Type"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          },
+          "activity_tags": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Activity Tags"
+          },
+          "availability": {
+            "type": "string",
+            "title": "Availability"
+          },
+          "starts_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Starts At"
+          },
+          "ends_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ends At"
+          },
+          "recurring_pattern": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Recurring Pattern"
+          },
+          "duration_minutes": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration Minutes"
+          },
+          "difficulty": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Difficulty"
+          },
+          "genres": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Genres"
+          },
+          "min_party": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Min Party"
+          },
+          "max_party": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Party"
+          },
+          "guide_required": {
+            "type": "boolean",
+            "title": "Guide Required",
+            "default": false
+          },
+          "venue_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Venue Name"
+          },
+          "venue_address": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Venue Address"
+          },
+          "price_min": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Min"
+          },
+          "price_max": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Max"
+          },
+          "price_currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Currency"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "experience_type",
+          "description",
+          "image_url",
+          "availability",
+          "starts_at",
+          "ends_at",
+          "recurring_pattern",
+          "duration_minutes",
+          "difficulty",
+          "min_party",
+          "max_party",
+          "venue_name",
+          "venue_address",
+          "price_min",
+          "price_max",
+          "price_currency"
+        ],
+        "title": "ExperienceTail"
       },
       "ExtendRequest": {
         "properties": {
@@ -69681,6 +70171,186 @@
         "title": "SiteDetailResponse",
         "description": "Shape returned by GET /api/sites/{site_id}.\n\nMirrors ``APISiteDetail`` in the frontend types. Shares its identity,\nplace-lineage, logistics and brief fields with ``VenueDetailResponse``\nby intent — the object page renders one plate for both — and differs\nonly in the per-kind tail (period, significance, admission)."
       },
+      "SiteTail": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "site",
+            "title": "Kind",
+            "default": "site"
+          },
+          "site_type": {
+            "type": "string",
+            "title": "Site Type"
+          },
+          "period": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Period"
+          },
+          "significance_level": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Significance Level"
+          },
+          "visit_duration_minutes": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Visit Duration Minutes"
+          },
+          "admission_fee": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Admission Fee"
+          },
+          "min_price_per_person": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Min Price Per Person"
+          },
+          "max_price_per_person": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Price Per Person"
+          },
+          "hours": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hours"
+          },
+          "reservation_required": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reservation Required"
+          },
+          "reservation_lead_days": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reservation Lead Days"
+          },
+          "accessibility": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Accessibility"
+          },
+          "indoor_outdoor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Indoor Outdoor"
+          },
+          "rain_viable": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rain Viable"
+          },
+          "occasion_tags": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Occasion Tags"
+          },
+          "best_time_of_day": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Best Time Of Day"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "site_type",
+          "period",
+          "significance_level",
+          "visit_duration_minutes",
+          "admission_fee",
+          "min_price_per_person",
+          "max_price_per_person",
+          "hours",
+          "reservation_required",
+          "reservation_lead_days",
+          "accessibility",
+          "indoor_outdoor",
+          "rain_viable"
+        ],
+        "title": "SiteTail"
+      },
       "SituationAmbientNearby": {
         "properties": {
           "candidate": {
@@ -80559,6 +81229,52 @@
         ],
         "title": "VenueDietaryResponse"
       },
+      "VenueDietaryTail": {
+        "properties": {
+          "vegetarian": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Vegetarian"
+          },
+          "vegan": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Vegan"
+          },
+          "gluten_free": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Gluten Free"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "vegetarian",
+          "vegan",
+          "gluten_free"
+        ],
+        "title": "VenueDietaryTail",
+        "description": "Mirrors ``VenueDietaryResponse`` in ``api/routes/venues.py`` field for\nfield. Not imported from there — ``core/models`` sits below\n``api/routes`` in this codebase's layering (the same rule that keeps\n``backend.core.models`` importable without FastAPI or SQLAlchemy at\nall), so a shared shape used by both is declared once on each side\nrather than one importing the other."
+      },
       "VenueExactPhotoResponse": {
         "properties": {
           "media": {
@@ -80578,6 +81294,141 @@
         ],
         "title": "VenueExactPhotoResponse",
         "description": "Fresh provider-bound exact-place media, or an honest empty result."
+      },
+      "VenueTail": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "venue",
+            "title": "Kind",
+            "default": "venue"
+          },
+          "venue_type": {
+            "type": "string",
+            "title": "Venue Type"
+          },
+          "cuisine_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cuisine Type"
+          },
+          "price_range": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Range"
+          },
+          "price_per_person_estimate": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Per Person Estimate"
+          },
+          "avg_duration_minutes": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Avg Duration Minutes"
+          },
+          "reservation_required": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reservation Required"
+          },
+          "wheelchair_accessible": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Wheelchair Accessible"
+          },
+          "hours": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hours"
+          },
+          "dietary": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/VenueDietaryTail"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "max_group_comfortable": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Group Comfortable"
+          },
+          "occasion_tags": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Occasion Tags"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "venue_type",
+          "cuisine_type",
+          "price_range",
+          "price_per_person_estimate",
+          "avg_duration_minutes",
+          "reservation_required",
+          "wheelchair_accessible",
+          "hours",
+          "dietary",
+          "max_group_comfortable"
+        ],
+        "title": "VenueTail"
       },
       "Verdict": {
         "properties": {
