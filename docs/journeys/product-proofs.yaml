@@ -74,3 +74,16 @@ proofs:
         - travel-agent/tests/scenarios/test_lisbon_group_disruption_replay.py
       device_mock: []
       staging: []
+  - id: P08
+    title: Curiosity becomes a grounded encounter
+    status: dark
+    required_layers: [contract, database, device_mock, human_outcome]
+    anchors:
+      # The first slice is deliberately pull-first.  It proves that an explicit
+      # curiosity can survive Place → Dossier → Vesper → canonical Plan/Map,
+      # be preserved through a grounded repair, and improve a later occasion.
+      # It does not authorize ambient delivery or a generic content feed.
+      contract: []
+      database: []
+      device_mock: []
+      human_outcome: []
