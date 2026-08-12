@@ -826,6 +826,47 @@ flags:
       Downstream private post-occasion artifact. It cannot out-run the local
       Plan loop that produces and confirms its occurrence.
 
+  - name: DEPTH_ENCOUNTER_ENABLED
+    repo: travel-app
+    location: constants/featureFlags.ts:70
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    target_journey: P08
+    cohort: internal-founder-dogfood
+    kill_switch: Set EXPO_PUBLIC_DEPTH_ENCOUNTER_ENABLED=false; also requires INTERNAL_BUILD.
+    promotion_removal_question: >
+      By 2026-10-30, does a physical dogfood run prove a sourced lens can
+      become one grounded Move without turning the Dossier reader into an
+      itinerary surface?
+    notes: >
+      Gates the Dossier -> Vesper curiosity encounter handoff (P08). Remains
+      internal until the physical-device proof above lands.
+
+  - name: DEPTH_ENCOUNTER_LOOP_ENABLED
+    repo: travel-app
+    location: constants/featureFlags.ts:81
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    target_journey: P08
+    cohort: internal-founder-dogfood
+    kill_switch: >
+      Set EXPO_PUBLIC_DEPTH_ENCOUNTER_ENABLED=false or
+      EXPO_PUBLIC_OUTCOME_ARTIFACT_ENABLED=false; either upstream gate is a
+      full kill switch since this flag ANDs both.
+    promotion_removal_question: Same as DEPTH_ENCOUNTER_ENABLED -- resolve together.
+    notes: >
+      P08 is one proof loop, not two independently shippable affordances: a
+      Dossier may invite a grounded encounter only when the private
+      post-occasion reflection surface (OUTCOME_ARTIFACT_ENABLED) is also on
+      in the same internal build. Gates the actual encounter form render, not
+      just the entry point.
+
   - name: STORY_SHARE_ENABLED
     repo: travel-app
     location: constants/featureFlags.ts:17
