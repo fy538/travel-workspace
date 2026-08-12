@@ -65,6 +65,59 @@ boundaries.
 | device_mock | A person can complete Place → Dossier → Vesper → Plan/Map → reflection in one internal build. |
 | human_outcome | The person can name something specific they noticed or learned that they would otherwise have missed; qualitative feedback does not describe the experience as intrusive homework. |
 
+## Dogfood protocol
+
+Run this with two real internal accounts and one Lisbon lens. The facilitator
+records receipts and counts, not the person's private question or reflection.
+
+1. **Intent.** Account A opens an authored Dossier, enters an optional question
+   in their own words, chooses 45, 75, or 120 minutes, and opens the
+   review-first Vesper thread. Confirm the thread shows the correct bounded
+   request and does not treat their words as a sourced place fact.
+2. **Move.** Vesper prepares one proposal. Account A opens its **This Move**
+   receipt and the map doorway. Record whether every displayed route duration
+   was fresh, whether operating/availability claims had an authority, and
+   whether unknown conditions stayed unknown. Do not mark the run successful
+   merely because prose sounds plausible.
+3. **Repair.** Change one relevant condition (hours, route freshness, weather,
+   or the open window) in the seeded world. Ask Vesper to repair the Move.
+   The replacement must retain the original question/lens or explicitly say
+   that no grounded repair exists. A popular but unrelated substitute fails.
+4. **Private outcome.** After a confirmed moment, Account A records a verdict,
+   optional observation, and optional next thread. Verify that the Plan has not
+   silently changed and that the free text is not shown in a group surface.
+5. **Second occasion.** Start a related private planning turn. Verify that the
+   bounded prior-outcome context can shape the choice, while raw observation
+   text remains absent and a mismatched companion roster withholds companion
+   fit.
+6. **Multiplayer boundary.** Account B joins the same trip and reviews the
+   canonical proposal. Verify that B can make a group decision on the Plan but
+   cannot see A's question, lens interpretation, depth verdict, observation,
+   or next thread.
+7. **Silence.** With no explicit P08 request, location/geofence event, or
+   weather change, verify that no P08 notification or ambient card appears.
+   P08 has no autonomous delivery authority in this phase.
+
+The facilitator records only: start, review, proposal-ready, proposal-applied,
+confirmed, reflection-saved, later-occasion-used, and a one-sentence voluntary
+answer to “what did you notice that you might otherwise have missed?” Capture
+the answer only with explicit research consent; it is not product telemetry.
+
+## Systems boundary
+
+The existing systems contribute distinct evidence rather than one blended
+“smart” claim:
+
+| System | Permitted role in P08 | Must not do |
+| --- | --- | --- |
+| Dossier / provenance | Supply an authored, attributed lens | Claim it is personally true because it was clicked |
+| Plan + route + Mapbox | Bound the Move and expose its route receipt | Invent travel time or hide stale legs |
+| Availability + weather | Constrain or repair an outdoor/operationally sensitive Move | Turn a stale condition into a current recommendation |
+| Location / proximity | Existing consented context may help establish feasibility | Trigger a P08 interruption or continuous tracking |
+| Concierge AI | Synthesize, abstain, and prepare a reviewable proposal | Mutate Plan or manufacture source authority |
+| Multiplayer | Let a group decide a canonical Plan change | Share a person's curiosity, interpretation, or reflection |
+| Outcomes | Privately thicken a later occasion | Become public place truth or a profile fact by default |
+
 ## Explicit non-goals
 
 - No new top-level navigation, Curiosity feed, or universal place ontology.

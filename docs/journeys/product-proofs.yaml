@@ -85,7 +85,9 @@ proofs:
       # It does not authorize ambient delivery or a generic content feed.
       contract:
         - travel-app/__tests__/screens/dossier-detail.smoke.test.tsx
+        - travel-app/__tests__/utils/dossierEncounterSeed.test.ts
         - travel-app/__tests__/components/trip-plan/OccurrenceArtifactCard.test.tsx
+        - travel-app/__tests__/components/trip/proposal-detail/ProposalDetailScreen.test.tsx
         - travel-agent/tests/concierge/test_conversation_seed.py
       database:
         - travel-agent/tests/api/test_experience_outcome_feedback.py
