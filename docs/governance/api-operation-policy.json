@@ -10,32 +10,82 @@
   "operations": {
     "DELETE /api/conversations/{conversation_id}/participants/me": {
       "audience": "app",
-      "consumers": [],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "leaveConversationRoom",
+          "source": "travel-app/utils/api/httpExtendedEndpoints.ts"
+        }
+      ],
       "feature_flag": "GROUP_TRIP_MICRO_JOURNEY_ENABLED",
-      "lifecycle": "dark",
+      "lifecycle": "active",
       "owner": "multiplayer",
-      "reason": "Standalone-room lifecycle transport is implemented and contract-synced, but remains dark until the Room Info control surface has device-validated leave confirmation.",
-      "removal_trigger": "Expose the reviewed Room Info leave flow or remove the transport.",
+      "reason": "Room Info exposes the confirmed leave flow for standalone and trip-linked group rooms.",
+      "removal_trigger": null,
       "review_by": "2026-09-12"
     },
     "DELETE /api/conversations/{conversation_id}/participants/{user_id}": {
       "audience": "app",
-      "consumers": [],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "removeConversationRoomMember",
+          "source": "travel-app/utils/api/httpExtendedEndpoints.ts"
+        }
+      ],
       "feature_flag": "GROUP_TRIP_MICRO_JOURNEY_ENABLED",
-      "lifecycle": "dark",
+      "lifecycle": "active",
       "owner": "multiplayer",
-      "reason": "Standalone-room moderation transport is implemented and contract-synced, but remains dark until the Room Info roster action has device-validated permission states.",
-      "removal_trigger": "Expose the reviewed Room Info moderation flow or remove the transport.",
+      "reason": "Room Info exposes the owner-only member-removal control with a confirmation state.",
+      "removal_trigger": null,
       "review_by": "2026-09-12"
     },
     "POST /api/conversations/{conversation_id}/owner-handoff-and-leave": {
       "audience": "app",
-      "consumers": [],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "handoffConversationRoomOwnerAndLeave",
+          "source": "travel-app/utils/api/httpExtendedEndpoints.ts"
+        }
+      ],
       "feature_flag": "GROUP_TRIP_MICRO_JOURNEY_ENABLED",
-      "lifecycle": "dark",
+      "lifecycle": "active",
       "owner": "multiplayer",
-      "reason": "Standalone-room ownership handoff is implemented and contract-synced, but remains dark until the Room Info successor chooser has device-validated confirmation.",
-      "removal_trigger": "Expose the reviewed Room Info handoff flow or remove the transport.",
+      "reason": "Room Info lets the sole owner choose a successor and leave through one confirmed action.",
+      "removal_trigger": null,
+      "review_by": "2026-09-12"
+    },
+    "GET /api/conversations/{conversation_id}/events": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "subscribeToConversationEvents",
+          "source": "travel-app/utils/conversationEventStream.ts"
+        }
+      ],
+      "feature_flag": "GROUP_TRIP_MICRO_JOURNEY_ENABLED",
+      "lifecycle": "active",
+      "owner": "multiplayer",
+      "reason": "Standalone group rooms use the authenticated identifier-only event stream to refresh durable history and authority state.",
+      "removal_trigger": null,
+      "review_by": "2026-09-12"
+    },
+    "GET /api/trips/{trip_id}/messages/events": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "subscribeToTripEvents",
+          "source": "travel-app/utils/tripEventStream.ts"
+        }
+      ],
+      "feature_flag": "GROUP_TRIP_MICRO_JOURNEY_ENABLED",
+      "lifecycle": "active",
+      "owner": "multiplayer",
+      "reason": "Trip-linked group rooms use the same durable event-stream registry as standalone rooms.",
+      "removal_trigger": null,
       "review_by": "2026-09-12"
     },
     "POST /api/agent-workflows/{workflow_id}/commands": {

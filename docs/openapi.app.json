@@ -8198,6 +8198,245 @@
         }
       }
     },
+    "/api/conversations/{conversation_id}/events": {
+      "get": {
+        "tags": [
+          "conversation-room-members"
+        ],
+        "summary": "Stream Room Events",
+        "description": "Push opaque history and authority invalidations for one standalone room.",
+        "operationId": "stream_room_events_api_conversations__conversation_id__events_get",
+        "parameters": [
+          {
+            "name": "conversation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Conversation Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/conversations/{conversation_id}/participants/me": {
+      "delete": {
+        "tags": [
+          "conversation-room-members"
+        ],
+        "summary": "Leave Room",
+        "description": "Leave a standalone room; archive it if its final owner leaves.",
+        "operationId": "leave_room_api_conversations__conversation_id__participants_me_delete",
+        "parameters": [
+          {
+            "name": "conversation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Conversation Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/conversations/{conversation_id}/participants/{user_id}": {
+      "delete": {
+        "tags": [
+          "conversation-room-members"
+        ],
+        "summary": "Remove Room Participant",
+        "description": "Remove a member from a standalone room without changing its creator.",
+        "operationId": "remove_room_participant_api_conversations__conversation_id__participants__user_id__delete",
+        "parameters": [
+          {
+            "name": "conversation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Conversation Id"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/conversations/{conversation_id}/owner-handoff-and-leave": {
+      "post": {
+        "tags": [
+          "conversation-room-members"
+        ],
+        "summary": "Handoff Room Owner And Leave",
+        "description": "Transfer room administration and leave in one transaction.",
+        "operationId": "handoff_room_owner_and_leave_api_conversations__conversation_id__owner_handoff_and_leave_post",
+        "parameters": [
+          {
+            "name": "conversation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Conversation Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HandoffRoomOwnerRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HandoffRoomOwnerResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/dossiers/global": {
       "get": {
         "tags": [
@@ -48298,6 +48537,40 @@
         ],
         "title": "HandoffNarrationContext",
         "description": "The context block the voice agent reads before its first turn.\n\nIncludes what the user heard, what was about to play, and the\ntrigger transcript — enough to ground the agent's reply without\na separate context fetch."
+      },
+      "HandoffRoomOwnerRequest": {
+        "properties": {
+          "successor_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Successor Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "successor_id"
+        ],
+        "title": "HandoffRoomOwnerRequest"
+      },
+      "HandoffRoomOwnerResponse": {
+        "properties": {
+          "owner_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Owner Id"
+          },
+          "left_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Left User Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "owner_id",
+          "left_user_id"
+        ],
+        "title": "HandoffRoomOwnerResponse"
       },
       "HardConstraint": {
         "properties": {
