@@ -36,6 +36,26 @@
 
 flags:
   # ── travel-agent (backend) ──────────────────────────────────────────────
+  - name: WORLDFOUNDRY_DOGFOOD_SERVING_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:38
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    target_journey: P02,P04,P05,P07,P08
+    cohort: canonical_dogfood only after an active internal World Foundry release
+    kill_switch: Set WORLDFOUNDRY_DOGFOOD_SERVING_ENABLED=false; release-only semantics and moments default-deny immediately.
+    promotion_removal_question: >
+      By 2026-10-30, has the release-scoped serving predicate been exercised
+      with cloud/device proof for every reader that exposes dogfood-only
+      semantics, or should this remain dark or be removed?
+    notes: >
+      Default-off server gate for semantic and moment material admitted through
+      a reviewed internal World Foundry release. It does not expose catalog
+      rows by itself and never substitutes for the exact cohort/entity scope.
+
   - name: SPATIAL_REACHABILITY_NEARBY_ENABLED
     repo: travel-agent
     location: backend/core/feature_flags.py:37
