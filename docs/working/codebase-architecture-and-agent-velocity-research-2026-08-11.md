@@ -7,12 +7,20 @@ expires: 2026-09-10
 why_new: Extends the July architecture-simplification audit with a point-in-time structural measurement, an adversarial review of research on coding-agent velocity, and a proposed private replay evaluation.
 promotes_to: null
 supersedes: []
+related:
+  - ../../travel-agent/docs/working/demo-world-program-2026-08-12.md
 ---
 
 # Codebase Architecture Quality and Agent-Velocity Research
 
 **Date:** 2026-08-11
-**Last revised:** 2026-08-11
+**Last revised:** 2026-08-12
+
+> Execution status: supporting specification. Through Demo World Program Phase
+> 6, the [Demo World Program](../../travel-agent/docs/working/demo-world-program-2026-08-12.md)
+> and its machine-readable registry are the sole active execution backlog. This
+> document remains authoritative for the evidence, detailed acceptance criteria,
+> and non-goals of A0–A6; it must not be operated as a parallel schedule.
 
 ## Question and conclusion
 
@@ -141,24 +149,67 @@ This supports normal architectural work at demonstrated high-change-spread seams
 
 ---
 
-## Action items — executable work plan
+## Action items — supporting engineering specification
 
-Ranked by evidence quality, decision value, cost, and reversibility. Estimates are one-engineer elapsed working time and exclude unattended model runtime. A named person must replace each role-level DRI before work starts.
+The items remain ranked by evidence quality, decision value, cost, and
+reversibility. Estimates are one-engineer elapsed working time and exclude
+unattended model runtime. A named person must replace each role-level DRI before
+work starts. During the Demo World Program, only mapped registry tasks may
+execute; the mapping controls owner, priority, timing, and shared-surface locks,
+while the sections below control technical completion.
 
-### Execution order and dependencies
+### Integrated execution authority
 
-| Workstream | Item | May start when | Blocks |
+| Source item | Canonical program task | Execution decision through Demo Phase 6 |
+|---|---|---|
+| A1 generated-contract derivation | `DEMO-ENG-01` | Active after a named API-contract DRI is assigned. Complete before Phase 5 entry through serialized `contract-sync` windows. |
+| A2 verification-router repair | `DEMO-ENG-02` | Active after a named test-infrastructure DRI is assigned. Root-only work may run beside demo definition/product work. |
+| A2 Home ratchet dependency | `DEMO-ENG-03` | Demo Home lane owns the product change. A2 may verify it but may not make a competing edit. |
+| A3 SCC ratchet | `DEMO-ENG-04` | Already shipped; remains a continuous backend merge gate. |
+| A2 repeated baseline and historical validation | `DEMO-ENG-05` | Run only on frozen clean commits, away from cloud rehearsal. Defer after Phase 6 if no credible measurement window exists. |
+| A0, then optionally A4/A5 | `POST-DEMO-01` | Deferred until Phase 6 closes; no demo critical-path people, cloud state, or canonical checkout use. |
+| A6 targeted refactor | No active task | Do not execute independently during the demo. A demo-blocking seam requires a new approved `DEMO-ENG-*` task; otherwise A6 remains gated by A0. |
+
+The Demo Program's Sections 12.2–12.4 define the registry records, protected
+surfaces, lock handoffs, and integration cadence. Do not duplicate or override
+those decisions here. When a mapped item changes materially, update the registry
+and both documents in one integration change.
+
+### Current execution status
+
+Verified 2026-08-12 against workspace `53993f6`, backend `3618081a8`, and frontend `7bac31ea`. Status means the item satisfies its own acceptance criteria, not merely that code was written.
+
+| Item | Status | Verified state | Canonical next action |
 |---|---|---|---|
-| Immediate engineering | A1 contract derivation | An isolated frontend/backend worktree lane exists | Nothing; may run beside A0 |
-| Immediate engineering | A2 verification baseline | Dependencies are installed on a clean, named commit | A2 fast-path implementation |
-| Immediate engineering | A3 SCC ratchet | An isolated backend worktree lane exists | A6 architectural comparison |
-| Agent-velocity evaluation | A0 replay harness | A DRI, spend ceiling, and working pinned Codex CLI exist | A4 and A5 trials |
-| Agent-velocity evaluation | A4 instruction trial | A0 pilot passes | Instruction decision |
-| Agent-velocity evaluation | A5 indexing trial | A0 pilot passes and an intervention qualifies | Indexing decision |
-| Conditional architecture | A6 targeted refactor | A0 is complete and identifies a qualifying failure cluster | Any agent-specific restructuring |
+| A0 private replay evaluation | **DEFERRED UNTIL POST-DEMO; ALSO BLOCKED** | No harness/protocol artifacts exist; `codex exec --help` still fails with the same bundled-binary `ENOENT` | `POST-DEMO-01`: do not start before Demo Phase 6 closes. Then assign a named DRI, budget, governed harness, pinned working CLI, and isolation smoke before reactivation. |
+| A1 generated-contract derivation | **READY AFTER OWNER ASSIGNMENT** | Enforcement is merged and green: 340/340 exports classified; contract check, typecheck, and 23 checker tests pass | `DEMO-ENG-01`: name the DRI, register the app-only lane, and adjudicate the 87 `unmodeled_wire` entries through serialized `contract-sync` windows before Phase 5. |
+| A2 verification router | **READY AFTER OWNER ASSIGNMENT — DO NOT RELY ON `verify-changed` YET** | Router code and tests are merged, but it cannot discover changes inside the independent child repositories and skips referenced checker commands | `DEMO-ENG-02`: repair the router and prove it with three-repository integration tests. `make verify` remains authoritative meanwhile. |
+| A2 Home ratchet dependency | **READY; DEMO-OWNED** | Frontend `verify:fast` is red because `utils/tripsHomeSectionPlan.ts` is 285 lines against a 267-line ratchet | `DEMO-ENG-03`: the Demo Home DRI makes the reviewed product/budget decision; the verification owner only remeasures afterward. |
+| A3 SCC architecture ratchet | **COMPLETE / CONTINUOUS GATE** | Merged on backend `main`; import, lazy-import, SCC, and 23 SCC tests pass; exact four-module SCC is ratcheted | `DEMO-ENG-04`: keep the gate green on every backend change; review any baseline membership change explicitly. |
+| A2 repeated baseline and historical validation | **BLOCKED BY ROUTER, HOME, AND CLEAN-COMMIT FREEZE** | Only one baseline repetition, four of twenty historical diffs, no disposable-Postgres measurement, and no external-lane inventory exist | `DEMO-ENG-05`: measure only after `DEMO-ENG-02/03` on fixed clean commits; defer post-demo rather than collect incomparable timings. |
+| A4 lean instruction trial | **DEFERRED; BLOCKED BY A0** | No treatment artifact or trial exists | `POST-DEMO-01`: reconsider only after A0's pilot and power check pass. |
+| A5 indexing/repository-map trial | **DEFERRED; BLOCKED BY A0** | No qualified intervention or trial exists | `POST-DEMO-01`: begin qualification only after the A0 pilot passes. |
+| A6 targeted refactor | **DEFERRED; GATED BY A0** | No qualifying failure cluster or refactor decision record exists | No active program task. Create a reviewed `DEMO-ENG-*` exception only for a demo-blocking seam; otherwise wait for qualifying A0 evidence. |
+
+### Program dependencies and phase gates
+
+| Canonical task | May start when | Blocks or gates |
+|---|---|---|
+| `DEMO-ENG-01` / A1 | Named reviewer, registered app-only lane, and no conflicting `contract-sync` holder | Demo Phase 5 entry and contract-facade certification |
+| `DEMO-ENG-02` / A2 router | Named test-infrastructure DRI and registered root-only lane | Trusting `verify-changed`; it does not block product construction |
+| `DEMO-ENG-03` / Home ratchet | Named Demo Home DRI and product scope agreed | Demo Phase 5 entry and credible frontend baseline measurement |
+| `DEMO-ENG-04` / A3 | Complete; run continuously | Every backend merge and any later architecture comparison |
+| `DEMO-ENG-05` / A2 measurement | `DEMO-ENG-02/03` complete and all three repository commits frozen and clean | Verification-loop optimization decisions; it may be deferred rather than block Phase 6 |
+| `POST-DEMO-01` / A0→A4/A5 | Demo Phase 6 closed, plus A0 DRI, budget, harness, pinned CLI, and isolation smoke | A4/A5 trial decisions |
+| A6 | A0 qualifies a seam, or the Demo Program approves a new blocking-seam exception | Any agent-specific restructuring |
 
 ### Rules shared by every item
 
+- Confirm that the item has a canonical registry ID and named DRI before work.
+  Items mapped to `POST-DEMO-01` or “no active task” must not start during the
+  demo program.
+- Acquire the Demo Program surface lock before writing protected files and
+  release it only after the linked evidence and integration result are recorded.
 - Run `make status` before starting. Do not implement in a canonical child checkout that contains another session's work.
 - Use `./scripts/new-worktree.sh <lane>` or its `--agent-only`/`--app-only` form. Use one descriptive branch per child repository and stage explicit filenames only.
 - Record the exact input commit, command, tool version, start/end time, and pass/fail result in the named evidence artifact.
@@ -168,8 +219,9 @@ Ranked by evidence quality, decision value, cost, and reversibility. Estimates a
 
 ### A0 — Build a private historical-task replay evaluation *(first research item)*
 
+- **Program mapping:** `POST-DEMO-01`; deferred until Demo Phase 6 closes.
 - **Confidence:** high that measurement is required; results unknown.
-- **DRI:** workspace evaluation owner.
+- **DRI:** workspace evaluation owner — **unassigned**.
 - **Repositories:** workspace implementation; read-only historical worktrees from both child repositories.
 - **Effort:** 5–8 engineering days for harness/task preparation, plus model runtime and two independent human review passes.
 - **Depends on:** assigned DRI, approved spend ceiling, installed dependencies, and working Codex CLI.
@@ -190,7 +242,18 @@ Whichever is chosen, pin harness name, version, model ID, and reasoning level in
 
 On 2026-08-11, local `codex exec --help` failed because the installed package could not find its bundled native binary (`ENOENT`). Before building the harness, reinstall or repair the CLI, pin and record `codex --version`, and demonstrate one disposable smoke run. Do not silently switch between the desktop app, a different CLI release, or another model during an experiment.
 
-> **Re-checked 2026-08-12: still failing, identical `ENOENT`.** A0 remains blocked — not attempted. A1/A2/A3 above were executed without it, per the execution-order table's own dependency graph (none of them depend on A0). A4/A5/A6 remain correctly blocked on A0's pilot/report and are likewise not attempted. Repairing the CLI, assigning a DRI, and approving a spend ceiling are still open, and none of them are something to fabricate or route around.
+**Status verified 2026-08-12: DEFERRED UNTIL POST-DEMO AND BLOCKED, not started.** `codex exec --help` still fails with the identical `ENOENT`; `scripts/agent_velocity_eval.py` and `docs/reliability/agent-velocity/protocol.md` do not exist. Do not consume demo critical-path reviewers, cloud state, or canonical checkouts to clear these prerequisites.
+
+At the `POST-DEMO-01` reactivation checkpoint, complete these prerequisites in
+order:
+
+1. Replace “workspace evaluation owner” with a named DRI in this document.
+2. Record the maximum model spend and maximum human-review time in the protocol stub.
+3. Make and record the harness-scope choice described above.
+4. Repair or reinstall the CLI; record the installation source and `codex --version`.
+5. Run one non-scored, disposable `codex exec --ephemeral` smoke task inside the proposed isolation boundary and retain its command, exit status, JSONL, patch, and cleanup evidence.
+
+Do not create the scored task manifest or begin A4/A5 until all five are complete. A1–A3 are independent of this blocker; A4–A6 are not.
 
 Official OpenAI documentation supports `codex exec` for non-interactive runs, `--ephemeral` to avoid persisted rollout files, `--ignore-user-config`/`--ignore-rules` for controlled automation, `--json` for JSONL events, and `--sandbox workspace-write` for unattended work confined to the workspace. Use those explicit flags rather than deprecated `--full-auto`. See [non-interactive mode](https://learn.chatgpt.com/docs/non-interactive-mode) and the [CLI flag reference](https://learn.chatgpt.com/docs/developer-commands?surface=cli).
 
@@ -316,45 +379,51 @@ A0 is complete when the harness tests pass; the frozen manifest has 18–24 elig
 
 ### A1 — Audit and enforce generated contract derivation *(immediate engineering)*
 
-> **Executed 2026-08-12** on branch `codex/agent-velocity-hardening` (all three repos), not yet
-> merged. `travel-app` commit `46b25f4a` (`check-schema-bridge.mjs` + manifest + tests),
-> `travel-agent` commit `50e6585fb` (removal), workspace commit `23c7d48` (contract-check.sh
-> wiring). Found real, previously-unknown contract drift while building the manifest — see the
-> commit message for `TripStatus`/`ProposalResolveStatus`/two `DossierExemplar` enums, each
-> recorded with an unassigned owner rather than a fabricated name. 87 of 340 exports landed as
-> `unmodeled_wire` needing human review before their expiry (2026-09-11).
+- **Program mapping:** `DEMO-ENG-01`; W5, required before Demo Phase 5 entry.
+- **Status:** **SHIPPED ENFORCEMENT; REMEDIATION READY AFTER OWNER ASSIGNMENT.** Human contract adjudication is not complete.
+- **Merged commits:** frontend `46b25f4a`, backend `50e6585fb`, workspace `23c7d48`; all are reachable from the current `main` branches through the 2026-08-12 hardening merges.
+- **Verified 2026-08-12:** `make contract-check`, `make typecheck`, `npm run schema-bridge`, and all 23 schema-bridge tests pass.
+- **Inventory:** 340 exports = 147 `generated_alias`, 56 `schema_projection`, 50 `ui_only`, and 87 `unmodeled_wire`.
+- **Blocking gap:** all 87 exceptions use a placeholder/unassigned owner; 46 also have no route or method. The manifest expires these exceptions on 2026-09-11.
 
 - **Confidence:** high; contract single-source-of-truth is valuable independent of agents.
-- **DRI:** frontend/API-contract owner.
+- **DRI:** frontend/API-contract owner — **unassigned; a named reviewer is required now.**
 - **Repositories:** `travel-app`, with removal of the superseded checker/hook in `travel-agent`.
-- **Effort:** 2–4 engineering days.
-- **Depends on:** no A0 dependency; use an isolated cross-repository lane.
+- **Remaining effort:** 2–4 engineering days for the 87-entry human review and resulting type changes.
+- **Depends on:** no A0 dependency; register an app-only review lane and acquire the Demo Program's `contract-sync` lock before writing any protected contract surface. Demo API changes own the announced integration windows; A1 rebases afterward.
 
-#### Starting point
+#### Shipped implementation
 
-`travel-agent/scripts/check_schema_bridge.py` already compares annotated frontend field names with `schema.gen.ts` and is wired into pre-push. It currently passes but covers only two `@schema` annotations (`StayCandidate` and `AtlasFacetSuggestions`), scans `types.ts` and `travel-app/types/*.ts`, does not scan `utils/api/interface.ts`, and validates field names rather than full TypeScript compatibility.
+The merged TypeScript-AST checker replaced `travel-agent/scripts/check_schema_bridge.py`, inventories every exported type in both API facade files, runs in `verify:fast` and `contract-check`, and fails for unclassified exports, missing generated models, malformed entries, and expired `unmodeled_wire` exceptions.
 
-#### Deliverables
+#### Shipped deliverables
 
-1. Add `travel-app/scripts/schema-bridge-manifest.json`. Inventory every exported interface/type in `utils/api/types.ts` and `utils/api/interface.ts` with:
-   - symbol and source file;
-   - classification: `generated_alias`, `schema_projection`, `adapter`, `ui_only`, or `unmodeled_wire`;
-   - generated schema name when applicable;
-   - route and method for `unmodeled_wire`;
-   - rationale; and
-   - owner plus expiry for every `unmodeled_wire` exception.
-2. Add `travel-app/scripts/check-schema-bridge.mjs` using the installed TypeScript compiler API rather than regex parsing. It must read and validate the manifest, enumerate exports from both facade files, reject unclassified exports, reject missing generated schema names, and fail stale `unmodeled_wire` exceptions.
-3. Add `travel-app/scripts/check-schema-bridge.test.mjs` covering every classification, multiline/nested declarations, aliases, missing models, duplicate entries, stale exceptions, and useful error locations.
-4. Add `schema-bridge` and `schema-bridge:test` package scripts, include `schema-bridge` in `verify:fast`, and invoke it from the workspace `contract-check` path.
-5. For `schema_projection`, replace copied field declarations with aliases or `Pick`/`Omit`/intersection derivations from `components["schemas"]` when that preserves semantics. Keep deliberate UI refinements and adapters explicit.
-6. Once the new AST-based checker passes on the same known annotations and the complete manifest, remove `travel-agent/scripts/check_schema_bridge.py` and its backend pre-push hook in the same cross-repository change. Do not leave two canonical implementations.
+1. `travel-app/scripts/schema-bridge-manifest.json` inventories every exported interface/type in `utils/api/types.ts` and `utils/api/interface.ts` with symbol, source file, classification, generated schema name when applicable, and rationale. All 87 `unmodeled_wire` entries have an expiry and placeholder owner; 41 have route/method evidence. The placeholder owners and remaining 46 evidence gaps are intentionally tracked as unfinished work below.
+2. `travel-app/scripts/check-schema-bridge.mjs` uses the installed TypeScript compiler API rather than regex parsing.
+3. `travel-app/scripts/check-schema-bridge.test.mjs` has 23 passing tests across the required classifications and failure modes.
+4. `schema-bridge` runs from frontend `verify:fast` and workspace `contract-check`.
+5. The superseded backend regex checker and hook are removed; there is one canonical implementation.
+
+#### Remaining work — next owner executes this
+
+1. Assign one named API-contract reviewer and replace the placeholder owner on every `unmodeled_wire` entry.
+2. Review all 87 entries at their population and consumption call sites—not from field similarity alone—and choose exactly one outcome:
+   - convert a wire copy to `generated_alias` or `schema_projection` and update the TypeScript declaration;
+   - reclassify a deliberate frontend transform as `adapter` with its source and transformation rationale;
+   - reclassify a frontend-only concept as `ui_only`; or
+   - retain `unmodeled_wire` temporarily with a named owner, concrete removal plan, and unexpired date.
+3. For the 46 entries lacking route/method evidence, add the route and method or document the parent generated schema/consumer chain when the type is nested and has no direct endpoint. Extend the checker and tests so a null route/method without that explicit nested-type evidence fails.
+4. Resolve the known `TripStatus`, `ProposalResolveStatus`, and two `DossierExemplar` enum findings as part of this review; do not merely renew their expiry.
+5. Run the commands below, review the generated diff, and update the inventory totals and status table in this document.
 
 #### Acceptance criteria
 
-- Every exported interface/type in the two API facade files is classified exactly once.
-- No `generated_alias` or `schema_projection` independently copies a complete generated wire shape.
-- Every remaining `unmodeled_wire` item names a route, owner, reason, and unexpired removal date.
-- Intentional adapters and UI-only types remain source-compatible; wholesale deletion of `types.ts` or `interface.ts` is prohibited.
+- [x] Every exported interface/type in the two API facade files is classified exactly once.
+- [x] The AST checker and its 23 tests are wired into the normal contract/fast gates.
+- [x] Intentional facade layers remain source-compatible; neither `types.ts` nor `interface.ts` was deleted wholesale.
+- [ ] Every `unmodeled_wire` entry has been human-reviewed and has a named—not placeholder—owner if retained.
+- [ ] Every retained exception has route/method evidence or an explicitly checked nested-type alternative, a concrete rationale, and an unexpired removal date.
+- [ ] The four recorded status/enum drift findings have an explicit resolution.
 - These commands pass from the workspace root:
 
 ```bash
@@ -366,32 +435,33 @@ make typecheck
 (cd travel-app && npm run verify:fast)
 ```
 
-The generated snapshots and `schema.gen.ts` must have no unexplained diff. A1 is complete when the reviewed manifest and checker make any new unclassified wire-like export fail CI.
+The generated snapshots and `schema.gen.ts` must have no unexplained diff. **A1 is complete only when every unchecked box above is satisfied; the currently green checker alone is not completion because placeholder owners and null route evidence still pass.**
 
 **Non-goals:** renaming unrelated frontend domain types, changing API behavior, or replacing deliberate frontend adapters with raw generated types at every call site.
 
 ### A2 — Measure and improve the trusted verification loop *(immediate engineering)*
 
-> **Executed 2026-08-12** on the workspace repo, branch `codex/agent-velocity-hardening`
-> (commits `26c7f3b`, `f4f941e`), NOT merged. Tools built and tested in full (53 tests total);
-> baseline measurement is **partial** — 1 of the required 3 repetitions, 4 of the required 20
-> historical diffs. Full gaps and current numbers: [`docs/reliability/test-loop-baseline.md`](../reliability/test-loop-baseline.md).
-> Headline: `make -C travel-agent ci` and `npm run verify:full` are both currently red on `main`
-> for two unrelated pre-existing reasons (flagged separately, not fixed here); the 17,776-test
-> offline suite underneath them is itself green in ~7.4 minutes.
+- **Program mapping:** router repair `DEMO-ENG-02`; Home dependency `DEMO-ENG-03`; repeated measurement and historical validation `DEMO-ENG-05`.
+- **Status:** **IN PROGRESS. Do not rely on `make verify-changed` as a safety gate yet.**
+- **Merged commits:** workspace `26c7f3b` and `f4f941e`, reachable from current `main` through `6fd16bf`.
+- **Verified 2026-08-12:** the measurement and router suites pass (53 tests). The recorded backend CI recheck passed in 493.34 seconds with 17,784 offline tests passing; this is one observation, not a median.
+- **Current frontend state:** `npm run verify:fast` is red because `utils/tripsHomeSectionPlan.ts` is 285 lines against a 267-line ratchet. Contract check, typecheck, API boundaries, and schema bridge pass before that failure.
+- **Evidence gap:** only one repetition per baseline command, four of twenty required historical diffs, no disposable-Postgres measurement, no external-lane inventory, and no valid `make verify` median.
+- **Router correctness gaps:** change discovery runs only in the workspace Git repository even though `travel-agent/` and `travel-app/` are ignored independent repositories; referenced checker tests are emitted as `<run ...>` hints but skipped by the executor; the measurement wrapper records a failing command but exits zero unless it times out.
 
-- **Confidence:** high on the mechanism; current baseline unknown.
-- **DRI:** workspace test-infrastructure owner, with backend and frontend reviewers.
+- **Confidence:** high on the mechanism; baseline evidence is partial and not yet decision-grade.
+- **DRI:** workspace test-infrastructure owner — **unassigned**, with backend and frontend reviewers.
 - **Repositories:** workspace plus both child repositories only where a new target is required.
-- **Effort:** 1–2 days for measurement; 3–5 days for a conservative fast path.
-- **Depends on:** installed dependencies and a clean, named commit in isolated worktrees.
+- **Remaining effort:** 3–5 engineering days across the router and Home lanes, plus approximately three full repetitions of the measured gates after both land.
+- **Depends on:** named owners, installed dependencies, registered isolated lanes, and—for `DEMO-ENG-05` only—one frozen set of clean commits in all three repositories.
 
 #### Baseline deliverables
 
-- `scripts/measure_verification.py` that records command, commit IDs, environment class, wall time, exit status, collected/passed/failed/skipped counts when available, and log path.
-- `scripts/tests/test_measure_verification.py` for timeout, nonzero exit, JSON schema, and partial-result behavior.
-- `docs/reliability/test-loop-baseline.json` as machine-readable evidence.
-- `docs/reliability/test-loop-baseline.md` summarizing the reference machine, exclusions, failures, flakes, and slowest lanes.
+- [x] `scripts/measure_verification.py` records command, commit IDs, environment class, wall time, exit status, parsed test counts when available, and log path.
+- [x] `scripts/tests/test_measure_verification.py` covers timeout, nonzero exit, JSON schema, and partial-result behavior.
+- [x] `docs/reliability/test-loop-baseline.json` and [`test-loop-baseline.md`](../reliability/test-loop-baseline.md) contain the partial evidence and chronology.
+- [ ] Three comparable repetitions exist for every required command on the same clean commits.
+- [ ] Postgres and excluded live/device/API-key/dogfood lanes are measured or explicitly inventoried.
 
 Run the following three times on the same clean commits, with no source edits between repetitions:
 
@@ -406,10 +476,12 @@ Measure `make test-backend-postgres` separately against a disposable database. L
 
 #### Fast-path deliverables
 
-- A root `make verify-changed BASE_REF=<ref>` target implemented by `scripts/verify-changed.sh` or an equivalently tested script.
-- A dry-run mode that prints changed files, selected commands, and the reason for each selection.
-- Unit tests for every path class and for unknown-path fallback.
-- A decision table in `docs/reliability/test-loop-baseline.md` mapping path classes to commands.
+- [x] A root `make verify-changed BASE_REF=<ref>` target, dry-run output, classification rules, unit tests, and a documented decision table are merged.
+- [ ] Change discovery reads the workspace, backend, and frontend Git repositories independently and prefixes their paths before classification.
+- [ ] The CLI accepts and validates an explicit base ref for each repository; it must not apply one repository's commit ID to another repository.
+- [ ] Referenced checker tests are real executable commands, not skipped `<run ...>` hints.
+- [ ] The measurement command has an explicit exit policy: add a `--propagate-exit` mode for gate use, or document and enforce that the recorder may not be used as a gate.
+- [ ] Integration tests create three temporary independent Git repositories and prove committed, staged, unstaged, and untracked child-repository changes are discovered.
 
 Minimum routing rules:
 
@@ -417,55 +489,79 @@ Minimum routing rules:
 - Frontend `.ts`/`.tsx` changes run `npm run verify:fast` and Jest `--findRelatedTests` for the changed files. If Jest finds no tests for production code, select the full frontend Jest lane.
 - Backend changes always run import/lazy-import/SCC gates plus lint. Until a tested dependency-to-test mapper exists, uncertain backend changes select `make -C travel-agent ci`.
 - Documentation-only changes run the existing documentation governance/link gates; executable examples additionally run their referenced checker tests.
-- The script must exit nonzero when `BASE_REF` is missing or unresolved; it may not guess `main` in a dirty concurrent worktree.
+- The repaired script must exit nonzero when any required repository base ref is missing or unresolved; it may not guess `main` in a dirty concurrent worktree.
+
+#### Remaining work — execute in this order
+
+1. Register `DEMO-ENG-02`, `DEMO-ENG-03`, and `DEMO-ENG-05`. Assign the named workspace test-infrastructure DRI and Demo Home DRI, record exact base commits/worktrees, and acquire `verification-infra` or `home-composition` as appropriate.
+2. In parallel, execute these non-overlapping lanes:
+   - `DEMO-ENG-02`: repair the three router correctness gaps and add cross-repository integration tests in a root-only lane. Until this lands, label `verify-changed` experimental and continue using `make verify` for pre-push decisions.
+   - `DEMO-ENG-03`: in the Demo Home lane, reduce `utils/tripsHomeSectionPlan.ts` to at most 267 lines or deliberately approve and document a new budget. Do not silently raise the limit inside verification infrastructure.
+3. After both lanes merge and `make verify` is green, freeze one clean set of three repository commits for `DEMO-ENG-05`. Do not edit source or run this workload concurrently with a W6 cloud rehearsal.
+4. Run three back-to-back recorded repetitions of `make doctor`, `make -C travel-agent ci`, `make contract-check`, `npm run verify:full`, and `make verify`. Preserve every failure.
+5. Measure `make test-backend-postgres` against a disposable database and inventory the API-key, dogfood, device, and live-service lanes with owners and commands. Never point this measurement at Demo Program runtime state.
+6. Validate routing against at least twenty preselected historical diffs, including known defects and cross-repository contract changes. Any missed historical detecting test is blocking.
+7. Measure representative low-risk fast paths and compare their medians to the completed `make verify` median. Update both baseline artifacts, the Demo Program registry evidence, and this status table. If a stable measurement window is unavailable before Phase 6, mark `DEMO-ENG-05` deferred rather than collecting incomparable evidence.
+
+Use the recorder explicitly for each run, for example:
+
+```bash
+python3 scripts/measure_verification.py \
+  --label verify-r1 \
+  --append-to docs/reliability/test-loop-baseline.json \
+  --timeout 3600 \
+  -- make verify
+```
+
+Inspect the recorded `exit_code`; until `--propagate-exit` exists, the recorder process returning zero does not prove the measured command passed.
 
 #### Acceptance criteria
 
-- Baseline artifacts identify exact commits and contain all three repetitions, including failures and skips.
-- `verify-changed --dry-run` is deterministic for the same diff.
-- Every unrecognized or high-risk change falls back to `make verify`.
-- On a reviewed sample of at least 20 historical diffs, the fast path selects every test/gate that caught the historical defect; misses are blocking.
-- On the reference machine, the median low-risk fast-path run is at most five minutes and at most 50% of the median `make verify` duration. If it misses either target, retain the measurements but do not market the target as a fast loop.
-- `make verify` remains the required pre-push/merge gate until a separate decision changes that policy.
+- [ ] Baseline artifacts identify exact clean commits and contain all three repetitions, including failures and skips.
+- [ ] `verify-changed --dry-run` is deterministic and complete across all three Git repositories.
+- [ ] Every unrecognized or high-risk change falls back to `make verify`, and every selected checker test actually executes.
+- [ ] On at least 20 reviewed historical diffs, the fast path selects every test/gate that caught the historical defect; misses are blocking.
+- [ ] On the reference machine, the median low-risk fast-path run is at most five minutes and at most 50% of the median `make verify` duration. If it misses either target, retain the measurements but do not market the target as a fast loop.
+- [x] `make verify` remains the required pre-push/merge gate.
+
+**A2 is complete only when every unchecked box is satisfied. Merged scripts and passing unit tests are not enough because the current repository-discovery defect can yield an empty or incomplete change set.**
 
 **Non-goals:** auto-generating tests, skipping flaky failures, or claiming coverage for marker/live/device lanes that were not run.
 
 ### A3 — Ratchet existing architecture enforcement *(immediate engineering)*
 
-> **Executed 2026-08-12** on branch `codex/agent-velocity-hardening` (`travel-agent` commit
-> `dc80d75e5`), not yet merged. Real baseline against the current graph reproduces the original
-> 4-file `home/concierge_feed` cycle (1,471 modules, 4,287 top-level edges — close to but not
-> identical to the original scratch-script counts, as expected since exclusion rules are now
-> exact rather than approximate). 23 tests. Wired into `lint`, `ci`, the cert-db gate,
-> pre-commit, and GitHub Actions.
+- **Program mapping:** `DEMO-ENG-04`; continuous backend merge gate.
+- **Status:** **COMPLETE.** Backend commit `dc80d75e5` is merged into `main` through `6fb382237`.
+- **Verified 2026-08-12:** 1,471 modules, 4,287 top-level edges, and the exact four-module `home/concierge_feed` SCC match the committed ratchet; the import and lazy-import checks pass with 60 documented lazy exceptions and no new/stale entries; all 23 SCC tests pass.
+- **Operational rule:** the existing SCC is accepted debt, not a target count. Any membership change—including an improvement—requires an intentional baseline review so the artifact records what changed.
 
 - **Confidence:** medium-high.
 - **DRI:** backend architecture owner.
 - **Repository:** `travel-agent`.
-- **Effort:** 2–3 engineering days.
-- **Depends on:** isolated backend lane; no dependency on A0.
+- **Remaining effort:** none for A3; cycle removal is separate work.
+- **Depends on:** no A0 dependency.
 
-#### Deliverables
+#### Shipped deliverables
 
-1. Add `travel-agent/scripts/check_import_scc.py`. Parse every `backend/**/*.py` file with Python AST, resolve internal relative/absolute imports, and include module-scope imports only. Exclude `TYPE_CHECKING` and function/class-body imports from the top-level graph, but report their counts separately.
-2. Add `travel-agent/scripts/check_import_scc_baseline.json` containing:
+1. `travel-agent/scripts/check_import_scc.py` parses every `backend/**/*.py` file with Python AST, resolves internal relative/absolute imports, and includes module-scope imports only. It excludes `TYPE_CHECKING` and function/class-body imports from the top-level graph while reporting their counts separately.
+2. `travel-agent/scripts/check_import_scc_baseline.json` contains:
    - schema version;
    - source commit;
    - explicit inclusions/exclusions;
    - sorted module and edge counts;
    - sorted member lists for every SCC with more than one module; and
    - a SHA-256 of the canonicalized SCC list.
-3. Add `--write-baseline <path>` and `--ci` modes. `--ci` must fail on a new, removed, enlarged, shrunk, or membership-changed SCC so every change requires deliberate baseline review; an improvement is not silently discarded.
-4. Add `travel-agent/tests/scripts/test_check_import_scc.py` covering relative imports, aliases, multiline imports, `TYPE_CHECKING`, deferred imports, syntax errors, deterministic ordering, baseline drift, and two disjoint cycles with the same scalar count.
-5. Wire `--ci` into `travel-agent/Makefile` `gates`/`ci`, `.pre-commit-config.yaml`, and `.github/workflows/ci.yml` beside `check_imports.py` and `check_lazy_imports.py`.
-6. Document the exact baseline-update command and architectural justification requirement in `travel-agent/AGENTS.md` or the checker help text, not both unless one links to the other.
+3. `--write-baseline <path>` and `--ci` modes ratchet exact SCC membership.
+4. `travel-agent/tests/scripts/test_check_import_scc.py` covers the required parser and drift cases.
+5. The gate is wired into backend `lint`, `ci`, the certificate gate, pre-commit, and GitHub Actions.
+6. The checker documents the intentional baseline-update procedure.
 
 #### Acceptance criteria
 
-- Two runs against the same commit produce byte-identical baseline JSON.
-- The current graph's SCC membership is reproduced; any discrepancy with the original four-file observation is documented rather than forced to match it.
-- A fixture that swaps one SCC member while preserving cycle count fails, proving this is not a scalar-count gate.
-- Existing checks still report no top-level boundary violations and exactly the current allowlisted lazy-import inventory with no new or stale items.
+- [x] Two runs against the same commit produce byte-identical baseline JSON.
+- [x] The current graph reproduces the exact four-file SCC.
+- [x] A fixture that changes SCC membership while preserving scalar cycle count fails.
+- [x] Existing checks report no top-level boundary violations and exactly 60 allowlisted lazy imports with no new or stale entries.
 - These commands pass:
 
 ```bash
@@ -481,11 +577,14 @@ make ci
 
 ### A4 — Test a lean root instruction manifest *(controlled trial)*
 
+- **Program mapping:** `POST-DEMO-01`; no active demo task.
+- **Status:** **DEFERRED UNTIL POST-DEMO AND BLOCKED BY A0.** No lean treatment file or trial result exists.
 - **Confidence:** medium-low because published findings conflict.
-- **DRI:** A0 evaluation owner; workspace maintainer approves treatment content.
+- **DRI:** the named A0 evaluation owner; workspace maintainer approves treatment content.
 - **Repository:** workspace evaluation variant only until the decision gate passes.
 - **Effort:** 1 day to author/review the variant, then A0 runtime and review.
 - **Depends on:** A0 pilot passing.
+- **Next action:** none until Demo Phase 6 closes and A0's isolation smoke, pilot, and minimum-detectable-effect calculation pass. Then create only the treatment artifact below; do not edit the production root `AGENTS.md` before the result.
 
 #### Treatment definition
 
@@ -505,11 +604,14 @@ If it wins, update only the root `AGENTS.md`, run `make verify`, and retain the 
 
 ### A5 — Trial structural indexing or a deterministic repository map *(controlled trial)*
 
+- **Program mapping:** `POST-DEMO-01`; no active demo task.
+- **Status:** **DEFERRED UNTIL POST-DEMO AND BLOCKED BY A0.** No product/configuration has qualified and no repository-map treatment exists.
 - **Confidence:** medium; transferability unknown.
-- **DRI:** A0 evaluation owner with security/privacy reviewer.
+- **DRI:** the named A0 evaluation owner with a named security/privacy reviewer.
 - **Repositories:** evaluation harness only until the decision gate passes.
 - **Effort:** up to 2 days for qualification/integration, then A0 runtime and review.
 - **Depends on:** A0 pilot passing and one intervention qualifying below.
+- **Next action:** none until Demo Phase 6 closes and A0's pilot passes. Then time-box qualification to one day and record pass/fail against every criterion below before integrating anything.
 
 #### Qualification gate
 
@@ -534,11 +636,14 @@ Adopt only the pinned configuration that was tested. Add a removal command and v
 
 ### A6 — Refactor one measured hot seam, then replay *(conditional)*
 
+- **Program mapping:** no active task. A demo-blocking exception requires a new approved `DEMO-ENG-*` registry item; otherwise A6 remains post-demo.
+- **Status:** **DEFERRED AND GATED, NOT STARTED.** No A0 report, qualifying failure cluster, or refactor decision record exists.
 - **Confidence:** low until A0 identifies a repeated failure cluster.
 - **DRI:** owner of the selected backend/frontend domain, with architecture reviewer.
 - **Repositories:** whichever child repositories the selected seam genuinely spans.
 - **Effort:** 3–10 engineering days after a scoped design review.
 - **Depends on:** completed A0 report and completed A3 SCC tooling.
+- **Next action:** none during Demo Phases 1–6 unless the Demo Program approves a new blocking-seam exception. Otherwise wait until A0 crosses the entry threshold below. If it does not, close A6 as “not justified”; do not select a seam by architectural intuition alone.
 
 #### Entry gate
 
@@ -587,11 +692,18 @@ If the comparison fails, archive the decision and measurements, delete or abando
 
 ## Exit
 
-Before `expires` (2026-09-10), choose one:
+Before `expires` (2026-09-10), make and record these decisions:
 
-- **Promote** the reproducible import-graph/SCC checks and any validated generated-contract rule into durable tooling;
-- **Record a decision** to run or decline A0, including the task set, fixed conditions, and decision threshold;
-- **Archive** this review after its verified local findings are incorporated into the July architecture note or superseded by private replay results; or
-- **Extend** the expiry only if A0 is actively running and has a named owner.
+- **`DEMO-ENG-01` / A1:** the Demo Program registry names the API-contract DRI and records either completed adjudication of all 87 exceptions before their 2026-09-11 expiry or an explicitly reviewed smaller batch and re-scoped remainder. Do not bulk-renew placeholder exceptions.
+- **`DEMO-ENG-02/03` / A2:** the registry names the test-infrastructure and Demo Home DRIs. Repair the unsafe router or remove/disable `verify-changed`; resolve the Home ratchet through the demo-owned lane; retain `make verify` as the required gate until the repaired path passes acceptance.
+- **`DEMO-ENG-05` / A2 evidence:** complete comparable measurements on frozen commits or record a named post-demo owner and dated checkpoint. Do not turn partial or concurrent measurements into a performance claim.
+- **`DEMO-ENG-04` / A3:** no new implementation decision is required; retain the promoted SCC invariant and record any intentional baseline exception in the Demo Program.
+- **`POST-DEMO-01` / A0, A4, A5:** keep the item explicitly deferred through Demo Phase 6. At the post-demo checkpoint, name the DRI/budget/harness and reactivate A0, or decline/defer the research again. A4/A5 never become independently actionable.
+- **A6:** keep it without an active task unless A0 qualifies it or the Demo Program records a reviewed demo-blocking exception with its own `DEMO-ENG-*` ID.
+- **Document state:** archive this note only after the mapped demo tasks are complete or durably transferred and `POST-DEMO-01` has a recorded decision. Extend the expiry only with named owners and dated checkpoints.
 
-Default if untouched: archive the point-in-time structural counts as non-reproducible observations and retain the research synthesis as a decision record. Do not promote the original counts into invariants without rerunning a committed analysis artifact.
+Default if untouched: do **not** infer approval for A0, A4, A5, or A6. The Demo
+Program remains the execution authority. Keep A3's shipped invariant, treat A1's
+exceptions and A2's router as open program risk, archive the point-in-time
+structural counts as non-reproducible observations, and retain the research
+synthesis plus detailed acceptance criteria as a supporting decision record.
