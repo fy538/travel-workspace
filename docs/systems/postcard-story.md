@@ -1,6 +1,6 @@
 # Postcard / Story — System Charter
 
-> Surface: Atlas
+> Surface: Trips
 > Maturity (for MVP): Built-dark
 > Status: dark
 > Last updated: 2026-06-27
@@ -14,7 +14,8 @@ abundance** — a 3–6/trip cap, not an auto-beautified feed.
 
 ## Spans (cross-repo)
 - Backend: [`travel-agent/backend/postcard/`](../../travel-agent/backend/postcard/FEATURE.md) — `render.py` (orchestrator: flag → cost guard → provider → quality floor; `store_postcard_render` persistence), `provider.py` (`NullPostcardProvider` default, `ReplicatePostcardProvider`). [`travel-agent/backend/media/`](../../travel-agent/backend/media/FEATURE.md) — `rehost.py` (CDN-rehost of the source + Replicate output). [`travel-agent/backend/digest/`](../../travel-agent/backend/digest/FEATURE.md) — `generate_trip_summary()` (the Sonnet end-of-trip retrospective the Story narrates).
-- Frontend: Atlas artifact surfaces; the homecoming Trip Story screen (scaffolded dark).
+- Frontend: the homecoming Trip Story screen (scaffolded dark); personal-memory
+  controls may expose a receipt, but do not own the story destination.
 - Tables of record: atlas artifact `rendered_image_url` / `render_status` (via `core/db/postcard_render.set_artifact_render`); S3/CDN photo variants; `TripSummary`.
 
 ## Public interface (what other systems may call / read)

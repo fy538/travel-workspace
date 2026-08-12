@@ -42,7 +42,7 @@ architecture / page-spec — they never restate them.
 
 ## Master index
 
-Surfaces follow `Feature-Map.md` (Vesper / Trips / Discover / Atlas / Cross-cutting).
+Surfaces follow the active mobile IA (Trips / Vesper / Places / You / Cross-cutting).
 Wedge journeys = the group-trip path (journeys 02 → 05). "Serves" cites
 [`docs/journeys/`](../journeys/).
 
@@ -56,12 +56,12 @@ Wedge journeys = the group-trip path (journeys 02 → 05). "Serves" cites
 | **Group / Social state** | Trips | MVP-required | wired | 02,04,05 | [✎](group-social.md) |
 | **Proactive / Notifications** | Vesper | Should-have | wired | 09 | [✎](proactive-notifications.md) |
 | **Expenses / Settlement** | Trips | Should-have | wired (least hardened) | 10,12 | [✎](expenses-settlement.md) |
-| **Discover** | Discover | Should-have | wired | 07 | [✎](discover.md) |
-| **Atlas (memory & trust)** | Atlas | Should-have | wired | 11,12 | [✎](atlas.md) |
-| **Places (hours/open)** | Trips | Should-have (support) | wired | 08 | [✎](places.md) |
+| **Places workspace** | Places | MVP-required | wired | 07,08 | [✎](discover.md) |
+| **Personal memory & trust** | You / Vesper | MVP-required | transitional | 11,12 | [✎](atlas.md) |
+| **Places provider substrate** | Places | Should-have (support) | wired | 08 | [✎](places.md) |
 | **Booking** | Trips | Built-dark | partial/dark | 10 | [✎](booking.md) |
 | **Voice / Narration** | Vesper | Built-dark | dark | (deferred) | [✎](voice-narration.md) |
-| **Postcard / Story** | Atlas | Built-dark | dark | 12 | [✎](postcard-story.md) |
+| **Postcard / Story** | Trips | Built-dark | dark | 12 | [✎](postcard-story.md) |
 
 > First users only require the **MVP-required** rows to be `wired+validated`.
 > Everything else is `should`, `dark`, or `future` for launch.
@@ -70,9 +70,9 @@ Wedge journeys = the group-trip path (journeys 02 → 05). "Serves" cites
 
 - [Planning / Itinerary](planning-itinerary.md) governs the living itinerary as
   the canonical shared trip artifact. Chat, voice, notifications, booking, and
-  Discover may open or announce actions; they do not become competing trip truth.
+  Places may open or announce actions; they do not become competing trip truth.
 - [Graph Legibility](graph-legibility-doctrine.md) governs when the traveler/group
-  world model may explain itself. Outside Atlas or an explicit “Why this?” action,
+  world model may explain itself. Outside You memory controls or an explicit “Why this?” action,
   personalization should be felt through fit rather than narrated as surveillance.
 - [Content Generation](content-generation.md) governs grounding, confidence,
   correction, and privacy boundaries for model-authored output.
@@ -97,7 +97,7 @@ features don't re-derive the answer from scratch.
 
 | Doctrine | Governs | Applies to |
 |---|---|---|
-| [Graph Legibility](graph-legibility-doctrine.md) | *"The model knows X — should we show that?"* Show vs. tell, keep-silent list, Atlas as the one mirror room, write-back tiers | Concierge, Memory & Preference, Planning, Proposals, Discover, Atlas — any surface that reads or writes the traveler/group world model |
+| [Graph Legibility](graph-legibility-doctrine.md) | *"The model knows X — should we show that?"* Show vs. tell, keep-silent list, intentional You memory controls, write-back tiers | Vesper, You, Trips, Places — any surface that reads or writes the traveler/group world model |
 
 ---
 
@@ -108,7 +108,7 @@ Copy this for a new system. Keep it to one page; link, don't restate.
 ```markdown
 # <System Name> — System Charter
 
-> Surface: <Vesper|Trips|Discover|Atlas|Cross-cutting>
+> Surface: <Vesper|Trips|Places|You|Cross-cutting>
 > Maturity (for MVP): <MVP-required|Should-have|Built-dark|Future>
 > Status: <wired+validated|wired|partial|dark>
 > Last updated: YYYY-MM-DD

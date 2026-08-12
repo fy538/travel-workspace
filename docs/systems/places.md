@@ -1,6 +1,6 @@
 # Places (hours/open) — System Charter
 
-> Surface: Trips
+> Surface: Places
 > Maturity (for MVP): Should-have (support)
 > Status: wired
 > Last updated: 2026-06-27
@@ -14,7 +14,9 @@ live wire.
 
 ## Spans (cross-repo)
 - Backend: [`travel-agent/backend/places/`](../../travel-agent/backend/places/FEATURE.md) — `linker.py` (the real handler entry point: cache → SWR → metered provider → lazy discovery → write-back), `service.py` (primary→fallback orchestration), `discovery.py` / `taste.py` (coverage + taste floor), `cache.py`, `budget.py`, `factory.py`, `foursquare.py`, `google_places.py`, `proactive_refresh.py`.
-- Frontend: consumed indirectly via Concierge tool replies and "what-now" / "near you" surfaces; no dedicated Places screen.
+- Frontend: the dedicated Places workspace owns exploration, search, maps,
+  editorial context, and saved places. Concierge and Trips may hand off into it,
+  but do not replace it as the place-exploration owner.
 - Tables of record: `place_status_cache`, `place_provider_calls` (audit). Reads `venues`, `itinerary_blocks`.
 
 ## Public interface (what other systems may call / read)

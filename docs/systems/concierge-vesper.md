@@ -49,7 +49,7 @@ Memory & Preference** — Concierge only reads it and emits observations.
 - Tests: `tests/concierge/*`, eval `configs/` (~21 concierge scenarios) + CI replay baselines.
 
 ## Cross-cutting constraints
-- **Graph legibility**: every new "the model knows X → should we show it?" decision must be evaluated against [graph-legibility-doctrine.md](graph-legibility-doctrine.md) before building. The short rule: show as behavior, not as a label; Atlas is the only mirror room.
+- **Graph legibility**: every new "the model knows X → should we show it?" decision must be evaluated against [graph-legibility-doctrine.md](graph-legibility-doctrine.md) before building. The short rule: show as behavior, not as a label; explicit personal-memory controls live in You.
 
 ## Open risks / known gaps
 - The privacy-egress invariant is the **unrecoverable-trust-event** risk — the highest-value thing to verify with a live group walk (journey 04).

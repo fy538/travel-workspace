@@ -1,58 +1,48 @@
-# Discover — System Charter
+# Retired Discover surface — compatibility charter
 
-> Surface: Discover
-> Maturity (for MVP): Should-have
-> Status: wired
-> Last updated: 2026-07-08 (corrected stale references to the retired Discover
-> Compose board/search cleanup is complete; historical evidence lives in `docs/archive/2026-07/retired-live/discover-cruft-cleanup-2026-07-08.md`.)
+> Product status: retired
+> Canonical owners: Places and Vesper
+> Last updated: 2026-08-12
 
 ## Purpose
-The server-side feed composer for the single blended Discover surface — it
-gathers for-you / editorial / friends streams, interleaves and sections them
-into a paced magazine column, and carries entity context into Vesper via
-ConversationSeed. Serves belief #20 (Discover Vision): Discover is the **mouth
-of the funnel** — find a place → ask Vesper with context → turn discovery into a
-trip action, and trust comes from **a face, not anonymous editorial**.
 
-## Spans (cross-repo)
-- Backend: [`travel-agent/backend/discover/`](../../travel-agent/backend/discover/FEATURE.md) (`compose.py::compose_discover_feed` — the feed layout brain) + [`backend/research_agent/`](../../travel-agent/backend/research_agent/FEATURE.md) (dossier generation). Routes: `api/routes/discover.py`. The WORLD-corpus board engine (`compose_board.py`, over [`backend/composition/`](../../travel-agent/backend/composition/FEATURE.md)) was retired 2026-07-03 in favor of Universal Search — `compose_board` (the function) now serves Atlas only, see `docs/systems/atlas.md`.
-- Frontend: `app/(tabs)/discover/index.tsx`, `utils/discoverFeedApi.ts`, `utils/discoverSections.ts`, `utils/discoverContext.ts`, `components/discover/DiscoverCoverHome.tsx`, detail routes (`venue/`, `place/`, `dossier/`, `guide/`, `angle/`).
-- Tables read: dossiers, collections (guides), follows, trips, catalog venues/sites. **Discover owns no content tables** (layout brain only).
+Discover is no longer a product surface. Its useful capabilities belong to
+Places (exploration, maps, editorial context, and saves) and Vesper
+(contextual judgment and handoff into Trips). The `discover` backend module may
+remain temporarily as implementation substrate while its contracts are moved or
+retired; its name does not create a fourth destination, feature stream, or
+roadmap.
 
-## Public interface (what other systems may call / read)
-- **Inbound (FE → BE):** `GET /api/discover/feed` → `DiscoverFeedResponse` (`read` masthead + 4 `sections` + `rhythm` + top-level `lead`). **`POST /api/discover/compose` was retired 2026-07-03** — in-Discover search is now served by the cross-entity Universal Search overlay (`components/search/UniversalSearchOverlay.tsx`, `api/routes/search.py`), scoped to Discover; do not implement against the retired endpoint.
-- **Entry points:** `compose_discover_feed` (the only public feed entry, async, keyword-only) · `resolve_feed_shape(...)` → `dream`/`briefing`/`proximity`/`retrospective`/`dual`.
-- **Consumes:** `get_for_you` (insights), `list_collections`, `get_social_feed`, dossiers — read-only; ConversationSeed handoff into Concierge.
-- **Never:** treat a bare catalog venue (md5-ordered) as a vetted editorial pick; desync the server composer from its client mock mirror without changing both.
+## Compatibility boundary
 
-## Owns (source of truth)
-**Nothing.** Discover is a composition layer — a deterministic arrangement over
-other systems' content. Dossiers belong to `research_agent`; the board assembly
-belongs to `composition/`. Discover owns only sectioning, rhythm, and shape
-resolution.
+- **Legacy mobile URL:** `/(tabs)/discover` redirects to Places and preserves
+  supplied place context.
+- **Legacy map transport:** `GET /api/discover/map` is deprecated. New clients
+  use `GET /api/places/map`; both routes must return the same map projection
+  until deployed-version evidence permits removal.
+- **Legacy feed transport:** `GET /api/discover/feed` has no canonical mobile
+  home. Do not add a caller; classify it for retirement or migrate a concrete,
+  validated Places use before extending it.
 
-## Invariants (must always be true)
-- **Honest provenance over decoration** — only dossiers carry a real byline (`source='dossier'`); a bare catalog venue carries `provenance=None` and is surfaced honestly unattributed (a listing, not a vouch). `because` is set ONLY when a real loved facet actually matched.
-- **Parse honesty** — a freeform query maps to KNOWN-dimension facets only; unrecognized terms are dropped, never forced into a fabricated dimension.
-- **No false peak** — the lead read (`_select_lead_read`) is the highest real `quality_score` approved dossier for the place; never a fabricated or arbitrarily-ordered hero. (The md5-ordered/synthetic-band score lifecycle described here previously belonged to the retired `compose_board.py` WORLD-corpus board, not this feed.)
-- **ConversationSeed always carries context** (journey 07) — Ask Vesper from a detail page never opens an empty/generic chat; trip context routes group-only for social actions, no-trip context routes private.
-- **Real empty state never reads as broken plumbing** — honest absence, not a fabricated feed.
-- **Dual-implementation parity** — server composer and client mock mirror (`discoverSections.ts` / `discoverContext.ts` / the rhythm planner) must change together.
+## Invariants
 
-## Failure modes
-- A content stream fails → that source contributes nothing; the feed composes from the survivors (best-effort `asyncio.gather` over `run_in_executor`).
-- Proximity enrichment is a **no-op** outside `during_trip` + GPS (early-returns; no fabricated walk-times).
+- A Places entry supplies concrete entity context before Vesper receives a
+  question; it never opens an empty, generic chat.
+- Vesper may advise or explain, but Trips remains the owner of shared plan
+  mutations and receipts.
+- No new user-facing copy, route, telemetry surface, journey, or release
+  capability uses Discover as a product owner.
+- Existing persisted data and historical telemetry remain readable without
+  inventing a new Discover UI.
 
-## Maturity & validation
-- Serves journey: 07 (Discover → contextual Vesper → trip action).
-- DoD state: feed/section/seed unit tests ✅ (`discoverFeed.test.ts`, `discover.smoke.test.tsx`, `venue-detail.smoke.test.tsx`) · **live feed walk ❌ · dual-parity FE re-verification pending** (post-composition refactor).
-- FEATURE.md maturity is **"beta"**; research pipeline auto-publish posture is unsettled (see research-pipeline notes).
+## Validation
 
-## Canonical docs
-- why → `product/Discover Vision.md` · `product/One Engine, Two Corpora.md` · what(be) → `backend/discover/FEATURE.md` · `backend/composition/FEATURE.md` · `backend/research_agent/FEATURE.md` · what(fe) → `page-specs/discover.md` · `conversation-seed/Standard.md`.
-- Tests: `__tests__/utils/discoverFeed.test.ts`, `__tests__/screens/discover.smoke.test.tsx`.
+The canonical product loop is [Journey 07](../journeys/07-discover-to-contextual-vesper-to-trip-action.md): Places → Vesper → Trips. The legacy URL redirect
+has a focused mobile test; the Places workspace and map require the real
+surface-level device coverage.
 
-## Open risks / known gaps
-- **Dual-implementation desync is the headline risk** — a cadence/section change on one side (server `rhythm.py` vs client mirror) makes the same feed look different in dev (mock) vs prod (server). The FEATURE.md flags an FE re-verification pass outstanding after the composition refactor.
-- **Content sparsity / missing ids** can hide behind polished mocks (journey 07) — real Discover empty states and unwired-looking guide/angle cards are the on-device failure surface.
-- Generation gap, not publish gap: angles without dossiers leave thin sections; the funnel's mouth is only as wide as the corpus behind it.
+## References
+
+- Product decision: [retire Discover and Atlas product surfaces](../decisions/2026-08-12-retire-discover-and-atlas-product-surfaces.md)
+- Backend implementation: `travel-agent/backend/discover/`
+- Mobile Places workspace: `travel-app/components/places/PlacesWorkspace.tsx`

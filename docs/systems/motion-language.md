@@ -12,7 +12,7 @@ source_of_truth_for: [interaction-motion-language, motion-presentation-semantics
 # Motion Language — Cross-Cutting Doctrine
 
 > Status: ratified 2026-07-11
-> Applies to: Vesper, Trips, Discover, Atlas, and shared application chrome
+> Applies to: Vesper, Trips, Places, You, and shared application chrome
 > Consumed by: every interactive frontend surface and shared UI primitive
 > Last updated: 2026-07-30
 
