@@ -296,6 +296,10 @@ dogfood-status-sync: ## Regenerate the auto:persona-cert block in docs/journeys/
 
 # ── Composite gate ─────────────────────────────────────────────────────────────
 
+verify-changed: ## Fast-path pre-push gate scoped to files changed since BASE_REF: make verify-changed BASE_REF=origin/main [DRY_RUN=1]
+	@test -n "$(BASE_REF)" || { echo "BASE_REF is required, e.g. make verify-changed BASE_REF=origin/main"; exit 2; }
+	@./scripts/verify-changed.sh --base-ref "$(BASE_REF)" $(if $(DRY_RUN),--dry-run,)
+
 verify: ## Single cross-repo pre-push gate (absorbs offline-qa + mock-real-parity)
 	@echo "▸ Workspace doctor..."
 	@$(MAKE) doctor

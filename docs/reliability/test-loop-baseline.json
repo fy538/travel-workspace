@@ -1,0 +1,176 @@
+[
+  {
+    "schema_version": 1,
+    "label": "doctor",
+    "command": [
+      "make",
+      "doctor"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "fdea3ab12ecb8b3ce8939c65098eec6e5b23039b",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "c1e7b14f8b0e0137f12a19959f6adaf720978836",
+        "dirty": true
+      },
+      "travel-app": {
+        "commit": "834935f9e2599098d0e24ee5f1efaf3fc4d004ae",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_time_seconds": 0.607,
+    "log_path": "docs/reliability/runs/doctor-20260812T041813Z.log",
+    "test_counts": null
+  },
+  {
+    "schema_version": 1,
+    "label": "backend-ci",
+    "command": [
+      "make",
+      "-C",
+      "travel-agent",
+      "ci"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "fdea3ab12ecb8b3ce8939c65098eec6e5b23039b",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "c1e7b14f8b0e0137f12a19959f6adaf720978836",
+        "dirty": true
+      },
+      "travel-app": {
+        "commit": "834935f9e2599098d0e24ee5f1efaf3fc4d004ae",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 2,
+    "timed_out": false,
+    "wall_time_seconds": 0.124,
+    "log_path": "docs/reliability/runs/backend-ci-20260812T041841Z.log",
+    "test_counts": null
+  },
+  {
+    "schema_version": 1,
+    "label": "contract-check",
+    "command": [
+      "make",
+      "contract-check"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "fdea3ab12ecb8b3ce8939c65098eec6e5b23039b",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "c1e7b14f8b0e0137f12a19959f6adaf720978836",
+        "dirty": true
+      },
+      "travel-app": {
+        "commit": "834935f9e2599098d0e24ee5f1efaf3fc4d004ae",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 2,
+    "timed_out": false,
+    "wall_time_seconds": 9.75,
+    "log_path": "docs/reliability/runs/contract-check-20260812T041849Z.log",
+    "test_counts": null
+  },
+  {
+    "schema_version": 1,
+    "label": "frontend-verify-full",
+    "command": [
+      "bash",
+      "-c",
+      "cd travel-app && npm run verify:full"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "fdea3ab12ecb8b3ce8939c65098eec6e5b23039b",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "c1e7b14f8b0e0137f12a19959f6adaf720978836",
+        "dirty": true
+      },
+      "travel-app": {
+        "commit": "834935f9e2599098d0e24ee5f1efaf3fc4d004ae",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 1,
+    "timed_out": false,
+    "wall_time_seconds": 15.563,
+    "log_path": "docs/reliability/runs/frontend-verify-full-20260812T041915Z.log",
+    "test_counts": null
+  },
+  {
+    "schema_version": 1,
+    "label": "backend-mypy-supplementary",
+    "command": [
+      "bash",
+      "-c",
+      "cd travel-agent && .venv/bin/python -m mypy --config-file mypy.ini backend/"
+    ],
+    "repos": {
+      "workspace": {
+        "commit": "fdea3ab12ecb8b3ce8939c65098eec6e5b23039b",
+        "dirty": true
+      },
+      "travel-agent": {
+        "commit": "c1e7b14f8b0e0137f12a19959f6adaf720978836",
+        "dirty": true
+      },
+      "travel-app": {
+        "commit": "834935f9e2599098d0e24ee5f1efaf3fc4d004ae",
+        "dirty": false
+      }
+    },
+    "environment": {
+      "os": "Darwin",
+      "os_release": "25.5.0",
+      "machine": "arm64",
+      "python_version": "3.14.6",
+      "cpu_count": 14
+    },
+    "exit_code": 1,
+    "timed_out": false,
+    "wall_time_seconds": 8.284,
+    "log_path": "docs/reliability/runs/backend-mypy-supplementary-20260812T042053Z.log",
+    "test_counts": null
+  }
+]
