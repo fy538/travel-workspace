@@ -2212,16 +2212,11 @@
       "audience": "app",
       "lifecycle": "retiring",
       "owner": "places",
-      "reason": "app/site/[siteId].tsx now sources from GET /api/entities/site/{id} (data/sites.ts, 2026-08-11 entity-envelope migration). The standalone route is unchanged and still reachable — kept live for any other consumer and for its own route tests — but the app has no remaining product caller.",
+      "reason": "app/site/[siteId].tsx sources from GET /api/entities/site/{id} since the 2026-08-11 entity-envelope migration (data/sites.ts). The FE client method (api.getSiteDetail) was itself retired in the same effort (Slice 4) once a full-repo grep confirmed zero remaining callers — so unlike the usual transport-only case, there is no longer even an http.ts implementation to call. The standalone backend route is unchanged and still reachable — kept live for any other consumer and for its own route tests (tests/api/test_sites_route.py in travel-agent).",
       "feature_flag": null,
       "removal_trigger": "Delete this route once nothing calls it — check for any other caller before removing (see docs/decisions/2026-08-11-entity-envelope.md, Slice 4).",
       "review_by": "2026-09-15",
-      "consumers": [
-        {
-          "kind": "app_transport",
-          "name": "SiteDetailStandaloneTransport"
-        }
-      ]
+      "consumers": []
     }
   },
   "retired_operations": {
