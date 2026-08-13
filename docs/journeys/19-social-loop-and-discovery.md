@@ -7,7 +7,7 @@
 
 ## Product Promise
 
-A user can find people through their taste, follow them, and discover places across the whole catalog via search — and every result and profile routes to a real, live destination.
+A user can find eligible people, follow them, and discover places across the whole catalog via search — and every result and profile routes to a real, live destination without publishing private-memory inferences.
 
 ## Canonical User Story
 
@@ -21,7 +21,7 @@ As a user, I want to discover people (by taste/public profile) and entities (by 
 
 ## Starting State
 
-- Persona: a user with a public taste profile + a few companions, and a seeded multi-entity catalog (venues, places, guides, dossiers).
+- Persona: a user with an enabled owner-authored public profile + a few companions, and a seeded multi-entity catalog (venues, places, guides, dossiers).
 
 ## Primary Surfaces
 
@@ -32,14 +32,14 @@ As a user, I want to discover people (by taste/public profile) and entities (by 
 
 1. Open universal search → query returns correct cross-entity results (person / venue / place / guide / trip / saved).
 2. Tap a result → routes to a live entity reader (not a 404 / dead route).
-3. Open a companion / public taste profile (`/profile/[userId]`) → renders their shareable taste, follow CTA works.
-4. Follow from taste → the follow persists and the companions list updates.
-5. Confirm privacy: a public profile exposes only shareable taste, never private constraints or trip membership.
+3. Open a companion / public profile (`/profile/[userId]`) → renders only owner-authored content, follow CTA works.
+4. Follow the eligible companion → the follow persists and the companions list updates.
+5. Confirm privacy: a public profile never exposes private constraints, trip membership, or personal-memory-derived taste.
 
 ## Expected Outcome
 
 - Search returns correct cross-entity results, each routing to a live destination.
-- Public profiles render shareable taste and a working follow loop.
+- Public profiles render only owner-authored content and a working follow loop.
 - No private data (constraints, trip membership, private memory) leaks onto a public profile.
 
 ## Must Never Happen

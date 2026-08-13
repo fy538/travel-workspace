@@ -3,14 +3,14 @@
     {
       "receipt": {
         "app_build_id": null,
-        "app_sha": "76d7edca5153c024d064af1aff54c0f0331ee118",
+        "app_sha": "1d4833b7343b472186ca74ba724e0a4cf301127a",
         "artifacts": [],
         "backend_deploy_digest": null,
-        "backend_sha": "a29b92d96a5840a1e7590c27a2705706823afecb",
+        "backend_sha": "31965d391c56bc8c4798616e9ddca327c42f0efe",
         "branches": [],
         "command": "dogfood-fast deterministic product-proof contracts",
         "devices": [],
-        "duration_seconds": 21.0,
+        "duration_seconds": 23.0,
         "environment": "local",
         "flow_hash": null,
         "identities": [],
@@ -23,28 +23,30 @@
         "layer": "contract",
         "migration_revision": null,
         "oracle_hash": null,
-        "recorded_at": "2026-08-12T02:50:37.506272+00:00",
+        "recorded_at": "2026-08-13T21:10:23.860799+00:00",
         "reviewer": null,
-        "run_id": "jr-1786503037-8f84d942",
-        "schema_version": 2,
+        "run_id": "jr-1786655423-ae6bef75",
+        "runner_id": "dogfood-fast-contract-v1",
+        "runner_sha256": "sha256:fc8fa58ef7d962d9c678870050ac8bf77aa423a1023ec3f8856545151d311b76",
+        "schema_version": 3,
         "seed_corpus_hash": null,
         "skip_reason": null,
         "status": "pass",
-        "workspace_sha": "4052ddc007b080ecf0b19d2e4f37c1a540c3659b"
+        "workspace_sha": "6d0789b58a2d0f7d1c8bfc993c51b63dde1489a2"
       },
-      "receipt_sha256": "sha256:871a354dfd44afc865297ffed6ace9be453e4a8e7383f9928e46b9c87ac4797d"
+      "receipt_sha256": "sha256:1167c9212d8850e2a7e5ffbf3dae57cd0aac3512558523e7450fbe0dba213301"
     },
     {
       "receipt": {
         "app_build_id": null,
-        "app_sha": "76d7edca5153c024d064af1aff54c0f0331ee118",
+        "app_sha": "1d4833b7343b472186ca74ba724e0a4cf301127a",
         "artifacts": [],
         "backend_deploy_digest": null,
-        "backend_sha": "a29b92d96a5840a1e7590c27a2705706823afecb",
+        "backend_sha": "31965d391c56bc8c4798616e9ddca327c42f0efe",
         "branches": [],
         "command": "dogfood-fast deterministic product-proof contracts",
         "devices": [],
-        "duration_seconds": 21.0,
+        "duration_seconds": 22.0,
         "environment": "local",
         "flow_hash": null,
         "identities": [],
@@ -57,28 +59,30 @@
         "layer": "contract",
         "migration_revision": null,
         "oracle_hash": null,
-        "recorded_at": "2026-08-12T02:51:03.484198+00:00",
+        "recorded_at": "2026-08-13T21:11:42.050900+00:00",
         "reviewer": null,
-        "run_id": "jr-1786503063-45e85e28",
-        "schema_version": 2,
+        "run_id": "jr-1786655502-7333c477",
+        "runner_id": "dogfood-fast-contract-v1",
+        "runner_sha256": "sha256:fc8fa58ef7d962d9c678870050ac8bf77aa423a1023ec3f8856545151d311b76",
+        "schema_version": 3,
         "seed_corpus_hash": null,
         "skip_reason": null,
         "status": "pass",
-        "workspace_sha": "4052ddc007b080ecf0b19d2e4f37c1a540c3659b"
+        "workspace_sha": "6d0789b58a2d0f7d1c8bfc993c51b63dde1489a2"
       },
-      "receipt_sha256": "sha256:40dc09086201af2c3c96a52cbd6b4bb05c7563f63bda598d5308a83310dbde0b"
+      "receipt_sha256": "sha256:aece591746bf4f2f829e93b0d8672bddc0bc43732d6fb54e5a9e3093eaecc399"
     },
     {
       "receipt": {
         "app_build_id": null,
-        "app_sha": "76d7edca5153c024d064af1aff54c0f0331ee118",
+        "app_sha": "1d4833b7343b472186ca74ba724e0a4cf301127a",
         "artifacts": [],
         "backend_deploy_digest": null,
-        "backend_sha": "a29b92d96a5840a1e7590c27a2705706823afecb",
+        "backend_sha": "31965d391c56bc8c4798616e9ddca327c42f0efe",
         "branches": [],
-        "command": "scripts/pre-dogfood.sh",
+        "command": "dogfood-fast deterministic product-proof contracts",
         "devices": [],
-        "duration_seconds": 568.0,
+        "duration_seconds": 24.0,
         "environment": "local",
         "flow_hash": null,
         "identities": [],
@@ -88,26 +92,28 @@
           "P03",
           "P04"
         ],
-        "layer": "database",
+        "layer": "contract",
         "migration_revision": null,
         "oracle_hash": null,
-        "recorded_at": "2026-08-12T03:00:31.062006+00:00",
+        "recorded_at": "2026-08-13T21:12:22.090084+00:00",
         "reviewer": null,
-        "run_id": "jr-1786503631-8688ed4c",
-        "schema_version": 2,
+        "run_id": "jr-1786655542-eabef10f",
+        "runner_id": "dogfood-fast-contract-v1",
+        "runner_sha256": "sha256:fc8fa58ef7d962d9c678870050ac8bf77aa423a1023ec3f8856545151d311b76",
+        "schema_version": 3,
         "seed_corpus_hash": null,
         "skip_reason": null,
         "status": "pass",
-        "workspace_sha": "4052ddc007b080ecf0b19d2e4f37c1a540c3659b"
+        "workspace_sha": "6d0789b58a2d0f7d1c8bfc993c51b63dde1489a2"
       },
-      "receipt_sha256": "sha256:0af3ede931a4b368247e96f117a744714dd2b6009a61fa973c2a7d427dfaed5a"
+      "receipt_sha256": "sha256:58b758caa62f8e18a8ad594d105c3d3b11ba649535e5c2a415185b04735ce9fd"
     }
   ],
   "candidate": {
-    "app_sha": "76d7edca5153c024d064af1aff54c0f0331ee118",
-    "backend_sha": "a29b92d96a5840a1e7590c27a2705706823afecb",
-    "workspace_sha": "4052ddc007b080ecf0b19d2e4f37c1a540c3659b"
+    "app_sha": "1d4833b7343b472186ca74ba724e0a4cf301127a",
+    "backend_sha": "31965d391c56bc8c4798616e9ddca327c42f0efe",
+    "workspace_sha": "6d0789b58a2d0f7d1c8bfc993c51b63dde1489a2"
   },
-  "generated_at": "2026-08-12T03:00:43.860392+00:00",
+  "generated_at": "2026-08-13T21:13:00.921026+00:00",
   "schema_version": 1
 }
