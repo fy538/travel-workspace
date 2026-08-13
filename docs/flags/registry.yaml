@@ -169,12 +169,12 @@ flags:
   - name: PENDING_CHAT_TURNS_ENABLED
     repo: travel-agent
     location: backend/core/feature_flags.py:pending_chat_turns_enabled
-    default: false
+    default: true
     category: release
     owner: fy538
     expires: 2026-10-30
     status: active
-    notes: Gates the durable pending-turn transport until the mobile outbox adopts it; default-off prevents an unproven alternate chat writer from being reachable.
+    notes: Canonical durable turn admission for all group-room handoffs and private recovery. Set false only for a controlled rollback; default-dark would acknowledge a new standalone room but reject its confirmed opening send.
 
   - name: PLACES_SECTIONS_FEED_ENABLED
     repo: travel-app

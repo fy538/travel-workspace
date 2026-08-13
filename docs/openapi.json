@@ -70927,6 +70927,18 @@
             ],
             "title": "Trip Id"
           },
+          "conversation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Conversation Id"
+          },
           "text": {
             "type": "string",
             "maxLength": 10000,
@@ -91174,7 +91186,7 @@
           "proposal_id"
         ],
         "title": "TripsHomeConfirmAction",
-        "description": "A crown-only signal that this item resolves with an inline\naccept/reject rather than a navigation.\n\nPresent only when the crowned card's Deck substrate is a binary decision\n(``structured.layout == \"proposal_approval\"``) \u2014 Trips still never copies\n``structured``/``focus`` themselves onto the wire; the other two layouts\nthat also resolve to a ``proposal`` destination (``traveler_readiness``,\n``choice_vote``) are not one accept/reject call and stay navigation-only."
+        "description": "A crown-only signal that this item resolves with an inline\naccept/reject rather than a navigation.\n\nPresent only when the crowned card's Deck substrate is a binary decision\n(``structured.layout == \"proposal_approval\"``) \u2014 Trips still never copies\n``structured``/``focus`` themselves onto the wire; the other two layouts\n(``traveler_readiness``, ``choice_vote``) stay navigation-only but route\nto the same canonical group-room decision card."
       },
       "TripsHomeCountdownModule": {
         "properties": {
