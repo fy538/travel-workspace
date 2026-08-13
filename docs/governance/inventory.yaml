@@ -167,6 +167,22 @@ overrides:
     disposition: keep_reference
     rationale: Expiring synthesis of the product-loop, onboarding, Maestro, judgment-calibration, and test-environment discussion; product canon, reliability contracts, executable evidence, and generated status retain authority.
 
+  docs/working/onboarding-and-entry-point-product-investigation-2026-08-12.md:
+    disposition: keep_reference
+    rationale: Expiring onboarding and acquisition-entry investigation after the August product pivot; product canon, surface contracts, code, and generated current state retain authority.
+
+  docs/working/onboarding-claude-design-experiment-brief-2026-08-12.md:
+    disposition: keep_reference
+    rationale: Expiring Claude Design experiment brief for post-pivot onboarding; design canon, surface contracts, implementation source, and accepted decision records retain authority.
+
+  docs/working/in-chat-artifact-system-inventory-and-sota-research-2026-08-12.md:
+    disposition: keep_reference
+    rationale: Expiring source inventory and external research synthesis for Vesper's in-chat artifacts; product canon, cross-repo card contracts, source code, and accepted design decisions retain authority.
+
+  docs/working/multiplayer-entry-points-vesper-trips-2026-08-12.md:
+    disposition: keep_reference
+    rationale: Expiring cross-repo product and implementation investigation of pre-trip shared-room entry through Vesper Home and Trips Home; product canon, surface contracts, and source code retain authority.
+
   docs/working/convergence-and-ai-decision-next-execution-plan-2026-08-10.md:
     disposition: keep_reference
     rationale: Active, expiring post-merge execution plan joining causal convergence, private AI shadow readiness, the Lisbon Group Trip proof, and fail-closed evidence promotion; canonical product, release, journey, and system documents remain authoritative.
