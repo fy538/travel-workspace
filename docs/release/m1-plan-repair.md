@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: founder / engineering
 created: 2026-08-10
-last_verified: 2026-08-10
+last_verified: 2026-08-13
 why_new: Replaces three competing definitions of "done" with one milestone derived directly from the canonical demo journey.
 supersedes: []
 source_of_truth_for: [primary-milestone, m1-scope, m1-exit-criteria]
@@ -55,7 +55,9 @@ proactively proposes one concrete repair.
 - **Flags to light:** `WEATHER_RESCUE_PROPOSALS_ENABLED` scoped by
   `WEATHER_RESCUE_TRIP_IDS`
 - **Known gaps:** group-safe composition of the proposal; two-observer device
-  certification; Postgres Lisbon replay is time-of-day dependent
+  certification; no current staging receipt. The historical-observation
+  proposal boundary is deterministic now: eligibility evaluates at the
+  weather observation time while the durable write retains real write time.
 - **Rollback:** all-off — flag false returns the surface to silence
 
 ### Act 2 — Grounded judgment
@@ -101,9 +103,11 @@ relevant opening. Ends on a mutually accepted local Plan, not a chat response.
 
 Applies to all four acts and is not a fifth act.
 
-- **Proof:** P06 (consent and silence) — `dark`, **zero anchors**
+- **Proof:** P06 (consent and silence) — `active`, with contract and database
+  anchors
 - **Required layers:** contract, database, device_mock, ai_eval
-- **Known gaps:** no anchors exist; this is the largest undefined risk in M1
+- **Known gaps:** no `device_mock` or `ai_eval` receipt exists; this remains
+  the largest unproven M1 risk, rather than an undefined implementation seam
 - **Bar:** no private input may become a shared claim; deliberate silence must
   be demonstrable, not merely possible
 
