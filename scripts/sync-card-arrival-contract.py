@@ -9,6 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "docs/contracts/card-arrival.json"
+CARD_TYPES_SOURCE = ROOT / "docs/contracts/chat-card-types.json"
 TS_TARGET = ROOT / "travel-app/utils/chat/cardArrivalContract.generated.ts"
 PY_TARGET = ROOT / "travel-agent/backend/concierge/card_arrival_contract_generated.py"
 
@@ -50,6 +51,19 @@ def main() -> int:
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
     data = json.loads(SOURCE.read_text())
+    card_types = json.loads(CARD_TYPES_SOURCE.read_text())
+    no_arrival = set(card_types.get("no_arrival", {}))
+    conflicted = sorted(
+        str(item.get("type"))
+        for item in data.values()
+        if isinstance(item, dict) and item.get("type") in no_arrival
+    )
+    if conflicted:
+        print(
+            "Card-arrival contract conflicts with chat-card no_arrival policy: "
+            + ", ".join(conflicted)
+        )
+        return 1
     expected = {TS_TARGET: render_ts(data), PY_TARGET: render_py(data)}
     stale = [
         path
