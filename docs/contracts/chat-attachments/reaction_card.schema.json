@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chat-attachments/reaction_card.schema.json",
+  "title": "ReactionCardMetadata",
+  "description": "Durable group reaction card metadata. Options are validated for presence at the shared boundary; their identifiers are revalidated on every reaction write.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["card_type", "options", "allow_multiple"],
+  "properties": {
+    "card_type": { "const": "reaction" },
+    "options": { "type": "array", "minItems": 2 },
+    "allow_multiple": { "type": "boolean" },
+    "context": { "type": "string" },
+    "deadline": { "type": "string" },
+    "reference_id": { "type": "string" }
+  }
+}

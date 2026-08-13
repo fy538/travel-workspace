@@ -151,6 +151,8 @@
   },
   "pilot_attachment_schemas": [
     "booking_proposal_snapshot",
-    "map_route"
+    "map_route",
+    "reaction_card",
+    "venue_card"
   ]
 }

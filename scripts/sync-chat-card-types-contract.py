@@ -160,6 +160,8 @@ def _zod_line(name: str, spec: dict, *, required: bool) -> str:
             expr = "z.number().int()"
             if "minimum" in spec:
                 expr += f".min({spec['minimum']})"
+        elif typ == "boolean":
+            expr = "z.boolean()"
         elif typ == "array":
             expr = "z.array(z.unknown())"
             if "minItems" in spec:
@@ -187,6 +189,8 @@ def _py_field(name: str, spec: dict, *, required: bool) -> str:
             ann = "str"
         elif typ == "integer":
             ann = "int"
+        elif typ == "boolean":
+            ann = "bool"
         elif typ == "array":
             ann = "list[Any]"
         elif isinstance(typ, list) and set(typ) == {"string", "null"}:
@@ -195,6 +199,18 @@ def _py_field(name: str, spec: dict, *, required: bool) -> str:
             ann = "int | None"
         else:
             ann = "Any"
+    constraints: list[str] = []
+    if "minLength" in spec:
+        constraints.append(f"min_length={spec['minLength']}")
+    if "minItems" in spec:
+        constraints.append(f"min_length={spec['minItems']}")
+    if "minimum" in spec:
+        constraints.append(f"ge={spec['minimum']}")
+    if constraints:
+        constraint_args = ", ".join(constraints)
+        if required:
+            return f"    {name}: {ann} = Field({constraint_args})"
+        return f"    {name}: {ann} = Field(default=None, {constraint_args})"
     if required:
         return f"    {name}: {ann}"
     if ann.endswith("| None"):
@@ -213,7 +229,7 @@ def render_schemas(
         '"""Generated from docs/contracts/chat-attachments/*.schema.json. Do not hand-edit."""\n\n',
         "from __future__ import annotations\n\n",
         "from typing import Any, Literal\n\n",
-        "from pydantic import BaseModel, ConfigDict\n\n",
+        "from pydantic import BaseModel, ConfigDict, Field\n\n",
     ]
     model_map: list[tuple[str, str]] = []
     for name in pilot_names:

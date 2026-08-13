@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chat-attachments/venue_card.schema.json",
+  "title": "VenueCardMetadata",
+  "description": "Canonical entity reference for a recommendation card. The same contract serves venues, accommodations, experiences, and sites.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["entity_type", "entity_id", "name"],
+  "properties": {
+    "entity_type": { "type": "string", "enum": ["venue", "accommodation", "experience", "site"] },
+    "entity_id": { "type": "string", "minLength": 1 },
+    "name": { "type": "string", "minLength": 1 },
+    "detail": { "type": ["string", "null"] },
+    "take_headline": { "type": ["string", "null"] },
+    "take_verdict": { "type": ["string", "null"] }
+  }
+}
