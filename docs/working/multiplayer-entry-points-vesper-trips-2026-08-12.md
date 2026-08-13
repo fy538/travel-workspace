@@ -3,8 +3,8 @@ doc_type: working
 status: active
 owner: founder / product / engineering
 created: 2026-08-12
-updated: 2026-08-12
-last_verified: 2026-08-12
+updated: 2026-08-13
+last_verified: 2026-08-13
 expires: 2026-09-11
 why_new: Capture the product and engineering investigation into where pre-trip multiplayer should enter Vesper, how Vesper Home and Trips Home should divide ownership, and why the existing substrate is substantially ahead of the experienced product.
 source_of_truth_for: [multiplayer-entry-point-working-model]
@@ -57,10 +57,41 @@ working document:
   to Vesper Home or Trips Home.
 
 The following remain intentionally outside this increment: a contact picker
-or durable friend graph, invite-management/revocation UI, owner handoff/leave
-UI, standalone-room SSE fan-out (the room still uses focused history
-reconciliation), and a device-captured visual verdict. Those are the next
-interaction and realtime layers, not unresolved authority or audience rules.
+or durable friend graph, richer invite-management/revocation UI, and a
+device-captured visual verdict. Those are product-depth and certification
+layers, not unresolved authority or audience rules.
+
+### Convergence update — 2026-08-13
+
+The room now has a coherent authority and delivery boundary across its
+lifecycle:
+
+- **Trip-linked creation is canonical.** A client cannot attach an arbitrary
+  `trip_id` to a newly created conversation or patch a room into a Trip. A
+  current Trip member resolves the single shared Trip room or their own
+  canonical private Trip thread; promotion remains the only transition from a
+  standalone group into a Trip.
+- **Authority follows the live source of truth.** Standalone invite control
+  requires the current active room owner *and* current participation. Once a
+  room is Trip-linked, invite authority follows current Trip organizers, not
+  a stale historical `owner_id`; organizer handoff also advances the stored
+  compatibility owner.
+- **Closure is an admission boundary.** Closing a standalone group revokes
+  outstanding room links in the same transaction, and invite acceptance
+  rejects inactive rooms.
+- **Membership, ownership, closure, and promotion are repairable realtime
+  changes.** Each writes an identifier-only `authority_changed` outbox row in
+  the same Postgres transaction. Redis is the fast path; the worker retry
+  sweep and client refetch are the recovery path. No member identity, role,
+  or private rationale is placed on the realtime channel.
+- **The shared brief is a narrow artifact, not a view of agent memory.** It
+  exposes structured planning state only. Inferred group dynamics remain
+  private facilitation context until a person makes them explicit through a
+  group-safe decision, question, or note.
+
+The important remaining product work is therefore not a second chat surface.
+It is making the existing Room Info and invite flows easier to discover and
+certifying the two-account journey on real devices.
 
 **[proposed]** Multiplayer should be exposed from both Vesper Home and Trips
 Home, but the two entry points must not be duplicates:
