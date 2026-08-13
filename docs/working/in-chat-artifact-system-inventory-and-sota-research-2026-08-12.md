@@ -1419,7 +1419,7 @@ The following safe slices are now integrated into the primary worktrees. This
 record deliberately separates landed code from evidence that still needs a
 real device, backend fixture, or production configuration. The small
 follow-through commits are intentionally narrow: workspace `cd2d908`, mobile
-`4ab09647`, `8483bca5`, and `8046b23e`, and backend `5bddd3456`.
+`4ab09647`, `8483bca5`, and `8046b23e`, and backend `ceb5f04be`.
 
 | Slice | Implemented result | Verification completed | Still not claimed |
 | --- | --- | --- | --- |
