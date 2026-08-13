@@ -71216,6 +71216,7 @@
             "type": "string",
             "enum": [
               "ready",
+              "partial",
               "empty",
               "unavailable"
             ],
@@ -71233,6 +71234,7 @@
             "type": "string",
             "enum": [
               "ready",
+              "partial",
               "empty",
               "unavailable"
             ],
@@ -71260,11 +71262,22 @@
             "type": "string",
             "enum": [
               "ready",
+              "partial",
               "empty",
               "unavailable"
             ],
             "title": "Places State",
             "default": "empty"
+          },
+          "places_meta": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SelfProfileSectionMeta"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "unfinished": {
             "items": {
@@ -71277,11 +71290,22 @@
             "type": "string",
             "enum": [
               "ready",
+              "partial",
               "empty",
               "unavailable"
             ],
             "title": "Unfinished State",
             "default": "empty"
+          },
+          "unfinished_meta": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SelfProfileSectionMeta"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "people": {
             "items": {
@@ -71301,11 +71325,22 @@
             "type": "string",
             "enum": [
               "ready",
+              "partial",
               "empty",
               "unavailable"
             ],
             "title": "People State",
             "default": "empty"
+          },
+          "people_meta": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SelfProfileSectionMeta"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "stories": {
             "items": {
@@ -71318,11 +71353,22 @@
             "type": "string",
             "enum": [
               "ready",
+              "partial",
               "empty",
               "unavailable"
             ],
             "title": "Stories State",
             "default": "empty"
+          },
+          "stories_meta": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SelfProfileSectionMeta"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -71331,6 +71377,36 @@
         ],
         "title": "SelfProfileProjection",
         "description": "Bounded private portrait for the authenticated subject."
+      },
+      "SelfProfileSectionMeta": {
+        "properties": {
+          "returned_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Returned Count",
+            "default": 0
+          },
+          "total_count": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Count"
+          },
+          "truncated": {
+            "type": "boolean",
+            "title": "Truncated",
+            "default": false
+          }
+        },
+        "type": "object",
+        "title": "SelfProfileSectionMeta",
+        "description": "Truthful bounds for a non-timeline portrait preview.\n\n``total_count`` is deliberately nullable: some composed sections depend on\nmultiple bounded authorities, so inventing an exact whole-record count\nwould be less honest than stating that the returned preview is incomplete."
       },
       "SelfProfileStory": {
         "properties": {
