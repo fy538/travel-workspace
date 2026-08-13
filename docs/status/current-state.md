@@ -3,7 +3,7 @@ doc_type: current_status
 status: active
 owner: engineering
 created: 2026-07-09
-last_verified: 2026-08-09
+last_verified: 2026-08-13
 why_new: Replace duplicated prose scorecards with one generated view of executable registries.
 supersedes: []
 source_of_truth_for: [cross-repo-current-state-summary]
