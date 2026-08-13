@@ -39642,7 +39642,64 @@
         ],
         "title": "AddMemberRequest"
       },
-      "AddPayload": {
+      "AddPayload-Input": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "add",
+            "title": "Kind",
+            "default": "add"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/OperationEntityRef"
+          },
+          "placement": {
+            "$ref": "#/components/schemas/OperationPlacement"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/ParticipationScope"
+          },
+          "planned_participant_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Planned Participant Ids"
+          },
+          "decision_owner_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Decision Owner Id"
+          },
+          "structural_role": {
+            "$ref": "#/components/schemas/StructuralRole",
+            "default": "ordinary"
+          },
+          "content": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/OperationBlockContent"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "entity",
+          "placement",
+          "scope",
+          "planned_participant_ids",
+          "decision_owner_id"
+        ],
+        "title": "AddPayload"
+      },
+      "AddPayload-Output": {
         "properties": {
           "kind": {
             "type": "string",
@@ -43125,7 +43182,8 @@
                   "dedup",
                   "stale",
                   "user",
-                  "superseded"
+                  "superseded",
+                  "cancelled"
                 ]
               },
               {
@@ -43601,7 +43659,7 @@
         "title": "AtlasUnpackedStat",
         "description": "One figure on the 'where you went' card \u2014 a value + its unit label."
       },
-      "AtomicChildOperation": {
+      "AtomicChildOperation-Input": {
         "properties": {
           "target": {
             "$ref": "#/components/schemas/OperationTarget"
@@ -43609,16 +43667,16 @@
           "payload": {
             "oneOf": [
               {
-                "$ref": "#/components/schemas/AddPayload"
+                "$ref": "#/components/schemas/AddPayload-Input"
               },
               {
-                "$ref": "#/components/schemas/MovePayload"
+                "$ref": "#/components/schemas/MovePayload-Input"
               },
               {
-                "$ref": "#/components/schemas/ReorderPayload"
+                "$ref": "#/components/schemas/ReorderPayload-Input"
               },
               {
-                "$ref": "#/components/schemas/ReplacePayload"
+                "$ref": "#/components/schemas/ReplacePayload-Input"
               },
               {
                 "$ref": "#/components/schemas/RemovePayload"
@@ -43637,12 +43695,111 @@
             "discriminator": {
               "propertyName": "kind",
               "mapping": {
-                "add": "#/components/schemas/AddPayload",
+                "add": "#/components/schemas/AddPayload-Input",
                 "mark_occurrence": "#/components/schemas/MarkOccurrencePayload",
-                "move": "#/components/schemas/MovePayload",
+                "move": "#/components/schemas/MovePayload-Input",
                 "remove": "#/components/schemas/RemovePayload",
-                "reorder": "#/components/schemas/ReorderPayload",
-                "replace": "#/components/schemas/ReplacePayload",
+                "reorder": "#/components/schemas/ReorderPayload-Input",
+                "replace": "#/components/schemas/ReplacePayload-Input",
+                "restore": "#/components/schemas/RestorePayload",
+                "set_attendance": "#/components/schemas/SetAttendancePayload"
+              }
+            }
+          },
+          "precondition": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ShapePrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/TripContextPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/DayPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/BranchPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/BlockPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/ProposalPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/ProviderPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/CompoundPrecondition"
+              }
+            ],
+            "title": "Precondition",
+            "discriminator": {
+              "propertyName": "kind",
+              "mapping": {
+                "block": "#/components/schemas/BlockPrecondition",
+                "branch": "#/components/schemas/BranchPrecondition",
+                "compound": "#/components/schemas/CompoundPrecondition",
+                "day": "#/components/schemas/DayPrecondition",
+                "proposal": "#/components/schemas/ProposalPrecondition",
+                "provider": "#/components/schemas/ProviderPrecondition",
+                "shape": "#/components/schemas/ShapePrecondition",
+                "trip_context": "#/components/schemas/TripContextPrecondition"
+              }
+            }
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "target",
+          "payload",
+          "precondition"
+        ],
+        "title": "AtomicChildOperation"
+      },
+      "AtomicChildOperation-Output": {
+        "properties": {
+          "target": {
+            "$ref": "#/components/schemas/OperationTarget"
+          },
+          "payload": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/AddPayload-Output"
+              },
+              {
+                "$ref": "#/components/schemas/MovePayload-Output"
+              },
+              {
+                "$ref": "#/components/schemas/ReorderPayload-Output"
+              },
+              {
+                "$ref": "#/components/schemas/ReplacePayload-Output"
+              },
+              {
+                "$ref": "#/components/schemas/RemovePayload"
+              },
+              {
+                "$ref": "#/components/schemas/RestorePayload"
+              },
+              {
+                "$ref": "#/components/schemas/SetAttendancePayload"
+              },
+              {
+                "$ref": "#/components/schemas/MarkOccurrencePayload"
+              }
+            ],
+            "title": "Payload",
+            "discriminator": {
+              "propertyName": "kind",
+              "mapping": {
+                "add": "#/components/schemas/AddPayload-Output",
+                "mark_occurrence": "#/components/schemas/MarkOccurrencePayload",
+                "move": "#/components/schemas/MovePayload-Output",
+                "remove": "#/components/schemas/RemovePayload",
+                "reorder": "#/components/schemas/ReorderPayload-Output",
+                "replace": "#/components/schemas/ReplacePayload-Output",
                 "restore": "#/components/schemas/RestorePayload",
                 "set_attendance": "#/components/schemas/SetAttendancePayload"
               }
@@ -62155,7 +62312,7 @@
             "title": "Preview Hash"
           },
           "operation": {
-            "$ref": "#/components/schemas/NormalizedItineraryOperation"
+            "$ref": "#/components/schemas/NormalizedItineraryOperation-Input"
           },
           "idempotency_key": {
             "type": "string",
@@ -62227,7 +62384,7 @@
             "title": "Preview Hash"
           },
           "normalized_operation": {
-            "$ref": "#/components/schemas/NormalizedItineraryOperation"
+            "$ref": "#/components/schemas/NormalizedItineraryOperation-Output"
           },
           "capability": {
             "$ref": "#/components/schemas/ActionCapability"
@@ -62344,7 +62501,7 @@
             "title": "Trip Id"
           },
           "normalized_operation": {
-            "$ref": "#/components/schemas/NormalizedItineraryOperation"
+            "$ref": "#/components/schemas/NormalizedItineraryOperation-Output"
           },
           "state": {
             "type": "string",
@@ -62495,7 +62652,7 @@
             "title": "Client Request Id"
           },
           "normalized_operation": {
-            "$ref": "#/components/schemas/NormalizedItineraryOperation"
+            "$ref": "#/components/schemas/NormalizedItineraryOperation-Output"
           },
           "bound_precondition": {
             "oneOf": [
@@ -62617,7 +62774,7 @@
       "ItineraryOperationPreviewRequest": {
         "properties": {
           "operation": {
-            "$ref": "#/components/schemas/NormalizedItineraryOperation"
+            "$ref": "#/components/schemas/NormalizedItineraryOperation-Input"
           },
           "client_request_id": {
             "type": "string",
@@ -62665,7 +62822,7 @@
             "title": "Status"
           },
           "normalized_operation": {
-            "$ref": "#/components/schemas/NormalizedItineraryOperation"
+            "$ref": "#/components/schemas/NormalizedItineraryOperation-Output"
           },
           "creation_policy_snapshot": {
             "$ref": "#/components/schemas/ActionCapability"
@@ -62800,7 +62957,7 @@
       "ItineraryOperationProposalCreateRequest": {
         "properties": {
           "operation": {
-            "$ref": "#/components/schemas/NormalizedItineraryOperation"
+            "$ref": "#/components/schemas/NormalizedItineraryOperation-Input"
           },
           "idempotency_key": {
             "type": "string",
@@ -66956,7 +67113,7 @@
         "title": "MaterializeShapeBlock",
         "description": "One stable block in the accepted first-draft shape snapshot."
       },
-      "MaterializeShapeDay": {
+      "MaterializeShapeDay-Input": {
         "properties": {
           "id": {
             "type": "string",
@@ -67067,7 +67224,118 @@
         "title": "MaterializeShapeDay",
         "description": "One dated day in the accepted first-draft shape snapshot."
       },
-      "MaterializeShapePayload": {
+      "MaterializeShapeDay-Output": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "day_number": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Day Number"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "title": "Date"
+          },
+          "sort_order": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Sort Order"
+          },
+          "day_theme": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Day Theme"
+          },
+          "energy_target": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Energy Target"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          },
+          "opener": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Opener"
+          },
+          "closing": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Closing"
+          },
+          "fidelity": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "skeleton",
+                  "detailed"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fidelity"
+          },
+          "blocks": {
+            "items": {
+              "$ref": "#/components/schemas/MaterializeShapeBlock"
+            },
+            "type": "array",
+            "title": "Blocks"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "day_number",
+          "date",
+          "sort_order"
+        ],
+        "title": "MaterializeShapeDay",
+        "description": "One dated day in the accepted first-draft shape snapshot."
+      },
+      "MaterializeShapePayload-Input": {
         "properties": {
           "kind": {
             "type": "string",
@@ -67126,7 +67394,90 @@
           },
           "days": {
             "items": {
-              "$ref": "#/components/schemas/MaterializeShapeDay"
+              "$ref": "#/components/schemas/MaterializeShapeDay-Input"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Days"
+          },
+          "provenance": {
+            "type": "string",
+            "const": "accepted_shape",
+            "title": "Provenance",
+            "default": "accepted_shape"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "destination",
+          "start_date",
+          "end_date",
+          "itinerary_id",
+          "days"
+        ],
+        "title": "MaterializeShapePayload"
+      },
+      "MaterializeShapePayload-Output": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "materialize_shape",
+            "title": "Kind",
+            "default": "materialize_shape"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/ShapeDestinationRef"
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date",
+            "title": "Start Date"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date",
+            "title": "End Date"
+          },
+          "itinerary_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Itinerary Id"
+          },
+          "workflow_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Workflow Id"
+          },
+          "markdown_content": {
+            "type": "string",
+            "title": "Markdown Content",
+            "default": ""
+          },
+          "planning_reasoning_trace": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Planning Reasoning Trace"
+          },
+          "days": {
+            "items": {
+              "$ref": "#/components/schemas/MaterializeShapeDay-Output"
             },
             "type": "array",
             "minItems": 1,
@@ -67934,7 +68285,26 @@
         "title": "MoveConflict",
         "description": "A block on the target day that overlaps the proposed time window."
       },
-      "MovePayload": {
+      "MovePayload-Input": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "move",
+            "title": "Kind",
+            "default": "move"
+          },
+          "placement": {
+            "$ref": "#/components/schemas/OperationPlacement"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "placement"
+        ],
+        "title": "MovePayload"
+      },
+      "MovePayload-Output": {
         "properties": {
           "kind": {
             "type": "string",
@@ -68591,7 +68961,7 @@
         "title": "NearbyResponse",
         "description": "Nearby catalog entities around a geographic point."
       },
-      "NormalizedItineraryOperation": {
+      "NormalizedItineraryOperation-Input": {
         "properties": {
           "id": {
             "type": "string",
@@ -68619,19 +68989,19 @@
           "payload": {
             "oneOf": [
               {
-                "$ref": "#/components/schemas/MaterializeShapePayload"
+                "$ref": "#/components/schemas/MaterializeShapePayload-Input"
               },
               {
-                "$ref": "#/components/schemas/AddPayload"
+                "$ref": "#/components/schemas/AddPayload-Input"
               },
               {
-                "$ref": "#/components/schemas/MovePayload"
+                "$ref": "#/components/schemas/MovePayload-Input"
               },
               {
-                "$ref": "#/components/schemas/ReorderPayload"
+                "$ref": "#/components/schemas/ReorderPayload-Input"
               },
               {
-                "$ref": "#/components/schemas/ReplacePayload"
+                "$ref": "#/components/schemas/ReplacePayload-Input"
               },
               {
                 "$ref": "#/components/schemas/RemovePayload"
@@ -68652,27 +69022,177 @@
                 "$ref": "#/components/schemas/DissolveParallelPlanPayload"
               },
               {
-                "$ref": "#/components/schemas/OptimizeDayPayload"
+                "$ref": "#/components/schemas/OptimizeDayPayload-Input"
               },
               {
-                "$ref": "#/components/schemas/ReplanPayload"
+                "$ref": "#/components/schemas/ReplanPayload-Input"
               }
             ],
             "title": "Payload",
             "discriminator": {
               "propertyName": "kind",
               "mapping": {
-                "add": "#/components/schemas/AddPayload",
+                "add": "#/components/schemas/AddPayload-Input",
                 "create_parallel_plan": "#/components/schemas/ParallelPlanPayload",
                 "dissolve_parallel_plan": "#/components/schemas/DissolveParallelPlanPayload",
                 "mark_occurrence": "#/components/schemas/MarkOccurrencePayload",
-                "materialize_shape": "#/components/schemas/MaterializeShapePayload",
-                "move": "#/components/schemas/MovePayload",
-                "optimize_day": "#/components/schemas/OptimizeDayPayload",
+                "materialize_shape": "#/components/schemas/MaterializeShapePayload-Input",
+                "move": "#/components/schemas/MovePayload-Input",
+                "optimize_day": "#/components/schemas/OptimizeDayPayload-Input",
                 "remove": "#/components/schemas/RemovePayload",
-                "reorder": "#/components/schemas/ReorderPayload",
-                "replace": "#/components/schemas/ReplacePayload",
-                "replan": "#/components/schemas/ReplanPayload",
+                "reorder": "#/components/schemas/ReorderPayload-Input",
+                "replace": "#/components/schemas/ReplacePayload-Input",
+                "replan": "#/components/schemas/ReplanPayload-Input",
+                "restore": "#/components/schemas/RestorePayload",
+                "set_attendance": "#/components/schemas/SetAttendancePayload",
+                "update_parallel_plan": "#/components/schemas/ParallelPlanPayload"
+              }
+            }
+          },
+          "attribution": {
+            "$ref": "#/components/schemas/ActionAttribution"
+          },
+          "precondition": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ShapePrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/TripContextPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/DayPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/BranchPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/BlockPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/ProposalPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/ProviderPrecondition"
+              },
+              {
+                "$ref": "#/components/schemas/CompoundPrecondition"
+              }
+            ],
+            "title": "Precondition",
+            "discriminator": {
+              "propertyName": "kind",
+              "mapping": {
+                "block": "#/components/schemas/BlockPrecondition",
+                "branch": "#/components/schemas/BranchPrecondition",
+                "compound": "#/components/schemas/CompoundPrecondition",
+                "day": "#/components/schemas/DayPrecondition",
+                "proposal": "#/components/schemas/ProposalPrecondition",
+                "provider": "#/components/schemas/ProviderPrecondition",
+                "shape": "#/components/schemas/ShapePrecondition",
+                "trip_context": "#/components/schemas/TripContextPrecondition"
+              }
+            }
+          },
+          "provider_intent": {
+            "$ref": "#/components/schemas/ProviderIntent",
+            "default": "plan_only"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "type",
+          "target",
+          "payload",
+          "attribution",
+          "precondition"
+        ],
+        "title": "NormalizedItineraryOperation"
+      },
+      "NormalizedItineraryOperation-Output": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "inverse_of_operation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Inverse Of Operation Id"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ItineraryOperationType"
+          },
+          "target": {
+            "$ref": "#/components/schemas/OperationTarget"
+          },
+          "payload": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/MaterializeShapePayload-Output"
+              },
+              {
+                "$ref": "#/components/schemas/AddPayload-Output"
+              },
+              {
+                "$ref": "#/components/schemas/MovePayload-Output"
+              },
+              {
+                "$ref": "#/components/schemas/ReorderPayload-Output"
+              },
+              {
+                "$ref": "#/components/schemas/ReplacePayload-Output"
+              },
+              {
+                "$ref": "#/components/schemas/RemovePayload"
+              },
+              {
+                "$ref": "#/components/schemas/RestorePayload"
+              },
+              {
+                "$ref": "#/components/schemas/SetAttendancePayload"
+              },
+              {
+                "$ref": "#/components/schemas/MarkOccurrencePayload"
+              },
+              {
+                "$ref": "#/components/schemas/ParallelPlanPayload"
+              },
+              {
+                "$ref": "#/components/schemas/DissolveParallelPlanPayload"
+              },
+              {
+                "$ref": "#/components/schemas/OptimizeDayPayload-Output"
+              },
+              {
+                "$ref": "#/components/schemas/ReplanPayload-Output"
+              }
+            ],
+            "title": "Payload",
+            "discriminator": {
+              "propertyName": "kind",
+              "mapping": {
+                "add": "#/components/schemas/AddPayload-Output",
+                "create_parallel_plan": "#/components/schemas/ParallelPlanPayload",
+                "dissolve_parallel_plan": "#/components/schemas/DissolveParallelPlanPayload",
+                "mark_occurrence": "#/components/schemas/MarkOccurrencePayload",
+                "materialize_shape": "#/components/schemas/MaterializeShapePayload-Output",
+                "move": "#/components/schemas/MovePayload-Output",
+                "optimize_day": "#/components/schemas/OptimizeDayPayload-Output",
+                "remove": "#/components/schemas/RemovePayload",
+                "reorder": "#/components/schemas/ReorderPayload-Output",
+                "replace": "#/components/schemas/ReplacePayload-Output",
+                "replan": "#/components/schemas/ReplanPayload-Output",
                 "restore": "#/components/schemas/RestorePayload",
                 "set_attendance": "#/components/schemas/SetAttendancePayload",
                 "update_parallel_plan": "#/components/schemas/ParallelPlanPayload"
@@ -70226,7 +70746,7 @@
         ],
         "title": "OperationTarget"
       },
-      "OptimizeDayPayload": {
+      "OptimizeDayPayload-Input": {
         "properties": {
           "kind": {
             "type": "string",
@@ -70241,7 +70761,37 @@
           },
           "child_operations": {
             "items": {
-              "$ref": "#/components/schemas/AtomicChildOperation"
+              "$ref": "#/components/schemas/AtomicChildOperation-Input"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Child Operations"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "day_id",
+          "child_operations"
+        ],
+        "title": "OptimizeDayPayload"
+      },
+      "OptimizeDayPayload-Output": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "optimize_day",
+            "title": "Kind",
+            "default": "optimize_day"
+          },
+          "day_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Day Id"
+          },
+          "child_operations": {
+            "items": {
+              "$ref": "#/components/schemas/AtomicChildOperation-Output"
             },
             "type": "array",
             "minItems": 1,
@@ -80676,7 +81226,7 @@
         "type": "object",
         "title": "RemovePayload"
       },
-      "ReorderPayload": {
+      "ReorderPayload-Input": {
         "properties": {
           "kind": {
             "type": "string",
@@ -80695,7 +81245,65 @@
         ],
         "title": "ReorderPayload"
       },
-      "ReplacePayload": {
+      "ReorderPayload-Output": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "reorder",
+            "title": "Kind",
+            "default": "reorder"
+          },
+          "placement": {
+            "$ref": "#/components/schemas/OperationPlacement"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "placement"
+        ],
+        "title": "ReorderPayload"
+      },
+      "ReplacePayload-Input": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "replace",
+            "title": "Kind",
+            "default": "replace"
+          },
+          "chosen_entity": {
+            "$ref": "#/components/schemas/OperationEntityRef"
+          },
+          "placement": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/OperationPlacement"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "content": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/OperationBlockContent"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "chosen_entity"
+        ],
+        "title": "ReplacePayload"
+      },
+      "ReplacePayload-Output": {
         "properties": {
           "kind": {
             "type": "string",
@@ -80753,7 +81361,7 @@
         "title": "ReplaceTripDestinationsRequest",
         "description": "Canonical writer input for a trip route (ordered, no duplicate places)."
       },
-      "ReplanPayload": {
+      "ReplanPayload-Input": {
         "properties": {
           "kind": {
             "type": "string",
@@ -80768,7 +81376,45 @@
           },
           "child_operations": {
             "items": {
-              "$ref": "#/components/schemas/AtomicChildOperation"
+              "$ref": "#/components/schemas/AtomicChildOperation-Input"
+            },
+            "type": "array",
+            "title": "Child Operations"
+          },
+          "context_change": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TripContextMutation"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "reason"
+        ],
+        "title": "ReplanPayload"
+      },
+      "ReplanPayload-Output": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "replan",
+            "title": "Kind",
+            "default": "replan"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Reason"
+          },
+          "child_operations": {
+            "items": {
+              "$ref": "#/components/schemas/AtomicChildOperation-Output"
             },
             "type": "array",
             "title": "Child Operations"
@@ -82861,6 +83507,16 @@
             "title": "Timeline State",
             "default": "empty"
           },
+          "timeline_meta": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SelfProfileTimelineMeta"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "places": {
             "items": {
               "$ref": "#/components/schemas/SelfProfilePlace"
@@ -82996,6 +83652,37 @@
           "composed_at"
         ],
         "title": "SelfProfileStory"
+      },
+      "SelfProfileTimelineMeta": {
+        "properties": {
+          "total_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Total Count",
+            "default": 0
+          },
+          "returned_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Returned Count",
+            "default": 0
+          },
+          "truncated": {
+            "type": "boolean",
+            "title": "Truncated",
+            "default": false
+          },
+          "years": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Years"
+          }
+        },
+        "type": "object",
+        "title": "SelfProfileTimelineMeta",
+        "description": "Completeness information for the bounded private portrait timeline."
       },
       "SelfProfileUnfinishedItem": {
         "properties": {
