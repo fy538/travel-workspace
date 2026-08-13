@@ -11037,6 +11037,66 @@
         }
       }
     },
+    "/api/conversations/{conversation_id}/brief": {
+      "get": {
+        "tags": [
+          "conversations"
+        ],
+        "summary": "Get Conversation Room Brief",
+        "description": "Return the reviewable shared planning brief for room participants.",
+        "operationId": "get_conversation_room_brief_api_conversations__conversation_id__brief_get",
+        "parameters": [
+          {
+            "name": "conversation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Conversation Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConversationRoomBriefResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/conversations/{conversation_id}/agency": {
       "get": {
         "tags": [
@@ -49648,6 +49708,127 @@
         "title": "ConversationResponse",
         "description": "Conversation with participants."
       },
+      "ConversationRoomBriefResponse": {
+        "properties": {
+          "phase": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "ambient",
+                  "exploring",
+                  "drafting",
+                  "committed",
+                  "dormant"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Phase"
+          },
+          "current_goal": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current Goal"
+          },
+          "narrative_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Narrative Note"
+          },
+          "destinations": {
+            "items": {
+              "$ref": "#/components/schemas/IntentDestination"
+            },
+            "type": "array",
+            "title": "Destinations"
+          },
+          "date_window": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/IntentDateWindow"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "anchors": {
+            "items": {
+              "$ref": "#/components/schemas/IntentAnchor"
+            },
+            "type": "array",
+            "title": "Anchors"
+          },
+          "constraints": {
+            "items": {
+              "$ref": "#/components/schemas/IntentConstraint"
+            },
+            "type": "array",
+            "title": "Constraints"
+          },
+          "working_assumptions": {
+            "items": {
+              "$ref": "#/components/schemas/IntentWorkingAssumption"
+            },
+            "type": "array",
+            "title": "Working Assumptions"
+          },
+          "open_questions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Open Questions"
+          },
+          "selected_direction_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Selected Direction Name"
+          },
+          "selected_direction_pitch": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Selected Direction Pitch"
+          },
+          "selected_direction_anchors": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Selected Direction Anchors"
+          }
+        },
+        "type": "object",
+        "title": "ConversationRoomBriefResponse",
+        "description": "Participant-safe projection of a shared room's planning state.\n\nThis is deliberately a small, named artifact rather than raw\n``intent_state``. It cannot accidentally acquire private memories, device\nlocation, hidden tool traces, or unknown scratchpad keys as the agent's\ninternal state evolves."
+      },
       "CreateConversationRequest": {
         "properties": {
           "conversation_type": {
@@ -59703,6 +59884,175 @@
         "type": "object",
         "title": "IntakePayload",
         "description": "Bulk chip payload for minimal onboarding.\n\nEach field is optional. Sections use replace-within-section semantics:\nsubmitting ``dietary=[\"vegan\"]`` deactivates any other active dietary rows\nfor the user. Omitting a field leaves that section untouched, so callers\ncan update one section without disturbing others. An empty list clears\nthe section."
+      },
+      "IntentAnchor": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "value": {
+            "type": "string",
+            "title": "Value"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type",
+          "value"
+        ],
+        "title": "IntentAnchor",
+        "description": "A fixed point the trip is organising around (event, visit, deadline)."
+      },
+      "IntentConstraint": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "value": {
+            "type": "string",
+            "title": "Value"
+          },
+          "provenance": {
+            "type": "string",
+            "enum": [
+              "user_explicit",
+              "provider_verified"
+            ],
+            "title": "Provenance",
+            "default": "user_explicit"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type",
+          "value"
+        ],
+        "title": "IntentConstraint",
+        "description": "A soft constraint confirmed by the traveler or a verified provider."
+      },
+      "IntentDateWindow": {
+        "properties": {
+          "start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start"
+          },
+          "end": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End"
+          },
+          "firm": {
+            "type": "boolean",
+            "title": "Firm",
+            "default": false
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          }
+        },
+        "type": "object",
+        "title": "IntentDateWindow",
+        "description": "The date window being considered. ``firm`` flips true once locked."
+      },
+      "IntentDestination": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "slug": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Slug"
+          },
+          "lean": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lean"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "IntentDestination",
+        "description": "A destination being considered for this conversation's exploration."
+      },
+      "IntentWorkingAssumption": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "value": {
+            "type": "string",
+            "title": "Value"
+          },
+          "basis": {
+            "type": "string",
+            "enum": [
+              "conversation_derived",
+              "system_default"
+            ],
+            "title": "Basis"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type",
+          "value",
+          "basis"
+        ],
+        "title": "IntentWorkingAssumption",
+        "description": "A reversible planning hypothesis, never a confirmed constraint."
       },
       "InteractionRequest": {
         "properties": {
