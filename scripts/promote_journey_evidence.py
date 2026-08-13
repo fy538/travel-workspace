@@ -114,8 +114,12 @@ def build_index(
             "promotion requires a clean workspace, app, and backend candidate"
         )
 
-    attestations: list[dict[str, Any]] = []
-    seen: set[str] = set()
+    # A retried governed command produces several individually valid receipts
+    # for the same proof/layer. The attestation index is a current-state
+    # certificate, not a run log, so retain only the newest receipt covering
+    # each (proof, layer) pair. The local/CI receipt directory remains the
+    # complete append-only execution history.
+    eligible: list[dict[str, Any]] = []
     for receipt in receipts:
         try:
             evidence.validate_receipt(receipt)
@@ -142,10 +146,23 @@ def build_index(
             raise ValueError(
                 f"receipt {receipt.get('run_id', '?')} runner digest is stale; rerun the governed command"
             )
+        eligible.append(receipt)
+
+    newest_by_subject: dict[tuple[str, str], dict[str, Any]] = {}
+    for receipt in eligible:
+        for proof_id in receipt["journeys"]:
+            key = (proof_id, receipt["layer"])
+            previous = newest_by_subject.get(key)
+            if previous is None or receipt["recorded_at"] > previous["recorded_at"]:
+                newest_by_subject[key] = receipt
+
+    selected_digests = {receipt_digest(receipt) for receipt in newest_by_subject.values()}
+    attestations: list[dict[str, Any]] = []
+    for receipt in sorted(eligible, key=lambda item: (item["recorded_at"], receipt_digest(item))):
         digest = receipt_digest(receipt)
-        if digest in seen:
+        if digest not in selected_digests:
             continue
-        seen.add(digest)
+        selected_digests.remove(digest)
         payload = {key: value for key, value in receipt.items() if key != "_path"}
         attestations.append({"receipt_sha256": digest, "receipt": payload})
 

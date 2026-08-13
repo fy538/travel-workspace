@@ -55,6 +55,27 @@ def test_build_index_promotes_only_current_passes() -> None:
     assert index["attestations"][0]["receipt"]["run_id"] == "jr-1"
 
 
+def test_build_index_keeps_only_the_latest_receipt_per_proof_layer() -> None:
+    revisions = {
+        "workspace_sha": "workspace-current",
+        "app_sha": "app-current",
+        "backend_sha": "backend-current",
+    }
+    older = _receipt(
+        run_id="older",
+        recorded_at="2026-08-10T12:00:00+00:00",
+        journeys=["P01", "P02"],
+    )
+    newer = _receipt(
+        run_id="newer",
+        recorded_at="2026-08-10T12:01:00+00:00",
+        journeys=["P01", "P02"],
+    )
+    index = subject.build_index([older, newer], revisions)
+
+    assert [item["receipt"]["run_id"] for item in index["attestations"]] == ["newer"]
+
+
 def test_build_index_rejects_dirty_candidate() -> None:
     revisions = {
         "workspace_sha": "workspace-current-dirty",
