@@ -24,6 +24,22 @@
       "removal_trigger": null,
       "review_by": "2026-10-30"
     },
+    "GET /api/me/profile-feature-candidates": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "getProfileFeatureCandidates",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "profile-system",
+      "reason": "Owner-only, resolvable saved venues and areas eligible for explicit public-profile selection.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
     "DELETE /api/conversations/{conversation_id}/participants/me": {
       "audience": "app",
       "consumers": [

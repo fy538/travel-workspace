@@ -26257,6 +26257,57 @@
         }
       }
     },
+    "/api/me/profile-feature-candidates": {
+      "get": {
+        "tags": [
+          "users",
+          "users"
+        ],
+        "summary": "Get Profile Feature Candidates",
+        "description": "List saved venues and areas that the owner may explicitly feature.",
+        "operationId": "get_profile_feature_candidates_api_me_profile_feature_candidates_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileFeaturedPlaceCandidatesResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/me/profile-media/{slot}": {
       "post": {
         "tags": [
@@ -65912,6 +65963,20 @@
         "title": "ProfileFactDisputeRequest",
         "description": "Body for ``POST /api/me/profile-fact/dispute``.\n\nRecords a \"not quite\" reaction on a non-phrase profile fact — a\ntaste-dimension reading or an interest noun. Companion to\n``dispute_dna_phrase``; lives in the \"What I know about you\"\ntransparency surface that disputes multiple facets from one screen.\n\n``kind`` discriminates the observation copy. ``value`` is the\nuser-visible string the user just disputed (e.g. ``\"Planner\"`` or\n``\"seafood\"``). ``label`` is optional context — for taste dims it\ncarries the dimension name (``\"energy\"`` / ``\"planning\"`` / …) so\nthe observation reads naturally; ignored for interests."
       },
+      "ProfileFeaturedPlaceCandidatesResponse": {
+        "properties": {
+          "places": {
+            "items": {
+              "$ref": "#/components/schemas/PublicProfilePlace"
+            },
+            "type": "array",
+            "title": "Places"
+          }
+        },
+        "type": "object",
+        "title": "ProfileFeaturedPlaceCandidatesResponse",
+        "description": "Owner-visible saved places eligible for explicit public selection."
+      },
       "ProfileFeaturedPlaceInput": {
         "properties": {
           "entity_type": {
@@ -70338,14 +70403,26 @@
             "title": "Cover Url"
           },
           "followers_count": {
-            "type": "integer",
-            "title": "Followers Count",
-            "default": 0
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Followers Count"
           },
           "following_count": {
-            "type": "integer",
-            "title": "Following Count",
-            "default": 0
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Following Count"
           }
         },
         "type": "object",
