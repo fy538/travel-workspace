@@ -1413,6 +1413,26 @@ answer “did Vesper make a grounded, bounded judgment?” Database/API receipts
 answer “did the intended state actually change?” No one evidence type replaces
 the others.
 
+### 17.14a Implementation follow-through — 2026-08-12
+
+The following safe slices have now been implemented in isolated
+`feat/artifact-loop-execution` worktrees. This record deliberately separates
+code landed on those branches from evidence that still needs a real device,
+backend fixture, or production configuration.
+
+| Slice | Implemented result | Verification completed | Still not claimed |
+| --- | --- | --- | --- |
+| Authority / retired Atlas draft | New server tool selection no longer offers `atlas_draft`; historical rows retain a renderer and deprecated contract state. | Backend selector and card-allowlist tests; generated app contract sync. | Historical-row retention-window decision and production query. |
+| J05 reference path | Primary Maestro path starts from Trips Home and reaches the group-chat vote widget before observing the applied result. | Maestro structural validator and focused J05/J06 Jest coverage. | Two-account/device and staging evidence. |
+| Artifact telemetry | Every attachment receives a content-free role, lifecycle, and owner; raw action labels are reduced to a small approved vocabulary. Canonical writes and owner opens are now explicit events. | Focused telemetry/privacy tests and TypeScript. | PostHog production secret, canary delivery, experiment assignment, and aggregate analysis. |
+| Organic first-use shell | The post-cover screen is now a composer plus four starters. A starter or voluntary typed thought is stored as an `ambient` handoff, survives sign-up, and opens the existing private Vesper thread. No new pre-auth agent, city claim, Place, or Trip is fabricated. | Onboarding intent, retry, zero-typing, typed-context, TypeScript, and Maestro-reference tests. | The post-auth grounded judgment/replay fixture, first correction, and device visual comparison. |
+| Chat venue action closure | A venue recommendation can save through the canonical save gateway, renders `Saved to Places` only after success, and exposes a Places-owner return. Detail navigation remains available. | Venue-card, save-hook, telemetry, and TypeScript tests. | A first-class `Not this` steer, review-first add-to-plan path, relaunch proof, and local-Plan graduation. |
+| Standalone room promotion | Reviewed current code rather than rewritten: transcript-native proposal confirmation already carries `trip_kind`, reconciles lost responses from the canonical conversation read, pivots ownership before refresh, and has local-kind tests. | Existing card and promotion-hook tests rerun. | Two-reader result receipt and staging/device certification. |
+
+The implementation branches are intentionally not auto-landed into dirty
+primary worktrees. Landing must wait until concurrent design/doc work is ready
+for a fast-forward or an explicit integration review.
+
 ### 17.15 Proposed commit/PR sequence
 
 Each slice should be independently reviewable and should use explicit file
