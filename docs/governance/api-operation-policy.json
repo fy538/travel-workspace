@@ -1945,6 +1945,22 @@
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
       "review_by": "2026-08-15"
     },
+    "GET /api/conversations/{conversation_id}/events": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "conversationEventStream",
+          "source": "travel-app/utils/conversationEventStream.ts"
+        }
+      ],
+      "feature_flag": "GROUP_TRIP_MICRO_JOURNEY_ENABLED",
+      "lifecycle": "active",
+      "owner": "conversations",
+      "reason": "Standalone and trip-linked room clients consume durable room events to reconcile conversation state.",
+      "removal_trigger": null,
+      "review_by": "2026-09-12"
+    },
     "POST /api/conversations/{conversation_id}/messages/stream": {
       "audience": "app",
       "consumers": [
