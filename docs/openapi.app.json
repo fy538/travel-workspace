@@ -6681,7 +6681,7 @@
           "discover"
         ],
         "summary": "Discover Map",
-        "description": "Discover spatial-browse pins for venues, experiences, places, and friends.\n\ncompatibility_id: discover-map-api-bridge\n\nCatalog pins carry the cheap judgment preview available for their entity\ntype. Venue pins additionally carry affinity; venue and experience pins\ncarry saved/planned state. Fresh trip-companion locations are a separate,\napproximate coordination signal and never masquerade as itinerary items.\n\nTwo direct scopes. ``place_slug`` plots the city subtree; ``lat``/``lng``\nplots what's within ``radius_m``. A Places ``context_handle`` is the\npreferred third entry: it resolves that same scope server-side, so a Places\ncontinuation never puts a precise anchor into navigation state. With none,\nreturns an empty pin set (honest absence) rather than guessing a location.\nThe full Take is a tap-time fetch on the client peek card — pins carry only\nthe cheap preview.\n\n``date_from``/``date_to`` compose a temporal window on top of either\nspatial scope — e.g. \"experiences near me this weekend\" — and only affect\nexperience pins; recurring/on-demand experiences have no single date and\nare unaffected, and venue/place pins have no date to filter on at all.",
+        "description": "Compatibility facade for the canonical Places map projection.\n\ncompatibility_id: discover-map-api-bridge",
         "operationId": "discover_map_api_discover_map_get",
         "deprecated": true,
         "parameters": [
@@ -6806,10 +6806,10 @@
                   "type": "null"
                 }
               ],
-              "description": "Experience pins only — earliest date to include. Defaults to today: a one-off experience that has already happened is never shown as a live pin unless a caller explicitly asks for the past.",
+              "description": "Experience pins only — earliest date to include.",
               "title": "Date From"
             },
-            "description": "Experience pins only — earliest date to include. Defaults to today: a one-off experience that has already happened is never shown as a live pin unless a caller explicitly asks for the past."
+            "description": "Experience pins only — earliest date to include."
           },
           {
             "name": "date_to",
@@ -8241,6 +8241,76 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NotificationFeed"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/conversations/{conversation_id}/private-trip-reflection": {
+      "post": {
+        "tags": [
+          "conversation-trip-reflections"
+        ],
+        "summary": "Submit Private Trip Reflection",
+        "description": "Persist a personal post-trip reflection from its canonical private room.\n\nThe route deliberately refuses a group room even when it is linked to the\nsame trip. A reflection can influence later personalized planning, but it\nis never an implicit group message or a shared preference declaration.",
+        "operationId": "submit_private_trip_reflection_api_conversations__conversation_id__private_trip_reflection_post",
+        "parameters": [
+          {
+            "name": "conversation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Conversation Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmitPrivateTripReflectionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrivateTripReflectionAccepted"
                 }
               }
             }
@@ -17262,7 +17332,7 @@
           "places"
         ],
         "summary": "Get Places Map",
-        "description": "Return the Places spatial-browse projection.\n\nThe implementation remains temporarily shared with the retiring Discover\nroute so deployed clients keep one map truth during the API migration.",
+        "description": "Return the canonical Places spatial-browse projection.",
         "operationId": "get_places_map_api_places_map_get",
         "parameters": [
           {
@@ -40538,7 +40608,7 @@
         },
         "type": "object",
         "title": "ConversationRoomBriefResponse",
-        "description": "Participant-safe projection of explicit shared planning state."
+        "description": "Participant-safe planning readout, never an authoritative plan artifact."
       },
       "CreateConversationRequest": {
         "properties": {
@@ -43216,7 +43286,7 @@
           "lng"
         ],
         "title": "DiscoverMapPin",
-        "description": "One placeable Discover entity. ``lat``/``lng`` are always finite (the\nbuilder drops null-geometry rows). ``take`` / ``affinity`` are the\ndifferentiating judgment layer — both optional (honest absence).\n\n``saved`` / ``in_trip`` are the viewer's own EXPLICIT relationship with the\nplace, kept as their own channel: they never change the pin's verdict fill\n(that would fabricate a Vesper stance), only its form/label. ``in_trip`` is\nonly ever true in the ``place`` scope — a live trip to this city — since the\n``nearby`` scope has no destination to match a plan against."
+        "description": "One placeable entity in the stable Places map response."
       },
       "DiscoverMapResponse": {
         "properties": {
@@ -43289,7 +43359,8 @@
         "required": [
           "scope"
         ],
-        "title": "DiscoverMapResponse"
+        "title": "DiscoverMapResponse",
+        "description": "Stable map wire response, now owned by Places.\n\nIts historic class name intentionally preserves OpenAPI component names\nwhile the compatibility route remains deployed."
       },
       "DiscoverMapTakePreview": {
         "properties": {
@@ -43320,7 +43391,7 @@
           "headline"
         ],
         "title": "DiscoverMapTakePreview",
-        "description": "The judgment-on-the-pin: a curator's verdict + one-line headline.\n\nThis is what makes the map a BROWSE surface rather than a lookup — the pin\ncarries Vesper's stance, not just a dot. Sourced from the shared\n``entity_takes`` curator tier (no per-pin LLM call); the full Take is a\ntap-time fetch on the peek card."
+        "description": "The cheap, display-safe judgment available on a map pin."
       },
       "DiscoverReadBlock": {
         "properties": {
@@ -65985,6 +66056,37 @@
         ],
         "title": "PrivacyPreference"
       },
+      "PrivateTripReflectionAccepted": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "accepted",
+            "title": "Status",
+            "default": "accepted"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "conversation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Conversation Id"
+          },
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "message",
+          "conversation_id",
+          "trip_id"
+        ],
+        "title": "PrivateTripReflectionAccepted"
+      },
       "ProactiveNotification": {
         "properties": {
           "id": {
@@ -74642,6 +74744,120 @@
         ],
         "title": "StructuralRole"
       },
+      "SubmitPrivateTripReflectionRequest": {
+        "properties": {
+          "narrative": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 8000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Narrative"
+          },
+          "highlight": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Highlight"
+          },
+          "lowlight": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lowlight"
+          },
+          "made_trip_better_score": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 5.0,
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Made Trip Better Score"
+          },
+          "felt_represented_score": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 5.0,
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Felt Represented Score"
+          },
+          "privacy_trust_score": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 5.0,
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Privacy Trust Score"
+          },
+          "organizer_relief_score": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 5.0,
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Organizer Relief Score"
+          },
+          "would_use_again": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Would Use Again"
+          },
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "trip_id"
+        ],
+        "title": "SubmitPrivateTripReflectionRequest",
+        "description": "A typed reflection submitted from the member's private trip room."
+      },
       "SuggestCategoryResponse": {
         "properties": {
           "category": {
@@ -81909,7 +82125,12 @@
           "status": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "active",
+                  "archived",
+                  "closed"
+                ]
               },
               {
                 "type": "null"
