@@ -1415,23 +1415,25 @@ the others.
 
 ### 17.14a Implementation follow-through — 2026-08-12
 
-The following safe slices have now been implemented in isolated
-`feat/artifact-loop-execution` worktrees. This record deliberately separates
-code landed on those branches from evidence that still needs a real device,
-backend fixture, or production configuration.
+The following safe slices are now integrated into the primary worktrees. This
+record deliberately separates landed code from evidence that still needs a
+real device, backend fixture, or production configuration. The small
+follow-through commits are intentionally narrow: workspace `cd2d908`, mobile
+`4ab09647`, `8483bca5`, and `8046b23e`, and backend `5bddd3456`.
 
 | Slice | Implemented result | Verification completed | Still not claimed |
 | --- | --- | --- | --- |
-| Authority / retired Atlas draft | New server tool selection no longer offers `atlas_draft`; historical rows retain a renderer and deprecated contract state. | Backend selector and card-allowlist tests; generated app contract sync. | Historical-row retention-window decision and production query. |
+| Authority / retired Atlas draft | New server tool selection no longer offers `atlas_draft`; Atlas-only LLM and auto-candidate gates are hard-disabled; historical rows retain a renderer and deprecated contract state. The journey and flag registries now label legacy Atlas memory paths as compatibility evidence, not active destinations. | Backend selector/card-allowlist/retired-flag tests; generated app contract sync; workspace journey, flag, and release-status checks. | Historical-row retention-window decision and production query. |
 | J05 reference path | Primary Maestro path starts from Trips Home and reaches the group-chat vote widget before observing the applied result. | Maestro structural validator and focused J05/J06 Jest coverage. | Two-account/device and staging evidence. |
 | Artifact telemetry | Every attachment receives a content-free role, lifecycle, and owner; raw action labels are reduced to a small approved vocabulary. Exposure is gated on actual transcript viewport visibility; client events now describe callback completion or navigation intent, while canonical writes remain evidenced by their owning server-side domain events. | Focused telemetry/privacy tests, event-contract migration, and TypeScript. | Apply the migration after the local DB revision drift is reconciled; PostHog canary delivery, experiment assignment, and aggregate analysis. |
-| Organic first-use shell | The post-cover screen is now a composer plus four starters. A starter or voluntary typed thought is stored as an `ambient` handoff, survives sign-up, and opens the existing private Vesper thread. No new pre-auth agent, city claim, Place, or Trip is fabricated. | Onboarding intent, retry, zero-typing, typed-context, TypeScript, and Maestro-reference tests. | The post-auth grounded judgment/replay fixture, first correction, and device visual comparison. |
-| Chat venue action closure | A venue recommendation can save through the canonical save gateway, renders `Saved to Places` only after success, and exposes a Places-owner return. The same save consequence now reaches Places, Trips, and Vesper rather than deprecated Discover/Atlas-shaped fan-out. Detail navigation remains available. | Venue-card, save-hook, telemetry, Places, and TypeScript tests. | A first-class `Not this` steer, review-first add-to-plan path, relaunch proof, and local-Plan graduation. |
+| Organic first-use shell | The post-cover screen is now a composer plus four starters. A starter or voluntary typed thought is stored as an `ambient` handoff, survives sign-up, and opens the existing private Vesper thread. Its existing onboarding session ID now becomes the content-free entry handoff for the auto-started turn, joining the first turn to its AI-run terminal receipt without a second subsystem. No new pre-auth agent, city claim, Place, or Trip is fabricated. | Onboarding intent, retry, zero-typing, typed-context, handoff-route, TypeScript, and Maestro-reference tests. | The post-auth grounded judgment/replay fixture and device visual comparison. |
+| Chat venue action closure | A venue recommendation can save through the canonical save gateway, renders `Saved to Places` only after success, and exposes a Places-owner return. A one-tap `Not this` now routes through the existing Vesper recovery path rather than recording a durable negative taste claim. The same save consequence now reaches Places, Trips, and Vesper rather than deprecated Discover/Atlas-shaped fan-out. Detail navigation remains available. | Venue-card, save-hook, steer, telemetry, Places, and TypeScript tests. | Review-first add-to-plan path, relaunch proof, and local-Plan graduation. |
 | Standalone room promotion | Reviewed current code rather than rewritten: transcript-native proposal confirmation already carries `trip_kind`, reconciles lost responses from the canonical conversation read, pivots ownership before refresh, and has local-kind tests. | Existing card and promotion-hook tests rerun. | Two-reader result receipt and staging/device certification. |
 
-The implementation branches are intentionally not auto-landed into dirty
-primary worktrees. Landing must wait until concurrent design/doc work is ready
-for a fast-forward or an explicit integration review.
+These slices are landed as independent commits. Concurrent work still requires
+explicit-file staging and a current-tree check before any follow-up; landing a
+commit does not promote its local/mock evidence into device, staging, or
+production proof.
 
 ### 17.15 Proposed commit/PR sequence
 
