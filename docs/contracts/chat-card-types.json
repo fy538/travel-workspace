@@ -51,7 +51,8 @@
     "atlas_draft": {
       "message_type": "notification",
       "attachment": "atlas_draft",
-      "thread": "card"
+      "thread": "card",
+      "notes": "Deprecated compatibility projection. No new production writer; retained so historical owner-scoped messages can render during the retention window."
     },
     "error_recovery": {
       "message_type": "notification",
@@ -125,7 +126,7 @@
     "plan_ready": { "status": "active" },
     "map_route": { "status": "active" },
     "comparison_card": { "status": "active" },
-    "atlas_draft": { "status": "active" },
+    "atlas_draft": { "status": "deprecated" },
     "error_recovery": { "status": "active" },
     "booking_confirmation": { "status": "active" },
     "booking_proposal": { "status": "active" },
@@ -145,7 +146,8 @@
     "narration": "Narrate endpoint persists a narration row; not the concierge tool stream",
     "lazy_research": "Research worker posts text + metadata.kind after background work",
     "itinerary_operation": "Itinerary op prep via notification metadata; not a card-arrival tool",
-    "composed_card": "Presentation is selected after grounded artifacts are available; it is intentionally not tied to one streamed tool."
+    "composed_card": "Presentation is selected after grounded artifacts are available; it is intentionally not tied to one streamed tool.",
+    "atlas_draft": "Deprecated compatibility-only attachment. New Atlas draft arrivals are not permitted; historical messages retain their owner-scoped renderer until retirement."
   },
   "pilot_attachment_schemas": [
     "booking_proposal_snapshot",

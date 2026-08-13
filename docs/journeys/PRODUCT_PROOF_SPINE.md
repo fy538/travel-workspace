@@ -26,8 +26,9 @@ regression or an assurance boundary; a P test proves the present thesis.
 | P03 | A lived experience can be confirmed or corrected accurately. | Contract, database, device-mock | Active; device flow not yet recorded. |
 | P04 | A second similar occasion uses permitted prior evidence. | Contract, database, AI evaluation | Active; AI evaluation not yet recorded. |
 | P05 | A participant can contribute through a thin, zero-install handoff. | Contract, database, device-mock | Dark: product surface is not offered. |
-| P06 | Consent, privacy, and deliberate silence are respected. | Contract, database, device-mock, AI evaluation | Dark: dedicated product proof is not yet offered. |
+| P06 | Consent, privacy, and deliberate silence are respected. | Contract, database, device-mock, AI evaluation | Active; required device and AI-evaluation evidence has not yet been recorded. |
 | P07 | The product can rescue a plan after a real disruption. | Contract, database, device-mock, staging | Dark: dedicated product proof is not yet offered. |
+| P08 | An explicit curiosity becomes a grounded encounter. | Contract, database, device-mock, human outcome | Dark: pull-first proof is specified but no product surface is offered. |
 
 ## P01 — occasion to accepted Move or Plan
 
@@ -66,7 +67,7 @@ in repeated AI evaluations.
 
 ## Dark proof policy
 
-P05–P07 are visible debt, not implied coverage. A dark proof may become active
+P05, P07, and P08 are visible debt, not implied coverage. A dark proof may become active
 only when its product surface is reachable and its contract, fixture, and
 evidence requirements are added to `product-proofs.yaml`.
 

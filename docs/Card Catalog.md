@@ -103,7 +103,7 @@ registry. A row absent here is not a supported chat card.
 | `map_route` | `MapRouteCard` | `notification/map_route` | `post_map_route` | inspect grounded route evidence, open focused Map face |
 | `comparison_card` | `ComparisonCard` | `notification/comparison_card` | `post_stay_comparison` | inspect saved stay facts and vote truth, open canonical Stay comparison |
 | `composed_card` | `ComposedChatCard` | `notification/composed_card` | composition policy over grounded artifacts | native read-only blueprint with server-resolved safe actions |
-| `atlas_draft` | `AtlasDraftCard` | `notification/atlas_draft` | `post_atlas_draft` | inspect an owner-scoped pending candidate, open canonical Atlas review |
+| `atlas_draft` | `AtlasDraftCard` | `notification/atlas_draft` | **deprecated; no new production writer** | compatibility render for an owner-scoped historical candidate during the retention window |
 | `error_recovery` | `ErrorRecoveryCard` | `notification/error_recovery` | durable planning workflow | background retry status or revised-request handoff |
 | `booking_confirmation` | `BookingConfirmationCard` | `booking_confirmation` | `confirm_booking` | receipt, provider link/call/session |
 | `booking_proposal` | `BookingProposalCardFetched` | `booking_proposal` | `propose_booking` | confirm/decline after live fetch; display snapshot may paint first |
