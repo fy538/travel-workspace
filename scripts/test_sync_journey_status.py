@@ -40,7 +40,10 @@ def test_branch_fidelity_cell_surfaces_failed_lived_evidence() -> None:
             "evidence": {"LIVE": ["persona-cert:J01"]},
         }
     )
-    assert subject._branch_fidelity_cell(journey, "LIVE", {"J01": {"status": "fail"}}) == "🔴 0/1"
+    assert (
+        subject._branch_fidelity_cell(journey, "LIVE", {"J01": {"status": "fail"}})
+        == "🔴 0/1"
+    )
 
 
 def test_trial_branch_registry_reports_expected_honest_fractions() -> None:
@@ -83,5 +86,7 @@ def test_journey_set_is_derived_from_the_manifest() -> None:
 def test_promoted_evidence_block_is_honest_when_index_is_empty() -> None:
     block = subject.build_evidence_block()
     assert "Promoted execution evidence" in block
-    assert "○ unrun" in block
-    assert "no promoted receipt" in block
+    assert "STALE" in block or "○ unrun" in block
+    assert "Product-proof completion" in block
+    assert "P07" in block
+    assert "missing contract, database, device_mock, staging" in block

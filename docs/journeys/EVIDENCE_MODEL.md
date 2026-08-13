@@ -31,13 +31,18 @@ CI artifacts under `.tmp/journey-evidence/`.
 
 Every receipt records:
 
-- `schema_version` (currently `2`)
+- `schema_version` (currently `3`; schema 2 is readable history but cannot be newly promoted)
 - `run_id` and UTC `recorded_at`
 - exact `workspace_sha`, `app_sha`, and `backend_sha`
 - layer, environment, journeys, optional branches, command, status, duration
 - optional blocked reason and artifact references
+- governed `runner_id` and content-addressed `runner_sha256` for every pass
 
-Passing receipts require all three repository revisions to be known and clean.
+Passing receipts require all three repository revisions to be known and clean,
+the journey/proof identifier to exist, the layer to be required by every named
+P proof, and a runner registered in `evidence-runners.yaml`. The runner digest
+includes its registry entry and governed command/oracle/flow files; changing any
+of them makes the receipt stale.
 Unknown or `-dirty` revisions may describe a failed or blocked diagnostic, but
 cannot certify a pass. Physical pass/fail receipts additionally require the
 exact app build, backend deploy, migration, seed/corpus digest, device and
@@ -62,16 +67,20 @@ The only execution states are `PASS`, `FAIL`, `BLOCKED`, `UNRUN`, and `STALE`.
 ```bash
 python scripts/journey_evidence.py record \
   --layer contract --status pass --journey P01 --environment local \
+  --runner-id dogfood-fast-contract-v1 \
   --command 'npx jest __tests__/proofs/p01.test.tsx --runInBand'
 
 # Physical evidence requires the exact candidate and hashed artifacts.
 python scripts/journey_evidence.py record \
-  --layer physical --status pass --journey P01 --environment founder-device \
-  --command 'maestro test .maestro/p01.yaml' \
+  --layer physical --status pass --journey J04 --environment founder-device \
+  --command 'make dogfood-physical RUN_LIVE=1' \
   --app-build-id eas-build-123 --backend-deploy-digest fly-release-456 \
   --migration-revision 20260810_01 \
   --seed-corpus-hash sha256:<64-hex> \
-  --device 'iPhone 15|iOS 18.6' --identity founder-a --identity founder-b \
+  --runner-id physical-j04-j10-v1 \
+  --device 'ios|00008110-REAL|iPhone 15 / iOS 18.6' \
+  --device 'android|R58N-REAL|Pixel 9 / Android 16' \
+  --identity founder-a --identity founder-b \
   --oracle-hash sha256:<64-hex> --flow-hash sha256:<64-hex> \
   --reviewer feihuyan --artifact 'maestro-video=sha256:<64-hex>'
 
@@ -94,20 +103,19 @@ Use the layered gate instead of mentally combining old test results:
 ```bash
 make dogfood-fast     # under two minutes: deterministic contracts
 make dogfood-local    # local Postgres and pivot canaries
-make dogfood-device   # requires DOGFOOD_DEVICE_COMMAND and DOGFOOD_DEVICE_PROOFS
-make dogfood-physical RUN_LIVE=1  # fail-closed physical J04/J05/J10 walk + receipt metadata
-make dogfood-staging  # requires DOGFOOD_STAGING_COMMAND for deployed services
+make dogfood-device   # blocked until a governed proof-specific device runner exists
+make dogfood-physical RUN_LIVE=1  # fail-closed physical J04/J10; records J05 blocked
+make dogfood-staging  # blocked until a governed deployed-API runner exists
 make journey-evidence-report
 ```
 
 The fast/local gates record only the P01–P04 contract/database anchors they
-actually execute. `dogfood-device` records `device_mock` only for the explicit
-proof list supplied by the operator and deliberately stops when its command or
-proof list is absent. The
+actually execute. Device-mock and staging evidence deliberately remain blocked
+until proof-specific first-class runners are registered; arbitrary operator
+shell commands are not accepted as execution proof. The
 first-class `dogfood-physical` runner records `physical` evidence only after
 all required live assertions, verified physical hardware, and fresh artifacts
 are present; dry or skipped runs are `BLOCKED`. The low-level gate deliberately
-rejects arbitrary physical shell commands. `dogfood-staging` requires an explicit command and
-comma-separated `DOGFOOD_STAGING_PROOFS` list. None of these commands records a
+rejects arbitrary physical shell commands. None of these commands records a
 substitute simulator, TestClient, or file-presence result as higher-layer
 evidence.

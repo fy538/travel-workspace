@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
-# Fail-closed physical device certification for the active dogfood wedge.
+# Fail-closed physical device certification for the runnable J04/J10 wedge.
 #
-# This runner validates the live prerequisites and then executes the five
-# Maestro flows required by the J04/J05/J10 runbook. A dry run is deliberately
+# This runner validates the live prerequisites and then executes the four
+# runnable Maestro flows required by the J04/J10 runbook. J05 is recorded as a
+# separate BLOCKED result until its real second-account membership and two-device
+# observer flow exist. A dry run is deliberately
 # a blocked result: it never claims physical evidence. A physical pass/fail
 # receipt is written only when the runner resolves two physical UDIDs and
 # hashes artifacts created during this exact run.
@@ -129,7 +131,7 @@ record_physical_receipt() {
   local command="RUN_LIVE=${RUN_LIVE} scripts/dogfood-device-cert-live.sh"
   local args=(
     record --layer physical --status "$status" --environment founder-physical
-    --command "$command" --journey J04 --journey J05 --journey J10
+    --command "$command" --runner-id physical-j04-j10-v1 --journey J04 --journey J10
   )
   if [[ "$status" == "blocked" ]]; then
     args+=(--reason "$reason")
@@ -143,7 +145,18 @@ record_physical_receipt() {
   python3 "$SCRIPT_DIR/journey_evidence.py" "${args[@]}" >/dev/null
 }
 
-bold "Physical device certification — J04 / J05 / J10"
+record_j05_blocked_receipt() {
+  python3 "$SCRIPT_DIR/journey_evidence.py" record \
+    --layer physical --status blocked --environment founder-physical \
+    --command "RUN_LIVE=${RUN_LIVE} scripts/dogfood-device-cert-live.sh" \
+    --journey J05 \
+    --reason "J05 two-account membership and two-device same-mutation observer flow are not implemented" \
+    >/dev/null
+}
+
+bold "Physical device certification — J04 / J10 (J05 explicitly blocked)"
+record_j05_blocked_receipt || true
+warn "J05 is not part of this pass; a separate BLOCKED receipt was recorded."
 
 step "1/5 Validate Maestro flow files (YAML parse + registry check)"
 if python3 "$SCRIPT_DIR/validate-maestro-flows.py" --app-dir "$APP_DIR"; then
@@ -186,7 +199,6 @@ FLOWS=(
   "30-journey-04-device-organizer-group-safe-check.yaml"
   "31-journey-10-device-organizer-stay-expense.yaml"
   "32-journey-10-device-member-stay-visibility-check.yaml"
-  "33-journey-05-device-two-account-proposal-loop.yaml"
 )
 for flow in "${FLOWS[@]}"; do printf "    - %s\n" "$flow"; done
 
@@ -237,8 +249,6 @@ else
     "31-journey-10-device-organizer-stay-expense.yaml" "I10-part-A-organizer-create"
   run_flow "${PHYSICAL_DEVICE_UDID_LIST[0]}" \
     "32-journey-10-device-member-stay-visibility-check.yaml" "I10-visibility-assert"
-  run_flow "${PHYSICAL_DEVICE_UDID_LIST[1]}" \
-    "33-journey-05-device-two-account-proposal-loop.yaml" "I5-I6-I7-I8-proposal-loop"
 fi
 
 bold "Physical certification summary"
@@ -277,4 +287,4 @@ if ! record_physical_receipt pass ""; then
   exit 2
 fi
 
-bold "Physical certification PASSED — receipt recorded for P01/P03."
+bold "Physical certification PASSED — J04/J10 receipt recorded; J05 remains BLOCKED."

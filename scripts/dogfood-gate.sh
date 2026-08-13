@@ -18,25 +18,22 @@ Usage: scripts/dogfood-gate.sh {fast|local|device|physical|staging}
 
 fast     Deterministic client contracts and static registry checks (P01–P04 contract anchors).
 local    fast plus the Postgres/local-plan canary (P01–P04 database anchors).
-device   local plus an explicitly supplied proof-specific device-mock command.
+device   local, then fail closed until a governed proof-specific device runner exists.
 physical Reserved; fails closed and directs operators to dogfood-physical.
-staging  an explicitly supplied deployed-environment command and proof list.
+staging  fail closed until a deployed-API runner is registered for the requested proof.
 
-For device, set DOGFOOD_DEVICE_COMMAND and DOGFOOD_DEVICE_PROOFS to the exact
-current-build command and the comma-separated proof IDs whose registered
-device-mock flows it actually exercises. The command never infers proof IDs.
 Physical evidence is never accepted from an arbitrary
 shell command; use `make dogfood-physical RUN_LIVE=1` so hardware and artifacts
 are verified by the first-class runner.
-For staging, set DOGFOOD_STAGING_COMMAND and DOGFOOD_STAGING_PROOFS (a
-comma-separated list of registered P01–P07 proof IDs) explicitly. Missing commands or proof lists
-are a blocked run and never produce a pass receipt.
+Device-mock and staging passes must be added as governed runners in
+docs/journeys/evidence-runners.yaml; arbitrary operator shell commands cannot
+produce promotable evidence.
 EOF
 }
 
 record() {
-  local layer="$1" status="$2" environment="$3" command="$4" duration="$5"
-  shift 5
+  local layer="$1" status="$2" environment="$3" command="$4" duration="$5" runner_id="$6"
+  shift 6
   local args=()
   local proof
   for proof in "$@"; do
@@ -44,12 +41,13 @@ record() {
   done
   "${EVIDENCE_TOOL[@]}" record \
     --layer "$layer" --status "$status" --environment "$environment" \
-    --command "$command" --duration-seconds "$duration" "${args[@]}" >/dev/null
+    --command "$command" --runner-id "$runner_id" --duration-seconds "$duration" \
+    "${args[@]}" >/dev/null
 }
 
 run_and_record() {
-  local layer="$1" environment="$2" label="$3" runner="$4"
-  shift 4
+  local layer="$1" environment="$2" label="$3" runner_id="$4" runner="$5"
+  shift 5
   local runner_args=() proof_args=() arg
   while [[ "$#" -gt 0 && "$1" != "--" ]]; do
     runner_args+=("$1")
@@ -82,12 +80,14 @@ run_and_record() {
   else
     status=fail
   fi
-  record "$layer" "$status" "$environment" "$label" "$(( $(date +%s) - started ))" "${proof_args[@]}"
+  record "$layer" "$status" "$environment" "$label" "$(( $(date +%s) - started ))" \
+    "$runner_id" "${proof_args[@]}"
   return "$exit_code"
 }
 
 run_fast() {
-  run_and_record contract local "dogfood-fast deterministic product-proof contracts" run_fast_contracts \
+  run_and_record contract local "dogfood-fast deterministic product-proof contracts" \
+    dogfood-fast-contract-v1 run_fast_contracts \
     -- P01 P02 P03 P04
 }
 
@@ -107,36 +107,9 @@ run_fast_contracts() {
 
 run_local() {
   run_fast
-  run_and_record database local "scripts/pre-dogfood.sh" "$SCRIPT_DIR/pre-dogfood.sh" \
+  run_and_record database local "scripts/pre-dogfood.sh" dogfood-local-database-v1 \
+    "$SCRIPT_DIR/pre-dogfood.sh" \
     -- P01 P02 P03 P04
-}
-
-run_shell_command() {
-  bash -lc "$1"
-}
-
-run_external() {
-  local mode="$1" command_variable="$2" layer="$3" environment="$4"
-  shift 4
-  local proofs=("$@")
-  local command="${!command_variable:-}"
-  if [[ -z "$command" ]]; then
-    printf '✗ %s gate needs %s to be set to the exact current-build command.\n' "$mode" "$command_variable" >&2
-    printf '  No %s receipt was written; this checkout remains UNRUN/BLOCKED at that layer.\n' "$layer" >&2
-    return 2
-  fi
-  run_and_record "$layer" "$environment" "$command" run_shell_command "$command" -- "${proofs[@]}"
-}
-
-parse_proofs() {
-  local raw="$1" item
-  PARSED_PROOFS=()
-  [[ -n "$raw" ]] || { printf '✗ A comma-separated proof list is required.\n' >&2; return 2; }
-  IFS=',' read -r -a PARSED_PROOFS <<<"$raw"
-  [[ "${#PARSED_PROOFS[@]}" -gt 0 ]] || return 2
-  for item in "${PARSED_PROOFS[@]}"; do
-    [[ "$item" =~ ^P0[1-7]$ ]] || { printf '✗ Invalid proof id in list: %s\n' "$item" >&2; return 2; }
-  done
 }
 
 case "${1:-}" in
@@ -144,8 +117,9 @@ case "${1:-}" in
   local) run_local ;;
   device)
     run_local
-    parse_proofs "${DOGFOOD_DEVICE_PROOFS:-}"
-    run_external device DOGFOOD_DEVICE_COMMAND device_mock founder-device "${PARSED_PROOFS[@]}"
+    printf '✗ No governed device-mock product-proof runner is registered yet.\n' >&2
+    printf '  Add a proof-specific runner to docs/journeys/evidence-runners.yaml.\n' >&2
+    exit 2
     ;;
   physical)
     printf '✗ Arbitrary physical commands cannot produce evidence.\n' >&2
@@ -153,8 +127,9 @@ case "${1:-}" in
     exit 2
     ;;
   staging)
-    parse_proofs "${DOGFOOD_STAGING_PROOFS:-}"
-    run_external staging DOGFOOD_STAGING_COMMAND staging staging "${PARSED_PROOFS[@]}"
+    printf '✗ No governed deployed-API staging runner is registered yet.\n' >&2
+    printf '  Direct database scripts and arbitrary shell commands cannot certify staging.\n' >&2
+    exit 2
     ;;
   *) usage; exit 2 ;;
 esac

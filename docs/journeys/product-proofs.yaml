@@ -74,6 +74,8 @@ proofs:
     required_layers: [contract, database, device_mock, staging]
     anchors:
       contract:
+        - travel-agent/tools/eval/contracts/trip-disruption-repair-v1.yaml
+        - travel-agent/tests/eval/test_loop_contract.py
         - travel-agent/tests/scenarios/test_lisbon_group_disruption_contract.py
         - travel-agent/tests/eval/test_lisbon_rescue_contract.py
         - travel-app/__tests__/utils/takeSomewhere.test.ts

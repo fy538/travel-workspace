@@ -17,8 +17,10 @@ def _receipt(**overrides: object) -> dict[str, object]:
         "layer": "contract",
         "environment": "local",
         "journeys": ["P01"],
-        "command": "npx jest P01",
+        "command": "dogfood-fast deterministic product-proof contracts",
         "status": "pass",
+        "runner_id": "dogfood-fast-contract-v1",
+        "runner_sha256": subject.runner_digest("dogfood-fast-contract-v1"),
     }
     return {**base, **overrides}
 
@@ -33,7 +35,12 @@ def test_evidence_state_is_current_stale_or_unrun() -> None:
 
     assert subject.evidence_state([receipt], "P01", "contract", revisions) == "pass"
     assert subject.evidence_state([receipt], "P01", "database", revisions) == "unrun"
-    assert subject.evidence_state([_receipt(app_sha="app-old")], "P01", "contract", revisions) == "stale"
+    assert (
+        subject.evidence_state(
+            [_receipt(app_sha="app-old")], "P01", "contract", revisions
+        )
+        == "stale"
+    )
 
 
 def test_newer_receipt_supersedes_an_older_failure() -> None:
@@ -45,7 +52,9 @@ def test_newer_receipt_supersedes_an_older_failure() -> None:
     failed = _receipt(status="fail", recorded_at="2026-08-07T10:00:00+00:00")
     passed = _receipt(status="pass", recorded_at="2026-08-07T10:01:00+00:00")
 
-    assert subject.evidence_state([failed, passed], "P01", "contract", revisions) == "pass"
+    assert (
+        subject.evidence_state([failed, passed], "P01", "contract", revisions) == "pass"
+    )
 
 
 def test_load_receipts_ignores_invalid_receipts(tmp_path: Path) -> None:
@@ -68,13 +77,51 @@ def test_validate_receipt_requires_known_layer() -> None:
         raise AssertionError("expected an invalid layer to fail validation")
 
 
+def test_passing_receipt_requires_a_governed_runner() -> None:
+    receipt = _receipt()
+    receipt.pop("runner_id")
+    receipt.pop("runner_sha256")
+
+    try:
+        subject.validate_receipt(receipt)
+    except subject.ReceiptError as exc:
+        assert "runner_id" in str(exc)
+    else:
+        raise AssertionError("expected an unbound passing receipt to fail validation")
+
+
+def test_governed_runner_rejects_an_arbitrary_command_label() -> None:
+    try:
+        subject.validate_runner_binding(
+            runner_id="dogfood-fast-contract-v1",
+            layer="contract",
+            journeys=["P01"],
+            command="true",
+        )
+    except subject.ReceiptError as exc:
+        assert "requires receipt command" in str(exc)
+    else:
+        raise AssertionError("expected an arbitrary no-op command to fail binding")
+
+
+def test_proof_receipt_rejects_an_unrequired_layer() -> None:
+    try:
+        subject.validate_receipt(_receipt(layer="staging"))
+    except subject.ReceiptError as exc:
+        assert "not required" in str(exc)
+    else:
+        raise AssertionError("expected proof/layer drift to fail validation")
+
+
 def test_blocked_receipt_requires_a_reason() -> None:
     try:
         subject.validate_receipt(_receipt(status="blocked"))
     except subject.ReceiptError as exc:
         assert "skip_reason" in str(exc)
     else:
-        raise AssertionError("expected a blocked receipt without a reason to fail validation")
+        raise AssertionError(
+            "expected a blocked receipt without a reason to fail validation"
+        )
 
 
 def test_revision_marks_tracked_modifications_as_dirty(tmp_path: Path) -> None:
@@ -99,7 +146,15 @@ def test_passing_receipt_rejects_dirty_revision() -> None:
 
 def test_physical_receipt_requires_build_and_artifact_identity() -> None:
     try:
-        subject.validate_receipt(_receipt(layer="physical"))
+        subject.validate_receipt(
+            _receipt(
+                layer="physical",
+                journeys=["J04"],
+                command="RUN_LIVE=1 scripts/dogfood-device-cert-live.sh",
+                runner_id="physical-j04-j10-v1",
+                runner_sha256=subject.runner_digest("physical-j04-j10-v1"),
+            )
+        )
     except subject.ReceiptError as exc:
         assert "physical receipts require" in str(exc)
     else:
@@ -109,11 +164,18 @@ def test_physical_receipt_requires_build_and_artifact_identity() -> None:
 def test_valid_physical_receipt_accepts_explicit_identity() -> None:
     receipt = _receipt(
         layer="physical",
+        journeys=["J04"],
+        command="RUN_LIVE=1 scripts/dogfood-device-cert-live.sh",
+        runner_id="physical-j04-j10-v1",
+        runner_sha256=subject.runner_digest("physical-j04-j10-v1"),
         app_build_id="eas-build-123",
         backend_deploy_digest="fly-release-456",
         migration_revision="20260810_01",
         seed_corpus_hash="sha256:" + "a" * 64,
-        devices=["ios|00008110-REAL|iPhone 15 / iOS 18.6", "android|R58N-REAL|Pixel 9 / Android 16"],
+        devices=[
+            "ios|00008110-REAL|iPhone 15 / iOS 18.6",
+            "android|R58N-REAL|Pixel 9 / Android 16",
+        ],
         identities=["founder-a", "founder-b"],
         oracle_hash="sha256:" + "b" * 64,
         flow_hash="sha256:" + "c" * 64,
@@ -126,6 +188,10 @@ def test_valid_physical_receipt_accepts_explicit_identity() -> None:
 def test_physical_receipt_rejects_single_or_duplicate_hardware() -> None:
     receipt = _receipt(
         layer="physical",
+        journeys=["J04"],
+        command="RUN_LIVE=1 scripts/dogfood-device-cert-live.sh",
+        runner_id="physical-j04-j10-v1",
+        runner_sha256=subject.runner_digest("physical-j04-j10-v1"),
         app_build_id="eas-build-123",
         backend_deploy_digest="fly-release-456",
         migration_revision="20260810_01",

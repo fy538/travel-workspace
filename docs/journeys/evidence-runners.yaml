@@ -1,0 +1,49 @@
+# Governed execution identities for promotable journey evidence.
+#
+# A runner binds a receipt to the exact layer and identifiers it is allowed to
+# certify. Its digest includes this registry entry and every governed path, so a
+# changed oracle or flow cannot inherit an older pass.
+runners:
+  - id: dogfood-fast-contract-v1
+    layer: contract
+    journeys: [P01, P02, P03, P04]
+    entrypoint: make dogfood-fast
+    receipt_command: dogfood-fast deterministic product-proof contracts
+    governed_paths:
+      - scripts/dogfood-gate.sh
+      - scripts/contract-check.sh
+      - docs/journeys/product-proofs.yaml
+
+  - id: dogfood-local-database-v1
+    layer: database
+    journeys: [P01, P02, P03, P04]
+    entrypoint: make dogfood-local
+    receipt_command: scripts/pre-dogfood.sh
+    governed_paths:
+      - scripts/dogfood-gate.sh
+      - scripts/pre-dogfood.sh
+      - docs/journeys/product-proofs.yaml
+
+  - id: product-proof-ai-eval-v1
+    layer: ai_eval
+    journeys: [P04, P06]
+    entrypoint: travel-agent/.venv/bin/python -m eval.product_proofs.run_eval
+    receipt_command: travel-agent/.venv/bin/python -m eval.product_proofs.run_eval
+    governed_paths:
+      - travel-agent/eval/product_proofs/fixtures.py
+      - travel-agent/eval/product_proofs/grader.py
+      - travel-agent/eval/product_proofs/run_eval.py
+      - docs/journeys/product-proofs.yaml
+
+  - id: physical-j04-j10-v1
+    layer: physical
+    journeys: [J04, J10]
+    entrypoint: make dogfood-physical RUN_LIVE=1
+    receipt_command: RUN_LIVE=1 scripts/dogfood-device-cert-live.sh
+    governed_paths:
+      - scripts/dogfood-device-cert-live.sh
+      - scripts/physical_evidence.py
+      - travel-app/.maestro/29-journey-04-device-member-private-phrase.yaml
+      - travel-app/.maestro/30-journey-04-device-organizer-group-safe-check.yaml
+      - travel-app/.maestro/31-journey-10-device-organizer-stay-expense.yaml
+      - travel-app/.maestro/32-journey-10-device-member-stay-visibility-check.yaml

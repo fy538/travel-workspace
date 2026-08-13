@@ -144,11 +144,37 @@ Source: `docs/journeys/journeys.yaml` × registered branch evidence where declar
 
 Source: `docs/journeys/evidence-attestations.json`; raw local/CI receipts never promote themselves.
 
-Candidate: `not promoted`
+Candidate: `4052ddc007b0 / 76d7edca5153 / a29b92d96a58`
 
 | Journey/Proof | Layer | Result | Receipt |
 |---|---|---|---|
-| — | — | ○ unrun | no promoted receipt |
+| P01 | contract | STALE | `sha256:871a354dfd44…` |
+| P02 | contract | STALE | `sha256:871a354dfd44…` |
+| P03 | contract | STALE | `sha256:871a354dfd44…` |
+| P04 | contract | STALE | `sha256:871a354dfd44…` |
+| P01 | contract | STALE | `sha256:40dc09086201…` |
+| P02 | contract | STALE | `sha256:40dc09086201…` |
+| P03 | contract | STALE | `sha256:40dc09086201…` |
+| P04 | contract | STALE | `sha256:40dc09086201…` |
+| P01 | database | STALE | `sha256:0af3ede931a4…` |
+| P02 | database | STALE | `sha256:0af3ede931a4…` |
+| P03 | database | STALE | `sha256:0af3ede931a4…` |
+| P04 | database | STALE | `sha256:0af3ede931a4…` |
+
+#### Product-proof completion
+
+A proof is evidence-complete only when every required layer has a current, promoted governed-runner receipt. Product `dark`/`active` state remains a separate decision.
+
+| Proof | Product state | Required layers | Current promoted layers | Evidence state |
+|---|---|---|---|---|
+| P01 | active | contract, database, device_mock | — | ○ missing contract, database, device_mock |
+| P02 | active | contract, database | — | ○ missing contract, database |
+| P03 | active | contract, database, device_mock | — | ○ missing contract, database, device_mock |
+| P04 | active | ai_eval, contract, database | — | ○ missing ai_eval, contract, database |
+| P05 | dark | contract, database, device_mock | — | ○ missing contract, database, device_mock |
+| P06 | active | ai_eval, contract, database, device_mock | — | ○ missing ai_eval, contract, database, device_mock |
+| P07 | dark | contract, database, device_mock, staging | — | ○ missing contract, database, device_mock, staging |
+| P08 | dark | contract, database, device_mock, human_outcome | — | ○ missing contract, database, device_mock, human_outcome |
 <!-- END auto:evidence-attestations -->
 
 ## Summary

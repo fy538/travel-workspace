@@ -10,7 +10,7 @@ import promote_journey_evidence as subject
 
 def _receipt(**overrides: object) -> dict[str, object]:
     base: dict[str, object] = {
-        "schema_version": 2,
+        "schema_version": 3,
         "run_id": "jr-1",
         "recorded_at": "2026-08-10T12:00:00+00:00",
         "workspace_sha": "workspace-current",
@@ -19,8 +19,12 @@ def _receipt(**overrides: object) -> dict[str, object]:
         "layer": "contract",
         "environment": "CI",
         "journeys": ["P01"],
-        "command": "npx jest P01",
+        "command": "dogfood-fast deterministic product-proof contracts",
         "status": "pass",
+        "runner_id": "dogfood-fast-contract-v1",
+        "runner_sha256": __import__("journey_evidence").runner_digest(
+            "dogfood-fast-contract-v1"
+        ),
     }
     return {**base, **overrides}
 
@@ -65,6 +69,21 @@ def test_build_index_rejects_dirty_candidate() -> None:
         raise AssertionError("expected dirty candidate promotion to fail")
 
 
+def test_build_index_rejects_stale_runner_digest() -> None:
+    revisions = {
+        "workspace_sha": "workspace-current",
+        "app_sha": "app-current",
+        "backend_sha": "backend-current",
+    }
+
+    try:
+        subject.build_index([_receipt(runner_sha256="sha256:" + "0" * 64)], revisions)
+    except ValueError as exc:
+        assert "runner digest is stale" in str(exc)
+    else:
+        raise AssertionError("expected stale governed runner evidence to fail")
+
+
 def test_committed_empty_index_is_valid(tmp_path) -> None:
     path = tmp_path / "index.json"
     path.write_text(json.dumps({"schema_version": 1, "attestations": []}))
@@ -98,7 +117,9 @@ def test_load_index_rejects_receipt_digest_mismatch(tmp_path: Path) -> None:
         raise AssertionError("expected a forged receipt digest to fail")
 
 
-def test_projection_commit_chain_keeps_subject_candidate_current(tmp_path: Path) -> None:
+def test_projection_commit_chain_keeps_subject_candidate_current(
+    tmp_path: Path,
+) -> None:
     index = {
         "candidate": {
             "workspace_sha": "subject-sha",
@@ -119,7 +140,9 @@ def test_projection_commit_chain_keeps_subject_candidate_current(tmp_path: Path)
             ["docs/journeys/evidence-attestations.json", "docs/release/v1-scope.md"],
         ],
     ):
-        assert subject.index_candidate_is_current(index, current, workspace_root=tmp_path)
+        assert subject.index_candidate_is_current(
+            index, current, workspace_root=tmp_path
+        )
 
 
 def test_non_projection_commit_makes_subject_candidate_stale(tmp_path: Path) -> None:
@@ -140,10 +163,14 @@ def test_non_projection_commit_makes_subject_candidate_stale(tmp_path: Path) -> 
         "_git_lines",
         side_effect=[[], ["Makefile"]],
     ):
-        assert not subject.index_candidate_is_current(index, current, workspace_root=tmp_path)
+        assert not subject.index_candidate_is_current(
+            index, current, workspace_root=tmp_path
+        )
 
 
-def test_non_descendant_projection_diff_makes_subject_candidate_stale(tmp_path: Path) -> None:
+def test_non_descendant_projection_diff_makes_subject_candidate_stale(
+    tmp_path: Path,
+) -> None:
     index = {
         "candidate": {
             "workspace_sha": "subject-sha",
@@ -161,4 +188,6 @@ def test_non_descendant_projection_diff_makes_subject_candidate_stale(tmp_path: 
         "_git_lines",
         side_effect=subprocess.CalledProcessError(1, ["git", "merge-base"]),
     ):
-        assert not subject.index_candidate_is_current(index, current, workspace_root=tmp_path)
+        assert not subject.index_candidate_is_current(
+            index, current, workspace_root=tmp_path
+        )

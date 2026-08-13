@@ -79,7 +79,9 @@ def index_candidate_is_current(
         for key in ("workspace_sha", "app_sha", "backend_sha")
     ):
         return False
-    if any(candidate.get(key) != current.get(key) for key in ("app_sha", "backend_sha")):
+    if any(
+        candidate.get(key) != current.get(key) for key in ("app_sha", "backend_sha")
+    ):
         return False
 
     subject_sha = candidate.get("workspace_sha")
@@ -89,26 +91,57 @@ def index_candidate_is_current(
     if not isinstance(subject_sha, str) or not isinstance(current_sha, str):
         return False
     try:
-        _git_lines(workspace_root, "merge-base", "--is-ancestor", subject_sha, current_sha)
+        _git_lines(
+            workspace_root, "merge-base", "--is-ancestor", subject_sha, current_sha
+        )
         changed_paths = set(
-            _git_lines(workspace_root, "diff", "--name-only", subject_sha, current_sha, "--")
+            _git_lines(
+                workspace_root, "diff", "--name-only", subject_sha, current_sha, "--"
+            )
         )
     except (OSError, subprocess.CalledProcessError):
         return False
     return bool(changed_paths) and changed_paths <= ATTESTATION_PROJECTION_PATHS
 
 
-def build_index(receipts: list[dict[str, Any]], revisions: dict[str, str]) -> dict[str, Any]:
-    if any(value == "unknown" or value.endswith("-dirty") for value in revisions.values()):
-        raise ValueError("promotion requires a clean workspace, app, and backend candidate")
+def build_index(
+    receipts: list[dict[str, Any]], revisions: dict[str, str]
+) -> dict[str, Any]:
+    if any(
+        value == "unknown" or value.endswith("-dirty") for value in revisions.values()
+    ):
+        raise ValueError(
+            "promotion requires a clean workspace, app, and backend candidate"
+        )
 
     attestations: list[dict[str, Any]] = []
     seen: set[str] = set()
     for receipt in receipts:
+        try:
+            evidence.validate_receipt(receipt)
+        except evidence.ReceiptError as exc:
+            raise ValueError(
+                f"invalid receipt {receipt.get('run_id', '?')}: {exc}"
+            ) from exc
         if receipt.get("status") != "pass":
             continue
-        if not evidence.receipt_is_current(receipt, revisions):
+        if not all(receipt.get(key) == value for key, value in revisions.items()):
             continue
+        if receipt.get("schema_version") != evidence.SCHEMA_VERSION:
+            raise ValueError(
+                f"legacy receipt {receipt.get('run_id', '?')} cannot be promoted; rerun with "
+                f"schema {evidence.SCHEMA_VERSION}"
+            )
+        expected_runner_digest = evidence.validate_runner_binding(
+            runner_id=receipt["runner_id"],
+            layer=receipt["layer"],
+            journeys=receipt["journeys"],
+            command=receipt["command"],
+        )
+        if not hmac.compare_digest(receipt["runner_sha256"], expected_runner_digest):
+            raise ValueError(
+                f"receipt {receipt.get('run_id', '?')} runner digest is stale; rerun the governed command"
+            )
         digest = receipt_digest(receipt)
         if digest in seen:
             continue
@@ -133,27 +166,37 @@ def load_index(path: Path = DEFAULT_OUTPUT) -> dict[str, Any]:
         }
     data = json.loads(path.read_text())
     if data.get("schema_version") != INDEX_SCHEMA_VERSION:
-        raise ValueError(f"unsupported attestation index schema: {data.get('schema_version')!r}")
+        raise ValueError(
+            f"unsupported attestation index schema: {data.get('schema_version')!r}"
+        )
     if not isinstance(data.get("attestations"), list):
         raise ValueError("attestation index requires an attestations list")
     candidate = data.get("candidate") or {}
     if candidate and set(candidate) != {"workspace_sha", "app_sha", "backend_sha"}:
-        raise ValueError("attestation index candidate must contain the triple-SHA identity")
+        raise ValueError(
+            "attestation index candidate must contain the triple-SHA identity"
+        )
     for position, attestation in enumerate(data["attestations"]):
         if not isinstance(attestation, dict):
             raise ValueError(f"attestation {position} must be an object")
         receipt = attestation.get("receipt")
         digest = attestation.get("receipt_sha256")
         if not isinstance(receipt, dict) or not isinstance(digest, str):
-            raise ValueError(f"attestation {position} requires a receipt and receipt_sha256")
+            raise ValueError(
+                f"attestation {position} requires a receipt and receipt_sha256"
+            )
         try:
             evidence.validate_receipt(receipt)
         except evidence.ReceiptError as exc:
-            raise ValueError(f"attestation {position} has an invalid receipt: {exc}") from exc
+            raise ValueError(
+                f"attestation {position} has an invalid receipt: {exc}"
+            ) from exc
         if receipt.get("status") != "pass":
             raise ValueError(f"attestation {position} must embed a passing receipt")
         if candidate and not evidence.receipt_is_current(receipt, candidate):
-            raise ValueError(f"attestation {position} receipt does not match the candidate")
+            raise ValueError(
+                f"attestation {position} receipt does not match the candidate"
+            )
         if not hmac.compare_digest(digest, receipt_digest(receipt)):
             raise ValueError(f"attestation {position} receipt digest mismatch")
     return data

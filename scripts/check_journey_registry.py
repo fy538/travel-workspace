@@ -39,7 +39,16 @@ _AGENT = _REPO / "travel-agent"
 _APP = _REPO / "travel-app"
 _EVIDENCE_CODES = {"FE", "BE", "VIS", "LIVE"}
 _TAXONOMY_KINDS = {"customer_regression", "assurance_pack", "historical"}
-_PROOF_LAYERS = {"contract", "database", "device_mock", "persona_replay", "staging", "physical", "ai_eval", "human_outcome"}
+_PROOF_LAYERS = {
+    "contract",
+    "database",
+    "device_mock",
+    "persona_replay",
+    "staging",
+    "physical",
+    "ai_eval",
+    "human_outcome",
+}
 _PROOF_STATUSES = {"active", "dark"}
 
 # Anchors are file paths recorded as evidence that a layer of a proof is real.
@@ -93,7 +102,10 @@ def _execute_anchor(anchor: str) -> tuple[str, str]:
                 timeout=_ANCHOR_TIMEOUT_SECONDS,
             )
         except subprocess.TimeoutExpired:
-            return "unverified", f"{anchor}: pytest timed out after {_ANCHOR_TIMEOUT_SECONDS}s"
+            return (
+                "unverified",
+                f"{anchor}: pytest timed out after {_ANCHOR_TIMEOUT_SECONDS}s",
+            )
         except OSError as exc:
             return "unverified", f"{anchor}: could not launch pytest ({exc})"
         if proc.returncode == 0:
@@ -102,12 +114,18 @@ def _execute_anchor(anchor: str) -> tuple[str, str]:
             # No tests collected — the anchor doesn't exercise anything, so
             # it isn't evidence of anything either.
             return "unverified", f"{anchor}: pytest collected zero tests"
-        return "fail", f"{anchor}: pytest exited {proc.returncode}\n{_tail(proc.stdout + proc.stderr)}"
+        return (
+            "fail",
+            f"{anchor}: pytest exited {proc.returncode}\n{_tail(proc.stdout + proc.stderr)}",
+        )
 
     if anchor.endswith((".ts", ".tsx")):
         node_modules = _APP / "node_modules"
         if not node_modules.exists():
-            return "unverified", f"{anchor}: travel-app/node_modules not found (run npm ci)"
+            return (
+                "unverified",
+                f"{anchor}: travel-app/node_modules not found (run npm ci)",
+            )
         try:
             rel = path.relative_to(_APP)
         except ValueError:
@@ -121,14 +139,23 @@ def _execute_anchor(anchor: str) -> tuple[str, str]:
                 timeout=_ANCHOR_TIMEOUT_SECONDS,
             )
         except subprocess.TimeoutExpired:
-            return "unverified", f"{anchor}: jest timed out after {_ANCHOR_TIMEOUT_SECONDS}s"
+            return (
+                "unverified",
+                f"{anchor}: jest timed out after {_ANCHOR_TIMEOUT_SECONDS}s",
+            )
         except OSError as exc:
             return "unverified", f"{anchor}: could not launch jest ({exc})"
         if proc.returncode == 0:
             return "pass", anchor
-        return "fail", f"{anchor}: jest exited {proc.returncode}\n{_tail(proc.stdout + proc.stderr)}"
+        return (
+            "fail",
+            f"{anchor}: jest exited {proc.returncode}\n{_tail(proc.stdout + proc.stderr)}",
+        )
 
-    return "unverified", f"{anchor}: no execution runner registered for this anchor type"
+    return (
+        "unverified",
+        f"{anchor}: no execution runner registered for this anchor type",
+    )
 
 
 def _manifest() -> tuple[set[str], dict[str, str]]:
@@ -163,7 +190,11 @@ def _scenarios_ids() -> set[str]:
 def _be_test_ids() -> set[str]:
     d = _AGENT / "tests" / "scenarios"
     return (
-        {m.group(1).upper() for f in d.glob("test_j*.py") if (m := re.match(r"test_(j\d{2})_", f.name))}
+        {
+            m.group(1).upper()
+            for f in d.glob("test_j*.py")
+            if (m := re.match(r"test_(j\d{2})_", f.name))
+        }
         if d.exists()
         else set()
     )
@@ -172,7 +203,11 @@ def _be_test_ids() -> set[str]:
 def _fe_mockwalk_ids() -> set[str]:
     d = _APP / "__tests__" / "journeys"
     return (
-        {"J" + m.group(1) for f in d.glob("journey-*-mock-walk.smoke.test.tsx") if (m := re.match(r"journey-(\d{2})-", f.name))}
+        {
+            "J" + m.group(1)
+            for f in d.glob("journey-*-mock-walk.smoke.test.tsx")
+            if (m := re.match(r"journey-(\d{2})-", f.name))
+        }
         if d.exists()
         else set()
     )
@@ -196,7 +231,9 @@ def _branch_registry_problems() -> tuple[list[str], int]:
         for branch in journey.get("branches", []):
             branch_count += 1
             bid = branch.get("id")
-            if not isinstance(bid, str) or not re.fullmatch(rf"{re.escape(jid)}\.B\d{{2}}", bid):
+            if not isinstance(bid, str) or not re.fullmatch(
+                rf"{re.escape(jid)}\.B\d{{2}}", bid
+            ):
                 problems.append(f"{jid}: invalid branch id {bid!r}")
                 continue
             if bid in seen:
@@ -209,7 +246,9 @@ def _branch_registry_problems() -> tuple[list[str], int]:
                 continue
             unknown_required = set(required) - _EVIDENCE_CODES
             if unknown_required:
-                problems.append(f"{bid}: unknown required evidence {sorted(unknown_required)}")
+                problems.append(
+                    f"{bid}: unknown required evidence {sorted(unknown_required)}"
+                )
 
             evidence = branch.get("evidence")
             if not isinstance(evidence, dict):
@@ -217,12 +256,16 @@ def _branch_registry_problems() -> tuple[list[str], int]:
                 continue
             unknown_evidence = set(evidence) - _EVIDENCE_CODES
             if unknown_evidence:
-                problems.append(f"{bid}: unknown evidence keys {sorted(unknown_evidence)}")
+                problems.append(
+                    f"{bid}: unknown evidence keys {sorted(unknown_evidence)}"
+                )
 
             for code in required:
                 anchors = evidence.get(code)
                 if not isinstance(anchors, list):
-                    problems.append(f"{bid}: {code} evidence must be a list (empty is allowed)")
+                    problems.append(
+                        f"{bid}: {code} evidence must be a list (empty is allowed)"
+                    )
                     continue
                 for anchor in anchors:
                     if not isinstance(anchor, str) or not anchor:
@@ -231,9 +274,13 @@ def _branch_registry_problems() -> tuple[list[str], int]:
                     if anchor.startswith("persona-cert:"):
                         target = anchor.removeprefix("persona-cert:")
                         if target not in journey_ids:
-                            problems.append(f"{bid}: unknown persona-cert journey {target}")
+                            problems.append(
+                                f"{bid}: unknown persona-cert journey {target}"
+                            )
                     elif not (_REPO / anchor).exists():
-                        problems.append(f"{bid}: evidence anchor does not exist: {anchor}")
+                        problems.append(
+                            f"{bid}: evidence anchor does not exist: {anchor}"
+                        )
 
     return problems, branch_count
 
@@ -245,18 +292,21 @@ def _taxonomy_problems(data: dict, journey_ids: set[str]) -> list[str]:
     problems: list[str] = []
     if set(taxonomy) != _TAXONOMY_KINDS:
         problems.append(
-            "journeys.yaml: taxonomy kinds must be exactly "
-            f"{sorted(_TAXONOMY_KINDS)}"
+            f"journeys.yaml: taxonomy kinds must be exactly {sorted(_TAXONOMY_KINDS)}"
         )
     classified: list[str] = []
     for kind, ids in taxonomy.items():
         if not isinstance(ids, list) or not all(isinstance(jid, str) for jid in ids):
-            problems.append(f"journeys.yaml: taxonomy {kind} must be a list of journey ids")
+            problems.append(
+                f"journeys.yaml: taxonomy {kind} must be a list of journey ids"
+            )
             continue
         classified.extend(ids)
     duplicates = sorted({jid for jid in classified if classified.count(jid) > 1})
     if duplicates:
-        problems.append(f"journeys.yaml: taxonomy ids appear more than once: {duplicates}")
+        problems.append(
+            f"journeys.yaml: taxonomy ids appear more than once: {duplicates}"
+        )
     classified_set = set(classified)
     if unknown := sorted(classified_set - journey_ids):
         problems.append(f"journeys.yaml: taxonomy names unknown journeys: {unknown}")
@@ -265,10 +315,16 @@ def _taxonomy_problems(data: dict, journey_ids: set[str]) -> list[str]:
     return problems
 
 
-def _proof_registry_problems(verify_passes: bool = False) -> tuple[list[str], int, dict[str, int] | None]:
+def _proof_registry_problems(
+    verify_passes: bool = False,
+) -> tuple[list[str], int, dict[str, int] | None]:
     path = _DOCS / "product-proofs.yaml"
     if not path.exists():
-        return ["product proof registry missing: docs/journeys/product-proofs.yaml"], 0, None
+        return (
+            ["product proof registry missing: docs/journeys/product-proofs.yaml"],
+            0,
+            None,
+        )
     data = yaml.safe_load(path.read_text()) or {}
     proofs = data.get("proofs")
     if not isinstance(proofs, list):
@@ -303,24 +359,35 @@ def _proof_registry_problems(verify_passes: bool = False) -> tuple[list[str], in
         if not isinstance(anchors, dict):
             problems.append(f"{pid}: anchors must be a mapping")
             continue
-        if proof.get("status") == "active":
-            for layer in layers:
-                values = anchors.get(layer, [])
-                if not isinstance(values, list):
-                    problems.append(f"{pid}: {layer} anchors must be a list")
+        for layer in layers:
+            if layer not in anchors:
+                problems.append(
+                    f"{pid}: required layer {layer} is missing from anchors"
+                )
+                continue
+            values = anchors[layer]
+            if not isinstance(values, list):
+                problems.append(f"{pid}: {layer} anchors must be a list")
+                continue
+            for anchor in values:
+                if not isinstance(anchor, str) or not (_REPO / anchor).exists():
+                    problems.append(f"{pid}: evidence anchor does not exist: {anchor}")
                     continue
-                for anchor in values:
-                    if not isinstance(anchor, str) or not (_REPO / anchor).exists():
-                        problems.append(f"{pid}: evidence anchor does not exist: {anchor}")
-                        continue
-                    if verify_passes:
-                        anchors_to_verify.setdefault(anchor, []).append(f"{pid}:{layer}")
+                if verify_passes and proof.get("status") == "active":
+                    anchors_to_verify.setdefault(anchor, []).append(f"{pid}:{layer}")
     if seen != {f"P{number:02}" for number in range(1, 9)}:
-        problems.append("product-proofs.yaml: expected the complete P01–P08 proof spine")
+        problems.append(
+            "product-proofs.yaml: expected the complete P01–P08 proof spine"
+        )
 
     anchor_summary: dict[str, int] | None = None
     if verify_passes:
-        anchor_summary = {"total": len(anchors_to_verify), "passed": 0, "failed": 0, "unverified": 0}
+        anchor_summary = {
+            "total": len(anchors_to_verify),
+            "passed": 0,
+            "failed": 0,
+            "unverified": 0,
+        }
         for anchor in sorted(anchors_to_verify):
             owners = ", ".join(anchors_to_verify[anchor])
             status, detail = _execute_anchor(anchor)
@@ -328,12 +395,72 @@ def _proof_registry_problems(verify_passes: bool = False) -> tuple[list[str], in
                 anchor_summary["passed"] += 1
             elif status == "fail":
                 anchor_summary["failed"] += 1
-                problems.append(f"anchor FAILED when executed ({owners}):\n    {detail}")
+                problems.append(
+                    f"anchor FAILED when executed ({owners}):\n    {detail}"
+                )
             else:
                 anchor_summary["unverified"] += 1
                 problems.append(f"anchor could not be verified ({owners}): {detail}")
 
     return problems, len(proofs), anchor_summary
+
+
+def _evidence_runner_problems(journey_ids: set[str]) -> tuple[list[str], int]:
+    path = _DOCS / "evidence-runners.yaml"
+    if not path.exists():
+        return [
+            "evidence runner registry missing: docs/journeys/evidence-runners.yaml"
+        ], 0
+    data = yaml.safe_load(path.read_text()) or {}
+    runners = data.get("runners")
+    if not isinstance(runners, list):
+        return ["evidence-runners.yaml: runners must be a list"], 0
+    proofs = yaml.safe_load((_DOCS / "product-proofs.yaml").read_text()) or {}
+    proof_layers = {
+        proof["id"]: set(proof["required_layers"]) for proof in proofs.get("proofs", [])
+    }
+    problems: list[str] = []
+    seen: set[str] = set()
+    for runner in runners:
+        runner_id = runner.get("id") if isinstance(runner, dict) else None
+        if not isinstance(runner_id, str) or not re.fullmatch(
+            r"[a-z0-9][a-z0-9-]*-v\d+", runner_id
+        ):
+            problems.append(f"evidence-runners.yaml: invalid runner id {runner_id!r}")
+            continue
+        if runner_id in seen:
+            problems.append(f"evidence-runners.yaml: duplicate runner id {runner_id}")
+        seen.add(runner_id)
+        for field in ("entrypoint", "receipt_command"):
+            if not isinstance(runner.get(field), str) or not runner[field].strip():
+                problems.append(f"{runner_id}: {field} must be a non-empty string")
+        layer = runner.get("layer")
+        if layer not in _PROOF_LAYERS:
+            problems.append(f"{runner_id}: unknown layer {layer!r}")
+        identifiers = runner.get("journeys")
+        if not isinstance(identifiers, list) or not identifiers:
+            problems.append(f"{runner_id}: journeys must be a non-empty list")
+            continue
+        for identifier in identifiers:
+            if identifier in proof_layers and layer not in proof_layers[identifier]:
+                problems.append(
+                    f"{runner_id}: {identifier} does not require layer {layer}"
+                )
+            elif identifier not in proof_layers and identifier not in journey_ids:
+                problems.append(f"{runner_id}: unknown journey/proof {identifier}")
+        paths = runner.get("governed_paths")
+        if not isinstance(paths, list) or not paths:
+            problems.append(f"{runner_id}: governed_paths must be a non-empty list")
+            continue
+        for governed_path in paths:
+            if (
+                not isinstance(governed_path, str)
+                or not (_REPO / governed_path).is_file()
+            ):
+                problems.append(
+                    f"{runner_id}: governed path does not exist: {governed_path}"
+                )
+    return problems, len(runners)
 
 
 def _parse_args(argv: list[str]) -> argparse.Namespace:
@@ -361,7 +488,11 @@ def main(argv: list[str] | None = None) -> int:
 
     problems: list[str] = []
 
-    missing = [f"{jid} ({doc})" for jid, doc in manifest_docs.items() if not (_DOCS / doc).exists()]
+    missing = [
+        f"{jid} ({doc})"
+        for jid, doc in manifest_docs.items()
+        if not (_DOCS / doc).exists()
+    ]
     if missing:
         problems.append("manifest docs missing on disk: " + ", ".join(sorted(missing)))
 
@@ -380,11 +511,18 @@ def main(argv: list[str] | None = None) -> int:
 
     branch_problems, branch_count = _branch_registry_problems()
     problems.extend(branch_problems)
-    proof_problems, proof_count, anchor_summary = _proof_registry_problems(verify_passes=args.verify_passes)
+    proof_problems, proof_count, anchor_summary = _proof_registry_problems(
+        verify_passes=args.verify_passes
+    )
     problems.extend(proof_problems)
+    runner_problems, runner_count = _evidence_runner_problems(manifest_ids)
+    problems.extend(runner_problems)
 
     if problems:
-        print("✗ journey-set drift (fix journeys.yaml or the listed registry):", file=sys.stderr)
+        print(
+            "✗ journey-set drift (fix journeys.yaml or the listed registry):",
+            file=sys.stderr,
+        )
         for p in problems:
             print(f"  - {p}", file=sys.stderr)
         return 1
@@ -394,10 +532,15 @@ def main(argv: list[str] | None = None) -> int:
     if branch_count:
         print(f"  branch registry: {branch_count} branches validated")
     print(f"  product proof spine: {proof_count} proofs validated")
+    print(f"  evidence runners: {runner_count} governed runners validated")
     if anchor_summary is not None:
         print(
             f"  proof anchors executed: {anchor_summary['passed']}/{anchor_summary['total']} passing"
-            + (f", {anchor_summary['unverified']} unverified" if anchor_summary["unverified"] else "")
+            + (
+                f", {anchor_summary['unverified']} unverified"
+                if anchor_summary["unverified"]
+                else ""
+            )
         )
 
     # Informational fidelity coverage — never fails (J13–J19 are lived-only).

@@ -33,7 +33,9 @@ import journey_evidence
 from promote_journey_evidence import index_candidate_is_current, load_index
 
 _REPO_ROOT = Path(__file__).resolve().parent.parent
-_AGENT_ROOT = Path(os.environ.get("JOURNEY_AGENT_ROOT", _REPO_ROOT / "travel-agent")).resolve()
+_AGENT_ROOT = Path(
+    os.environ.get("JOURNEY_AGENT_ROOT", _REPO_ROOT / "travel-agent")
+).resolve()
 _STATUS_MD = _REPO_ROOT / "docs" / "journeys" / "STATUS.md"
 _AI_MODE = "replay"
 _DEFAULT_PERSONAS = ("mara", "elif", "reza")
@@ -45,8 +47,11 @@ def _agent_python() -> str:
     venv = _AGENT_ROOT / ".venv" / "bin" / "python"
     return str(venv) if venv.exists() else sys.executable
 
+
 def _manifest_journey_ids() -> tuple[str, ...]:
-    manifest = yaml.safe_load((_REPO_ROOT / "docs" / "journeys" / "journeys.yaml").read_text())
+    manifest = yaml.safe_load(
+        (_REPO_ROOT / "docs" / "journeys" / "journeys.yaml").read_text()
+    )
     return tuple(journey["id"] for journey in manifest.get("journeys", []))
 
 
@@ -234,7 +239,9 @@ def _branch_anchor_state(anchor: str, by_id: dict[str, dict]) -> str:
     return "unrun" if (_REPO_ROOT / anchor).exists() else "missing"
 
 
-def _branch_fidelity_cell(journey: dict, code: str, by_id: dict[str, dict]) -> str | None:
+def _branch_fidelity_cell(
+    journey: dict, code: str, by_id: dict[str, dict]
+) -> str | None:
     """Summarize registered branch evidence for one fidelity.
 
     All anchors listed for a branch/fidelity are required. An empty list is an
@@ -282,7 +289,9 @@ def build_matrix_block(by_id: dict[str, dict]) -> str:
     always accurate, covers J13–J19."""
     from check_journey_registry import _be_test_ids, _fe_mockwalk_ids
 
-    manifest = yaml.safe_load((_REPO_ROOT / "docs" / "journeys" / "journeys.yaml").read_text())
+    manifest = yaml.safe_load(
+        (_REPO_ROOT / "docs" / "journeys" / "journeys.yaml").read_text()
+    )
     journeys = manifest.get("journeys", [])
     fe, be, visual = _fe_mockwalk_ids(), _be_test_ids(), _visual_ids()
     lived_glyph = {"pass": "✅", "fail": "🔴", "skip": "⤵️"}
@@ -297,7 +306,9 @@ def build_matrix_block(by_id: dict[str, dict]) -> str:
         if lived_row is None:
             lived = "—"
         else:
-            lived = lived_glyph.get(lived_row.get("status", ""), lived_row.get("status", "—"))
+            lived = lived_glyph.get(
+                lived_row.get("status", ""), lived_row.get("status", "—")
+            )
         tier = {
             "golden-path": "golden",
             "holistic-extension": "holistic",
@@ -358,13 +369,50 @@ def build_evidence_block() -> str:
             for key in ("workspace_sha", "app_sha", "backend_sha")
         )
     table = "\n".join(rows)
+    proof_registry = (
+        yaml.safe_load(
+            (_REPO_ROOT / "docs" / "journeys" / "product-proofs.yaml").read_text()
+        )
+        or {}
+    )
+    promoted_layers: dict[str, set[str]] = {}
+    if current_candidate:
+        for attestation in attestations:
+            receipt = attestation.get("receipt", {})
+            for proof_id in receipt.get("journeys", []):
+                if proof_id.startswith("P"):
+                    promoted_layers.setdefault(proof_id, set()).add(
+                        receipt.get("layer", "")
+                    )
+    proof_rows = [
+        "| Proof | Product state | Required layers | Current promoted layers | Evidence state |",
+        "|---|---|---|---|---|",
+    ]
+    for proof in proof_registry.get("proofs", []):
+        proof_id = proof["id"]
+        required = set(proof["required_layers"])
+        promoted = promoted_layers.get(proof_id, set())
+        missing = sorted(required - promoted)
+        evidence_result = (
+            "✅ complete" if not missing else "○ missing " + ", ".join(missing)
+        )
+        proof_rows.append(
+            f"| {proof_id} | {proof['status']} | {', '.join(sorted(required))} | "
+            f"{', '.join(sorted(promoted)) or '—'} | {evidence_result} |"
+        )
+    proof_table = "\n".join(proof_rows)
     return (
         f"{_EV_BEGIN}\n"
         "### Promoted execution evidence (auto-generated)\n\n"
         "Source: `docs/journeys/evidence-attestations.json`; raw local/CI "
         "receipts never promote themselves.\n\n"
         f"Candidate: `{candidate_label}`\n\n"
-        f"{table}\n"
+        f"{table}\n\n"
+        "#### Product-proof completion\n\n"
+        "A proof is evidence-complete only when every required layer has a current, "
+        "promoted governed-runner receipt. Product `dark`/`active` state remains a "
+        "separate decision.\n\n"
+        f"{proof_table}\n"
         f"{_EV_END}"
     )
 
@@ -428,7 +476,8 @@ def main() -> int:
         stale = [
             name
             for name, block, begin, end in blocks
-            if (cur := _current_block(source, begin, end)) is None or cur.strip() != block.strip()
+            if (cur := _current_block(source, begin, end)) is None
+            or cur.strip() != block.strip()
         ]
         if stale:
             print(
