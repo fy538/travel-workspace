@@ -33551,9 +33551,32 @@
           "users"
         ],
         "summary": "Get Profile Feature Candidates",
-        "description": "List saved venues and areas that the owner may explicitly feature.",
+        "description": "List one page of saved venues and areas the owner may feature.",
         "operationId": "get_profile_feature_candidates_api_me_profile_feature_candidates_get",
         "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          },
           {
             "name": "authorization",
             "in": "header",
@@ -77963,6 +77986,18 @@
             },
             "type": "array",
             "title": "Places"
+          },
+          "next_offset": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Offset"
           }
         },
         "type": "object",
