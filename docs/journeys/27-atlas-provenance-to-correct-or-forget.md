@@ -8,7 +8,10 @@ why_new: Memory provenance and correction are a primary trust journey rather tha
 source_of_truth_for: [journey-J27]
 ---
 
-# 27 — Atlas Provenance to Correct or Forget
+# 27 — Personal Memory Provenance to Correct or Forget
+
+> Status: active trust-control evidence; Atlas route and fixture names below
+> are compatibility-only. You owns the current control surface.
 
 ## Product Promise
 
@@ -22,9 +25,10 @@ personalization remains accountable to me.
 
 ## Starting State and Surfaces
 
-- Any Atlas stage: learned facts, nothing learned, or learning disabled.
-- Routes: `/atlas/memory`, data receipt, artifact learning, privacy/signal controls.
-- Source contract: Atlas `J-A4`; J16 owns account-wide deletion/export.
+- Learned facts, nothing learned, or learning disabled.
+- Routes: `/you/memory`, data receipt, artifact learning, and privacy/signal controls;
+  legacy Atlas paths only redirect or preserve historical evidence.
+- J16 owns account-wide deletion/export.
 
 ## Canonical Steps
 

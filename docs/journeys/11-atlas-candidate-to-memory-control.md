@@ -1,27 +1,29 @@
-# 11 - Atlas Candidate To Memory Control
+# 11 — Personal Memory Candidate to Control
 
-> Status: draft  
+> Status: historical compatibility evidence; not an active product destination
 > Owner: founder / engineering  
 > Last updated: 2026-07-19
-> Primary phase: memory / identity control / trust hub
+> Current owners: You (controls), Vesper (governed use), Trips (history), Places (saves)
 
-> **Current Atlas IA:** This cross-repo journey certifies the candidate and
-> memory-control trust loop. Its older route inventory below is not the current
-> Atlas-internal journey map. Use
-> [`../../travel-app/docs/user-flows/atlas-journeys.md`](../../travel-app/docs/user-flows/atlas-journeys.md)
-> for the six current journeys that begin and end inside Atlas.
+> **Retirement boundary:** the retained evidence and implementation names below
+> are historical/compatibility substrate. New work may not create an Atlas
+> destination, entry point, notification, or product loop. The active trust
+> loop is You → inspect/correct a Vesper claim → verified behavior change.
 
 ## Product Promise
 
-Atlas should make Vesper's memory inspectable and controllable: users can see what was learned, keep or reject candidates, inspect provenance, and change their mind.
+Personal memory must remain inspectable and controllable: a traveler can see
+what Vesper may use, correct or forget a claim, and receive behavior consistent
+with that decision.
 
 ## Canonical User Story
 
-As a traveler, I want to review a memory candidate, turn it into an artifact if I want, and control the signals Vesper learns from it.
+As a traveler, I want to review and control a memory claim without entering a
+separate memory product, so Vesper remains accountable to me.
 
 ## Why This Journey Matters
 
-- Atlas is now a primary tab, not a settings page.
+- You owns deliberate controls; Atlas is not a primary tab or product owner.
 - Memory without provenance or control will feel creepy.
 - Timeline, Almanac, and entry controls are now backed by persisted projection rows — mock-derived local logic should not drift from `GET /api/atlas/timeline` and `GET /api/atlas/almanac`.
 

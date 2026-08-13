@@ -4,11 +4,14 @@ status: active
 owner: founder / engineering
 created: 2026-07-18
 last_verified: 2026-07-19
-why_new: Mature Atlas history has a distinct browse, archive-reason, restore, and return lifecycle.
+why_new: Mature personal history has a distinct browse, archive-reason, restore, and return lifecycle.
 source_of_truth_for: [journey-J28]
 ---
 
-# 28 — Atlas History to Hide, Restore, and Recover
+# 28 — Personal Memory History to Hide, Restore, and Recover
+
+> Status: historical compatibility evidence. Trip history remains owned by
+> Trips; personal-memory controls belong in You, not an Atlas destination.
 
 ## Product Promise
 
@@ -22,9 +25,10 @@ context or confusing system deduplication with my own decisions.
 
 ## Starting State and Surfaces
 
-- Mature Atlas with multiple years/places and at least one restorable item.
-- Routes: `/atlas/whole`, `/atlas/long-view`, `/atlas/removed`, artifact/memory detail.
-- Source contract: Atlas `J-A5`; J17 owns cross-trip recall/timely return.
+- Mature personal history with multiple years/places and at least one
+  restorable item.
+- Legacy routes remain compatibility-only while owner controls migrate to You.
+- J17 owns cross-trip recall/timely return.
 
 ## Canonical Steps
 

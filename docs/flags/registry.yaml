@@ -194,7 +194,7 @@ flags:
     owner: fy538
     expires: 2026-10-04
     status: active
-    notes: Gates the Atlas real-LLM composer; flip once validated against the eval framework.
+    notes: Retired product gate. The compatibility function is hard-disabled so an inherited environment variable cannot revive the old Atlas composer; retain this row until residual code is removed.
 
   - name: ANNIVERSARY_PUSH_ENABLED
     repo: travel-agent
@@ -224,7 +224,7 @@ flags:
     owner: fy538
     expires: 2026-10-04
     status: active
-    notes: Trip-to-Atlas-candidate backfill safety net for missed trip.completed events.
+    notes: Retired product gate. The compatibility function is hard-disabled so an inherited environment variable cannot revive Atlas-candidate arrival; retain this row until lifecycle callers are removed.
 
   - name: ATLAS_SIGNALS_TO_MEMORY
     repo: travel-agent
@@ -234,7 +234,7 @@ flags:
     owner: fy538
     expires: 2026-10-04
     status: active
-    notes: Feeds Atlas derived_signals into concierge taste model; gates cross-trip affinity recall (J17 depends on this).
+    notes: Legacy technical name for a personal-memory substrate gate. It is not an Atlas product activation; any use remains private, governed Vesper context and must preserve correction/revocation behavior.
 
   - name: AUTO_PUBLISH_GREEN_DOSSIERS
     repo: travel-agent
@@ -497,7 +497,7 @@ flags:
     owner: fy538
     expires: 2026-10-04
     status: active
-    notes: Gates Qdrant dense-semantic Atlas search vs the pg_trgm fallback. Paired with ATLAS_SEMANTIC_WRITE.
+    notes: Legacy technical name for the personal-memory semantic index reader. It is not an Atlas product activation and remains paired with ATLAS_SEMANTIC_WRITE.
 
   - name: ATLAS_SEMANTIC_WRITE
     repo: travel-agent
@@ -507,7 +507,7 @@ flags:
     owner: fy538
     expires: 2026-10-04
     status: active
-    notes: Gates fire-and-forget Qdrant upsert/delete on Atlas writes. Paired with ATLAS_SEMANTIC_READ — must ship together (write without read never gets exercised; read without write serves a stale/empty index).
+    notes: Legacy technical name for personal-memory semantic-index writes. It remains paired with ATLAS_SEMANTIC_READ; write without read is unexercised and read without write serves a stale index.
 
   - name: FACTS_WRAPPER_ENFORCE
     repo: travel-agent
@@ -909,7 +909,7 @@ flags:
     owner: fy538
     expires: 2026-10-04
     status: active
-    notes: Story + Atlas Unpacked share links. Paired with backend STORY_SHARING_ENABLED. Ships after J19 privacy cert.
+    notes: Story sharing only. Legacy Atlas Unpacked routes remain compatibility-only and this flag may not be used to create a new Atlas product entry. Paired with backend STORY_SHARING_ENABLED after J19 privacy certification.
 
   - name: DOSSIER_VOICE_STUB
     repo: travel-app

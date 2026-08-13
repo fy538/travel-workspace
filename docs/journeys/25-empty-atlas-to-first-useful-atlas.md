@@ -4,34 +4,39 @@ status: active
 owner: founder / engineering
 created: 2026-07-18
 last_verified: 2026-07-18
-why_new: Atlas has a distinct activation journey before trips or strong learned claims exist.
+why_new: A place save can establish useful, honest personal context before a trip or strong learned claim exists.
 source_of_truth_for: [journey-J25]
 ---
 
-# 25 — Empty Atlas to First Useful Atlas
+# 25 — Places First Save to Useful Personal Context
+
+> Status: historical compatibility evidence; the active product loop is
+> Places → Vesper → Places, not a separate Atlas destination.
 
 ## Product Promise
 
-Atlas becomes useful from one grounded action without inventing a strong taste
-claim or requiring a completed trip.
+Places becomes useful from one grounded action without inventing a strong taste
+claim or requiring a completed trip. Vesper may use the resulting explicit
+save as governed context; You owns later inspection and correction.
 
 ## Canonical User Story
 
-As a traveler with an empty Atlas, I want one low-pressure way to establish real
-context, so that Atlas starts useful and honest.
+As a traveler with no saved Places, I want one low-pressure way to establish
+real context, so the product becomes useful and honest immediately.
 
 ## Starting State and Surfaces
 
-- Stage 0/provisional Atlas; no accepted memory required.
-- Routes: Atlas Home, saved places, search, optional scan/intake.
-- Source contract: Atlas `J-A1`; J20 owns first-session consent.
+- No saved places or accepted memory required.
+- Routes: Places, saved places, search, and optional, consented intake.
+- J20 owns first-session consent; You owns later memory controls.
 
 ## Canonical Steps
 
-1. Open an honest empty/provisional Atlas.
+1. Open Places without assumed location, taste, or memory.
 2. Save a place, establish home/current-location context, approve recovery, or answer one concrete question.
 3. See source attribution and no inflated “loved” claim.
-4. Return to Home with the new place/weak prior in the correct layer.
+4. Return to Places with the new save and, only where permitted, a weak prior
+   available to Vesper.
 
 ## Required Branches
 
@@ -46,7 +51,7 @@ context, so that Atlas starts useful and honest.
 
 ## Must Never Happen
 
-- Atlas invents home context or strong preference.
+- The product invents home context or strong preference.
 - Photo recovery uploads before approval.
 - Multiple activation prompts compete simultaneously.
 - Empty Compose/Long View is offered as if meaningful.

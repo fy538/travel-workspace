@@ -4,11 +4,14 @@ status: active
 owner: founder / engineering
 created: 2026-07-18
 last_verified: 2026-07-18
-why_new: A grounded Reading has its own compose, steer, keep, provenance, and return lifecycle.
+why_new: A grounded personal-memory reading has its own compose, steer, keep, provenance, and return lifecycle.
 source_of_truth_for: [journey-J26]
 ---
 
-# 26 — Atlas Reading to Steer, Keep, and Return
+# 26 — Personal Memory Reading to Steer, Keep, and Return
+
+> Status: historical compatibility evidence; this is not an active Atlas
+> product loop. New controls belong in You and governed use belongs in Vesper.
 
 ## Product Promise
 
@@ -22,9 +25,9 @@ without losing its sources, so that it becomes worth revisiting.
 
 ## Starting State and Surfaces
 
-- Atlas has enough accepted evidence for a grounded Reading.
-- Routes: `/atlas/compose`, `/atlas/readings`, `/atlas/readings/[id]`, artifact sources.
-- Source contract: Atlas `J-A3`; J11 retains candidate review.
+- Personal memory has enough accepted evidence for a grounded reading.
+- Legacy routes remain compatibility-only while control surfaces migrate to You.
+- J11 retains candidate-review evidence.
 
 ## Canonical Steps
 
