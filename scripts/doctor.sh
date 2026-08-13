@@ -147,7 +147,11 @@ fi
 
 header "Local Postgres (certify / dogfood)"
 
-CANONICAL_DATABASE_URL="postgresql://vesper:localdev@localhost:5432/vesper"
+# Keep this aligned with dev.sh and the workspace test targets. Docker Compose
+# publishes Postgres on 15432 by default; localhost:5432 may be an unrelated
+# host service and must not be presented as the workspace database.
+POSTGRES_HOST_PORT="${POSTGRES_HOST_PORT:-15432}"
+CANONICAL_DATABASE_URL="postgresql://vesper:localdev@localhost:${POSTGRES_HOST_PORT}/vesper"
 ok "Canonical local DSN: $CANONICAL_DATABASE_URL"
 
 if command -v docker >/dev/null 2>&1; then
@@ -167,10 +171,10 @@ else
 fi
 
 if command -v psql >/dev/null 2>&1; then
-  if PGPASSWORD=localdev psql -U vesper -h localhost -d vesper -c 'SELECT 1' >/dev/null 2>&1; then
-    ok "Host psql can connect as vesper@localhost:5432/vesper"
+  if PGPASSWORD=localdev psql -U vesper -h localhost -p "$POSTGRES_HOST_PORT" -d vesper -c 'SELECT 1' >/dev/null 2>&1; then
+    ok "Host psql can connect as vesper@localhost:${POSTGRES_HOST_PORT}/vesper"
   else
-    warn "Host psql cannot connect as vesper@localhost:5432/vesper"
+    warn "Host psql cannot connect as vesper@localhost:${POSTGRES_HOST_PORT}/vesper"
   fi
 fi
 
@@ -184,7 +188,7 @@ if [ -f "$agent_env" ]; then
   elif [ -n "$env_database_url" ]; then
     ok "travel-agent/.env DATABASE_URL matches canonical local DSN"
   else
-    ok "travel-agent/.env has no DATABASE_URL override (backend defaults to vesper)"
+    ok "travel-agent/.env has no DATABASE_URL override (workspace commands supply the Docker DSN)"
   fi
 fi
 
