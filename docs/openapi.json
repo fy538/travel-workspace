@@ -22572,6 +22572,75 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": [
+          "trip",
+          "outcomes"
+        ],
+        "summary": "Retract Experience Outcome Endpoint",
+        "description": "Retract only the caller's private relationship outcome.\n\nRetraction preserves causal audit history, removes the outcome from active\nplanning and memory projections, and is idempotent for safe mobile retry.",
+        "operationId": "retract_experience_outcome_endpoint_api_trips__trip_id__occurrence_artifact_blocks__block_id__relationship_outcome_delete",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "block_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Block Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperienceOutcomeFeedback"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/api/users/{user_id}/notification-preferences": {
@@ -57331,6 +57400,15 @@
               }
             ],
             "title": "Source Proposal Id"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "active",
+              "retracted"
+            ],
+            "title": "State",
+            "default": "active"
           },
           "created_at": {
             "type": "string",
