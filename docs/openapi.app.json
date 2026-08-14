@@ -16323,6 +16323,152 @@
         }
       }
     },
+    "/api/trips/{trip_id}/second-occasion-outcomes": {
+      "get": {
+        "tags": [
+          "trip",
+          "outcomes"
+        ],
+        "summary": "List Second Occasion Outcomes Endpoint",
+        "description": "Return this traveler's prior-memory effects for one later occasion.",
+        "operationId": "list_second_occasion_outcomes_endpoint_api_trips__trip_id__second_occasion_outcomes_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SecondOccasionOutcome"
+                  },
+                  "title": "Response List Second Occasion Outcomes Endpoint Api Trips  Trip Id  Second Occasion Outcomes Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/second-occasion-outcomes/{observation_id}": {
+      "patch": {
+        "tags": [
+          "trip",
+          "outcomes"
+        ],
+        "summary": "Correct Second Occasion Outcome Endpoint",
+        "description": "Correct, remove, or reactivate one caller-owned prior-memory effect.",
+        "operationId": "correct_second_occasion_outcome_endpoint_api_trips__trip_id__second_occasion_outcomes__observation_id__patch",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "observation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Observation Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CorrectSecondOccasionOutcomeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecondOccasionOutcome"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/occurrence-artifact": {
       "get": {
         "tags": [
@@ -40679,6 +40825,42 @@
         "title": "ConversationRoomBriefResponse",
         "description": "Participant-safe planning readout, never an authoritative plan artifact."
       },
+      "CorrectSecondOccasionOutcomeRequest": {
+        "properties": {
+          "effect": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Effect"
+          },
+          "state": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "active",
+                  "removed"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "State"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "CorrectSecondOccasionOutcomeRequest",
+        "description": "Correct the bounded effect or remove/reactivate its later use."
+      },
       "CreateConversationRequest": {
         "properties": {
           "conversation_type": {
@@ -63977,7 +64159,6 @@
           "anniversary",
           "unfinished_guide",
           "friend_activity",
-          "saved_unvisited",
           "saved_unplaced",
           "changed",
           "harvest",
@@ -63988,7 +64169,7 @@
           "register"
         ],
         "title": "PlacesSectionReason",
-        "description": "Why a section is on the page, independent of its content type.\n\n``AREAS`` was removed 2026-08-07: a dead reason with no producer and a\nreserved rank slot that never filled. `PlacesCardKind.AREA`,\n`PlacesAreaPreview` and the client's `case \"area\":` renderer are all\nstill live — an area card ships today under ``NEIGHBOURHOOD``\n(see `sections.py`). Only the standalone reason was unreachable."
+        "description": "Why a section is on the page, independent of its content type.\n\n``AREAS`` was removed 2026-08-07: a dead reason with no producer and a\nreserved rank slot that never filled. `PlacesCardKind.AREA`,\n`PlacesAreaPreview` and the client's `case \"area\":` renderer are all\nstill live — an area card ships today under ``NEIGHBOURHOOD``\n(see `sections.py`). Only the standalone reason was unreachable.\n\n``SAVED_UNVISITED`` was removed 2026-08-14: the same accidental shape as\n``AREAS`` — a reserved ``_FLOOR_PRIORITY`` rank slot with no producer and\nno ruling docstring. Compare ``SAVED_UNPLACED`` just above it, which stays\ndark for a documented reason (see its cardinality rule below) and\n``PlacesSectionTreatment.CONVICTION``, which is deliberately producer-less\nper its own class docstring. ``SAVED_UNVISITED`` had neither a producer\nnor a ruling — nothing to preserve; it never filled and nothing\nreferenced it."
       },
       "PlacesSectionTreatment": {
         "type": "string",
@@ -70936,6 +71117,78 @@
         ],
         "title": "SearchResultItem",
         "description": "A single search result — venue, experience, site, or accommodation."
+      },
+      "SecondOccasionOutcome": {
+        "properties": {
+          "observation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Observation Id"
+          },
+          "source_trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Source Trip Id"
+          },
+          "target_trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Target Trip Id"
+          },
+          "target_block_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Target Block Id"
+          },
+          "decision_key": {
+            "type": "string",
+            "title": "Decision Key"
+          },
+          "effect": {
+            "type": "string",
+            "title": "Effect"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "active",
+              "removed"
+            ],
+            "title": "State"
+          },
+          "version": {
+            "type": "integer",
+            "title": "Version"
+          },
+          "decision": {
+            "type": "string",
+            "enum": [
+              "apply",
+              "withhold"
+            ],
+            "title": "Decision"
+          },
+          "reason_code": {
+            "type": "string",
+            "title": "Reason Code"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "observation_id",
+          "source_trip_id",
+          "target_trip_id",
+          "target_block_id",
+          "decision_key",
+          "effect",
+          "state",
+          "version",
+          "decision",
+          "reason_code"
+        ],
+        "title": "SecondOccasionOutcome",
+        "description": "Owner-private read model for one prior-memory application."
       },
       "SelfProfileAuthoredLine": {
         "properties": {
@@ -80747,6 +81000,18 @@
               }
             ],
             "title": "Deadline Label"
+          },
+          "deadline_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deadline At"
           }
         },
         "type": "object",

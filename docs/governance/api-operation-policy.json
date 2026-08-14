@@ -378,6 +378,36 @@
       "removal_trigger": null,
       "review_by": "2026-09-03"
     },
+    "GET /api/trips/{trip_id}/second-occasion-outcomes": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "declared",
+          "name": "The compact in-chat outcome artifact will read one owner-private, exact-roster prior-memory effect after the backend contract and canonical Rome binding are proven."
+        }
+      ],
+      "feature_flag": "OUTCOME_ARTIFACT_ENABLED",
+      "lifecycle": "active",
+      "owner": "outcomes",
+      "reason": "The Rome demo needs an honest memory-backed outcome path because its source trip is intentionally a non-reconstructed memory rather than a fake itinerary occurrence.",
+      "removal_trigger": null,
+      "review_by": "2026-09-03"
+    },
+    "PATCH /api/trips/{trip_id}/second-occasion-outcomes/{observation_id}": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "declared",
+          "name": "The compact in-chat outcome artifact will expose owner-only correct, forget, and reactivate actions after canonical Rome device validation."
+        }
+      ],
+      "feature_flag": "OUTCOME_ARTIFACT_ENABLED",
+      "lifecycle": "active",
+      "owner": "outcomes",
+      "reason": "A private prior-memory effect must be reversible without deleting the underlying true memory or exposing it to the group.",
+      "removal_trigger": null,
+      "review_by": "2026-09-03"
+    },
     "POST /api/trips/{trip_id}/occurrence-proposals/{proposal_id}/resolve": {
       "audience": "app",
       "consumers": [
