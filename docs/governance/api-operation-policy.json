@@ -382,8 +382,9 @@
       "audience": "app",
       "consumers": [
         {
-          "kind": "declared",
-          "name": "The compact in-chat outcome artifact will read one owner-private, exact-roster prior-memory effect after the backend contract and canonical Rome binding are proven."
+          "kind": "app_url",
+          "name": "listSecondOccasionOutcomes",
+          "source": "travel-app/utils/api/http.ts"
         }
       ],
       "feature_flag": "OUTCOME_ARTIFACT_ENABLED",
@@ -397,8 +398,9 @@
       "audience": "app",
       "consumers": [
         {
-          "kind": "declared",
-          "name": "The compact in-chat outcome artifact will expose owner-only correct, forget, and reactivate actions after canonical Rome device validation."
+          "kind": "app_url",
+          "name": "correctSecondOccasionOutcome",
+          "source": "travel-app/utils/api/http.ts"
         }
       ],
       "feature_flag": "OUTCOME_ARTIFACT_ENABLED",
