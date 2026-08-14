@@ -41,17 +41,25 @@ log "Starting Postgres + Qdrant (docker compose up -d)"
 docker compose up -d
 
 log "Waiting for Postgres to accept connections"
-for i in $(seq 1 60); do
-  if docker compose exec -T postgres pg_isready -U vesper >/dev/null 2>&1; then
+# On a fresh pgdata volume the postgis entrypoint runs initdb and briefly
+# starts a temporary server before restarting the real one, so a single
+# pg_isready can pass during that window. Require a real `SELECT 1` against the
+# vesper database (authoritative that the real server + db are up) before
+# proceeding.
+pg_ready=false
+for i in $(seq 1 90); do
+  if docker compose exec -T postgres pg_isready -U vesper -d vesper >/dev/null 2>&1 \
+     && docker compose exec -T postgres psql -U vesper -d vesper -tAc 'SELECT 1' >/dev/null 2>&1; then
     log "Postgres ready after ${i}s"
+    pg_ready=true
     break
-  fi
-  if [ "$i" -eq 60 ]; then
-    echo "✗ Postgres did not become ready — see 'docker compose logs postgres'" >&2
-    exit 1
   fi
   sleep 1
 done
+if [ "$pg_ready" != true ]; then
+  echo "✗ Postgres did not become ready — see 'docker compose logs postgres'" >&2
+  exit 1
+fi
 
 # ── 3. Qdrant health (fuse-overlayfs stale-volume guard) ──────────────────────
 # On the nested-container VM, Qdrant can crash-loop on a volume carried inside a
@@ -73,6 +81,18 @@ fi
 
 # ── 4. Database migrations ────────────────────────────────────────────────────
 log "Applying Alembic migrations"
-DATABASE_URL="$DEV_DATABASE_URL" PYTHONPATH=. .venv/bin/alembic upgrade head
+migrated=false
+for attempt in 1 2 3 4 5; do
+  if DATABASE_URL="$DEV_DATABASE_URL" PYTHONPATH=. .venv/bin/alembic upgrade head; then
+    migrated=true
+    break
+  fi
+  echo "  migration attempt ${attempt} failed (Postgres may still be settling) — retrying" >&2
+  sleep 3
+done
+if [ "$migrated" != true ]; then
+  echo "✗ Alembic migrations failed after retries" >&2
+  exit 1
+fi
 
 log "start.sh complete — infra up, migrations applied"
