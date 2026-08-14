@@ -15,6 +15,10 @@ WORKSPACE_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
 REPOS_PARENT="$(dirname "$WORKSPACE_DIR")"
 AGENT_DIR="$REPOS_PARENT/travel-agent"
 
+# Ensure infra (Docker + Postgres + Qdrant + migrations) is up before serving.
+# start.sh is idempotent, so this is a no-op when the start phase already ran.
+bash "$SCRIPT_DIR/start.sh"
+
 cd "$AGENT_DIR"
 
 export DATABASE_URL="${DATABASE_URL:-postgresql://vesper:localdev@localhost:15432/vesper}"

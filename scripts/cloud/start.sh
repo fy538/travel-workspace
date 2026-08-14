@@ -53,7 +53,25 @@ for i in $(seq 1 60); do
   sleep 1
 done
 
-# ── 3. Database migrations ────────────────────────────────────────────────────
+# ── 3. Qdrant health (fuse-overlayfs stale-volume guard) ──────────────────────
+# On the nested-container VM, Qdrant can crash-loop on a volume carried inside a
+# base snapshot ("Invalid cross-device link" while cleaning its snapshots temp
+# dir). If it does not report healthy shortly after boot, recreate its volume
+# from clean. Qdrant holds no durable dev state until a seeding script runs.
+PROJECT="$(basename "$AGENT_DIR")"
+qdrant_ok=false
+for _ in $(seq 1 15); do
+  if curl -fsS http://localhost:6333/healthz >/dev/null 2>&1; then qdrant_ok=true; break; fi
+  sleep 1
+done
+if [ "$qdrant_ok" != true ]; then
+  log "Qdrant not healthy — recreating its volume from clean"
+  docker compose rm -sf qdrant >/dev/null 2>&1 || true
+  docker volume rm "${PROJECT}_qdrant_data" >/dev/null 2>&1 || true
+  docker compose up -d qdrant
+fi
+
+# ── 4. Database migrations ────────────────────────────────────────────────────
 log "Applying Alembic migrations"
 DATABASE_URL="$DEV_DATABASE_URL" PYTHONPATH=. .venv/bin/alembic upgrade head
 
