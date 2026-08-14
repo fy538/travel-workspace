@@ -2,9 +2,14 @@
 # start.sh — Cursor Cloud Agent start phase for the Travel Workspace.
 #
 # Per-boot runtime reconciliation: starts the Docker daemon, brings up the
-# Postgres + Qdrant infra containers, waits for Postgres, and applies Alembic
-# migrations. Idempotent and safe to re-run; it must reach a clear success or
-# failure state and then return so the terminals can start.
+# Postgres + Qdrant infra containers, waits for Postgres, applies Alembic
+# migrations, and launches the FastAPI backend (uvicorn) in the background so
+# the API is live on boot. Idempotent and safe to re-run; it reaches a clear
+# success or failure state and then returns.
+#
+# For an attached/foreground API with live logs instead, use `make dev-backend`
+# from the workspace root (reads travel-agent/.env). Background API logs are at
+# /tmp/api-server.log.
 
 set -euo pipefail
 
@@ -95,4 +100,21 @@ if [ "$migrated" != true ]; then
   exit 1
 fi
 
-log "start.sh complete — infra up, migrations applied"
+# ── 5. API server (background) ────────────────────────────────────────────────
+# Launch uvicorn detached so the API is live on boot. Idempotent: skip if
+# something is already serving on :8000. A real ANTHROPIC_API_KEY from the
+# environment/secret is used when present; otherwise a placeholder lets the
+# server boot for non-AI development.
+if curl -fsS http://localhost:8000/health >/dev/null 2>&1; then
+  log "API already serving on :8000 — not relaunching"
+else
+  log "Launching API server (background) — logs at /tmp/api-server.log"
+  DATABASE_URL="$DEV_DATABASE_URL" \
+    SKIP_AUTH="${SKIP_AUTH:-true}" \
+    DEFAULT_DEV_USER_ID="${DEFAULT_DEV_USER_ID:-00000000-0000-0000-0000-000000000005}" \
+    ANTHROPIC_API_KEY="${ANTHROPIC_API_KEY:-sk-placeholder-not-configured}" \
+    PYTHONPATH=. nohup .venv/bin/uvicorn backend.api.main:app \
+    --host 0.0.0.0 --port 8000 --no-access-log >/tmp/api-server.log 2>&1 &
+fi
+
+log "start.sh complete — infra up, migrations applied, API server launched"
