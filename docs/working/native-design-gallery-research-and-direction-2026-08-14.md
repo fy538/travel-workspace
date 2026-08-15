@@ -3,12 +3,14 @@ doc_type: working
 status: active
 owner: founder / product / design / frontend
 created: 2026-08-14
-last_updated: 2026-08-14
+last_updated: 2026-08-15
 expires: 2026-09-13
 why_new: Two-pass research and product-engineering direction for turning the app's existing development galleries into a coherent native design workbench, while deciding with evidence whether React Native Storybook should own isolated component stories and agent discovery.
 promotes_to: the frontend engineering loop, a protected native composition workbench, and an isolated-component story contract if the proposed pilots prove useful
 supersedes: []
 related:
+  - native-design-gallery-founder-pain-2026-08-15.md
+  - home-kit-galleries-plan-2026-08-15.md
   - visual-polish-evaluation-and-design-workflow-2026-08-13.md
   - product-loop-coherence-maestro-and-environment-strategy-2026-08-12.md
   - ../../travel-app/docs/Frontend Engineering Loop.md
@@ -25,6 +27,18 @@ related:
 > capabilities are a snapshot as of 2026-08-14. Durable rules should be promoted
 > into the frontend contract rather than leaving this note as a second source of
 > truth.
+>
+> **2026-08-15 founder-pain follow-up (revised):** this memo remains the
+> architecture. A second-pass check found the first founder-pain note was not
+> a better plan — it oversold a menu as a design scroll. The surviving
+> change is narrower: make Phase 0 immediately usable (complete hub + DevFab +
+> `Stack.Protected`) before coupling it to the Storybook spike. See
+> [native-design-gallery-founder-pain-2026-08-15.md](./native-design-gallery-founder-pain-2026-08-15.md).
+>
+> **2026-08-15 home-kit follow-up:** Trips Home and Places Workspace still have
+> no filled kit galleries. The next increment after hub + M1 signatures is two
+> labeled family scrolls, not fake fully-loaded homes. See
+> [home-kit-galleries-plan-2026-08-15.md](./home-kit-galleries-plan-2026-08-15.md).
 
 ## Second-pass verdict
 
