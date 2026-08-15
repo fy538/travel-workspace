@@ -2,7 +2,7 @@
 
 **Status:** current cross-repo source of truth
 
-**Last verified:** 2026-08-15
+**Last verified:** 2026-08-15 (founder-approved: Deck is `/dev`, not production Home)
 
 **Implementations:** `travel-app` + `travel-agent`
 
