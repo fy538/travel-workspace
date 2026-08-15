@@ -22,7 +22,8 @@ related:
 
 > **Implemented plan and verification receipt.** The two kits shipped in the
 > local app history and were re-reviewed against production truth on 2026-08-15.
-> The final corrective commit is `f6f006a5`. Durable rules still belong in the
+> The corrective commits are `f6f006a5` and `d7c5d871`; visual evidence is
+> committed in `cc2a6f8a`. Durable rules still belong in the
 > surface contracts and native gallery memo, not here.
 
 ## Implementation status
@@ -43,8 +44,9 @@ Slices C0–C2 are complete:
 
 The two boundaries remain deliberate: the kits prove production leaves and
 state coverage; the real Trips and Places tabs prove composition and rhythm.
-The Maestro lane is registered but has only been dry-run in this receipt, so it
-does not yet provide visual evidence.
+The Maestro lane completed on a booted iPhone 16 simulator with its full image
+and all five crops. Its structured verdict passes the workbench itself; it does
+not claim the composed Trips and Places tabs have passed.
 
 ## Direct answer
 
@@ -358,9 +360,8 @@ A founder can:
 That is “see all the cards we implemented.” It is not “one person has
 everything.”
 
-The code and structural-test exit is complete at app commit `f6f006a5`.
-Remaining operational proof is one real `native-design-workbench` Maestro run,
-skeptical screenshot inspection, and an external-build/deep-link audit. The
-explicit preview/production internal-build flags and recursive protection test
-are fail-closed safeguards; they are not a claim that route files are absent
-from the release binary.
+The code, structural-test, and workbench visual-evidence exit is complete at app
+commits `f6f006a5`, `d7c5d871`, and `cc2a6f8a`. The remaining release-boundary
+proof is an external-build/deep-link audit. The explicit preview/production
+internal-build flags and recursive protection test are fail-closed safeguards;
+they are not a claim that route files are absent from the release binary.

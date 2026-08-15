@@ -24,7 +24,8 @@ related:
 > **Working research plus implementation receipt.** This document records the
 > August 14 visual-workbench direction and the implementation state verified on
 > 2026-08-15. Vendor capabilities remain a research snapshot; current repo facts
-> below are tied to app commit `f6f006a5`. Durable rules still belong in the
+> below are tied to app commits `f6f006a5`, `d7c5d871`, and `cc2a6f8a`.
+> Durable rules still belong in the
 > frontend contract rather than this note.
 >
 > **2026-08-15 founder-pain follow-up (revised):** this memo remains the
@@ -43,7 +44,11 @@ related:
 
 ## Implementation receipt — 2026-08-15
 
-App commit: `f6f006a5` (`fix(dev-workbench): keep visual specimens production-true`).
+App commits:
+
+- `f6f006a5` — production-truth, registry, route, and initial capture fixes;
+- `d7c5d871` — deterministic focused capture links and honest map schematic; and
+- `cc2a6f8a` — validated visual verdict and pinned manifest.
 
 Implemented:
 
@@ -65,20 +70,23 @@ Verification:
 
 - TypeScript passed.
 - Component catalog and lifecycle checks passed.
-- 53 focused workbench, product-leaf, route, shell-contract, and build-profile
+- 56 focused workbench, product-leaf, route, shell-contract, and build-profile
   tests passed.
 - Lint completed with zero errors (existing warnings remain).
 - Polish scenario IDs and design-reference checks passed. The workbench is
   doctrine-judged and intentionally has no external design-reference manifest.
-- The native capture runner dry-ran successfully. A real capture was not made
-  because Metro was not running on `:8081`; no visual-pass claim is recorded.
+- The native runner completed on an iPhone 16 simulator: one full capture and
+  all five declared crops. The structured verdict passed all four gates and ten
+  dimensions, and is committed at
+  `travel-app/docs/surfaces/native-design-workbench/verdicts/` with manifest
+  Git SHA `d7c5d871`.
 
 Still open:
 
-- run the registered Maestro lane with Metro, a booted simulator, and the app;
-- inspect the resulting screenshots skeptically and record a verdict;
 - audit a preview/production artifact or deep link before treating route guards
   as proof of binary exclusion; and
+- continue using the real `trips-home` and `places-workspace` surface lanes for
+  composed-tab rhythm—the workbench verdict cannot pass those surfaces; and
 - run the bounded Storybook spike only if isolated-component discovery remains
   a measured bottleneck. It is not required for the native workbench to operate.
 
