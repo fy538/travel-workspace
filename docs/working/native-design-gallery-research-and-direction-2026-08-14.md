@@ -3,12 +3,13 @@ doc_type: working
 status: active
 owner: founder / product / design / frontend
 created: 2026-08-14
-last_updated: 2026-08-14
+last_updated: 2026-08-15
 expires: 2026-09-13
 why_new: Two-pass research and product-engineering direction for turning the app's existing development galleries into a coherent native design workbench, while deciding with evidence whether React Native Storybook should own isolated component stories and agent discovery.
 promotes_to: the frontend engineering loop, a protected native composition workbench, and an isolated-component story contract if the proposed pilots prove useful
 supersedes: []
 related:
+  - native-design-gallery-founder-pain-2026-08-15.md
   - visual-polish-evaluation-and-design-workflow-2026-08-13.md
   - product-loop-coherence-maestro-and-environment-strategy-2026-08-12.md
   - ../../travel-app/docs/Frontend Engineering Loop.md
@@ -25,6 +26,12 @@ related:
 > capabilities are a snapshot as of 2026-08-14. Durable rules should be promoted
 > into the frontend contract rather than leaving this note as a second source of
 > truth.
+>
+> **2026-08-15 founder-pain follow-up:** keep this memo as the architecture map
+> and the "do not overbuild" list. For a solo founder who needs to see
+> production components in one place and polish them for the M1 demo, do not
+> start with the Storybook spike. See
+> [native-design-gallery-founder-pain-2026-08-15.md](./native-design-gallery-founder-pain-2026-08-15.md).
 
 ## Second-pass verdict
 
