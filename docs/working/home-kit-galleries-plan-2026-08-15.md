@@ -20,13 +20,35 @@ related:
 
 # Home-kit galleries — Trips Home and Places Workspace
 
-> **Working plan, not an implementation claim.** Inventories were read from
-> the travel-app checkout on 2026-08-15. Durable rules still belong in the
-> surface contracts and the native gallery memos, not here.
+> **Implemented plan and verification receipt.** The two kits shipped in the
+> local app history and were re-reviewed against production truth on 2026-08-15.
+> The final corrective commit is `f6f006a5`. Durable rules still belong in the
+> surface contracts and native gallery memo, not here.
+
+## Implementation status
+
+Slices C0–C2 are complete:
+
+- `/dev/trips-home-kit` mounts labeled production modules and now shares the
+  canonical `TripsHomeFallback` renderer with `TripsHomeBody`;
+- `/dev/places-workspace-kit` mounts production card views and section
+  treatments from grounded fixtures;
+- `/dev/surface-census` records the nested-surface decisions and now shows the
+  current private-reflection lifecycle instead of the retired debrief form;
+- the shared hub/DevFab menu names Discover honestly and links all three routes;
+- the day-map specimen uses a bundled deterministic source, not a Mapbox token
+  or network request; and
+- `.maestro/polish/native-design-workbench.yaml` captures selected specimens
+  from the M1, Trips, Places, and census scrolls.
+
+The two boundaries remain deliberate: the kits prove production leaves and
+state coverage; the real Trips and Places tabs prove composition and rhythm.
+The Maestro lane is registered but has only been dry-run in this receipt, so it
+does not yet provide visual evidence.
 
 ## Direct answer
 
-Build **two labeled family scrolls**, same object as `/dev/m1-signatures`,
+The implementation provides **two labeled family scrolls**, the same object as `/dev/m1-signatures`,
 scoped to the two recently revamped homes:
 
 | Route | Object |
@@ -51,7 +73,7 @@ This is **Slice C** of the native gallery plan: after the complete hub
 | Domain | Trips Home and Places Workspace visual kits |
 | Mock enough? | Yes. Extract cards/modules from existing mock personas and unit fixtures. |
 | Contract / routes / context? | Adds two protected `/dev` routes and two hub/DevFab links. Does not change production tab composition. |
-| Registered surface? | Touches `trips-home` and `places-workspace` **components**, not their product routes. Do not run surface polish QA against the kit galleries. Real-tab polish stays on `trips-home` / `places-workspace`. |
+| Registered surface? | The kits are grouped under the doctrine-judged `native-design-workbench` dev-fixture surface for capture. Real-tab acceptance remains on `trips-home` / `places-workspace`; a kit capture cannot pass their composed-page rhythm. |
 | Docs that go stale | Hub menu note that Discover cold start is “Places empty composition” (wrong today). This working note. |
 
 ## 1. Why the real homes are not enough
@@ -80,7 +102,9 @@ Existing `/dev` coverage is leaf-shaped, not page-kit-shaped:
 | `/dev/discover-cold-start` | Empty **Discover** cover | Not Places Workspace. Hub copy currently mislabels it “Places empty composition.” |
 | Places polish flows | Persona-realistic full pages | Capture evidence, not a browse scroll |
 
-There is no `/dev/trips-home-*` kit and no `/dev/places-*` kit.
+That gap is now closed by `/dev/trips-home-kit` and
+`/dev/places-workspace-kit`. The table above remains the historical rationale
+for why those routes were added.
 
 ## 2. What to build vs what not to build
 
@@ -292,13 +316,16 @@ Wrap with a real `QueryClient` because `PlaceFeedCard` / `ExperienceFeedCard`
 call `useSaveEntity`. Navigation callbacks are NOOP. Do not hit itinerary
 commit from the gallery.
 
-### Slice C3 — not in this pass
+### Slice C3 — operational follow-ups
 
 - Device walk of real `trips-home` / `places-workspace` polish QA (already a
   registered-surface path)
 - IPA / TestFlight exclusion audit (still required before shipping new
   `/dev` files in a store build)
-- Storybook, Chromatic, component-registry repair
+- bounded Storybook/hosted-review experiments only if a measured bottleneck warrants them
+
+The component-registry repair moved into the corrective implementation and is
+complete at `f6f006a5`.
 
 ## 6. Mounting notes (so the implementer does not rebuild the homes)
 
@@ -317,7 +344,7 @@ render `PlacesSectionFeed`.
 fixture exists (Trip Feel, Local Plans) and must label the flag. They must
 not enable flags globally.
 
-## 7. Exit
+## 7. Exit — achieved in code, pending device evidence
 
 A founder can:
 
@@ -330,3 +357,10 @@ A founder can:
 
 That is “see all the cards we implemented.” It is not “one person has
 everything.”
+
+The code and structural-test exit is complete at app commit `f6f006a5`.
+Remaining operational proof is one real `native-design-workbench` Maestro run,
+skeptical screenshot inspection, and an external-build/deep-link audit. The
+explicit preview/production internal-build flags and recursive protection test
+are fail-closed safeguards; they are not a claim that route files are absent
+from the release binary.

@@ -21,12 +21,11 @@ related:
 
 # Native design gallery research and direction
 
-> **Working research and direction, not an implementation claim.** This document
-> records the August 14 follow-up to the visual-polish discussion and the idea of
-> a centralized "design scroll." Counts, routes, dependencies, and vendor
-> capabilities are a snapshot as of 2026-08-14. Durable rules should be promoted
-> into the frontend contract rather than leaving this note as a second source of
-> truth.
+> **Working research plus implementation receipt.** This document records the
+> August 14 visual-workbench direction and the implementation state verified on
+> 2026-08-15. Vendor capabilities remain a research snapshot; current repo facts
+> below are tied to app commit `f6f006a5`. Durable rules still belong in the
+> frontend contract rather than this note.
 >
 > **2026-08-15 founder-pain follow-up (revised):** this memo remains the
 > architecture. A second-pass check found the first founder-pain note was not
@@ -35,10 +34,53 @@ related:
 > `Stack.Protected`) before coupling it to the Storybook spike. See
 > [native-design-gallery-founder-pain-2026-08-15.md](./native-design-gallery-founder-pain-2026-08-15.md).
 >
-> **2026-08-15 home-kit follow-up:** Trips Home and Places Workspace still have
-> no filled kit galleries. The next increment after hub + M1 signatures is two
-> labeled family scrolls, not fake fully-loaded homes. See
-> [home-kit-galleries-plan-2026-08-15.md](./home-kit-galleries-plan-2026-08-15.md).
+> **2026-08-15 implementation update:** Trips Home and Places Workspace now have
+> labeled production-component kits. The surface census uses the shipped private
+> reflection receipt rather than the retired form, Trips fallback specimens share
+> the production renderer, and Today Mapped uses bundled deterministic media.
+> The four workbench routes are registered under one narrow Maestro capture lane.
+> See [home-kit-galleries-plan-2026-08-15.md](./home-kit-galleries-plan-2026-08-15.md).
+
+## Implementation receipt — 2026-08-15
+
+App commit: `f6f006a5` (`fix(dev-workbench): keep visual specimens production-true`).
+
+Implemented:
+
+- a complete shared gallery menu used by the hub and DevFab;
+- protected `/dev/m1-signatures`, `/dev/trips-home-kit`,
+  `/dev/places-workspace-kit`, and `/dev/surface-census` native scrolls;
+- recursive route-inventory coverage so a future nested `app/dev` route cannot
+  silently fall outside `Stack.Protected`;
+- explicit `EXPO_PUBLIC_IS_INTERNAL_BUILD=false` in preview and production EAS
+  profiles, alongside the runtime fail-closed guard;
+- canonical Trips fallback rendering shared by product and kit;
+- a production-current private-reflection receipt matrix in the census;
+- deterministic bundled media for the Trips day-map specimen;
+- a registered `native-design-workbench` Maestro surface and capture flow; and
+- repaired shared-component inventory: 105 component records, ten internal
+  support modules, a regenerated catalog, and green catalog/lifecycle checks.
+
+Verification:
+
+- TypeScript passed.
+- Component catalog and lifecycle checks passed.
+- 53 focused workbench, product-leaf, route, shell-contract, and build-profile
+  tests passed.
+- Lint completed with zero errors (existing warnings remain).
+- Polish scenario IDs and design-reference checks passed. The workbench is
+  doctrine-judged and intentionally has no external design-reference manifest.
+- The native capture runner dry-ran successfully. A real capture was not made
+  because Metro was not running on `:8081`; no visual-pass claim is recorded.
+
+Still open:
+
+- run the registered Maestro lane with Metro, a booted simulator, and the app;
+- inspect the resulting screenshots skeptically and record a verdict;
+- audit a preview/production artifact or deep link before treating route guards
+  as proof of binary exclusion; and
+- run the bounded Storybook spike only if isolated-component discovery remains
+  a measured bottleneck. It is not required for the native workbench to operate.
 
 ## Second-pass verdict
 
@@ -139,8 +181,8 @@ The app already has most of the substrate:
 - a central design-system hub;
 - production-backed token, state, header, control, composer, deck, receipt,
   artifact, onboarding, and product-state galleries;
-- a checked-in registry nominally containing 89 components, though its current
-  coverage and generated-catalog checks fail on this branch;
+- a checked-in registry containing 105 classified shared components, with
+  generated-catalog and lifecycle checks green at `f6f006a5`;
 - component lifecycle and catalog checks;
 - Maestro capture lanes, surface scenarios, baseline checks, perceptual hashing,
   comparison sheets, and structured visual verdicts.
@@ -220,32 +262,23 @@ workbench less coherent, not more.
 ### 3.2 Existing component inventory
 
 [`docs/component-registry.json`](../../travel-app/docs/component-registry.json)
-currently registers 89 components:
+currently registers 105 components:
 
 | Lifecycle status | Count |
 | --- | ---: |
 | Stable | 62 |
-| Provisional | 24 |
+| Provisional | 40 |
 | Internal | 3 |
 
 The design-system hub already reads this registry to show lifecycle counts by
 category. The repository also has generated component-catalog and lifecycle
 checks. That is a much stronger starting point than a hand-maintained showcase.
 
-However, the registry is not currently green on the checked-out clean
-`feat/receipt-wave2` branch. Read-only runs of
-`npm run components:catalog:check` and `components:catalog:test` fail because:
-
-- the `LedgerRow` record still points at `components/ui/LedgerRow.tsx` while the
-  source now lives under `components/ui/rows/`; and
-- 20 current `components/ui` source files are unregistered, including new root
-  voice/chrome, motion, row, and state modules.
-
-The generated `docs/Components.md` is also stale relative to the registry. This
-may be normal in-flight work on the feature branch, but it means the headline
-"89 components" is a nominal snapshot, not a complete current inventory. Phase
-0 must restore the catalog checks or explicitly reclassify the omitted modules
-before the registry can anchor workbench discovery.
+The drift found during the review is repaired in `f6f006a5`: `LedgerRow` points
+to the row register, all current `components/ui` source modules are classified,
+and `docs/Components.md` is regenerated. `npm run components:check` now passes.
+The catalog test no longer duplicates complete source validation with a brittle
+hard-coded component count.
 
 The generator also makes an important boundary explicit: the registry is
 intentionally limited to shared `components/ui` modules. Feature components
@@ -761,7 +794,7 @@ increases coverage, but final baseline approval remains a calibrated human act.
 | Components pass but screens feel incoherent | Isolation hides density, rhythm, and hierarchy between components. | Include canonical first-viewport and surface compositions in Tier A. |
 | Journeys are too slow for local iteration | Reaching a deep state repeatedly wastes time and adds network variance. | Use the workbench for component/surface iteration; reserve journeys for connectivity and mutation claims. |
 | Catalog becomes another source of truth | Routes, fixtures, docs, and screenshots are hand-maintained separately. | Keep lifecycle, stories, native compositions, and surface contracts in their existing authorities; join with IDs and generate derived indexes. |
-| Agent sees too much context | Dumping all 89 components and every state wastes tokens and lowers relevance. | Query/filter the manifest by family, status, surface, and tags; show stable options first. |
+| Agent sees too much context | Dumping all 105 components and every state wastes tokens and lowers relevance. | Query/filter the manifest by family, status, surface, and tags; show stable options first. |
 | Agent invents a near-duplicate anyway | Existence alone does not communicate the approved choice. | Include preferred uses, prohibited substitutes, status, and real consumer examples; add duplicate review to frontend receipt. |
 | Dev tooling enters production | File-based routes are assumed absent because their `Stack.Screen` declaration is conditional. | Audit an external build and deep links; use `Stack.Protected`/fail-closed guards or move the workbench out of the production route tree. Use Storybook entry-point swapping for the isolated lane. |
 | Dual Storybook/native fixtures diverge | A migration adds `.stories` without retiring or generating the old catalog. | Pilot from the same fixture model; do not maintain two independent state definitions. |
@@ -942,7 +975,7 @@ duplicate path.
 - a custom drag-and-drop design editor;
 - a general-purpose replacement for Figma or Claude Design;
 - a bespoke MCP server before the static manifest proves insufficient;
-- automatic screenshots for all 89 components and every permutation;
+- automatic screenshots for all 105 components and every permutation;
 - a cloud fixture service;
 - a second set of gallery-only primitives;
 - an elaborate visual-quality scalar score;
