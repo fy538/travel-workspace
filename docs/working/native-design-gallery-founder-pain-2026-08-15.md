@@ -11,6 +11,7 @@ promotes_to: a complete native gallery table of contents, optional M1 signature 
 supersedes: []
 related:
   - native-design-gallery-research-and-direction-2026-08-14.md
+  - home-kit-galleries-plan-2026-08-15.md
   - visual-polish-evaluation-and-design-workflow-2026-08-13.md
   - ../../travel-app/docs/Frontend Engineering Loop.md
   - ../../travel-app/docs/design-consolidation/Plan.md
@@ -244,3 +245,12 @@ menu is not enough.
 | What is better than original's bundled 0+0.5? | **Slice A now. Slice B only if sitting still requires fourteen taps.** |
 | When does Storybook come back? | When the next step would be search, deep links, portable stories, or agent discovery — original's trigger, unchanged. |
 | What must not be built in Slice A? | `NativeGalleryEntry`, a mega-scroll of all 27 routes, new `app/dev` files, a Storybook install, registry-as-workbench. |
+
+## 7. Home kits (2026-08-15)
+
+Hub + M1 signatures still do not show the recently revamped **Trips Home** and
+**Places Workspace** card families. Those surfaces are existence-gated, so
+one mock persona never reveals the kit. The next increment is two labeled
+family scrolls (`/dev/trips-home-kit`, `/dev/places-workspace-kit`), not a
+fake fully-loaded home. Plan:
+[home-kit-galleries-plan-2026-08-15.md](./home-kit-galleries-plan-2026-08-15.md).

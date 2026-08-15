@@ -10,6 +10,7 @@ promotes_to: the frontend engineering loop, a protected native composition workb
 supersedes: []
 related:
   - native-design-gallery-founder-pain-2026-08-15.md
+  - home-kit-galleries-plan-2026-08-15.md
   - visual-polish-evaluation-and-design-workflow-2026-08-13.md
   - product-loop-coherence-maestro-and-environment-strategy-2026-08-12.md
   - ../../travel-app/docs/Frontend Engineering Loop.md
@@ -33,6 +34,11 @@ related:
 > change is narrower: make Phase 0 immediately usable (complete hub + DevFab +
 > `Stack.Protected`) before coupling it to the Storybook spike. See
 > [native-design-gallery-founder-pain-2026-08-15.md](./native-design-gallery-founder-pain-2026-08-15.md).
+>
+> **2026-08-15 home-kit follow-up:** Trips Home and Places Workspace still have
+> no filled kit galleries. The next increment after hub + M1 signatures is two
+> labeled family scrolls, not fake fully-loaded homes. See
+> [home-kit-galleries-plan-2026-08-15.md](./home-kit-galleries-plan-2026-08-15.md).
 
 ## Second-pass verdict
 
