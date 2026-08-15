@@ -2,7 +2,7 @@
 
 **Status:** current cross-repo source of truth
 
-**Last verified:** 2026-08-10
+**Last verified:** 2026-08-15
 
 **Implementations:** `travel-app` + `travel-agent`
 
@@ -14,18 +14,21 @@ receipt, a useful artifact, or a typed destination.
 
 ### Vesper Home and Deck
 
-The Home feed is assembled from real world state by
-`backend/home/concierge_feed/`. A warm glance appears as the Home hero or rail;
-only cards with `focus` or `structured` substrate may enter the dark Deck.
+Production Vesper Home is the workbench (`VesperWorkbench`). It is not a
+decision queue and it does not mount Deck.
 
-Pipeline:
+Deck faces remain a **deterministic `/dev` fixture** (`/dev/deck-gallery`,
+polish lifecycle `dev-fixture`). They are not live product destinations.
+Do not describe Home → Deck as the current user journey.
+
+Historical Deck pipeline (lab / compatibility inventory only):
 
 ```text
 Home producers → ConciergeHomeCard → useConciergeHomeState parser
   → Home hero / rail → Deck face → typed action contract
 ```
 
-Live Deck faces:
+Lab Deck faces (not production Home):
 
 | Substrate | Face | Purpose | Primary completion |
 |---|---|---|---|
@@ -39,6 +42,9 @@ Live Deck faces:
 | `structured.layout=readiness` | `DeckStructuredFace` | Pre-departure open-loop check | navigation |
 
 `flight` remains parked (no producer; booking schedule-change G2–G4 still dark). Do not revive a Flight face from presentation alone.
+
+Shared decisions in product go to the group-chat `vote_widget`
+(`routes.tripChatProposal`), not `DeckStructuredFace`.
 
 Home data is deterministic. Small schema-enforced LLM calls may add grounded
 judgment (`pick_judgment.py`, `deck_take.py`); failure keeps deterministic copy.
@@ -183,15 +189,15 @@ Vocabulary:
 - `superseded`: a newer version or expired moment replaced the card
 - `dismissed`: explicitly removed, declined, or undone
 
-The shared vocabulary currently projects persisted Home lifecycle, drives Deck
-transactions, solo proposal previews, and consequential receipt status. New
-interactive cards must use it rather than inventing local `idle/submitting/done`
-unions.
+The shared vocabulary currently projects persisted Home lifecycle, solo proposal
+previews, consequential receipt status, and the Deck lab. New interactive cards
+must use it rather than inventing local `idle/submitting/done` unions.
 
-Every uncertain Deck write has an exact durable readback: venue commitments,
-proposal votes, settled expense shares, saved entities, applied reschedules,
-booking proposals, provider holds, and Home feedback suppression. A card-feed
-disappearance is never treated as proof that a consequential write landed.
+Every uncertain consequential write has an exact durable readback: venue
+commitments, proposal votes, settled expense shares, saved entities, applied
+reschedules, booking proposals, provider holds, and Home feedback suppression.
+A card-feed disappearance is never treated as proof that a consequential write
+landed.
 
 ## 5. Arrival and motion contract
 
@@ -217,7 +223,7 @@ turn-end invalidate. Full history refetch and the 8s materialization timeout
 remain authority. Device proof:
 `docs/working/card-arrival-device-cert-2026-07-30.md`.
 
-Deck behavior:
+Lab Deck behavior (not production Home):
 
 - opening: scrim fade + card lift
 - confirmed resolution: current card exits left, next enters right
