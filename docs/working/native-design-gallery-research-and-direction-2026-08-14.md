@@ -27,10 +27,11 @@ related:
 > into the frontend contract rather than leaving this note as a second source of
 > truth.
 >
-> **2026-08-15 founder-pain follow-up:** keep this memo as the architecture map
-> and the "do not overbuild" list. For a solo founder who needs to see
-> production components in one place and polish them for the M1 demo, do not
-> start with the Storybook spike. See
+> **2026-08-15 founder-pain follow-up (revised):** this memo remains the
+> architecture. A second-pass check found the first founder-pain note was not
+> a better plan — it oversold a menu as a design scroll. The surviving
+> change is narrower: make Phase 0 immediately usable (complete hub + DevFab +
+> `Stack.Protected`) before coupling it to the Storybook spike. See
 > [native-design-gallery-founder-pain-2026-08-15.md](./native-design-gallery-founder-pain-2026-08-15.md).
 
 ## Second-pass verdict
