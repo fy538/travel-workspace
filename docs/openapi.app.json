@@ -66336,13 +66336,24 @@
             "type": "string",
             "format": "uuid",
             "title": "Trip Id"
+          },
+          "receipt_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Receipt Id"
+          },
+          "replay": {
+            "type": "boolean",
+            "title": "Replay",
+            "default": false
           }
         },
         "type": "object",
         "required": [
           "message",
           "conversation_id",
-          "trip_id"
+          "trip_id",
+          "receipt_id"
         ],
         "title": "PrivateTripReflectionAccepted"
       },
@@ -75180,11 +75191,17 @@
             "type": "string",
             "format": "uuid",
             "title": "Trip Id"
+          },
+          "source_message_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Source Message Id"
           }
         },
         "type": "object",
         "required": [
-          "trip_id"
+          "trip_id",
+          "source_message_id"
         ],
         "title": "SubmitPrivateTripReflectionRequest",
         "description": "A typed reflection submitted from the member's private trip room."
