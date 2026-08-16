@@ -48356,6 +48356,7 @@
             "enum": [
               "place",
               "venue",
+              "site",
               "experience",
               "accommodation",
               "dossier",
@@ -48399,6 +48400,18 @@
               }
             ],
             "title": "Venue Id"
+          },
+          "site_id": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Site Id"
           },
           "experience_id": {
             "anyOf": [
