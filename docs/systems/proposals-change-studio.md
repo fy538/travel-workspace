@@ -3,7 +3,7 @@
 > Surface: Trips
 > Maturity (for MVP): MVP-required
 > Status: wired (the central Advise→Propose→Act loop; a known drift hotspot)
-> Last updated: 2026-06-27
+> Last updated: 2026-08-16 (chat-first decision ownership and voting-default contract corrected)
 
 ## Purpose
 The controlled mutation gateway for a trip plan — the two ways the itinerary changes:
@@ -12,9 +12,14 @@ enabled vote), and (B) a **direct edit** by an authorized actor — each produci
 visible receipt with only server-proven recovery actions. Serves belief #9
 (planning and experiencing are one continuous activity) and the trust loop.
 
+For shared decisions, `VoteWidgetCard` in the trip room is the primary vote,
+withdraw, organizer-resolution, and settled-receipt surface. The standalone
+`ProposalDetailScreen` is inspect/recovery only. Both read the same proposal;
+neither owns Plan truth.
+
 ## Spans (cross-repo)
 - Backend: `api/routes/proposals.py`, `plan_edit_preview.py`, `plan_edit_commit.py`, `plan_mark_happened.py`, `plan_state.py`; `core/db/change_proposals.py::build_and_persist_proposal`, `core/db/plan_events.py` (append-only ledger), `core/edit_policy.py` (`resolve_edit_mode_for_trip`), the conflict engine, `concierge/tool_handlers/planning/_propose_present.py`.
-- Frontend: `app/trip-proposal/[proposalId]`, `(tabs)/trips/[tripId]/changes`, Change Studio sheets on Plan rows, Now Mode, `components/plan/*`, `data/proposals.ts`.
+- Frontend: `components/chat/VoteWidgetCard.tsx` (canonical shared decision), `app/trip-proposal/[proposalId]` + `components/trip/proposal-detail/ProposalDetailScreen.tsx` (inspect/recovery fallback), `(tabs)/trips/[tripId]/changes`, Change Studio sheets on Plan rows, Now Mode, `components/plan/*`, `data/proposals.ts`.
 - Tables of record: `change_proposals` (+ votes), `plan_events` (append-only ledger).
 
 ## Public interface (what other systems may call / read)
@@ -45,8 +50,13 @@ because it is listed here.
 - **Revert truthfulness:** if revert says success, Plan **and** Map reflect it (no ghost state) — the ledger makes this deterministic and diff-safe.
 - **No private source leak:** proposal detail shows a public-safe reason; never the private constraint behind it.
 - **One creation path:** chat-created and UI-created proposals both go through `build_and_persist_proposal`.
-- **No silent voting:** voting is explicit trip/action policy; adding a member
-  never enables it and silence never counts as consent.
+- **Visible voting is not automation:** the one-time 1→2 member transition may
+  enable visible voting. It never enables consensus automation, and silence
+  never counts as consent unless an organizer separately opts into a bounded
+  automation rule with a real deadline and recovery path.
+- **One shared mutation surface:** the group-room decision card owns vote,
+  withdraw, and organizer resolution. Standalone proposal detail owns
+  inspection and recovery; it must not duplicate those mutations.
 - **Frozen authorship, current safety:** a submitted proposal's normalized
   operation and attribution are immutable, while acceptance revalidates current
   authority, protection/provider state, trip phase, and preconditions.

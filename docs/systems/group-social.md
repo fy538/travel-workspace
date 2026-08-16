@@ -2,8 +2,8 @@
 
 > Surface: Trips
 > Maturity (for MVP): MVP-required
-> Status: wired (membership golden-path; social dynamics beta)
-> Last updated: 2026-07-16 (strategy aligned to relational personalization and the living itinerary)
+> Status: wired (membership, bounded decisions, room agency, and trip shared memory; recurring-group intelligence beta)
+> Last updated: 2026-08-16 (aligned to multiplayer strategy and chat-first decision ownership)
 
 ## Purpose
 The group itself — **membership & invites** (who is in the trip, with what role) and
@@ -18,6 +18,11 @@ personalization**: Vesper should understand how this person travels with these
 people, in this destination, for this occasion. Per-trip group state is the
 launch expression; recurring-group memory is earned only after repeated-trip
 evidence exists and never overrides what members say on the current trip.
+
+The product strategy above this as-built charter is
+[`Multiplayer Product Strategy`](../../travel-agent/docs/product/Multiplayer%20Product%20Strategy.md).
+This charter records current system ownership and invariants; it does not imply
+that every strategy mode is implemented.
 
 ## Coordination-channel ruling (2026-07-13)
 
@@ -96,20 +101,41 @@ privacy.
    trip-settings gets a second toggle for automation, gated on visible voting
    being on first).
 
+## Chat-first decision ownership (2026-08-16)
+
+The exact proposal card inside the trip room is the primary shared decision
+surface. One card represents one decision; verified members vote on that same
+object; the organizer resolves when policy requires it; and the settled card
+becomes the visible receipt. The canonical write still belongs to the proposal
+and Plan systems, not to chat-local state.
+
+The standalone proposal detail is an inspect/recovery fallback: impact, history,
+current truth, and a door back to Chat or Plan. It must not become a second
+mutation surface or a duplicate decision workflow. External threads may carry a
+deep link or share-back artifact, but authority and the recorded decision remain
+in the canonical card/proposal/Plan chain.
+
 ## Spans (cross-repo)
-- Backend: membership/invites in `core/` + `api/routes/trips.py`, `members`, `invites`; social dynamics in [`travel-agent/backend/social_state/`](../../travel-agent/backend/social_state/FEATURE.md) (6).
-- Frontend: `app/trip-begin`, `app/invite/[slug]`, `app/invite-code`, `(tabs)/trips/[tripId]/chat` (group room), `components/trips/*`, `data/trips.ts`, `useCreateInvite`/`useTripInvites` hooks.
-- Tables of record: `trips`, `trip_members`, `trip_invites`; `trip_social_state` / synthesized social markdown, `trip_group_profiles` (merged — written by Memory & Preference).
+- Backend: membership/invites in `core/` + `api/routes/trips.py`, `members`, `invites`; proposal participation in `api/routes/proposals.py`; room agency in `api/routes/conversations.py` + `core/group_agency.py`; shared memory in `api/routes/trip_group_memory.py`; social dynamics in [`travel-agent/backend/social_state/`](../../travel-agent/backend/social_state/FEATURE.md).
+- Frontend: `app/trip-begin`, `app/invite/[slug]`, `app/invite-code`, `(tabs)/trips/[tripId]/chat` (group room), `components/chat/VoteWidgetCard.tsx`, `components/chat/GroupAgencySheet.tsx`, `components/trips/*`, `data/trips.ts`, and invite/trip/group-memory hooks.
+- Tables of record: `trips`, `trip_members`, `trip_invites`, proposal votes, `trip_social_state`, `trip_group_profiles` (internal synthesis), `trip_shared_memories` (authoritative group-safe document), and explicit social-circle membership/event tables.
 
 ## Public interface (what other systems may call / read)
 - **Membership (FE → BE):** create trip; create invite link; `GET /invite/{token}`; accept invite (→ `trip_members` row). Auth-detour safe (token survives sign-in).
 - **Membership guards:** `require_trip_member` / `require_trip_organizer` (the row-level access gate every trip-scoped endpoint depends on).
+- **Shared decision:** list/read/vote/resolve the exact proposal; Chat renders the canonical decision card while Plan owns the resulting operational truth.
+- **Room agency:** read conversation agency; organizers govern reactive/proactive posture and threshold, every participant may self-mute, and the whole-room mute remains an auditable emergency brake.
+- **Trip shared memory:** members may read the group-safe document; organizer-authorized edits/forgetting create append-only versions with current roster and revision checks.
+- **Social units:** explicit circle/pair membership and relationship-memory scopes are durable substrate. They are not inferred friendship or proof of a recurring-group personality.
 - **Social dynamics:** `social_state/retriever.py::get_social_state()` (read by `concierge/turn_context.py`), `record_interaction()` (reached via `concierge/signal_capture.py`, proposal automation, group interjection), `genesis.py` (cold-start doc at trip creation).
 - **Never:** non-members must not read trip data; invite links must not expose private member data.
 
 ## Owns (source of truth)
-Trip membership, invite tokens, and social-state signals. (The merged `trip_group_profiles`
-is owned by [Memory & Preference](memory-preference.md); this system supplies the social-dynamics layer.)
+Trip membership, invite tokens, explicit social-unit membership, decision
+participation, room-agency policy, and social-state signals. Internal group
+profiles, trip shared-memory content, and relationship-memory claims are owned
+by [Memory & Preference](memory-preference.md); this system supplies their
+membership, audience, and authority boundaries.
 
 ## Invariants (must always be true)
 *(Membership invariants are journey 02's "Must Never Happen", inverted.)*
@@ -127,6 +153,16 @@ is owned by [Memory & Preference](memory-preference.md); this system supplies th
 - **Itinerary consequence:** group understanding is not complete until it shapes
   the shared itinerary, decision object, or facilitation outcome. A group profile
   that only appears in chat context is inert substrate.
+- **Private synthesis, public commitment:** protected member inputs may shape a
+  group-safe proposal but never its public attribution or explanation. A public
+  vote records an ordinary preference on an already-safe choice.
+- **One decision object:** Chat, proposal reads, receipts, and Plan consequences
+  share one proposal identity and lifecycle. Standalone detail never becomes a
+  parallel vote or resolve authority.
+- **Memory remains plural:** internal group model, editable shared memory,
+  personal outcome, live social state, and recurring-group hypothesis are
+  distinct objects with distinct audiences. Attendance, silence, or circle
+  membership never auto-confirms shared memory.
 - **Vote privacy (superseded 2026-07-13 by group-decision ruling 1, above):**
   vote choice + identity — names on choices, holdouts — is group-visible to
   every trip member. Per-vote free-text comments remain restricted to the
@@ -161,11 +197,11 @@ is owned by [Memory & Preference](memory-preference.md); this system supplies th
 - Invite/membership write failure → surfaces loudly (never silent success).
 
 ## Maturity & validation
-- Serves journeys: 02 (create + invite — already a reliability golden path), 04 (group-safe routing), 05 (role gates edit-mode).
+- Serves journeys: 02 (create + invite), 04 (group-safe routing), and 05 (chat-first shared decision and role-gated Plan consequence).
 - DoD state: offline golden-path + invite hooks tests ✅ (`useCreateInvite`, `useTripInvites`, `invite-landing.smoke`) · persisted second-observer certification ✅ (membership, itinerary invalidation, stay tally/selection, public votes, direct-edit receipts, booking decisions, room mute, and trip genesis) · **screen-level mock walk-through ❌ · live two-account invite walk ❌**.
 
 ## Canonical docs
-- why → `product/Interaction Design and Social Dynamics.md` · how → `working/Group Interjection Sync Design.md` · what(be) → `backend/social_state/FEATURE.md` · what(fe) → `page-specs/trip-group-chat.md` · `trip-page.md`.
+- why → `travel-agent/docs/product/Multiplayer Product Strategy.md` + `Interaction Design and Social Dynamics.md` · how → `working/Group Interjection Sync Design.md` · what(be) → `backend/social_state/FEATURE.md`, `api/routes/conversations.py`, `api/routes/trip_group_memory.py` · what(fe) → `page-specs/trip-group-chat.md`, `VoteWidgetCard.tsx`, `GroupAgencySheet.tsx`.
 - Tests: `__tests__/offline/goldenPath.test.ts`, `__tests__/hooks/useCreateInvite.test.ts`, `__tests__/screens/invite-landing.smoke.test.tsx`.
 
 ## Open risks / known gaps
