@@ -91,6 +91,12 @@ their specialized components and canonical action paths until separately proven.
 accompanies it (`message`), so a compact research/status companion cannot hide a
 useful longer answer.
 
+`composed_card.v1` permits at most two visible actions: one primary and one
+secondary. The backend validator and mobile parser enforce the same bound.
+The renderer never silently drops an accepted action; an invalid or historical
+payload falls back to its durable message text instead of partially changing
+the card's meaning.
+
 ## 2. Current chat registry
 
 This table mirrors the `MessageAttachment` union and `AttachmentRenderer`
@@ -243,16 +249,20 @@ or receipt rows inline.
 Rules:
 
 - structured fields are plain text, never Markdown
-- one card per conversational moment
-- prose introduces the human beat; it does not repeat the card
+- one assistant turn emits at most one primary structured artifact; alternatives
+  belong inside that artifact, not in a stack of competing cards
+- prose introduces the human beat, interprets the choice, or records an honest
+  limitation; it does not repeat the artifact payload
 - body-owning attachments must be registered in `components/chat/bodyOwning.ts`
 - interactive controls expose busy, disabled, error, and accessibility states
 - cards without enough substrate stay warm on Home or do not render
 
 Chat attachments also share one telemetry boundary. It records an 800 ms
-exposure, action tap/start, and committed/failed outcomes using the message ID
-and attachment type; cards can explicitly report a superseded durable outcome.
-Mutation telemetry is best-effort and never changes interaction behavior.
+exposure, action tap/start, callback/resolver return, and explicitly reported
+known outcomes using the message ID and attachment type. A callback return is
+not a durable commit; only an owning-domain readback may report committed,
+failed, uncertain, reconciled, or superseded truth. Mutation telemetry is
+best-effort and never changes interaction behavior.
 
 ## 7. Agent guidance
 

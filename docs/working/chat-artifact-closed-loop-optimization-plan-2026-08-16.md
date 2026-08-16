@@ -63,6 +63,28 @@ The program therefore has five outcomes:
 The renderer should be considered **presentation-ready but not yet
 loop-certified** until all five outcomes pass.
 
+## Execution receipts (2026-08-16)
+
+- G0 base check: `make status` and `make doctor` passed. The local Postgres
+  lane is reachable at the canonical Docker DSN. The primary `travel-app`
+  checkout is intentionally left untouched because concurrent Places/profile
+  work is dirty there; mobile artifact work uses
+  `travel-app--artifact-closed-loop` instead.
+- Historical composed-card audit (read-only local database query): **0**
+  composed-card rows and **0** rows with more than two actions. Tightening the
+  mobile parser therefore needs no legacy read adapter in the local certifying
+  dataset. Production remains a separately required read-only audit before
+  rollout.
+- G1 implemented on the dedicated backend/mobile branches: prompt and
+  capability policy, a two-action server/client contract, no renderer action
+  truncation, uncertainty-capable telemetry vocabulary, and callback/resolver
+  events that do not claim durable commit or owner render.
+- G2 started with a strict deterministic `artifact_contract` evaluator and
+  four existing high-signal scenarios. The 48-row independently worded corpus,
+  retrieval comparison report, domain readback instrumentation, and real
+  owner-surface journeys remain open gates; they are not claimed complete by
+  the commits recorded here.
+
 ## 2. Baseline and concurrency boundary
 
 ### 2.1 Inspected revisions
