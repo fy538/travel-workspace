@@ -37176,6 +37176,77 @@
         }
       }
     },
+    "/api/me/entities/{entity_type}/{entity_id}/presentation": {
+      "get": {
+        "summary": "Get My Entity Presentation",
+        "description": "Return a viewer-scoped, no-generation object-page composition.\n\nPublic catalog identity remains available from ``/api/entities``.  This\nendpoint is deliberately under ``/api/me`` because relationship and a\npreviously generated personal Take must never become public fields.",
+        "operationId": "get_my_entity_presentation_api_me_entities__entity_type___entity_id__presentation_get",
+        "parameters": [
+          {
+            "name": "entity_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "enum": [
+                "venue",
+                "site",
+                "accommodation",
+                "experience"
+              ],
+              "type": "string",
+              "title": "Entity Type"
+            }
+          },
+          {
+            "name": "entity_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Entity Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityDetailPresentation"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/entities/{entity_type}/{entity_id}": {
       "get": {
         "summary": "Get Entity Detail",
@@ -53147,6 +53218,7 @@
             "type": "string",
             "enum": [
               "venue",
+              "site",
               "experience",
               "place",
               "friend"
@@ -53168,6 +53240,17 @@
               }
             ],
             "title": "Venue Id"
+          },
+          "site_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Site Id"
           },
           "experience_id": {
             "anyOf": [
@@ -55826,6 +55909,138 @@
         ],
         "title": "EditorialMapViewport"
       },
+      "EntityConditionalJudgmentPresentation": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Key"
+          },
+          "conditions": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "Conditions"
+          },
+          "judgment": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "Judgment"
+          },
+          "confidence": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Confidence"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EntityInterpretationEvidence"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Evidence"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "key",
+          "conditions",
+          "judgment",
+          "confidence",
+          "evidence"
+        ],
+        "title": "EntityConditionalJudgmentPresentation"
+      },
+      "EntityDetailPresentation": {
+        "properties": {
+          "revision": {
+            "type": "string",
+            "const": "entity-detail-v1",
+            "title": "Revision",
+            "default": "entity-detail-v1"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/EntityEnvelope"
+          },
+          "categories": {
+            "items": {
+              "$ref": "#/components/schemas/EntityPresentationCategory"
+            },
+            "type": "array",
+            "maxItems": 4,
+            "title": "Categories"
+          },
+          "facts": {
+            "items": {
+              "$ref": "#/components/schemas/EntityPresentationFact"
+            },
+            "type": "array",
+            "maxItems": 3,
+            "title": "Facts"
+          },
+          "relationship": {
+            "$ref": "#/components/schemas/EntityRelationshipPresentation"
+          },
+          "take": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityPresentationTake"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "interpretation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityInterpretationProjection"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "situation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntitySituationPresentation"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "actions": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "save",
+                "unsave",
+                "add_to_trip",
+                "ask_in_chat",
+                "open_map"
+              ]
+            },
+            "type": "array",
+            "maxItems": 5,
+            "minItems": 1,
+            "title": "Actions"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "entity",
+          "relationship"
+        ],
+        "title": "EntityDetailPresentation",
+        "description": "One authenticated read model for the mobile object page.\n\n``revision`` is a rendering-contract revision, not an entity version.  It\nlets a client reject a response that was composed for a newer UI contract\nwithout coupling that client to a database schema version."
+      },
       "EntityEnvelope": {
         "properties": {
           "ref": {
@@ -56005,6 +56220,161 @@
         ],
         "title": "EntityFacetsStatusResponse"
       },
+      "EntityInterpretationAbstention": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Key"
+          },
+          "topic": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Topic"
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 1,
+            "title": "Reason"
+          },
+          "serving_rule": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 1,
+            "title": "Serving Rule"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "key",
+          "topic",
+          "reason",
+          "serving_rule"
+        ],
+        "title": "EntityInterpretationAbstention"
+      },
+      "EntityInterpretationEvidence": {
+        "properties": {
+          "observation_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Observation Key"
+          },
+          "source": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Source"
+          },
+          "source_record_id": {
+            "type": "string",
+            "maxLength": 512,
+            "minLength": 1,
+            "title": "Source Record Id"
+          },
+          "retrieved_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Retrieved At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "observation_key",
+          "source",
+          "source_record_id",
+          "retrieved_at"
+        ],
+        "title": "EntityInterpretationEvidence",
+        "description": "Display-safe provenance for one verified semantic observation."
+      },
+      "EntityInterpretationProjection": {
+        "properties": {
+          "revision": {
+            "type": "string",
+            "const": "entity-interpretation-v1",
+            "title": "Revision",
+            "default": "entity-interpretation-v1"
+          },
+          "lenses": {
+            "items": {
+              "$ref": "#/components/schemas/EntityInterpretiveLensPresentation"
+            },
+            "type": "array",
+            "title": "Lenses"
+          },
+          "judgments": {
+            "items": {
+              "$ref": "#/components/schemas/EntityConditionalJudgmentPresentation"
+            },
+            "type": "array",
+            "title": "Judgments"
+          },
+          "abstentions": {
+            "items": {
+              "$ref": "#/components/schemas/EntityInterpretationAbstention"
+            },
+            "type": "array",
+            "title": "Abstentions"
+          },
+          "product_jobs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Product Jobs"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "EntityInterpretationProjection",
+        "description": "Lossless public subset of already-verified semantic memory.\n\nThis projection does not manufacture the richer storage-neutral primitive\nenvelope. Missing authority, spatial, action, or privacy fields remain\nabsent until canonical storage can represent them."
+      },
+      "EntityInterpretiveLensPresentation": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Key"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 280,
+            "minLength": 1,
+            "title": "Label"
+          },
+          "thesis": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "Thesis"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EntityInterpretationEvidence"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Evidence"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "key",
+          "label",
+          "thesis",
+          "evidence"
+        ],
+        "title": "EntityInterpretiveLensPresentation"
+      },
       "EntityLineageResponse": {
         "properties": {
           "city_name": {
@@ -56051,6 +56421,211 @@
         "title": "EntityLineageResponse",
         "description": "Where the entity sits in the place hierarchy \u2014 never more than one\nlevel of neighborhood above it. See entity_lineage.py for why a joined\nplace_id is not trusted as a neighborhood without checking its type."
       },
+      "EntityPresentationCategory": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Key"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Label"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "key",
+          "label"
+        ],
+        "title": "EntityPresentationCategory"
+      },
+      "EntityPresentationFact": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Key"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Label"
+          },
+          "value": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 1,
+            "title": "Value"
+          },
+          "source_mode": {
+            "type": "string",
+            "enum": [
+              "catalog",
+              "adjudicated",
+              "research"
+            ],
+            "title": "Source Mode"
+          },
+          "observed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed At"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "key",
+          "label",
+          "value",
+          "source_mode"
+        ],
+        "title": "EntityPresentationFact",
+        "description": "A display-sized fact with enough provenance for an honest UI label."
+      },
+      "EntityPresentationTake": {
+        "properties": {
+          "tier": {
+            "type": "string",
+            "enum": [
+              "curator",
+              "personal"
+            ],
+            "title": "Tier"
+          },
+          "headline": {
+            "type": "string",
+            "maxLength": 280,
+            "minLength": 1,
+            "title": "Headline"
+          },
+          "body": {
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/ParagraphBlock"
+                },
+                {
+                  "$ref": "#/components/schemas/HeadingBlock"
+                },
+                {
+                  "$ref": "#/components/schemas/ListBlock"
+                }
+              ],
+              "discriminator": {
+                "propertyName": "type",
+                "mapping": {
+                  "heading": "#/components/schemas/HeadingBlock",
+                  "list": "#/components/schemas/ListBlock",
+                  "paragraph": "#/components/schemas/ParagraphBlock"
+                }
+              }
+            },
+            "type": "array",
+            "title": "Body"
+          },
+          "verdict": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Verdict"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "caveats": {
+            "items": {
+              "$ref": "#/components/schemas/Caveat"
+            },
+            "type": "array",
+            "title": "Caveats"
+          },
+          "why_this": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/WhyThisReceipt"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "suggested_actions": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "save",
+                "add_to_plan",
+                "share_with_group",
+                "book",
+                "ask_concierge",
+                "find_similar"
+              ]
+            },
+            "type": "array",
+            "title": "Suggested Actions"
+          },
+          "generated_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Generated At"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "tier",
+          "headline"
+        ],
+        "title": "EntityPresentationTake",
+        "description": "Persisted/editorial interpretation; it is never generated by this read."
+      },
       "EntityRef": {
         "properties": {
           "type": {
@@ -56083,6 +56658,81 @@
           "transport_hub",
           "custom"
         ]
+      },
+      "EntityRelationshipPresentation": {
+        "properties": {
+          "face": {
+            "type": "string",
+            "enum": [
+              "new",
+              "saved",
+              "planned",
+              "lived"
+            ],
+            "title": "Face",
+            "default": "new"
+          },
+          "saved": {
+            "type": "boolean",
+            "title": "Saved",
+            "default": false
+          },
+          "affinity_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Affinity Label"
+          },
+          "encounter_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Encounter Count",
+            "default": 0
+          },
+          "last_encounter_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Encounter Date"
+          },
+          "active_trip_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Active Trip Id"
+          },
+          "active_trip_title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Active Trip Title"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "EntityRelationshipPresentation",
+        "description": "Viewer-specific relationship, never part of the public envelope."
       },
       "EntitySave": {
         "properties": {
@@ -56255,6 +56905,68 @@
         ],
         "title": "EntitySaveVisibilityUpdate",
         "description": "The explicit, per-save consent bit used by social readers."
+      },
+      "EntitySituationPresentation": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "route",
+              "availability",
+              "weather",
+              "plan"
+            ],
+            "title": "Kind"
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 320,
+            "minLength": 1,
+            "title": "Text"
+          },
+          "source_mode": {
+            "type": "string",
+            "enum": [
+              "adjudicated",
+              "route",
+              "plan"
+            ],
+            "title": "Source Mode"
+          },
+          "observed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed At"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind",
+          "text",
+          "source_mode"
+        ],
+        "title": "EntitySituationPresentation",
+        "description": "A bounded current-context note.\n\nThis is absent unless the caller has a policy-approved, source-bound\nsituation.  In particular, it is not a shortcut for guessing open-now or\na raw location/routing response."
       },
       "EntityStatusResponse": {
         "properties": {
