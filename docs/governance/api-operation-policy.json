@@ -13,7 +13,8 @@
       "consumers": [
         {
           "kind": "app_url",
-          "name": "getEntityDetailPresentation"
+          "name": "getEntityDetailPresentation",
+          "source": "travel-app/utils/api/http.ts"
         }
       ],
       "feature_flag": null,

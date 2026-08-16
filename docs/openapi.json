@@ -56303,16 +56303,71 @@
             "title": "Headline"
           },
           "body": {
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/ParagraphBlock"
+                },
+                {
+                  "$ref": "#/components/schemas/HeadingBlock"
+                },
+                {
+                  "$ref": "#/components/schemas/ListBlock"
+                }
+              ],
+              "discriminator": {
+                "propertyName": "type",
+                "mapping": {
+                  "heading": "#/components/schemas/HeadingBlock",
+                  "list": "#/components/schemas/ListBlock",
+                  "paragraph": "#/components/schemas/ParagraphBlock"
+                }
+              }
+            },
+            "type": "array",
+            "title": "Body"
+          },
+          "verdict": {
             "anyOf": [
               {
-                "type": "string",
-                "maxLength": 1600
+                "$ref": "#/components/schemas/Verdict"
               },
               {
                 "type": "null"
               }
-            ],
-            "title": "Body"
+            ]
+          },
+          "caveats": {
+            "items": {
+              "$ref": "#/components/schemas/Caveat"
+            },
+            "type": "array",
+            "title": "Caveats"
+          },
+          "why_this": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/WhyThisReceipt"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "suggested_actions": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "save",
+                "add_to_plan",
+                "share_with_group",
+                "book",
+                "ask_concierge",
+                "find_similar"
+              ]
+            },
+            "type": "array",
+            "title": "Suggested Actions"
           },
           "generated_at": {
             "anyOf": [
