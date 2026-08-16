@@ -18,6 +18,10 @@ Durable choices that constrain future work belong here. Use the
 
 | Date | Decision | Status |
 |---|---|---|
+| 2026-08-16 | [Use content-free causal lineage across decision families](2026-08-16-causal-decision-outcome-lineage.md) | accepted |
+| 2026-08-16 | [Persist place interpretation losslessly and derive relationship state](2026-08-16-place-content-and-relationship-projection.md) | accepted |
+| 2026-08-16 | [Separate openings, judgments, treatment, and recipient lifecycle](2026-08-16-opening-treatment-and-attention.md) | accepted |
+| 2026-08-16 | [Reference one Plan revision and project one group constitution](2026-08-16-plan-revision-and-group-constitution.md) | accepted |
 | 2026-08-12 | [Retire Discover and Atlas as product surfaces](2026-08-12-retire-discover-and-atlas-product-surfaces.md) | accepted |
 | 2026-08-11 | [Entity and place are two axes, not two categories](2026-08-11-entity-and-place-two-axes.md) | accepted |
 | 2026-08-11 | [Ship the entity status block as correct plumbing over an unwired pipe](2026-08-11-entity-status-block.md) | accepted |
