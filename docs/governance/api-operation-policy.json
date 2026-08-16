@@ -496,7 +496,7 @@
       "owner": "editorial",
       "reason": "The mobile angle reader and its transport call were removed during editorial-reader consolidation; the backend research queue remains, but this public detail route has no product consumer.",
       "removal_trigger": "Confirm zero deployed traffic, then remove the public detail route while preserving the internal place_angles research pipeline.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "DELETE /api/pending-chat-turns/{pending_turn_id}": {
       "audience": "app",
@@ -659,13 +659,19 @@
     },
     "DELETE /api/conversations/{conversation_id}/invites/{token}": {
       "audience": "app",
-      "consumers": [],
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "revokeConversationInvite",
+          "source": "travel-app/utils/api/httpExtendedEndpoints.ts"
+        }
+      ],
       "feature_flag": null,
-      "lifecycle": "retiring",
+      "lifecycle": "active",
       "owner": "conversations",
-      "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
-      "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "reason": "The Room Info invite controls expose a member-scoped revoke action through the canonical room lifecycle hook.",
+      "removal_trigger": null,
+      "review_by": null
     },
     "DELETE /api/trips/{trip_id}/expenses/{expense_id}/comments/{comment_id}": {
       "audience": "app",
@@ -675,7 +681,7 @@
       "owner": "expenses",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /admin/digests/{digest_id}": {
       "audience": "operator",
@@ -973,7 +979,7 @@
       "owner": "atlas",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/atlas/places": {
       "audience": "app",
@@ -983,7 +989,7 @@
       "owner": "atlas",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/atlas/scan-history": {
       "audience": "app",
@@ -993,7 +999,7 @@
       "owner": "atlas",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/atlas/search": {
       "audience": "app",
@@ -1003,7 +1009,7 @@
       "owner": "atlas",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/concierge/home/workbench": {
       "audience": "app",
@@ -1022,13 +1028,19 @@
     },
     "GET /api/conversations/{conversation_id}/invites": {
       "audience": "app",
-      "consumers": [],
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "listConversationInvites",
+          "source": "travel-app/utils/api/httpExtendedEndpoints.ts"
+        }
+      ],
       "feature_flag": null,
-      "lifecycle": "retiring",
+      "lifecycle": "active",
       "owner": "conversations",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
-      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
+      "reason": "The Room Info invite controls render the current member-scoped invite list through the canonical room lifecycle hook.",
+      "removal_trigger": null,
+      "review_by": null
     },
     "GET /api/conversations/{conversation_id}/messages/{message_id}/reactions": {
       "audience": "app",
@@ -1038,7 +1050,7 @@
       "owner": "conversations",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/conversations/{conversation_id}/messages/{message_id}/card-actions/{action_ref}": {
       "audience": "app",
@@ -1074,7 +1086,7 @@
       "owner": "product-engineering",
       "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/dossiers/accommodation/{accommodation_id}": {
       "audience": "app",
@@ -1084,7 +1096,7 @@
       "owner": "product-engineering",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/dossiers/site/{site_id}": {
       "audience": "app",
@@ -1094,7 +1106,7 @@
       "owner": "product-engineering",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/dossiers/venue/{venue_id}": {
       "audience": "app",
@@ -1104,7 +1116,7 @@
       "owner": "product-engineering",
       "reason": "Superseded by the single primary-dossier endpoint used by venue detail.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the unused venue dossier-list route.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/events/users/{user_id}": {
       "audience": "server",
@@ -1191,7 +1203,7 @@
       "owner": "product-engineering",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/trips/blank": {
       "audience": "app",
@@ -1201,7 +1213,7 @@
       "owner": "product-engineering",
       "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/trips/{trip_id}/action-receipts/recent": {
       "audience": "app",
@@ -1211,7 +1223,7 @@
       "owner": "expenses",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/trips/{trip_id}/booking/affiliate-links/travel-insurance": {
       "audience": "app",
@@ -1221,7 +1233,7 @@
       "owner": "booking",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/trips/{trip_id}/booking/blocks/{block_id}/confirmation-share": {
       "audience": "app",
@@ -1256,7 +1268,7 @@
       "owner": "booking",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/trips/{trip_id}/booking/sessions": {
       "audience": "app",
@@ -1266,7 +1278,7 @@
       "owner": "booking",
       "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/trips/{trip_id}/cross-trip-threads": {
       "audience": "app",
@@ -1276,7 +1288,7 @@
       "owner": "product-engineering",
       "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/trips/{trip_id}/destinations": {
       "audience": "app",
@@ -1290,6 +1302,22 @@
       "lifecycle": "active",
       "owner": "product-engineering",
       "reason": "General reads the explicit trip-owned destination route instead of inferring one place from itinerary rows.",
+      "removal_trigger": null,
+      "review_by": null
+    },
+    "GET /api/trips/{trip_id}/movement-session": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "getTripMovementSession",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "spatial-companion",
+      "reason": "The foreground Trip map/Plan companion reads only the authenticated actor's qualified position relative to the next placed commitment.",
       "removal_trigger": null,
       "review_by": null
     },
@@ -1316,7 +1344,7 @@
       "owner": "invites",
       "reason": "The transport facade exists, but no product screen currently calls this read-only preflight. Keep the backend mint-time substance gate authoritative; adopt this endpoint with a named invite journey or remove the unused facade and operation.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless an active invite journey adopts this preflight with a named app consumer.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/trips/{trip_id}/expenses/suggest-category": {
       "audience": "app",
@@ -1326,7 +1354,7 @@
       "owner": "expenses",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/trips/{trip_id}/expenses/{expense_id}": {
       "audience": "app",
@@ -1336,7 +1364,7 @@
       "owner": "expenses",
       "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/trips/{trip_id}/expenses/{expense_id}/comments": {
       "audience": "app",
@@ -1346,7 +1374,7 @@
       "owner": "expenses",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/trips/{trip_id}/geofence-events": {
       "audience": "app",
@@ -1356,7 +1384,7 @@
       "owner": "live-companion",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/trips/{trip_id}/itinerary/operations/history": {
       "audience": "app",
@@ -1366,7 +1394,7 @@
       "owner": "itinerary",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/trips/{trip_id}/itinerary/operations/writebacks": {
       "audience": "app",
@@ -1376,7 +1404,7 @@
       "owner": "itinerary",
       "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/trips/{trip_id}/memory-evidence": {
       "audience": "app",
@@ -1386,7 +1414,7 @@
       "owner": "memory",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/trips/{trip_id}/messages/history": {
       "audience": "app",
@@ -1396,7 +1424,7 @@
       "owner": "conversations",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/trips/{trip_id}/messages/info": {
       "audience": "app",
@@ -1406,7 +1434,7 @@
       "owner": "conversations",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/trips/{trip_id}/narration/audio/{entity_type}/{entity_id}": {
       "audience": "app",
@@ -1432,7 +1460,7 @@
       "owner": "live-companion",
       "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/trips/{trip_id}/receipts/{receipt_id}/image": {
       "audience": "app",
@@ -1474,7 +1502,7 @@
       "owner": "live-companion",
       "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/users/me/memory-evidence": {
       "audience": "app",
@@ -1484,7 +1512,7 @@
       "owner": "memory",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/users/me/relationship-visibility": {
       "audience": "app",
@@ -1542,7 +1570,7 @@
       "owner": "product-engineering",
       "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/users/{user_id}/facts/{fact_id}/history": {
       "audience": "app",
@@ -1552,7 +1580,7 @@
       "owner": "product-engineering",
       "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/users/{user_id}/followers": {
       "audience": "app",
@@ -1562,7 +1590,7 @@
       "owner": "product-engineering",
       "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /debug/cost": {
       "audience": "infrastructure",
@@ -1943,13 +1971,19 @@
     },
     "POST /api/conversations/{conversation_id}/invites": {
       "audience": "app",
-      "consumers": [],
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "createConversationInvite",
+          "source": "travel-app/hooks/useCreateConversationInvite.ts"
+        }
+      ],
       "feature_flag": null,
-      "lifecycle": "retiring",
+      "lifecycle": "active",
       "owner": "conversations",
-      "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
-      "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
+      "reason": "The Room Info invite controls create a member-scoped invite through the canonical create-invite hook.",
+      "removal_trigger": null,
+      "review_by": null
     },
     "POST /api/atlas/trips-seed-signals": {
       "audience": "app",
@@ -1975,7 +2009,7 @@
       "owner": "conversations",
       "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "GET /api/conversations/{conversation_id}/events": {
       "audience": "app",
@@ -2041,7 +2075,7 @@
       "owner": "conversations",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "POST /api/curator/photos": {
       "audience": "server",
@@ -2066,7 +2100,7 @@
       "owner": "product-engineering",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "POST /api/places/{slug}/angles/request": {
       "audience": "app",
@@ -2076,7 +2110,7 @@
       "owner": "product-engineering",
       "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "POST /api/takes/stream": {
       "audience": "app",
@@ -2132,7 +2166,7 @@
       "owner": "product-engineering",
       "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "POST /api/trips/{trip_id}/digest/email": {
       "audience": "app",
@@ -2142,7 +2176,7 @@
       "owner": "product-engineering",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "POST /api/trips/{trip_id}/itinerary/blocks/{block_id}/release-handoff": {
       "audience": "app",
@@ -2162,7 +2196,7 @@
       "owner": "itinerary",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "POST /api/trips/{trip_id}/itinerary/operations/writebacks": {
       "audience": "app",
@@ -2172,7 +2206,7 @@
       "owner": "itinerary",
       "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "POST /api/trips/{trip_id}/members": {
       "audience": "app",
@@ -2182,7 +2216,7 @@
       "owner": "product-engineering",
       "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "POST /api/trips/{trip_id}/messages": {
       "audience": "app",
@@ -2192,7 +2226,7 @@
       "owner": "conversations",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "POST /api/trips/{trip_id}/messages/close": {
       "audience": "app",
@@ -2202,7 +2236,7 @@
       "owner": "conversations",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "POST /api/trips/{trip_id}/messages/stream": {
       "audience": "app",
@@ -2212,7 +2246,7 @@
       "owner": "conversations",
       "reason": "Unflagged, unadopted operation; it must gain a registered flag and named journey or be deleted.",
       "removal_trigger": "Confirm zero deployed traffic, then delete unless a registered flag and named product journey are approved.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "POST /api/trips/{trip_id}/narration/prerender-hint/{entity_type}/{entity_id}": {
       "audience": "app",
@@ -2222,7 +2256,7 @@
       "owner": "live-companion",
       "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "POST /api/trips/{trip_id}/notifications/leave-by/mute-today": {
       "audience": "app",
@@ -2264,7 +2298,7 @@
       "owner": "product-engineering",
       "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "POST /api/trips/{trip_id}/recover": {
       "audience": "app",
@@ -2284,7 +2318,7 @@
       "owner": "product-engineering",
       "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "POST /api/users/{user_id}/memory-learning-candidates/{candidate_id}/resolve": {
       "audience": "app",
@@ -2310,7 +2344,7 @@
       "owner": "product-engineering",
       "reason": "Transport or backend contract has no current product consumer and is queued for evidence-backed retirement.",
       "removal_trigger": "Confirm zero deployed traffic, then delete the superseded route and its cross-repo shadows.",
-      "review_by": "2026-08-15"
+      "review_by": "2026-09-15"
     },
     "POST /webhooks/bland-ai/call-complete": {
       "audience": "webhook",

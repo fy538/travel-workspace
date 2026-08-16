@@ -31718,6 +31718,66 @@
         }
       }
     },
+    "/api/trips/{trip_id}/movement-session": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Movement Session",
+        "description": "Return the actor's foreground movement interpretation of a Trip.\n\nThe shared Plan is input; this is deliberately not a group live-location\nendpoint. It performs no mutation and delegates route permissions to the\nmovement and routing facades.",
+        "operationId": "get_movement_session_api_trips__trip_id__movement_session_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MovementSession"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/map-state": {
       "get": {
         "tags": [
@@ -68710,6 +68770,300 @@
           "placement"
         ],
         "title": "MovePayload"
+      },
+      "MovementCommitment": {
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Block Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "starts_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Starts At"
+          },
+          "lat": {
+            "type": "number",
+            "title": "Lat"
+          },
+          "lng": {
+            "type": "number",
+            "title": "Lng"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "block_id",
+          "title",
+          "starts_at",
+          "lat",
+          "lng"
+        ],
+        "title": "MovementCommitment"
+      },
+      "MovementPosition": {
+        "properties": {
+          "lat": {
+            "type": "number",
+            "title": "Lat"
+          },
+          "lng": {
+            "type": "number",
+            "title": "Lng"
+          },
+          "accuracy_m": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Accuracy M"
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Observed At"
+          },
+          "age_seconds": {
+            "type": "integer",
+            "title": "Age Seconds"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "lat",
+          "lng",
+          "observed_at",
+          "age_seconds"
+        ],
+        "title": "MovementPosition"
+      },
+      "MovementRouteFact": {
+        "properties": {
+          "provider": {
+            "type": "string",
+            "title": "Provider"
+          },
+          "requested_mode": {
+            "type": "string",
+            "title": "Requested Mode"
+          },
+          "resolved_mode": {
+            "type": "string",
+            "title": "Resolved Mode"
+          },
+          "duration_minutes": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Duration Minutes"
+          },
+          "distance_km": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Distance Km"
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Observed At"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "degraded": {
+            "type": "boolean",
+            "title": "Degraded",
+            "default": false
+          },
+          "degraded_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Degraded Reason"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "provider",
+          "requested_mode",
+          "resolved_mode",
+          "duration_minutes",
+          "distance_km",
+          "observed_at"
+        ],
+        "title": "MovementRouteFact"
+      },
+      "MovementSession": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "inactive",
+              "preparing",
+              "leave_soon",
+              "en_route",
+              "deviated",
+              "arriving",
+              "arrived",
+              "position_unknown",
+              "handed_off",
+              "paused",
+              "ended"
+            ],
+            "title": "State"
+          },
+          "risk": {
+            "type": "string",
+            "enum": [
+              "unknown",
+              "safe",
+              "leave_now",
+              "late"
+            ],
+            "title": "Risk"
+          },
+          "recommended_action": {
+            "type": "string",
+            "enum": [
+              "none",
+              "check_route",
+              "leave_now",
+              "open_directions"
+            ],
+            "title": "Recommended Action"
+          },
+          "position_quality": {
+            "type": "string",
+            "enum": [
+              "unavailable",
+              "stale",
+              "imprecise",
+              "usable",
+              "arrival_quality"
+            ],
+            "title": "Position Quality"
+          },
+          "next_commitment": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MovementCommitment"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "position": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MovementPosition"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "route_fact": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MovementRouteFact"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "remaining_distance_m": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Remaining Distance M"
+          },
+          "remaining_minutes": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Remaining Minutes"
+          },
+          "slack_minutes": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Slack Minutes"
+          },
+          "refresh_after_seconds": {
+            "type": "integer",
+            "maximum": 900.0,
+            "minimum": 15.0,
+            "title": "Refresh After Seconds"
+          },
+          "reason_codes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Reason Codes"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "trip_id",
+          "state",
+          "risk",
+          "recommended_action",
+          "position_quality",
+          "refresh_after_seconds"
+        ],
+        "title": "MovementSession",
+        "description": "Ephemeral interpretation of one viewer relative to one Plan.\n\nThis response is never a group-location payload.  It describes only the\nauthenticated actor's current relationship to their next placed\ncommitment, and contains no other member's location."
       },
       "MuteTodayRequest": {
         "properties": {
