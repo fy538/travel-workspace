@@ -8,6 +8,21 @@
     "review_by": null
   },
   "operations": {
+    "GET /api/me/entities/{entity_type}/{entity_id}/presentation": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "getEntityDetailPresentation"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "places",
+      "reason": "Authenticated object-page composition keeps public catalog identity separate from viewer-specific relationship and persisted interpretation.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
     "GET /api/me/profile-portrait": {
       "audience": "app",
       "consumers": [
