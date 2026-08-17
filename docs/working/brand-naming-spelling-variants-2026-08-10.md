@@ -1,6 +1,6 @@
 ---
 doc_type: working
-status: active
+status: superseded_in_part
 owner: product / founder
 created: 2026-08-10
 last_verified: 2026-08-10
@@ -14,8 +14,14 @@ source_of_truth_for:
 
 Date: 2026-08-10
 
-Status: active exploration. Domain and collision observations are point-in-time
-screens, not legal clearance.
+Status: historical exploration. Domain and collision observations are
+point-in-time screens, not legal clearance. The working master-brand decision
+now lives in
+[`2026-08-17-hermene-working-brand-decision.md`](../decisions/2026-08-17-hermene-working-brand-decision.md).
+
+This document remains useful as an exploration record only. Its previous
+ranked slate does not override that decision, and it must not be read as
+approval to use any listed name publicly.
 
 ## Why this lane exists
 
