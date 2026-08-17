@@ -1149,6 +1149,16 @@
       "removal_trigger": null,
       "review_by": null
     },
+    "POST /api/events/surface-treatment": {
+      "audience": "app",
+      "consumers": [],
+      "feature_flag": "LIVED_EXPERIENCE_SURFACE_EXPOSURE_ENABLED",
+      "lifecycle": "dark",
+      "owner": "lived-experience",
+      "reason": "Content-free treatment exposure contract is landed for the common engine, but no mobile surface is wired until treatment identity adoption is verified.",
+      "removal_trigger": "Add a reviewed mobile consumer and device receipt, or remove the dark endpoint.",
+      "review_by": "2026-09-15"
+    },
     "GET /api/places": {
       "audience": "app",
       "consumers": [

@@ -13478,6 +13478,66 @@
         }
       }
     },
+    "/api/events/surface-treatment": {
+      "post": {
+        "tags": [
+          "events"
+        ],
+        "summary": "Log Surface Treatment Exposure",
+        "description": "Record one authenticated, content-free treatment exposure report.\n\nThe receipt's identity is not treated as proof that a domain command or\noutcome occurred.  Those remain owner-gateway/readback responsibilities.\nThe actor binding prevents a client from writing telemetry into another\nuser's stream, while the exposure id makes retries idempotent.",
+        "operationId": "log_surface_treatment_exposure_api_events_surface_treatment_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SurfaceExposureReceipt"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SurfaceExposureResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/events/batch": {
       "post": {
         "tags": [
@@ -88724,6 +88784,83 @@
         ],
         "title": "SuggestResponse",
         "description": "Autocomplete suggestions for the search bar."
+      },
+      "SurfaceExposureOutcome": {
+        "type": "string",
+        "enum": [
+          "rendered",
+          "opened",
+          "dismissed",
+          "acted",
+          "not_rendered"
+        ],
+        "title": "SurfaceExposureOutcome"
+      },
+      "SurfaceExposureReceipt": {
+        "properties": {
+          "contract_version": {
+            "type": "integer",
+            "const": 1,
+            "title": "Contract Version",
+            "default": 1
+          },
+          "exposure_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Exposure Id"
+          },
+          "identity": {
+            "$ref": "#/components/schemas/SurfaceTreatmentIdentity"
+          },
+          "outcome": {
+            "$ref": "#/components/schemas/SurfaceExposureOutcome"
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Observed At"
+          },
+          "client_event_ref": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@+-]{0,159}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Client Event Ref"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "identity",
+          "outcome",
+          "observed_at"
+        ],
+        "title": "SurfaceExposureReceipt",
+        "description": "Content-free observation of what a surface did with one treatment."
+      },
+      "SurfaceExposureResponse": {
+        "properties": {
+          "event_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Event Id"
+          },
+          "created": {
+            "type": "boolean",
+            "title": "Created"
+          }
+        },
+        "type": "object",
+        "required": [
+          "event_id",
+          "created"
+        ],
+        "title": "SurfaceExposureResponse"
       },
       "SurfaceTreatmentIdentity": {
         "properties": {

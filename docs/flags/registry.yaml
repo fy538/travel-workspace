@@ -56,6 +56,42 @@ flags:
       a reviewed internal World Foundry release. It does not expose catalog
       rows by itself and never substitutes for the exact cohort/entity scope.
 
+  - name: LIVED_EXPERIENCE_SURFACE_EXPOSURE_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:lived_experience_surface_exposure_enabled
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    target_journey: P02,P05,P07
+    cohort: canonical_dogfood only after a reviewed mobile treatment consumer
+    kill_switch: Set LIVED_EXPERIENCE_SURFACE_EXPOSURE_ENABLED=false; exposure ingestion returns unavailable and no telemetry rows are accepted.
+    promotion_removal_question: >
+      By 2026-10-30, has a named Home/Place/Chat consumer sent device-verified
+      treatment exposure receipts, or should this dark contract be removed?
+    notes: >
+      Default-off ingestion gate for content-free treatment exposure reports.
+      It cannot authorize domain completion, readback, push, or memory writes.
+
+  - name: PLACE_CONTENT_PRIMITIVE_READS_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:50
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    target_journey: P05,P07
+    cohort: canonical_dogfood only after accepted place-content calibration
+    kill_switch: Set PLACE_CONTENT_PRIMITIVE_READS_ENABLED=false; legacy semantic readers stop admitting canonical primitives.
+    promotion_removal_question: >
+      By 2026-10-30, has direct place-content reading reached reviewed
+      surface parity, or should the compatibility gate remain dark or be removed?
+    notes: >
+      Default-off bridge from accepted place-content primitives into legacy
+      semantic consumers. It grants no action or push authority.
+
   - name: SPATIAL_REACHABILITY_NEARBY_ENABLED
     repo: travel-agent
     location: backend/core/feature_flags.py:37
