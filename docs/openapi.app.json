@@ -49036,6 +49036,7 @@
         "enum": [
           "trip",
           "local_plan",
+          "occasion",
           "ambient"
         ],
         "title": "ExperienceScopeKind"
@@ -64526,6 +64527,16 @@
             },
             "type": "array",
             "title": "Starter Cities"
+          },
+          "treatment": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SurfaceTreatmentProjection"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -80080,6 +80091,16 @@
             ],
             "title": "Canonical Identity Complete"
           },
+          "treatment": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SurfaceTreatmentProjection"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "phase": {
             "type": "string",
             "title": "Phase",
@@ -80585,6 +80606,16 @@
             "anyOf": [
               {
                 "$ref": "#/components/schemas/ItineraryPlanAuthority"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "treatment": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SurfaceTreatmentProjection"
               },
               {
                 "type": "null"
