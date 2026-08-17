@@ -56133,6 +56133,16 @@
             "maxItems": 5,
             "minItems": 1,
             "title": "Actions"
+          },
+          "treatment": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SurfaceTreatmentProjection"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "additionalProperties": false,
@@ -88828,6 +88838,25 @@
             "pattern": "^sha256:[0-9a-f]{64}$",
             "title": "Composition Fingerprint"
           },
+          "surface_instance_key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{2,159}$",
+            "title": "Surface Instance Key",
+            "default": "default"
+          },
+          "presentation_proof": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2048,
+                "minLength": 20
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Presentation Proof"
+          },
           "outcome": {
             "$ref": "#/components/schemas/SurfaceExposureOutcome"
           },
@@ -88892,6 +88921,18 @@
             "type": "string",
             "pattern": "^[a-z][a-z0-9_.:-]{2,159}$",
             "title": "Surface Key"
+          },
+          "recipient_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Recipient Id"
           },
           "opening_id": {
             "type": "string",
@@ -88961,6 +89002,25 @@
             "type": "string",
             "pattern": "^sha256:[0-9a-f]{64}$",
             "title": "Composition Fingerprint"
+          },
+          "surface_instance_key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{2,159}$",
+            "title": "Surface Instance Key",
+            "default": "default"
+          },
+          "presentation_proof": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2048,
+                "minLength": 20
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Presentation Proof"
           },
           "situation_ref": {
             "anyOf": [
