@@ -47574,6 +47574,27 @@
         ],
         "title": "CatalogAccommodationResponse"
       },
+      "CausalDomainRef": {
+        "properties": {
+          "authority": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{2,119}$",
+            "title": "Authority"
+          },
+          "ref_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@+-]{0,159}$",
+            "title": "Ref Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "authority",
+          "ref_id"
+        ],
+        "title": "CausalDomainRef"
+      },
       "Caveat": {
         "properties": {
           "text": {
@@ -51285,6 +51306,15 @@
         ],
         "title": "DecisionDependencyRef",
         "description": "Content-free identity for one dependency admitted to a decision.\n\nThe reference names an owning authority and revision, never the value that\nauthority returned.  ``available=False`` is an honest negative assertion;\nit must not be paired with a fabricated revision."
+      },
+      "DecisionVisibility": {
+        "type": "string",
+        "enum": [
+          "private",
+          "group",
+          "system"
+        ],
+        "title": "DecisionVisibility"
       },
       "DeckBriefDay": {
         "properties": {
@@ -88695,6 +88725,130 @@
         "title": "SuggestResponse",
         "description": "Autocomplete suggestions for the search bar."
       },
+      "SurfaceTreatmentIdentity": {
+        "properties": {
+          "contract_version": {
+            "type": "integer",
+            "const": 1,
+            "title": "Contract Version",
+            "default": 1
+          },
+          "surface_key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{2,159}$",
+            "title": "Surface Key"
+          },
+          "opening_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Opening Id"
+          },
+          "treatment_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Treatment Id"
+          },
+          "arc_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Arc Id"
+          },
+          "family_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{2,119}$",
+            "title": "Family Id"
+          },
+          "selected": {
+            "$ref": "#/components/schemas/TreatmentKind"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/DecisionVisibility"
+          },
+          "projection_ref": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@+-]{0,159}$",
+            "title": "Projection Ref"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Expires At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "surface_key",
+          "opening_id",
+          "treatment_id",
+          "arc_id",
+          "family_id",
+          "selected",
+          "visibility",
+          "projection_ref",
+          "expires_at"
+        ],
+        "title": "SurfaceTreatmentIdentity",
+        "description": "Safe identity attached to a product projection, with no decision copy."
+      },
+      "SurfaceTreatmentProjection": {
+        "properties": {
+          "contract_version": {
+            "type": "integer",
+            "const": 1,
+            "title": "Contract Version",
+            "default": 1
+          },
+          "identity": {
+            "$ref": "#/components/schemas/SurfaceTreatmentIdentity"
+          },
+          "composition_fingerprint": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$",
+            "title": "Composition Fingerprint"
+          },
+          "situation_ref": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@+-]{0,159}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Situation Ref"
+          },
+          "action_receipt_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CausalDomainRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "readback_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CausalDomainRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "identity",
+          "composition_fingerprint"
+        ],
+        "title": "SurfaceTreatmentProjection",
+        "description": "Common backend envelope for any surface treatment projection."
+      },
       "TakeGenerationRequest": {
         "properties": {
           "entity_type": {
@@ -89128,6 +89282,20 @@
         ],
         "title": "TransportGap",
         "description": "One inter-city transition with no realistic transport plan."
+      },
+      "TreatmentKind": {
+        "type": "string",
+        "enum": [
+          "silence",
+          "in_context",
+          "home",
+          "place",
+          "plan",
+          "chat",
+          "shared_proposal",
+          "push"
+        ],
+        "title": "TreatmentKind"
       },
       "TrendingItem": {
         "properties": {
@@ -98220,6 +98388,16 @@
             "anyOf": [
               {
                 "$ref": "#/components/schemas/WorkbenchRotation"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "treatment": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SurfaceTreatmentProjection"
               },
               {
                 "type": "null"
