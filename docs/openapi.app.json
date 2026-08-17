@@ -9171,6 +9171,66 @@
         }
       }
     },
+    "/api/events/surface-treatment": {
+      "post": {
+        "tags": [
+          "events"
+        ],
+        "summary": "Log Surface Treatment Exposure",
+        "description": "Record one authenticated, content-free treatment exposure report.\n\nThe receipt's identity is not treated as proof that a domain command or\noutcome occurred.  Those remain owner-gateway/readback responsibilities.\nThe actor binding prevents a client from writing telemetry into another\nuser's stream, while the exposure id makes retries idempotent.",
+        "operationId": "log_surface_treatment_exposure_api_events_surface_treatment_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SurfaceExposureReceipt"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SurfaceExposureResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/events/batch": {
       "post": {
         "tags": [
@@ -76680,6 +76740,11 @@
           "identity": {
             "$ref": "#/components/schemas/SurfaceTreatmentIdentity"
           },
+          "composition_fingerprint": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$",
+            "title": "Composition Fingerprint"
+          },
           "outcome": {
             "$ref": "#/components/schemas/SurfaceExposureOutcome"
           },
@@ -76704,7 +76769,9 @@
         "additionalProperties": false,
         "type": "object",
         "required": [
+          "exposure_id",
           "identity",
+          "composition_fingerprint",
           "outcome",
           "observed_at"
         ],

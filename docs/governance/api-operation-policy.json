@@ -1151,13 +1151,18 @@
     },
     "POST /api/events/surface-treatment": {
       "audience": "app",
-      "consumers": [],
+      "consumers": [
+        {
+          "kind": "app_transport",
+          "name": "SurfaceTreatmentExposureTransport"
+        }
+      ],
       "feature_flag": "LIVED_EXPERIENCE_SURFACE_EXPOSURE_ENABLED",
-      "lifecycle": "dark",
+      "lifecycle": "active",
       "owner": "lived-experience",
-      "reason": "Content-free treatment exposure contract is landed for the common engine, but no mobile surface is wired until treatment identity adoption is verified.",
-      "removal_trigger": "Add a reviewed mobile consumer and device receipt, or remove the dark endpoint.",
-      "review_by": "2026-09-15"
+      "reason": "The typed, feature-gated mobile transport records composition-bound, idempotent exposure receipts; product surfaces remain unwired until device proof.",
+      "removal_trigger": "Remove the transport if surface treatment adoption is abandoned before a product caller is activated.",
+      "review_by": "2026-10-30"
     },
     "GET /api/places": {
       "audience": "app",

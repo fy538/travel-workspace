@@ -88823,6 +88823,11 @@
           "identity": {
             "$ref": "#/components/schemas/SurfaceTreatmentIdentity"
           },
+          "composition_fingerprint": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$",
+            "title": "Composition Fingerprint"
+          },
           "outcome": {
             "$ref": "#/components/schemas/SurfaceExposureOutcome"
           },
@@ -88847,7 +88852,9 @@
         "additionalProperties": false,
         "type": "object",
         "required": [
+          "exposure_id",
           "identity",
+          "composition_fingerprint",
           "outcome",
           "observed_at"
         ],
