@@ -846,6 +846,20 @@ flags:
     promotion_removal_question: By 2026-10-30, does the comparison adapter have durable candidate-set provenance, or should it remain unreachable?
     notes: Dark catalog comparison adapter; a flag alone never grants Places feed membership.
 
+  - name: PLAN_SHAPE_ENABLED
+    repo: travel-app
+    location: constants/featureFlags.ts:PLAN_SHAPE_ENABLED
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    target_journey: P05,P07
+    cohort: internal builds with an explicit app flag only
+    kill_switch: Set EXPO_PUBLIC_PLAN_SHAPE_ENABLED=false; the legacy itinerary remains the fallback.
+    promotion_removal_question: By 2026-10-30, does viewer-relative Current Shape earn controlled-device proof, or should it remain dark or be removed?
+    notes: Additive read-only projection over canonical itinerary truth; it grants no new mutation or provider authority.
+
   - name: GROUP_TRIP_MICRO_JOURNEY_ENABLED
     repo: travel-app
     location: constants/featureFlags.ts:GROUP_TRIP_MICRO_JOURNEY_ENABLED

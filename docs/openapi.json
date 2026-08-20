@@ -16450,6 +16450,275 @@
         }
       }
     },
+    "/api/intake/submissions": {
+      "post": {
+        "tags": [
+          "intake"
+        ],
+        "summary": "Create Intake Submission",
+        "description": "Create one durable submission envelope.\n\nInline text is verified immediately. Binary source metadata remains in\n``created`` state until a client uploads and calls ``finalize``.",
+        "operationId": "create_intake_submission_api_intake_submissions_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateIntakeSubmissionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntakeSubmissionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/intake/submissions/{submission_id}": {
+      "get": {
+        "tags": [
+          "intake"
+        ],
+        "summary": "Get Intake Submission",
+        "operationId": "get_intake_submission_api_intake_submissions__submission_id__get",
+        "parameters": [
+          {
+            "name": "submission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Submission Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntakeSubmissionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/intake/submissions/{submission_id}/objects/{object_id}/upload": {
+      "post": {
+        "tags": [
+          "intake"
+        ],
+        "summary": "Upload Intake Source Object",
+        "description": "Upload one source without base64 or navigation-parameter transport.\n\nThis multipart path is the alpha bridge. Native share extensions can later\nuse the same object IDs with direct presigned storage uploads; finalization\nremains identical.",
+        "operationId": "upload_intake_source_object_api_intake_submissions__submission_id__objects__object_id__upload_post",
+        "parameters": [
+          {
+            "name": "submission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Submission Id"
+            }
+          },
+          {
+            "name": "object_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Object Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_intake_source_object_api_intake_submissions__submission_id__objects__object_id__upload_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntakeSubmissionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/intake/submissions/{submission_id}/finalize": {
+      "post": {
+        "tags": [
+          "intake"
+        ],
+        "summary": "Finalize Intake Submission",
+        "description": "Finalize all source objects as one custody decision.\n\nA suspicious or failed scan is durably quarantined and never emitted to\nthe processing outbox. Clean sources become eligible for normalization.",
+        "operationId": "finalize_intake_submission_api_intake_submissions__submission_id__finalize_post",
+        "parameters": [
+          {
+            "name": "submission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Submission Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FinalizeIntakeSubmissionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntakeSubmissionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/inbound-audio": {
       "post": {
         "tags": [
@@ -23367,6 +23636,75 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Trip"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/shape": {
+      "get": {
+        "tags": [
+          "plan"
+        ],
+        "summary": "Get Plan Shape",
+        "description": "Return a sparse viewer-relative shape over canonical itinerary truth.\n\nThis is additive to ``plan-state``. The existing Trip/itinerary authority\nremains the writer; this endpoint only compiles a projection for the\nrequested viewer and projection lane.",
+        "operationId": "get_plan_shape_api_trips__trip_id__shape_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "projection",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/ShapeProjection",
+              "default": "my"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanShape"
                 }
               }
             }
@@ -45136,6 +45474,20 @@
         ],
         "title": "Body_upload_inbound_audio_api_inbound_audio_post"
       },
+      "Body_upload_intake_source_object_api_intake_submissions__submission_id__objects__object_id__upload_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_upload_intake_source_object_api_intake_submissions__submission_id__objects__object_id__upload_post"
+      },
       "Body_upload_profile_media_api_me_profile_media__slot__post": {
         "properties": {
           "file": {
@@ -50689,6 +51041,87 @@
         },
         "type": "object",
         "title": "CreateInboundItemRequest"
+      },
+      "CreateIntakeSubmissionRequest": {
+        "properties": {
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          },
+          "source_channel": {
+            "type": "string",
+            "enum": [
+              "chat",
+              "ios_share_extension",
+              "android_share",
+              "camera",
+              "photo_library",
+              "email_forward",
+              "file_picker",
+              "paste",
+              "audio"
+            ],
+            "title": "Source Channel"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "user_note": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 4000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "User Note"
+          },
+          "capture_context": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Capture Context"
+          },
+          "objects": {
+            "items": {
+              "$ref": "#/components/schemas/IntakeSourceObjectInput"
+            },
+            "type": "array",
+            "maxItems": 16,
+            "title": "Objects"
+          },
+          "inline_text": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 100000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Inline Text"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "idempotency_key",
+          "source_channel"
+        ],
+        "title": "CreateIntakeSubmissionRequest"
       },
       "CreateSessionRequest": {
         "properties": {
@@ -59368,6 +59801,67 @@
         "type": "object",
         "title": "FeedbackResponse"
       },
+      "FinalizeIntakeObject": {
+        "properties": {
+          "object_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Object Id"
+          },
+          "detected_mime_type": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Detected Mime Type"
+          },
+          "byte_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Byte Count"
+          },
+          "content_sha256": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 64,
+            "title": "Content Sha256"
+          },
+          "storage_ref": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 1,
+            "title": "Storage Ref"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "object_id",
+          "detected_mime_type",
+          "byte_count",
+          "content_sha256",
+          "storage_ref"
+        ],
+        "title": "FinalizeIntakeObject"
+      },
+      "FinalizeIntakeSubmissionRequest": {
+        "properties": {
+          "objects": {
+            "items": {
+              "$ref": "#/components/schemas/FinalizeIntakeObject"
+            },
+            "type": "array",
+            "maxItems": 16,
+            "minItems": 1,
+            "title": "Objects"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "objects"
+        ],
+        "title": "FinalizeIntakeSubmissionRequest"
+      },
       "Follow": {
         "properties": {
           "id": {
@@ -61227,6 +61721,375 @@
         "type": "object",
         "title": "IntakePayload",
         "description": "Bulk chip payload for minimal onboarding.\n\nEach field is optional. Sections use replace-within-section semantics:\nsubmitting ``dietary=[\"vegan\"]`` deactivates any other active dietary rows\nfor the user. Omitting a field leaves that section untouched, so callers\ncan update one section without disturbing others. An empty list clears\nthe section."
+      },
+      "IntakeSourceObject": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "submission_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Submission Id"
+          },
+          "ordinal": {
+            "type": "integer",
+            "title": "Ordinal"
+          },
+          "source_role": {
+            "type": "string",
+            "title": "Source Role"
+          },
+          "reported_mime_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reported Mime Type"
+          },
+          "detected_mime_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Detected Mime Type"
+          },
+          "original_filename": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Original Filename"
+          },
+          "byte_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Byte Count"
+          },
+          "content_sha256": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Content Sha256"
+          },
+          "storage_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Storage Ref"
+          },
+          "storage_status": {
+            "type": "string",
+            "title": "Storage Status"
+          },
+          "scan_status": {
+            "type": "string",
+            "title": "Scan Status"
+          },
+          "captured_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Captured At"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Metadata"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "submission_id",
+          "ordinal",
+          "source_role",
+          "reported_mime_type",
+          "detected_mime_type",
+          "original_filename",
+          "byte_count",
+          "content_sha256",
+          "storage_ref",
+          "storage_status",
+          "scan_status",
+          "captured_at",
+          "metadata",
+          "created_at"
+        ],
+        "title": "IntakeSourceObject"
+      },
+      "IntakeSourceObjectInput": {
+        "properties": {
+          "ordinal": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Ordinal",
+            "default": 0
+          },
+          "source_role": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 1,
+            "title": "Source Role",
+            "default": "primary"
+          },
+          "reported_mime_type": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reported Mime Type"
+          },
+          "original_filename": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 255
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Original Filename"
+          },
+          "byte_count": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Byte Count"
+          },
+          "content_sha256": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64,
+                "minLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Content Sha256"
+          },
+          "captured_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Captured At"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Metadata"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "IntakeSourceObjectInput"
+      },
+      "IntakeSubmissionResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "owner_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Owner Id"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "source_channel": {
+            "type": "string",
+            "title": "Source Channel"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "title": "Idempotency Key"
+          },
+          "user_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "User Note"
+          },
+          "capture_context": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Capture Context"
+          },
+          "custody_status": {
+            "type": "string",
+            "title": "Custody Status"
+          },
+          "processing_status": {
+            "type": "string",
+            "title": "Processing Status"
+          },
+          "admission_status": {
+            "type": "string",
+            "title": "Admission Status"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          },
+          "verified_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Verified At"
+          },
+          "failed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Failed At"
+          },
+          "failure_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Failure Code"
+          },
+          "failure_detail": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Failure Detail"
+          },
+          "objects": {
+            "items": {
+              "$ref": "#/components/schemas/IntakeSourceObject"
+            },
+            "type": "array",
+            "title": "Objects"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "owner_id",
+          "trip_id",
+          "source_channel",
+          "idempotency_key",
+          "user_note",
+          "capture_context",
+          "custody_status",
+          "processing_status",
+          "admission_status",
+          "created_at",
+          "updated_at",
+          "verified_at",
+          "failed_at",
+          "failure_code",
+          "failure_detail"
+        ],
+        "title": "IntakeSubmissionResponse",
+        "description": "Response returned by create, upload, finalize, and status endpoints."
       },
       "IntentAnchor": {
         "properties": {
@@ -77858,6 +78721,142 @@
         "title": "PlanReasoning",
         "description": "Trip-level planner reasoning \u2014 the \"How Vesper planned this\" disclosure.\n\nEach field is one stage of the planner's thinking; only non-empty stages are\npopulated (the builder drops blanks). Version-immutable. None when the\nitinerary wasn't agent-generated (e.g. a manual/older version)."
       },
+      "PlanShape": {
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "title": "Contract Version",
+            "default": "plan-shape-v1"
+          },
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "viewer_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Viewer Id"
+          },
+          "projection": {
+            "$ref": "#/components/schemas/ShapeProjection"
+          },
+          "projection_mode": {
+            "type": "string",
+            "title": "Projection Mode",
+            "default": "viewer_scoped"
+          },
+          "lifecycle": {
+            "type": "string",
+            "title": "Lifecycle"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "settled": {
+            "items": {
+              "$ref": "#/components/schemas/ShapeBlock"
+            },
+            "type": "array",
+            "title": "Settled"
+          },
+          "flexible": {
+            "items": {
+              "$ref": "#/components/schemas/ShapeBlock"
+            },
+            "type": "array",
+            "title": "Flexible"
+          },
+          "open": {
+            "items": {
+              "$ref": "#/components/schemas/ShapeBlock"
+            },
+            "type": "array",
+            "title": "Open"
+          },
+          "changed": {
+            "items": {
+              "$ref": "#/components/schemas/ShapeBlock"
+            },
+            "type": "array",
+            "title": "Changed"
+          },
+          "unknown": {
+            "items": {
+              "$ref": "#/components/schemas/ShapeBlock"
+            },
+            "type": "array",
+            "title": "Unknown"
+          },
+          "days": {
+            "items": {
+              "$ref": "#/components/schemas/ShapeDay"
+            },
+            "type": "array",
+            "title": "Days"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/ShapeSummary"
+          },
+          "next_block_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Block Id"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "source_projection_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Projection Version"
+          },
+          "omitted_private_count": {
+            "type": "integer",
+            "title": "Omitted Private Count",
+            "default": 0
+          },
+          "omitted_unrelated_count": {
+            "type": "integer",
+            "title": "Omitted Unrelated Count",
+            "default": 0
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "trip_id",
+          "viewer_id",
+          "projection",
+          "lifecycle",
+          "generated_at"
+        ],
+        "title": "PlanShape",
+        "description": "The sparse, viewer-relative projection used by the new Plan surface."
+      },
       "PlanSimilarRequest": {
         "properties": {
           "share_slug": {
@@ -85753,6 +86752,177 @@
         ],
         "title": "SettlementTransfer"
       },
+      "ShapeBlock": {
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Block Id"
+          },
+          "day_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Day Id"
+          },
+          "day_number": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Day Number"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Title"
+          },
+          "subtitle": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subtitle"
+          },
+          "time_start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Start"
+          },
+          "time_end": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time End"
+          },
+          "commitment_state": {
+            "type": "string",
+            "title": "Commitment State"
+          },
+          "participation_scope": {
+            "type": "string",
+            "title": "Participation Scope"
+          },
+          "lane": {
+            "$ref": "#/components/schemas/ShapeLane"
+          },
+          "participant_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Participant Ids"
+          },
+          "viewer_attendance": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Viewer Attendance"
+          },
+          "occurrence_state": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occurrence State"
+          },
+          "protected": {
+            "type": "boolean",
+            "title": "Protected",
+            "default": false
+          },
+          "can_act": {
+            "type": "boolean",
+            "title": "Can Act",
+            "default": false
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "block_id",
+          "day_id",
+          "day_number",
+          "title",
+          "commitment_state",
+          "participation_scope",
+          "lane"
+        ],
+        "title": "ShapeBlock",
+        "description": "A commitment or relevant anchor in a viewer's projected shape."
+      },
+      "ShapeDay": {
+        "properties": {
+          "day_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Day Id"
+          },
+          "day_number": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Day Number"
+          },
+          "date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date"
+          },
+          "blocks": {
+            "items": {
+              "$ref": "#/components/schemas/ShapeBlock"
+            },
+            "type": "array",
+            "title": "Blocks"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "day_id",
+          "day_number"
+        ],
+        "title": "ShapeDay"
+      },
       "ShapeDestinationRef": {
         "properties": {
           "kind": {
@@ -85793,6 +86963,17 @@
         ],
         "title": "ShapeDestinationRef"
       },
+      "ShapeLane": {
+        "type": "string",
+        "enum": [
+          "settled",
+          "flexible",
+          "open",
+          "changed",
+          "unknown"
+        ],
+        "title": "ShapeLane"
+      },
       "ShapePrecondition": {
         "properties": {
           "kind": {
@@ -85813,6 +86994,46 @@
           "expected_shape_revision"
         ],
         "title": "ShapePrecondition"
+      },
+      "ShapeProjection": {
+        "type": "string",
+        "enum": [
+          "my",
+          "together",
+          "whole"
+        ],
+        "title": "ShapeProjection"
+      },
+      "ShapeSummary": {
+        "properties": {
+          "settled": {
+            "type": "integer",
+            "title": "Settled",
+            "default": 0
+          },
+          "flexible": {
+            "type": "integer",
+            "title": "Flexible",
+            "default": 0
+          },
+          "open": {
+            "type": "integer",
+            "title": "Open",
+            "default": 0
+          },
+          "changed": {
+            "type": "integer",
+            "title": "Changed",
+            "default": 0
+          },
+          "unknown": {
+            "type": "integer",
+            "title": "Unknown",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "title": "ShapeSummary"
       },
       "ShareEventCreate": {
         "properties": {

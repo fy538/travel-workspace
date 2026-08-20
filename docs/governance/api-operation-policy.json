@@ -2437,6 +2437,62 @@
       "removal_trigger": null,
       "review_by": null
     },
+    "GET /api/trips/{trip_id}/shape": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "getTripPlanShape",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": "PLAN_SHAPE_ENABLED",
+      "lifecycle": "active",
+      "owner": "itinerary",
+      "reason": "Additive viewer-relative projection for the flexible Plan/Occasion migration; legacy plan-state remains the fallback.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "GET /api/intake/submissions/{submission_id}": {
+      "audience": "server",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "intake",
+      "reason": "Internal intake-v2 transport has no approved mobile consumer yet.",
+      "removal_trigger": "Add an approved mobile consumer or keep this transport server-only.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/intake/submissions": {
+      "audience": "server",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "intake",
+      "reason": "Internal intake-v2 transport has no approved mobile consumer yet.",
+      "removal_trigger": "Add an approved mobile consumer or keep this transport server-only.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/intake/submissions/{submission_id}/finalize": {
+      "audience": "server",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "intake",
+      "reason": "Internal intake-v2 transport has no approved mobile consumer yet.",
+      "removal_trigger": "Add an approved mobile consumer or keep this transport server-only.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/intake/submissions/{submission_id}/objects/{object_id}/upload": {
+      "audience": "server",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "intake",
+      "reason": "Internal intake-v2 upload transport; no mobile consumer is declared.",
+      "removal_trigger": "Add an approved mobile consumer or keep this transport server-only.",
+      "review_by": "2026-10-30"
+    },
     "GET /api/sites/{site_id}": {
       "audience": "app",
       "lifecycle": "retiring",

@@ -17641,6 +17641,75 @@
         }
       }
     },
+    "/api/trips/{trip_id}/shape": {
+      "get": {
+        "tags": [
+          "plan"
+        ],
+        "summary": "Get Plan Shape",
+        "description": "Return a sparse viewer-relative shape over canonical itinerary truth.\n\nThis is additive to ``plan-state``. The existing Trip/itinerary authority\nremains the writer; this endpoint only compiles a projection for the\nrequested viewer and projection lane.",
+        "operationId": "get_plan_shape_api_trips__trip_id__shape_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "projection",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/ShapeProjection",
+              "default": "my"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanShape"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/plan-state": {
       "get": {
         "tags": [
@@ -66847,6 +66916,142 @@
         "title": "PlanReasoning",
         "description": "Trip-level planner reasoning — the \"How Vesper planned this\" disclosure.\n\nEach field is one stage of the planner's thinking; only non-empty stages are\npopulated (the builder drops blanks). Version-immutable. None when the\nitinerary wasn't agent-generated (e.g. a manual/older version)."
       },
+      "PlanShape": {
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "title": "Contract Version",
+            "default": "plan-shape-v1"
+          },
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "viewer_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Viewer Id"
+          },
+          "projection": {
+            "$ref": "#/components/schemas/ShapeProjection"
+          },
+          "projection_mode": {
+            "type": "string",
+            "title": "Projection Mode",
+            "default": "viewer_scoped"
+          },
+          "lifecycle": {
+            "type": "string",
+            "title": "Lifecycle"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "settled": {
+            "items": {
+              "$ref": "#/components/schemas/ShapeBlock"
+            },
+            "type": "array",
+            "title": "Settled"
+          },
+          "flexible": {
+            "items": {
+              "$ref": "#/components/schemas/ShapeBlock"
+            },
+            "type": "array",
+            "title": "Flexible"
+          },
+          "open": {
+            "items": {
+              "$ref": "#/components/schemas/ShapeBlock"
+            },
+            "type": "array",
+            "title": "Open"
+          },
+          "changed": {
+            "items": {
+              "$ref": "#/components/schemas/ShapeBlock"
+            },
+            "type": "array",
+            "title": "Changed"
+          },
+          "unknown": {
+            "items": {
+              "$ref": "#/components/schemas/ShapeBlock"
+            },
+            "type": "array",
+            "title": "Unknown"
+          },
+          "days": {
+            "items": {
+              "$ref": "#/components/schemas/ShapeDay"
+            },
+            "type": "array",
+            "title": "Days"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/ShapeSummary"
+          },
+          "next_block_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Block Id"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "source_projection_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Projection Version"
+          },
+          "omitted_private_count": {
+            "type": "integer",
+            "title": "Omitted Private Count",
+            "default": 0
+          },
+          "omitted_unrelated_count": {
+            "type": "integer",
+            "title": "Omitted Unrelated Count",
+            "default": 0
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "trip_id",
+          "viewer_id",
+          "projection",
+          "lifecycle",
+          "generated_at"
+        ],
+        "title": "PlanShape",
+        "description": "The sparse, viewer-relative projection used by the new Plan surface."
+      },
       "PlanSimilarRequest": {
         "properties": {
           "share_slug": {
@@ -73670,6 +73875,177 @@
         ],
         "title": "SettlementTransfer"
       },
+      "ShapeBlock": {
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Block Id"
+          },
+          "day_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Day Id"
+          },
+          "day_number": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Day Number"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Title"
+          },
+          "subtitle": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subtitle"
+          },
+          "time_start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Start"
+          },
+          "time_end": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time End"
+          },
+          "commitment_state": {
+            "type": "string",
+            "title": "Commitment State"
+          },
+          "participation_scope": {
+            "type": "string",
+            "title": "Participation Scope"
+          },
+          "lane": {
+            "$ref": "#/components/schemas/ShapeLane"
+          },
+          "participant_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Participant Ids"
+          },
+          "viewer_attendance": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Viewer Attendance"
+          },
+          "occurrence_state": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occurrence State"
+          },
+          "protected": {
+            "type": "boolean",
+            "title": "Protected",
+            "default": false
+          },
+          "can_act": {
+            "type": "boolean",
+            "title": "Can Act",
+            "default": false
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "block_id",
+          "day_id",
+          "day_number",
+          "title",
+          "commitment_state",
+          "participation_scope",
+          "lane"
+        ],
+        "title": "ShapeBlock",
+        "description": "A commitment or relevant anchor in a viewer's projected shape."
+      },
+      "ShapeDay": {
+        "properties": {
+          "day_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Day Id"
+          },
+          "day_number": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Day Number"
+          },
+          "date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date"
+          },
+          "blocks": {
+            "items": {
+              "$ref": "#/components/schemas/ShapeBlock"
+            },
+            "type": "array",
+            "title": "Blocks"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "day_id",
+          "day_number"
+        ],
+        "title": "ShapeDay"
+      },
       "ShapeDestinationRef": {
         "properties": {
           "kind": {
@@ -73710,6 +74086,17 @@
         ],
         "title": "ShapeDestinationRef"
       },
+      "ShapeLane": {
+        "type": "string",
+        "enum": [
+          "settled",
+          "flexible",
+          "open",
+          "changed",
+          "unknown"
+        ],
+        "title": "ShapeLane"
+      },
       "ShapePrecondition": {
         "properties": {
           "kind": {
@@ -73730,6 +74117,46 @@
           "expected_shape_revision"
         ],
         "title": "ShapePrecondition"
+      },
+      "ShapeProjection": {
+        "type": "string",
+        "enum": [
+          "my",
+          "together",
+          "whole"
+        ],
+        "title": "ShapeProjection"
+      },
+      "ShapeSummary": {
+        "properties": {
+          "settled": {
+            "type": "integer",
+            "title": "Settled",
+            "default": 0
+          },
+          "flexible": {
+            "type": "integer",
+            "title": "Flexible",
+            "default": 0
+          },
+          "open": {
+            "type": "integer",
+            "title": "Open",
+            "default": 0
+          },
+          "changed": {
+            "type": "integer",
+            "title": "Changed",
+            "default": 0
+          },
+          "unknown": {
+            "type": "integer",
+            "title": "Unknown",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "title": "ShapeSummary"
       },
       "ShareEventCreate": {
         "properties": {
