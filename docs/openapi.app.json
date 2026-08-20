@@ -17710,6 +17710,75 @@
         }
       }
     },
+    "/api/trips/{trip_id}/occasion-capsule": {
+      "get": {
+        "tags": [
+          "plan"
+        ],
+        "summary": "Get Occasion Capsule",
+        "description": "Return a sparse Occasion read model compiled from canonical Plan truth.",
+        "operationId": "get_occasion_capsule_api_trips__trip_id__occasion_capsule_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "projection",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/ShapeProjection",
+              "default": "my"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OccasionCapsule"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/plan-state": {
       "get": {
         "tags": [
@@ -60916,6 +60985,197 @@
         ],
         "title": "Observation"
       },
+      "OccasionCapsule": {
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "const": "occasion-capsule-v1",
+            "title": "Contract Version",
+            "default": "occasion-capsule-v1"
+          },
+          "capsule_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Capsule Id"
+          },
+          "kind": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Kind"
+          },
+          "purpose": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Purpose"
+          },
+          "lifecycle": {
+            "type": "string",
+            "enum": [
+              "emerging",
+              "planned",
+              "active",
+              "closed",
+              "unknown"
+            ],
+            "title": "Lifecycle",
+            "default": "unknown"
+          },
+          "temporal_horizon_start": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Temporal Horizon Start"
+          },
+          "temporal_horizon_end": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Temporal Horizon End"
+          },
+          "spatial_horizon": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Spatial Horizon"
+          },
+          "participant_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Participant Ids"
+          },
+          "settled_commitment_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Settled Commitment Ids"
+          },
+          "flexible_opening_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Flexible Opening Ids"
+          },
+          "unknowns": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Unknowns"
+          },
+          "current": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current"
+          },
+          "next": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next"
+          },
+          "related_plan_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Related Plan Ids"
+          },
+          "evidence_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Evidence Ids"
+          },
+          "outcome_state": {
+            "type": "string",
+            "enum": [
+              "unlived",
+              "in_progress",
+              "happened",
+              "changed",
+              "unfinished",
+              "unknown"
+            ],
+            "title": "Outcome State",
+            "default": "unknown"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "private",
+              "participants",
+              "shared"
+            ],
+            "title": "Visibility",
+            "default": "private"
+          },
+          "authority": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Authority",
+            "default": "compiled_read_model"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "capsule_id",
+          "kind"
+        ],
+        "title": "OccasionCapsule",
+        "description": "A compiled Occasion read model, not a new persistence aggregate."
+      },
       "OccurrenceArtifact": {
         "properties": {
           "trip_id": {
@@ -73875,6 +74135,51 @@
         ],
         "title": "SettlementTransfer"
       },
+      "ShapeAction": {
+        "properties": {
+          "key": {
+            "$ref": "#/components/schemas/ShapeActionKey"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Label"
+          },
+          "authority": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Authority"
+          },
+          "reversible": {
+            "type": "boolean",
+            "title": "Reversible",
+            "default": true
+          },
+          "requires_confirmation": {
+            "type": "boolean",
+            "title": "Requires Confirmation",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "key",
+          "label",
+          "authority"
+        ],
+        "title": "ShapeAction"
+      },
+      "ShapeActionKey": {
+        "type": "string",
+        "enum": [
+          "inspect",
+          "change_attendance",
+          "suggest_change",
+          "mark_happened"
+        ],
+        "title": "ShapeActionKey"
+      },
       "ShapeBlock": {
         "properties": {
           "block_id": {
@@ -73980,6 +74285,13 @@
             "type": "boolean",
             "title": "Can Act",
             "default": false
+          },
+          "actions": {
+            "items": {
+              "$ref": "#/components/schemas/ShapeAction"
+            },
+            "type": "array",
+            "title": "Actions"
           },
           "reason": {
             "anyOf": [

@@ -16719,6 +16719,351 @@
         }
       }
     },
+    "/api/intake/submissions/{submission_id}/interpretations": {
+      "get": {
+        "tags": [
+          "intake"
+        ],
+        "summary": "Get Intake Interpretations",
+        "operationId": "get_intake_interpretations_api_intake_submissions__submission_id__interpretations_get",
+        "parameters": [
+          {
+            "name": "submission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Submission Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntakeInterpretationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/intake/submissions/{submission_id}/observations": {
+      "post": {
+        "tags": [
+          "intake"
+        ],
+        "summary": "Create Intake Observation",
+        "operationId": "create_intake_observation_api_intake_submissions__submission_id__observations_post",
+        "parameters": [
+          {
+            "name": "submission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Submission Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateIntakeObservationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntakeObservation"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/intake/submissions/{submission_id}/candidates": {
+      "post": {
+        "tags": [
+          "intake"
+        ],
+        "summary": "Create Intake Candidate",
+        "operationId": "create_intake_candidate_api_intake_submissions__submission_id__candidates_post",
+        "parameters": [
+          {
+            "name": "submission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Submission Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateIntakeArtifactCandidateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntakeArtifactCandidate"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/intake/submissions/{submission_id}/proposals": {
+      "post": {
+        "tags": [
+          "intake"
+        ],
+        "summary": "Create Intake Proposal",
+        "operationId": "create_intake_proposal_api_intake_submissions__submission_id__proposals_post",
+        "parameters": [
+          {
+            "name": "submission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Submission Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateIntakeConsequenceProposalRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntakeConsequenceProposal"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/intake/submissions/{submission_id}/proposals/{proposal_id}/status": {
+      "post": {
+        "tags": [
+          "intake"
+        ],
+        "summary": "Update Intake Proposal Status",
+        "operationId": "update_intake_proposal_status_api_intake_submissions__submission_id__proposals__proposal_id__status_post",
+        "parameters": [
+          {
+            "name": "submission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Submission Id"
+            }
+          },
+          {
+            "name": "proposal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Proposal Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateIntakeProposalStatusRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntakeConsequenceProposal"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/inbound-audio": {
       "post": {
         "tags": [
@@ -23705,6 +24050,75 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PlanShape"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/occasion-capsule": {
+      "get": {
+        "tags": [
+          "plan"
+        ],
+        "summary": "Get Occasion Capsule",
+        "description": "Return a sparse Occasion read model compiled from canonical Plan truth.",
+        "operationId": "get_occasion_capsule_api_trips__trip_id__occasion_capsule_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "projection",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/ShapeProjection",
+              "default": "my"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OccasionCapsule"
                 }
               }
             }
@@ -51042,6 +51456,310 @@
         "type": "object",
         "title": "CreateInboundItemRequest"
       },
+      "CreateIntakeArtifactCandidateRequest": {
+        "properties": {
+          "candidate_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Candidate Key"
+          },
+          "artifact_type": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Artifact Type"
+          },
+          "schema_version": {
+            "type": "string",
+            "maxLength": 50,
+            "minLength": 1,
+            "title": "Schema Version"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Payload"
+          },
+          "confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence"
+          },
+          "observation_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "maxItems": 64,
+            "minItems": 1,
+            "title": "Observation Ids"
+          },
+          "missing_critical_fields": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 64,
+            "title": "Missing Critical Fields"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "candidate",
+              "soft_admitted",
+              "confirmed",
+              "dismissed",
+              "rejected"
+            ],
+            "title": "Status",
+            "default": "candidate"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "candidate_key",
+          "artifact_type",
+          "schema_version",
+          "payload",
+          "confidence",
+          "observation_ids"
+        ],
+        "title": "CreateIntakeArtifactCandidateRequest"
+      },
+      "CreateIntakeConsequenceProposalRequest": {
+        "properties": {
+          "artifact_candidate_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Artifact Candidate Id"
+          },
+          "domain": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Domain"
+          },
+          "action_type": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Action Type"
+          },
+          "target_ref": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Target Ref"
+          },
+          "risk_level": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "critical"
+            ],
+            "title": "Risk Level"
+          },
+          "reversibility": {
+            "type": "string",
+            "enum": [
+              "reversible",
+              "review_required",
+              "irreversible"
+            ],
+            "title": "Reversibility"
+          },
+          "audience": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Audience"
+          },
+          "required_authority": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Required Authority"
+          },
+          "supporting_observation_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "maxItems": 64,
+            "minItems": 1,
+            "title": "Supporting Observation Ids"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "artifact_candidate_id",
+          "domain",
+          "action_type",
+          "target_ref",
+          "risk_level",
+          "reversibility",
+          "audience",
+          "required_authority",
+          "supporting_observation_ids"
+        ],
+        "title": "CreateIntakeConsequenceProposalRequest"
+      },
+      "CreateIntakeObservationRequest": {
+        "properties": {
+          "source_object_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Object Id"
+          },
+          "observation_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Observation Key"
+          },
+          "observation_type": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Observation Type"
+          },
+          "value": {
+            "title": "Value"
+          },
+          "truth_mode": {
+            "type": "string",
+            "enum": [
+              "direct_observed",
+              "source_extracted",
+              "user_confirmed",
+              "inferred",
+              "external_verified",
+              "unknown"
+            ],
+            "title": "Truth Mode"
+          },
+          "confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence"
+          },
+          "observed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed At"
+          },
+          "valid_from": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid From"
+          },
+          "valid_until": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid Until"
+          },
+          "extractor_name": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Extractor Name"
+          },
+          "extractor_version": {
+            "type": "string",
+            "maxLength": 50,
+            "minLength": 1,
+            "title": "Extractor Version"
+          },
+          "evidence_locator": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Evidence Locator"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "candidate",
+              "active",
+              "superseded",
+              "rejected"
+            ],
+            "title": "Status",
+            "default": "candidate"
+          },
+          "supersedes_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Supersedes Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "observation_key",
+          "observation_type",
+          "value",
+          "truth_mode",
+          "confidence",
+          "extractor_name",
+          "extractor_version"
+        ],
+        "title": "CreateIntakeObservationRequest"
+      },
       "CreateIntakeSubmissionRequest": {
         "properties": {
           "idempotency_key": {
@@ -61659,6 +62377,384 @@
         "title": "InitialPlanCommitmentState",
         "description": "Intrinsic softness that may be asserted when a first plan is born.\n\nProvider and traveler-confirmed states require their own canonical\nchronology.  Keeping them out of ``materialize_shape`` prevents an\naccepted draft from manufacturing booking or occurrence truth."
       },
+      "IntakeArtifactCandidate": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "submission_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Submission Id"
+          },
+          "candidate_key": {
+            "type": "string",
+            "title": "Candidate Key"
+          },
+          "artifact_type": {
+            "type": "string",
+            "title": "Artifact Type"
+          },
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Payload"
+          },
+          "confidence": {
+            "type": "number",
+            "title": "Confidence"
+          },
+          "observation_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Observation Ids"
+          },
+          "missing_critical_fields": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Missing Critical Fields"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "candidate",
+              "soft_admitted",
+              "confirmed",
+              "dismissed",
+              "rejected"
+            ],
+            "title": "Status"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "submission_id",
+          "candidate_key",
+          "artifact_type",
+          "schema_version",
+          "payload",
+          "confidence",
+          "observation_ids",
+          "missing_critical_fields",
+          "status",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "IntakeArtifactCandidate"
+      },
+      "IntakeConsequenceProposal": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "submission_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Submission Id"
+          },
+          "artifact_candidate_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Artifact Candidate Id"
+          },
+          "domain": {
+            "type": "string",
+            "title": "Domain"
+          },
+          "action_type": {
+            "type": "string",
+            "title": "Action Type"
+          },
+          "target_ref": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Target Ref"
+          },
+          "risk_level": {
+            "type": "string",
+            "title": "Risk Level"
+          },
+          "reversibility": {
+            "type": "string",
+            "title": "Reversibility"
+          },
+          "audience": {
+            "type": "string",
+            "title": "Audience"
+          },
+          "required_authority": {
+            "type": "string",
+            "title": "Required Authority"
+          },
+          "supporting_observation_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Supporting Observation Ids"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "proposed",
+              "accepted",
+              "rejected",
+              "applied",
+              "expired"
+            ],
+            "title": "Status"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "submission_id",
+          "artifact_candidate_id",
+          "domain",
+          "action_type",
+          "target_ref",
+          "risk_level",
+          "reversibility",
+          "audience",
+          "required_authority",
+          "supporting_observation_ids",
+          "expires_at",
+          "status",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "IntakeConsequenceProposal"
+      },
+      "IntakeInterpretationResponse": {
+        "properties": {
+          "submission": {
+            "$ref": "#/components/schemas/IntakeSubmissionResponse"
+          },
+          "observations": {
+            "items": {
+              "$ref": "#/components/schemas/IntakeObservation"
+            },
+            "type": "array",
+            "title": "Observations"
+          },
+          "candidates": {
+            "items": {
+              "$ref": "#/components/schemas/IntakeArtifactCandidate"
+            },
+            "type": "array",
+            "title": "Candidates"
+          },
+          "proposals": {
+            "items": {
+              "$ref": "#/components/schemas/IntakeConsequenceProposal"
+            },
+            "type": "array",
+            "title": "Proposals"
+          }
+        },
+        "type": "object",
+        "required": [
+          "submission"
+        ],
+        "title": "IntakeInterpretationResponse"
+      },
+      "IntakeObservation": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "submission_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Submission Id"
+          },
+          "source_object_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Object Id"
+          },
+          "observation_key": {
+            "type": "string",
+            "title": "Observation Key"
+          },
+          "observation_type": {
+            "type": "string",
+            "title": "Observation Type"
+          },
+          "value": {
+            "title": "Value"
+          },
+          "truth_mode": {
+            "type": "string",
+            "enum": [
+              "direct_observed",
+              "source_extracted",
+              "user_confirmed",
+              "inferred",
+              "external_verified",
+              "unknown"
+            ],
+            "title": "Truth Mode"
+          },
+          "confidence": {
+            "type": "number",
+            "title": "Confidence"
+          },
+          "observed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed At"
+          },
+          "valid_from": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid From"
+          },
+          "valid_until": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid Until"
+          },
+          "extractor_name": {
+            "type": "string",
+            "title": "Extractor Name"
+          },
+          "extractor_version": {
+            "type": "string",
+            "title": "Extractor Version"
+          },
+          "evidence_locator": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Evidence Locator"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "candidate",
+              "active",
+              "superseded",
+              "rejected"
+            ],
+            "title": "Status"
+          },
+          "supersedes_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Supersedes Id"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "submission_id",
+          "source_object_id",
+          "observation_key",
+          "observation_type",
+          "value",
+          "truth_mode",
+          "confidence",
+          "observed_at",
+          "valid_from",
+          "valid_until",
+          "extractor_name",
+          "extractor_version",
+          "evidence_locator",
+          "status",
+          "supersedes_id",
+          "created_at"
+        ],
+        "title": "IntakeObservation"
+      },
       "IntakePayload": {
         "properties": {
           "dietary": {
@@ -72239,6 +73335,197 @@
           "created_at"
         ],
         "title": "Observation"
+      },
+      "OccasionCapsule": {
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "const": "occasion-capsule-v1",
+            "title": "Contract Version",
+            "default": "occasion-capsule-v1"
+          },
+          "capsule_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Capsule Id"
+          },
+          "kind": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Kind"
+          },
+          "purpose": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Purpose"
+          },
+          "lifecycle": {
+            "type": "string",
+            "enum": [
+              "emerging",
+              "planned",
+              "active",
+              "closed",
+              "unknown"
+            ],
+            "title": "Lifecycle",
+            "default": "unknown"
+          },
+          "temporal_horizon_start": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Temporal Horizon Start"
+          },
+          "temporal_horizon_end": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Temporal Horizon End"
+          },
+          "spatial_horizon": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Spatial Horizon"
+          },
+          "participant_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Participant Ids"
+          },
+          "settled_commitment_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Settled Commitment Ids"
+          },
+          "flexible_opening_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Flexible Opening Ids"
+          },
+          "unknowns": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Unknowns"
+          },
+          "current": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current"
+          },
+          "next": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next"
+          },
+          "related_plan_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Related Plan Ids"
+          },
+          "evidence_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Evidence Ids"
+          },
+          "outcome_state": {
+            "type": "string",
+            "enum": [
+              "unlived",
+              "in_progress",
+              "happened",
+              "changed",
+              "unfinished",
+              "unknown"
+            ],
+            "title": "Outcome State",
+            "default": "unknown"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "private",
+              "participants",
+              "shared"
+            ],
+            "title": "Visibility",
+            "default": "private"
+          },
+          "authority": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Authority",
+            "default": "compiled_read_model"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "capsule_id",
+          "kind"
+        ],
+        "title": "OccasionCapsule",
+        "description": "A compiled Occasion read model, not a new persistence aggregate."
       },
       "OccurrenceArtifact": {
         "properties": {
@@ -86752,6 +88039,51 @@
         ],
         "title": "SettlementTransfer"
       },
+      "ShapeAction": {
+        "properties": {
+          "key": {
+            "$ref": "#/components/schemas/ShapeActionKey"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Label"
+          },
+          "authority": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Authority"
+          },
+          "reversible": {
+            "type": "boolean",
+            "title": "Reversible",
+            "default": true
+          },
+          "requires_confirmation": {
+            "type": "boolean",
+            "title": "Requires Confirmation",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "key",
+          "label",
+          "authority"
+        ],
+        "title": "ShapeAction"
+      },
+      "ShapeActionKey": {
+        "type": "string",
+        "enum": [
+          "inspect",
+          "change_attendance",
+          "suggest_change",
+          "mark_happened"
+        ],
+        "title": "ShapeActionKey"
+      },
       "ShapeBlock": {
         "properties": {
           "block_id": {
@@ -86857,6 +88189,13 @@
             "type": "boolean",
             "title": "Can Act",
             "default": false
+          },
+          "actions": {
+            "items": {
+              "$ref": "#/components/schemas/ShapeAction"
+            },
+            "type": "array",
+            "title": "Actions"
           },
           "reason": {
             "anyOf": [
@@ -97747,6 +99086,25 @@
         "additionalProperties": false,
         "type": "object",
         "title": "UpdateConversationRequest"
+      },
+      "UpdateIntakeProposalStatusRequest": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "accepted",
+              "rejected",
+              "expired"
+            ],
+            "title": "Status"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "UpdateIntakeProposalStatusRequest"
       },
       "UpdateMemberRequest": {
         "properties": {
