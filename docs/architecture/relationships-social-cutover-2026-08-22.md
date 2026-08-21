@@ -155,11 +155,13 @@ surface one relational opening, one second-occasion continuation, or silence.
 
 ## API and app boundary
 
-The mobile contract continues to consume the legacy card action while the
-UUID namespace is evaluated dark. Server-side create/read/list/action
-operations are published at `/api/relationships/place-handoffs` behind
-`RELATIONSHIP_UUID_HANDOFFS_ENABLED`; they are explicitly retiring/server-only
-until the sender card and recipient pull surface switch authorities. Place pull
+The mobile contract now has a typed data seam for UUID create/read/list/action
+operations at `/api/relationships/place-handoffs`, behind
+`RELATIONSHIP_UUID_HANDOFFS_ENABLED`. The app seam lives in
+`travel-app/data/relationshipPlaceHandoffs.ts`, but no visual surface invokes
+it yet;
+the existing recipient card still uses its legacy adapter until the sender
+card and recipient pull surface switch authorities together. Place pull
 remains separately permissioned by the handoff envelope and is not a push.
 
 Chat cards continue to use opaque server-resolved action references. A resolver
