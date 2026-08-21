@@ -2533,26 +2533,6 @@
       "removal_trigger": "Remove only after the Plan Shape migration is either fully adopted or explicitly retired.",
       "review_by": "2026-10-30"
     },
-    "GET /api/trips/{trip_id}/planning-windows": {
-      "audience": "server",
-      "consumers": [],
-      "feature_flag": null,
-      "lifecycle": "retiring",
-      "owner": "itinerary",
-      "reason": "Read-only participant horizon seam for future Plan projections; no mobile consumer is enabled yet.",
-      "removal_trigger": "Add a reviewed mobile consumer or keep the endpoint server-only.",
-      "review_by": "2026-10-30"
-    },
-    "GET /api/trips/{trip_id}/relations": {
-      "audience": "server",
-      "consumers": [],
-      "feature_flag": null,
-      "lifecycle": "retiring",
-      "owner": "itinerary",
-      "reason": "Read-only non-merging Plan relation seam for future projections; no mobile consumer is enabled yet.",
-      "removal_trigger": "Add a reviewed mobile consumer or keep the endpoint server-only.",
-      "review_by": "2026-10-30"
-    },
     "GET /api/place-handoffs": {
       "audience": "server",
       "consumers": [],
@@ -2625,6 +2605,16 @@
       "owner": "relationships",
       "reason": "UUID relationship actions enforce explicit participant capability and optimistic revision checks before the mobile card switches authorities.",
       "removal_trigger": "Replace the legacy card action with this clean-break command in the mobile contract.",
+      "review_by": "2026-10-30"
+    },
+    "PUT /api/relationships/place-pull-grants/{sender_user_id}": {
+      "audience": "server",
+      "consumers": [],
+      "feature_flag": "PLACE_HANDOFF_PULL_ENABLED",
+      "lifecycle": "retiring",
+      "owner": "relationships",
+      "reason": "Recipient-owned place-pull consent is durable and independently gated; no mobile consent surface ships in this slice.",
+      "removal_trigger": "Add a reviewed recipient consent surface or keep place-pull disabled.",
       "review_by": "2026-10-30"
     },
     "GET /api/place-handoffs/{handoff_id}": {

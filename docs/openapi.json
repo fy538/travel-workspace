@@ -26194,7 +26194,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlaceHandoff"
+                  "$ref": "#/components/schemas/RelationshipPlaceHandoffResponse"
                 }
               }
             }
@@ -26277,7 +26277,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/PlaceHandoff"
+                    "$ref": "#/components/schemas/RelationshipPlaceHandoffResponse"
                   },
                   "title": "Response List Relationship Handoffs Api Relationships Place Handoffs Get"
                 }
@@ -26339,7 +26339,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlaceHandoff"
+                  "$ref": "#/components/schemas/RelationshipPlaceHandoffResponse"
                 }
               }
             }
@@ -26410,6 +26410,76 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/RelationshipPlaceHandoffTransition"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/relationships/place-pull-grants/{sender_user_id}": {
+      "put": {
+        "tags": [
+          "relationships"
+        ],
+        "summary": "Put Relationship Place Pull Grant",
+        "description": "Grant or revoke one sender's ability to leave expiring place-pull content.",
+        "operationId": "put_relationship_place_pull_grant_api_relationships_place_pull_grants__sender_user_id__put",
+        "parameters": [
+          {
+            "name": "sender_user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Sender User Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RelationshipPlacePullGrantRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RelationshipPlacePullGrantResponse"
                 }
               }
             }
@@ -62661,6 +62731,20 @@
         ],
         "title": "HandoffDeliveryMode"
       },
+      "HandoffEventType": {
+        "type": "string",
+        "enum": [
+          "created",
+          "delivered",
+          "opened",
+          "kept",
+          "dismissed",
+          "revoked",
+          "expired",
+          "open_together"
+        ],
+        "title": "HandoffEventType"
+      },
       "HandoffNarrationContext": {
         "properties": {
           "entity_type": {
@@ -77769,147 +77853,6 @@
         ],
         "title": "PlaceDossierListResponse"
       },
-      "PlaceHandoff": {
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Id"
-          },
-          "scope": {
-            "$ref": "#/components/schemas/backend__domains__relationships__models__RelationshipScope"
-          },
-          "sender_user_id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Sender User Id"
-          },
-          "recipient_user_id": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "uuid"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Recipient User Id"
-          },
-          "world_entity_id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "World Entity Id"
-          },
-          "conversation_id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Conversation Id"
-          },
-          "source_anchor_id": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "uuid"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Source Anchor Id"
-          },
-          "source_artifact_id": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "uuid"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Source Artifact Id"
-          },
-          "message": {
-            "type": "string",
-            "maxLength": 280,
-            "minLength": 1,
-            "title": "Message"
-          },
-          "artifact_ref": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 160
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Artifact Ref"
-          },
-          "permissions": {
-            "$ref": "#/components/schemas/HandoffPermissionEnvelope"
-          },
-          "delivery_mode": {
-            "$ref": "#/components/schemas/HandoffDeliveryMode",
-            "default": "send_now"
-          },
-          "status": {
-            "$ref": "#/components/schemas/HandoffStatus",
-            "default": "available"
-          },
-          "expires_at": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date-time"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Expires At"
-          },
-          "revision": {
-            "type": "integer",
-            "minimum": 0.0,
-            "title": "Revision",
-            "default": 0
-          },
-          "idempotency_key": {
-            "type": "string",
-            "maxLength": 200,
-            "minLength": 1,
-            "title": "Idempotency Key"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Created At"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Updated At"
-          }
-        },
-        "additionalProperties": false,
-        "type": "object",
-        "required": [
-          "id",
-          "scope",
-          "sender_user_id",
-          "world_entity_id",
-          "conversation_id",
-          "message",
-          "idempotency_key",
-          "created_at",
-          "updated_at"
-        ],
-        "title": "PlaceHandoff",
-        "description": "A grounded observation deliberately left for one person or circle."
-      },
       "PlaceHandoffActionRequest": {
         "properties": {
           "action": {
@@ -87480,6 +87423,61 @@
         "title": "RelatedDossierItem",
         "description": "Lightweight dossier stub for the Keep Reading carousel."
       },
+      "RelationshipHandoffPermissionRequest": {
+        "properties": {
+          "media_visibility": {
+            "type": "string",
+            "const": "recipient_only",
+            "title": "Media Visibility",
+            "default": "recipient_only"
+          },
+          "inference": {
+            "type": "string",
+            "enum": [
+              "contextual_only",
+              "none"
+            ],
+            "title": "Inference",
+            "default": "contextual_only"
+          },
+          "recall_and_reuse": {
+            "type": "string",
+            "const": "recipient_only",
+            "title": "Recall And Reuse",
+            "default": "recipient_only"
+          },
+          "naming": {
+            "type": "string",
+            "enum": [
+              "exact_place",
+              "nearby_only"
+            ],
+            "title": "Naming",
+            "default": "exact_place"
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "ask_before_action",
+              "no_action"
+            ],
+            "title": "Action",
+            "default": "ask_before_action"
+          },
+          "retention": {
+            "type": "string",
+            "enum": [
+              "until_revoked",
+              "until_expiry"
+            ],
+            "title": "Retention",
+            "default": "until_revoked"
+          }
+        },
+        "type": "object",
+        "title": "RelationshipHandoffPermissionRequest",
+        "description": "Sender-controlled permissions; recipient consent is never accepted here."
+      },
       "RelationshipMemoryClaim": {
         "properties": {
           "id": {
@@ -87652,21 +87650,15 @@
             "$ref": "#/components/schemas/HandoffAction"
           },
           "expected_revision": {
-            "anyOf": [
-              {
-                "type": "integer",
-                "minimum": 0.0
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "integer",
+            "minimum": 0.0,
             "title": "Expected Revision"
           }
         },
         "type": "object",
         "required": [
-          "action"
+          "action",
+          "expected_revision"
         ],
         "title": "RelationshipPlaceHandoffActionRequest"
       },
@@ -87730,7 +87722,7 @@
             "title": "Artifact Ref"
           },
           "permissions": {
-            "$ref": "#/components/schemas/HandoffPermissionEnvelope"
+            "$ref": "#/components/schemas/RelationshipHandoffPermissionRequest"
           },
           "delivery_mode": {
             "$ref": "#/components/schemas/HandoffDeliveryMode",
@@ -87766,17 +87758,157 @@
         "title": "RelationshipPlaceHandoffCreateRequest",
         "description": "Create a handoff for one explicitly named recipient."
       },
+      "RelationshipPlaceHandoffResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/backend__domains__relationships__models__RelationshipScope"
+          },
+          "sender_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Sender User Id"
+          },
+          "recipient_user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Recipient User Id"
+          },
+          "world_entity_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "World Entity Id"
+          },
+          "conversation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Conversation Id"
+          },
+          "source_anchor_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Anchor Id"
+          },
+          "source_artifact_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Artifact Id"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "artifact_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Artifact Ref"
+          },
+          "permissions": {
+            "$ref": "#/components/schemas/HandoffPermissionEnvelope"
+          },
+          "delivery_mode": {
+            "$ref": "#/components/schemas/HandoffDeliveryMode"
+          },
+          "status": {
+            "$ref": "#/components/schemas/HandoffStatus"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "revision": {
+            "type": "integer",
+            "title": "Revision"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "title": "Idempotency Key"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "scope",
+          "sender_user_id",
+          "conversation_id",
+          "message",
+          "permissions",
+          "delivery_mode",
+          "status",
+          "revision",
+          "idempotency_key",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "RelationshipPlaceHandoffResponse",
+        "description": "Viewer-safe projection that cannot leak terminal or nearby-only content."
+      },
       "RelationshipPlaceHandoffTransition": {
         "properties": {
           "handoff": {
-            "$ref": "#/components/schemas/PlaceHandoff"
+            "$ref": "#/components/schemas/RelationshipPlaceHandoffResponse"
           },
           "action": {
             "$ref": "#/components/schemas/HandoffAction"
           },
           "event_type": {
-            "type": "string",
-            "title": "Event Type"
+            "$ref": "#/components/schemas/HandoffEventType"
           },
           "changed": {
             "type": "boolean",
@@ -87803,6 +87935,67 @@
           "changed"
         ],
         "title": "RelationshipPlaceHandoffTransition"
+      },
+      "RelationshipPlacePullGrantRequest": {
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "title": "Enabled"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Revision"
+          }
+        },
+        "type": "object",
+        "required": [
+          "enabled",
+          "expected_revision"
+        ],
+        "title": "RelationshipPlacePullGrantRequest"
+      },
+      "RelationshipPlacePullGrantResponse": {
+        "properties": {
+          "recipient_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Recipient User Id"
+          },
+          "sender_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Sender User Id"
+          },
+          "enabled": {
+            "type": "boolean",
+            "title": "Enabled"
+          },
+          "revision": {
+            "type": "integer",
+            "title": "Revision"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "recipient_user_id",
+          "sender_user_id",
+          "enabled",
+          "revision",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "RelationshipPlacePullGrantResponse"
       },
       "RelationshipScope-Input": {
         "properties": {
