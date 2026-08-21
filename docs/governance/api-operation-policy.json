@@ -2539,6 +2539,16 @@
       "removal_trigger": "Add a reviewed mobile consumer or remove the endpoint.",
       "review_by": "2026-10-30"
     },
+    "GET /api/place-handoffs/{handoff_id}/occasion-proposal": {
+      "audience": "server",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "relationships",
+      "reason": "The durable Occasion bridge is an owner-checked server seam until a named mobile Occasion reader and device evidence exist.",
+      "removal_trigger": "Add a reviewed mobile consumer or remove the endpoint.",
+      "review_by": "2026-10-30"
+    },
     "GET /api/intake/anchors": {
       "audience": "app",
       "consumers": [

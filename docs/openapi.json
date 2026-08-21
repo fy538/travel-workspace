@@ -25807,6 +25807,65 @@
         }
       }
     },
+    "/api/place-handoffs/{handoff_id}/occasion-proposal": {
+      "get": {
+        "tags": [
+          "place-handoffs"
+        ],
+        "summary": "Get Handoff Occasion Proposal",
+        "operationId": "get_handoff_occasion_proposal_api_place_handoffs__handoff_id__occasion_proposal_get",
+        "parameters": [
+          {
+            "name": "handoff_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Handoff Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlaceHandoffOccasionProposalResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/itinerary/days/{day_id}/add-venue-preview": {
       "post": {
         "tags": [
@@ -76827,7 +76886,7 @@
           },
           "message": {
             "type": "string",
-            "maxLength": 4000,
+            "maxLength": 280,
             "minLength": 1,
             "title": "Message"
           },
@@ -76835,7 +76894,8 @@
             "anyOf": [
               {
                 "additionalProperties": true,
-                "type": "object"
+                "type": "object",
+                "maxProperties": 8
               },
               {
                 "type": "null"
@@ -76949,6 +77009,7 @@
           "kept",
           "dismissed",
           "revoked",
+          "expired",
           "open_together"
         ],
         "title": "PlaceHandoffEventType"
@@ -76979,6 +77040,93 @@
           "items"
         ],
         "title": "PlaceHandoffListResponse"
+      },
+      "PlaceHandoffOccasionProposalResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "handoff_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Handoff Id"
+          },
+          "sender_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Sender User Id"
+          },
+          "recipient_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Recipient User Id"
+          },
+          "place_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Id"
+          },
+          "conversation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Conversation Id"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "status": {
+            "$ref": "#/components/schemas/PlaceHandoffOccasionProposalStatus"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "handoff_id",
+          "sender_user_id",
+          "recipient_user_id",
+          "conversation_id",
+          "status",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "PlaceHandoffOccasionProposalResponse"
+      },
+      "PlaceHandoffOccasionProposalStatus": {
+        "type": "string",
+        "enum": [
+          "proposed",
+          "withdrawn",
+          "applied",
+          "rejected",
+          "expired"
+        ],
+        "title": "PlaceHandoffOccasionProposalStatus"
       },
       "PlaceHandoffPermissions": {
         "properties": {
@@ -77039,7 +77187,14 @@
             "title": "Recipient User Id"
           },
           "place_id": {
-            "type": "integer",
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Place Id"
           },
           "place_name": {
@@ -77129,6 +77284,28 @@
             "type": "string",
             "format": "date-time",
             "title": "Updated At"
+          },
+          "occasion_proposal_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occasion Proposal Id"
+          },
+          "occasion_proposal_status": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlaceHandoffOccasionProposalStatus"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -77136,7 +77313,6 @@
           "id",
           "sender_user_id",
           "recipient_user_id",
-          "place_id",
           "place_name",
           "place_slug",
           "conversation_id",
