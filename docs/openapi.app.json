@@ -43142,7 +43142,7 @@
           "relationship_scope": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/RelationshipScope"
+                "$ref": "#/components/schemas/backend__core__relationship_scope__RelationshipScope-Output"
               },
               {
                 "type": "null"
@@ -73681,47 +73681,6 @@
         "title": "RelationshipMemoryClaim",
         "description": "One governed claim; corrections supersede rather than erase history."
       },
-      "RelationshipScope": {
-        "properties": {
-          "kind": {
-            "$ref": "#/components/schemas/RelationshipScopeKind"
-          },
-          "scope_id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Scope Id"
-          },
-          "revision": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 120,
-                "minLength": 1
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Revision"
-          }
-        },
-        "additionalProperties": false,
-        "type": "object",
-        "required": [
-          "kind",
-          "scope_id"
-        ],
-        "title": "RelationshipScope",
-        "description": "Stable identity of the relationship context used by one AI workflow."
-      },
-      "RelationshipScopeKind": {
-        "type": "string",
-        "enum": [
-          "circle",
-          "trip_roster"
-        ],
-        "title": "RelationshipScopeKind"
-      },
       "RelationshipVisibilityRequest": {
         "properties": {
           "granularity": {
@@ -91398,6 +91357,47 @@
         ],
         "title": "Provenance",
         "description": "Where a result came from and how sensitive it is.\n\n``label`` is the short, ALL-CAPS-in-UI string the row displays\n(e.g. \"FROM YOUR ATLAS\", \"YOUR TRIP\", \"SHARED BY ANA\", \"DISCOVER GUIDE\").\n``privacy`` gates rendering: a ``private`` row must always show its label."
+      },
+      "backend__core__relationship_scope__RelationshipScope-Output": {
+        "properties": {
+          "kind": {
+            "$ref": "#/components/schemas/backend__core__relationship_scope__RelationshipScopeKind"
+          },
+          "scope_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Scope Id"
+          },
+          "revision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind",
+          "scope_id"
+        ],
+        "title": "RelationshipScope",
+        "description": "Stable identity of the relationship context used by one AI workflow."
+      },
+      "backend__core__relationship_scope__RelationshipScopeKind": {
+        "type": "string",
+        "enum": [
+          "circle",
+          "trip_roster"
+        ],
+        "title": "RelationshipScopeKind"
       }
     }
   }

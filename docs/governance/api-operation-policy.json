@@ -2499,6 +2499,46 @@
       "removal_trigger": "Add a reviewed mobile consumer or remove the endpoint.",
       "review_by": "2026-10-30"
     },
+    "GET /api/relationships/place-handoffs": {
+      "audience": "server",
+      "consumers": [],
+      "feature_flag": "RELATIONSHIP_UUID_HANDOFFS_ENABLED",
+      "lifecycle": "retiring",
+      "owner": "relationships",
+      "reason": "Clean-break UUID relationship reads are available for server and acceptance work while the mobile contract remains on the legacy adapter.",
+      "removal_trigger": "Replace with the adopted mobile relationship reader or remove the dark namespace.",
+      "review_by": "2026-10-30"
+    },
+    "GET /api/relationships/place-handoffs/{handoff_id}": {
+      "audience": "server",
+      "consumers": [],
+      "feature_flag": "RELATIONSHIP_UUID_HANDOFFS_ENABLED",
+      "lifecycle": "retiring",
+      "owner": "relationships",
+      "reason": "Clean-break UUID handoff detail is participant-scoped and remains dark until the app cutover is verified.",
+      "removal_trigger": "Replace with the adopted mobile relationship reader or remove the dark namespace.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/relationships/place-handoffs": {
+      "audience": "server",
+      "consumers": [],
+      "feature_flag": "RELATIONSHIP_UUID_HANDOFFS_ENABLED",
+      "lifecycle": "retiring",
+      "owner": "relationships",
+      "reason": "UUID-only addressed handoff creation is the clean-break sender authority; it is gated separately from the integer-place adapter.",
+      "removal_trigger": "Replace with the adopted mobile sender surface or remove the dark namespace.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/relationships/place-handoffs/{handoff_id}/actions": {
+      "audience": "server",
+      "consumers": [],
+      "feature_flag": "RELATIONSHIP_UUID_HANDOFFS_ENABLED",
+      "lifecycle": "retiring",
+      "owner": "relationships",
+      "reason": "UUID relationship actions enforce explicit participant capability and optimistic revision checks before the mobile card switches authorities.",
+      "removal_trigger": "Replace the legacy card action with this clean-break command in the mobile contract.",
+      "review_by": "2026-10-30"
+    },
     "GET /api/place-handoffs/{handoff_id}": {
       "audience": "server",
       "consumers": [],
@@ -2642,6 +2682,21 @@
       "owner": "intake",
       "reason": "Explicit activation is a server-owned handoff into a bounded lived-experience opening; it is not a generic mobile proposal mutation.",
       "removal_trigger": "Replace only when the activation boundary is owned by an equivalent canonical domain writer.",
+      "review_by": "2026-10-30"
+    },
+    "GET /api/intake/submissions/{submission_id}/proposals/{proposal_id}/activation": {
+      "audience": "server",
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "intake-activation-readback"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "intake",
+      "reason": "The activation readback is a server-owned receipt surface for the explicit intake-to-opening bridge.",
+      "removal_trigger": "Replace only when an equivalent canonical activation receipt reader exists.",
       "review_by": "2026-10-30"
     },
     "GET /api/intake/submissions/{submission_id}": {
