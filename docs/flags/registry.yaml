@@ -92,6 +92,43 @@ flags:
       Default-off bridge from accepted place-content primitives into legacy
       semantic consumers. It grants no action or push authority.
 
+  - name: ADDRESSED_PLACE_HANDOFFS_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:253
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    target_journey: P07
+    cohort: canonical_dogfood only after a named recipient consent flow is device-verified
+    kill_switch: Set ADDRESSED_PLACE_HANDOFFS_ENABLED=false; all addressed handoff reads and writes return unavailable.
+    promotion_removal_question: >
+      By 2026-10-30, has a pair-scoped place handoff flow demonstrated
+      recipient consent, privacy controls, and device evidence, or should the
+      dark server contract be removed?
+    notes: >
+      Default-off server gate for one-recipient place observations. It does not
+      enable public sharing, place-triggered push, or automatic memory claims.
+
+  - name: PLACE_HANDOFF_PULL_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:259
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    target_journey: P07
+    cohort: canonical_dogfood only after place-context pull is device-verified
+    kill_switch: Set PLACE_HANDOFF_PULL_ENABLED=false; recipient-initiated place pulls and actions remain unavailable.
+    promotion_removal_question: >
+      By 2026-10-30, has recipient-initiated place recall been validated with
+      explicit consent and a quiet branch, or should this gate be removed?
+    notes: >
+      Independent gate for place-context recall; send-now handoffs do not grant
+      pull authority.
+
   - name: SPATIAL_REACHABILITY_NEARBY_ENABLED
     repo: travel-agent
     location: backend/core/feature_flags.py:37
