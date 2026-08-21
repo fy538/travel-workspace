@@ -2469,6 +2469,26 @@
       "removal_trigger": "Remove only after the Plan Shape migration is either fully adopted or explicitly retired.",
       "review_by": "2026-10-30"
     },
+    "GET /api/trips/{trip_id}/planning-windows": {
+      "audience": "server",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "itinerary",
+      "reason": "Read-only participant horizon seam for future Plan projections; no mobile consumer is enabled yet.",
+      "removal_trigger": "Add a reviewed mobile consumer or keep the endpoint server-only.",
+      "review_by": "2026-10-30"
+    },
+    "GET /api/trips/{trip_id}/relations": {
+      "audience": "server",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "itinerary",
+      "reason": "Read-only non-merging Plan relation seam for future projections; no mobile consumer is enabled yet.",
+      "removal_trigger": "Add a reviewed mobile consumer or keep the endpoint server-only.",
+      "review_by": "2026-10-30"
+    },
     "GET /api/intake/submissions/{submission_id}/interpretations": {
       "audience": "server",
       "consumers": [],
@@ -2520,42 +2540,66 @@
       "review_by": "2026-10-30"
     },
     "GET /api/intake/submissions/{submission_id}": {
-      "audience": "server",
-      "consumers": [],
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "getIntakeSubmission",
+          "source": "travel-app/utils/api/httpMemoryEndpoints.ts"
+        }
+      ],
       "feature_flag": null,
-      "lifecycle": "retiring",
+      "lifecycle": "active",
       "owner": "intake",
-      "reason": "Internal intake-v2 transport has no approved mobile consumer yet.",
+      "reason": "The share capture flow needs an owner-scoped custody status to resume after a background or network interruption.",
       "removal_trigger": "Add an approved mobile consumer or keep this transport server-only.",
       "review_by": "2026-10-30"
     },
     "POST /api/intake/submissions": {
-      "audience": "server",
-      "consumers": [],
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "createIntakeSubmission",
+          "source": "travel-app/utils/api/httpMemoryEndpoints.ts"
+        }
+      ],
       "feature_flag": null,
-      "lifecycle": "retiring",
+      "lifecycle": "active",
       "owner": "intake",
-      "reason": "Internal intake-v2 transport has no approved mobile consumer yet.",
+      "reason": "The native share capture begins with an idempotent owner-scoped submission envelope before any bytes are uploaded.",
       "removal_trigger": "Add an approved mobile consumer or keep this transport server-only.",
       "review_by": "2026-10-30"
     },
     "POST /api/intake/submissions/{submission_id}/finalize": {
-      "audience": "server",
-      "consumers": [],
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "finalizeIntakeSubmission",
+          "source": "travel-app/utils/api/httpMemoryEndpoints.ts"
+        }
+      ],
       "feature_flag": null,
-      "lifecycle": "retiring",
+      "lifecycle": "active",
       "owner": "intake",
-      "reason": "Internal intake-v2 transport has no approved mobile consumer yet.",
+      "reason": "Finalization is the custody release point and must be retriable from mobile after every source object has server-computed metadata.",
       "removal_trigger": "Add an approved mobile consumer or keep this transport server-only.",
       "review_by": "2026-10-30"
     },
     "POST /api/intake/submissions/{submission_id}/objects/{object_id}/upload": {
-      "audience": "server",
-      "consumers": [],
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "uploadIntakeSourceObject",
+          "source": "travel-app/utils/api/httpMemoryEndpoints.ts"
+        }
+      ],
       "feature_flag": null,
-      "lifecycle": "retiring",
+      "lifecycle": "active",
       "owner": "intake",
-      "reason": "Internal intake-v2 upload transport; no mobile consumer is declared.",
+      "reason": "Multipart custody upload avoids base64 navigation parameters and preserves the existing auth/retry transport.",
       "removal_trigger": "Add an approved mobile consumer or keep this transport server-only.",
       "review_by": "2026-10-30"
     },

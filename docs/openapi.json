@@ -24136,6 +24136,134 @@
         }
       }
     },
+    "/api/trips/{trip_id}/planning-windows": {
+      "get": {
+        "tags": [
+          "plan"
+        ],
+        "summary": "Get Planning Windows",
+        "description": "Return only the caller's bounded planning horizon for this Plan.",
+        "operationId": "get_planning_windows_api_trips__trip_id__planning_windows_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ParticipationWindow"
+                  },
+                  "title": "Response Get Planning Windows Api Trips  Trip Id  Planning Windows Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trips/{trip_id}/relations": {
+      "get": {
+        "tags": [
+          "plan"
+        ],
+        "summary": "Get Plan Relations",
+        "description": "Return explicit non-merging relation edges touching this Plan.",
+        "operationId": "get_plan_relations_api_trips__trip_id__relations_get",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlanRelation"
+                  },
+                  "title": "Response Get Plan Relations Api Trips  Trip Id  Relations Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/plan-state": {
       "get": {
         "tags": [
@@ -74791,6 +74919,83 @@
         ],
         "title": "ParticipationScope"
       },
+      "ParticipationWindow": {
+        "properties": {
+          "window_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Window Id"
+          },
+          "plan_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Plan Id"
+          },
+          "participant_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Participant Id"
+          },
+          "starts_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Starts At"
+          },
+          "ends_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Ends At"
+          },
+          "spatial_scope": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Spatial Scope"
+          },
+          "state": {
+            "$ref": "#/components/schemas/PlanningWindowState",
+            "default": "tentative"
+          },
+          "source": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Source",
+            "default": "user"
+          },
+          "provenance": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 240,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provenance"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "window_id",
+          "plan_id",
+          "participant_id",
+          "starts_at",
+          "ends_at"
+        ],
+        "title": "ParticipationWindow",
+        "description": "A participant's bounded horizon inside a Plan.\n\n``spatial_scope`` is deliberately an opaque canonical key.  It can be a\ncity/place slug or a controlled region key, but this contract never turns\na fuzzy location into a commitment."
+      },
       "PatchTripRequest": {
         "properties": {
           "title": {
@@ -80008,6 +80213,121 @@
         "title": "PlanReasoning",
         "description": "Trip-level planner reasoning \u2014 the \"How Vesper planned this\" disclosure.\n\nEach field is one stage of the planner's thinking; only non-empty stages are\npopulated (the builder drops blanks). Version-immutable. None when the\nitinerary wasn't agent-generated (e.g. a manual/older version)."
       },
+      "PlanRelation": {
+        "properties": {
+          "relation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Relation Id"
+          },
+          "source_plan_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Source Plan Id"
+          },
+          "target_plan_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Target Plan Id"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/PlanRelationKind"
+          },
+          "participant_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Participant Ids"
+          },
+          "spatial_scope": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Spatial Scope"
+          },
+          "temporal_overlap_start": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Temporal Overlap Start"
+          },
+          "temporal_overlap_end": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Temporal Overlap End"
+          },
+          "evidence_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Evidence Ids"
+          },
+          "source": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Source",
+            "default": "derived"
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Observed At"
+          },
+          "private_reason_hidden": {
+            "type": "boolean",
+            "title": "Private Reason Hidden",
+            "default": true
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "relation_id",
+          "source_plan_id",
+          "target_plan_id",
+          "kind",
+          "observed_at"
+        ],
+        "title": "PlanRelation",
+        "description": "An explicit, inspectable edge between two Plans.\n\nRelations are not merge instructions.  They explain why projections can\nintersect while preserving independent dates, membership, and authority."
+      },
+      "PlanRelationKind": {
+        "type": "string",
+        "enum": [
+          "overlaps",
+          "contains",
+          "joins",
+          "splits",
+          "rejoins",
+          "derived_from"
+        ],
+        "title": "PlanRelationKind"
+      },
       "PlanShape": {
         "properties": {
           "contract_version": {
@@ -80760,6 +81080,17 @@
         ],
         "title": "PlanningSavedPlaceBootstrap",
         "description": "A saved place the client used as a trip-draft starting point."
+      },
+      "PlanningWindowState": {
+        "type": "string",
+        "enum": [
+          "intended",
+          "tentative",
+          "confirmed",
+          "observed",
+          "closed"
+        ],
+        "title": "PlanningWindowState"
       },
       "PostJoinPayoff": {
         "properties": {
