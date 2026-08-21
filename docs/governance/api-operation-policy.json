@@ -2520,13 +2520,19 @@
       "review_by": "2026-10-30"
     },
     "POST /api/place-handoffs/{handoff_id}/actions": {
-      "audience": "server",
-      "consumers": [],
-      "feature_flag": null,
-      "lifecycle": "retiring",
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "actOnPlaceHandoff",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": "ADDRESSED_PLACE_HANDOFFS_ENABLED",
+      "lifecycle": "active",
       "owner": "relationships",
-      "reason": "Recipient actions remain unshipped until pull consent and device evidence are complete.",
-      "removal_trigger": "Add a reviewed mobile consumer or remove the endpoint.",
+      "reason": "The recipient card has a typed, server-authorized action seam; the release flag remains default-off pending device verification.",
+      "removal_trigger": "Remove the mobile card action or replace it with the clean-break Relationships command.",
       "review_by": "2026-10-30"
     },
     "GET /api/place-handoffs/{handoff_id}/events": {
