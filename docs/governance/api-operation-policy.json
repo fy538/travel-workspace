@@ -2500,40 +2500,64 @@
       "review_by": "2026-10-30"
     },
     "GET /api/relationships/place-handoffs": {
-      "audience": "server",
-      "consumers": [],
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "listRelationshipPlaceHandoffs",
+          "source": "travel-app/data/relationshipPlaceHandoffs.ts"
+        }
+      ],
       "feature_flag": "RELATIONSHIP_UUID_HANDOFFS_ENABLED",
-      "lifecycle": "retiring",
+      "lifecycle": "active",
       "owner": "relationships",
       "reason": "Clean-break UUID relationship reads are available for server and acceptance work while the mobile contract remains on the legacy adapter.",
       "removal_trigger": "Replace with the adopted mobile relationship reader or remove the dark namespace.",
       "review_by": "2026-10-30"
     },
     "GET /api/relationships/place-handoffs/{handoff_id}": {
-      "audience": "server",
-      "consumers": [],
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "getRelationshipPlaceHandoff",
+          "source": "travel-app/data/relationshipPlaceHandoffs.ts"
+        }
+      ],
       "feature_flag": "RELATIONSHIP_UUID_HANDOFFS_ENABLED",
-      "lifecycle": "retiring",
+      "lifecycle": "active",
       "owner": "relationships",
       "reason": "Clean-break UUID handoff detail is participant-scoped and remains dark until the app cutover is verified.",
       "removal_trigger": "Replace with the adopted mobile relationship reader or remove the dark namespace.",
       "review_by": "2026-10-30"
     },
     "POST /api/relationships/place-handoffs": {
-      "audience": "server",
-      "consumers": [],
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "createRelationshipPlaceHandoff",
+          "source": "travel-app/data/relationshipPlaceHandoffs.ts"
+        }
+      ],
       "feature_flag": "RELATIONSHIP_UUID_HANDOFFS_ENABLED",
-      "lifecycle": "retiring",
+      "lifecycle": "active",
       "owner": "relationships",
       "reason": "UUID-only addressed handoff creation is the clean-break sender authority; it is gated separately from the integer-place adapter.",
       "removal_trigger": "Replace with the adopted mobile sender surface or remove the dark namespace.",
       "review_by": "2026-10-30"
     },
     "POST /api/relationships/place-handoffs/{handoff_id}/actions": {
-      "audience": "server",
-      "consumers": [],
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "actOnRelationshipPlaceHandoff",
+          "source": "travel-app/data/relationshipPlaceHandoffs.ts"
+        }
+      ],
       "feature_flag": "RELATIONSHIP_UUID_HANDOFFS_ENABLED",
-      "lifecycle": "retiring",
+      "lifecycle": "active",
       "owner": "relationships",
       "reason": "UUID relationship actions enforce explicit participant capability and optimistic revision checks before the mobile card switches authorities.",
       "removal_trigger": "Replace the legacy card action with this clean-break command in the mobile contract.",
