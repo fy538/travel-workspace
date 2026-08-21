@@ -16,6 +16,7 @@ from api_contract_audit import (  # noqa: E402
     audit,
     discover_mobile_consumers,
     load_openapi,
+    load_policy,
     normalize_path,
 )
 
@@ -105,6 +106,26 @@ class APIContractAuditTests(unittest.TestCase):
             "POST /api/things/{thing_id} has no detected or declared consumer",
             [f.message for f in findings],
         )
+
+    def test_duplicate_policy_operation_key_fails_closed(self) -> None:
+        _openapi, policy = self._files([])
+        policy.write_text(
+            """{
+              "version": 1,
+              "defaults": {},
+              "operations": {
+                "GET /api/things": {},
+                "GET /api/things": {}
+              },
+              "retired_operations": {}
+            }""",
+            encoding="utf-8",
+        )
+
+        loaded, findings = load_policy(policy)
+
+        self.assertEqual(loaded, {})
+        self.assertEqual({finding.code for finding in findings}, {"duplicate-policy-key"})
 
     def test_dark_operation_with_product_caller_fails(self) -> None:
         key = "GET /api/things/{thing_id}"

@@ -92,6 +92,28 @@ class Finding:
     message: str
 
 
+class _DuplicateJsonKey(ValueError):
+    pass
+
+
+def _load_json_object(path: Path) -> dict[str, Any]:
+    def reject_duplicate_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+        result: dict[str, Any] = {}
+        for key, value in pairs:
+            if key in result:
+                raise _DuplicateJsonKey(key)
+            result[key] = value
+        return result
+
+    value = json.loads(
+        path.read_text(encoding="utf-8"),
+        object_pairs_hook=reject_duplicate_keys,
+    )
+    if not isinstance(value, dict):
+        raise ValueError("root must be a JSON object")
+    return value
+
+
 def _strip_ts_substitutions(value: str) -> str:
     out: list[str] = []
     index = 0
@@ -447,7 +469,17 @@ def _path_pattern(path: str) -> re.Pattern[str]:
 def load_policy(path: Path) -> tuple[dict[str, Any], list[Finding]]:
     if not path.exists():
         return {}, [Finding("missing-policy", f"operation policy missing at {path}")]
-    policy = json.loads(path.read_text(encoding="utf-8"))
+    try:
+        policy = _load_json_object(path)
+    except _DuplicateJsonKey as exc:
+        return {}, [
+            Finding(
+                "duplicate-policy-key",
+                f"operation policy contains duplicate JSON key {exc.args[0]!r}",
+            )
+        ]
+    except (json.JSONDecodeError, ValueError) as exc:
+        return {}, [Finding("invalid-policy-json", f"operation policy is invalid JSON: {exc}")]
     findings: list[Finding] = []
     if policy.get("version") != 1:
         findings.append(
