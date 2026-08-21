@@ -80332,6 +80332,7 @@
         "properties": {
           "contract_version": {
             "type": "string",
+            "const": "plan-shape-v1",
             "title": "Contract Version",
             "default": "plan-shape-v1"
           },
@@ -80349,12 +80350,17 @@
             "$ref": "#/components/schemas/ShapeProjection"
           },
           "projection_mode": {
-            "type": "string",
-            "title": "Projection Mode",
+            "$ref": "#/components/schemas/ShapeProjectionMode",
             "default": "viewer_scoped"
           },
           "lifecycle": {
             "type": "string",
+            "enum": [
+              "ideation",
+              "pre_trip",
+              "during_trip",
+              "post_trip"
+            ],
             "title": "Lifecycle"
           },
           "title": {
@@ -88381,9 +88387,7 @@
             "title": "Label"
           },
           "authority": {
-            "type": "string",
-            "minLength": 1,
-            "title": "Authority"
+            "$ref": "#/components/schemas/ShapeActionAuthority"
           },
           "reversible": {
             "type": "boolean",
@@ -88404,6 +88408,16 @@
           "authority"
         ],
         "title": "ShapeAction"
+      },
+      "ShapeActionAuthority": {
+        "type": "string",
+        "enum": [
+          "viewer",
+          "direct",
+          "confirm",
+          "propose"
+        ],
+        "title": "ShapeActionAuthority"
       },
       "ShapeActionKey": {
         "type": "string",
@@ -88472,10 +88486,28 @@
           },
           "commitment_state": {
             "type": "string",
+            "enum": [
+              "open",
+              "suggested",
+              "proposed",
+              "tentative",
+              "confirmed",
+              "handed_off",
+              "booking_in_progress",
+              "booked",
+              "cancelled",
+              "completed"
+            ],
             "title": "Commitment State"
           },
           "participation_scope": {
             "type": "string",
+            "enum": [
+              "personal",
+              "subgroup",
+              "whole_group",
+              "unknown"
+            ],
             "title": "Participation Scope"
           },
           "lane": {
@@ -88492,7 +88524,13 @@
           "viewer_attendance": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "attending",
+                  "maybe",
+                  "not_attending",
+                  "undecided"
+                ]
               },
               {
                 "type": "null"
@@ -88503,7 +88541,12 @@
           "occurrence_state": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "planned",
+                  "happened",
+                  "did_not_happen"
+                ]
               },
               {
                 "type": "null"
@@ -88673,6 +88716,15 @@
           "whole"
         ],
         "title": "ShapeProjection"
+      },
+      "ShapeProjectionMode": {
+        "type": "string",
+        "enum": [
+          "viewer_scoped",
+          "legacy_shared",
+          "mixed"
+        ],
+        "title": "ShapeProjectionMode"
       },
       "ShapeSummary": {
         "properties": {
