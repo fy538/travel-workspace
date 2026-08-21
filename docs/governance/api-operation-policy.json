@@ -2629,6 +2629,21 @@
       "removal_trigger": "Add a named, domain-specific mobile consumer or remove the generic intake proposal transport.",
       "review_by": "2026-10-30"
     },
+    "POST /api/intake/submissions/{submission_id}/proposals/{proposal_id}/activate": {
+      "audience": "server",
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "intake-activation-context"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "intake",
+      "reason": "Explicit activation is a server-owned handoff into a bounded lived-experience opening; it is not a generic mobile proposal mutation.",
+      "removal_trigger": "Replace only when the activation boundary is owned by an equivalent canonical domain writer.",
+      "review_by": "2026-10-30"
+    },
     "GET /api/intake/submissions/{submission_id}": {
       "audience": "app",
       "consumers": [

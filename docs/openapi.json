@@ -13432,7 +13432,7 @@
             "in": "query",
             "required": false,
             "schema": {
-              "$ref": "#/components/schemas/ProjectionMode",
+              "$ref": "#/components/schemas/PublicProjectionMode",
               "default": "my"
             }
           },
@@ -13459,7 +13459,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ExperienceProjection"
+                  "$ref": "#/components/schemas/PublicExperienceProjection"
                 }
               }
             }
@@ -17161,6 +17161,86 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/IntakeInterpretationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/intake/submissions/{submission_id}/proposals/{proposal_id}/activate": {
+      "post": {
+        "tags": [
+          "intake"
+        ],
+        "summary": "Activate Intake Consequence Proposal",
+        "description": "Open an accepted proposal after explicit canonical owner binding.\n\nThis creates only the content-free lived-experience opening. The existing\ndomain owner still controls any Plan, Occasion, memory, or notification\nmutation. A proposal with unresolved bindings stays pending and returns a\nconflict rather than guessing from the candidate payload.",
+        "operationId": "activate_intake_consequence_proposal_api_intake_submissions__submission_id__proposals__proposal_id__activate_post",
+        "parameters": [
+          {
+            "name": "submission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Submission Id"
+            }
+          },
+          {
+            "name": "proposal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Proposal Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActivateIntakeProposalRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivateIntakeProposalResponse"
                 }
               }
             }
@@ -41534,6 +41614,116 @@
         ],
         "title": "ActionReceiptsListResponse"
       },
+      "ActivateIntakeProposalRequest": {
+        "properties": {
+          "experience_scope": {
+            "$ref": "#/components/schemas/ExperienceScope"
+          },
+          "entity_refs": {
+            "items": {
+              "$ref": "#/components/schemas/EntityRef"
+            },
+            "type": "array",
+            "maxItems": 16,
+            "title": "Entity Refs"
+          },
+          "plan_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlanRevisionRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "relationship_scope": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RelationshipScope"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "recipient_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Recipient Id"
+          },
+          "audience": {
+            "$ref": "#/components/schemas/DecisionVisibility",
+            "default": "private"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "experience_scope"
+        ],
+        "title": "ActivateIntakeProposalRequest",
+        "description": "Explicit owner bindings required to open one accepted proposal."
+      },
+      "ActivateIntakeProposalResponse": {
+        "properties": {
+          "handoff_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Handoff Id"
+          },
+          "proposal_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Proposal Id"
+          },
+          "opening_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Opening Id"
+          },
+          "workflow_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Workflow Id"
+          },
+          "envelope_fingerprint": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$",
+            "title": "Envelope Fingerprint"
+          },
+          "composition_scope_key": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$",
+            "title": "Composition Scope Key"
+          },
+          "status": {
+            "type": "string",
+            "const": "handed_off",
+            "title": "Status",
+            "default": "handed_off"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "handoff_id",
+          "proposal_id",
+          "opening_id",
+          "workflow_id",
+          "envelope_fingerprint",
+          "composition_scope_key"
+        ],
+        "title": "ActivateIntakeProposalResponse",
+        "description": "Content-free receipt for a durable opening created from Intake."
+      },
       "ActivityActionRequest": {
         "properties": {
           "action": {
@@ -48873,6 +49063,33 @@
               }
             ],
             "title": "Proposal Id"
+          },
+          "handoff_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Handoff Id"
+          },
+          "handoff_action": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "keep",
+                  "open_together"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Handoff Action"
           }
         },
         "additionalProperties": false,
@@ -48888,7 +49105,8 @@
         "enum": [
           "place",
           "trip_plan",
-          "trip_proposal"
+          "trip_proposal",
+          "place_handoff_action"
         ],
         "title": "CardActionDestinationKind",
         "description": "Canonical reader surfaces a resolved action may open.\n\nThese are domain destinations rather than client routes.  The mobile\napplication owns its own route mapping after the server has re-authorized\nthe requested action against the persisted message."
@@ -60334,66 +60552,6 @@
         ],
         "title": "ExperienceOutcomeFeedback",
         "description": "One person's correctable verdict about one confirmed experience.\n\nThis is deliberately not group truth and not a free-text memory. The\ncompact vocabulary is safe to carry into private planning context without\nexposing why another participant felt differently."
-      },
-      "ExperienceProjection": {
-        "properties": {
-          "viewer_id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Viewer Id"
-          },
-          "mode": {
-            "$ref": "#/components/schemas/ProjectionMode"
-          },
-          "plan_ids": {
-            "items": {
-              "type": "string",
-              "format": "uuid"
-            },
-            "type": "array",
-            "title": "Plan Ids"
-          },
-          "occasion_ids": {
-            "items": {
-              "type": "string",
-              "format": "uuid"
-            },
-            "type": "array",
-            "title": "Occasion Ids"
-          },
-          "commitments": {
-            "items": {
-              "$ref": "#/components/schemas/ProjectedCommitment"
-            },
-            "type": "array",
-            "title": "Commitments"
-          },
-          "omitted_private_count": {
-            "type": "integer",
-            "minimum": 0.0,
-            "title": "Omitted Private Count",
-            "default": 0
-          },
-          "unknowns": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array",
-            "title": "Unknowns",
-            "default": []
-          }
-        },
-        "additionalProperties": false,
-        "type": "object",
-        "required": [
-          "viewer_id",
-          "mode",
-          "plan_ids",
-          "occasion_ids",
-          "commitments"
-        ],
-        "title": "ExperienceProjection",
-        "description": "The minimum product read model shared by Home, chat, and Places."
       },
       "ExperienceResponse": {
         "properties": {
@@ -81469,6 +81627,63 @@
         ],
         "title": "PlanRelationKind"
       },
+      "PlanRevisionRef": {
+        "properties": {
+          "contract_version": {
+            "type": "integer",
+            "const": 1,
+            "title": "Contract Version",
+            "default": 1
+          },
+          "plan_kind": {
+            "type": "string",
+            "const": "trip",
+            "title": "Plan Kind",
+            "default": "trip"
+          },
+          "plan_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Plan Id"
+          },
+          "revision_kind": {
+            "type": "string",
+            "const": "itinerary_version",
+            "title": "Revision Kind",
+            "default": "itinerary_version"
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Revision"
+          },
+          "projection_version": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$",
+            "title": "Projection Version"
+          },
+          "authority": {
+            "type": "string",
+            "const": "itinerary_commit_gateway",
+            "title": "Authority",
+            "default": "itinerary_commit_gateway"
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Observed At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "plan_id",
+          "revision",
+          "projection_version"
+        ],
+        "title": "PlanRevisionRef",
+        "description": "Exact Plan specialization and revision used by a cross-domain read."
+      },
       "PlanShape": {
         "properties": {
           "contract_version": {
@@ -83349,15 +83564,6 @@
         ],
         "title": "ProjectedCommitment"
       },
-      "ProjectionMode": {
-        "type": "string",
-        "enum": [
-          "my",
-          "together",
-          "whole"
-        ],
-        "title": "ProjectionMode"
-      },
       "PromoteToTripRequest": {
         "properties": {
           "trip_kind": {
@@ -84566,6 +84772,66 @@
         ],
         "title": "ProviderState"
       },
+      "PublicExperienceProjection": {
+        "properties": {
+          "viewer_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Viewer Id"
+          },
+          "mode": {
+            "$ref": "#/components/schemas/PublicProjectionMode"
+          },
+          "plan_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Plan Ids"
+          },
+          "occasion_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Occasion Ids"
+          },
+          "commitments": {
+            "items": {
+              "$ref": "#/components/schemas/ProjectedCommitment"
+            },
+            "type": "array",
+            "title": "Commitments"
+          },
+          "omitted_private_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Omitted Private Count",
+            "default": 0
+          },
+          "unknowns": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Unknowns",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "viewer_id",
+          "mode",
+          "plan_ids",
+          "occasion_ids",
+          "commitments"
+        ],
+        "title": "PublicExperienceProjection",
+        "description": "API-safe projection shape that cannot advertise inspection mode."
+      },
       "PublicProfile": {
         "properties": {
           "user_id": {
@@ -84756,6 +85022,15 @@
         ],
         "title": "PublicProfileStory",
         "description": "A public-safe story summary on a profile \u2014 links to the public page."
+      },
+      "PublicProjectionMode": {
+        "type": "string",
+        "enum": [
+          "my",
+          "together"
+        ],
+        "title": "PublicProjectionMode",
+        "description": "Modes available to viewer-relative product reads."
       },
       "PublicReason": {
         "properties": {
