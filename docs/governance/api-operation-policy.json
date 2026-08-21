@@ -2499,46 +2499,6 @@
       "removal_trigger": "Add an approved mobile consumer or keep this transport server-only.",
       "review_by": "2026-10-30"
     },
-    "POST /api/intake/submissions/{submission_id}/candidates": {
-      "audience": "server",
-      "consumers": [],
-      "feature_flag": null,
-      "lifecycle": "retiring",
-      "owner": "intake",
-      "reason": "Internal intake-v2 candidate transport has no approved mobile consumer yet.",
-      "removal_trigger": "Add an approved mobile consumer or keep this transport server-only.",
-      "review_by": "2026-10-30"
-    },
-    "POST /api/intake/submissions/{submission_id}/observations": {
-      "audience": "server",
-      "consumers": [],
-      "feature_flag": null,
-      "lifecycle": "retiring",
-      "owner": "intake",
-      "reason": "Internal intake-v2 observation transport has no approved mobile consumer yet.",
-      "removal_trigger": "Add an approved mobile consumer or keep this transport server-only.",
-      "review_by": "2026-10-30"
-    },
-    "POST /api/intake/submissions/{submission_id}/proposals": {
-      "audience": "server",
-      "consumers": [],
-      "feature_flag": null,
-      "lifecycle": "retiring",
-      "owner": "intake",
-      "reason": "Internal intake-v2 proposal transport has no approved mobile consumer yet.",
-      "removal_trigger": "Add an approved mobile consumer or keep this transport server-only.",
-      "review_by": "2026-10-30"
-    },
-    "POST /api/intake/submissions/{submission_id}/proposals/{proposal_id}/status": {
-      "audience": "server",
-      "consumers": [],
-      "feature_flag": null,
-      "lifecycle": "retiring",
-      "owner": "intake",
-      "reason": "Internal intake-v2 proposal status transport has no approved mobile consumer yet.",
-      "removal_trigger": "Add an approved mobile consumer or keep this transport server-only.",
-      "review_by": "2026-10-30"
-    },
     "GET /api/intake/submissions/{submission_id}": {
       "audience": "app",
       "consumers": [
