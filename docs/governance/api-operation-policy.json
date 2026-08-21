@@ -2490,13 +2490,35 @@
       "review_by": "2026-10-30"
     },
     "GET /api/intake/submissions/{submission_id}/interpretations": {
-      "audience": "server",
-      "consumers": [],
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "getIntakeInterpretations",
+          "source": "travel-app/utils/api/httpMemoryEndpoints.ts"
+        }
+      ],
       "feature_flag": null,
-      "lifecycle": "retiring",
+      "lifecycle": "active",
       "owner": "intake",
-      "reason": "Internal intake-v2 interpretation transport has no approved mobile consumer yet.",
-      "removal_trigger": "Add an approved mobile consumer or keep this transport server-only.",
+      "reason": "The share capture receipt polls the derived interpretation separately from custody so the original remains durable even when interpretation is delayed or needs correction.",
+      "removal_trigger": "Remove only when the mobile receipt no longer exposes source-bound interpretation state.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/intake/submissions/{submission_id}/interpretations/{candidate_id}/resolve": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "resolveIntakeCandidate",
+          "source": "travel-app/utils/api/httpMemoryEndpoints.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "intake",
+      "reason": "Owner corrections are the smallest safe path from an uncertain interpretation to a source-bound memory without writing a canonical place automatically.",
+      "removal_trigger": "Remove only if correction moves to a replacement, equally source-bound client flow.",
       "review_by": "2026-10-30"
     },
     "GET /api/intake/submissions/{submission_id}": {
@@ -2513,6 +2535,22 @@
       "owner": "intake",
       "reason": "The share capture flow needs an owner-scoped custody status to resume after a background or network interruption.",
       "removal_trigger": "Add an approved mobile consumer or keep this transport server-only.",
+      "review_by": "2026-10-30"
+    },
+    "DELETE /api/intake/submissions/{submission_id}": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "deleteIntakeSubmission",
+          "source": "travel-app/utils/api/httpMemoryEndpoints.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "intake",
+      "reason": "The owner must be able to revoke a private capture and its derived interpretation before it becomes part of a longer-lived memory.",
+      "removal_trigger": "Remove only when an equivalent owner-visible privacy control exists.",
       "review_by": "2026-10-30"
     },
     "POST /api/intake/submissions": {

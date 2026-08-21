@@ -16567,6 +16567,64 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": [
+          "intake"
+        ],
+        "summary": "Delete Intake Submission",
+        "description": "Revoke a submission and enqueue deletion of its private source bytes.",
+        "operationId": "delete_intake_submission_api_intake_submissions__submission_id__delete",
+        "parameters": [
+          {
+            "name": "submission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Submission Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntakeSubmissionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/api/intake/submissions/{submission_id}/objects/{object_id}/upload": {
@@ -16754,6 +16812,86 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntakeInterpretationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/intake/submissions/{submission_id}/interpretations/{candidate_id}/resolve": {
+      "post": {
+        "tags": [
+          "intake"
+        ],
+        "summary": "Resolve Intake Candidate",
+        "description": "Record an owner correction; this never writes a canonical domain row.",
+        "operationId": "resolve_intake_candidate_api_intake_submissions__submission_id__interpretations__candidate_id__resolve_post",
+        "parameters": [
+          {
+            "name": "submission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Submission Id"
+            }
+          },
+          {
+            "name": "candidate_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Candidate Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveIntakeCandidateRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -62639,6 +62777,23 @@
             "type": "string",
             "title": "Admission Status"
           },
+          "retention_mode": {
+            "type": "string",
+            "title": "Retention Mode",
+            "default": "ephemeral_processing"
+          },
+          "retention_expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Retention Expires At"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -84846,6 +85001,42 @@
           "denied"
         ],
         "title": "ResolutionOutcome"
+      },
+      "ResolveIntakeCandidateRequest": {
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "confirm",
+              "not_this_place",
+              "wrong_time",
+              "not_my_artifact",
+              "did_not_go",
+              "separate_from_occasion",
+              "keep_occurrence_forget_interpretation",
+              "delete_derived"
+            ],
+            "title": "Action"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "action"
+        ],
+        "title": "ResolveIntakeCandidateRequest"
       },
       "ResolveOccurrenceProposalRequest": {
         "properties": {
