@@ -8,6 +8,70 @@
     "review_by": null
   },
   "operations": {
+    "GET /api/trips/{trip_id}/planning-windows": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "getTripPlanningWindows",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "planning",
+      "reason": "Caller-scoped planning horizon for flexible personal Plans.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "POST /api/trips/{trip_id}/planning-windows": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "upsertTripPlanningWindow",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "planning",
+      "reason": "Explicit user-authored horizon write; provider and artifact observations use separate reviewed ingestion paths.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "GET /api/trips/{trip_id}/relations": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "getTripPlanRelations",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "planning",
+      "reason": "Read explicit non-merging Plan relations for participating members.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "POST /api/trips/{trip_id}/relations": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "upsertTripPlanRelation",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "planning",
+      "reason": "Explicit participant relation write that preserves independent Plans and does not merge itineraries.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
     "GET /api/me/entities/{entity_type}/{entity_id}/presentation": {
       "audience": "app",
       "consumers": [

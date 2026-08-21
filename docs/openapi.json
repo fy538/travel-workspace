@@ -24462,6 +24462,74 @@
             }
           }
         }
+      },
+      "post": {
+        "tags": [
+          "plan"
+        ],
+        "summary": "Upsert Planning Window",
+        "description": "Persist the caller's explicit Plan horizon without deriving commitments.\n\nThis is intentionally a small user-authored seam.  Artifact/provider\nobservations must use their own reviewed ingestion path; this endpoint never\naccepts those source claims and cannot write another participant's window.",
+        "operationId": "upsert_planning_window_api_trips__trip_id__planning_windows_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ParticipationWindowUpsertRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParticipationWindow"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/api/trips/{trip_id}/relations": {
@@ -24511,6 +24579,74 @@
                     "$ref": "#/components/schemas/PlanRelation"
                   },
                   "title": "Response Get Plan Relations Api Trips  Trip Id  Relations Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "plan"
+        ],
+        "summary": "Upsert Plan Relation",
+        "description": "Persist one explicit, non-merging relation between two Plans.\n\nThe caller must belong to both endpoint Plans and be one of the explicitly\nnamed participants.  This prevents a member of one Plan from silently\ncreating a shared graph edge for people who did not opt into it.",
+        "operationId": "upsert_plan_relation_api_trips__trip_id__relations_post",
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Trip Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlanRelationUpsertRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanRelation"
                 }
               }
             }
@@ -76353,6 +76489,70 @@
         "title": "ParticipationWindow",
         "description": "A participant's bounded horizon inside a Plan.\n\n``spatial_scope`` is deliberately an opaque canonical key.  It can be a\ncity/place slug or a controlled region key, but this contract never turns\na fuzzy location into a commitment."
       },
+      "ParticipationWindowUpsertRequest": {
+        "properties": {
+          "window_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Window Id"
+          },
+          "starts_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Starts At"
+          },
+          "ends_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Ends At"
+          },
+          "spatial_scope": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Spatial Scope"
+          },
+          "state": {
+            "$ref": "#/components/schemas/PlanningWindowState",
+            "default": "tentative"
+          },
+          "source": {
+            "type": "string",
+            "const": "user",
+            "title": "Source",
+            "default": "user"
+          },
+          "provenance": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 240,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provenance"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "window_id",
+          "starts_at",
+          "ends_at"
+        ],
+        "title": "ParticipationWindowUpsertRequest",
+        "description": "Explicit participant-authored horizon input for a Plan.\n\nThe route supplies ``plan_id`` and ``participant_id`` from the authenticated\npath/user.  Keeping those identities out of the body prevents a caller from\nwriting another member's horizon or accidentally rebinding a window to a\ndifferent Plan.  ``window_id`` is required so client retries are naturally\nidempotent at the durable object boundary."
+      },
       "PatchTripRequest": {
         "properties": {
           "title": {
@@ -82335,6 +82535,104 @@
           "derived_from"
         ],
         "title": "PlanRelationKind"
+      },
+      "PlanRelationUpsertRequest": {
+        "properties": {
+          "relation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Relation Id"
+          },
+          "target_plan_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Target Plan Id"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/PlanRelationKind"
+          },
+          "participant_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Participant Ids"
+          },
+          "spatial_scope": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Spatial Scope"
+          },
+          "temporal_overlap_start": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Temporal Overlap Start"
+          },
+          "temporal_overlap_end": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Temporal Overlap End"
+          },
+          "evidence_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Evidence Ids"
+          },
+          "source": {
+            "type": "string",
+            "const": "user",
+            "title": "Source",
+            "default": "user"
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Observed At"
+          },
+          "private_reason_hidden": {
+            "type": "boolean",
+            "title": "Private Reason Hidden",
+            "default": true
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "relation_id",
+          "target_plan_id",
+          "kind",
+          "participant_ids",
+          "observed_at"
+        ],
+        "title": "PlanRelationUpsertRequest",
+        "description": "Explicit participant-authored relation input for two Plans.\n\n``source_plan_id`` is the route identity and the authenticated participant\nmust be included in ``participant_ids``.  This makes relation creation an\nexplicit personal/shared observation rather than an ambient graph writer."
       },
       "PlanRevisionRef": {
         "properties": {
