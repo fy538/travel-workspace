@@ -13418,6 +13418,65 @@
         }
       }
     },
+    "/api/experience-graph/projection": {
+      "get": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Get Projection",
+        "description": "Return the viewer-relative Plan/Occasion/Commitment projection.",
+        "operationId": "get_projection_api_experience_graph_projection_get",
+        "parameters": [
+          {
+            "name": "mode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/ProjectionMode",
+              "default": "my"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperienceProjection"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/events": {
       "post": {
         "tags": [
@@ -16433,6 +16492,129 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Observation"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/intake/anchors": {
+      "get": {
+        "tags": [
+          "intake"
+        ],
+        "summary": "Get Intake Anchors",
+        "description": "Return confirmed, owner-private anchors, including derived-only rows.",
+        "operationId": "get_intake_anchors_api_intake_anchors_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExperienceAnchorProjection"
+                  },
+                  "title": "Response Get Intake Anchors Api Intake Anchors Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/intake/anchors/{anchor_id}": {
+      "get": {
+        "tags": [
+          "intake"
+        ],
+        "summary": "Get Intake Anchor",
+        "operationId": "get_intake_anchor_api_intake_anchors__anchor_id__get",
+        "parameters": [
+          {
+            "name": "anchor_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Anchor Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperienceAnchorProjection"
                 }
               }
             }
@@ -25282,6 +25464,332 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PlacesContext"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/place-handoffs": {
+      "post": {
+        "tags": [
+          "place-handoffs"
+        ],
+        "summary": "Create Handoff",
+        "description": "Leave one grounded observation for one explicitly named person.",
+        "operationId": "create_handoff_api_place_handoffs_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlaceHandoffCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlaceHandoffResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "place-handoffs"
+        ],
+        "summary": "List Handoffs",
+        "description": "List active handoffs left for the current user, optionally at a place.",
+        "operationId": "list_handoffs_api_place_handoffs_get",
+        "parameters": [
+          {
+            "name": "place_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "exclusiveMinimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Place Id"
+            }
+          },
+          {
+            "name": "pull_only",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Pull Only"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlaceHandoffListResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/place-handoffs/{handoff_id}": {
+      "get": {
+        "tags": [
+          "place-handoffs"
+        ],
+        "summary": "Get Handoff",
+        "operationId": "get_handoff_api_place_handoffs__handoff_id__get",
+        "parameters": [
+          {
+            "name": "handoff_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Handoff Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlaceHandoffResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/place-handoffs/{handoff_id}/actions": {
+      "post": {
+        "tags": [
+          "place-handoffs"
+        ],
+        "summary": "Act On Handoff",
+        "operationId": "act_on_handoff_api_place_handoffs__handoff_id__actions_post",
+        "parameters": [
+          {
+            "name": "handoff_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Handoff Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlaceHandoffActionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlaceHandoffResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/place-handoffs/{handoff_id}/events": {
+      "get": {
+        "tags": [
+          "place-handoffs"
+        ],
+        "summary": "Get Handoff Events",
+        "operationId": "get_handoff_events_api_place_handoffs__handoff_id__events_get",
+        "parameters": [
+          {
+            "name": "handoff_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Handoff Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlaceHandoffEventResponse"
+                  },
+                  "title": "Response Get Handoff Events Api Place Handoffs  Handoff Id  Events Get"
                 }
               }
             }
@@ -41311,6 +41819,147 @@
         "type": "object",
         "title": "AlternativeOption",
         "description": "One alternative option a proposal may offer alongside the primary pick.\n\n``extra=\"allow\"`` keeps legacy fields (e.g. site_id, experience_id)\nreadable for older proposals."
+      },
+      "AnchorObservationRef": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Key"
+          },
+          "truth_mode": {
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 1,
+            "title": "Truth Mode"
+          },
+          "status": {
+            "type": "string",
+            "maxLength": 20,
+            "minLength": 1,
+            "title": "Status"
+          },
+          "observed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed At"
+          },
+          "valid_until": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid Until"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "key",
+          "truth_mode",
+          "status"
+        ],
+        "title": "AnchorObservationRef"
+      },
+      "AnchorProposalRef": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "domain": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Domain"
+          },
+          "action_type": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Action Type"
+          },
+          "status": {
+            "type": "string",
+            "maxLength": 20,
+            "minLength": 1,
+            "title": "Status"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "domain",
+          "action_type",
+          "status"
+        ],
+        "title": "AnchorProposalRef"
+      },
+      "AnchorSourceStatus": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "deleted",
+              "not_available"
+            ],
+            "title": "Status"
+          },
+          "object_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Object Ids",
+            "default": []
+          },
+          "content_available": {
+            "type": "boolean",
+            "title": "Content Available",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "AnchorSourceStatus"
       },
       "AngleDetail": {
         "properties": {
@@ -59242,6 +59891,202 @@
         ],
         "title": "ExpenseWithShares"
       },
+      "ExperienceAnchorProjection": {
+        "properties": {
+          "anchor_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Anchor Id"
+          },
+          "owner_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Owner Id"
+          },
+          "submission_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Submission Id"
+          },
+          "candidate_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Candidate Key"
+          },
+          "artifact_type": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Artifact Type"
+          },
+          "family": {
+            "type": "string",
+            "enum": [
+              "movement",
+              "base",
+              "attendance",
+              "dining",
+              "attention"
+            ],
+            "title": "Family"
+          },
+          "subtype": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Subtype"
+          },
+          "phase": {
+            "type": "string",
+            "enum": [
+              "prospective",
+              "upcoming",
+              "live",
+              "resolving",
+              "lived",
+              "remembered",
+              "expired"
+            ],
+            "title": "Phase"
+          },
+          "occurrence": {
+            "type": "string",
+            "enum": [
+              "artifact_only",
+              "considered",
+              "scheduled",
+              "noticed",
+              "plausible",
+              "likely",
+              "confirmed",
+              "contradicted",
+              "not_applicable"
+            ],
+            "title": "Occurrence"
+          },
+          "status": {
+            "type": "string",
+            "const": "confirmed",
+            "title": "Status",
+            "default": "confirmed"
+          },
+          "confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence"
+          },
+          "bindings": {
+            "$ref": "#/components/schemas/SemanticBindings"
+          },
+          "display": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Display"
+          },
+          "claims": {
+            "items": {
+              "$ref": "#/components/schemas/SemanticClaim"
+            },
+            "type": "array",
+            "title": "Claims",
+            "default": []
+          },
+          "unknowns": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Unknowns",
+            "default": []
+          },
+          "source": {
+            "$ref": "#/components/schemas/AnchorSourceStatus"
+          },
+          "observations": {
+            "items": {
+              "$ref": "#/components/schemas/AnchorObservationRef"
+            },
+            "type": "array",
+            "title": "Observations",
+            "default": []
+          },
+          "proposals": {
+            "items": {
+              "$ref": "#/components/schemas/AnchorProposalRef"
+            },
+            "type": "array",
+            "title": "Proposals",
+            "default": []
+          },
+          "retention_mode": {
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 1,
+            "title": "Retention Mode"
+          },
+          "retention_expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Retention Expires At"
+          },
+          "available_actions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Available Actions",
+            "default": []
+          },
+          "canonical_links": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Canonical Links",
+            "default": []
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "anchor_id",
+          "owner_id",
+          "submission_id",
+          "candidate_key",
+          "artifact_type",
+          "family",
+          "subtype",
+          "phase",
+          "occurrence",
+          "confidence",
+          "bindings",
+          "source",
+          "retention_mode",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "ExperienceAnchorProjection",
+        "description": "A validated, non-authoritative projection of one confirmed candidate."
+      },
       "ExperienceListResponse": {
         "properties": {
           "experiences": {
@@ -59408,6 +60253,66 @@
         ],
         "title": "ExperienceOutcomeFeedback",
         "description": "One person's correctable verdict about one confirmed experience.\n\nThis is deliberately not group truth and not a free-text memory. The\ncompact vocabulary is safe to carry into private planning context without\nexposing why another participant felt differently."
+      },
+      "ExperienceProjection": {
+        "properties": {
+          "viewer_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Viewer Id"
+          },
+          "mode": {
+            "$ref": "#/components/schemas/ProjectionMode"
+          },
+          "plan_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Plan Ids"
+          },
+          "occasion_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Occasion Ids"
+          },
+          "commitments": {
+            "items": {
+              "$ref": "#/components/schemas/ProjectedCommitment"
+            },
+            "type": "array",
+            "title": "Commitments"
+          },
+          "omitted_private_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Omitted Private Count",
+            "default": 0
+          },
+          "unknowns": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Unknowns",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "viewer_id",
+          "mode",
+          "plan_ids",
+          "occasion_ids",
+          "commitments"
+        ],
+        "title": "ExperienceProjection",
+        "description": "The minimum product read model shared by Home, chat, and Places."
       },
       "ExperienceResponse": {
         "properties": {
@@ -75841,6 +76746,399 @@
         ],
         "title": "PlaceDossierListResponse"
       },
+      "PlaceHandoffActionRequest": {
+        "properties": {
+          "action": {
+            "type": "string",
+            "pattern": "^(keep|dismiss|revoke|open_together)$",
+            "title": "Action"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 1000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "action"
+        ],
+        "title": "PlaceHandoffActionRequest"
+      },
+      "PlaceHandoffCreateRequest": {
+        "properties": {
+          "recipient_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Recipient User Id"
+          },
+          "place_id": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Place Id"
+          },
+          "conversation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Conversation Id"
+          },
+          "source_kind": {
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 1,
+            "title": "Source Kind",
+            "default": "chat"
+          },
+          "message": {
+            "type": "string",
+            "maxLength": 4000,
+            "minLength": 1,
+            "title": "Message"
+          },
+          "artifact_ref": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Artifact Ref"
+          },
+          "permissions": {
+            "$ref": "#/components/schemas/PlaceHandoffPermissions"
+          },
+          "delivery_mode": {
+            "$ref": "#/components/schemas/PlaceHandoffDeliveryMode",
+            "default": "send_now"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "idempotency_key": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "recipient_user_id",
+          "place_id",
+          "message"
+        ],
+        "title": "PlaceHandoffCreateRequest",
+        "description": "Request to leave one observation for one explicitly named person."
+      },
+      "PlaceHandoffDeliveryMode": {
+        "type": "string",
+        "enum": [
+          "send_now",
+          "place_pull"
+        ],
+        "title": "PlaceHandoffDeliveryMode"
+      },
+      "PlaceHandoffEventResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "handoff_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Handoff Id"
+          },
+          "actor_user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Actor User Id"
+          },
+          "event_type": {
+            "$ref": "#/components/schemas/PlaceHandoffEventType"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Metadata"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "handoff_id",
+          "event_type",
+          "created_at"
+        ],
+        "title": "PlaceHandoffEventResponse"
+      },
+      "PlaceHandoffEventType": {
+        "type": "string",
+        "enum": [
+          "created",
+          "delivered",
+          "opened",
+          "kept",
+          "dismissed",
+          "revoked",
+          "open_together"
+        ],
+        "title": "PlaceHandoffEventType"
+      },
+      "PlaceHandoffListResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/PlaceHandoffResponse"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "title": "PlaceHandoffListResponse"
+      },
+      "PlaceHandoffPermissions": {
+        "properties": {
+          "media_visibility": {
+            "type": "string",
+            "title": "Media Visibility",
+            "default": "recipient_only"
+          },
+          "retention": {
+            "type": "string",
+            "title": "Retention",
+            "default": "until_revoked"
+          },
+          "inference": {
+            "type": "string",
+            "title": "Inference",
+            "default": "contextual_only"
+          },
+          "recall_and_reuse": {
+            "type": "string",
+            "title": "Recall And Reuse",
+            "default": "recipient_only"
+          },
+          "naming": {
+            "type": "string",
+            "title": "Naming",
+            "default": "exact_place"
+          },
+          "action": {
+            "type": "string",
+            "title": "Action",
+            "default": "ask_before_action"
+          },
+          "delivery_context": {
+            "$ref": "#/components/schemas/PlaceHandoffDeliveryMode",
+            "default": "send_now"
+          }
+        },
+        "type": "object",
+        "title": "PlaceHandoffPermissions",
+        "description": "Per-handoff permissions, not a global social setting."
+      },
+      "PlaceHandoffResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "sender_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Sender User Id"
+          },
+          "recipient_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Recipient User Id"
+          },
+          "place_id": {
+            "type": "integer",
+            "title": "Place Id"
+          },
+          "place_name": {
+            "type": "string",
+            "title": "Place Name"
+          },
+          "place_slug": {
+            "type": "string",
+            "title": "Place Slug"
+          },
+          "conversation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Conversation Id"
+          },
+          "message_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message Id"
+          },
+          "source_kind": {
+            "type": "string",
+            "title": "Source Kind"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "artifact_ref": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Artifact Ref"
+          },
+          "permissions": {
+            "$ref": "#/components/schemas/PlaceHandoffPermissions"
+          },
+          "delivery_mode": {
+            "$ref": "#/components/schemas/PlaceHandoffDeliveryMode"
+          },
+          "status": {
+            "$ref": "#/components/schemas/PlaceHandoffStatus"
+          },
+          "opened_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Opened At"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "sender_user_id",
+          "recipient_user_id",
+          "place_id",
+          "place_name",
+          "place_slug",
+          "conversation_id",
+          "source_kind",
+          "message",
+          "permissions",
+          "delivery_mode",
+          "status",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "PlaceHandoffResponse"
+      },
+      "PlaceHandoffStatus": {
+        "type": "string",
+        "enum": [
+          "available",
+          "kept",
+          "dismissed",
+          "revoked",
+          "expired"
+        ],
+        "title": "PlaceHandoffStatus"
+      },
       "PlaceMapNeighborhood": {
         "properties": {
           "slug": {
@@ -81814,6 +83112,54 @@
         "type": "object",
         "title": "ProfilePhrasesResponse"
       },
+      "ProjectedCommitment": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "subject": {
+            "type": "string",
+            "title": "Subject"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "participant_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Participant Ids"
+          },
+          "private": {
+            "type": "boolean",
+            "title": "Private",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "subject",
+          "status",
+          "participant_ids"
+        ],
+        "title": "ProjectedCommitment"
+      },
+      "ProjectionMode": {
+        "type": "string",
+        "enum": [
+          "my",
+          "together",
+          "whole"
+        ],
+        "title": "ProjectionMode"
+      },
       "PromoteToTripRequest": {
         "properties": {
           "trip_kind": {
@@ -87540,6 +88886,113 @@
           "saved_at"
         ],
         "title": "SelfProfileUnfinishedItem"
+      },
+      "SemanticBindings": {
+        "properties": {
+          "place": {
+            "type": "string",
+            "enum": [
+              "resolved",
+              "candidate",
+              "unresolved",
+              "not_applicable"
+            ],
+            "title": "Place"
+          },
+          "time": {
+            "type": "string",
+            "enum": [
+              "resolved",
+              "candidate",
+              "unresolved",
+              "not_applicable"
+            ],
+            "title": "Time"
+          },
+          "people": {
+            "type": "string",
+            "enum": [
+              "resolved",
+              "candidate",
+              "unresolved",
+              "not_applicable"
+            ],
+            "title": "People"
+          },
+          "occasion": {
+            "type": "string",
+            "enum": [
+              "linked",
+              "candidate",
+              "unresolved",
+              "not_applicable"
+            ],
+            "title": "Occasion"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "place",
+          "time",
+          "people",
+          "occasion"
+        ],
+        "title": "SemanticBindings"
+      },
+      "SemanticClaim": {
+        "properties": {
+          "field": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Field"
+          },
+          "value": {
+            "title": "Value"
+          },
+          "truth_mode": {
+            "type": "string",
+            "enum": [
+              "direct_observed",
+              "source_extracted",
+              "user_confirmed",
+              "inferred",
+              "external_verified",
+              "unknown"
+            ],
+            "title": "Truth Mode"
+          },
+          "evidence_refs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Evidence Refs"
+          },
+          "confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence"
+          },
+          "expires": {
+            "type": "boolean",
+            "title": "Expires",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "field",
+          "value",
+          "truth_mode",
+          "evidence_refs",
+          "confidence"
+        ],
+        "title": "SemanticClaim"
       },
       "SerializedActionReceipt": {
         "properties": {

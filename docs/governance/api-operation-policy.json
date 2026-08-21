@@ -2489,6 +2489,88 @@
       "removal_trigger": "Add a reviewed mobile consumer or keep the endpoint server-only.",
       "review_by": "2026-10-30"
     },
+    "GET /api/place-handoffs": {
+      "audience": "server",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "relationships",
+      "reason": "Addressed place handoffs remain a server-side substrate until a named recipient surface and device evidence exist.",
+      "removal_trigger": "Add a reviewed mobile consumer or remove the endpoint.",
+      "review_by": "2026-10-30"
+    },
+    "GET /api/place-handoffs/{handoff_id}": {
+      "audience": "server",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "relationships",
+      "reason": "Addressed place handoff detail is not yet a shipped product surface.",
+      "removal_trigger": "Add a reviewed mobile consumer or remove the endpoint.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/place-handoffs": {
+      "audience": "server",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "relationships",
+      "reason": "Addressed place handoff writes remain behind an unshipped relationship surface.",
+      "removal_trigger": "Add a reviewed mobile consumer or remove the endpoint.",
+      "review_by": "2026-10-30"
+    },
+    "POST /api/place-handoffs/{handoff_id}/actions": {
+      "audience": "server",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "relationships",
+      "reason": "Recipient actions remain unshipped until pull consent and device evidence are complete.",
+      "removal_trigger": "Add a reviewed mobile consumer or remove the endpoint.",
+      "review_by": "2026-10-30"
+    },
+    "GET /api/place-handoffs/{handoff_id}/events": {
+      "audience": "server",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "relationships",
+      "reason": "Handoff event history remains server-side until a relationship timeline consumes it.",
+      "removal_trigger": "Add a reviewed mobile consumer or remove the endpoint.",
+      "review_by": "2026-10-30"
+    },
+    "GET /api/intake/anchors": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "getIntakeAnchors",
+          "source": "travel-app/data/intakeAnchors.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "intake",
+      "reason": "Confirmed candidates are served as owner-scoped Experience Anchor projections so derived memory remains readable after raw source expiry.",
+      "removal_trigger": "Remove only when an equivalent owner-scoped anchor read is shipped.",
+      "review_by": "2026-10-30"
+    },
+    "GET /api/intake/anchors/{anchor_id}": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "getIntakeAnchor",
+          "source": "travel-app/data/intakeAnchors.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "intake",
+      "reason": "The artifact reader needs a stable owner-scoped anchor identity for later Chat, Plan, and Occasion handoffs.",
+      "removal_trigger": "Remove only when the anchor identity is served by a replacement transport.",
+      "review_by": "2026-10-30"
+    },
     "GET /api/intake/submissions/{submission_id}/interpretations": {
       "audience": "app",
       "consumers": [

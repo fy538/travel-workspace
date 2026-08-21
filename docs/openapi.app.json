@@ -9111,6 +9111,65 @@
         }
       }
     },
+    "/api/experience-graph/projection": {
+      "get": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Get Projection",
+        "description": "Return the viewer-relative Plan/Occasion/Commitment projection.",
+        "operationId": "get_projection_api_experience_graph_projection_get",
+        "parameters": [
+          {
+            "name": "mode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/ProjectionMode",
+              "default": "my"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperienceProjection"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/events": {
       "post": {
         "tags": [
@@ -11570,6 +11629,129 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Observation"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/intake/anchors": {
+      "get": {
+        "tags": [
+          "intake"
+        ],
+        "summary": "Get Intake Anchors",
+        "description": "Return confirmed, owner-private anchors, including derived-only rows.",
+        "operationId": "get_intake_anchors_api_intake_anchors_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExperienceAnchorProjection"
+                  },
+                  "title": "Response Get Intake Anchors Api Intake Anchors Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/intake/anchors/{anchor_id}": {
+      "get": {
+        "tags": [
+          "intake"
+        ],
+        "summary": "Get Intake Anchor",
+        "operationId": "get_intake_anchor_api_intake_anchors__anchor_id__get",
+        "parameters": [
+          {
+            "name": "anchor_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Anchor Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExperienceAnchorProjection"
                 }
               }
             }
@@ -33088,6 +33270,147 @@
         "title": "AlternativeOption",
         "description": "One alternative option a proposal may offer alongside the primary pick.\n\n``extra=\"allow\"`` keeps legacy fields (e.g. site_id, experience_id)\nreadable for older proposals."
       },
+      "AnchorObservationRef": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Key"
+          },
+          "truth_mode": {
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 1,
+            "title": "Truth Mode"
+          },
+          "status": {
+            "type": "string",
+            "maxLength": 20,
+            "minLength": 1,
+            "title": "Status"
+          },
+          "observed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed At"
+          },
+          "valid_until": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid Until"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "key",
+          "truth_mode",
+          "status"
+        ],
+        "title": "AnchorObservationRef"
+      },
+      "AnchorProposalRef": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "domain": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Domain"
+          },
+          "action_type": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Action Type"
+          },
+          "status": {
+            "type": "string",
+            "maxLength": 20,
+            "minLength": 1,
+            "title": "Status"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "domain",
+          "action_type",
+          "status"
+        ],
+        "title": "AnchorProposalRef"
+      },
+      "AnchorSourceStatus": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "deleted",
+              "not_available"
+            ],
+            "title": "Status"
+          },
+          "object_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Object Ids",
+            "default": []
+          },
+          "content_available": {
+            "type": "boolean",
+            "title": "Content Available",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "AnchorSourceStatus"
+      },
       "AngleMember": {
         "properties": {
           "venue_id": {
@@ -49258,6 +49581,202 @@
         ],
         "title": "ExpenseWithShares"
       },
+      "ExperienceAnchorProjection": {
+        "properties": {
+          "anchor_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Anchor Id"
+          },
+          "owner_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Owner Id"
+          },
+          "submission_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Submission Id"
+          },
+          "candidate_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Candidate Key"
+          },
+          "artifact_type": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Artifact Type"
+          },
+          "family": {
+            "type": "string",
+            "enum": [
+              "movement",
+              "base",
+              "attendance",
+              "dining",
+              "attention"
+            ],
+            "title": "Family"
+          },
+          "subtype": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Subtype"
+          },
+          "phase": {
+            "type": "string",
+            "enum": [
+              "prospective",
+              "upcoming",
+              "live",
+              "resolving",
+              "lived",
+              "remembered",
+              "expired"
+            ],
+            "title": "Phase"
+          },
+          "occurrence": {
+            "type": "string",
+            "enum": [
+              "artifact_only",
+              "considered",
+              "scheduled",
+              "noticed",
+              "plausible",
+              "likely",
+              "confirmed",
+              "contradicted",
+              "not_applicable"
+            ],
+            "title": "Occurrence"
+          },
+          "status": {
+            "type": "string",
+            "const": "confirmed",
+            "title": "Status",
+            "default": "confirmed"
+          },
+          "confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence"
+          },
+          "bindings": {
+            "$ref": "#/components/schemas/SemanticBindings"
+          },
+          "display": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Display"
+          },
+          "claims": {
+            "items": {
+              "$ref": "#/components/schemas/SemanticClaim"
+            },
+            "type": "array",
+            "title": "Claims",
+            "default": []
+          },
+          "unknowns": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Unknowns",
+            "default": []
+          },
+          "source": {
+            "$ref": "#/components/schemas/AnchorSourceStatus"
+          },
+          "observations": {
+            "items": {
+              "$ref": "#/components/schemas/AnchorObservationRef"
+            },
+            "type": "array",
+            "title": "Observations",
+            "default": []
+          },
+          "proposals": {
+            "items": {
+              "$ref": "#/components/schemas/AnchorProposalRef"
+            },
+            "type": "array",
+            "title": "Proposals",
+            "default": []
+          },
+          "retention_mode": {
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 1,
+            "title": "Retention Mode"
+          },
+          "retention_expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Retention Expires At"
+          },
+          "available_actions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Available Actions",
+            "default": []
+          },
+          "canonical_links": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Canonical Links",
+            "default": []
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "anchor_id",
+          "owner_id",
+          "submission_id",
+          "candidate_key",
+          "artifact_type",
+          "family",
+          "subtype",
+          "phase",
+          "occurrence",
+          "confidence",
+          "bindings",
+          "source",
+          "retention_mode",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "ExperienceAnchorProjection",
+        "description": "A validated, non-authoritative projection of one confirmed candidate."
+      },
       "ExperienceListResponse": {
         "properties": {
           "experiences": {
@@ -49424,6 +49943,66 @@
         ],
         "title": "ExperienceOutcomeFeedback",
         "description": "One person's correctable verdict about one confirmed experience.\n\nThis is deliberately not group truth and not a free-text memory. The\ncompact vocabulary is safe to carry into private planning context without\nexposing why another participant felt differently."
+      },
+      "ExperienceProjection": {
+        "properties": {
+          "viewer_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Viewer Id"
+          },
+          "mode": {
+            "$ref": "#/components/schemas/ProjectionMode"
+          },
+          "plan_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Plan Ids"
+          },
+          "occasion_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Occasion Ids"
+          },
+          "commitments": {
+            "items": {
+              "$ref": "#/components/schemas/ProjectedCommitment"
+            },
+            "type": "array",
+            "title": "Commitments"
+          },
+          "omitted_private_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Omitted Private Count",
+            "default": 0
+          },
+          "unknowns": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Unknowns",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "viewer_id",
+          "mode",
+          "plan_ids",
+          "occasion_ids",
+          "commitments"
+        ],
+        "title": "ExperienceProjection",
+        "description": "The minimum product read model shared by Home, chat, and Places."
       },
       "ExperienceResponse": {
         "properties": {
@@ -70181,6 +70760,54 @@
         "type": "object",
         "title": "ProfilePhrasesResponse"
       },
+      "ProjectedCommitment": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "subject": {
+            "type": "string",
+            "title": "Subject"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "participant_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Participant Ids"
+          },
+          "private": {
+            "type": "boolean",
+            "title": "Private",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "subject",
+          "status",
+          "participant_ids"
+        ],
+        "title": "ProjectedCommitment"
+      },
+      "ProjectionMode": {
+        "type": "string",
+        "enum": [
+          "my",
+          "together",
+          "whole"
+        ],
+        "title": "ProjectionMode"
+      },
       "ProposalDetail": {
         "properties": {
           "id": {
@@ -75081,6 +75708,113 @@
           "saved_at"
         ],
         "title": "SelfProfileUnfinishedItem"
+      },
+      "SemanticBindings": {
+        "properties": {
+          "place": {
+            "type": "string",
+            "enum": [
+              "resolved",
+              "candidate",
+              "unresolved",
+              "not_applicable"
+            ],
+            "title": "Place"
+          },
+          "time": {
+            "type": "string",
+            "enum": [
+              "resolved",
+              "candidate",
+              "unresolved",
+              "not_applicable"
+            ],
+            "title": "Time"
+          },
+          "people": {
+            "type": "string",
+            "enum": [
+              "resolved",
+              "candidate",
+              "unresolved",
+              "not_applicable"
+            ],
+            "title": "People"
+          },
+          "occasion": {
+            "type": "string",
+            "enum": [
+              "linked",
+              "candidate",
+              "unresolved",
+              "not_applicable"
+            ],
+            "title": "Occasion"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "place",
+          "time",
+          "people",
+          "occasion"
+        ],
+        "title": "SemanticBindings"
+      },
+      "SemanticClaim": {
+        "properties": {
+          "field": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Field"
+          },
+          "value": {
+            "title": "Value"
+          },
+          "truth_mode": {
+            "type": "string",
+            "enum": [
+              "direct_observed",
+              "source_extracted",
+              "user_confirmed",
+              "inferred",
+              "external_verified",
+              "unknown"
+            ],
+            "title": "Truth Mode"
+          },
+          "evidence_refs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Evidence Refs"
+          },
+          "confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence"
+          },
+          "expires": {
+            "type": "boolean",
+            "title": "Expires",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "field",
+          "value",
+          "truth_mode",
+          "evidence_refs",
+          "confidence"
+        ],
+        "title": "SemanticClaim"
       },
       "SerializedActionReceipt": {
         "properties": {
