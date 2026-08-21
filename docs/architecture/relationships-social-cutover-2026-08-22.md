@@ -47,8 +47,9 @@ chat / photo / place observation
    transition and is not a new runtime authority.
 3. A handoff is an addressed relationship-place event, not a post, message
    attachment, generic memory, or engagement object.
-4. `open_together` creates an Occasion opening. It never creates a Trip,
-   itinerary, booking, attendance claim, or completed event.
+4. `open_together` creates an Occasion opening through the application
+   transaction boundary. It never creates a Trip, itinerary, booking,
+   attendance claim, or completed event.
 5. Viewing, opening, or keeping a handoff never creates memory. A shared
    occurrence or an explicit carry-forward is required.
 6. Shared occurrence facts and private outcomes are separate records and
@@ -81,7 +82,11 @@ backend/platform/                persistence, auth, providers, telemetry
 Domain packages do not import API routes or another domain's implementation.
 Cross-domain transitions use application services, typed ports, or outbox
 events. The existing `backend/core/db/place_handoffs.py` implementation is a
-transitional adapter until the UUID relationship writer is active.
+transitional adapter until the UUID relationship writer is active. The dark
+UUID namespace lives at `backend/api/routes/relationship_handoffs.py`; its
+`open_together` command uses `backend/application/relationship_openings.py` to
+create one linked `occasions` row and two participant rows atomically. The
+`relationship_handoff_occasion_openings` table makes the bridge replayable.
 
 ## Core records
 
@@ -150,10 +155,12 @@ surface one relational opening, one second-occasion continuation, or silence.
 
 ## API and app boundary
 
-The mobile contract exposes only typed create/read/action operations after the
-server operations are moved from retiring/server-only governance to a dark app
-consumer behind `ADDRESSED_PLACE_HANDOFFS_ENABLED`. Place pull remains behind a
-separate flag.
+The mobile contract continues to consume the legacy card action while the
+UUID namespace is evaluated dark. Server-side create/read/list/action
+operations are published at `/api/relationships/place-handoffs` behind
+`RELATIONSHIP_UUID_HANDOFFS_ENABLED`; they are explicitly retiring/server-only
+until the sender card and recipient pull surface switch authorities. Place pull
+remains separately permissioned by the handoff envelope and is not a push.
 
 Chat cards continue to use opaque server-resolved action references. A resolver
 returns a typed `place_handoff_action` intention after rechecking membership,
@@ -182,7 +189,7 @@ mobile, privacy-negative, receipt, and replay assertions:
 ## Rollout
 
 1. All flags off; local fixtures only.
-2. Internal dogfood, send-now only.
+2. Internal dogfood, UUID send-now API and Occasion bridge in acceptance only.
 3. Internal dogfood, recipient-controlled place pull.
 4. Occasion bridge.
 5. Outcome and second-occasion continuity.
