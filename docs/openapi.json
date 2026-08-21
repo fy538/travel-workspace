@@ -59971,6 +59971,28 @@
             "title": "Status",
             "default": "confirmed"
           },
+          "correction_action": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Correction Action"
+          },
+          "correction_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Correction Note"
+          },
           "confidence": {
             "type": "number",
             "maximum": 1.0,
