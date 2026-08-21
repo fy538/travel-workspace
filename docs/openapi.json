@@ -16916,6 +16916,86 @@
         }
       }
     },
+    "/api/intake/submissions/{submission_id}/proposals/{proposal_id}": {
+      "patch": {
+        "tags": [
+          "intake"
+        ],
+        "summary": "Resolve Intake Consequence Proposal",
+        "description": "Resolve a private proposal without granting domain-write authority.\n\nThe existing domain writer remains responsible for applying an accepted\nproposal. This route only records the owner's decision in the intake\nquarantine layer and returns the complete interpretation read model.",
+        "operationId": "resolve_intake_consequence_proposal_api_intake_submissions__submission_id__proposals__proposal_id__patch",
+        "parameters": [
+          {
+            "name": "submission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Submission Id"
+            }
+          },
+          {
+            "name": "proposal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Proposal Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateIntakeProposalStatusRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntakeInterpretationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/inbound-audio": {
       "post": {
         "tags": [
@@ -99070,6 +99150,25 @@
         "additionalProperties": false,
         "type": "object",
         "title": "UpdateConversationRequest"
+      },
+      "UpdateIntakeProposalStatusRequest": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "accepted",
+              "rejected",
+              "expired"
+            ],
+            "title": "Status"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "UpdateIntakeProposalStatusRequest"
       },
       "UpdateMemberRequest": {
         "properties": {

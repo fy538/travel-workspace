@@ -2521,6 +2521,16 @@
       "removal_trigger": "Remove only if correction moves to a replacement, equally source-bound client flow.",
       "review_by": "2026-10-30"
     },
+    "PATCH /api/intake/submissions/{submission_id}/proposals/{proposal_id}": {
+      "audience": "server",
+      "consumers": [],
+      "feature_flag": null,
+      "lifecycle": "retiring",
+      "owner": "intake",
+      "reason": "Owner proposal resolution is available for internal quarantine-layer experiments; mobile exposure waits for a domain-specific writer and device-validated consequence surface.",
+      "removal_trigger": "Add a named, domain-specific mobile consumer or remove the generic intake proposal transport.",
+      "review_by": "2026-10-30"
+    },
     "GET /api/intake/submissions/{submission_id}": {
       "audience": "app",
       "consumers": [
