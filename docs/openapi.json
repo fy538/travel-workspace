@@ -87467,6 +87467,18 @@
           "changed": {
             "type": "boolean",
             "title": "Changed"
+          },
+          "occasion_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occasion Id"
           }
         },
         "type": "object",
