@@ -70727,7 +70727,7 @@
             "title": "Target Plan Id"
           },
           "kind": {
-            "$ref": "#/components/schemas/PlanRelationKind"
+            "$ref": "#/components/schemas/PlanRelationKind-Output"
           },
           "participant_ids": {
             "items": {
@@ -70812,7 +70812,7 @@
         "title": "PlanRelation",
         "description": "An explicit, inspectable edge between two Plans.\n\nRelations are not merge instructions.  They explain why projections can\nintersect while preserving independent dates, membership, and authority."
       },
-      "PlanRelationKind": {
+      "PlanRelationKind-Output": {
         "type": "string",
         "enum": [
           "overlaps",
@@ -70837,7 +70837,7 @@
             "title": "Target Plan Id"
           },
           "kind": {
-            "$ref": "#/components/schemas/PlanRelationKind"
+            "$ref": "#/components/schemas/backend__core__models__plan_topology__PlanRelationKind"
           },
           "participant_ids": {
             "items": {
@@ -75553,9 +75553,40 @@
       "RelationshipPairConversationRequest": {
         "properties": {
           "circle_id": {
-            "type": "string",
-            "format": "uuid",
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Circle Id"
+          },
+          "recipient_user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Recipient User Id"
+          },
+          "conversation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Conversation Id"
           },
           "idempotency_key": {
             "type": "string",
@@ -75566,17 +75597,23 @@
         },
         "type": "object",
         "required": [
-          "circle_id",
           "idempotency_key"
         ],
         "title": "RelationshipPairConversationRequest",
-        "description": "Open the private pair room that carries addressed place notes."
+        "description": "Open an authorized private pair room for an addressed place note."
       },
       "RelationshipPairConversationResponse": {
         "properties": {
           "circle_id": {
-            "type": "string",
-            "format": "uuid",
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Circle Id"
           },
           "conversation_id": {
@@ -75592,7 +75629,6 @@
         },
         "type": "object",
         "required": [
-          "circle_id",
           "conversation_id",
           "recipient_user_id"
         ],
@@ -93600,6 +93636,18 @@
         ],
         "title": "Provenance",
         "description": "Where one moment came from — the **Discover variant** trust signal.\n\nThe Atlas variant composes the traveler's OWN past, which is inherently\ntrusted, so it never populates provenance. The Discover variant composes the\nWORLD corpus — venues/sites the engine is *pointing at*, not recalling — so\neach moment carries who is vouching for it: ``source`` is the trust-ladder\nrung (Vesper editorial / a dossier / a creator / a friend), ``byline`` is the\nhuman attribution string, ``face`` an optional avatar/illustration ref.\n``moment_id`` pins it to the matching ``Moment.id`` so the FE renders the\nbyline on the right card."
+      },
+      "backend__core__models__plan_topology__PlanRelationKind": {
+        "type": "string",
+        "enum": [
+          "overlaps",
+          "contains",
+          "joins",
+          "splits",
+          "rejoins",
+          "derived_from"
+        ],
+        "title": "PlanRelationKind"
       },
       "backend__core__models__universal_search__Provenance": {
         "properties": {

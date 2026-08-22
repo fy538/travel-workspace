@@ -68,6 +68,26 @@
       "removal_trigger": null,
       "review_by": "2026-10-30"
     },
+    "PATCH /api/experience-graph/plans/{plan_id}": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "update_plan_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Clean-break Plan updates remain server-owned until a reviewed mobile commitment surface consumes them.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "POST /api/experience-graph/plan-relations": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "create_plan_relation_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Plan relations are server-owned graph composition until their first reviewed mobile consumer is released.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
     "POST /api/experience-graph/occasions": {
       "audience": "server",
       "consumers": [{"kind": "server", "name": "create_occasion_route"}],

@@ -13721,6 +13721,136 @@
         }
       }
     },
+    "/api/experience-graph/plans/{plan_id}": {
+      "patch": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Update Plan Route",
+        "description": "Replace an owner Plan shape using an expected revision.",
+        "operationId": "update_plan_route_api_experience_graph_plans__plan_id__patch",
+        "parameters": [
+          {
+            "name": "plan_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Plan Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePlanRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experience-graph/plan-relations": {
+      "post": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Create Plan Relation Route",
+        "description": "Create a caller-owned relation without merging either Plan.",
+        "operationId": "create_plan_relation_route_api_experience_graph_plan_relations_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePlanRelationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/experience-graph/openings": {
       "post": {
         "tags": [
@@ -54167,6 +54297,48 @@
         ],
         "title": "CreateOpeningCandidateRequest"
       },
+      "CreatePlanRelationRequest": {
+        "properties": {
+          "relation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Relation Id"
+          },
+          "source_plan_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Source Plan Id"
+          },
+          "target_plan_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Target Plan Id"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/backend__core__models__experience_graph__PlanRelationKind"
+          },
+          "explicit": {
+            "type": "boolean",
+            "title": "Explicit",
+            "default": false
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "relation_id",
+          "source_plan_id",
+          "target_plan_id",
+          "kind",
+          "idempotency_key"
+        ],
+        "title": "CreatePlanRelationRequest"
+      },
       "CreatePlanRequest": {
         "properties": {
           "plan_id": {
@@ -83618,6 +83790,17 @@
         ],
         "title": "PlanKind"
       },
+      "PlanLifecycle": {
+        "type": "string",
+        "enum": [
+          "ideation",
+          "planned",
+          "active",
+          "closed",
+          "archived"
+        ],
+        "title": "PlanLifecycle"
+      },
       "PlanNextItem": {
         "properties": {
           "block_id": {
@@ -83733,7 +83916,7 @@
             "title": "Target Plan Id"
           },
           "kind": {
-            "$ref": "#/components/schemas/PlanRelationKind"
+            "$ref": "#/components/schemas/PlanRelationKind-Output"
           },
           "participant_ids": {
             "items": {
@@ -83818,7 +84001,7 @@
         "title": "PlanRelation",
         "description": "An explicit, inspectable edge between two Plans.\n\nRelations are not merge instructions.  They explain why projections can\nintersect while preserving independent dates, membership, and authority."
       },
-      "PlanRelationKind": {
+      "PlanRelationKind-Output": {
         "type": "string",
         "enum": [
           "overlaps",
@@ -83843,7 +84026,7 @@
             "title": "Target Plan Id"
           },
           "kind": {
-            "$ref": "#/components/schemas/PlanRelationKind"
+            "$ref": "#/components/schemas/backend__core__models__plan_topology__PlanRelationKind"
           },
           "participant_ids": {
             "items": {
@@ -89427,9 +89610,40 @@
       "RelationshipPairConversationRequest": {
         "properties": {
           "circle_id": {
-            "type": "string",
-            "format": "uuid",
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Circle Id"
+          },
+          "recipient_user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Recipient User Id"
+          },
+          "conversation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Conversation Id"
           },
           "idempotency_key": {
             "type": "string",
@@ -89440,17 +89654,23 @@
         },
         "type": "object",
         "required": [
-          "circle_id",
           "idempotency_key"
         ],
         "title": "RelationshipPairConversationRequest",
-        "description": "Open the private pair room that carries addressed place notes."
+        "description": "Open an authorized private pair room for an addressed place note."
       },
       "RelationshipPairConversationResponse": {
         "properties": {
           "circle_id": {
-            "type": "string",
-            "format": "uuid",
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Circle Id"
           },
           "conversation_id": {
@@ -89466,7 +89686,6 @@
         },
         "type": "object",
         "required": [
-          "circle_id",
           "conversation_id",
           "recipient_user_id"
         ],
@@ -104404,6 +104623,69 @@
         ],
         "title": "UpdateOpeningCandidateStatusRequest"
       },
+      "UpdatePlanRequest": {
+        "properties": {
+          "kind": {
+            "$ref": "#/components/schemas/PlanKind"
+          },
+          "lifecycle": {
+            "$ref": "#/components/schemas/PlanLifecycle"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 240
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "horizon": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TimeWindow"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "home_entity_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Home Entity Id"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Revision"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "lifecycle",
+          "expected_revision",
+          "idempotency_key"
+        ],
+        "title": "UpdatePlanRequest"
+      },
       "UpdatePreferencesRequest": {
         "properties": {
           "cadence_mode": {
@@ -108542,6 +108824,28 @@
         ],
         "title": "Provenance",
         "description": "Where one moment came from \u2014 the **Discover variant** trust signal.\n\nThe Atlas variant composes the traveler's OWN past, which is inherently\ntrusted, so it never populates provenance. The Discover variant composes the\nWORLD corpus \u2014 venues/sites the engine is *pointing at*, not recalling \u2014 so\neach moment carries who is vouching for it: ``source`` is the trust-ladder\nrung (Vesper editorial / a dossier / a creator / a friend), ``byline`` is the\nhuman attribution string, ``face`` an optional avatar/illustration ref.\n``moment_id`` pins it to the matching ``Moment.id`` so the FE renders the\nbyline on the right card."
+      },
+      "backend__core__models__experience_graph__PlanRelationKind": {
+        "type": "string",
+        "enum": [
+          "overlaps",
+          "joins",
+          "splits",
+          "follows"
+        ],
+        "title": "PlanRelationKind"
+      },
+      "backend__core__models__plan_topology__PlanRelationKind": {
+        "type": "string",
+        "enum": [
+          "overlaps",
+          "contains",
+          "joins",
+          "splits",
+          "rejoins",
+          "derived_from"
+        ],
+        "title": "PlanRelationKind"
       },
       "backend__core__models__universal_search__Provenance": {
         "properties": {
