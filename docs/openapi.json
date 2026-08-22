@@ -14483,6 +14483,86 @@
         }
       }
     },
+    "/api/experience-graph/occasions/{occasion_id}/anchors/{anchor_id}/link": {
+      "post": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Link Experience Anchor To Occasion Route",
+        "description": "Accept an owner anchor into an Occasion without rewriting its source.",
+        "operationId": "link_experience_anchor_to_occasion_route_api_experience_graph_occasions__occasion_id__anchors__anchor_id__link_post",
+        "parameters": [
+          {
+            "name": "occasion_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Occasion Id"
+            }
+          },
+          {
+            "name": "anchor_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Anchor Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LinkExperienceAnchorRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/experience-graph/occasions/{occasion_id}/invitations": {
       "post": {
         "tags": [
@@ -73519,6 +73599,27 @@
           "matched"
         ],
         "title": "LinkDomainMatchPreview"
+      },
+      "LinkExperienceAnchorRequest": {
+        "properties": {
+          "relation_kind": {
+            "type": "string",
+            "pattern": "^(attached|evidence)$",
+            "title": "Relation Kind",
+            "default": "attached"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "idempotency_key"
+        ],
+        "title": "LinkExperienceAnchorRequest"
       },
       "LinkSurfacedRequest": {
         "properties": {

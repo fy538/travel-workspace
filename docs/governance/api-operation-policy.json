@@ -134,6 +134,16 @@
       "removal_trigger": "Remove only with an equivalent canonical Occasion lifecycle transport.",
       "review_by": "2026-10-30"
     },
+    "POST /api/experience-graph/occasions/{occasion_id}/anchors/{anchor_id}/link": {
+      "audience": "app",
+      "consumers": [{"kind": "app_transport", "name": "linkExperienceGraphAnchorToOccasion", "source": "travel-app/utils/api/http.ts"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Source-backed anchors become accepted Occasion context through an explicit owner action; proposal fields remain distinct from durable links.",
+      "removal_trigger": "Remove only with an equivalent canonical anchor-to-Occasion link transport.",
+      "review_by": "2026-10-30"
+    },
     "POST /api/experience-graph/commitments": {
       "audience": "server",
       "consumers": [{"kind": "server", "name": "create_commitment_route"}],
@@ -292,6 +302,16 @@
       "owner": "experience-graph",
       "reason": "A place-bound memory can be recorded without fabricating a Commitment; the first surface may be Chat or capture rather than a dedicated page.",
       "removal_trigger": "Replace only with an equivalent source-bound encounter writer.",
+      "review_by": "2026-10-30"
+    },
+    "PATCH /api/experience-graph/encounter-outcomes/{outcome_id}": {
+      "audience": "app",
+      "consumers": [{"kind": "app_transport", "name": "updateExperienceGraphEncounterOutcome", "source": "travel-app/utils/api/http.ts"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Owner corrections preserve the encounter context while revising meaning through compare-and-set semantics.",
+      "removal_trigger": "Replace only with an equivalent source-bound encounter correction writer.",
       "review_by": "2026-10-30"
     },
     "POST /api/relationships/pair-conversations": {
