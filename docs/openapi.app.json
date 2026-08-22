@@ -60788,7 +60788,7 @@
             "default": "mark_occurrence"
           },
           "occurrence": {
-            "$ref": "#/components/schemas/OccurrenceState-Output"
+            "$ref": "#/components/schemas/OccurrenceState"
           },
           "participant_user_id": {
             "anyOf": [
@@ -64182,7 +64182,7 @@
         ],
         "title": "OccurrenceProposalResponse"
       },
-      "OccurrenceState-Output": {
+      "OccurrenceState": {
         "type": "string",
         "enum": [
           "planned",
@@ -64212,7 +64212,7 @@
             "title": "User Id"
           },
           "occurrence": {
-            "$ref": "#/components/schemas/OccurrenceState-Output"
+            "$ref": "#/components/schemas/OccurrenceState"
           }
         },
         "additionalProperties": false,
@@ -72289,6 +72289,96 @@
         "title": "ProjectedOccasion",
         "description": "A lived context without turning a shared occasion into one itinerary."
       },
+      "ProjectedOccurrenceEvidence": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "subject_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Subject Id"
+          },
+          "state": {
+            "type": "string",
+            "title": "State"
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Observed At"
+          },
+          "confidence": {
+            "type": "number",
+            "title": "Confidence"
+          },
+          "authority": {
+            "type": "string",
+            "title": "Authority"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "subject_id",
+          "state",
+          "observed_at",
+          "confidence",
+          "authority"
+        ],
+        "title": "ProjectedOccurrenceEvidence"
+      },
+      "ProjectedOutcome": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "subject_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Subject Id"
+          },
+          "state": {
+            "type": "string",
+            "title": "State"
+          },
+          "meaning": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Meaning"
+          },
+          "visibility": {
+            "type": "string",
+            "title": "Visibility"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "subject_id",
+          "state",
+          "visibility",
+          "created_at"
+        ],
+        "title": "ProjectedOutcome"
+      },
       "ProjectedPlan": {
         "properties": {
           "id": {
@@ -73306,6 +73396,22 @@
             },
             "type": "array",
             "title": "Occasions",
+            "default": []
+          },
+          "occurrence_evidence": {
+            "items": {
+              "$ref": "#/components/schemas/ProjectedOccurrenceEvidence"
+            },
+            "type": "array",
+            "title": "Occurrence Evidence",
+            "default": []
+          },
+          "outcomes": {
+            "items": {
+              "$ref": "#/components/schemas/ProjectedOutcome"
+            },
+            "type": "array",
+            "title": "Outcomes",
             "default": []
           },
           "omitted_private_count": {

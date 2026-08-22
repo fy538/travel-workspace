@@ -61605,6 +61605,18 @@
         ],
         "title": "ExperienceListResponse"
       },
+      "ExperienceOccurrenceState": {
+        "type": "string",
+        "enum": [
+          "planned",
+          "in_progress",
+          "happened",
+          "changed",
+          "missed",
+          "unknown"
+        ],
+        "title": "ExperienceOccurrenceState"
+      },
       "ExperienceOutcomeFeedback": {
         "properties": {
           "id": {
@@ -72653,7 +72665,7 @@
             "default": "mark_occurrence"
           },
           "occurrence": {
-            "$ref": "#/components/schemas/OccurrenceState-Output"
+            "$ref": "#/components/schemas/OccurrenceState"
           },
           "participant_user_id": {
             "anyOf": [
@@ -76181,7 +76193,7 @@
         ],
         "title": "OccurrenceProposalResponse"
       },
-      "OccurrenceState-Output": {
+      "OccurrenceState": {
         "type": "string",
         "enum": [
           "planned",
@@ -76211,7 +76223,7 @@
             "title": "User Id"
           },
           "occurrence": {
-            "$ref": "#/components/schemas/OccurrenceState-Output"
+            "$ref": "#/components/schemas/OccurrenceState"
           }
         },
         "additionalProperties": false,
@@ -85303,6 +85315,96 @@
         "title": "ProjectedOccasion",
         "description": "A lived context without turning a shared occasion into one itinerary."
       },
+      "ProjectedOccurrenceEvidence": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "subject_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Subject Id"
+          },
+          "state": {
+            "type": "string",
+            "title": "State"
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Observed At"
+          },
+          "confidence": {
+            "type": "number",
+            "title": "Confidence"
+          },
+          "authority": {
+            "type": "string",
+            "title": "Authority"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "subject_id",
+          "state",
+          "observed_at",
+          "confidence",
+          "authority"
+        ],
+        "title": "ProjectedOccurrenceEvidence"
+      },
+      "ProjectedOutcome": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "subject_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Subject Id"
+          },
+          "state": {
+            "type": "string",
+            "title": "State"
+          },
+          "meaning": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Meaning"
+          },
+          "visibility": {
+            "type": "string",
+            "title": "Visibility"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "subject_id",
+          "state",
+          "visibility",
+          "created_at"
+        ],
+        "title": "ProjectedOutcome"
+      },
       "ProjectedPlan": {
         "properties": {
           "id": {
@@ -86625,6 +86727,22 @@
             "title": "Occasions",
             "default": []
           },
+          "occurrence_evidence": {
+            "items": {
+              "$ref": "#/components/schemas/ProjectedOccurrenceEvidence"
+            },
+            "type": "array",
+            "title": "Occurrence Evidence",
+            "default": []
+          },
+          "outcomes": {
+            "items": {
+              "$ref": "#/components/schemas/ProjectedOutcome"
+            },
+            "type": "array",
+            "title": "Outcomes",
+            "default": []
+          },
           "omitted_private_count": {
             "type": "integer",
             "minimum": 0.0,
@@ -87895,7 +88013,7 @@
             "title": "Subject Id"
           },
           "state": {
-            "$ref": "#/components/schemas/backend__core__models__experience_graph__OccurrenceState"
+            "$ref": "#/components/schemas/ExperienceOccurrenceState"
           },
           "source_object_ids": {
             "items": {
@@ -87956,7 +88074,7 @@
             "title": "Subject Id"
           },
           "state": {
-            "$ref": "#/components/schemas/backend__core__models__experience_graph__OccurrenceState"
+            "$ref": "#/components/schemas/ExperienceOccurrenceState"
           },
           "meaning": {
             "anyOf": [
@@ -107707,27 +107825,6 @@
         ],
         "title": "Provenance",
         "description": "Where one moment came from \u2014 the **Discover variant** trust signal.\n\nThe Atlas variant composes the traveler's OWN past, which is inherently\ntrusted, so it never populates provenance. The Discover variant composes the\nWORLD corpus \u2014 venues/sites the engine is *pointing at*, not recalling \u2014 so\neach moment carries who is vouching for it: ``source`` is the trust-ladder\nrung (Vesper editorial / a dossier / a creator / a friend), ``byline`` is the\nhuman attribution string, ``face`` an optional avatar/illustration ref.\n``moment_id`` pins it to the matching ``Moment.id`` so the FE renders the\nbyline on the right card."
-      },
-      "backend__core__models__experience_graph__OccurrenceState": {
-        "type": "string",
-        "enum": [
-          "planned",
-          "in_progress",
-          "happened",
-          "changed",
-          "missed",
-          "unknown"
-        ],
-        "title": "OccurrenceState"
-      },
-      "backend__core__models__itinerary_operations__OccurrenceState": {
-        "type": "string",
-        "enum": [
-          "planned",
-          "happened",
-          "did_not_happen"
-        ],
-        "title": "OccurrenceState"
       },
       "backend__core__models__universal_search__Provenance": {
         "properties": {
