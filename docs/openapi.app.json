@@ -40002,6 +40002,33 @@
               }
             ],
             "title": "Handoff Action"
+          },
+          "handoff_namespace": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "legacy",
+                  "relationship_uuid"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Handoff Namespace"
+          },
+          "handoff_revision": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Handoff Revision"
           }
         },
         "additionalProperties": false,
@@ -74917,6 +74944,18 @@
             "type": "string",
             "format": "uuid",
             "title": "Conversation Id"
+          },
+          "message_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message Id"
           },
           "source_anchor_id": {
             "anyOf": [
