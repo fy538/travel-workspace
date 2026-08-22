@@ -14333,6 +14333,216 @@
         }
       }
     },
+    "/api/experience-graph/occasions/{occasion_id}/decisions": {
+      "post": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Create Occasion Decision Route",
+        "description": "Open one bounded group choice without creating a shared Plan.",
+        "operationId": "create_occasion_decision_route_api_experience_graph_occasions__occasion_id__decisions_post",
+        "parameters": [
+          {
+            "name": "occasion_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Occasion Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOccasionDecisionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experience-graph/occasion-decisions/{decision_id}/votes": {
+      "post": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Cast Occasion Decision Vote Route",
+        "description": "Record or revise the caller's one vote on a pending decision.",
+        "operationId": "cast_occasion_decision_vote_route_api_experience_graph_occasion_decisions__decision_id__votes_post",
+        "parameters": [
+          {
+            "name": "decision_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Decision Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CastOccasionDecisionVoteRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experience-graph/occasion-decisions/{decision_id}/resolve": {
+      "post": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Resolve Occasion Decision Route",
+        "description": "Resolve one decision as the Occasion organizer.",
+        "operationId": "resolve_occasion_decision_route_api_experience_graph_occasion_decisions__decision_id__resolve_post",
+        "parameters": [
+          {
+            "name": "decision_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Decision Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveOccasionDecisionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/experience-graph/commitments": {
       "post": {
         "tags": [
@@ -51051,6 +51261,52 @@
         ],
         "title": "CartResponse"
       },
+      "CastOccasionDecisionVoteRequest": {
+        "properties": {
+          "vote_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Vote Id"
+          },
+          "choice": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 1,
+            "title": "Choice"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 1000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Revision"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "vote_id",
+          "choice",
+          "expected_revision",
+          "idempotency_key"
+        ],
+        "title": "CastOccasionDecisionVoteRequest"
+      },
       "CatalogAccommodationResponse": {
         "properties": {
           "id": {
@@ -54570,6 +54826,44 @@
           "source_channel"
         ],
         "title": "CreateIntakeSubmissionRequest"
+      },
+      "CreateOccasionDecisionRequest": {
+        "properties": {
+          "decision_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Decision Id"
+          },
+          "subject": {
+            "type": "string",
+            "maxLength": 400,
+            "minLength": 1,
+            "title": "Subject"
+          },
+          "options": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "minItems": 2,
+            "title": "Options"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "decision_id",
+          "subject",
+          "options",
+          "idempotency_key"
+        ],
+        "title": "CreateOccasionDecisionRequest"
       },
       "CreateOccasionInvitationRequest": {
         "properties": {
@@ -91002,6 +91296,34 @@
           "action"
         ],
         "title": "ResolveIntakeCandidateRequest"
+      },
+      "ResolveOccasionDecisionRequest": {
+        "properties": {
+          "selected_option": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 1,
+            "title": "Selected Option"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Revision"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "selected_option",
+          "expected_revision",
+          "idempotency_key"
+        ],
+        "title": "ResolveOccasionDecisionRequest"
       },
       "ResolveOccurrenceProposalRequest": {
         "properties": {

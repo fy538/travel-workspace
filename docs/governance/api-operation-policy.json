@@ -168,6 +168,36 @@
       "removal_trigger": null,
       "review_by": "2026-10-30"
     },
+    "POST /api/experience-graph/occasions/{occasion_id}/decisions": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "create_occasion_decision_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "An Occasion decision is a bounded group choice, separate from the personal Plan graph.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "POST /api/experience-graph/occasion-decisions/{decision_id}/votes": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "cast_occasion_decision_vote_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Votes are participant-scoped and independently revisioned so one person's change cannot overwrite another's.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "POST /api/experience-graph/occasion-decisions/{decision_id}/resolve": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "resolve_occasion_decision_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Only an active Occasion organizer can turn a voted choice into shared decision authority.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
     "POST /api/experience-graph/occurrence-evidence": {
       "audience": "server",
       "consumers": [{"kind": "server", "name": "experience-graph-occurrence-command"}],
