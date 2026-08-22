@@ -277,11 +277,12 @@ The desired stickiness is accumulated usefulness, not generic engagement:
 Switching cost should emerge because the system has earned context and trust,
 not because it manufactures notifications or friction.
 
-## 6. Onboarding as the first completed loop
+## 6. Onboarding as one complete learning loop
 
 Onboarding should not principally teach three tabs. It should deliver the first
 closed-loop outcome quickly enough that the user learns the product model by
-experience.
+experience. This is a first-session design requirement, not the architecture's
+first or controlling behavior loop.
 
 A candidate first session:
 

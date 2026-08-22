@@ -1033,7 +1033,9 @@ The percentages are directional planning constraints, not time accounting.
 Their purpose is to prevent another broad architecture week from delaying the
 moment when a user can feel the thesis.
 
-The ordered build sequence is:
+The following is an integration and release sequence, not the architecture's
+source or a ban on parallel product research. Shared contracts are designed
+against the complete behavior portfolio while these slices land:
 
 1. land and certify a clean consolidated baseline;
 2. repair J08 and any map/editorial-map flag drift;
@@ -1044,8 +1046,9 @@ The ordered build sequence is:
    proposal, acceptance, and coherent projection path;
 7. capture one correctable outcome;
 8. apply it through a governed second-occasion resolver;
-9. only then expose one passive ambient opening; push remains earned, not
-   assumed.
+9. expose one passive ambient opening only after its attention and receipt
+   controls pass; its architecture and human research may proceed earlier in
+   parallel. Push remains separately earned, not assumed.
 
 ### 11.6 Are we on the right track?
 

@@ -67,6 +67,66 @@ rules:
 
 
 overrides:
+  docs/architecture/relationships-social-cutover-2026-08-22.md:
+    disposition: keep_reference
+    rationale: Active expiring execution contract for the bounded place-social cutover; canonical product, architecture, journey, and release documents retain authority.
+
+  docs/working/brand-candidate-comparison-hermene-oivaro-2026-08-22.md:
+    disposition: keep_reference
+    rationale: Active exploratory brand comparison that authorizes no public use and remains subordinate to a future naming, legal, and clearance decision.
+
+  docs/working/chat-artifact-closed-loop-optimization-plan-2026-08-16.md:
+    disposition: keep_reference
+    rationale: Active expiring cross-repository execution plan; durable artifact policy and surface behavior must be promoted into their canonical owners.
+
+  docs/working/home-kit-galleries-plan-2026-08-15.md:
+    disposition: keep_reference
+    rationale: Implemented working plan and verification receipt for development galleries; durable rules remain in frontend surface and gallery contracts.
+
+  docs/working/multiplayer-execution-receipt-2026-08-22.md:
+    disposition: keep_reference
+    rationale: Active revision-bound receipt for a bounded Chat-native multiplayer slice; it records implementation evidence without becoming product or architecture authority.
+
+  docs/working/multiplayer-place-relationship-integration-2026-08-22.md:
+    disposition: keep_reference
+    rationale: Active bounded integration record for addressed place relationships and Occasions; canonical multiplayer, place, architecture, and release documents retain authority.
+
+  docs/working/native-design-gallery-founder-pain-2026-08-15.md:
+    disposition: keep_reference
+    rationale: Active expiring founder-pain calibration and gallery follow-up; durable frontend workflow rules remain in canonical contracts and runbooks.
+
+  docs/working/native-design-gallery-research-and-direction-2026-08-14.md:
+    disposition: keep_reference
+    rationale: Active expiring research and implementation receipt for the native design workbench; vendor findings are a dated snapshot and durable rules live elsewhere.
+
+  docs/working/visual-polish-evaluation-and-design-workflow-2026-08-13.md:
+    disposition: keep_reference
+    rationale: Active expiring visual-quality workflow synthesis; it is not product canon and proposed gates require promotion into canonical frontend contracts or runbooks.
+
+  docs/working/thesis-migration-register-2026-08-21.md:
+    disposition: keep_reference
+    rationale: Active cross-repository migration audit and decision docket for the August lived-world thesis; canonical product, release, journey, and system documents retain authority.
+
+  docs/working/first-thesis-proof-sorrento-menu-2026-08-21.md:
+    disposition: keep_reference
+    rationale: Active bounded personal-doorway evidence program and reference integration case; it does not define architecture, authorize production exposure, or replace product and release authority.
+
+  docs/working/second-thesis-proof-rome-couple-evening-2026-08-22.md:
+    disposition: keep_reference
+    rationale: Active integrated multiplayer proof for situated hospitality, plural perception, practical relief, and a coherent shared outcome; it remains subordinate to product and release authority.
+
+  docs/working/vesper-experience-constitution-and-interaction-grammar-2026-08-22.md:
+    disposition: keep_reference
+    rationale: Active product and design grammar candidate that compiles the August thesis into interaction laws and an experience shell; it remains subordinate to product canon until behavioral promotion gates pass.
+
+  docs/working/canonical-product-journey-families-2026-08-22.md:
+    disposition: keep_reference
+    rationale: Active product-design journey-family registry and scenario-fixture library under validation; the J01-J28 registry remains the implementation-assurance authority.
+
+  docs/working/product-grammar-hypotheses-and-validation-2026-08-22.md:
+    disposition: keep_reference
+    rationale: Active empirical hypothesis and validation register for the product grammar; accepted canon and promoted journey evidence retain authority.
+
   docs/working/brand-naming-spelling-variants-2026-08-10.md:
     disposition: keep_reference
     rationale: Active, expiring naming exploration and collision screen; it does not change product, release, or legal authority.

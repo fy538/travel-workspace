@@ -1485,19 +1485,22 @@ A loop is closed only when all of these are true:
 - a later session can resume the object; for the product thesis, a second
   occasion can use permitted prior evidence with less repeated work.
 
-### 17.17 Recommended immediate move
+### 17.17 Recommended coordinated move
 
-The next implementation should **not** begin with a card-system refactor. Once
-the current conversation-convergence work settles:
+The next program should combine systematic architecture with bounded
+integration:
 
-1. repair the small authority inconsistencies;
-2. make the current group chat decision loop the fully certified reference;
-3. run the stateful onboarding design comparison;
-4. build one place-led organic vertical from starter → judgment → correction →
-   Save to Places → return;
-5. then generalize only the lifecycle semantics that repeat.
+1. map card authority and lifecycle semantics across the complete artifact,
+   personal, multiplayer, correction, expiry, and silence portfolio;
+2. repair the small authority inconsistencies;
+3. certify the current group-chat decision loop as one reference integration
+   case;
+4. run the stateful onboarding design comparison and a place-led organic
+   vertical in parallel where their seams do not collide; and
+5. generalize semantics supported by cross-portfolio invariants, then use each
+   vertical to test conformance and human value.
 
-This is the shortest path from a group of strong features to a coherent
-product: prove one ambient first-value loop, reuse the already-strong
-decision/receipt spine, and let the shared grammar emerge from working
-verticals rather than from a speculative universal component.
+This moves from strong features to a coherent product without asking one
+ambient first-value loop to invent the shared grammar. The existing
+decision/receipt spine remains valuable input, but the full behavior portfolio
+owns the architecture.

@@ -2,10 +2,36 @@
 
 > Status: active
 > Owner: founder / engineering
-> Last updated: 2026-07-18
+> Last updated: 2026-08-22
 > Source of truth for: the first production/dogfood journey set for Vesper
 
 These one-pagers define the canonical journeys we should protect before expanding TestFlight and real dogfood: **J01–J12** are the lifecycle golden path; **J13–J19** extend coverage to cross-cutting and repeat/distribution dimensions; **J20–J28** own customer outcomes added after the 2026-07 product expansion audit. They sit above the existing reliability traces: a journey describes the user-facing promise across screens; a trace proves specific contracts and invariants underneath it. Required authority, lifecycle, failure, and recovery paths are tracked as branches under the [Branch-Level Journey Certification Model](BRANCH_CERTIFICATION_MODEL.md); one matching test or Maestro filename no longer implies that every branch is certified.
+
+## Product grammar versus assurance journeys
+
+The August lived-world thesis now has a working product-design layer above this
+registry:
+
+- [Experience Constitution and Interaction Grammar](../working/vesper-experience-constitution-and-interaction-grammar-2026-08-22.md)
+  defines the candidate interaction laws, verbs, treatments, scopes, and
+  consequence boundaries.
+- [Canonical Product Journey Families](../working/canonical-product-journey-families-2026-08-22.md)
+  defines CJ01-CJ18 as reusable human journey families and scenario fixtures.
+- [Product Grammar Hypotheses and Validation](../working/product-grammar-hypotheses-and-validation-2026-08-22.md)
+  owns the unproven claims and behavioral study program.
+
+The distinction is deliberate:
+
+```text
+CJ = product-design family under validation
+J  = implementation-assurance contract with branches and evidence
+```
+
+A CJ document asks whether the interaction is the right human product. A J
+document asks whether a concrete implementation path is reliable, private,
+recoverable, and evidenced. CJ01 does not map automatically to J01, and no CJ
+is “implemented” merely because a similar J journey or test exists. Promotion
+requires an explicit CJ-to-J mapping after product validation.
 
 For single-trip navigation, **Itinerary is the operational home**. Opening an
 active or upcoming trip lands on the full-screen Itinerary List/Map workspace;

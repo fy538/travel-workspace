@@ -235,9 +235,10 @@ Three properties keep the commission on the right side of that line:
 - **E5/E6** — the post-trip half (out of scope here) is where the declared
   conversion mechanism lives.
 
-Note **process rule 3**: strategy is closed until the gate reads. This work
-is admissible only as E2 hardening — a declared link in the chain — not as a
-new feature area. Framed as "add an artifacts feature," it should be parked.
+**Sequencing correction 2026-08-23:** this work remains bounded E2 hardening,
+but strategy and architecture are not closed behind one dogfood gate. Evaluate
+the commission flow against the complete behavior portfolio and its specific
+human-value and release gates; do not treat one loop as sequencing authority.
 
 ## 6. Falsifier (pre-committed)
 

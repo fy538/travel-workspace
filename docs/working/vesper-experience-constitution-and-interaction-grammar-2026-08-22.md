@@ -18,12 +18,28 @@ source_of_truth_for: []
 > or Surfacing Strategy. It compiles their product implications into a design
 > constitution and tests a four-root shell: Home, Vesper, Places, and Life.
 > Canon changes require founder approval after behavioral testing.
+> The interaction grammar and the four-root shell are independent hypotheses:
+> validating the grammar does not approve Home/Life navigation, and rejecting
+> that shell does not invalidate the grammar or product journey families.
+
+Related working layers:
+
+- [Canonical Product Journey Families](canonical-product-journey-families-2026-08-22.md)
+  turns this grammar into reusable product-design sentences and scenario fixtures.
+- [Product Grammar Hypotheses and Validation](product-grammar-hypotheses-and-validation-2026-08-22.md)
+  keeps unproven psychological, multiplayer, continuity, and delegation claims
+  out of canon until behavioral evidence supports them.
+- The workspace [J01-J28 journey registry](../journeys/README.md) remains the
+  implementation-assurance and regression layer; it is not replaced by the
+  product-design journey families.
 
 ## 1. The experience promise
 
-Vesper helps people and the people in their life build a richer relationship
-with places. The interface should make the world more legible, the day lighter,
-and shared experience more coherent without turning the app into the experience.
+Vesper helps people and the people in their life make more of the world legible,
+helps something worthwhile happen there, and carries forward only what earns a
+future consequence. It mediates among people, one another, and the lived world;
+the interface should make the day lighter and shared experience more coherent
+without turning the app into the experience.
 
 The desired sequence is:
 
@@ -124,6 +140,49 @@ These principles are decision rules, not brand copy.
 - Make high-impact operations explicit and low-risk exploration immediate.
 - Never trap the person inside a forced flow or make recovery cost their work.
 
+### 2.11 Practical and meaningful reinforce one another
+
+- Solve the present practical job before offering interpretation.
+- Treat culture as hidden logic inside ordinary life—food, movement, language,
+  materials, climate adaptation, commerce, infrastructure, and social custom—not
+  as a separate content vertical.
+- An interaction does not owe the person a lesson. Practical relief or silence
+  can be a complete success.
+
+### 2.12 Increase capability, not dependency
+
+- Prefer help that lets the person later notice, navigate, judge, communicate,
+  choose, or participate with less assistance.
+- Evaluate a changed encounter and later transfer, not content consumed or
+  instructions followed.
+- Reduce assistance when the person or relationship can carry the experience.
+
+### 2.13 Make the opening easy; keep the expression human
+
+- Reduce recall, topic discovery, relational relevance, timing, privacy, and
+  coordination friction.
+- Preserve choice, interpretation, vulnerability, attention, care, and human
+  authorship.
+- Mediate relevance, not intimacy; never optimize contact frequency or infer
+  relationship health from silence.
+
+### 2.14 Compose infrastructure around experiential intent
+
+- Maps, calendars, marketplaces, messaging, weather, transit, and providers
+  remain authoritative for their facts and actions.
+- Vesper preserves the human intention, minimum-safe projection, permission,
+  and outcome across those systems.
+- Provider identifiers may attach to canonical objects; they may not define a
+  Place, Occasion, Commitment, or relationship.
+
+### 2.15 Continuity must earn a second occasion
+
+- Retention is not proof of compounding value.
+- Reactivation requires authorized prior evidence, current semantic and
+  situational relevance, and a present job it can change.
+- A better later perception, action, conversation, or shared Occasion is the
+  strongest proof that continuity was worthwhile.
+
 ## 3. Intended feeling
 
 The product should feel:
@@ -138,6 +197,8 @@ The product should feel:
   silence remains normal.
 - **Consequential** — interaction can visibly change perception, action,
   coordination, or later judgment.
+- **Capable** — help transfers into greater ability to notice, navigate, judge,
+  communicate, choose, or participate without Vesper.
 - **Socially safe** — private understanding stays private; shared action remains
   coherent.
 - **World-facing** — places and people, not interface ornament, remain central.
@@ -197,15 +258,100 @@ they do not define Life.
 
 ## 5. Core interaction grammar
 
-### 5.1 Inputs
+### 5.1 Fundamental interaction sentence
 
 ```text
-Ask · Point · Import · Invite · Join · Choose · Decline · Correct · Confirm
+An Initiator causes a Person to perform a Verb
+on an Object for an Immediate Job,
+within a Moment, Scope, and relationship context.
+
+Vesper chooses a Treatment,
+which may produce an authorized Consequence,
+an inspectable Receipt,
+and an optional future Continuation.
+```
+
+This sentence is the product grammar. A menu, movie ticket, invitation, Place,
+or photograph is a scenario fixture inside the sentence, not a mini-product or
+top-level journey category.
+
+### 5.2 Initiators
+
+An interaction may begin with:
+
+| Initiator | Example |
+|---|---|
+| **Person** | Question, observation, upload, search, or intention |
+| **Companion** | Invitation, artifact, question, perspective, or request |
+| **Vesper** | Earned opening, unresolved consequence, or bounded proposal |
+| **Commitment** | Flight, reservation, show, dinner, or task is approaching |
+| **Provider** | Confirmation, rejection, cancellation, delay, or changed terms |
+| **Changing world** | Weather, heat, crowds, closure, availability, or disruption |
+| **Place** | Something present becomes useful or worth noticing |
+| **Prior encounter** | An authorized book, movie, conversation, or experience becomes relevant |
+| **Return** | A second related Occasion creates a new job |
+
+This dimension is more important than adding more artifact categories. The same
+plane ticket produces different journeys when imported by a person, changed by
+an airline, surfaced before departure, or reconciled afterward.
+
+### 5.3 Immediate jobs and intake
+
+People bring fragments to solve a present job, not to classify artifacts.
+
+```text
+answer_now
+understand_now
+orient_now
+explore
+act_now
+decide
+coordinate
+send_to_someone
+hold_for_later
+prove_or_document
+continue_existing_context
+correct
+unclear
+```
+
+Vesper should infer the cheapest plausible job and ask a bounded clarification
+only when ambiguity would materially change consequence, audience, or authority.
+
+### 5.4 Human verbs
+
+The durable verbs are organized by human purpose:
+
+| Family | Verbs | Meaning |
+|---|---|---|
+| **Encounter** | Ask, Bring, Find, Explore, Author | Enter through a question, fragment, search, wandering posture, or new expression |
+| **Understand** | Identify, Decode, Orient, Compare, Connect, Learn | Make something spatially, practically, culturally, personally, or relationally legible |
+| **Relate** | Address, Offer a lens, Ask their take, Respond, Invite, Share, Contribute | Create bounded attention, expression, participation, or projection between people |
+| **Act** | Shape, Decide, Join, Coordinate, Delegate, Authorize, Adapt | Turn possibility into an appropriate real-world consequence |
+| **Carry and control** | Keep, Mark, Reconcile, Revisit, Correct, Release | Author continuity, establish lived truth, contest the system, or end authority |
+
+“Continue” and “return” are lifecycle behaviors across these verbs rather than
+mandatory interface controls.
+
+Four relational verbs must remain distinct:
+
+- **Send** transmits an object.
+- **Address** offers something because it connects this object, moment, and person.
+- **Share** creates a bounded audience projection.
+- **Publish or contribute** adds a governed public or Place projection.
+
+“This made me think of you” is an addressed relational act, not generic content
+distribution.
+
+### 5.5 Default inputs
+
+```text
+Ask · Point · Bring · Import · Invite · Join · Choose · Decline · Correct · Confirm
 ```
 
 The default entry requires only **Ask** or **Point**.
 
-### 5.2 Bounded outputs
+### 5.6 Bounded outputs
 
 | Output | Meaning |
 |---|---|
@@ -219,23 +365,29 @@ The default entry requires only **Ask** or **Point**.
 | **Receipt** | What changed, why, under what scope, and how to reverse it |
 | **Silence** | No treatment earned |
 
-### 5.3 Human verbs
+An Opening is normally an ephemeral treatment: an opportunity for attention,
+conversation, relationship, or action. It should not become a durable object
+merely because it matters phenomenologically.
+
+### 5.7 Vesper verbs and treatments
 
 ```text
-Ask · Point · Continue · Keep · Mark · Connect · Share · Contribute · Correct · Release
+Answer · Identify · Decode · Translate · Situate · Compare · Orient
+Compress · Propose · Route · Recall · Prepare · Act · Abstain · Withdraw
 ```
 
-- Ask and Point must be immediately useful.
-- Keep authorizes a private consequence; it does not imply sharing.
-- Share creates one audience projection; it does not broaden memory authority.
-- Contribute creates a separately governed public projection.
-- Release includes dormancy, removal from inference, forgetting, and deletion.
-
-### 5.4 Vesper verbs
+The visible treatment can be:
 
 ```text
-Answer · Situate · Interpret · Compress · Propose · Route · Recall · Act · Abstain · Withdraw
+silence · haptic alert · operational cue · landmark cue
+one-line opening · answer · shared prompt · short shared audio
+deeper explanation · proposal · prepared action · authorized execution
+receipt · withdrawal
 ```
+
+Attention state selects treatment, not merely content. A relevant Colosseum
+connection may deserve silence while crossing, one line while walking, a shared
+cue while resting, or deeper explanation after an explicit question.
 
 Vesper may not silently convert:
 
@@ -245,6 +397,141 @@ Vesper may not silently convert:
 - group visibility into consensus;
 - a human perspective into universal Place truth;
 - a suggestion into a commitment.
+
+### 5.8 Multiplayer grammar
+
+Shared attention is not shared preference. Multiplayer supports at least four
+attention modes:
+
+1. **Co-present shared attention** — look at or experience something together.
+2. **Borrowed perception** — temporarily see through another person's lens.
+3. **Asynchronous addressed attention** — “this made me think of you.”
+4. **Host-mediated attention** — reveal one's city, practice, or life to a visitor.
+
+Operational multiplayer follows:
+
+```text
+plural private perspectives
+  -> group-safe synthesis
+  -> appropriate joint participation
+  -> one coherent shared consequence
+  -> separate personal outcomes
+```
+
+Vesper reduces search, recall, topic-discovery, relevance, timing, privacy, and
+coordination friction. People retain choice, interpretation, attention,
+vulnerability, expression, care, and relationship authorship.
+
+> Make the opening easy; keep the expression human.
+
+The product may scaffold support or repair by restoring context and making an
+opening safer. It may not automate apology, forgiveness, gratitude, intimacy,
+or emotional reconciliation.
+
+### 5.9 Audience and custody grammar
+
+Audience is not a single public/private continuum:
+
+```text
+private
+named person
+named people
+Occasion roster
+recurring circle
+link viewers
+followers
+public Place
+provider or service
+```
+
+Every projection resolves recipients, purpose, copying, resharing, attribution,
+inference, expiry, correction, and honest revocation limits separately.
+
+### 5.10 Delegated action grammar
+
+Consequential action separates six transitions:
+
+```text
+Decide       choose what should happen
+Authorize    grant a named actor bounded permission
+Execute      the provider or responsible actor attempts the action
+Monitor      observe progress without assuming success
+Reconcile    establish provider-reported and lived truth
+Revoke       end remaining authority or begin compensating recovery
+```
+
+Approval of an option is not authorization to contact a provider, commit,
+transact, substitute, or retry. A provider timeout creates an unknown outcome
+that must be reconciled before another attempt.
+
+Task-scoped authority should name:
+
+```yaml
+controller: person
+task: bounded action
+target: named provider or object
+participants: []
+time_window: null
+price_or_fee_limit: null
+data_allowed_to_leave: []
+acceptable_substitutions: []
+approval_boundary: before_external_contact | before_commitment | before_payment
+expires: null
+max_attempts: 1
+unknown_outcome_behavior: stop_and_reconcile
+revocable_until: null
+receipt_audience: []
+```
+
+### 5.11 Generative grammar schema
+
+Every canonical journey and consequential feature should be representable with:
+
+```yaml
+initiator: person | companion | vesper | commitment | provider |
+  world_change | place | prior_encounter | return
+verb: null
+object: source_artifact | place | person | perspective | opening |
+  occasion | move | plan | commitment | outcome | permission
+immediate_job: answer | understand | orient | explore | decide |
+  coordinate | act | address | preserve | document | correct | continue
+context:
+  place: null
+  time: null
+  attention_state: null
+  physical_burden: null
+  lifecycle_phase: null
+people:
+  cardinality: solo | pair | ephemeral_group | recurring_group | public
+  participants: []
+  decision_rights: {}
+  private_objection_allowed: false
+audience_and_custody:
+  recipients: []
+  keep_copy: null
+  reshare: null
+  inference: null
+  expiry: null
+  revocation_limit: null
+authority:
+  level: advise | propose | prepare | contact | commit | transact
+  controller: null
+  approval_boundary: null
+  expires: null
+treatment: silence | cue | answer | orient | shared_prompt |
+  proposal | prepared_action | execution
+consequence: none | connection | move | occasion | commitment |
+  projection | provider_action | retained_evidence
+receipt:
+  what_changed: null
+  who_acted: null
+  evidence: null
+  recovery_or_undo: null
+continuity:
+  retained_evidence: null
+  reactivation_basis: null
+  second_occasion_delta: null
+```
 
 ## 6. Lifecycle and consequence boundary
 
@@ -552,7 +839,9 @@ The constitution is ready to become canonical only when:
 
 - four-root IA testing shows no systematic Home/Life or Vesper/Life confusion;
 - cross-root details preserve origin and canonical destinations remain legible;
-- the Sorrento loop works across all five consequence states;
+- the evidence portfolio exercises answer-only, artifact, personal continuity,
+  multiplayer, occurrence, and deliberate-silence consequences across more
+  than one journey family;
 - participants can distinguish attention, occurrence, meaning, and sharing;
 - correction and release are discoverable without a settings scavenger hunt;
 - the selected visual direction remains legible in light/dark mode, Dynamic

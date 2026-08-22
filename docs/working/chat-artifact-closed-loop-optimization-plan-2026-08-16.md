@@ -1175,7 +1175,9 @@ Stop and create a separate decision/RFC if the work appears to require:
 - changing specialized booking/proposal authority into client-local behavior;
 - logging private prompt/card content for measurement;
 - production retrieval enforcement before independent recall evidence;
-- redesigning the full attachment inventory before four real loops pass;
+- redesigning the full attachment inventory without a cross-portfolio
+  authority, lifecycle, and consumer analysis; four real loops are useful
+  evidence but neither necessary nor sufficient to define the architecture;
 - accepting a visual verdict without the required screenshots;
 - editing on the unsettled profile branch or staging unrelated files.
 

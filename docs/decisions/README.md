@@ -18,6 +18,7 @@ Durable choices that constrain future work belong here. Use the
 
 | Date | Decision | Status |
 |---|---|---|
+| 2026-08-23 | [Separate systematic architecture from product proof](2026-08-23-separate-architecture-from-product-proof.md) | accepted |
 | 2026-08-16 | [Use content-free causal lineage across decision families](2026-08-16-causal-decision-outcome-lineage.md) | accepted |
 | 2026-08-16 | [Persist place interpretation losslessly and derive relationship state](2026-08-16-place-content-and-relationship-projection.md) | accepted |
 | 2026-08-16 | [Separate openings, judgments, treatment, and recipient lifecycle](2026-08-16-opening-treatment-and-attention.md) | accepted |

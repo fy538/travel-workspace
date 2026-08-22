@@ -87,6 +87,11 @@ event.
 
 ## Execution order
 
+> **2026-08-23 sequencing correction:** item 7's former one-loop expansion gate
+> is superseded by the accepted
+> [architecture/proof separation decision](2026-08-23-separate-architecture-from-product-proof.md).
+> The ownership and migration decisions in this record remain accepted.
+
 1. Certify existing outbox leasing and two-device synchronization.
 2. Add the shared contracts and ownership telemetry without behavior changes.
 3. Correct social-circle invitation, acceptance, pair identity, and lifecycle.
@@ -96,8 +101,11 @@ event.
    active private projection, and circle sharing requires a confirmed-member
    action with an auditable circle event.
 6. Migrate context consumers and retire redundant read paths incrementally.
-7. Prove one end-to-end pair Plan → occurrence → outcome → memory → proactive
-   recommendation slice before expanding multiplayer behavior.
+7. Exercise Plan → occurrence → outcome → memory → later application as one
+   integration slice inside the broader behavior portfolio. Expand or revise
+   multiplayer architecture from the portfolio and its invariants; gate product
+   exposure and claims on the relevant human and release evidence, not on this
+   slice alone.
 
 Every phase uses expand → backfill → shadow → compare → cut over → contract.
 No legacy path is deleted until parity, privacy, latency, replay, and rollback

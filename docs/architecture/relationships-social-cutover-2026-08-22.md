@@ -121,6 +121,11 @@ create one linked `occasions` row and two participant rows atomically. The
 
 ## Product sequence
 
+This is a staged exposure sequence for one social expression. The relationship,
+Occasion, authority, and plurality architecture is derived from the full
+personal-and-multiplayer portfolio; later exposure stages may be researched and
+designed before send-now ships.
+
 ### Send-now alpha
 
 The first release begins in Chat after a useful action such as translation,
