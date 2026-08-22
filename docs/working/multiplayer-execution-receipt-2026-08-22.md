@@ -50,6 +50,7 @@ Backend (`travel-agent`, `codex/clean-break-occasion-core`):
 - `9a545dbf6` — server-authorized two-option Occasion decision votes.
 - `40d0c56f3` — bounded four-option vote grammar, contiguous-index validation,
   and card persistence tests.
+- `3bbeae064` — explicit four-option persistence-boundary coverage.
 
 Mobile (`travel-app`, `codex/clean-break-product-shell`):
 
