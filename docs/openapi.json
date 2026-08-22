@@ -13683,6 +13683,226 @@
         }
       }
     },
+    "/api/experience-graph/occasions/{occasion_id}/decisions": {
+      "get": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "List Occasion Decisions Route",
+        "description": "List decisions and safe vote state for an active Occasion member.",
+        "operationId": "list_occasion_decisions_route_api_experience_graph_occasions__occasion_id__decisions_get",
+        "parameters": [
+          {
+            "name": "occasion_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Occasion Id"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/OccasionDecisionStatus"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OccasionDecisionResponse"
+                  },
+                  "title": "Response List Occasion Decisions Route Api Experience Graph Occasions  Occasion Id  Decisions Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Create Occasion Decision Route",
+        "description": "Open one bounded group choice without creating a shared Plan.",
+        "operationId": "create_occasion_decision_route_api_experience_graph_occasions__occasion_id__decisions_post",
+        "parameters": [
+          {
+            "name": "occasion_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Occasion Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOccasionDecisionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experience-graph/occasion-decisions/{decision_id}": {
+      "get": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Get Occasion Decision Route",
+        "description": "Read one decision only through active Occasion membership.",
+        "operationId": "get_occasion_decision_route_api_experience_graph_occasion_decisions__decision_id__get",
+        "parameters": [
+          {
+            "name": "decision_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Decision Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OccasionDecisionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/experience-graph/anchors/{anchor_id}": {
       "get": {
         "tags": [
@@ -14333,14 +14553,14 @@
         }
       }
     },
-    "/api/experience-graph/occasions/{occasion_id}/decisions": {
+    "/api/experience-graph/occasions/{occasion_id}/transfer-organizer": {
       "post": {
         "tags": [
           "experience-graph"
         ],
-        "summary": "Create Occasion Decision Route",
-        "description": "Open one bounded group choice without creating a shared Plan.",
-        "operationId": "create_occasion_decision_route_api_experience_graph_occasions__occasion_id__decisions_post",
+        "summary": "Transfer Occasion Organizer Route",
+        "description": "Transfer organizer authority before leaving an active Occasion.",
+        "operationId": "transfer_occasion_organizer_route_api_experience_graph_occasions__occasion_id__transfer_organizer_post",
         "parameters": [
           {
             "name": "occasion_id",
@@ -14374,13 +14594,13 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateOccasionDecisionRequest"
+                "$ref": "#/components/schemas/TransferOccasionOrganizerRequest"
               }
             }
           }
         },
         "responses": {
-          "201": {
+          "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
@@ -54450,6 +54670,15 @@
             ],
             "title": "Occasion Id"
           },
+          "participant_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Participant Ids",
+            "default": []
+          },
           "idempotency_key": {
             "type": "string",
             "maxLength": 200,
@@ -77529,6 +77758,136 @@
         "title": "OccasionCapsule",
         "description": "A compiled Occasion read model, not a new persistence aggregate."
       },
+      "OccasionDecisionResponse": {
+        "properties": {
+          "decision_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Decision Id"
+          },
+          "occasion_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Occasion Id"
+          },
+          "created_by": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Created By"
+          },
+          "subject": {
+            "type": "string",
+            "title": "Subject"
+          },
+          "options": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Options"
+          },
+          "status": {
+            "$ref": "#/components/schemas/OccasionDecisionStatus"
+          },
+          "selected_option": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Selected Option"
+          },
+          "revision": {
+            "type": "integer",
+            "title": "Revision"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          },
+          "votes": {
+            "items": {
+              "$ref": "#/components/schemas/OccasionDecisionVoteResponse"
+            },
+            "type": "array",
+            "title": "Votes",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "decision_id",
+          "occasion_id",
+          "created_by",
+          "subject",
+          "options",
+          "status",
+          "revision",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "OccasionDecisionResponse"
+      },
+      "OccasionDecisionStatus": {
+        "type": "string",
+        "enum": [
+          "pending",
+          "resolved",
+          "dismissed",
+          "expired"
+        ],
+        "title": "OccasionDecisionStatus"
+      },
+      "OccasionDecisionVoteResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "choice": {
+            "type": "string",
+            "title": "Choice"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "revision": {
+            "type": "integer",
+            "title": "Revision"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "user_id",
+          "choice",
+          "revision"
+        ],
+        "title": "OccasionDecisionVoteResponse"
+      },
       "OccasionInvitationResponse": {
         "properties": {
           "invitation_id": {
@@ -86942,6 +87301,11 @@
             "type": "array",
             "title": "Participant Ids"
           },
+          "revision": {
+            "type": "integer",
+            "title": "Revision",
+            "default": 0
+          },
           "private": {
             "type": "boolean",
             "title": "Private",
@@ -87024,6 +87388,14 @@
             "type": "array",
             "title": "Commitment Ids",
             "default": []
+          },
+          "members": {
+            "items": {
+              "$ref": "#/components/schemas/ProjectedOccasionMember"
+            },
+            "type": "array",
+            "title": "Members",
+            "default": []
           }
         },
         "additionalProperties": false,
@@ -87035,6 +87407,41 @@
         ],
         "title": "ProjectedOccasion",
         "description": "A lived context without turning a shared occasion into one itinerary."
+      },
+      "ProjectedOccasionMember": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "role": {
+            "type": "string",
+            "title": "Role"
+          },
+          "visibility": {
+            "type": "string",
+            "title": "Visibility"
+          },
+          "revision": {
+            "type": "integer",
+            "title": "Revision",
+            "default": 0
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "user_id",
+          "status",
+          "role",
+          "visibility"
+        ],
+        "title": "ProjectedOccasionMember"
       },
       "ProjectedOccurrenceEvidence": {
         "properties": {
@@ -87164,6 +87571,11 @@
             "format": "uuid",
             "title": "Subject Id"
           },
+          "owner_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Owner Id"
+          },
           "state": {
             "type": "string",
             "title": "State"
@@ -87199,6 +87611,7 @@
         "required": [
           "id",
           "subject_id",
+          "owner_id",
           "state",
           "visibility",
           "created_at"
@@ -87219,6 +87632,11 @@
           "lifecycle": {
             "type": "string",
             "title": "Lifecycle"
+          },
+          "revision": {
+            "type": "integer",
+            "title": "Revision",
+            "default": 0
           },
           "title": {
             "anyOf": [
@@ -98394,6 +98812,33 @@
         ],
         "title": "TogetherPairProjection",
         "description": "A narrow, revision-bound view for a confirmed two-person circle.\n\nIt intentionally contains only circle-governed material: the counterpart's\ndisplay identity, current linked trip ids, and claims an active member\nexplicitly shared with the circle. It is not a private-profile export."
+      },
+      "TransferOccasionOrganizerRequest": {
+        "properties": {
+          "new_organizer_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "New Organizer Id"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Revision"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "new_organizer_id",
+          "expected_revision",
+          "idempotency_key"
+        ],
+        "title": "TransferOccasionOrganizerRequest"
       },
       "TransferSharedPlanOwnerRequest": {
         "properties": {

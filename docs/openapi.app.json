@@ -72575,6 +72575,11 @@
             "type": "array",
             "title": "Participant Ids"
           },
+          "revision": {
+            "type": "integer",
+            "title": "Revision",
+            "default": 0
+          },
           "private": {
             "type": "boolean",
             "title": "Private",
@@ -72657,6 +72662,14 @@
             "type": "array",
             "title": "Commitment Ids",
             "default": []
+          },
+          "members": {
+            "items": {
+              "$ref": "#/components/schemas/ProjectedOccasionMember"
+            },
+            "type": "array",
+            "title": "Members",
+            "default": []
           }
         },
         "additionalProperties": false,
@@ -72668,6 +72681,41 @@
         ],
         "title": "ProjectedOccasion",
         "description": "A lived context without turning a shared occasion into one itinerary."
+      },
+      "ProjectedOccasionMember": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "role": {
+            "type": "string",
+            "title": "Role"
+          },
+          "visibility": {
+            "type": "string",
+            "title": "Visibility"
+          },
+          "revision": {
+            "type": "integer",
+            "title": "Revision",
+            "default": 0
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "user_id",
+          "status",
+          "role",
+          "visibility"
+        ],
+        "title": "ProjectedOccasionMember"
       },
       "ProjectedOccurrenceEvidence": {
         "properties": {
@@ -72797,6 +72845,11 @@
             "format": "uuid",
             "title": "Subject Id"
           },
+          "owner_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Owner Id"
+          },
           "state": {
             "type": "string",
             "title": "State"
@@ -72832,6 +72885,7 @@
         "required": [
           "id",
           "subject_id",
+          "owner_id",
           "state",
           "visibility",
           "created_at"
@@ -72852,6 +72906,11 @@
           "lifecycle": {
             "type": "string",
             "title": "Lifecycle"
+          },
+          "revision": {
+            "type": "integer",
+            "title": "Revision",
+            "default": 0
           },
           "title": {
             "anyOf": [

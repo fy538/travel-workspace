@@ -148,6 +148,16 @@
       "removal_trigger": null,
       "review_by": "2026-10-30"
     },
+    "POST /api/experience-graph/occasions/{occasion_id}/transfer-organizer": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "transfer_occasion_organizer_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Organizer transfer preserves shared Occasion continuity before the current organizer leaves.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
     "PATCH /api/experience-graph/commitments/{commitment_id}": {
       "audience": "server",
       "consumers": [{"kind": "server", "name": "update_commitment_route"}],
@@ -178,6 +188,16 @@
       "removal_trigger": null,
       "review_by": "2026-10-30"
     },
+    "GET /api/experience-graph/occasions/{occasion_id}/decisions": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "list_occasion_decisions_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Decision reads expose active-member-scoped choices and privacy-filtered vote notes for shared context.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
     "POST /api/experience-graph/occasion-decisions/{decision_id}/votes": {
       "audience": "server",
       "consumers": [{"kind": "server", "name": "cast_occasion_decision_vote_route"}],
@@ -195,6 +215,16 @@
       "lifecycle": "active",
       "owner": "experience-graph",
       "reason": "Only an active Occasion organizer can turn a voted choice into shared decision authority.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "GET /api/experience-graph/occasion-decisions/{decision_id}": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "get_occasion_decision_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Decision detail remains readable only through active Occasion membership and preserves auditable vote state.",
       "removal_trigger": null,
       "review_by": "2026-10-30"
     },
