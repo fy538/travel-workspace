@@ -44603,7 +44603,7 @@
           "experience_scope"
         ],
         "title": "ActivateIntakeProposalRequest",
-        "description": "Explicit owner bindings required to open one accepted proposal."
+        "description": "Owner selections that the server must resolve against current authority."
       },
       "ActivateIntakeProposalResponse": {
         "properties": {
