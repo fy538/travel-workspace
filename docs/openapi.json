@@ -13657,6 +13657,126 @@
         }
       }
     },
+    "/api/experience-graph/occurrence-evidence": {
+      "post": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Record Occurrence Evidence Route",
+        "description": "Record an observed outcome of a Commitment without mutating it.",
+        "operationId": "record_occurrence_evidence_route_api_experience_graph_occurrence_evidence_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordOccurrenceEvidenceRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experience-graph/outcomes": {
+      "post": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Record Outcome Route",
+        "description": "Record a participant-scoped, private-by-default outcome.",
+        "operationId": "record_outcome_route_api_experience_graph_outcomes_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordOutcomeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/events": {
       "post": {
         "tags": [
@@ -72533,7 +72653,7 @@
             "default": "mark_occurrence"
           },
           "occurrence": {
-            "$ref": "#/components/schemas/OccurrenceState"
+            "$ref": "#/components/schemas/OccurrenceState-Output"
           },
           "participant_user_id": {
             "anyOf": [
@@ -76061,7 +76181,7 @@
         ],
         "title": "OccurrenceProposalResponse"
       },
-      "OccurrenceState": {
+      "OccurrenceState-Output": {
         "type": "string",
         "enum": [
           "planned",
@@ -76091,7 +76211,7 @@
             "title": "User Id"
           },
           "occurrence": {
-            "$ref": "#/components/schemas/OccurrenceState"
+            "$ref": "#/components/schemas/OccurrenceState-Output"
           }
         },
         "additionalProperties": false,
@@ -87761,6 +87881,116 @@
         ],
         "title": "RecordGeofenceEventResponse",
         "description": "Composite response: the event row + the session it's bound to.\n\nWhen ``event_type='entered'`` and no session is active, the route\nopens one and returns it inline so the client doesn't need a second\nround-trip to learn its session_id. When the caller enters a different\nentity, the prior session is closed with ``close_reason='next_place'``\nby ``open_session`` and a fresh arc opens. Otherwise ``session`` is\nnull (the trigger was recorded but no session changes resulted) or\nthe existing active session."
+      },
+      "RecordOccurrenceEvidenceRequest": {
+        "properties": {
+          "evidence_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Evidence Id"
+          },
+          "subject_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Subject Id"
+          },
+          "state": {
+            "$ref": "#/components/schemas/backend__core__models__experience_graph__OccurrenceState"
+          },
+          "source_object_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Source Object Ids",
+            "default": []
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Observed At"
+          },
+          "confidence": {
+            "type": "integer",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Confidence",
+            "default": 0
+          },
+          "authority": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "pattern": "^[a-z][a-z0-9_.:-]{2,119}$",
+            "title": "Authority"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "evidence_id",
+          "subject_id",
+          "state",
+          "observed_at",
+          "authority",
+          "idempotency_key"
+        ],
+        "title": "RecordOccurrenceEvidenceRequest"
+      },
+      "RecordOutcomeRequest": {
+        "properties": {
+          "outcome_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Outcome Id"
+          },
+          "subject_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Subject Id"
+          },
+          "state": {
+            "$ref": "#/components/schemas/backend__core__models__experience_graph__OccurrenceState"
+          },
+          "meaning": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 4000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Meaning"
+          },
+          "visibility": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{1,63}$",
+            "title": "Visibility",
+            "default": "private"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "outcome_id",
+          "subject_id",
+          "state",
+          "idempotency_key"
+        ],
+        "title": "RecordOutcomeRequest"
       },
       "RecordResponseRequest": {
         "properties": {
@@ -107477,6 +107707,27 @@
         ],
         "title": "Provenance",
         "description": "Where one moment came from \u2014 the **Discover variant** trust signal.\n\nThe Atlas variant composes the traveler's OWN past, which is inherently\ntrusted, so it never populates provenance. The Discover variant composes the\nWORLD corpus \u2014 venues/sites the engine is *pointing at*, not recalling \u2014 so\neach moment carries who is vouching for it: ``source`` is the trust-ladder\nrung (Vesper editorial / a dossier / a creator / a friend), ``byline`` is the\nhuman attribution string, ``face`` an optional avatar/illustration ref.\n``moment_id`` pins it to the matching ``Moment.id`` so the FE renders the\nbyline on the right card."
+      },
+      "backend__core__models__experience_graph__OccurrenceState": {
+        "type": "string",
+        "enum": [
+          "planned",
+          "in_progress",
+          "happened",
+          "changed",
+          "missed",
+          "unknown"
+        ],
+        "title": "OccurrenceState"
+      },
+      "backend__core__models__itinerary_operations__OccurrenceState": {
+        "type": "string",
+        "enum": [
+          "planned",
+          "happened",
+          "did_not_happen"
+        ],
+        "title": "OccurrenceState"
       },
       "backend__core__models__universal_search__Provenance": {
         "properties": {

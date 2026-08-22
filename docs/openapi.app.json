@@ -60788,7 +60788,7 @@
             "default": "mark_occurrence"
           },
           "occurrence": {
-            "$ref": "#/components/schemas/OccurrenceState"
+            "$ref": "#/components/schemas/OccurrenceState-Output"
           },
           "participant_user_id": {
             "anyOf": [
@@ -64182,7 +64182,7 @@
         ],
         "title": "OccurrenceProposalResponse"
       },
-      "OccurrenceState": {
+      "OccurrenceState-Output": {
         "type": "string",
         "enum": [
           "planned",
@@ -64212,7 +64212,7 @@
             "title": "User Id"
           },
           "occurrence": {
-            "$ref": "#/components/schemas/OccurrenceState"
+            "$ref": "#/components/schemas/OccurrenceState-Output"
           }
         },
         "additionalProperties": false,

@@ -38,6 +38,26 @@
       "removal_trigger": null,
       "review_by": "2026-10-30"
     },
+    "POST /api/experience-graph/occurrence-evidence": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "experience-graph-occurrence-command"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Occurrence evidence records what happened without rewriting a commitment; mobile exposure follows a reviewed outcome surface.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "POST /api/experience-graph/outcomes": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "experience-graph-outcome-command"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Participant-scoped outcomes are private by default and form the future memory correction seam.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
     "POST /api/relationships/pair-conversations": {
       "audience": "server",
       "consumers": [{"kind": "server", "name": "relationship-handoff-command"}],
