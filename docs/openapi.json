@@ -85105,6 +85105,128 @@
         ],
         "title": "ProjectedCommitment"
       },
+      "ProjectedOccasion": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "lifecycle": {
+            "type": "string",
+            "title": "Lifecycle"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "purpose": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Purpose"
+          },
+          "member_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Member Ids",
+            "default": []
+          },
+          "commitment_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Commitment Ids",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "lifecycle"
+        ],
+        "title": "ProjectedOccasion",
+        "description": "A lived context without turning a shared occasion into one itinerary."
+      },
+      "ProjectedPlan": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "lifecycle": {
+            "type": "string",
+            "title": "Lifecycle"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "horizon": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TimeWindow"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "commitment_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Commitment Ids",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "lifecycle"
+        ],
+        "title": "ProjectedPlan",
+        "description": "Viewer-safe Plan context for Home, Chat, and Places."
+      },
       "PromoteToTripRequest": {
         "properties": {
           "trip_kind": {
@@ -86345,6 +86467,22 @@
             },
             "type": "array",
             "title": "Commitments"
+          },
+          "plans": {
+            "items": {
+              "$ref": "#/components/schemas/ProjectedPlan"
+            },
+            "type": "array",
+            "title": "Plans",
+            "default": []
+          },
+          "occasions": {
+            "items": {
+              "$ref": "#/components/schemas/ProjectedOccasion"
+            },
+            "type": "array",
+            "title": "Occasions",
+            "default": []
           },
           "omitted_private_count": {
             "type": "integer",
