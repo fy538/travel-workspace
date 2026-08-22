@@ -51,6 +51,7 @@ Backend (`travel-agent`, `codex/clean-break-occasion-core`):
 - `40d0c56f3` — bounded four-option vote grammar, contiguous-index validation,
   and card persistence tests.
 - `3bbeae064` — explicit four-option persistence-boundary coverage.
+- `5b1fb0874` — sparse decision action-index rejection coverage.
 
 Mobile (`travel-app`, `codex/clean-break-product-shell`):
 
