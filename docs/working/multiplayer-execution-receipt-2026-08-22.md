@@ -70,10 +70,10 @@ Workspace contract:
 
 ## Verification
 
-- Backend Chat/graph suite: **101 passed** on the current branch.
-- Backend card/action follow-up: **39 passed**.
+- Backend Chat/graph suite: **104 passed** on the current branch.
+- Backend card/action follow-up: **35 passed** for the card grammar file.
 - Mobile focused Chat/graph suite: **44 passed** before the vote slice, plus
-  **25 passed** for the invitation/vote/card-grammar follow-up.
+  **27 passed** for the invitation/vote/card-grammar follow-up.
 - Mobile TypeScript: **passed**.
 - API boundary check: **passed**.
 - Polish scenario registry: **31 registered**.
