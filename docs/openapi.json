@@ -65321,6 +65321,15 @@
             ],
             "title": "Proposed Occasion Id"
           },
+          "occasion_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Occasion Ids",
+            "default": []
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
