@@ -33,12 +33,11 @@ The path is deliberately revision-bound:
 
 The same artifact grammar now admits Occasion decisions, commitments, outcomes,
 and place memories as references, and the collaboration intent is understood by
-the native Chat renderer and telemetry. Two-option decision voting is also
-Chat-native: each option is a server-issued opaque action, and the resolver
+the native Chat renderer and telemetry. Decision voting is Chat-native for two
+to four options: each option is a server-issued opaque action, and the resolver
 checks active Occasion membership, current decision revision, and that the
-option still exists before the app sends the typed vote mutation. Decisions
-with more than two options remain actionless until a reviewed multi-option
-interaction exists.
+option still exists before the app sends the typed vote mutation. Larger
+decisions remain actionless until a separately reviewed presentation exists.
 
 ## Commits landed
 
@@ -49,6 +48,8 @@ Backend (`travel-agent`, `codex/clean-break-occasion-core`):
 - `697efb248` — bounded invitation control validation.
 - `cb265c99c` — persistence-boundary test for the two-control invitation card.
 - `9a545dbf6` — server-authorized two-option Occasion decision votes.
+- `40d0c56f3` — bounded four-option vote grammar, contiguous-index validation,
+  and card persistence tests.
 
 Mobile (`travel-app`, `codex/clean-break-product-shell`):
 
@@ -57,6 +58,8 @@ Mobile (`travel-app`, `codex/clean-break-product-shell`):
 - `d00fb6d2` — composed-card invitation action test.
 - `51e45907` — revision-bound invitation mutation in Chat.
 - `fdb51f72` — revision-bound decision vote mutation in Chat.
+- `1515a9b8` — mobile schema and renderer contract for four bounded vote
+  controls.
 
 Workspace contract:
 
@@ -65,10 +68,10 @@ Workspace contract:
 
 ## Verification
 
-- Backend Chat/graph suite: **99 passed**.
-- Backend focused Chat/graph suite: **101 passed** (34 focused card tests).
+- Backend Chat/graph suite: **101 passed** on the current branch.
+- Backend card/action follow-up: **39 passed**.
 - Mobile focused Chat/graph suite: **44 passed** before the vote slice, plus
-  **16 passed** for the invitation/vote follow-up.
+  **25 passed** for the invitation/vote/card-grammar follow-up.
 - Mobile TypeScript: **passed**.
 - API boundary check: **passed**.
 - Polish scenario registry: **31 registered**.
@@ -81,14 +84,15 @@ Workspace contract:
 - No cloud Postgres or Qdrant promotion was performed.
 - No production-dogfood release or serving flag was activated.
 - No new multiplayer screen was introduced.
-- Decision voting is intentionally limited to two-option cards; multi-option
-  voting still uses the existing typed API transport directly.
+- Decision voting is intentionally limited to four visible options; larger
+  decisions remain actionless and can still use the existing typed API
+  transport directly.
 - The broader intake/content work currently staged in the backend is separate
   work and was not swept into these commits.
 
 ## Next bounded slice
 
-The next slice is multi-option decision interaction (or an explicit product
-choice to keep those decisions Chat-question driven), followed by cloud/demo
-promotion and device receipts. Keep the current default-deny posture until
-production target evidence is complete.
+The four-option interaction is now the bounded grammar. The next slice is a
+product decision on whether larger decisions should stay Chat-question driven,
+followed by cloud/demo promotion and device receipts. Keep the current
+default-deny posture until production target evidence is complete.
