@@ -53515,6 +53515,18 @@
               }
             ]
           },
+          "plan_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Plan Id"
+          },
           "idempotency_key": {
             "type": "string",
             "maxLength": 200,
@@ -85214,6 +85226,15 @@
             },
             "type": "array",
             "title": "Commitment Ids",
+            "default": []
+          },
+          "occasion_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Occasion Ids",
             "default": []
           }
         },
