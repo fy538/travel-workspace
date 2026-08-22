@@ -18,6 +18,16 @@
       "removal_trigger": null,
       "review_by": "2026-10-30"
     },
+    "POST /api/experience-graph/openings": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "experience-graph-opening-command"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "A source-described proactive opening can be shown or silenced without silently creating a commitment.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
     "POST /api/experience-graph/plans": {
       "audience": "server",
       "consumers": [{"kind": "server", "name": "create_plan_route"}],

@@ -72331,6 +72331,80 @@
         ],
         "title": "ProjectedOccurrenceEvidence"
       },
+      "ProjectedOpeningCandidate": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "occasion_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occasion Id"
+          },
+          "subject": {
+            "type": "string",
+            "title": "Subject"
+          },
+          "reason": {
+            "type": "string",
+            "title": "Reason"
+          },
+          "treatment": {
+            "type": "string",
+            "title": "Treatment"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "source_refs": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Source Refs",
+            "default": []
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "subject",
+          "reason",
+          "treatment",
+          "status",
+          "created_at"
+        ],
+        "title": "ProjectedOpeningCandidate"
+      },
       "ProjectedOutcome": {
         "properties": {
           "id": {
@@ -73412,6 +73486,14 @@
             },
             "type": "array",
             "title": "Outcomes",
+            "default": []
+          },
+          "openings": {
+            "items": {
+              "$ref": "#/components/schemas/ProjectedOpeningCandidate"
+            },
+            "type": "array",
+            "title": "Openings",
             "default": []
           },
           "omitted_private_count": {
