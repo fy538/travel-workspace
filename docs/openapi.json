@@ -86701,6 +86701,18 @@
             ],
             "title": "Purpose"
           },
+          "world_entity_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "World Entity Id"
+          },
           "member_ids": {
             "items": {
               "type": "string",
