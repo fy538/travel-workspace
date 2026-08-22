@@ -8,6 +8,46 @@
     "review_by": null
   },
   "operations": {
+    "POST /api/experience-graph/plans": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "create_plan_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Clean-break Plan writer is server-ready but remains dark until a mobile Plan/Occasion consumer is validated.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "POST /api/experience-graph/occasions": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "create_occasion_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Clean-break Occasion writer enrolls the creator and records a receipt, but remains dark until its first product surface is validated.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "POST /api/experience-graph/commitments": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "create_commitment_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Clean-break Commitment writer supports explicit Plan/Occasion attachments, but remains dark until a product action and permission flow are validated.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "POST /api/relationships/pair-conversations": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "relationship-handoff-command"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "relationships",
+      "reason": "Pair conversation creation is a server-side prerequisite for recipient-controlled place handoffs; no mobile surface is authorized yet.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
     "GET /api/trips/{trip_id}/planning-windows": {
       "audience": "app",
       "consumers": [
