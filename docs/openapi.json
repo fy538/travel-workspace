@@ -14093,6 +14093,76 @@
         }
       }
     },
+    "/api/experience-graph/plans/{plan_id}/lifecycle": {
+      "post": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Transition Plan Lifecycle Route",
+        "description": "Move a Plan through the guarded lifecycle instead of editing it freely.",
+        "operationId": "transition_plan_lifecycle_route_api_experience_graph_plans__plan_id__lifecycle_post",
+        "parameters": [
+          {
+            "name": "plan_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Plan Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransitionPlanLifecycleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/experience-graph/plan-relations": {
       "post": {
         "tags": [
@@ -14321,6 +14391,76 @@
         },
         "responses": {
           "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experience-graph/occasions/{occasion_id}/lifecycle": {
+      "post": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Transition Occasion Lifecycle Route",
+        "description": "Move an Occasion through its episode lifecycle as organizer.",
+        "operationId": "transition_occasion_lifecycle_route_api_experience_graph_occasions__occasion_id__lifecycle_post",
+        "parameters": [
+          {
+            "name": "occasion_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Occasion Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransitionOccasionLifecycleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
@@ -14985,6 +15125,66 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/RecordOutcomeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experience-graph/encounter-outcomes": {
+      "post": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Record Encounter Outcome Route",
+        "description": "Record a grounded encounter without inventing a Commitment.",
+        "operationId": "record_encounter_outcome_route_api_experience_graph_encounter_outcomes_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordEncounterOutcomeRequest"
               }
             }
           }
@@ -18468,6 +18668,66 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/IntakeSubmissionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/intake/submissions/{submission_id}/lifecycle": {
+      "get": {
+        "tags": [
+          "intake"
+        ],
+        "summary": "Get Intake Submission Lifecycle",
+        "description": "Return content-free stage and retry state for an owner submission.",
+        "operationId": "get_intake_submission_lifecycle_api_intake_submissions__submission_id__lifecycle_get",
+        "parameters": [
+          {
+            "name": "submission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Submission Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntakeLifecycleResponse"
                 }
               }
             }
@@ -66782,6 +67042,53 @@
         ],
         "title": "IntakeInterpretationResponse"
       },
+      "IntakeLifecycleResponse": {
+        "properties": {
+          "submission": {
+            "$ref": "#/components/schemas/IntakeSubmissionResponse"
+          },
+          "current_stage": {
+            "type": "string",
+            "title": "Current Stage"
+          },
+          "candidate_count": {
+            "type": "integer",
+            "title": "Candidate Count"
+          },
+          "confirmed_candidate_count": {
+            "type": "integer",
+            "title": "Confirmed Candidate Count"
+          },
+          "proposal_count": {
+            "type": "integer",
+            "title": "Proposal Count"
+          },
+          "processing_runs": {
+            "items": {
+              "$ref": "#/components/schemas/IntakeProcessingRunReceipt"
+            },
+            "type": "array",
+            "title": "Processing Runs"
+          },
+          "outbox_events": {
+            "items": {
+              "$ref": "#/components/schemas/IntakeOutboxEventReceipt"
+            },
+            "type": "array",
+            "title": "Outbox Events"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "submission",
+          "current_stage",
+          "candidate_count",
+          "confirmed_candidate_count",
+          "proposal_count"
+        ],
+        "title": "IntakeLifecycleResponse"
+      },
       "IntakeObservation": {
         "properties": {
           "id": {
@@ -66932,6 +67239,66 @@
         ],
         "title": "IntakeObservation"
       },
+      "IntakeOutboxEventReceipt": {
+        "properties": {
+          "event_type": {
+            "type": "string",
+            "title": "Event Type"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "attempt_count": {
+            "type": "integer",
+            "title": "Attempt Count"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "next_attempt_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Next Attempt At"
+          },
+          "published_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Published At"
+          },
+          "dead_lettered_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dead Lettered At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "event_type",
+          "status",
+          "attempt_count",
+          "created_at",
+          "next_attempt_at"
+        ],
+        "title": "IntakeOutboxEventReceipt"
+      },
       "IntakePayload": {
         "properties": {
           "dietary": {
@@ -66994,6 +67361,87 @@
         "type": "object",
         "title": "IntakePayload",
         "description": "Bulk chip payload for minimal onboarding.\n\nEach field is optional. Sections use replace-within-section semantics:\nsubmitting ``dietary=[\"vegan\"]`` deactivates any other active dietary rows\nfor the user. Omitting a field leaves that section untouched, so callers\ncan update one section without disturbing others. An empty list clears\nthe section."
+      },
+      "IntakeProcessingRunReceipt": {
+        "properties": {
+          "source_object_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Object Id"
+          },
+          "stage": {
+            "type": "string",
+            "title": "Stage"
+          },
+          "processor_name": {
+            "type": "string",
+            "title": "Processor Name"
+          },
+          "processor_version": {
+            "type": "string",
+            "title": "Processor Version"
+          },
+          "attempt": {
+            "type": "integer",
+            "title": "Attempt"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "started_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Started At"
+          },
+          "completed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Completed At"
+          },
+          "failure_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Failure Code"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "stage",
+          "processor_name",
+          "processor_version",
+          "attempt",
+          "status"
+        ],
+        "title": "IntakeProcessingRunReceipt"
       },
       "IntakeSourceObject": {
         "properties": {
@@ -78002,6 +78450,18 @@
         ],
         "title": "OccasionKind"
       },
+      "OccasionLifecycle": {
+        "type": "string",
+        "enum": [
+          "opening",
+          "planned",
+          "active",
+          "lived",
+          "closed",
+          "unknown"
+        ],
+        "title": "OccasionLifecycle"
+      },
       "OccurrenceArtifact": {
         "properties": {
           "trip_id": {
@@ -87567,14 +88027,66 @@
             "title": "Id"
           },
           "subject_id": {
-            "type": "string",
-            "format": "uuid",
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Subject Id"
           },
           "owner_id": {
             "type": "string",
             "format": "uuid",
             "title": "Owner Id"
+          },
+          "occasion_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occasion Id"
+          },
+          "anchor_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Anchor Id"
+          },
+          "world_entity_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "World Entity Id"
+          },
+          "source_object_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Source Object Ids",
+            "default": []
           },
           "state": {
             "type": "string",
@@ -87610,7 +88122,6 @@
         "type": "object",
         "required": [
           "id",
-          "subject_id",
           "owner_id",
           "state",
           "visibility",
@@ -90031,6 +90542,95 @@
         "type": "object",
         "title": "RecommendationPayload",
         "description": "Structured reasoning attached to a concierge recommendation."
+      },
+      "RecordEncounterOutcomeRequest": {
+        "properties": {
+          "outcome_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Outcome Id"
+          },
+          "occasion_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occasion Id"
+          },
+          "anchor_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Anchor Id"
+          },
+          "world_entity_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "World Entity Id"
+          },
+          "state": {
+            "$ref": "#/components/schemas/ExperienceOccurrenceState"
+          },
+          "meaning": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 4000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Meaning"
+          },
+          "visibility": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{1,63}$",
+            "title": "Visibility",
+            "default": "private"
+          },
+          "source_object_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Source Object Ids",
+            "default": []
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "outcome_id",
+          "state",
+          "idempotency_key"
+        ],
+        "title": "RecordEncounterOutcomeRequest",
+        "description": "Record a place-bound memory even when no Commitment existed."
       },
       "RecordExperienceOutcomeRequest": {
         "properties": {
@@ -98882,6 +99482,68 @@
           "access_state"
         ],
         "title": "TransferSharedPlanOwnerResponse"
+      },
+      "TransitionOccasionLifecycleRequest": {
+        "properties": {
+          "target": {
+            "$ref": "#/components/schemas/OccasionLifecycle"
+          },
+          "close_reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 400
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Close Reason"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Revision"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "target",
+          "expected_revision",
+          "idempotency_key"
+        ],
+        "title": "TransitionOccasionLifecycleRequest"
+      },
+      "TransitionPlanLifecycleRequest": {
+        "properties": {
+          "target": {
+            "$ref": "#/components/schemas/PlanLifecycle"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Revision"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "target",
+          "expected_revision",
+          "idempotency_key"
+        ],
+        "title": "TransitionPlanLifecycleRequest"
       },
       "TransportGap": {
         "properties": {
