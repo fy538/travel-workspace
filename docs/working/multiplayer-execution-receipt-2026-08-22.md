@@ -62,6 +62,7 @@ Mobile (`travel-app`, `codex/clean-break-product-shell`):
 - `fdb51f72` — revision-bound decision vote mutation in Chat.
 - `1515a9b8` — mobile schema and renderer contract for four bounded vote
   controls.
+- `344356ad` — mobile renderer coverage for the four-control vote card.
 
 Workspace contract:
 
