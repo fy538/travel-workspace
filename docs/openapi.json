@@ -13601,6 +13601,88 @@
         }
       }
     },
+    "/api/experience-graph/occasion-invitations": {
+      "get": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "List Occasion Invitations Route",
+        "description": "List the viewer's sent/received invitations without exposing others.",
+        "operationId": "list_occasion_invitations_route_api_experience_graph_occasion_invitations_get",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/OccasionInvitationStatus"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OccasionInvitationResponse"
+                  },
+                  "title": "Response List Occasion Invitations Route Api Experience Graph Occasion Invitations Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/experience-graph/anchors/{anchor_id}": {
       "get": {
         "tags": [
@@ -14041,6 +14123,216 @@
         }
       }
     },
+    "/api/experience-graph/occasions/{occasion_id}/invitations": {
+      "post": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Create Occasion Invitation Route",
+        "description": "Invite one person without silently enrolling them in the Occasion.",
+        "operationId": "create_occasion_invitation_route_api_experience_graph_occasions__occasion_id__invitations_post",
+        "parameters": [
+          {
+            "name": "occasion_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Occasion Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOccasionInvitationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experience-graph/occasion-invitations/{invitation_id}/response": {
+      "post": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Respond To Occasion Invitation Route",
+        "description": "Accept, decline, or defer an invitation as its invitee.",
+        "operationId": "respond_to_occasion_invitation_route_api_experience_graph_occasion_invitations__invitation_id__response_post",
+        "parameters": [
+          {
+            "name": "invitation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Invitation Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RespondOccasionInvitationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experience-graph/occasions/{occasion_id}/leave": {
+      "post": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Leave Occasion Route",
+        "description": "Leave an Occasion while retaining the member's historical record.",
+        "operationId": "leave_occasion_route_api_experience_graph_occasions__occasion_id__leave_post",
+        "parameters": [
+          {
+            "name": "occasion_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Occasion Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeaveOccasionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/experience-graph/commitments": {
       "post": {
         "tags": [
@@ -14079,6 +14371,76 @@
         },
         "responses": {
           "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experience-graph/commitments/{commitment_id}": {
+      "patch": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Update Commitment Route",
+        "description": "Change a participant-owned Commitment with revision and authority guards.",
+        "operationId": "update_commitment_route_api_experience_graph_commitments__commitment_id__patch",
+        "parameters": [
+          {
+            "name": "commitment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Commitment Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCommitmentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
@@ -14199,6 +14561,76 @@
         },
         "responses": {
           "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experience-graph/outcomes/{outcome_id}": {
+      "patch": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Update Outcome Route",
+        "description": "Correct a participant's meaning without changing the underlying plan.",
+        "operationId": "update_outcome_route_api_experience_graph_outcomes__outcome_id__patch",
+        "parameters": [
+          {
+            "name": "outcome_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Outcome Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateOutcomeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
@@ -54139,6 +54571,69 @@
         ],
         "title": "CreateIntakeSubmissionRequest"
       },
+      "CreateOccasionInvitationRequest": {
+        "properties": {
+          "invitation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Invitation Id"
+          },
+          "invitee_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Invitee Id"
+          },
+          "message": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 280
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message"
+          },
+          "plan_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Plan Id"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "invitation_id",
+          "invitee_id",
+          "idempotency_key"
+        ],
+        "title": "CreateOccasionInvitationRequest"
+      },
       "CreateOccasionRequest": {
         "properties": {
           "occasion_id": {
@@ -71863,6 +72358,27 @@
         "title": "LeaveByHintResponse",
         "description": "The current leave-by hint for a trip, or null when there's nothing to show."
       },
+      "LeaveOccasionRequest": {
+        "properties": {
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Revision"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "expected_revision",
+          "idempotency_key"
+        ],
+        "title": "LeaveOccasionRequest"
+      },
       "LedgerReceipt": {
         "properties": {
           "type": {
@@ -76718,6 +77234,106 @@
         ],
         "title": "OccasionCapsule",
         "description": "A compiled Occasion read model, not a new persistence aggregate."
+      },
+      "OccasionInvitationResponse": {
+        "properties": {
+          "invitation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Invitation Id"
+          },
+          "occasion_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Occasion Id"
+          },
+          "inviter_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Inviter Id"
+          },
+          "invitee_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Invitee Id"
+          },
+          "plan_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Plan Id"
+          },
+          "message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message"
+          },
+          "status": {
+            "$ref": "#/components/schemas/OccasionInvitationStatus"
+          },
+          "revision": {
+            "type": "integer",
+            "title": "Revision"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "invitation_id",
+          "occasion_id",
+          "inviter_id",
+          "invitee_id",
+          "status",
+          "revision",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "OccasionInvitationResponse"
+      },
+      "OccasionInvitationStatus": {
+        "type": "string",
+        "enum": [
+          "pending",
+          "accepted",
+          "declined",
+          "deferred",
+          "expired",
+          "revoked"
+        ],
+        "title": "OccasionInvitationStatus"
       },
       "OccasionKind": {
         "type": "string",
@@ -86261,6 +86877,11 @@
             "type": "string",
             "title": "Visibility"
           },
+          "revision": {
+            "type": "integer",
+            "title": "Revision",
+            "default": 0
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -90570,6 +91191,53 @@
         ],
         "title": "ResolvedMedia",
         "description": "A renderable visual with an explicit factual claim and provenance.\n\n``provider_asset_id`` is only an identity/audit handle. Callers must not\npersist it when ``cache_directive`` is ``no_store`` (Google photo resource\nnames are short-lived and may not be cached)."
+      },
+      "RespondOccasionInvitationRequest": {
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/OccasionInvitationStatus"
+          },
+          "member_window": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TimeWindow"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "plan_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Plan Id"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Revision"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "expected_revision",
+          "idempotency_key"
+        ],
+        "title": "RespondOccasionInvitationRequest"
       },
       "RestaurantAvailabilityResponse": {
         "properties": {
@@ -104443,6 +105111,74 @@
         "title": "UnreadConversation",
         "description": "A conversation with unread messages."
       },
+      "UpdateCommitmentRequest": {
+        "properties": {
+          "subject": {
+            "type": "string",
+            "maxLength": 400,
+            "minLength": 1,
+            "title": "Subject"
+          },
+          "status": {
+            "$ref": "#/components/schemas/CommitmentStatus"
+          },
+          "time_window": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TimeWindow"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "world_entity_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "World Entity Id"
+          },
+          "visibility": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{1,63}$",
+            "title": "Visibility",
+            "default": "shared"
+          },
+          "authority": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "pattern": "^[a-z][a-z0-9_.:-]{2,119}$",
+            "title": "Authority"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Revision"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "subject",
+          "status",
+          "authority",
+          "expected_revision",
+          "idempotency_key"
+        ],
+        "title": "UpdateCommitmentRequest"
+      },
       "UpdateConversationAgencyRequest": {
         "properties": {
           "mode": {
@@ -104622,6 +105358,49 @@
           "idempotency_key"
         ],
         "title": "UpdateOpeningCandidateStatusRequest"
+      },
+      "UpdateOutcomeRequest": {
+        "properties": {
+          "state": {
+            "$ref": "#/components/schemas/ExperienceOccurrenceState"
+          },
+          "meaning": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 4000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Meaning"
+          },
+          "visibility": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{1,63}$",
+            "title": "Visibility",
+            "default": "private"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Revision"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "state",
+          "expected_revision",
+          "idempotency_key"
+        ],
+        "title": "UpdateOutcomeRequest"
       },
       "UpdatePlanRequest": {
         "properties": {

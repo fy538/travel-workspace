@@ -108,6 +108,66 @@
       "removal_trigger": null,
       "review_by": "2026-10-30"
     },
+    "GET /api/experience-graph/occasion-invitations": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "list_occasion_invitations_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Invitation reads are server-ready but remain dark until a reviewed mobile invitation surface consumes them.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "POST /api/experience-graph/occasions/{occasion_id}/invitations": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "create_occasion_invitation_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Invitation creation is explicit and does not enroll a user until they respond.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "POST /api/experience-graph/occasion-invitations/{invitation_id}/response": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "respond_to_occasion_invitation_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Invitation responses create or restore membership only through the invitee-owned consent path.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "POST /api/experience-graph/occasions/{occasion_id}/leave": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "leave_occasion_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Leaving preserves historical participation while removing current shared context.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "PATCH /api/experience-graph/commitments/{commitment_id}": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "update_commitment_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Commitment changes are revisioned and cannot forge provider or occurred truth.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "PATCH /api/experience-graph/outcomes/{outcome_id}": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "update_outcome_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Personal outcome corrections preserve the original commitment while revising participant meaning.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
     "POST /api/experience-graph/occurrence-evidence": {
       "audience": "server",
       "consumers": [{"kind": "server", "name": "experience-graph-occurrence-command"}],
