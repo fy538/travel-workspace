@@ -52151,6 +52151,30 @@
               }
             ],
             "title": "Decision Revision"
+          },
+          "decision_vote_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decision Vote Id"
+          },
+          "decision_vote_revision": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decision Vote Revision"
           }
         },
         "additionalProperties": false,
@@ -52284,7 +52308,7 @@
           },
           "choice": {
             "type": "string",
-            "maxLength": 240,
+            "maxLength": 120,
             "minLength": 1,
             "title": "Choice"
           },
@@ -55971,6 +55995,11 @@
             "minItems": 2,
             "title": "Options"
           },
+          "conversation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Conversation Id"
+          },
           "idempotency_key": {
             "type": "string",
             "maxLength": 200,
@@ -55983,6 +56012,7 @@
           "decision_id",
           "subject",
           "options",
+          "conversation_id",
           "idempotency_key"
         ],
         "title": "CreateOccasionDecisionRequest"
@@ -93218,7 +93248,7 @@
         "properties": {
           "selected_option": {
             "type": "string",
-            "maxLength": 240,
+            "maxLength": 120,
             "minLength": 1,
             "title": "Selected Option"
           },
