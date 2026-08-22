@@ -15173,6 +15173,66 @@
         }
       }
     },
+    "/api/experience-graph/reconciled-occurrence": {
+      "post": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Record Reconciled Occurrence Route",
+        "description": "Record a worker-owned observation without exposing a public write path.",
+        "operationId": "record_reconciled_occurrence_route_api_experience_graph_reconciled_occurrence_post",
+        "parameters": [
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordReconciledOccurrenceRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/experience-graph/outcomes": {
       "post": {
         "tags": [
@@ -19327,6 +19387,252 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ActivateIntakeProposalResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/intake/dead-letters": {
+      "get": {
+        "tags": [
+          "admin",
+          "intake"
+        ],
+        "summary": "Get Intake Dead Letters",
+        "operationId": "get_intake_dead_letters_admin_intake_dead_letters_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 500,
+              "minimum": 1,
+              "default": 100,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeadLetterResponse"
+                  },
+                  "title": "Response Get Intake Dead Letters Admin Intake Dead Letters Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/intake/dead-letters/{event_id}/replay": {
+      "post": {
+        "tags": [
+          "admin",
+          "intake"
+        ],
+        "summary": "Replay Intake Dead Letter",
+        "operationId": "replay_intake_dead_letter_admin_intake_dead_letters__event_id__replay_post",
+        "parameters": [
+          {
+            "name": "event_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Event Id"
+            }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReplayResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/intake/submissions/{submission_id}/replay": {
+      "post": {
+        "tags": [
+          "admin",
+          "intake"
+        ],
+        "summary": "Replay Intake Submission Stage",
+        "operationId": "replay_intake_submission_stage_admin_intake_submissions__submission_id__replay_post",
+        "parameters": [
+          {
+            "name": "submission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Submission Id"
+            }
+          },
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StageReplayRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReplayResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/intake/metrics": {
+      "get": {
+        "tags": [
+          "admin",
+          "intake"
+        ],
+        "summary": "Get Intake Recovery Metrics",
+        "operationId": "get_intake_recovery_metrics_admin_intake_metrics_get",
+        "parameters": [
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecoveryMetricsResponse"
                 }
               }
             }
@@ -56333,6 +56639,64 @@
         ],
         "title": "DayPrecondition"
       },
+      "DeadLetterResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "event_key": {
+            "type": "string",
+            "title": "Event Key"
+          },
+          "event_type": {
+            "type": "string",
+            "title": "Event Type"
+          },
+          "aggregate_type": {
+            "type": "string",
+            "title": "Aggregate Type"
+          },
+          "aggregate_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Aggregate Id"
+          },
+          "attempt_count": {
+            "type": "integer",
+            "title": "Attempt Count"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "dead_lettered_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Dead Lettered At"
+          },
+          "error_fingerprint": {
+            "type": "string",
+            "title": "Error Fingerprint"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "event_key",
+          "event_type",
+          "aggregate_type",
+          "aggregate_id",
+          "attempt_count",
+          "created_at",
+          "dead_lettered_at",
+          "error_fingerprint"
+        ],
+        "title": "DeadLetterResponse"
+      },
       "DecisionCausalRef": {
         "properties": {
           "schema_version": {
@@ -87933,6 +88297,16 @@
             "type": "string",
             "title": "Status"
           },
+          "coordination_state": {
+            "type": "string",
+            "title": "Coordination State",
+            "default": "proposed"
+          },
+          "provider_state": {
+            "type": "string",
+            "title": "Provider State",
+            "default": "unbound"
+          },
           "participant_ids": {
             "items": {
               "type": "string",
@@ -87976,6 +88350,11 @@
           "lifecycle": {
             "type": "string",
             "title": "Lifecycle"
+          },
+          "revision": {
+            "type": "integer",
+            "title": "Revision",
+            "default": 0
           },
           "title": {
             "anyOf": [
@@ -91116,6 +91495,98 @@
         ],
         "title": "RecordOutcomeRequest"
       },
+      "RecordReconciledOccurrenceRequest": {
+        "properties": {
+          "owner_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Owner Id"
+          },
+          "evidence_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Evidence Id"
+          },
+          "subject_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Subject Id"
+          },
+          "occasion_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occasion Id"
+          },
+          "state": {
+            "$ref": "#/components/schemas/ExperienceOccurrenceState"
+          },
+          "source_object_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Source Object Ids",
+            "default": []
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Observed At"
+          },
+          "confidence": {
+            "type": "integer",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Confidence",
+            "default": 0
+          },
+          "authority": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "pattern": "^[a-z][a-z0-9_.:-]{2,119}$",
+            "title": "Authority"
+          },
+          "supersedes_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Supersedes Id"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "owner_id",
+          "evidence_id",
+          "subject_id",
+          "state",
+          "observed_at",
+          "authority",
+          "idempotency_key"
+        ],
+        "title": "RecordReconciledOccurrenceRequest",
+        "description": "Server-owned, source-backed observation used by reconciliation workers."
+      },
       "RecordResponseRequest": {
         "properties": {
           "response_type": {
@@ -91182,6 +91653,53 @@
           "closed_coordination_preserved"
         ],
         "title": "RecoverTripResponse"
+      },
+      "RecoveryMetricsResponse": {
+        "properties": {
+          "sample_size": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Sample Size"
+          },
+          "custody_latency_seconds_avg": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custody Latency Seconds Avg"
+          },
+          "stage_latency_seconds_avg": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Stage Latency Seconds Avg"
+          },
+          "stale_leases": {
+            "type": "integer",
+            "title": "Stale Leases"
+          },
+          "dead_letters": {
+            "type": "integer",
+            "title": "Dead Letters"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "sample_size",
+          "custody_latency_seconds_avg",
+          "stage_latency_seconds_avg",
+          "stale_leases",
+          "dead_letters"
+        ],
+        "title": "RecoveryMetricsResponse"
       },
       "RedactionPolicy": {
         "properties": {
@@ -92448,6 +92966,30 @@
           "reason"
         ],
         "title": "ReplanPayload"
+      },
+      "ReplayResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "requeued",
+              "not_found"
+            ],
+            "title": "Status"
+          },
+          "event_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Event Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "status",
+          "event_id"
+        ],
+        "title": "ReplayResponse"
       },
       "ResolutionOutcome": {
         "type": "string",
@@ -98033,6 +98575,24 @@
         ],
         "title": "SpineReceipt",
         "description": "Spine \u2014 day-shape progress, not a completeness gauge (Standing floor)."
+      },
+      "StageReplayRequest": {
+        "properties": {
+          "stage": {
+            "type": "string",
+            "enum": [
+              "normalization",
+              "semantic"
+            ],
+            "title": "Stage"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "stage"
+        ],
+        "title": "StageReplayRequest"
       },
       "StartVerificationResponse": {
         "properties": {

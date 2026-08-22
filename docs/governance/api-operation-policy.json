@@ -8,6 +8,46 @@
     "review_by": null
   },
   "operations": {
+    "GET /admin/intake/dead-letters": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "admin_intake_dead_letters"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "intake",
+      "reason": "Operational dead-letter inspection; never a mobile transport.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "GET /admin/intake/metrics": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "admin_intake_metrics"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "intake",
+      "reason": "Operational intake metrics; never a mobile transport.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "POST /admin/intake/dead-letters/{event_id}/replay": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "admin_intake_dead_letter_replay"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "intake",
+      "reason": "Operational dead-letter replay; never a mobile transport.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "POST /admin/intake/submissions/{submission_id}/replay": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "admin_intake_submission_replay"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "intake",
+      "reason": "Operational intake replay; never a mobile transport.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
     "GET /api/experience-graph/anchors": {
       "audience": "app",
       "consumers": [{"kind": "app_url", "name": "listExperienceGraphAnchors", "source": "travel-app/utils/api/http.ts"}],
@@ -151,6 +191,16 @@
       "lifecycle": "active",
       "owner": "experience-graph",
       "reason": "Clean-break Commitment writer supports explicit Plan/Occasion attachments, but remains dark until a product action and permission flow are validated.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "POST /api/experience-graph/reconciled-occurrence": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "record_reconciled_occurrence_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Dedicated service-token boundary for source-backed occurrence reconciliation; public clients use occurrence-evidence instead.",
       "removal_trigger": null,
       "review_by": "2026-10-30"
     },
