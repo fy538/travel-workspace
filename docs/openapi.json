@@ -13477,6 +13477,186 @@
         }
       }
     },
+    "/api/experience-graph/plans": {
+      "post": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Create Plan Route",
+        "description": "Create one owner-scoped Plan in the clean graph.",
+        "operationId": "create_plan_route_api_experience_graph_plans_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePlanRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experience-graph/occasions": {
+      "post": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Create Occasion Route",
+        "description": "Create an Occasion and enroll the actor as its organizer.",
+        "operationId": "create_occasion_route_api_experience_graph_occasions_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOccasionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experience-graph/commitments": {
+      "post": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Create Commitment Route",
+        "description": "Create a Commitment for the actor and optionally attach it to context.",
+        "operationId": "create_commitment_route_api_experience_graph_commitments_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCommitmentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/events": {
       "post": {
         "tags": [
@@ -26135,6 +26315,66 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PlaceHandoffOccasionProposalResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/relationships/pair-conversations": {
+      "post": {
+        "tags": [
+          "relationships"
+        ],
+        "summary": "Create Relationship Pair Conversation",
+        "description": "Open the explicit pair room used by clean UUID place handoffs.",
+        "operationId": "create_relationship_pair_conversation_api_relationships_pair_conversations_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RelationshipPairConversationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RelationshipPairConversationResponse"
                 }
               }
             }
@@ -50684,6 +50924,20 @@
         ],
         "title": "CommercialEntitlementSnapshot"
       },
+      "CommitmentStatus": {
+        "type": "string",
+        "enum": [
+          "opening",
+          "proposed",
+          "accepted",
+          "provider_confirmed",
+          "changed",
+          "cancelled",
+          "occurred",
+          "unknown"
+        ],
+        "title": "CommitmentStatus"
+      },
       "ComposeBoardRequest": {
         "properties": {
           "raw_text": {
@@ -52831,6 +53085,110 @@
         "title": "CorrectSecondOccasionOutcomeRequest",
         "description": "Correct the bounded effect or remove/reactivate its later use."
       },
+      "CreateCommitmentRequest": {
+        "properties": {
+          "commitment_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Commitment Id"
+          },
+          "subject": {
+            "type": "string",
+            "maxLength": 400,
+            "minLength": 1,
+            "title": "Subject"
+          },
+          "status": {
+            "$ref": "#/components/schemas/CommitmentStatus",
+            "default": "opening"
+          },
+          "time_window": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TimeWindow"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "world_entity_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "World Entity Id"
+          },
+          "visibility": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{1,63}$",
+            "title": "Visibility",
+            "default": "shared"
+          },
+          "authority": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "pattern": "^[a-z][a-z0-9_.:-]{2,119}$",
+            "title": "Authority"
+          },
+          "provider_ref": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider Ref"
+          },
+          "plan_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Plan Id"
+          },
+          "occasion_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occasion Id"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "commitment_id",
+          "subject",
+          "authority",
+          "idempotency_key"
+        ],
+        "title": "CreateCommitmentRequest"
+      },
       "CreateConversationRequest": {
         "properties": {
           "conversation_type": {
@@ -53100,6 +53458,136 @@
           "source_channel"
         ],
         "title": "CreateIntakeSubmissionRequest"
+      },
+      "CreateOccasionRequest": {
+        "properties": {
+          "occasion_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Occasion Id"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/OccasionKind"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 240
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "purpose": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 1000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Purpose"
+          },
+          "spatial_horizon": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Spatial Horizon"
+          },
+          "member_window": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TimeWindow"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "occasion_id",
+          "kind",
+          "idempotency_key"
+        ],
+        "title": "CreateOccasionRequest"
+      },
+      "CreatePlanRequest": {
+        "properties": {
+          "plan_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Plan Id"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/PlanKind"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 240
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "horizon": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TimeWindow"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "home_entity_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Home Entity Id"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "plan_id",
+          "kind",
+          "idempotency_key"
+        ],
+        "title": "CreatePlanRequest"
       },
       "CreateSessionRequest": {
         "properties": {
@@ -62502,6 +62990,42 @@
         ],
         "title": "GlobalDossierFeedResponse",
         "description": "Random cross-city dossier sample for the global Discover feed."
+      },
+      "GraphMutationResponse": {
+        "properties": {
+          "entity_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Entity Id"
+          },
+          "entity_type": {
+            "type": "string",
+            "title": "Entity Type"
+          },
+          "receipt_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Receipt Id"
+          },
+          "replayed": {
+            "type": "boolean",
+            "title": "Replayed"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Payload"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_id",
+          "entity_type",
+          "receipt_id",
+          "replayed",
+          "payload"
+        ],
+        "title": "GraphMutationResponse"
       },
       "GroupMemoryForgetRequest": {
         "properties": {
@@ -75275,6 +75799,20 @@
         "title": "OccasionCapsule",
         "description": "A compiled Occasion read model, not a new persistence aggregate."
       },
+      "OccasionKind": {
+        "type": "string",
+        "enum": [
+          "dinner",
+          "museum",
+          "night_out",
+          "proposal",
+          "trip_chapter",
+          "overlap",
+          "wander",
+          "other"
+        ],
+        "title": "OccasionKind"
+      },
       "OccurrenceArtifact": {
         "properties": {
           "trip_id": {
@@ -82310,6 +82848,16 @@
         "type": "object",
         "title": "PlanItinerary"
       },
+      "PlanKind": {
+        "type": "string",
+        "enum": [
+          "travel",
+          "local",
+          "social",
+          "open"
+        ],
+        "title": "PlanKind"
+      },
       "PlanNextItem": {
         "properties": {
           "block_id": {
@@ -87670,6 +88218,54 @@
         ],
         "title": "RelationshipMemoryClaim",
         "description": "One governed claim; corrections supersede rather than erase history."
+      },
+      "RelationshipPairConversationRequest": {
+        "properties": {
+          "circle_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Circle Id"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "circle_id",
+          "idempotency_key"
+        ],
+        "title": "RelationshipPairConversationRequest",
+        "description": "Open the private pair room that carries addressed place notes."
+      },
+      "RelationshipPairConversationResponse": {
+        "properties": {
+          "circle_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Circle Id"
+          },
+          "conversation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Conversation Id"
+          },
+          "recipient_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Recipient User Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "circle_id",
+          "conversation_id",
+          "recipient_user_id"
+        ],
+        "title": "RelationshipPairConversationResponse"
       },
       "RelationshipPlaceHandoffActionRequest": {
         "properties": {
@@ -95292,6 +95888,33 @@
           "label"
         ],
         "title": "TasteDimension"
+      },
+      "TimeWindow": {
+        "properties": {
+          "starts_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Starts At"
+          },
+          "ends_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ends At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "starts_at"
+        ],
+        "title": "TimeWindow"
       },
       "TogetherPairProjection": {
         "properties": {

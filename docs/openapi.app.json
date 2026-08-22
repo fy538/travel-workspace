@@ -19813,6 +19813,66 @@
         }
       }
     },
+    "/api/relationships/pair-conversations": {
+      "post": {
+        "tags": [
+          "relationships"
+        ],
+        "summary": "Create Relationship Pair Conversation",
+        "description": "Open the explicit pair room used by clean UUID place handoffs.",
+        "operationId": "create_relationship_pair_conversation_api_relationships_pair_conversations_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RelationshipPairConversationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RelationshipPairConversationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/relationships/place-handoffs": {
       "post": {
         "tags": [
@@ -74786,6 +74846,54 @@
         ],
         "title": "RelationshipMemoryClaim",
         "description": "One governed claim; corrections supersede rather than erase history."
+      },
+      "RelationshipPairConversationRequest": {
+        "properties": {
+          "circle_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Circle Id"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "circle_id",
+          "idempotency_key"
+        ],
+        "title": "RelationshipPairConversationRequest",
+        "description": "Open the private pair room that carries addressed place notes."
+      },
+      "RelationshipPairConversationResponse": {
+        "properties": {
+          "circle_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Circle Id"
+          },
+          "conversation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Conversation Id"
+          },
+          "recipient_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Recipient User Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "circle_id",
+          "conversation_id",
+          "recipient_user_id"
+        ],
+        "title": "RelationshipPairConversationResponse"
       },
       "RelationshipPlaceHandoffActionRequest": {
         "properties": {
