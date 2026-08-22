@@ -45,9 +45,9 @@ Home, Places, and Plan surfaces remain the readback surfaces.
 ## Evidence
 
 Focused backend evidence: relationship routes, graph projection/commands,
-occasion schema/migration, composed-card validation — 87 tests passed on
-2026-08-22; the broader portfolio reached 109 passing tests before an existing
-baseline card-validation defect was fixed. The corrected portfolio is green.
+occasion schema/migration, composed-card validation — 110 tests passed on
+2026-08-22, including the early metadata-validation regression fixed in this
+slice. The corrected portfolio is green.
 
 Focused mobile evidence: ComposedChatCard, experience-graph selector, and
 relationship mock handoff suites — 15 tests passed; TypeScript passed. The
