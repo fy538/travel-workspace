@@ -52075,6 +52075,45 @@
               }
             ],
             "title": "Handoff Revision"
+          },
+          "invitation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Invitation Id"
+          },
+          "invitation_action": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "accept",
+                  "defer"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Invitation Action"
+          },
+          "invitation_revision": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Invitation Revision"
           }
         },
         "additionalProperties": false,
@@ -52091,7 +52130,8 @@
           "place",
           "trip_plan",
           "trip_proposal",
-          "place_handoff_action"
+          "place_handoff_action",
+          "experience_graph_invitation_action"
         ],
         "title": "CardActionDestinationKind",
         "description": "Canonical reader surfaces a resolved action may open.\n\nThese are domain destinations rather than client routes.  The mobile\napplication owns its own route mapping after the server has re-authorized\nthe requested action against the persisted message."
