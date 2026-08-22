@@ -8,6 +8,26 @@
     "review_by": null
   },
   "operations": {
+    "GET /api/experience-graph/anchors": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "experience-graph-anchor-reader"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Owner-scoped graph anchor reads make admitted artifacts consumable by downstream memory and context surfaces.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "GET /api/experience-graph/anchors/{anchor_id}": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "experience-graph-anchor-reader"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Owner-scoped graph anchor detail preserves the source admission identity across later context reads.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
     "POST /api/experience-graph/anchors": {
       "audience": "server",
       "consumers": [{"kind": "server", "name": "experience-graph-anchor-command"}],
@@ -25,6 +45,16 @@
       "lifecycle": "active",
       "owner": "experience-graph",
       "reason": "A source-described proactive opening can be shown or silenced without silently creating a commitment.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "PATCH /api/experience-graph/openings/{opening_id}/status": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "experience-graph-opening-command"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Owner responses to proactive openings are explicit, reversible, and receipt-backed.",
       "removal_trigger": null,
       "review_by": "2026-10-30"
     },
