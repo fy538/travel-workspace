@@ -28,6 +28,22 @@
       "removal_trigger": null,
       "review_by": "2026-10-30"
     },
+    "GET /api/experience-graph/projection": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "getExperienceGraphProjection",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Viewer-relative graph reads are the shared durable context for Home, Chat, Places, and Plans; empty state remains silent.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
     "POST /api/experience-graph/anchors": {
       "audience": "server",
       "consumers": [{"kind": "server", "name": "experience-graph-anchor-command"}],
@@ -68,6 +84,16 @@
       "removal_trigger": null,
       "review_by": "2026-10-30"
     },
+    "POST /api/experience-graph/plans/{plan_id}/lifecycle": {
+      "audience": "app",
+      "consumers": [{"kind": "app_transport", "name": "transitionExperienceGraphPlanLifecycle", "source": "travel-app/utils/api/http.ts"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Lifecycle transitions are transport-ready for the future lightweight Plan surface; no screen is implied by this contract entry.",
+      "removal_trigger": "Remove only with an equivalent canonical Plan lifecycle transport.",
+      "review_by": "2026-10-30"
+    },
     "PATCH /api/experience-graph/plans/{plan_id}": {
       "audience": "server",
       "consumers": [{"kind": "server", "name": "update_plan_route"}],
@@ -96,6 +122,16 @@
       "owner": "experience-graph",
       "reason": "Clean-break Occasion writer enrolls the creator and records a receipt, but remains dark until its first product surface is validated.",
       "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "POST /api/experience-graph/occasions/{occasion_id}/lifecycle": {
+      "audience": "app",
+      "consumers": [{"kind": "app_transport", "name": "transitionExperienceGraphOccasionLifecycle", "source": "travel-app/utils/api/http.ts"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Lifecycle transitions are transport-ready for lightweight Occasion actions without committing to a dedicated editor screen.",
+      "removal_trigger": "Remove only with an equivalent canonical Occasion lifecycle transport.",
       "review_by": "2026-10-30"
     },
     "POST /api/experience-graph/commitments": {
@@ -246,6 +282,16 @@
       "owner": "experience-graph",
       "reason": "Participant-scoped outcomes are private by default and form the future memory correction seam.",
       "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "POST /api/experience-graph/encounter-outcomes": {
+      "audience": "app",
+      "consumers": [{"kind": "app_transport", "name": "recordExperienceGraphEncounterOutcome", "source": "travel-app/utils/api/http.ts"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "A place-bound memory can be recorded without fabricating a Commitment; the first surface may be Chat or capture rather than a dedicated page.",
+      "removal_trigger": "Replace only with an equivalent source-bound encounter writer.",
       "review_by": "2026-10-30"
     },
     "POST /api/relationships/pair-conversations": {
@@ -3041,6 +3087,22 @@
       "owner": "intake",
       "reason": "The share capture flow needs an owner-scoped custody status to resume after a background or network interruption.",
       "removal_trigger": "Add an approved mobile consumer or keep this transport server-only.",
+      "review_by": "2026-10-30"
+    },
+    "GET /api/intake/submissions/{submission_id}/lifecycle": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "getIntakeSubmissionLifecycle",
+          "source": "travel-app/utils/api/httpMemoryEndpoints.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "intake",
+      "reason": "The custody receipt needs content-free stage, retry, dead-letter, and graph-projection state without exposing source text or provider internals.",
+      "removal_trigger": "Remove only when an equivalent owner-visible lifecycle receipt is served by another transport.",
       "review_by": "2026-10-30"
     },
     "DELETE /api/intake/submissions/{submission_id}": {
