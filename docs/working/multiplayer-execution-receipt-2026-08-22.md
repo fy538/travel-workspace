@@ -66,8 +66,9 @@ Workspace contract:
 ## Verification
 
 - Backend Chat/graph suite: **99 passed**.
-- Backend focused Chat card suite: **34 passed**.
-- Mobile focused Chat/graph suite: **44 passed**.
+- Backend focused Chat/graph suite: **101 passed** (34 focused card tests).
+- Mobile focused Chat/graph suite: **44 passed** before the vote slice, plus
+  **16 passed** for the invitation/vote follow-up.
 - Mobile TypeScript: **passed**.
 - API boundary check: **passed**.
 - Polish scenario registry: **31 registered**.
