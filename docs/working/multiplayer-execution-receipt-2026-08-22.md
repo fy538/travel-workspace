@@ -33,9 +33,12 @@ The path is deliberately revision-bound:
 
 The same artifact grammar now admits Occasion decisions, commitments, outcomes,
 and place memories as references, and the collaboration intent is understood by
-the native Chat renderer and telemetry. Decision voting transport exists and is
-covered independently; decision-card mutation controls remain a follow-up until
-their resolver and revision contract are landed together.
+the native Chat renderer and telemetry. Two-option decision voting is also
+Chat-native: each option is a server-issued opaque action, and the resolver
+checks active Occasion membership, current decision revision, and that the
+option still exists before the app sends the typed vote mutation. Decisions
+with more than two options remain actionless until a reviewed multi-option
+interaction exists.
 
 ## Commits landed
 
@@ -45,6 +48,7 @@ Backend (`travel-agent`, `codex/clean-break-occasion-core`):
 - `6b4044d72` — server-authorized Occasion invitation actions.
 - `697efb248` — bounded invitation control validation.
 - `cb265c99c` — persistence-boundary test for the two-control invitation card.
+- `9a545dbf6` — server-authorized two-option Occasion decision votes.
 
 Mobile (`travel-app`, `codex/clean-break-product-shell`):
 
@@ -52,15 +56,17 @@ Mobile (`travel-app`, `codex/clean-break-product-shell`):
 - `84fe3f35` — collaboration artifact schema and telemetry classification.
 - `d00fb6d2` — composed-card invitation action test.
 - `51e45907` — revision-bound invitation mutation in Chat.
+- `fdb51f72` — revision-bound decision vote mutation in Chat.
 
 Workspace contract:
 
-- `dec7b69` — regenerated OpenAPI snapshots for the new destination kind.
+- `dec7b69` — regenerated OpenAPI snapshots for invitation actions.
+- `2bbfc6a` — regenerated OpenAPI snapshots for decision vote actions.
 
 ## Verification
 
 - Backend Chat/graph suite: **99 passed**.
-- Backend focused Chat card suite: **33 passed**.
+- Backend focused Chat card suite: **34 passed**.
 - Mobile focused Chat/graph suite: **44 passed**.
 - Mobile TypeScript: **passed**.
 - API boundary check: **passed**.
@@ -74,15 +80,14 @@ Workspace contract:
 - No cloud Postgres or Qdrant promotion was performed.
 - No production-dogfood release or serving flag was activated.
 - No new multiplayer screen was introduced.
-- Decision voting is not yet wired to a card action; its existing typed API
-  transport remains the authority.
+- Decision voting is intentionally limited to two-option cards; multi-option
+  voting still uses the existing typed API transport directly.
 - The broader intake/content work currently staged in the backend is separate
   work and was not swept into these commits.
 
 ## Next bounded slice
 
-Land decision-card voting as the sibling of invitation cards: a two-option
-private card, a server resolver that verifies active Occasion membership and
-revision, and a typed `cast vote` mutation from the same `ComposedChatCard`
-renderer. Keep options beyond two actionless until the card grammar grows a
-reviewed multi-option interaction.
+The next slice is multi-option decision interaction (or an explicit product
+choice to keep those decisions Chat-question driven), followed by cloud/demo
+promotion and device receipts. Keep the current default-deny posture until
+production target evidence is complete.
