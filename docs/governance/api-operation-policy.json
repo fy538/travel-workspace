@@ -8,6 +8,16 @@
     "review_by": null
   },
   "operations": {
+    "POST /api/experience-graph/anchors": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "experience-graph-anchor-command"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Artifact and question intake creates a source-bound opening anchor, never a silent commitment.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
     "POST /api/experience-graph/plans": {
       "audience": "server",
       "consumers": [{"kind": "server", "name": "create_plan_route"}],

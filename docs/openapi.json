@@ -13537,6 +13537,66 @@
         }
       }
     },
+    "/api/experience-graph/anchors": {
+      "post": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Create Experience Anchor Route",
+        "description": "Admit an artifact/question as an inspectable opening anchor.",
+        "operationId": "create_experience_anchor_route_api_experience_graph_anchors_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateExperienceAnchorRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/experience-graph/occasions": {
       "post": {
         "tags": [
@@ -42980,6 +43040,19 @@
         "title": "AlternativeOption",
         "description": "One alternative option a proposal may offer alongside the primary pick.\n\n``extra=\"allow\"`` keeps legacy fields (e.g. site_id, experience_id)\nreadable for older proposals."
       },
+      "AnchorKind": {
+        "type": "string",
+        "enum": [
+          "movement",
+          "stay",
+          "attendance",
+          "dining",
+          "invitation",
+          "attention",
+          "question"
+        ],
+        "title": "AnchorKind"
+      },
       "AnchorObservationRef": {
         "properties": {
           "id": {
@@ -43120,6 +43193,18 @@
           "status"
         ],
         "title": "AnchorSourceStatus"
+      },
+      "AnchorState": {
+        "type": "string",
+        "enum": [
+          "candidate",
+          "held",
+          "reserved",
+          "ticketed",
+          "cancelled",
+          "unknown"
+        ],
+        "title": "AnchorState"
       },
       "AngleDetail": {
         "properties": {
@@ -53452,6 +53537,97 @@
           "amount"
         ],
         "title": "CreateExpenseFromReceiptRequest"
+      },
+      "CreateExperienceAnchorRequest": {
+        "properties": {
+          "anchor_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Anchor Id"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/AnchorKind"
+          },
+          "state": {
+            "$ref": "#/components/schemas/AnchorState",
+            "default": "candidate"
+          },
+          "source_object_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Source Object Ids",
+            "default": []
+          },
+          "world_entity_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "World Entity Id"
+          },
+          "time_window": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TimeWindow"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence",
+            "default": 0.0
+          },
+          "proposed_plan_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proposed Plan Id"
+          },
+          "proposed_occasion_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proposed Occasion Id"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "anchor_id",
+          "kind",
+          "idempotency_key"
+        ],
+        "title": "CreateExperienceAnchorRequest"
       },
       "CreateInboundItemRequest": {
         "properties": {
