@@ -9,8 +9,8 @@
   },
   "operations": {
     "GET /api/experience-graph/anchors": {
-      "audience": "server",
-      "consumers": [{"kind": "server", "name": "experience-graph-anchor-reader"}],
+      "audience": "app",
+      "consumers": [{"kind": "app_url", "name": "listExperienceGraphAnchors", "source": "travel-app/utils/api/http.ts"}],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -19,8 +19,8 @@
       "review_by": "2026-10-30"
     },
     "GET /api/experience-graph/anchors/{anchor_id}": {
-      "audience": "server",
-      "consumers": [{"kind": "server", "name": "experience-graph-anchor-reader"}],
+      "audience": "app",
+      "consumers": [{"kind": "app_url", "name": "getExperienceGraphAnchor", "source": "travel-app/utils/api/http.ts"}],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -49,8 +49,8 @@
       "review_by": "2026-10-30"
     },
     "PATCH /api/experience-graph/openings/{opening_id}/status": {
-      "audience": "server",
-      "consumers": [{"kind": "server", "name": "experience-graph-opening-command"}],
+      "audience": "app",
+      "consumers": [{"kind": "app_url", "name": "updateExperienceGraphOpeningStatus", "source": "travel-app/utils/api/http.ts"}],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",

@@ -9170,6 +9170,202 @@
         }
       }
     },
+    "/api/experience-graph/anchors": {
+      "get": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "List Experience Graph Anchors",
+        "description": "Read the actor's graph anchors without exposing another owner's rows.",
+        "operationId": "list_experience_graph_anchors_api_experience_graph_anchors_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GraphExperienceAnchorResponse"
+                  },
+                  "title": "Response List Experience Graph Anchors Api Experience Graph Anchors Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experience-graph/anchors/{anchor_id}": {
+      "get": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Get Experience Graph Anchor",
+        "description": "Read one graph anchor with owner scoping enforced in the query.",
+        "operationId": "get_experience_graph_anchor_api_experience_graph_anchors__anchor_id__get",
+        "parameters": [
+          {
+            "name": "anchor_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Anchor Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphExperienceAnchorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experience-graph/openings/{opening_id}/status": {
+      "patch": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Update Opening Candidate Status Route",
+        "description": "Record the viewer's response without silently creating a commitment.",
+        "operationId": "update_opening_candidate_status_route_api_experience_graph_openings__opening_id__status_patch",
+        "parameters": [
+          {
+            "name": "opening_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Opening Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateOpeningCandidateStatusRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/events": {
       "post": {
         "tags": [
@@ -33938,6 +34134,19 @@
         "title": "AlternativeOption",
         "description": "One alternative option a proposal may offer alongside the primary pick.\n\n``extra=\"allow\"`` keeps legacy fields (e.g. site_id, experience_id)\nreadable for older proposals."
       },
+      "AnchorKind": {
+        "type": "string",
+        "enum": [
+          "movement",
+          "stay",
+          "attendance",
+          "dining",
+          "invitation",
+          "attention",
+          "question"
+        ],
+        "title": "AnchorKind"
+      },
       "AnchorObservationRef": {
         "properties": {
           "id": {
@@ -34078,6 +34287,18 @@
           "status"
         ],
         "title": "AnchorSourceStatus"
+      },
+      "AnchorState": {
+        "type": "string",
+        "enum": [
+          "candidate",
+          "held",
+          "reserved",
+          "ticketed",
+          "cancelled",
+          "unknown"
+        ],
+        "title": "AnchorState"
       },
       "AngleMember": {
         "properties": {
@@ -52061,6 +52282,141 @@
         "title": "GlobalDossierFeedResponse",
         "description": "Random cross-city dossier sample for the global Discover feed."
       },
+      "GraphExperienceAnchorResponse": {
+        "properties": {
+          "anchor_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Anchor Id"
+          },
+          "owner_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Owner Id"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/AnchorKind"
+          },
+          "state": {
+            "$ref": "#/components/schemas/AnchorState"
+          },
+          "source_object_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Source Object Ids",
+            "default": []
+          },
+          "world_entity_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "World Entity Id"
+          },
+          "time_window": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Window"
+          },
+          "confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence"
+          },
+          "proposed_plan_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proposed Plan Id"
+          },
+          "proposed_occasion_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proposed Occasion Id"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "anchor_id",
+          "owner_id",
+          "kind",
+          "state",
+          "confidence",
+          "created_at"
+        ],
+        "title": "GraphExperienceAnchorResponse",
+        "description": "Owner-scoped read model for anchors admitted to the clean graph."
+      },
+      "GraphMutationResponse": {
+        "properties": {
+          "entity_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Entity Id"
+          },
+          "entity_type": {
+            "type": "string",
+            "title": "Entity Type"
+          },
+          "receipt_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Receipt Id"
+          },
+          "replayed": {
+            "type": "boolean",
+            "title": "Replayed"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Payload"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_id",
+          "entity_type",
+          "receipt_id",
+          "replayed",
+          "payload"
+        ],
+        "title": "GraphMutationResponse"
+      },
       "GroupMemoryForgetRequest": {
         "properties": {
           "item_id": {
@@ -64364,6 +64720,18 @@
           "composed_by"
         ],
         "title": "OneLineReadResponse"
+      },
+      "OpeningCandidateStatus": {
+        "type": "string",
+        "enum": [
+          "candidate",
+          "shown",
+          "accepted",
+          "dismissed",
+          "silenced",
+          "expired"
+        ],
+        "title": "OpeningCandidateStatus"
       },
       "OperationBlockContent": {
         "properties": {
@@ -89411,6 +89779,25 @@
           "one_line_read"
         ],
         "title": "UpdateOneLineReadRequest"
+      },
+      "UpdateOpeningCandidateStatusRequest": {
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/OpeningCandidateStatus"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "idempotency_key"
+        ],
+        "title": "UpdateOpeningCandidateStatusRequest"
       },
       "UpdatePreferencesRequest": {
         "properties": {
