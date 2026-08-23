@@ -1149,7 +1149,7 @@ state differ from governance claims.
 | Canonical authority register | Landed as working authority | [authority register](canonical-authority-register-2026-08-23.md) |
 | Five-gate reachability report | Landed | `make m0-reachability-report` |
 
-The remaining M0 follow-through is deliberately explicit: backfill only
+The M0 trust gate is met. The next hardening work belongs to M1: backfill only
 reviewed high-confidence bindings, add deep-link/correction parity tests for
 each canonical consumer, extend the Postgres lifecycle fixture as graph tables
 land, and keep the reachability report wired to the CI workflow that owns the
