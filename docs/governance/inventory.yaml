@@ -99,6 +99,10 @@ overrides:
     disposition: keep_reference
     rationale: Active M3 implementation receipt for addressed place handoffs, shared Occasions, and private outcomes; canonical relationship, Occasion, and release contracts retain implementation authority.
 
+  docs/working/m3-signed-in-two-account-device-cert-2026-08-23.md:
+    disposition: keep_reference
+    rationale: Active M3 release-gate runbook for signed-in two-account device evidence; the relationship, Occasion, identity, and feature-flag contracts retain implementation authority.
+
   docs/architecture/relationships-social-cutover-2026-08-22.md:
     disposition: keep_reference
     rationale: Active expiring execution contract for the bounded place-social cutover; canonical product, architecture, journey, and release documents retain authority.

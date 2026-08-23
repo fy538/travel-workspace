@@ -86,14 +86,16 @@ Mobile commits in this pass:
 - `25ebf836` — `feat(m3): add private occasion outcome composer`
 - `a81a9bc5` — `test(m3): certify two-account private outcome loop`
 - `41363d3d` — `feat(m3): make relationship loop reachable in mock UI`
+- `fe425faa` — `feat(m3): mount addressed place action on venue detail`
+- `ab2bd1e4` — `fix(m3): hide unqualified venue handoff copy`
 
-The sender action is intentionally narrow: it is shown on graph summaries with
-a resolved world entity and a confirmed pair Circle, then sends through the
-same addressed-handoff transport used by the recipient card. The recipient
-surface can write a private note after a lived Occasion and can reopen that
-note for revision-guarded correction. A canonical Place detail does not yet
-carry the graph world UUID, so this is not a claim that every Place reader has
-the sender doorway.
+The sender action is intentionally narrow: it is shown on graph summaries and
+canonical venue detail when the viewer has a confirmed pair Circle, then sends
+through the same addressed-handoff transport used by the recipient card. The
+canonical venue reader supplies the typed `EntityRef`; it never passes a graph
+UUID or derives identity from a label. The recipient surface can write a
+private note after a lived Occasion and can reopen that note for
+revision-guarded correction.
 
 ## Evidence
 
@@ -101,6 +103,14 @@ the sender doorway.
 - Backend relationship route suite with the controlled flag explicitly enabled:
   **14 passed**; the same suite includes the default-off route assertion.
 - Mobile targeted mock, graph/action, and summary-card suites: **18 passed**.
+- Canonical venue-detail doorway regression and the extracted sender action are
+  covered by the focused Places/graph screen suites.
+- Latest focused mobile regression: **4 suites / 50 tests passed** across the
+  graph summary, canonical venue detail, handoff transport, and Chat card
+  surfaces; TypeScript typecheck passed.
+- Latest focused backend relationship/graph regression: **51 passed** across
+  handoff routes, graph openings, Postgres persistence, handoff cards, and the
+  experience-graph route.
 - Mobile ESLint and TypeScript checks: **passed**.
 - The dedicated `.maestro/m3/relationship-loop.yaml` syntax check and full flow:
   **passed** on an iPhone 16 Pro / iOS 18.2 simulator. It covers sender
@@ -126,9 +136,8 @@ environment in this pass. No production feature flag was enabled.
 work is certification and expansion, not a hidden dependency in this loop:
 
 - two-account signed-in device walk with real receipts and stale/replay/denial
-  checks (the mock/device flow above is not a substitute for this gate);
-- complete the sender doorway on canonical Place detail once the graph UUID
-  bridge is available;
+  checks (the mock/device flow above is not a substitute for this gate); see
+  the [signed-in two-account certification runbook](m3-signed-in-two-account-device-cert-2026-08-23.md);
 - Occasion mute/read-attention policy and richer responsibility/task claims;
 - explicit decision-policy semantics for constraints, vetoes, expertise, and
   delegation;
