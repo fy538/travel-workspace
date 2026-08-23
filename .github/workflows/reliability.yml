@@ -194,6 +194,11 @@ jobs:
         # lifecycle policy, and stale/dark operation classifications.
         run: make api-coverage-check
 
+      - name: M0 authority and contract reachability report
+        # Keep one machine-readable summary of the five M0 gates even though
+        # the individual checks above remain the authoritative failures.
+        run: make m0-reachability-report | tee m0-reachability-report.txt
+
       - name: Golden path QA
         run: make golden-path-qa
 
@@ -209,5 +214,7 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: reliability-report-${{ github.run_id }}
-          path: reliability-report.txt
+          path: |
+            reliability-report.txt
+            m0-reachability-report.txt
           retention-days: 14

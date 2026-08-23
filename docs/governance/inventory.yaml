@@ -67,6 +67,14 @@ rules:
 
 
 overrides:
+  docs/working/canonical-authority-register-2026-08-23.md:
+    disposition: keep_authoritative
+    rationale: Active M0 register of durable writers, lifecycle owners, and migration seams; it is the source of truth for the canonical-authority-register noun.
+
+  docs/working/systematic-product-engine-roadmap-2026-08-23.md:
+    disposition: keep_reference
+    rationale: Active cross-repository execution roadmap for the product-engine convergence program; accepted decisions, system charters, and journey contracts retain authority.
+
   docs/architecture/relationships-social-cutover-2026-08-22.md:
     disposition: keep_reference
     rationale: Active expiring execution contract for the bounded place-social cutover; canonical product, architecture, journey, and release documents retain authority.

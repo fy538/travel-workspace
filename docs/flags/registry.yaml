@@ -74,6 +74,97 @@ flags:
       Default-off ingestion gate for content-free treatment exposure reports.
       It cannot authorize domain completion, readback, push, or memory writes.
 
+  - name: CONTENT_CONTROL_PLANE_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:content_control_plane_enabled
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    target_journey: P02,P05,P07
+    cohort: explicit surface rollout only after a named content-control reader is reviewed
+    kill_switch: Set CONTENT_CONTROL_PLANE_ENABLED=false; the shared compiler remains unavailable outside explicitly exempt compatibility paths.
+    promotion_removal_question: >
+      By 2026-10-30, has the shared evidence-to-consequence compiler earned
+      a named reader with privacy and rollback evidence, or should this global
+      compatibility gate remain dark or be removed?
+    notes: >
+      Historical global compatibility switch. Surface-specific flags remain
+      the preferred rollout boundary; Home and Push are explicitly exempt.
+
+  - name: LIVED_EXPERIENCE_SURFACE_PROJECTION_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:lived_experience_surface_projection_enabled
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    target_journey: P02,P05,P07
+    cohort: canonical_dogfood only after a named owner projection is device-verified
+    kill_switch: Set LIVED_EXPERIENCE_SURFACE_PROJECTION_ENABLED=false; treatments do not attach to durable owner projections.
+    promotion_removal_question: >
+      By 2026-10-30, has a named Home/Places/Chat projection demonstrated
+      durable readback and correction, or should this dark contract be removed?
+    notes: >
+      Projection identity is not command, notification, or memory authority.
+
+  - name: RELATIONSHIP_UUID_HANDOFFS_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:relationship_uuid_handoffs_enabled
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    target_journey: P07
+    cohort: canonical_dogfood only after sender and recipient consent are device-verified
+    kill_switch: Set RELATIONSHIP_UUID_HANDOFFS_ENABLED=false; UUID relationship handoff reads and writes return unavailable.
+    promotion_removal_question: >
+      By 2026-10-30, has the UUID handoff namespace demonstrated sender,
+      recipient, correction, expiry, and Occasion readback, or should it remain dark or be removed?
+    notes: >
+      Separate from the legacy integer-place handoff flag. It grants no public,
+      feed, push, or location authority.
+
+  - name: SOCIAL_CIRCLES_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:social_circles_enabled
+    default: true
+    category: ops
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    target_journey: P07
+    cohort: authenticated users through explicit membership authorization
+    kill_switch: Set SOCIAL_CIRCLES_ENABLED=false; all Social Circle lifecycle routes fail closed with 404 while stored records remain unchanged.
+    promotion_removal_question: >
+      By 2026-10-30, should Social Circles remain an active multiplayer
+      authority, become an explicit adapter to Occasions, or be retired?
+    notes: >
+      The surface is already reachable, so this is a default-on server kill
+      switch rather than a dark launch gate. Agent use remains separately
+      governed by SOCIAL_CIRCLE_AGENT_CONTEXT_ENABLED.
+
+  - name: LIVED_EXPERIENCE_PRODUCER_INGRESS_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:lived_experience_producer_ingress_enabled
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-30
+    status: resolved
+    target_journey: P02,P05,P07
+    cohort: none; deprecated compatibility global
+    kill_switch: No runtime caller may use this global; family-specific producer flags are the only active ingress controls.
+    promotion_removal_question: >
+      Has the deprecated global ingress symbol been removed from code and
+      documentation, allowing this historical registry row to remain resolved?
+    notes: >
+      Retained as a resolved registry row so the compatibility symbol cannot
+      disappear from governance while it remains importable for diagnostics.
+
   - name: PLACE_CONTENT_PRIMITIVE_READS_ENABLED
     repo: travel-agent
     location: backend/core/feature_flags.py:50

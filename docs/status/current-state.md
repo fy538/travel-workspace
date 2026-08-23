@@ -3,7 +3,7 @@ doc_type: current_status
 status: active
 owner: engineering
 created: 2026-07-09
-last_verified: 2026-08-13
+last_verified: 2026-08-23
 why_new: Replace duplicated prose scorecards with one generated view of executable registries.
 supersedes: []
 source_of_truth_for: [cross-repo-current-state-summary]
@@ -18,11 +18,11 @@ from committed registries; follow the linked authority for evidence and detail.
 <!-- Run `make docs-status-sync` to update this block. -->
 | Signal | Current value | Authority |
 |---|---:|---|
-| API contract | 484 paths / 538 operations / 1109 schemas | [`docs/openapi.json`](../openapi.json) |
+| API contract | 549 paths / 611 operations / 1265 schemas | [`docs/openapi.json`](../openapi.json) |
 | Canonical journeys | 28 total / 12 golden path / 7 holistic extension | [`journeys.yaml`](../journeys/journeys.yaml) |
-| Feature flags | 81 registered / 80 active / 1 resolved | [`registry.yaml`](../flags/registry.yaml) |
+| Feature flags | 91 registered / 89 active / 2 resolved | [`registry.yaml`](../flags/registry.yaml) |
 | System charters | 20 Markdown documents | [`systems/`](../systems/) |
-| Documentation inventory | 352 files classified | [`inventory.yaml`](../governance/inventory.yaml) |
+| Documentation inventory | 377 files classified | [`inventory.yaml`](../governance/inventory.yaml) |
 
 ### V1 intent versus executable evidence
 
