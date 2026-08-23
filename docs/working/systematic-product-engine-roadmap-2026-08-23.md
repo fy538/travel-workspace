@@ -1032,7 +1032,12 @@ M2 Admission +       M3 Relationships +     M4 Attention +       M5 Optional
                   M7 Continuity + authority retirement
 ```
 
-M-1 removes obsolete presentation before it can shape later architecture. M2-M4
+The arrows describe the recommended *future* sequencing, not a historical
+dependency. M0 authority and trust work was deliberately executable
+independently of surface contraction and is already landed in the workspace;
+M-1 is the next product-surface decision that should shape subsequent product
+and architecture work. M-1 removes obsolete presentation before it can shape
+later architecture. M2-M4
 may proceed in parallel after one real M1 artifact loop proves the minimum
 shared seam. M5 is optional until a retained experiential loop requires first-
 party execution. M6 projection components are exercised incrementally during
@@ -1117,6 +1122,12 @@ lifecycle instead of creating another independent surface inventory.
 
 **Objective:** remove contradictions that make expansion unsafe or make runtime
 state differ from governance claims.
+
+M0 is an independent trust prerequisite, not a gate on the M-1 surface reset.
+It was executed in parallel with the documentation and product-surface
+reconciliation work above; its exit gate is met. The M-1 ordering shown in the
+dependency graph governs what we do next, not whether the completed M0 work was
+valid.
 
 **Deliverables**
 
