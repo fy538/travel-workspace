@@ -1285,6 +1285,19 @@ authorized continuity.
 10. Mount bounded correction/release directly from the result and source
     destination.
 
+**Execution receipt (2026-08-23):** M2 has started with the first admitted-source
+conversation seam. `AdmissionEnvelope`, `AdmissionResult`, and content-free
+`SourceRef` transport now ride the existing Intake v2 and pending-chat-turn
+authorities. The pending route verifies actor-owned source refs; canonical send
+materializes verified Intake images without a second Intake submission; the
+mobile `from_chat=1` path stages the same source before entering Vesper; and
+the generated OpenAPI/mobile contract is synchronized. See the detailed
+[M2 admission and situated-context receipt](m2-admission-situated-context-2026-08-23.md).
+
+This is a foundation packet, not an M2 close: the first bounded
+`ContextManifest`, inline text/audio source materialization, answer receipt, and
+conversation-mounted correction/release remain open.
+
 **Portfolio coverage**
 
 - screenshot or menu -> immediate answer;
