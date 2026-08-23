@@ -194,6 +194,46 @@
       "removal_trigger": null,
       "review_by": "2026-10-30"
     },
+    "POST /api/experience-graph/commitments/from-trip-block": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "adopt_trip_block_commitment_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Explicitly bridges one retained itinerary block into one graph Commitment while leaving legacy execution truth authoritative.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "GET /api/experience-graph/commitments/{commitment_id}/provider-evidence": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "list_commitment_provider_evidence_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Participant-scoped provider history is readable without conflating provider confirmation with occurrence or personal meaning.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "POST /api/experience-graph/commitments/{commitment_id}/execution-tasks": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "issue_execution_task_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Issues one source-linked external handoff capability with explicit single-attempt scope; payment, contact, and retry remain out of scope.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "POST /api/experience-graph/execution-tasks/{task_id}/revoke": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "revoke_execution_task_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Task-scoped revocation withdraws unused external capability through a revisioned receipt.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
     "POST /api/experience-graph/reconciled-occurrence": {
       "audience": "server",
       "consumers": [{"kind": "server", "name": "record_reconciled_occurrence_route"}],

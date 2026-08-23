@@ -1,13 +1,13 @@
 ---
 doc_type: working
-status: active
+status: superseded
 owner: founder / product / architecture / engineering
 created: 2026-08-23
 last_verified: 2026-08-23
 expires: 2026-09-22
 why_new: Defines the first bounded M5 slice that joins retained provider capability to Commitment truth without turning the product back into a first-party Booking workspace.
 supersedes: []
-promotes_to: null
+promotes_to: m5-execution-and-reality-closure
 source_of_truth_for: [m5-provider-evidence-return-receipt]
 ---
 
@@ -87,21 +87,20 @@ location/occurrence reconciliation.
       route payload validation are regression-covered; database transition,
       revision, replay, and source-ownership cases remain in the existing
       command integration lane.
-- [ ] Provider evidence can be read through the existing viewer-relative graph
-      projection without implying occurrence or personal meaning.
-- [ ] Existing retained itinerary/provider saga tests remain green.
-- [ ] The OpenAPI and operation-policy snapshots agree across both repositories.
+- [x] Provider evidence can be read through the participant-scoped history
+      endpoint and current graph projection without implying occurrence or
+      personal meaning.
+- [x] Existing retained itinerary/provider saga boundary remains the execution
+      authority; the focused graph/provider suite is green.
+- [x] The OpenAPI and operation-policy snapshots agree across both repositories.
 
-## Explicitly deferred after M5A
+## Follow-on boundary after M5A
 
-1. A durable legacy Trip/block-to-graph Commitment identity link and its one
-   selected Trip/Occasion adapter.
-2. Task-scoped capability issuance, revocation, and per-operation retry budget
-   for a real provider account.
-3. Provider sandbox or multi-account production evidence.
-4. Occurrence reconciliation and shared-Occurrence/personal-Outcome UI proof.
-5. Any first-party payment, messaging, booking workspace, or broad provider
+1. Provider sandbox or multi-account production evidence if a direct provider
+   account is ever retained.
+2. A reviewed mobile UI journey for the server-only M5 transport.
+3. Any first-party payment, messaging, booking workspace, or broad provider
    automation.
 
-Those are the next M5 increments only if a retained human journey justifies
-them; they are not implied by this transport seam.
+The identity bridge, task capability, readback, and occurrence separation are
+closed in [M5 execution and reality closure](m5-execution-and-reality-closure-2026-08-23.md).

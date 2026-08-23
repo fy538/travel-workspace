@@ -13596,6 +13596,82 @@
         }
       }
     },
+    "/api/experience-graph/commitments/{commitment_id}/provider-evidence": {
+      "get": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "List Commitment Provider Evidence Route",
+        "description": "Read provider history without turning it into lived reality.",
+        "operationId": "list_commitment_provider_evidence_route_api_experience_graph_commitments__commitment_id__provider_evidence_get",
+        "parameters": [
+          {
+            "name": "commitment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Commitment Id"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProviderEvidenceResponse"
+                  },
+                  "title": "Response List Commitment Provider Evidence Route Api Experience Graph Commitments  Commitment Id  Provider Evidence Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/experience-graph/anchors": {
       "get": {
         "tags": [
@@ -15200,6 +15276,206 @@
         },
         "responses": {
           "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experience-graph/commitments/from-trip-block": {
+      "post": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Adopt Trip Block Commitment Route",
+        "description": "Create a graph Commitment without copying legacy execution truth.",
+        "operationId": "adopt_trip_block_commitment_route_api_experience_graph_commitments_from_trip_block_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdoptTripBlockCommitmentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experience-graph/commitments/{commitment_id}/execution-tasks": {
+      "post": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Issue Execution Task Route",
+        "description": "Authorize one explicit external handoff with no payment/retry scope.",
+        "operationId": "issue_execution_task_route_api_experience_graph_commitments__commitment_id__execution_tasks_post",
+        "parameters": [
+          {
+            "name": "commitment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Commitment Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IssueExecutionTaskRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experience-graph/execution-tasks/{task_id}/revoke": {
+      "post": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Revoke Execution Task Route",
+        "description": "Withdraw an unused external capability with a revision guard.",
+        "operationId": "revoke_execution_task_route_api_experience_graph_execution_tasks__task_id__revoke_post",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Task Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RevokeExecutionTaskRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
@@ -45343,6 +45619,40 @@
         "title": "AdmissionResult",
         "description": "Viewer-safe admission/readback state, before any optional consequence."
       },
+      "AdoptTripBlockCommitmentRequest": {
+        "properties": {
+          "commitment_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Commitment Id"
+          },
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "block_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Block Id"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "commitment_id",
+          "trip_id",
+          "block_id",
+          "idempotency_key"
+        ],
+        "title": "AdoptTripBlockCommitmentRequest",
+        "description": "Explicitly promote one retained Trip block into graph context."
+      },
       "AffiliateLinkResponse": {
         "properties": {
           "kind": {
@@ -64349,6 +64659,14 @@
         ],
         "title": "EventCreate"
       },
+      "ExecutionTaskOperation": {
+        "type": "string",
+        "enum": [
+          "external_handoff",
+          "provider_observation"
+        ],
+        "title": "ExecutionTaskOperation"
+      },
       "Expense": {
         "properties": {
           "id": {
@@ -71296,6 +71614,44 @@
           "status"
         ],
         "title": "InviteViewResponse"
+      },
+      "IssueExecutionTaskRequest": {
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Task Id"
+          },
+          "operation": {
+            "$ref": "#/components/schemas/ExecutionTaskOperation",
+            "default": "external_handoff"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Expires At"
+          },
+          "max_attempts": {
+            "type": "integer",
+            "maximum": 1.0,
+            "minimum": 1.0,
+            "title": "Max Attempts",
+            "default": 1
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "task_id",
+          "expires_at",
+          "idempotency_key"
+        ],
+        "title": "IssueExecutionTaskRequest"
       },
       "ItineraryAttentionProjection": {
         "properties": {
@@ -91848,6 +92204,103 @@
         ],
         "title": "ProviderCorrectionWritebackPayload"
       },
+      "ProviderEvidenceResponse": {
+        "properties": {
+          "evidence_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Evidence Id"
+          },
+          "commitment_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Commitment Id"
+          },
+          "provider_state": {
+            "type": "string",
+            "enum": [
+              "unbound",
+              "held",
+              "confirmed",
+              "changed",
+              "cancelled",
+              "failed",
+              "unknown"
+            ],
+            "title": "Provider State"
+          },
+          "provider_ref": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Provider Ref"
+          },
+          "source_object_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Source Object Ids",
+            "default": []
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Observed At"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "confidence": {
+            "type": "integer",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Confidence"
+          },
+          "authority": {
+            "type": "string",
+            "title": "Authority"
+          },
+          "supersedes_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Supersedes Id"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "evidence_id",
+          "commitment_id",
+          "provider_state",
+          "provider_ref",
+          "observed_at",
+          "confidence",
+          "authority",
+          "created_at"
+        ],
+        "title": "ProviderEvidenceResponse"
+      },
       "ProviderIntent": {
         "type": "string",
         "enum": [
@@ -93623,6 +94076,18 @@
             "maxLength": 200,
             "minLength": 1,
             "title": "Idempotency Key"
+          },
+          "task_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Task Id"
           }
         },
         "type": "object",
@@ -96167,6 +96632,27 @@
         "type": "object",
         "title": "RevertRequest",
         "description": "Revert an already-accepted proposal, restoring the prior itinerary state.\n\nOnly the trip organizer may revert. The ``resolution_note`` is stored on\nthe proposal row and surfaced in the group chat bridge message so members\nunderstand why the change was undone.\n\n``mode`` remains accepted for older clients. Canonical proposals always\ncommit the exact typed inverse; whole-version restoration is no longer a\nproduct mutation path."
+      },
+      "RevokeExecutionTaskRequest": {
+        "properties": {
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Revision"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "expected_revision",
+          "idempotency_key"
+        ],
+        "title": "RevokeExecutionTaskRequest"
       },
       "RevokeShareResponse": {
         "properties": {

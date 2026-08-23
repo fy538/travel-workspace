@@ -1482,18 +1482,22 @@ Maps, a marketplace, messaging, a calendar, or the provider itself.
 - every shared Commitment has one status/revision; and
 - recovery and correction converge every projection.
 
-### M5A execution status — 2026-08-23
+### M5 completion status — 2026-08-23
 
-The first bounded M5 increment is now implemented in the [provider evidence
-and return receipt working doc](m5-provider-evidence-return-receipt-2026-08-23.md).
-The clean graph's existing provider command is reachable through a dedicated,
-secure-by-default server-only provider-token route; an itinerary/provider
-projection adapter preserves `paid` as provider `confirmed` and maps
-ambiguous states to `unknown` without inferring occurrence. The full M5 exit
-gate remains open: a durable Trip/block-to-Commitment identity adapter,
-task-scoped capability lifecycle, provider sandbox evidence, and shared
-occurrence/personal Outcome proof are still deferred until a retained journey
-requires them.
+The bounded M5 exit is now implemented in the [M5 execution and reality
+closure receipt](m5-execution-and-reality-closure-2026-08-23.md), building on
+the [provider evidence and return receipt slice](m5-provider-evidence-return-receipt-2026-08-23.md).
+One retained Trip block can be explicitly adopted as one graph Commitment via
+a durable external identity link. A participant can issue one expiring,
+single-attempt external handoff task and revoke it through a revisioned
+receipt. Provider callbacks remain on the secure server-only boundary, may be
+bound to that task, and are readable as provider evidence without implying
+occurrence. Existing source-backed occurrence reconciliation and separate
+personal Outcomes preserve the planned/provider/lived distinction.
+
+M5 is closed at the external-handoff boundary. First-party payment, contact,
+booking, automatic retry, provider accounts, and provider sandbox evidence
+remain conditional follow-ons rather than hidden product commitments.
 
 ### M6 — Mount the coherent product shell
 
