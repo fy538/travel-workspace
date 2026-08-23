@@ -184,7 +184,7 @@ Frontend and contract:
 
 - 11 itinerary executor tests pass;
 - Intake v2 replay, owner readback, deletion/reversal, and mobile resumability
-  tests pass;
+  and mock-parity tests pass;
 - `npx tsc --noEmit` passes;
 - `make contract-check` passes, including full snapshot validation, mobile
   projection, generated-type equality, schema-bridge parity, and Place seams.
