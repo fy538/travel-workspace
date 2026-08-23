@@ -120,7 +120,8 @@ Backend:
   rejection of raw content fields;
 - `tests/core/test_pending_chat_turns.py` — identifier-only admission,
   legacy behavior, and content-free release readback; and
-- 15 focused tests passing across both suites.
+- 15 focused admission/pending tests passing, plus 10 existing
+  ContextManifest/provider contract tests.
 
 Mobile:
 
@@ -141,6 +142,7 @@ Commits:
 - backend `0a76d5bcb` — `feat(m2): read admitted text at canonical send`;
 - backend `9dd934997` — `fix(m2): ignore inline text in image materialization`;
 - backend `ed723cd44` — `feat(m2): close admitted source readback`;
+- backend `eab5934cc` — `fix(m2): follow transcript from object refs`;
 - mobile `d1049509` — `feat(m2): continue admitted shares into chat`;
 - mobile `3558edb5` — `fix(m2): keep shared text source-bound`; and
 - workspace `518e516` — `chore(m2): sync admitted-source contract`.
