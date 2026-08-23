@@ -109,7 +109,7 @@ is never synthesized from provider or shared occurrence evidence.
 
 ## Verification
 
-- 150 focused graph/API/lifecycle tests pass, including adapter, migration,
+- 152 focused graph/API/lifecycle tests pass, including adapter, migration,
   execution-task, provider-auth, provider-state, occurrence, and command
   guards.
 - Ruff passes on every M5 production/test file.
