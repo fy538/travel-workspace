@@ -204,6 +204,16 @@
       "removal_trigger": null,
       "review_by": "2026-10-30"
     },
+    "POST /api/experience-graph/provider-evidence": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "record_provider_evidence_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Dedicated provider-token boundary appends provider evidence and return receipts without exposing a public Commitment writer or implying occurrence.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
     "GET /api/experience-graph/occasion-invitations": {
       "audience": "server",
       "consumers": [{"kind": "server", "name": "list_occasion_invitations_route"}],

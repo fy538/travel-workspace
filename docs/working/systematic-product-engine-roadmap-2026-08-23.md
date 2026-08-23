@@ -1482,6 +1482,19 @@ Maps, a marketplace, messaging, a calendar, or the provider itself.
 - every shared Commitment has one status/revision; and
 - recovery and correction converge every projection.
 
+### M5A execution status — 2026-08-23
+
+The first bounded M5 increment is now implemented in the [provider evidence
+and return receipt working doc](m5-provider-evidence-return-receipt-2026-08-23.md).
+The clean graph's existing provider command is reachable through a dedicated,
+secure-by-default server-only provider-token route; an itinerary/provider
+projection adapter preserves `paid` as provider `confirmed` and maps
+ambiguous states to `unknown` without inferring occurrence. The full M5 exit
+gate remains open: a durable Trip/block-to-Commitment identity adapter,
+task-scoped capability lifecycle, provider sandbox evidence, and shared
+occurrence/personal Outcome proof are still deferred until a retained journey
+requires them.
+
 ### M6 — Mount the coherent product shell
 
 **Objective:** let the application feel like one product organized around the
