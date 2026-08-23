@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: founder / engineering
 created: 2026-06-30
-last_verified: 2026-08-09
+last_verified: 2026-08-23
 why_new: Renders the machine-readable V1 release intent as the authoritative human scope contract.
 supersedes: [docs/working/mvp-scope-and-flag-manifest-2026-06-30.md]
 source_of_truth_for: [v1-release-scope]
@@ -14,7 +14,7 @@ source_of_truth_for: [v1-release-scope]
 > Generated from [`v1-scope.yaml`](v1-scope.yaml). Do not hand-edit this file;
 > run `make docs-release-sync` after changing the manifest or flag registry.
 
-**Status:** scope-locked · **Decided:** 2026-06-30 · **Last verified:** 2026-08-09
+**Status:** scope-locked · **Decided:** 2026-06-30 · **Last verified:** 2026-08-23
 
 ## Promise
 
@@ -25,6 +25,7 @@ This contract governs which surfaces may ship lit and which must stay dark for t
 - Harden the IN set; keep excluded code dark rather than deleting it.
 - Planning and group participation are the wedge; live transaction execution is not required for v1.
 - A capability is not production-enabled merely because code exists.
+- An IN capability does not earn a dedicated root or surface; presentation follows the M-1 surface-contraction register.
 - Journey and device evidence, not this manifest, certify release readiness.
 - Journey IDs are informational anchors for coverage; they do not drive device certification.
 - Physical evidence for this release comes from the J04/J05/J10 two-device lane plus M1 proof receipts, not from per-capability journey walks.
@@ -66,14 +67,14 @@ uncertified until a current-revision receipt exists.
 - **Planning, itinerary, proposals, and revert:** Explicit propose, approve, apply, and revert are in; autonomous disruption production remains dark.
 - **Concierge, personal memory, and group synthesis:** Privacy-mediated synthesis is part of the launch proof.
 - **Trip Home, living itinerary, map, and Now behavior:** Cross-surface coherence and current-condition honesty are release-critical.
-- **Post-trip Story and Trip photos:** The private/shared-with-members story is in; public distribution and postcard rendering are separate dark capabilities.
-- **Expenses and settlement:** Settlement completes the shared Trip loop.
+- **Post-trip Story and Trip photos:** Private and member-authorized Trip traces are in as an Outcome/continuity expression; a standalone Story destination, public distribution, and postcard rendering are not implied.
+- **Expenses and settlement:** Settlement remains a Trip-wedge utility and evidence/receipt capability; its current routes are compatibility surfaces, not a company-level product destination.
 - **Places and universal search:** Places owns exploration, search, maps, editorial context, and saved places. Discover and Atlas are retired product surfaces.
-- **Profiles, people search, follow, and following:** Public story distribution is not implied by profiles or relationship edges.
+- **Profiles, people search, follow, and following:** Person inspection and explicit relationship actions are in. Following does not imply friendship, Occasion membership, private context, shared memory, or a feed destination.
 - **Grounded live Plan repair:** M1 Act 1. A disruption becomes one grounded, group-safe replace proposal through the canonical proposal path; it never mutates the Plan directly. _Gate: Allowlisted by WEATHER_RESCUE_TRIP_IDS; lights per-Trip only, never globally._
 - **Open-interval micro-journey doorway:** The sixty-second cold demo. One anchor plus its connective route between two commitments; not a generated multi-stop itinerary. _Gate: Internal builds only; requires a bounded open window, not an active block._
-- **Local Plans beyond travel:** M1 Act 4. Proof that Experience/Plan/Move persists beyond tourism into bounded everyday occasions. _Gate: Dogfood cohort only; no external cohort until M1 Act 4 outcome capture is certified._
-- **One permissioned relationship opening:** M1 Act 4 closing beat. A permitted opening between two people crosses the tentative-to-shared Plan boundary honestly. This is ambient-as-person-trigger, not a feed; a scrollable list is the tell that it became the thing Surfacing Strategy killed. _Gate: Dark until P06 (consent and silence) has anchors and its negative oracles pass. Double-opt-in only; one decline produces silence._
+- **Local Plans beyond travel:** M1 Act 4. Proof that Experience/Plan/Move persists beyond tourism in bounded everyday life; a personal experience is not automatically an Occasion. _Gate: Dogfood cohort only; no external cohort until M1 Act 4 outcome capture is certified._
+- **One permissioned relationship opening:** M1 Act 4 closing beat. A permitted opening addresses another person, who enters through a separately governed personal loop and may choose a bounded shared Occasion. This is not a feed; one decline or insufficient mutual permission produces silence. _Gate: Dark until P06 (consent and silence) has anchors and its negative oracles pass. Double-opt-in only; one decline produces silence._
 - **Booking record, mark-as-booked, and external handoff:** Honest non-transacting handoff is in; provider transaction execution is out.
 - **Live booking transaction execution:** Duffel cart, hold, and execution remain dark for v1.
 - **Live voice, narration, and microphone entry points:** Code exists but the live experience remains outside v1 until end-to-end certification.
