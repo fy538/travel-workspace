@@ -359,9 +359,11 @@ The default entry requires only **Ask** or **Point**.
 | **Thread** | A revisable question or connection worth returning to |
 | **Opening** | A current possibility for attention, action, or relationship |
 | **Move** | One low-commitment, expiring action |
-| **Plan / Occasion** | Minimum durable structure needed for commitment or coordination |
-| **Decision** | Governed shared choice with authority and state |
+| **Plan** | Minimum prospective structure needed to make one person's intention or dependencies coherent |
+| **Occasion** | Bounded shared world needed for participation and common consequences |
+| **Decision** | Governed personal or shared choice with actor, authority, state, and consequence; shared Decisions use the Occasion constitution |
 | **Encounter** | Sparse private-first joining of Place, moment, trace, and optional meaning |
+| **Outcome** | Person-, relationship-, or explicitly shared consequence or meaning reconciled separately from Occurrence |
 | **Receipt** | What changed, why, under what scope, and how to reverse it |
 | **Silence** | No treatment earned |
 
