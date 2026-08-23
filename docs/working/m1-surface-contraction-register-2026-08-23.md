@@ -29,11 +29,38 @@ or correction path that a retained journey still needs.
 | `compatibility_redirect` | A safe deep-link/bookmark/recovery surface with no new product investment. |
 | `retire` | Removed from active routes, QA, and design obligations; retained primitives must have another consumer. |
 
+## Surface vocabulary state
+
+Current runtime, compatibility ownership, and the shell hypothesis are distinct
+claims:
+
+| Layer | Current truth | Product rule |
+|---|---|---|
+| Visible runtime roots | **Plans**, **Vesper**, **Places** | Preserve current reachability and travel-wedge guarantees while broader composition is tested. |
+| Pushed private owner | **You** | Owns portrait, people, privacy, correction, forgetting, account, and delegated-authority controls without pretending to be a fourth visible tab. |
+| Compatibility vocabulary | **Trips**, **Discover**, **Atlas**, and historical deep links | May recover into Plans, Places, You, or another canonical reader; compatibility does not authorize renewed product investment. |
+| Shell hypothesis | **Home**, **Vesper**, **Places**, **Life** | Home/Life remain separately testable hypotheses. Grammar or visual approval does not approve navigation cutover. |
+| Focused workspaces | **Plan**, **Occasion**, **Map**, and structured provider/action flows | A durable or consequential job may expand without becoming another root. |
+
+User-facing copy may call the current Trips route **Plans**, because a Trip is
+the travel specialization of Plan. **Home** is reserved for the proposed
+current-attention composition and must not silently become an alias for Plans.
+**Life** is reserved for a Mine/Together continuity hypothesis; until approved,
+You remains the production owner. An Occasion is a bounded shared world, not an
+automatic destination or fifth root.
+
+Home may replace the current Plans root only after active and upcoming Plan
+reachability, deep-link recovery, offline behavior, and first-viewport clarity
+are at least equivalent. Life may replace or evolve You only after Mine/Together
+proves clearer than the existing portrait and controls without becoming an
+archive, graph dashboard, or content feed.
+
 ## Disposition register
 
 | Family / route | Product class | Replacement | Retained capability | Deletion / reintroduction gate |
 |---|---|---|---|---|
-| Trips, Vesper, Places, You | `root` | Four-root shell hypothesis | Viewer-relative projections, privacy, and entry contracts | Root-shell review plus privacy/export/deep-link coverage |
+| Plans, Vesper, Places | `root` | Current visible runtime roots | Viewer-relative projections, active-Plan reachability, and universal entry | Home-shell review plus active-Plan, offline, and deep-link parity |
+| You | `focused_workspace` | Current pushed private owner; possible Life evolution | Portrait, privacy, people, correction, forgetting, account, and authority controls | Mine/Together review plus privacy/export/deep-link parity |
 | Trip / Plan / Map | `focused_workspace` | Plan/Occasion workspace and spatial Plan face | Itinerary authority, revisioned mutations, route/transport truth | Projection parity and recovery/readback coverage |
 | Proposal Detail (`/trip-proposal/[proposalId]`) | `compatibility_redirect` | Group-chat decision artifact | Proposal policy, voting, mutation, receipts | Chat focus, inspect fallback, and receipt readback coverage |
 | Decision Deck gallery | `retire` | Typed chat/workbench artifact primitives and focused component tests | Deck primitives still used by Vesper workbench/chat contexts | Archive tag `m1-pre-contraction-2026-08-23`; zero route/QA/design references; reintroduce only for a retained artifact family that cannot be covered in context |
