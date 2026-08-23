@@ -56192,6 +56192,16 @@
             },
             "type": "array",
             "title": "Objects"
+          },
+          "canonical_execution": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CanonicalExecution"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
