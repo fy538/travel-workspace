@@ -1237,6 +1237,21 @@
       "removal_trigger": null,
       "review_by": null
     },
+    "GET /admin/ops/itinerary-projection-outbox": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "m1-plan-delivery-operator-view"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Content-free repair visibility for the existing transactional Plan projection outbox.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
     "GET /admin/trips/{trip_id}/digest/daily/{day_number}": {
       "audience": "operator",
       "consumers": [

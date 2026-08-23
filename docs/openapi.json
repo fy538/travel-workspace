@@ -1146,6 +1146,56 @@
         }
       }
     },
+    "/admin/ops/itinerary-projection-outbox": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Itinerary Projection Outbox Diagnostics",
+        "description": "Inspect queued/leased/retrying Plan projection deliveries.\n\nThis is deliberately an operator view, not a second delivery API. The\nexisting outbox worker remains the only mutation/repair path.",
+        "operationId": "itinerary_projection_outbox_diagnostics_admin_ops_itinerary_projection_outbox_get",
+        "parameters": [
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItineraryProjectionOutboxDiagnosticsResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/admin/dogfood/audit": {
       "get": {
         "tags": [
@@ -44512,6 +44562,76 @@
         ],
         "title": "ActionInitiator"
       },
+      "ActionReceipt": {
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "const": "action-receipt-v1",
+            "title": "Contract Version",
+            "default": "action-receipt-v1"
+          },
+          "receipt_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Receipt Id"
+          },
+          "command_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Command Id"
+          },
+          "resource": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "committed",
+              "rejected",
+              "pending",
+              "reversed"
+            ],
+            "title": "State"
+          },
+          "changed": {
+            "type": "boolean",
+            "title": "Changed"
+          },
+          "readback_state": {
+            "type": "string",
+            "enum": [
+              "available",
+              "pending",
+              "degraded"
+            ],
+            "title": "Readback State"
+          },
+          "created_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "receipt_id",
+          "command_id",
+          "resource",
+          "state",
+          "changed",
+          "readback_state"
+        ],
+        "title": "ActionReceipt",
+        "description": "A viewer-safe, durable result for a command attempt."
+      },
       "ActionReceiptResponse": {
         "properties": {
           "receipt": {
@@ -51828,6 +51948,34 @@
         ],
         "title": "CancellationReviewItem"
       },
+      "CanonicalExecution": {
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "const": "m1-execution-v1",
+            "title": "Contract Version",
+            "default": "m1-execution-v1"
+          },
+          "resource": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "command": {
+            "$ref": "#/components/schemas/CommandEnvelope"
+          },
+          "receipt": {
+            "$ref": "#/components/schemas/ActionReceipt"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "resource",
+          "command",
+          "receipt"
+        ],
+        "title": "CanonicalExecution",
+        "description": "The smallest cross-surface execution seam."
+      },
       "CapabilityKey": {
         "type": "string",
         "enum": [
@@ -53184,6 +53332,164 @@
         ],
         "title": "CollectionSummary",
         "description": "Guides-row card payload: just what the row needs to render."
+      },
+      "CommandEnvelope": {
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "const": "command-envelope-v1",
+            "title": "Contract Version",
+            "default": "command-envelope-v1"
+          },
+          "command_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Command Id"
+          },
+          "type": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Type"
+          },
+          "target": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "capability": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Capability"
+          },
+          "capability_reason": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Capability Reason"
+          },
+          "actor_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Actor Id"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          },
+          "expected_revision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Revision"
+          },
+          "precondition_hash": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Precondition Hash"
+          },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/CommandSourceRef"
+            },
+            "type": "array",
+            "title": "Source Refs"
+          },
+          "audience": {
+            "type": "string",
+            "enum": [
+              "private",
+              "group",
+              "public",
+              "system"
+            ],
+            "title": "Audience",
+            "default": "group"
+          },
+          "issued_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Issued At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "command_id",
+          "type",
+          "target",
+          "capability",
+          "capability_reason",
+          "actor_id",
+          "idempotency_key"
+        ],
+        "title": "CommandEnvelope",
+        "description": "The retry-stable identity and authority boundary for one command."
+      },
+      "CommandSourceRef": {
+        "properties": {
+          "source_type": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Source Type"
+          },
+          "source_id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Source Id"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "degraded": {
+            "type": "boolean",
+            "title": "Degraded",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "source_type",
+          "source_id"
+        ],
+        "title": "CommandSourceRef",
+        "description": "Content-safe provenance attached to a command."
       },
       "CommercialEntitlementSnapshot": {
         "properties": {
@@ -71251,6 +71557,16 @@
             ],
             "title": "Action Receipt Id"
           },
+          "canonical_execution": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CanonicalExecution"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "recovery": {
             "$ref": "#/components/schemas/PredictedRecovery"
           }
@@ -71375,6 +71691,16 @@
             },
             "type": "array",
             "title": "Committed Revisions"
+          },
+          "canonical_execution": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CanonicalExecution"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "provider_transitions": {
             "items": {
@@ -72218,6 +72544,63 @@
           "source_status"
         ],
         "title": "ItineraryProjectionEnvelope"
+      },
+      "ItineraryProjectionOutboxDiagnosticsResponse": {
+        "properties": {
+          "as_of": {
+            "type": "string",
+            "format": "date-time",
+            "title": "As Of"
+          },
+          "pending_count": {
+            "type": "integer",
+            "title": "Pending Count"
+          },
+          "due_count": {
+            "type": "integer",
+            "title": "Due Count"
+          },
+          "leased_count": {
+            "type": "integer",
+            "title": "Leased Count"
+          },
+          "retrying_count": {
+            "type": "integer",
+            "title": "Retrying Count"
+          },
+          "oldest_pending_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Oldest Pending At"
+          },
+          "max_attempt_count": {
+            "type": "integer",
+            "title": "Max Attempt Count"
+          },
+          "published_last_24h": {
+            "type": "integer",
+            "title": "Published Last 24H"
+          }
+        },
+        "type": "object",
+        "required": [
+          "as_of",
+          "pending_count",
+          "due_count",
+          "leased_count",
+          "retrying_count",
+          "max_attempt_count",
+          "published_last_24h"
+        ],
+        "title": "ItineraryProjectionOutboxDiagnosticsResponse",
+        "description": "Content-free health view for the canonical M1 delivery rail."
       },
       "ItineraryProposalReadProjection": {
         "properties": {
@@ -93517,6 +93900,50 @@
         ],
         "title": "ResolvedMedia",
         "description": "A renderable visual with an explicit factual claim and provenance.\n\n``provider_asset_id`` is only an identity/audit handle. Callers must not\npersist it when ``cache_directive`` is ``no_store`` (Google photo resource\nnames are short-lived and may not be cached)."
+      },
+      "ResourceRef": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Kind"
+          },
+          "id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Id"
+          },
+          "revision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Revision"
+          },
+          "canonical_path": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Canonical Path"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind",
+          "id",
+          "canonical_path"
+        ],
+        "title": "ResourceRef",
+        "description": "Stable owner identity plus the projection that can reopen it."
       },
       "RespondOccasionInvitationRequest": {
         "properties": {
