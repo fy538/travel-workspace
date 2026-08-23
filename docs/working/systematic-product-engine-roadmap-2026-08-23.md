@@ -1849,6 +1849,16 @@ Each increment must reuse the owning commands and projections. It may reveal a
 missing durable authority, but it may not create a convenience aggregate,
 parallel source of truth, or new root to make the demonstration easier.
 
+**Contract-gate status — 2026-08-23.** The backend product-grammar portfolio
+now contains thirteen validator-enforced cases, including addressed value
+without an inferred Occasion, clean invitation refusal, after-phase-only scoped
+Outcomes, and newly human-authored explicit reachability. Local seam evidence
+passes 116 focused backend tests, 29 focused mobile tests, and the complete
+mobile TypeScript check. This substantiates the composition boundary and the
+existing seam map; it does not mark C1-C5 or the exit gate complete. In
+particular, signed-in two-account, restart/replay, stale-membership, and
+physical-device proof remain release evidence rather than documentation claims.
+
 #### Whole-product exit gate
 
 The portfolio closes only when a person can enter through the original source,
