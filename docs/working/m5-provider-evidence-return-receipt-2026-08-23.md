@@ -89,7 +89,10 @@ location/occurrence reconciliation.
       command integration lane.
 - [x] Provider evidence can be read through the participant-scoped history
       endpoint and current graph projection without implying occurrence or
-      personal meaning.
+      personal meaning; raw operational references remain controller-only.
+- [x] A callback requires the `provider_observation` operation, consumes its
+      one-use task atomically, and persists task lineage on the evidence row;
+      an idempotent replay does not spend a second attempt.
 - [x] Existing retained itinerary/provider saga boundary remains the execution
       authority; the focused graph/provider suite is green.
 - [x] The OpenAPI and operation-policy snapshots agree across both repositories.

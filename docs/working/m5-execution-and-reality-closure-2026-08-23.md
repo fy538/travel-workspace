@@ -28,10 +28,10 @@ worth its operational and trust cost.
 ```text
 retained Trip block
   -> explicit graph Commitment + external identity link
-  -> one issued handoff task (single attempt, revocable, expiring)
+  -> one issued operation-bound task (single use, revocable, expiring)
   -> provider operation / callback
-  -> append-only provider evidence + Commitment revision
-  -> participant-scoped provider history
+  -> consumed capability + append-only provider evidence + Commitment revision
+  -> controller-private refs / participant-safe provider history
   -> separately reconciled occurrence
   -> separately authored personal Outcome
 ```
@@ -49,11 +49,17 @@ execution and provider sagas.
 authenticated member action. The adapter:
 
 - accepts only a real Trip member and an existing block;
+- selects only the latest itinerary version, requires the caller's expected
+  block revision, and locks the block and Trip membership;
 - rejects free-time/transit/interlude, skipped, cancelled, unknown, or
   untitled blocks;
 - maps planning/coordination state to `proposed` or `accepted` only;
 - preserves participants and time window when present; and
 - never infers provider confirmation, attendance, or enjoyment.
+
+Source validation, participant validation, Commitment creation, receipt, and
+external identity insertion share one database transaction. A revision race or
+command failure therefore leaves no half-adopted graph object.
 
 The source block is unique in the bridge, so two graph Commitments cannot
 silently represent the same retained operation.
@@ -62,7 +68,7 @@ silently represent the same retained operation.
 
 `commitment_execution_tasks` is the smallest capability object needed to hand
 one retained Commitment to an external executor. It is linked to the source
-identity row and participant owner, has an expiry and revision, and supports
+identity row and adopting controller, has an expiry and revision, and supports
 explicit revocation.
 
 `POST /api/experience-graph/commitments/{commitment_id}/execution-tasks`
@@ -71,8 +77,12 @@ revokes it. The database and command contract enforce `max_attempts = 1`:
 retry is never inferred from a timeout or failure; a human must issue a new
 task after reviewing the current state.
 
-The task scopes only `external_handoff` or `provider_observation`. It grants
-no payment, contact, booking, attendance, or personal-meaning authority.
+The task scopes only `external_handoff` or `provider_observation`. A provider
+callback must present the latter operation; the command locks the task and
+atomically moves it from `issued` to `consumed`, increments its sole attempt,
+and records `task_id` on the evidence row. An idempotent replay returns the
+existing receipt without spending it twice. It grants no payment, contact,
+booking, attendance, or personal-meaning authority.
 
 ### 3. Provider return and readback
 
@@ -84,9 +94,16 @@ action receipts.
 
 `GET /api/experience-graph/commitments/{commitment_id}/provider-evidence`
 returns append-only provider observations only to a Commitment participant.
+The adopting controller receives operational references; another participant
+receives only bounded shared keys such as adapter and provider/booking state.
 The regular graph projection exposes the current provider state/revision; the
-history endpoint exposes evidence details without adding occurrence or
-personal meaning.
+history endpoint never adds occurrence or personal meaning.
+
+Account export and erasure now traverse Commitment membership explicitly.
+Solo Commitments and their evidence are deleted; a shared Commitment survives
+for its remaining participants, its external-link control transfers, the
+departing membership is removed, and issued capabilities owned by the
+departing account are destroyed rather than transferred.
 
 ### 4. Lived reality and personal meaning stay separate
 
@@ -102,6 +119,8 @@ is never synthesized from provider or shared occurrence evidence.
 - one shared Commitment has one revision and one provider projection;
 - provider `unknown`, `failed`, or expiry is evidence, not an automatic retry;
 - provider callbacks must carry the issued task capability;
+- callback operation must match and the capability can be consumed once;
+- raw provider references remain controller-private;
 - provider confirmation is not attendance, and attendance is not enjoyment;
 - revocation prevents a callback from using the task capability;
 - source identity collisions fail rather than fork graph truth; and
@@ -110,11 +129,12 @@ is never synthesized from provider or shared occurrence evidence.
 
 ## Verification
 
-- 153 focused graph/API/lifecycle tests pass, including adapter, migration,
+- 207 focused graph/API/lifecycle/account-erasure tests pass, including adapter, migration,
   execution-task, provider-auth, provider-state, occurrence, and command
   guards.
 - Ruff passes on every M5 production/test file.
-- Alembic has one head at `xgraph19` (`intakev204 -> xgraph18 -> xgraph19`).
+- Alembic has one head at `xgraph20`; the consumed-task migration was verified
+  through downgrade to `xgraph19` and re-upgrade.
 - Full OpenAPI snapshot: 557 paths / 619 operations / 1,292 schemas.
 - Active mobile projection remains 424 paths / 469 operations / 1,140 schemas;
   the new M5 transport is intentionally server-only until a reviewed mobile
@@ -125,6 +145,7 @@ is never synthesized from provider or shared occurrence evidence.
 ## Explicit non-goals
 
 No first-party provider account, payment, contact, booking workspace, or
-automatic retry was added. Provider sandbox and multi-account evidence remain
-conditional on choosing a direct execution journey; the current product
-boundary is an external handoff with a durable return receipt.
+automatic retry was added. Provider sandbox, a mounted mobile execution
+journey, and multi-account production evidence remain conditional on choosing
+a direct execution journey; this is a hardened dark substrate, not proof that
+the user-facing external-handoff experience is complete.

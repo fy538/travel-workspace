@@ -33,7 +33,7 @@ or correction path that a retained journey still needs.
 
 | Family / route | Product class | Replacement | Retained capability | Deletion / reintroduction gate |
 |---|---|---|---|---|
-| Trips, Vesper, Places, You | `root` | Four-root shell hypothesis | Viewer-relative projections, privacy, and entry contracts | Root-shell review plus privacy/export/deep-link coverage |
+| Plans, Vesper, Places, You | `root` | Current mounted shell pending the M6 root decision | Viewer-relative projections, privacy, and entry contracts | Root-shell review plus privacy/export/deep-link coverage |
 | Trip / Plan / Map | `focused_workspace` | Plan/Occasion workspace and spatial Plan face | Itinerary authority, revisioned mutations, route/transport truth | Projection parity and recovery/readback coverage |
 | Proposal Detail (`/trip-proposal/[proposalId]`) | `compatibility_redirect` | Group-chat decision artifact | Proposal policy, voting, mutation, receipts | Chat focus, inspect fallback, and receipt readback coverage |
 | Decision Deck gallery | `retire` | Typed chat/workbench artifact primitives and focused component tests | Deck primitives still used by Vesper workbench/chat contexts | Archive tag `m1-pre-contraction-2026-08-23`; zero route/QA/design references; reintroduce only for a retained artifact family that cannot be covered in context |
@@ -41,6 +41,7 @@ or correction path that a retained journey still needs.
 | Expenses (`/trip-expenses/**`) | `compatibility_redirect` | Receipt/source-evidence artifact, or explicit founder-approved utility | Expense evidence, settlement authority, correction, export/deletion | Artifact replacement/readback or founder decision before further route work |
 | Stay (`/trip-accommodations/**`) | `focused_workspace` | Plan-owned stay sheet | Lodging facts and provider return state | Stay-to-Plan projection parity |
 | External sharing / public entries | `external_handoff` | Governed link/share handoff | Audience, custody, expiry, revocation, and recovery | Privacy, expiry, and deep-link recovery coverage |
+| Canonical artifact reader (`/you/memories/artifacts/[id]`) | `artifact_or_sheet` | Same source-bound focused reader | Viewer-safe projection, provenance, unknowns, correction entry, and degraded-source recovery | Deep-link, custody, correction, and native-state coverage |
 | Atlas/Discover and other historical aliases | `compatibility_redirect` | Places, You, or the owning canonical reader | Bookmark recovery and canonical identity | Telemetry or explicit route-retirement decision |
 
 ## Execution status — 2026-08-23
@@ -50,6 +51,9 @@ or correction path that a retained journey still needs.
 - Product disposition fields now live beside the executable polish registry and
   the canonical entry-point inventory. Critical Booking, Expenses, and
   Proposal routes declare their replacement explicitly in route ownership.
+- The surface guard now runs the mechanical route generator in `--check` mode
+  before ownership validation. A new route cannot produce a false green by
+  leaving `route-inventory.generated.json` stale.
 - The Decision Deck gallery route, fixture, screen-specific QA flows, baselines,
   and gallery-only test were removed. The Deck component family and headless
   action tests remain because Vesper contexts still consume them.

@@ -1111,7 +1111,7 @@ lifecycle instead of creating another independent surface inventory.
 | Work item | Status | Evidence / boundary |
 |---|---|---|
 | Product classification fields | Landed | `travel-app/scripts/polish-qa/surfaces.mjs`, canonical entry-point inventory, and route-owner metadata now share the six-class vocabulary. |
-| Mechanical reintroduction guard | Landed | `travel-app/scripts/check-surface-contraction.mjs`, `npm run surface:contraction:check`, and the reliability workflow guard. |
+| Mechanical reintroduction guard | Landed and freshness-bound | `travel-app/scripts/check-surface-contraction.mjs` now runs the route generator in `--check` mode before evaluating ownership, so a newly mounted route cannot be hidden by a stale committed inventory. |
 | Decision Deck presentation | Retired | `/dev/deck-gallery`, gallery fixtures, baselines, Maestro flows, gallery-only test, and active design/QA rows removed; retained Deck primitives and headless tests remain. |
 | Proposal Detail | Compatibility redirect | Normal deep links focus the group-chat decision artifact; inspect/recovery remains bounded and receipt-backed. |
 | Booking | External handoff | Booking remains during cutover as a bounded provider utility; replacement is a provider handoff/status artifact plus external checkout. |
@@ -1122,7 +1122,7 @@ lifecycle instead of creating another independent surface inventory.
 
 | Exit criterion | Status | Evidence |
 |---|---|---|
-| Every production route has an approved classification | **Pass** | Generated inventory contains 178 routes; every route is owned or explicitly exempt, and `npm run surface:contraction:check` enforces the mapping. |
+| Every production route has an approved classification | **Pass** | Generated inventory contains 181 routes; every route is owned or explicitly exempt, and `npm run surface:contraction:check` first rejects a stale inventory. The canonical artifact reader is explicitly `artifact_or_sheet`. |
 | Proposal/voting uses the Chat artifact normally | **Pass** | `routes.tripChatProposal`, `/trip-proposal` inspect/recovery behavior, and `trip-proposal-inspect`, shared-proposal, and journey tests. |
 | No canceled surface remains in active polish/design work | **Pass** | Decision Deck gallery route, fixtures, baselines, Maestro flows, screen test, contract, and registry rows are removed; the guard rejects their return. |
 | Booking and Expenses have explicit dispositions | **Pass** | Booking is `external_handoff`; all Expense routes are `compatibility_redirect` with replacement, retained capability, and deletion-gate metadata. |
@@ -1179,7 +1179,7 @@ valid.
 | Work item | Status | Evidence |
 |---|---|---|
 | Legacy Trip receipt viewer privacy | Landed | `backend/core/db/action_receipts.py`, route viewer scoping, focused tests |
-| Graph/relationship account lifecycle registration | Landed | `backend/core/db/account_lifecycle.py`, export/deletion/residual integration seam, registry tests |
+| Graph/relationship account lifecycle registration | Landed and membership-traversed | Registry integration plus explicit Commitment-participant traversal: exports include membership-owned Commitment/evidence rows, solo Commitments cascade, shared Commitments detach the departing person and transfer external-link control, and issued personal capabilities are destroyed. |
 | Shared graph Occasion creator succession | Landed and Postgres-proven | `account_deletion.py` successor policy plus graph/relationship export/deletion fixture |
 | Lived Experience family-count drift | Landed | gateway registry test now covers all nine declared routes |
 | Social Circle policy flag | Landed | registered default-on kill switch, router dependency, fail-closed API test |
@@ -1487,13 +1487,17 @@ Maps, a marketplace, messaging, a calendar, or the provider itself.
 The bounded M5 exit is now implemented in the [M5 execution and reality
 closure receipt](m5-execution-and-reality-closure-2026-08-23.md), building on
 the [provider evidence and return receipt slice](m5-provider-evidence-return-receipt-2026-08-23.md).
-One retained Trip block can be explicitly adopted as one graph Commitment via
-a durable external identity link. A participant can issue one expiring,
-single-attempt external handoff task and revoke it through a revisioned
-receipt. Provider callbacks remain on the secure server-only boundary, may be
-bound to that task, and are readable as provider evidence without implying
-occurrence. Existing source-backed occurrence reconciliation and separate
-personal Outcomes preserve the planned/provider/lived distinction.
+One block from the latest retained Trip itinerary can be explicitly adopted as
+one graph Commitment via a durable external identity link. Adoption requires
+the caller's expected source revision, locks the source block and membership,
+and creates the Commitment/link in the same transaction. The adopting
+controller can issue one expiring, single-attempt task and revoke it through a
+revisioned receipt. Provider callbacks remain on the secure server-only
+boundary, require a `provider_observation` task, atomically consume it once,
+and persist its ID on provider evidence. Raw provider references are visible
+only to the controller; other participants receive bounded shared state.
+Existing source-backed occurrence reconciliation and separate personal
+Outcomes preserve the planned/provider/lived distinction.
 
 M5 is closed at the external-handoff boundary. First-party payment, contact,
 booking, automatic retry, provider accounts, and provider sandbox evidence
