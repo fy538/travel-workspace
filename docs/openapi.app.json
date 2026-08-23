@@ -9318,6 +9318,66 @@
         }
       }
     },
+    "/api/experience-graph/occasion-invitations/{invitation_id}/product": {
+      "get": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Get Meaningful Occasion Invitation Route",
+        "description": "Read the invitee-safe product context without granting membership.",
+        "operationId": "get_meaningful_occasion_invitation_route_api_experience_graph_occasion_invitations__invitation_id__product_get",
+        "parameters": [
+          {
+            "name": "invitation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Invitation Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MeaningfulOccasionInvitation"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/experience-graph/occasions/{occasion_id}/decisions": {
       "get": {
         "tags": [
@@ -63618,6 +63678,210 @@
         ],
         "title": "MaterializeShapePayload"
       },
+      "MeaningfulOccasionInvitation": {
+        "properties": {
+          "treatment": {
+            "$ref": "#/components/schemas/OccasionProductTreatment",
+            "default": "meaningful_invitation"
+          },
+          "viewer_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Viewer Id"
+          },
+          "invitation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Invitation Id"
+          },
+          "occasion_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Occasion Id"
+          },
+          "inviter_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Inviter Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "revision": {
+            "type": "integer",
+            "title": "Revision"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "lifecycle": {
+            "type": "string",
+            "title": "Lifecycle"
+          },
+          "human_intent": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Human Intent"
+          },
+          "why_you": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Why You"
+          },
+          "participation_ask": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Participation Ask"
+          },
+          "message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message"
+          },
+          "time_window": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TimeWindow"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "place": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "visible_participant_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Visible Participant Ids",
+            "default": []
+          },
+          "shared_commitments": {
+            "items": {
+              "$ref": "#/components/schemas/ProjectedCommitment"
+            },
+            "type": "array",
+            "title": "Shared Commitments",
+            "default": []
+          },
+          "personal_plan_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Personal Plan Id"
+          },
+          "personal_window": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TimeWindow"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "participation_options": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Participation Options",
+            "default": [
+              "join",
+              "defer",
+              "decline",
+              "join_partly",
+              "arrive_late",
+              "leave_early",
+              "stay_quiet"
+            ]
+          },
+          "source_refs": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Source Refs",
+            "default": []
+          },
+          "unknowns": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Unknowns",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "viewer_id",
+          "invitation_id",
+          "occasion_id",
+          "inviter_id",
+          "status",
+          "revision",
+          "kind",
+          "lifecycle"
+        ],
+        "title": "MeaningfulOccasionInvitation"
+      },
       "MediaAttribution": {
         "properties": {
           "provider_name": {
@@ -66529,6 +66793,18 @@
           "unknown"
         ],
         "title": "OccasionLifecycle"
+      },
+      "OccasionProductTreatment": {
+        "type": "string",
+        "enum": [
+          "meaningful_invitation",
+          "private_brief",
+          "live_now",
+          "afterglow",
+          "future_opening",
+          "silence"
+        ],
+        "title": "OccasionProductTreatment"
       },
       "OccurrenceArtifact": {
         "properties": {
