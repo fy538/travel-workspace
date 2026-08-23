@@ -77751,6 +77751,16 @@
             ],
             "title": "World Entity Id"
           },
+          "canonical_entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "state": {
             "$ref": "#/components/schemas/ExperienceOccurrenceState"
           },
@@ -77795,7 +77805,7 @@
           "idempotency_key"
         ],
         "title": "RecordEncounterOutcomeRequest",
-        "description": "Record a place-bound memory even when no Commitment existed."
+        "description": "Record a place-bound memory even when no Commitment existed.\n\nPublic clients should use ``canonical_entity_ref``. The graph-local UUID\nremains a compatibility input for internal callers during cutover."
       },
       "RecordExperienceOutcomeRequest": {
         "properties": {
@@ -78530,9 +78540,26 @@
             "title": "Recipient User Id"
           },
           "world_entity_id": {
-            "type": "string",
-            "format": "uuid",
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "World Entity Id"
+          },
+          "canonical_entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "conversation_id": {
             "type": "string",
@@ -78610,13 +78637,12 @@
         "type": "object",
         "required": [
           "recipient_user_id",
-          "world_entity_id",
           "conversation_id",
           "message",
           "idempotency_key"
         ],
         "title": "RelationshipPlaceHandoffCreateRequest",
-        "description": "Create a handoff for one explicitly named recipient."
+        "description": "Create a handoff for one explicitly named recipient.\n\n``canonical_entity_ref`` is the public command identity. The graph-local\nUUID remains accepted only as a compatibility input for internal callers\nduring the clean-break cutover."
       },
       "RelationshipPlaceHandoffResponse": {
         "properties": {

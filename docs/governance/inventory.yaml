@@ -83,6 +83,18 @@ overrides:
     disposition: keep_reference
     rationale: Active M1 implementation receipt for the selected Plan command/receipt/delivery seam; canonical command, receipt, outbox, and product contracts retain implementation authority.
 
+  docs/working/m2-admission-situated-context-2026-08-23.md:
+    disposition: keep_reference
+    rationale: Active M2 implementation receipt for admitted-source custody, canonical conversation handoff, and situated context; admission and conversation contracts retain implementation authority.
+
+  docs/working/m3-canonical-place-reader-2026-08-23.md:
+    disposition: keep_reference
+    rationale: Active M3 implementation receipt for canonical Place identity bridging and viewer-relative graph reads; canonical identity and Place contracts retain implementation authority.
+
+  docs/working/m3-multiplayer-loop-2026-08-23.md:
+    disposition: keep_reference
+    rationale: Active M3 implementation receipt for addressed place handoffs, shared Occasions, and private outcomes; canonical relationship, Occasion, and release contracts retain implementation authority.
+
   docs/architecture/relationships-social-cutover-2026-08-22.md:
     disposition: keep_reference
     rationale: Active expiring execution contract for the bounded place-social cutover; canonical product, architecture, journey, and release documents retain authority.
