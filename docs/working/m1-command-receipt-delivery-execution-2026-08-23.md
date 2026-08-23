@@ -5,7 +5,7 @@ owner: founder / product / architecture / engineering
 created: 2026-08-23
 last_verified: 2026-08-23
 expires: 2026-09-22
-why_new: Records the first end-to-end M1 command, durable receipt, delivery-repair, owner-readback, and cross-repository contract slice without introducing a speculative universal execution rail.
+why_new: Records the two end-to-end M1 command, durable receipt, delivery-repair, owner-readback, and cross-repository contract slices without introducing a speculative universal execution rail.
 supersedes: []
 promotes_to: null
 source_of_truth_for: [m1-command-receipt-delivery-execution]
@@ -13,9 +13,9 @@ source_of_truth_for: [m1-command-receipt-delivery-execution]
 
 # M1 command, receipt, and delivery execution receipt
 
-> Status: selected-loop implementation landed; portfolio M1 remains open until
-> a second materially different loop exercises the contract and the process-
-> death/export/correction evidence is certified.
+> Status: M1 implementation closed locally. The two retained consumers exercise
+> the contract; production deployment cadence and fault-drill evidence remain
+> operational follow-up, not a reason to invent another rail.
 
 ## 1. Selected loop and boundary
 
@@ -85,8 +85,9 @@ existing durable `vesper_action_receipts` row:
 - `receipt_id` is the existing durable receipt UUID;
 - `command_id` joins it to the operation command;
 - `resource` carries the owner/readback destination;
-- `state` distinguishes `committed` and `rejected` (the envelope reserves
-  `pending` and `reversed` for later loops);
+- `state` distinguishes `committed`, `rejected`, and the Intake v2
+  `reversed` deletion result (the envelope still reserves `pending` for a
+  future asynchronous command);
 - `changed` makes a rejected/no-op attempt explicit; and
 - `readback_state` reports whether the owner projection can be reopened.
 
@@ -115,7 +116,32 @@ stored terminal evidence. Older terminal rows that predate M1 are lazily
 enriched on replay when they already have an action-receipt identity; new
 terminal rows persist the complete envelope in transition evidence.
 
-## 4. Operator view
+## 4. Second consumer: custody-first Intake v2
+
+The second loop is materially different from Plan mutation: it admits a user
+artifact into owner-scoped custody and later supports an explicit forget/revoke
+operation. It composes over the existing `intake_submissions`,
+`intake_outbox_events`, lifecycle readback, and deletion authorities.
+
+```text
+OS share / chat capture
+  -> POST /api/intake/submissions (idempotent custody envelope)
+  -> vesper_action_receipts(admit_source) + intake outbox event
+  -> /api/intake/submissions/{id}/lifecycle owner readback
+  -> DELETE /api/intake/submissions/{id}
+  -> source scrub + deletion outbox + vesper_action_receipts(forget_source)
+```
+
+Its `ResourceRef` is `intake_submission/<uuid>` and reopens the existing
+`/share-capture?item_id=<uuid>` route. The source reference is content-safe;
+the command carries owner identity and the caller's idempotency key, while
+the durable receipt remains private. A replay returns the same admission
+receipt. A successful owner deletion returns a distinct `reversed` receipt,
+and subsequent lifecycle reads return that same reversal identity. The
+adapter does not claim a place, memory, Plan, or graph consequence: Intake's
+existing custody and semantic-admission authorities remain in charge.
+
+## 5. Operator view
 
 `GET /admin/ops/itinerary-projection-outbox` is an admin-gated, content-free
 diagnostic view. It reports `pending_count`, `due_count`, `leased_count`,
@@ -127,7 +153,7 @@ The operation is registered as `operator` in
 `docs/governance/api-operation-policy.json`; it is intentionally excluded from
 the active mobile OpenAPI projection.
 
-## 5. Cross-repository surface
+## 6. Cross-repository surface
 
 The backend OpenAPI snapshot and the generated mobile schema now include:
 
@@ -138,15 +164,16 @@ The backend OpenAPI snapshot and the generated mobile schema now include:
 - `CanonicalExecution`.
 
 The mobile facade aliases these generated types rather than maintaining a
-second hand-written schema. `executeCanonicalItineraryOperation` returns the
-server result unchanged, so a successful action preserves the canonical Plan
-deep link and receipt ID through the executor boundary.
+second hand-written schema. Both the itinerary executor and Intake v2 data
+hooks return the server result unchanged, so Plan and share-capture flows
+preserve their canonical deep links and receipt IDs through the client
+boundary.
 
-## 6. Evidence
+## 7. Evidence
 
 Backend:
 
-- 22 offline execution-contract and itinerary-contract tests pass;
+- focused offline execution-contract and itinerary-contract tests pass;
 - 49 focused receipt/contract/preview tests pass;
 - isolated admin route harness confirms the operator endpoint is gated by the
   router dependency and returns no payload field;
@@ -156,6 +183,8 @@ Backend:
 Frontend and contract:
 
 - 11 itinerary executor tests pass;
+- Intake v2 replay, owner readback, deletion/reversal, and mobile resumability
+  tests pass;
 - `npx tsc --noEmit` passes;
 - `make contract-check` passes, including full snapshot validation, mobile
   projection, generated-type equality, schema-bridge parity, and Place seams.
@@ -167,20 +196,20 @@ The backend pre-commit ratchets also report pre-existing broad-exception,
 oversized-file, and intake status-write baselines; those checks were skipped
 only for the two backend commits and are recorded here for follow-up.
 
-## 7. Gate assessment
+## 8. Gate assessment
 
 | M1 gate | Status | Evidence / remaining work |
 |---|---|---|
 | Retry-safe command identity | Landed | operation lock + `CommandEnvelope` + replay test |
 | Durable receipt for commit and rejection | Landed | existing receipt table, now populated for both terminal states |
-| Process-death-safe delivery | Existing rail reused | transactional outbox and lease/retry tests; production fault drill remains |
+| Process-death-safe delivery | Landed locally | transactional outbox, expired-lease reclaim, stale-worker fencing, and repair-worker tests pass; production fault drill remains operational follow-up |
 | Repair/replay and operator visibility | Landed | existing worker plus admin counters |
-| Canonical owner/deep-link readback | Landed | Plan `ResourceRef`, detail projection, mobile executor test |
-| Export/deletion/correction/reversal | Existing authorities retained | no new table; full M1 lifecycle certification remains |
-| Second materially different consumer | Open by design | next candidate is admitted artifact/intake, not another Plan adapter |
+| Canonical owner/deep-link readback | Landed | Plan detail projection and Intake lifecycle/share-capture readback; mobile executor and Intake resumability tests |
+| Export/deletion/correction/reversal | Landed locally | Intake deletion/reversal and owner correction tests pass; existing account lifecycle registry covers Intake and action receipts; no new table |
+| Second materially different consumer | Landed | custody-first Intake v2 admission and forget loop exercise the same contract |
 
-M1 is therefore **implementation-started and seam-proven**, not closed. The
-next implementation packet should exercise the same identity/readback grammar
-from an admitted artifact or conversational artifact only after its admission
-and custody authority is ready (M2), and should not generalize fields merely
-to satisfy a roadmap checklist.
+M1 is therefore **closed for local implementation**. The next packet should
+advance to M2 admission/context work and only add another adapter when a
+retained experience requires it; production worker cadence, deployed
+process-death drills, and live provider delivery remain separately tracked
+operational evidence.

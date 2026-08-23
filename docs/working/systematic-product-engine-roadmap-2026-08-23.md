@@ -1236,20 +1236,23 @@ loop proves that a smaller shared contract should replace them.
 10. Cross-repo artifact, command, receipt, and deep-link types for the selected
    loop.
 
-**Execution receipt (2026-08-23):** The first seam is implemented over the
-existing canonical itinerary operation gateway. `ResourceRef`,
-`CommandEnvelope`, and `ActionReceipt` are persisted through terminal
-operation evidence, backed by the existing `vesper_action_receipts` row and
-transactional `itinerary_projection_outbox`. Plan owner readback now exposes
-the additive `canonical_execution` contract, mobile aliases the generated
-types, and an admin-gated content-free outbox diagnostic is available at
-`GET /admin/ops/itinerary-projection-outbox`. See the detailed
-[M1 execution receipt](m1-command-receipt-delivery-execution-2026-08-23.md).
+**Execution receipt (2026-08-23):** The seam is implemented over two existing,
+materially different authorities. The first is the canonical itinerary
+operation gateway: `ResourceRef`, `CommandEnvelope`, and `ActionReceipt` are
+persisted through terminal operation evidence, backed by the existing
+`vesper_action_receipts` row and transactional `itinerary_projection_outbox`.
+The second is custody-first Intake v2: admission and owner deletion now expose
+the same additive `canonical_execution` contract while retaining the existing
+`intake_submissions`, lifecycle readback, source-scrub, and processing-outbox
+authorities. Plan and share-capture owner readback, mobile generated types,
+expired-lease repair/stale-worker fencing, and the admin-gated content-free
+outbox diagnostic at `GET /admin/ops/itinerary-projection-outbox` are covered
+by focused tests. See the detailed [M1 execution receipt](m1-command-receipt-delivery-execution-2026-08-23.md).
 
-This proves the selected Plan loop, not a universal platform rail. M1 remains
-open for the process-death/export/correction certification and for a second
-materially different consumer; the next candidate is an admitted artifact
-loop after M2 admission/custody work.
+M1 is closed for local implementation. This proves the minimum shared seam,
+not a universal platform rail: deployed process-death drills, worker cadence,
+and live provider delivery remain operational evidence. M2 admission/context
+work can proceed without adding another generic adapter.
 
 **Exit gate**
 
