@@ -1185,7 +1185,7 @@ compiler test does not count as production mounting or native visual proof.
 | P0–P1 | complete | This plan, the strict projection contract, identity/resource rules, and the A01–A15 fixture portfolio are frozen. |
 | P2 | complete | `travel-agent` pure Intake-anchor compiler, Mine/Together redaction, deterministic revisions, and five focused tests. |
 | P3 | complete | Authenticated owner read route, operation-policy entry, OpenAPI snapshots, generated mobile schema, and typed mock/real data seam. |
-| P4–P5 | complete | Shared mobile frame, five bounded family cues, five densities, fifteen fixtures, gallery route, component tests, and registered dev-fixture QA contract. |
+| P4–P5 | complete | Shared mobile frame, four bounded visual families with object-specific cues, five densities, fifteen fixtures, gallery route, component tests, and registered dev-fixture QA contract. |
 | P6 | complete | Phase-aware render profiles plus source deletion/degradation and unknown-state parity tests. |
 | P7 | complete | Client-only typed relation compiler, allowlisted predicates, provenance/scope/basis, node cap, and list fallback. |
 | P8 | exploratory | The Life lab includes an episode-composition hypothesis, but accepted Occasion composition and role projections remain unimplemented. |
