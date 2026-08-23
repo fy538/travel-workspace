@@ -1,6 +1,6 @@
 ---
 doc_type: working
-status: active
+status: closed
 owner: founder / product / architecture / engineering
 created: 2026-08-23
 last_verified: 2026-08-23
@@ -13,9 +13,10 @@ source_of_truth_for: [m2-admission-situated-context]
 
 # M2 admission and situated-context execution receipt
 
-> Status: M2 has started. The admitted-source conversation seam is implemented
-> locally; the ContextManifest provider set and richer result treatment remain
-> the next M2 packets.
+> Status: M2 is closed for the admitted-source conversation vertical slice.
+> The existing lived-experience ContextManifest/provider engine remains the
+> single context authority for later family-specific consequence work; this
+> slice does not synthesize context for an unscoped chat turn.
 
 ## 1. Selected vertical slice
 
@@ -66,11 +67,39 @@ receipt state; it never exposes admitted bytes.
 - Source refs are stamped into server-built turn metadata so the conversation
   message and any later source correction share one lineage. Inline text is
   read from the verified Intake source object at canonical send; it is not
-  copied into the pending-turn outbox.
+  copied into the pending-turn outbox. Audio follows the same parent SourceRef
+  to Intake's verified `derived_transcript`; if transcription is still
+  running, canonical send returns a retryable `admitted_audio_not_ready`
+  result instead of discarding the audio behind a placeholder prompt.
 - Pending turns retain `answer_only` by default and expire after the existing
-  24-hour pending-turn TTL. Intake deletion/correction remains the owner
-  release path; no Plan, Place, Occasion, attendance, or memory is inferred by
-  this seam.
+  24-hour pending-turn TTL. Accepted, cancelled, and expired turns release
+  private text, image, and attachment payloads while retaining only the
+  content-free envelope, result, and source identities. Intake
+  deletion/correction remains the owner release path; no Plan, Place,
+  Occasion, attendance, or memory is inferred by this seam.
+
+## 4a. Situated context boundary
+
+The context engine was already present as a single explicit authority:
+`LivedExperienceEngine.compile_authority_context` resolves the registered
+family requirements, uses the canonical Place/time/movement/weather/people/
+Commitment/provider adapters, and emits one content-free `ContextManifest`.
+Its provider ports and fail-closed missing/expiry behavior are covered by the
+lived-experience contract tests. M2 reuses that engine rather than creating an
+admission-specific provider registry. A generic pending chat turn has no
+authorized family or experience scope yet, so it carries source lineage only;
+the later family opening compiles the bounded manifest when a consequence is
+actually authorized.
+
+## 4b. Answer receipt and release
+
+At canonical send, the server stamps both `AdmissionEnvelope` and
+`AdmissionResult` into the user message's trusted turn metadata alongside the
+same `SourceRef` list. The result is therefore readable from the canonical
+conversation after the pending row is accepted, while pending-row reconciliation
+and expiry retain only this content-free receipt. Its `correction_path` points
+to the existing Intake source destination, where owner deletion and candidate
+correction already provide the reversible release authority.
 
 ## 4. Mobile continuation
 
@@ -89,9 +118,9 @@ Backend:
 
 - `tests/core/test_admission_contract.py` — content-free envelope/result and
   rejection of raw content fields;
-- `tests/core/test_pending_chat_turns.py` — identifier-only admission and
-  legacy behavior; and
-- 14 focused tests passing across both suites.
+- `tests/core/test_pending_chat_turns.py` — identifier-only admission,
+  legacy behavior, and content-free release readback; and
+- 15 focused tests passing across both suites.
 
 Mobile:
 
@@ -111,25 +140,24 @@ Commits:
 - backend `271bb2bd6` — `fix(m2): preserve pending-turn replay fingerprints`;
 - backend `0a76d5bcb` — `feat(m2): read admitted text at canonical send`;
 - backend `9dd934997` — `fix(m2): ignore inline text in image materialization`;
+- backend `ed723cd44` — `feat(m2): close admitted source readback`;
 - mobile `d1049509` — `feat(m2): continue admitted shares into chat`;
 - mobile `3558edb5` — `fix(m2): keep shared text source-bound`; and
 - workspace `518e516` — `chore(m2): sync admitted-source contract`.
 
-## 6. Remaining M2 boundary
+## 6. M2 exit and next boundary
 
-This receipt does not close M2. The next packets must:
+M2 is closed for this vertical slice. The next milestone must:
 
-1. bind first-turn multimodal selection to custody without relying on a
-   process-local image payload;
-2. materialize admitted audio through the same source lineage, including
-   resumable transcription/interpretation;
-3. compile the first bounded `ContextManifest` from existing Place/time,
-   movement, weather, people, Commitment, and provider ports;
-4. emit a real `AdmissionResult`/answer receipt from the conversation turn,
-   rather than only the pending-turn admission receipt; and
-5. mount correction/release controls at the conversation/source destination
-   with explicit answer-only expiry readback.
+1. bind family-specific first-turn multimodal interpretation to the existing
+   lived-experience opening and ContextManifest, rather than to generic chat;
+2. add optional, explicitly authorized consequence continuations (Place,
+   graph, memory, or multiplayer) that retain the same SourceRef lineage;
+3. expose the existing Intake correction/release controls directly in the
+   conversation result surface; and
+4. exercise process-death and worker-cadence evidence in deployed
+   environments, beyond the local deterministic tests recorded here.
 
-The current implementation is therefore a safe M2 foundation and one exercised
-vertical seam, not evidence that every S1/S2 journey already has situated
-context or cultural interpretation.
+This receipt closes the admission/context foundation without claiming that
+every S1/S2 journey already has situated cultural interpretation or a graph
+consequence. Those are the family-specific M3+ surfaces.

@@ -1285,18 +1285,24 @@ authorized continuity.
 10. Mount bounded correction/release directly from the result and source
     destination.
 
-**Execution receipt (2026-08-23):** M2 has started with the first admitted-source
+**Execution receipt (2026-08-23):** M2 is closed for the first admitted-source
 conversation seam. `AdmissionEnvelope`, `AdmissionResult`, and content-free
-`SourceRef` transport now ride the existing Intake v2 and pending-chat-turn
+`SourceRef` transport ride the existing Intake v2 and pending-chat-turn
 authorities. The pending route verifies actor-owned source refs; canonical send
-materializes verified Intake images without a second Intake submission; the
-mobile `from_chat=1` path stages the same source before entering Vesper; and
-the generated OpenAPI/mobile contract is synchronized. See the detailed
+materializes verified Intake images and follows verified audio parents to the
+existing `derived_transcript` without a second Intake submission; the mobile
+`from_chat=1` path stages the same source before entering Vesper; accepted,
+cancelled, and expired rows retain only content-free receipts; and the
+generated OpenAPI/mobile contract is synchronized. See the detailed
 [M2 admission and situated-context receipt](m2-admission-situated-context-2026-08-23.md).
 
-This is a foundation packet, not an M2 close: the first bounded
-`ContextManifest`, inline text/audio source materialization, answer receipt, and
-conversation-mounted correction/release remain open.
+The existing `LivedExperienceEngine.compile_authority_context` and canonical
+provider registry remain the single `ContextManifest` authority for a later
+family opening. Generic pending chat intentionally carries source lineage but
+does not fabricate a family or experience scope before that opening exists.
+The next work is consequence-specific context, correction projection, and
+deployed process-death/worker-cadence evidence—not another generic admission
+rail.
 
 **Portfolio coverage**
 
