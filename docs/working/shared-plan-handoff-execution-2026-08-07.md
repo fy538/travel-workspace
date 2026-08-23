@@ -3,7 +3,8 @@ doc_type: working
 status: active
 owner: founder / product
 created: 2026-08-07
-expires: 2026-08-21
+last_updated: 2026-08-23
+expires: 2026-09-06
 why_new: Records the implementation and live validation gates for the smallest zero-install distribution handoff derived from the Product Model and multiplayer strategy.
 ---
 
@@ -11,7 +12,8 @@ why_new: Records the implementation and live validation gates for the smallest z
 
 ## Decision held constant
 
-This implements one narrow part of the Product Model's distribution loop:
+This implements one narrow part of the Product Model's candidate distribution
+path; external conversion is not inferred from the mechanics:
 
 ```text
 organizer's local Plan → existing group chat → closed RSVP → organizer's Plan decision

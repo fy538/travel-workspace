@@ -3,6 +3,7 @@ doc_type: working
 status: active
 owner: founder / eng
 created: 2026-07-28
+last_updated: 2026-08-23
 expires: 2026-08-27
 why_new: A 2026-07-28 strategy session (booking → venture path → M4 exit
   artifact) converged on a product area nobody owns in writing — the
@@ -118,7 +119,7 @@ Four emotional jobs; each artifact aims at exactly one:
 
 | Artifact | Job | What it is | Why it wins |
 |---|---|---|---|
-| **The Postcard** | Social currency | One photo → riso → one grounded caption in Vesper's voice. Issued **during** the trip, end of day. | Sharing motivation peaks mid-trip, not after. Daily in-trip return loop + the distribution loop in one object. Design already done (10 rules). |
+| **The Postcard** | Social currency | One photo → riso → one grounded caption in Vesper's voice. Issued **during** the trip, end of day. | Hypothesis: sharing motivation may peak mid-trip rather than after. Test in-trip return and outward distribution separately; the artifact does not establish either loop. Design already done (10 rules). |
 | **The Credits** | Relationship | Trip ends like a film: *Organized by Sarah · Found the best table: Tom · Settled the ledger: you.* Typography only. | Zero-fabrication-risk (pure record data, no LLM surface). Everyone is named → every member sends it to every member. Data no competitor holds. |
 | **The Letter** | Identity | Short post-trip letter *from Vesper* with a POV: what you gravitated to, what changed since last trip. EB Garamond italic (voice canon). | Cheap (text), intimate, reuses letter-hero substrate. Natural carrier of "your Atlas just started" for joiners. |
 | **The Almost** | Closure | Decision archaeology: the rejected hotel, the vote that flipped. "You almost stayed in Alfama." | Story structure for free from the counterfactual record. Structurally impossible for photo-roll competitors. |
