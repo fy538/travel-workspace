@@ -3086,6 +3086,22 @@
       "removal_trigger": "Remove only when the anchor identity is served by a replacement transport.",
       "review_by": "2026-10-30"
     },
+    "GET /api/artifact-projections/intake/{anchor_id}": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "getCanonicalArtifactProjection",
+          "source": "travel-app/data/canonicalArtifacts.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "artifact-projection",
+      "reason": "The canonical artifact reader receives a bounded, viewer-safe projection over the existing owner-scoped Intake anchor without introducing a second source of truth.",
+      "removal_trigger": "Remove only when an equivalent canonical projection transport preserves owner scoping, correction, and degraded-source semantics.",
+      "review_by": "2026-10-30"
+    },
     "GET /api/intake/submissions/{submission_id}/interpretations": {
       "audience": "app",
       "consumers": [

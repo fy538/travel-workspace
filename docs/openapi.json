@@ -167,6 +167,75 @@
         }
       }
     },
+    "/api/artifact-projections/intake/{anchor_id}": {
+      "get": {
+        "tags": [
+          "artifact-projections"
+        ],
+        "summary": "Get Intake Artifact Projection",
+        "description": "Return one owner-scoped canonical projection for a confirmed anchor.",
+        "operationId": "get_intake_artifact_projection_api_artifact_projections_intake__anchor_id__get",
+        "parameters": [
+          {
+            "name": "anchor_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Anchor Id"
+            }
+          },
+          {
+            "name": "mode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/ArtifactProjectionMode",
+              "default": "mine"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CanonicalArtifactProjectionV1"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/accommodations/{accommodation_id}": {
       "get": {
         "summary": "Get Catalog Accommodation",
@@ -46029,6 +46098,391 @@
         ],
         "title": "ArchiveTripResponse"
       },
+      "ArtifactAction": {
+        "properties": {
+          "action_ref": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Action Ref"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "inspect_source",
+              "correct",
+              "link_occasion",
+              "open_owner",
+              "share_selected",
+              "forget",
+              "undo"
+            ],
+            "title": "Kind"
+          },
+          "label_key": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Label Key"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "primary",
+              "secondary"
+            ],
+            "title": "Role"
+          },
+          "capability": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Capability"
+          },
+          "availability": {
+            "type": "string",
+            "enum": [
+              "available",
+              "disabled",
+              "expired"
+            ],
+            "title": "Availability"
+          },
+          "requires_confirmation": {
+            "type": "boolean",
+            "title": "Requires Confirmation",
+            "default": false
+          },
+          "disabled_reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Disabled Reason"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "action_ref",
+          "kind",
+          "label_key",
+          "role",
+          "capability",
+          "availability"
+        ],
+        "title": "ArtifactAction"
+      },
+      "ArtifactAnchorSummary": {
+        "properties": {
+          "family": {
+            "type": "string",
+            "enum": [
+              "movement",
+              "base",
+              "attendance",
+              "dining",
+              "attention"
+            ],
+            "title": "Family"
+          },
+          "subtype": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Subtype"
+          },
+          "phase": {
+            "type": "string",
+            "enum": [
+              "prospective",
+              "upcoming",
+              "live",
+              "resolving",
+              "lived",
+              "remembered",
+              "expired"
+            ],
+            "title": "Phase"
+          },
+          "occurrence": {
+            "type": "string",
+            "enum": [
+              "artifact_only",
+              "considered",
+              "scheduled",
+              "noticed",
+              "plausible",
+              "likely",
+              "confirmed",
+              "contradicted",
+              "not_applicable"
+            ],
+            "title": "Occurrence"
+          },
+          "operational_state": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Operational State"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "family",
+          "subtype",
+          "phase",
+          "occurrence",
+          "operational_state"
+        ],
+        "title": "ArtifactAnchorSummary"
+      },
+      "ArtifactContextSummary": {
+        "properties": {
+          "place_refs": {
+            "items": {
+              "$ref": "#/components/schemas/EntityRef"
+            },
+            "type": "array",
+            "title": "Place Refs",
+            "default": []
+          },
+          "time_window": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TimeWindow"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "occasion_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Occasion Refs",
+            "default": []
+          },
+          "plan_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Plan Refs",
+            "default": []
+          },
+          "participant_count": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Participant Count"
+          },
+          "participant_label": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Participant Label"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "ArtifactContextSummary"
+      },
+      "ArtifactCorrectionSummary": {
+        "properties": {
+          "available": {
+            "type": "boolean",
+            "title": "Available",
+            "default": false
+          },
+          "paths": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Paths",
+            "default": []
+          },
+          "revision": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "ArtifactCorrectionSummary"
+      },
+      "ArtifactFact": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Key"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "text",
+              "instant",
+              "time_window",
+              "place_ref",
+              "status",
+              "number",
+              "money",
+              "duration",
+              "route"
+            ],
+            "title": "Kind"
+          },
+          "value": {
+            "title": "Value"
+          },
+          "truth_mode": {
+            "type": "string",
+            "enum": [
+              "direct_observed",
+              "source_extracted",
+              "user_confirmed",
+              "inferred",
+              "external_verified",
+              "unknown"
+            ],
+            "title": "Truth Mode"
+          },
+          "confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence"
+          },
+          "observed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed At"
+          },
+          "valid_until": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid Until"
+          },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/SourceRef"
+            },
+            "type": "array",
+            "title": "Source Refs",
+            "default": []
+          },
+          "audience": {
+            "type": "string",
+            "enum": [
+              "private",
+              "bounded_shared"
+            ],
+            "title": "Audience",
+            "default": "private"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "key",
+          "kind",
+          "value",
+          "truth_mode",
+          "confidence"
+        ],
+        "title": "ArtifactFact"
+      },
+      "ArtifactMedia": {
+        "properties": {
+          "ref": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Ref"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "evidence",
+              "hero_candidate",
+              "supporting",
+              "source_preview"
+            ],
+            "title": "Role"
+          },
+          "availability": {
+            "type": "string",
+            "enum": [
+              "available",
+              "degraded",
+              "deleted",
+              "unavailable"
+            ],
+            "title": "Availability"
+          },
+          "audience": {
+            "type": "string",
+            "enum": [
+              "private",
+              "bounded_shared"
+            ],
+            "title": "Audience",
+            "default": "private"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "ref",
+          "role",
+          "availability"
+        ],
+        "title": "ArtifactMedia"
+      },
       "ArtifactPhotoUploadResponse": {
         "properties": {
           "photo_id": {
@@ -46059,6 +46513,81 @@
         ],
         "title": "ArtifactPhotoUploadResponse",
         "description": "Result of a real multipart artifact-photo upload (rehosted to the CDN).\n\nSupersedes the presigned-URL stub: the client POSTs the image bytes, the\nbackend rehosts through the media pipeline (EXIF/variants/CDN), and \u2014 when\nan ``artifact_id`` is supplied \u2014 stamps the CDN url as the artifact's\n``hero_photo_url`` (the img2img postcard source)."
+      },
+      "ArtifactProjectionMode": {
+        "type": "string",
+        "enum": [
+          "mine",
+          "together"
+        ],
+        "title": "ArtifactProjectionMode",
+        "description": "Viewer lane accepted by the projection transport.\n\n``together`` is intentionally rejected until a graph-owned sharing\nauthority is available.  A client query parameter must never be able to\ngrant access to private source claims."
+      },
+      "ArtifactProjectionScope": {
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": [
+              "mine",
+              "together"
+            ],
+            "title": "Mode"
+          },
+          "audience": {
+            "type": "string",
+            "enum": [
+              "private",
+              "bounded_shared"
+            ],
+            "title": "Audience"
+          },
+          "viewer_role": {
+            "type": "string",
+            "enum": [
+              "owner",
+              "participant"
+            ],
+            "title": "Viewer Role"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "mode",
+          "audience",
+          "viewer_role"
+        ],
+        "title": "ArtifactProjectionScope"
+      },
+      "ArtifactProvenance": {
+        "properties": {
+          "ref": {
+            "$ref": "#/components/schemas/SourceRef"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "degraded": {
+            "type": "boolean",
+            "title": "Degraded",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "ref"
+        ],
+        "title": "ArtifactProvenance"
       },
       "ArtifactSection": {
         "properties": {
@@ -46091,6 +46620,44 @@
         ],
         "title": "ArtifactSection",
         "description": "One section of an artifact's body (Trip Story has 3-7, Day Postcard has 1)."
+      },
+      "ArtifactSourceSummary": {
+        "properties": {
+          "refs": {
+            "items": {
+              "$ref": "#/components/schemas/SourceRef"
+            },
+            "type": "array",
+            "title": "Refs",
+            "default": []
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "degraded",
+              "deleted",
+              "unavailable"
+            ],
+            "title": "Status"
+          },
+          "content_available": {
+            "type": "boolean",
+            "title": "Content Available",
+            "default": false
+          },
+          "original_inspectable": {
+            "type": "boolean",
+            "title": "Original Inspectable",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "ArtifactSourceSummary"
       },
       "AtlasAction": {
         "properties": {
@@ -52215,6 +52782,112 @@
           "updated_at"
         ],
         "title": "CancellationReviewItem"
+      },
+      "CanonicalArtifactProjectionV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "canonical-artifact-projection.v1",
+            "title": "Schema Version",
+            "default": "canonical-artifact-projection.v1"
+          },
+          "resource": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "revision": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Revision"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/ArtifactProjectionScope"
+          },
+          "source": {
+            "$ref": "#/components/schemas/ArtifactSourceSummary"
+          },
+          "anchor": {
+            "$ref": "#/components/schemas/ArtifactAnchorSummary"
+          },
+          "context": {
+            "$ref": "#/components/schemas/ArtifactContextSummary"
+          },
+          "facts": {
+            "items": {
+              "$ref": "#/components/schemas/ArtifactFact"
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Facts",
+            "default": []
+          },
+          "media": {
+            "items": {
+              "$ref": "#/components/schemas/ArtifactMedia"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Media",
+            "default": []
+          },
+          "unknowns": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Unknowns",
+            "default": []
+          },
+          "provenance": {
+            "items": {
+              "$ref": "#/components/schemas/ArtifactProvenance"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Provenance",
+            "default": []
+          },
+          "allowed_actions": {
+            "items": {
+              "$ref": "#/components/schemas/ArtifactAction"
+            },
+            "type": "array",
+            "maxItems": 4,
+            "title": "Allowed Actions",
+            "default": []
+          },
+          "correction": {
+            "$ref": "#/components/schemas/ArtifactCorrectionSummary"
+          },
+          "owner_destinations": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Owner Destinations",
+            "default": []
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "resource",
+          "revision",
+          "scope",
+          "source",
+          "anchor",
+          "context",
+          "correction",
+          "updated_at"
+        ],
+        "title": "CanonicalArtifactProjectionV1",
+        "description": "One viewer-relative read model over a canonical resource."
       },
       "CanonicalExecution": {
         "properties": {
