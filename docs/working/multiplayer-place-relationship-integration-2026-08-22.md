@@ -63,10 +63,13 @@ occasion schema/migration, composed-card validation — 110 tests passed on
 slice. The corrected portfolio is green.
 
 Focused mobile evidence: ComposedChatCard, experience-graph selector/action,
-summary-card, and relationship mock handoff suites — 17 tests passed;
+summary-card, and relationship mock handoff suites — 18 tests passed;
 ESLint and TypeScript passed. The relationship mock suite includes an explicit
-two-person privacy/correction certification. Maestro syntax passed, but no
-M3-specific device flow or screenshot receipt was produced.
+two-person privacy/correction certification. The dedicated M3 Maestro flow
+also passed on an iPhone 16 Pro / iOS 18.2 simulator, covering sender note,
+recipient private Outcome capture/correction, and the sender privacy boundary.
+This is deterministic mock/device evidence; a signed-in two-account backend
+receipt remains a release gate.
 
 No production/cloud/Qdrant promotion was performed by this slice.
 
@@ -83,7 +86,8 @@ No production/cloud/Qdrant promotion was performed by this slice.
   exposes private-by-default encounter-outcome commands. The mock now reads
   back multiple participant-owned outcomes and revision corrections. The
   recipient composer and correction action are mounted on lived Occasion and
-  Outcome summaries; a real device proof remains unimplemented.
+  Outcome summaries; the mock/device proof is now exercised, while a signed-in
+  backend device proof remains unimplemented.
 - The projection correctly carries `world_entity_id`, but the mobile Places
   model still uses legacy numeric venue/place IDs. A UUID-to-canonical-place
   reader is therefore still an explicit integration seam, not something the
@@ -93,8 +97,8 @@ No production/cloud/Qdrant promotion was performed by this slice.
 
 1. Carry the graph world UUID into canonical Place detail so the sender action
    is not limited to graph summaries.
-2. Run a dedicated two-account device walk for this UUID handoff surface and
-   record real receipts separately from automated evidence.
+2. Run a dedicated signed-in two-account device walk for this UUID handoff
+   surface and record real receipts separately from the deterministic mock flow.
 3. Bridge mature Trip proposals/votes only when a handoff is explicitly
    attached to a Trip; never infer Trip membership from a shared place.
 4. Keep the feature flags as the release boundary; use only the checked-in

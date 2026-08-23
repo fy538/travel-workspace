@@ -1367,9 +1367,11 @@ receipt](m3-multiplayer-loop-2026-08-23.md) and the [canonical place-reader
 packet](m3-canonical-place-reader-2026-08-23.md).
 
 This closes the first differentiated multiplayer product loop, not production
-release. Serving flags remain off pending the two-account device walk; sender
-composer UI, Occasion attention/mute, responsibility claims, richer decision
-policy, and explicit Trip promotion remain the next M3 program increments.
+release. The dedicated mock/device Maestro flow now proves the mounted sender
+composer, recipient private Outcome capture/correction, and sender privacy
+boundary; serving flags remain off pending a signed-in two-account device walk.
+Occasion attention/mute, responsibility claims, richer decision policy, and
+explicit Trip promotion remain the next M3 program increments.
 
 **Exit gate**
 
