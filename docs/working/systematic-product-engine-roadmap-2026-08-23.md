@@ -1413,6 +1413,18 @@ state, Chat, Home, Activity, and notifications.
 
 **Primary CJs:** CJ03, CJ07-CJ08, CJ11-CJ12, CJ14, CJ17-CJ18.
 
+**Execution receipt (2026-08-23):** The first foreground attention loop is
+closed in code and mock read-after-write. Home and Places graph summaries now
+let the viewer inspect why an owner-scoped Opening reached them and choose to
+open it, stay quiet, or dismiss it through the existing receipt-backed Opening
+status command. The mock lane proves the silenced Opening leaves current
+attention without creating a Commitment, Occasion, Trip, or notification
+delivery. See the detailed [M4 Opening and deliberate-silence loop receipt](m4-opening-attention-loop-2026-08-23.md).
+
+This is the first M4 increment, not notification launch. Graph/Lived Opening
+convergence, modify/snooze/mute/release, typed delivery destinations, telemetry,
+and physical OS presentation remain explicit follow-on gates.
+
 **Exit gate**
 
 Every Opening identifies initiator, evidence, urgency, audience, available

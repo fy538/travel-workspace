@@ -103,6 +103,10 @@ overrides:
     disposition: keep_reference
     rationale: Active M3 release-gate runbook for signed-in two-account device evidence; the relationship, Occasion, identity, and feature-flag contracts retain implementation authority.
 
+  docs/working/m4-opening-attention-loop-2026-08-23.md:
+    disposition: keep_reference
+    rationale: Active M4 implementation receipt for the owner-scoped Opening response and deliberate-silence loop; attention, notification, and delivery contracts retain implementation authority.
+
   docs/architecture/relationships-social-cutover-2026-08-22.md:
     disposition: keep_reference
     rationale: Active expiring execution contract for the bounded place-social cutover; canonical product, architecture, journey, and release documents retain authority.
