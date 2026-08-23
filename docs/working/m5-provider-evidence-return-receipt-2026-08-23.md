@@ -60,7 +60,7 @@ location/occurrence reconciliation.
 
 1. Add `EXPERIENCE_GRAPH_PROVIDER_TOKEN` and a secure-by-default dependency.
 2. Mount `POST /api/experience-graph/provider-evidence` behind that dependency.
-3. Keep the request server-owned (`owner_id`, Commitment/evidence IDs,
+3. Keep the request server-owned (`owner_id`, task/Commitment/evidence IDs,
    provider state/reference, source objects, observed/expiry timestamps,
    confidence, authority, expected revision, and idempotency key).
 4. Preserve the existing provider command as the only durable writer; the

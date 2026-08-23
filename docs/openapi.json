@@ -94078,15 +94078,8 @@
             "title": "Idempotency Key"
           },
           "task_id": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "uuid"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "string",
+            "format": "uuid",
             "title": "Task Id"
           }
         },
@@ -94100,7 +94093,8 @@
           "observed_at",
           "authority",
           "expected_revision",
-          "idempotency_key"
+          "idempotency_key",
+          "task_id"
         ],
         "title": "RecordProviderEvidenceRequest",
         "description": "Server-owned provider observation for one canonical Commitment."

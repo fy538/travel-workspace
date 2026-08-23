@@ -77,7 +77,7 @@ no payment, contact, booking, attendance, or personal-meaning authority.
 ### 3. Provider return and readback
 
 The existing server-only provider route remains the only provider-evidence
-writer. It now optionally accepts a task ID and rejects revoked, expired, or
+writer. It requires the issued task ID and rejects revoked, expired, or
 unrelated capabilities before appending evidence. The provider command still
 owns revision CAS, source custody, transition validation, idempotency, and
 action receipts.
@@ -101,6 +101,7 @@ is never synthesized from provider or shared occurrence evidence.
 
 - one shared Commitment has one revision and one provider projection;
 - provider `unknown`, `failed`, or expiry is evidence, not an automatic retry;
+- provider callbacks must carry the issued task capability;
 - provider confirmation is not attendance, and attendance is not enjoyment;
 - revocation prevents a callback from using the task capability;
 - source identity collisions fail rather than fork graph truth; and
@@ -109,7 +110,7 @@ is never synthesized from provider or shared occurrence evidence.
 
 ## Verification
 
-- 152 focused graph/API/lifecycle tests pass, including adapter, migration,
+- 153 focused graph/API/lifecycle tests pass, including adapter, migration,
   execution-task, provider-auth, provider-state, occurrence, and command
   guards.
 - Ruff passes on every M5 production/test file.
