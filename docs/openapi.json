@@ -45636,6 +45636,11 @@
             "format": "uuid",
             "title": "Block Id"
           },
+          "expected_source_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Source Revision"
+          },
           "idempotency_key": {
             "type": "string",
             "maxLength": 200,
@@ -45648,6 +45653,7 @@
           "commitment_id",
           "trip_id",
           "block_id",
+          "expected_source_revision",
           "idempotency_key"
         ],
         "title": "AdoptTripBlockCommitmentRequest",
@@ -69907,6 +69913,52 @@
             "type": "string",
             "title": "Scan Status"
           },
+          "custody_verified_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custody Verified At"
+          },
+          "custody_receipt_sha256": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custody Receipt Sha256"
+          },
+          "revoked_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Revoked At"
+          },
+          "revocation_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Revocation Reason"
+          },
           "captured_at": {
             "anyOf": [
               {
@@ -69960,8 +70012,10 @@
           },
           "source_role": {
             "type": "string",
-            "maxLength": 64,
-            "minLength": 1,
+            "enum": [
+              "primary",
+              "attachment"
+            ],
             "title": "Source Role",
             "default": "primary"
           },
@@ -92215,6 +92269,18 @@
             "type": "string",
             "format": "uuid",
             "title": "Commitment Id"
+          },
+          "task_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Task Id"
           },
           "provider_state": {
             "type": "string",
