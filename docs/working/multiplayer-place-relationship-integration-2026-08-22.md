@@ -47,8 +47,10 @@ Home, Places, and Plan surfaces remain the readback surfaces.
 The bounded loop is now exercised end to end in code and mock read-after-write:
 the recipient's `open_together` action produces a viewer-relative Occasion,
 each participant can retain a separate private encounter Outcome, and the
-owner can correct that Outcome with an expected revision. Mobile exposes the
-canonical entity route handoff through the existing exhaustive entity router.
+owner can correct that Outcome with an expected revision. Mobile now mounts the
+sender's pair-circle handoff action on graph summaries and a recipient private
+Outcome composer/correction action. It exposes the canonical entity route
+handoff through the existing exhaustive entity router.
 The backend regression explicitly proves that this opening does not create a
 Trip link. See the [M3 multiplayer loop receipt](m3-multiplayer-loop-2026-08-23.md)
 for commit-level evidence and the release boundary.
@@ -60,9 +62,11 @@ occasion schema/migration, composed-card validation — 110 tests passed on
 2026-08-22, including the early metadata-validation regression fixed in this
 slice. The corrected portfolio is green.
 
-Focused mobile evidence: ComposedChatCard, experience-graph selector, and
-relationship mock handoff suites — 15 tests passed; TypeScript passed. The
-workspace contract check passes with the generated `ProjectedOccasion` field.
+Focused mobile evidence: ComposedChatCard, experience-graph selector/action,
+summary-card, and relationship mock handoff suites — 17 tests passed;
+ESLint and TypeScript passed. The relationship mock suite includes an explicit
+two-person privacy/correction certification. Maestro syntax passed, but no
+M3-specific device flow or screenshot receipt was produced.
 
 No production/cloud/Qdrant promotion was performed by this slice.
 
@@ -77,8 +81,9 @@ No production/cloud/Qdrant promotion was performed by this slice.
   Plan reader is ready.
 - Outcome capture is available as a typed mobile action facade and the backend
   exposes private-by-default encounter-outcome commands. The mock now reads
-  back multiple participant-owned outcomes and revision corrections. A
-  dedicated outcome composer UI and device proof remain unimplemented.
+  back multiple participant-owned outcomes and revision corrections. The
+  recipient composer and correction action are mounted on lived Occasion and
+  Outcome summaries; a real device proof remains unimplemented.
 - The projection correctly carries `world_entity_id`, but the mobile Places
   model still uses legacy numeric venue/place IDs. A UUID-to-canonical-place
   reader is therefore still an explicit integration seam, not something the
@@ -86,14 +91,14 @@ No production/cloud/Qdrant promotion was performed by this slice.
 
 ## Remaining integration work
 
-1. Mount the canonical entity route handoff on the user-facing relationship
-   reader once the dark sender surface is ready.
-2. Add the dedicated outcome composer UI after an Occasion is lived; keep
-   outcomes private-by-default and independently correctable.
+1. Carry the graph world UUID into canonical Place detail so the sender action
+   is not limited to graph summaries.
+2. Run a dedicated two-account device walk for this UUID handoff surface and
+   record real receipts separately from automated evidence.
 3. Bridge mature Trip proposals/votes only when a handoff is explicitly
    attached to a Trip; never infer Trip membership from a shared place.
-4. Run the two-account device walk and record real receipts separately from
-   automated evidence. The feature flags remain the release boundary.
+4. Keep the feature flags as the release boundary; use only the checked-in
+   local/demo launcher for development validation.
 
 ## Negative oracles
 

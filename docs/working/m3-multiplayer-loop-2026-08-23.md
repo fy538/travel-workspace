@@ -77,13 +77,34 @@ Mobile commits in this pass:
 
 - `e859da5d` — `feat(m3): expose canonical graph navigation and outcome correction`
 - `18ee8cd9` — `test(m3): make mock multiplayer graph read back outcomes`
+- `fef6aa38` — `feat(m3): mount sender place handoff action`
+- `25ebf836` — `feat(m3): add private occasion outcome composer`
+- `a81a9bc5` — `test(m3): certify two-account private outcome loop`
+
+The sender action is intentionally narrow: it is shown on graph summaries with
+a resolved world entity and a confirmed pair Circle, then sends through the
+same addressed-handoff transport used by the recipient card. The recipient
+surface can write a private note after a lived Occasion and can reopen that
+note for revision-guarded correction. A canonical Place detail does not yet
+carry the graph world UUID, so this is not a claim that every Place reader has
+the sender doorway.
 
 ## Evidence
 
 - Backend focused relationship/graph suite: **58 passed**.
-- Mobile graph/action/relationship mock suite: **15 passed**.
-- Mobile TypeScript check: **passed**.
-- Backend and mobile repositories are clean after the commits above.
+- Backend relationship route suite with the controlled flag explicitly enabled:
+  **14 passed**; the same suite includes the default-off route assertion.
+- Mobile targeted mock, graph/action, and summary-card suites: **17 passed**.
+- Mobile ESLint and TypeScript checks: **passed**.
+- Maestro flow syntax: **passed**. The repository-wide governance validator
+  remains blocked by 16 pre-existing `artifact-gallery` subflows that have no
+  metadata headers; those files are unrelated to this M3 surface.
+- The explicit two-account mock certification proves shared Occasion readback,
+  recipient-only private Outcome visibility, correction revision advancement,
+  and stale-replay rejection. It is automated evidence, not a device receipt.
+- Parent commit `353106a` adds the local-only launcher
+  `make m3-demo-backend`; no `.env`, dogfood, or production configuration was
+  changed. The serving flag remains default-off everywhere else.
 
 The Postgres acceptance test remains available but was not promoted to a cloud
 environment in this pass. No production feature flag was enabled.
@@ -94,7 +115,8 @@ environment in this pass. No production feature flag was enabled.
 work is certification and expansion, not a hidden dependency in this loop:
 
 - two-account device walk with real receipts and stale/replay/denial checks;
-- a visible sender composer entry point for the dark UUID handoff surface;
+- complete the sender doorway on canonical Place detail once the graph UUID
+  bridge is available;
 - Occasion mute/read-attention policy and richer responsibility/task claims;
 - explicit decision-policy semantics for constraints, vetoes, expertise, and
   delegation;
@@ -103,4 +125,7 @@ work is certification and expansion, not a hidden dependency in this loop:
 
 Until those are certified, this slice should be treated as an internal,
 flagged capability with automated end-to-end evidence—not as a production
-multiplayer launch.
+multiplayer launch. No M3-specific live device receipt was produced in this
+pass: the existing physical runner covers J04/J10 and requires two real
+dogfood identities, while this new UUID handoff surface has no dedicated
+Maestro flow yet.
