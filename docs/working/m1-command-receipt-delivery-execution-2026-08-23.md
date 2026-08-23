@@ -189,9 +189,10 @@ Frontend and contract:
 - `make contract-check` passes, including full snapshot validation, mobile
   projection, generated-type equality, schema-bridge parity, and Place seams.
 
-The repository-wide admin test module could not be imported in this local
-environment because the installed virtualenv is missing `json_repair`; this is
-an environment dependency gap, not a failure in the isolated M1 route harness.
+The Intake and admin route suites now import and pass in the current local
+environment (66 tests); the earlier `json_repair` import gap no longer
+reproduces. The repository-wide offline canary still has unrelated baseline
+failures outside this M1 slice.
 The backend pre-commit ratchets also report pre-existing broad-exception,
 oversized-file, and intake status-write baselines; those checks were skipped
 only for the two backend commits and are recorded here for follow-up.
