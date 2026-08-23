@@ -79,6 +79,10 @@ overrides:
     disposition: keep_reference
     rationale: Active M-1 execution register for product-surface classes, safe presentation retirements, replacements, and reintroduction gates; route registries and canonical system contracts retain implementation authority.
 
+  docs/working/m1-command-receipt-delivery-execution-2026-08-23.md:
+    disposition: keep_reference
+    rationale: Active M1 implementation receipt for the selected Plan command/receipt/delivery seam; canonical command, receipt, outbox, and product contracts retain implementation authority.
+
   docs/architecture/relationships-social-cutover-2026-08-22.md:
     disposition: keep_reference
     rationale: Active expiring execution contract for the bounded place-social cutover; canonical product, architecture, journey, and release documents retain authority.

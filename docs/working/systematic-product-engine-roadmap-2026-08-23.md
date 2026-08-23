@@ -1234,7 +1234,22 @@ loop proves that a smaller shared contract should replace them.
 9. One end-to-end adapter selected from an active human-experience loop; do not
    prebuild adapters for every legacy domain.
 10. Cross-repo artifact, command, receipt, and deep-link types for the selected
-    loop.
+   loop.
+
+**Execution receipt (2026-08-23):** The first seam is implemented over the
+existing canonical itinerary operation gateway. `ResourceRef`,
+`CommandEnvelope`, and `ActionReceipt` are persisted through terminal
+operation evidence, backed by the existing `vesper_action_receipts` row and
+transactional `itinerary_projection_outbox`. Plan owner readback now exposes
+the additive `canonical_execution` contract, mobile aliases the generated
+types, and an admin-gated content-free outbox diagnostic is available at
+`GET /admin/ops/itinerary-projection-outbox`. See the detailed
+[M1 execution receipt](m1-command-receipt-delivery-execution-2026-08-23.md).
+
+This proves the selected Plan loop, not a universal platform rail. M1 remains
+open for the process-death/export/correction certification and for a second
+materially different consumer; the next candidate is an admitted artifact
+loop after M2 admission/custody work.
 
 **Exit gate**
 
