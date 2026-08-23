@@ -110,6 +110,7 @@ Commits:
 - backend `7f973e7d` — `feat(m2): bind admitted sources to pending turns`;
 - backend `271bb2bd6` — `fix(m2): preserve pending-turn replay fingerprints`;
 - backend `0a76d5bcb` — `feat(m2): read admitted text at canonical send`;
+- backend `9dd934997` — `fix(m2): ignore inline text in image materialization`;
 - mobile `d1049509` — `feat(m2): continue admitted shares into chat`;
 - mobile `3558edb5` — `fix(m2): keep shared text source-bound`; and
 - workspace `518e516` — `chore(m2): sync admitted-source contract`.
