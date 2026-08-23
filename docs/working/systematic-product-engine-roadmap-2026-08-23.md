@@ -1356,6 +1356,16 @@ responsibility coherent across pairs, Circles, groups, and Occasions.
 
 **Primary CJs:** CJ07-CJ13, CJ17-CJ18.
 
+**Execution receipt (2026-08-23):** The first M3 identity packet is landed.
+Mobile now joins viewer-relative graph occasions to the existing Places/venue
+reader contract through the backend-authorized typed `canonical_entity_ref`;
+it no longer attempts to use the graph-local UUID that the public projection
+correctly redacts. See the detailed
+[M3 canonical place-reader receipt](m3-canonical-place-reader-2026-08-23.md).
+This is a read-only identity bridge, not an M3 release: addressed handoff
+navigation, outcome capture, Trip attachment, and two-account device evidence
+remain open.
+
 **Exit gate**
 
 A sender can create an addressed opening; the recipient can inspect and act;
