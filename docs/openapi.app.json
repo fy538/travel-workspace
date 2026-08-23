@@ -53580,6 +53580,21 @@
             ],
             "title": "World Entity Id"
           },
+          "canonical_entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "entity_binding_status": {
+            "type": "string",
+            "title": "Entity Binding Status",
+            "default": "none"
+          },
           "time_window": {
             "anyOf": [
               {
@@ -74390,6 +74405,21 @@
             ],
             "title": "World Entity Id"
           },
+          "canonical_entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "entity_binding_status": {
+            "type": "string",
+            "title": "Entity Binding Status",
+            "default": "none"
+          },
           "member_ids": {
             "items": {
               "type": "string",
@@ -74637,6 +74667,21 @@
               }
             ],
             "title": "World Entity Id"
+          },
+          "canonical_entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "entity_binding_status": {
+            "type": "string",
+            "title": "Entity Binding Status",
+            "default": "none"
           },
           "source_object_ids": {
             "items": {

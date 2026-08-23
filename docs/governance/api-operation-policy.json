@@ -698,7 +698,7 @@
       "feature_flag": "SOCIAL_CIRCLES_ENABLED",
       "lifecycle": "active",
       "owner": "multiplayer",
-      "reason": "Backend-first explicit circle identity contract; mobile adoption follows after the storage and authorization canary is proven.",
+      "reason": "Reachable Social Circle lifecycle is governed by the default-on server kill switch; disable only for an emergency rollback while preserving explicit membership authorization.",
       "removal_trigger": null,
       "review_by": "2026-09-03"
     },
@@ -714,7 +714,7 @@
       "feature_flag": "SOCIAL_CIRCLES_ENABLED",
       "lifecycle": "active",
       "owner": "multiplayer",
-      "reason": "Backend-first explicit circle identity contract; mobile adoption follows after the storage and authorization canary is proven.",
+      "reason": "Reachable Social Circle lifecycle is governed by the default-on server kill switch; disable only for an emergency rollback while preserving explicit membership authorization.",
       "removal_trigger": null,
       "review_by": "2026-09-03"
     },
@@ -730,7 +730,7 @@
       "feature_flag": "SOCIAL_CIRCLES_ENABLED",
       "lifecycle": "active",
       "owner": "multiplayer",
-      "reason": "Ordered circle mutations support cursor-based replay for a mobile sync canary; realtime transport remains intentionally deferred.",
+      "reason": "Ordered circle mutations support cursor-based replay; realtime transport remains intentionally deferred and the lifecycle is governed by the default-on server kill switch.",
       "removal_trigger": null,
       "review_by": "2026-09-03"
     },
@@ -756,7 +756,7 @@
       "feature_flag": "SOCIAL_CIRCLES_ENABLED",
       "lifecycle": "active",
       "owner": "multiplayer",
-      "reason": "Backend-first explicit circle identity contract; mobile adoption follows after the storage and authorization canary is proven.",
+      "reason": "Reachable Social Circle lifecycle is governed by the default-on server kill switch; disable only for an emergency rollback while preserving explicit membership authorization.",
       "removal_trigger": null,
       "review_by": "2026-09-03"
     },
@@ -772,7 +772,7 @@
       "feature_flag": "SOCIAL_CIRCLES_ENABLED",
       "lifecycle": "active",
       "owner": "multiplayer",
-      "reason": "Backend-first explicit circle identity contract; mobile adoption follows after the storage and authorization canary is proven.",
+      "reason": "Reachable Social Circle lifecycle is governed by the default-on server kill switch; disable only for an emergency rollback while preserving explicit membership authorization.",
       "removal_trigger": null,
       "review_by": "2026-09-03"
     },
@@ -788,7 +788,7 @@
       "feature_flag": "SOCIAL_CIRCLES_ENABLED",
       "lifecycle": "active",
       "owner": "multiplayer",
-      "reason": "Backend-first explicit circle identity contract; mobile adoption follows after the storage and authorization canary is proven.",
+      "reason": "Reachable Social Circle lifecycle is governed by the default-on server kill switch; disable only for an emergency rollback while preserving explicit membership authorization.",
       "removal_trigger": null,
       "review_by": "2026-09-03"
     },

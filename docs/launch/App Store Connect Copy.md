@@ -1,6 +1,6 @@
 # App Store Connect Copy — Vesper
 
-> **Release scope, not company category (2026-08-09):** This copy describes the
+> **Release scope, not company category (revised 2026-08-23):** This copy describes the
 > current trip-centered first release. The company model is a proactive,
 > multiplayer, place-aware AI for real-world experiences; group travel is the
 > launch wedge. Keep App Store claims constrained to behavior the submitted
@@ -31,43 +31,40 @@ Vesper
 ## Subtitle (30 chars max)
 
 ```
-The trip, before the asking
+Better trips for the group
 ```
 
-> 27 chars. Brand-voice example pattern from §10 ("Your trip, before
-> everyone starts asking for the itinerary"). Avoids the generic "AI
-> travel planner" register that places Vesper in the wrong category.
+> 26 chars. States the experienced outcome rather than the planning feature and
+> keeps the multiplayer wedge legible.
 
 **Alternates if the first reads wrong on the listing card:**
-- `Plans the trip. You enjoy it.` (29)
+- `Better trips, not just plans` (28)
 - `Group trips, without the chase` (29)
-- `A trip your group already loves` (30)
+- `A trip your group will love` (27)
 
 ---
 
 ## Promotional text (170 chars max — editable without re-review)
 
 ```
-For the friend who plans everything. Vesper keeps the group, shared plan,
-and day-of changes coherent—then remembers what mattered for the next trip.
+Vesper helps your group decide and adapt together, keeps one shared plan
+coherent as reality changes, and carries forward what actually mattered.
 ```
 
-> 149 chars. Speaks directly to the Organizer archetype (the launch
-> wedge). Mentions the compounding memory thesis without naming the
-> mechanism. Stays specific.
+> Speaks to the whole group while preserving organizer relief. Mentions the
+> continuity thesis without claiming that external learning is already proven.
 
 ---
 
 ## Description (4000 chars max)
 
 ```
-Vesper brings place-aware, multiplayer AI to the group trip—for the friend who
-usually plans everything.
+Vesper helps groups have better trips—not just plan them.
 
-You name the trip. Vesper quietly works with the group, holds the shared
-itinerary, and learns what each person actually wants without exposing private
-constraints to the chat. The plan that comes back is specific to who you are,
-who you're going with, and where you're going.
+It understands each person privately, grounds decisions in the places and
+conditions involved, and helps the group decide and adapt together in the real
+world. The shared result can reflect private needs without exposing who needed
+what.
 
 Vesper stays oriented to the people, place, and shared Plan, and learns from
 what actually mattered so the next experience needs less explanation.
@@ -79,9 +76,9 @@ WHAT VESPER DOES
   preferences, your budget, your group dynamics — never leaked to the
   shared chat.
 
-• Talks to your group on your behalf. Vesper sits in the group thread
-  and surfaces a plan everyone can live with, without anyone having to
-  spell out what they don't want to do.
+• Helps the group decide without exposing private constraints. Vesper can show
+  the relevant tradeoffs and a group-safe proposal; people still choose what
+  the decision means and how to talk to one another.
 
 • Keeps plans and booking details together. Add an existing reservation
   or follow an external provider link, then keep the shared itinerary
@@ -112,10 +109,11 @@ WHO VESPER IS FOR
 
 WHY VESPER IS DIFFERENT
 
-Most travel apps end where Vesper begins. Booking sites take your
-money. Planning tools make a checklist. Group apps trade messages.
-None of them know you. None of them remember what mattered. None of
-them work the room.
+Maps are excellent at places, routes, and current world truth. Booking products
+provide inventory and transactions. Assistants explain and synthesize. Group
+chats and planners hold discussion and artifacts. Vesper can connect those
+parts around a different responsibility: helping this experience work for the
+people actually living it.
 
 Vesper can carry forward what mattered across trips: which places fit,
 what the group changed, and which constraints should not need repeating.
@@ -124,9 +122,9 @@ That evidence is useful only when it makes the next decision better.
 
 PRIVACY
 
-What you tell Vesper privately stays private. Group plans are derived
-from your inputs without exposing them — the agent does the diplomacy
-so you don't have to. We never sell data, never train on your
+What you tell Vesper privately stays private. Group plans can reflect your
+inputs without attributing them. Vesper reduces coordination friction; it does
+not replace human care, conversation, or expression. We never sell data, never train on your
 conversations, and you can delete everything from the app.
 
 For the full picture: settings.travelagent.app/privacy.

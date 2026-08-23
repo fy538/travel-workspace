@@ -2,7 +2,7 @@
 
 > Status: draft
 > Owner: founder / engineering
-> Last updated: 2026-07-19
+> Last updated: 2026-08-23
 > Primary phase: distribution (invitee's first touch)
 
 ## Product Promise
@@ -11,12 +11,18 @@ Someone who receives an invite link with no account can land it, see what they'r
 
 ## Canonical User Story
 
-As an invited person who has never used the app, I want to tap a link, understand the trip, create an account, and land inside that trip, so that joining a friend's plan is frictionless — the viral/distribution loop.
+As an invited person who has never used the app, I want to tap a link,
+understand the trip, create an account, and land inside that trip, so that
+joining a friend's plan is frictionless—the native invitation path whose
+distribution value must be measured.
 
 ## Why This Journey Matters
 
 - J02 covers invite creation from the *organizer* side; the *signed-out invitee's* first-touch (token carried through auth → membership) is uncovered.
-- This is the distribution loop — the most-common first-ever experience for a new user, and the riskiest (auth detour can drop the token).
+- This is the candidate distribution entry path—the expected first-ever
+  experience for many invited users and the riskiest because an auth detour can
+  drop the token. It becomes a loop only if invitees receive value and later
+  return, organize, or invite others.
 - A dropped token = a confused new user who signed up but isn't in the trip.
 
 ## Starting State
