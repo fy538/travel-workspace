@@ -1174,6 +1174,27 @@ The fixture portfolio must also prove:
 - Together does not expose private facts during action resolution; and
 - offline/stale state cannot masquerade as a fresh operational fact.
 
+## Execution status — 2026-08-23
+
+The first implementation pass has landed in the two child repositories. The
+status below is intentionally evidence-bounded; a fixture gallery or pure
+compiler test does not count as production mounting or native visual proof.
+
+| Packet | Status | Evidence |
+|---|---|---|
+| P0–P1 | complete | This plan, the strict projection contract, identity/resource rules, and the A01–A15 fixture portfolio are frozen. |
+| P2 | complete | `travel-agent` pure Intake-anchor compiler, Mine/Together redaction, deterministic revisions, and five focused tests. |
+| P3 | complete | Authenticated owner read route, operation-policy entry, OpenAPI snapshots, generated mobile schema, and typed mock/real data seam. |
+| P4–P5 | complete | Shared mobile frame, five bounded family cues, five densities, fifteen fixtures, gallery route, component tests, and registered dev-fixture QA contract. |
+| P6 | complete | Phase-aware render profiles plus source deletion/degradation and unknown-state parity tests. |
+| P7 | complete | Client-only typed relation compiler, allowlisted predicates, provenance/scope/basis, node cap, and list fallback. |
+| P8 | exploratory | The Life lab includes an episode-composition hypothesis, but accepted Occasion composition and role projections remain unimplemented. |
+| P9 | complete | Read-only Mine/Together Life lab with Occasions, Timeline, Places, and bounded Constellation views. |
+| P10–P11 | pending by design | No production root, Chat mount, persisted theme edge, or semantic-thread promotion has been authorized. |
+
+Native device capture remains pending because the local Maestro doctor could
+not reach Metro on port 8081; the committed dry-run proves harness wiring only.
+
 ## 12. Execution dependency graph
 
 ```text
