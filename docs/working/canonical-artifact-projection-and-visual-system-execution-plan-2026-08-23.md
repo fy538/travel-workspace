@@ -1182,14 +1182,14 @@ compiler test does not count as production mounting or native visual proof.
 
 | Packet | Status | Evidence |
 |---|---|---|
-| P0–P1 | complete | This plan, the strict projection contract, identity/resource rules, and the A01–A15 fixture portfolio are frozen. |
-| P2 | complete | `travel-agent` pure Intake-anchor compiler, Mine/Together redaction, deterministic revisions, and five focused tests. |
-| P3 | complete | Authenticated owner read route, operation-policy entry, OpenAPI snapshots, generated mobile schema, and typed mock/real data seam. |
-| P4–P5 | complete | Shared mobile frame, four bounded visual families with object-specific cues, five densities, fifteen fixtures, gallery route, component tests, and registered dev-fixture QA contract. |
-| P6 | complete | Phase-aware render profiles plus source deletion/degradation and unknown-state parity tests. |
-| P7 | complete | Client-only typed relation compiler, allowlisted predicates, provenance/scope/basis, node cap, and list fallback. |
+| P0–P1 | partial | The strict projection contract, identity/resource rules, and A01–A15 fixture portfolio are drafted, but full seven-phase coverage and fixture-oracle validation remain open. |
+| P2 | partial | The Intake-anchor compiler now has viewer-safe Mine/Together redaction, expiry filtering, stable revisions, and focused tests; Occasion, Outcome, and receipt adapters remain pending. |
+| P3 | complete | Authenticated owner read route, operation-policy entry, OpenAPI snapshots, generated mobile schema, matching mock/real projection transport, and a read-only owner reader route are present; broader product mounting remains pending. |
+| P4–P5 | partial | Shared mobile frame, family-specific structural cues, five densities, fixture gallery, component tests, and a registered dev-fixture QA contract are present; native visual evidence remains pending. |
+| P6 | partial | Phase-aware render profiles, source deletion/degradation, unknown-state parity, and Intake expiry are covered; full cross-surface correction and cached-view invalidation remain open. |
+| P7 | partial | Client-only typed relation compilation, allowlisted predicates, scope filtering, provenance/basis, node cap, and list fallback are present; Outcome, receipt, Plan, and time-edge adapters remain open. |
 | P8 | exploratory | The Life lab includes an episode-composition hypothesis, but accepted Occasion composition and role projections remain unimplemented. |
-| P9 | complete | Read-only Mine/Together Life lab with Occasions, Timeline, Places, and bounded Constellation views. |
+| P9 | partial | The read-only Life lab has Mine/Together, Timeline, Places, and bounded Constellation shells; accepted Occasion composition and shared episode semantics remain exploratory. |
 | P10–P11 | pending by design | No production root, Chat mount, persisted theme edge, or semantic-thread promotion has been authorized. |
 
 Native device capture remains pending because the local Maestro doctor could
@@ -1343,7 +1343,8 @@ contract with no database migration and no raw source payload.
 - API operation audit passes;
 - app never hand-copies the backend projection type;
 - mock and real facade return the same contract; and
-- no production screen consumes the endpoint yet.
+- only the bounded owner reader route consumes the endpoint; no broader product
+  surface mounts it yet.
 
 ### P4 — Mobile render kernel and fixture lab scaffold
 
@@ -1729,12 +1730,13 @@ and memory-volume goals.
 
 ### Stage 0 — Static portfolio
 
-No backend, network, persistence, or production route. Contract and visual
-exploration only.
+The gallery remains fixture-only with no backend, persistence, or product data
+read. Contract and visual exploration only.
 
 ### Stage 1 — Local authenticated projection
 
-Read-only single-resource API against local data. No production UI consumer.
+Read-only single-resource API against local data plus the owner reader route.
+No broader product surface consumes the projection yet.
 
 ### Stage 2 — Private dogfood
 
