@@ -3,8 +3,8 @@ doc_type: working
 status: active
 owner: founder / product / engineering
 created: 2026-08-22
-updated: 2026-08-22
-last_verified: 2026-08-22
+updated: 2026-08-23
+last_verified: 2026-08-23
 expires: 2026-09-21
 why_new: Record the bounded integration state for addressed place relationships, shared occasions, and existing app surfaces.
 source_of_truth_for: [multiplayer-place-relationship-integration]
@@ -42,6 +42,17 @@ Home, Places, and Plan surfaces remain the readback surfaces.
 - Card metadata is validated before opening a database transaction, so malformed
   composed cards fail closed without a write attempt.
 
+## M3 closure update — 2026-08-23
+
+The bounded loop is now exercised end to end in code and mock read-after-write:
+the recipient's `open_together` action produces a viewer-relative Occasion,
+each participant can retain a separate private encounter Outcome, and the
+owner can correct that Outcome with an expected revision. Mobile exposes the
+canonical entity route handoff through the existing exhaustive entity router.
+The backend regression explicitly proves that this opening does not create a
+Trip link. See the [M3 multiplayer loop receipt](m3-multiplayer-loop-2026-08-23.md)
+for commit-level evidence and the release boundary.
+
 ## Evidence
 
 Focused backend evidence: relationship routes, graph projection/commands,
@@ -64,10 +75,10 @@ No production/cloud/Qdrant promotion was performed by this slice.
   existing Trip/itinerary contract remains authoritative for itinerary edits;
   mounting a second graph card there would duplicate state until a canonical
   Plan reader is ready.
-- Outcome capture is already available as a typed mobile action facade and the
-  backend exposes private-by-default encounter-outcome commands. A dedicated
-  outcome composer UI and device proof remain unimplemented; the current Home
-  summary only reads back outcomes that already exist.
+- Outcome capture is available as a typed mobile action facade and the backend
+  exposes private-by-default encounter-outcome commands. The mock now reads
+  back multiple participant-owned outcomes and revision corrections. A
+  dedicated outcome composer UI and device proof remain unimplemented.
 - The projection correctly carries `world_entity_id`, but the mobile Places
   model still uses legacy numeric venue/place IDs. A UUID-to-canonical-place
   reader is therefore still an explicit integration seam, not something the
@@ -75,12 +86,12 @@ No production/cloud/Qdrant promotion was performed by this slice.
 
 ## Remaining integration work
 
-1. Add a viewer-scoped place reader that resolves the UUID to the existing
-   place presentation model before rendering a relationship line.
-2. Add plural outcome capture after an Occasion is lived; keep outcomes
-   private-by-default and independently correctable.
-3. Bridge mature Trip proposals/votes only when a handoff is explicitly attached
-   to a Trip; never infer Trip membership from a shared place.
+1. Mount the canonical entity route handoff on the user-facing relationship
+   reader once the dark sender surface is ready.
+2. Add the dedicated outcome composer UI after an Occasion is lived; keep
+   outcomes private-by-default and independently correctable.
+3. Bridge mature Trip proposals/votes only when a handoff is explicitly
+   attached to a Trip; never infer Trip membership from a shared place.
 4. Run the two-account device walk and record real receipts separately from
    automated evidence. The feature flags remain the release boundary.
 

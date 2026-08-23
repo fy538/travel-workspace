@@ -1356,15 +1356,20 @@ responsibility coherent across pairs, Circles, groups, and Occasions.
 
 **Primary CJs:** CJ07-CJ13, CJ17-CJ18.
 
-**Execution receipt (2026-08-23):** The first M3 identity packet is landed.
-Mobile now joins viewer-relative graph occasions to the existing Places/venue
-reader contract through the backend-authorized typed `canonical_entity_ref`;
-it no longer attempts to use the graph-local UUID that the public projection
-correctly redacts. See the detailed
-[M3 canonical place-reader receipt](m3-canonical-place-reader-2026-08-23.md).
-This is a read-only identity bridge, not an M3 release: addressed handoff
-navigation, outcome capture, Trip attachment, and two-account device evidence
-remain open.
+**Execution receipt (2026-08-23):** The bounded addressed-place multiplayer
+loop is closed in code and mock read-after-write. Mobile joins viewer-relative
+graph occasions to the existing Places/venue/site reader contract through the
+backend-authorized typed `canonical_entity_ref`; it exposes revision-bound
+private outcome correction; and the mock exercises handoff → shared Occasion
+→ personal Outcome → correction. The backend regression proves that a place
+opening does not infer Trip membership. See the detailed [M3 multiplayer loop
+receipt](m3-multiplayer-loop-2026-08-23.md) and the [canonical place-reader
+packet](m3-canonical-place-reader-2026-08-23.md).
+
+This closes the first differentiated multiplayer product loop, not production
+release. Serving flags remain off pending the two-account device walk; sender
+composer UI, Occasion attention/mute, responsibility claims, richer decision
+policy, and explicit Trip promotion remain the next M3 program increments.
 
 **Exit gate**
 

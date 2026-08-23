@@ -1,6 +1,6 @@
 ---
 doc_type: working
-status: active
+status: closed
 owner: founder / product / engineering
 created: 2026-08-23
 last_verified: 2026-08-23
@@ -43,7 +43,13 @@ venue readers remain the owners of presentation and navigation.
 - Targeted ESLint passed.
 - Commit: mobile `966edeca` — `fix(m3): join graph context by canonical entity`.
 
-## Remaining M3 work
+## First-packet closure
+
+This identity packet is now consumed by the broader [M3 addressed-place
+multiplayer loop](m3-multiplayer-loop-2026-08-23.md). The route resolver and
+independent outcome-correction action landed in that closure pass.
+
+## Remaining M3 program work
 
 1. Add an explicit viewer-scoped navigation/read action from a canonical ref to
    the appropriate Place, venue, or site owner surface.
