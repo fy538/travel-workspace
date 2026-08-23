@@ -1421,9 +1421,13 @@ status command. The mock lane proves the silenced Opening leaves current
 attention without creating a Commitment, Occasion, Trip, or notification
 delivery. See the detailed [M4 Opening and deliberate-silence loop receipt](m4-opening-attention-loop-2026-08-23.md).
 
-This is the first M4 increment, not notification launch. Graph/Lived Opening
-convergence, modify/snooze/mute/release, typed delivery destinations, telemetry,
-and physical OS presentation remain explicit follow-on gates.
+The first foreground loop and the graph/Lived vocabulary adapter are now
+implemented, and typed Opening/occasion/decision/handoff/Commitment/receipt
+destinations flow through the backend schema and mobile router. This is still
+not notification launch: one persisted Opening authority, cross-surface
+modify/snooze/mute/release, stale-owner resolution, receipt-bound telemetry,
+and physical OS presentation remain explicit follow-on gates. See the detailed
+[M4 Opening and deliberate-silence loop receipt](m4-opening-attention-loop-2026-08-23.md).
 
 **Exit gate**
 
