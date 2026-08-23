@@ -64,7 +64,9 @@ receipt state; it never exposes admitted bytes.
   conversation writer. The source is not uploaded or interpreted again through
   Intake.
 - Source refs are stamped into server-built turn metadata so the conversation
-  message and any later source correction share one lineage.
+  message and any later source correction share one lineage. Inline text is
+  read from the verified Intake source object at canonical send; it is not
+  copied into the pending-turn outbox.
 - Pending turns retain `answer_only` by default and expire after the existing
   24-hour pending-turn TTL. Intake deletion/correction remains the owner
   release path; no Plan, Place, Occasion, attendance, or memory is inferred by
@@ -106,17 +108,20 @@ Contract:
 Commits:
 
 - backend `7f973e7d` — `feat(m2): bind admitted sources to pending turns`;
-- mobile `d1049509` — `feat(m2): continue admitted shares into chat`; and
+- backend `271bb2bd6` — `fix(m2): preserve pending-turn replay fingerprints`;
+- backend `0a76d5bcb` — `feat(m2): read admitted text at canonical send`;
+- mobile `d1049509` — `feat(m2): continue admitted shares into chat`;
+- mobile `3558edb5` — `fix(m2): keep shared text source-bound`; and
 - workspace `518e516` — `chore(m2): sync admitted-source contract`.
 
 ## 6. Remaining M2 boundary
 
 This receipt does not close M2. The next packets must:
 
-1. bind first-turn multimodal selection to custody without truncating the
-   source text used for the answer;
-2. materialize admitted inline text/audio through the same source lineage,
-   including resumable audio interpretation;
+1. bind first-turn multimodal selection to custody without relying on a
+   process-local image payload;
+2. materialize admitted audio through the same source lineage, including
+   resumable transcription/interpretation;
 3. compile the first bounded `ContextManifest` from existing Place/time,
    movement, weather, people, Commitment, and provider ports;
 4. emit a real `AdmissionResult`/answer receipt from the conversation turn,
