@@ -7,7 +7,7 @@
 
 include dogfood.mk
 
-.PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help
+.PHONY: bootstrap dev dev-backend m3-demo-backend sync-types typecheck doctor status help
 .PHONY: new-worktree land-worktree worktrees
 .PHONY: contract-check occasion-behavior-contract-check place-identity-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate mock-slug-parity surface-contraction-check
 .PHONY: certify-fast certify-logic certify-corpus certify-visual certify-visual-cloud certify-live maestro-flow-check journey-registry-check journey-registry-verify-passes journey-evidence-report dogfood-status corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-journey-live-api qa-persona dogfood-status-sync
@@ -23,6 +23,9 @@ dev: ## Start all services: Docker infra + API server + Expo iOS simulator
 
 dev-backend: ## Start infra + API only (no Expo)
 	@./scripts/dev.sh --no-expo
+
+m3-demo-backend: ## Start a local-only backend with the M3 UUID handoff flag explicitly enabled
+	@M3_DEMO_CONFIRM=1 ./scripts/m3-demo.sh --no-expo
 
 # ── Types ─────────────────────────────────────────────────────────────────────
 
