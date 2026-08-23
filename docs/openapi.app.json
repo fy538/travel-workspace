@@ -35131,6 +35131,214 @@
         ],
         "title": "AddProfilePhraseRequest"
       },
+      "AdmissionEnvelope": {
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "const": "admission-envelope-v1",
+            "title": "Contract Version",
+            "default": "admission-envelope-v1"
+          },
+          "actor_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Actor Id"
+          },
+          "origin": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Origin"
+          },
+          "audience": {
+            "type": "string",
+            "enum": [
+              "personal",
+              "group",
+              "public"
+            ],
+            "title": "Audience"
+          },
+          "source_kind": {
+            "type": "string",
+            "enum": [
+              "text",
+              "image",
+              "audio",
+              "file",
+              "question",
+              "unknown"
+            ],
+            "title": "Source Kind"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/SourceRef"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Source Refs"
+          },
+          "immediate_job": {
+            "type": "string",
+            "enum": [
+              "answer",
+              "decode",
+              "orient",
+              "compare",
+              "act",
+              "preserve",
+              "address",
+              "reconcile",
+              "clarify"
+            ],
+            "title": "Immediate Job",
+            "default": "answer"
+          },
+          "requested_retention": {
+            "type": "string",
+            "enum": [
+              "answer_only",
+              "ephemeral_processing",
+              "derived_only",
+              "source_and_derived"
+            ],
+            "title": "Requested Retention",
+            "default": "answer_only"
+          },
+          "issued_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Issued At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "actor_id",
+          "origin",
+          "audience",
+          "source_kind",
+          "idempotency_key",
+          "issued_at"
+        ],
+        "title": "AdmissionEnvelope",
+        "description": "The retry-stable, content-free admission decision for one source."
+      },
+      "AdmissionResult": {
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "const": "admission-result-v1",
+            "title": "Contract Version",
+            "default": "admission-result-v1"
+          },
+          "admission_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Admission Id"
+          },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/SourceRef"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Source Refs"
+          },
+          "immediate_job": {
+            "type": "string",
+            "enum": [
+              "answer",
+              "decode",
+              "orient",
+              "compare",
+              "act",
+              "preserve",
+              "address",
+              "reconcile",
+              "clarify"
+            ],
+            "title": "Immediate Job"
+          },
+          "custody_status": {
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 1,
+            "title": "Custody Status"
+          },
+          "retention_mode": {
+            "type": "string",
+            "enum": [
+              "answer_only",
+              "ephemeral_processing",
+              "derived_only",
+              "source_and_derived"
+            ],
+            "title": "Retention Mode"
+          },
+          "treatment": {
+            "type": "string",
+            "enum": [
+              "answer",
+              "clarify",
+              "orient",
+              "defer"
+            ],
+            "title": "Treatment"
+          },
+          "consequence_status": {
+            "type": "string",
+            "enum": [
+              "none",
+              "proposed",
+              "authorized"
+            ],
+            "title": "Consequence Status",
+            "default": "none"
+          },
+          "continuation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "correction_path": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Correction Path",
+            "default": "source_destination"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Expires At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "admission_id",
+          "immediate_job",
+          "custody_status",
+          "retention_mode",
+          "treatment",
+          "expires_at"
+        ],
+        "title": "AdmissionResult",
+        "description": "Viewer-safe admission/readback state, before any optional consequence."
+      },
       "AliasResponse": {
         "properties": {
           "email_address": {
@@ -68065,6 +68273,54 @@
             "minLength": 1,
             "title": "Origin",
             "default": "chat"
+          },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/SourceRef"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Source Refs"
+          },
+          "source_kind": {
+            "type": "string",
+            "enum": [
+              "text",
+              "image",
+              "audio",
+              "file",
+              "question",
+              "unknown"
+            ],
+            "title": "Source Kind",
+            "default": "unknown"
+          },
+          "immediate_job": {
+            "type": "string",
+            "enum": [
+              "answer",
+              "decode",
+              "orient",
+              "compare",
+              "act",
+              "preserve",
+              "address",
+              "reconcile",
+              "clarify"
+            ],
+            "title": "Immediate Job",
+            "default": "answer"
+          },
+          "requested_retention": {
+            "type": "string",
+            "enum": [
+              "answer_only",
+              "ephemeral_processing",
+              "derived_only",
+              "source_and_derived"
+            ],
+            "title": "Requested Retention",
+            "default": "answer_only"
           }
         },
         "type": "object",
@@ -68153,6 +68409,24 @@
             "format": "date-time",
             "title": "Created At"
           },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/SourceRef"
+            },
+            "type": "array",
+            "title": "Source Refs",
+            "default": []
+          },
+          "admission_result": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AdmissionResult"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "text": {
             "type": "string",
             "title": "Text"
@@ -68190,6 +68464,16 @@
           "origin": {
             "type": "string",
             "title": "Origin"
+          },
+          "admission_envelope": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AdmissionEnvelope"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -68323,6 +68607,24 @@
             "type": "string",
             "format": "date-time",
             "title": "Created At"
+          },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/SourceRef"
+            },
+            "type": "array",
+            "title": "Source Refs",
+            "default": []
+          },
+          "admission_result": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AdmissionResult"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
