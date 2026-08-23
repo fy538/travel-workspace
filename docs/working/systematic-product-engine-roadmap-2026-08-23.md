@@ -993,7 +993,7 @@ Legend: **P** = primary engine, **S** = supporting engine.
 | CJ07 Receive/react |  | S | S | S | P | S |  | P | P |
 | CJ08 Address a person | S | S | P | S | P | P | S | S | P |
 | CJ09 Share/publish/contribute | P | S | S | P | S | P | S | P | P |
-| CJ10 Shape an Occasion | S | P | P | P | S | P |  | P | P |
+| CJ10 Shape minimum structure | S | P | P | P | S | P |  | P | P |
 | CJ11 Invite/join/leave |  | S | S | P | S | P |  | P | P |
 | CJ12 Decide together |  | P | P | P | S | P |  | P | P |
 | CJ13 Coordinate/delegate |  | S | S | P | S | P |  | P | P |
