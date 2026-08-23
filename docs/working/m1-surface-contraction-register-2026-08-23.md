@@ -45,9 +45,8 @@ or correction path that a retained journey still needs.
 
 ## Execution status — 2026-08-23
 
-- The app branch has local archive tag `m1-pre-contraction-2026-08-23` at the
-  pre-contraction app state. It is intentionally not pushed by this workspace
-  session; publish it with the child-repository release workflow before merge.
+- The app archive tag `m1-pre-contraction-2026-08-23` points to the
+  pre-contraction app state and is published on `fy538/travel-app`.
 - Product disposition fields now live beside the executable polish registry and
   the canonical entry-point inventory. Critical Booking, Expenses, and
   Proposal routes declare their replacement explicitly in route ownership.
@@ -59,6 +58,9 @@ or correction path that a retained journey still needs.
 - Booking remains a bounded utility during cutover, classified as an external
   handoff. Expense screens remain compatibility surfaces until an artifact
   replacement or founder-approved money-management decision exists.
+- M-1 is closed. The route/classification guard is part of the reliability
+  workflow, and the next milestone is the minimum command/receipt/delivery
+  seam rather than another presentation-surface expansion.
 
 ## Safety rules
 

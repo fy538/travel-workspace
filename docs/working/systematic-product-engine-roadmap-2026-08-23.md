@@ -1106,7 +1106,7 @@ lifecycle instead of creating another independent surface inventory.
 8. Recalculate the required M1-M7 engines after surface contraction; remove
    engines or deliverables that no retained human-experience loop exercises.
 
-### M-1 execution status — 2026-08-23 (first tranche)
+### M-1 execution status and closure — 2026-08-23
 
 | Work item | Status | Evidence / boundary |
 |---|---|---|
@@ -1116,13 +1116,24 @@ lifecycle instead of creating another independent surface inventory.
 | Proposal Detail | Compatibility redirect | Normal deep links focus the group-chat decision artifact; inspect/recovery remains bounded and receipt-backed. |
 | Booking | External handoff | Booking remains during cutover as a bounded provider utility; replacement is a provider handoff/status artifact plus external checkout. |
 | Expenses | Compatibility redirect | Existing writers and screens remain until an artifact replacement or explicit founder-approved money-management decision. |
-| Archive / tombstone | Landed locally | App tag `m1-pre-contraction-2026-08-23` and [M-1 register](m1-surface-contraction-register-2026-08-23.md); tag publication is still a release-workflow action. |
+| Archive / tombstone | Landed and published | App tag `m1-pre-contraction-2026-08-23` is published on `fy538/travel-app`; [M-1 register](m1-surface-contraction-register-2026-08-23.md) records the tombstone and reintroduction rule. |
 
-This is not the full M-1 exit gate. The remaining work is to complete the
-route-by-route classification audit, prove Booking/Expenses replacements or
-explicitly keep them, add safe deep-link and in-flight recovery coverage, and
-recalculate the M1–M7 engine backlog against retained journeys. No durable
-domain writer was deleted in this tranche.
+#### Exit-gate receipt
+
+| Exit criterion | Status | Evidence |
+|---|---|---|
+| Every production route has an approved classification | **Pass** | Generated inventory contains 178 routes; every route is owned or explicitly exempt, and `npm run surface:contraction:check` enforces the mapping. |
+| Proposal/voting uses the Chat artifact normally | **Pass** | `routes.tripChatProposal`, `/trip-proposal` inspect/recovery behavior, and `trip-proposal-inspect`, shared-proposal, and journey tests. |
+| No canceled surface remains in active polish/design work | **Pass** | Decision Deck gallery route, fixtures, baselines, Maestro flows, screen test, contract, and registry rows are removed; the guard rejects their return. |
+| Booking and Expenses have explicit dispositions | **Pass** | Booking is `external_handoff`; all Expense routes are `compatibility_redirect` with replacement, retained capability, and deletion-gate metadata. |
+| Deep links and in-flight operations fail safely | **Pass for retained cutover paths** | Proposal inspect fallback, booking return-token/provider-saga routes, notification destinations, and journey 03/22 tests pass. |
+| No retained domain writer was deleted | **Pass** | M-1 changed the mobile presentation and workspace governance only; no backend authority or writer was removed. |
+| CI prevents reintroduction | **Pass** | Reliability workflow runs `surface:contraction:check`; guard checks routes, retired assets, and active QA/design registries. |
+
+M-1 is closed. The next milestone is M1: prove the minimum command, receipt,
+and delivery seam through one retained artifact loop. Booking and Expenses are
+intentionally still present as bounded cutover surfaces; closing M-1 does not
+claim their future replacement is complete.
 
 **Exit gate**
 
