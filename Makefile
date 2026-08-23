@@ -9,7 +9,7 @@ include dogfood.mk
 
 .PHONY: bootstrap dev dev-backend sync-types typecheck doctor status help
 .PHONY: new-worktree land-worktree worktrees
-.PHONY: contract-check occasion-behavior-contract-check place-identity-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate mock-slug-parity
+.PHONY: contract-check occasion-behavior-contract-check place-identity-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate mock-slug-parity surface-contraction-check
 .PHONY: certify-fast certify-logic certify-corpus certify-visual certify-visual-cloud certify-live maestro-flow-check journey-registry-check journey-registry-verify-passes journey-evidence-report dogfood-status corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-journey-live-api qa-persona dogfood-status-sync
 .PHONY: preflight-eas fly-secrets verify m0-reachability-report docs-governance-check docs-child-governance-check docs-inventory-check docs-inventory-report docs-spine-check docs-canon-check docs-release-check docs-release-sync docs-status-check docs-status-sync docs-links-check docs-home-surfaces-check docs-check compatibility-check card-arrival-check chat-card-types-check pre-dogfood dogfood-fast dogfood-local dogfood-device dogfood-physical dogfood-staging test-backend-postgres journey-evidence-promote convergence-candidate-check
 
@@ -64,6 +64,9 @@ occasion-behavior-contract-check: ## Gate backend occasion semantics against mob
 
 place-identity-check: ## Gate typed canonical identity across mobile API seams
 	@python3 ./scripts/check_place_identity_contract.py
+
+surface-contraction-check: ## Gate M-1 product surface classifications and retired-route tombstones
+	@cd travel-app && npm run --silent surface:contraction:check
 
 api-coverage-check: ## Audit operation consumers, lifecycle policy, and OpenAPI method coverage
 	@python3 ./scripts/api_contract_audit.py

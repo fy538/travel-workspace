@@ -1106,6 +1106,24 @@ lifecycle instead of creating another independent surface inventory.
 8. Recalculate the required M1-M7 engines after surface contraction; remove
    engines or deliverables that no retained human-experience loop exercises.
 
+### M-1 execution status — 2026-08-23 (first tranche)
+
+| Work item | Status | Evidence / boundary |
+|---|---|---|
+| Product classification fields | Landed | `travel-app/scripts/polish-qa/surfaces.mjs`, canonical entry-point inventory, and route-owner metadata now share the six-class vocabulary. |
+| Mechanical reintroduction guard | Landed | `travel-app/scripts/check-surface-contraction.mjs`, `npm run surface:contraction:check`, and the reliability workflow guard. |
+| Decision Deck presentation | Retired | `/dev/deck-gallery`, gallery fixtures, baselines, Maestro flows, gallery-only test, and active design/QA rows removed; retained Deck primitives and headless tests remain. |
+| Proposal Detail | Compatibility redirect | Normal deep links focus the group-chat decision artifact; inspect/recovery remains bounded and receipt-backed. |
+| Booking | External handoff | Booking remains during cutover as a bounded provider utility; replacement is a provider handoff/status artifact plus external checkout. |
+| Expenses | Compatibility redirect | Existing writers and screens remain until an artifact replacement or explicit founder-approved money-management decision. |
+| Archive / tombstone | Landed locally | App tag `m1-pre-contraction-2026-08-23` and [M-1 register](m1-surface-contraction-register-2026-08-23.md); tag publication is still a release-workflow action. |
+
+This is not the full M-1 exit gate. The remaining work is to complete the
+route-by-route classification audit, prove Booking/Expenses replacements or
+explicitly keep them, add safe deep-link and in-flight recovery coverage, and
+recalculate the M1–M7 engine backlog against retained journeys. No durable
+domain writer was deleted in this tranche.
+
 **Exit gate**
 
 - every production route has an approved surface classification;

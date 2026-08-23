@@ -75,6 +75,10 @@ overrides:
     disposition: keep_reference
     rationale: Active cross-repository execution roadmap for the product-engine convergence program; accepted decisions, system charters, and journey contracts retain authority.
 
+  docs/working/m1-surface-contraction-register-2026-08-23.md:
+    disposition: keep_reference
+    rationale: Active M-1 execution register for product-surface classes, safe presentation retirements, replacements, and reintroduction gates; route registries and canonical system contracts retain implementation authority.
+
   docs/architecture/relationships-social-cutover-2026-08-22.md:
     disposition: keep_reference
     rationale: Active expiring execution contract for the bounded place-social cutover; canonical product, architecture, journey, and release documents retain authority.
