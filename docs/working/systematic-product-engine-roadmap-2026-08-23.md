@@ -993,7 +993,7 @@ Legend: **P** = primary engine, **S** = supporting engine.
 | CJ07 Receive/react |  | S | S | S | P | S |  | P | P |
 | CJ08 Address a person | S | S | P | S | P | P | S | S | P |
 | CJ09 Share/publish/contribute | P | S | S | P | S | P | S | P | P |
-| CJ10 Shape an Occasion | S | P | P | P | S | P |  | P | P |
+| CJ10 Shape minimum structure | S | P | P | P | S | P |  | P | P |
 | CJ11 Invite/join/leave |  | S | S | P | S | P |  | P | P |
 | CJ12 Decide together |  | P | P | P | S | P |  | P | P |
 | CJ13 Coordinate/delegate |  | S | S | P | S | P |  | P | P |
@@ -1106,6 +1106,35 @@ lifecycle instead of creating another independent surface inventory.
 8. Recalculate the required M1-M7 engines after surface contraction; remove
    engines or deliverables that no retained human-experience loop exercises.
 
+### M-1 execution status and closure — 2026-08-23
+
+| Work item | Status | Evidence / boundary |
+|---|---|---|
+| Product classification fields | Landed | `travel-app/scripts/polish-qa/surfaces.mjs`, canonical entry-point inventory, and route-owner metadata now share the six-class vocabulary. |
+| Mechanical reintroduction guard | Landed and freshness-bound | `travel-app/scripts/check-surface-contraction.mjs` now runs the route generator in `--check` mode before evaluating ownership, so a newly mounted route cannot be hidden by a stale committed inventory. |
+| Decision Deck presentation | Retired | `/dev/deck-gallery`, gallery fixtures, baselines, Maestro flows, gallery-only test, and active design/QA rows removed; retained Deck primitives and headless tests remain. |
+| Proposal Detail | Compatibility redirect | Normal deep links focus the group-chat decision artifact; inspect/recovery remains bounded and receipt-backed. |
+| Booking | External handoff | Booking remains during cutover as a bounded provider utility; replacement is a provider handoff/status artifact plus external checkout. |
+| Expenses | Compatibility redirect | Existing writers and screens remain until an artifact replacement or explicit founder-approved money-management decision. |
+| Archive / tombstone | Landed and published | App tag `m1-pre-contraction-2026-08-23` is published on `fy538/travel-app`; [M-1 register](m1-surface-contraction-register-2026-08-23.md) records the tombstone and reintroduction rule. |
+
+#### Exit-gate receipt
+
+| Exit criterion | Status | Evidence |
+|---|---|---|
+| Every production route has an approved classification | **Pass** | Generated inventory contains 181 routes; every route is owned or explicitly exempt, and `npm run surface:contraction:check` first rejects a stale inventory. The canonical artifact reader is explicitly `artifact_or_sheet`. |
+| Proposal/voting uses the Chat artifact normally | **Pass** | `routes.tripChatProposal`, `/trip-proposal` inspect/recovery behavior, and `trip-proposal-inspect`, shared-proposal, and journey tests. |
+| No canceled surface remains in active polish/design work | **Pass** | Decision Deck gallery route, fixtures, baselines, Maestro flows, screen test, contract, and registry rows are removed; the guard rejects their return. |
+| Booking and Expenses have explicit dispositions | **Pass** | Booking is `external_handoff`; all Expense routes are `compatibility_redirect` with replacement, retained capability, and deletion-gate metadata. |
+| Deep links and in-flight operations fail safely | **Pass for retained cutover paths** | Proposal inspect fallback, booking return-token/provider-saga routes, notification destinations, and journey 03/22 tests pass. |
+| No retained domain writer was deleted | **Pass** | M-1 changed the mobile presentation and workspace governance only; no backend authority or writer was removed. |
+| CI prevents reintroduction | **Pass** | Reliability workflow runs `surface:contraction:check`; guard checks routes, retired assets, and active QA/design registries. |
+
+M-1 is closed. The next milestone is M1: prove the minimum command, receipt,
+and delivery seam through one retained artifact loop. Booking and Expenses are
+intentionally still present as bounded cutover surfaces; closing M-1 does not
+claim their future replacement is complete.
+
 **Exit gate**
 
 - every production route has an approved surface classification;
@@ -1150,7 +1179,7 @@ valid.
 | Work item | Status | Evidence |
 |---|---|---|
 | Legacy Trip receipt viewer privacy | Landed | `backend/core/db/action_receipts.py`, route viewer scoping, focused tests |
-| Graph/relationship account lifecycle registration | Landed | `backend/core/db/account_lifecycle.py`, export/deletion/residual integration seam, registry tests |
+| Graph/relationship account lifecycle registration | Landed and membership-traversed | Registry integration plus explicit Commitment-participant traversal: exports include membership-owned Commitment/evidence rows, solo Commitments cascade, shared Commitments detach the departing person and transfer external-link control, and issued personal capabilities are destroyed. |
 | Shared graph Occasion creator succession | Landed and Postgres-proven | `account_deletion.py` successor policy plus graph/relationship export/deletion fixture |
 | Lived Experience family-count drift | Landed | gateway registry test now covers all nine declared routes |
 | Social Circle policy flag | Landed | registered default-on kill switch, router dependency, fail-closed API test |
@@ -1205,7 +1234,25 @@ loop proves that a smaller shared contract should replace them.
 9. One end-to-end adapter selected from an active human-experience loop; do not
    prebuild adapters for every legacy domain.
 10. Cross-repo artifact, command, receipt, and deep-link types for the selected
-    loop.
+   loop.
+
+**Execution receipt (2026-08-23):** The seam is implemented over two existing,
+materially different authorities. The first is the canonical itinerary
+operation gateway: `ResourceRef`, `CommandEnvelope`, and `ActionReceipt` are
+persisted through terminal operation evidence, backed by the existing
+`vesper_action_receipts` row and transactional `itinerary_projection_outbox`.
+The second is custody-first Intake v2: admission and owner deletion now expose
+the same additive `canonical_execution` contract while retaining the existing
+`intake_submissions`, lifecycle readback, source-scrub, and processing-outbox
+authorities. Plan and share-capture owner readback, mobile generated types,
+expired-lease repair/stale-worker fencing, and the admin-gated content-free
+outbox diagnostic at `GET /admin/ops/itinerary-projection-outbox` are covered
+by focused tests. See the detailed [M1 execution receipt](m1-command-receipt-delivery-execution-2026-08-23.md).
+
+M1 is closed for local implementation. This proves the minimum shared seam,
+not a universal platform rail: deployed process-death drills, worker cadence,
+and live provider delivery remain operational evidence. M2 admission/context
+work can proceed without adding another generic adapter.
 
 **Exit gate**
 
@@ -1237,6 +1284,25 @@ authorized continuity.
    lineage.
 10. Mount bounded correction/release directly from the result and source
     destination.
+
+**Execution receipt (2026-08-23):** M2 is closed for the first admitted-source
+conversation seam. `AdmissionEnvelope`, `AdmissionResult`, and content-free
+`SourceRef` transport ride the existing Intake v2 and pending-chat-turn
+authorities. The pending route verifies actor-owned source refs; canonical send
+materializes verified Intake images and follows verified audio parents to the
+existing `derived_transcript` without a second Intake submission; the mobile
+`from_chat=1` path stages the same source before entering Vesper; accepted,
+cancelled, and expired rows retain only content-free receipts; and the
+generated OpenAPI/mobile contract is synchronized. See the detailed
+[M2 admission and situated-context receipt](m2-admission-situated-context-2026-08-23.md).
+
+The existing `LivedExperienceEngine.compile_authority_context` and canonical
+provider registry remain the single `ContextManifest` authority for a later
+family opening. Generic pending chat intentionally carries source lineage but
+does not fabricate a family or experience scope before that opening exists.
+The next work is consequence-specific context, correction projection, and
+deployed process-death/worker-cadence evidence—not another generic admission
+rail.
 
 **Portfolio coverage**
 
@@ -1290,6 +1356,23 @@ responsibility coherent across pairs, Circles, groups, and Occasions.
 
 **Primary CJs:** CJ07-CJ13, CJ17-CJ18.
 
+**Execution receipt (2026-08-23):** The bounded addressed-place multiplayer
+loop is closed in code and mock read-after-write. Mobile joins viewer-relative
+graph occasions to the existing Places/venue/site reader contract through the
+backend-authorized typed `canonical_entity_ref`; it exposes revision-bound
+private outcome correction; and the mock exercises handoff → shared Occasion
+→ personal Outcome → correction. The backend regression proves that a place
+opening does not infer Trip membership. See the detailed [M3 multiplayer loop
+receipt](m3-multiplayer-loop-2026-08-23.md) and the [canonical place-reader
+packet](m3-canonical-place-reader-2026-08-23.md).
+
+This closes the first differentiated multiplayer product loop, not production
+release. The dedicated mock/device Maestro flow now proves the mounted sender
+composer, recipient private Outcome capture/correction, and sender privacy
+boundary; serving flags remain off pending a signed-in two-account device walk.
+Occasion attention/mute, responsibility claims, richer decision policy, and
+explicit Trip promotion remain the next M3 program increments.
+
 **Exit gate**
 
 A sender can create an addressed opening; the recipient can inspect and act;
@@ -1329,6 +1412,22 @@ state, Chat, Home, Activity, and notifications.
 - deliberate quiet.
 
 **Primary CJs:** CJ03, CJ07-CJ08, CJ11-CJ12, CJ14, CJ17-CJ18.
+
+**Execution receipt (2026-08-23):** The first foreground attention loop is
+closed in code and mock read-after-write. Home and Places graph summaries now
+let the viewer inspect why an owner-scoped Opening reached them and choose to
+open it, stay quiet, or dismiss it through the existing receipt-backed Opening
+status command. The mock lane proves the silenced Opening leaves current
+attention without creating a Commitment, Occasion, Trip, or notification
+delivery. See the detailed [M4 Opening and deliberate-silence loop receipt](m4-opening-attention-loop-2026-08-23.md).
+
+The first foreground loop and the graph/Lived vocabulary adapter are now
+implemented, and typed Opening/occasion/decision/handoff/Commitment/receipt
+destinations flow through the backend schema and mobile router. This is still
+not notification launch: one persisted Opening authority, cross-surface
+modify/snooze/mute/release, stale-owner resolution, receipt-bound telemetry,
+and physical OS presentation remain explicit follow-on gates. See the detailed
+[M4 Opening and deliberate-silence loop receipt](m4-opening-attention-loop-2026-08-23.md).
 
 **Exit gate**
 
@@ -1382,6 +1481,27 @@ Maps, a marketplace, messaging, a calendar, or the provider itself.
 - provider confirmation never becomes attendance or enjoyment;
 - every shared Commitment has one status/revision; and
 - recovery and correction converge every projection.
+
+### M5 completion status — 2026-08-23
+
+The bounded M5 exit is now implemented in the [M5 execution and reality
+closure receipt](m5-execution-and-reality-closure-2026-08-23.md), building on
+the [provider evidence and return receipt slice](m5-provider-evidence-return-receipt-2026-08-23.md).
+One block from the latest retained Trip itinerary can be explicitly adopted as
+one graph Commitment via a durable external identity link. Adoption requires
+the caller's expected source revision, locks the source block and membership,
+and creates the Commitment/link in the same transaction. The adopting
+controller can issue one expiring, single-attempt task and revoke it through a
+revisioned receipt. Provider callbacks remain on the secure server-only
+boundary, require a `provider_observation` task, atomically consume it once,
+and persist its ID on provider evidence. Raw provider references are visible
+only to the controller; other participants receive bounded shared state.
+Existing source-backed occurrence reconciliation and separate personal
+Outcomes preserve the planned/provider/lived distinction.
+
+M5 is closed at the external-handoff boundary. First-party payment, contact,
+booking, automatic retry, provider accounts, and provider sandbox evidence
+remain conditional follow-ons rather than hidden product commitments.
 
 ### M6 — Mount the coherent product shell
 

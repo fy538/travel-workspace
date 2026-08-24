@@ -138,6 +138,12 @@ jobs:
           MAESTRO_REQUIRE_CLI: "1"
         run: make maestro-flow-check
 
+      - name: M-1 surface contraction guard
+        # Product dispositions are checked against the executable surface,
+        # canonical-entry, route-owner, and generated-route registries.
+        run: npm run --silent surface:contraction:check
+        working-directory: travel-app
+
       - name: Compatibility and card-arrival contract guards
         run: make compatibility-check card-arrival-check chat-card-types-check
 

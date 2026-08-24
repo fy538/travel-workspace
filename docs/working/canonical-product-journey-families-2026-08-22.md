@@ -191,13 +191,17 @@ support correction and honest revocation limits.
 **Must never happen:** send, address, share, publish, and contribute collapse
 into one visibility control.
 
-### CJ10 — Shape an Occasion with the lightest adequate structure
+### CJ10 — Shape the minimum useful experience structure
 
 **Promise:** A vague possibility can become just enough structure for something
 worthwhile to happen.
 
 **Possible outcomes:** answer only, one Move, lightweight Occasion, local Plan,
 or structured multi-day Trip.
+
+An Occasion appears only when multiple principals need a bounded shared world.
+A personal possibility may remain an Answer, Move, or Plan without becoming an
+Occasion.
 
 **Must never happen:** every curiosity becomes a Plan; an itinerary becomes the
 company-level definition of experience.

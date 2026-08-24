@@ -167,6 +167,75 @@
         }
       }
     },
+    "/api/artifact-projections/intake/{anchor_id}": {
+      "get": {
+        "tags": [
+          "artifact-projections"
+        ],
+        "summary": "Get Intake Artifact Projection",
+        "description": "Return one owner-scoped canonical projection for a confirmed anchor.",
+        "operationId": "get_intake_artifact_projection_api_artifact_projections_intake__anchor_id__get",
+        "parameters": [
+          {
+            "name": "anchor_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Anchor Id"
+            }
+          },
+          {
+            "name": "mode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/ArtifactProjectionMode",
+              "default": "mine"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CanonicalArtifactProjectionV1"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/accommodations/{accommodation_id}": {
       "get": {
         "summary": "Get Catalog Accommodation",
@@ -1129,6 +1198,56 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AIOpsStatusResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/ops/itinerary-projection-outbox": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Itinerary Projection Outbox Diagnostics",
+        "description": "Inspect queued/leased/retrying Plan projection deliveries.\n\nThis is deliberately an operator view, not a second delivery API. The\nexisting outbox worker remains the only mutation/repair path.",
+        "operationId": "itinerary_projection_outbox_diagnostics_admin_ops_itinerary_projection_outbox_get",
+        "parameters": [
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItineraryProjectionOutboxDiagnosticsResponse"
                 }
               }
             }
@@ -13477,6 +13596,82 @@
         }
       }
     },
+    "/api/experience-graph/commitments/{commitment_id}/provider-evidence": {
+      "get": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "List Commitment Provider Evidence Route",
+        "description": "Read provider history without turning it into lived reality.",
+        "operationId": "list_commitment_provider_evidence_route_api_experience_graph_commitments__commitment_id__provider_evidence_get",
+        "parameters": [
+          {
+            "name": "commitment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Commitment Id"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProviderEvidenceResponse"
+                  },
+                  "title": "Response List Commitment Provider Evidence Route Api Experience Graph Commitments  Commitment Id  Provider Evidence Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/experience-graph/anchors": {
       "get": {
         "tags": [
@@ -13666,6 +13861,66 @@
                     "$ref": "#/components/schemas/OccasionInvitationResponse"
                   },
                   "title": "Response List Occasion Invitations Route Api Experience Graph Occasion Invitations Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experience-graph/occasion-invitations/{invitation_id}/product": {
+      "get": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Get Meaningful Occasion Invitation Route",
+        "description": "Read the invitee-safe product context without granting membership.",
+        "operationId": "get_meaningful_occasion_invitation_route_api_experience_graph_occasion_invitations__invitation_id__product_get",
+        "parameters": [
+          {
+            "name": "invitation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Invitation Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MeaningfulOccasionInvitation"
                 }
               }
             }
@@ -15043,6 +15298,206 @@
         }
       }
     },
+    "/api/experience-graph/commitments/from-trip-block": {
+      "post": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Adopt Trip Block Commitment Route",
+        "description": "Create a graph Commitment without copying legacy execution truth.",
+        "operationId": "adopt_trip_block_commitment_route_api_experience_graph_commitments_from_trip_block_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdoptTripBlockCommitmentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experience-graph/commitments/{commitment_id}/execution-tasks": {
+      "post": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Issue Execution Task Route",
+        "description": "Authorize one explicit external handoff with no payment/retry scope.",
+        "operationId": "issue_execution_task_route_api_experience_graph_commitments__commitment_id__execution_tasks_post",
+        "parameters": [
+          {
+            "name": "commitment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Commitment Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IssueExecutionTaskRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experience-graph/execution-tasks/{task_id}/revoke": {
+      "post": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Revoke Execution Task Route",
+        "description": "Withdraw an unused external capability with a revision guard.",
+        "operationId": "revoke_execution_task_route_api_experience_graph_execution_tasks__task_id__revoke_post",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Task Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RevokeExecutionTaskRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/experience-graph/commitments/{commitment_id}": {
       "patch": {
         "tags": [
@@ -15145,6 +15600,66 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/RecordOccurrenceEvidenceRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphMutationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/experience-graph/provider-evidence": {
+      "post": {
+        "tags": [
+          "experience-graph"
+        ],
+        "summary": "Record Provider Evidence Route",
+        "description": "Append provider truth without exposing a public Commitment writer.",
+        "operationId": "record_provider_evidence_route_api_experience_graph_provider_evidence_post",
+        "parameters": [
+          {
+            "name": "x-service-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Token"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordProviderEvidenceRequest"
               }
             }
           }
@@ -44512,6 +45027,76 @@
         ],
         "title": "ActionInitiator"
       },
+      "ActionReceipt": {
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "const": "action-receipt-v1",
+            "title": "Contract Version",
+            "default": "action-receipt-v1"
+          },
+          "receipt_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Receipt Id"
+          },
+          "command_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Command Id"
+          },
+          "resource": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "committed",
+              "rejected",
+              "pending",
+              "reversed"
+            ],
+            "title": "State"
+          },
+          "changed": {
+            "type": "boolean",
+            "title": "Changed"
+          },
+          "readback_state": {
+            "type": "string",
+            "enum": [
+              "available",
+              "pending",
+              "degraded"
+            ],
+            "title": "Readback State"
+          },
+          "created_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "receipt_id",
+          "command_id",
+          "resource",
+          "state",
+          "changed",
+          "readback_state"
+        ],
+        "title": "ActionReceipt",
+        "description": "A viewer-safe, durable result for a command attempt."
+      },
       "ActionReceiptResponse": {
         "properties": {
           "receipt": {
@@ -44825,6 +45410,254 @@
           "text"
         ],
         "title": "AddProfilePhraseRequest"
+      },
+      "AdmissionEnvelope": {
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "const": "admission-envelope-v1",
+            "title": "Contract Version",
+            "default": "admission-envelope-v1"
+          },
+          "actor_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Actor Id"
+          },
+          "origin": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Origin"
+          },
+          "audience": {
+            "type": "string",
+            "enum": [
+              "personal",
+              "group",
+              "public"
+            ],
+            "title": "Audience"
+          },
+          "source_kind": {
+            "type": "string",
+            "enum": [
+              "text",
+              "image",
+              "audio",
+              "file",
+              "question",
+              "unknown"
+            ],
+            "title": "Source Kind"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/SourceRef"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Source Refs"
+          },
+          "immediate_job": {
+            "type": "string",
+            "enum": [
+              "answer",
+              "decode",
+              "orient",
+              "compare",
+              "act",
+              "preserve",
+              "address",
+              "reconcile",
+              "clarify"
+            ],
+            "title": "Immediate Job",
+            "default": "answer"
+          },
+          "requested_retention": {
+            "type": "string",
+            "enum": [
+              "answer_only",
+              "ephemeral_processing",
+              "derived_only",
+              "source_and_derived"
+            ],
+            "title": "Requested Retention",
+            "default": "answer_only"
+          },
+          "issued_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Issued At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "actor_id",
+          "origin",
+          "audience",
+          "source_kind",
+          "idempotency_key",
+          "issued_at"
+        ],
+        "title": "AdmissionEnvelope",
+        "description": "The retry-stable, content-free admission decision for one source."
+      },
+      "AdmissionResult": {
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "const": "admission-result-v1",
+            "title": "Contract Version",
+            "default": "admission-result-v1"
+          },
+          "admission_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Admission Id"
+          },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/SourceRef"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Source Refs"
+          },
+          "immediate_job": {
+            "type": "string",
+            "enum": [
+              "answer",
+              "decode",
+              "orient",
+              "compare",
+              "act",
+              "preserve",
+              "address",
+              "reconcile",
+              "clarify"
+            ],
+            "title": "Immediate Job"
+          },
+          "custody_status": {
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 1,
+            "title": "Custody Status"
+          },
+          "retention_mode": {
+            "type": "string",
+            "enum": [
+              "answer_only",
+              "ephemeral_processing",
+              "derived_only",
+              "source_and_derived"
+            ],
+            "title": "Retention Mode"
+          },
+          "treatment": {
+            "type": "string",
+            "enum": [
+              "answer",
+              "clarify",
+              "orient",
+              "defer"
+            ],
+            "title": "Treatment"
+          },
+          "consequence_status": {
+            "type": "string",
+            "enum": [
+              "none",
+              "proposed",
+              "authorized"
+            ],
+            "title": "Consequence Status",
+            "default": "none"
+          },
+          "continuation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "correction_path": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Correction Path",
+            "default": "source_destination"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Expires At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "admission_id",
+          "immediate_job",
+          "custody_status",
+          "retention_mode",
+          "treatment",
+          "expires_at"
+        ],
+        "title": "AdmissionResult",
+        "description": "Viewer-safe admission/readback state, before any optional consequence."
+      },
+      "AdoptTripBlockCommitmentRequest": {
+        "properties": {
+          "commitment_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Commitment Id"
+          },
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "block_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Block Id"
+          },
+          "expected_source_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Source Revision"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "commitment_id",
+          "trip_id",
+          "block_id",
+          "expected_source_revision",
+          "idempotency_key"
+        ],
+        "title": "AdoptTripBlockCommitmentRequest",
+        "description": "Explicitly promote one retained Trip block into graph context."
       },
       "AffiliateLinkResponse": {
         "properties": {
@@ -45641,6 +46474,391 @@
         ],
         "title": "ArchiveTripResponse"
       },
+      "ArtifactAction": {
+        "properties": {
+          "action_ref": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Action Ref"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "inspect_source",
+              "correct",
+              "link_occasion",
+              "open_owner",
+              "share_selected",
+              "forget",
+              "undo"
+            ],
+            "title": "Kind"
+          },
+          "label_key": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Label Key"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "primary",
+              "secondary"
+            ],
+            "title": "Role"
+          },
+          "capability": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Capability"
+          },
+          "availability": {
+            "type": "string",
+            "enum": [
+              "available",
+              "disabled",
+              "expired"
+            ],
+            "title": "Availability"
+          },
+          "requires_confirmation": {
+            "type": "boolean",
+            "title": "Requires Confirmation",
+            "default": false
+          },
+          "disabled_reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Disabled Reason"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "action_ref",
+          "kind",
+          "label_key",
+          "role",
+          "capability",
+          "availability"
+        ],
+        "title": "ArtifactAction"
+      },
+      "ArtifactAnchorSummary": {
+        "properties": {
+          "family": {
+            "type": "string",
+            "enum": [
+              "movement",
+              "base",
+              "attendance",
+              "dining",
+              "attention"
+            ],
+            "title": "Family"
+          },
+          "subtype": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Subtype"
+          },
+          "phase": {
+            "type": "string",
+            "enum": [
+              "prospective",
+              "upcoming",
+              "live",
+              "resolving",
+              "lived",
+              "remembered",
+              "expired"
+            ],
+            "title": "Phase"
+          },
+          "occurrence": {
+            "type": "string",
+            "enum": [
+              "artifact_only",
+              "considered",
+              "scheduled",
+              "noticed",
+              "plausible",
+              "likely",
+              "confirmed",
+              "contradicted",
+              "not_applicable"
+            ],
+            "title": "Occurrence"
+          },
+          "operational_state": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Operational State"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "family",
+          "subtype",
+          "phase",
+          "occurrence",
+          "operational_state"
+        ],
+        "title": "ArtifactAnchorSummary"
+      },
+      "ArtifactContextSummary": {
+        "properties": {
+          "place_refs": {
+            "items": {
+              "$ref": "#/components/schemas/EntityRef"
+            },
+            "type": "array",
+            "title": "Place Refs",
+            "default": []
+          },
+          "time_window": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TimeWindow"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "occasion_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Occasion Refs",
+            "default": []
+          },
+          "plan_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Plan Refs",
+            "default": []
+          },
+          "participant_count": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Participant Count"
+          },
+          "participant_label": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Participant Label"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "ArtifactContextSummary"
+      },
+      "ArtifactCorrectionSummary": {
+        "properties": {
+          "available": {
+            "type": "boolean",
+            "title": "Available",
+            "default": false
+          },
+          "paths": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Paths",
+            "default": []
+          },
+          "revision": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "ArtifactCorrectionSummary"
+      },
+      "ArtifactFact": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Key"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "text",
+              "instant",
+              "time_window",
+              "place_ref",
+              "status",
+              "number",
+              "money",
+              "duration",
+              "route"
+            ],
+            "title": "Kind"
+          },
+          "value": {
+            "title": "Value"
+          },
+          "truth_mode": {
+            "type": "string",
+            "enum": [
+              "direct_observed",
+              "source_extracted",
+              "user_confirmed",
+              "inferred",
+              "external_verified",
+              "unknown"
+            ],
+            "title": "Truth Mode"
+          },
+          "confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence"
+          },
+          "observed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed At"
+          },
+          "valid_until": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid Until"
+          },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/SourceRef"
+            },
+            "type": "array",
+            "title": "Source Refs",
+            "default": []
+          },
+          "audience": {
+            "type": "string",
+            "enum": [
+              "private",
+              "bounded_shared"
+            ],
+            "title": "Audience",
+            "default": "private"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "key",
+          "kind",
+          "value",
+          "truth_mode",
+          "confidence"
+        ],
+        "title": "ArtifactFact"
+      },
+      "ArtifactMedia": {
+        "properties": {
+          "ref": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Ref"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "evidence",
+              "hero_candidate",
+              "supporting",
+              "source_preview"
+            ],
+            "title": "Role"
+          },
+          "availability": {
+            "type": "string",
+            "enum": [
+              "available",
+              "degraded",
+              "deleted",
+              "unavailable"
+            ],
+            "title": "Availability"
+          },
+          "audience": {
+            "type": "string",
+            "enum": [
+              "private",
+              "bounded_shared"
+            ],
+            "title": "Audience",
+            "default": "private"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "ref",
+          "role",
+          "availability"
+        ],
+        "title": "ArtifactMedia"
+      },
       "ArtifactPhotoUploadResponse": {
         "properties": {
           "photo_id": {
@@ -45671,6 +46889,81 @@
         ],
         "title": "ArtifactPhotoUploadResponse",
         "description": "Result of a real multipart artifact-photo upload (rehosted to the CDN).\n\nSupersedes the presigned-URL stub: the client POSTs the image bytes, the\nbackend rehosts through the media pipeline (EXIF/variants/CDN), and \u2014 when\nan ``artifact_id`` is supplied \u2014 stamps the CDN url as the artifact's\n``hero_photo_url`` (the img2img postcard source)."
+      },
+      "ArtifactProjectionMode": {
+        "type": "string",
+        "enum": [
+          "mine",
+          "together"
+        ],
+        "title": "ArtifactProjectionMode",
+        "description": "Viewer lane accepted by the projection transport.\n\n``together`` is intentionally rejected until a graph-owned sharing\nauthority is available.  A client query parameter must never be able to\ngrant access to private source claims."
+      },
+      "ArtifactProjectionScope": {
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": [
+              "mine",
+              "together"
+            ],
+            "title": "Mode"
+          },
+          "audience": {
+            "type": "string",
+            "enum": [
+              "private",
+              "bounded_shared"
+            ],
+            "title": "Audience"
+          },
+          "viewer_role": {
+            "type": "string",
+            "enum": [
+              "owner",
+              "participant"
+            ],
+            "title": "Viewer Role"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "mode",
+          "audience",
+          "viewer_role"
+        ],
+        "title": "ArtifactProjectionScope"
+      },
+      "ArtifactProvenance": {
+        "properties": {
+          "ref": {
+            "$ref": "#/components/schemas/SourceRef"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "degraded": {
+            "type": "boolean",
+            "title": "Degraded",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "ref"
+        ],
+        "title": "ArtifactProvenance"
       },
       "ArtifactSection": {
         "properties": {
@@ -45703,6 +46996,44 @@
         ],
         "title": "ArtifactSection",
         "description": "One section of an artifact's body (Trip Story has 3-7, Day Postcard has 1)."
+      },
+      "ArtifactSourceSummary": {
+        "properties": {
+          "refs": {
+            "items": {
+              "$ref": "#/components/schemas/SourceRef"
+            },
+            "type": "array",
+            "title": "Refs",
+            "default": []
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "degraded",
+              "deleted",
+              "unavailable"
+            ],
+            "title": "Status"
+          },
+          "content_available": {
+            "type": "boolean",
+            "title": "Content Available",
+            "default": false
+          },
+          "original_inspectable": {
+            "type": "boolean",
+            "title": "Original Inspectable",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "ArtifactSourceSummary"
       },
       "AtlasAction": {
         "properties": {
@@ -51828,6 +53159,140 @@
         ],
         "title": "CancellationReviewItem"
       },
+      "CanonicalArtifactProjectionV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "canonical-artifact-projection.v1",
+            "title": "Schema Version",
+            "default": "canonical-artifact-projection.v1"
+          },
+          "resource": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "revision": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Revision"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/ArtifactProjectionScope"
+          },
+          "source": {
+            "$ref": "#/components/schemas/ArtifactSourceSummary"
+          },
+          "anchor": {
+            "$ref": "#/components/schemas/ArtifactAnchorSummary"
+          },
+          "context": {
+            "$ref": "#/components/schemas/ArtifactContextSummary"
+          },
+          "facts": {
+            "items": {
+              "$ref": "#/components/schemas/ArtifactFact"
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Facts",
+            "default": []
+          },
+          "media": {
+            "items": {
+              "$ref": "#/components/schemas/ArtifactMedia"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Media",
+            "default": []
+          },
+          "unknowns": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Unknowns",
+            "default": []
+          },
+          "provenance": {
+            "items": {
+              "$ref": "#/components/schemas/ArtifactProvenance"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Provenance",
+            "default": []
+          },
+          "allowed_actions": {
+            "items": {
+              "$ref": "#/components/schemas/ArtifactAction"
+            },
+            "type": "array",
+            "maxItems": 4,
+            "title": "Allowed Actions",
+            "default": []
+          },
+          "correction": {
+            "$ref": "#/components/schemas/ArtifactCorrectionSummary"
+          },
+          "owner_destinations": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Owner Destinations",
+            "default": []
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "resource",
+          "revision",
+          "scope",
+          "source",
+          "anchor",
+          "context",
+          "correction",
+          "updated_at"
+        ],
+        "title": "CanonicalArtifactProjectionV1",
+        "description": "One viewer-relative read model over a canonical resource."
+      },
+      "CanonicalExecution": {
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "const": "m1-execution-v1",
+            "title": "Contract Version",
+            "default": "m1-execution-v1"
+          },
+          "resource": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "command": {
+            "$ref": "#/components/schemas/CommandEnvelope"
+          },
+          "receipt": {
+            "$ref": "#/components/schemas/ActionReceipt"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "resource",
+          "command",
+          "receipt"
+        ],
+        "title": "CanonicalExecution",
+        "description": "The smallest cross-surface execution seam."
+      },
       "CapabilityKey": {
         "type": "string",
         "enum": [
@@ -53184,6 +54649,164 @@
         ],
         "title": "CollectionSummary",
         "description": "Guides-row card payload: just what the row needs to render."
+      },
+      "CommandEnvelope": {
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "const": "command-envelope-v1",
+            "title": "Contract Version",
+            "default": "command-envelope-v1"
+          },
+          "command_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Command Id"
+          },
+          "type": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Type"
+          },
+          "target": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "capability": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Capability"
+          },
+          "capability_reason": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Capability Reason"
+          },
+          "actor_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Actor Id"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          },
+          "expected_revision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Revision"
+          },
+          "precondition_hash": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Precondition Hash"
+          },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/CommandSourceRef"
+            },
+            "type": "array",
+            "title": "Source Refs"
+          },
+          "audience": {
+            "type": "string",
+            "enum": [
+              "private",
+              "group",
+              "public",
+              "system"
+            ],
+            "title": "Audience",
+            "default": "group"
+          },
+          "issued_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Issued At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "command_id",
+          "type",
+          "target",
+          "capability",
+          "capability_reason",
+          "actor_id",
+          "idempotency_key"
+        ],
+        "title": "CommandEnvelope",
+        "description": "The retry-stable identity and authority boundary for one command."
+      },
+      "CommandSourceRef": {
+        "properties": {
+          "source_type": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Source Type"
+          },
+          "source_id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Source Id"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "degraded": {
+            "type": "boolean",
+            "title": "Degraded",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "source_type",
+          "source_id"
+        ],
+        "title": "CommandSourceRef",
+        "description": "Content-safe provenance attached to a command."
       },
       "CommercialEntitlementSnapshot": {
         "properties": {
@@ -63042,6 +64665,14 @@
         ],
         "title": "EventCreate"
       },
+      "ExecutionTaskOperation": {
+        "type": "string",
+        "enum": [
+          "external_handoff",
+          "provider_observation"
+        ],
+        "title": "ExecutionTaskOperation"
+      },
       "Expense": {
         "properties": {
           "id": {
@@ -68282,6 +69913,52 @@
             "type": "string",
             "title": "Scan Status"
           },
+          "custody_verified_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custody Verified At"
+          },
+          "custody_receipt_sha256": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custody Receipt Sha256"
+          },
+          "revoked_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Revoked At"
+          },
+          "revocation_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Revocation Reason"
+          },
           "captured_at": {
             "anyOf": [
               {
@@ -68335,8 +70012,10 @@
           },
           "source_role": {
             "type": "string",
-            "maxLength": 64,
-            "minLength": 1,
+            "enum": [
+              "primary",
+              "attachment"
+            ],
             "title": "Source Role",
             "default": "primary"
           },
@@ -68550,6 +70229,16 @@
             },
             "type": "array",
             "title": "Objects"
+          },
+          "canonical_execution": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CanonicalExecution"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -69980,6 +71669,44 @@
         ],
         "title": "InviteViewResponse"
       },
+      "IssueExecutionTaskRequest": {
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Task Id"
+          },
+          "operation": {
+            "$ref": "#/components/schemas/ExecutionTaskOperation",
+            "default": "external_handoff"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Expires At"
+          },
+          "max_attempts": {
+            "type": "integer",
+            "maximum": 1.0,
+            "minimum": 1.0,
+            "title": "Max Attempts",
+            "default": 1
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "task_id",
+          "expires_at",
+          "idempotency_key"
+        ],
+        "title": "IssueExecutionTaskRequest"
+      },
       "ItineraryAttentionProjection": {
         "properties": {
           "id": {
@@ -71251,6 +72978,16 @@
             ],
             "title": "Action Receipt Id"
           },
+          "canonical_execution": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CanonicalExecution"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "recovery": {
             "$ref": "#/components/schemas/PredictedRecovery"
           }
@@ -71375,6 +73112,16 @@
             },
             "type": "array",
             "title": "Committed Revisions"
+          },
+          "canonical_execution": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CanonicalExecution"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "provider_transitions": {
             "items": {
@@ -72218,6 +73965,63 @@
           "source_status"
         ],
         "title": "ItineraryProjectionEnvelope"
+      },
+      "ItineraryProjectionOutboxDiagnosticsResponse": {
+        "properties": {
+          "as_of": {
+            "type": "string",
+            "format": "date-time",
+            "title": "As Of"
+          },
+          "pending_count": {
+            "type": "integer",
+            "title": "Pending Count"
+          },
+          "due_count": {
+            "type": "integer",
+            "title": "Due Count"
+          },
+          "leased_count": {
+            "type": "integer",
+            "title": "Leased Count"
+          },
+          "retrying_count": {
+            "type": "integer",
+            "title": "Retrying Count"
+          },
+          "oldest_pending_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Oldest Pending At"
+          },
+          "max_attempt_count": {
+            "type": "integer",
+            "title": "Max Attempt Count"
+          },
+          "published_last_24h": {
+            "type": "integer",
+            "title": "Published Last 24H"
+          }
+        },
+        "type": "object",
+        "required": [
+          "as_of",
+          "pending_count",
+          "due_count",
+          "leased_count",
+          "retrying_count",
+          "max_attempt_count",
+          "published_last_24h"
+        ],
+        "title": "ItineraryProjectionOutboxDiagnosticsResponse",
+        "description": "Content-free health view for the canonical M1 delivery rail."
       },
       "ItineraryProposalReadProjection": {
         "properties": {
@@ -76182,6 +77986,210 @@
         ],
         "title": "MaterializeShapePayload"
       },
+      "MeaningfulOccasionInvitation": {
+        "properties": {
+          "treatment": {
+            "$ref": "#/components/schemas/OccasionProductTreatment",
+            "default": "meaningful_invitation"
+          },
+          "viewer_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Viewer Id"
+          },
+          "invitation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Invitation Id"
+          },
+          "occasion_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Occasion Id"
+          },
+          "inviter_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Inviter Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "revision": {
+            "type": "integer",
+            "title": "Revision"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "lifecycle": {
+            "type": "string",
+            "title": "Lifecycle"
+          },
+          "human_intent": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Human Intent"
+          },
+          "why_you": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Why You"
+          },
+          "participation_ask": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Participation Ask"
+          },
+          "message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message"
+          },
+          "time_window": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TimeWindow"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "place": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "visible_participant_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Visible Participant Ids",
+            "default": []
+          },
+          "shared_commitments": {
+            "items": {
+              "$ref": "#/components/schemas/ProjectedCommitment"
+            },
+            "type": "array",
+            "title": "Shared Commitments",
+            "default": []
+          },
+          "personal_plan_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Personal Plan Id"
+          },
+          "personal_window": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TimeWindow"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "participation_options": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Participation Options",
+            "default": [
+              "join",
+              "defer",
+              "decline",
+              "join_partly",
+              "arrive_late",
+              "leave_early",
+              "stay_quiet"
+            ]
+          },
+          "source_refs": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Source Refs",
+            "default": []
+          },
+          "unknowns": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Unknowns",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "viewer_id",
+          "invitation_id",
+          "occasion_id",
+          "inviter_id",
+          "status",
+          "revision",
+          "kind",
+          "lifecycle"
+        ],
+        "title": "MeaningfulOccasionInvitation"
+      },
       "MediaAttribution": {
         "properties": {
           "provider_name": {
@@ -78150,6 +80158,83 @@
             ],
             "title": "Source Id"
           },
+          "opening_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Opening Id"
+          },
+          "invitation_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Invitation Id"
+          },
+          "occasion_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occasion Id"
+          },
+          "decision_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decision Id"
+          },
+          "handoff_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Handoff Id"
+          },
+          "commitment_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Commitment Id"
+          },
+          "receipt_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Receipt Id"
+          },
           "year": {
             "anyOf": [
               {
@@ -79227,6 +81312,18 @@
           "unknown"
         ],
         "title": "OccasionLifecycle"
+      },
+      "OccasionProductTreatment": {
+        "type": "string",
+        "enum": [
+          "meaningful_invitation",
+          "private_brief",
+          "live_now",
+          "afterglow",
+          "future_opening",
+          "silence"
+        ],
+        "title": "OccasionProductTreatment"
       },
       "OccurrenceArtifact": {
         "properties": {
@@ -80971,6 +83068,54 @@
             "minLength": 1,
             "title": "Origin",
             "default": "chat"
+          },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/SourceRef"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Source Refs"
+          },
+          "source_kind": {
+            "type": "string",
+            "enum": [
+              "text",
+              "image",
+              "audio",
+              "file",
+              "question",
+              "unknown"
+            ],
+            "title": "Source Kind",
+            "default": "unknown"
+          },
+          "immediate_job": {
+            "type": "string",
+            "enum": [
+              "answer",
+              "decode",
+              "orient",
+              "compare",
+              "act",
+              "preserve",
+              "address",
+              "reconcile",
+              "clarify"
+            ],
+            "title": "Immediate Job",
+            "default": "answer"
+          },
+          "requested_retention": {
+            "type": "string",
+            "enum": [
+              "answer_only",
+              "ephemeral_processing",
+              "derived_only",
+              "source_and_derived"
+            ],
+            "title": "Requested Retention",
+            "default": "answer_only"
           }
         },
         "type": "object",
@@ -81059,6 +83204,24 @@
             "format": "date-time",
             "title": "Created At"
           },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/SourceRef"
+            },
+            "type": "array",
+            "title": "Source Refs",
+            "default": []
+          },
+          "admission_result": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AdmissionResult"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "text": {
             "type": "string",
             "title": "Text"
@@ -81096,6 +83259,16 @@
           "origin": {
             "type": "string",
             "title": "Origin"
+          },
+          "admission_envelope": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AdmissionEnvelope"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -81229,6 +83402,24 @@
             "type": "string",
             "format": "date-time",
             "title": "Created At"
+          },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/SourceRef"
+            },
+            "type": "array",
+            "title": "Source Refs",
+            "default": []
+          },
+          "admission_result": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AdmissionResult"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -90067,6 +92258,115 @@
         ],
         "title": "ProviderCorrectionWritebackPayload"
       },
+      "ProviderEvidenceResponse": {
+        "properties": {
+          "evidence_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Evidence Id"
+          },
+          "commitment_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Commitment Id"
+          },
+          "task_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Task Id"
+          },
+          "provider_state": {
+            "type": "string",
+            "enum": [
+              "unbound",
+              "held",
+              "confirmed",
+              "changed",
+              "cancelled",
+              "failed",
+              "unknown"
+            ],
+            "title": "Provider State"
+          },
+          "provider_ref": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Provider Ref"
+          },
+          "source_object_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Source Object Ids",
+            "default": []
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Observed At"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "confidence": {
+            "type": "integer",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Confidence"
+          },
+          "authority": {
+            "type": "string",
+            "title": "Authority"
+          },
+          "supersedes_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Supersedes Id"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "evidence_id",
+          "commitment_id",
+          "provider_state",
+          "provider_ref",
+          "observed_at",
+          "confidence",
+          "authority",
+          "created_at"
+        ],
+        "title": "ProviderEvidenceResponse"
+      },
       "ProviderIntent": {
         "type": "string",
         "enum": [
@@ -91397,6 +93697,16 @@
             ],
             "title": "World Entity Id"
           },
+          "canonical_entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "state": {
             "$ref": "#/components/schemas/ExperienceOccurrenceState"
           },
@@ -91441,7 +93751,7 @@
           "idempotency_key"
         ],
         "title": "RecordEncounterOutcomeRequest",
-        "description": "Record a place-bound memory even when no Commitment existed."
+        "description": "Record a place-bound memory even when no Commitment existed.\n\nPublic clients should use ``canonical_entity_ref``. The graph-local UUID\nremains a compatibility input for internal callers during cutover."
       },
       "RecordExperienceOutcomeRequest": {
         "properties": {
@@ -91746,6 +94056,114 @@
           "idempotency_key"
         ],
         "title": "RecordOutcomeRequest"
+      },
+      "RecordProviderEvidenceRequest": {
+        "properties": {
+          "owner_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Owner Id"
+          },
+          "evidence_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Evidence Id"
+          },
+          "commitment_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Commitment Id"
+          },
+          "provider_state": {
+            "type": "string",
+            "enum": [
+              "unbound",
+              "held",
+              "confirmed",
+              "changed",
+              "cancelled",
+              "failed",
+              "unknown"
+            ],
+            "title": "Provider State"
+          },
+          "provider_ref": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Provider Ref"
+          },
+          "source_object_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Source Object Ids",
+            "default": []
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Observed At"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "confidence": {
+            "type": "integer",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Confidence",
+            "default": 0
+          },
+          "authority": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "pattern": "^[a-z][a-z0-9_.:-]{2,119}$",
+            "title": "Authority"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Revision"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          },
+          "task_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Task Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "owner_id",
+          "evidence_id",
+          "commitment_id",
+          "provider_state",
+          "provider_ref",
+          "observed_at",
+          "authority",
+          "expected_revision",
+          "idempotency_key",
+          "task_id"
+        ],
+        "title": "RecordProviderEvidenceRequest",
+        "description": "Server-owned provider observation for one canonical Commitment."
       },
       "RecordReconciledOccurrenceRequest": {
         "properties": {
@@ -92612,9 +95030,26 @@
             "title": "Recipient User Id"
           },
           "world_entity_id": {
-            "type": "string",
-            "format": "uuid",
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "World Entity Id"
+          },
+          "canonical_entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "conversation_id": {
             "type": "string",
@@ -92692,13 +95127,12 @@
         "type": "object",
         "required": [
           "recipient_user_id",
-          "world_entity_id",
           "conversation_id",
           "message",
           "idempotency_key"
         ],
         "title": "RelationshipPlaceHandoffCreateRequest",
-        "description": "Create a handoff for one explicitly named recipient."
+        "description": "Create a handoff for one explicitly named recipient.\n\n``canonical_entity_ref`` is the public command identity. The graph-local\nUUID remains accepted only as a compatibility input for internal callers\nduring the clean-break cutover."
       },
       "RelationshipPlaceHandoffResponse": {
         "properties": {
@@ -93518,6 +95952,50 @@
         "title": "ResolvedMedia",
         "description": "A renderable visual with an explicit factual claim and provenance.\n\n``provider_asset_id`` is only an identity/audit handle. Callers must not\npersist it when ``cache_directive`` is ``no_store`` (Google photo resource\nnames are short-lived and may not be cached)."
       },
+      "ResourceRef": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Kind"
+          },
+          "id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Id"
+          },
+          "revision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Revision"
+          },
+          "canonical_path": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Canonical Path"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind",
+          "id",
+          "canonical_path"
+        ],
+        "title": "ResourceRef",
+        "description": "Stable owner identity plus the projection that can reopen it."
+      },
       "RespondOccasionInvitationRequest": {
         "properties": {
           "status": {
@@ -94214,6 +96692,27 @@
         "type": "object",
         "title": "RevertRequest",
         "description": "Revert an already-accepted proposal, restoring the prior itinerary state.\n\nOnly the trip organizer may revert. The ``resolution_note`` is stored on\nthe proposal row and surfaced in the group chat bridge message so members\nunderstand why the change was undone.\n\n``mode`` remains accepted for older clients. Canonical proposals always\ncommit the exact typed inverse; whole-version restoration is no longer a\nproduct mutation path."
+      },
+      "RevokeExecutionTaskRequest": {
+        "properties": {
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Revision"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "expected_revision",
+          "idempotency_key"
+        ],
+        "title": "RevokeExecutionTaskRequest"
       },
       "RevokeShareResponse": {
         "properties": {

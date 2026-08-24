@@ -194,6 +194,46 @@
       "removal_trigger": null,
       "review_by": "2026-10-30"
     },
+    "POST /api/experience-graph/commitments/from-trip-block": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "adopt_trip_block_commitment_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Explicitly bridges one retained itinerary block into one graph Commitment while leaving legacy execution truth authoritative.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "GET /api/experience-graph/commitments/{commitment_id}/provider-evidence": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "list_commitment_provider_evidence_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Participant-scoped provider history is readable without conflating provider confirmation with occurrence or personal meaning.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "POST /api/experience-graph/commitments/{commitment_id}/execution-tasks": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "issue_execution_task_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Issues one source-linked external handoff capability with explicit single-attempt scope; payment, contact, and retry remain out of scope.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "POST /api/experience-graph/execution-tasks/{task_id}/revoke": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "revoke_execution_task_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Task-scoped revocation withdraws unused external capability through a revisioned receipt.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
     "POST /api/experience-graph/reconciled-occurrence": {
       "audience": "server",
       "consumers": [{"kind": "server", "name": "record_reconciled_occurrence_route"}],
@@ -201,6 +241,16 @@
       "lifecycle": "active",
       "owner": "experience-graph",
       "reason": "Dedicated service-token boundary for source-backed occurrence reconciliation; public clients use occurrence-evidence instead.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
+    "POST /api/experience-graph/provider-evidence": {
+      "audience": "server",
+      "consumers": [{"kind": "server", "name": "record_provider_evidence_route"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "experience-graph",
+      "reason": "Dedicated provider-token boundary appends provider evidence and return receipts without exposing a public Commitment writer or implying occurrence.",
       "removal_trigger": null,
       "review_by": "2026-10-30"
     },
@@ -1236,6 +1286,21 @@
       "reason": "Authenticated operator and dogfood tooling surface.",
       "removal_trigger": null,
       "review_by": null
+    },
+    "GET /admin/ops/itinerary-projection-outbox": {
+      "audience": "operator",
+      "consumers": [
+        {
+          "kind": "operator",
+          "name": "m1-plan-delivery-operator-view"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "operations",
+      "reason": "Content-free repair visibility for the existing transactional Plan projection outbox.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
     },
     "GET /admin/trips/{trip_id}/digest/daily/{day_number}": {
       "audience": "operator",
@@ -3069,6 +3134,22 @@
       "owner": "intake",
       "reason": "The artifact reader needs a stable owner-scoped anchor identity for later Chat, Plan, and Occasion handoffs.",
       "removal_trigger": "Remove only when the anchor identity is served by a replacement transport.",
+      "review_by": "2026-10-30"
+    },
+    "GET /api/artifact-projections/intake/{anchor_id}": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "getCanonicalArtifactProjection",
+          "source": "travel-app/data/canonicalArtifacts.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "artifact-projection",
+      "reason": "The canonical artifact reader receives a bounded, viewer-safe projection over the existing owner-scoped Intake anchor without introducing a second source of truth.",
+      "removal_trigger": "Remove only when an equivalent canonical projection transport preserves owner scoping, correction, and degraded-source semantics.",
       "review_by": "2026-10-30"
     },
     "GET /api/intake/submissions/{submission_id}/interpretations": {

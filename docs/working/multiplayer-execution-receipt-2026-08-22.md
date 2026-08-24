@@ -4,7 +4,7 @@ title: Multiplayer execution receipt — 2026-08-22
 status: active
 owner: product-engineering
 created: 2026-08-22
-last_updated: 2026-08-22
+last_updated: 2026-08-23
 doc_type: working
 why_new: Records the bounded Chat-native multiplayer execution slice and its verified limits.
 expires: 2026-09-05
@@ -99,3 +99,12 @@ The four-option interaction is now the bounded grammar. The next slice is a
 product decision on whether larger decisions should stay Chat-question driven,
 followed by cloud/demo promotion and device receipts. Keep the current
 default-deny posture until production target evidence is complete.
+
+## Follow-up closure note — 2026-08-23
+
+The next M3 slice is now recorded separately in the [M3 addressed-place
+multiplayer loop receipt](m3-multiplayer-loop-2026-08-23.md). It adds the
+canonical Places reader handoff, revision-bound private outcome correction,
+mock graph read-after-write, and an explicit no-Trip-inference regression. The
+broader sender composer, attention/mute, decision-policy, and device-cert lanes
+remain intentionally separate from this Chat card grammar receipt.
