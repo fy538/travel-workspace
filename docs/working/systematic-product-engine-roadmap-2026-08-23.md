@@ -1772,6 +1772,103 @@ wrong Place / attendance / interpretation / audience / authority claim
 Exercises every platform rail and most authorities. Primary CJs: CJ06-CJ07,
 CJ09, CJ11, CJ16-CJ18.
 
+### Whole-product composition portfolio
+
+S1-S7 remain independent architecture and behavior probes. The composed
+portfolio proves that their engines can produce one calm experience without
+allowing its flagship scenario to define the ontology.
+
+The anchor composition is:
+
+```text
+movie ticket or book passage
+  -> source-bound admission and immediate personal value
+  -> grounded Rome / Place connection
+  -> optional human-authored address to a companion
+  -> recipient enters through a separate personal loop and receives private value
+  -> chosen participation creates a lightweight Occasion
+  -> private constraint informs a group-safe Decision
+  -> accepted consequence becomes a Commitment or remains a reversible Move
+  -> heat, closure, delay, or fatigue triggers repair or deliberate silence
+  -> shared Occurrence is reconciled from evidence
+  -> each participant may author, correct, or omit a personal Outcome
+  -> relational or shared continuity requires a separate grant
+  -> a later personal or shared Opening improves the second occasion—or stays silent
+```
+
+The following branches are mandatory portfolio members, not edge cases deferred
+until after the happy path:
+
+| Branch | Required proof |
+|---|---|
+| Answer and stop | Immediate value completes without retention, sharing, or a Plan. |
+| Private keep | Source and interpretation remain private and correctable; no social projection appears. |
+| Address without Occasion | The recipient can understand and respond while both personal loops remain independent. |
+| Decline or ignore | No guilt treatment, relationship-health inference, repeated prompt, or shared state is created. |
+| Pair Occasion | One common consequence remains coherent while private reasons and Outcomes stay separate. |
+| Three-or-more-person Occasion | Membership epochs, subgroup scope, organizer transfer, and affected-audience receipts remain correct. |
+| Private constraint | The shared result changes without exposing the constraint or fabricating a group reason. |
+| Split and rejoin | Several personal Plans can coexist with one bounded Occasion and later reconverge. |
+| Live disruption | Current conditions can repair, defer, withdraw, or preserve the Commitment without stale projections. |
+| Provider ambiguity | Attempted execution remains distinct from provider confirmation, Occurrence, and lived Outcome. |
+| No personal Outcome | Shared Occurrence can remain truthful without demanding reflection from every participant. |
+| Correction or revocation | Source lineage invalidates affected projections without leaking private rationale or destroying unrelated work. |
+| No continuity | The Occasion and its projections expire or become dormant without manufacturing a relationship. |
+| Second occasion | Authorized prior evidence materially changes perception, preparation, action, conversation, or coordination. |
+| Later silence | A plausible but weak or unauthorized Opening does not surface. |
+
+#### Existing seam map
+
+| Seam | Current implementation evidence | Missing composition contract |
+|---|---|---|
+| M2 Admission | Source-bound intake, custody receipt, and Chat continuation | Bind one admitted source to later projection preview without making retention or social use implicit. |
+| M3 Multiplayer | Addressed Place handoff, viewer-relative Occasion, private Outcome, correction | Recipient payoff, private caucus/group-safe synthesis, richer decision policy, leave/rejoin, and real signed-in two-account proof. |
+| M4 Attention | Inspectable Opening, why-this evidence, accept/silence/dismiss, typed destination | One persisted Opening authority, cross-surface mute/snooze/release, and owner-state telemetry. |
+| M5 Action | Task-scoped external handoff and provider evidence return | Mount only when a retained Decision/Commitment requires execution; preserve ambiguous provider and lived truth. |
+| Artifact projection | Viewer-safe source carrier, bounded relationships, phase-aware render profiles | One projection preview spanning private, addressed, Occasion, and later-continuity phases without becoming a truth owner. |
+| Occasion product compilers | Meaningful invitation, participation brief, Live Now, Afterglow, future Opening | Durable time/intent/audience/continuity decisions and production mounts remain separately gated. |
+
+#### Composition increments
+
+1. **C1 — Projection and recipient entry:** preview a minimum-safe addressed
+   projection; recipient receives source-safe private value; decline ends
+   cleanly.
+2. **C2 — Participation and consequence:** create or join an Occasion, accept a
+   private constraint, and produce a group-safe Decision plus inspectable
+   consequence.
+3. **C3 — Live truth:** bind the consequence to current conditions, repair or
+   remain silent, and reconcile provider truth separately from Occurrence.
+4. **C4 — Plural Afterglow:** render separate My/Together projections, allow no
+   Outcome, correct both eligible truth classes, and require a new grant for
+   relational continuity.
+5. **C5 — Longitudinal and release proof:** exercise a second occasion and a
+   later-silence branch through real signed-in principals, process restart,
+   replay, stale membership, and physical-device evidence.
+
+Each increment must reuse the owning commands and projections. It may reveal a
+missing durable authority, but it may not create a convenience aggregate,
+parallel source of truth, or new root to make the demonstration easier.
+
+**Contract-gate status — 2026-08-23.** The backend product-grammar portfolio
+now contains thirteen validator-enforced cases, including addressed value
+without an inferred Occasion, clean invitation refusal, after-phase-only scoped
+Outcomes, and newly human-authored explicit reachability. Local seam evidence
+passes 116 focused backend tests, 29 focused mobile tests, and the complete
+mobile TypeScript check. This substantiates the composition boundary and the
+existing seam map; it does not mark C1-C5 or the exit gate complete. In
+particular, signed-in two-account, restart/replay, stale-membership, and
+physical-device proof remain release evidence rather than documentation claims.
+
+#### Whole-product exit gate
+
+The portfolio closes only when a person can enter through the original source,
+receive useful personal value, optionally cross into governed shared action,
+live through one material reality change, reconcile shared Occurrence and
+plural Outcomes, correct or release the result, and later observe either a
+materially better second occasion or trustworthy silence. Mock-only success,
+several disconnected screenshots, or a sequence that requires manual surface
+reconstruction does not satisfy this gate.
+
 ## 13. Definition of done for an engine
 
 An engine is not complete because its models, tables, routes, generated types,

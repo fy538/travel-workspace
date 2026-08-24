@@ -67,6 +67,18 @@ rules:
 
 
 overrides:
+  docs/working/m5-execution-and-reality-closure-2026-08-23.md:
+    disposition: keep_reference
+    rationale: Active bounded M5 implementation-closure record; canonical architecture and release authorities remain primary.
+
+  docs/working/m5-provider-evidence-return-receipt-2026-08-23.md:
+    disposition: keep_reference
+    rationale: Superseded M5A slice retained as implementation provenance for the consolidated M5 closure record.
+
+  docs/working/vesper-visual-direction-deep-research-2026-08-23.md:
+    disposition: keep_reference
+    rationale: Active cross-repository visual research synthesis subordinate to product, architecture, privacy, and surface contracts.
+
   docs/working/canonical-authority-register-2026-08-23.md:
     disposition: keep_authoritative
     rationale: Active M0 register of durable writers, lifecycle owners, and migration seams; it is the source of truth for the canonical-authority-register noun.
@@ -156,8 +168,8 @@ overrides:
     rationale: Active integrated multiplayer proof for situated hospitality, plural perception, practical relief, and a coherent shared outcome; it remains subordinate to product and release authority.
 
   docs/working/vesper-experience-constitution-and-interaction-grammar-2026-08-22.md:
-    disposition: keep_reference
-    rationale: Active product and design grammar candidate that compiles the August thesis into interaction laws and an experience shell; it remains subordinate to product canon until behavioral promotion gates pass.
+    disposition: keep_authoritative
+    rationale: Canonical cross-repository experience and interaction contract; subordinate to Product Thesis, Product Model, Product Vision and Scope, and Surfacing Strategy while owning lived-world experience principles and attention-to-consequence behavior.
 
   docs/working/canonical-product-journey-families-2026-08-22.md:
     disposition: keep_reference
@@ -201,7 +213,7 @@ overrides:
 
   docs/release/m1-plan-repair.md:
     disposition: keep_authoritative
-    rationale: The single primary milestone, derived from the canonical demo journey; owns M1 scope, act-to-proof mapping, and exit criteria.
+    rationale: The bounded Plan-repair operational-alpha milestone; owns M1 scope, act-to-proof mapping, and exit criteria without defining company, architecture, or portfolio sequence.
 
   docs/release/v1-scope.md:
     disposition: keep_authoritative
@@ -213,7 +225,7 @@ overrides:
 
   docs/working/definition-of-done-consolidation-2026-08-10.md:
     disposition: keep_reference
-    rationale: Dated audit of every coexisting definition of done plus the 2026-08-10 consolidation rulings; M1 and the V1 contract own the resulting truth.
+    rationale: Superseded point-in-time consolidation audit retained for active links; the August 23 architecture-proof separation decision and bounded M1 contract replace its single-execution-spine rule.
 
   docs/working/home-surfaces-dogfood-handoff-2026-08-10.md:
     disposition: keep_reference

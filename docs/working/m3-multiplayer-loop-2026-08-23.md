@@ -88,6 +88,7 @@ Mobile commits in this pass:
 - `41363d3d` — `feat(m3): make relationship loop reachable in mock UI`
 - `fe425faa` — `feat(m3): mount addressed place action on venue detail`
 - `ab2bd1e4` — `fix(m3): hide unqualified venue handoff copy`
+- `b014aebf` — `test(m3): stabilize multiplayer device certification`
 
 The sender action is intentionally narrow: it is shown on graph summaries and
 canonical venue detail when the viewer has a confirmed pair Circle, then sends
@@ -117,6 +118,9 @@ revision-guarded correction.
   addressed note, recipient private Outcome capture, revision correction, and
   the sender-side privacy boundary. This is deterministic mock/device evidence,
   not a signed-in production two-account receipt.
+- The complete flow was recertified on 2026-08-24 in **58 seconds** after the
+  current shell changes. The harness now waits for native editor dismissal and
+  persona projection convergence before evaluating recipient privacy.
 - Maestro flow syntax: **passed**. The repository-wide governance validator
   remains blocked by 16 pre-existing `artifact-gallery` subflows that have no
   metadata headers; those files are unrelated to this M3 surface.
