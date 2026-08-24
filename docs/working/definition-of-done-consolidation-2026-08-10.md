@@ -5,7 +5,8 @@ owner: founder / engineering
 created: 2026-08-10
 last_verified: 2026-08-10
 expires: 2026-09-09
-why_new: Audits every coexisting definition of done (J registry, P spine, v1 scope, alpha scope, demo canon, M1, MVP skill), dates each one, names which are current and which are stale, and defines the consolidation that makes the demo journey the single spine.
+why_new: Preserves the point-in-time audit that made M1 the single execution spine before the August 23 separation of architecture, implementation slices, human evidence, and release gates.
+superseded_by: ../decisions/2026-08-23-separate-architecture-from-product-proof.md
 source_of_truth_for: [definition-of-done-consolidation]
 related:
   - ../release/m1-plan-repair.md
@@ -14,6 +15,10 @@ related:
 ---
 
 # Definition-of-done consolidation audit
+
+> Historical audit retained in place for active links. Its single-execution-
+> spine ruling is superseded by the August 23 architecture-proof separation
+> decision. M1 now owns only its bounded operational-alpha milestone.
 
 ## 1. Executive verdict
 
@@ -34,7 +39,8 @@ three specific defects:
    (`WEATHER_RESCUE_PROPOSALS_ENABLED`, `GROUP_TRIP_MICRO_JOURNEY_ENABLED`,
    `LOCAL_PLAN_DOGFOOD_ENABLED`).
 
-**Ruling this document proposes:** consolidate against the demo journey — but
+**Point-in-time ruling (superseded 2026-08-23):** consolidate certification
+against the demo journey — but
 do **not** rewrite the 28 J-tests. They were already demoted to a regression
 floor on 08-07 and they are cheap (28/28 seeded replay, ~37s). Redesigning
 them would spend weeks destroying regression value to produce what P01–P07
@@ -51,7 +57,7 @@ already is. The demo-shaped layer already exists; the work is repointing the
 | 4 | `PRODUCT_PROOF_SPINE.md` + `product-proofs.yaml` (P01–P07) | 2026-08-07 | 08-10 | What would prove the pivot thesis? | **CURRENT** — the demo-shaped layer; P05/P06/P07 dark |
 | 5 | V1 release contract (`v1-scope.yaml`) | scope decided 06-30; YAML 08-09 | 08-10 | What may ship lit vs dark? | **SPLIT** — dark-surface boundary current; promise + J anchors + coverage stale |
 | 6 | Demo Journey Canon (incl. alpha scope §14) | 2026-08-09 | 08-10 | What story do we tell, in what order? | **CURRENT** — narrative authority |
-| 7 | M1 — Plan Repair (`m1-plan-repair.md`) | 2026-08-10 | 08-10 | The one primary milestone | **CURRENT** — new spine |
+| 7 | M1 — Plan Repair (`m1-plan-repair.md`) | 2026-08-10 | 08-23 | What must be true for the bounded Plan-repair milestone? | **CURRENT** as a release proof, not the execution or architecture spine |
 | 8 | MVP skill (`mvp-invariants`, ×2 copies) | 2026-07-08 | untouched | House rules fired on every edit | **STALE** — 2 dead file refs, 1 dead symbol, 4-layer model, J01–J19 |
 | 9 | Journeys `README.md` 4-layer model | 2026-06-10 | 08-07 | (superseded layer model) | **STALE** — lines 144–183 conflict with EVIDENCE_MODEL |
 | 10 | Owner Action Items | 2026-05-15 | 08-10 | Human/console blockers | **CURRENT** for TestFlight; predates M1 |

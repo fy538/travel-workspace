@@ -1,12 +1,13 @@
 ---
 doc_type: decision
-status: accepted
+status: superseded
 owner: founder / product / engineering
 created: 2026-08-09
 decided: 2026-08-09
 why_new: Records the authority boundaries required to consolidate the product canon without erasing the company's thesis evolution or creating new competing summaries.
 supersedes: []
 source_of_truth_for: [product-documentation-authority-boundaries]
+superseded_by: 2026-08-23-adopt-lived-world-product-identity.md
 ---
 
 # Decision: consolidate the product canon by authority, not by deletion

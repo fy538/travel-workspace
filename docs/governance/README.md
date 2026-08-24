@@ -209,11 +209,14 @@ baseline to bypass admission—the baseline is history, not a moving allowlist.
 
 ## Phase 8 authority consolidation
 
-The 2026-08-09 consolidation assigned one owner to each company concept and
-made the shortest company-orientation path Product Thesis → Product Model →
-Current State. The 2026-08-10 consolidation added M1 as the tenth entry and
-made the shortest *execution* path M1 → Product Proof Spine → Journey Evidence
-Model. The spine is an authority registry, not a required reading sequence.
+The 2026-08-09 consolidation assigned one owner to each company concept. The
+2026-08-23 lived-world decision refreshed that authority boundary: Product
+Thesis → Product Model remains the shortest company orientation, while Current
+State owns executable evidence. M1 remains one bounded operational-alpha
+milestone, not the product, architecture, or research sequence. Architecture is
+derived from the whole behavior portfolio; implementation slices and multiple
+human proofs may proceed in parallel. The spine is an authority registry, not a
+required reading sequence.
 
 `make docs-canon-check` prevents the first-read canon from expanding back into
 overlapping essays. Product Thesis, Product Model, Product Vision, What We

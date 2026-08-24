@@ -18,6 +18,8 @@ Durable choices that constrain future work belong here. Use the
 
 | Date | Decision | Status |
 |---|---|---|
+| 2026-08-24 | [Adopt the experiential-responsibility messaging hierarchy](2026-08-24-adopt-experiential-responsibility-messaging.md) | accepted |
+| 2026-08-23 | [Adopt the lived-world product identity](2026-08-23-adopt-lived-world-product-identity.md) | accepted |
 | 2026-08-23 | [Separate systematic architecture from product proof](2026-08-23-separate-architecture-from-product-proof.md) | accepted |
 | 2026-08-16 | [Use content-free causal lineage across decision families](2026-08-16-causal-decision-outcome-lineage.md) | accepted |
 | 2026-08-16 | [Persist place interpretation losslessly and derive relationship state](2026-08-16-place-content-and-relationship-projection.md) | accepted |
@@ -27,8 +29,8 @@ Durable choices that constrain future work belong here. Use the
 | 2026-08-11 | [Entity and place are two axes, not two categories](2026-08-11-entity-and-place-two-axes.md) | accepted |
 | 2026-08-11 | [Ship the entity status block as correct plumbing over an unwired pipe](2026-08-11-entity-status-block.md) | accepted |
 | 2026-08-11 | [One entity read contract, landed additively](2026-08-11-entity-envelope.md) | accepted |
-| 2026-08-09 | [Consolidate the product canon by authority, not by deletion](2026-08-09-documentation-authority-and-consolidation.md) | accepted |
-| 2026-08-09 | [Adopt the lived-experience company model](2026-08-09-lived-experience-company-model.md) | accepted |
+| 2026-08-09 | [Consolidate the product canon by authority, not by deletion](2026-08-09-documentation-authority-and-consolidation.md) | superseded |
+| 2026-08-09 | [Adopt the lived-experience company model](2026-08-09-lived-experience-company-model.md) | superseded |
 | 2026-08-08 | [Use typed place identity, durable resolution, and fact provenance](2026-08-08-place-identity-and-provenance.md) | accepted |
 | 2026-07-25 | [Attention identity and type registry](2026-07-25-attention-identity-and-type-registry.md) | accepted |
 | 2026-07-09 | [Separate public reasons from private influences in receipts](2026-07-09-trust-receipt-boundary.md) | accepted |

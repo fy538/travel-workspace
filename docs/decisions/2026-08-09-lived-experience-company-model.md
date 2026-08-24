@@ -1,6 +1,6 @@
 ---
 doc_type: decision
-status: accepted
+status: superseded
 owner: founder / product
 created: 2026-08-09
 decided: 2026-08-09
@@ -9,6 +9,7 @@ supersedes:
   - travel-agent/docs/archive/thesis-evolution/2026-04-18-place-aware-travel-concierge.md
   - travel-agent/docs/archive/thesis-evolution/2026-07-29-travel-world-model.md
 source_of_truth_for: [company-product-model-adoption, travel-wedge-boundary]
+superseded_by: 2026-08-23-adopt-lived-world-product-identity.md
 ---
 
 # Adopt the lived-experience company model

@@ -4,14 +4,15 @@ status: active
 owner: founder / engineering
 created: 2026-08-10
 last_verified: 2026-08-13
-why_new: Replaces three competing definitions of "done" with one milestone derived directly from the canonical demo journey.
+why_new: Defines the bounded Plan-repair release milestone and its evidence bar without making that demo the product, architecture, or research sequence.
 supersedes: []
-source_of_truth_for: [primary-milestone, m1-scope, m1-exit-criteria]
+source_of_truth_for: [m1-plan-repair-milestone, m1-scope, m1-exit-criteria]
 ---
 
 # M1 — Plan Repair
 
-**The primary objective. If work does not serve M1, it is not this milestone.**
+**A bounded operational-alpha milestone. If work does not serve M1, it is not
+part of this milestone.**
 
 M1 is defined by the canonical demo journey, not by a capability list. The
 milestone is complete when the flagship demo can be performed end to end, on
@@ -26,6 +27,9 @@ devices, with revision-bound evidence for every claim it makes.
 Narrative authority: [Demo Journey Canon §13](../../travel-agent/docs/product/Demo%20Journey%20Canon.md).
 Thesis authority: [Product Thesis](../../travel-agent/docs/product/Product%20Thesis.md).
 This document owns only **what must be true for M1 to be called done**.
+It does not define company identity, the product ontology, architecture order,
+or the complete human-evidence portfolio. Those advance through their own
+authorities and may proceed in parallel.
 
 ## Target
 

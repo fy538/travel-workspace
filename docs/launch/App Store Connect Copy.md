@@ -1,10 +1,12 @@
 # App Store Connect Copy — Vesper
 
-> **Release scope, not company category (revised 2026-08-23):** This copy describes the
-> current trip-centered first release. The company model is a proactive,
-> multiplayer, place-aware AI for real-world experiences; group travel is the
-> launch wedge. Keep App Store claims constrained to behavior the submitted
-> build actually demonstrates.
+> **Release scope, not company category (revised 2026-08-24):** This copy describes the
+> current trip-centered first release. The company model is personal and
+> multiplayer intelligence for the lived world; group travel is the launch
+> wedge and first demanding specialization. Keep App Store claims constrained to behavior the submitted
+> build actually demonstrates. The external messaging hierarchy is recorded in
+> the [experiential-responsibility messaging decision](../decisions/2026-08-24-adopt-experiential-responsibility-messaging.md);
+> this release copy remains deliberately narrower.
 
 Paste targets for App Store Connect → App Information / App Store / iOS App.
 Voice is locked in `Travel App/docs/Brand Identity.md` §10 — confident,

@@ -1,21 +1,21 @@
 ---
-doc_type: working
+doc_type: contract
 status: active
 owner: founder / product / design
 created: 2026-08-22
-last_verified: 2026-08-22
-expires: 2026-09-21
-why_new: Converts the August product thesis into enforceable experience principles, interaction contracts, surface behavior, critique criteria, and a bounded visual exploration program.
+last_verified: 2026-08-23
+expires: null
+why_new: Defines the canonical experience principles and interaction grammar through which the lived-world product thesis becomes visible without replacing domain or surface authorities.
 supersedes: []
-source_of_truth_for: []
+source_of_truth_for: [vesper-experience-principles, lived-world-interaction-grammar, attention-and-consequence-behavior]
 ---
 
 # Vesper Experience Constitution and Interaction Grammar
 
-> Status: working proposal
+> Status: canonical product and interaction contract
 >
-> This document does not yet supersede canonical Product Thesis, Product Model,
-> or Surfacing Strategy. It compiles their product implications into a design
+> This document is subordinate to canonical Product Thesis, Product Model,
+> Product Vision & Scope, and Surfacing Strategy. It compiles their implications into a design
 > constitution and tests a four-root shell: Home, Vesper, Places, and Life.
 > Canon changes require founder approval after behavioral testing.
 > The interaction grammar and the four-root shell are independent hypotheses:
@@ -35,16 +35,16 @@ Related working layers:
 
 ## 1. The experience promise
 
-Vesper helps people and the people in their life make more of the world legible,
-helps something worthwhile happen there, and carries forward only what earns a
-future consequence. It mediates among people, one another, and the lived world;
-the interface should make the day lighter and shared experience more coherent
-without turning the app into the experience.
+Vesper helps a person—and the people around them—understand and inhabit the
+world more fully. It mediates among attention, people, one another, and the
+lived world; the interface should make the world more legible, the day lighter,
+and shared experience more coherent without turning the app into the
+experience.
 
 The desired sequence is:
 
 ```text
-I can bring this anything
+I can bring this whatever already has my attention
   -> it understands what kind of moment this is
   -> it gives me something useful immediately
   -> it shows any proposed consequence plainly

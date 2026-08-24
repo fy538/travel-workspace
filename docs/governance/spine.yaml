@@ -3,7 +3,7 @@ entries:
   - id: m1-plan-repair
     title: M1 — Plan Repair
     path: docs/release/m1-plan-repair.md
-    owns: The single primary milestone, its four demo acts, and its exit criteria.
+    owns: The bounded Plan-repair operational-alpha milestone, its four demo acts, and its exit criteria.
   - id: product-thesis
     title: Product Thesis
     path: travel-agent/docs/product/Product Thesis.md
@@ -11,7 +11,7 @@ entries:
   - id: product-model
     title: Product Model
     path: travel-agent/docs/product/Product Model.md
-    owns: The lived-experience object model, spatial grounding, harness timescales, and occasion proof loop.
+    owns: The lived-world authority and interaction model, spatial grounding, harness timescales, and portfolio proof relationships.
   - id: beliefs
     title: What We Believe
     path: travel-agent/docs/product/What We Believe.md
