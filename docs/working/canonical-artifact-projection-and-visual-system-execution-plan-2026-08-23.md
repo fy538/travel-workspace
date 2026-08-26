@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / design / architecture / engineering
 created: 2026-08-23
-last_verified: 2026-08-23
+last_verified: 2026-08-25
 expires: 2026-09-22
 why_new: Turns the approved canonical-artifact direction into one cross-repository execution plan covering identity, viewer-safe projection, visual families, bounded relationships, portfolio fixtures, Life exploration, validation, rollout, and cancellation without creating a new artifact authority.
 supersedes: []
@@ -79,6 +79,11 @@ CanonicalArtifactProjectionV1
 ```
 
 “Artifact” is a projection of durable truth, not another truth owner.
+
+This projection system is a carrier layer, not the product center. The human
+unit remains Experience; Occasion owns bounded shared consequences; Status is
+one featured share projection; and human contribution extends beyond media to
+presence, judgment, labor, care, boundaries, Commitments, and meaning.
 
 ## 2. Why this is non-regrettable now
 
@@ -266,6 +271,23 @@ are deferred.
 The first Life expression is a read-only lab or dev fixture. It does not become
 a root, replace You/Atlas, or introduce a new navigation destination until its
 contract, owner state, and correction behavior are accepted independently.
+
+### D7 — One composer, distinct circulation commands
+
+Private artifact, named-person handoff, featured Status, Occasion contribution,
+and public Place contribution should reuse source custody, viewer-safe
+projection, and presentation primitives. They must not reuse one ambiguous
+visibility mutation.
+
+The UI may provide one common composer and destination chooser. The application
+layer still needs typed command boundaries for Send, Address, Share,
+Contribute-to-Occasion, and Publish/Contribute-to-Place, each with audience,
+purpose, attribution, expiry, receipt, correction, and revocation behavior.
+
+Do not add a `status` table now. A future featured-share read model should
+project the current active share/publication authority. If publish, replace,
+expire, and revoke cannot be expressed honestly with existing grants and
+receipts, that gap—not the word Status—may justify a small durable authority.
 
 ## 5. CanonicalArtifactProjectionV1
 
@@ -1174,7 +1196,85 @@ The fixture portfolio must also prove:
 - Together does not expose private facts during action resolution; and
 - offline/stale state cannot masquerade as a fresh operational fact.
 
-## Execution status — 2026-08-23
+### 11.5 Systematic circulation and Occasion-composition portfolio
+
+The A01–A15 artifact fixtures test semantic and visual breadth. The following
+experience portfolio tests the product grammar across audience, contribution,
+phase, and authority boundaries. No row is the privileged loop from which the
+architecture may be generalized.
+
+| ID | Experience pressure | Required system behavior | Must not happen |
+|---|---|---|---|
+| E01 | Sorrento answer-only help | Decode or orient now; expire cleanly | Retention or sharing becomes the price of utility |
+| E02 | Private menu, ticket, or photograph | Produce a sparse private artifact with source/correction controls | Capture implies occurrence, preference, or public meaning |
+| E03 | Rome “back from Nice and Sorrento” Status | Human authors one featured share for friends or public audience; replace/expire/revoke | Vesper writes a biography, broadcasts live location, or creates a feed |
+| E04 | “This made me think of you” handoff | Address a named person with provenance and human voice; recipient can ignore or respond | Share scope or relevance becomes intimacy or response debt |
+| E05 | Brooklyn dinner contribution | Chat creates the Occasion and accepts a dish, late arrival, boundary, perspective, or task through typed contributions | Occasion profile homework or artifact-production requirement |
+| E06 | Rome heat / live disruption | Reconcile current truth, authority, affected people, and one repair—or stay silent | Private reasons leak or one stale projection survives |
+| E07 | Afterglow | Occasion-phase read composes Occurrence, selected traces, contributions, plural Outcomes, controls, and an optional continuation | New scrapbook owner or synthetic group meaning |
+| E08 | Public Place perspective | Publish a bounded, attributable, correctable Place contribution | Universal rank, creator pressure, or private-source leakage |
+
+Each row needs answer/decline/expiry, sparse evidence, correction, deletion,
+wrong-audience, offline/stale, and second-occasion-or-silence variants where
+applicable. Cross-cutting abstractions may be promoted only when this portfolio
+shows that they preserve meaning across several rows.
+
+### 11.6 Architecture and code delta from the portfolio
+
+The current code proves a private Mine/Together artifact read path and a
+separate, exploratory hosted-Occasion policy prototype. It does not yet provide
+the circulation system described above.
+
+**Backend/application delta**
+
+1. Preserve `CanonicalArtifactProjectionV1` as a read projection over existing
+   owners. Do not overload its `scope` field into a universal social command.
+2. Define storage-neutral destination intents and preview/receipt envelopes for
+   `address_person`, `share_with_audience`, `feature_share`,
+   `contribute_to_occasion`, and `contribute_to_place`.
+3. Resolve each intent through owner authority. A featured share needs an active
+   audience grant/publication receipt; an Occasion contribution needs Occasion
+   membership and typed contribution semantics; a Place contribution needs
+   public-Place custody and moderation policy.
+4. Model Occasion contribution as a union of ResourceRefs and typed state—not
+   only artifacts: participation window, responsibility/Commitment, boundary,
+   situated fact, perspective, evidence, and authored meaning.
+5. Compile `OccasionPreview` and the afterglow as viewer-relative reads. The
+   former must not reuse product Opening identity; the latter must not own
+   sources, Occurrence, or Outcomes.
+6. Keep `backend/core/hosted_occasion_projections.py` and its policy matrix
+   experimental. Remove `EligiblePortraitFacet` from any ordinary product path;
+   rename compatibility types only after callers and fixtures are mapped.
+7. Add persistence only after command lifecycle analysis shows which existing
+   grant, receipt, Occasion, Outcome, or contribution owner cannot express
+   publish/replace/expire/revoke honestly. Do not start with a Status table.
+
+**Mobile delta**
+
+1. Reuse the universal input/capture affordance, then add a destination chooser
+   and exact audience/consequence preview.
+2. Render one featured-share/Status treatment on the person's chosen social
+   face; mount it elsewhere only through viewer permission and relevance.
+3. Add named-person Address/Respond treatment that preserves source and human
+   authorship without manufacturing a message.
+4. Add low-friction Occasion contribution actions in Chat and the Occasion
+   object for artifact and non-artifact contribution types.
+5. Render before/live/after from one Occasion lifecycle, including afterglow,
+   instead of creating a standalone recap collection.
+6. Keep public Place contribution separate from feeds, profiles, and creator
+   ranking.
+
+**Assurance delta**
+
+- map E01–E08 to CJ and J branches before claiming implementation coverage;
+- add deterministic custody/authority matrices for every destination;
+- prove create/replace/expire/revoke and stale-read behavior;
+- prove other people's names, media, private constraints, and Outcomes never
+  widen with the carrier; and
+- run portfolio, API-contract, component, and native visual evidence as each
+  layer becomes executable.
+
+## Execution status — 2026-08-25
 
 The first implementation pass has landed in the two child repositories. The
 status below is intentionally evidence-bounded; a fixture gallery or pure
@@ -1182,6 +1282,7 @@ compiler test does not count as production mounting or native visual proof.
 
 | Packet | Status | Evidence |
 |---|---|---|
+| Product grammar correction | documented, not implemented | E01–E08 now distinguish private artifacts, Status, Address, Occasion contribution, repair, afterglow, and public Place contribution. No circulation command, Status read model, generalized Occasion contribution, or public Place publication path has landed. |
 | P0–P1 | partial | The strict projection contract, identity/resource rules, and A01–A15 fixture portfolio are drafted, but full seven-phase coverage and fixture-oracle validation remain open. |
 | P2 | partial | The Intake-anchor compiler now has viewer-safe Mine/Together redaction, expiry filtering, stable revisions, and focused tests; Occasion, Outcome, and receipt adapters remain pending. |
 | P3 | complete | Authenticated owner read route, operation-policy entry, OpenAPI snapshots, generated mobile schema, matching mock/real projection transport, and a read-only owner reader route are present; broader product mounting remains pending. |
@@ -1811,6 +1912,15 @@ Stop or redesign a packet if:
 
 ## 21. Documentation changes required
 
+The 2026-08-25 grammar migration reconciled Product Model, Multiplayer Product
+Strategy, Surfacing Strategy, My World, the Experience Constitution, the hosted-
+Occasion exploration, and the social-circulation hypothesis around these
+decisions: Experience is the product unit; artifact is a carrier; Status is a
+featured share; contribution exceeds media; Afterglow belongs to the Occasion
+lifecycle; ordinary Occasion creation is chat-first; and generalized hosted
+policy is deferred. The items below remain implementation and promotion work,
+not an invitation to restore the superseded profile/facet model.
+
 Before P1 implementation, reconcile these documents:
 
 1. **Systematic Product-Engine Roadmap**
@@ -1865,22 +1975,30 @@ Archive the remaining execution narrative.
 | A-D10 | How does graph anchor map to Intake lineage? | Reuse/expose deterministic bridge lineage; no new table unless lifecycle proof fails | P2 |
 | A-D11 | What survives source deletion? | Only separately authorized derived truth/Outcome with degraded provenance | P1/P6 |
 | A-D12 | What is the first production mount? | Decide after portfolio and Life-lab evidence; do not encode in architecture | P10 |
+| A-D13 | What is Status? | One human-authored, audience-scoped featured-share projection; no new owner by default | Circulation contract |
+| A-D14 | Does one composer imply one command? | No; Send, Address, Share, Occasion contribution, and Place publication remain typed consequences | Mobile/application design |
+| A-D15 | What may be contributed to an Occasion? | ResourceRefs plus participation, responsibility, boundary, situated fact, perspective, evidence, and meaning | Occasion command design |
+| A-D16 | Who owns afterglow? | Occasion lifecycle read over independently owned Occurrence, contributions, Outcomes, and permissions | Occasion projection |
+| A-D17 | Is the hosted policy matrix P0? | No; named invitations and host membership control are the ordinary default; broad discovery/delegation remains experimental | Hosted Occasion review |
 
 ## 23. First executable backlog
 
-The next reviewable packet should contain only:
+The next reviewable design packet should contain:
 
-1. branch/worktree reconciliation receipt;
-2. roadmap wording correction removing first-loop architectural primacy;
-3. canonical artifact identity ADR;
-4. strict `CanonicalArtifactProjectionV1` draft;
-5. fact-key, action, scope, and correction registries;
-6. A01–A15 static fixture envelopes and variant matrix;
-7. pure contract validators and fixture oracles;
-8. authority mapping for every field;
-9. explicit statement that no database migration, runtime endpoint, Life root,
-   notification, or production surface is authorized; and
-10. review decision approving or revising the contract before P2/P4 begin.
+1. E01–E08 storage-neutral journey fixtures and negative branches;
+2. destination-intent, audience-preview, and receipt envelopes for the five
+   distinct circulation commands;
+3. an authority map showing what existing owner would read or write every
+   field, including replacement, expiry, revocation, and deletion;
+4. a typed Occasion contribution envelope that includes non-artifact
+   participation;
+5. viewer-safe `OccasionPreview` and before/live/after Occasion projections;
+6. mobile wire treatments for the common composer, featured Status, addressed
+   handoff, Occasion contribution, and afterglow;
+7. explicit treatment of the current hosted-policy prototype as exploratory;
+8. CJ-to-J assurance mapping and portfolio oracles; and
+9. a review decision about which seams belong in existing grants, receipts, and
+   Occasion contracts before any schema or production surface is authorized.
 
 That packet is systematic architecture work. It does not ask the organization
 to bet the product on a single behavioral loop, and it does not require a

@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: founder / product / design
 created: 2026-08-22
-last_verified: 2026-08-23
+last_verified: 2026-08-25
 expires: null
 why_new: Defines the canonical experience principles and interaction grammar through which the lived-world product thesis becomes visible without replacing domain or surface authorities.
 supersedes: []
@@ -183,6 +183,18 @@ These principles are decision rules, not brand copy.
 - A better later perception, action, conversation, or shared Occasion is the
   strongest proof that continuity was worthwhile.
 
+### 2.16 Carry experience without turning it into content production
+
+- Experience is the human unit; an artifact is one compact carrier of useful
+  truth, expression, or consequence.
+- Private continuity, directed sharing, featured Status, Occasion
+  contribution, and public Place contribution may reuse one projection
+  substrate while retaining different audience and authority contracts.
+- One composer may simplify creation, but Send, Address, Share, Contribute, and
+  Publish must remain distinct commands.
+- People contribute presence, judgment, labor, care, boundaries, and meaning as
+  well as media. Do not measure participation by artifact production.
+
 ## 3. Intended feeling
 
 The product should feel:
@@ -340,6 +352,11 @@ Four relational verbs must remain distinct:
 - **Share** creates a bounded audience projection.
 - **Publish or contribute** adds a governed public or Place projection.
 
+**Contribute to an Occasion** is also distinct from Share. It places an
+authorized responsibility, boundary, perspective, artifact, Commitment,
+evidence item, or meaning into that Occasion's bounded world. The Occasion may
+compose it, but it does not own the contributor's private Source or identity.
+
 “This made me think of you” is an addressed relational act, not generic content
 distribution.
 
@@ -363,6 +380,8 @@ The default entry requires only **Ask** or **Point**.
 | **Occasion** | Bounded shared world needed for participation and common consequences |
 | **Decision** | Governed personal or shared choice with actor, authority, state, and consequence; shared Decisions use the Occasion constitution |
 | **Encounter** | Sparse private-first joining of Place, moment, trace, and optional meaning |
+| **Artifact** | Compact viewer-safe carrier over canonical truth; never a universal owner |
+| **Share projection** | Human-authored bounded expression for named people, Status, an Occasion, or a public Place |
 | **Outcome** | Person-, relationship-, or explicitly shared consequence or meaning reconciled separately from Occurrence |
 | **Receipt** | What changed, why, under what scope, and how to reverse it |
 | **Silence** | No treatment earned |
@@ -449,6 +468,12 @@ provider or service
 Every projection resolves recipients, purpose, copying, resharing, attribution,
 inference, expiry, correction, and honest revocation limits separately.
 
+A person's **featured share**—rendered as Status—is a human-authored projection
+for one audience and time window. It is not an inferred profile facet, an
+Occasion identity, ambient location, or a new durable person authority. A
+recipient may use it as context for a human opening; it does not itself grant
+messaging, invitation, or action authority.
+
 ### 5.10 Delegated action grammar
 
 Consequential action separates six transitions:
@@ -493,7 +518,7 @@ Every canonical journey and consequential feature should be representable with:
 initiator: person | companion | vesper | commitment | provider |
   world_change | place | prior_encounter | return
 verb: null
-object: source_artifact | place | person | perspective | opening |
+object: source | artifact | place | person | perspective | opening |
   occasion | move | plan | commitment | outcome | permission
 immediate_job: answer | understand | orient | explore | decide |
   coordinate | act | address | preserve | document | correct | continue
@@ -523,7 +548,8 @@ authority:
 treatment: silence | cue | answer | orient | shared_prompt |
   proposal | prepared_action | execution
 consequence: none | connection | move | occasion | commitment |
-  projection | provider_action | retained_evidence
+  projection | addressed_handoff | featured_share | occasion_contribution |
+  place_contribution | provider_action | retained_evidence
 receipt:
   what_changed: null
   who_acted: null
@@ -677,6 +703,12 @@ Use conversation for interpretation, recommendation, negotiation, proposal,
 reflection, short status, and recovery. Use a sheet for focused editing,
 comparison, provenance, uncertainty, and confirmation.
 
+The creation affordance may be one common composer for a question, text,
+photo, Place, ticket, existing artifact, or new capture. Its destination step
+must make the consequence legible—Keep private, Send, Share with, Feature as
+Status, Contribute to Occasion, or Contribute to Place—without pretending those
+commands have one authority contract.
+
 ### 10.3 Initial primitives
 
 The first design system should cover:
@@ -684,12 +716,15 @@ The first design system should cover:
 - app shell and four-root tab bar;
 - page header and contextual status line;
 - universal composer and capture/import controls;
+- sharing destination and audience preview;
 - opening;
 - typed chat artifact;
+- featured-share / Status projection;
 - consequence receipt;
-- source artifact;
+- source and evidence disclosure;
 - Place opening and relationship state;
 - occasion summary and shared decision;
+- occasion contribution and phase-relative afterglow;
 - person or perspective handoff;
 - evidence and truth disclosure;
 - correction, dismissal, undo, and release;
