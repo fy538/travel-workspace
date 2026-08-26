@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / design / architecture / engineering
 created: 2026-08-23
-last_verified: 2026-08-25
+last_verified: 2026-08-26
 expires: 2026-09-22
 why_new: Turns the approved canonical-artifact direction into one cross-repository execution plan covering identity, viewer-safe projection, visual families, bounded relationships, portfolio fixtures, Life exploration, validation, rollout, and cancellation without creating a new artifact authority.
 supersedes: []
@@ -27,6 +27,7 @@ Governing inputs and implementation anchors:
 
 - [Systematic Product-Engine Roadmap](systematic-product-engine-roadmap-2026-08-23.md)
 - [Vesper Experience Constitution and Interaction Grammar](vesper-experience-constitution-and-interaction-grammar-2026-08-22.md)
+- [Consequence Arbitration and Cross-Surface Experience Blueprints](consequence-arbitration-and-cross-surface-blueprints-2026-08-26.md)
 - [Product Model](../../travel-agent/docs/product/Product%20Model.md)
 - [Artifact and Experience Anchor Grammar v1](../../travel-agent/docs/working/artifact-and-experience-anchor-grammar-v1-2026-08-21.md)
 - [Experience Anchors, Occasions, and Visual Memory](../../travel-agent/docs/working/experience-anchors-occasions-and-visual-memory-2026-08-19.md)
@@ -279,10 +280,12 @@ and public Place contribution should reuse source custody, viewer-safe
 projection, and presentation primitives. They must not reuse one ambiguous
 visibility mutation.
 
-The UI may provide one common composer and destination chooser. The application
-layer still needs typed command boundaries for Send, Address, Share,
-Contribute-to-Occasion, and Publish/Contribute-to-Place, each with audience,
-purpose, attribution, expiry, receipt, correction, and revocation behavior.
+The UI may provide one common composer. It reveals destination choice only
+after expressed sharing intent or an invoked share affordance; it is not a
+generic follow-up to every input. The application layer still needs typed
+command boundaries for Send, Address, Share, Contribute-to-Occasion, and
+Publish/Contribute-to-Place, each with audience, purpose, attribution, expiry,
+receipt, correction, and revocation behavior.
 
 Do not add a `status` table now. A future featured-share read model should
 project the current active share/publication authority. If publish, replace,
@@ -1219,6 +1222,10 @@ wrong-audience, offline/stale, and second-occasion-or-silence variants where
 applicable. Cross-cutting abstractions may be promoted only when this portfolio
 shows that they preserve meaning across several rows.
 
+The companion consequence blueprint owns the detailed choice allocation for
+each row, M0-M6 authorization modes, no-homework rules, and the Rome, Brooklyn
+dinner, and practical Place cross-surface storyboards.
+
 ### 11.6 Architecture and code delta from the portfolio
 
 The current code proves a private Mine/Together artifact read path and a
@@ -1229,30 +1236,35 @@ the circulation system described above.
 
 1. Preserve `CanonicalArtifactProjectionV1` as a read projection over existing
    owners. Do not overload its `scope` field into a universal social command.
-2. Define storage-neutral destination intents and preview/receipt envelopes for
+2. Define a storage-neutral, normally ephemeral prepared-consequence envelope
+   that records the selected intent, proposed owner command, actor, affected
+   principals, audience, M0-M6 authorization mode, authority basis,
+   materiality, reversibility, preview, and expiry. It is not a new owner.
+3. Define typed destination intents and preview/receipt envelopes for
    `address_person`, `share_with_audience`, `feature_share`,
    `contribute_to_occasion`, and `contribute_to_place`.
-3. Resolve each intent through owner authority. A featured share needs an active
+4. Resolve each intent through owner authority. A featured share needs an active
    audience grant/publication receipt; an Occasion contribution needs Occasion
    membership and typed contribution semantics; a Place contribution needs
    public-Place custody and moderation policy.
-4. Model Occasion contribution as a union of ResourceRefs and typed state—not
+5. Model Occasion contribution as a union of ResourceRefs and typed state—not
    only artifacts: participation window, responsibility/Commitment, boundary,
    situated fact, perspective, evidence, and authored meaning.
-5. Compile `OccasionPreview` and the afterglow as viewer-relative reads. The
+6. Compile `OccasionPreview` and the afterglow as viewer-relative reads. The
    former must not reuse product Opening identity; the latter must not own
    sources, Occurrence, or Outcomes.
-6. Keep `backend/core/hosted_occasion_projections.py` and its policy matrix
+7. Keep `backend/core/hosted_occasion_projections.py` and its policy matrix
    experimental. Remove `EligiblePortraitFacet` from any ordinary product path;
    rename compatibility types only after callers and fixtures are mapped.
-7. Add persistence only after command lifecycle analysis shows which existing
+8. Add persistence only after command lifecycle analysis shows which existing
    grant, receipt, Occasion, Outcome, or contribution owner cannot express
    publish/replace/expire/revoke honestly. Do not start with a Status table.
 
 **Mobile delta**
 
-1. Reuse the universal input/capture affordance, then add a destination chooser
-   and exact audience/consequence preview.
+1. Reuse the universal input/capture affordance. Reveal destination choice only
+   after expressed sharing intent or an invoked share affordance, then show the
+   exact audience/consequence preview at the material boundary.
 2. Render one featured-share/Status treatment on the person's chosen social
    face; mount it elsewhere only through viewer permission and relevance.
 3. Add named-person Address/Respond treatment that preserves source and human
@@ -1266,7 +1278,9 @@ the circulation system described above.
 
 **Assurance delta**
 
-- map E01–E08 to CJ and J branches before claiming implementation coverage;
+- map E01-E08 to CJ and J branches before claiming implementation coverage;
+- exercise M0-M6 authorization, explicit-language command admission, and
+  prepare-versus-apply boundaries across the portfolio;
 - add deterministic custody/authority matrices for every destination;
 - prove create/replace/expire/revoke and stale-read behavior;
 - prove other people's names, media, private constraints, and Outcomes never
@@ -1274,7 +1288,7 @@ the circulation system described above.
 - run portfolio, API-contract, component, and native visual evidence as each
   layer becomes executable.
 
-## Execution status — 2026-08-25
+## Execution status — 2026-08-26
 
 The first implementation pass has landed in the two child repositories. The
 status below is intentionally evidence-bounded; a fixture gallery or pure
@@ -1282,7 +1296,7 @@ compiler test does not count as production mounting or native visual proof.
 
 | Packet | Status | Evidence |
 |---|---|---|
-| Product grammar correction | documented, not implemented | E01–E08 now distinguish private artifacts, Status, Address, Occasion contribution, repair, afterglow, and public Place contribution. No circulation command, Status read model, generalized Occasion contribution, or public Place publication path has landed. |
+| Product grammar correction | documented, not implemented | E01-E08 now distinguish private artifacts, Status, Address, Occasion contribution, repair, afterglow, and public Place contribution; the consequence blueprint allocates M0-M6 choice and composes three cross-surface stories. No prepared-consequence runtime, circulation command, Status read model, generalized Occasion contribution, or public Place publication path has landed. |
 | P0–P1 | partial | The strict projection contract, identity/resource rules, and A01–A15 fixture portfolio are drafted, but full seven-phase coverage and fixture-oracle validation remain open. |
 | P2 | partial | The Intake-anchor compiler now has viewer-safe Mine/Together redaction, expiry filtering, stable revisions, and focused tests; Occasion, Outcome, and receipt adapters remain pending. |
 | P3 | complete | Authenticated owner read route, operation-policy entry, OpenAPI snapshots, generated mobile schema, matching mock/real projection transport, and a read-only owner reader route are present; broader product mounting remains pending. |
@@ -1980,12 +1994,14 @@ Archive the remaining execution narrative.
 | A-D15 | What may be contributed to an Occasion? | ResourceRefs plus participation, responsibility, boundary, situated fact, perspective, evidence, and meaning | Occasion command design |
 | A-D16 | Who owns afterglow? | Occasion lifecycle read over independently owned Occurrence, contributions, Outcomes, and permissions | Occasion projection |
 | A-D17 | Is the hosted policy matrix P0? | No; named invitations and host membership control are the ordinary default; broad discovery/delegation remains experimental | Hosted Occasion review |
+| A-D18 | Who chooses the consequence? | Vesper selects and prepares at most one candidate against silence; humans authorize meaning, audience, shared expectations, and external action through M0-M6 | Consequence fixtures and owner-command design |
 
 ## 23. First executable backlog
 
 The next reviewable design packet should contain:
 
-1. E01–E08 storage-neutral journey fixtures and negative branches;
+1. E01–E08 storage-neutral journey fixtures with M0-M6 authorization,
+   prepare/apply boundaries, and negative branches;
 2. destination-intent, audience-preview, and receipt envelopes for the five
    distinct circulation commands;
 3. an authority map showing what existing owner would read or write every

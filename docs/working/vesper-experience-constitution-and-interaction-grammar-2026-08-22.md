@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: founder / product / design
 created: 2026-08-22
-last_verified: 2026-08-25
+last_verified: 2026-08-26
 expires: null
 why_new: Defines the canonical experience principles and interaction grammar through which the lived-world product thesis becomes visible without replacing domain or surface authorities.
 supersedes: []
@@ -29,6 +29,9 @@ Related working layers:
 - [Product Grammar Hypotheses and Validation](product-grammar-hypotheses-and-validation-2026-08-22.md)
   keeps unproven psychological, multiplayer, continuity, and delegation claims
   out of canon until behavioral evidence supports them.
+- [Consequence Arbitration and Cross-Surface Experience Blueprints](consequence-arbitration-and-cross-surface-blueprints-2026-08-26.md)
+  applies this grammar to choice allocation, no-homework transitions, the
+  E01-E08 portfolio, and three complete cross-surface experiences.
 - The workspace [J01-J28 journey registry](../journeys/README.md) remains the
   implementation-assurance and regression layer; it is not replaced by the
   product-design journey families.
@@ -330,6 +333,43 @@ unclear
 Vesper should infer the cheapest plausible job and ask a bounded clarification
 only when ambiguity would materially change consequence, audience, or authority.
 
+### 5.3.1 Choice allocation and consequence preparation
+
+Vesper should absorb decision work without absorbing human authority:
+
+```text
+understand
+  -> generate candidates privately
+  -> select at most one against silence
+  -> prepare without crossing a boundary
+  -> stop / offer / apply under authority / ask once
+  -> reconcile through the owner
+  -> receipt
+  -> recede
+```
+
+Vesper chooses what is worth preparing and which treatment earns attention.
+The person retains authorship of personal meaning and social expression. The
+authorized principal controls audience, shared expectations, external action,
+and irreversible consequence. Each durable owner establishes resulting truth.
+
+Natural language counts as authorization when actor, object, owner, audience,
+ordinary meaning, current authority, and reversibility are all unambiguous and
+the action does not newly expose protected data, spend, contact a provider,
+publish publicly, or create a weakly reversible Commitment. In that bounded
+case, apply once and show honest readback plus Undo or correction. Otherwise
+prepare the work and ask only at the material boundary.
+
+The authorization modes are:
+
+```text
+no boundary · optional opening · expressed in language · one-tap confirmation
+affected-principal decision · bounded mandate · explicit external/public action
+```
+
+Preparation is not persistence. A prepared consequence may disappear after
+silence, dismissal, expiry, command resolution, or receipt.
+
 ### 5.4 Human verbs
 
 The durable verbs are organized by human purpose:
@@ -545,6 +585,11 @@ authority:
   controller: null
   approval_boundary: null
   expires: null
+authorization:
+  mode: no_boundary | optional_opening | expressed_language |
+    one_tap | affected_principals | bounded_mandate | explicit_external
+  basis: null
+  reversible_or_compensatable: null
 treatment: silence | cue | answer | orient | shared_prompt |
   proposal | prepared_action | execution
 consequence: none | connection | move | occasion | commitment |
@@ -571,13 +616,17 @@ attention trace
 attention trace
   -> immediate answer
   -> proposed consequence
-  -> explicit or previously authorized boundary
+  -> private preparation
+  -> explicit language, confirmation, affected-principal authority,
+     bounded mandate, or explicit external/public boundary
   -> durable owner
-  -> visible receipt
+  -> authoritative readback and visible receipt
   -> later opening or dormancy
 ```
 
-The default path may end after the answer. Preservation is earned, not required.
+The default path may end after the answer. Preservation is earned, not required;
+the interface must not append a workflow menu or reflection question merely
+because another consequence is technically available.
 
 ### 6.1 Truth ladder
 
@@ -704,9 +753,10 @@ reflection, short status, and recovery. Use a sheet for focused editing,
 comparison, provenance, uncertainty, and confirmation.
 
 The creation affordance may be one common composer for a question, text,
-photo, Place, ticket, existing artifact, or new capture. Its destination step
-must make the consequence legible—Keep private, Send, Share with, Feature as
-Status, Contribute to Occasion, or Contribute to Place—without pretending those
+photo, Place, ticket, existing artifact, or new capture. Only after expressed
+social intent or an invoked share affordance, its destination step makes the
+consequence legible—Keep private, Send, Share with, Feature as Status,
+Contribute to Occasion, or Contribute to Place—without pretending those
 commands have one authority contract.
 
 ### 10.3 Initial primitives
