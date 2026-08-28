@@ -18,6 +18,7 @@ Durable choices that constrain future work belong here. Use the
 
 | Date | Decision | Status |
 |---|---|---|
+| 2026-08-28 | [Adopt four product moves as the whole-product spine](2026-08-28-adopt-four-product-moves.md) | accepted |
 | 2026-08-24 | [Adopt the experiential-responsibility messaging hierarchy](2026-08-24-adopt-experiential-responsibility-messaging.md) | accepted |
 | 2026-08-23 | [Adopt the lived-world product identity](2026-08-23-adopt-lived-world-product-identity.md) | accepted |
 | 2026-08-23 | [Separate systematic architecture from product proof](2026-08-23-separate-architecture-from-product-proof.md) | accepted |

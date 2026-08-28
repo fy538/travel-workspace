@@ -4,6 +4,7 @@ status: accepted
 owner: founder / engineering
 created: 2026-08-16
 decided: 2026-08-16
+last_verified: 2026-08-28
 why_new: Separate why Vesper considered intervening, what it judged, and how it chose to express or suppress that judgment across Home, Chat, Place, Plan, and push.
 supersedes: []
 source_of_truth_for: [opening-request-contract, treatment-decision-contract]
@@ -20,6 +21,14 @@ producer has already chosen a surface. That makes silence, suppression,
 cross-surface deduplication, and causal comparison difficult to prove.
 
 ## Decision
+
+> **Terminology alignment (2026-08-28):** `OpeningRequest` below is the
+> established technical name for a request to evaluate whether Vesper should
+> intervene. It may lead to Make sense, Open possibility, Help it work, Carry
+> forward, or silence. It is not equivalent to the narrower human-facing
+> **Opening**—a grounded, optional possibility made available now—and does not
+> make every intervention an Opening. Renaming the technical contract requires
+> a separate compatibility migration.
 
 Converge on this content-free causal boundary:
 

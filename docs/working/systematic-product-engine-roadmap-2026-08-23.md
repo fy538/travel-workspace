@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / architecture / engineering
 created: 2026-08-23
-last_verified: 2026-08-23
+last_verified: 2026-08-28
 expires: 2026-09-22
 why_new: Defines the minimum reusable authorities, artifact-native product surfaces, dependency order, representative slices, cancellation policy, and completion gates required to implement the August product grammar without reproducing the prior screen and workflow sprawl.
 supersedes: []
@@ -19,6 +19,13 @@ source_of_truth_for: []
 > the August product grammar. It does not by itself authorize production
 > exposure, deletion of legacy authorities, a database reset, or promotion of
 > the four-root shell.
+>
+> **2026-08-28 terminology alignment:** the canonical value grammar is **Make
+> sense, Open possibility, Help it work, Carry forward**. The formal
+> Initiator–Verb–Object sentence remains the interaction grammar. Existing M4
+> `Opening*` contracts below govern the lifecycle of optional possibilities
+> and intervention evaluation; they are not a universal product unit or a new
+> durable domain owner. Any broader rename requires a compatibility migration.
 >
 > **Founder direction, 2026-08-23:** capability does not imply a standalone
 > screen. The active product should contract around a few legible roots and a

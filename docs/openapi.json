@@ -45626,6 +45626,11 @@
             "format": "uuid",
             "title": "Commitment Id"
           },
+          "occasion_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Occasion Id"
+          },
           "trip_id": {
             "type": "string",
             "format": "uuid",
@@ -45651,13 +45656,14 @@
         "type": "object",
         "required": [
           "commitment_id",
+          "occasion_id",
           "trip_id",
           "block_id",
           "expected_source_revision",
           "idempotency_key"
         ],
         "title": "AdoptTripBlockCommitmentRequest",
-        "description": "Explicitly promote one retained Trip block into graph context."
+        "description": "Explicitly link one retained block to a canonical Commitment + Occasion."
       },
       "AffiliateLinkResponse": {
         "properties": {

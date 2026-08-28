@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: founder / product / design
 created: 2026-08-22
-last_verified: 2026-08-26
+last_verified: 2026-08-28
 expires: null
 why_new: Defines the canonical experience principles and interaction grammar through which the lived-world product thesis becomes visible without replacing domain or surface authorities.
 supersedes: []
@@ -24,6 +24,9 @@ source_of_truth_for: [vesper-experience-principles, lived-world-interaction-gram
 
 Related working layers:
 
+- The accepted [Four Product Moves decision](../decisions/2026-08-28-adopt-four-product-moves.md)
+  distinguishes the product's value grammar from the formal interaction
+  sentence, temporal lifecycle, root postures, durable objects, and treatments.
 - [Canonical Product Journey Families](canonical-product-journey-families-2026-08-22.md)
   turns this grammar into reusable product-design sentences and scenario fixtures.
 - [Product Grammar Hypotheses and Validation](product-grammar-hypotheses-and-validation-2026-08-22.md)
@@ -32,6 +35,9 @@ Related working layers:
 - [Consequence Arbitration and Cross-Surface Experience Blueprints](consequence-arbitration-and-cross-surface-blueprints-2026-08-26.md)
   applies this grammar to choice allocation, no-homework transitions, the
   E01-E08 portfolio, and three complete cross-surface experiences.
+- The workspace [Home Possibility Field and Generative Opportunity Portfolio](home-possibility-field-and-generative-opportunity-portfolio-2026-08-28.md)
+  distinguishes one dominant demand from the broader set of complete-on-view
+  possibilities a composed Home may responsibly deliver.
 - The workspace [J01-J28 journey registry](../journeys/README.md) remains the
   implementation-assurance and regression layer; it is not replaced by the
   product-design journey families.
@@ -49,15 +55,33 @@ The desired sequence is:
 ```text
 I can bring this whatever already has my attention
   -> it understands what kind of moment this is
-  -> it gives me something useful immediately
-  -> it shows any proposed consequence plainly
+  -> it makes sense of what matters now
+  -> it opens possibility or helps a consequence work when useful
   -> the physical experience becomes better or richer
-  -> later, I can feel that it remembered correctly
+  -> later, I can feel that it carried forward the right things
 ```
 
 The interface is successful when a person becomes more able to notice,
 understand, navigate, decide, relate, remember, or imagine—not when they spend
 more time operating Vesper.
+
+### 1.1 Four product moves, one richer interaction grammar
+
+The canonical value grammar is:
+
+> **Make sense. Open possibility. Help it work. Carry forward.**
+
+These are recursive product responsibilities. They are not four tabs, object
+types, screen sections, agent modes, or a required funnel. A practical answer
+may Make sense and end. A disruption may begin at Help it work. A prior Outcome
+may Carry forward by Opening possibility in a new Place or relationship.
+Multiplayer is structural across all four moves, not a fifth move.
+
+The formal sentence in §5 remains deliberately richer because it governs who
+acts, on what, for which job, in what context, through which treatment and
+authority. The personal lifecycle explains temporal progression. Roots explain
+attention posture. Durable objects own truth. Treatments render a response.
+These layers compose; none should be renamed into the others.
 
 ## 2. Constitutional principles
 
@@ -234,6 +258,18 @@ several roots while retaining one canonical owner.
 | **Places** | What is around me, what is this place, and how can I experience it? | Spatial exploration, Place identity, terrain, conditions, perspectives, familiarity, and horizons | Generic map inventory or ratings directory |
 | **Life** | What is accumulating for me and between us? | Encounters, artifacts, threads, occasions, patterns, people, shared handoffs, correction, forgetting, and privacy | Static profile, archive dump, brag feed, or universal control panel |
 
+The roots mix the product moves unevenly rather than owning one each:
+
+| Root posture | Make sense | Open possibility | Help it work | Carry forward |
+|---|---|---|---|---|
+| **Home / attend** | strong | core | core when active | strong |
+| **Vesper / understand and shape** | core | strong | core | supporting |
+| **Places / orient and inhabit** | core | core | strong | strong |
+| **Life / accumulate and return** | strong | strong | supporting | core |
+
+Design law: **one dominant job per unit; several product moves per root; one
+coherent attention hierarchy per screen; one durable owner per consequence.**
+
 ### 4.1 Plans and occasions
 
 Plans and occasions are durable shared objects, not necessarily a fifth root.
@@ -286,9 +322,10 @@ an inspectable Receipt,
 and an optional future Continuation.
 ```
 
-This sentence is the product grammar. A menu, movie ticket, invitation, Place,
-or photograph is a scenario fixture inside the sentence, not a mini-product or
-top-level journey category.
+This sentence is the **formal interaction grammar**. The four product moves are
+the **value grammar**. A menu, movie ticket, invitation, Place, or photograph is
+a scenario fixture inside the sentence, not a mini-product or top-level journey
+category.
 
 ### 5.2 Initiators
 
@@ -414,7 +451,7 @@ The default entry requires only **Ask** or **Point**.
 |---|---|
 | **Answer** | Useful now; no retention required |
 | **Thread** | A revisable question or connection worth returning to |
-| **Opening** | A current possibility for attention, action, or relationship |
+| **Opening** | A grounded, optional possibility made available now for attention, action, relationship, or continuation |
 | **Move** | One low-commitment, expiring action |
 | **Plan** | Minimum prospective structure needed to make one person's intention or dependencies coherent |
 | **Occasion** | Bounded shared world needed for participation and common consequences |
@@ -426,9 +463,10 @@ The default entry requires only **Ask** or **Point**.
 | **Receipt** | What changed, why, under what scope, and how to reverse it |
 | **Silence** | No treatment earned |
 
-An Opening is normally an ephemeral treatment: an opportunity for attention,
-conversation, relationship, or action. It should not become a durable object
-merely because it matters phenomenologically.
+An Opening is normally an ephemeral treatment inside **Open possibility**. It
+should not become a durable object merely because it matters phenomenologically,
+nor should every answer, explanation, invitation, notification, or Home unit be
+renamed an Opening merely because it is useful.
 
 ### 5.7 Vesper verbs and treatments
 
@@ -730,8 +768,9 @@ not recommendations, curiosity, or engagement.
 
 ### 10.1 Roots
 
-- **Home:** editorial composition with one dominant current opening, bounded
-  occasion state, invitations, and quiet continuation.
+- **Home:** editorial composition with one dominant current consequence,
+  bounded state, invitations, and a diverse field of grounded, low-pressure
+  possibilities and continuity.
 - **Vesper:** open composer, camera/import affordances, private and group
   conversations, typed artifacts, and immediate receipts.
 - **Places:** map and place interpretation, spatial feasibility, familiarity,

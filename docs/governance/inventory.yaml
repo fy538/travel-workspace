@@ -67,6 +67,34 @@ rules:
 
 
 overrides:
+  docs/working/four-product-moves-thread-provenance-and-adjacent-research-2026-08-28.md:
+    disposition: keep_reference
+    rationale: Active research and thread-provenance synthesis behind the accepted four-product-moves decision; the decision record and canonical product documents retain authority.
+
+  docs/working/post-return-new-york-home-possible-worlds-gallery-2026-08-28.md:
+    disposition: keep_reference
+    rationale: Active product-design gallery composing six alternative full-scroll Home possible worlds from one post-return New York fixture; canonical product, surface, editorial, architecture, and external visual-design authorities retain authority.
+
+  docs/working/home-possibility-field-and-generative-opportunity-portfolio-2026-08-28.md:
+    disposition: keep_reference
+    rationale: Active product-design correction defining Home as a point-in-time possibility field and enumerating the generative opportunity portfolio; canonical product, surface, editorial, and architecture documents retain authority.
+
+  docs/working/home-editorial-composition-pack-2026-08-27.md:
+    disposition: keep_reference
+    rationale: Active cross-repository content-and-interaction composition pack for four comparable Home situations; canonical product, editorial, surface, architecture, and domain-owner contracts retain authority.
+
+  docs/working/four-root-roles-and-home-composition-studies-2026-08-27.md:
+    disposition: keep_reference
+    rationale: Active product-design study of the Home, Chat, Places, and Life root roles plus complete Home compositions; canonical product, editorial, surface, and architecture contracts retain authority.
+
+  docs/working/home-surfaces-pre-pivot-recovery-and-post-pivot-direction-2026-08-27.md:
+    disposition: keep_reference
+    rationale: Active recovery and synthesis of pre-pivot Home and Places composition evidence for the four-root direction; external design authority and canonical product and surface contracts retain authority.
+
+  docs/working/adaptive-experience-composition-apriori-and-adjacent-product-research-2026-08-27.md:
+    disposition: keep_reference
+    rationale: Active research memo on a-priori constraints and adjacent-product evidence for bounded adaptive composition; it is construction and strategy evidence, not product, architecture, or rollout authority.
+
   docs/working/m5-execution-and-reality-closure-2026-08-23.md:
     disposition: keep_reference
     rationale: Active bounded M5 implementation-closure record; canonical architecture and release authorities remain primary.
@@ -94,6 +122,10 @@ overrides:
   docs/working/consequence-arbitration-and-cross-surface-blueprints-2026-08-26.md:
     disposition: keep_reference
     rationale: Active behavioral blueprint for consequence choice, authorization modes, no-homework transitions, and E01-E08 cross-surface composition; canonical product, experience, surface, multiplayer, and domain-owner contracts retain authority.
+
+  docs/working/whole-product-parallel-exploration-packets-2026-08-27.md:
+    disposition: keep_reference
+    rationale: Active bounded package for comparable whole-product investigations across adaptive expression, situated judgment and continuity, multiplayer agency, and visual language; canonical product, experience, surface, architecture, and domain-owner contracts retain authority.
 
   docs/working/m1-surface-contraction-register-2026-08-23.md:
     disposition: keep_reference

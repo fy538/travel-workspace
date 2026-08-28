@@ -3,6 +3,7 @@ doc_type: working
 status: active
 owner: founder-product-design
 created: 2026-08-23
+last_verified: 2026-08-28
 expires: 2026-09-22
 why_new: Consolidates cross-repository visual-direction research after the August product pivot and translates it into a coherent artifact, temporal, relational, and multiplayer visual system.
 promotes_to: visual-constitution-and-artifact-surface-contract-after-direction-selection
@@ -51,10 +52,15 @@ experience sequences, not one isolated card or one proof loop.
 
 The August pivot made the visual problem more ambitious and more coherent.
 Vesper is **personal and multiplayer intelligence for the lived world**, with
-four promises: See More, Live It Well, Carry It Forward, and Experience It
-Together. Its subject is the relationship among a person, other people, and the
-physical world; lived experience is the human unit, not the trip itinerary,
-recommendation, booking, chat turn, or memory archive.
+four recurring product moves: **Make sense, Open possibility, Help it work,
+and Carry forward**. Multiplayer is structural across all four rather than a
+separate social pillar. Its subject is the relationship among a person, other
+people, and the physical world; lived experience is the human unit, not the
+trip itinerary, recommendation, booking, chat turn, or memory archive.
+
+These moves are value responsibilities, not four visual styles, page regions,
+or tab assignments. Visual composition should reveal the dominant job while
+allowing a root or experience to contain several moves coherently.
 
 The visual system therefore cannot be organized around feature ownership. A
 plane ticket, menu photograph, dinner invitation, hotel confirmation, movie

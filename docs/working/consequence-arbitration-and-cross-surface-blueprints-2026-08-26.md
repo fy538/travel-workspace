@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / design / architecture
 created: 2026-08-26
-last_verified: 2026-08-26
+last_verified: 2026-08-28
 expires: 2026-09-25
 why_new: Defines who chooses after Vesper understands an input, how consequences become smooth without becoming invasive, and how the E01-E08 portfolio composes across product surfaces.
 supersedes: []
@@ -39,6 +39,12 @@ job, privately prepare at most one best next consequence, and then either:
 
 The normal interaction is not a funnel. A complete answer may end. Preparation
 does not imply persistence, presentation, notification, or execution.
+
+In the four-move value grammar, this document chiefly governs the transition
+from **Make sense** or **Open possibility** into **Help it work**, plus the
+authorization and receipt boundary for anything that **Carries forward**. It
+does not imply that every move needs a consequence or that the four moves occur
+in order.
 
 ## 2. Who chooses
 
@@ -344,20 +350,30 @@ Home: later transfer only when a real cooking or Place moment makes it useful
 
 ## 10. Surface consequence responsibilities
 
+This table governs consequence-bearing demand, not the full content budget of
+each surface. In particular, Home may compose several complete-on-view
+contributions while allowing only one consequence to dominate.
+
 | Surface | Consequence responsibility | Must not become |
 |---|---|---|
 | **Vesper** | Admission, understanding, private preparation, negotiation, bounded confirmation, and receipt | Workflow selector, universal owner, or endless CTA generator |
-| **Home** | The one prepared, active, changed, or returned consequence that deserves attention now—and intentional quiet | Feed of every candidate, artifact, or social update |
+| **Home** | The prepared, active, changed, or returned consequence—if any—that deserves foreground attention within a bounded field of completed value and grounded possibility | Feed of every candidate, artifact, or social update |
 | **Occasion** | Membership, participation, shared Decisions and Commitments, live truth, repair, and phase-relative afterglow | Profile system, generic event workspace, or group scrapbook |
 | **Place** | Stable world truth, situated interpretation, spatial consequence, and governed public contribution | Review directory, creator leaderboard, or private-memory owner |
 | **Life / You** | Private continuity, chosen Status, relationships, correction, audience, mandate, and forgetting controls | Archive dump, static dossier, or performance profile |
 | **Plan** | Prospective structure and accepted consequence | Required container for curiosity or owner of lived meaning |
 | **Push** | Material time-sensitive boundary where delayed awareness would create harm | Recommendation habit or reminder of ignored optional openings |
 
-Home's product question becomes concrete:
+Home's consequence question becomes concrete:
 
 > **What prepared, active, changed, or returned consequence—if any—deserves my
 > attention now?**
+
+This is the question for **consequence arbitration and foreground dominance**,
+not a ceiling on the entire Home composition. The full page may also contain a
+diverse, low-pressure portfolio of complete-on-view possibilities. Demand and
+possibility use different budgets; the attention arbiter and the Home composer
+must not be collapsed into one top-one selector.
 
 ## 11. Architecture implications, not authorization
 

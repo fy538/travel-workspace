@@ -3,6 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / design / engineering
 created: 2026-08-22
+last_verified: 2026-08-28
 expires: 2026-09-21
 why_new: Defines the first integrated multiplayer proof of situated hospitality, plural perception, practical relief, and a coherent shared real-world outcome.
 promotes_to: null
@@ -75,12 +76,16 @@ serves neither person.
 
 ## 3. What this proof must demonstrate
 
-| Promise | Observable behavior |
+| Product move | Observable behavior |
 |---|---|
-| See more | At least one person notices, understands, or asks something they otherwise would not, possibly by borrowing the other's lens. |
-| Live it well | The choice fits heat, energy, route, time, access, and the actual evening better than a generic recommendation or tour. |
-| Carry it forward | Any continuity is authorized, source-bound, and later changes judgment or capability; non-retention remains valid. |
-| Experience it together | Both people receive independent value, private context stays private, shared action is coherent, and subjective experience remains plural. |
+| Make sense | At least one person gains a more useful representation or explanation, possibly through the other's authorized perspective. |
+| Open possibility | A grounded way into the evening becomes available without becoming an obligation. |
+| Help it work | The choice fits heat, energy, route, time, access, and both people better than a generic recommendation or tour. |
+| Carry forward | Any continuity is authorized, source-bound, and later changes judgment or capability; non-retention remains valid. |
+
+Multiplayer crosses every row: both people receive independent value, private
+context stays private, shared action is coherent, and subjective experience
+remains plural.
 
 Multiplayer success is not merely absence of leakage. The pair should be able to
 name how Vesper helped them understand one another, combine distinct attention,

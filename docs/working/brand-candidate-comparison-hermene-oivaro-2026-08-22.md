@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: product / founder
 created: 2026-08-22
-last_verified: 2026-08-22
+last_verified: 2026-08-28
 expires: 2026-09-21
 why_new: Records the two current master-brand candidates after the August product-philosophy refinement; it does not authorize public use or replace trademark, linguistic, or domain clearance.
 source_of_truth_for:
@@ -164,7 +164,7 @@ etymology:
 - Oivaro Travels, a local Maldives operator listed in a Visit Maldives
   directory:
   https://th.mdvmission.gov.mv/images/Visit-Maldives/destination-guide-2024-english.pdf
-- The wider product framing and its four connected promises:
+- The wider product framing and its four recurring product moves:
   [`Product Thesis`](../../travel-agent/docs/product/Product%20Thesis.md)
 - The multiplayer thesis that Place is a third thing between people:
   [`Differentiated Social Multiplayer Strategy`](../../travel-agent/docs/working/differentiated-social-multiplayer-strategy-2026-08-21.md)

@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / engineering
 created: 2026-08-23
-last_verified: 2026-08-23
+last_verified: 2026-08-28
 expires: 2026-09-22
 why_new: Records the executable M4 attention loop plus the graph/Lived and typed-destination convergence boundary before notification and physical-device delivery certification.
 supersedes: []
@@ -12,6 +12,15 @@ source_of_truth_for: [m4-opening-attention-loop]
 ---
 
 # M4 Opening, delivery, and deliberate silence
+
+> **2026-08-28 terminology alignment:** this receipt describes the implemented
+> lifecycle for a real optional possibility and its attention controls.
+> `OpeningCandidate`, `OpeningRequest`, and `CanonicalOpening` are compatibility
+> names in that slice; they do not make Opening a durable domain authority or
+> the universal unit of Home, proactivity, or product value. Persisted state
+> supports expiry, deduplication, response, and receipts while the durable
+> consequence remains owned by Place, Plan, Occasion, Commitment, Outcome, or
+> another canonical authority.
 
 ## Closure boundary
 
