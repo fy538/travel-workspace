@@ -79,6 +79,10 @@ rules:
 
 
 overrides:
+  docs/working/four-root-visual-system-exploration-brief-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active fixed-content brief and rubric for comparing three coherent visual systems in a dedicated design tool; the integrated semantic portfolio and canonical expression doctrine retain authority.
+
   docs/working/integrated-four-root-experience-portfolio-2026-08-29.md:
     disposition: keep_reference
     rationale: Selected five-situation semantic portfolio across Home, Chat, Places, and Life; it is the active experience requirement for visual selection and contract extraction while canonical product and system documents retain authority.
