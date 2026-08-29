@@ -711,6 +711,13 @@ hints remain `ResourceLocator` values. The offline fixture portfolio is
 mobile contracts, and dogfood remain unchanged while the facade is off. See
 `decisions/2026-08-29-execute-wave-1.md` for the execution receipt.
 
+The canonical vocabulary is now explicit: Artifacts are human-facing inputs or
+materials; Sources are evidentiary/custody roles; generated returns are
+Compositions; live consequential expressions are Instruments; Direct State
+expressions expose owner truth without generated ceremony; and Projections are
+viewer-, root-, density-, and moment-relative renderings. The shadow
+`PrimaryProjection` enum therefore uses `composition`, not `artifact`.
+
 Deliverables:
 
 - one canonical `ResourceRef` vocabulary;
@@ -727,64 +734,98 @@ Exit gate:
   separate but connected;
 - runtime remains unchanged with the facade disabled.
 
-### Wave 2 — Owner-aware read layer
+### Wave 2 — Integrated experience portfolio
 
 Deliverables:
 
-- Life, Source, Place, Plan, Commitment, Occasion, relationship, Opening-trace,
-  Moment, receipt, and provider-condition readers;
-- adapters over current authoritative systems;
-- identity, revision, provenance, privacy, unknown, stale, and conflict truth;
-- no model-visible presentation or maintenance tools counted as capability.
+- one fixed evidence world exercised through quiet ordinary New York, an
+  emerging Saturday, live disruption, Europe return, and social
+  withdrawal/revocation;
+- complete Home, Chat, Places, and Life states for every situation;
+- exact value, why-now/why-here, Sources, author, viewer, audience, owner,
+  lifecycle, continuation, suppression, and failure behavior for every unit;
+- explicit differentiation among Direct State, Composition, Instrument,
+  receipt, owner link, short prose, and silence; and
+- one founder-selected semantic composition rather than one grammar per root.
 
 Exit gate:
 
-- every fixture's required context can be assembled from owner reads rather
-  than transcript excavation;
+- Home and Places deliver substantive value without requiring input;
+- Chat remains calm and contribution/agency oriented;
+- Life supports finding, returning, seeing anew, and continuing without
+  ontology maintenance;
+- social material changes an object, possibility, participation, or
+  consequence rather than forming a feed; and
+- unknown, stale, disputed, revoked, partial, and do-nothing paths are visible.
+
+### Wave 3 — Fixed-content visual-system selection
+
+Deliverables:
+
+- a fixed-content design brief covering Home quiet/emerging/urgent, Chat
+  default/contextual, Places World/Focus/Path/Live, Life entrance/episode, and
+  a social state;
+- the current warm paper/serif/gold system as control plus genuinely distinct
+  alternatives from a dedicated visual tool;
+- legible visual differences among owner state, human contribution, Vesper
+  Composition, Instrument, provenance, social authorship, and urgency; and
+- one selected system with explicit rejection reasons for the alternatives.
+
+Exit gate:
+
+- the first five seconds communicate root posture and dominant value;
+- the system avoids a card zoo and the repeated label/headline/paragraph/card
+  grammar;
+- maps, evidence, receipts, data, and controls have native visual roles; and
+- visual exploration does not invent copy, sections, owners, or permissions.
+
+### Wave 4 — Minimum projection and owner-read contracts
+
+Deliverables:
+
+- semantic read models only for fields visible in the selected portfolio;
+- a field-to-owner ledger covering reader, revision, freshness, audience,
+  correction path, and missing behavior;
+- Home temporal, Places World/Focus/Path/Live, Life index/episode, and Chat
+  entry/result/receipt projections;
+- one canonical backend `ResourceRef`; fixture-local aliases remain explicitly
+  non-production; and
+- owner adapters prioritized by reuse across at least three accepted fixture
+  states, not by ontology completeness.
+
+Exit gate:
+
+- every visible field has one owner or an explicit degraded state;
+- every selected situation can be assembled without transcript excavation;
 - Trip-specialized reads are labeled honestly;
-- missing owners remain explicit instead of simulated by prose.
+- no backend payload contains a component tree or client navigation; and
+- no durable owner exists solely to satisfy one mockup.
 
-### Wave 3 — Four-root projection contracts
+### Wave 5 — Bounded engineering and native experience lab
 
 Deliverables:
 
-- semantic read models for Home temporal composition;
-- Places World Field, Place Focus, Place Path, and Live Reduction;
-- Life index, episode, Timeline, Map, Sources, people, and Returns;
-- Chat entry, answer, instrument, receipt, owner link, and return;
-- medium hints separated from native rendering;
-- projection identity and stale-origin behavior.
+- only the owner readers required by Wave 4;
+- a semantic result envelope for Direct State, Composition, Instrument,
+  receipt, owner link, short prose, and silence;
+- a fixture-backed native lab rendering the selected portfolio outside
+  production navigation;
+- contextual handoff and exact return behavior; and
+- stable unavailable, stale, disputed, revoked, partial, and accessible states.
 
 Exit gate:
 
-- all four roots can render representative fixture states from the same owners;
-- the same object never forks into root-specific truth;
-- Home and Places return value, Chat remains sparse, and Life remains stable;
-- visual composition may still change without changing the semantic contract.
+- the same owner identities render coherently across all four roots;
+- the selected semantic and visual system survives native constraints;
+- no duplicate truth, arbitrary model-authored UI, or transcript-derived owner
+  read is required; and
+- the lab passes type, fixture, accessibility, and visual-review gates.
 
-### Wave 4 — App structural transformation
-
-Deliverables:
-
-- stable Home / Chat / Places / Life shell;
-- contextual handoffs and exact return behavior;
-- selected-object continuity between direct manipulation and Chat;
-- shared loading, unavailable, stale, disputed, revoked, and partial states;
-- one semantically complete composition for each root across the same portfolio.
-
-This is breadth-first whole-product structure, not one-loop proof.
-
-Exit gate:
-
-- representative solo, dyad, group, live, ordinary, and post-return situations
-  move coherently through the shell;
-- the shell survives visual treatment changes;
-- no orphan route or duplicate owner UI is required.
-
-### Wave 5 — Consequence, repair, and multiplayer
+### Wave 6 — Gated shell, consequence, repair, and multiplayer
 
 Deliverables:
 
+- Home / Chat / Places / Life shell behind a feature flag;
 - proposal versus commit boundary;
 - Occasion creation, invitation, membership, constitution, and decision state;
 - minimum-safe private constraint compilation;
@@ -799,7 +840,7 @@ Exit gate:
 - one person's Outcome never becomes group truth;
 - revocation and membership changes recompile dependent projections.
 
-### Wave 6 — Durable real-world operation
+### Wave 7 — Durable real-world operation
 
 Deliverables:
 
@@ -817,7 +858,7 @@ Exit gate:
 - Home shows consequence, not workflow exhaust;
 - provider truth never derives from Plan or assistant claims.
 
-### Wave 7 — Compatibility retirement
+### Wave 8 — Compatibility retirement
 
 Only after parity:
 
@@ -881,31 +922,36 @@ content evaluation, and architecture conformance—not behavioral claims.
 
 ## 14. Founder execution order
 
-### First two focused days
+### Decision block 1 — product and contract
 
-1. Review A13–A18 against the lived stories and reject any that feel like
-   invented product theater.
-2. Resolve the twelve product decisions in section 11.
-3. Normalize the authority schema used by A01–A12.
-4. Mark the four-root direction canonical while preserving composition as
-   experimental.
+1. Hold one integrated evidence world constant across the five accepted
+   situations and all four roots.
+2. Select the complete semantic portfolio, including degraded and no-action
+   paths.
+3. Confirm the Artifact / Source / Claim / Composition / Instrument /
+   Projection vocabulary and result-family mapping.
 
-### Following three to five focused days
+### Decision block 2 — expression
 
-1. Convert A01–A18 into structured fixture data.
-2. Produce the complete owner/read/write/projection gap report.
-3. Define the cross-root entry and return envelope.
-4. Derive semantic read-model contracts for all four roots.
-5. Select representative states for later visual exploration in a dedicated
-   tool.
+1. Send fixed content and state to a dedicated visual tool.
+2. Compare the control with genuinely different systems without allowing the
+   visual pass to add product sections or authority.
+3. Select one visual system and record why the alternatives failed.
 
-### First cross-repository engineering package
+### Decision block 3 — architecture
 
-1. Land the normalized fixture schema and offline assertions in the backend.
-2. Add missing semantic read adapters without replacing proven writers.
-3. define shared API projection contracts and regenerate frontend types;
-4. implement cross-root object identity and return infrastructure; and
-5. keep all new runtime behavior disabled until the surface stability gate.
+1. Extract only fields visible in the selected experiences.
+2. Produce the field-to-owner and projection matrix.
+3. Approve the minimum owner readers and semantic result envelope.
+
+### First cross-repository implementation package
+
+1. Add bounded owner-read adapters without replacing proven writers.
+2. Align the semantic result envelope and regenerate API types only if a public
+   contract is introduced.
+3. Render the complete portfolio in a fixture-backed native lab.
+4. Introduce the four-root shell only after the lab passes semantic and visual
+   review; keep new runtime behavior gated until then.
 
 ## 15. Stop conditions
 

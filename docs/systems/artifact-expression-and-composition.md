@@ -173,6 +173,24 @@ explicitly live projection; it never rewrites what the person saved silently.
 
 ## Current implementation lanes
 
+The semantic result boundary is a tagged family, not one universal
+`CompositionBrief`:
+
+| Result family | When it is correct | Durable truth | Native responsibility |
+| --- | --- | --- | --- |
+| **Direct State** | One owner fact or transition is the complete value | Canonical owner | Express state and open owner |
+| **Composition** | Vesper adds reconstruction, explanation, comparison, orientation, or editorial synthesis | Sources, Claims, owners; saved version only after trigger | Select medium, density, anatomy, and fallback |
+| **Instrument** | Value depends on current state, manipulation, authorization, or consequence | Canonical owner plus command/receipt owner | Render live controls, freshness, fallback, and recovery |
+| **Receipt** | A consequential attempt changed, failed, or partially changed owner state | Command, delivery, provider, and affected owners | Show verified per-owner result and recovery |
+| **Owner link** | The owned object is already the best place to continue | Referenced owner | Preserve selection and return envelope |
+| **Short prose** | A direct answer needs no structured expression | Normally none | Keep it conversational and complete |
+| **Silence** | No surfaced intervention earns its attention cost | None | Preserve stable navigation and current world |
+
+An agentic turn may select one primary family and bounded supporting metadata.
+`CompositionBriefV0` governs only the Composition family. The cross-root
+handoff envelope carries selected `ResourceRef`s, viewer, Moment, continuation,
+and return target; it never carries client geometry or grants action authority.
+
 | Lane | Present role | Doctrine |
 | --- | --- | --- |
 | `CanonicalArtifactProjectionV1` | Legacy-named viewer-safe semantic read model over an Intake anchor | Preserve as a read spine; align its naming and expand owner adapters deliberately, not into a visual DSL |
