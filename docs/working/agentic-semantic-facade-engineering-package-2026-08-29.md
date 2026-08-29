@@ -519,7 +519,7 @@ a permanent parallel control plane.
 
 ```python
 class AgenticTurnFrame(StrictFrozenModel):
-    schema_version: Literal["agentic-turn-shadow-v1"]
+    schema_version: Literal["agentic-turn-shadow-v2"]
     policy_version: Literal["contribution-policy-v1"]
     catalog_version: Literal["semantic-catalog-v1"]
     turn_id: UUID
