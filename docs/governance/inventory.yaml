@@ -17,6 +17,14 @@ rules:
     disposition: archive
     rationale: Already lives in the non-authoritative historical tree.
 
+  - glob: docs/working/agentic-semantic-facade-engineering-package-2026-08-29.md
+    disposition: keep_reference
+    rationale: Implemented offline architecture package and dormant runtime instrumentation supporting the agentic cutover; canonical product and system contracts retain authority.
+
+  - glob: docs/working/whole-product-v1-conformance-workbook-2026-08-29.md
+    disposition: keep_reference
+    rationale: Active whole-product portfolio, owner and capability ledger, and execution gates used to derive canonical deltas before surface implementation or dogfooding.
+
   - glob: docs/templates/*.md
     disposition: keep_reference
     rationale: Reusable authoring scaffolds, not product or implementation truth.
