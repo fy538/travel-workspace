@@ -68,6 +68,19 @@ Wedge journeys = the group-trip path (journeys 02 → 05). "Serves" cites
 
 ## Cross-cutting doctrines
 
+- [Artifact Expression and Composition](artifact-expression-and-composition.md)
+  governs the boundary among canonical truth, agent-authored semantic briefs,
+  native medium rendering, cross-root projection, instruments, direct state,
+  and selectively persisted saved compositions.
+- [Four-Root Loop, Object, and Surface](four-root-loop-object-surface.md)
+  governs the Home, Chat, Places, and Life postures, the compounding context
+  loop, one-identity cross-root projections, Life's container-and-lens model,
+  context-preserving handoffs, engine placement, and parallel-lane promotion.
+- [Contribution and Consequence](contribution-and-consequence.md) governs how
+  questions, observations, Sources, invitations, corrections, and world events
+  become immediate value, independent Source/claim/projection lifecycles,
+  scoped learning, purpose-bound multiplayer use, owner mutations, projections,
+  receipts, or deliberate no-write across every surface and connected service.
 - [Planning / Itinerary](planning-itinerary.md) governs the living itinerary as
   the canonical shared trip artifact. Chat, voice, notifications, booking, and
   Places may open or announce actions; they do not become competing trip truth.
@@ -98,6 +111,9 @@ features don't re-derive the answer from scratch.
 
 | Doctrine | Governs | Applies to |
 |---|---|---|
+| [Artifact Expression and Composition](artifact-expression-and-composition.md) | Artifact/composition distinction, agent boundary, bounded anatomy, native renderer ownership, cross-root identity, and selective persistence | Generated editorial value, instruments, direct state, Home/Chat/Places/Life projections, saved/shared compositions, and renderer compatibility |
+| [Four-Root Loop, Object, and Surface](four-root-loop-object-surface.md) | Root posture, compounding loop, object identity, projection, handoff, Life organization, engine placement, multiplayer integration, and promotion boundaries | Home, Chat, Places, Life, Journeys, Occasions, Plans, monitors, notifications, generated compositions, and social projection |
+| [Contribution and Consequence](contribution-and-consequence.md) | Gesture, structured five-axis authority, lifecycle, scoped learning, purpose, T0/T1/T2 treatment, owner handoff, and causal repair | Chat, Intake, Home, Places, Life, Occasions, Plans, proactive, memory, connectors, and social projection |
 | [Graph Legibility](graph-legibility-doctrine.md) | *"The model knows X — should we show that?"* Show vs. tell, keep-silent list, intentional You memory controls, write-back tiers | Vesper, You, Trips, Places — any surface that reads or writes the traveler/group world model |
 
 ---

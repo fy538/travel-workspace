@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / design / architecture / engineering
 created: 2026-08-23
-last_verified: 2026-08-26
+last_verified: 2026-08-28
 expires: 2026-09-22
 why_new: Turns the approved canonical-artifact direction into one cross-repository execution plan covering identity, viewer-safe projection, visual families, bounded relationships, portfolio fixtures, Life exploration, validation, rollout, and cancellation without creating a new artifact authority.
 supersedes: []
@@ -29,6 +29,7 @@ Governing inputs and implementation anchors:
 - [Vesper Experience Constitution and Interaction Grammar](vesper-experience-constitution-and-interaction-grammar-2026-08-22.md)
 - [Consequence Arbitration and Cross-Surface Experience Blueprints](consequence-arbitration-and-cross-surface-blueprints-2026-08-26.md)
 - [Product Model](../../travel-agent/docs/product/Product%20Model.md)
+- [Vesper Expression, Medium, and Projection Canon](../../travel-agent/docs/product/Vesper%20Expression%2C%20Medium%2C%20and%20Projection%20Canon.md)
 - [Artifact and Experience Anchor Grammar v1](../../travel-agent/docs/working/artifact-and-experience-anchor-grammar-v1-2026-08-21.md)
 - [Experience Anchors, Occasions, and Visual Memory](../../travel-agent/docs/working/experience-anchors-occasions-and-visual-memory-2026-08-19.md)
 - [Clean-Break Experience Graph](../../travel-agent/docs/architecture/clean-break-experience-graph-2026-08-21.md)
@@ -72,7 +73,11 @@ CanonicalArtifactProjectionV1
         │       ↓
         │   Movement / Dwelling / Gathering / Encounter
         │       ↓
-        │   compact / standard / timeline / occasion / constellation
+        │   one lead medium + optional modifiers
+        │       ↓
+        │   compact / standard / immersive density
+        │       ↓
+        │   Home / Chat / Places / Life / Plan / Occasion context
         │
         └── bounded relationship compiler
                 ↓
@@ -80,6 +85,13 @@ CanonicalArtifactProjectionV1
 ```
 
 “Artifact” is a projection of durable truth, not another truth owner.
+
+The implementation currently retains the legacy `compact | standard |
+timeline | occasion | constellation` mode union. Those keys are compatibility
+renderers, not one canonical dimension: compact and standard describe density;
+timeline is sequence; Occasion is a surface/composition context; and
+constellation is a relational composition. This plan records that distinction
+without claiming the landed contract has migrated.
 
 This projection system is a carrier layer, not the product center. The human
 unit remains Experience; Occasion owns bounded shared consequences; Status is
@@ -793,12 +805,37 @@ transport directly.
 
 ### 7.2 Render profile
 
-Conceptual client-only contract:
+The landed V1 client contract still exposes the legacy `mode` union. The target
+conceptual decomposition is:
 
 ```ts
+type ArtifactMedium =
+  | "evidence"
+  | "sequence"
+  | "comparison"
+  | "spatial"
+  | "prose"
+  | "instrument";
+
 type ArtifactRenderProfile = {
   family: "movement" | "dwelling" | "gathering" | "encounter";
-  mode: "compact" | "standard" | "timeline" | "occasion" | "constellation";
+  leadMedium: ArtifactMedium;
+  supportingMedium: ArtifactMedium | null;
+  modifiers: Array<"social" | "relational" | "quantitative">;
+  semanticRole:
+    | "canonical_state"
+    | "operational_instrument"
+    | "human_contribution"
+    | "editorial_contribution"
+    | "receipt";
+  density: "compact" | "standard" | "immersive";
+  surfaceContext:
+    | "home"
+    | "chat"
+    | "places"
+    | "life"
+    | "plan"
+    | "occasion";
   emphasis:
     | "identification"
     | "preparation"
@@ -807,7 +844,6 @@ type ArtifactRenderProfile = {
     | "lived_outcome"
     | "continuity"
     | "minimal_receipt";
-  density: "sparse" | "regular" | "expanded";
   morphology: string;
   factPriority: string[];
   mediaSlots: string[];
@@ -826,12 +862,16 @@ canonical resource kind
 + available non-expired facts
 + authorized media
 + Mine/Together scope
-+ requested projection mode
++ requested surface context and density
++ admitted job, semantic role, and necessary modifiers
 = render profile
 ```
 
 The resolver is exhaustive and fail-closed. Unsupported combinations fall back
-to a sparse truthful frame, not to a guessed family or raw JSON card.
+to a compact truthful expression or direct owner link, not to a guessed family,
+raw JSON card, or generic prose wrapper. A separate implementation decision
+must define migration from the V1 `mode` field; this working plan does not
+authorize an incompatible API or TypeScript change.
 
 ### 7.3 Family selection rules
 
@@ -971,9 +1011,23 @@ Encounter should tolerate incompleteness. A translated menu, identified
 building detail, or practical answer may expire without being forced into a
 memory artifact.
 
-## 9. Projection modes
+## 9. Legacy projection-mode compatibility and target decomposition
 
-### 9.1 Compact
+The five landed mode names remain useful fixture and renderer identifiers, but
+they must be interpreted through the Expression, Medium, and Projection Canon:
+
+| Legacy mode | Target dimension |
+| --- | --- |
+| `compact` | density = `compact` |
+| `standard` | density = `standard` |
+| `timeline` | lead medium = `sequence`, normally standard or immersive density |
+| `occasion` | surface context = `occasion`, commonly with the social modifier |
+| `constellation` | relational modifier over an appropriate lead medium, with a complete list or sequence alternative |
+
+The rules below remain compatibility requirements for the existing renderer.
+They do not authorize the legacy union as the production medium ontology.
+
+### 9.1 Compact density compatibility
 
 Used in Chat, Home, Places context, and cross-surface previews.
 
@@ -987,7 +1041,7 @@ Rules:
 - opens canonical owner/focused projection; and
 - never becomes a miniature management workspace.
 
-### 9.2 Standard
+### 9.2 Standard density compatibility
 
 Used in a focused sheet or owner projection.
 
@@ -1000,7 +1054,7 @@ Rules:
 - origin-preserving Back; and
 - no requirement for a standalone route.
 
-### 9.3 Timeline
+### 9.3 Timeline / sequence compatibility
 
 Used to show maturation and episodes across time.
 
@@ -1012,7 +1066,7 @@ Rules:
 - source duplicates do not appear as separate episodes; and
 - undated/uncertain items live in an explicit unresolved region.
 
-### 9.4 Occasion
+### 9.4 Occasion-context compatibility
 
 Used to compose several accepted anchors around one bounded episode.
 
@@ -1024,7 +1078,7 @@ Rules:
 - personal meaning never becomes group summary by aggregation; and
 - the Occasion renderer references anchor resources rather than copying them.
 
-### 9.5 Constellation
+### 9.5 Constellation / relational compatibility
 
 Used for bounded exploration of an artifact neighborhood.
 
@@ -1300,7 +1354,7 @@ compiler test does not count as production mounting or native visual proof.
 | P0–P1 | partial | The strict projection contract, identity/resource rules, and A01–A15 fixture portfolio are drafted, but full seven-phase coverage and fixture-oracle validation remain open. |
 | P2 | partial | The Intake-anchor compiler now has viewer-safe Mine/Together redaction, expiry filtering, stable revisions, and focused tests; Occasion, Outcome, and receipt adapters remain pending. |
 | P3 | complete | Authenticated owner read route, operation-policy entry, OpenAPI snapshots, generated mobile schema, matching mock/real projection transport, and a read-only owner reader route are present; broader product mounting remains pending. |
-| P4–P5 | partial | Shared mobile frame, family-specific structural cues, five densities, fixture gallery, component tests, and a registered dev-fixture QA contract are present; native visual evidence remains pending. |
+| P4–P5 | partial | Shared mobile frame, family-specific structural cues, five legacy mode renderings, fixture gallery, component tests, and a registered dev-fixture QA contract are present; the canonical medium/density/context decomposition and native visual evidence remain pending. |
 | P6 | partial | Phase-aware render profiles, source deletion/degradation, unknown-state parity, and Intake expiry are covered; full cross-surface correction and cached-view invalidation remain open. |
 | P7 | partial | Client-only typed relation compilation, allowlisted predicates, scope filtering, provenance/basis, node cap, and list fallback are present; Outcome, receipt, Plan, and time-edge adapters remain open. |
 | P8 | exploratory | The Life lab includes an episode-composition hypothesis, but accepted Occasion composition and role projections remain unimplemented. |
@@ -1472,8 +1526,9 @@ direction.
 2. Implement fact-key formatting and TTL-safe display.
 3. Implement shared artifact frame, status, provenance, action, unknown, and
    source-degraded primitives.
-4. Implement compact/standard/timeline/occasion/constellation containers with
-   placeholder family bodies.
+4. Implement legacy compact/standard/timeline/occasion/constellation
+   compatibility containers with placeholder family bodies; do not promote
+   those five keys into the canonical medium ontology.
 5. Create a dev-only gallery consuming canonical static fixtures.
 6. Register a `dev-fixture` surface contract and scenario manifest.
 7. Add accessibility order and Dynamic Type scaffolding.
@@ -1995,6 +2050,7 @@ Archive the remaining execution narrative.
 | A-D16 | Who owns afterglow? | Occasion lifecycle read over independently owned Occurrence, contributions, Outcomes, and permissions | Occasion projection |
 | A-D17 | Is the hosted policy matrix P0? | No; named invitations and host membership control are the ordinary default; broad discovery/delegation remains experimental | Hosted Occasion review |
 | A-D18 | Who chooses the consequence? | Vesper selects and prepares at most one candidate against silence; humans authorize meaning, audience, shared expectations, and external action through M0-M6 | Consequence fixtures and owner-command design |
+| A-D19 | Do the five landed projection modes define one canonical enum? | No; retain them as compatibility renderer keys until a reviewed migration separates lead medium, modifiers, semantic role, density, and surface context | Render-profile migration decision |
 
 ## 23. First executable backlog
 
@@ -2013,8 +2069,11 @@ The next reviewable design packet should contain:
    handoff, Occasion contribution, and afterglow;
 7. explicit treatment of the current hosted-policy prototype as exploratory;
 8. CJ-to-J assurance mapping and portfolio oracles; and
-9. a review decision about which seams belong in existing grants, receipts, and
-   Occasion contracts before any schema or production surface is authorized.
+9. an explicit compatibility map from each landed projection mode to lead
+   medium, modifiers, semantic role, density, and surface context; and
+10. a review decision about which seams belong in existing grants, receipts,
+    and Occasion contracts before any schema or production surface is
+    authorized.
 
 That packet is systematic architecture work. It does not ask the organization
 to bet the product on a single behavioral loop, and it does not require a

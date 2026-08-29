@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: founder / engineering
 created: 2026-07-06
-last_verified: 2026-07-10
+last_verified: 2026-08-29
 why_new: Establish one cross-cutting boundary for when the world model may explain itself to users.
 supersedes: []
 source_of_truth_for: [graph-legibility-and-model-reveal-policy]
@@ -14,7 +14,7 @@ source_of_truth_for: [graph-legibility-and-model-reveal-policy]
 > Status: ratified 2026-07-10
 > Applies to: Vesper, You, Trips, Places, and any surface that reads or writes the traveler/group world model
 > Consumed by: all system charters above should cite this doc when adding a "does the model know this" moment
-> Last updated: 2026-07-06
+> Last updated: 2026-08-29
 
 ## Purpose
 
@@ -38,7 +38,16 @@ and group dynamics.
 Run every candidate "does the model know this" moment through both before building it:
 
 1. **Would a great human concierge say this out loud, or just do it?** If they'd just do it (book the table, skip the question, pick the neighborhood), it's *show* — change behavior, build no UI. If a concierge genuinely would say it out loud (offering a choice, checking in), it's *tell* — but keep it to dialogue, phrased as an offer, never a chrome element phrased as a verdict.
-2. **Did the user deliberately author this signal, and would they be relaxed seeing it read back?** Saves, edits, explicit corrections, things typed into chat — pass. Dwell time, query content, which way someone voted in a group decision — fail, and stay invisible **always**, regardless of how useful the signal is internally.
+2. **Did the user deliberately author this claim for this use, and would they be
+   relaxed seeing it read back?** Explicit saves, edits, corrections, and
+   stated preferences may pass within their authored scope. Merely typing a
+   question in Chat does not. Dwell time, query topic, response latency, silence,
+   and an individual coordination vote fail as durable person claims.
+
+The [Contribution and Consequence Contract](contribution-and-consequence.md)
+governs whether the signal may be retained or inferred at all. This doctrine
+governs how an already-admitted relationship may become legible; hiding a claim
+does not make unauthorized inference acceptable.
 
 ## Where it is allowed to speak: deliberate You memory controls
 
@@ -59,7 +68,10 @@ These signals may be computed and used internally, but must never be surfaced
 back to the user, regardless of how compelling the insight:
 
 - **Dwell / attention time** — surfacing "you lingered on Naples" exposes passive behavior the user never chose to broadcast. (The app barely captures this today — keep it that way unless there's a specific, consented use.)
-- **Query / chat content as a read-back** — "you keep asking about safety" turns a private conversation into evidence used against the asker.
+- **Query / chat content as a read-back** — "you keep asking about safety" turns
+  a request for help into evidence used against the asker. Use it for the
+  current answer; do not make it durable preference or identity evidence unless
+  the person separately authors that meaning.
 - **Individual votes in a group decision** — inferring personal taste from a coordination act ("you voted for the fado bar — you love live music?") violates the premise the vote was offered under. Coordination signals stay coordination signals; they don't get promoted to taste signals shown back to anyone.
 - **Unrequested predictions** — "planning Rome next?" is predictive *and*
   unrequested, the exact intersection that reads as creepy: wrong and it's
@@ -92,7 +104,11 @@ Not every user action that teaches the model deserves the same treatment:
   evidence-first acknowledgment — but never a standing receipt on every
   instance. Frequency is the failure mode here, not the acknowledgment itself.
 - **Deliberately authored, teach silently:** most saves, most edits, itinerary reverts. Record the signal, let it change future output, never mention it.
-- **Never promote to a taste signal shown back to anyone:** votes, dwell, query content (see keep-silent list above) — these can still shape *internal* ranking/arbitration, but the write-back itself must stay invisible even in aggregate.
+- **Never promote to personal taste:** votes, dwell, read timing, response
+  latency, silence, and query topic. A vote may govern the Decision in which it
+  was cast; passive interaction data may tune aggregate product behavior or
+  current-Occasion delivery under its policy. Neither may silently shape later
+  person-level ranking or memory.
 
 ## Anti-patterns this doctrine rules out
 

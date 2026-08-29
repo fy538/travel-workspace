@@ -21,8 +21,8 @@ from committed registries; follow the linked authority for evidence and detail.
 | API contract | 557 paths / 619 operations / 1292 schemas | [`docs/openapi.json`](../openapi.json) |
 | Canonical journeys | 28 total / 12 golden path / 7 holistic extension | [`journeys.yaml`](../journeys/journeys.yaml) |
 | Feature flags | 91 registered / 89 active / 2 resolved | [`registry.yaml`](../flags/registry.yaml) |
-| System charters | 20 Markdown documents | [`systems/`](../systems/) |
-| Documentation inventory | 392 files classified | [`inventory.yaml`](../governance/inventory.yaml) |
+| System charters | 23 Markdown documents | [`systems/`](../systems/) |
+| Documentation inventory | 449 files classified | [`inventory.yaml`](../governance/inventory.yaml) |
 
 ### V1 intent versus executable evidence
 
@@ -54,6 +54,43 @@ uncertified until a current-revision receipt exists.
 | Public story links and social distribution | **OUT** | 2/2 tracked paths | Dark by default | Not claimed; release defaults dark | [OUT — not a v1 certification target](../journeys/STATUS.md) (J19) |
 | Agent-initiated venue-disruption proposals | **OUT** | 2/2 tracked paths | Dark by default | Not claimed; release defaults dark | [OUT — not a v1 certification target](../journeys/STATUS.md) (J05, J09) |
 <!-- END auto:current-state -->
+
+### Four-root target conformance
+
+The [Four-Root Loop, Object, and Surface
+Contract](../systems/four-root-loop-object-surface.md) is target product and
+architecture doctrine, not a shipped-shell claim. It establishes Home as the
+selective temporal return, Chat as the clean contribution and agency layer,
+Places as substantial spatial return, and Life as governed continuity over one
+shared object model. It also fixes the compounding context loop, cross-root
+handoff envelope, Life's container-and-lens organization, multiplayer
+placement, and the real-world engine as a cross-cutting capability rather than
+a fifth surface.
+
+The production mobile shell remains materially legacy-aligned around Trips,
+Vesper, Places, and You, and the mature Concierge runtime still operates over a
+Trip-centered semantic model. The current Chat, Life, and Home/Places research
+and fixture packs are architectural evidence for the target; they are not
+implementation or release certification. Production conformance requires an
+explicit shell migration, typed adapters into canonical owners, projection and
+handoff contracts, authority enforcement, and complete cross-root fixture
+verification without duplicating owner truth.
+
+### Contribution-contract conformance
+
+The accepted [Contribution and Consequence
+Contract](../systems/contribution-and-consequence.md) is target architecture,
+not a shipped-behavior claim. The accepted [Structured Contribution Use Grants
+decision](../decisions/2026-08-29-adopt-contribution-use-grants.md) now refines
+Source/claim/projection lifecycle, Outcome learning targets, multiplayer
+purpose, affected-person roles, contextual inspection, and connected-service
+boundaries. Intake v2 already preserves much of its source-bound candidate,
+truth, authority, and correction structure. Ordinary Concierge memory remains
+non-conforming: current prompt/tool paths can still write inferred preference,
+personality, mood, emotional-investment, and silence observations without the
+shared policy gate. Home, Places, Life, and new Chat input work must not treat
+those legacy writes as canonical product doctrine. Use the expanded F01–F18
+fixture portfolio as target requirements, not shipped-behavior evidence.
 
 For readiness, use [Journey Status](../journeys/STATUS.md). For the bounded first
 release, use the generated [V1 release contract](../release/v1-scope.md).

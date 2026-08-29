@@ -3,15 +3,15 @@
 > Surface: Vesper (the world-model substrate)
 > Maturity (for MVP): MVP-required
 > Status: wired
-> Last updated: 2026-08-16 (plural multiplayer memory and current storage boundaries aligned)
+> Last updated: 2026-08-29 (contribution authority and legacy-write boundary aligned)
 
 ## Purpose
-The place-relationship world model: capture evidence about how people and
-explicit relationship scopes choose, experience, revisit, and respond to places; synthesize
-a per-user **Personal Memory** projection; and compile purpose-bound context for
-local and travel decisions. It serves belief #4 (*behavior over stated
-preference*) and the moat thesis — outcome-backed relationships among people,
-groups, plans, and places are the durable asset.
+Preserve admitted, source-bound evidence about how people and explicit
+relationship scopes choose, experience, revisit, correct, and respond to the
+world; derive a revisable **Personal Memory** projection; and compile
+purpose-bound context for local and travel decisions. It serves the moat thesis
+only when governed outcome history improves a later occasion. Memory volume,
+behavioral exhaust, and personality synthesis are not product value.
 
 ## Spans (cross-repo)
 - Backend: [`travel-agent/backend/preference_engine/`](../../travel-agent/backend/preference_engine/FEATURE.md) (17) + observation/memory CRUD in `core/db/observations.py`, `core/db/traveler.py`; reflection/synthesis live in `concierge/reflection.py` + `refresh_memory.py`.
@@ -21,28 +21,53 @@ groups, plans, and places are the durable asset.
 
 ## Public interface (what other systems may call / read)
 - **Entry points:** `retrieval/preference_retriever.py::get_traveler_context()` (Personal Memory + hard constraints; generates if missing) · `get_group_context()` (all members — used by Concierge prompt assembly) · `synthesis/group_synthesizer.py` (merge → `trip_group_profiles`).
-- **Inbound writes:** Concierge emits `add_observation` (fire-and-forget) and `add_hard_constraint`.
+- **Inbound writes, as built:** Concierge emits `add_observation`
+  (fire-and-forget) and `add_hard_constraint`. Under the target
+  [Contribution and Consequence Contract](contribution-and-consequence.md),
+  these writes require an admitted Source/claim and policy-owned authority;
+  model prompt judgment alone is non-conforming.
 - **Shared-memory reads/writes:** the trip group-memory API reads and append-versions the group-safe document under membership, organizer, roster, and revision checks. Internal group synthesis remains separate.
 - **Relationship memory:** private personal claims and explicitly governed circle/source-roster claims retain source, scope, state, and visibility rather than being folded into Personal Memory prose.
-- **Consumes:** raw interaction signals only.
+- **Consumes:** admitted observations, explicit constraints, owned Outcomes,
+  governed relationship/place evidence, and narrowly scoped behavioral evidence.
+  Raw interaction exhaust may support analytics or current-Occasion delivery
+  policy but is not automatically person memory.
 - **Never:** other systems must not write `personal_memories` directly — synthesis is the only writer; observations are the only inbound signal.
 
 ## Owns (source of truth)
-Personal Memory, observations, hard constraints, internal group profiles,
+Admitted observations, hard constraints, internal group projections,
 trip-shared memory content, relationship-memory claims, and place affinity.
 Group/Social owns who belongs to a Trip or explicit circle and therefore who may
 receive each projection. Place and outcome history owned elsewhere may be
 consumed as evidence; this charter does not duplicate their source-of-truth
 records.
-**Personal Memory is the canonical preference document** — not observations, not
-vectors.
+**Personal Memory is a derived context projection, not the authority that makes
+its prose true.** Sources, explicit claims, constraints, Occurrences, Outcomes,
+and correction lineage remain authoritative. Other systems must not treat the
+summary as permission to widen scope or audience.
 
 ## Invariants (must always be true)
 - **Versioned, never destructive:** Personal Memory is append-version markdown (`version_number`); regeneration creates a new version.
 - **Narrative, not vectors:** there are **no pre-computed preference embeddings** — the LLM reasons over the markdown at runtime. (Don't "add a vector index" — it's a deliberate non-choice.)
 - **Hard constraints are separate** from taste (dietary/accessibility/language live in `hard_constraints`, treated as binding, not preference).
 - **Privacy tiering:** individual constraints are sacred; only allow-listed shared interests / binding constraints enter group context (the egress boundary Concierge enforces downstream).
-- **Behavior outranks claims:** a dwell/visit signal outweighs a stated interest.
+- **Current explicit intent outranks historical inference.** Behavior may
+  contradict or qualify a claim only as scoped evidence. Dwell, read timing,
+  response latency, silence, ignored suggestions, queries, and individual votes
+  do not become durable preference or identity evidence by default.
+- **Contribution authority precedes write-back:** every retained observation
+  identifies Source, truth type, scope, authority basis, expiry where relevant,
+  and correction path. Synthesis cannot upgrade an ungated signal.
+- **Use, retention, inference, audience, and action are separate:** Use names
+  purpose and eligible consumers; Retention separates Source, claim, and
+  projection lifecycle; Inference names world/product/situation/person/
+  relationship target and L0–L4 scope; Audience preserves contributor,
+  affected principal, custodian, and recipients. Permission on one axis does
+  not widen another.
+- **Outcome causality is non-transitive:** exposure, save, Commitment, provider
+  confirmation, Occurrence, and authored Outcome are separate stages. Product
+  and situation learning may proceed without a person claim; person and
+  relationship learning require governed evidence.
 - **Application proves value:** stored evidence is useful only when it changes a
   later local or travel decision and the outcome can be measured.
 - **Context transfers carefully:** local evidence may inform travel and travel
@@ -52,6 +77,10 @@ vectors.
   editable shared episode/agreement, live group state, and recurring-group
   hypothesis are separate records. A shared episode never overwrites different
   private outcomes.
+- **Inspectability is contextual:** consequential projections explain concrete
+  evidence through “Why this?”; Life supports relation-level correction,
+  resurfacing exclusion, release, audience change, and Source deletion. Memory
+  must not expose a universal inferred biography or personality dashboard.
 - **Relationship scope is exact:** person-place, person-companion, and
   `(person, place, companion)` projections do not grant one another visibility
   or authority automatically. Current intent and membership outrank history.
@@ -70,9 +99,20 @@ vectors.
 - Tests: `tests/preference_engine/*`, eval fixtures via `scripts/load_eval_fixtures.py`.
 
 ## Cross-cutting constraints
+- **Contribution authority:** every observation, fact, constraint, note,
+  reflection, affinity, and synthesis input follows
+  [Contribution and Consequence](contribution-and-consequence.md). Personal
+  Memory cannot launder raw chat or telemetry into higher-authority truth.
 - **Graph legibility**: every new signal this system surfaces back to the user (or injects into other surfaces) must be evaluated against [graph-legibility-doctrine.md](graph-legibility-doctrine.md). Memory is the primary source of graph signals — it is also the highest-risk system for violating show-don't-tell.
 
 ## Open risks / known gaps
+- **Legacy observation admission is non-conforming.** Concierge prompts and
+  `observe()` tooling still encourage same-turn writes for inferred preference,
+  personality, mood, emotional investment, and patterns of silence. Gate these
+  writers before expanding Chat, Home, Places, or Life on top of them.
+- **Synthesis can erase epistemic type.** Current Personal Memory markdown and
+  group-profile generation do not yet prove that Source, truth, scope, expiry,
+  disagreement, and correction survive every synthesized sentence.
 - **Artifact quality is unvalidated** — the memory surface "is it worth keeping?" claim has no eval gate yet (flagged 🔶 in the vision ledger).
 - The internal group-profile merge remains an upstream half of the privacy-egress invariant; the editable shared-memory document is now separate. Verify both audience paths alongside Concierge journey 04.
 - Shared-memory UI/storage exists, but second-occasion application and

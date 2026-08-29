@@ -1,14 +1,18 @@
 # Card Catalog — Vesper’s structured surfaces
 
-**Status:** current cross-repo source of truth
+**Status:** current implementation inventory; not expression doctrine
 
 **Last verified:** 2026-08-15 (founder-approved: Deck is `/dev`, not production Home)
 
 **Implementations:** `travel-app` + `travel-agent`
 
-Cards are Vesper’s structured vocabulary. They are not decoration and they are
-not Markdown containers: each card must either carry a decision, a durable
-receipt, a useful artifact, or a typed destination.
+This catalog inventories current card pipelines, attachment registries, action
+contracts, and compatibility paths. Cards are containers, not Vesper's medium
+or artifact vocabulary. The cross-repo [Artifact Expression and Composition
+doctrine](systems/artifact-expression-and-composition.md) governs artifact,
+composition, projection, native-medium, and persistence boundaries. Each card
+must still carry a decision, durable receipt, useful artifact projection, typed
+destination, or another explicitly owned job rather than decorative chrome.
 
 ## 1. Two card systems
 

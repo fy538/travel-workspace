@@ -18,6 +18,10 @@ operational fact, money amount, provider confirmation, public claim, invented
 memory, repeated user observation, unsolicited identity judgment, or synthetic
 group meaning. This charter implements the product-level
 [Vesper Editorial and Content Canon](../../travel-agent/docs/product/Vesper%20Editorial%20and%20Content%20Canon.md).
+Evidence and human contributions reach generation only under the
+[Contribution and Consequence Contract](contribution-and-consequence.md); an
+editorially useful input is not automatically authorized for retention or
+later inference.
 
 ## Owns
 
@@ -27,6 +31,9 @@ still own their records and provider contracts; people remain authoritative
 about personal meaning, and groups retain plural authored Outcomes.
 
 ## Invariants
+- Ask, Point, Bring, audience, and action authority are resolved before
+  generation. A composing model cannot grant retention, inference, audience,
+  or action authority to its own output.
 
 - Facts come from typed records or cited retrieval. Generation may explain or
   interpolate them but must not mint availability, price, hours, confirmation IDs,

@@ -16,6 +16,7 @@ depends_on:
   - travel-agent/docs/product/Product Thesis.md
   - travel-agent/docs/product/Product Model.md
   - travel-agent/docs/product/Vesper Editorial and Content Canon.md
+  - travel-agent/docs/product/Vesper Expression, Medium, and Projection Canon.md
   - travel-agent/docs/product/My World, Encounters, and Private Place Memory.md
   - travel-agent/docs/working/place-familiarity-world-openings-and-capability-loop-2026-08-20.md
   - travel-agent/docs/working/attention-traces-consequential-memory-and-multiplayer-perception-2026-08-18.md
@@ -611,7 +612,63 @@ The composer should:
   bucket-list queue; and
 - collapse toward utility during urgency, disruption, or protected immersion.
 
-### 7.3 Post-return New York: broadened full scroll
+### 7.3 Medium composition rules
+
+Home selects contributions before it selects media. It must not balance a page
+by renderer inventory or promote a generated artifact because production
+completed.
+
+The canonical chain is:
+
+```text
+admitted contribution
+  -> one dominant job
+  -> one lead medium
+  -> at most one necessary supporting medium
+  -> compact Home projection with complete value
+  -> owner-preserving continuation
+```
+
+The six initial lead media are evidence, sequence, comparison, spatial,
+concise prose, and interactive instrument. Social authorship, relational
+context, and quantitative encoding modify those media; they are not separate
+Home modules. Article, guide, audio brief, podcast, reconstruction, and social
+mosaic are composed artifact formats whose durable depth normally belongs
+elsewhere.
+
+The composer should:
+
+- prefer the medium whose native affordance makes the contribution easiest to
+  perceive: evidence for a visible claim, sequence for change, comparison for
+  difference, spatial for physical relation, prose for an irreducible
+  mechanism, and instrument for current consequential state;
+- deliver the first real claim, distinction, state, or possibility on Home
+  before any tap;
+- penalize repeated media alongside repeated topic, Source, operation, time
+  horizon, and demand;
+- let visible proof function as the supporting medium rather than wrapping
+  every object in explanatory prose;
+- place social attribution and audience inside the object another person
+  materially changed;
+- show duration and a substantive preview for audio, article, podcast, video,
+  or other time-committing formats;
+- preserve the same resource identity, trust footprint, correction lineage,
+  and owner when the person opens a deeper projection; and
+- provide complete nonvisual alternatives for maps, charts, relationship
+  views, audio, and motion.
+
+Medium diversity does not itself create possibility diversity. A map, article,
+podcast, and photo strip that all restate the same Italy recap are one repeated
+idea in four costumes. Conversely, several units may share a medium when each
+performs materially different work and another form would be worse.
+
+The governing presentation contract is the [Vesper Expression, Medium, and
+Projection
+Canon](../../travel-agent/docs/product/Vesper%20Expression%2C%20Medium%2C%20and%20Projection%20Canon.md).
+The comparable post-return evidence cases live in [Medium Selection and Home
+Projection Fixtures](medium-selection-and-home-projection-fixtures-2026-08-28.md).
+
+### 7.4 Post-return New York: broadened full scroll
 
 This is one composition study, not a content quota.
 
@@ -660,7 +717,7 @@ The top remains glanceable. The full scroll demonstrates the breadth of the
 product. A person can leave after the lead, browse several possibilities, or
 enter the appropriate root without manually reconstructing context.
 
-### 7.4 Density by situation
+### 7.5 Density by situation
 
 | Situation | Dominant posture | Possibility field |
 | --- | --- | --- |
@@ -812,6 +869,9 @@ thesis:
 - clarify in the Editorial and Content Canon that “highest-value current
   contribution at a glance” governs the lead and first viewport, not the
   entire full scroll; and
+- use the Expression, Medium, and Projection Canon for native-form selection,
+  artifact-format boundaries, compact-versus-deep projection, and medium
+  diversity; and
 - retain current-life-first, value-before-input, authorship, privacy,
   provenance, and complete-on-view doctrine.
 

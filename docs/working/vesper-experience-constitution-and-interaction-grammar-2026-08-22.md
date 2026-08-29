@@ -27,6 +27,10 @@ Related working layers:
 - The accepted [Four Product Moves decision](../decisions/2026-08-28-adopt-four-product-moves.md)
   distinguishes the product's value grammar from the formal interaction
   sentence, temporal lifecycle, root postures, durable objects, and treatments.
+- The accepted [Structured Contribution Use Grants
+  decision](../decisions/2026-08-29-adopt-contribution-use-grants.md) refines
+  Ask/Bring defaults, lifecycle, scoped learning, multiplayer purpose, and
+  connected-service boundaries without adding user-facing workflow.
 - [Canonical Product Journey Families](canonical-product-journey-families-2026-08-22.md)
   turns this grammar into reusable product-design sentences and scenario fixtures.
 - [Product Grammar Hypotheses and Validation](product-grammar-hypotheses-and-validation-2026-08-22.md)
@@ -445,6 +449,18 @@ Ask · Point · Bring · Import · Invite · Join · Choose · Decline · Correc
 
 The default entry requires only **Ask** or **Point**.
 
+Language and the invoked affordance resolve the low-friction default:
+
+- a Source accompanying a question supports **Ask** and is transient;
+- a Source deliberately sent alone in Chat supports **Point/Bring**;
+- share sheet, forwarded message, and explicit Add affordances support
+  **Bring**; and
+- **Keep** admits only the named Source, interpretation, intention, or Outcome.
+
+Value precedes the T1 custody receipt. Ambiguous conversational material falls
+back to T0 unless retention is the invoked job or the unresolved interpretation
+would change a material consequence.
+
 ### 5.6 Bounded outputs
 
 | Output | Meaning |
@@ -545,6 +561,17 @@ provider or service
 
 Every projection resolves recipients, purpose, copying, resharing, attribution,
 inference, expiry, correction, and honest revocation limits separately.
+
+Purpose is legible through human verbs rather than a permission matrix: Ask is
+current use; Bring/Keep is private continuity; Send/Address is named delivery;
+Contribute is Occasion-bounded use; Status is a chosen time-bounded audience;
+Publish is a governed wider Place contribution; and Act is a named external
+consequence. Audience never expands purpose by itself.
+
+Contributor, subject or affected principal, custodian, recipient, and canonical
+owner remain distinct roles. One person may hold several; a projection may not
+assume that the contributor owns every affected person's identity, location,
+relationship, or experience.
 
 A person's **featured share**—rendered as Status—is a human-authored projection
 for one audience and time window. It is not an inferred profile facet, an
@@ -689,13 +716,22 @@ No state implies the next.
 
 Every consequential projection resolves separately:
 
-1. **Use** — may Vesper use this evidence now?
-2. **Retention** — may raw material, derived interpretation, or both persist?
-3. **Inference** — may it affect later judgment, and within what scope?
-4. **Audience** — who can see which fields and whose voice?
-5. **Action** — may it change a Plan, route, push, handoff, or public layer?
+1. **Use** — for which immediate job, named purposes, and eligible consumers?
+2. **Retention** — may the Source, governed claims, and generated projections
+   persist independently?
+3. **Inference** — what semantic distance, learning target, level, and scope may
+   affect later judgment?
+4. **Audience** — who contributed, who is affected, who has custody, and who can
+   see which fields and whose voice?
+5. **Action** — may it change a Plan, route, push, handoff, provider, or public
+   layer, through which owner and with what reversibility?
 
 Do not compress these into a private/shared toggle.
+
+The complete lifecycle defaults, Outcome causal ladder, co-owned-material
+boundary, contextual inspection rules, and connector adoption order live in
+the [Contribution and Consequence
+Contract](../systems/contribution-and-consequence.md).
 
 ## 7. The canonical interaction sentence
 
@@ -736,6 +772,8 @@ dismissal
 correction
 retained consequence
 audience
+purpose
+learning target and level
 expiry
 ```
 

@@ -19,6 +19,12 @@ This is a **workspace repo**, not a superproject:
 
 Read each repo's own `AGENTS.md` / `CLAUDE.md` for repo-specific rules.
 
+For work on Chat input, share/intake, memory write-back, Occasion contribution,
+receipts, correction, audience effects, or delegated action, read
+`docs/systems/contribution-and-consequence.md`; it is the cross-repository
+contract for gesture resolution, five-axis authority, owner handoff, and causal
+repair.
+
 ## Working Model
 
 Use this workspace root when:

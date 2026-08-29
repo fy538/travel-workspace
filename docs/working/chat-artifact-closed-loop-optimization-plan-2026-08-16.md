@@ -9,6 +9,7 @@ why_new: Converts the current in-chat artifact audit and external research into 
 promotes_to: null
 supersedes: []
 related:
+  - ../../travel-agent/docs/product/Vesper Expression, Medium, and Projection Canon.md
   - in-chat-artifact-system-inventory-and-sota-research-2026-08-12.md
   - product-loop-coherence-maestro-and-environment-strategy-2026-08-12.md
   - ai-decision-and-learning-engineering-plan-2026-08-10.md
@@ -132,8 +133,12 @@ owner-surface state, or visual acceptance.
 
 ### 3.1 Artifact role
 
-An artifact is a compact stateful projection, control, or receipt that helps a
-user move work toward a durable owner. It is not an automatically generated
+For this in-chat execution program, the relevant artifact **projection** is a
+compact stateful view, control, or receipt that helps a user move work toward a
+durable owner. This does not define artifact identity or require compactness on
+other surfaces; the [Vesper Expression, Medium, and Projection
+Canon](../../travel-agent/docs/product/Vesper%20Expression%2C%20Medium%2C%20and%20Projection%20Canon.md)
+owns that distinction. An in-chat artifact is not an automatically generated
 mini-app and is not valuable merely because information can be card-shaped.
 
 An artifact is warranted when it does at least one of these jobs better than
