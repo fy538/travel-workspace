@@ -79,6 +79,10 @@ rules:
 
 
 overrides:
+  docs/working/minimum-four-root-projection-and-owner-read-contracts-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active field-to-owner and minimum projection/read extraction from the selected four-root portfolio; canonical owner, contribution, four-root, and expression contracts retain authority.
+
   docs/working/four-root-visual-system-exploration-brief-2026-08-29.md:
     disposition: keep_reference
     rationale: Active fixed-content brief and rubric for comparing three coherent visual systems in a dedicated design tool; the integrated semantic portfolio and canonical expression doctrine retain authority.
