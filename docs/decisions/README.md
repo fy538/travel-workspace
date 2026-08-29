@@ -18,6 +18,10 @@ Durable choices that constrain future work belong here. Use the
 
 | Date | Decision | Status |
 |---|---|---|
+| 2026-08-29 | [Close whole-product V1 Wave 0](2026-08-29-close-whole-product-v1-wave-0.md) | accepted |
+| 2026-08-29 | [Adopt the Life continuity and return contract](2026-08-29-adopt-life-continuity-and-return-contract.md) | accepted |
+| 2026-08-29 | [Adopt structured contribution use grants](2026-08-29-adopt-contribution-use-grants.md) | accepted |
+| 2026-08-29 | [Adopt one contribution and consequence contract](2026-08-29-adopt-contribution-and-consequence-contract.md) | accepted |
 | 2026-08-28 | [Adopt four product moves as the whole-product spine](2026-08-28-adopt-four-product-moves.md) | accepted |
 | 2026-08-24 | [Adopt the experiential-responsibility messaging hierarchy](2026-08-24-adopt-experiential-responsibility-messaging.md) | accepted |
 | 2026-08-23 | [Adopt the lived-world product identity](2026-08-23-adopt-lived-world-product-identity.md) | accepted |

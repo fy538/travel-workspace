@@ -21,6 +21,10 @@ rules:
     disposition: keep_reference
     rationale: Implemented offline architecture package and dormant runtime instrumentation supporting the agentic cutover; canonical product and system contracts retain authority.
 
+  - glob: docs/working/agentic-chat-cross-surface-fixture-pack-2026-08-29.md
+    disposition: keep_reference
+    rationale: Accepted agentic-operation fixture suite supporting the whole-product portfolio; canonical decisions and owner contracts retain authority.
+
   - glob: docs/working/whole-product-v1-conformance-workbook-2026-08-29.md
     disposition: keep_reference
     rationale: Active whole-product portfolio, owner and capability ledger, and execution gates used to derive canonical deltas before surface implementation or dogfooding.

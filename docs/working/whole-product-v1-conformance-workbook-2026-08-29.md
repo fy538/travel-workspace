@@ -9,6 +9,7 @@ why_new: Consolidates the accepted four-root and contribution doctrine, the agen
 supersedes: []
 source_of_truth_for: []
 related:
+  - ../decisions/2026-08-29-close-whole-product-v1-wave-0.md
   - ../systems/four-root-loop-object-surface.md
   - ../systems/contribution-and-consequence.md
   - ../decisions/2026-08-28-adopt-four-product-moves.md
@@ -46,6 +47,24 @@ This workbook is the bridge from those principles to comparable experiences,
 surface requirements, owner boundaries, capability work, and implementation
 gates. It is not a shipped-behavior claim, a visual specification, or a
 dogfood plan.
+
+## Wave 0 closure status
+
+**Closed on 2026-08-29.** The eighteen-case portfolio and the product rulings
+in section 11 were accepted through the [Wave 0 closure
+decision](../decisions/2026-08-29-close-whole-product-v1-wave-0.md).
+
+The closure accepts the four-root target navigation direction while leaving
+detailed visual composition experimental. It also corrects three portfolio
+boundaries:
+
+- an attached item may still be an Ask/T0; deliberate Bring/T1 requires clear
+  custody, scope, and reversible source-bound continuity;
+- asynchronous social value remains governed by Source authorship, audience
+  grant, Place, Occasion, and accepted consequences—there is no new universal
+  social owner; and
+- A18 proves causal later reuse without requiring every contribution to pass
+  through all four roots.
 
 ## 1. Program posture
 
@@ -183,10 +202,10 @@ Legend: **MS** = Make sense, **OP** = Open possibility, **HW** = Help it work,
 | **A12** | Turn a Rome episode into a novel New York aperture | MS -> OP | Life -> composition -> Life or Places; Home only if admitted | composition manifest; optional ephemeral Opening | comparison, spatial, sequence, or concise prose | no preference or Plan unless explicitly continued |
 | **A13** | Open Vesper during a quiet New York week | MS -> OP, optional HW | Home -> Places or object depth; Chat only by choice | no required write; existing owners and ephemeral composition | mixed bounded portfolio with one lead medium per unit | complete value on view; ignored units create no debt or inferred preference |
 | **A14** | Bring an everyday photo, dish, book, film, or observation | MS -> OP -> CF | Chat -> Life custody -> later Home/Places when earned | Source and bounded Claim; other owner only when justified | annotated evidence, comparison, or concise explanation | useful immediate substance plus minimum truthful residue, never upload success alone |
-| **A15** | A friend's asynchronous contribution changes a Place or possibility | MS -> OP -> CF | contribution channel -> Places/Home -> Life viewer-relative continuity | author/audience owner plus Place/Occasion relation | attributed juxtaposition, mosaic, or spatial overlay | attribution and scope survive; revocation recompiles every dependent projection |
+| **A15** | A friend's asynchronous contribution changes a Place or possibility | MS -> OP -> CF | contribution channel -> Places/Home -> Life viewer-relative continuity | Source authorship and audience grant plus Place/Occasion relation | attributed juxtaposition, mosaic, or spatial overlay | attribution and scope survive; revocation recompiles every dependent projection |
 | **A16** | Return from Italy and re-enter life in New York | MS -> OP -> CF | Home -> Life for factual depth -> Places for forward possibility | existing Sources/Occurrences/Outcomes; no synthetic identity | current-first composition with factual sequence/comparison | past becomes a resource for the coming week without dominating Home |
 | **A17** | Re-find 2026 through time, map, people, and Occasions | MS -> CF | Life index -> lens -> episode/source -> optional Chat/Places | same canonical identities under several lenses | timeline, map, evidence bundle | search is target-first; lenses do not create duplicate objects or organization homework |
-| **A18** | One contribution materially improves a later occasion | all, recursively | Chat -> Life -> Home/Places -> action/Occasion -> Life -> later return or silence | causal chain across Sources, owners, receipts, Occurrence and plural Outcomes | medium changes by job; lineage remains inspectable | later value names the evidence it used; authority never widens through reuse |
+| **A18** | One contribution materially improves a later occasion | all, recursively | any justified subset of Chat, Life, Home, Places, action/Occasion, later return or silence | causal chain across Sources, owners, receipts, Occurrence and plural Outcomes | medium changes by job; lineage remains inspectable | later value names the evidence it used; authority never widens through reuse |
 
 ## 5. Expanded whole-product experience requirements
 
@@ -310,10 +329,14 @@ and can ignore every unit without creating follow-up debt or inferred taste.
 restaurant receipt, a book passage, a movie ticket, a voice observation, or a
 friend's message.
 
-**Required sequence.** Chat first performs the immediate job: explain a
+**Required sequence.** When the person deliberately Brings the material, Chat
+first performs the immediate job: explain a
 material difference, inspect evidence, compare with another grounded case,
 identify a mechanism, prepare a practical use, or answer the stated question.
 Only then may it quietly admit the smallest truthful Source-bound residue.
+
+If the attachment accompanies an Ask, the default remains T0/no new durable
+state. Transport does not determine gesture or retention.
 
 Life makes the material re-findable without asking the person to categorize
 it. Home or Places may use it later only when it changes a current
@@ -354,6 +377,11 @@ New York possibility. The trip is neither erased nor allowed to monopolize the
 surface. A past element rises only when its current contribution is unusually
 strong or changes what can happen next.
 
+If cancellation recovery, compensation, rescheduling, delivery, or another
+unfinished consequence remains active, that practical truth may outrank both
+retrospective synthesis and a new possibility. Post-return is a changing
+Moment, not a content genre.
+
 Life owns the complete episode, source inspection, factual reconstruction, and
 later return. Places owns spatial continuation and new local affordance.
 
@@ -383,7 +411,7 @@ maintaining folders, tags, or an AI-authored autobiography.
 **Situation.** An earlier contribution eventually changes a later answer,
 Home unit, Place path, coordination decision, or appropriate silence.
 
-**Required sequence.** The fixture spans:
+**Possible complete sequence.** The richest fixture may span:
 
 ```text
 Chat contribution
@@ -395,13 +423,25 @@ Chat contribution
   -> later changed judgment, capability, or silence
 ```
 
-The later result must be able to identify which evidence mattered, under what
+No contribution is required to traverse every root. The later result must be
+able to identify which evidence mattered, under what
 scope, and why it is still fresh enough to use. Reuse does not upgrade
 retention, audience, inference, or action authority.
 
 **Pass condition.** The second occasion is materially better—less explanation,
 better fit, faster coordination, safer delegation, a newly visible connection,
 or a more appropriate decision not to intervene.
+
+### 5.1 Surface-suite closure matrix
+
+| Case | Entry and evidence | Authority | Consequence and return | Repair, failure, and stopping rule |
+| --- | --- | --- | --- | --- |
+| **A13** | User opens Home; composer reads fresh authorized owners, current Moment, and admitted evidence | T0 read/composition; no new retention, inference, audience, or action authority; social evidence remains within its grant | No required write; deepen into owner/Places, or enter Chat with typed context | Weak, repetitive, stale, or high-demand candidates lose to fewer units or silence; ignore creates no signal or debt |
+| **A14** | Chat receives an authored or clearly sourced photo, receipt, ticket, menu, book, film, link, note, or observation | Ask with attachment defaults T0; deliberate clear Bring may use T1 private source-bound retention; later audience/action is separate | Immediate answer, explanation, comparison, or prepared use; Life receives only justified Source/Claim residue; later Home/Places use must cite it causally | Ambiguous author, Place, time, ownership, or occurrence stays provisional; correction targets the relation; no upload-success-only terminal state |
+| **A15** | An attributed Source enters through an existing audience channel, share, Status, Occasion, or direct handoff | Original author and use grant constrain every projection; recipient receives no naming, contact, retention, inference, or republication authority beyond that grant | A Place, possibility, or Occasion becomes more intelligible; recipient may ignore, inspect, or deliberately continue | Revocation, audience narrowing, changed precision, block, or membership epoch recompiles dependents; if attribution cannot be shown safely, omit or abstract |
+| **A16** | Home opens after return with current New York Moment plus governed trip, provider, work, and social state | Reading and composition are T0; unfinished provider, spend, delivery, or affected-person recovery keeps its independent command authority | Home foregrounds recovery or forward momentum; Life owns complete episode depth; Places owns spatial continuation | Stale provider truth is shown as unknown/pending; the trip may receive no Home unit; no forced recap or reflection prompt |
+| **A17** | Life search or lens reads stable owner identities and viewer-relative projection keys | Search and lens changes are T0; correction, release, audience change, and deletion invoke their owner-specific boundary | Target-first result, bounded `Around this`, or owner depth; optional Continue carries selected refs to Chat/Places/Home | Unknown, disputed, revoked, planned-only, and source-only states remain visible; search text creates no durable interest evidence |
+| **A18** | A later job compiles prior Source/Claim evidence only if purpose, audience, freshness, and causal applicability still hold | Reuse cannot widen any of the five axes; every new consequence resolves current authority independently | Any justified subset of roots may produce better judgment, coordination, capability, action, return, or silence; compact lineage proves what carried forward | Expired, contradicted, revoked, weak, or duplicative evidence is excluded; no later value is forced merely to prove compounding |
 
 ## 6. Root conformance requirements
 
@@ -607,7 +647,11 @@ Before fixtures become executable contracts, normalize:
 | generated composition | A12–A16 | render/projection substrate, lifecycle ambiguous | manifest, known-to-person check, save/share versioning, correction/regeneration law |
 | projection and medium | all | rich renderers; model-visible presentation tools create noise | semantic result plus projection hints; native resolver chooses medium |
 
-## 11. Product decisions required before surface implementation
+## 11. Resolved product decisions
+
+All rulings below are accepted by
+`2026-08-29-close-whole-product-v1-wave-0.md`. They are no longer a proposal
+queue. Detailed visual composition and ranking calibration remain experimental.
 
 | Decision | Recommendation | Why |
 | --- | --- | --- |
@@ -628,6 +672,8 @@ Before fixtures become executable contracts, normalize:
 
 ### Wave 0 — Canon and workbook closure
 
+**Status: complete.**
+
 Deliverables:
 
 - accept or revise A13–A18;
@@ -642,6 +688,16 @@ Exit gate:
   consequence, return, residue, and failure behavior;
 - no case requires a Trip because current tools do;
 - no case treats a root projection as durable truth.
+
+Closure receipt:
+
+- A13–A18 accepted with the Ask/Bring, social-owner, practical-recovery, and
+  optional-root-traversal corrections recorded above;
+- the twelve product rulings in section 11 accepted;
+- authority vocabulary normalized by the closure decision and fixture pack;
+- target four-root direction promoted while visual composition remains
+  experimental; and
+- runtime observation and dogfood explicitly deferred.
 
 ### Wave 1 — Shared semantic spine
 
