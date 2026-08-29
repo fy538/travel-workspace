@@ -701,6 +701,16 @@ Closure receipt:
 
 ### Wave 1 — Shared semantic spine
 
+**Status (2026-08-29): implemented in backend shadow contracts.** The
+`agentic-turn-shadow-v2` frame now carries typed authority-source provenance,
+selected operation effect/owner metadata, canonical owner readback state,
+bounded uncertainty, correction links, and receipt links. The existing
+`ResourceRef` remains the sole resolved-owner vocabulary; unresolved entry
+hints remain `ResourceLocator` values. The offline fixture portfolio is
+`agentic-turn-portfolio-v2` and covers A01–A18. Runtime behavior, served tools,
+mobile contracts, and dogfood remain unchanged while the facade is off. See
+`decisions/2026-08-29-execute-wave-1.md` for the execution receipt.
+
 Deliverables:
 
 - one canonical `ResourceRef` vocabulary;

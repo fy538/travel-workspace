@@ -19,6 +19,15 @@ related:
   - chat-as-agentic-interaction-layer-research-2026-08-29.md
 ---
 
+> **Wave 1 implementation note (2026-08-29).** The shared semantic spine is
+> now implemented as an additive `agentic-turn-shadow-v2` contract. The
+> machine portfolio is `agentic-turn-portfolio-v2` and covers A01–A18. The
+> original package remains the architectural specification for the shadow
+> facade; historical references to the first twelve fixtures describe the
+> initial package slice. See `../decisions/2026-08-29-execute-wave-1.md` for
+> the execution receipt. Runtime serving, owner readers, and dogfooding remain
+> off.
+
 # Agentic Semantic Facade engineering package
 
 ## The decision
