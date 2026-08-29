@@ -79,6 +79,150 @@ rules:
 
 
 overrides:
+  docs/working/audience-relative-trace-fixture-pack-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active governed multiplayer fixture pack testing viewer-relative visibility, provenance, withdrawal, correction, and cross-root projection; canonical contribution, editorial, four-root, and artifact-expression contracts retain authority.
+
+  docs/working/home-and-places-canonical-semantic-composition-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active selected semantic composition for Home and Places across returned, emerging, urgent, and spatial states; it is experience evidence upstream of dedicated visual selection and production implementation.
+
+  docs/working/places-component-constrained-composition-manifest-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active renderer-neutral inventory mapping Places value units to existing component capabilities and identifying gaps without granting component or production authority.
+
+  docs/working/places-consumer-experience-anatomy-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active consumer-experience anatomy for World Field, Place Focus, Place Path, and Live Reduction; canonical four-root, Place, expression, and editorial contracts retain authority.
+
+  docs/working/places-four-state-design-fixture-brief-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active fixed-content brief for visually exploring the four Places states in a dedicated design tool; it is not visual-system, product, implementation, or release authority.
+
+  docs/working/six-artifact-cross-root-circulation-execution-report-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active executable receipt for the completed A01-A06 composition portfolio, social withdrawal, saved revision, four-root circulation, and provisionally derived semantic contracts; the Artifact Expression and Composition and Four-Root contracts retain authority.
+
+  docs/working/artifact-component-and-pipeline-disposition-audit-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active code-grounded convergence audit for artifact projections, Chat blueprints, adaptive composition, root renderers, native medium capabilities, selective persistence, and retirement boundaries; the Artifact Expression and Composition contract retains authority.
+
+  docs/working/artifact-cross-root-fixture-pack-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active six-world portfolio testing substantive generated value, four-root projection, multiplayer authority, persistence, correction, degradation, and live-instrument boundaries; the Artifact Expression and Composition contract retains authority.
+
+  docs/working/life-canonical-post-return-new-york-experience-manuscript-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active content-complete manuscript integrating Recover, Re-enter, Carry, and Together into one post-return New York Life session before dedicated visual composition; the accepted Life decision and canonical four-root and editorial contracts retain authority.
+
+  docs/working/europe-journey-evidence-manifest-and-life-opening-comparison-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active evidence adjudication separating inspected founder Sources, conversation-grounded fieldwork, unresolved relations, and synthetic fixtures while selecting a corpus-led Life opening; canonical Life and editorial authorities retain authority.
+
+  docs/working/europe-menu-source-audit-and-life-treatment-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active raw-source audit binding six Europe menu images to exact phrases, venue resolution, external grounding, claim ceilings, and a production-grade three-scale Life treatment; canonical Life and editorial authorities retain authority.
+
+  docs/working/life-outcome-storyboard-pack-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active value-first storyboard pack comparing Recover, Re-enter, Carry, and Together over one controlled evidence world and deriving shared Life anatomy and renderer-neutral requirements; the accepted Life decision and canonical four-root and editorial contracts retain authority.
+
+  docs/working/life-user-value-deep-research-round-4-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active pre-storyboard research distinguishing memory jobs, accumulated-evidence dividends, transfer, relational remembering, reflection burden, resurfacing, serendipity, and adjacent-product ceilings; canonical product and accepted Life authorities retain authority.
+
+  docs/working/life-user-value-first-principles-and-surface-derivation-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active value-first correction ranking the practical, epistemic, relational, reconstructive, retrieval, and future value Life must deliver before visual composition or projection extraction; canonical product and accepted Life continuity authorities retain authority.
+
+  docs/working/life-editorial-contribution-briefs-and-treatment-evaluation-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active content-definition evidence applying the editorial canon to C01-C05 before the revised Life hybrid composition; the editorial canon and Life continuity decision retain authority.
+
+  docs/working/life-composition-visual-tool-brief-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active fixture-grounded brief for exploring three complete Life composition strategies in a dedicated visual-design tool; it is design input and not product, visual, implementation, or release authority.
+
+  docs/working/current-agent-chat-architecture-repurpose-audit-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active code-grounded audit of the mature Concierge runtime, its Trip-centered semantic coupling, and the adapter-first path to the four-root Chat target; the Four-Root Loop contract and canonical owner contracts retain authority.
+
+  docs/working/home-and-places-five-world-fixture-pack-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active semantic fixture portfolio testing Home contribution admission and Places depth across five evidence worlds; the Four-Root Loop contract and canonical surface, contribution, editorial, and expression authorities retain authority.
+
+  docs/working/home-and-places-underexplored-value-research-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active research synthesis on underexplored Home and Places value, temporal posture, Place Horizon, transfer, human routing, and projection boundaries; the Four-Root Loop contract and canonical Place and contribution owners retain authority.
+
+  docs/working/life-composition-and-continuity-lab-execution-plan-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active staged execution plan, now value-gated before further visual composition, projection extraction, or native validation; the accepted Life decision and canonical product and surface authorities retain authority.
+
+  docs/working/source-claim-scoped-learning-and-multiplayer-purpose-research-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active architecture research resolving independent Source and claim retention, Outcome learning scopes, and purpose-bounded multiplayer information flow; the accepted Contribution and Consequence decision and system contract retain authority until the proposed delta is reviewed.
+
+  docs/working/contribution-contract-and-legacy-memory-migration-plan-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active code-grounded migration plan for enforcing the accepted Contribution and Consequence Contract across Chat, Intake, memory, synthesis, behavioral producers, receipts, correction, and mobile contribution surfaces; the accepted decision and system contract retain authority.
+
+  docs/working/contribution-authority-immediate-value-and-repair-research-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active research synthesis behind the accepted contribution-contract decision, covering permission defaults, general-assistant capability floor, immediate structural value, and causal repair; the decision and Contribution and Consequence system contract retain authority.
+
+  docs/working/contribution-contract-fixture-pack-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active ten-case structural requirements portfolio for contribution gestures, first-turn value, authority, multiplayer, correction, and no-write continuity; the accepted decision and Contribution and Consequence system contract retain authority.
+
+  docs/working/life-object-and-lens-fixture-pack-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active fixture portfolio for projecting governed Sources, Plans, Occasions, Occurrences, Outcomes, and generated compositions into Life without flattening canonical ownership; product, expression, contribution, and surface canons retain authority.
+
+  docs/working/life-behavior-research-round-3-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active research provenance for Life entrance eligibility, contextual re-finding, resurfacing, social lifecycle, claim-local source identity, and Continue; the accepted Life continuity and return decision retains authority.
+
+  docs/working/life-social-lifecycle-fixture-matrix-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active deterministic social-boundary fixture matrix for Life; the accepted Life continuity and return decision and contribution-use-grant decision retain authority.
+
+  docs/working/life-refinding-query-benchmark-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active fifty-query contextual re-finding benchmark across the six Life evidence worlds; the accepted Life continuity and return decision retains authority.
+
+  docs/working/life-six-world-fixture-execution-report-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active semantic execution receipt across all six Life evidence worlds, fifty re-finding queries, and fourteen social transitions; it is not production proof.
+
+  docs/working/life-index-and-episode-anatomy-contract-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active semantic composition contract for the canonical Life index and episode anatomy; it remains upstream of dedicated visual prototyping and implementation.
+
+  docs/working/life-complex-rendering-sota-patterns-research-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active product and frontend research on complex rendering, two-level index and episode composition, stable identity, lenses, transition and restoration behavior, authority-safe caching, accessibility, performance, compatibility, and fixture strategy for Life; the accepted Life continuity decision and expression canon retain authority.
+
+  docs/working/hci-rebased-home-composition-contract-2026-08-28.md:
+    disposition: keep_reference
+    rationale: Active HCI-rebased Home design contract consolidating value grammar, contribution admission, composition regions, page budgets, root handoff, and evaluation before founder promotion or production surface migration; canonical product, editorial, expression, architecture, and surface authorities retain authority.
+
+  docs/working/hci-rebased-home-four-situation-fixtures-2026-08-28.md:
+    disposition: keep_reference
+    rationale: Active four-situation validation portfolio for the HCI-rebased Home contract, specifying complete content and interaction compositions before dedicated visual exploration or implementation; canonical product, editorial, expression, architecture, and surface authorities retain authority.
+
+  docs/working/relational-hci-for-the-lived-world-architecture-research-round-1-2026-08-28.md:
+    disposition: keep_reference
+    rationale: Active HCI research synthesis across relational contract, governed memory, mixed initiative, sensemaking, situated affordance, plural agency, adaptive projection, and longitudinal evaluation; canonical product, architecture, system, surface, and decision documents retain authority.
+
+  docs/working/operationalizing-relational-intelligence-hci-research-round-2-2026-08-28.md:
+    disposition: keep_reference
+    rationale: Active applied HCI research that translates the Round 1 relational doctrine into comparative experiences, contract deltas, adversarial cases, and longitudinal evaluation across memory, initiative, situated affordance, social authorship, contribution admission, adaptive projection, and commercial boundaries; canonical product, architecture, system, surface, and decision documents retain authority.
+
+  docs/working/medium-selection-and-home-projection-fixtures-2026-08-28.md:
+    disposition: keep_reference
+    rationale: Active validation portfolio for contribution admission, medium selection, Home projection, durable-owner handoff, social authorship, trust, accessibility, and lifecycle; the expression, editorial, product, architecture, and surface canons retain authority.
+
   docs/working/four-product-moves-thread-provenance-and-adjacent-research-2026-08-28.md:
     disposition: keep_reference
     rationale: Active research and thread-provenance synthesis behind the accepted four-product-moves decision; the decision record and canonical product documents retain authority.
@@ -178,6 +322,18 @@ overrides:
   docs/working/chat-artifact-closed-loop-optimization-plan-2026-08-16.md:
     disposition: keep_reference
     rationale: Active expiring cross-repository execution plan; durable artifact policy and surface behavior must be promoted into their canonical owners.
+
+  docs/working/chat-as-agentic-interaction-layer-research-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active expiring research synthesis for Chat as Vesper's conversational operating surface; accepted rules must be promoted into canonical product, interaction, contribution, and control-plane owners.
+
+  docs/working/agentic-chat-cross-surface-fixture-pack-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active expiring cross-surface fixture portfolio for agentic Chat; accepted interaction, authority, capability, projection, and return rules must be promoted into their canonical owners.
+
+  docs/working/agentic-capability-and-tool-cutover-plan-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Active expiring semantic tool and capability migration plan; accepted control-plane, owner-operation, adapter, and retirement rules must be promoted into canonical backend and product authorities.
 
   docs/working/home-kit-galleries-plan-2026-08-15.md:
     disposition: keep_reference
