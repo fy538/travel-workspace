@@ -79,6 +79,10 @@ rules:
 
 
 overrides:
+  docs/working/integrated-four-root-experience-portfolio-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Selected five-situation semantic portfolio across Home, Chat, Places, and Life; it is the active experience requirement for visual selection and contract extraction while canonical product and system documents retain authority.
+
   docs/working/audience-relative-trace-fixture-pack-2026-08-29.md:
     disposition: keep_reference
     rationale: Active governed multiplayer fixture pack testing viewer-relative visibility, provenance, withdrawal, correction, and cross-root projection; canonical contribution, editorial, four-root, and artifact-expression contracts retain authority.
