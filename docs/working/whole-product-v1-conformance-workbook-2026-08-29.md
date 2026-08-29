@@ -736,6 +736,12 @@ Exit gate:
 
 ### Wave 2 — Integrated experience portfolio
 
+**Status (2026-08-29): complete at semantic-fixture level.** The selected
+five-situation portfolio covers ordinary New York, an emerging Saturday, live
+disruption, Europe return, and social withdrawal across all four roots. It is
+implemented as a native semantic lab with no production navigation or visual
+authority.
+
 Deliverables:
 
 - one fixed evidence world exercised through quiet ordinary New York, an
@@ -760,6 +766,11 @@ Exit gate:
 
 ### Wave 3 — Fixed-content visual-system selection
 
+**Status (2026-08-29): brief complete; dedicated-tool comparison and founder
+selection pending.** The control and two alternative direction assignments,
+twelve fixed frames, state stress cases, rejection conditions, and weighted
+rubric are frozen. No native visual treatment is promoted from this wave.
+
 Deliverables:
 
 - a fixed-content design brief covering Home quiet/emerging/urgent, Chat
@@ -780,6 +791,12 @@ Exit gate:
 - visual exploration does not invent copy, sections, owners, or permissions.
 
 ### Wave 4 — Minimum projection and owner-read contracts
+
+**Status (2026-08-29): contract extraction complete; public API absent.** The
+field-to-owner ledger, four root projection families, semantic result family,
+return envelope, minimum read set, reuse gate, and failure fixtures are
+documented. The backend uses its canonical `ResourceRef`; the frontend mirror
+remains fixture-only.
 
 Deliverables:
 
@@ -803,6 +820,14 @@ Exit gate:
 
 ### Wave 5 — Bounded engineering and native experience lab
 
+**Status (2026-08-29): dark contract package implemented.** Backend shadow code
+compiles the bounded owner-read requirements against the existing reviewed
+semantic catalog and distinguishes promotion-eligible, partial, and unavailable
+capability without serving tools. Frontend fixture code implements the tagged
+semantic result union, exact return envelope, five-situation portfolio, tests,
+and read-only native semantic lab. Actual owner adapters, public API projection,
+and visual evidence remain pending.
+
 Deliverables:
 
 - only the owner readers required by Wave 4;
@@ -822,6 +847,11 @@ Exit gate:
 - the lab passes type, fixture, accessibility, and visual-review gates.
 
 ### Wave 6 — Gated shell, consequence, repair, and multiplayer
+
+**Status (2026-08-29): navigation compatibility gate only.** A default-off,
+internal-only flag can expose Home/Chat/Places/Life labels over the existing
+Trips/Concierge/Places/Atlas route owners. This is navigation evaluation, not
+surface, data, consequence, repair, or multiplayer implementation.
 
 Deliverables:
 

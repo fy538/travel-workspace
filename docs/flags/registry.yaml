@@ -35,6 +35,45 @@
 #   notes     - short context, e.g. what has to happen before flip/removal
 
 flags:
+  - name: ADAPTIVE_PLACES_ORIENT_SHADOW_ENABLED
+    repo: travel-app
+    location: constants/featureFlags.ts:ADAPTIVE_PLACES_ORIENT_SHADOW_ENABLED
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-09-28
+    status: active
+    target_journey: P05
+    cohort: explicit internal builds only
+    kill_switch: Unset EXPO_PUBLIC_ADAPTIVE_PLACES_ORIENT_SHADOW_ENABLED or set it false; the comparison observer remains absent and the existing map treatment is unchanged.
+    promotion_removal_question: >
+      By 2026-09-28, did reviewed match/mismatch evidence show that the bounded
+      adaptive policy adds trustworthy value without rendering, navigation, data,
+      or authority drift, or should the shadow lane be removed?
+    notes: >
+      Comparison-only Places orient shadow. It cannot render, navigate, mutate,
+      request new data, or change the visible serving path.
+
+  - name: EXPO_PUBLIC_FOUR_ROOT_SHELL
+    repo: travel-app
+    location: utils/fourRootShell.ts:FOUR_ROOT_SHELL
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-09-28
+    status: active
+    target_journey: P02,P05,P07
+    cohort: development or explicit internal builds only; public release builds cannot activate it
+    kill_switch: Unset EXPO_PUBLIC_FOUR_ROOT_SHELL or set it false; the shipped Plans, Vesper, Places shell and hidden Atlas compatibility route return immediately.
+    promotion_removal_question: >
+      By 2026-09-28, has the complete native portfolio and a selected dedicated-tool
+      visual system proven Home, Chat, Places, and Life as coherent roots, or should
+      this compatibility shell remain dark or be removed?
+    notes: >
+      Internal navigation evaluation only. Home maps to the existing Trips route,
+      Chat to Concierge, Places to Places, and Life to the existing Atlas continuity
+      route. It is not production conformance and grants no new data or action authority.
+
   # ── travel-agent (backend) ──────────────────────────────────────────────
   - name: WORLDFOUNDRY_DOGFOOD_SERVING_ENABLED
     repo: travel-agent

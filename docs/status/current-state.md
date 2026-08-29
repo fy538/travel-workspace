@@ -20,9 +20,9 @@ from committed registries; follow the linked authority for evidence and detail.
 |---|---:|---|
 | API contract | 557 paths / 619 operations / 1292 schemas | [`docs/openapi.json`](../openapi.json) |
 | Canonical journeys | 28 total / 12 golden path / 7 holistic extension | [`journeys.yaml`](../journeys/journeys.yaml) |
-| Feature flags | 91 registered / 89 active / 2 resolved | [`registry.yaml`](../flags/registry.yaml) |
+| Feature flags | 93 registered / 91 active / 2 resolved | [`registry.yaml`](../flags/registry.yaml) |
 | System charters | 23 Markdown documents | [`systems/`](../systems/) |
-| Documentation inventory | 449 files classified | [`inventory.yaml`](../governance/inventory.yaml) |
+| Documentation inventory | 452 files classified | [`inventory.yaml`](../governance/inventory.yaml) |
 
 ### V1 intent versus executable evidence
 
@@ -75,6 +75,16 @@ implementation or release certification. Production conformance requires an
 explicit shell migration, typed adapters into canonical owners, projection and
 handoff contracts, authority enforcement, and complete cross-root fixture
 verification without duplicating owner truth.
+
+As of 2026-08-29, the convergence branch has a default-off internal
+compatibility shell that labels the existing Trips, Concierge, Places, and
+Atlas routes Home, Chat, Places, and Life only in development or explicit
+internal builds. A native semantic portfolio lab covers five selected
+situations across all four roots, and a fixture-only tagged semantic result
+envelope preserves exact return context. The backend shadow branch has a
+bounded portfolio read plan over the reviewed semantic operation catalog. None
+of these changes serves new runtime data, replaces existing owner writers,
+constitutes visual selection, or certifies the production shell.
 
 ### Contribution-contract conformance
 
