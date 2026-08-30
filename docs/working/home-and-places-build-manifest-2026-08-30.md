@@ -281,19 +281,15 @@ gradients and the Move (now §1.1 laws), the map honesty contract (§3),
 `people_gathering` (the group-at-weight regression fixed).** The rest
 remain candidates awaiting ruling:
 
-**Gap candidates:** `continuity_reconstruction` (the paired
-intended/actual timeline — gallery §10, worlds E3/E4/F7, the E-family's
-core unit); a **layered-Place-passage** shared instrument (source-bound
-timeline + live access in one unit — gallery §10, B2); a
-`people_status_aperture` (the "JUST BACK · 10 DAYS" return-Status
-preview — gallery D5, already accepted in wave-0 §1 A15); a
-**carried-forward receipt** kind + Home/Places carrier (life-continuity
-contract §8.9 — the receipt union predates it; verify or extend); a
-shared **"Why this?" provenance instrument** across both roots
-(contribution-and-consequence §3.8 — only Path has an apparatus today);
+**Gap candidates still open:** a **layered-Place-passage** shared
+instrument (source-bound timeline + live access in one unit — gallery
+§10, B2); a `people_status_aperture` (the "JUST BACK · 10 DAYS"
+return-Status preview — gallery D5, already accepted in wave-0 §1 A15);
 a `live_branch_field` for the recovery register (F5-P2's two-branch
 consequence tree — `live_fallback`'s "exactly one" holds for ordinary
-Live only).
+Live only). *(Resolved from the original list: `continuity_reconstruction`
+adopted same day; the carried-forward receipt promoted §3; the why-this
+instrument adopted §3.)*
 
 **Partials to widen:** `focus_verdict` must carry all six current-read
 registers incl. the then/now diff medium (anatomy §4.2.2, §7);
