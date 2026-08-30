@@ -462,7 +462,7 @@ A proof phase that cannot alter its assumptions is a demonstration. The point
 of C1–C3 is to preserve the coherent product philosophy while discovering the
 smallest surface and system grammar that can actually carry it.
 
-## Status — 2026-08-30, end of day
+## 10. Status snapshot after the initial board pass
 
 Steps 1–3 of §8 are complete: R1–R7 ran as provisional assumptions;
 C1–C3 composed with fixed evidence and recorded counterfactuals (canvas
@@ -475,3 +475,142 @@ producer, and social projector are lifted to the amended contracts.
 Remaining from this doc: the F9 real-photography test (dogfood lane),
 voice/deferral media, map-renderer acceptance criteria (recorded), and
 the §7-remainder candidates still awaiting ruling.
+
+This snapshot records what landed in the first canon-alignment pass. It does
+not by itself prove that every board passed the full acceptance portfolio. The
+fresh source-level audit below supersedes any reading of “closed” as
+“conformant in every authority, epistemic, social, and interaction detail.”
+
+## 11. Post-alignment audit of the reworked Claude boards
+
+### 11.1 Updated verdict
+
+The reworked project is a material advance. C1 makes ordinary and thin-context
+value visible; C2 makes private payoff, nonresponse, governed contribution,
+shared consequence, and participant-to-initiator compounding visible; C3 makes
+the contribution-to-consequence loop, execution uncertainty, map continuity,
+Life re-finding, and causal unwind visible. The Urgent board gives Help it work
+the product weight the earlier project lacked.
+
+The semantic backbone is now demonstrated strongly enough to continue. It is
+not yet fully conformant. Several fixtures cross stable authority or
+first-person-meaning boundaries while their findings boards mark the relevant
+gate as passed. These are not copy-polish issues and cannot be waived by the
+canon-alignment pass.
+
+The correct status is:
+
+> **Phase-2 semantic coverage achieved; promotion remains conditional on the
+> authority correction docket, the complete nineteen-gate matrix, and the
+> remaining native-medium proofs.**
+
+### 11.2 Authority and epistemic correction docket
+
+| ID | Current board behavior | Required correction | Governing law |
+| --- | --- | --- | --- |
+| P1 | C2 opens and sends an Occasion after “Dinner while Dana's in town—Saturday night?” without showing whether the host meant prepare or contact. | Separate preparation from sending. Show the exact invitation/audience preview and one constitutive authorization unless the utterance explicitly says to invite or send. | Naming people does not authorize contact; preparation is not execution. |
+| P2 | C2 says both candidate shapes “work for everyone” while Sam has not opened the Occasion. | Say that both fit every **known** constraint and preserve Sam's unknown or pending state. Nonresponse must not become inferred compatibility. | Unknown, declined, unavailable, and silent are distinct. |
+| P3 | Sam's judgment about one restaurant is applied to the backup restaurant and later to a sister restaurant. | Keep the human claim attached to the Place and scope he actually authored. A transfer needs Sam's broader statement, a separately sourced Vesper claim with visible uncertainty, or no claim. | Provenance is claim-scoped; relationship or ownership similarity does not widen human authority. |
+| P4 | Dana relays Sam's rule to Priya because his name remains attached. | Add an explicit may-relay/new-audience grant or keep the rule inside the original audience. Attribution preserves provenance, not permission. | May-use, may-name, may-show, may-contact, and audience scope remain independent. |
+| P5 | C3 durably keeps Sam's message and a derived claim after the person asks whether it is real. | Show an explicit keep gesture or a current-job-only contribution that expires after the answer. Bringing something into Chat does not automatically grant durable retention. | Immediate use and retention are separate axes. |
+| P6 | One dinner causes a restaurant to enter one or both people's “rotation.” | Require an explicit save/keep, a person-authored Outcome, or repeated corroborated behavior. Otherwise preserve only the Occurrence and the possibility of return. | The person authors preference and meaning; behavior proves occurrence, not durable affinity. |
+| P7 | “Last night settled itself” appears on Home after the Occasion. | Prefer silence. If a return appears, it must contribute new useful state or consequence rather than congratulate the product for having coordinated successfully. | Home returns marginal value; product self-narration is not value. |
+| P8 | The unwind says a relayed artifact retracts from Priya after she may already have seen or copied it. | Distinguish Vesper-controlled projection invalidation from external erasure. Mark withdrawn, stop future resurfacing, remove governed copies where possible, and state what cannot be recalled. | Repair must be causally honest about system boundaries. |
+| P9 | C3's Move uses “both calendars” without identifying the permission and purpose that make Sam's availability usable. | Name the authorized availability source or use Occasion-scoped availability already supplied for the current purpose. | Retrieval and inference remain purpose-limited and audience-scoped. |
+| P10 | C3 says “same owners” and “same kitchen” make Sam's dish rule hold at the sister Place. | Split provider/world evidence from Sam's authored judgment. Vesper may verify a relationship between businesses; it may not convert that fact into Sam's recommendation. | World claims and human judgments are different evidence lanes. |
+
+P3, P4, P5, P6, and P8 are architecture-bearing because they affect the grant
+store, Source/Claim scope, projector invalidation, Life Outcome admission, and
+external-delivery receipts. Hold authority-sensitive social projector,
+retention, relay, and Outcome-inference implementation until their corrected
+fixtures pass. Semantics-light primitives and unrelated native work may
+continue.
+
+### 11.3 Completion-integrity corrections
+
+1. **Run the complete matrix.** The C1, C2, and C3 findings boards currently
+   select the gates most relevant to each composition. Produce one C1/C2/C3 ×
+   nineteen-gate matrix with `pass`, `partial`, `fail`, or `not exercised`, plus
+   the exact board evidence. A gate omitted from a findings board is not a
+   pass.
+2. **Do not mark R7 fully confirmed.** Casual copy and a photo slot are
+   demonstrated; real personal photography inside the warm system is not.
+   Voice and deferral also remain storyboard-only. These are explicit partials.
+3. **Do not treat full Chat and Life as closed by projections.** C3 proves the
+   cross-root envelope and selected jobs. The complete Chat and Life roots
+   remain owned by their companion programs.
+4. **Treat map behavior as a contract, not a rendered proof.** The carried
+   question, viewport recomposition, pin/row convergence, act-and-return, and
+   exact restoration are strong acceptance criteria. Native responsiveness,
+   performance, accessibility, and stale-state behavior remain open.
+5. **Clarify the Quiet ruling in the project.** Full Quiet is the founder-ruled
+   direction under kernel §11.12.3; the sparse board is the counterfactual
+   control. Rename or annotate the boards so “Ordinary Quiet” and “Quiet FULL
+   (proposal)” do not imply the decision remains unresolved.
+
+### 11.4 Project-map correction
+
+The Claude Overview must be updated before another handoff. It currently omits
+C1–C3 and Urgent, still describes a single returned-Europe fixture world, says
+the current Chat workbench needs no change, and presents the earlier rulings as
+closed without the conditional audit above. It should instead identify:
+
+- the original Returned-Saturday project as the control;
+- C1–C3 and Urgent as the Phase-2 composition set;
+- Full Quiet as ruled and Sparse Quiet as its counterfactual;
+- the corrected count authority from the build manifest;
+- Chat and Life as companion root programs whose selected projections are
+  tested here but whose complete surfaces are not; and
+- this §11 docket as the remaining promotion boundary.
+
+### 11.5 Canon-amendment disposition
+
+The first pass's useful semantic findings remain strong candidates or accepted
+amendments: the orientation ladder, people reservoir, posture/modifier split,
+Quiet richness-versus-demand distinction, `now_commitment_instrument`, carried-
+forward receipt, execution ledger, unattributed aggregates, Move-with-basis,
+and the distinction between retractable contribution and persistent
+Occurrence.
+
+The latter distinction requires one precision amendment after P8: Vesper can
+invalidate governed artifacts and future projections, but cannot promise to
+erase an externally delivered or already perceived contribution. The receipt
+must state the actual propagation boundary.
+
+### 11.6 Close condition
+
+The reworked project may be called Phase-2 conformant only when:
+
+1. P1–P10 are corrected in the source boards and findings;
+2. the full nineteen-gate matrix is present;
+3. the Overview accurately maps control, challenge, ruled direction, companion
+   programs, and remaining partials;
+4. the grant and Outcome corrections are reflected in the affected contracts
+   before authority-sensitive implementation proceeds; and
+5. real-photo, native-map, voice/deferral, and full-root gaps remain explicitly
+   `partial` or `not exercised` until their proper labs close them.
+
+This is not a retreat from the composition direction. It is the final
+distinction the product philosophy requires: a storyboard can prove that the
+whole loop is understandable while still failing the authority discipline that
+makes Vesper trustworthy enough to live inside it.
+
+## 12. Docket execution status — 2026-08-30, late
+
+Close conditions (§11.6) as of this entry: (1) P1–P10 corrected on the
+source boards, with the correction IDs annotated in place and the
+findings boards re-stamped; (2) the complete nineteen-gate matrix board
+exists ("Phase 2 · 19-Gate Matrix"), superseding per-composition gate
+selections, with FAIL→AMENDED, PARTIAL, and NOT EXERCISED used
+honestly; (3) the Overview rewritten to the §11.4 map (control /
+Phase-2 set / ruled-vs-counterfactual Quiet / manifest count authority /
+companion programs / this docket as the promotion boundary); (4) the
+authority laws ratified as kernel §11.14 including the P8 precision
+amendment to §11.12.7, with the authority-sensitive implementation hold
+recorded — grant store, retention, relay, Outcome inference, and
+projector invalidation remain unbuilt pending re-review of the
+corrected fixtures; (5) real-photo, native-map, voice/deferral, and
+full-root gaps remain explicitly PARTIAL / NOT EXERCISED on the matrix.
+Item 4's contract propagation into the contribution-and-consequence
+systems doc is flagged to that doc's owner rather than edited across
+program boundaries here.

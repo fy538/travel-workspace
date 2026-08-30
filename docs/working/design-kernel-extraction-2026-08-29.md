@@ -1096,6 +1096,45 @@ Score after this batch: 65 kinds + 13 instruments → 14 EXISTS ·
 30 ADAPT · 33 BUILD. The open-questions ledger for Home & Places is,
 for the first time, empty of ruling-shaped items.
 
+### 11.14 The authority docket — RATIFIED 2026-08-30 (from response doc §11)
+
+A post-alignment source audit found ten authority/epistemic boundary
+violations in the phase-2 fixtures, all marked "pass" by their own
+findings boards. All ten corrected on the source boards; ratified here
+as surface laws (most restate the contribution contract; the boards
+proved restating was necessary):
+
+1. **Preparation is not execution; naming people does not contact
+   them** (P1). One constitutive authorization sends, with the exact
+   audience shown first.
+2. **Unknown ≠ compatible** (P2). Nonresponse never becomes inferred
+   agreement; shared objects say "every *known* limit."
+3. **Human claims are claim-scoped** (P3, P10). Business relationships
+   widen world facts, never a person's judgment; "the menu lists it" is
+   Vesper's lane, "trust me on it" is only ever theirs.
+4. **May-relay is its own grant axis** (P4). Attribution preserves
+   provenance, not permission; a new audience needs the author's yes.
+5. **Retention needs a keep** (P5). Bringing something into Chat grants
+   immediate use, not durable residue; without a keep gesture it
+   expires with the turn.
+6. **Occurrence ≠ affinity** (P6). Behavior proves what happened; only
+   the person authors preference, rotation, and meaning.
+7. **No product self-narration** (P7). "It settled itself" is not a
+   return; after a coordinated evening, silence is.
+8. **Propagation-boundary honesty** (P8) — *precision amendment to
+   §11.12.7*: withdrawal invalidates every governed artifact,
+   projection, and learned signal and stops all future resurfacing; it
+   cannot unread what was already read or erase external deliveries,
+   and the receipt states that boundary instead of promising erasure.
+9. **Availability is purpose-scoped** (P9). Another person's calendar
+   or availability is usable only through the permission and purpose
+   that supplied it.
+10. **Implementation hold**: the grant store, retention, relay, Outcome
+    inference, and projector invalidation stay unbuilt until the
+    corrected fixtures pass re-review (they are corrected as of this
+    entry; the 19-gate matrix board carries the honest verdicts,
+    including standing partials no board can close).
+
 ## 12. Adjacent system rulings
 
 <!-- Header restored 2026-08-29: a prior edit dropped the "## 12" line;
@@ -1274,3 +1313,18 @@ green-lit (OccasionCapsule writer → Brief producer → conformance
 fixes). Resolver job-taxonomy ratification remains deliberately
 parked (answer-lane only); PLAN_SHAPE flag mooted by the family
 split.
+Added 2026-08-30: THE VOICE SPLIT RULED (closes board 03's residual
+open) — **Home states what matters; Chat states what it can do about
+it.** The two reads never say the same thing twice: Home's Now read is
+the world's sentence ("Storms this afternoon. Saturday opens
+clearer."); Chat's read line is the agency sentence ("Maya moved
+dinner. The rest can keep." / "Nothing needs you."). One voice, two
+postures — witness vs workshop. Also: board 16 "The Editorial Family"
+opened — the Story page + shipped-Reading conformance audit against
+the opened-page laws, with two PROPOSED rulings pending founder pass:
+(a) EDITIONS — a system-persisted composition (the T-7 Reading)
+renders AS its dated edition with a see-it-fresh door, the
+Kept-renders-as-kept rule extended to pushes; (b) FUTURE OPENINGS
+belong to Home's Horizons, and appear in Chat only as promise-shelf
+leads (an opening is an invitation to ask), never well rows or pushed
+cards — consistent with the well's non-urgent-proactive exclusion.
