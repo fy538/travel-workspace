@@ -501,8 +501,136 @@ promoted from kicker/footnote voice to body voice. Ruling:
    admitted by the same compiler, below the lead. Browse is a texture
    the field can hold, never the field's organizing principle.
 
-Specimen sheets re-clothed same day; the composition boards (Home
-postures, Places states, fixtures) inherit this pass next.
+Specimen sheets re-clothed same day; composition boards re-clothed the
+same day (Home Saturday: map object in the crown, occasion plate +
+facepile, editorial cover; World Field: hatch branch thumbs + the browse
+shelf and editorial cover in composition; Focus/Path/fixtures: plates
+hatched, Path title to serif). Quiet posture deliberately stays sparse —
+sparseness there is the design, not the failure. Live Reduction stands
+as founder-approved. Remaining un-re-clothed: none.
+
+### 11.8 The Composition contract + the Shape default — RULED 2026-08-29 (founder)
+
+Extends §11.5 from *containers compose* to what composing IS, and
+demotes the itinerary surface. Board of record: "07 Chat - The
+Composition" in the Vesper — Chat Design project. Vocabulary per canon:
+a **Composition** is generated; an **Artifact** is brought or kept —
+saving is the act that turns one into the other.
+
+- **One frame, six bodies, three zooms.** Every composition renders in
+  a fixed five-part frame: provenance kicker (mono — the promise-shelf
+  result-family vocabulary; the shelf promises a family, the
+  composition opens with the same family's name) · the read (serif, one
+  interpretive line — the only genuinely generated language) · the body
+  (exactly ONE lead medium of the canon's six + at most one supporting
+  instrument) · the ground (mono stamps: sources, freshness, unknowns —
+  unknowns render, never hide) · one continuation (door or prefill,
+  never a button row). The same composition exists at three densities —
+  compact (a well section, per the well composition rules), standard
+  (`CardBlueprintV1`; its 8-block grammar IS this frame at card scale),
+  immersive (opened, editorial family; the one unbuilt density) — as
+  one object at three zooms, never three artifacts (the Card↔Deck
+  fidelity law generalized).
+- **Freedom ladder.** FIXED (client-owned, invariant): frame anatomy,
+  type, color, spacing, skins, density geometry, action mechanics.
+  CHOSEN (server, per render, from enumerated sets): job, lead medium +
+  support, claim selection and order, read-line copy, modifiers,
+  audience projection, the one continuation. NEVER (nobody, including
+  the model): layout, novel components, coordinates, colors, gestures,
+  persistent identity without a save event. Dynamic in selection and
+  language, static in form — dynamic the way a newspaper is dynamic.
+  Viewer-relativity is a law, not a style: My / Together never merge
+  into one synthetic read.
+- **Laws:** one job per composition (a second job = a second
+  composition or the continuation); smallest medium that makes the
+  contribution perceptible; evidence-bound and fabrication-closed
+  (silence is a first-class render); three zooms one object; the
+  composition owns nothing (actions opaque + re-authorized; consequence
+  returns as a receipt); every composition names how it ends;
+  duplicate-family suppression across well / shelf / open thread.
+- **Design language:** no new dialect — the §11.7 physical grammar
+  assigned per medium (sequence: timeline rows + ticket stubs + was/now
+  cells + the §12.1 dot encoding; comparison: paired cells + tally +
+  serif verdict, diagram only per the §12.1 boundary; spatial: the map
+  plate; evidence: quote plates + polaroid/riso + facepile; prose:
+  serif + gold drop cap at immersive + editorial cover; instrument: the
+  Instrument Hold strip = the well's live sliver). Mono = provenance,
+  serif = interpretation, sans = data; at most one gold moment per
+  composition.
+- **Persistence — four endings, declared in the brief, stamped in the
+  ground:** ephemeral (default; durable residue = the message's plain
+  text; the graph is the truth, the composition never is), refreshable
+  (recomputed at read; staleness renders), **saved** (a deliberate
+  human act mints a versioned manifest — id, brief, claims, viewer,
+  timestamp — and the Composition becomes an Artifact in Life;
+  corrections regenerate versions, never mutate; anything shared is
+  automatically versioned; nothing self-saves), live (instrument UI
+  never persists; the receipt does).
+- **The Shape default — the itinerary demoted.** The default
+  projection of any occasion is its **Shape**: a few settled things, a
+  few open things, who's in, what's unknown (the OccasionCapsule
+  fields / PlanShape lanes). Time enters as stamps on commitments,
+  never as a grid everything must inhabit. The day-by-day timeline
+  survives only as an **earned lens**: sequence leads for a day only
+  when that day holds enough timed commitments that sequence is
+  genuinely the smallest medium. Use-case ground: one moment / an
+  outing / a gathering / live / after never touch an itinerary; only
+  the dense trip day earns one. Dies at the surface: the day grid as
+  single-trip home, block-editing ceremony as primary UI, day-placement
+  as the price of being real. Survives beneath, unchanged: commitments,
+  booking/provider sagas, the operation ledger as audit spine,
+  feasibility as a quiet check on timed conflicts. Guard: if the Shape
+  ever grows tabs, the itinerary has been rebuilt under another name.
+
+### 11.9 The Chat entry — RULED 2026-08-29 (founder, seven passes)
+
+Boards of record: Vesper — Chat project, 02 (target entry), 04 (well
+vocabulary + composition), 05 (promise shelf), 06 (entry states),
+08 (the entry envelope — the typed build contract). Trigger remains the
+four-root migration (board 03); the shipping workbench changes nothing
+until then.
+
+- **One skeleton, state-invariant:** chrome → read line → well → air →
+  prompt shelf at the composer → composer → dock. States differ by what
+  fills the slots and in what register, never by layout. Slots empty;
+  they are not rearranged.
+- **The chrome speaks the world, not the brand.** The header eyebrow is
+  a server context slot: at rest the world line (LOCATION · WEATHER,
+  "BROOKLYN · 72° CLEAR" — live weather service, never seeded-world),
+  during a live occasion the mode line ("LIVE · RED HOOK · 72°"),
+  silent pre-permission. "With Vesper" is deleted. Actions live in ONE
+  warm-glass capsule (Search · History/chatbubbles · You); the compact
+  "Vesper" title morphs into the capsule on scroll only.
+- **Well composition:** at most three kind-keyed sections; ONE loud
+  (gold wash — nearest deadline wins), ONE full-anatomy (rest compact
+  rows), fixed order demanding → live → reporting → quiet; overflow
+  collapses to a roll-up row. **Durable truth never earns a row** — the
+  as-built facts band is retired; facts annotate sections as context
+  stamps. The well persists wherever anything honest fills it; the
+  honest empty (well absent, air extends) is a designed outcome.
+- **All prompting gathers at the composer.** Below the well is air —
+  load-bearing, no producer may claim it. The shelf = worked lead
+  {family kicker + provenance, serif ask, one substance line} + ONE
+  row of two named-return tiles; two rows only leadless (Live, where
+  the live moment is the lead). Zero CTAs: no doors, no buttons —
+  every element is tappable whole and prefills the composer, editable.
+  No duplicate family between lead and tiles; fewer honest asks →
+  fewer tiles, never filler. Cold takes the bring→get conditional form
+  (scaffolding grows as ground shrinks).
+- **Family vocabulary (closed set):** A CATCH-UP · A COMPARISON ·
+  A ROUTE · A SHAPE · A KEEPING · A WATCH · A SETTLING · A FINDING
+  (cold lead may take A FIRST SHAPE). GHOST_COPY generalizes to
+  {family, ask, substance?} tuples, server-owned.
+- **Owed before ship** (board 08): content-contract instances for the
+  new copy surfaces; the world-line producer (device + weather via the
+  envelope, with staleness rule); resolver job-taxonomy ratification
+  (scoped by §11.5) before selection goes live.
+
+## 12. Adjacent system rulings
+
+<!-- Header restored 2026-08-29: a prior edit dropped the "## 12" line;
+     the §12.1–§12.4 numbering below is load-bearing (cited by §11.8,
+     §14, §15). -->
 
 1. **Map grammar — RULED 2026-08-29 (founder); honesty contract added
    2026-08-30.** Segment source (routed / estimated / unknown) is a
@@ -573,7 +701,7 @@ postures, Places states, fixtures) inherit this pass next.
 | Root | Kernel posture |
 | --- | --- |
 | Home | Near-pure reuse: five regions re-edit existing anatomies (crown→Now, open-loops→In motion, trail→Horizons, group→With people, memory family→Continuity); the work is register diversity, not new parts |
-| Chat | Kernel governs cards/receipts that land in chat; the artifact-language track keeps its own conversational chrome — boundary doc needed if conflict appears |
+| Chat | Entry CONVERGED 08-29 (§11.9, seven founder passes): world-line chrome, well composition laws, prompt shelf at the composer, typed envelope contract (board 08); kernel governs cards/receipts that land in chat; the artifact-language track keeps its own conversational chrome — boundary doc needed if conflict appears |
 | Places | Kernel governs everything around and on the canvas; the canvas grammar itself is §12.1 — new work in kernel clothes |
 | Life | Greenfield on kernel substrate; blocked on §12.2 media ruling; watch §12.3 density |
 
@@ -593,3 +721,19 @@ voice moment per page) — which also closes the projection-contract
 board's two former opens (envelope staleness, canonical seen).
 Remaining watch item, not a ruling: dense retrieval register (§12.3, at
 Life board time).
+Added late 2026-08-29: the Composition contract + the Shape default
+(§11.8; board of record "07 Chat - The Composition") — one frame / six
+bodies / three zooms, the freedom ladder, seven laws, four persistence
+endings, and the itinerary demoted to an earned per-day lens beneath
+the Shape. One open call flagged inside it, deliberately left with the
+workbook: which compositions may earn saved identity (recommendation
+on the board: share-or-keep intent only; nothing self-saves).
+Added late 2026-08-29: the Chat entry batch (§11.9, seven founder
+passes) — one state-invariant skeleton, world-line chrome ("With
+Vesper" deleted), well composition (3 max / one loud / one full /
+fixed order; durable truth never earns a row), the prompt shelf at the
+composer (lead + one row, zero CTAs), and the typed entry envelope
+(board 08). No new opens beyond what it restates: the resolver
+job-taxonomy ratification (already scoped by §11.5) now has its first
+concrete consumer — entry-slot selection — plus content-contract
+instances owed before ship (listed on board 08).
