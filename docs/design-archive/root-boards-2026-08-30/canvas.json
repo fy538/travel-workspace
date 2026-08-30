@@ -1,0 +1,343 @@
+{
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 880,
+      "h": 1150,
+      "title": "Root Boards · Overview",
+      "page": "overview"
+    },
+    {
+      "file": "HomeSaturday.dc.html",
+      "x": 0,
+      "y": 2000,
+      "w": 393,
+      "h": 1870,
+      "title": "Home · Returned Saturday",
+      "page": "home"
+    },
+    {
+      "file": "HomeQuiet.dc.html",
+      "x": 473,
+      "y": 2000,
+      "w": 393,
+      "h": 1250,
+      "title": "Home · Quiet",
+      "page": "home"
+    },
+    {
+      "file": "HomeVerdicts.dc.html",
+      "x": 946,
+      "y": 2000,
+      "w": 720,
+      "h": 980,
+      "title": "Home · Verdicts",
+      "page": "home"
+    },
+    {
+      "file": "WorldField.dc.html",
+      "x": 0,
+      "y": 4200,
+      "w": 393,
+      "h": 1635,
+      "title": "1 · World Field",
+      "page": "places"
+    },
+    {
+      "file": "PlaceFocus.dc.html",
+      "x": 473,
+      "y": 4200,
+      "w": 393,
+      "h": 1295,
+      "title": "2 · Place Focus",
+      "page": "places"
+    },
+    {
+      "file": "PlacePath.dc.html",
+      "x": 946,
+      "y": 4200,
+      "w": 393,
+      "h": 1335,
+      "title": "3 · Place Path",
+      "page": "places"
+    },
+    {
+      "file": "LiveReduction.dc.html",
+      "x": 1419,
+      "y": 4200,
+      "w": 393,
+      "h": 1348,
+      "title": "4 · Live Reduction",
+      "page": "places"
+    },
+    {
+      "file": "PlacesVerdicts.dc.html",
+      "x": 1892,
+      "y": 4200,
+      "w": 720,
+      "h": 1180,
+      "title": "Places · Verdicts",
+      "page": "places"
+    },
+    {
+      "file": "ReductionHold.dc.html",
+      "x": 0,
+      "y": 6400,
+      "w": 393,
+      "h": 1348,
+      "title": "Live Reduction · HOLD",
+      "page": "stress"
+    },
+    {
+      "file": "ReductionActNow.dc.html",
+      "x": 473,
+      "y": 6400,
+      "w": 393,
+      "h": 1130,
+      "title": "Live Reduction · ACT NOW",
+      "page": "stress"
+    },
+    {
+      "file": "ReductionVerdicts.dc.html",
+      "x": 946,
+      "y": 6400,
+      "w": 720,
+      "h": 900,
+      "title": "Stress Test · Verdicts",
+      "page": "stress"
+    },
+    {
+      "file": "HandoffWaterfront.dc.html",
+      "x": 0,
+      "y": 10400,
+      "w": 1180,
+      "h": 840,
+      "title": "Pair A · Waterfront → Live Reduction",
+      "page": "handoff"
+    },
+    {
+      "file": "HandoffChange.dc.html",
+      "x": 0,
+      "y": 11440,
+      "w": 1180,
+      "h": 780,
+      "title": "Pair B · Change → Place Focus",
+      "page": "handoff"
+    },
+    {
+      "file": "HandoffContract.dc.html",
+      "x": 1260,
+      "y": 10400,
+      "w": 720,
+      "h": 1150,
+      "title": "Handoff · Contract",
+      "page": "handoff"
+    },
+    {
+      "file": "F2Heat.dc.html",
+      "x": 0,
+      "y": 12800,
+      "w": 1180,
+      "h": 1120,
+      "title": "F2 · Rome Heat → NY Weekend",
+      "page": "fixtures"
+    },
+    {
+      "file": "F3Pasta.dc.html",
+      "x": 0,
+      "y": 14120,
+      "w": 1180,
+      "h": 1160,
+      "title": "F3 · Pasta → New York",
+      "page": "fixtures"
+    },
+    {
+      "file": "F4Friends.dc.html",
+      "x": 1260,
+      "y": 12800,
+      "w": 1180,
+      "h": 1180,
+      "title": "F4 · Attributed Friends",
+      "page": "fixtures"
+    },
+    {
+      "file": "F5Disruption.dc.html",
+      "x": 1260,
+      "y": 14180,
+      "w": 1180,
+      "h": 1240,
+      "title": "F5 · Disrupted Return",
+      "page": "fixtures"
+    },
+    {
+      "file": "HomePostureMatrix.dc.html",
+      "x": 0,
+      "y": 16200,
+      "w": 2260,
+      "h": 1360,
+      "title": "Canon · Home Posture Matrix",
+      "page": "canon"
+    },
+    {
+      "file": "RulingsEight.dc.html",
+      "x": 2340,
+      "y": 16200,
+      "w": 760,
+      "h": 1560,
+      "title": "Canon · The Eight Rulings",
+      "page": "canon"
+    },
+    {
+      "file": "PlacesOrdinaryOpen.dc.html",
+      "x": 0,
+      "y": 18000,
+      "w": 393,
+      "h": 1150,
+      "title": "Canon · Places Ordinary Open",
+      "page": "canon"
+    },
+    {
+      "file": "PlacesSocialAnatomy.dc.html",
+      "x": 473,
+      "y": 18000,
+      "w": 1180,
+      "h": 1080,
+      "title": "Canon · Places Social Anatomy",
+      "page": "canon"
+    },
+    {
+      "file": "PlacesDegradation.dc.html",
+      "x": 1733,
+      "y": 18000,
+      "w": 1180,
+      "h": 1130,
+      "title": "Canon · Places Degradation",
+      "page": "canon"
+    },
+    {
+      "file": "BuildManifest.dc.html",
+      "x": 2993,
+      "y": 18000,
+      "w": 1180,
+      "h": 1065,
+      "title": "Canon · Build Manifest",
+      "page": "canon"
+    },
+    {
+      "file": "SpecimenHome.dc.html",
+      "x": 0,
+      "y": 20200,
+      "w": 1220,
+      "h": 2350,
+      "title": "Specimens · Home (24)",
+      "page": "specimens"
+    },
+    {
+      "file": "SpecimenPlaces.dc.html",
+      "x": 1300,
+      "y": 20200,
+      "w": 1220,
+      "h": 2580,
+      "title": "Specimens · Places (30)",
+      "page": "specimens"
+    }
+  ],
+  "annotations": [
+    {
+      "id": "home-brief",
+      "x": 0,
+      "y": 1830,
+      "w": 420,
+      "page": "home",
+      "text": "The five-region Home from the recovery doc (§7), on one stable skeleton.\nLeft: World F, 'one life, several horizons' — the Returned-Saturday default.\nMiddle: Quiet — calm is a posture, not an empty page."
+    },
+    {
+      "id": "places-brief",
+      "x": 0,
+      "y": 4020,
+      "w": 440,
+      "page": "places",
+      "text": "Four states of one navigable encounter — New York → Red Hook → the Sorrento threshold comparison → the live Saturday interval.\nScope narrows left to right; the interval, dinner constraint, and Sorrento evidence persist.\nFrame 4 is the founder-approved stress-test board, reused verbatim."
+    },
+    {
+      "id": "stress-brief",
+      "x": 0,
+      "y": 6230,
+      "w": 400,
+      "page": "stress",
+      "text": "The reuse bet's worst case: can the warm-paper kernel render an operational live-route instrument?\nHOLD is the fixture default; ACT NOW is the hard case. Founder-approved — kept for provenance."
+    },
+    {
+      "id": "handoff-brief",
+      "x": 0,
+      "y": 10230,
+      "w": 460,
+      "page": "handoff",
+      "text": "Home never sends the person to generic Places to rediscover why they tapped.\nTwo rows of the destination table drawn as pairs; the typed envelope made visible between the phones.\nIn the product the envelope is invisible — its proof is that the destination already knows."
+    },
+    {
+      "id": "fixtures-brief",
+      "x": 0,
+      "y": 12630,
+      "w": 470,
+      "page": "fixtures",
+      "text": "The four remaining evidence worlds from the five-world pack, each as Home | value receipt | Places.\nEach exercises a different register: F2 the temporal posture (closure, not homework), F3 photography-as-evidence, F4 attributed dual lanes (multiplayer as perception), F5 the governed urgency register.\nEvery receipt carries its own 'beats silence because' and 'forbidden here' rails."
+    },
+    {
+      "id": "canon-brief",
+      "x": 0,
+      "y": 16030,
+      "w": 470,
+      "page": "canon",
+      "text": "The canon set, complete: the eight rulings (all ruled 08-30, #1 amended — the read restored), the Home posture matrix (one skeleton, six postures), and the Places completion — the mast-less ordinary open, the four admissible social forms escaped from trip scope, and one Place degrading honestly across four evidence conditions.\nStep 2 done. Next: promotion — one accepted decision doc + the Home-root and Places-root surface contracts."
+    },
+    {
+      "id": "specimens-brief",
+      "x": 0,
+      "y": 20030,
+      "w": 460,
+      "page": "specimens",
+      "text": "The parts drawer: every kind from the unit unions rendered once, isolated, with its union name and build grade (oxblood = build, gold = adapt, green = exists).\nCompositions live on the other pages; grades and evidence gates in the build manifest doc."
+    }
+  ],
+  "launch": {
+    "view": "canvas",
+    "page": "specimens"
+  },
+  "pages": [
+    {
+      "id": "overview",
+      "name": "Overview"
+    },
+    {
+      "id": "canon",
+      "name": "Canon"
+    },
+    {
+      "id": "specimens",
+      "name": "Specimens"
+    },
+    {
+      "id": "home",
+      "name": "Home"
+    },
+    {
+      "id": "places",
+      "name": "Places"
+    },
+    {
+      "id": "handoff",
+      "name": "Home → Places Handoff"
+    },
+    {
+      "id": "fixtures",
+      "name": "Fixtures F2–F5"
+    },
+    {
+      "id": "stress",
+      "name": "Kernel Stress Test"
+    }
+  ]
+}

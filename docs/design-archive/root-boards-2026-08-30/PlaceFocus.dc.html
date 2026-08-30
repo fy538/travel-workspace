@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;700&display=swap">
+  <style>
+    body { margin: 0; }
+    a { color: #8A6628; } a:hover { color: #4A3428; }
+  </style>
+</helmet>
+<div style="width: 393px; min-height: 1290px; background: #EFEAE0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; color: #1B1714; display: flex; flex-direction: column; box-sizing: border-box; padding-bottom: 28px;">
+
+  <!-- chrome: back + scope -->
+  <div style="display: flex; align-items: center; gap: 12px; padding: 24px 22px 0 22px;">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex: none;"><path d="M12.5 4L7 10L12.5 16" stroke="#1B1714" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div style="display: flex; flex-direction: column; gap: 2px; flex-grow: 1;">
+      <div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-weight: 700; font-size: 11px; letter-spacing: 1.15px;">RED HOOK</div>
+      <div style="font-size: 12.5px; line-height: 17px; color: #6E6862;">Brooklyn waterfront &middot; harbor edge</div>
+    </div>
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex: none;"><circle cx="9" cy="9" r="5.5" stroke="#6E6862" stroke-width="1.5"/><path d="M13.5 13.5L17 17" stroke="#6E6862" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex: none;"><path d="M3 6.5L8 4.5L12 6.5L17 4.5V13.5L12 15.5L8 13.5L3 15.5V6.5Z" stroke="#6E6862" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 4.5V13.5M12 6.5V15.5" stroke="#6E6862" stroke-width="1.5"/></svg>
+  </div>
+
+  <!-- place identity: the map is the object -->
+  <div style="padding: 24px 22px 0 22px;">
+    <svg width="349" height="180" viewBox="0 0 349 180" fill="none" style="display: block; width: 100%; height: auto;">
+      <rect x="0" y="0" width="349" height="180" rx="12" fill="#FBF7EC" stroke="rgba(27,23,20,0.10)"/>
+      <!-- water left, peninsula center-right -->
+      <path d="M349 0 L120 0 Q104 30 116 62 Q124 88 110 114 Q96 140 108 166 L124 180 L349 180 Z" fill="#EFEAE0" stroke="rgba(27,23,20,0.10)"/>
+      <!-- atlantic basin notch -->
+      <path d="M120 74 Q140 70 150 82 Q158 94 146 104 Q132 112 122 102 Z" fill="#FBF7EC" stroke="rgba(27,23,20,0.10)"/>
+      <!-- street grid hint -->
+      <path d="M150 40 L300 40 M160 70 L310 70 M150 104 L300 104 M170 136 L310 136 M200 24 L200 160 M244 24 L244 160 M286 24 L286 160" stroke="rgba(27,23,20,0.06)" stroke-width="1.2"/>
+      <!-- ferry landing -->
+      <circle cx="136" cy="88" r="4.5" fill="#B0853A"/>
+      <!-- saved place -->
+      <circle cx="222" cy="86" r="4" stroke="#8A6628" stroke-width="1.5" fill="#F2E6CC"/>
+      <!-- land access edge -->
+      <path d="M310 52 Q330 70 332 96" stroke="#1B1714" stroke-width="1.6" stroke-dasharray="1.5 5" fill="none" stroke-linecap="round"/>
+      <text x="96" y="66" font-family="JetBrains Mono, monospace" font-size="8" font-weight="700" letter-spacing="1" fill="#8A6628">FERRY</text>
+      <text x="206" y="72" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0.8" fill="#8A6628">SAVED &middot; 1</text>
+      <text x="284" y="44" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0.8" fill="#6E6862">LAND EDGE</text>
+      <text x="160" y="160" font-family="JetBrains Mono, monospace" font-size="8" font-weight="700" letter-spacing="1" fill="#1B1714">RED HOOK</text>
+    </svg>
+  </div>
+
+  <!-- current read · verdict register, uncarded -->
+  <div style="padding: 32px 22px 0 22px; display: flex; flex-direction: column; gap: 6px;">
+    <div style="display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: #8A6628; padding-bottom: 0px;"><span>THE ARRIVAL SHAPES THE AFTERNOON</span><span style="flex:1;height:1px;background:rgba(27,23,20,0.10);"></span></div>
+    <div style="font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 25px;">Use the scheduled crossing to give the visit a clear beginning. Keep the land return as the flexible edge; making both directions schedule-dependent would turn the afternoon into timetable management.</div>
+    <div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.9px; color: #B5AFA5;">CURRENT BASIS &middot; SATURDAY INTERVAL &middot; SERVICE AND ROUTE FACTS CHECKED 4:42 PM</div>
+  </div>
+
+  <!-- relationship trace · descriptive, uncarded, compact -->
+  <div style="padding: 32px 22px 0 22px; display: flex; flex-direction: column; gap: 4px;">
+    <div style="display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: #6E6862; padding-bottom: 0px;"><span>YOUR TRACE HERE</span><span style="flex:1;height:1px;background:rgba(27,23,20,0.10);"></span></div>
+    <div style="font-size: 14px; line-height: 19px;">One Place saved &middot; no confirmed visit.</div>
+    <div style="font-size: 12.5px; line-height: 17px; color: #6E6862;">The Sorrento movement question is why Red Hook surfaced today.</div>
+  </div>
+
+  <!-- authorized human note · source-shaped -->
+  <div style="margin: 22px 22px 0 22px; background: #FBF7EC; border: 1px solid rgba(27,23,20,0.10); border-radius: 15px; box-shadow: 0 1px 2px rgba(27,23,20,0.05); padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start;">
+    <span style="width: 32px; height: 32px; border-radius: 16px; background: #3D5066; color: #FBF7EC; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; flex: none;">M</span>
+    <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 5px;">
+      <div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: #6E6862;">MAYA &middot; SHARED WITH YOU</div>
+      <div style="font-family: 'EB Garamond', Georgia, serif; font-size: 17px; line-height: 24px;">&ldquo;I use the ferry to arrive. I don&rsquo;t plan around it to get home.&rdquo;</div>
+      <div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.9px; color: #B5AFA5;">FROM A RED HOOK NOTE &middot; SHARED AUG 21 &middot; AUDIENCE: YOU</div>
+    </div>
+  </div>
+
+  <!-- horizon doors · three typed paths -->
+  <div style="padding: 32px 22px 0 22px; display: flex; flex-direction: column;">
+    <div style="display: flex; align-items: center; gap: 12px; min-height: 52px; border-top: 1px solid rgba(27,23,20,0.06);">
+      <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: #8A6628; min-width: 82px;">ACCESS</span>
+      <span style="font-size: 14px; line-height: 19px; flex-grow: 1;">Why getting there changes the afternoon</span>
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="flex: none;"><path d="M4.5 2.5L9 6.5L4.5 10.5" stroke="#B5AFA5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px; min-height: 52px; border-top: 1px solid rgba(27,23,20,0.06);">
+      <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: #8A6628; min-width: 82px;">TRANSFER</span>
+      <span style="font-size: 14px; line-height: 19px; flex-grow: 1;">What Sorrento taught Vesper to separate here</span>
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="flex: none;"><path d="M4.5 2.5L9 6.5L4.5 10.5" stroke="#B5AFA5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px; min-height: 52px; border-top: 1px solid rgba(27,23,20,0.06); border-bottom: 1px solid rgba(27,23,20,0.06);">
+      <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: #8A6628; min-width: 82px;">ALTERNATIVE</span>
+      <span style="font-size: 14px; line-height: 19px; flex-grow: 1;">Where the same waterfront intention has a more flexible edge</span>
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="flex: none;"><path d="M4.5 2.5L9 6.5L4.5 10.5" stroke="#B5AFA5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </div>
+
+  <!-- current possibilities · at most two, one reason + one burden each -->
+  <div style="padding: 32px 22px 0 22px; display: flex; flex-direction: column; gap: 12px;">
+    <div style="display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: #6E6862; padding-bottom: 0px;"><span>IN THE INTERVAL</span><span style="flex:1;height:1px;background:rgba(27,23,20,0.10);"></span></div>
+    <div style="display: flex; gap: 14px; align-items: flex-start;">
+      <div style="width: 44px; height: 44px; border-radius: 9px; background: repeating-linear-gradient(135deg, rgba(176,133,58,0.12) 0 6px, rgba(176,133,58,0.04) 6px 12px); flex: none; display: flex; align-items: center; justify-content: center;">
+        <svg width="27" height="27" viewBox="0 0 27 27" fill="none"><circle cx="13.5" cy="13.5" r="4" stroke="#8A6628" stroke-width="1.4" fill="#F2E6CC"/></svg>
+      </div>
+      <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px;">
+        <span style="font-size: 15px; font-weight: 600; line-height: 19px;">Your saved place near the basin</span>
+        <span style="font-size: 12.5px; line-height: 17px; color: #6E6862;">Works after the ferry arrival &middot; 8 min walk &middot; open through [VERIFY HOURS]</span>
+      </div>
+    </div>
+    <div style="display: flex; gap: 14px; align-items: flex-start;">
+      <div style="width: 44px; height: 44px; border-radius: 9px; background: repeating-linear-gradient(135deg, rgba(176,133,58,0.06) 0 6px, rgba(176,133,58,0.02) 6px 12px); border: 1px dashed rgba(27,23,20,0.18); flex: none; display: flex; align-items: center; justify-content: center;">
+        <svg width="27" height="27" viewBox="0 0 27 27" fill="none"><rect x="7" y="9" width="13" height="10" stroke="#6E6862" stroke-width="1.3"/><path d="M7 13 L20 13" stroke="#6E6862" stroke-width="1.2"/></svg>
+      </div>
+      <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px;">
+        <span style="font-size: 15px; font-weight: 600; line-height: 19px; color: #6E6862;">[Indoor option near the land return]</span>
+        <span style="font-size: 12.5px; line-height: 17px; color: #6E6862;">Better if the crossing slips &middot; indoors &middot; near the land return</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- actions · value complete before these appear -->
+  <div style="padding: 32px 22px 0 22px; display: flex; flex-direction: column; gap: 10px;">
+    <div style="min-height: 44px; background: #4A3428; border-radius: 11px; display: flex; align-items: center; justify-content: center;">
+      <span style="color: #FBF7EC; font-size: 14px; font-weight: 600;">See Saturday&rsquo;s route</span>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 4px 18px; justify-content: center; padding-top: 2px;">
+      <span style="font-size: 12.5px; font-weight: 500; color: #8A6628;">Ask Vesper about Red Hook</span>
+      <span style="font-size: 12.5px; font-weight: 500; color: #8A6628;">Add to a plan</span>
+      <span style="font-size: 12.5px; font-weight: 500; color: #8A6628;">Share this view</span>
+      <span style="font-size: 12.5px; font-weight: 500; color: #8A6628;">Correct your trace</span>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>
