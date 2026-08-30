@@ -51,7 +51,7 @@ and graded against live code in the build manifest.
    end when the next unit does not beat silence.
 
 3. **The unit unions are the contract.** The build manifest's Home union
-   (22 kinds) and Places unions (26 kinds) plus ten shared instruments
+   (29 kinds) and Places unions (33 kinds) plus twelve shared instruments
    are the bounded, server-chosen kind sets required by the
    locus-of-generation ruling. Resolvers are typed against them; **adding
    a kind is a canon event, not a feature PR.**
@@ -93,3 +93,20 @@ those are sequenced engineering work under this authority.
   posture ever genuinely demands a different Places architecture, this
   decision's clause 2 must be revisited rather than quietly violated.
 - **Dense retrieval register** remains parked for the Life root.
+
+## Baseline revision — 2026-08-30 (same day)
+
+The counts above are reconciled to the build manifest after the same-day
+additive adoptions (the audit batch, the browse pair, `people_gathering`,
+`continuity_reconstruction`, the "Why this?" and section-header
+instruments): **Home 29 · Places 33 · 12 shared instruments**. The
+manifest remains the count authority.
+
+Two clauses of this decision are **under explicit Phase-2 compositional
+challenge** (see
+`docs/working/critique-response-and-composition-phase-2026-08-30.md`,
+R1/R3): the five fixed visible Home regions (people-as-reservoir is the
+proposed amendment) and the two-tier world read as the default opening
+(orientation contract proposed). The decision stands as the control until
+the phase-2 compositions close and an explicit amendment lands; neither a
+working mockup nor a composition finding changes authority by itself.
