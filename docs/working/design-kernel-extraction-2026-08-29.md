@@ -220,7 +220,10 @@ Return → the place itself · **Live → the route/map** (extended by the
 stress test). Scale is a separate instrument from containment — a lead can
 lead by size on bare paper. The four-grain framing ("one occasion object,
 four grains") predates and survives the pivot; it is the kernel's cleanest
-bridge to the Occasion model. Anatomy values (art 96/94 optical, StatusMeta,
+bridge to the Occasion model. RULED 2026-08-30: both gradients
+(identity — the biggest slot holds the most specific true thing;
+structure — a dominant never carries more structure than its subject
+truly has) govern the Home Now union; see the build manifest §1.1 laws. Anatomy values (art 96/94 optical, StatusMeta,
 facepile-on-dates-row) are board-carried — re-verify at build time.
 
 ## 8. Component layer — build with the catalog, not beside it
@@ -474,7 +477,11 @@ Eight Rulings" on the root-boards canvas). Seven adopted as recommended;
 
 ## 12. Extensions register
 
-1. **Map grammar — RULED 2026-08-29 (founder).** One encoding, many media:
+1. **Map grammar — RULED 2026-08-29 (founder); honesty contract added
+   2026-08-30.** Segment source (routed / estimated / unknown) is a
+   channel orthogonal to user commitment; minutes render only off a fresh
+   fact; a crossing draws a bare arc, never invented geometry; hollow
+   pin = unrouted endpoint. One encoding, many media:
    ink coastline on paper wash, **gold = scheduled/fixed, dashed ink =
    flexible, oxblood = constraint**, mono labels, no photography — the same
    sentence across city field, peninsula map, difference diagram, route
