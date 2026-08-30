@@ -475,7 +475,34 @@ Eight Rulings" on the root-boards canvas). Seven adopted as recommended;
    gradient extended to Home (the C6 fix); 56 fits the row floor, 92
    never will.
 
-## 12. Extensions register
+### 11.7 The physical grammar survives the pivot — RULED 2026-08-30 (founder correction)
+
+The founder reviewed the first specimen sheets against the pre-pivot
+boards and ruled the comparison against the new work: "we deviated from
+a more excellent visual grammar … visually it looks less clean." The
+deviation, measured: **zero riso media plates** in the new sheets versus
+one on nearly every pre-pivot unit; form variety collapsed to a uniform
+labeled rectangle; the one-large-type-moment-per-unit rhythm lost; mono
+promoted from kicker/footnote voice to body voice. Ruling:
+
+1. **The pre-pivot physical grammar is kernel, not era styling.** The
+   riso hatch plate (possibility), the polaroid with tilt and serif
+   caption (evidence — photography only here, per the media doctrine),
+   the was/now paired cells, the ticket stub, the tally, the editorial
+   cover with scrim, the facepile with the dashed empty chair, the gold
+   drop cap — these carry into the four-root era as the component
+   wardrobe. New surfaces are clothed in them, not in bare rectangles.
+2. **Every unit earns one large type moment** (≥17px serif or
+   semibold sans); mono returns to kicker/footnote duty only.
+3. **Card physics are uniform**: 13–18px radii, hairline + quiet lift,
+   15–16px padding. No 9–11px-radius drift.
+4. **Places carries browse texture again** — `field_browse_shelf` and
+   `field_editorial_cover` join the World Field union (manifest §2.1),
+   admitted by the same compiler, below the lead. Browse is a texture
+   the field can hold, never the field's organizing principle.
+
+Specimen sheets re-clothed same day; the composition boards (Home
+postures, Places states, fixtures) inherit this pass next.
 
 1. **Map grammar — RULED 2026-08-29 (founder); honesty contract added
    2026-08-30.** Segment source (routed / estimated / unknown) is a

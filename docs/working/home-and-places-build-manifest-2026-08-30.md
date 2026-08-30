@@ -143,6 +143,8 @@ adopted the same day.)*
 | `field_returned_understanding` | gold left rule | **BUILD** | the one-Europe-unit; needs the lived-experience transfer substrate |
 | `field_continuity_doors` | uncarded rows | EXISTS | saved (`saved`, count-toward law), map door, plans door |
 | `field_balanced_fallback` | orientation state | **BUILD** | the no-strong-lead degradation (ordinary-open board) |
+| `field_browse_shelf` | kicker + 2-up gallery cards w/ riso media | **ADAPT** | ruled in 2026-08-30 (founder: Places "can benefit from a little browse"); the old Places feed's gallery grammar (`g2`/`gmedia`), admitted by the same compiler — every item keeps one reason + one burden; below the lead, never leading |
+| `field_editorial_cover` | full-bleed illustrated cover + scrim | **ADAPT** | ruled in 2026-08-30; the old `ov`/`ovscrim` editorial cover; media doctrine: illustration = possibility; at most one per field |
 
 ### 2.2 Place Focus
 
@@ -185,9 +187,10 @@ adopted the same day.)*
 (**BUILD** — the she-can-see-and-withdraw receipt; depends on the
 contribution-&-consequence contract's grant store).
 
-**Places unions: 31 kinds** across chrome (3) + World Field (6) + Focus
+**Places unions: 33 kinds** across chrome (3) + World Field (8) + Focus
 (7) + Path (6) + Live (5) + social (4). *(Corrected 2026-08-30 — the
-original "26" was arithmetic error.)*
+original "26" was arithmetic error. Grew 31 → 33 the same day: the
+browse pair `field_browse_shelf` + `field_editorial_cover` ruled in.)*
 
 ## 3. Shared instruments (cross-root, build once)
 
@@ -249,9 +252,9 @@ Net-new (BUILD), roughly ordered by unblocking power:
 10. **Photo-evidence annotation unit**; **capability field**;
     **settling/import status**; **voice horizon**.
 
-Score, recounted 2026-08-30 (after same-day adoptions): **60 kinds + 11
-shared instruments → 13 EXISTS · 27 ADAPT · 30 BUILD** (one Now kind
-folds into chrome). More than half of both pages stands on shipped
+Score, recounted 2026-08-30 (after same-day adoptions and the browse
+pair): **62 kinds + 11 shared instruments → 13 EXISTS · 29 ADAPT · 30
+BUILD** (one Now kind folds into chrome). More than half of both pages stands on shipped
 substrate; the genuinely new engineering concentrates in five systems
 (compilers, envelope, map grammar, read producer, grants) — everything else
 is carriers and renderers over live data.
