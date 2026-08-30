@@ -102,11 +102,13 @@ additive adoptions (the audit batch, the browse pair, `people_gathering`,
 instruments): **Home 29 · Places 33 · 12 shared instruments**. The
 manifest remains the count authority.
 
-Two clauses of this decision are **under explicit Phase-2 compositional
-challenge** (see
-`docs/working/critique-response-and-composition-phase-2026-08-30.md`,
-R1/R3): the five fixed visible Home regions (people-as-reservoir is the
-proposed amendment) and the two-tier world read as the default opening
-(orientation contract proposed). The decision stands as the control until
-the phase-2 compositions close and an explicit amendment lands; neither a
-working mockup nor a composition finding changes authority by itself.
+**Challenge resolved — amended 2026-08-30.** The phase-2 compositions
+(C1–C3 + the Quiet fullness ruling) closed; the amendments landed as
+kernel §11.12 in one canon-alignment pass: four visible Home regions
+with people as a cross-cutting reservoir (R1); the orientation contract
+with the scaled read replacing the mandatory two-tier opening (R3); the
+posture/modifier split (R2); the Quiet floor (demand and richness as
+separate axes); `week_shape` ruled into the Home union (30 kinds; 33
+Places; 13 instruments); `now_route_instrument` renamed
+`now_commitment_instrument`; the carried-forward receipt promoted.
+Counts and kind semantics: the build manifest remains the authority.

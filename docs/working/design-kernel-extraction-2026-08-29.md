@@ -529,6 +529,14 @@ promoted from kicker/footnote voice to body voice. Ruling:
    semibold sans); mono returns to kicker/footnote duty only.
 3. **Card physics are uniform**: 13–18px radii, hairline + quiet lift,
    15–16px padding. No 9–11px-radius drift.
+   *Correction entry (2026-08-30, code wins per §1):* the live radius
+   scale is `layout.ts` — `card: 12` (compact/inner containers),
+   `surfaceCard: 14` (the ordinary Quiet Paper card), `xl: 16` (the
+   chat outer card and the well, as shipped). The prose range above is
+   corrected to those three values; the real rule is the *semantic
+   assignment* (outer chat card 16 · inner container/inset/plate 12),
+   not a numeric band. Padding corrects to the spacing scale: `14×16`
+   card padding (`lgl`×`xl`), `8` row rhythm (`md`).
 4. **Places carries browse texture again** — `field_browse_shelf` and
    `field_editorial_cover` join the World Field union (manifest §2.1),
    admitted by the same compiler, below the lead. Browse is a texture
@@ -998,6 +1006,58 @@ Third same-day pass, component-level. Audit findings and fixes:
    defect unless ruled in. This is the anti-drift mechanism for board
    authoring, mirroring what the ratchet tests do for code.
 
+### 11.12 The phase-2 composition amendments — RULED 2026-08-30 (founder)
+
+The three proof compositions (C1 ordinary week · C2 multiplayer Occasion
+· C3 longitudinal thread) closed with zero new kinds spent in
+composition and R1–R7 confirmed; the founder then judged the sparse and
+full Quiet boards side by side and ruled for fullness. The consolidated
+amendments, landing here as the single canon-alignment pass:
+
+1. **R1–R7 ratified as ruled** (people-as-reservoir; posture/modifier
+   split; orientation contract; Quiet's returns; large-type-by-dominance,
+   amending §11.7; the personalization split; the casual register).
+2. **The orientation ladder** (C1-F3, final R3 text): Home opens with
+   its most valuable true orientation; the serif read is the default
+   expression, and *its scale tracks the evidence's scale* — the
+   two-line mast (30) when interpretation converges, one line (22) when
+   only world truth is known, direct state (17) when there is nothing
+   to interpret. This supersedes any mandatory reading of §11.6.1;
+   the read is never revoked, only scaled honestly.
+3. **Demand and richness are different axes — the Quiet floor.** The
+   demand laws (zero open decisions in Quiet, complete-on-view,
+   scroll-past is an ending) constrain demand, not content. Quiet is
+   the modal state of the primary interface; a page that proves
+   "nothing here" teaches people not to open it. Ruled floor: the read
+   at ladder scale + the week's shape + consumable returns
+   (quality-gated, not count-capped — each must beat silence
+   individually; none may be manufactured). Fullness comes from the
+   world and the person's own held life — time-shape, texture,
+   receipts, reading — never from Vesper performing its repertoire.
+   R4's original "at most one return" wording is superseded.
+4. **The admission question, broadened**: "materially worse without it"
+   includes legibility and being-held, not only missed tasks.
+5. **`week_shape` joins the Home union** (canon event, drawn on the
+   Quiet-full board): the seven-day strip at containment step 3 — a
+   diagram, not an object; zero demand. The old canon's day-strip
+   primitive finally has a user.
+6. **A Move always ships with its basis** (C3-F12): an unexplained Move
+   is inadmissible; the why-this trail renders inline.
+7. **The unwind doctrine** (C3-F14): contributions retract; occurrences
+   don't. Artifacts unwind across every hop with their provenance;
+   other people's own things — their photos, their evenings, their
+   experience — are never taken back.
+8. **The unattributed-aggregate law** (C2-F6): private constraints shape
+   shared objects only in aggregate, and the aggregate never enumerates.
+9. **Renamed for honesty**: `now_route_instrument` →
+   `now_commitment_instrument` (C1-F1) — the subject is the owned
+   commitment; a route is one form its preparation takes.
+10. **The carried-forward receipt is promoted** into the receipt union
+    (fourth independent derivation) and the **execution ledger** joins
+    the shared instruments (C3-F11): the prepared → authorized →
+    attempted → partial/failed/unknown → readback → repair → receipt
+    chain as one renderable carrier.
+
 ## 12. Adjacent system rulings
 
 <!-- Header restored 2026-08-29: a prior edit dropped the "## 12" line;
@@ -1152,3 +1212,13 @@ aggregate line is a folded card (trip→segment→day→commitment, in-place
 paperDeep insets, kicker = the way home); depth is pulled never
 pushed; one unfolded child per level; at live, time does the zooming;
 reading posture only. Five axes dynamic, one (form) static.
+Added 2026-08-30 (polish audit): §11.7 card-physics correction entry
+(code wins — radius semantics outer-16 / inner-12, padding 14×16 / row
+8) and the BOARD RHYTHM KIT adopted for design boards: inside 1:1
+mockups the app floors apply (mono ≥10 ls 1.3, serif ≥15 — sub-floor
+serif triages to sans at the same px), hairlines only 0.10 / 0.06,
+soft body ink = ink40 #3C352E (the #4A4339 that circulated on boards
+was never a token), supporting captions 11.5, time gutters 36/30,
+section gap 24. Board furniture (rail tags, fold markers, timestamps,
+footers) is annotation and exempt. Boards 07 + 09–15 normalized
+same day; the 00–06/08 set inherits the kit on the fork's next pass.

@@ -45,12 +45,13 @@ unverified claims say so.
 | --- | --- | --- | --- | --- |
 | `world_read` | Two-tier read (§11.6.1): mono anchor + two-line serif read in standfirst voice; merge rule for voiced dominants | chrome, never a card | location scope + one true condition; read must beat silence | **BUILD** — producer + voice contract are new; mast type role exists |
 | `root_shell` | Four-root tab bar | chrome | — | EXISTS dark (`fourRootShell.ts`, flag-gated; icons placeholder per ruling 7) |
+| `week_shape` | The seven-day strip: the week's held form (today, marks, one avatar day) | containment step 3 — a diagram, not an object; zero demand | occasions/commitments from canonical state only | **BUILD** — ruled in 2026-08-30 with the Quiet floor (kernel §11.12.5); the old canon's day-strip primitive, finally used |
 
 ### 1.1 Now — the dominant union (exactly one renders)
 
 | Kind | Seen on | Containment | Grade | Substrate notes |
 | --- | --- | --- | --- | --- |
-| `now_route_instrument` | Live posture; Live Reduction compact | crown (step 5) | **ADAPT** | crown anatomy shipped; map-grammar renderer is BUILD (see §3) |
+| `now_commitment_instrument` *(renamed from `now_route_instrument`, kernel §11.12.9)* | Live posture; Live Reduction compact; C1 ticket dominant | crown (step 5) | **ADAPT** | crown anatomy shipped; map-grammar renderer is BUILD (see §3) |
 | `now_prepared_possibility` | Available; World F Saturday | crown | **ADAPT** | crown + spine receipt exist; composer selection is new |
 | `now_decision` | Planning ("two decisions open") | crown | **ADAPT** | proposal/decision substrate live (`proposal_approval`, `call` receipt) |
 | `now_recovery_instrument` | F5 disruption | crown, oxblood register | **BUILD** | provider-state + prepared-work + honesty band; movement domain partial |
@@ -77,7 +78,9 @@ unverified claims say so.
    Home openings render Moves, never durable objects; acting converts a
    Move into a real Plan/Occasion through the owning capability. This is
    the gallery F8 law ("understood and ignored; never an automatic save")
-   given its substrate.
+   given its substrate. **Amendment (kernel §11.12.6): a Move always
+   ships with its basis — the why-this trail renders inline; an
+   unexplained Move is inadmissible.**
 
 ### 1.2 In motion
 
@@ -117,7 +120,7 @@ unverified claims say so.
 | `continuity_voice_horizon` | voice italic, uncarded | **BUILD** | no-deadline thread; never auto-saves (gallery F8 law) |
 | `continuity_reconstruction` | evidence-first paired timeline | **BUILD** | adopted 2026-08-30 (gallery §10 / worlds E3–E4/F7): the intended/actual sequence from receipts and movement rows — "what actually happened," never a trip report |
 
-**Home union: 29 kinds** (2 chrome + 9 Now, of which one folds into
+**Home union: 30 kinds** *(week_shape ruled in 2026-08-30)* — was: 29 kinds (2 chrome + 9 Now, of which one folds into
 `world_read` + 3 Motion + 4 Horizons + 5 People + 6 Continuity — 28
 renderable). The union is the type the Home resolver emits; adding a kind
 is a canon event, not a feature PR. *(Counts corrected 2026-08-30 after
@@ -205,7 +208,8 @@ browse pair `field_browse_shelf` + `field_editorial_cover` ruled in.)*
 | Degradation compiler (§10 rules) | both roots | **BUILD** — **compression law (ruled 2026-08-30, recovered from the pre-pivot rhythm study): compression shrinks media and drops the note; small plates stay — a row without its plate is a different composition, not a quieter one** |
 
 | Two-tier read producer (anchor + grounded voice line + merge rule) | Home; Places cold start | **BUILD** |
-| Receipt union + dispatcher | everywhere | EXISTS (11 kinds, grain-agnostic) |
+| Receipt union + dispatcher | everywhere | EXISTS (12 kinds, grain-agnostic) — **`carried_forward` promoted 2026-08-30** after four independent derivations (§7 candidate, C1-F2, C2-F7, C3-F13): a standing consequence with causal lineage and an owner |
+| Execution ledger — the prepared → authorized → attempted → partial/failed/unknown → readback → repair → receipt chain as one renderable carrier (C3-F11) | Home recovery, Live Reduction, Chat execution | **BUILD** — booking/hold receipt substrate EXISTS; the chain carrier is new |
 | `Door`, CardSurface recipes, StatusMeta, ConsequenceBanner, facepile | everywhere | EXISTS |
 | C6 row image slot (44/56 plates) | Home Horizons, Places branches | **BUILD** (one prop; drawn since old canon) |
 | Photo-evidence annotation unit | F3-class content, Life | **BUILD** (media ruling) |
@@ -255,11 +259,17 @@ Net-new (BUILD), roughly ordered by unblocking power:
     **settling/import status**; **voice horizon**.
 
 Score, recounted 2026-08-30 (after same-day adoptions and the browse
-pair): **62 kinds + 12 shared instruments → 14 EXISTS · 29 ADAPT · 30
+pair): **63 kinds + 13 shared instruments → 14 EXISTS · 29 ADAPT · 32
 BUILD** (one Now kind folds into chrome). More than half of both pages stands on shipped
 substrate; the genuinely new engineering concentrates in five systems
 (compilers, envelope, map grammar, read producer, grants) — everything else
 is carriers and renderers over live data.
+
+**Phase-2 resolutions (2026-08-30):** the carried-forward receipt is
+PROMOTED (see §3); `week_shape` ruled in (§1.0); `now_route_instrument`
+renamed; the Move-carries-basis, unattributed-aggregate, unwind, Quiet
+floor, and orientation-ladder laws land in kernel §11.12. The remaining
+§7 candidates below still await ruling.
 
 ## 7. Audit addendum — 2026-08-30 coverage findings (pending ruling)
 
