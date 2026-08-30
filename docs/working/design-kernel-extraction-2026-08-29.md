@@ -615,6 +615,73 @@ saving is the act that turns one into the other.
   feasibility as a quiet check on timed conflicts. Guard: if the Shape
   ever grows tabs, the itinerary has been rebuilt under another name.
 
+**Amendment — RULED 2026-08-30 (founder): "Surfaces select; screens
+adapt; content composes."** The 08-29 contract's language overstated
+generation; corrected doctrine (boards of record: 07 amended in place,
+09 "The Immersive Density" — renumbered from a colliding 08):
+
+- **Scenario screens, not generated artifacts.** Each Wave-1 scenario
+  (Invitation, Shape, Decision, Participation Brief, Live, Story) is a
+  DESIGNED, stable screen — a slot system fed by a server envelope,
+  exactly the workbench pattern. The five-part frame survives as the
+  shared CHASSIS; the six media become the SECTION VOCABULARY scenario
+  skeletons draw from. Skeletons adapt BY SCENARIO (designed,
+  enumerated — one chassis, N scenario skeletons), never by render.
+  Within-screen variation is enumerated state variation (the Shape's
+  earned day-lens is a designed lens state, not a free medium choice).
+  Rationale: the compilers already return typed anatomies — an
+  invitation's form IS the invitation; §11.5's cost argument
+  (legibility, spatial memory, auditability) applies one level down;
+  the real variance the system serves is content variance, not form
+  variance. People learn what an invitation looks like — that literacy
+  is the product.
+- **True medium choice survives in exactly one place: the chat
+  answer** — ephemeral, in-thread, frame-governed. The resolver's
+  legitimate scope shrinks from "within containers and chat turns" to
+  chat turns plus enumerated lens states; job-taxonomy ratification
+  exits the artifact critical path entirely.
+- **The artifact runtime is first-class — an instrument, not a page:**
+  (1) multiplayer state (votes, RSVPs, contributions land in the
+  experience graph and re-project to every member); (2) viewer
+  identity (My / Together / Whole natively); (3) live truth
+  (refreshable bindings, in-place instrument values, the re-read
+  band); (4) authorized action (only through the opaque re-auth
+  path); (5) input collection (a screen may ask one question back;
+  the answer becomes graph truth); (6) handoff (group threads,
+  zero-install invitees, Life). Generation quality concentrates in
+  DEEP SLOTS — the read as genuine interpretation, claim selection as
+  judgment, the brief as personal, narrative under the grounding
+  gate. The skeleton being boring is what lets intelligence
+  concentrate where a person can feel it.
+- **External placement (researched 2026-08-30, two passes, primary
+  sources).** Industry taxonomy (OpenUI): static / declarative /
+  open-ended generation. Our lanes: scenario screens = static;
+  CardBlueprintV1 = declarative (the production-consensus bucket);
+  open-ended refused for artifacts. Convergences: MCP Apps (shipped in
+  Claude, ChatGPT, Goose, VS Code) is developer-authored, pre-declared
+  UI in sandboxed iframes — zero model-generated layout in the
+  standard; OpenAI Apps SDK's four display modes map onto our density
+  ladder (inline=standard card, carousel=option sets,
+  fullscreen=immersive, picture-in-picture=the live sliver) and its
+  "keep tools useful without a component" is our durable message-body
+  fallback; Google A2UI = catalog-only declarative JSON. The
+  counter-example, honestly located: Gemini Dynamic View / AI Mode
+  generates full per-prompt UI — explicitly experimental, minute-plus
+  latency, acknowledged inaccuracies, and ANSWER-lane only. The
+  frontier experiments exactly where this amendment reserves freedom;
+  no one generates layout where it freezes form. Escape valve if ever
+  needed: one sandboxed GeneratedView-style section kind inside the
+  declarative frame (the documented hybrid), never a fork of the
+  system. Wire-format economics favor lean blueprints (measured 2-3x
+  token/latency spread among declarative formats). Strategic option
+  unlocked by stable screens, parked not Wave 1: scenario screens port
+  into MCP-Apps iframes — the Invitation/Decision rendering inside
+  ChatGPT/Claude as wedge distribution.
+- Boards 07 and 09 are read under this amendment: 07's "frame" = the
+  chassis, its "six bodies" = the section vocabulary; 09's opened
+  surface = the shared opened-screen chassis with a scenario-designed
+  middle.
+
 ### 11.9 The Chat entry — RULED 2026-08-29 (founder, seven passes)
 
 Boards of record: Vesper — Chat project, 02 (target entry), 04 (well
@@ -658,6 +725,46 @@ until then.
   new copy surfaces; the world-line producer (device + weather via the
   envelope, with staleness rule); resolver job-taxonomy ratification
   (scoped by §11.5) before selection goes live.
+
+### 11.10 Second aesthetic recovery batch — RULED 2026-08-30 (founder)
+
+A close re-read of the pre-pivot project (including its unmined rhythm
+study, "Places — Whole Pages": one page drawn eight ways, A–H) yielded a
+second batch, all applied to the boards same-day:
+
+1. **The header rule is chrome, everywhere**: `TITLE ——— count →` (mono
+   label, trailing hairline, count/door carried in the header line).
+   Shipped code (`headingRule`, PlacesAtoms.tsx:70 +
+   ItineraryChapterHeader); now the 12th shared instrument. Fires at
+   chapter/region openers only — inner-unit kickers stay bare.
+2. **Rhythm is two-tier and per-root** (code-verified in layout.ts):
+   Home regions run **variant B family rhythm, ruled in** — tight
+   within a region (14–20), 44 between regions, header rules at region
+   boundaries only. Places states run the **32 chapter beat** (their own
+   shipped rhythm; the earlier flat 24 was under-canon for Places).
+   Live Reduction deliberately keeps the compressed 24 — urgency
+   compresses. `headingToContent` 8, `ledeToFirstSection` 12.
+3. **The act break** (cardStackRhythms, locked 08-02): body→CTA is the
+   intentional break and must outrank title→body — 12–16, never the
+   in-card gap.
+4. **Media texture split sharpened**: soft warm **blob** = the real,
+   committed, photo-bearing thing (a booked occasion, a settling
+   import); gold **hatch** = possibility/illustration; **grid** = map;
+   **scrim cover** = editorial. One hatch for everything was texture
+   monotony.
+5. **Masthead at full scale**: the world read is serif 30/34 (−0.01em)
+   with a 12.5/17 ghost condition sub at margin-top 7 — the pre-pivot
+   mast spec. Both Home postures carry the sub.
+6. **The rest register**: pages end, they don't stop — a centered serif
+   close + ghost stamp (46px air) after the last section. On Home it
+   closes the day honestly; on the World Field it states the
+   count-toward law ("The field is finite. This is all of it today.").
+7. **The compression law** (degradation compiler): compression shrinks
+   media and drops the note; small plates stay — a row without its
+   plate is a different composition, not a quieter one.
+8. **Tally register** adopted as board furniture only; its product home
+   is Life — rule it there. **Lens strip** consciously not recovered —
+   superseded by the typed-edges ruling.
 
 ## 12. Adjacent system rulings
 
@@ -770,3 +877,16 @@ composer (lead + one row, zero CTAs), and the typed entry envelope
 job-taxonomy ratification (already scoped by §11.5) now has its first
 concrete consumer — entry-slot selection — plus content-contract
 instances owed before ship (listed on board 08).
+Added 2026-08-30: the §11.8 amendment — "surfaces select; screens
+adapt; content composes" (boards 07 amended, 09 "The Immersive
+Density" renumbered from a colliding 08). Scenario screens replace
+"generated artifacts"; the frame becomes the chassis, the six media
+the section vocabulary; true medium choice confined to chat answers
+(resolver ratification exits the artifact critical path — note this
+narrows the taxonomy's "first concrete consumer" above to designed
+slot selection, which needs no ratified resolver); the six-capability
+artifact runtime made first-class; external placement recorded from
+two primary-source research passes (industry static/declarative/
+open-ended taxonomy; MCP Apps / Apps SDK / A2UI convergences; Gemini
+Dynamic View located as answer-lane-only counter-example; sandboxed
+GeneratedView hybrid as the sole escape valve).

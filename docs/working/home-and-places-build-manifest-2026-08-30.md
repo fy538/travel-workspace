@@ -197,11 +197,13 @@ browse pair `field_browse_shelf` + `field_editorial_cover` ruled in.)*
 | Instrument | Needed by | Grade |
 | --- | --- | --- |
 | Map-grammar renderer — one encoding (gold/dashed/oxblood/rings), three scales, **plus the map honesty contract** (adopted 2026-08-30 from the pre-pivot map group): segment source routed/estimated/unknown as a channel orthogonal to user commitment; minutes render only off a fresh fact; a crossing draws a bare arc, never invented geometry; hollow pin = unrouted endpoint | Home Now, all Places states | **BUILD** (stay on Mapbox per maps canon; stylized layer over camera) |
+| Section header — `TITLE ——— count →`: mono label + trailing hairline rule, count/door carried in the header line; fires at chapter/region openers only | every sectioned surface, both roots | EXISTS (`headingRule` — PlacesAtoms.tsx:70, ItineraryChapterHeader.tsx; recovered onto the boards 2026-08-30) |
 | "Why this?" provenance inspector — one inspectable source trail on every consequential projection, both roots (contribution-and-consequence §3.8; generalizes `path_evidence_apparatus`) | all consequential units | **BUILD** (adopted 2026-08-30) |
 | Route strip (linear register of the same encoding) | Home, handoff, Live | **BUILD** (small) |
 | Projection envelope (12 fields) + push-not-tab navigation + readback refresh + canonical seen | every cross-root tap | **BUILD** — the §11.4 contract |
 | Admission & hierarchy compiler (§9 brief, hard gates, ranking, density taper) | both roots | **ADAPT** — 🔑 the `concierge_feed` ranker already exists and was ruled ADOPT-not-build; the gates and density taper wrap it |
-| Degradation compiler (§10 rules) | both roots | **BUILD** |
+| Degradation compiler (§10 rules) | both roots | **BUILD** — **compression law (ruled 2026-08-30, recovered from the pre-pivot rhythm study): compression shrinks media and drops the note; small plates stay — a row without its plate is a different composition, not a quieter one** |
+
 | Two-tier read producer (anchor + grounded voice line + merge rule) | Home; Places cold start | **BUILD** |
 | Receipt union + dispatcher | everywhere | EXISTS (11 kinds, grain-agnostic) |
 | `Door`, CardSurface recipes, StatusMeta, ConsequenceBanner, facepile | everywhere | EXISTS |
@@ -253,7 +255,7 @@ Net-new (BUILD), roughly ordered by unblocking power:
     **settling/import status**; **voice horizon**.
 
 Score, recounted 2026-08-30 (after same-day adoptions and the browse
-pair): **62 kinds + 11 shared instruments → 13 EXISTS · 29 ADAPT · 30
+pair): **62 kinds + 12 shared instruments → 14 EXISTS · 29 ADAPT · 30
 BUILD** (one Now kind folds into chrome). More than half of both pages stands on shipped
 substrate; the genuinely new engineering concentrates in five systems
 (compilers, envelope, map grammar, read producer, grants) — everything else
@@ -312,6 +314,11 @@ flagged: the group-at-weight regression (With-people is all rows — the
 multiplayer wedge's subject never gets the 46pt treatment), the
 countdown's scale contrast, the never-built spine day-strip, and the
 unresolved settle primitive.
+
+**Deferred with an owner (2026-08-30):** the pre-pivot tally register
+(26–30px mono numerals in bordered cells) is adopted as board furniture
+(Build Manifest header) but has no product home in Home/Places — its
+natural home is the Life root's governed history. Rule it there.
 
 ## 8. Not covered here
 
