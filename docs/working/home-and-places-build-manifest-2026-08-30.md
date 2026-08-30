@@ -247,7 +247,7 @@ Net-new (BUILD), roughly ordered by unblocking power:
 3. **Map-grammar renderer + route strip + difference diagram** — the one
    encoding at three scales; unblocks `now_route_instrument`,
    `field_lead_composition`, `live_instrument`, Path.
-4. **Two-tier read producer** (+ merge rule) — Home's opening.
+4. **Two-tier read producer** (+ merge rule) — Home's opening. *(Renderer half ✅ 2026-08-30: `home-root/WorldRead.tsx` implements the §11.12.2 ladder; `home-root/WeekShape.tsx` ships the week strip; the `carried_forward` receipt kind landed in the backend union, dark. The producer/selection half remains BUILD.)*
 5. **Temporal-posture engine** (WAIT/HOLD/ACT NOW/MONITOR/RELEASE, monitor
    authority, expiry, reversion).
 6. **Grant-gated social projector** (may-use/may-name checks,
