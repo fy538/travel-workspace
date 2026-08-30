@@ -60,6 +60,25 @@ unverified claims say so.
 | `now_invitation` | Cold posture | crown | **ADAPT** | cold-start loop shipped previously; recompose |
 | `now_merged_into_read` | Quiet, Returned·Day-0 | none — promotes into `world_read` | covered by `world_read` | ruling §11.6.1 |
 
+**Now-union laws (adopted 2026-08-30, from the pre-pivot crown prototypes):**
+1. **The identity gradient** — every Now dominant's biggest slot holds the
+   most specific true thing about its subject (route → the path; decision →
+   the open question; recovery → the provider offer; evidence → the
+   photograph; comparison → the two lanes). This, not shared chrome, is
+   what keeps nine dominants reading as one anatomy.
+2. **The structure gradient** — receipt and structure fall off with the
+   subject's own structure: a full instrument carries a sequence and a
+   burden receipt; a prepared possibility carries a read and a door; a
+   voiced moment carries nothing and merges into the read. A dominant may
+   never carry more structure than its subject truly has.
+3. **The Move (adopted as object model):** a prepared possibility that is
+   offered, ignorable, and expiring — no row, no task, no trace on expiry
+   ("Expires at 23:00 · nothing is saved"). `now_prepared_possibility` and
+   Home openings render Moves, never durable objects; acting converts a
+   Move into a real Plan/Occasion through the owning capability. This is
+   the gallery F8 law ("understood and ignored; never an automatic save")
+   given its substrate.
+
 ### 1.2 In motion
 
 | Kind | Containment | Grade | Notes |
@@ -85,6 +104,7 @@ unverified claims say so.
 | `people_participants_row` | uncarded row | EXISTS | `people` receipt (seats/facepile) |
 | `people_waiting_row` | uncarded row | EXISTS-ish | `group_waiting` reason live in Places union; re-home |
 | `people_authorized_door` | Door | **BUILD** | renders only under may-use; silent-yield otherwise |
+| `people_gathering` | quietPanel — the group as subject | **ADAPT** | the pre-pivot "room" restored (regression fix, 2026-08-30): facepile at weight, the gathering itself carded as the thing that matters now; facepile + seats substrate exist |
 
 ### 1.5 Continuity
 
@@ -95,12 +115,14 @@ unverified claims say so.
 | `continuity_life_door` | Door | EXISTS | door to Life root |
 | `continuity_settling` | crown (Returned·Day-0 dominant) | **BUILD** | import/settling status from Life ingestion |
 | `continuity_voice_horizon` | voice italic, uncarded | **BUILD** | no-deadline thread; never auto-saves (gallery F8 law) |
+| `continuity_reconstruction` | evidence-first paired timeline | **BUILD** | adopted 2026-08-30 (gallery §10 / worlds E3–E4/F7): the intended/actual sequence from receipts and movement rows — "what actually happened," never a trip report |
 
-**Home union: 27 kinds** (2 chrome + 9 Now, of which one folds into
-`world_read` + 3 Motion + 4 Horizons + 4 People + 5 Continuity — 26
+**Home union: 29 kinds** (2 chrome + 9 Now, of which one folds into
+`world_read` + 3 Motion + 4 Horizons + 5 People + 6 Continuity — 28
 renderable). The union is the type the Home resolver emits; adding a kind
 is a canon event, not a feature PR. *(Counts corrected 2026-08-30 after
-the coverage audit; the original "22" was arithmetic error.)*
+the coverage audit; `people_gathering` and `continuity_reconstruction`
+adopted the same day.)*
 
 ## 2. Places — the state-unit unions
 
@@ -171,7 +193,8 @@ original "26" was arithmetic error.)*
 
 | Instrument | Needed by | Grade |
 | --- | --- | --- |
-| Map-grammar renderer — one encoding (gold/dashed/oxblood/rings), three scales | Home Now, all Places states | **BUILD** (stay on Mapbox per maps canon; stylized layer over camera) |
+| Map-grammar renderer — one encoding (gold/dashed/oxblood/rings), three scales, **plus the map honesty contract** (adopted 2026-08-30 from the pre-pivot map group): segment source routed/estimated/unknown as a channel orthogonal to user commitment; minutes render only off a fresh fact; a crossing draws a bare arc, never invented geometry; hollow pin = unrouted endpoint | Home Now, all Places states | **BUILD** (stay on Mapbox per maps canon; stylized layer over camera) |
+| "Why this?" provenance inspector — one inspectable source trail on every consequential projection, both roots (contribution-and-consequence §3.8; generalizes `path_evidence_apparatus`) | all consequential units | **BUILD** (adopted 2026-08-30) |
 | Route strip (linear register of the same encoding) | Home, handoff, Live | **BUILD** (small) |
 | Projection envelope (12 fields) + push-not-tab navigation + readback refresh + canonical seen | every cross-root tap | **BUILD** — the §11.4 contract |
 | Admission & hierarchy compiler (§9 brief, hard gates, ranking, density taper) | both roots | **ADAPT** — 🔑 the `concierge_feed` ranker already exists and was ruled ADOPT-not-build; the gates and density taper wrap it |
@@ -226,9 +249,9 @@ Net-new (BUILD), roughly ordered by unblocking power:
 10. **Photo-evidence annotation unit**; **capability field**;
     **settling/import status**; **voice horizon**.
 
-Score, recounted 2026-08-30: **58 kinds + 10 shared instruments → 13
-EXISTS · 26 ADAPT · 28 BUILD** (one Now kind folds into chrome). More
-than half of both pages stands on shipped
+Score, recounted 2026-08-30 (after same-day adoptions): **60 kinds + 11
+shared instruments → 13 EXISTS · 27 ADAPT · 30 BUILD** (one Now kind
+folds into chrome). More than half of both pages stands on shipped
 substrate; the genuinely new engineering concentrates in five systems
 (compilers, envelope, map grammar, read producer, grants) — everything else
 is carriers and renderers over live data.
@@ -236,9 +259,12 @@ is carriers and renderers over live data.
 ## 7. Audit addendum — 2026-08-30 coverage findings (pending ruling)
 
 A systematic audit of these unions against every 08-16→08-30 canon doc
-found six specified-but-unrendered use cases and seven partials. These
-are **candidate kinds, not yet in the unions** — each addition is a canon
-event awaiting the founder:
+found six specified-but-unrendered use cases and seven partials.
+**Ruled 2026-08-30 (founder): adopted — the identity + structure
+gradients and the Move (now §1.1 laws), the map honesty contract (§3),
+`continuity_reconstruction`, the "Why this?" instrument, and
+`people_gathering` (the group-at-weight regression fixed).** The rest
+remain candidates awaiting ruling:
 
 **Gap candidates:** `continuity_reconstruction` (the paired
 intended/actual timeline — gallery §10, worlds E3/E4/F7, the E-family's
