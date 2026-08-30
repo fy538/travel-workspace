@@ -682,6 +682,214 @@ generation; corrected doctrine (boards of record: 07 amended in place,
   surface = the shared opened-screen chassis with a scenario-designed
   middle.
 
+**Opened-screen laws — RULED 2026-08-30 (founder; board 09's four
+proposals, all adopted, #3 amended):**
+
+1. **The still-page law.** An open screen never reflows under a
+   reading finger. Instruments update values in place (counts, timers);
+   structural change (a person replied, a commitment moved, an option
+   added) offers a quiet re-read band — coalesced to one — instead of
+   mutating the page. Complement to §11.6: fresh on open, still after
+   open.
+2. **Instrument never opens immersive.** A live sliver tap hands off
+   to the Live surface, which owns live UI. The composition system
+   never builds a second live surface.
+3. **Chrome = back + Keep, nothing else — with the Keep & send
+   amendment.** No share sheet, no overflow; reading gets the whole
+   width. Share rides behind Keep AND the two are one gesture: tapping
+   Keep offers "Keep & send" in the same flow, so sharing costs one
+   tap total and versioning comes free (shared ⇒ versioned is enforced
+   mechanically, without taxing the re-invite loop).
+4. **The colophon is required** on every opened screen: sources,
+   freshness, unknowns, and a corrections door, in mono, at the end of
+   the read. Trust Receipts generalized; the unknowns line enforces
+   fabrication-closure per screen; the corrections door doubles as a
+   standing outcome-capture inlet. Scales down to three mono lines on
+   light screens; every line generated from actual provenance, never
+   template copy.
+
+**The family split — RULED 2026-08-30 (founder correction, second
+weight pass): "Coordination objects are messages; editorial
+compositions are pages."** The first Shape Screen draft rebuilt the
+operating system at the render layer — seven anatomy parts, viewer
+projections drawn as screens, a day-lens, and a single-trip-home mount
+that quietly recreated the destination the itinerary demotion had just
+killed. Founder ruled it too heavy. Corrected doctrine (board of
+record: "10 Chat - The Shape Card", superseding the Shape Screen
+draft; external ground: WhatsApp Events = a pinnable card in the chat,
+Partiful = one page one link, TripIt = a time-ordered list of
+confirmations — the winners at coordination are radically minimal, and
+Product Model §2.2 already said structure only as consequence grows):
+
+- **Two families, two weight budgets.** COORDINATION objects — Shape,
+  Invitation, Decision, Live sliver, receipts — are CARDS: they live
+  in the thread and the well, at message weight, with two zooms (well
+  row ↔ card), and never grow a page. EDITORIAL compositions — Story,
+  pre-trip Reading, journey reconstruction, guides — are PAGES: the
+  full opened-screen chassis (cover, drop cap, colophon, immersive
+  scroll). Board 09's chassis is hereby scoped to the editorial family
+  only. Things you read get pages; things you coordinate through stay
+  messages.
+- **The weight law:** if it wouldn't fit in a message a friend would
+  send, it's too heavy.
+- **The Shape is a card: one read + at most four lines + a stamp.**
+  No facepile section (people are a stamp), no next-action band (the
+  promise shelf's lead IS the next action), no was/now cells (a change
+  is a sentence or a sub-stamp), no lane headers, no door row. There
+  is **no Shape destination screen and no single-trip-home mount** —
+  the occasion lives in its thread; the card pins to the well.
+- **Viewer-relativity survives with zero design:** my card in my
+  thread, the group's card in the group thread — provenance decides,
+  and there is nothing to switch between. The Whole (host coverage)
+  view is CUT, undesigned, until a host actually needs it. The earned
+  day-lens is DEFERRED to the trip case. A decision renders as one row
+  that opens the Decision card; the Shape never hosts voting.
+- **Coordination cards are never Kept** — Keep and the versioned
+  manifest belong to the editorial family; a shape is never testimony,
+  what happened is (the Story). Live yield, one-commitment collapse,
+  recompute-on-read, and provenance-as-viewer all carry over from the
+  superseded draft at card weight.
+
+**The itinerary, decomposed — RULED 2026-08-30 (founder; the family
+split's complexity stress test; board of record "12 Chat - The
+Itinerary, Decomposed"):** "an itinerary" was never one thing — it was
+three acts fused into one editable document, and the fusion was the
+failure (hence 14 operation types and a 2,000-line screen). The split
+assigns each act to the family that already handles it:
+
+1. **"Where do things stand?" → the trip card** — a Shape-card variant
+   holding AGGREGATES only, still ≤4 lines + a stamp ("Flights + stays
+   hold · 12 reservations · 4 open evenings · Kyoto dinner deciding").
+   The card never holds contents, only the shape. A dense day gets a
+   **day card** — an outing-scale Shape for that day (the earned
+   day-lens reborn at card weight).
+2. **"What do we do about Tuesday?" → the thread** — the operational
+   itinerary IS the trip's thread: time-ordered commitment, day,
+   decision, and receipt cards, with the well pin holding what's
+   current. Complexity is absorbed by decomposition in time, never by
+   density in space; nobody coordinates twelve days at once — they
+   coordinate the next thing. (TripIt's winning insight: an itinerary
+   is a time-ordered list of confirmations — which is what a thread
+   is.)
+3. **"Show me the whole trip" → an editorial page** — the sequence
+   body at full height on the board-09 chassis: viewer-relative,
+   refreshable, KEEPABLE (reading is editorial, so the trip page is
+   the legitimate Keep & send object — "send the trip to your mom").
+   Read it; acting routes back through cards. The shipped pre-trip
+   Reading is this object's first ancestor; the trip page is the
+   editorial family's first citizen after the Story.
+
+Bulk edits ("shift days 3–5") never earn surface ceremony: the agent
+performs operations through the ledger that survives beneath; the
+person sees a boundary-preview card and a receipt. Named bet,
+concentrated not created here: retrieval by asking beats retrieval by
+scrolling a grid — "what's Thursday?" returns the day card; if that
+bet is wrong, the four-root pivot is wrong, so the itinerary case adds
+no new risk. Net new design surface: trip/day cards are Shape-card
+copy variants; the trip page is one editorial composition. Zero new
+component systems.
+
+**The left-edge ban + the detail mandate — RULED 2026-08-30 (founder,
+clarified after a first misreading was briefly codified here; visual
+polish is priority one).**
+
+- **BANNED: the accent bar down a card's left edge** — the
+  "highlighted card" treatment ("it's the card with the left edge
+  highlighted that we are banning"; "reads as a PowerPoint
+  component"). A card is bounded by its surface and hairline;
+  emphasis comes from REGISTER — the gold wash, type weight, stamps,
+  the one gold moment — never from an edge bar. Scope: card-level
+  bars on chat/thread card renders. The §11.7 ticket-stub device and
+  the well's receipt seam are separately named devices and keep their
+  standing unless the founder reviews them; do not extend them to new
+  card-level uses while this ban stands.
+- **The detail mandate** (from the same exchange: "I want it to be
+  much more detailed — take a look at the current itinerary"): cards
+  render their things with real detail — times, names, subtitles,
+  states — in the shipping itinerary's row vocabulary, the polish
+  authority: `TripEntry.tsx` (mono 10.5 right-aligned time gutter,
+  gold-emphasized for now/held; **serif_medium 17.5/21 titles**; ONE
+  arbitrated supporting caption — consequence > schedule > booking >
+  place > participants > note; ONE colored state stamp — BOOKED
+  planning ink, HELD/PROPOSED gold, CONFLICT oxblood, PICKED sage;
+  hairline dividers; done 0.55, skipped strikethrough) +
+  `ItineraryChapterHeader.tsx` (daypart mono gold-deep stamps with
+  hairline rules + optional serif thesis) + travel connectors.
+  Lightness is about structure, never about detail. Board 12 redrawn
+  under both rulings same day.
+
+**The zoom gestures — RULED 2026-08-30 (founder; board of record "13
+Chat - Breathing"). Cards breathe in place; pages push; nothing
+resizes.** Everything collapse/expand/fullscreen means elsewhere,
+delivered as three enumerated transitions and zero persistent UI
+state:
+
+1. **Cards age into their compact form — collapse is time, not a
+   gesture.** A card renders full while current; once superseded or
+   the thread moves on, the same instance renders collapsed as its
+   existing well-row form (kicker + one line + stamp — the two-zoom
+   law reused, no third form). Scrollback becomes a scannable ledger.
+   The current instance (the well pin's target) is always full.
+2. **Expand is a tap, in place.** Tapping an aged card expands it
+   where it stands — no navigation. Still-page compatible: expansion
+   is person-initiated. Asymmetry is deliberate: expansion is a
+   gesture, collapse is time; nobody manages card sizes. A full
+   card's taps are its actions; it does not collapse by tap — aging
+   does it.
+3. **Fullscreen exists in exactly one form: the editorial page, by
+   push (§11.4); back is its only exit, returning anchored.**
+   Coordination cards never go fullscreen — "see this bigger" routes
+   to asking (day card → the trip page), never a maximize control.
+   No pinch, no grips, no user-resizing: density stays CHOSEN-tier.
+   PiP already exists and is not draggable — the live sliver,
+   system-owned.
+
+- **Provenance-keyed default zoom in group threads:** the asker's
+  card arrives full; the same card in the group thread arrives
+  collapsed by default (tap to expand). The asker earned the detail;
+  the group earned a glance. EXCEPTION: the Invitation always arrives
+  full for everyone — its whole job is the first impression.
+- **Receipts age fastest** — a receipt collapses on the next thread
+  activity; shapes and decisions hold full until superseded or
+  resolved.
+- **Honesty on re-expansion:** an expanded old card renders ITS as-of
+  stamp — history never masquerades as current truth; fresh truth is
+  one ask away.
+- Never: maximize controls, pinch-to-expand, drag handles, remembered
+  sizes, collapse-all, a second minimized-window mechanic.
+
+**The telescope — RULED 2026-08-30 (founder; board of record "14 Chat -
+The Telescope"). Semantic zoom as the fifth axis of dynamism.**
+
+- **Every aggregate line is a folded card.** Zoom in = tap a row and
+  it unfolds into its child, in place, as a paperDeep inset with its
+  own kicker: trip → segment → day → commitment — the experience
+  graph's containment tree made touchable. Zoom out = tap the kicker:
+  every unfolded child carries its parent's name, so the kicker is
+  provenance AND the way home. No new gesture — board 13's
+  tap-to-expand generalized from time to hierarchy; no navigation, no
+  screens, no tabs; form stays FIXED-tier.
+- **Cards arrive at message weight; depth is pulled, never pushed.**
+  The weight law governs arrival; pulled depth is person-initiated,
+  ephemeral, and folds back on aging. Nobody ever receives a
+  twelve-day tree.
+- **One unfolded child per level (the accordion rule).** Opening
+  Kyoto folds Tokyo; opening Tuesday folds Monday. The kicker spine
+  always shows where you are; "everything at once" stays the trip
+  page's job. Three paths, one set of cards: the telescope WALKS, the
+  page READS, asking JUMPS.
+- **At live, time does the zooming:** the current day is the
+  system-unfolded level.
+- **Reading posture only:** actions stay on the card that owns them
+  (vote on the Decision card, correct via the colophon). The
+  telescope never becomes an editing tree — that would be the Change
+  Studio reborn.
+- Generalizes for free to any parent/child in the graph (occasion →
+  commitments, settlement → lines): one mechanic for every hierarchy.
+- Net: the system is dynamic along five axes — content, register,
+  time, viewer, depth — and static along exactly one, form, which is
+  what keeps the five legible.
+
 ### 11.9 The Chat entry — RULED 2026-08-29 (founder, seven passes)
 
 Boards of record: Vesper — Chat project, 02 (target entry), 04 (well
@@ -914,3 +1122,33 @@ two primary-source research passes (industry static/declarative/
 open-ended taxonomy; MCP Apps / Apps SDK / A2UI convergences; Gemini
 Dynamic View located as answer-lane-only counter-example; sandboxed
 GeneratedView hybrid as the sole escape valve).
+Added 2026-08-30: opened-screen laws ruled (§11.8; board 09's four
+proposals all adopted, chrome amended to Keep & send one-gesture) —
+still-page, instrument-never-opens-immersive, back+Keep chrome,
+required colophon. Board 09 no longer carries proposals; the Shape
+screen board designs against settled chassis law.
+Added 2026-08-30 (second weight pass): the family split (§11.8) —
+coordination objects are messages (cards, two zooms, thread + well,
+never Kept); editorial compositions are pages (the board-09 chassis,
+now editorial-only). The Shape Screen draft superseded by "10 Chat -
+The Shape Card"; no Shape destination screen, no single-trip-home
+mount; Whole cut undesigned; day-lens deferred; weight law = "if it
+wouldn't fit in a message a friend would send, it's too heavy."
+Added 2026-08-30: the itinerary, decomposed (§11.8; board "12 Chat -
+The Itinerary, Decomposed") — three acts, three homes: glance = the
+trip card (aggregates, ≤4 lines), coordination = the thread as the
+operational itinerary (day cards; decomposition in time), reading =
+the trip page (editorial, Keepable). Bulk edits via ledger + boundary
+preview + receipt; retrieval-by-asking named as the concentrated bet.
+Added 2026-08-30: the zoom gestures (§11.8; board "13 Chat -
+Breathing") — cards breathe in place (age-to-compact by time,
+tap-to-expand in place), pages push (§11.4, the only fullscreen),
+nothing user-resizes; provenance-keyed default zoom in group threads
+(invitations exempt — always full); receipts age fastest; re-expanded
+history renders its own as-of stamp.
+Added 2026-08-30: the telescope (§11.8; board "14 Chat - The
+Telescope") — semantic zoom as the fifth dynamism axis: every
+aggregate line is a folded card (trip→segment→day→commitment, in-place
+paperDeep insets, kicker = the way home); depth is pulled never
+pushed; one unfolded child per level; at live, time does the zooming;
+reading posture only. Five axes dynamic, one (form) static.
