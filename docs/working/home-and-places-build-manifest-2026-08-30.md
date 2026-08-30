@@ -1,0 +1,236 @@
+---
+doc_type: working
+status: active
+owner: founder / design / frontend / backend
+created: 2026-08-30
+last_verified: 2026-08-30
+expires: 2026-09-29
+why_new: The canon boards render compositions but nothing enumerates the unit taxonomy behind them or maps it to build status — and the §11.5 locus-of-generation ruling requires bounded kind-unions per root, which makes the taxonomy itself the contract. This is the post-pivot successor to the old canvas's "Build Manifest — Both Surfaces."
+promotes_to: null
+supersedes: []
+source_of_truth_for:
+  - the Home and Places unit taxonomy and its build ledger
+depends_on:
+  - docs/working/design-kernel-extraction-2026-08-29.md
+  - docs/working/home-surfaces-pre-pivot-recovery-and-post-pivot-direction-2026-08-27.md
+  - docs/working/places-consumer-experience-anatomy-2026-08-29.md
+  - docs/working/post-return-new-york-home-possible-worlds-gallery-2026-08-28.md
+  - docs/working/home-and-places-five-world-fixture-pack-2026-08-29.md
+---
+
+# Home and Places — Build Manifest
+
+## Decision
+
+Enumerate every unit kind that appears on the canon, fixture, handoff, and
+stress boards for the new Home and Places roots; give each a stable kind
+name, its containment posture, its evidence gate, and a build grade against
+the code that exists today. Per kernel §11.5, roots render from **bounded
+kind-unions, server-chosen** — so these tables are not documentation of the
+design; they are the first draft of the unions the resolvers will be typed
+against.
+
+Build grades: **EXISTS** (substrate and renderer live today, possibly under
+old names) · **ADAPT** (real substrate exists; carrier, projector, or
+renderer work needed) · **BUILD** (net-new). Grades were checked against
+source on 2026-08-30 (`places_sections.py` reasons, `trips_stack_models.py`
+receipt kinds, the component catalog, and the kernel doc's authority map);
+unverified claims say so.
+
+## 1. Home — the region-kind union
+
+### 1.0 Chrome and read
+
+| Kind | What it is | Containment | Evidence gate | Grade |
+| --- | --- | --- | --- | --- |
+| `world_read` | Two-tier read (§11.6.1): mono anchor + two-line serif read in standfirst voice; merge rule for voiced dominants | chrome, never a card | location scope + one true condition; read must beat silence | **BUILD** — producer + voice contract are new; mast type role exists |
+| `root_shell` | Four-root tab bar | chrome | — | EXISTS dark (`fourRootShell.ts`, flag-gated; icons placeholder per ruling 7) |
+
+### 1.1 Now — the dominant union (exactly one renders)
+
+| Kind | Seen on | Containment | Grade | Substrate notes |
+| --- | --- | --- | --- | --- |
+| `now_route_instrument` | Live posture; Live Reduction compact | crown (step 5) | **ADAPT** | crown anatomy shipped; map-grammar renderer is BUILD (see §3) |
+| `now_prepared_possibility` | Available; World F Saturday | crown | **ADAPT** | crown + spine receipt exist; composer selection is new |
+| `now_decision` | Planning ("two decisions open") | crown | **ADAPT** | proposal/decision substrate live (`proposal_approval`, `call` receipt) |
+| `now_recovery_instrument` | F5 disruption | crown, oxblood register | **BUILD** | provider-state + prepared-work + honesty band; movement domain partial |
+| `now_temporal_posture` | F2 ("Wait until noon") — CTA-less crown | crown, no CTA | **BUILD** | monitor authority, threshold, expiry — new semantics |
+| `now_annotated_evidence` | F3 (dish photo) | crown | **BUILD** | photo-as-evidence per media ruling; annotation callouts new |
+| `now_attributed_comparison` | F4 (two lanes) | crown | **BUILD** | grant-gated lanes; depends on contribution-&-consequence grants |
+| `now_invitation` | Cold posture | crown | **ADAPT** | cold-start loop shipped previously; recompose |
+| `now_merged_into_read` | Quiet, Returned·Day-0 | none — promotes into `world_read` | covered by `world_read` | ruling §11.6.1 |
+
+### 1.2 In motion
+
+| Kind | Containment | Grade | Notes |
+| --- | --- | --- | --- |
+| `motion_occasion_row` | uncarded row | **ADAPT** | ListRow anatomy exists; Occasion substrate is the pivot's own object |
+| `motion_loose_end_row` | uncarded row | **ADAPT** | watched-claim semantics; `call`/agent-work substrate |
+| `motion_all_plans_door` | Door | EXISTS | `Door.tsx` shipped |
+
+### 1.3 Horizons
+
+| Kind | Containment | Grade | Notes |
+| --- | --- | --- | --- |
+| `horizon_editorial_passage` | uncarded + 56pt plate | **ADAPT** | ruling 8 ratified the plate; the C6 image slot on rows is drawn-never-built — cheapest build in the ledger |
+| `horizon_mechanism_row` | uncarded + plate | **ADAPT** | same anatomy, mechanism content |
+| `horizon_aperture_row` | uncarded row | EXISTS-ish | `saved_unplaced` kind is live in both unions today |
+| `horizon_hidden_system` | uncarded + mini diagram | **BUILD** | bounded-mechanism content + diagram unit |
+
+### 1.4 With people
+
+| Kind | Containment | Grade | Notes |
+| --- | --- | --- | --- |
+| `people_note_door` | uncarded row (door — ruling 3) | **ADAPT** | facepile + `people` receipt exist; grant checks BUILD |
+| `people_participants_row` | uncarded row | EXISTS | `people` receipt (seats/facepile) |
+| `people_waiting_row` | uncarded row | EXISTS-ish | `group_waiting` reason live in Places union; re-home |
+| `people_authorized_door` | Door | **BUILD** | renders only under may-use; silent-yield otherwise |
+
+### 1.5 Continuity
+
+| Kind | Containment | Grade | Notes |
+| --- | --- | --- | --- |
+| `continuity_capability_field` | 2pt gold left rule | **BUILD** | reusable-distinction ledger; feeds from lived-experience engine |
+| `continuity_since_you_looked` | gold rule @45% | **ADAPT** | `diff`/`changed` substrate exists |
+| `continuity_life_door` | Door | EXISTS | door to Life root |
+| `continuity_settling` | crown (Returned·Day-0 dominant) | **BUILD** | import/settling status from Life ingestion |
+| `continuity_voice_horizon` | voice italic, uncarded | **BUILD** | no-deadline thread; never auto-saves (gallery F8 law) |
+
+**Home union: 22 kinds** (9 Now + 3 Motion + 4 Horizons + 4 People + 5
+Continuity, with one Now kind folding into chrome). The union is the type
+the Home resolver emits; adding a kind is a canon event, not a feature PR.
+
+## 2. Places — the state-unit unions
+
+### 2.0 Chrome (all states)
+
+| Kind | Grade | Notes |
+| --- | --- | --- |
+| `scope_handle` (narrowing NEW YORK → RED HOOK → RED HOOK·ACCESS) | **BUILD** | the state machine + persistence contract (fixture brief §3) |
+| `provenance_label` ("FROM HOME · …") | **BUILD** | rendered from the projection envelope |
+| search / map-composition affordances | EXISTS | current search overlay + map routes; must adopt the typed context envelope |
+
+### 2.1 World Field
+
+| Kind | Containment | Grade | Notes |
+| --- | --- | --- | --- |
+| `field_lead_composition` | leads by size on bare paper | **BUILD** | map field + proposition + interval; the composer is the admission compiler's first client |
+| `field_branch_lead` (56pt) / `field_branch` (44pt) | uncarded rows | **ADAPT** | `nearby_set`/`candidates` substrate; the *different-access-structure* selection rule is new |
+| `field_returned_understanding` | gold left rule | **BUILD** | the one-Europe-unit; needs the lived-experience transfer substrate |
+| `field_continuity_doors` | uncarded rows | EXISTS | saved (`saved`, count-toward law), map door, plans door |
+| `field_balanced_fallback` | orientation state | **BUILD** | the no-strong-lead degradation (ordinary-open board) |
+
+### 2.2 Place Focus
+
+| Kind | Containment | Grade | Notes |
+| --- | --- | --- | --- |
+| `focus_identity_map` | media/map is the object | **ADAPT** | mapSurface/mapTokens exist; place-scale framing new |
+| `focus_verdict` | uncarded serif + mono basis line | **ADAPT** | Take/dossier thesis substrate exists; conviction stays producer-less (ruling 4) |
+| `focus_relationship_trace` | uncarded, descriptive | **ADAPT** | `traveler_place_affinity` + saves live; no stage language |
+| `focus_human_note` | carded evidence object (ruling 3) | **ADAPT** | attribution anatomy exists; may-use/may-name gating BUILD |
+| `focus_horizon_doors` (ACCESS/TRANSFER/ALTERNATIVE) | typed door rows | **BUILD** | typed edges with stated relation + difference |
+| `focus_possibility_row` | uncarded row, reason + burden | **ADAPT** | `candidates`; the one-reason-one-burden contract is new copy law |
+| `focus_action_seam` | umber primary + quiet doors | EXISTS | Button + Door |
+
+### 2.3 Place Path
+
+| Kind | Containment | Grade | Notes |
+| --- | --- | --- | --- |
+| `path_relation_statement` | uncarded title + serif | EXISTS (type roles) | copy law: never "Places like X" |
+| `path_difference_diagram` | diagram, border-only | **BUILD** | new instrument family (diagram-only-when-spatial, map-grammar ruling) |
+| `path_distinction_rows` | mono kicker + sans, ≤3 | **ADAPT** | render exists; evidence-count gate new |
+| `path_evidence_apparatus` | uncarded numbered trail + italic analogy limit | **ADAPT** | the C2 citation contract — receipt union carries it; apparatus renderer new |
+| `path_consequence` | gold rule + Door | **ADAPT** | ConsequenceBanner family |
+| `path_next_rows` | uncarded rows, ≤2, typed | **ADAPT** | remove-rather-than-generic rule |
+
+### 2.4 Live Reduction
+
+| Kind | Containment | Grade | Notes |
+| --- | --- | --- | --- |
+| `live_instrument` | crown; map + sequence as one path | **ADAPT** | spine receipt EXISTS and carries it unchanged; synchronized map renderer BUILD |
+| `live_burden_receipt` | receipt box r11 | EXISTS | receipt union verbatim |
+| `live_fallback` | gold left rule, exactly one | **ADAPT** | conditions/diff substrate |
+| `live_temporal_posture` | StatusMeta (oxblood ruled) | **BUILD** | ACT NOW / HOLD / WAIT / MONITOR / RELEASE semantics + reversion |
+| `live_action_seam` | umber w/ creation preview | **ADAPT** | Door + plan-capability preview line |
+
+### 2.5 Social forms (any state, grant-gated)
+
+`social_attributed_evidence` (ADAPT) · `social_relational_relevance`
+(**BUILD** — the why-it-matters sentence is generated, contract-bound) ·
+`social_plural_comparison` (**BUILD**) · `social_participation_consequence`
+(**BUILD** — the she-can-see-and-withdraw receipt; depends on the
+contribution-&-consequence contract's grant store).
+
+**Places unions: 26 kinds** across chrome + four states + social.
+
+## 3. Shared instruments (cross-root, build once)
+
+| Instrument | Needed by | Grade |
+| --- | --- | --- |
+| Map-grammar renderer — one encoding (gold/dashed/oxblood/rings), three scales | Home Now, all Places states | **BUILD** (stay on Mapbox per maps canon; stylized layer over camera) |
+| Route strip (linear register of the same encoding) | Home, handoff, Live | **BUILD** (small) |
+| Projection envelope (12 fields) + push-not-tab navigation + readback refresh + canonical seen | every cross-root tap | **BUILD** — the §11.4 contract |
+| Admission & hierarchy compiler (§9 brief, hard gates, ranking, density taper) | both roots | **ADAPT** — 🔑 the `concierge_feed` ranker already exists and was ruled ADOPT-not-build; the gates and density taper wrap it |
+| Degradation compiler (§10 rules) | both roots | **BUILD** |
+| Two-tier read producer (anchor + grounded voice line + merge rule) | Home; Places cold start | **BUILD** |
+| Receipt union + dispatcher | everywhere | EXISTS (11 kinds, grain-agnostic) |
+| `Door`, CardSurface recipes, StatusMeta, ConsequenceBanner, facepile | everywhere | EXISTS |
+| C6 row image slot (44/56 plates) | Home Horizons, Places branches | **BUILD** (one prop; drawn since old canon) |
+| Photo-evidence annotation unit | F3-class content, Life | **BUILD** (media ruling) |
+
+## 4. Migration ledger — the old inventory's disposition
+
+**Old Places reasons (live enum, 15+):** `nearby_set`, `neighbourhood`,
+`starter`, `guide`, `experiences`, `saved`, `saved_unplaced`, `changed` →
+**survive as World Field / Focus selection inputs** (reasons become
+admission-compiler candidates, not page sections). `anniversary`, `harvest`
+→ **migrate to Life** (return/continuity layer). `friend_activity` →
+**replaced** by the four social forms (the activity-feed shape is a rejected
+pattern). `gap`, `expiry`, `group_waiting`, `urgency` → **re-home to Home**
+(they are person-situation claims, not world claims). `reading`/`register`
+→ fold into Path media (an article is a medium, not a shelf).
+
+**Old Trips section kinds (24, by family — exhaustive rows live on the old
+Build Manifest board, which remains the historical reference):** the crown
+family → the Now union (§1.1); open-loops/countdown → In motion; trail/
+near-you → Horizons (`near_you` receipt kind is live); group/connect → With
+people; companion-reading/memory/anniversary family → Life + Continuity
+doors; trip-feel/table → retired with the trip-lifecycle page model;
+expense-ledger receipts → unchanged receipt union, surfaced by owner views.
+
+## 5. The build ledger — what we actually need to build
+
+Net-new (BUILD), roughly ordered by unblocking power:
+
+1. **Admission compiler + degradation compiler** — every page composes
+   through them; wraps the existing `concierge_feed` ranker.
+2. **Projection envelope + push navigation + provenance label** — the
+   §11.4 contract; unblocks every cross-root tap.
+3. **Map-grammar renderer + route strip + difference diagram** — the one
+   encoding at three scales; unblocks `now_route_instrument`,
+   `field_lead_composition`, `live_instrument`, Path.
+4. **Two-tier read producer** (+ merge rule) — Home's opening.
+5. **Temporal-posture engine** (WAIT/HOLD/ACT NOW/MONITOR/RELEASE, monitor
+   authority, expiry, reversion).
+6. **Grant-gated social projector** (may-use/may-name checks,
+   recompile-on-revoke, the relevance sentence, the consequence receipt) —
+   lands with the contribution-&-consequence contract.
+7. **Recovery instrument** (provider state, prepared-work list, honesty
+   band, causal-ladder receipts).
+8. **Scope-handle state machine** + typed horizon edges.
+9. **C6 row image slot** (cheapest; do first for morale).
+10. **Photo-evidence annotation unit**; **capability field**;
+    **settling/import status**; **voice horizon**.
+
+Score at authoring: **48 kinds + 10 shared instruments → 14 EXISTS ·
+21 ADAPT · 23 BUILD.** More than half of both pages stands on shipped
+substrate; the genuinely new engineering concentrates in five systems
+(compilers, envelope, map grammar, read producer, grants) — everything else
+is carriers and renderers over live data.
+
+## 6. Not covered here
+
+Per-slot copy budgets (each kind gets a content-contract instance before
+mock copy — kernel §10 law); production geometry (the dedicated design
+pass); Life's unit union (its own project); Chat's well union (owned by the
+Chat canvas, per its founder ruling).
