@@ -250,7 +250,7 @@ Net-new (BUILD), roughly ordered by unblocking power:
 7. **Recovery instrument** (provider state, prepared-work list, honesty
    band, causal-ladder receipts).
 8. **Scope-handle state machine** + typed horizon edges.
-9. **C6 row image slot** (cheapest; do first for morale).
+9. **C6 row image slot** — ✅ SHIPPED 2026-08-30 as `components/ui/MediaPlate.tsx` (media-doctrine textures + plate ladder); the route strip half of item 3 shipped alongside as `RouteStrip.tsx`, and the rest register as `RestClose.tsx`. First fixture screen: `components/home-root/HomeRootScreen.tsx` (Returned·Saturday) behind the dev route, smoke-tested.
 10. **Photo-evidence annotation unit**; **capability field**;
     **settling/import status**; **voice horizon**.
 
