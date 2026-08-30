@@ -96,9 +96,11 @@ unverified claims say so.
 | `continuity_settling` | crown (Returned·Day-0 dominant) | **BUILD** | import/settling status from Life ingestion |
 | `continuity_voice_horizon` | voice italic, uncarded | **BUILD** | no-deadline thread; never auto-saves (gallery F8 law) |
 
-**Home union: 22 kinds** (9 Now + 3 Motion + 4 Horizons + 4 People + 5
-Continuity, with one Now kind folding into chrome). The union is the type
-the Home resolver emits; adding a kind is a canon event, not a feature PR.
+**Home union: 27 kinds** (2 chrome + 9 Now, of which one folds into
+`world_read` + 3 Motion + 4 Horizons + 4 People + 5 Continuity — 26
+renderable). The union is the type the Home resolver emits; adding a kind
+is a canon event, not a feature PR. *(Counts corrected 2026-08-30 after
+the coverage audit; the original "22" was arithmetic error.)*
 
 ## 2. Places — the state-unit unions
 
@@ -161,7 +163,9 @@ the Home resolver emits; adding a kind is a canon event, not a feature PR.
 (**BUILD** — the she-can-see-and-withdraw receipt; depends on the
 contribution-&-consequence contract's grant store).
 
-**Places unions: 26 kinds** across chrome + four states + social.
+**Places unions: 31 kinds** across chrome (3) + World Field (6) + Focus
+(7) + Path (6) + Live (5) + social (4). *(Corrected 2026-08-30 — the
+original "26" was arithmetic error.)*
 
 ## 3. Shared instruments (cross-root, build once)
 
@@ -222,13 +226,65 @@ Net-new (BUILD), roughly ordered by unblocking power:
 10. **Photo-evidence annotation unit**; **capability field**;
     **settling/import status**; **voice horizon**.
 
-Score at authoring: **48 kinds + 10 shared instruments → 14 EXISTS ·
-21 ADAPT · 23 BUILD.** More than half of both pages stands on shipped
+Score, recounted 2026-08-30: **58 kinds + 10 shared instruments → 13
+EXISTS · 26 ADAPT · 28 BUILD** (one Now kind folds into chrome). More
+than half of both pages stands on shipped
 substrate; the genuinely new engineering concentrates in five systems
 (compilers, envelope, map grammar, read producer, grants) — everything else
 is carriers and renderers over live data.
 
-## 6. Not covered here
+## 7. Audit addendum — 2026-08-30 coverage findings (pending ruling)
+
+A systematic audit of these unions against every 08-16→08-30 canon doc
+found six specified-but-unrendered use cases and seven partials. These
+are **candidate kinds, not yet in the unions** — each addition is a canon
+event awaiting the founder:
+
+**Gap candidates:** `continuity_reconstruction` (the paired
+intended/actual timeline — gallery §10, worlds E3/E4/F7, the E-family's
+core unit); a **layered-Place-passage** shared instrument (source-bound
+timeline + live access in one unit — gallery §10, B2); a
+`people_status_aperture` (the "JUST BACK · 10 DAYS" return-Status
+preview — gallery D5, already accepted in wave-0 §1 A15); a
+**carried-forward receipt** kind + Home/Places carrier (life-continuity
+contract §8.9 — the receipt union predates it; verify or extend); a
+shared **"Why this?" provenance instrument** across both roots
+(contribution-and-consequence §3.8 — only Path has an apparatus today);
+a `live_branch_field` for the recovery register (F5-P2's two-branch
+consequence tree — `live_fallback`'s "exactly one" holds for ordinary
+Live only).
+
+**Partials to widen:** `focus_verdict` must carry all six current-read
+registers incl. the then/now diff medium (anatomy §4.2.2, §7);
+`focus_horizon_doors`' type space is the anatomy's seven path types, not
+the three fixture labels; Home needs a non-dominant grant-gated social
+carrier (gallery D4/D6/F5 supporting positions); the possibility
+small-multiple needs the `human_mode` vocabulary in the admission
+compiler; an availability/reunion opening (gallery A6/C6); a
+branch-level composed-way kind (recovery §8.4 walks/sequences); a Home
+carrier for timely generated compositions (four-root §5.1).
+
+**Doc conflicts to settle:** `path_next_rows` ≤2 (brief) vs ≤3
+(anatomy) — pick one; `live_fallback` singular vs plural in the recovery
+register (resolved if `live_branch_field` is adopted).
+
+**From the pre-pivot boards** (mining audit, same date) — strongest
+pull-forwards, pending ruling: the **identity + structure gradients** as
+Now-union law (the biggest slot holds the most specific true thing;
+structure falls off with grain — the cheapest coherence guarantee across
+nine dominants); the **Move** as the non-durable expiring-offer object
+under `now_prepared_possibility` (offered, ignored, expires — no row);
+the **map honesty contract** folded into the renderer spec
+(routed/estimated/unknown orthogonal to commitment; minutes only off
+fresh facts; crossings as arcs); the **dissent register** ("everyone
+will send you here; don't" — uncarded, lens-labeled, never oxblood); the
+**lens/angle switcher** as one field on the Place projection. Also
+flagged: the group-at-weight regression (With-people is all rows — the
+multiplayer wedge's subject never gets the 46pt treatment), the
+countdown's scale contrast, the never-built spine day-strip, and the
+unresolved settle primitive.
+
+## 8. Not covered here
 
 Per-slot copy budgets (each kind gets a content-contract instance before
 mock copy — kernel §10 law); production geometry (the dedicated design
