@@ -880,3 +880,27 @@ overrides:
   docs/working/vesper-home-full-rotation-completion-plan-2026-08-01.md:
     disposition: keep_reference
     rationale: Active Vesper home rotation completion plan retained until promotion or closure.
+
+  docs/working/design-kernel-extraction-2026-08-29.md:
+    disposition: keep_authoritative
+    rationale: The citable root-agnostic design kernel; source of truth for kernel vocabulary and the 11.x rulings ledger.
+
+  docs/working/critique-response-and-composition-phase-2026-08-30.md:
+    disposition: keep_reference
+    rationale: Active phase-2 composition brief responding to the composition critique.
+
+  docs/working/life-root-production-spec-2026-08-30.md:
+    disposition: keep_reference
+    rationale: Active Life-root production spec in progress on the parallel design track.
+
+  docs/working/four-root-continuity-motion-2026-08-29.md:
+    disposition: keep_reference
+    rationale: Proposed continuity-motion patterns 9-12 cited by the kernel authority map.
+
+  docs/working/home-and-places-build-manifest-2026-08-30.md:
+    disposition: keep_reference
+    rationale: Active Home and Places build manifest for the production-design increments.
+
+  docs/design-archive/root-boards-2026-08-30/README.md:
+    disposition: keep_reference
+    rationale: Index of the archived root-board set preserved before the Design project pruning.
