@@ -145,6 +145,39 @@ Laws (verified in fonts.ts, ratchet-enforced by
 | Mast | serif 600 30/34 · sub sans 12.5/17 | board 08-11 |
 | StatusMeta | 6pt dot + sans 600 11, ls 0.8, caps | board 08-11 |
 
+### 3.1 The board rhythm ramp — CONSOLIDATED 2026-08-30 (founder correction)
+
+The founder reviewed the compositions and called the micro-rhythm off.
+Audit confirmed it: 33 distinct font sizes, mono kickers at 9px/1.15
+against the ruled 10px floor (which `textVariants.monoStamp` already
+enforces at 10/1.3), italic quotes below the 17px italic floor, seven
+section padding values, radii 9–18. All 27 boards were normalized onto
+one ramp, anchored to the code tokens (code wins):
+
+**Mono** — kicker/stamp 10px·700·ls 1.3 (gold-deep, mute, or ghost);
+data/footnote 10px·ls 0.9 ghost; numeral/time and world-read anchor
+11px·700·ls 1.15; chips 10px·700 in the pill. Floor 10px everywhere in
+HTML text; SVG diagram labels (map annotations, 7.5–9) are exempt as
+artwork.
+
+**Sans** — meta 12.5/17 · controls (doors, secondary buttons, dense
+cells) 13/18 · body + primary CTA 14/19 · row title 15/19·600·−0.2 ·
+cardTitle 16.5/20·600·−0.3 · crown title 19.5/22·600·−0.3 ·
+StatusMeta 11/600·ls 0.8.
+
+**Serif** — compact prose 15.5–16 · voice italic 17/24 (floor 17,
+ruled) · prose read 18/25 · crown read 20/28 · editorial title 18.5 ·
+relation title 22/27 · world read 26/33. Serif floor 15 stands.
+
+**Geometry** — dots 3–4 · receipt/CTA 11 · media & 56pt+ thumbs 13
+(44pt → 9, 56pt → 10, 72pt → 12) · card 15 · frame 16 · crown 18 ·
+pill 999. Row heights quantized to 34 (spine) / 36 (door) / 44
+(compact) / 52 (standard) / 56–68 (plated). Section rhythm: one beat —
+`padding-top: 24` between sections (16 only directly under the world
+read). Page gutter 22, card padding 15–16.
+
+Any new board value outside this ramp is a defect unless ruled in.
+
 ## 4. Geometry
 
 | Constant | Value | Provenance |
