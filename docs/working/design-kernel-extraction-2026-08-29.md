@@ -808,9 +808,10 @@ polish is priority one).**
   emphasis comes from REGISTER — the gold wash, type weight, stamps,
   the one gold moment — never from an edge bar. Scope: card-level
   bars on chat/thread card renders. The §11.7 ticket-stub device and
-  the well's receipt seam are separately named devices and keep their
-  standing unless the founder reviews them; do not extend them to new
-  card-level uses while this ban stands.
+  the well's receipt seam are separately named devices — REVIEWED AND
+  KEPT (founder, 2026-08-30): both stand as small devices inside
+  containers, distinct from card-level highlighting; do not extend
+  them to new card-level uses while this ban stands.
 - **The detail mandate** (from the same exchange: "I want it to be
   much more detailed — take a look at the current itinerary"): cards
   render their things with real detail — times, names, subtitles,
@@ -1058,6 +1059,43 @@ amendments, landing here as the single canon-alignment pass:
     attempted → partial/failed/unknown → readback → repair → receipt
     chain as one renderable carrier.
 
+### 11.13 The §7 close-out batch — RULED 2026-08-30 (founder)
+
+The manifest's §7 queue is emptied. Six rulings:
+
+1. **Two kinds in, one deferred**: `live_branch_field` (recovery
+   register only — ordinary Live keeps exactly-one fallback, settling
+   the singular/plural conflict) and `people_status_aperture` (already
+   wave-0-accepted; a people-reservoir kind). The layered-Place-passage
+   instrument is deferred until a composition demands it — three
+   complete compositions never did.
+2. **Vocabularies adopted, kinds refused**: focus_verdict carries the
+   anatomy's six registers and the horizon doors the seven path types
+   (type spaces, rendered by existence gate); `human_mode` folds into
+   R2's modifier vocabulary. No Home social carrier (covered by R1);
+   availability/reunion openings are Move content; **generated-vs-
+   curated is a provenance label, never a union axis** — producer lanes
+   do not earn kinds.
+3. **`path_next_rows` ≤2** — the stricter number; widening later takes
+   evidence, narrowing a shipped habit takes a fight.
+4. **Urgent's suppressor semantics**: oxblood register; one recovery
+   dominant; the read drops to direct state (the ladder's floor);
+   everything below collapses to `week_shape` + critical in-motion rows;
+   horizons and continuity yield entirely; the rest close is replaced by
+   the **"what stays held" line** — suppression without reassurance
+   reads as data loss. Drawn as the Home · Urgent board.
+5. **R2 is ratified without the three-posture strip** — four postures
+   have now rendered on one architecture; the escape clause stands: a
+   posture demanding different architecture revisits clause 2
+   explicitly, never quietly.
+6. **Evidence-driven triggers replace dates**: tab-bar icons commission
+   at the first device-visible shell increment; the Lamplight night
+   register waits for real night usage in dogfood.
+
+Score after this batch: 65 kinds + 13 instruments → 14 EXISTS ·
+30 ADAPT · 33 BUILD. The open-questions ledger for Home & Places is,
+for the first time, empty of ruling-shaped items.
+
 ## 12. Adjacent system rulings
 
 <!-- Header restored 2026-08-29: a prior edit dropped the "## 12" line;
@@ -1222,3 +1260,17 @@ was never a token), supporting captions 11.5, time gutters 36/30,
 section gap 24. Board furniture (rail tags, fold markers, timestamps,
 footers) is annotation and exempt. Boards 07 + 09–15 normalized
 same day; the 00–06/08 set inherits the kit on the fork's next pass.
+Added 2026-08-30 (closing pass, founder approvals): KEEP ELIGIBILITY
+RULED — a composition may be Kept only on share-or-keep intent
+(anything shared is automatically versioned; nothing self-saves);
+scoped by the family split to editorial pages only (Reading, Story,
+reconstruction, the trip page). This closes §11.8's last open call —
+the workbook's "which generated compositions earn saved identity" is
+now answered. Also ruled: the ticket-stub and receipt-seam edge
+devices reviewed and KEPT (see the left-edge ban block); the Story
+share-flag flip approved (the re-invite bet's live test, and the Keep
+& send gesture's first carrier); Wave-1 coordination build
+green-lit (OccasionCapsule writer → Brief producer → conformance
+fixes). Resolver job-taxonomy ratification remains deliberately
+parked (answer-lane only); PLAN_SHAPE flag mooted by the family
+split.

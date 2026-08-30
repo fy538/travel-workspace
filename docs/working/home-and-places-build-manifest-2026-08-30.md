@@ -108,6 +108,7 @@ unverified claims say so.
 | `people_waiting_row` | uncarded row | EXISTS-ish | `group_waiting` reason live in Places union; re-home |
 | `people_authorized_door` | Door | **BUILD** | renders only under may-use; silent-yield otherwise |
 | `people_gathering` | quietPanel — the group as subject | **ADAPT** | the pre-pivot "room" restored (regression fix, 2026-08-30): facepile at weight, the gathering itself carded as the thing that matters now; facepile + seats substrate exist |
+| `people_status_aperture` | uncarded row/aperture — a person's returned/available status as a doorway ("JUST BACK · 10 DAYS") | **ADAPT** | ruled in 2026-08-30 (§7 resolution; already accepted wave-0 §1 A15); featured-Status substrate; renders in any region per R1 |
 
 ### 1.5 Continuity
 
@@ -120,7 +121,7 @@ unverified claims say so.
 | `continuity_voice_horizon` | voice italic, uncarded | **BUILD** | no-deadline thread; never auto-saves (gallery F8 law) |
 | `continuity_reconstruction` | evidence-first paired timeline | **BUILD** | adopted 2026-08-30 (gallery §10 / worlds E3–E4/F7): the intended/actual sequence from receipts and movement rows — "what actually happened," never a trip report |
 
-**Home union: 30 kinds** *(week_shape ruled in 2026-08-30)* — was: 29 kinds (2 chrome + 9 Now, of which one folds into
+**Home union: 31 kinds** *(week_shape + people_status_aperture ruled in 2026-08-30)* (2 chrome + 9 Now, of which one folds into
 `world_read` + 3 Motion + 4 Horizons + 5 People + 6 Continuity — 28
 renderable). The union is the type the Home resolver emits; adding a kind
 is a canon event, not a feature PR. *(Counts corrected 2026-08-30 after
@@ -170,7 +171,7 @@ adopted the same day.)*
 | `path_distinction_rows` | mono kicker + sans, ≤3 | **ADAPT** | render exists; evidence-count gate new |
 | `path_evidence_apparatus` | uncarded numbered trail + italic analogy limit | **ADAPT** | the C2 citation contract — receipt union carries it; apparatus renderer new |
 | `path_consequence` | gold rule + Door | **ADAPT** | ConsequenceBanner family |
-| `path_next_rows` | uncarded rows, ≤2, typed | **ADAPT** | remove-rather-than-generic rule |
+| `path_next_rows` | uncarded rows, **≤2 (conflict settled 2026-08-30 — the brief's stricter number wins)**, typed | **ADAPT** | remove-rather-than-generic rule |
 
 ### 2.4 Live Reduction
 
@@ -181,6 +182,7 @@ adopted the same day.)*
 | `live_fallback` | gold left rule, exactly one | **ADAPT** | conditions/diff substrate |
 | `live_temporal_posture` | StatusMeta (oxblood ruled) | **BUILD** | ACT NOW / HOLD / WAIT / MONITOR / RELEASE semantics + reversion |
 | `live_action_seam` | umber w/ creation preview | **ADAPT** | Door + plan-capability preview line |
+| `live_branch_field` | two-branch consequence tree — **recovery register only** | **BUILD** | ruled in 2026-08-30: ordinary Live keeps `live_fallback`'s exactly-one; the oxblood recovery register may render the branch field (F5-P2). This also settles the singular/plural conflict: fallback stays singular |
 
 ### 2.5 Social forms (any state, grant-gated)
 
@@ -190,8 +192,8 @@ adopted the same day.)*
 (**BUILD** — the she-can-see-and-withdraw receipt; depends on the
 contribution-&-consequence contract's grant store).
 
-**Places unions: 33 kinds** across chrome (3) + World Field (8) + Focus
-(7) + Path (6) + Live (5) + social (4). *(Corrected 2026-08-30 — the
+**Places unions: 34 kinds** across chrome (3) + World Field (8) + Focus
+(7) + Path (6) + Live (6 — `live_branch_field` ruled in 2026-08-30) + social (4). *(Corrected 2026-08-30 — the
 original "26" was arithmetic error. Grew 31 → 33 the same day: the
 browse pair `field_browse_shelf` + `field_editorial_cover` ruled in.)*
 
@@ -259,17 +261,24 @@ Net-new (BUILD), roughly ordered by unblocking power:
     **settling/import status**; **voice horizon**.
 
 Score, recounted 2026-08-30 (after same-day adoptions and the browse
-pair): **63 kinds + 13 shared instruments → 14 EXISTS · 29 ADAPT · 32
+pair): **65 kinds + 13 shared instruments → 14 EXISTS · 30 ADAPT · 33
 BUILD** (one Now kind folds into chrome). More than half of both pages stands on shipped
 substrate; the genuinely new engineering concentrates in five systems
 (compilers, envelope, map grammar, read producer, grants) — everything else
 is carriers and renderers over live data.
 
-**Phase-2 resolutions (2026-08-30):** the carried-forward receipt is
-PROMOTED (see §3); `week_shape` ruled in (§1.0); `now_route_instrument`
-renamed; the Move-carries-basis, unattributed-aggregate, unwind, Quiet
-floor, and orientation-ladder laws land in kernel §11.12. The remaining
-§7 candidates below still await ruling.
+**§7 IS FULLY RESOLVED (2026-08-30, kernel §11.12–§11.13).** Every
+candidate now has a disposition: promoted (carried-forward receipt,
+why-this, `week_shape`, `continuity_reconstruction`,
+`people_status_aperture`, `live_branch_field`), adopted-as-vocabulary
+(focus_verdict's six registers, the seven horizon-door types,
+`human_mode` folded into R2's modifiers), covered-by-existing-law
+(Home social carrier → R1; availability/reunion openings → Move
+content; generated compositions → provenance is a label, not a union
+axis), deferred-with-trigger (layered-Place-passage — until a
+composition demands it; composed-way — inside the §5.7 recovery build),
+or settled (`path_next_rows` ≤2; fallback stays singular). The queue
+below is retained as the historical record only.
 
 ## 7. Audit addendum — 2026-08-30 coverage findings (pending ruling)
 
