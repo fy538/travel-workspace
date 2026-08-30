@@ -766,6 +766,30 @@ second batch, all applied to the boards same-day:
    is Life — rule it there. **Lens strip** consciously not recovered —
    superseded by the typed-edges ruling.
 
+### 11.11 Component parameter consolidation + the board kit — 2026-08-30
+
+Third same-day pass, component-level. Audit findings and fixes:
+
+1. **Door-law sweep**: seven gold *chevrons* had crept onto the boards
+   ("Open Red Hook ›", "Europe, in Life ›", "All plans and occasions ›"
+   …) — a direct §11.1 violation the app already gates
+   (`doorContract.test.ts`, GOLD_CHEVRON_COUNT=0). All seven now carry
+   the arrow-forward. Boards and code agree again: gold + arrow = door;
+   chevron is the ghost row affordance only.
+2. **Identity ladder ruled**: facepile avatars **22 / tuck −7** (the
+   codified 22 / tuck .34); single identity **32**; group-as-subject
+   **40**; region plate **56**; the dashed chair matches its pile's
+   size. Previously scattered across 24/26/28/30/34.
+3. **One crown lift**: `0 6px 18px + 0 1px 3px` — the specimen sheets
+   ran a second, lighter spec.
+4. **The board kit exists**: `_kit/board-kit.css` in the Design project
+   (mirrored beside the working boards) — the §3.1 ramp, §11 laws,
+   containment physics, media textures, identity ladder, door SVGs, and
+   the rest register as copyable classes with the rulings quoted in
+   comments. New boards start from the kit; a value outside it is a
+   defect unless ruled in. This is the anti-drift mechanism for board
+   authoring, mirroring what the ratchet tests do for code.
+
 ## 12. Adjacent system rulings
 
 <!-- Header restored 2026-08-29: a prior edit dropped the "## 12" line;
