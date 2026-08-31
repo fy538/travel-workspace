@@ -341,3 +341,15 @@ Per-slot copy budgets (each kind gets a content-contract instance before
 mock copy — kernel §10 law); production geometry (the dedicated design
 pass); Life's unit union (its own project); Chat's well union (owned by the
 Chat canvas, per its founder ruling).
+
+**Status disposition (ruled 2026-08-31, response doc §15.2-R3):** the
+Product Model's Status object (one human-authored, audience-scoped
+featured share) is a Life/People-program object — authoring and custody
+live there. Home receives it only as a people-reservoir line under an
+explicit grant, which `people_status_aperture` already covers. No
+`status_*` kind is to be added to these unions.
+
+**Relay disposition (ruled 2026-08-31, §15.2-R2):** a relay is a Share to
+a new audience under the author's Audience grant — a named mechanic of
+Share, not a sixth social verb. The verb set (Send · Address · Share ·
+Contribute · Publish) stays closed.

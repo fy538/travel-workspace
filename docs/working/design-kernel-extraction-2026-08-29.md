@@ -1191,9 +1191,9 @@ proved restating was necessary):
    This is the visual analog of the existing posture law ("Urgent is the
    only posture allowed to suppress most of the supporting field").
 
-5. **Oxblood single-meaning law — RECORDED 2026-08-31 from the Life
-   program's interim ruling (production spec §5f / correction brief
-   §10.3); founder confirmation pending.** Oxblood means exactly one
+5. **Oxblood single-meaning law — RULED 2026-08-31 (founder), from the
+   Life program's interim ruling (production spec §5f / correction brief
+   §10.3).** Oxblood means exactly one
    thing across every root: **a live threshold in the world** (urgency
    StatusMeta, map constraint, live-position rings). It never marks
    destruction: destructive verbs (delete, withdraw, revoke, leave)
@@ -1339,3 +1339,18 @@ Kept-renders-as-kept rule extended to pushes; (b) FUTURE OPENINGS
 belong to Home's Horizons, and appear in Chat only as promise-shelf
 leads (an opening is an invitation to ask), never well rows or pushed
 cards — consistent with the well's non-urgent-proactive exclusion.
+
+
+## Palette ruling — oxblood scope (RATIFIED 2026-08-31, founder)
+
+Oxblood `#7A2E2E` belongs to the **live-threshold / urgency register
+only** ("act now in the world"). It is never a destructive-action color:
+destructive verbs (delete, revoke) render in plain ink with their glyph,
+and destruction's gravity is carried by the confirmation flow (friction +
+honest disclosure of what leaves now, what expires later, and what cannot
+be revoked). Rationale: one color, one meaning — "act now" (approach) and
+"destroy" (avoid) are opposite postures and must not share a hue; the
+non-color-state accessibility law already forbids destructive-by-color-
+alone; and a second near-identical red is exactly the drift this kernel
+exists to prevent. Origin: Life correction brief §10.3; interim applied
+2026-08-31 across the Vault family and swipe grammar, now final.

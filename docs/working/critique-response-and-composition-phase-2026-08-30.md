@@ -1139,25 +1139,37 @@ questions that need your ruling.
    single-meaning law from the Life program's interim ruling (boards
    audited clean — oxblood appears only on live thresholds).
 
-### 15.2 Rulings requested
+### 15.2 Rulings requested — ALL FOUR RULED 2026-08-31 (founder: "sounds good on all 4")
 
-- **R1 · Grant vocabulary on boards.** The adopted contract's axes are
+- **R1 — RULED: keep both, at different layers.** Informal verbs stay as
+  consumer-facing language; every ledger context annotates the governing
+  axis. Applied 2026-08-31 to ten boards (C1 Quiet pair, C2 Occasion/
+  Evening/Grant Moment, C3 Thread, F4, Places social anatomy, both
+  specimen sheets). Original request: **Grant vocabulary on boards.** The adopted contract's axes are
   Use / Retention / Inference / Audience / Action; the C2/C3 board
   annotations (and §13.5 itself) use the informal may-use / may-name /
   may-retain / may-relay forms. Proposed: keep the informal verbs as
   *consumer-facing* language, annotate each with its governing axis in
   ledger contexts only. Alternative: rewrite all board annotations to the
   axis names.
-- **R2 · "Relay" against the five social verbs.** The Product Model's
+- **R2 — RULED: a relay is a Share to a new audience under the author's
+  Audience grant — a named mechanic of Share, not a sixth verb.** The
+  verb set stays closed. Original request: **"Relay" against the five social verbs.** The Product Model's
   grammar is Send · Address · Share · Contribute · Publish. Is a relay a
   Share to a new audience under the author's Audience grant, or its own
   verb? The boards currently treat it as a named mechanic.
-- **R3 · Where does Status live?** The Product Model defines Status (one
+- **R3 — RULED: Status is a Life/People-program object.** Authoring and
+  custody belong there; Home receives it only as a people-reservoir line
+  under an explicit grant — which `people_status_aperture` already
+  covers. No new kind; disposition recorded in manifest §8. Original
+  request: **Where does Status live?** The Product Model defines Status (one
   authored, audience-scoped featured share). It is in no union. Proposed:
   it is a Life/People-program object that Home may only ever receive as a
   people-reservoir line under an explicit grant — i.e., nothing to add to
   these unions now; record that disposition.
-- **R4 · Kernel §12.5 (oxblood) confirmation** — recorded from the Life
+- **R4 — RULED: §12.5 confirmed as written.** Oxblood = live threshold
+  only; destructive verbs in plain ink. The Vault restyle is the Life
+  program's. Original request: **Kernel §12.5 (oxblood) confirmation** — recorded from the Life
   program's interim ruling; needs your eye to become settled kernel law.
 
 ### 15.3 Standing
