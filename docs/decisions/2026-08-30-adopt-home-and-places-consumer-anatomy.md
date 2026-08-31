@@ -99,8 +99,12 @@ those are sequenced engineering work under this authority.
 The counts above are reconciled to the build manifest after the same-day
 additive adoptions (the audit batch, the browse pair, `people_gathering`,
 `continuity_reconstruction`, the "Why this?" and section-header
-instruments): **Home 29 · Places 33 · 12 shared instruments**. The
-manifest remains the count authority.
+instruments): **Home 29 · Places 33 · 12 shared instruments** at the
+time of this revision. Subsequent same-window promotions (`week_shape`,
+`people_status_aperture`, the browse pair, the carried-forward receipt's
+section-header instrument) moved the manifest to **Home 31 · Places 34 ·
+13 shared instruments (65 kinds total)** — quote the manifest, not this
+paragraph. The manifest remains the count authority.
 
 **Challenge resolved — amended 2026-08-30.** The phase-2 compositions
 (C1–C3 + the Quiet fullness ruling) closed; the amendments landed as

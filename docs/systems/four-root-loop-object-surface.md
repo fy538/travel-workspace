@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: founder / product / design / architecture / engineering
 created: 2026-08-29
-last_verified: 2026-08-29
+last_verified: 2026-08-30
 why_new: Integrates the Home, Chat, Places, and Life root postures with one compounding context loop, shared object lifecycle, cross-root projection law, action grammar, multiplayer flow, and orchestration boundary.
 supersedes: []
 source_of_truth_for:
@@ -15,6 +15,8 @@ source_of_truth_for:
   - root-action-placement
 related:
   - ../decisions/2026-08-28-adopt-four-product-moves.md
+  - ../decisions/2026-08-30-adopt-life-consumer-anatomy.md
+  - ../working/life-root-production-spec-2026-08-30.md
   - ../decisions/2026-08-29-adopt-life-continuity-and-return-contract.md
   - contribution-and-consequence.md
   - ../../travel-agent/docs/product/Product Model.md
@@ -307,54 +309,49 @@ Life answers:
 > **What exists in my Vesper world, where does it belong, and what remains
 > true and usable?**
 
-Life uses a **period-and-episode spine with contextual lenses and bounded
-returns**:
+Life uses **four first-class lenses over one corpus with bounded, fixed
+returns** (amended 2026-08-30 by the Life consumer-anatomy decision, which
+supersedes the earlier lens list):
 
 ```text
 Life
-├── Find and scope
-├── In motion                    when a governed object is active
-├── Lived periods
-│   └── eligible episode doors  Journeys, Occasions, bounded episodes
-├── Across time                 earned Place/practice/thread continuity
-├── Returns                     saved, addressed, or newly useful derived value
-└── Timeline · Map · Artifacts/Sources · People/category filters
+├── Lenses: Time · Places · Threads · People   one corpus, four explorations
+│   └── each lens page: digest (4–5 deterministic blocks)
+│       → one scroll door (honest count) into the mode's full scroll
+│       → reflections: keepsake + specimen (both conditional)
+│       → up to two FIXED windows into other lenses
+├── Dossiers                    every held thing's complete page, one grammar
+├── Object pages                the full pass (L1) — the only place it renders
+└── The Vault                   custody surface behind "All sources"
 ```
-
-Containers organize experience:
-
-- Journeys;
-- Occasions;
-- eligible bounded episodes;
-- earned longitudinal Place or practice relationships; and
-- deliberately authored collections when the person creates one.
 
 Lenses reorganize the same identities:
 
-- **Timeline** — represented time, distinct from planned, captured, authored,
-  and generated time;
-- **Map** — where the person's life happened, including occurred,
-  planned-only, source-only, Mine, and Together states;
-- **Artifacts/Sources** — heterogeneous retrieval and custody inspection;
-- **People and scope** — attributed shared cores and viewer-relative access;
-  and
-- **Category/media filters** — photo, ticket, food, film, book, note, article,
-  audio, and other facets without rigid folder ownership.
+- **Time** — the weighted chronology (years band earned only past one year);
+- **Places** — where the person's life happened, as held clusters;
+- **Threads** — pursuits and practice continuity, open/resting/closed;
+- **People** — attributed shared record, governed by the contribution
+  contract (the one lens whose subjects can object).
 
-Artifacts normally appear where they support an episode or owner. They remain
-globally searchable without becoming equal cards in a universal library.
+Artifacts are not a lens: they appear nested where they support an episode
+(chips, drawers, contact sheets) and are globally accounted in the Vault —
+custody inspection, loose items as fact not chore, grants and withdrawal
+ledgers, and the custody verbs. They remain globally searchable without
+becoming equal cards in a universal library; search results are doors whose
+containment chain is always visible.
 
-Life's bounded Returns layer is subordinate to the record. If present urgency
-or attention is the reason something surfaces, Home owns the foreground. Life
-owns deliberate return, lineage, source inspection, saved compositions, and
-Continue.
+Life's returns layer is subordinate to the record and **fixed, not
+adaptive**: reflections and windows change only when time or the record
+changes — never per visit, never for engagement. If present urgency is the
+reason something surfaces, Home owns the foreground. Life owns deliberate
+return, lineage, source inspection, saved compositions, and Continue.
 
 The entrance therefore has two layers:
 
-1. a stable, searchable period-and-episode spine whose truth and identity do
+1. a stable, searchable lens-and-episode spine whose truth and identity do
    not move with engagement; and
-2. at most a small finite set of earned adaptive Returns whose ordering may
-   respond to current usefulness and explicit controls.
+2. a small fixed set of earned reflections and windows whose content changes
+   only with the record, under explicit controls.
 
 Life primarily delivers retrieval relief, better representation, experiential
 return, and inspectable accumulated understanding. It preserves the evidence
@@ -423,7 +420,11 @@ person creates, shares, or invites
 Multiplayer invariants:
 
 - every contribution keeps its author;
-- may-use, may-name, may-contact, may-retain, and may-show remain distinct;
+- the five authority axes — Use, Retention, Inference, Audience, and
+  Action — remain distinct and independently granted (the informal
+  may-use/may-name/may-contact/may-retain/may-show list is superseded by
+  the adopted contribution-and-consequence contract, correction recorded
+  2026-08-30; reconciled here 2026-08-31);
 - shared constraints may affect coordination without exposing a private source;
 - one participant's Outcome never becomes group sentiment;
 - withdrawal and precision changes recompile dependent projections;

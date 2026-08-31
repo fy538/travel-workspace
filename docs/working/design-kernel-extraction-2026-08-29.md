@@ -1191,6 +1191,17 @@ proved restating was necessary):
    This is the visual analog of the existing posture law ("Urgent is the
    only posture allowed to suppress most of the supporting field").
 
+5. **Oxblood single-meaning law — RECORDED 2026-08-31 from the Life
+   program's interim ruling (production spec §5f / correction brief
+   §10.3); founder confirmation pending.** Oxblood means exactly one
+   thing across every root: **a live threshold in the world** (urgency
+   StatusMeta, map constraint, live-position rings). It never marks
+   destruction: destructive verbs (delete, withdraw, revoke, leave)
+   render in plain ink with a plain confirm — "one color must not mean
+   both 'act now' and 'destroy.'" Boards audited 2026-08-31: no
+   Home/Places board uses oxblood on a destructive control; the Vault's
+   oxblood deletion door is the Life program's to correct.
+
 ## 13. Not kernel — do not cite as kernel
 
 - The 24-kind Trips section union, its ANCILLARY/POST_HERO orders, and the

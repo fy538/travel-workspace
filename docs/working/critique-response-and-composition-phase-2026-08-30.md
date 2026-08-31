@@ -1100,3 +1100,68 @@ selected-projection scope explicitly.
 relay, Outcome inference, projector invalidation) remains HELD pending
 founder re-review of these corrected fixtures. The five downgraded matrix
 cells carry their promotion conditions and close only on that re-review.
+
+## 15. Post-§14 self-critique — additions executed and rulings requested (2026-08-31)
+
+A fresh self-review against the last two weeks of product canon (the vision
+sweep and the Life/Chat companion contracts) found the boards compliant with
+the heavy laws. The residual items split into executed additions and
+questions that need your ruling.
+
+### 15.1 Executed without ruling (renders existing law; no new taxonomy)
+
+1. **C2 · The Grant Moment** — the missing pixel between C2's "two separate
+   yeses" annotation and C3's grants ledger: the T2 boundary-preview ask
+   Sam actually saw, drawn as one human choice (contribution contract §6;
+   §13.5.5). One card, one sentence, one visible boundary, one yes, a
+   narrower middle door, silence as a complete answer.
+2. **Canon · Home Admission Compiler** — Places had its compiler board;
+   Home's eleven hard gates, precedence chain, four contribution classes +
+   silence (hci-rebased contract §5/§7) now render, with the C1 Thursday
+   page worked as the example. Substrate note: `concierge_feed` EXISTS.
+3. **Canon · Tokens** — every board value mapped to its code token
+   (board-kit ↔ colors.ts/textVariants.ts/layout.ts); the off-token
+   `#EAE3D3` drift purged (code's paperDeep `#E8E2D4` wins); `--push-ink
+   #2A241E` registered as the one ruled dark surface.
+4. **Specimens · Promoted + Instrument Drawer** — the 08-30 promotions
+   (`week_shape`, `carried_forward`, `people_status_aperture`,
+   `live_branch_field`, execution ledger, section header) as real
+   specimens, plus all 13 instruments as one grade+where-rendered ledger.
+   Both union sheets now carry "already in code" strips re-verified
+   against travel-app.
+5. **Stale-origin return beat (4b)** on the C3 map sequence — wave-0 §2.12's
+   "explains the change, never a similar replacement," drawn as contract,
+   assigned to the native lab.
+6. **Doc reconciliations:** four-root §8's superseded may-use/may-name list
+   replaced with the adopted Use/Retention/Inference/Audience/Action axes;
+   the H&P adoption decision's stale count baseline now defers explicitly
+   to the manifest (31/34/13); kernel §12.5 records the oxblood
+   single-meaning law from the Life program's interim ruling (boards
+   audited clean — oxblood appears only on live thresholds).
+
+### 15.2 Rulings requested
+
+- **R1 · Grant vocabulary on boards.** The adopted contract's axes are
+  Use / Retention / Inference / Audience / Action; the C2/C3 board
+  annotations (and §13.5 itself) use the informal may-use / may-name /
+  may-retain / may-relay forms. Proposed: keep the informal verbs as
+  *consumer-facing* language, annotate each with its governing axis in
+  ledger contexts only. Alternative: rewrite all board annotations to the
+  axis names.
+- **R2 · "Relay" against the five social verbs.** The Product Model's
+  grammar is Send · Address · Share · Contribute · Publish. Is a relay a
+  Share to a new audience under the author's Audience grant, or its own
+  verb? The boards currently treat it as a named mechanic.
+- **R3 · Where does Status live?** The Product Model defines Status (one
+  authored, audience-scoped featured share). It is in no union. Proposed:
+  it is a Life/People-program object that Home may only ever receive as a
+  people-reservoir line under an explicit grant — i.e., nothing to add to
+  these unions now; record that disposition.
+- **R4 · Kernel §12.5 (oxblood) confirmation** — recorded from the Life
+  program's interim ruling; needs your eye to become settled kernel law.
+
+### 15.3 Standing
+
+Implementation hold unchanged (§11.14). The five downgraded matrix cells
+still close only on your re-review; the four new boards are additions to
+that same review, not substitutes for it.
