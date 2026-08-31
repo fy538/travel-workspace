@@ -1177,3 +1177,223 @@ questions that need your ruling.
 Implementation hold unchanged (§11.14). The five downgraded matrix cells
 still close only on your re-review; the four new boards are additions to
 that same review, not substitutes for it.
+
+## 16. Founder-side re-review of the 2026-08-31 export
+
+### 16.1 Current verdict
+
+The latest `Downloads/vesper-home-places` export is substantially stronger.
+The strategic composition now works: the Live Engine is becoming the machinery
+that makes meaning, possibility, and social experience livable rather than a
+separate booking, logistics, or recovery product.
+
+The portfolio now demonstrates the intended breadth:
+
+- C1 makes a piece of the ordinary world newly legible without requiring a
+  visit, save, reflection, or Plan;
+- Home and Places join interpretation to timing, pace, burden, fallback, and
+  current consequence;
+- C2 lets private constraints and authored human knowledge improve a shared
+  Occasion without turning participation into group-chat labor;
+- C3 follows one contribution through use, retention, resurfacing, action,
+  re-finding, and correction; and
+- F5/Urgent demonstrates intent-preserving recovery under real-world
+  uncertainty.
+
+This re-review does **not** call for another conceptual expansion, taxonomy, or
+family of boards. The remaining work is a narrow correction pass across
+editorial substance, social causality, promotion language, and canonical
+inventory consistency. After that pass, semantic-board production should stop
+and the program should move to native interaction, real photography, and
+device-level composition.
+
+### 16.2 Q1 — replace or remove the below-bar Aeneas Home unit
+
+The `Home — Returned Saturday` unit currently says:
+
+> “The Aeneas route kept following you home — Troy to Rome is a sea story too.
+> It will keep.”
+
+This is still below the Editorial and Content Canon's substance threshold. It
+mostly repeats the connection the person already supplied instead of adding a
+new mechanism, history, contrast, implication, or usable opening.
+
+Do one of two things:
+
+1. replace it with a genuinely researched connection that adds something the
+   person did not already notice; or
+2. remove the unit and let the page end sooner.
+
+A provocative title without a substantive payload does not pass admission.
+The same rule applies even when the underlying thread is personally resonant.
+
+### 16.3 Q2 — repair C2's remaining social causality
+
+The social interaction is now appropriately compact, but several labels still
+describe authority or agency inaccurately.
+
+#### Show the human origin of the grant request
+
+`C2 — The Grant Moment` says Dana asks Sam “in her words,” but no preceding
+gesture shows Dana wanting to keep the rule or pass it to Priya. Add one small
+antecedent, not a workflow: Dana says or taps that she wants to keep it and
+that Priya would appreciate it; Vesper then prepares the exact bounded ask to
+Sam.
+
+Without that origin, Vesper appears to manufacture warmth and attribute it to
+Dana. The product may reduce the friction of a human social act; it may not
+invent the act and call it hers.
+
+#### Describe the one-choice interaction correctly
+
+Replace “two separate yeses” with:
+
+> **Two independent grants resolved through one human choice.**
+
+Retention and new-audience sharing remain distinct in the ledger. They do not
+need to become two dialogs or two sequential consumer confirmations. This is
+the important distinction between a rigorous authority model and bureaucratic
+interaction design.
+
+#### Clarify sender and attribution
+
+Replace “Priya sees it once, from Dana” with language equivalent to:
+
+> “Priya receives it from Dana, attributed to Sam.”
+
+This reconciles delivery, authorship, and visible provenance with the relay
+message on the Evening board.
+
+#### Preserve the host's decision authority
+
+`C2 — The Occasion` explicitly gives the host the final decision, but Dana's
+settled view says “Sam picked it.” Use language such as:
+
+> “Nora chose Sam's recommendation.”
+
+Sam supplied material human knowledge; Nora owned the group decision. Both
+roles should remain visible.
+
+#### Remove fixture-engineered continuity
+
+The Georgian room becomes unavailable and the “noodle bar” backup is then
+said to list khinkali. This reads as a fixture constructed to preserve the
+khinkali thread rather than a plausible experience. Either make the backup a
+credible second Georgian Place or remove the khinkali claim from the backup.
+The product should preserve human claims honestly, not force every narrative
+motif to survive a changed plan.
+
+### 16.4 Q3 — keep partial gates partial in the findings language
+
+The nineteen-gate matrix now uses the required `PARTIAL` and `NOT EXERCISED`
+verdicts, but the C2 and C3 findings still contain phrases such as “promotion
+confirmed” and “re-verified end to end.” Those phrases outrun the current
+verdict and make the project internally contradictory.
+
+Until the promotion condition is actually met and accepted, use:
+
+> **Corrected and ready for re-review.**
+
+In particular:
+
+- C2 / Gate 8 remains partial until the corrected human origin, retention,
+  audience, delivery, and attribution story is mutually consistent;
+- C3 / Gates 9 and 16 remain partial until the single-lineage correction is
+  accepted as a complete causal-repair proof; and
+- C3 / Gate 19 remains partial because inspectability and reversibility alone
+  do not prove increased human capability.
+
+The matrix is the verdict authority. Findings may point to evidence and state
+the promotion condition, but may not silently promote their own cells.
+
+### 16.5 Q4 — reconcile the canonical inventory one final time
+
+The latest export still contains three count contradictions:
+
+1. `Canon — Build Manifest` says **13 instruments** in its header but retains
+   the heading **TWELVE SHARED INSTRUMENTS** and omits the execution ledger
+   from that list. Rename the section to thirteen and add
+   `execution_ledger` as the thirteenth shared instrument.
+2. `Specimens — Home` renders 29 of the 31 Home kinds on that sheet, with
+   `week_shape` and `people_status_aperture` on the promoted sheet. Its title
+   must not say “24 of 31.”
+3. `Specimens — Places` renders 33 of the 34 Places kinds on that sheet, with
+   `live_branch_field` on the promoted sheet. Its title must not say “30 of
+   34.”
+
+Prefer unambiguous headings such as `Home — 31-kind union` and `Places —
+34-kind union`, followed by an explicit sentence naming which specimens live
+on the companion sheet. This avoids creating another count that will drift the
+next time a specimen is rearranged.
+
+Also keep `carried_forward` described accurately as a receipt-union kind, not
+as an additional Home-root kind. The Home union remains 31.
+
+### 16.6 Final close conditions for this design project
+
+Return the project for one last review only when:
+
+1. the Aeneas unit delivers genuinely new substance or is absent;
+2. Dana's desire visibly causes the grant request;
+3. the boards say “two independent grants through one choice,” not “two
+   separate yeses”;
+4. recipient delivery, Sam's attribution, and Nora's decision ownership agree
+   across every C2 view;
+5. the backup Place no longer exists merely to preserve the khinkali motif;
+6. partial findings use pending-review language rather than promotion
+   language;
+7. Build Manifest and both specimen sheets agree on 65 root kinds and 13
+   shared instruments; and
+8. no new semantic boards, kinds, or conceptual systems were added to close
+   these corrections.
+
+Once those conditions hold, the correct next step is not another canvas
+expansion. It is to test whether this system remains coherent under touch,
+scroll, interruption, stale state, real imagery, real data density, and the
+small screens on which the relationship will actually be experienced.
+
+## 17. §16 correction-pass execution record — 2026-08-31
+
+All eight close conditions (§16.6) executed; zero new boards, kinds, or
+systems.
+
+1. **Aeneas unit (Q1):** replaced on Home — Returned Saturday and the
+   voice-horizon specimen with a substance-bar connection — Virgil's
+   route as real harbor-and-sightline navigation, Cumae one bay north of
+   the Sorrento ferry line, "the epic reads differently as a pilot's
+   log" — all world claims [verify]-marked, honest stop kept.
+2. **Grant origin (Q2):** the Grant Moment board now opens with Dana's
+   own gesture — she taps Keep and writes "Priya would love this";
+   Vesper prepares the bounded ask from that act, "it carries her
+   intent, it does not invent it."
+3. **One-choice language:** "two separate yeses" is gone everywhere;
+   boards say "two independent grants resolved through one human
+   choice" (board title, Evening ledger line, Dana's Life card).
+4. **Delivery/attribution/decision agree across every C2 view:** "Priya
+   receives it from Dana, attributed to you/Sam" on both boards; Dana's
+   settled view says "Nora chose Sam's recommendation" (Nora was already
+   the fixture's host name); the relay bubble already delivered from
+   Dana with Sam's name.
+5. **Fixture-engineered continuity removed:** the backup no longer
+   claims khinkali — "Sam's rule stays with the room he named — it does
+   not follow the backup, and nothing pretends it does."
+6. **Pending-review language:** C2/C3 findings now say "Corrected and
+   ready for re-review — stays partial until accepted"; the matrix
+   remains the verdict authority and its G8 condition now carries
+   §16.4's full list (human origin, retention, audience, delivery,
+   attribution).
+7. **Inventory:** Build Manifest header now THIRTEEN SHARED INSTRUMENTS
+   with the execution ledger listed as the thirteenth; specimen sheets
+   retitled "Home — the 31-kind union" / "Places — the 34-kind union"
+   with explicit companion-sheet sentences (week_shape +
+   people_status_aperture; live_branch_field) and the note that
+   carried_forward is a receipt-union kind, not a 32nd Home kind. The
+   Promoted sheet's footer corrected to match (people_gathering and
+   continuity_reconstruction are on the Home sheet — verified).
+8. **No additions:** the pass touched eleven existing boards and nothing
+   else.
+
+Canvas 1446ece2 republished; changed boards pushed to project a26e3228.
+Per §16.6, the program is now ready for the one last review; after
+acceptance, next work is native interaction, real photography, and
+device-level composition — not canvas expansion.
