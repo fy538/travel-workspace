@@ -614,3 +614,489 @@ full-root gaps remain explicitly PARTIAL / NOT EXERCISED on the matrix.
 Item 4's contract propagation into the contribution-and-consequence
 systems doc is flagged to that doc's owner rather than edited across
 program boundaries here.
+
+## 13. Fresh whole-product re-review — design-agent handoff
+
+### 13.1 Status correction and purpose
+
+This section records a new source-level and whole-product review of the latest
+`Downloads/vesper-home-places` export after the §11 docket was reported as
+executed. It supersedes §12's conclusion that all close conditions have been
+met. Section 12 remains a historical execution report; it is not the current
+promotion verdict.
+
+The latest export resolves much of P1–P10 and is materially stronger than the
+original project. It also contains cross-board contradictions that the new
+nineteen-gate matrix does not detect, and it reveals a product-level imbalance
+not captured by the authority docket:
+
+> **The compositions now prove that Vesper can coordinate, execute, reconcile,
+> and remember more strongly than they prove that Vesper can make the lived
+> world newly legible.**
+
+The correction is not to reduce operational capability. It is to restore the
+pairing that differentiates Vesper:
+
+```text
+interpretation + hospitality
+meaning + practicality
+personal attention + social consequence
+current experience + governed continuity
+```
+
+Without interpretation, the project approaches a thoughtful calendar,
+concierge, booking, and group-coordination agent. Without hospitality and
+consequence, it approaches a personalized culture and Place magazine. Vesper
+is the combination.
+
+#### Live Engine clarification — broaden it, do not diminish it
+
+The operational character of the latest boards is not an accidental product
+drift. The **Live Engine** and the `live it well` canon must be perceptible in
+the app, including outside an active Trip. The user should understand that
+Vesper can assess, prepare, monitor, coordinate, act, adapt, and repair in the
+real world. Removing that capability from the compositions would make the
+product less coherent and less differentiated.
+
+The narrower problem is how the boards currently express it. They prove the
+Live Engine most vividly through coordination, reservations, provider state,
+money, notifications, and recovery. `Live it well` is broader than `make the
+plan work`. It also includes:
+
+- choosing the right timing, pace, threshold, and degree of commitment;
+- reducing physical, social, attentional, and cognitive burden;
+- preserving the worthwhile intention when weather, access, energy, people,
+  or availability change;
+- knowing when to wait, shorten, substitute, continue, or stop;
+- making interpretation compatible with the conditions in which a person can
+  actually receive it;
+- helping several people inhabit one Occasion well without flattening their
+  private needs; and
+- returning attention to the world once Vesper has done enough.
+
+The Live Engine is therefore the bridge between interpretation and lived
+consequence:
+
+```text
+Make sense
+  -> what is actually happening and what is newly legible?
+
+Open possibility
+  -> what worthwhile experience is genuinely available?
+
+Live Engine / Help it work
+  -> what would make that experience livable for these people now?
+
+Carry forward
+  -> what, if anything, should improve the next encounter?
+```
+
+Its presence should be distributed rather than introduced as another module:
+
+| Root | Native expression of the Live Engine |
+| --- | --- |
+| **Home** | One current consequence, threshold, settled state, or authorized monitor when it materially changes what matters now. |
+| **Chat** | Inspect, redirect, authorize, operate, monitor, reconcile, and repair without reconstructing context. |
+| **Places** | Current reachability, timing, burden, conditions, fallback, and the experiential shape those constraints permit. |
+| **Life** | Occurrence, receipt, demonstrated capability, causal lineage, and what may safely affect a later encounter. |
+
+Do not add a visible “Live Engine” section or narrate that Vesper is working.
+Make the engine legible because the returned experience is unusually usable:
+the opening already respects weather and commitments; the Place joins meaning
+to access and burden; the Occasion absorbs private constraints without
+exposing them; the disruption preserves intent rather than dumping
+alternatives; and the monitor stays silent until the decision boundary.
+
+The revised design critique is consequently:
+
+> **The boards convincingly express the Live Engine, but primarily through its
+> transactional and coordinative register. Broaden it to experiential
+> orchestration, and pair it more often with substantive interpretation.**
+
+This is a rebalancing inside the same product philosophy, not a request to make
+Vesper less operational.
+
+### 13.2 The offer every revised board must reinforce
+
+Use this as the plain-language product test:
+
+> **Vesper turns whatever has your attention—a question, ticket, Place,
+> photograph, invitation, Plan, or changing situation—into a better real-world
+> experience. It adds context you did not already have, helps the people
+> involved make it work, and carries forward only what can materially improve
+> what comes next.**
+
+The four roots remain sufficient because they expose four orientations over
+that one transformation:
+
+| Root | The promise it must make perceptible |
+| --- | --- |
+| **Home** | What matters or becomes possible now—not a catalog of Vesper's capabilities. |
+| **Chat** | What the person wants to give, understand, shape, change, or cause. |
+| **Places** | What the physical world means and affords here. |
+| **Life** | What remains findable, connected, governed, and useful across time. |
+
+Flights, reservations, generated media, maps, friends, trips, books,
+photographs, monitors, and Occasions are inputs, media, owners, or
+consequences. They are not independent product categories. A composition
+fails the focus test when it presents them as feature modules rather than as
+parts of one causal movement:
+
+```text
+attention
+  -> substantive immediate contribution
+  -> appropriate lived consequence or complete stop
+  -> governed continuity when justified
+  -> a better later experience, capability, or silence decision
+```
+
+### 13.3 What the latest project proves—and what remains partial
+
+| Canonical proof | Latest board evidence | Current verdict |
+| --- | --- | --- |
+| **Personal doorway** | C1 Thin First Week and the GA answer-and-stop turn | Strong |
+| **Place capability** | Red Hook/Sorrento control plus the harbor-book unit | Partial: the ordinary non-travel connection lacks enough mechanism and observable substance |
+| **Multiplayer Occasion** | C2 invitation, private payoff, decision, correction, Occurrence, relay, participant-to-initiator | Strong structure; retention, relay attribution, and optional-compounding language need correction |
+| **Consequential continuity** | C3 keep, Home Move, provider chain, map, Life re-finding, unwind | Strong architecture; the supposedly single contribution is not one coherent lineage |
+| **Real-world responsibility** | F5, Home Urgent, and C3's `UNKNOWN → readback → repair` chain | Very strong |
+| **Experiential orchestration** | Rome heat procedure, Red Hook threshold, C1 weather/commitment preparation | Partial: operational truth is present, but timing, attention, physical burden, meaning, and world perception are not yet composed together often enough outside travel |
+| **Ordinary-life breadth** | Concert, dentist, cooking, visitor, weather, book, familiar coffee Place | Stronger than the control; still weighted toward handling and coordination |
+| **Human capability delta** | Dana later hosts; limited perceptual transfer in C1 | Partial: system control and reduced work are not the same as a more capable person |
+| **No-homework value** | Full Quiet, thin context, direct answer, private nonresponse | Strong |
+
+Do not answer the interpretive gap by adding more editorial units to every
+Home. One high-substance, source-bound, ordinary-world contribution is enough
+to prove the missing half when it genuinely beats silence.
+
+### 13.4 Q1 — repair C1's ordinary Place contribution to the substance bar
+
+The current harbor-book unit says, in effect, that infrastructure described in
+a book stands four blocks from the person's coffee Place. That is relevant
+proximity, not yet a sufficient Vesper contribution. It risks repeating the
+earlier failure mode: connecting two nouns the person can already recognize
+without making anything meaningfully more legible.
+
+Revise the unit so it contains all four of these elements:
+
+1. **One new bounded mechanism:** what the infrastructure actually does or did.
+2. **One observable cue:** what the person can now perceive in the street,
+   shoreline, building, threshold, or movement pattern.
+3. **One supported consequence:** why this changes understanding, attention,
+   navigation, or practical judgment now.
+4. **One honest stop:** no visit, save, reflection, or continuation is required
+   if understanding itself completes the value.
+
+Illustrative direction, not approved copy:
+
+> The gates beside your coffee route are not decorative remnants. They still
+> divide which blocks absorb the harbor at high water and which remain usable.
+> The boundary becomes visible where the curb openings stop.
+
+The exact claim must be sourced and true. The important design requirement is
+`source → mechanism → observable world`, not the sample wording.
+
+This revised unit is the missing **meaning-without-planning** proof. It must not
+be turned into another prepared outing merely to demonstrate consequence.
+
+The Live Engine may still improve the unit. Current tide, weather, access, or
+the person's existing route can determine when the mechanism is perceptible or
+whether a detour is genuinely easy. That is experiential orchestration, not a
+mandatory plan. The unit should remain complete if the person simply
+understands the harbor differently and keeps walking.
+
+### 13.5 Q2 — correct C2 without making social governance feel bureaucratic
+
+The revised C2 successfully distinguishes prepare from send and known from
+unknown. Preserve those corrections. Make the following additional changes:
+
+1. **Contribution does not equal attendance.** Sam may contribute a Place
+   before answering whether he will join. State that explicitly rather than
+   allowing “hasn't answered” and an active contribution to appear
+   contradictory.
+2. **Use `every known limit` everywhere.** The Sam lane still contains
+   “inside everyone's limits” after the shared object was corrected.
+3. **Separate may-retain from may-relay.** Dana's ability to keep Sam's rule in
+   her Life view requires an authorized retention scope; permission to pass it
+   to Priya is a separate new-audience grant.
+4. **Resolve recipient-visible attribution.** The relay claims Sam's identity
+   travels, while the actual message says only “a friend of a friend.” Choose
+   one honest treatment: name Sam under may-name, or preserve provenance
+   internally while stating that the recipient receives an anonymous but
+   authorized relay.
+5. **Keep permission mechanics at the boundary.** The board may annotate the
+   underlying grants for audit, but the consumer experience should feel like
+   one human choice, not a permission worksheet.
+
+Correct the C2 Findings counterfactual:
+
+> “Minus the relay: the evening's value dies in the room.”
+
+The evening retains its full immediate value without a relay. The relay proves
+optional longitudinal and interpersonal compounding. Vesper must not imply
+that an experience failed to create value merely because nothing escaped it.
+
+Recommended replacement:
+
+> Without the relay, the evening still succeeds. The relay demonstrates that
+> an authorized human contribution can later create value beyond its original
+> Occasion without creating obligation or a feed.
+
+### 13.6 Q3 — rebuild C3 around one contribution, not a composite narrative
+
+This is the highest-priority semantic correction.
+
+The current C3 begins with Sam's tip that a noodle Place has an uptown sister
+location. Its later relay and unwind operate on Sam's khinkali rule from the
+earlier Georgian restaurant. The board therefore combines at least two
+different contributions while claiming to trace one identity end to end.
+
+The P3/P10 correction in the Chat board made the inconsistency visible but did
+not repair the companion map, Life, findings, or unwind narrative.
+
+Use one coherent Source and claim family through every hop. The recommended
+fixture is:
+
+```text
+Sam explicitly writes:
+"That Georgian place opened an uptown room. I tried it—the same khinkali
+advice holds there, and after eight you can usually walk in."
+
+Chat:
+  distinguishes Sam's authored judgment from Vesper-verified ownership,
+  menu, hours, and provider facts
+  -> answers first
+  -> keeps only after an explicit keep gesture
+
+Home:
+  resurfaces the attributed tip only when tonight's authorized availability
+  and current Place facts make it materially useful
+
+Places:
+  carries Sam's exact scoped judgment on the exact uptown Place
+  -> map selection and world facts remain separate lanes
+
+Action:
+  prepares, authorizes, attempts, reconciles, and receipts the reservation
+
+Life:
+  re-finds the same Place from an incomplete person + Place + time cue
+  -> records the Occurrence without inferring affinity
+
+Withdrawal:
+  Sam later withdraws or corrects that exact uptown-room judgment
+  -> governed projections stop resurfacing
+  -> Occurrences and other people's own artifacts remain
+  -> already perceived or externally copied material is not falsely erased
+```
+
+The specific restaurant fixture may change. The invariant is one contribution
+identity, one authored scope, separate world claims, one audience/retention
+history, and one correction lineage.
+
+After rebuilding C3, remove every stale form of:
+
+- `Sam's rule applies here` when the authored scope does not support it;
+- `in both rotations since`;
+- `the sister room joining the rotation`;
+- any withdrawal of a different contribution from the one the thread began
+  with; and
+- any implication that one Occurrence created preference or affinity without
+  explicit authorship.
+
+### 13.7 Q4 — correct the nineteen-gate matrix as a test, not a release note
+
+The matrix is the correct artifact but presently overstates several results.
+Apply these verdicts before re-review:
+
+| Cell | Required verdict now | Promotion condition |
+| --- | --- | --- |
+| **C2 / Gate 8 — Social materiality** | `PARTIAL` | Pass only after retention, relay audience, and recipient-visible attribution are mutually consistent. |
+| **C3 / Gate 9 — Causal carry-forward** | `PARTIAL` | Pass only after every hop follows one Source/Claim identity. |
+| **C3 / Gate 14 — Answer and stop** | `NOT EXERCISED` | C3 explicitly keeps residue. C1 is the portfolio's answer-and-stop proof; C3 need not duplicate it. |
+| **C3 / Gate 16 — Causal repair** | `PARTIAL` | Pass after the repaired single contribution propagates through every governed dependency with an honest external boundary. |
+| **C3 / Gate 19 — Capability delta** | `PARTIAL` | “Can pull any link” proves control and repairability. Pass requires evidence that the person became more able to perceive, decide, coordinate, host, repair, or act—not merely that the system remained inspectable. |
+
+Preserve the existing `PARTIAL` / `NOT EXERCISED` verdicts for real personal
+photography, voice/deferral, native map behavior, and the complete Chat and
+Life roots. Static boards cannot promote those gates.
+
+Every matrix claim must point to source-board evidence that still says the same
+thing. A corrected label in the matrix does not repair contradictory content
+elsewhere.
+
+### 13.8 Q5 — reconcile the project's canonical layer, not only its Overview
+
+The latest Overview begins with an accurate Phase-2 summary, but its inherited
+body and several Canon boards still describe the pre-amendment project. The
+export currently contains two competing authorities.
+
+Update or explicitly archive the following:
+
+| File or board | Required reconciliation |
+| --- | --- |
+| **Overview** | Rewrite the entire body. Remove old counts, five-region language, single-fixture claim, stale “all closed,” and obsolete “not yet drawn” statements. Do not append another corrective introduction over stale content. |
+| **Canon — Home Posture Matrix** | Re-render four visible regions with people as a reservoir, the orientation ladder, `week_shape`, Full Quiet, and the drawn Urgent posture. Remove mandatory two-tier-read and Cold-as-input assumptions that the new canon supersedes. |
+| **Canon — Build Manifest** | Reflect the current manifest count authority and all promoted/renamed kinds and instruments. |
+| **Specimens — Home / Places** | Reconcile labels, counts, renamed kinds, added instruments, people reservoir, and any superseded cold/quiet specimens. |
+| **C1 — Findings** | Evaluate the founder-ruled Full Quiet and four-region anatomy. Remove the superseded one-return and five-region conclusions. Retain Sparse Quiet only as a named counterfactual. |
+| **C2 — Findings** | Update the relay counterfactual, known-limit language, retention/relay distinction, and any statement that a human rule was re-scoped without authorship. |
+| **C3 — Map, Re-finding, Unwind** | Rebuild against the one-contribution lineage; remove transferred-rule and automatic-rotation claims. |
+| **C3 — Findings** | Remove the stale “joining the rotation” proof and do not declare the backbone closed before the corrected matrix passes. |
+| **Home — Quiet** | Mark as legacy control or archive it if C1 Quiet (ruled) is the active direction; an active Ask-Vesper Quiet contradicts the current value-first contract. |
+| **Phase 2 — 19-Gate Matrix** | Apply §13.7 and re-evaluate from the corrected source boards. |
+
+Run a project-wide stale-language search before handoff. At minimum, inspect
+every occurrence of:
+
+```text
+five-region
+With people
+62 kinds
+12 instruments
+Home (24)
+Places (30)
+one return
+all boards render
+all closed
+not yet drawn
+Ask Vesper
+rule applies here
+both rotations
+joining the rotation
+inside everyone's limits
+```
+
+Some phrases may survive in explicitly labeled historical or negative-oracle
+material. None may survive as active doctrine accidentally.
+
+### 13.9 Q6 — preserve the Life and Chat scope boundary
+
+C3 proves selected Chat and Life projections, not their complete roots. Do not
+pull the full Chat or Life anatomy into this project to make the matrix look
+more complete.
+
+For Chat, this project needs only to preserve:
+
+- selected context arrives without restatement;
+- the answer precedes the retention decision;
+- one structured instrument appears only when the job needs it;
+- action ceiling, owner, and return path remain legible; and
+- the turn may end without residue.
+
+For Life, this project needs only to preserve:
+
+- incomplete-cue re-finding;
+- Source, claim, Occurrence, and Outcome distinctions;
+- viewer-relative social custody;
+- correction and withdrawal propagation; and
+- a truthful continuation back into Home, Places, Chat, or an Occasion.
+
+The Life program's Time · Places · Threads · People lenses, dossiers, Vault,
+and full retrieval anatomy remain a companion design authority. Their value
+test is `Find · Return · See anew · Continue`, not whether this canvas repeats
+their components.
+
+### 13.10 Revised promotion and handoff checklist
+
+Return the design project for review only when all of the following are true:
+
+1. C1 contains one source-bound, non-travel, meaning-without-planning
+   contribution that reaches the mechanism-and-observable-cue bar, with Live
+   Engine context shaping perceptibility or burden only when it adds real
+   value.
+2. C2 treats participation, retention, relay, naming, and audience as distinct
+   while keeping the consumer interaction minimal.
+3. C2 explicitly preserves the immediate value of an Occasion even when
+   nothing carries forward.
+4. C3 traces one contribution identity across Chat, Home, Places, action, Life,
+   re-finding, and correction.
+5. No board infers rotation, preference, affinity, or personal meaning from one
+   Occurrence.
+6. The full nineteen-gate matrix is recomputed from corrected boards and uses
+   `PARTIAL` or `NOT EXERCISED` honestly.
+7. Overview, Canon, specimens, findings, and active Home boards agree with the
+   same manifest counts and standing rulings.
+8. The project-wide stale-language search is clean or every surviving match is
+   explicitly historical/negative-oracle material.
+9. The four-proof portfolio is visible in one ledger:
+   - C1 Thin = personal doorway;
+   - revised ordinary C1 = Place capability;
+   - C2 = multiplayer Occasion;
+   - corrected C3 plus F5/Urgent = consequential continuity and real-world
+     responsibility.
+10. Real photography, native map behavior, voice/deferral, complete Chat, and
+    complete Life remain assigned to their proper labs rather than being
+    falsely closed by static boards.
+
+Do not create another broad taxonomy or new family of components in response
+to this critique. Correct the evidence, causal identity, board authority, and
+substantive value. After this pass, semantic-board expansion should stop and
+the remaining questions should move to native interaction, dogfood, and
+complete-root validation.
+
+## 14. §13 work-order execution record — 2026-08-31
+
+All six questions executed; zero new kinds, zero new components. Sixteen
+boards rewritten in place, re-seeded, republished (canvas artifact
+`1446ece2`), and pushed to design project `a26e3228`.
+
+**Q3 (first, per priority).** C3 now runs on the exact §13.6 fixture: Sam's
+authored uptown-room message is the one contribution, verbatim, in the Chat
+bring bubble. Vesper's lane (ownership/opening/menu) is separated from Sam's
+own claims (advice holds; walk-in after eight) at every hop — Chat answer,
+Move basis, crown copy, map captions ("Sam's own advice covers this room"),
+Life lineage, and receipts. The unwind was rebuilt from three person-hops to
+the honest single-lineage shape: **your Life (source, struck with his
+correction) → every governed projection (Move never re-offers; Places keeps
+only Vesper's facts, relabeled) → the boundary, stated** (nothing external to
+recall — and his separate C2 Georgian-room rule is explicitly untouched). All
+stale forms removed: `three-hop`, `noodle`/`sister room` fixture labels
+(now Georgian room / uptown room), `rule applies here`, `both rotations`,
+`joining the rotation`, the re-finding cue rewritten to the Georgian fixture.
+
+**Q1.** The C1 harbor-book unit and the Quiet-full reading cover now meet the
+substance bar: mechanism (the gates still decide which blocks take the harbor
+at high water), observable cue (the curb openings stop where protection
+begins), supported consequence (the corner reads differently tomorrow), honest
+stop (nothing to visit, save, or plan), plus one Live-Engine perceptibility
+line (high water 8:40 [verify] — "also fine never to look"). All world claims
+[verify]-marked; sample copy is direction, not sourced fact.
+
+**Q2.** Sam's lane: `inside every known limit`; contribution ≠ attendance
+stated on the contribution card ("his own yes/no stays open"). Attribution
+resolved by naming Sam (option A): the relay reads "from Sam, a friend of
+Dana's," under **two separate yeses** — may-retain (Dana's Life copy) and
+may-relay + may-name — annotated at the boundary, not as a worksheet. Dana's
+Life card says the two grants were separate. The findings counterfactual now
+uses the §13.5 replacement wording verbatim.
+
+**Q4.** Matrix recomputed: C2/G8 → PARTIAL, C3/G9 → PARTIAL, C3/G14 → NOT
+EXERCISED (C1 carries answer-and-stop), C3/G16 → PARTIAL, C3/G19 → PARTIAL —
+each with its promotion condition in the cell. C2/C3 findings boards restated
+to agree with the matrix (no findings-board claim outruns it); C3 no longer
+declares the backbone closed — "pending the corrected matrix."
+
+**Q5.** Overview body fully rewritten (no appended intro): four-proof
+portfolio as one ledger (§13.10.9), manifest counts 65/13 as sole authority,
+open-labs panel, §13 lineage; all old counts/five-region/"all closed"/"not
+yet drawn" removed. Posture Matrix reconciled: four visible regions with the
+people band relabeled "reservoir — exploded for inspection," orientation
+ladder replaces the mandatory two-tier read, Cold de-input-ed (value-first
+thin open), Quiet marked Full-by-ruling, Urgent noted as drawn. Build
+Manifest people block relabeled reservoir. Specimens retitled "24 of 31" /
+"30 of 34" with promoted-kind notes; `now_commitment_instrument` renamed on
+the Home sheet. Home · Quiet stamped **LEGACY CONTROL** (negative oracle for
+the Ask-Vesper seam). C1 Findings: one-return and five-region conclusions
+annotated as superseded historical cells; Full Quiet evaluated in "what
+held." Stale-language sweep clean — survivors are only: the C1-F1 finding
+that documents the rename (labeled historical), the sparse-control and
+legacy-stamped Ask-Vesper annotations (negative oracle), and post-value
+action doors on Place Focus / Specimens (legitimate under the Door law).
+
+**Q6.** No Chat/Life anatomy pulled in; the Overview and C3 boards state the
+selected-projection scope explicitly.
+
+**Standing:** authority-sensitive implementation (grant store, retention,
+relay, Outcome inference, projector invalidation) remains HELD pending
+founder re-review of these corrected fixtures. The five downgraded matrix
+cells carry their promotion conditions and close only on that re-review.
