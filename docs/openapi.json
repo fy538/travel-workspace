@@ -236,6 +236,69 @@
         }
       }
     },
+    "/api/artifact-projections/intake/{anchor_id}/media/{source_id}": {
+      "get": {
+        "tags": [
+          "artifact-projections"
+        ],
+        "summary": "Get Intake Artifact Media",
+        "description": "Stream one retained owner source without exposing its private storage key.",
+        "operationId": "get_intake_artifact_media_api_artifact_projections_intake__anchor_id__media__source_id__get",
+        "parameters": [
+          {
+            "name": "anchor_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Anchor Id"
+            }
+          },
+          {
+            "name": "source_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Source Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/accommodations/{accommodation_id}": {
       "get": {
         "summary": "Get Catalog Accommodation",
@@ -24133,6 +24196,66 @@
         }
       }
     },
+    "/api/life/refind": {
+      "post": {
+        "tags": [
+          "life"
+        ],
+        "summary": "Life Refind",
+        "description": "Viewer-scoped refinding over the caller's own trips and bookings.",
+        "operationId": "life_refind_api_life_refind_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LifeRefindRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LifeRefindResultV1"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/lookup/": {
       "post": {
         "tags": [
@@ -45954,6 +46077,167 @@
         ],
         "title": "AffiliateLinkResponse"
       },
+      "AgentCompositionDraftV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "agent-composition-draft.v1",
+            "title": "Schema Version",
+            "default": "agent-composition-draft.v1"
+          },
+          "draft_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Draft Id"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 180,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "immediate_job": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Immediate Job"
+          },
+          "dominant_move": {
+            "$ref": "#/components/schemas/CompositionProductMove"
+          },
+          "surface": {
+            "$ref": "#/components/schemas/ProductRoot"
+          },
+          "audience": {
+            "$ref": "#/components/schemas/CompositionAudience"
+          },
+          "authority": {
+            "$ref": "#/components/schemas/CompositionAuthority"
+          },
+          "subject_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "maxItems": 16,
+            "minItems": 1,
+            "title": "Subject Refs"
+          },
+          "owner_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "minItems": 1,
+            "title": "Owner Refs"
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/components/schemas/CompositionSourceV1"
+            },
+            "type": "array",
+            "maxItems": 32,
+            "minItems": 1,
+            "title": "Sources"
+          },
+          "claims": {
+            "items": {
+              "$ref": "#/components/schemas/CompositionClaimV1"
+            },
+            "type": "array",
+            "maxItems": 32,
+            "minItems": 1,
+            "title": "Claims"
+          },
+          "sections": {
+            "items": {
+              "$ref": "#/components/schemas/CompositionSectionV1"
+            },
+            "type": "array",
+            "maxItems": 2,
+            "minItems": 1,
+            "title": "Sections"
+          },
+          "lifecycle_intent": {
+            "$ref": "#/components/schemas/CompositionLifecycleIntent"
+          },
+          "represented_from": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Represented From"
+          },
+          "represented_to": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Represented To"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "uncertainty_and_limits": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Uncertainty And Limits",
+            "default": []
+          },
+          "continuation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CompositionContinuationV1"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "text_fallback": {
+            "type": "string",
+            "maxLength": 2400,
+            "minLength": 1,
+            "title": "Text Fallback"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "draft_id",
+          "title",
+          "immediate_job",
+          "dominant_move",
+          "surface",
+          "audience",
+          "authority",
+          "subject_refs",
+          "owner_refs",
+          "sources",
+          "claims",
+          "sections",
+          "lifecycle_intent",
+          "generated_at",
+          "text_fallback"
+        ],
+        "title": "AgentCompositionDraftV1"
+      },
       "AgentWorkflowCommand": {
         "properties": {
           "id": {
@@ -55372,6 +55656,16 @@
         ],
         "title": "CompositionAudience"
       },
+      "CompositionAuthority": {
+        "type": "string",
+        "enum": [
+          "vesper_prepare",
+          "viewer_decides",
+          "human_authored",
+          "shared_state"
+        ],
+        "title": "CompositionAuthority"
+      },
       "CompositionBriefV1": {
         "properties": {
           "schema_version": {
@@ -55392,11 +55686,17 @@
             "type": "string",
             "title": "Immediate Job"
           },
+          "dominant_move": {
+            "$ref": "#/components/schemas/CompositionProductMove"
+          },
           "surface": {
             "$ref": "#/components/schemas/ProductRoot"
           },
           "audience": {
             "$ref": "#/components/schemas/CompositionAudience"
+          },
+          "authority": {
+            "$ref": "#/components/schemas/CompositionAuthority"
           },
           "subject_refs": {
             "items": {
@@ -55442,10 +55742,42 @@
           "lifecycle_intent": {
             "$ref": "#/components/schemas/CompositionLifecycleIntent"
           },
+          "represented_from": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Represented From"
+          },
+          "represented_to": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Represented To"
+          },
           "generated_at": {
             "type": "string",
             "format": "date-time",
             "title": "Generated At"
+          },
+          "uncertainty_and_limits": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Uncertainty And Limits",
+            "default": []
           },
           "continuation": {
             "anyOf": [
@@ -55478,8 +55810,10 @@
           "brief_id",
           "title",
           "immediate_job",
+          "dominant_move",
           "surface",
           "audience",
+          "authority",
           "subject_refs",
           "owner_refs",
           "source_manifest",
@@ -55531,6 +55865,47 @@
         ],
         "title": "CompositionClaimOperation"
       },
+      "CompositionClaimSourceBindingV1": {
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Source Id"
+          },
+          "role": {
+            "$ref": "#/components/schemas/CompositionClaimSourceRole"
+          },
+          "span": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Span"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "source_id",
+          "role"
+        ],
+        "title": "CompositionClaimSourceBindingV1"
+      },
+      "CompositionClaimSourceRole": {
+        "type": "string",
+        "enum": [
+          "supports",
+          "context",
+          "counterevidence"
+        ],
+        "title": "CompositionClaimSourceRole"
+      },
       "CompositionClaimV1": {
         "properties": {
           "claim_id": {
@@ -55563,14 +55938,14 @@
             "title": "Minimum Supporting Sources",
             "default": 1
           },
-          "supporting_source_ids": {
+          "source_bindings": {
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/CompositionClaimSourceBindingV1"
             },
             "type": "array",
             "maxItems": 16,
             "minItems": 1,
-            "title": "Supporting Source Ids"
+            "title": "Source Bindings"
           }
         },
         "additionalProperties": false,
@@ -55582,9 +55957,93 @@
           "authorship",
           "novelty",
           "confidence",
-          "supporting_source_ids"
+          "source_bindings"
         ],
         "title": "CompositionClaimV1"
+      },
+      "CompositionComparisonAnatomyV1": {
+        "properties": {
+          "medium": {
+            "type": "string",
+            "const": "comparison",
+            "title": "Medium",
+            "default": "comparison"
+          },
+          "axes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 6,
+            "minItems": 1,
+            "title": "Axes"
+          },
+          "cases": {
+            "items": {
+              "$ref": "#/components/schemas/CompositionComparisonCaseV1"
+            },
+            "type": "array",
+            "maxItems": 4,
+            "minItems": 2,
+            "title": "Cases"
+          },
+          "limit_note": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Limit Note"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "axes",
+          "cases",
+          "limit_note"
+        ],
+        "title": "CompositionComparisonAnatomyV1"
+      },
+      "CompositionComparisonCaseV1": {
+        "properties": {
+          "case_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Case Id"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 180,
+            "minLength": 1,
+            "title": "Label"
+          },
+          "values": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "maxProperties": 8,
+            "minProperties": 1,
+            "title": "Values"
+          },
+          "source_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "minItems": 1,
+            "title": "Source Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "case_id",
+          "label",
+          "values",
+          "source_ids"
+        ],
+        "title": "CompositionComparisonCaseV1"
       },
       "CompositionContinuationKind": {
         "type": "string",
@@ -55620,6 +56079,70 @@
         ],
         "title": "CompositionContinuationV1"
       },
+      "CompositionEvidenceAnatomyV1": {
+        "properties": {
+          "medium": {
+            "type": "string",
+            "const": "evidence",
+            "title": "Medium",
+            "default": "evidence"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/CompositionEvidenceItemV1"
+            },
+            "type": "array",
+            "maxItems": 12,
+            "minItems": 1,
+            "title": "Items"
+          },
+          "trust_note": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Trust Note"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "items",
+          "trust_note"
+        ],
+        "title": "CompositionEvidenceAnatomyV1"
+      },
+      "CompositionEvidenceItemV1": {
+        "properties": {
+          "claim_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Claim Id"
+          },
+          "statement": {
+            "type": "string",
+            "maxLength": 700,
+            "minLength": 1,
+            "title": "Statement"
+          },
+          "source_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "minItems": 1,
+            "title": "Source Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "claim_id",
+          "statement",
+          "source_ids"
+        ],
+        "title": "CompositionEvidenceItemV1"
+      },
       "CompositionFreshness": {
         "type": "string",
         "enum": [
@@ -55638,6 +56161,41 @@
           "live"
         ],
         "title": "CompositionLifecycleIntent"
+      },
+      "CompositionProductMove": {
+        "type": "string",
+        "enum": [
+          "make_sense",
+          "open_possibility",
+          "help_it_work",
+          "carry_forward"
+        ],
+        "title": "CompositionProductMove"
+      },
+      "CompositionProseAnatomyV1": {
+        "properties": {
+          "medium": {
+            "type": "string",
+            "const": "prose",
+            "title": "Medium",
+            "default": "prose"
+          },
+          "claim_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 12,
+            "minItems": 1,
+            "title": "Claim Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "claim_ids"
+        ],
+        "title": "CompositionProseAnatomyV1"
       },
       "CompositionResult": {
         "properties": {
@@ -55909,6 +56467,36 @@
             "maxLength": 1000,
             "minLength": 1,
             "title": "Accessible Summary"
+          },
+          "anatomy": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CompositionEvidenceAnatomyV1"
+              },
+              {
+                "$ref": "#/components/schemas/CompositionSequenceAnatomyV1"
+              },
+              {
+                "$ref": "#/components/schemas/CompositionComparisonAnatomyV1"
+              },
+              {
+                "$ref": "#/components/schemas/CompositionSpatialAnatomyV1"
+              },
+              {
+                "$ref": "#/components/schemas/CompositionProseAnatomyV1"
+              }
+            ],
+            "title": "Anatomy",
+            "discriminator": {
+              "propertyName": "medium",
+              "mapping": {
+                "comparison": "#/components/schemas/CompositionComparisonAnatomyV1",
+                "evidence": "#/components/schemas/CompositionEvidenceAnatomyV1",
+                "prose": "#/components/schemas/CompositionProseAnatomyV1",
+                "sequence": "#/components/schemas/CompositionSequenceAnatomyV1",
+                "spatial": "#/components/schemas/CompositionSpatialAnatomyV1"
+              }
+            }
           }
         },
         "additionalProperties": false,
@@ -55921,7 +56509,8 @@
           "allowed_media",
           "semantic_role",
           "claim_ids",
-          "accessible_summary"
+          "accessible_summary",
+          "anatomy"
         ],
         "title": "CompositionSectionV1"
       },
@@ -55932,6 +56521,70 @@
           "human_contribution"
         ],
         "title": "CompositionSemanticRole"
+      },
+      "CompositionSequenceAnatomyV1": {
+        "properties": {
+          "medium": {
+            "type": "string",
+            "const": "sequence",
+            "title": "Medium",
+            "default": "sequence"
+          },
+          "steps": {
+            "items": {
+              "$ref": "#/components/schemas/CompositionSequenceStepV1"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "minItems": 2,
+            "title": "Steps"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "steps"
+        ],
+        "title": "CompositionSequenceAnatomyV1"
+      },
+      "CompositionSequenceStepV1": {
+        "properties": {
+          "step_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Step Id"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 180,
+            "minLength": 1,
+            "title": "Label"
+          },
+          "detail": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Detail"
+          },
+          "source_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "minItems": 1,
+            "title": "Source Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "step_id",
+          "label",
+          "detail",
+          "source_ids"
+        ],
+        "title": "CompositionSequenceStepV1"
       },
       "CompositionSourceAuthor": {
         "type": "string",
@@ -55944,6 +56597,18 @@
         ],
         "title": "CompositionSourceAuthor"
       },
+      "CompositionSourceKind": {
+        "type": "string",
+        "enum": [
+          "human_note",
+          "human_contribution",
+          "visit_evidence",
+          "plan_state",
+          "provider_state",
+          "public_source"
+        ],
+        "title": "CompositionSourceKind"
+      },
       "CompositionSourceV1": {
         "properties": {
           "source_id": {
@@ -55954,8 +56619,17 @@
           "resource_ref": {
             "$ref": "#/components/schemas/ResourceRef"
           },
+          "kind": {
+            "$ref": "#/components/schemas/CompositionSourceKind"
+          },
           "author": {
             "$ref": "#/components/schemas/CompositionSourceAuthor"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 180,
+            "minLength": 1,
+            "title": "Label"
           },
           "freshness": {
             "$ref": "#/components/schemas/CompositionFreshness"
@@ -55998,11 +56672,88 @@
         "required": [
           "source_id",
           "resource_ref",
+          "kind",
           "author",
+          "label",
           "freshness",
           "allowed_audiences"
         ],
         "title": "CompositionSourceV1"
+      },
+      "CompositionSpatialAnatomyV1": {
+        "properties": {
+          "medium": {
+            "type": "string",
+            "const": "spatial",
+            "title": "Medium",
+            "default": "spatial"
+          },
+          "points": {
+            "items": {
+              "$ref": "#/components/schemas/CompositionSpatialPointV1"
+            },
+            "type": "array",
+            "maxItems": 12,
+            "minItems": 1,
+            "title": "Points"
+          },
+          "relationship": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Relationship"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "points",
+          "relationship"
+        ],
+        "title": "CompositionSpatialAnatomyV1"
+      },
+      "CompositionSpatialPointV1": {
+        "properties": {
+          "point_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Point Id"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 180,
+            "minLength": 1,
+            "title": "Label"
+          },
+          "detail": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Detail"
+          },
+          "entity_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "source_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "minItems": 1,
+            "title": "Source Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "point_id",
+          "label",
+          "detail",
+          "entity_ref",
+          "source_ids"
+        ],
+        "title": "CompositionSpatialPointV1"
       },
       "CompositionUnderstanding": {
         "properties": {
@@ -58530,6 +59281,16 @@
             "maxLength": 2000,
             "minLength": 1,
             "title": "Treatment"
+          },
+          "composition_draft": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AgentCompositionDraftV1"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "source_refs": {
             "items": {
@@ -77159,6 +77920,111 @@
         ],
         "title": "LedgerRow"
       },
+      "LifeRefindRequest": {
+        "properties": {
+          "q": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Q"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "limit": {
+            "type": "integer",
+            "maximum": 20.0,
+            "minimum": 1.0,
+            "title": "Limit",
+            "default": 10
+          }
+        },
+        "type": "object",
+        "required": [
+          "q"
+        ],
+        "title": "LifeRefindRequest"
+      },
+      "LifeRefindResultV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "life-refind-result.v1",
+            "title": "Schema Version",
+            "default": "life-refind-result.v1"
+          },
+          "query": {
+            "$ref": "#/components/schemas/RefindQueryEcho"
+          },
+          "viewer": {
+            "$ref": "#/components/schemas/RefindViewer"
+          },
+          "form": {
+            "type": "string",
+            "enum": [
+              "SF",
+              "GA",
+              "EP",
+              "MR",
+              "RP",
+              "HC"
+            ],
+            "title": "Form"
+          },
+          "confidence": {
+            "$ref": "#/components/schemas/RefindConfidence"
+          },
+          "governed_answer": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RefindGovernedAnswer"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/RefindResult"
+            },
+            "type": "array",
+            "title": "Results",
+            "default": []
+          },
+          "candidate_note": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RefindCandidateNote"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "retention": {
+            "$ref": "#/components/schemas/RefindRetention"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "query",
+          "viewer",
+          "form",
+          "confidence"
+        ],
+        "title": "LifeRefindResultV1",
+        "description": "One refinding response. The CONTRACT is the stable thing; the\nsubstrate behind it (legacy itinerary/booking rows today, the\nexperience graph after the migration) is not part of this shape."
+      },
       "LifecycleTimezoneSource": {
         "type": "string",
         "enum": [
@@ -92394,6 +93260,18 @@
             "type": "string",
             "title": "Treatment"
           },
+          "composition_draft": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Composition Draft"
+          },
           "status": {
             "type": "string",
             "title": "Status"
@@ -96044,6 +96922,687 @@
         "title": "RedactionPolicy",
         "description": "Owner-controlled toggles for what the PUBLIC projection may reveal.\n\nDefault-deny: a viewer sees only what these toggles explicitly allow,\non top of the always-public artifact (hero, narrative, chosen photos).\nExact dates are OFF by default; the destination headline is on (it's\nthe point of the share) but can be turned off."
       },
+      "RefindAroundThis": {
+        "properties": {
+          "resource": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "relation": {
+            "type": "string",
+            "enum": [
+              "preceding",
+              "following",
+              "same_day",
+              "parent_day"
+            ],
+            "title": "Relation"
+          },
+          "time_role": {
+            "type": "string",
+            "enum": [
+              "planned",
+              "occurred",
+              "captured"
+            ],
+            "title": "Time Role"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "resource",
+          "relation",
+          "time_role"
+        ],
+        "title": "RefindAroundThis"
+      },
+      "RefindAudience": {
+        "properties": {
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "private",
+              "bounded_shared"
+            ],
+            "title": "Visibility"
+          },
+          "grant_basis": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Grant Basis"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "visibility"
+        ],
+        "title": "RefindAudience"
+      },
+      "RefindAuthorship": {
+        "properties": {
+          "author_ref": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Author Ref"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "author_ref"
+        ],
+        "title": "RefindAuthorship",
+        "description": "Author of the underlying object: ``user:<uuid>``, ``vesper``, or\n``external:<label>``. Claim-local roles arrive with the composition\nlanes (out of scope for this slice)."
+      },
+      "RefindCandidateNote": {
+        "properties": {
+          "distinguishing_cues": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Distinguishing Cues",
+            "default": []
+          },
+          "max_candidates": {
+            "type": "integer",
+            "maximum": 5.0,
+            "minimum": 1.0,
+            "title": "Max Candidates",
+            "default": 3
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "RefindCandidateNote"
+      },
+      "RefindConfidence": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "single",
+              "bounded_candidates",
+              "none"
+            ],
+            "title": "Kind"
+          },
+          "abstain_reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Abstain Reason"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind"
+        ],
+        "title": "RefindConfidence"
+      },
+      "RefindConflict": {
+        "properties": {
+          "claim": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Claim"
+          },
+          "source_refs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Source Refs",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "claim"
+        ],
+        "title": "RefindConflict"
+      },
+      "RefindContinue": {
+        "properties": {
+          "destination": {
+            "type": "string",
+            "enum": [
+              "chat",
+              "places",
+              "owner_object"
+            ],
+            "title": "Destination"
+          },
+          "authority_tier": {
+            "type": "string",
+            "enum": [
+              "advise_only",
+              "propose_reversible"
+            ],
+            "title": "Authority Tier"
+          },
+          "context_envelope_ref": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Context Envelope Ref"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "destination",
+          "authority_tier"
+        ],
+        "title": "RefindContinue"
+      },
+      "RefindCue": {
+        "properties": {
+          "cue": {
+            "type": "string",
+            "enum": [
+              "keyword",
+              "kind",
+              "place",
+              "weekday",
+              "unused_state",
+              "occurrence_state",
+              "plan_membership",
+              "time_adjacency"
+            ],
+            "title": "Cue"
+          },
+          "detail_key": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Detail Key"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "cue",
+          "detail_key"
+        ],
+        "title": "RefindCue",
+        "description": "One structured why-it-matched cue. Machine cues, never free prose."
+      },
+      "RefindGovernedAnswer": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "occurrence_answer",
+              "plan_listing",
+              "skipped_set",
+              "identity_answer"
+            ],
+            "title": "Kind"
+          },
+          "occurrence_state": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ExperienceOccurrenceState"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "subject_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Subject Refs",
+            "default": []
+          },
+          "detail": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Detail"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind"
+        ],
+        "title": "RefindGovernedAnswer",
+        "description": "Structured governed answer for GA-form queries.\n\nNever prose: a machine ``kind`` plus structured state and refs. The\nsupporting targets still appear in ``results`` with full truth/source/\nrepair blocks (benchmark \u00a71 GA contract)."
+      },
+      "RefindIdentity": {
+        "properties": {
+          "semantic_type": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Semantic Type"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Title"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "semantic_type",
+          "title"
+        ],
+        "title": "RefindIdentity"
+      },
+      "RefindParent": {
+        "properties": {
+          "episode_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "relationship_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "RefindParent"
+      },
+      "RefindQueryEcho": {
+        "properties": {
+          "query_id": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 1,
+            "title": "Query Id"
+          },
+          "asked_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Asked At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "query_id",
+          "asked_at"
+        ],
+        "title": "RefindQueryEcho",
+        "description": "Anonymized query echo \u2014 the raw query text is never persisted."
+      },
+      "RefindRepair": {
+        "properties": {
+          "operations": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "correct_occurrence",
+                "detach",
+                "exclude_return",
+                "release_downstream",
+                "delete_source"
+              ]
+            },
+            "type": "array",
+            "title": "Operations",
+            "default": []
+          },
+          "scope_preview_required": {
+            "type": "boolean",
+            "title": "Scope Preview Required",
+            "default": true
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "RefindRepair"
+      },
+      "RefindResult": {
+        "properties": {
+          "rank": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Rank"
+          },
+          "resource": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "identity": {
+            "$ref": "#/components/schemas/RefindIdentity"
+          },
+          "why_matched": {
+            "items": {
+              "$ref": "#/components/schemas/RefindCue"
+            },
+            "type": "array",
+            "title": "Why Matched",
+            "default": []
+          },
+          "time_roles": {
+            "$ref": "#/components/schemas/RefindTimeRoles"
+          },
+          "truth": {
+            "$ref": "#/components/schemas/RefindTruth"
+          },
+          "authorship": {
+            "$ref": "#/components/schemas/RefindAuthorship"
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/components/schemas/RefindSourceItem"
+            },
+            "type": "array",
+            "title": "Sources",
+            "default": []
+          },
+          "parent": {
+            "$ref": "#/components/schemas/RefindParent"
+          },
+          "around_this": {
+            "items": {
+              "$ref": "#/components/schemas/RefindAroundThis"
+            },
+            "type": "array",
+            "maxItems": 3,
+            "title": "Around This",
+            "default": []
+          },
+          "audience": {
+            "$ref": "#/components/schemas/RefindAudience"
+          },
+          "repair": {
+            "$ref": "#/components/schemas/RefindRepair"
+          },
+          "continues": {
+            "items": {
+              "$ref": "#/components/schemas/RefindContinue"
+            },
+            "type": "array",
+            "title": "Continues",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "rank",
+          "resource",
+          "identity",
+          "time_roles",
+          "truth",
+          "authorship",
+          "audience"
+        ],
+        "title": "RefindResult"
+      },
+      "RefindRetention": {
+        "properties": {
+          "durable_state_created": {
+            "type": "boolean",
+            "const": false,
+            "title": "Durable State Created",
+            "default": false
+          },
+          "telemetry": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Telemetry",
+            "default": [
+              "query_id",
+              "result_ids",
+              "form",
+              "latency_ms"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "RefindRetention",
+        "description": "Hard invariant for scoring dimension 8 (state restraint)."
+      },
+      "RefindSourceItem": {
+        "properties": {
+          "ref": {
+            "$ref": "#/components/schemas/SourceRef"
+          },
+          "custody": {
+            "type": "string",
+            "enum": [
+              "original",
+              "derived"
+            ],
+            "title": "Custody"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "degraded",
+              "deleted"
+            ],
+            "title": "Status"
+          },
+          "used_state": {
+            "type": "string",
+            "enum": [
+              "used",
+              "unused",
+              "unknown"
+            ],
+            "title": "Used State"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "ref",
+          "custody",
+          "status",
+          "used_state"
+        ],
+        "title": "RefindSourceItem"
+      },
+      "RefindTimeRoles": {
+        "properties": {
+          "planned": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Planned"
+          },
+          "occurred": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "no_evidence",
+                  "did_not_happen"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occurred"
+          },
+          "captured": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Captured"
+          },
+          "authored": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Authored"
+          },
+          "generated": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Generated"
+          },
+          "current_world_checked": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current World Checked"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "RefindTimeRoles",
+        "description": "Time roles kept separate \u2014 never collapsed (benchmark \u00a72)."
+      },
+      "RefindTruth": {
+        "properties": {
+          "occurrence_state": {
+            "$ref": "#/components/schemas/ExperienceOccurrenceState"
+          },
+          "truth_mode": {
+            "type": "string",
+            "enum": [
+              "direct_observed",
+              "source_extracted",
+              "user_confirmed",
+              "inferred",
+              "external_verified",
+              "unknown"
+            ],
+            "title": "Truth Mode"
+          },
+          "confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence"
+          },
+          "conflicts": {
+            "items": {
+              "$ref": "#/components/schemas/RefindConflict"
+            },
+            "type": "array",
+            "title": "Conflicts",
+            "default": []
+          },
+          "missing_evidence": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Missing Evidence",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "occurrence_state",
+          "truth_mode",
+          "confidence"
+        ],
+        "title": "RefindTruth"
+      },
+      "RefindViewer": {
+        "properties": {
+          "viewer_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Viewer Id"
+          },
+          "scope": {
+            "type": "string",
+            "enum": [
+              "mine",
+              "together"
+            ],
+            "title": "Scope",
+            "default": "mine"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "viewer_id"
+        ],
+        "title": "RefindViewer"
+      },
       "ReflectionLogEntry": {
         "properties": {
           "id": {
@@ -98479,6 +100038,73 @@
               }
             ]
           },
+          "lead_anatomy": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CompositionEvidenceAnatomyV1"
+              },
+              {
+                "$ref": "#/components/schemas/CompositionSequenceAnatomyV1"
+              },
+              {
+                "$ref": "#/components/schemas/CompositionComparisonAnatomyV1"
+              },
+              {
+                "$ref": "#/components/schemas/CompositionSpatialAnatomyV1"
+              },
+              {
+                "$ref": "#/components/schemas/CompositionProseAnatomyV1"
+              }
+            ],
+            "title": "Lead Anatomy",
+            "discriminator": {
+              "propertyName": "medium",
+              "mapping": {
+                "comparison": "#/components/schemas/CompositionComparisonAnatomyV1",
+                "evidence": "#/components/schemas/CompositionEvidenceAnatomyV1",
+                "prose": "#/components/schemas/CompositionProseAnatomyV1",
+                "sequence": "#/components/schemas/CompositionSequenceAnatomyV1",
+                "spatial": "#/components/schemas/CompositionSpatialAnatomyV1"
+              }
+            }
+          },
+          "support_anatomy": {
+            "anyOf": [
+              {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/CompositionEvidenceAnatomyV1"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CompositionSequenceAnatomyV1"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CompositionComparisonAnatomyV1"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CompositionSpatialAnatomyV1"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CompositionProseAnatomyV1"
+                  }
+                ],
+                "discriminator": {
+                  "propertyName": "medium",
+                  "mapping": {
+                    "comparison": "#/components/schemas/CompositionComparisonAnatomyV1",
+                    "evidence": "#/components/schemas/CompositionEvidenceAnatomyV1",
+                    "prose": "#/components/schemas/CompositionProseAnatomyV1",
+                    "sequence": "#/components/schemas/CompositionSequenceAnatomyV1",
+                    "spatial": "#/components/schemas/CompositionSpatialAnatomyV1"
+                  }
+                }
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Support Anatomy"
+          },
           "basis": {
             "type": "string",
             "maxLength": 300,
@@ -98504,6 +100130,7 @@
           "title",
           "substance",
           "lead_medium",
+          "lead_anatomy",
           "basis"
         ],
         "title": "RootComposition"

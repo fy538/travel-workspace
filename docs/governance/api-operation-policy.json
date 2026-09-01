@@ -3216,6 +3216,22 @@
       "removal_trigger": "Remove only when an equivalent canonical projection transport preserves owner scoping, correction, and degraded-source semantics.",
       "review_by": "2026-10-30"
     },
+    "GET /api/artifact-projections/intake/{anchor_id}/media/{source_id}": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "ArtifactMediaPreview",
+          "source": "travel-app/components/artifacts/ArtifactMediaPreview.tsx"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "artifact-projection",
+      "reason": "The owner reader needs authenticated access to a retained verified image source without exposing the private storage key.",
+      "removal_trigger": "Remove only when an equivalent owner-scoped media transport preserves revocation and private custody semantics.",
+      "review_by": "2026-10-30"
+    },
     "GET /api/intake/submissions/{submission_id}/interpretations": {
       "audience": "app",
       "consumers": [
