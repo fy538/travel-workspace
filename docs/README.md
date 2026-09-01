@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: founder / engineering
 created: 2026-05-01
-last_verified: 2026-07-09
+last_verified: 2026-09-01
 why_new: Promote the existing workspace index into the canonical documentation entry point.
 supersedes: []
 source_of_truth_for: [workspace-docs-navigation]
@@ -58,7 +58,7 @@ Principles, Unified Context Graph, and the relevant system charter.
 |---|---|---|
 | What am I building now? | [M1 — Plan Repair](release/m1-plan-repair.md) | `docs/release/m1-plan-repair.md` — the single milestone, its four demo acts, and exit criteria |
 | Why this product? | [Product Thesis](../travel-agent/docs/product/Product%20Thesis.md) | `travel-agent/docs/product/Product Thesis.md` — core promise and strategy |
-| How does the product model fit together? | [Product Model](../travel-agent/docs/product/Product%20Model.md) | `travel-agent/docs/product/Product Model.md` — Experience → Plan → Trip → Move, spatial grounding, and proof loop |
+| How does the product model fit together? | [Product Model](../travel-agent/docs/product/Product%20Model.md) | `travel-agent/docs/product/Product Model.md` — governed owners, four recurring moves, four root orientations, real-world consequence, and continuity |
 | What principles guide it? | [What We Believe](../travel-agent/docs/product/What%20We%20Believe.md) | `travel-agent/docs/product/What We Believe.md` — durable product beliefs |
 | What ships first? | [V1 Scope](release/v1-scope.md) | `docs/release/v1-scope.md` — generated bounded release intent |
 | What exists now? | [Current State](status/current-state.md) | `docs/status/current-state.md` — derived implementation signals |

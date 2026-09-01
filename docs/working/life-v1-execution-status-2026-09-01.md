@@ -17,18 +17,18 @@ depends_on:
 
 ## Outcome
 
-The non-regrettable Life foundation is now integrated with the consolidated
-artifact/root runtime branches and represented in the shared contract
-snapshots. It is additive and reversible: the existing Atlas/You history owner
-remains intact, while an internal flag can expose a native Time root backed by
-a typed read projection.
+The non-regrettable Life foundation, bounded refinding slice, and shared
+artifact/root runtime are now integrated and represented in the generated
+contract snapshots. The result is additive and reversible: the existing
+Atlas/You history owner remains intact, while internal flags can expose a native
+Time root and a truth-aware refinding lane backed by typed read projections.
 No public promotion, generalized dossier system, Together persistence, or
 repository-wide noun migration was attempted.
 
-Consolidated review refs: parent `codex/dynamic-artifact-contract` (Life merge
-`6faa939`), app `codex/root-convergence-native` (`023bcfaf2`), and backend
-`codex/dynamic-artifact-runtime` (`2387fe405`). The active main checkouts remain
-untouched and retain their pre-existing work.
+Consolidated review refs: parent `codex/dynamic-artifact-contract`, app
+`codex/root-convergence-native` (`9eb3d87d3`), and backend
+`codex/dynamic-artifact-runtime` (`b83d2393c`). Safety tags preserve every
+pre-convergence `main`; the convergence receipt records final local landing.
 
 ## Landed checkpoints
 
@@ -39,6 +39,14 @@ untouched and retain their pre-existing work.
 - `115c00d41` — additive `GET /api/root-projections/v1/life` route and adapter.
 - `0f2341b7e` — merge with the landed root-v2 Strategy contract.
 - `9a546301f` — clarify that `LifeRootProjectionV1` is the served read model.
+- `11db134c1` — integrate the dark Life refinding route, truth oracles,
+  occurrence reconciliation, and memory-custody hardening.
+- `d53935bba` through `234f730ee` — admit typed Composition anatomy and serve
+  authenticated owner-bound Artifact media without introducing a new owner.
+- `fa768471e` — align the prior-trip summary tests with custody and restore the
+  backend no-growth ratchets without bypassing them.
+- `95e016031` and `b83d2393c` — canonize the four durable root orientations in
+  the backend product spine while keeping the canon within its size budget.
 
 The compiler is viewer-scoped, deterministic, bounded per lens, and emits
 canonical `ResourceRef` handles. The route currently projects graph-backed
@@ -52,6 +60,12 @@ an honest `thin` projection.
 - `013b3c75` — generated Life contract types.
 - `92d1502d` — synchronized Life root contract types.
 - `bd3730d2` — merge with the landed root-v2 Strategy surface work.
+- `eb5288141` — integrate the flag-gated Life refinding lane into Universal
+  Search with canonical destinations.
+- `a05a25af2`, `227ef79f9`, and `0e50c94c8` — render typed Composition anatomy,
+  preserve exact root return context, and show authenticated Artifact media.
+- `9eb3d87d3` — keep the Lisbon group decision on its canonical shared Trip
+  rather than leaking it into every Lisbon-shaped context.
 
 The native root has loading, informational, failure/retry, and data states;
 four lens labels; bounded Time rows; a canonical complete-record door; and
@@ -70,29 +84,30 @@ archive. `EXPO_PUBLIC_LIFE_ROOT_V1` is default-off and internal/dev-only.
 
 ## Validation evidence
 
-- Consolidated backend artifact/root/Life/API focused suite: 137 tests passed.
-- Consolidated frontend artifact/root/Life/refinding suite: 86 tests passed.
+- Consolidated backend artifact/root/Life/API focused suite: 78 tests passed.
+- Backend semantic-facade and prior-trip custody suite: 34 tests passed.
+- Frontend canonical Places projection parity: 13 tests passed.
 - Frontend `tsc --noEmit`: passed.
 - Deterministic workspace contract check: passed — 431 mobile paths, 476
   operations, and 1,253 schemas; generated TypeScript exactly matches the app
   projection.
 - Cross-repository API audit: passed — 551 active, 13 dark, and 62 retiring
   operations; 0 unflagged.
-- Backend formatting, import-boundary, timeout, mutable-state, and applicable
-  hooks passed. The repository-wide broad-exception and size-budget ratchets
-  remain above their pre-existing baselines; no changed file introduced either
-  class of violation.
+- Backend formatting, import-boundary, timeout, mutable-state, applicable hooks,
+  broad-exception ratchet, and size-budget ratchet passed. The convergence pass
+  removed its two new broad handlers and one inherited handler, returning the
+  audited count to the no-growth ceiling of 1,190.
 
 ## Deliberately deferred
 
-1. Dossier-grade destinations for every Life object family and scroll-position
-   restoration.
+1. Dossier-grade destinations for every Life object family, exact refinding
+   continuation into those destinations, and scroll-position restoration.
 2. Full Places/People/Threads lens projection from production data.
 3. Public rollout, analytics-driven promotion, and removal of legacy Atlas.
 4. Together/multiplayer write paths and generalized Occasion architecture.
 5. Visual composition polish beyond the production HTML design reference.
 
-The next safe increment is to add one benchmark object's exact owner dossier
-and refinding continuation, then re-run the same contract and conformance
-gates. Do not broaden the flag or add more lenses until that refinding seam is
-proven end to end.
+The next safe increment is to connect one returned refinding row to its exact
+owner dossier and restore its Life context after inspection, then re-run the
+same contract and conformance gates. Do not broaden either flag or add more
+lenses until that destination-and-return seam is proven end to end.

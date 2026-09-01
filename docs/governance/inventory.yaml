@@ -87,6 +87,10 @@ rules:
 
 
 overrides:
+  docs/working/four-root-repository-convergence-baseline-2026-09-01.md:
+    disposition: keep_reference
+    rationale: Reviewed cross-repository landing receipt recording usefulness, verification evidence, inherited debt, rollback points, and promotion boundaries without replacing canonical product or system authority.
+
   docs/working/ai-native-effortless-editing-and-composition-research-2026-08-31.md:
     disposition: keep_reference
     rationale: Active research on low-friction AI-native editing and composition; canonical interaction, contribution, and expression contracts retain authority.

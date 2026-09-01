@@ -3,7 +3,7 @@ doc_type: current_status
 status: active
 owner: engineering
 created: 2026-07-09
-last_verified: 2026-08-31
+last_verified: 2026-09-01
 why_new: Replace duplicated prose scorecards with one generated view of executable registries.
 supersedes: []
 source_of_truth_for: [cross-repo-current-state-summary]
@@ -22,7 +22,7 @@ from committed registries; follow the linked authority for evidence and detail.
 | Canonical journeys | 28 total / 12 golden path / 7 holistic extension | [`journeys.yaml`](../journeys/journeys.yaml) |
 | Feature flags | 97 registered / 95 active / 2 resolved | [`registry.yaml`](../flags/registry.yaml) |
 | System charters | 23 Markdown documents | [`systems/`](../systems/) |
-| Documentation inventory | 491 files classified | [`inventory.yaml`](../governance/inventory.yaml) |
+| Documentation inventory | 492 files classified | [`inventory.yaml`](../governance/inventory.yaml) |
 
 ### V1 intent versus executable evidence
 
@@ -67,16 +67,17 @@ handoff envelope, Life's container-and-lens organization, multiplayer
 placement, and the real-world engine as a cross-cutting capability rather than
 a fifth surface.
 
-The production mobile shell remains materially legacy-aligned around Trips,
-Vesper, Places, and You, and the mature Concierge runtime still operates over a
-Trip-centered semantic model. The current Chat, Life, and Home/Places research
-and fixture packs are architectural evidence for the target; they are not
-implementation or release certification. Production conformance requires an
-explicit shell migration, typed adapters into canonical owners, projection and
-handoff contracts, authority enforcement, and complete cross-root fixture
-verification without duplicating owner truth.
+The default production mobile shell remains materially legacy-aligned around
+Trips, Vesper, Places, and You, and the mature Concierge runtime still executes
+through its Trip-centered tools. The integrated candidate now has typed,
+default-off native Home, Places, and Life paths plus a default-off semantic
+Concierge shadow; none changes public navigation or authorizes a release claim.
+Production conformance still requires explicit shell promotion, broader typed
+owner adapters, authority enforcement, complete cross-root behavior, real-data
+validation, accessibility and performance evidence, and device proof without
+duplicating owner truth.
 
-As of 2026-08-29, the convergence branch has a default-off internal
+As of 2026-08-29, the convergence line introduced a default-off internal
 compatibility shell that labels the existing Trips, Concierge, Places, and
 Atlas routes Home, Chat, Places, and Life only in development or explicit
 internal builds. A native semantic portfolio lab covers five selected
@@ -98,11 +99,22 @@ gated Places carries the existing canonical Places feed unchanged inside the
 root envelope. Returned Home, Urgent Home, and saved-scope Places have registered
 native captures. This is implementation evidence, not production conformance:
 the compatibility shell remains internal and default-off; C2 contribution
-authority, C3 causal receipt/unwind, exact native return-envelope behavior,
-provider recovery, complete unit-union coverage, and real-data validation remain
-open. Complete Chat and Life are unchanged by this package. See the
+authority, C3 causal receipt/unwind, provider recovery, complete unit-union
+coverage, and real-data validation remain open. Chat is unchanged by this
+package. See the
 [bounded implementation status](../working/home-places-root-implementation-status-2026-08-31.md)
 for the exact proved and unproved boundary.
+
+As of 2026-09-01, the integrated candidate also carries exact root return
+context, typed Composition anatomy, authenticated owner-bound Artifact media,
+and a default-off Life Time root. Life has a read-only projection over existing
+Plans, Occasions, Commitments, and Outcomes; a canonical ResourceRef resolver;
+and a separate dark refinding lane backed by truth-aware Source and Occurrence
+reads. These are additive projection and retrieval seams, not a generalized
+Life owner, complete People/Places/Threads lenses, Together write path, final
+visual selection, or production shell. The backend and app preserve the same
+generated contract, and legacy Atlas/You machinery remains the compatibility
+owner while migration is dark.
 
 ### Contribution-contract conformance
 
@@ -113,12 +125,14 @@ decision](../decisions/2026-08-29-adopt-contribution-use-grants.md) now refines
 Source/claim/projection lifecycle, Outcome learning targets, multiplayer
 purpose, affected-person roles, contextual inspection, and connected-service
 boundaries. Intake v2 already preserves much of its source-bound candidate,
-truth, authority, and correction structure. Ordinary Concierge memory remains
-non-conforming: current prompt/tool paths can still write inferred preference,
-personality, mood, emotional-investment, and silence observations without the
-shared policy gate. Home, Places, Life, and new Chat input work must not treat
-those legacy writes as canonical product doctrine. Use the expanded F01–F18
-fixture portfolio as target requirements, not shipped-behavior evidence.
+truth, authority, and correction structure. The integrated Concierge prompt
+and `observe` path now actor-bind personal writes and explicitly reject inferred
+personality, mood, emotional-investment, and silence as durable memory. Full
+conformance remains open because the shared policy is not yet the single gate
+for every legacy writer and historical stores may contain older inferences.
+Home, Places, Life, and new Chat input work must not treat those legacy writes
+as canonical product doctrine. Use the expanded F01–F18 fixture portfolio as
+target requirements, not shipped-behavior evidence.
 
 For readiness, use [Journey Status](../journeys/STATUS.md). For the bounded first
 release, use the generated [V1 release contract](../release/v1-scope.md).

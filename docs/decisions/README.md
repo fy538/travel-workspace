@@ -4,7 +4,7 @@ status: accepted
 owner: founder / engineering
 created: 2026-07-09
 decided: 2026-07-09
-last_verified: 2026-07-09
+last_verified: 2026-09-01
 why_new: Provide one index and lifecycle for durable decisions instead of leaving them in working notes.
 supersedes: []
 source_of_truth_for: [decision-record-index]
@@ -18,6 +18,11 @@ Durable choices that constrain future work belong here. Use the
 
 | Date | Decision | Status |
 |---|---|---|
+| 2026-09-01 | [Adopt Life v1 behavior sequences](2026-09-01-adopt-life-v1-behavior-sequences.md) | accepted |
+| 2026-08-30 | [Adopt the Life consumer anatomy](2026-08-30-adopt-life-consumer-anatomy.md) | accepted |
+| 2026-08-30 | [Adopt the Home and Places consumer anatomy](2026-08-30-adopt-home-and-places-consumer-anatomy.md) | accepted |
+| 2026-08-29 | [Execute whole-product Wave 1](2026-08-29-execute-wave-1.md) | accepted |
+| 2026-08-29 | [Close four-root experience-to-contract convergence](2026-08-29-close-four-root-experience-to-contract-convergence.md) | accepted |
 | 2026-08-29 | [Close whole-product V1 Wave 0](2026-08-29-close-whole-product-v1-wave-0.md) | accepted |
 | 2026-08-29 | [Adopt the Life continuity and return contract](2026-08-29-adopt-life-continuity-and-return-contract.md) | accepted |
 | 2026-08-29 | [Adopt structured contribution use grants](2026-08-29-adopt-contribution-use-grants.md) | accepted |
