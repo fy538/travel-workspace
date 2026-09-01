@@ -100447,6 +100447,22 @@
             "pattern": "^[a-z][a-z0-9_.:-]{1,119}$",
             "title": "Capability Ref"
           },
+          "effect": {
+            "$ref": "#/components/schemas/RootActionEffect",
+            "default": "navigate"
+          },
+          "consequence_family_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_.:-]{2,119}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Consequence Family Id"
+          },
           "requires_confirmation": {
             "type": "boolean",
             "title": "Requires Confirmation",
@@ -100470,6 +100486,17 @@
           "capability_ref"
         ],
         "title": "RootAction"
+      },
+      "RootActionEffect": {
+        "type": "string",
+        "enum": [
+          "navigate",
+          "prepare",
+          "propose",
+          "execute"
+        ],
+        "title": "RootActionEffect",
+        "description": "What selecting a root action actually does.\n\nNavigation and preparation are deliberately not consequences. A proposal\nor execution changes canonical owner state and must therefore be bound to\none lived-experience family before it can be served."
       },
       "RootAudience": {
         "type": "string",
