@@ -30459,6 +30459,18 @@
         "operationId": "get_home_root_projection_api_root_projections_home_get",
         "parameters": [
           {
+            "name": "timezone",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "default": "UTC",
+              "title": "Timezone"
+            }
+          },
+          {
             "name": "authorization",
             "in": "header",
             "required": false,
@@ -68964,6 +68976,12 @@
             "title": "Root",
             "default": "home"
           },
+          "timezone": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 1,
+            "title": "Timezone"
+          },
           "posture": {
             "$ref": "#/components/schemas/HomePosture"
           },
@@ -69016,6 +69034,13 @@
             ],
             "title": "Dominant Result Id"
           },
+          "week": {
+            "items": {
+              "$ref": "#/components/schemas/HomeWeekDayProjection"
+            },
+            "type": "array",
+            "title": "Week"
+          },
           "regions": {
             "items": {
               "$ref": "#/components/schemas/HomeRegionProjection"
@@ -69041,11 +69066,63 @@
         "additionalProperties": false,
         "type": "object",
         "required": [
+          "timezone",
           "posture",
           "orientation",
+          "week",
           "regions"
         ],
         "title": "HomeRootProjection"
+      },
+      "HomeWeekDayProjection": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "title": "Date"
+          },
+          "mark": {
+            "$ref": "#/components/schemas/HomeWeekMark",
+            "default": "none"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 40
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "represented_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Represented Refs",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "date"
+        ],
+        "title": "HomeWeekDayProjection"
+      },
+      "HomeWeekMark": {
+        "type": "string",
+        "enum": [
+          "none",
+          "today",
+          "committed",
+          "tentative",
+          "critical"
+        ],
+        "title": "HomeWeekMark"
       },
       "HoodReceipt": {
         "properties": {
