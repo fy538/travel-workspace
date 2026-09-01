@@ -76,11 +76,10 @@ what a user sees:
   Places states, destinations, and degradations);
 - `EXPO_PUBLIC_ROOT_PROJECTION_V2` is registered as a default-off,
   development/internal-only migration gate with an explicit review date;
-- Home and Places mount opt-in reads behind that gate; Places remains on its v1
-  renderer while Home's first v2 renderer is now available. Mock mode makes no
-  v2 request and the flag cannot activate in a public release build. Native
-  v2 kind registries and Home renderer parity were completed in Package 2B;
-  duplicate Places fetching remains deliberately deferred.
+- Home mounts its opt-in v2 read behind that gate; Places remains on its v1
+  renderer while its state-specific v2 renderer is still dark. Mock mode makes
+  no v2 request and the flag cannot activate in a public release build. Native
+  v2 kind registries and Home renderer parity were completed in Package 2B.
 
 ## Package 2B — Home native v2 renderer (completed 2026-09-01)
 
@@ -107,9 +106,38 @@ it back into the v1 semantic-result contract:
   unchanged.
 
 This is a renderer and serving-cutover scaffold, not promotion evidence. The
-v2 envelope still needs a first-class orientation/week-shape producer, the
-complete Home posture matrix, real-data captures, and action/readback evidence
-before the flag can be broadened.
+first-class orientation/week-shape producer now exists, but the v2 envelope
+still needs the complete Home posture matrix, real-data captures, generated
+Composition/live-Instrument compatibility evidence, and action/readback
+evidence before the flag can be broadened.
+
+## Latest implementation slice — 2026-09-01
+
+The next convergence pass moved the contract from typed transport toward an
+honest producer boundary:
+
+- `RootHomePosture` is now the canonical v2 posture vocabulary, resolved by a
+  pure policy over the bounded Experience Projection. The v2 route no longer
+  infers `ordinary` or `quiet` from candidate count.
+- Home `world_read` and `week_shape` are first-class chrome candidates. The
+  producer owns their evidence, source refs, seven-day local date range, and
+  `RootReadScale`; the native renderer consumes `projection.chrome` and no
+  longer derives orientation from the dominant card.
+- The mobile schema projection is synchronized with the implementation
+  contract for `RootHomePosture`, `RootReadScale`, `RootWeekShape`, and Home
+  chrome. The backend environment could not import FastAPI for a fresh
+  snapshot export, so the parent `docs/openapi.json` is intentionally not
+  rewritten over unrelated concurrent changes; regenerate it before merging
+  this branch.
+- Places v2 adapters now leave Home/Life/Path-owned reasons (`gap`, `expiry`,
+  `group_waiting`, `anniversary`, `harvest`, `register`) out of World Field
+  rather than presenting them under the wrong spatial grammar.
+- The compatibility Places workspace accepts the root envelope as its feed
+  authority and disables its second `usePlacesFeed` network read when seeded;
+  the unused v2 shadow request was removed from `PlacesRootExperience`.
+
+These are bounded producer/authority corrections. They do not promote Places
+v2, change Chat or Life, or claim final Home editorial coverage.
 
 ## Post-review corrections — 2026-09-01
 
@@ -134,14 +162,21 @@ now closed in the backend and the internal Home consumer:
 - the mobile v2 cache keys now match root invalidation prefixes, source doors
   are available on instrument units, and typed action/continuation destinations
   route by their declared owner root.
+- Home posture, world-read chrome, week-shape chrome, and producer-selected
+  read scale now come from the v2 composition policy; the client no longer
+  synthesizes opening copy from a regional unit.
+- Places' compatibility bridge no longer performs a second feed request when a
+  root envelope already supplied the canonical feed, and deferred non-World
+  Field reasons are filtered before v2 admission.
 
 These are seam corrections, not a production promotion. The remaining
 promotion gates listed below are unchanged.
 
 ## Verification
 
-- Backend v2 contract/adapter/gate/portfolio/compiler tests: **28 passed**
-  across `tests/root_projection`.
+- Backend v2 contract/adapter/gate/portfolio/compiler tests: **33 passed**
+  across `tests/root_projection`; the API route suite passes **4** focused
+  v2/bridge tests in this environment.
 - Frontend root query/invalidation, v2 flag, renderer, navigation, and Home v2
   screen tests: **17 passed**.
 - Frontend TypeScript typecheck: **passed**.
@@ -163,11 +198,12 @@ Package 0–1 and Package 2A establish the permanent seam and a dark typed
 transport; they do not make v2 production visible. The following remain the
 renderer/convergence portion of Package 2 and later:
 
-- first-class v2 orientation/week-shape producers and full Home posture/real-
-  data renderer parity;
+- full Home posture/real-data renderer parity, including generated
+  Composition and live-Instrument compatibility fixtures;
 - generated Composition compatibility and live-Instrument fixtures through the
   renderer path;
-- removal of duplicate Places feed fetching in `PlacesWorkspace`; and
+- promotion of the state-specific Places renderer and removal of the remaining
+  v1 root/feed compatibility authority; and
 - deletion of legacy Trips/Places compatibility code after route-state,
   action/readback, degradation, and social/grant gates pass.
 
