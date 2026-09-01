@@ -68,6 +68,12 @@ archive. `EXPO_PUBLIC_LIFE_ROOT_V1` is default-off and internal/dev-only.
   475 operations, 1,222 schemas.
 - Cross-repository API audit with the Life worktree: passed — 550 active, 13
   dark, 62 retiring operations; 0 unflagged.
+- The parent `make contract-check` is intentionally not green on this
+  coordination checkout: `travel-app` is an active Artifact fixture branch
+  with uncommitted files, while the Life app is isolated in
+  `worktrees/life-foundation-app`. The resulting stale/missing consumers are
+  checkout alignment findings, not a Life contract failure; rerun it after the
+  Strategy/Life app branch is deliberately promoted.
 - Backend commit hooks passed all applicable checks. The repository-wide broad
   exception and size-budget hooks remain at their pre-existing baseline
   ceilings and were skipped for the small docstring follow-up, as required by
