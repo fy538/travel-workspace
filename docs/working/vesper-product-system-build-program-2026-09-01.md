@@ -479,3 +479,35 @@ mobile paths, 477 operations, and 1,254 schemas.
 S3 is now active alongside S2. This is a system slice, not a one-loop proof: it
 establishes the reusable cutover pattern by which judgment changes a native
 root without throwing away its mature capabilities.
+
+### S3B — Home owner completion and resilient native cutover — landed
+
+Backend commits `ad0bd4cca` and `ce0966dd6`, plus app commit `32a2c7515`,
+close the most consequential authority gaps behind the already-native Home v2
+composition:
+
+- an upcoming, live, or recently completed legacy Trip now compiles an exact
+  `life.read` scope, verifies viewer membership before reading the Trip owner,
+  returns its current revision, and does not widen into an unrelated Experience
+  Graph read;
+- exact Life reads now filter Plan, Occasion, Outcome, Journey, and Trip
+  identity rather than letting any Life material satisfy a named object;
+- social Places candidates preserve the addressed person in
+  `relationship.search`, and the viewer-safe handoff reader filters to that
+  person before returning evidence;
+- unsupported dossier, city, area, and generic card identities remain in the
+  value requirement but cannot be claimed by the Moment reader, so they are
+  withheld until a canonical owner adapter exists; and
+- the Home v2 root keeps its compatibility read cold on the healthy path, then
+  wakes and renders it only after transport or contract failure instead of
+  turning a migration failure into a blank temporal root.
+
+The end-to-end Home test follows an actual upcoming Trip through producer,
+scoped request, membership-safe canonical read, revision, and value judgment.
+Focused and adjacent verification covers 182 backend tests, Home and Places
+native-cutover tests, TypeScript, and Expo lint; all changed-repository hooks
+pass.
+
+Home is production-shaped but not yet publicly promoted. Evidence-bearing
+Composition/public-research sources, live condition/route adapters, device
+navigation, and production flag/rollback evidence remain later package work.
