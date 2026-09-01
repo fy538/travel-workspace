@@ -272,3 +272,34 @@ In parallel only where worktree ownership is explicit, continue native
 Home/Places rendering against the current v2 contract and keep Life/Chat behind
 their existing typed boundaries. Do not publicly promote a root until the S1
 reads and S2 judgment runtime can supply it honestly.
+
+## Execution status — 2026-09-01
+
+### S1A — typed owner-read contract and portfolio coordinator — landed
+
+Backend commit `b02df3e26` establishes the shared internal read seam:
+
+- seven discriminated payload families: Source, Place, coordination,
+  consequence, Life, relationship, and Moment;
+- a strict `OwnerReadRequest` and `OwnerReadEnvelope` with viewer, audience,
+  grants, owner/evidence identity, revision, observation, expiry, state, and
+  bounded omissions;
+- current, partial, stale, unavailable, unauthorized, and conflict states that
+  cannot blur payload-bearing truth with failure;
+- a registry for exact reviewed semantic operations rather than arbitrary owner
+  dictionaries;
+- bounded concurrent execution with independent timeout, unavailability, and
+  contract-mismatch degradation; and
+- portfolio compilation that derives root- and situation-specific executable
+  requests for Home, Chat, Places, and Life from the accepted owner-read plan.
+
+Focused validation: 52 owner-read, Agentic Semantic Facade, semantic-catalog,
+selector, root-v2 contract, and Home-portfolio tests pass. Repository hooks,
+including import, async-DB, broad-exception, public-projection, size, secret,
+and status ratchets, pass.
+
+S1 is not complete. The next increment binds the seven typed families to the
+existing canonical Source/Intake, Places/world, Experience Graph/Trip,
+provider/receipt, Life/refinding, relationship/grant, and Situation providers;
+then root projection and agentic planning must consume those bindings rather
+than presentation-specific or transcript-derived reads.
