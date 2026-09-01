@@ -5,9 +5,9 @@ owner: founder / backend / frontend
 created: 2026-09-01
 last_verified: 2026-09-01
 expires: 2026-10-01
-why_new: Record the concrete Package 0–1 implementation outcome without implying that the v2 roots are already the production renderer. This status sheet is the handoff from architecture freeze to compiler work.
+why_new: Record the concrete Package 0–1 and Package 2A implementation outcome without implying that the v2 roots are already the production renderer. This status sheet is the handoff from architecture freeze through the dark typed compiler boundary.
 source_of_truth_for:
-  - Package 0–1 completion status and known deferred work
+  - Package 0–1 and Package 2A completion status and known deferred work
 depends_on:
   - docs/working/home-and-places-root-implementation-program-2026-08-31.md
   - docs/working/home-and-places-root-consumer-graph-2026-09-01.md
@@ -59,11 +59,36 @@ depends_on:
 - The pure v2 modules are lazily importable without initializing the legacy
   Places/lived-experience dependency graph.
 
+## Package 2A — typed dark boundary (completed 2026-09-01)
+
+The first compiler slice now crosses the repository boundary without changing
+what a user sees:
+
+- pure `compile_home_v2` and `compile_places_v2` functions emit the immutable
+  v2 envelope from already-admitted candidates; they do not read databases,
+  rank page-shaped sections, or select a client component;
+- `GET /api/root-projections/v2/home` and
+  `GET /api/root-projections/v2/places` expose those compilers behind the
+  existing authenticated router, with Home's bounded Experience Graph limits
+  and Places' independent-source degradation preserved;
+- the complete OpenAPI snapshot and generated mobile projection now include
+  the v2 paths and schemas (`RootCandidate`, typed payload families, regions,
+  Places states, destinations, and degradations);
+- `EXPO_PUBLIC_ROOT_PROJECTION_V2` is registered as a default-off,
+  development/internal-only migration gate with an explicit review date;
+- Home and Places mount opt-in shadow reads behind that gate while continuing
+  to render the v1 compatibility treatment. Mock mode makes no v2 request and
+  the flag cannot activate in a public release build; and
+- the native v2 kind registries, renderer parity, and duplicate Places fetch
+  removal remain deliberately deferred to the next package.
+
 ## Verification
 
-- Backend v2 contract/adapter/gate/portfolio tests: **8 passed**.
-- Frontend root query/invalidation tests: **5 passed**.
+- Backend v2 contract/adapter/gate/portfolio/compiler tests: **11 passed**.
+- Frontend root query/invalidation and v2 flag tests: **9 passed**.
 - Frontend TypeScript typecheck: **passed**.
+- API contract audit and OpenAPI mobile projection: **passed** with 428 paths,
+  473 operations, and 1,190 schemas in the app projection.
 - Ruff, formatting, import-cycle, boundary, surface-registry, and related
   pre-commit checks: **passed** for changed files.
 
@@ -74,11 +99,10 @@ only for the backend commits; no new broad exception was introduced.
 
 ## Deliberately not claimed yet
 
-Package 0–1 establishes the permanent seam; it does not make v2 production
-visible. The following remain Package 2 work:
+Package 0–1 and Package 2A establish the permanent seam and a dark typed
+transport; they do not make v2 production visible. The following remain the
+renderer/convergence portion of Package 2 and later:
 
-- wiring bounded candidate reads into separate Home and Places v2 compilers;
-- generated OpenAPI/mobile v2 projection types and a dark contract endpoint;
 - native kind registries and full real-data renderer parity;
 - generated Composition compatibility and live-Instrument fixtures through the
   renderer path;

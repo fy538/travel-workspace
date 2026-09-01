@@ -1722,6 +1722,38 @@
       "removal_trigger": "Remove only if Places adopts a replacement root envelope with equivalent context, freshness, and cross-root selection semantics.",
       "review_by": "2026-10-31"
     },
+    "GET /api/root-projections/v2/home": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "useHomeRootProjectionV2",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": "EXPO_PUBLIC_ROOT_PROJECTION_V2",
+      "lifecycle": "active",
+      "owner": "root-projection",
+      "reason": "Feature-gated v2 Home projection contract for typed migration and parity evaluation; the internal shadow reader is not a serving cutover until the v2 renderer and bounded producer evidence are ready.",
+      "removal_trigger": "Remove the route if v2 projection parity or the Home migration is abandoned; promote the reader only after device-verified renderer parity.",
+      "review_by": "2026-09-28"
+    },
+    "GET /api/root-projections/v2/places": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "usePlacesRootProjectionV2",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": "EXPO_PUBLIC_ROOT_PROJECTION_V2",
+      "lifecycle": "active",
+      "owner": "root-projection",
+      "reason": "Feature-gated v2 Places projection contract for typed migration and parity evaluation; the internal shadow reader is not a serving cutover until the v2 renderer and bounded producer evidence are ready.",
+      "removal_trigger": "Remove the route if v2 projection parity or the Places migration is abandoned; promote the reader only after device-verified renderer parity.",
+      "review_by": "2026-09-28"
+    },
     "PUT /api/places/scope": {
       "audience": "app",
       "consumers": [

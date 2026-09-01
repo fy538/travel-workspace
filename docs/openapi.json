@@ -44063,6 +44063,136 @@
           }
         }
       }
+    },
+    "/api/root-projections/v2/home": {
+      "get": {
+        "tags": [
+          "root-projections"
+        ],
+        "summary": "Get Home Root Projection",
+        "description": "Return Home's viewer-relative temporal projection.\n\nThe first serving adapter reads the Experience Graph's canonical Plan,\nOccasion, Commitment, Opening, and Outcome projection. It does not invoke\nConcierge, infer state from transcripts, or create durable Home truth.",
+        "operationId": "get_home_root_projection_api_root_projections_v2_home_get",
+        "parameters": [
+          {
+            "name": "timezone",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "default": "UTC",
+              "title": "Timezone"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RootProjectionEnvelopeV2"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/root-projections/v2/places": {
+      "get": {
+        "tags": [
+          "root-projections"
+        ],
+        "summary": "Get Places Root Projection",
+        "description": "Return Places through the shared root envelope.\n\nExisting Places context, ranking, relationship, provider-cache, and\neditorial readers remain authoritative. The adapter adds root identity,\nrevision, freshness, and typed cross-root doors without re-ranking rows.",
+        "operationId": "get_places_root_projection_api_root_projections_v2_places_get",
+        "parameters": [
+          {
+            "name": "context_handle",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Context Handle"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RootProjectionEnvelopeV2"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -116041,6 +116171,1147 @@
           "circle"
         ],
         "title": "RelationshipScopeKind"
+      },
+      "HomeUnitKind": {
+        "enum": [
+          "world_read",
+          "root_shell",
+          "week_shape",
+          "now_commitment_instrument",
+          "now_prepared_possibility",
+          "now_decision",
+          "now_recovery_instrument",
+          "now_temporal_posture",
+          "now_annotated_evidence",
+          "now_attributed_comparison",
+          "now_invitation",
+          "now_merged_into_read",
+          "motion_occasion_row",
+          "motion_loose_end_row",
+          "motion_all_plans_door",
+          "horizon_editorial_passage",
+          "horizon_mechanism_row",
+          "horizon_aperture_row",
+          "horizon_hidden_system",
+          "people_note_door",
+          "people_participants_row",
+          "people_waiting_row",
+          "people_authorized_door",
+          "people_gathering",
+          "people_status_aperture",
+          "continuity_capability_field",
+          "continuity_since_you_looked",
+          "continuity_life_door",
+          "continuity_settling",
+          "continuity_voice_horizon",
+          "continuity_reconstruction"
+        ],
+        "title": "HomeUnitKind",
+        "type": "string"
+      },
+      "PlacesUnitKind": {
+        "enum": [
+          "scope_handle",
+          "provenance_label",
+          "search_map_affordance",
+          "field_lead_composition",
+          "field_branch_lead",
+          "field_branch",
+          "field_returned_understanding",
+          "field_continuity_doors",
+          "field_balanced_fallback",
+          "field_browse_shelf",
+          "field_editorial_cover",
+          "focus_identity_map",
+          "focus_verdict",
+          "focus_relationship_trace",
+          "focus_human_note",
+          "focus_horizon_doors",
+          "focus_possibility_row",
+          "focus_action_seam",
+          "path_relation_statement",
+          "path_difference_diagram",
+          "path_distinction_rows",
+          "path_evidence_apparatus",
+          "path_consequence",
+          "path_next_rows",
+          "live_instrument",
+          "live_burden_receipt",
+          "live_fallback",
+          "live_temporal_posture",
+          "live_action_seam",
+          "live_branch_field",
+          "social_attributed_evidence",
+          "social_relational_relevance",
+          "social_plural_comparison",
+          "social_participation_consequence"
+        ],
+        "title": "PlacesUnitKind",
+        "type": "string"
+      },
+      "RootAction": {
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Label",
+            "type": "string"
+          },
+          "capability_ref": {
+            "pattern": "^[a-z][a-z0-9_.:-]{1,119}$",
+            "title": "Capability Ref",
+            "type": "string"
+          },
+          "requires_confirmation": {
+            "default": false,
+            "title": "Requires Confirmation",
+            "type": "boolean"
+          },
+          "destination": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RootDestination"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          }
+        },
+        "required": [
+          "label",
+          "capability_ref"
+        ],
+        "title": "RootAction",
+        "type": "object"
+      },
+      "RootAudience": {
+        "enum": [
+          "private",
+          "group",
+          "public"
+        ],
+        "title": "RootAudience",
+        "type": "string"
+      },
+      "RootComposition": {
+        "additionalProperties": false,
+        "properties": {
+          "family": {
+            "const": "composition",
+            "default": "composition",
+            "title": "Family",
+            "type": "string"
+          },
+          "composition_id": {
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Composition Id",
+            "type": "string"
+          },
+          "expression_version": {
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Expression Version",
+            "type": "string"
+          },
+          "title": {
+            "maxLength": 180,
+            "minLength": 1,
+            "title": "Title",
+            "type": "string"
+          },
+          "substance": {
+            "maxLength": 1400,
+            "minLength": 1,
+            "title": "Substance",
+            "type": "string"
+          },
+          "lead_medium": {
+            "$ref": "#/components/schemas/LeadMedium"
+          },
+          "support_medium": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LeadMedium"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "basis": {
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Basis",
+            "type": "string"
+          }
+        },
+        "required": [
+          "composition_id",
+          "expression_version",
+          "title",
+          "substance",
+          "lead_medium",
+          "basis"
+        ],
+        "title": "RootComposition",
+        "type": "object"
+      },
+      "RootDegradation": {
+        "additionalProperties": false,
+        "properties": {
+          "owner_kind": {
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Owner Kind",
+            "type": "string"
+          },
+          "code": {
+            "pattern": "^[a-z][a-z0-9_.:-]{1,119}$",
+            "title": "Code",
+            "type": "string"
+          },
+          "effect": {
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Effect",
+            "type": "string"
+          },
+          "retryable": {
+            "default": false,
+            "title": "Retryable",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "owner_kind",
+          "code",
+          "effect"
+        ],
+        "title": "RootDegradation",
+        "type": "object"
+      },
+      "RootDestination": {
+        "additionalProperties": false,
+        "description": "An owner capability, never a client route.",
+        "properties": {
+          "target_root": {
+            "$ref": "#/components/schemas/ProductRoot"
+          },
+          "capability_ref": {
+            "pattern": "^[a-z][a-z0-9_.:-]{1,119}$",
+            "title": "Capability Ref",
+            "type": "string"
+          },
+          "resource_refs": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "title": "Resource Refs",
+            "type": "array"
+          }
+        },
+        "required": [
+          "target_root",
+          "capability_ref"
+        ],
+        "title": "RootDestination",
+        "type": "object"
+      },
+      "RootDirectState": {
+        "additionalProperties": false,
+        "properties": {
+          "family": {
+            "const": "direct_state",
+            "default": "direct_state",
+            "title": "Family",
+            "type": "string"
+          },
+          "label": {
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Label",
+            "type": "string"
+          },
+          "value": {
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Value",
+            "type": "string"
+          },
+          "basis": {
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Basis",
+            "type": "string"
+          }
+        },
+        "required": [
+          "label",
+          "value",
+          "basis"
+        ],
+        "title": "RootDirectState",
+        "type": "object"
+      },
+      "RootFreshness": {
+        "enum": [
+          "fresh",
+          "stale",
+          "unknown"
+        ],
+        "title": "RootFreshness",
+        "type": "string"
+      },
+      "RootInstrument": {
+        "additionalProperties": false,
+        "properties": {
+          "family": {
+            "const": "instrument",
+            "default": "instrument",
+            "title": "Family",
+            "type": "string"
+          },
+          "instrument_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "operation_capabilities": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Operation Capabilities",
+            "type": "array"
+          },
+          "fallback": {
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Fallback",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instrument_ref",
+          "fallback"
+        ],
+        "title": "RootInstrument",
+        "type": "object"
+      },
+      "RootLifecycle": {
+        "enum": [
+          "ephemeral",
+          "expiring",
+          "live",
+          "saved",
+          "durable"
+        ],
+        "title": "RootLifecycle",
+        "type": "string"
+      },
+      "RootLink": {
+        "additionalProperties": false,
+        "properties": {
+          "family": {
+            "const": "link",
+            "default": "link",
+            "title": "Family",
+            "type": "string"
+          },
+          "label": {
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Label",
+            "type": "string"
+          },
+          "relation": {
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Relation",
+            "type": "string"
+          },
+          "target": {
+            "$ref": "#/components/schemas/ResourceRef"
+          }
+        },
+        "required": [
+          "label",
+          "relation",
+          "target"
+        ],
+        "title": "RootLink",
+        "type": "object"
+      },
+      "RootProjectionV2": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "root-projection.v2",
+            "default": "root-projection.v2",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "root": {
+            "enum": [
+              "home",
+              "places"
+            ],
+            "title": "Root",
+            "type": "string"
+          },
+          "projection_id": {
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Projection Id",
+            "type": "string"
+          },
+          "revision": {
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Revision",
+            "type": "string"
+          },
+          "represented_at": {
+            "format": "date-time",
+            "title": "Represented At",
+            "type": "string"
+          },
+          "home_posture": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Home Posture"
+          },
+          "places_state": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesState"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "regions": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/RootRegionProjection"
+            },
+            "title": "Regions",
+            "type": "array"
+          },
+          "units": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/RootUnit"
+            },
+            "title": "Units",
+            "type": "array"
+          },
+          "dominant_unit_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Dominant Unit Id"
+          }
+        },
+        "required": [
+          "root",
+          "projection_id",
+          "revision",
+          "represented_at"
+        ],
+        "title": "RootProjectionV2",
+        "type": "object"
+      },
+      "RootRead": {
+        "additionalProperties": false,
+        "properties": {
+          "family": {
+            "const": "read",
+            "default": "read",
+            "title": "Family",
+            "type": "string"
+          },
+          "anchor": {
+            "maxLength": 180,
+            "minLength": 1,
+            "title": "Anchor",
+            "type": "string"
+          },
+          "voice": {
+            "anyOf": [
+              {
+                "maxLength": 500,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Voice"
+          },
+          "basis": {
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Basis",
+            "type": "string"
+          }
+        },
+        "required": [
+          "anchor",
+          "basis"
+        ],
+        "title": "RootRead",
+        "type": "object"
+      },
+      "RootReceipt": {
+        "additionalProperties": false,
+        "properties": {
+          "family": {
+            "const": "receipt",
+            "default": "receipt",
+            "title": "Family",
+            "type": "string"
+          },
+          "receipt_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "detail": {
+            "maxLength": 600,
+            "minLength": 1,
+            "title": "Detail",
+            "type": "string"
+          },
+          "repair_capability": {
+            "anyOf": [
+              {
+                "maxLength": 120,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Repair Capability"
+          }
+        },
+        "required": [
+          "receipt_ref",
+          "detail"
+        ],
+        "title": "RootReceipt",
+        "type": "object"
+      },
+      "RootRegion": {
+        "enum": [
+          "now",
+          "in_motion",
+          "horizons",
+          "continuity"
+        ],
+        "title": "RootRegion",
+        "type": "string"
+      },
+      "RootRegionProjection": {
+        "additionalProperties": false,
+        "properties": {
+          "region": {
+            "$ref": "#/components/schemas/RootRegion"
+          },
+          "units": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/RootUnit"
+            },
+            "title": "Units",
+            "type": "array"
+          }
+        },
+        "required": [
+          "region"
+        ],
+        "title": "RootRegionProjection",
+        "type": "object"
+      },
+      "RootSilence": {
+        "additionalProperties": false,
+        "properties": {
+          "family": {
+            "const": "silence",
+            "default": "silence",
+            "title": "Family",
+            "type": "string"
+          },
+          "reason_code": {
+            "pattern": "^[a-z][a-z0-9_.:-]{1,119}$",
+            "title": "Reason Code",
+            "type": "string"
+          },
+          "next_evaluation_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Next Evaluation At"
+          }
+        },
+        "required": [
+          "reason_code"
+        ],
+        "title": "RootSilence",
+        "type": "object"
+      },
+      "RootStatus": {
+        "enum": [
+          "current",
+          "pending",
+          "partial",
+          "stale",
+          "unknown",
+          "revoked"
+        ],
+        "title": "RootStatus",
+        "type": "string"
+      },
+      "RootUnit": {
+        "additionalProperties": false,
+        "description": "An admitted candidate, retaining the identity needed for readback.",
+        "properties": {
+          "unit_id": {
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Unit Id",
+            "type": "string"
+          },
+          "kind": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/HomeUnitKind"
+              },
+              {
+                "$ref": "#/components/schemas/PlacesUnitKind"
+              }
+            ],
+            "title": "Kind"
+          },
+          "region": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RootRegion"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "state": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesState"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "evidence_cluster_id": {
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Evidence Cluster Id",
+            "type": "string"
+          },
+          "surface_seat_id": {
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Surface Seat Id",
+            "type": "string"
+          },
+          "represented_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "title": "Represented Refs",
+            "type": "array"
+          },
+          "owner_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "title": "Owner Refs",
+            "type": "array"
+          },
+          "audience": {
+            "$ref": "#/components/schemas/RootAudience"
+          },
+          "status": {
+            "$ref": "#/components/schemas/RootStatus"
+          },
+          "freshness": {
+            "$ref": "#/components/schemas/RootFreshness"
+          },
+          "lifecycle": {
+            "$ref": "#/components/schemas/RootLifecycle"
+          },
+          "payload": {
+            "discriminator": {
+              "mapping": {
+                "composition": "#/components/schemas/RootComposition",
+                "direct_state": "#/components/schemas/RootDirectState",
+                "instrument": "#/components/schemas/RootInstrument",
+                "link": "#/components/schemas/RootLink",
+                "read": "#/components/schemas/RootRead",
+                "receipt": "#/components/schemas/RootReceipt",
+                "silence": "#/components/schemas/RootSilence"
+              },
+              "propertyName": "family"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/RootDirectState"
+              },
+              {
+                "$ref": "#/components/schemas/RootComposition"
+              },
+              {
+                "$ref": "#/components/schemas/RootInstrument"
+              },
+              {
+                "$ref": "#/components/schemas/RootReceipt"
+              },
+              {
+                "$ref": "#/components/schemas/RootLink"
+              },
+              {
+                "$ref": "#/components/schemas/RootRead"
+              },
+              {
+                "$ref": "#/components/schemas/RootSilence"
+              }
+            ],
+            "title": "Payload"
+          },
+          "actions": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/RootAction"
+            },
+            "title": "Actions",
+            "type": "array"
+          },
+          "destination": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RootDestination"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "why_this": {
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Why This",
+            "type": "string"
+          }
+        },
+        "required": [
+          "unit_id",
+          "kind",
+          "evidence_cluster_id",
+          "surface_seat_id",
+          "represented_refs",
+          "owner_refs",
+          "audience",
+          "status",
+          "freshness",
+          "lifecycle",
+          "payload",
+          "why_this"
+        ],
+        "title": "RootUnit",
+        "type": "object"
+      },
+      "RootProjectionEnvelopeV2": {
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "root-projection-envelope.v2",
+            "default": "root-projection-envelope.v2",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "root": {
+            "enum": [
+              "home",
+              "places"
+            ],
+            "title": "Root",
+            "type": "string"
+          },
+          "viewer_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "projection": {
+            "$ref": "#/components/schemas/RootProjectionV2"
+          },
+          "source_revisions": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/RootSourceRevision"
+            },
+            "title": "Source Revisions",
+            "type": "array"
+          },
+          "degradations": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/RootDegradation"
+            },
+            "title": "Degradations",
+            "type": "array"
+          }
+        },
+        "required": [
+          "root",
+          "viewer_ref",
+          "projection"
+        ],
+        "title": "RootProjectionEnvelopeV2",
+        "type": "object"
+      },
+      "RootCandidate": {
+        "additionalProperties": false,
+        "description": "One owner-backed semantic candidate before surface admission.",
+        "properties": {
+          "candidate_id": {
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Candidate Id",
+            "type": "string"
+          },
+          "root": {
+            "enum": [
+              "home",
+              "places"
+            ],
+            "title": "Root",
+            "type": "string"
+          },
+          "kind": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/HomeUnitKind"
+              },
+              {
+                "$ref": "#/components/schemas/PlacesUnitKind"
+              }
+            ],
+            "title": "Kind"
+          },
+          "region": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RootRegion"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "state": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesState"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "dominant_job": {
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Dominant Job",
+            "type": "string"
+          },
+          "material_trigger": {
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Material Trigger",
+            "type": "string"
+          },
+          "evidence_cluster_id": {
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Evidence Cluster Id",
+            "type": "string"
+          },
+          "surface_seat_id": {
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Surface Seat Id",
+            "type": "string"
+          },
+          "semantic_role": {
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Semantic Role",
+            "type": "string"
+          },
+          "represented_refs": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "title": "Represented Refs",
+            "type": "array"
+          },
+          "owner_refs": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "title": "Owner Refs",
+            "type": "array"
+          },
+          "source_refs": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "title": "Source Refs",
+            "type": "array"
+          },
+          "grant_refs": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "title": "Grant Refs",
+            "type": "array"
+          },
+          "projected_surfaces": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/ProductRoot"
+            },
+            "title": "Projected Surfaces",
+            "type": "array"
+          },
+          "audience": {
+            "$ref": "#/components/schemas/RootAudience",
+            "default": "private"
+          },
+          "status": {
+            "$ref": "#/components/schemas/RootStatus",
+            "default": "current"
+          },
+          "freshness": {
+            "$ref": "#/components/schemas/RootFreshness",
+            "default": "fresh"
+          },
+          "lifecycle": {
+            "$ref": "#/components/schemas/RootLifecycle",
+            "default": "ephemeral"
+          },
+          "owner_surface": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ProductRoot"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "fact_key": {
+            "anyOf": [
+              {
+                "maxLength": 300,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Fact Key"
+          },
+          "novelty": {
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Novelty",
+            "type": "string"
+          },
+          "burden": {
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Burden",
+            "type": "string"
+          },
+          "admission_priority": {
+            "default": 50,
+            "maximum": 100,
+            "minimum": 0,
+            "title": "Admission Priority",
+            "type": "integer"
+          },
+          "feasible": {
+            "default": true,
+            "title": "Feasible",
+            "type": "boolean"
+          },
+          "actions": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/RootAction"
+            },
+            "title": "Actions",
+            "type": "array"
+          },
+          "destination": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RootDestination"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "payload": {
+            "discriminator": {
+              "mapping": {
+                "composition": "#/components/schemas/RootComposition",
+                "direct_state": "#/components/schemas/RootDirectState",
+                "instrument": "#/components/schemas/RootInstrument",
+                "link": "#/components/schemas/RootLink",
+                "read": "#/components/schemas/RootRead",
+                "receipt": "#/components/schemas/RootReceipt",
+                "silence": "#/components/schemas/RootSilence"
+              },
+              "propertyName": "family"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/RootDirectState"
+              },
+              {
+                "$ref": "#/components/schemas/RootComposition"
+              },
+              {
+                "$ref": "#/components/schemas/RootInstrument"
+              },
+              {
+                "$ref": "#/components/schemas/RootReceipt"
+              },
+              {
+                "$ref": "#/components/schemas/RootLink"
+              },
+              {
+                "$ref": "#/components/schemas/RootRead"
+              },
+              {
+                "$ref": "#/components/schemas/RootSilence"
+              }
+            ],
+            "title": "Payload"
+          },
+          "lead_medium": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LeadMedium"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "support_medium": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LeadMedium"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "dependency_refs": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "title": "Dependency Refs",
+            "type": "array"
+          },
+          "why_this": {
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Why This",
+            "type": "string"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Expires At"
+          }
+        },
+        "required": [
+          "candidate_id",
+          "root",
+          "kind",
+          "dominant_job",
+          "material_trigger",
+          "evidence_cluster_id",
+          "surface_seat_id",
+          "semantic_role",
+          "novelty",
+          "burden",
+          "payload",
+          "why_this"
+        ],
+        "title": "RootCandidate",
+        "type": "object"
       }
     }
   }
