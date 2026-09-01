@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;700&display=swap">
+  <style>
+    body { margin: 0; }
+    a { color: #8A6628; } a:hover { color: #4A3428; }
+  </style>
+</helmet>
+<div style="width: 393px; min-height: 1330px; background: #EFEAE0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; color: #1B1714; display: flex; flex-direction: column; box-sizing: border-box; padding-bottom: 28px;">
+
+  <!-- chrome -->
+  <div style="display: flex; align-items: center; gap: 12px; padding: 24px 22px 0 22px;">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex: none;"><path d="M12.5 4L7 10L12.5 16" stroke="#1B1714" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div style="display: flex; flex-direction: column; gap: 2px; flex-grow: 1;">
+      <div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-weight: 700; font-size: 11px; letter-spacing: 1.15px;">RED HOOK &middot; ACCESS</div>
+      <div style="font-size: 12.5px; line-height: 17px; color: #6E6862;">Saturday &middot; 2&ndash;8 PM</div>
+    </div>
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex: none;"><path d="M3 6.5L8 4.5L12 6.5L17 4.5V13.5L12 15.5L8 13.5L3 15.5V6.5Z" stroke="#6E6862" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 4.5V13.5M12 6.5V15.5" stroke="#6E6862" stroke-width="1.5"/></svg>
+  </div>
+
+  <!-- relation statement -->
+  <div style="padding: 24px 22px 0 22px; display: flex; flex-direction: column; gap: 8px;">
+    <div style="font-family: 'EB Garamond', Georgia, serif; font-size: 22px; line-height: 27px; letter-spacing: -0.2px; font-weight: 600;">Two waterfronts, two different thresholds</div>
+    <div style="font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 25px;">Sorrento&rsquo;s town and marina are close on a map but separated by elevation and transfer. Red Hook is comparatively flat; its threshold is the continuity of the network that reaches it.</div>
+  </div>
+
+  <!-- difference map · one paired diagram encoding the difference -->
+  <div style="padding: 24px 22px 0 22px;">
+    <svg width="349" height="230" viewBox="0 0 349 230" fill="none" style="display: block; width: 100%; height: auto;">
+      <rect x="0" y="0" width="349" height="230" rx="12" fill="#FBF7EC" stroke="rgba(27,23,20,0.10)"/>
+      <path d="M174.5 16 L174.5 214" stroke="rgba(27,23,20,0.10)" stroke-dasharray="2 6"/>
+      <text x="24" y="30" font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" letter-spacing="1.15" fill="#1B1714">SORRENTO</text>
+      <text x="196" y="30" font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" letter-spacing="1.15" fill="#1B1714">RED HOOK</text>
+      <!-- SORRENTO: vertical threshold -->
+      <rect x="34" y="48" width="88" height="24" rx="6" fill="#EFEAE0" stroke="rgba(27,23,20,0.10)"/>
+      <text x="52" y="63" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0.8" fill="#1B1714">TOWN</text>
+      <!-- cliff hatching -->
+      <path d="M62 78 L62 128 M70 82 L70 124 M78 78 L78 128 M86 82 L86 124 M94 78 L94 128" stroke="rgba(122,46,46,0.35)" stroke-width="1.4"/>
+      <path d="M78 80 L78 122 M74 114 L78 122 L82 114" stroke="#7A2E2E" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="104" y="106" font-family="JetBrains Mono, monospace" font-size="7.5" letter-spacing="0.6" fill="#7A2E2E">VERTICAL</text>
+      <rect x="34" y="134" width="88" height="24" rx="6" fill="#EFEAE0" stroke="rgba(27,23,20,0.10)"/>
+      <text x="46" y="149" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0.8" fill="#1B1714">MARINA</text>
+      <path d="M42 176 L114 176 M108 171 L114 176 L108 181" stroke="#B0853A" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="34" y="196" font-family="JetBrains Mono, monospace" font-size="7.5" letter-spacing="0.6" fill="#8A6628">REGIONAL FERRY</text>
+      <!-- RED HOOK: network threshold -->
+      <rect x="196" y="48" width="120" height="24" rx="6" fill="#EFEAE0" stroke="rgba(27,23,20,0.10)"/>
+      <text x="210" y="63" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0.8" fill="#1B1714">CITY NETWORK</text>
+      <!-- network lines converging -->
+      <path d="M212 78 Q226 96 244 106 M256 76 Q252 92 248 106 M300 80 Q276 94 252 108" stroke="#B0853A" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      <circle cx="248" cy="110" r="3" fill="#B0853A"/>
+      <text x="262" y="100" font-family="JetBrains Mono, monospace" font-size="7.5" letter-spacing="0.6" fill="#8A6628">SCHEDULED</text>
+      <rect x="196" y="126" width="120" height="24" rx="6" fill="#EFEAE0" stroke="rgba(27,23,20,0.10)"/>
+      <text x="206" y="141" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0.8" fill="#1B1714">HARBOR EDGE</text>
+      <path d="M310 168 L216 168 M222 163 L216 168 L222 173" stroke="#1B1714" stroke-width="1.5" stroke-dasharray="1.5 5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="196" y="190" font-family="JetBrains Mono, monospace" font-size="7.5" letter-spacing="0.6" fill="#6E6862">FLEXIBLE LAND RETURN</text>
+      <text x="24" y="216" font-family="JetBrains Mono, monospace" font-size="7.5" letter-spacing="0.6" fill="#7A2E2E">THE THRESHOLD IS HEIGHT</text>
+      <text x="196" y="216" font-family="JetBrains Mono, monospace" font-size="7.5" letter-spacing="0.6" fill="#8A6628">THE THRESHOLD IS THE NETWORK</text>
+    </svg>
+  </div>
+
+  <!-- three distinctions -->
+  <div style="padding: 32px 22px 0 22px; display: flex; flex-direction: column;">
+    <div style="display: flex; gap: 14px; padding: 11px 0; border-top: 1px solid rgba(27,23,20,0.06); align-items: start;">
+      <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: #8A6628; min-width: 88px; padding-top: 2px;">DISTANCE</span>
+      <span style="font-size: 14px; line-height: 19px;">Short physical distance can still conceal a hard transition.</span>
+    </div>
+    <div style="display: flex; gap: 14px; padding: 11px 0; border-top: 1px solid rgba(27,23,20,0.06); align-items: start;">
+      <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: #8A6628; min-width: 88px; padding-top: 2px;">DEPENDENCY</span>
+      <span style="font-size: 14px; line-height: 19px;">Sorrento&rsquo;s candidate constraint is vertical transfer and ferry sequence. Red Hook&rsquo;s is network continuity and schedule.</span>
+    </div>
+    <div style="display: flex; gap: 14px; padding: 11px 0; border-top: 1px solid rgba(27,23,20,0.06); border-bottom: 1px solid rgba(27,23,20,0.06); align-items: start;">
+      <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: #8A6628; min-width: 88px; padding-top: 2px;">FALLBACK</span>
+      <span style="font-size: 14px; line-height: 19px;">Saturday remains flexible only if the return does not depend on the same fixed edge as the arrival.</span>
+    </div>
+  </div>
+
+  <!-- evidence apparatus · page-level provenance, uncarded -->
+  <div style="padding: 32px 22px 0 22px; display: flex; flex-direction: column; gap: 8px;">
+    <div style="display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: #6E6862; padding-bottom: 0px;"><span>WHY VESPER THINKS THIS</span><span style="flex:1;height:1px;background:rgba(27,23,20,0.10);"></span></div>
+    <div style="display: flex; flex-direction: column; gap: 6px;">
+      <div style="display: flex; gap: 12px;"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; color: #8A6628; min-width: 14px;">1</span><span style="font-size: 13px; line-height: 18px; color: #1B1714;">Your Sorrento cliff and movement observations</span></div>
+      <div style="display: flex; gap: 12px;"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; color: #8A6628; min-width: 14px;">2</span><span style="font-size: 13px; line-height: 18px; color: #1B1714;">Hotel, marina, ferry, and corrected route Sources</span></div>
+      <div style="display: flex; gap: 12px;"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; color: #8A6628; min-width: 14px;">3</span><span style="font-size: 13px; line-height: 18px; color: #1B1714;">Current New York route and service truth</span></div>
+      <div style="display: flex; gap: 12px;"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; color: #8A6628; min-width: 14px;">4</span><span style="font-size: 13px; line-height: 18px; color: #1B1714;">Map geometry and access conditions</span></div>
+    </div>
+    <div style="font-family: 'EB Garamond', Georgia, serif; font-style: italic; font-size: 17px; line-height: 24px; color: #6E6862; padding-top: 4px;">One coastal threshold is vertical; the other is networked. That does not make the places culturally or experientially equivalent.</div>
+  </div>
+
+  <!-- current consequence · the bridge to usefulness -->
+  <div style="margin: 32px 22px 0 22px; border-left: 2px solid #B0853A; padding-left: 13px; display: flex; flex-direction: column; gap: 6px;">
+    <div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: #8A6628;">WHAT THIS CHANGES SATURDAY</div>
+    <div style="font-size: 14px; line-height: 19px;">Treat the crossing as an opening, not as the only viable return. That preserves the waterfront character without making the day depend on one timetable.</div>
+    <div style="display: flex; align-items: center; margin-top: 2px;">
+      <span style="font-size: 14px; font-weight: 600; color: #8A6628;">Open the live interval</span>
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="margin-left: 6px;"><path d="M2 6.5H10M6.5 3L10 6.5L6.5 10" stroke="#8A6628" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </div>
+
+  <!-- honest next paths · at most two -->
+  <div style="padding: 32px 22px 0 22px; display: flex; flex-direction: column;">
+    <div style="display: flex; align-items: center; gap: 12px; min-height: 52px; border-top: 1px solid rgba(27,23,20,0.06);">
+      <span style="font-size: 14px; line-height: 19px; flex-grow: 1;">Follow Red Hook&rsquo;s working-waterfront history</span>
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="flex: none;"><path d="M4.5 2.5L9 6.5L4.5 10.5" stroke="#B5AFA5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px; min-height: 52px; border-top: 1px solid rgba(27,23,20,0.06); border-bottom: 1px solid rgba(27,23,20,0.06);">
+      <span style="font-size: 14px; line-height: 19px; flex-grow: 1;">Compare a continuous-land waterfront route</span>
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="flex: none;"><path d="M4.5 2.5L9 6.5L4.5 10.5" stroke="#B5AFA5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

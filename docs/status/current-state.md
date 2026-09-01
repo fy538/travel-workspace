@@ -3,7 +3,7 @@ doc_type: current_status
 status: active
 owner: engineering
 created: 2026-07-09
-last_verified: 2026-08-23
+last_verified: 2026-08-31
 why_new: Replace duplicated prose scorecards with one generated view of executable registries.
 supersedes: []
 source_of_truth_for: [cross-repo-current-state-summary]
@@ -85,6 +85,15 @@ envelope preserves exact return context. The backend shadow branch has a
 bounded portfolio read plan over the reviewed semantic operation catalog. None
 of these changes serves new runtime data, replaces existing owner writers,
 constitutes visual selection, or certifies the production shell.
+
+As of 2026-08-31, the Home and Places semantic design phase is closed against
+the accepted C1/C2/C3/F5 portfolio. The accepted bundle defines 65 root kinds
+(Home 31 and Places 34) plus 13 shared instruments and lifts the blanket hold
+on contract-bounded native implementation. This does **not** change the runtime
+facts above: the compatibility shell still labels legacy routes, the backend
+semantic facade remains off or shadow-only, the new Home preview is fixture
+driven, and complete Chat and Life roots plus native/real-data validation remain
+open.
 
 ### Contribution-contract conformance
 

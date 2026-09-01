@@ -1,0 +1,81 @@
+<!-- @dsCard group="Tokens" -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;700&display=swap">
+  <style>
+    body { margin: 0; }
+    .kick { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: #8A6628; }
+    .m { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+    .tr { display: grid; grid-template-columns: 40px 120px 210px 90px 1fr; gap: 0 12px; padding: 6px 0; border-top: 1px solid rgba(27,23,20,0.06); align-items: center; font-size: 12px; line-height: 16px; }
+    .sw { width: 34px; height: 22px; border-radius: 5px; border: 1px solid rgba(27,23,20,0.12); }
+    .tk { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; color: #1B1714; }
+    .cd { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; color: #6E6862; }
+    .hx { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; color: #B5AFA5; }
+    .law { font-size: 11.5px; color: #6E6862; }
+    .yr { display: grid; grid-template-columns: 260px 230px 1fr; gap: 0 14px; padding: 7px 0; border-top: 1px solid rgba(27,23,20,0.06); align-items: baseline; }
+  </style>
+</helmet>
+<div style="width: 880px; min-height: 700px; background: #EFEAE0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; color: #1B1714; box-sizing: border-box; padding: 34px 40px 44px 40px; display: flex; flex-direction: column; gap: 20px;">
+
+  <div style="display: flex; flex-direction: column; gap: 5px;">
+    <div class="kick">CANON &middot; TOKENS &mdash; PIXELS &harr; CODE, ONE BOARD &middot; 2026-08-31</div>
+    <div style="font-family: 'EB Garamond', Georgia, serif; font-weight: 600; font-size: 30px; line-height: 34px;">Every board value, named in code</div>
+    <div style="font-size: 13.5px; line-height: 19px; color: #6E6862; max-width: 740px;">The board kit&rsquo;s variables mapped to the shipped tokens. <strong>Code wins</strong>: if a board and <span class="m" style="font-size: 11px;">colors.ts / textVariants.ts / layout.ts</span> disagree, the board is the defect. Any value outside this sheet is outside the &sect;3.1 ramp &mdash; &ldquo;a defect unless ruled in.&rdquo;</div>
+  </div>
+
+  <div style="display: flex; gap: 26px;">
+    <!-- palette -->
+    <div style="flex: 1.15; background: #FBF7EC; border: 1px solid rgba(27,23,20,0.10); border-radius: 15px; box-shadow: 0 1px 2px rgba(27,23,20,0.05); padding: 12px 18px 16px 18px;">
+      <div class="kick" style="color: #6E6862;">PALETTE &middot; KIT VAR &rarr; CODE TOKEN</div>
+      <div class="tr" style="border-top: none; padding-top: 10px;"><span class="sw" style="background:#EFEAE0;"></span><span class="tk">--paper</span><span class="cd">surface.paper (paper20)</span><span class="hx">#EFEAE0</span><span class="law">the page</span></div>
+      <div class="tr"><span class="sw" style="background:#FBF7EC;"></span><span class="tk">--card</span><span class="cd">surface.card (paper00)</span><span class="hx">#FBF7EC</span><span class="law">the card</span></div>
+      <div class="tr"><span class="sw" style="background:#E8E2D4;"></span><span class="tk">--paper-deep</span><span class="cd">surface.paperDeep (paper30)</span><span class="hx">#E8E2D4</span><span class="law">committed-plate base &mdash; #EAE3D3 was drift, purged 08-31</span></div>
+      <div class="tr"><span class="sw" style="background:#1B1714;"></span><span class="tk">--ink</span><span class="cd">text.primary (ink00)</span><span class="hx">#1B1714</span><span class="law"></span></div>
+      <div class="tr"><span class="sw" style="background:#2C2622;"></span><span class="tk">--ink-soft</span><span class="cd">ink-soft</span><span class="hx">#2C2622</span><span class="law">rest-register serif</span></div>
+      <div class="tr"><span class="sw" style="background:#6E6862;"></span><span class="tk">--mute</span><span class="cd">text.secondary (ink60)</span><span class="hx">#6E6862</span><span class="law"></span></div>
+      <div class="tr"><span class="sw" style="background:#B5AFA5;"></span><span class="tk">--ghost</span><span class="cd">text.tertiary (ink80)</span><span class="hx">#B5AFA5</span><span class="law">footnotes; never body</span></div>
+      <div class="tr"><span class="sw" style="background:#B0853A;"></span><span class="tk">--gold</span><span class="cd">gold60</span><span class="hx">#B0853A</span><span class="law">rules, marks, map scheduled</span></div>
+      <div class="tr"><span class="sw" style="background:#8A6628;"></span><span class="tk">--gold-deep</span><span class="cd">gold80</span><span class="hx">#8A6628</span><span class="law"><strong>the ONLY tappable text color</strong> (Door law &sect;11.1)</span></div>
+      <div class="tr"><span class="sw" style="background:#F2E6CC;"></span><span class="tk">--gold-light</span><span class="cd">gold-light</span><span class="hx">#F2E6CC</span><span class="law">hollow-pin fill</span></div>
+      <div class="tr"><span class="sw" style="background:#7A2E2E;"></span><span class="tk">--ox</span><span class="cd">surface.oxblood</span><span class="hx">#7A2E2E</span><span class="law"><strong>live threshold only, never destruction</strong> (&sect;12.5)</span></div>
+      <div class="tr"><span class="sw" style="background:#3D7050;"></span><span class="tk">--green</span><span class="cd">green</span><span class="hx">#3D7050</span><span class="law">settled / verified</span></div>
+      <div class="tr"><span class="sw" style="background:#3D5066;"></span><span class="tk">--plan-ink</span><span class="cd">planning ink</span><span class="hx">#3D5066</span><span class="law">the page&rsquo;s only non-warm element</span></div>
+      <div class="tr"><span class="sw" style="background:#2A384B;"></span><span class="tk">--plan-deep</span><span class="cd">planning deep</span><span class="hx">#2A384B</span><span class="law">StatusMeta</span></div>
+      <div class="tr"><span class="sw" style="background:#4A3428;"></span><span class="tk">--primary</span><span class="cd">action.primary (umber)</span><span class="hx">#4A3428</span><span class="law"><strong>the only solid CTA fill; never gold, never red</strong> (&sect;5.4)</span></div>
+      <div class="tr"><span class="sw" style="background:#2A241E;"></span><span class="tk">--push-ink</span><span class="cd">push surface (registered 08-31)</span><span class="hx">#2A241E</span><span class="law">push-on-ink (&sect;11.10); the one dark surface pre&ndash;night-register</span></div>
+    </div>
+
+    <!-- type + rhythm -->
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 14px;">
+      <div style="background: #FBF7EC; border: 1px solid rgba(27,23,20,0.10); border-radius: 15px; box-shadow: 0 1px 2px rgba(27,23,20,0.05); padding: 12px 18px 14px 18px;">
+        <div class="kick" style="color: #6E6862;">TYPE RAMP &harr; textVariants.ts</div>
+        <div class="yr" style="border-top: none; padding-top: 8px;"><span style="font-family:'EB Garamond',Georgia,serif;font-weight:600;font-size:30px;line-height:34px;">Mast read</span><span class="cd">serifMast &middot; 30/34</span><span class="law">interpretation converges</span></div>
+        <div class="yr"><span style="font-family:'EB Garamond',Georgia,serif;font-weight:600;font-size:22px;line-height:27px;">One-line read</span><span class="cd">serifReadLine &middot; 22/27</span><span class="law">only world truth known</span></div>
+        <div class="yr"><span style="font-size:17px;font-weight:600;">Direct state</span><span class="cd">h1Dense &middot; 17</span><span class="law">nothing to interpret &mdash; the ladder&rsquo;s floor</span></div>
+        <div class="yr"><span style="font-size:16.5px;font-weight:600;letter-spacing:-0.3px;">Card title</span><span class="cd">cardTitle &middot; 16.5/20</span><span class="law">crown 19.5/22</span></div>
+        <div class="yr"><span style="font-size:14px;">Body and CTA</span><span class="cd">body &middot; 14/19</span><span class="law">meta 12.5/17 &middot; row 15/19</span></div>
+        <div class="yr"><span class="m" style="font-size:10px;font-weight:700;letter-spacing:1.3px;">KICKER AND STAMP</span><span class="cd">monoStamp/Strong &middot; 10/1.3</span><span class="law">mono floor 10 (&sect;11.2) &middot; numeral 11</span></div>
+        <div class="yr"><span style="font-family:'EB Garamond',Georgia,serif;font-style:italic;font-size:17px;">Voice, italic</span><span class="cd">serif italic &middot; floor 17</span><span class="law">voice only, never emphasis &middot; serif floor 15</span></div>
+      </div>
+      <div style="background: #FBF7EC; border: 1px solid rgba(27,23,20,0.10); border-radius: 15px; box-shadow: 0 1px 2px rgba(27,23,20,0.05); padding: 12px 18px 14px 18px;">
+        <div class="kick" style="color: #6E6862;">RHYTHM AND GEOMETRY &harr; layout.ts</div>
+        <div style="font-size: 12px; line-height: 18px; margin-top: 8px;">Two-tier rhythm (&sect;11.10): <strong>Home family beat 44</strong> (<span class="cd">sectionRhythms.family</span>) &middot; <strong>Places chapter 32</strong> &middot; <strong>Live compressed 24</strong> &middot; act break 12&ndash;16 (<span class="cd">cardStackRhythms</span>).</div>
+        <div style="font-size: 12px; line-height: 18px; margin-top: 6px;">Plate radius ladder (<span class="cd">MediaPlate.radiusFor</span>): 44&rarr;9 &middot; 56&rarr;10 &middot; 72&rarr;12 &middot; larger&rarr;13. Identity ladder (&sect;11.11): facepile 22 / tuck &minus;7 &middot; single 32 &middot; subject 40 &middot; plate 56.</div>
+        <div style="font-size: 12px; line-height: 18px; margin-top: 6px;">One crown lift per page: <span class="cd">0 6px 18px</span> + <span class="cd">0 1px 3px</span>. Quiet lift: <span class="cd">0 1px 2px</span>. Hairlines: ink @10% / @6%.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="m" style="font-size: 10px; letter-spacing: 0.9px; color: #B5AFA5;">AUTHORITY: _kit/board-kit.css &harr; travel-app/constants/{colors,textVariants,layout}.ts &middot; KERNEL &sect;2&ndash;&sect;4, &sect;11.2, &sect;11.10&ndash;&sect;11.11, &sect;12.5 &middot; ANY VALUE NOT ON THIS SHEET IS OUTSIDE THE RAMP</div>
+
+</div>
+</x-dc>
+</body>
+</html>

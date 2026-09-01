@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / design / architecture / engineering
 created: 2026-08-29
-last_verified: 2026-08-29
+last_verified: 2026-08-31
 expires: 2026-09-28
 why_new: Consolidates the accepted four-root and contribution doctrine, the agentic fixture portfolio, surface-first value cases, owner readiness, capability gaps, and execution gates into one whole-product conformance program before surface implementation or dogfooding.
 supersedes: []
@@ -90,26 +90,29 @@ The following are accepted target-product constraints:
 
 ### 1.2 What remains deliberately unfrozen
 
-- exact Home and Places composition;
-- exact card, row, map, timeline, article, audio, or instrument treatments;
-- navigation animation and detailed visual hierarchy;
-- ranking weights and page density;
+- complete Chat and Life root composition;
+- native interaction, navigation animation, and responsive behavior;
+- real photography, native map behavior, voice, and deferral;
+- production ranking weights within the accepted admission laws;
 - the final naming of several user-facing lenses;
 - which generated compositions earn saved identity;
 - which existing Trip-specialized handlers remain permanent infrastructure;
 - runtime activation of the agentic semantic facade; and
 - product-behavior dogfooding.
 
-The root system is accepted as target direction. Its visual anatomy remains a
-design variable. Those are compatible positions and should no longer be
-described as a contradiction.
+The root system is accepted as target direction. Home and Places completed
+their semantic composition phase on 2026-08-31 against C1, C2, C3, and
+F5/Urgent; their accepted anatomy is no longer an open design variable. The
+complete Chat and Life roots, native interaction, real-data behavior, and the
+capability-delta gate remain open. Those boundaries must not be blurred.
 
 ### 1.3 Current execution rule
 
 The current agentic facade remains off at runtime. Its contracts, compiler,
 semantic catalog, owner reader, and fixtures serve as an **offline conformance
-harness**. Unstable product surfaces cannot produce trustworthy dogfood
-evidence about the new product.
+harness**. Contract-bounded implementation may now proceed through owner reads,
+root projections, and native renderers without treating the shadow facade as a
+serving agent or changing canonical writers.
 
 ### 1.4 Verified implementation baseline
 

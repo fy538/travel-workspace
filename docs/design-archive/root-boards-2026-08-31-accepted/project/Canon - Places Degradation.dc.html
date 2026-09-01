@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;700&display=swap">
+  <style>
+    body { margin: 0; }
+    a { color: #8A6628; } a:hover { color: #4A3428; }
+    .col { background: #EFEAE0; border: 1px solid rgba(27,23,20,0.10); border-radius: 15px; padding: 12px 14px; display: flex; flex-direction: column; gap: 9px; }
+    .cell { border-top: 1px solid rgba(27,23,20,0.08); padding-top: 8px; }
+    .k { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: #6E6862; }
+    .gone { font-size: 12.5px; color: #B5AFA5; }
+    .t { font-size: 14px; font-weight: 500; line-height: 18px; }
+    .s { font-size: 12.5px; line-height: 17px; color: #6E6862; }
+    .stale { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.9px; color: #B5AFA5; }
+  </style>
+</helmet>
+<div style="width: 1180px; min-height: 1120px; background: #EFEAE0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; color: #1B1714; box-sizing: border-box; padding: 32px 36px 40px 36px; display: flex; flex-direction: column; gap: 20px;">
+
+  <div style="display: flex; flex-direction: column; gap: 5px;">
+    <div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: #8A6628;">CANON &middot; PLACES &middot; DEGRADATION &mdash; ONE PLACE, THINNING HONESTLY &middot; 2026-08-30</div>
+    <div style="font-family: 'EB Garamond', Georgia, serif; font-weight: 600; font-size: 30px; line-height: 34px;">What disappears, and what never lies</div>
+    <div style="font-size: 14px; line-height: 19px; color: #6E6862; max-width: 800px;">The same Place Focus (Red Hook) under four evidence conditions. Each weak input removes exactly its dependents &mdash; never a cold-start lecture, never generic fill, never a stale fact wearing a fresh face. Silence protects the credibility of every future contribution.</div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;">
+
+    <!-- FULL -->
+    <div class="col" style="background: #FBF7EC;">
+      <div class="k" style="color: #3D7050;">FULL EVIDENCE</div>
+      <div><div class="t">Red Hook &middot; harbor edge</div><div class="s">Place-scale map, access edges live</div></div>
+      <div class="cell"><div class="k">VERDICT</div><div class="s" style="color:#1B1714;">The arrival shapes the afternoon &mdash; scheduled in, flexible out</div><div class="stale">FACTS CHECKED 4:42 PM</div></div>
+      <div class="cell"><div class="k">YOUR TRACE</div><div class="s">One Place saved &middot; no confirmed visit</div></div>
+      <div class="cell"><div class="k">HUMAN</div><div class="s">Maya&rsquo;s note &middot; audience: you</div></div>
+      <div class="cell"><div class="k">HORIZON</div><div class="s">Access &middot; Transfer &middot; Alternative</div></div>
+    </div>
+
+    <!-- NO PERSONAL HISTORY -->
+    <div class="col">
+      <div class="k" style="color: #2A384B;">NO PERSONAL HISTORY</div>
+      <div><div class="t">Red Hook &middot; harbor edge</div><div class="s">World and current affordance remain in full</div></div>
+      <div class="cell"><div class="k">VERDICT</div><div class="s" style="color:#1B1714;">The arrival shapes the afternoon &mdash; unchanged</div><div class="stale">FACTS CHECKED 4:42 PM</div></div>
+      <div class="cell"><div class="k">YOUR TRACE</div><div class="gone">&mdash; disappears &middot; no cold-start lecture, no &ldquo;start your journey&rdquo;</div></div>
+      <div class="cell"><div class="k">HUMAN</div><div class="gone">&mdash; nothing authorized &middot; absence of claim</div></div>
+      <div class="cell"><div class="k">HORIZON</div><div class="s">Access &middot; Alternative &mdash; Transfer needs your Sorrento evidence, so it does not exist</div></div>
+    </div>
+
+    <!-- STALE CURRENT FACTS -->
+    <div class="col">
+      <div class="k" style="color: #8A6628;">STALE CURRENT FACTS</div>
+      <div><div class="t">Red Hook &middot; harbor edge</div><div class="s">Identity and interpretation keep their full weight</div></div>
+      <div class="cell"><div class="k">VERDICT</div><div class="s">The threshold explanation stands &mdash; it is durable</div><div class="stale" style="color:#8A6628;">SERVICE FACTS FROM [AGE] &middot; ACTION CLAIMS REMOVED</div></div>
+      <div class="cell"><div class="k">YOUR TRACE</div><div class="s">One Place saved &middot; no confirmed visit</div></div>
+      <div class="cell"><div class="k">HUMAN</div><div class="s">Maya&rsquo;s note &mdash; durable, not time-bound</div></div>
+      <div class="cell"><div class="k">ACTIONS</div><div class="gone">&mdash; &ldquo;See Saturday&rsquo;s route&rdquo; withdrawn until facts refresh &middot; no stale fact wears a fresh face</div></div>
+    </div>
+
+    <!-- OFFLINE, NO CACHE -->
+    <div class="col">
+      <div class="k" style="color: #7A2E2E;">OFFLINE &middot; NO CACHE</div>
+      <div><div class="t">Saved and previously opened Places</div><div class="s">Only what is locally present, honestly labeled</div></div>
+      <div class="cell"><div class="k">AVAILABLE</div><div class="s">Your saved Red Hook place &middot; last opened [DATE]</div></div>
+      <div class="cell"><div class="k">EVERYTHING ELSE</div><div class="gone">&mdash; a small honest unavailability state: &ldquo;Places needs a connection for current truth. Your saves are here.&rdquo;</div></div>
+      <div class="cell"><div class="k">NEVER</div><div class="gone">&mdash; no spinner theater, no ghost content, no cached facts presented as current</div></div>
+    </div>
+  </div>
+
+  <!-- remaining rules compact -->
+  <div style="background: #FBF7EC; border: 1px solid rgba(27,23,20,0.10); border-radius: 15px; box-shadow: 0 1px 2px rgba(27,23,20,0.05); padding: 10px 18px 12px 18px;">
+    <div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: #6E6862; padding-bottom: 6px; border-bottom: 1px solid rgba(27,23,20,0.10);">THE REMAINING RULES (&sect;10)</div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px 24px; padding-top: 8px;">
+      <div style="font-size: 12.5px; line-height: 18px;"><strong>No current location</strong> &mdash; use explicit searched, planned, saved, or Home-provided scope; never infer proximity.</div>
+      <div style="font-size: 12.5px; line-height: 18px;"><strong>No attributable sources</strong> &mdash; omit the apparatus and soften or remove the claim.</div>
+      <div style="font-size: 12.5px; line-height: 18px;"><strong>Naming denied, use allowed</strong> &mdash; only if an honest anonymous form stays materially useful; otherwise omit.</div>
+      <div style="font-size: 12.5px; line-height: 18px;"><strong>No meaningful horizon</strong> &mdash; end at Place Focus; never fill with generic similarity.</div>
+      <div style="font-size: 12.5px; line-height: 18px;"><strong>Offline with cache</strong> &mdash; preserve the last-known field and relationship; mark stale facts; disable unsupported operations.</div>
+      <div style="font-size: 12.5px; line-height: 18px;"><strong>Excessive live burden</strong> &mdash; reduce to recovery, fallback, monitoring, or silence.</div>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 26px;">
+    <div style="flex: 1;">
+      <div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: #3D7050; margin-bottom: 5px;">THE LAW UNDERNEATH</div>
+      <div style="font-size: 13px; line-height: 19px; max-width: 720px;">Degradation removes dependents, never dignity: identity and durable interpretation are the last things standing, because they are the things that cannot go stale. Every absence is an absence of claim &mdash; the page never apologizes, lectures, or pads. This is the Places half of &ldquo;calm is a posture&rdquo;: thin is a state, not a failure.</div>
+    </div>
+    <div style="flex: 1;">
+      <div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: #8A6628; margin-bottom: 5px;">CANONIZATION STATUS</div>
+      <div style="font-size: 13px; line-height: 19px;">With this board, step 2 is complete: Home is posture-complete (the matrix), Places is state-complete (four states + ordinary open + social anatomy + degradation). Next: promotion &mdash; one accepted decision doc + the Home-root and Places-root surface contracts.</div>
+    </div>
+  </div>
+
+
+  <div style="margin-top: 16px; border-left: 2px solid #B0853A; padding-left: 13px; max-width: 720px;">
+    <div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: #8A6628;">THE COMPRESSION LAW &mdash; RECOVERED FROM THE PRE-PIVOT RHYTHM STUDY, RULED 2026-08-30</div>
+    <div style="font-family: 'EB Garamond', Georgia, serif; font-size: 16.5px; line-height: 23px; margin-top: 6px;">Compression shrinks media and drops the note. Small plates stay &mdash; a row without its plate is a different composition, not a quieter one.</div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!-- @dsCard group="Specimens" -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;700&display=swap">
+  <style>
+    body { margin: 0; }
+    a { color: #8A6628; } a:hover { color: #4A3428; }
+    .grid { display: grid; grid-template-columns: repeat(3, 358px); gap: 26px; align-items: start; }
+    .cell { display: flex; flex-direction: column; gap: 8px; }
+    .lab { display: flex; align-items: baseline; gap: 8px; border-bottom: 1px solid rgba(27,23,20,0.08); padding-bottom: 4px; }
+    .kn { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.6px; color: #6E6862; }
+    .gB, .gA, .gE { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 9px; font-weight: 700; letter-spacing: 0.8px; margin-left: auto; }
+    .gB { color: #7A2E2E; } .gA { color: #8A6628; } .gE { color: #3D7050; }
+    .fn { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 9px; letter-spacing: 0.8px; color: #B5AFA5; line-height: 1.5; }
+    .card { background: #FBF7EC; border: 1px solid rgba(27,23,20,0.10); border-radius: 15px; box-shadow: 0 1px 2px rgba(27,23,20,0.05); padding: 15px 16px; display: flex; flex-direction: column; gap: 8px; }
+    .crown { background: #FBF7EC; border-radius: 18px; box-shadow: 0 6px 18px rgba(27,23,20,0.10), 0 1px 3px rgba(27,23,20,0.06); padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+    .sm { display: flex; align-items: center; gap: 7px; }
+    .smd { width: 6px; height: 6px; border-radius: 3px; background: #2A384B; flex: none; }
+    .smt { font-size: 11px; font-weight: 600; letter-spacing: 0.8px; color: #2A384B; }
+    .ct { font-size: 19.5px; line-height: 22px; letter-spacing: -0.3px; font-weight: 600; }
+    .cmeta { font-size: 12.5px; line-height: 17px; color: #6E6862; }
+    .cr { font-family: 'EB Garamond', Georgia, serif; font-size: 17px; line-height: 23px; font-weight: 500; }
+    .cta { min-height: 44px; background: #4A3428; border-radius: 11px; display: flex; align-items: center; justify-content: center; margin-top: 6px; }
+    .blob { background: radial-gradient(90px 70px at 35% 40%, rgba(176,133,58,0.35), transparent 70%), radial-gradient(70px 60px at 72% 68%, rgba(122,46,46,0.13), transparent 70%), #E8E2D4; }
+    .ctat { color: #FBF7EC; font-size: 14px; font-weight: 600; }
+    .door { display: flex; align-items: center; gap: 6px; }
+    .doort { font-size: 13px; font-weight: 500; color: #8A6628; }
+    .row { display: flex; align-items: center; gap: 13px; min-height: 56px; border-top: 1px solid rgba(27,23,20,0.06); border-bottom: 1px solid rgba(27,23,20,0.06); padding: 8px 0; }
+    .kick { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: #8A6628; }
+    .voice { font-family: 'EB Garamond', Georgia, serif; font-style: italic; font-size: 17px; line-height: 24px; color: #6E6862; }
+    .hatch { background: repeating-linear-gradient(135deg, rgba(176,133,58,0.12) 0 6px, rgba(176,133,58,0.04) 6px 12px); }
+    .plate56 { width: 56px; height: 56px; border-radius: 10px; flex: none; }
+    .plate92 { width: 92px; height: 92px; border-radius: 13px; flex: none; }
+    .edmedia { height: 118px; border-radius: 13px; background: repeating-linear-gradient(135deg, rgba(176,133,58,0.12) 0 7px, rgba(176,133,58,0.04) 7px 14px); }
+    .edtitle { font-family: 'EB Garamond', Georgia, serif; font-weight: 600; font-size: 18.5px; line-height: 23px; }
+    .mapframe { height: 120px; border-radius: 13px; overflow: hidden; position: relative; background: repeating-linear-gradient(0deg, rgba(27,23,20,0.05) 0 1px, transparent 1px 26px), repeating-linear-gradient(90deg, rgba(27,23,20,0.05) 0 1px, transparent 1px 26px), #E8E2D4; }
+    .halo { position: absolute; border-radius: 999px; border: 1px dashed rgba(138,102,40,0.4); background: rgba(176,133,58,0.05); }
+    .pc { background: #FBF7EC; border: 1px solid rgba(27,23,20,0.10); padding: 9px 9px 12px; box-shadow: 0 1px 2px rgba(27,23,20,0.05); transform: rotate(-1.2deg); }
+    .pcimg { height: 128px; position: relative; background: repeating-linear-gradient(28deg, rgba(176,133,58,0.16) 0 5px, rgba(122,46,46,0.07) 5px 10px, rgba(124,143,115,0.10) 10px 15px); }
+    .pccap { font-family: 'EB Garamond', Georgia, serif; font-size: 15.5px; line-height: 1.38; margin-top: 10px; }
+    .tn { display: flex; align-items: stretch; gap: 0; border: 1px solid rgba(27,23,20,0.10); border-radius: 12px; overflow: hidden; background: #FBF7EC; }
+    .tnc { flex: 1; padding: 11px 12px; }
+    .tnc.was { background: rgba(27,23,20,0.03); }
+    .tnk { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1px; color: #B5AFA5; }
+    .tnk.now { color: #8A6628; }
+    .tnv { font-size: 13px; line-height: 18px; margin-top: 4px; }
+    .tnv.old { color: #B5AFA5; text-decoration: line-through; }
+    .tnarrow { align-self: center; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; color: #8A6628; padding: 0 3px; }
+    .av { width: 22px; height: 22px; border-radius: 999px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 10px; color: #FBF7EC; flex: none; border: 2px solid #FBF7EC; box-sizing: border-box; }
+    .avId { width: 32px; height: 32px; font-size: 13px; }
+    .av + .av, .chair { margin-left: -7px; }
+    .chair { width: 22px; height: 22px; border-radius: 999px; flex: none; border: 1.5px dashed rgba(138,102,40,0.58); background: rgba(176,133,58,0.04); box-sizing: border-box; }
+    .ex { font-family: 'EB Garamond', Georgia, serif; font-size: 16.5px; line-height: 1.46; }
+    .ex::first-letter { font-size: 44px; line-height: 0.82; float: left; padding: 4px 7px 0 0; color: #8A6628; }
+    .gr { border-left: 2px solid #B0853A; padding-left: 13px; display: flex; flex-direction: column; gap: 5px; }
+    .mono11 { font-family: 'JetBrains Mono', ui-monospace, monospace; font-weight: 700; font-size: 11px; letter-spacing: 1.15px; }
+  </style>
+</helmet>
+<div style="width: 1220px; min-height: 700px; background: #EFEAE0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; color: #1B1714; box-sizing: border-box; padding: 34px 38px 44px 38px; display: flex; flex-direction: column; gap: 24px;">
+
+  <div style="display: flex; flex-direction: column; gap: 5px;">
+    <div class="kick" style="font-size:10px;letter-spacing:1.3px;">CANON &middot; SPECIMENS &middot; THE HOME UNION &middot; 2026-08-30 &middot; RE-CLOTHED &middot; COUNT AUTHORITY: THE MANIFEST (31) &mdash; week_shape + people_status_aperture RENDER ON THE PROMOTED + INSTRUMENTS SHEET; EVERY OTHER HOME KIND IS ON THIS ONE &middot; carried_forward IS A RECEIPT-UNION KIND, NOT A 32ND HOME KIND (&sect;16.5) &middot; REV 08-31 (&sect;13)</div>
+    <div style="font-family: 'EB Garamond', Georgia, serif; font-weight: 600; font-size: 30px; line-height: 34px;">Home &mdash; the 31-kind union</div>
+    <div style="font-size: 14px; line-height: 19px; color: #6E6862; max-width: 860px;">Each kind isolated at content width, with union name and build grade. The clothing follows the old canon&rsquo;s physical grammar: riso plates on possibility, photography only as evidence, one large type moment per unit, 13&ndash;18px radii with the quiet lift. Fixture copy throughout.</div>
+  </div>
+
+  <div class="grid">
+
+    <!-- ────────── column rhythm: chrome → Now → motion → horizons → people → continuity ────────── -->
+
+    <!-- world_read -->
+    <div class="cell"><div class="lab"><span class="kn">world_read</span><span class="gB">BUILD</span></div>
+      <div style="display:flex;flex-direction:column;gap:4px;padding:4px 0 2px;">
+        <div style="display:flex;align-items:baseline;gap:10px;"><span class="mono11">NEW YORK &middot; FRIDAY</span><span class="fn" style="margin-left:auto;">5:12 PM</span></div>
+        <div style="font-family:'EB Garamond',Georgia,serif;font-weight:600;font-size:30px;line-height:34px;letter-spacing:-0.01em;">Storms this afternoon.<br>Saturday opens clearer.</div>
+        <div class="cmeta" style="margin-top:4px;">Rain through this evening &middot; clearing overnight.</div>
+      </div></div>
+
+    <!-- root_shell -->
+    <div class="cell"><div class="lab"><span class="kn">root_shell</span><span class="gE">EXISTS &middot; DARK</span></div>
+      <div style="border-top:1px solid rgba(27,23,20,0.10);background:#FBF7EC;display:flex;padding:12px 12px 14px;border-radius:0 0 13px 13px;box-shadow:0 1px 2px rgba(27,23,20,0.05);">
+        <div style="flex:1;text-align:center;"><span style="font-size:11px;font-weight:600;">Home</span></div>
+        <div style="flex:1;text-align:center;"><span style="font-size:11px;font-weight:500;color:#6E6862;">Chat</span></div>
+        <div style="flex:1;text-align:center;"><span style="font-size:11px;font-weight:500;color:#6E6862;">Places</span></div>
+        <div style="flex:1;text-align:center;"><span style="font-size:11px;font-weight:500;color:#6E6862;">Life</span></div>
+      </div></div>
+
+    <!-- now_merged_into_read -->
+    <div class="cell"><div class="lab"><span class="kn">now_merged_into_read</span><span class="gA">VIA world_read</span></div>
+      <div class="voice">&mdash; when the dominant moment is a voice statement (Quiet, Returned&nbsp;&middot;&nbsp;Day&nbsp;0), it promotes into the read above and Now yields. One voice moment per page.</div></div>
+
+    <!-- now_commitment_instrument (renamed §11.12) -->
+    <div class="cell"><div class="lab"><span class="kn">now_commitment_instrument</span><span class="gA">ADAPT</span></div>
+      <div class="crown">
+        <div class="sm"><span class="smd"></span><span class="smt">LIVE &middot; SATURDAY 2:00&ndash;8:00 PM</span></div>
+        <div class="ct">The waterfront route still works</div>
+        <div class="mapframe">
+          <div style="position:absolute;left:-30px;top:20px;bottom:-14px;width:96px;background:rgba(61,80,102,0.10);border-right:1px solid rgba(61,80,102,0.18);border-radius:0 40% 30% 0;"></div>
+          <div class="halo" style="width:104px;height:104px;left:150px;top:26px;"></div>
+          <svg width="326" height="120" viewBox="0 0 326 120" fill="none" style="position:absolute;inset:0;"><path d="M64 30 Q120 44 168 62 Q206 76 224 92" stroke="#B0853A" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M224 92 Q252 104 286 106" stroke="#1B1714" stroke-width="1.6" stroke-dasharray="1.5 5" fill="none" stroke-linecap="round"/><circle cx="64" cy="30" r="4.5" fill="#B0853A"/><circle cx="224" cy="92" r="4.5" fill="#1B1714"/><path d="M286 100 L292 106 L286 112 L280 106 Z" fill="#7A2E2E"/></svg>
+        </div>
+        <div class="cta"><span class="ctat">Open the Saturday route</span></div>
+        <div class="fn">CURRENT AS OF 5:10 PM &middot; NOTHING SAVED OR BOOKED</div>
+      </div></div>
+
+    <!-- now_prepared_possibility -->
+    <div class="cell"><div class="lab"><span class="kn">now_prepared_possibility</span><span class="gA">ADAPT</span></div>
+      <div class="crown" style="flex-direction:row;gap:14px;align-items:flex-start;">
+        <div class="plate92 hatch"></div>
+        <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px;">
+          <div class="sm"><span class="smd"></span><span class="smt">SATURDAY &middot; 2:00&ndash;8:00 PM</span></div>
+          <div class="ct" style="font-size:16.5px;line-height:20px;">Saturday has room for the waterfront</div>
+          <div class="cr" style="font-size:15.5px;line-height:21px;">A prepared half-day, back by land before dinner.</div>
+          <div class="door"><span class="doort">Open the Saturday shape</span><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5H10M6.5 3L10 6.5L6.5 10" stroke="#8A6628" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+      </div></div>
+
+    <!-- now_decision -->
+    <div class="cell"><div class="lab"><span class="kn">now_decision</span><span class="gA">ADAPT</span></div>
+      <div class="crown">
+        <div style="display:flex;align-items:center;">
+          <div class="sm" style="flex:1;"><span class="smd"></span><span class="smt">VOTE CLOSES TOMORROW</span></div>
+          <span class="av" style="background:#3D5066;">M</span><span class="av" style="background:#4A3428;">A</span><span class="chair"></span>
+        </div>
+        <div class="ct">Dinner in Brooklyn &mdash; two decisions open</div>
+        <div class="cmeta">The place vote closes tomorrow &middot; the time holds at 8:15</div>
+        <div class="cta"><span class="ctat">Settle the place</span></div>
+      </div></div>
+
+    <!-- now_recovery_instrument -->
+    <div class="cell"><div class="lab"><span class="kn">now_recovery_instrument</span><span class="gB">BUILD</span></div>
+      <div class="crown">
+        <div class="sm"><span class="smd" style="background:#7A2E2E;"></span><span class="smt" style="color:#7A2E2E;">NOT SETTLED &middot; DEADLINE [VERIFIED TIME]</span></div>
+        <div class="ct">Your New York return is not yet settled</div>
+        <div class="cmeta">Rome &rarr; Chicago &rarr; New York &middot; offered, not accepted</div>
+        <div style="border:1px solid rgba(176,133,58,0.22);background:rgba(176,133,58,0.07);border-radius:11px;padding:7px 11px;"><span class="kick" style="font-size: 10px;">NOTHING HAS BEEN ACCEPTED, SUBMITTED, OR SENT</span></div>
+        <div class="cta"><span class="ctat">Review the decision</span></div>
+      </div></div>
+
+    <!-- now_temporal_posture -->
+    <div class="cell"><div class="lab"><span class="kn">now_temporal_posture</span><span class="gB">BUILD</span></div>
+      <div class="crown">
+        <div class="sm"><span class="smd"></span><span class="smt">WAIT FOR SIGNAL &middot; FORECAST AT NOON</span></div>
+        <div class="ct">Wait until noon</div>
+        <div class="cr">Neither path needs booking before then.</div>
+        <div class="voice">I&rsquo;m watching the noon forecast. Unless the branch changes, you won&rsquo;t hear about this again.</div>
+      </div>
+      <div class="fn">NO CTA &mdash; CLOSURE, NOT HOMEWORK</div></div>
+
+    <!-- now_annotated_evidence — photography IS the evidence; the polaroid carries it -->
+    <div class="cell"><div class="lab"><span class="kn">now_annotated_evidence</span><span class="gB">BUILD</span></div>
+      <div class="pc">
+        <div class="pcimg">
+          <span style="position:absolute;top:10px;left:12px;width:19px;height:19px;border-radius:10px;background:#B0853A;color:#1B1714;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;font-weight:700;">1</span>
+          <span style="position:absolute;bottom:8px;right:10px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:7.5px;letter-spacing:1px;color:rgba(27,23,20,0.45);">YOUR DISH &middot; SORRENTO</span>
+        </div>
+        <div class="pccap"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:700;font-size:10px;color:#8A6628;">1</span>&ensp;The last minute may explain more than the ingredient list &mdash; sauce clinging as a thin film rather than pooling.</div>
+      </div>
+      <div class="fn">CONSISTENT WITH A STARCH-SUPPORTED EMULSION &middot; NOT PROOF OF THIS KITCHEN</div></div>
+
+    <!-- now_attributed_comparison -->
+    <div class="cell"><div class="lab"><span class="kn">now_attributed_comparison</span><span class="gB">BUILD</span></div>
+      <div class="card">
+        <div class="ct" style="font-size:16.5px;line-height:20px;">The difference was not simply the temperature</div>
+        <div class="tn">
+          <div class="tnc was"><div class="tnk">ROME &middot; YOU &middot; 9:10 PM</div><div class="tnv">Dense streets; the river absent.</div></div>
+          <div class="tnarrow">&harr;</div>
+          <div class="tnc"><div class="tnk now">PARIS &middot; MAYA &middot; 9:05 PM</div><div class="tnv">The riverbank as the place to stay out.</div></div>
+        </div>
+        <div class="voice">The useful contrast is how each route made water available.</div>
+      </div></div>
+
+    <!-- now_invitation -->
+    <div class="cell"><div class="lab"><span class="kn">now_invitation</span><span class="gA">ADAPT</span></div>
+      <div class="crown" style="flex-direction:row;gap:14px;align-items:center;">
+        <div class="plate92 hatch" style="width:72px;height:72px;border-radius:12px;"></div>
+        <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px;">
+          <div class="ct" style="font-size:16.5px;">Bring something</div>
+          <div class="cr" style="font-size:15px;line-height:20px;">A ticket, a place, a photo, a plan &mdash; whatever already has your attention.</div>
+          <div class="door"><span class="doort">Start with what you have</span><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5H10M6.5 3L10 6.5L6.5 10" stroke="#8A6628" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+      </div></div>
+
+    <!-- motion_occasion_row -->
+    <div class="cell"><div class="lab"><span class="kn">motion_occasion_row</span><span class="gA">ADAPT</span></div>
+      <div class="row">
+        <div class="plate56 blob"></div>
+        <div style="flex:1;min-width:0;"><div style="font-size:15px;font-weight:600;letter-spacing:-0.2px;">Dinner in Brooklyn</div><div class="cmeta">Saturday 8:15 &middot; with Maya and Alex &middot; settled</div></div>
+        <span class="av" style="width:24px;height:24px;font-size:10px;background:#3D5066;">M</span><span class="av" style="width:24px;height:24px;font-size:10px;background:#4A3428;">A</span>
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="flex:none;"><path d="M4.5 2.5L9 6.5L4.5 10.5" stroke="#B5AFA5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div></div>
+
+    <!-- motion_loose_end_row -->
+    <div class="cell"><div class="lab"><span class="kn">motion_loose_end_row</span><span class="gA">ADAPT</span></div>
+      <div class="row">
+        <span style="width:36px;height:36px;border-radius:18px;background:rgba(27,23,20,0.05);display:flex;align-items:center;justify-content:center;flex:none;"><svg width="16" height="16" viewBox="0 0 15 15" fill="none"><circle cx="7.5" cy="7.5" r="5.5" stroke="#8A6628" stroke-width="1.4"/><path d="M7.5 4.5V7.5L9.8 9" stroke="#8A6628" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div style="flex:1;min-width:0;"><div style="font-size: 15px; font-weight: 600;">Return flight refund claim</div><div class="cmeta">Airline reviewing &middot; no action needed from you</div></div>
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="flex:none;"><path d="M4.5 2.5L9 6.5L4.5 10.5" stroke="#B5AFA5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div></div>
+
+    <!-- motion_all_plans_door -->
+    <div class="cell"><div class="lab"><span class="kn">motion_all_plans_door</span><span class="gE">EXISTS</span></div>
+      <div class="door" style="min-height: 44px;"><span class="doort">All plans and occasions</span><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5H10M6.5 3L10 6.5L6.5 10" stroke="#8A6628" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="fn">Door.tsx &mdash; GOLD TEXT + THE ONE ARROW</div></div>
+
+    <!-- horizon_editorial_passage — the cover leads; browse texture on Home -->
+    <div class="cell"><div class="lab"><span class="kn">horizon_editorial_passage</span><span class="gA">ADAPT</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div class="edmedia"></div>
+        <div class="kick" style="font-size: 10px;">NOTICE &middot; SUNSET PARK &middot; 6 MIN</div>
+        <div class="edtitle">A 1918 military logistics complex, now manufacturing, climate work, and public art</div>
+      </div></div>
+
+    <!-- horizon_mechanism_row -->
+    <div class="cell"><div class="lab"><span class="kn">horizon_mechanism_row</span><span class="gA">ADAPT</span></div>
+      <div style="display:flex;gap:13px;align-items:center;padding:4px 0;">
+        <div class="plate56 hatch" style="display:flex;align-items:center;justify-content:center;"><svg width="30" height="30" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="10" stroke="#8A6628" stroke-width="1.4"/><path d="M17 10 Q21 14 17 17 Q13 20 17 24" stroke="#8A6628" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg></div>
+        <div style="flex:1;min-width:0;"><div class="kick" style="font-size: 10px;">MAKE &middot; ONE DINNER</div><div style="font-size:15px;font-weight:600;letter-spacing:-0.2px;line-height:19px;margin-top:3px;">The pasta-emulsion mechanism, reduced to one pan</div></div>
+      </div></div>
+
+    <!-- horizon_aperture_row -->
+    <div class="cell"><div class="lab"><span class="kn">horizon_aperture_row</span><span class="gE">EXISTS</span></div>
+      <div style="display:flex;gap:13px;align-items:center;padding:4px 0;">
+        <span style="width:44px;height:44px;border-radius:22px;border:1px dashed rgba(138,102,40,0.5);background:rgba(176,133,58,0.05);display:flex;align-items:center;justify-content:center;flex:none;"><span style="width:9px;height:9px;border-radius:5px;background:#8A6628;"></span></span>
+        <div style="flex:1;min-width:0;"><div style="font-size: 15px; font-weight: 600;">The saved Red Hook place is still unvisited</div><div class="cmeta">It keeps &mdash; a weekday lunch works as well.</div></div>
+      </div></div>
+
+    <!-- horizon_hidden_system — the drop cap carries the register -->
+    <div class="cell"><div class="lab"><span class="kn">horizon_hidden_system</span><span class="gB">BUILD</span></div>
+      <div style="padding:6px 0 2px;">
+        <div class="kick" style="font-size: 10px;margin-bottom:8px;">THE HIDDEN SYSTEM &middot; AFTER SUNSET</div>
+        <div class="ex">Night does not cool every street at the same rate &mdash; water, shade, stored heat, and airflow differ block by block after sunset.</div>
+        <div style="display:flex;justify-content:space-between;margin-top:12px;padding-top:7px;border-top:1px solid rgba(27,23,20,0.10);"><span class="fn">FROM TONIGHT&rsquo;S STORM PASSAGE</span><span class="fn">KEEPS &middot; NO CLOCK</span></div>
+      </div></div>
+
+    <!-- people_note_door -->
+    <div class="cell"><div class="lab"><span class="kn">people_note_door</span><span class="gA">ADAPT</span></div>
+      <div style="display:flex;gap:11px;align-items:center;padding:4px 0;">
+        <span class="av avId" style="background:#3D5066;border-color:#EFEAE0;">M</span>
+        <div style="flex:1;min-width:0;"><div style="font-size:14px;">Maya&rsquo;s Red Hook note &middot; useful when you go</div></div>
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="flex:none;"><path d="M2 6.5H10M6.5 3L10 6.5L6.5 10" stroke="#8A6628" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="fn">A DOOR TO THE OBJECT, NOT THE OBJECT &mdash; RULING 3</div></div>
+
+    <!-- people_participants_row -->
+    <div class="cell"><div class="lab"><span class="kn">people_participants_row</span><span class="gE">EXISTS</span></div>
+      <div style="display:flex;gap:11px;align-items:center;padding:4px 0;">
+        <span style="display:flex;"><span class="av" style="background:#3D5066;border-color:#EFEAE0;">M</span><span class="av" style="background:#4A3428;border-color:#EFEAE0;">A</span></span>
+        <span style="font-size:14px;">Maya &middot; Alex &middot; joining at 8:15</span>
+      </div></div>
+
+    <!-- people_waiting_row — the empty chair is the waiting -->
+    <div class="cell"><div class="lab"><span class="kn">people_waiting_row</span><span class="gE">EXISTS</span></div>
+      <div style="display:flex;gap:11px;align-items:center;padding:4px 0;">
+        <span style="display:flex;"><span class="av" style="background:#3D5066;border-color:#EFEAE0;">M</span><span class="av" style="background:#4A3428;border-color:#EFEAE0;">A</span><span class="chair"></span></span>
+        <span style="font-size:14px;">Waiting on the place call</span>
+      </div>
+      <div class="fn">THE DASHED CHAIR &mdash; NEVER A GUILT BADGE</div></div>
+
+    <!-- people_authorized_door -->
+    <div class="cell"><div class="lab"><span class="kn">people_authorized_door</span><span class="gB">BUILD</span></div>
+      <div class="door" style="min-height:36px;"><span class="doort">The Rome &harr; Paris comparison, when you want it</span><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5H10M6.5 3L10 6.5L6.5 10" stroke="#8A6628" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="fn">RENDERS ONLY UNDER MAY-USE (USE AXIS) &middot; OTHERWISE YIELDS SILENTLY</div></div>
+
+    <!-- people_gathering -->
+    <div class="cell"><div class="lab"><span class="kn">people_gathering</span><span class="gA">ADAPT</span></div>
+      <div class="card" style="border-radius:16px;gap:9px;">
+        <div style="display:flex;align-items:center;">
+          <span class="av" style="width:40px;height:40px;font-size:16px;background:#3D5066;border-width:2.5px;">M</span>
+          <span class="av" style="width:40px;height:40px;font-size:16px;background:#4A3428;border-width:2.5px;margin-left:-12px;">A</span>
+          <span class="av" style="width:40px;height:40px;font-size:16px;background:#7A6B58;border-width:2.5px;margin-left:-12px;">Y</span>
+        </div>
+        <div style="font-family:'EB Garamond',Georgia,serif;font-weight:600;font-size:20px;line-height:24px;">Saturday, together</div>
+        <div class="cmeta">Three of you &middot; the dinner holds &middot; nothing waits on anyone</div>
+      </div>
+      <div class="fn">THE GROUP AS SUBJECT &mdash; THE PRE-PIVOT ROOM, RESTORED</div></div>
+
+    <!-- continuity_reconstruction -->
+    <div class="cell"><div class="lab"><span class="kn">continuity_reconstruction</span><span class="gB">BUILD</span></div>
+      <div class="tn">
+        <div class="tnc was"><div class="tnk">INTENDED</div><div class="tnv old">Rome &rarr; New York, nonstop</div></div>
+        <div class="tnarrow">&rarr;</div>
+        <div class="tnc"><div class="tnk now">ACTUAL</div><div class="tnv">Rome &rarr; Chicago &rarr; New York &middot; overnight near O&rsquo;Hare</div></div>
+      </div>
+      <div class="fn">FROM RECEIPTS AND MOVEMENT ROWS &mdash; NEVER A TRIP REPORT</div></div>
+
+    <!-- continuity_capability_field -->
+    <div class="cell"><div class="lab"><span class="kn">continuity_capability_field</span><span class="gB">BUILD</span></div>
+      <div class="gr"><div class="kick" style="font-size: 10px;">WHAT THE JOURNEY NOW LETS YOU DO</div>
+      <div style="font-family:'EB Garamond',Georgia,serif;font-size:16px;line-height:23px;">Arrive with better margin. Pace a day by subtraction. See reuse rather than age.</div></div></div>
+
+    <!-- continuity_since_you_looked -->
+    <div class="cell"><div class="lab"><span class="kn">continuity_since_you_looked</span><span class="gA">ADAPT</span></div>
+      <div class="gr" style="border-left-color:rgba(176,133,58,0.45);"><div class="kick" style="font-size: 10px;color:#B5AFA5;">SINCE YOU LAST LOOKED</div>
+      <div style="font-size: 14px; line-height: 19px;color:#6E6862;">Your Rome photos finished importing into Life. Nothing was shared.</div></div></div>
+
+    <!-- continuity_life_door -->
+    <div class="cell"><div class="lab"><span class="kn">continuity_life_door</span><span class="gE">EXISTS</span></div>
+      <div class="door" style="min-height:36px;"><span class="doort">Europe, in Life</span><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5H10M6.5 3L10 6.5L6.5 10" stroke="#8A6628" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+
+    <!-- continuity_settling -->
+    <div class="cell"><div class="lab"><span class="kn">continuity_settling</span><span class="gB">BUILD</span></div>
+      <div class="card" style="flex-direction:row;gap:14px;align-items:center;">
+        <div class="plate56 blob" style="border-radius:12px;"></div>
+        <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px;">
+          <div class="kick" style="font-size: 10px;color:#B5AFA5;">SINCE YOU LANDED</div>
+          <div class="ct" style="font-size:16.5px;line-height:20px;">The trip is settling into Life</div>
+          <div class="cmeta">Photos importing &middot; nothing shared &middot; one honest return waiting</div>
+        </div>
+      </div></div>
+
+    <!-- continuity_voice_horizon -->
+    <div class="cell"><div class="lab"><span class="kn">continuity_voice_horizon</span><span class="gB">BUILD</span></div>
+      <div class="kick" style="font-size: 10px;color:#B5AFA5;">ONE THREAD WITH NO DEADLINE</div>
+      <div class="voice" style="font-size:18px;line-height:26px;">Virgil sends Aeneas along the same Campanian coast you crossed &mdash; past the Sirens&rsquo; cliffs traditionally placed on the Sorrentine peninsula, then into Cumae. Rome mapped its founding story onto a coastline people already sailed. It will keep.</div>
+      <div class="fn">NEVER AN AUTO-SAVE, REMINDER, OR BUCKET-LIST ENTRY</div></div>
+
+  </div>
+
+
+  <div style="margin-top: 16px; border-top: 1px solid rgba(27,23,20,0.10); padding-top: 12px; display: flex; flex-direction: column; gap: 6px;">
+    <div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: #3D7050;">ALREADY IN CODE &mdash; RE-VERIFIED AGAINST travel-app 2026-08-31 (CODE WINS OVER GRADES)</div>
+    <div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; line-height: 17px; letter-spacing: 0.2px; color: #6E6862;">EXISTS &middot; root_shell &rarr; constants/fourRootShell.ts (flag-dark) &middot; motion_all_plans_door + continuity_life_door &rarr; components/ui/Door.tsx &middot; people_participants_row &rarr; people receipt (seats/facepile) &middot; horizon_aperture_row &rarr; saved_unplaced (live both unions) &middot; people_waiting_row &rarr; group_waiting (re-home)</div>
+    <div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; line-height: 17px; letter-spacing: 0.2px; color: #6E6862;">SHIPPED SINCE THE GRADE PASS &middot; week_shape &rarr; components/home-root/WeekShape.tsx &middot; orientation ladder &rarr; components/home-root/WorldRead.tsx (producer still BUILD) &middot; plates &rarr; components/ui/MediaPlate.tsx &middot; rest close &rarr; components/ui/RestClose.tsx &middot; Saturday fixture screen &rarr; components/home-root/HomeRootScreen.tsx</div>
+    <div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; line-height: 17px; letter-spacing: 0.2px; color: #6E6862;">ADAPT ANCHORS &middot; now_* crowns &rarr; CardSurface crown recipe + spine receipt &middot; now_decision &rarr; proposal_approval/call substrate &middot; continuity_since_you_looked &rarr; diff/changed substrate &middot; people_gathering &rarr; quietPanel &middot; type &rarr; textVariants.ts (serifMast 30/34 &middot; serifReadLine 22/27 &middot; h1Dense 17)</div>
+  </div>
+
+  <div class="fn" style="letter-spacing:0.9px;">GRADES AND EVIDENCE GATES: docs/working/home-and-places-build-manifest-2026-08-30.md &middot; FIXTURE COPY ONLY &middot; MEDIA DOCTRINE: RISO HATCH = POSSIBILITY &middot; PHOTOGRAPH = EVIDENCE ONLY</div>
+
+</div>
+</x-dc>
+</body>
+</html>

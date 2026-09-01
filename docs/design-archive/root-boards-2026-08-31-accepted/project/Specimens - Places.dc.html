@@ -1,0 +1,339 @@
+<!-- @dsCard group="Specimens" -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;700&display=swap">
+  <style>
+    body { margin: 0; }
+    a { color: #8A6628; } a:hover { color: #4A3428; }
+    .grid { display: grid; grid-template-columns: repeat(3, 358px); gap: 26px; align-items: start; }
+    .cell { display: flex; flex-direction: column; gap: 8px; }
+    .lab { display: flex; align-items: baseline; gap: 8px; border-bottom: 1px solid rgba(27,23,20,0.08); padding-bottom: 4px; }
+    .kn { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.6px; color: #6E6862; }
+    .gB, .gA, .gE { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 9px; font-weight: 700; letter-spacing: 0.8px; margin-left: auto; }
+    .gB { color: #7A2E2E; } .gA { color: #8A6628; } .gE { color: #3D7050; }
+    .fn { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 9px; letter-spacing: 0.8px; color: #B5AFA5; line-height: 1.5; }
+    .card { background: #FBF7EC; border: 1px solid rgba(27,23,20,0.10); border-radius: 15px; box-shadow: 0 1px 2px rgba(27,23,20,0.05); padding: 15px 16px; display: flex; flex-direction: column; gap: 8px; }
+    .kick { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: #8A6628; }
+    .kickm { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: #6E6862; }
+    .voice { font-family: 'EB Garamond', Georgia, serif; font-style: italic; font-size: 17px; line-height: 24px; color: #6E6862; }
+    .serif { font-family: 'EB Garamond', Georgia, serif; font-size: 16.5px; line-height: 23px; }
+    .door { display: flex; align-items: center; gap: 6px; }
+    .doort { font-size: 13px; font-weight: 500; color: #8A6628; }
+    .row { display: flex; align-items: center; gap: 13px; min-height: 52px; border-top: 1px solid rgba(27,23,20,0.06); border-bottom: 1px solid rgba(27,23,20,0.06); padding: 7px 0; }
+    .cmeta { font-size: 12.5px; line-height: 17px; color: #6E6862; }
+    .ctitle { font-size: 16.5px; font-weight: 600; letter-spacing: -0.3px; line-height: 20px; }
+    .rcpt { border: 1px solid rgba(176,133,58,0.22); background: rgba(176,133,58,0.07); border-radius: 11px; padding: 9px 12px; display: flex; flex-direction: column; gap: 5px; }
+    .gr { border-left: 2px solid #B0853A; padding-left: 13px; display: flex; flex-direction: column; gap: 5px; }
+    .hatch { background: repeating-linear-gradient(135deg, rgba(176,133,58,0.12) 0 6px, rgba(176,133,58,0.04) 6px 12px); }
+    .plate56 { width: 56px; height: 56px; border-radius: 10px; flex: none; }
+    .plate92 { width: 92px; height: 92px; border-radius: 13px; flex: none; }
+    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .gmedia { height: 100px; border-radius: 13px; background: repeating-linear-gradient(135deg, rgba(176,133,58,0.12) 0 6px, rgba(176,133,58,0.04) 6px 12px); }
+    .savail { display: inline-block; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.9px; color: #8A6628; border: 1px solid rgba(138,102,40,0.4); border-radius: 999px; padding: 2.5px 7px; margin-top: 6px; }
+    .ov { height: 148px; border-radius: 15px; overflow: hidden; position: relative; background: repeating-linear-gradient(135deg, rgba(176,133,58,0.16) 0 7px, rgba(27,23,20,0.07) 7px 14px); }
+    .ovscrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(27,23,20,0) 40%, rgba(27,23,20,0.55) 100%); }
+    .ovcopy { position: absolute; left: 15px; right: 15px; bottom: 13px; }
+    .ovk { font-family: 'JetBrains Mono', ui-monospace, monospace; font-weight: 700; font-size: 10px; letter-spacing: 1.2px; color: #F2E6CC; }
+    .ovt { font-family: 'EB Garamond', Georgia, serif; font-weight: 600; font-size: 20px; line-height: 24px; color: #FBF7EC; margin-top: 4px; }
+    .mapframe { height: 132px; border-radius: 13px; overflow: hidden; position: relative; background: repeating-linear-gradient(0deg, rgba(27,23,20,0.05) 0 1px, transparent 1px 26px), repeating-linear-gradient(90deg, rgba(27,23,20,0.05) 0 1px, transparent 1px 26px), #E8E2D4; }
+    .halo { position: absolute; border-radius: 999px; border: 1px dashed rgba(138,102,40,0.4); background: rgba(176,133,58,0.05); }
+    .av { width: 32px; height: 32px; border-radius: 999px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; color: #FBF7EC; flex: none; border: 2px solid #FBF7EC; box-sizing: border-box; }
+    .cta { min-height: 44px; background: #4A3428; border-radius: 11px; display: flex; align-items: center; justify-content: center; margin-top: 6px; }
+    .blob { background: radial-gradient(90px 70px at 35% 40%, rgba(176,133,58,0.35), transparent 70%), radial-gradient(70px 60px at 72% 68%, rgba(122,46,46,0.13), transparent 70%), #E8E2D4; }
+    .ctat { color: #FBF7EC; font-size: 14px; font-weight: 600; }
+    .mono11 { font-family: 'JetBrains Mono', ui-monospace, monospace; font-weight: 700; font-size: 11px; letter-spacing: 1.15px; }
+    .tn { display: flex; align-items: stretch; gap: 0; border: 1px solid rgba(27,23,20,0.10); border-radius: 12px; overflow: hidden; background: #FBF7EC; }
+    .tnc { flex: 1; padding: 11px 12px; }
+    .tnk { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1px; color: #B5AFA5; }
+    .tnv { font-size: 13px; line-height: 18px; margin-top: 4px; }
+  </style>
+</helmet>
+<div style="width: 1220px; min-height: 700px; background: #EFEAE0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; color: #1B1714; box-sizing: border-box; padding: 34px 38px 44px 38px; display: flex; flex-direction: column; gap: 24px;">
+
+  <div style="display: flex; flex-direction: column; gap: 5px;">
+    <div class="kick" style="font-size:10px;letter-spacing:1.3px;">CANON &middot; SPECIMENS &middot; THE PLACES UNIONS &middot; 2026-08-30 &middot; RE-CLOTHED &middot; + THE BROWSE PAIR &middot; COUNT AUTHORITY: THE MANIFEST (34) &mdash; live_branch_field RENDERS ON THE PROMOTED + INSTRUMENTS SHEET; EVERY OTHER PLACES KIND IS ON THIS ONE (&sect;16.5) &middot; REV 08-31 (&sect;13)</div>
+    <div style="font-family: 'EB Garamond', Georgia, serif; font-weight: 600; font-size: 30px; line-height: 34px;">Places &mdash; the 34-kind union</div>
+    <div style="font-size: 14px; line-height: 19px; color: #6E6862; max-width: 860px;">Each kind isolated with union name and build grade, clothed in the old canon&rsquo;s physical grammar. Two kinds join the World Field union today by founder ruling: <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;">field_browse_shelf</span> and <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;">field_editorial_cover</span> &mdash; the browse texture the old Places page carried, admitted through the same compiler as everything else.</div>
+  </div>
+
+  <div class="grid">
+
+    <!-- scope_handle -->
+    <div class="cell"><div class="lab"><span class="kn">scope_handle</span><span class="gB">BUILD</span></div>
+      <div style="display:flex;flex-direction:column;gap:9px;padding:2px 0;">
+        <div><div class="mono11">NEW YORK</div><div class="cmeta">Saturday &middot; 2&ndash;8 PM open</div></div>
+        <div style="display:flex;align-items:center;gap:8px;"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M12.5 4L7 10L12.5 16" stroke="#1B1714" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="mono11">RED HOOK &middot; ACCESS</span></div>
+      </div><div class="fn">NARROWS AND PERSISTS &middot; NEVER CONSUMER TABS</div></div>
+
+    <!-- provenance_label -->
+    <div class="cell"><div class="lab"><span class="kn">provenance_label</span><span class="gB">BUILD</span></div>
+      <div class="kick" style="font-size:10px;">FROM HOME &middot; SATURDAY WATERFRONT INTERVAL</div>
+      <div class="fn">NAVIGATIONAL &middot; RENDERED FROM THE ENVELOPE</div></div>
+
+    <!-- search / map affordances -->
+    <div class="cell"><div class="lab"><span class="kn">search / map affordances</span><span class="gE">EXISTS</span></div>
+      <div style="display:flex;gap:14px;padding:4px 0;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="5.5" stroke="#6E6862" stroke-width="1.5"/><path d="M13.5 13.5L17 17" stroke="#6E6862" stroke-width="1.5" stroke-linecap="round"/></svg><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 6.5L8 4.5L12 6.5L17 4.5V13.5L12 15.5L8 13.5L3 15.5V6.5Z" stroke="#6E6862" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 4.5V13.5M12 6.5V15.5" stroke="#6E6862" stroke-width="1.5"/></svg></div>
+      <div class="fn">TRANSFORMATIONS OF ONE RESULT SET &middot; TYPED CONTEXT ENVELOPE</div></div>
+
+    <!-- section_header · shared instrument, EXISTS (PlacesAtoms.tsx headingRule) -->
+    <div class="cell"><div class="lab"><span class="kn">section_header &middot; shared instrument</span><span class="gE">EXISTS</span></div>
+      <div style="display:flex;flex-direction:column;gap:14px;padding:4px 0;">
+        <div style="display:flex;align-items:center;gap:10px;" class="kick"><span>NEAR THE HARBOR &middot; OPEN SATURDAY</span><span style="flex:1;height:1px;background:rgba(27,23,20,0.10);"></span></div>
+        <div style="display:flex;align-items:center;gap:10px;" class="kickm"><span>SAVED IN LISBON</span><span style="flex:1;height:1px;background:rgba(27,23,20,0.10);"></span><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;font-weight:400;color:#6E6862;">12</span><svg width="12" height="12" viewBox="0 0 13 13" fill="none"><path d="M2 6.5H10M6.5 3L10 6.5L6.5 10" stroke="#8A6628" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="fn">TITLE &mdash;&mdash; COUNT &rarr; &middot; SHIPPED AS headingRule (PlacesAtoms.tsx:70, ItineraryChapterHeader) &middot; THE RULE FIRES AT CHAPTER OPENERS</div></div>
+
+    <!-- field_lead_composition -->
+    <div class="cell"><div class="lab"><span class="kn">field_lead_composition</span><span class="gB">BUILD</span></div>
+      <div style="display:flex;flex-direction:column;gap:9px;">
+        <div class="mapframe">
+          <div style="position:absolute;left:-40px;top:-20px;bottom:36px;width:120px;background:rgba(61,80,102,0.10);border-right:1px solid rgba(61,80,102,0.18);border-radius:0 0 45% 0;"></div>
+          <div class="halo" style="width:110px;height:110px;left:126px;top:24px;"></div>
+          <svg width="326" height="132" viewBox="0 0 326 132" fill="none" style="position:absolute;inset:0;"><path d="M92 30 Q140 48 168 72 Q192 92 200 116" stroke="#B0853A" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="92" cy="30" r="4.5" fill="#B0853A"/><circle cx="200" cy="112" r="4.5" fill="#1B1714"/><circle cx="60" cy="104" r="4" fill="#1B1714"/><circle cx="60" cy="104" r="10" stroke="rgba(27,23,20,0.25)" stroke-width="1"/></svg>
+        </div>
+        <div class="serif" style="font-size:18px;line-height:25px;">Red Hook is slower to enter than the map distance suggests.</div>
+        <div class="door"><span class="doort">Open Red Hook</span><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5H10M6.5 3L10 6.5L6.5 10" stroke="#8A6628" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="fn">LEADS BY SIZE ON BARE PAPER &mdash; NOT A RAISED CARD</div></div>
+
+    <!-- field_branch_lead / field_branch -->
+    <div class="cell"><div class="lab"><span class="kn">field_branch_lead &middot; field_branch</span><span class="gA">ADAPT</span></div>
+      <div class="row" style="border-bottom:none;">
+        <div class="plate92 hatch" style="width:72px;height:72px;border-radius:12px;"></div>
+        <div style="flex:1;min-width:0;"><div class="ctitle">Red Hook</div><div class="cmeta">Harbor first &middot; scheduled in &middot; flexible out</div></div>
+      </div>
+      <div class="row">
+        <div class="plate56 hatch"></div>
+        <div style="flex:1;min-width:0;"><div style="font-size: 15px; font-weight: 600;">Brooklyn Bridge Park</div><div class="cmeta">Continuous land access &middot; easiest to shorten</div></div>
+      </div>
+      <div class="fn">EACH BRANCH = A DIFFERENT ACCESS STRUCTURE</div></div>
+
+    <!-- field_browse_shelf — NEW, ruled in 2026-08-30 -->
+    <div class="cell"><div class="lab"><span class="kn">field_browse_shelf</span><span class="gA">ADAPT &middot; NEW</span></div>
+      <div style="display:flex;flex-direction:column;gap:9px;">
+        <div class="kick" style="font-size: 10px;">NEAR THE HARBOR &middot; OPEN SATURDAY</div>
+        <div class="g2">
+          <div><div class="gmedia"></div><div class="ctitle" style="font-size:15px;margin-top:7px;">Ler Devagar</div><div class="cmeta">Bookhall &middot; 8 min from the pier</div><span class="savail">OPEN UNTIL 23:00</span></div>
+          <div><div class="gmedia"></div><div class="ctitle" style="font-size:15px;margin-top:7px;">The grain terminal</div><div class="cmeta">Ruin viewpoint &middot; on the land return</div><span class="savail">ALWAYS OPEN</span></div>
+        </div>
+      </div>
+      <div class="fn">THE BROWSE TEXTURE, RESTORED &middot; ADMITTED BY THE SAME COMPILER &middot; EVERY ITEM KEEPS ONE REASON + ONE BURDEN</div></div>
+
+    <!-- field_editorial_cover — NEW, ruled in 2026-08-30 -->
+    <div class="cell"><div class="lab"><span class="kn">field_editorial_cover</span><span class="gA">ADAPT &middot; NEW</span></div>
+      <div class="ov">
+        <div class="ovscrim"></div>
+        <div class="ovcopy">
+          <div class="ovk">READING &middot; 6 MIN</div>
+          <div class="ovt">The working waterfront that refused to close</div>
+        </div>
+      </div>
+      <div class="fn">ILLUSTRATED COVER = POSSIBILITY (MEDIA DOCTRINE) &middot; ONE PER FIELD, BELOW THE LEAD</div></div>
+
+    <!-- field_returned_understanding -->
+    <div class="cell"><div class="lab"><span class="kn">field_returned_understanding</span><span class="gB">BUILD</span></div>
+      <div class="gr"><div class="kick">DISTANCE IS NOT THE WHOLE ARRIVAL</div>
+      <div class="serif" style="font-size:15.5px;line-height:22px;">Your Sorrento evidence separates distance, elevation, transfer, and reachability.</div>
+      <div class="door"><span class="doort">Follow the threshold comparison</span><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5H10M6.5 3L10 6.5L6.5 10" stroke="#8A6628" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+      <div class="fn">THE ONLY EUROPE-DERIVED UNIT ON THE FIELD</div></div>
+
+    <!-- field_continuity_doors -->
+    <div class="cell"><div class="lab"><span class="kn">field_continuity_doors</span><span class="gE">EXISTS</span></div>
+      <div class="row" style="border-bottom:none;min-height:44px;"><span style="font-size:14px;flex:1;">Saved near the harbor</span><span class="mono11" style="color:#6E6862;">1</span></div>
+      <div class="row" style="min-height:44px;"><span style="font-size:14px;flex:1;">Your New York waterfront map</span><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5H10M6.5 3L10 6.5L6.5 10" stroke="#8A6628" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="fn">COUNT TOWARD, NEVER COUNT MISSING</div></div>
+
+    <!-- field_balanced_fallback -->
+    <div class="cell"><div class="lab"><span class="kn">field_balanced_fallback</span><span class="gB">BUILD</span></div>
+      <div class="mapframe" style="height:88px;">
+        <svg width="326" height="88" viewBox="0 0 326 88" fill="none" style="position:absolute;inset:0;"><circle cx="196" cy="52" r="4" stroke="#8A6628" stroke-width="1.5" fill="#F2E6CC"/><circle cx="110" cy="38" r="3.5" stroke="#6E6862" stroke-width="1.3" fill="none"/><circle cx="258" cy="30" r="3.5" stroke="#6E6862" stroke-width="1.3" fill="none"/></svg>
+        <span class="fn" style="position:absolute;top:8px;left:12px;">NO ROUTE CLAIMED &middot; NO INTERVAL OPEN</span>
+      </div>
+      <div class="fn">NO STRONG LEAD &rarr; A BALANCED FINITE FIELD, NEVER AN INVENTED RECOMMENDATION</div></div>
+
+    <!-- focus_identity_map -->
+    <div class="cell"><div class="lab"><span class="kn">focus_identity_map</span><span class="gA">ADAPT</span></div>
+      <div class="mapframe" style="height:112px;">
+        <div style="position:absolute;right:55%;top:0;bottom:0;left:-20px;background:rgba(61,80,102,0.10);border-right:1px solid rgba(61,80,102,0.18);"></div>
+        <svg width="326" height="112" viewBox="0 0 326 112" fill="none" style="position:absolute;inset:0;"><path d="M158 22 L306 22 M166 50 L316 50 M160 78 L308 78 M206 12 L206 100 M252 12 L252 100" stroke="rgba(27,23,20,0.06)" stroke-width="1.2"/><circle cx="144" cy="56" r="4.5" fill="#B0853A"/><circle cx="226" cy="54" r="3.5" stroke="#8A6628" stroke-width="1.4" fill="#F2E6CC"/></svg>
+      </div>
+      <div class="fn">THE MAP IS THE OBJECT &mdash; NEVER A PROVIDER PHOTO DEFAULT</div></div>
+
+    <!-- focus_verdict — the big serif moment of Focus -->
+    <div class="cell"><div class="lab"><span class="kn">focus_verdict</span><span class="gA">ADAPT</span></div>
+      <div style="padding:4px 0 2px;">
+        <div class="kick">THE ARRIVAL SHAPES THE AFTERNOON</div>
+        <div class="serif" style="font-size:19px;line-height:26px;margin-top:7px;">Use the scheduled crossing to give the visit a clear beginning. Keep the land return flexible.</div>
+        <div class="fn" style="margin-top:9px;">CURRENT BASIS &middot; FACTS CHECKED 4:42 PM &middot; UNCARDED UNTIL CONVICTION IS EARNED</div>
+      </div></div>
+
+    <!-- focus_relationship_trace -->
+    <div class="cell"><div class="lab"><span class="kn">focus_relationship_trace</span><span class="gA">ADAPT</span></div>
+      <div class="gr" style="border-left-color:rgba(176,133,58,0.45);">
+        <div class="kickm">YOUR TRACE HERE</div>
+        <div style="font-size:14px;">One Place saved &middot; no confirmed visit.</div>
+        <div class="cmeta">The Sorrento movement question is why Red Hook surfaced today.</div>
+      </div>
+      <div class="fn">DESCRIPTIVE &mdash; NEVER A STAGE, NEVER A PERSONALITY</div></div>
+
+    <!-- focus_human_note -->
+    <div class="cell"><div class="lab"><span class="kn">focus_human_note</span><span class="gA">ADAPT</span></div>
+      <div class="card" style="flex-direction:row;gap:12px;align-items:flex-start;">
+        <span class="av" style="background:#3D5066;">M</span>
+        <div style="display:flex;flex-direction:column;gap:5px;min-width:0;">
+          <div class="kickm" style="font-size: 10px;">MAYA &middot; SHARED WITH YOU</div>
+          <div class="serif" style="font-size:17px;line-height:24px;">&ldquo;I use the ferry to arrive. I don&rsquo;t plan around it to get home.&rdquo;</div>
+          <div class="fn">AUDIENCE: YOU &middot; MAY-USE (USE) + MAY-NAME (AUDIENCE)</div>
+        </div></div>
+      <div class="fn">THE OBJECT, CARDED (RULING 3) &middot; NO REACTIONS, NO &ldquo;ASK MAYA&rdquo;</div></div>
+
+    <!-- focus_horizon_doors -->
+    <div class="cell"><div class="lab"><span class="kn">focus_horizon_doors</span><span class="gB">BUILD</span></div>
+      <div class="row" style="border-bottom:none;min-height: 44px;"><span class="kick" style="min-width:76px;">ACCESS</span><span style="font-size:14px;flex:1;line-height:19px;">Why getting there changes the afternoon</span><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5H10M6.5 3L10 6.5L6.5 10" stroke="#8A6628" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="row" style="min-height: 44px;"><span class="kick" style="min-width:76px;">TRANSFER</span><span style="font-size:14px;flex:1;line-height:19px;">What Sorrento taught Vesper to separate here</span><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5H10M6.5 3L10 6.5L6.5 10" stroke="#8A6628" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="fn">TYPED EDGES WITH A STATED RELATION &mdash; NEVER LENS TABS</div></div>
+
+    <!-- focus_possibility_row -->
+    <div class="cell"><div class="lab"><span class="kn">focus_possibility_row</span><span class="gA">ADAPT</span></div>
+      <div class="row">
+        <div class="plate56 hatch"></div>
+        <div style="flex:1;min-width:0;"><div style="font-size: 15px; font-weight: 600;">Your saved place near the basin</div><div class="cmeta">Works after the ferry arrival &middot; 8 min walk &middot; open through [VERIFY]</div></div>
+      </div>
+      <div class="fn">ONE REASON + ONE MATERIAL BURDEN, ALWAYS BOTH</div></div>
+
+    <!-- focus_action_seam -->
+    <div class="cell"><div class="lab"><span class="kn">focus_action_seam</span><span class="gE">EXISTS</span></div>
+      <div class="cta"><span class="ctat">See Saturday&rsquo;s route</span></div>
+      <div style="display:flex;gap:16px;justify-content:center;"><span class="doort" style="font-size: 12.5px;">Ask Vesper</span><span class="doort" style="font-size: 12.5px;">Add to a plan</span><span class="doort" style="font-size: 12.5px;">Correct your trace</span></div>
+      <div class="fn">VALUE COMPLETE BEFORE ACTIONS APPEAR &middot; ONE SOLID CTA</div></div>
+
+    <!-- path_relation_statement -->
+    <div class="cell"><div class="lab"><span class="kn">path_relation_statement</span><span class="gE">EXISTS</span></div>
+      <div style="padding:2px 0;">
+        <div style="font-family:'EB Garamond',Georgia,serif;font-weight:600;font-size:22px;line-height:27px;letter-spacing:-0.2px;">Two waterfronts, two different thresholds</div>
+        <div class="serif" style="font-size:15.5px;line-height:22px;color:#2C2622;margin-top:6px;">Sorrento&rsquo;s town and marina are separated by elevation; Red Hook&rsquo;s threshold is the network.</div>
+      </div>
+      <div class="fn">NEVER &ldquo;PLACES LIKE SORRENTO&rdquo;</div></div>
+
+    <!-- path_difference_diagram -->
+    <div class="cell"><div class="lab"><span class="kn">path_difference_diagram</span><span class="gB">BUILD</span></div>
+      <svg width="331" height="118" viewBox="0 0 331 118" fill="none" style="width:100%;height:auto;"><rect width="331" height="118" rx="13" fill="#FBF7EC" stroke="rgba(27,23,20,0.10)"/><path d="M165.5 12 L165.5 106" stroke="rgba(27,23,20,0.10)" stroke-dasharray="2 6"/><text x="18" y="24" font-family="JetBrains Mono, monospace" font-size="8" font-weight="700" letter-spacing="1" fill="#1B1714">SORRENTO</text><text x="182" y="24" font-family="JetBrains Mono, monospace" font-size="8" font-weight="700" letter-spacing="1" fill="#1B1714">RED HOOK</text><path d="M56 38 L56 78 M50 70 L56 78 L62 70" stroke="#7A2E2E" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M40 42 L40 74 M72 42 L72 74" stroke="rgba(122,46,46,0.35)" stroke-width="1.3"/><path d="M196 38 Q216 56 240 64 M262 36 Q252 52 246 64 M300 44 Q272 56 250 66" stroke="#B0853A" stroke-width="1.5" fill="none" stroke-linecap="round"/><circle cx="244" cy="68" r="3" fill="#B0853A"/><text x="18" y="102" font-family="JetBrains Mono, monospace" font-size="7.5" letter-spacing="0.6" fill="#7A2E2E">THE THRESHOLD IS HEIGHT</text><text x="182" y="102" font-family="JetBrains Mono, monospace" font-size="7.5" letter-spacing="0.6" fill="#8A6628">THE THRESHOLD IS THE NETWORK</text></svg>
+      <div class="fn">A DIAGRAM ONLY WHEN THE DIFFERENCE IS SPATIAL</div></div>
+
+    <!-- path_distinction_rows -->
+    <div class="cell"><div class="lab"><span class="kn">path_distinction_rows</span><span class="gA">ADAPT</span></div>
+      <div class="row" style="align-items:flex-start;"><span class="kick" style="min-width:80px;padding-top:2px;">FALLBACK</span><span style="font-size: 14px; line-height: 19px;flex:1;">Saturday stays flexible only if the return does not depend on the arrival&rsquo;s fixed edge.</span></div>
+      <div class="fn">AT MOST THREE &middot; EACH NEEDS THE APPARATUS BELOW</div></div>
+
+    <!-- path_evidence_apparatus -->
+    <div class="cell"><div class="lab"><span class="kn">path_evidence_apparatus</span><span class="gA">ADAPT</span></div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div class="kickm">WHY VESPER THINKS THIS</div>
+        <div style="display:flex;gap:10px;"><span class="mono11" style="font-size:10px;color:#8A6628;">1</span><span style="font-size:13px;">Your Sorrento cliff and movement observations</span></div>
+        <div style="display:flex;gap:10px;"><span class="mono11" style="font-size:10px;color:#8A6628;">2</span><span style="font-size:13px;">Current New York route and service truth</span></div>
+        <div class="voice">One threshold is vertical; the other is networked. That does not make the places equivalent.</div>
+      </div></div>
+
+    <!-- path_consequence -->
+    <div class="cell"><div class="lab"><span class="kn">path_consequence</span><span class="gA">ADAPT</span></div>
+      <div class="gr"><div class="kick">WHAT THIS CHANGES SATURDAY</div>
+      <div class="serif" style="font-size:15.5px;line-height:22px;">Treat the crossing as an opening, not the only viable return.</div>
+      <div class="door"><span class="doort">Open the live interval</span><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5H10M6.5 3L10 6.5L6.5 10" stroke="#8A6628" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div></div>
+
+    <!-- path_next_rows -->
+    <div class="cell"><div class="lab"><span class="kn">path_next_rows</span><span class="gA">ADAPT</span></div>
+      <div class="row"><span style="font-size:14px;flex:1;line-height:19px;">Follow Red Hook&rsquo;s working-waterfront history</span><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5H10M6.5 3L10 6.5L6.5 10" stroke="#8A6628" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="fn">AT MOST TWO &middot; TYPED + EVIDENCED, OR REMOVED</div></div>
+
+    <!-- live_instrument -->
+    <div class="cell"><div class="lab"><span class="kn">live_instrument</span><span class="gA">ADAPT</span></div>
+      <div class="card" style="gap:0;">
+        <div style="display:flex;align-items:center;gap:12px;min-height:36px;border-bottom:1px solid rgba(27,23,20,0.06);"><span class="mono11" style="color:#8A6628;min-width:36px;">2:20</span><span style="width:7px;height:7px;border-radius:4px;background:#B0853A;flex:none;"></span><span style="font-size: 14px;">Depart Pier 11 &mdash; scheduled crossing</span></div>
+        <div style="display:flex;align-items:center;gap:12px;min-height:36px;"><span class="mono11" style="color:#6E6862;min-width:36px;">6:50</span><span style="width:7px;height:7px;border-radius:4px;border:1.5px dashed #1B1714;box-sizing:border-box;flex:none;"></span><span style="font-size: 14px;">Begin flexible land return</span></div>
+      </div>
+      <div class="fn">MAP + SEQUENCE = ONE PATH &middot; SPINE RECEIPT CARRIES IT UNCHANGED</div></div>
+
+    <!-- live_burden_receipt -->
+    <div class="cell"><div class="lab"><span class="kn">live_burden_receipt</span><span class="gE">EXISTS</span></div>
+      <div class="rcpt">
+        <div class="kick">WHAT THE ROUTE ASKS</div>
+        <div style="display:flex;gap:12px;"><span class="mono11" style="font-size:10px;color:#6E6862;min-width:64px;">WALKING</span><span style="font-size:13px;">18 min total &middot; level, exposed along the water</span></div>
+      </div>
+      <div class="fn">RECEIPT R11 &middot; EVIDENCE, NOT A SECOND ACTION SURFACE</div></div>
+
+    <!-- live_fallback -->
+    <div class="cell"><div class="lab"><span class="kn">live_fallback</span><span class="gA">ADAPT</span></div>
+      <div class="gr"><div class="kick">IF THE CROSSING STOPS FITTING</div>
+      <div class="serif" style="font-size:15.5px;line-height:22px;">Keep the waterfront intention, drop the fixed edge.</div></div>
+      <div class="fn">EXACTLY ONE &middot; PRESERVES INTENT, NEVER TEN ALTERNATIVES</div></div>
+
+    <!-- live_temporal_posture -->
+    <div class="cell"><div class="lab"><span class="kn">live_temporal_posture</span><span class="gB">BUILD</span></div>
+      <div style="display:flex;flex-direction:column;gap:7px;padding:2px 0;">
+        <div style="display:flex;align-items:center;gap:7px;"><span style="width:6px;height:6px;border-radius:3px;background:#2A384B;"></span><span style="font-size:11px;font-weight:600;letter-spacing:0.8px;color:#2A384B;">HOLD</span></div>
+        <div style="display:flex;align-items:center;gap:7px;"><span style="width:6px;height:6px;border-radius:3px;background:#7A2E2E;"></span><span style="font-size:11px;font-weight:600;letter-spacing:0.8px;color:#7A2E2E;">ACT NOW &middot; DEPARTURE 4:20 PM</span></div>
+        <div class="voice">The route is viable. Nothing needs booking yet.</div>
+      </div>
+      <div class="fn">WAIT &middot; HOLD &middot; ACT NOW &middot; MONITOR &middot; RELEASE &mdash; SMALL STATUS, NEVER GAMIFIED</div></div>
+
+    <!-- live_action_seam -->
+    <div class="cell"><div class="lab"><span class="kn">live_action_seam</span><span class="gA">ADAPT</span></div>
+      <div class="cta"><span class="ctat">Use this route</span></div>
+      <div style="font-size: 12.5px;color:#6E6862;text-align:center;">Creates a Saturday plan &middot; visible only to you</div>
+      <div class="fn">THE CTA PREVIEWS WHAT IT CREATES AND WHO CAN SEE IT</div></div>
+
+    <!-- why_this instrument -->
+    <div class="cell"><div class="lab"><span class="kn">why_this &middot; shared instrument</span><span class="gB">BUILD</span></div>
+      <div style="display:flex;flex-direction:column;gap:7px;">
+        <div class="door"><span class="doort" style="font-size: 12.5px;">Why this?</span><svg width="12" height="12" viewBox="0 0 13 13" fill="none"><path d="M2 6.5H10M6.5 3L10 6.5L6.5 10" stroke="#8A6628" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div style="border-top:1px solid rgba(27,23,20,0.08);padding-top:7px;display:flex;flex-direction:column;gap:5px;">
+          <div style="display:flex;gap:10px;"><span class="mono11" style="font-size:10px;color:#8A6628;">1</span><span style="font-size:12.5px;">Your saved place and the open Saturday interval</span></div>
+          <div style="display:flex;gap:10px;"><span class="mono11" style="font-size:10px;color:#8A6628;">2</span><span style="font-size:12.5px;">Current ferry service truth &middot; read [TIME]</span></div>
+        </div>
+      </div>
+      <div class="fn">ON EVERY CONSEQUENTIAL PROJECTION, BOTH ROOTS &middot; GENERALIZES path_evidence_apparatus</div></div>
+
+    <!-- social_attributed_evidence -->
+    <div class="cell"><div class="lab"><span class="kn">social_attributed_evidence</span><span class="gA">ADAPT</span></div>
+      <div class="voice" style="font-size: 14px; line-height: 19px;">The note itself &mdash; author, quote, audience, inspectable. See <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-style:normal;font-size:10px;">focus_human_note</span> for the carded render.</div></div>
+
+    <!-- social_relational_relevance -->
+    <div class="cell"><div class="lab"><span class="kn">social_relational_relevance</span><span class="gB">BUILD</span></div>
+      <div class="serif" style="font-size:16px;line-height:23px;">Her note matters <em>here</em> because it answers the question this Place raises &mdash; whether to plan the return around the fixed edge.</div>
+      <div class="fn">THE WHY-IT-MATTERS SENTENCE &ldquo;MAYA SAVED THIS&rdquo; OMITS</div></div>
+
+    <!-- social_plural_comparison -->
+    <div class="cell"><div class="lab"><span class="kn">social_plural_comparison</span><span class="gB">BUILD</span></div>
+      <div class="tn">
+        <div class="tnc" style="background:rgba(27,23,20,0.03);"><div class="tnk">ROME &middot; YOU</div><div class="tnv">Dense streets</div></div>
+        <div class="tnc"><div class="tnk" style="color:#8A6628;">PARIS &middot; MAYA</div><div class="tnv">The riverbank</div></div>
+      </div>
+      <div class="fn">ONE VERIFIED AXIS &middot; NEITHER PERSON BECOMES A TASTE PROFILE</div></div>
+
+    <!-- social_participation_consequence -->
+    <div class="cell"><div class="lab"><span class="kn">social_participation_consequence</span><span class="gB">BUILD</span></div>
+      <div class="rcpt"><div class="kick">WHAT HER NOTE CHANGED</div>
+      <div style="font-size:13px;line-height:19px;">Saturday&rsquo;s route keeps the land return flexible &mdash; the shape her note argued for. She can see this use; she can withdraw it.</div></div></div>
+
+  </div>
+
+  <div style="margin-top: 16px; border-top: 1px solid rgba(27,23,20,0.10); padding-top: 12px; display: flex; flex-direction: column; gap: 6px;">
+    <div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.3px; color: #3D7050;">ALREADY IN CODE &mdash; RE-VERIFIED AGAINST travel-app 2026-08-31 (CODE WINS OVER GRADES)</div>
+    <div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; line-height: 17px; letter-spacing: 0.2px; color: #6E6862;">EXISTS &middot; focus_action_seam &rarr; Button + components/ui/Door.tsx &middot; live_burden_receipt &rarr; receipt union verbatim (12 kinds incl. carried_forward) &middot; path_relation_statement &rarr; type roles &middot; field_continuity_doors &rarr; saved (count-toward) + map/plans doors &middot; search/map affordances &rarr; current overlay + map routes (must adopt the envelope)</div>
+    <div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; line-height: 17px; letter-spacing: 0.2px; color: #6E6862;">SHIPPED SINCE THE GRADE PASS &middot; plates + textures (hatch/committed/grid) &rarr; components/ui/MediaPlate.tsx &middot; route strip &rarr; components/ui/RouteStrip.tsx &middot; section-header rule &rarr; headingRule (PlacesAtoms.tsx)</div>
+    <div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; line-height: 17px; letter-spacing: 0.2px; color: #6E6862;">ADAPT ANCHORS &middot; focus_identity_map &rarr; mapSurface/mapTokens &middot; focus_relationship_trace &rarr; traveler_place_affinity + saves &middot; path_consequence &rarr; ConsequenceBanner family &middot; live_instrument &rarr; spine receipt (synchronized map renderer BUILD) &middot; field_branch_* &rarr; nearby_set/candidates substrate</div>
+  </div>
+
+  <div class="fn" style="letter-spacing:0.9px;">GRADES AND EVIDENCE GATES: docs/working/home-and-places-build-manifest-2026-08-30.md &middot; FIXTURE COPY ONLY &middot; DEGRADATION IS A COMPILER, NOT A UNIT &middot; MEDIA DOCTRINE: RISO HATCH = POSSIBILITY &middot; PHOTOGRAPH = EVIDENCE ONLY</div>
+
+</div>
+</x-dc>
+</body>
+</html>

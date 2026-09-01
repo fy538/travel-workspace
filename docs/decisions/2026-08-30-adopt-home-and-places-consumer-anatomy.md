@@ -4,7 +4,7 @@ status: accepted
 owner: founder / product / design
 created: 2026-08-30
 decided: 2026-08-30
-last_verified: 2026-08-30
+last_verified: 2026-08-31
 why_new: Closes the Home and Places canonization funnel at the semantic level — the anatomies, unit unions, and rulings that every later visual and build decision derives from.
 supersedes: []
 source_of_truth_for:
@@ -29,16 +29,17 @@ and graded against live code in the build manifest.
 
 ## Decision
 
-1. **Home is an editorial field with five stable regions** — Now · In
-   motion · Horizons · With people · Continuity — in one learnable order
-   that never reflows. Posture (Available, Planning, Live, Returned,
-   Quiet, Cold; Urgent as the sole suppressor) changes only dominance,
-   treatment, and density. Home opens with the **two-tier world read**:
-   the mono anchor plus a two-line serif read in the standfirst voice — a
-   read, never a greeting; **one voice moment per page** (a voiced
-   dominant promotes into the read and Now yields). Exactly one dominant
-   renders; only finishable dominants take the crown. Yields are absences
-   of claim, never empty states.
+1. **Home is an editorial field with four visible regions** — Now · In
+   motion · Horizons · Continuity — in one learnable order that never
+   reflows. People are a cross-cutting evidence reservoir and appear where
+   they materially change the state, possibility, or continuity; a visible
+   people chapter appears only when the gathering itself is the dominant
+   subject. Posture changes dominance, treatment, and density while lifecycle
+   modifiers change evidence relevance, not architecture. Home opens with its
+   most valuable true orientation at the scale the evidence earns: a two-line
+   read, one-line world truth, or direct state. Exactly one dominant renders;
+   only finishable dominants take the crown. Yields are absences of claim,
+   never empty states.
 
 2. **Places is one navigable encounter** — World Field → Place Focus →
    Place Path, with Live Reduction as the cross-cutting compression.
@@ -51,7 +52,7 @@ and graded against live code in the build manifest.
    end when the next unit does not beat silence.
 
 3. **The unit unions are the contract.** The build manifest's Home union
-   (29 kinds) and Places unions (33 kinds) plus twelve shared instruments
+   (31 kinds) and Places unions (34 kinds) plus thirteen shared instruments
    are the bounded, server-chosen kind sets required by the
    locus-of-generation ruling. Resolvers are typed against them; **adding
    a kind is a canon event, not a feature PR.**
@@ -77,24 +78,24 @@ and graded against live code in the build manifest.
 
 ## Scope and limits
 
-This is semantic canon. It does not authorize production visual geometry
-(the dedicated design pass owns that), does not change the shipping
-three-tab shell (the four-root shell stays flag-gated per the wave-0
-decision), and does not build the five new systems the manifest names
-(compilers, envelope, map grammar, read producer, social projector) —
-those are sequenced engineering work under this authority.
+This is semantic canon. The 2026-08-31 founder acceptance closes the semantic
+design phase and authorizes contract-bounded native implementation against the
+accepted Root Boards bundle. It does not change the shipping shell by itself,
+claim that complete Chat or Life roots are closed, or certify real photography,
+native map behavior, voice/deferral, accessibility, performance, or real-data
+behavior. Those remain implementation and validation work.
 
-## Watch items (not rulings)
+## Remaining validation items
 
-- **Home · Urgent** is the one posture without a drawn column; ACT NOW
-  materials are its nearest render. Draw before building the suppressor.
+- **Home · Urgent** is drawn and semantically accepted. Native interaction,
+  provider readback, fallback honesty, and recovery behavior remain unproven.
 - **Places · posture-as-modifier** is an empirical claim demonstrated in
   two situations; a three-posture World Field strip would prove it. If a
   posture ever genuinely demands a different Places architecture, this
   decision's clause 2 must be revisited rather than quietly violated.
 - **Dense retrieval register** remains parked for the Life root.
 
-## Baseline revision — 2026-08-30 (same day)
+## Revision history — 2026-08-30 through 2026-08-31
 
 The counts above are reconciled to the build manifest after the same-day
 additive adoptions (the audit batch, the browse pair, `people_gathering`,
@@ -116,3 +117,10 @@ separate axes); `week_shape` ruled into the Home union (30 kinds; 33
 Places; 13 instruments); `now_route_instrument` renamed
 `now_commitment_instrument`; the carried-forward receipt promoted.
 Counts and kind semantics: the build manifest remains the authority.
+
+**Semantic acceptance — 2026-08-31.** C1, C2, C3, and F5/Urgent were
+corrected and accepted; C2/G8, C3/G9, and C3/G16 were promoted to PASS. The
+accepted design bundle is archived at
+`docs/design-archive/root-boards-2026-08-31-accepted/`. Complete Chat and Life,
+C3/G19 capability delta, native interaction, and real-data validation remain
+open in their proper programs.
