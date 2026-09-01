@@ -78,9 +78,9 @@ what a user sees:
   development/internal-only migration gate with an explicit review date;
 - Home and Places mount opt-in reads behind that gate; Places remains on its v1
   renderer while Home's first v2 renderer is now available. Mock mode makes no
-  v2 request and the flag cannot activate in a public release build; and
-- the native v2 kind registries, renderer parity, and duplicate Places fetch
-  removal remain deliberately deferred to the next package.
+  v2 request and the flag cannot activate in a public release build. Native
+  v2 kind registries and Home renderer parity were completed in Package 2B;
+  duplicate Places fetching remains deliberately deferred.
 
 ## Package 2B — Home native v2 renderer (completed 2026-09-01)
 
