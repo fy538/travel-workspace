@@ -187,26 +187,42 @@ now closed in the backend and the internal Home consumer:
   title/body copy.
 - The executable backend `CompositionBriefV1` compiler admits claim-local,
   audience-safe, novelty-bearing generated drafts into a typed
-  `RootComposition` while retaining the complete brief. It has no writer and no
-  real model producer yet.
+  `RootComposition` while retaining the complete brief. Its bounded canonical
+  Opening owner path is now wired, but there is no universal saved-composition
+  writer or real model producer yet.
 - Typed destination navigation now carries a short-lived exact-return token;
   the associated registry preserves origin projection/revision, active unit,
   selected Resources, viewer, audience, represented time, and continuation.
+- The global return tracker now completes destination handoffs, and Home and
+  Places restore the exact originating unit after a background refresh and
+  native layout rather than merely retaining an unused token.
+- A canonical Opening can retain a strict semantic composition draft. Home v2
+  revalidates and re-admits that draft on every read, emits its claim-local
+  Sources and typed anatomy only when still valid, and degrades to short prose
+  without pretending legacy copy is generated synthesis.
+- Native composition rendering now covers bounded evidence, sequence,
+  comparison, spatial, and prose anatomy for both lead and support media. The
+  conformance gate rejects medium/anatomy mismatches; this is semantic renderer
+  coverage, not final visual approval.
+- Canonical artifact projections now hydrate optional graph owner/time/place
+  context, preserve artifact-to-Source derivation semantics, expose executable
+  owner doors, and serve confirmed owner image Sources through an authenticated,
+  no-store streaming route without exposing private custody keys.
 
 These are seam corrections, not a production promotion. The remaining
 promotion gates listed below are unchanged.
 
 ## Verification
 
-- Backend root-projection contract, adapter, gate, portfolio, semantic compiler,
-  and API route suites: **51 passed**.
-- Frontend artifact-contract, portfolio, root-v2 conformance, exact-return,
-  owner-route safety, renderer, and Home/Places screen suites: **69 passed**.
+- Backend artifact projection, graph projection, root compiler, semantic
+  admission, Life projection, return arbitration, and API suites: **137 passed**.
+- Frontend artifact, semantic anatomy, root conformance/navigation/return,
+  Home/Places, Life root, and Life refinding suites: **86 passed**.
 - Frontend TypeScript typecheck and generated-contract typecheck: **passed**.
-- API contract audit and OpenAPI mobile projection: **passed against the
-  implementation app worktree** with 428 paths, 473 operations, and 1,211
-  schemas in the app projection. The parent checkout still has unrelated
-  concurrent-app drift and is not used as this slice's source checkout.
+- Full workspace contract check, API audit, and deterministic OpenAPI mobile
+  projection: **passed** with 431 paths, 476 operations, and 1,253 schemas in
+  the app projection; the audit reports 551 active, 13 dark, and 62 retiring
+  operations with no unflagged operation.
 - Ruff, formatting, import-cycle, boundary, surface-registry, and related
   pre-commit checks: **passed** for changed files.
 
@@ -221,15 +237,17 @@ Package 0–1 and Package 2A establish the permanent seam and a dark typed
 transport; they do not make v2 production visible. The following remain the
 renderer/convergence portion of Package 2 and later:
 
-- full Home posture/real-data renderer parity, including real agent-produced
-  Composition and live-Instrument compatibility evidence;
+- full Home posture/real-data and human visual evaluation, including real
+  model-authored Composition and live-Instrument compatibility evidence;
 - state-specific Places Focus/Path/Live producers and their native renderers;
-- typed non-prose composition anatomy, destination-side exact-return
-  restoration, and live-Instrument fixtures through the renderer path;
+- live-Instrument fixtures and confirmed consequence/readback through the
+  renderer path;
 - promotion of the state-specific Places renderer and removal of the remaining
   v1 root/feed compatibility authority; and
 - deletion of legacy Trips/Places compatibility code after route-state,
   action/readback, degradation, and social/grant gates pass.
 
-This boundary is intentional: the app has a coherent v2 contract and cache
-seam before we commit to a repository-wide renderer or to Chat/Life changes.
+This boundary is intentional: the app has a coherent v2 contract, native
+semantic renderer seam, exact-return behavior, and an independently flagged
+Life foundation without turning any of them into a repository-wide renderer or
+public rollout.

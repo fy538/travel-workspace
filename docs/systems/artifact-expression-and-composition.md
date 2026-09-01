@@ -209,7 +209,7 @@ and return target; it never carries client geometry or grants action authority.
 | `CardBlueprintV1` / `ComposedChatCard` | Constrained Chat delivery grammar | Keep Chat-specific; do not universalize across roots |
 | Adaptive composition lab | Native treatment and environment fixture lab | Migrate to orthogonal expression dimensions; retain old treatment keys only as compatibility adapters |
 | `CompositionBriefV0` fixture compiler | Claim-local Source admission, novelty, medium coherence, authority, audience, and lifecycle compilation for A01–A06 | Keep as the broad fixture oracle and saved-lifecycle laboratory |
-| `CompositionBriefV1` backend compiler | Executable, storage-neutral admission of generated claims into a renderer-neutral brief and typed `RootComposition` payload | Keep dark until a real agent producer and human evaluation earn delivery; do not add a writer by implication |
+| `CompositionBriefV1` backend compiler | Executable admission of generated claims into a renderer-neutral brief and typed `RootComposition` payload; an optional draft may now be retained by its canonical Opening owner and re-admitted at Home read time | Keep dark until a real model-authored evaluation corpus and human comparison earn delivery; the Opening-owned draft is not a universal composition writer |
 | `ArtifactCirculationV0` fixture compiler | One stable identity through Home, Chat, Places, and Life with root-native medium, action, persistence, correction, spatial-binding, and return-envelope rules | Use to derive native semantic renderers; never clone one cross-root card |
 | `SemanticResultEnvelopeV0` fixture contract | Tagged Direct State, Composition, Instrument, receipt, owner link, prose, or silence result plus exact return context | Keep fixture-only until a public backend contract is explicitly approved and generated |
 | `RootProjectionEnvelopeV2` generated contract | Dark Home/Places API seam with owner-backed units, actions, destinations, lifecycle, bounded payload families, and an optional admitted composition brief | Keep distinct from the fixture envelope; validate generated values directly and do not imply native medium support beyond their typed anatomy |
@@ -268,38 +268,47 @@ and return target; it never carries client geometry or grants action authority.
    retire superseded compatibility taxonomies deliberately.
 
 Execution state on 2026-09-01: steps 1–3 are complete at fixture-contract
-altitude, and the first backend shadow compiler from step 5 is executable but
-does not yet have a model producer or human evaluation. All six fixture cases
-compile and circulate under one identity through the four roots. A01 and A06
-prove opposite saved-versus-live persistence; A02 proves attributed withdrawal;
-A03 proves immutable versioned revision; A04 proves known-versus-new admission;
-and A05 plus the Home portfolio composer prove page-level selection across
-quiet, emerging, and urgent states.
+altitude, and the first backend shadow compiler from step 5 is executable on a
+real owner path. An Opening may retain an optional strict semantic draft; the
+Home v2 adapter re-validates and re-runs admission on every read, emits a typed
+Composition only when the draft still passes, and otherwise falls back to an
+honest owner read. This proves producer-to-projection plumbing, not model quality
+or public delivery. All six fixture cases compile and circulate under one
+identity through the four roots. A01 and A06 prove opposite saved-versus-live
+persistence; A02 proves attributed withdrawal; A03 proves immutable versioned
+revision; A04 proves known-versus-new admission; and A05 plus the Home portfolio
+composer prove page-level selection across quiet, emerging, and urgent states.
 
 The fixture result contract and generated root-v2 contract have separate
 conformance ratchets. Root v2 preserves instrument identity and exact
-candidate/payload medium agreement. Its current native composition anatomy is
-prose-only, so the client supports prose natively, renders a complete text
-alternative for richer declared media, and fails richer lead/support metadata
-in conformance until typed evidence, sequence, comparison, or spatial anatomy
-exists. Unknown unit kinds and semantic silence are omitted instead of entering
-a generic card fallback.
+candidate/payload medium agreement. Its generated contract and native client
+now carry bounded evidence, sequence, comparison, spatial, and prose anatomy,
+including distinct lead and supporting anatomy. Conformance rejects a declared
+medium whose anatomy does not match; unknown unit kinds and semantic silence
+are omitted instead of entering a generic card fallback. These renderers prove
+semantic coverage and accessible degradation, not final visual composition.
 
 Legacy owner reads no longer impersonate generated composition: a canonical
-Outcome projects as direct state, and a legacy Places card projects as an owner
-link. The first admitted `CompositionBriefV1` may travel inside
-`RootComposition`, but no serving adapter emits one merely because prose is
-available. Canonical artifact readers expose only actions their mounted surface
-can execute; `open_owner` requires a canonical destination, while correction
-and source inspection remain dark until their owner command contracts exist.
+Outcome projects as direct state, a legacy Opening without an admitted draft is
+short prose, and a legacy Places card projects as an owner link. No serving
+adapter emits Composition merely because prose is available. Canonical artifact
+readers hydrate optional Experience Graph owner context, preserve correct
+artifact-to-Source derivation direction, and expose only actions their mounted
+surface can execute. `open_owner` requires a canonical destination. A retained,
+confirmed image Source may be inspected through an authenticated owner-scoped
+streaming route without exposing its private storage key; correction remains
+dark until its owner command contract exists.
 
 Typed Home/Places destinations now register an ephemeral exact-return context
 containing the origin root, projection and revision, active unit/family,
 audience, viewer, selected Resources, represented time, and continuation. Only
-a short token crosses the native route. The registry is navigation state with a
-bounded TTL and single-use consumption, not product memory or a backend grant.
+a short token crosses the native route. A root-level return tracker completes
+the handoff when the destination closes; Home and Places consume the single-use
+restoration, refresh in the background, and restore the exact unit after layout.
+The registry is bounded-TTL navigation state, not product memory or a backend
+grant.
 
-Native medium-specific anatomy beyond prose, real agent-produced brief
-evaluation, destination-side return restoration, and human comparison remain
-next. No production saved-composition writer, multiplayer causal invalidation
-owner, or generalized ranking API has been authorized.
+Real model-authored brief evaluation, human treatment comparison, visual
+acceptance, and promotion remain next. No production saved-composition writer,
+multiplayer causal invalidation owner, or generalized ranking API has been
+authorized.

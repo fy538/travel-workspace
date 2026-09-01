@@ -22544,6 +22544,56 @@
         }
       }
     },
+    "/api/root-projections/v1/life": {
+      "get": {
+        "tags": [
+          "root-projections"
+        ],
+        "summary": "Get Life Root Projection V1",
+        "description": "Return the first read-only Life root over canonical graph records.\n\nThis route is intentionally additive and does not replace the legacy Atlas\nowner.  It serves the bounded Time lens only; richer lenses and Return\narbitration remain dark until their owner contracts are available.",
+        "operationId": "get_life_root_projection_v1_api_root_projections_v1_life_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LifeRootProjectionV1"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/users/{user_id}/saves": {
       "post": {
         "tags": [
@@ -64327,6 +64377,126 @@
         ],
         "title": "LedgerRow"
       },
+      "LifeDeliveryState": {
+        "type": "string",
+        "enum": [
+          "rich",
+          "ordinary",
+          "thin",
+          "yielded"
+        ],
+        "title": "LifeDeliveryState"
+      },
+      "LifeEntry": {
+        "properties": {
+          "entry_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Entry Id"
+          },
+          "kind": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,79}$",
+            "title": "Kind"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 180,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "subtitle": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Subtitle"
+          },
+          "represented_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "maxItems": 12,
+            "minItems": 1,
+            "title": "Represented Refs"
+          },
+          "owner_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "minItems": 1,
+            "title": "Owner Refs"
+          },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "maxItems": 16,
+            "minItems": 1,
+            "title": "Source Refs"
+          },
+          "grant_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Grant Refs",
+            "default": []
+          },
+          "audience": {
+            "$ref": "#/components/schemas/RootAudience",
+            "default": "private"
+          },
+          "status": {
+            "$ref": "#/components/schemas/RootStatus",
+            "default": "current"
+          },
+          "freshness": {
+            "$ref": "#/components/schemas/RootFreshness",
+            "default": "fresh"
+          },
+          "lifecycle": {
+            "$ref": "#/components/schemas/RootLifecycle",
+            "default": "durable"
+          },
+          "destination": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "entry_id",
+          "kind",
+          "title",
+          "subtitle",
+          "represented_refs",
+          "owner_refs",
+          "source_refs"
+        ],
+        "title": "LifeEntry",
+        "description": "One bounded, source-backed door on a Life lens page."
+      },
+      "LifeLens": {
+        "type": "string",
+        "enum": [
+          "time",
+          "places",
+          "people",
+          "threads"
+        ],
+        "title": "LifeLens"
+      },
       "LifeRefindRequest": {
         "properties": {
           "q": {
@@ -64431,6 +64601,225 @@
         ],
         "title": "LifeRefindResultV1",
         "description": "One refinding response. The CONTRACT is the stable thing; the\nsubstrate behind it (legacy itinerary/booking rows today, the\nexperience graph after the migration) is not part of this shape."
+      },
+      "LifeReturn": {
+        "properties": {
+          "return_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Return Id"
+          },
+          "operation": {
+            "$ref": "#/components/schemas/LifeReturnOperation"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 180,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "substance": {
+            "type": "string",
+            "maxLength": 1400,
+            "minLength": 1,
+            "title": "Substance"
+          },
+          "represented_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "maxItems": 12,
+            "minItems": 1,
+            "title": "Represented Refs"
+          },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "maxItems": 16,
+            "minItems": 1,
+            "title": "Source Refs"
+          },
+          "audience": {
+            "$ref": "#/components/schemas/RootAudience",
+            "default": "private"
+          },
+          "freshness": {
+            "$ref": "#/components/schemas/RootFreshness",
+            "default": "fresh"
+          },
+          "lifecycle": {
+            "$ref": "#/components/schemas/RootLifecycle",
+            "default": "durable"
+          },
+          "destination": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "grant_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Grant Refs",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "return_id",
+          "operation",
+          "title",
+          "substance",
+          "represented_refs",
+          "source_refs"
+        ],
+        "title": "LifeReturn",
+        "description": "One admitted substantive Return; never a recap or generic prompt."
+      },
+      "LifeReturnOperation": {
+        "type": "string",
+        "enum": [
+          "reconstruct",
+          "explain",
+          "differentiate",
+          "transfer",
+          "reenter"
+        ],
+        "title": "LifeReturnOperation"
+      },
+      "LifeRootProjectionV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "life-root-projection.v1",
+            "title": "Schema Version",
+            "default": "life-root-projection.v1"
+          },
+          "root": {
+            "type": "string",
+            "const": "life",
+            "title": "Root",
+            "default": "life"
+          },
+          "projection_id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Projection Id"
+          },
+          "revision": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Revision"
+          },
+          "represented_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Represented At"
+          },
+          "viewer_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "active_lens": {
+            "$ref": "#/components/schemas/LifeLens"
+          },
+          "delivery_state": {
+            "$ref": "#/components/schemas/LifeDeliveryState"
+          },
+          "sections": {
+            "items": {
+              "$ref": "#/components/schemas/LifeSection"
+            },
+            "type": "array",
+            "maxItems": 4,
+            "title": "Sections"
+          },
+          "featured_return": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LifeReturn"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "total_entry_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Total Entry Count"
+          },
+          "source_revisions": {
+            "items": {
+              "$ref": "#/components/schemas/RootSourceRevision"
+            },
+            "type": "array",
+            "title": "Source Revisions",
+            "default": []
+          },
+          "degradations": {
+            "items": {
+              "$ref": "#/components/schemas/RootDegradation"
+            },
+            "type": "array",
+            "title": "Degradations",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "projection_id",
+          "revision",
+          "represented_at",
+          "viewer_ref",
+          "active_lens",
+          "delivery_state",
+          "sections",
+          "total_entry_count"
+        ],
+        "title": "LifeRootProjectionV1",
+        "description": "Versioned Life root envelope served by the additive read-only route."
+      },
+      "LifeSection": {
+        "properties": {
+          "lens": {
+            "$ref": "#/components/schemas/LifeLens"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Label"
+          },
+          "entries": {
+            "items": {
+              "$ref": "#/components/schemas/LifeEntry"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Entries"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "lens",
+          "label",
+          "entries"
+        ],
+        "title": "LifeSection"
       },
       "LifecycleTimezoneSource": {
         "type": "string",

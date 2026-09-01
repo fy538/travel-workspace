@@ -17,16 +17,17 @@ depends_on:
 
 ## Outcome
 
-The non-regrettable Life foundation is now implemented in isolated child-repo
-branches and represented in the shared contract snapshots. It is additive and
-reversible: the existing Atlas/You history owner remains intact, while an
-internal flag can expose a native Time root backed by a typed read projection.
+The non-regrettable Life foundation is now integrated with the consolidated
+artifact/root runtime branches and represented in the shared contract
+snapshots. It is additive and reversible: the existing Atlas/You history owner
+remains intact, while an internal flag can expose a native Time root backed by
+a typed read projection.
 No public promotion, generalized dossier system, Together persistence, or
 repository-wide noun migration was attempted.
 
-Current review refs: parent `codex/life-v1-foundation-docs` at `fcbd626`, app
-`codex/life-native-foundation` at `bd3730d2`, and backend
-`codex/life-root-projection` at `9a546301f`. The active main checkouts remain
+Consolidated review refs: parent `codex/dynamic-artifact-contract` (Life merge
+`6faa939`), app `codex/root-convergence-native` (`023bcfaf2`), and backend
+`codex/dynamic-artifact-runtime` (`2387fe405`). The active main checkouts remain
 untouched and retain their pre-existing work.
 
 ## Landed checkpoints
@@ -60,33 +61,27 @@ archive. `EXPO_PUBLIC_LIFE_ROOT_V1` is default-off and internal/dev-only.
 
 ### Shared workspace
 
-- `b52bbf9` — synchronized flag registry, operation policy, complete OpenAPI
-  snapshot, and derived mobile projection. The Life operation is explicitly
-  registered and the derived projection contains the Life route and schemas.
+- `b52bbf9` — initial synchronized flag registry, operation policy, complete
+  OpenAPI snapshot, and derived mobile projection.
+- `6faa939` and the current contract follow-up — integrated the Life foundation
+  with the artifact/root runtime and regenerated the complete and mobile
+  contracts. The Life operation is explicitly registered and the derived
+  projection contains the Life route and schemas.
 
 ## Validation evidence
 
-- Backend pre-merge Life/compiler/root-v2/API focused suite: 29 tests passed.
-- Frontend Life/conformance/resolver focused suite after merge: 17 tests passed.
-- Frontend `npm run typecheck`: passed.
-- App OpenAPI projection check with the Life worktree: passed — 430 paths,
-  475 operations, 1,222 schemas.
-- Cross-repository API audit with the Life worktree: passed — 550 active, 13
-  dark, 62 retiring operations; 0 unflagged.
-- The parent `make contract-check` is intentionally not green on this
-  coordination checkout: `travel-app` is an active Artifact fixture branch
-  with uncommitted files, while the Life app is isolated in
-  `worktrees/life-foundation-app`. The resulting stale/missing consumers are
-  checkout alignment findings, not a Life contract failure; rerun it after the
-  Strategy/Life app branch is deliberately promoted.
-- Backend commit hooks passed all applicable checks. The repository-wide broad
-  exception and size-budget hooks remain at their pre-existing baseline
-  ceilings and were skipped for the small docstring follow-up, as required by
-  the execution plan.
-- The full backend pytest command could not run in this worktree because its
-  isolated environment has no installed `sqlalchemy`; the focused suite was
-  already green before the merge and no backend behavior changed in the final
-  wording follow-up.
+- Consolidated backend artifact/root/Life/API focused suite: 137 tests passed.
+- Consolidated frontend artifact/root/Life/refinding suite: 86 tests passed.
+- Frontend `tsc --noEmit`: passed.
+- Deterministic workspace contract check: passed — 431 mobile paths, 476
+  operations, and 1,253 schemas; generated TypeScript exactly matches the app
+  projection.
+- Cross-repository API audit: passed — 551 active, 13 dark, and 62 retiring
+  operations; 0 unflagged.
+- Backend formatting, import-boundary, timeout, mutable-state, and applicable
+  hooks passed. The repository-wide broad-exception and size-budget ratchets
+  remain above their pre-existing baselines; no changed file introduced either
+  class of violation.
 
 ## Deliberately deferred
 
