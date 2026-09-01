@@ -1208,6 +1208,23 @@ proved restating was necessary):
    Home/Places board uses oxblood on a destructive control; the Vault's
    oxblood deletion door is the Life program's to correct.
 
+6. **Left-edge accents BANNED — RULED 2026-08-31 (founder, in chat:
+   "it looks janky, from a PowerPoint slide").** No component may carry
+   a colored left border or edge strip — carded or uncarded. This
+   retires both families at once: the card accent spine (the ACT NOW
+   oxblood edge) and the 2pt gold left rule on receipts, fallbacks,
+   diffs, and boundary previews. **The register is carried by the
+   kicker, the type, and at most a background tint — never by an
+   edge.** Urgency pressure lives in StatusMeta and content per §5.4.
+   Structural 1px hairline column dividers are layout, not accents, and
+   survive. Applied 2026-08-31: 43 accent edges stripped from 27 canvas
+   boards + the kit's `.gr` class. Code migration (native phase):
+   ConsequenceBanner, EditorialCard, SemanticResultRenderer,
+   CanonicalArtifactCard, DiscoverCoverHome, TripStorySectionCard, and
+   the chat family (RecommendationBlock, ThreadDocumentView,
+   TypingIndicator, ErrorBanner) all carry borderLeft today and must
+   adopt this ruling when touched.
+
 ## 13. Not kernel — do not cite as kernel
 
 - The 24-kind Trips section union, its ANCILLARY/POST_HERO orders, and the
