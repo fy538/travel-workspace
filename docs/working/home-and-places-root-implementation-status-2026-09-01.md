@@ -87,8 +87,10 @@ what a user sees:
 - Backend v2 contract/adapter/gate/portfolio/compiler tests: **11 passed**.
 - Frontend root query/invalidation and v2 flag tests: **9 passed**.
 - Frontend TypeScript typecheck: **passed**.
-- API contract audit and OpenAPI mobile projection: **passed** with 428 paths,
-  473 operations, and 1,190 schemas in the app projection.
+- API contract audit and OpenAPI mobile projection: **passed against the
+  implementation app worktree** with 428 paths, 473 operations, and 1,190
+  schemas in the app projection. The parent checkout still has unrelated
+  concurrent-app drift and is not used as this slice's source checkout.
 - Ruff, formatting, import-cycle, boundary, surface-registry, and related
   pre-commit checks: **passed** for changed files.
 
