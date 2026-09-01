@@ -11,6 +11,7 @@ depends_on:
   - ../decisions/2026-08-30-adopt-home-and-places-consumer-anatomy.md
   - ../decisions/2026-08-29-close-four-root-experience-to-contract-convergence.md
   - ../systems/four-root-loop-object-surface.md
+  - ../systems/artifact-expression-and-composition.md
   - ../systems/contribution-and-consequence.md
   - home-and-places-build-manifest-2026-08-30.md
   - design-kernel-extraction-2026-08-29.md
@@ -23,6 +24,8 @@ related:
   - life-return-arbitration-policy-2026-09-01.md
   - chat-as-agentic-interaction-layer-research-2026-08-29.md
   - agentic-chat-cross-surface-fixture-pack-2026-08-29.md
+  - claude-design-interaction-kernel-lab-v2-controlled-comparison-handoff-2026-08-31.md
+  - life-next-behavior-prototype-handoff-2026-08-31.md
   - home-and-places-root-implementation-status-2026-08-31.md
 ---
 
@@ -383,6 +386,8 @@ Minimum fields:
 candidate identity and revision
 eligible root, region, and state
 bounded unit kind
+dominant job and material trigger
+evidence-dependency cluster and surface seat identity
 represented resources
 canonical owner references
 Source and Claim references
@@ -392,7 +397,10 @@ new-value / novelty statement
 current consequence and practical feasibility
 attention demand and interaction burden
 social attribution and naming permissions
-lead-medium hint
+semantic role, composition identity, and expression version
+one lead-medium hint plus at most one supporting-medium hint
+ephemeral, candidate-to-save, saved, shared, or live lifecycle intent
+persistence policy and dependency manifest when durable
 typed kind payload
 ```
 
@@ -413,12 +421,15 @@ Candidates pass an ordered, deterministic pipeline:
    their promised precision.
 5. **Novelty gate** — the unit contributes beyond retrieval, paraphrase, or
    repetition of what the person already supplied.
-6. **Ownership/exposure gate** — another root has not already completed the
+6. **Cluster gate** — substantially overlapping evidence candidates are
+   merged when one composition can carry both jobs without degrading either;
+   otherwise they compete for one surface seat under the current dominant job.
+7. **Ownership/exposure gate** — another root has not already completed the
    same job, and the candidate is not an unauthorized echo.
-7. **Feasibility gate** — practical claims and operations remain viable.
-8. **Demand gate** — unresolved demand is proportionate to the root and
+8. **Feasibility gate** — practical claims and operations remain viable.
+9. **Demand gate** — unresolved demand is proportionate to the root and
    posture.
-9. **Silence gate** — the candidate beats omission at the available density.
+10. **Silence gate** — the candidate beats omission at the available density.
 
 The system should log suppression reasons for evaluation and debugging without
 shipping a consumer-facing explanation of every rejected candidate.
@@ -466,6 +477,13 @@ interaction affordances.
 Use a compile-time kind registry rather than a single generic renderer that
 gradually accumulates root-specific exceptions. Shared visual instruments can
 remain reusable, but root composition stays explicit.
+
+During an AI-assisted shaping episode, the renderer must preserve semantic
+identity, the selected object, and enough spatial continuity that the person
+experiences one malleable composition rather than a stream of replacement
+cards. Touch may supply the referent and language may supply nuance, but both
+must compile into the same typed owner or projection command. Final Chat-side
+choreography remains outside this program.
 
 Home keeps one root component over a fixed region skeleton. Places should use
 state-specific components over shared map/search/detail primitives rather than
@@ -620,9 +638,10 @@ Life's stable decisions already sharpen Home/Places architecture:
 
 Life's unsettled work can still change:
 
-- the final Returns arbitration policy;
+- cross-cluster seat arithmetic when several unrelated Return clusters all
+  qualify for a bounded root region;
 - lens, dossier, search, and Everything-kept destinations;
-- how Together and frozen historical shared state appear;
+- production implementation of Together and frozen historical shared state;
 - the destination density of a carried-forward receipt; and
 - Life's internal correction and custody interactions.
 
@@ -648,9 +667,11 @@ Together presentation.
 | Generalized Monitor owner | Explicitly deferred | Wait |
 | Life record and current-value boundary | Stable | Build now |
 | Life destination identity | Stable minimum | Carry owner refs now |
-| Life lens/dossier/Vault routes and UI | Still correcting | Wait |
-| Life Returns arbitration details | Proposed | Preserve required fields; do not freeze policy into Home/Places |
-| Life Together presentation | Open | Gate data correctly; do not implement destination UI |
+| Life lens/dossier/Vault routes and UI | Separate Life lane; semantically advanced but not a Home/Places dependency | Do not encode destination geometry or internal routing into root v2 |
+| Life Return arbitration core | Accepted at fixture scale | Build shared cluster identity, material-trigger, merge, surface-yield, and demotion fields now; keep each root's selector independent |
+| Cross-cluster Life seat arithmetic | Open for build phase | Do not hard-code Life's unresolved 0–3 selection policy into Home/Places |
+| Life Together consumer flow | Proven at fixture scale; production substrate incomplete | Reference the durable grant contract and gate data correctly; do not implement Life destination UI |
+| Life refinding | Dark native slice built in a concurrent lane | Do not duplicate or overwrite it; use its target-first truth envelope as an adjacent precedent, not a Home/Places dependency |
 
 ### 7.5 Decision: do not wait for all lanes
 
@@ -670,6 +691,49 @@ The condition is that no package silently expands into Chat or Life
 implementation. Cross-root contracts are dependencies; destination UX remains
 owned by its lane.
 
+### 7.6 Parallel-lane alignment — 2026-08-31
+
+The Artifacts and Life lanes advanced after this program's first draft. Their
+findings refine the implementation boundary without reversing the sequence.
+
+**Artifacts / interaction kernel:**
+
+- one generated Composition and one live Instrument now form a required
+  compatibility gate beside the A2/B2/D2 controlled interaction comparisons;
+- one semantic identity must survive root-native density, medium, action, and
+  persistence changes;
+- generated value must be complete on view;
+- a Composition uses one lead medium and at most one supporting medium;
+- deliberate save freezes an expression version and dependency manifest;
+- Instrument expiry removes stale controls but preserves owner truth and
+  receipts; and
+- no universal Artifact card, server-authored component tree, or general UI
+  DSL may emerge from the experiment.
+
+**Life behavior program:**
+
+- Together and human refinding are consumer-proven at fixture scale;
+- the 13-field grant record is the accepted durable successor to the temporary
+  `ContributionAxes` fixture, although its production domain and revocation bus
+  remain unbuilt;
+- the experience-graph lane is the durable truth direction; new root work must
+  not deepen the legacy itinerary lane except through a temporary adapter;
+- Return arbitration's one-seat-per-cluster, merge, material-trigger
+  recompilation, surface-yield, demotion, and suppression laws are accepted at
+  fixture scale;
+- contribution lifecycle is consumer-proven in design, and its first migration
+  target is addressable Chat contributions through the contribution envelope;
+  Home/Places must not compensate by excavating transcript text; and
+- the refinding slice is implemented dark and flag-gated in a concurrent lane,
+  with production integration and commits still outside this program.
+
+**Program consequence:** Packages 0 and 1 remain unblocked. Package 2 may
+implement semantic contracts and existing native primitives, but final
+generated-Composition editing treatment must pass the artifact compatibility
+gate before renderer promotion. Life's accepted arbitration core should inform
+candidate fields and shared gates now; its unresolved cross-cluster arithmetic
+and destination UI remain outside Home/Places.
+
 ## 8. Implementation packages
 
 Packages are dependency-ordered architectural increments, not calendar weeks
@@ -685,6 +749,10 @@ Deliver:
   permanently wrap the old Concierge feed ranker;
 - define the complete Home and Places kind unions;
 - define `RootCandidate`, gate results, typed destinations, and projection v2;
+- align Composition and Instrument lifecycle fields with the Artifact,
+  Expression, and Composition contract;
+- reference the accepted grant record rather than copying its thirteen fields
+  into root-owned storage;
 - document the precise consumer graph of Trips Home, Concierge feed, Trips
   stack, Places feed, Places workspace, and existing root v1;
 - add characterization fixtures for valuable legacy signals; and
@@ -702,6 +770,8 @@ Exit gates:
 - every legacy Home card family and Places reason has a retain, migrate,
   replace, retire, or defer disposition;
 - no accepted unit kind lacks a declared payload owner and evidence gate;
+- generated Composition, saved expression, live Instrument, Direct State, and
+  Receipt remain distinct lifecycle families;
 - v2 types contain no component or route strings; and
 - concurrent Chat/Life work is not staged or modified.
 
@@ -723,6 +793,8 @@ Design constraints:
 - no universal `get_context` endpoint;
 - no `RootCandidate` persistence table;
 - no transcript excavation as owner truth;
+- no new durable investment in the legacy itinerary lane beyond a bounded
+  migration adapter;
 - no model-selected authority; and
 - no unbounded viewer graph read simply because the final screen is bounded.
 
@@ -731,8 +803,12 @@ Exit gates:
 - Home compiler does not consume the generic full `ExperienceProjection`;
 - Places compiler does not consume `PlacesFeed`;
 - each adapter has privacy, unknown, stale, correction, and unavailable tests;
-- partial source failure preserves an honest root; and
-- no candidate can become visible without an owner and evidence path.
+- partial source failure preserves an honest root;
+- no candidate can become visible without an owner and evidence path;
+- overlapping-evidence candidates preserve one cluster identity and one seat
+  per surface; and
+- root candidates reference grants and expression manifests without becoming
+  their canonical owners.
 
 ### Package 2 — Home v2 compiler and real-data root
 
@@ -755,6 +831,8 @@ Initial producer coverage should prioritize architecture breadth:
 - prepared possibility Move;
 - Occasion and loose-end motion;
 - one grounded editorial/mechanism Horizon;
+- one generated Composition whose identity and evidence survive compact Home,
+  optional Chat inspection, Places depth, and deliberate-save boundaries;
 - one authorized social contribution form;
 - one carried-forward or reconstructed Continuity return; and
 - honest silence/quiet composition.
@@ -768,7 +846,10 @@ Exit gates:
 - exactly one dominant law is mechanically enforced;
 - initial value never requires input;
 - urgent suppression, quiet richness, and no-padding rules pass golden tests;
-- correction or grant withdrawal removes dependent material; and
+- correction or grant withdrawal removes dependent material;
+- the generated-Composition compatibility case passes complete-on-view,
+  expression-version, medium-budget, expiry, and causal-repair checks before
+  its renderer is promotion-eligible; and
 - no legacy Trips Home model appears in the v2 wire payload.
 
 ### Package 3 — Places encounter compiler
@@ -874,6 +955,7 @@ Exit gates:
 | Planning | One unresolved decision; other material completes on view |
 | Live | Current Commitment and conditions dominate without turning Home into an itinerary |
 | Europe return | Past evidence projects forward and competes honestly with current New York life |
+| Generated Composition | One identity, complete-on-view value, inspectable evidence, one lead plus at most one supporting medium, and deliberate-save boundary |
 | Social Occasion | People change the relevant unit rather than appearing as an activity feed |
 | Quiet | Zero demand with a true read, week shape, and earned consumable returns |
 | Cold | Honest invitation without pretending context exists |
@@ -892,6 +974,7 @@ Exit gates:
 | Social contribution | One of four admissible forms under complete grant checks |
 | Social withdrawal | Dependent projection recompiles or yields without residue |
 | Provider degradation | Identity and durable interpretation survive; unsupported current action does not |
+| Expiring Instrument | Current controls disappear on expiry while owner truth, outcome, and receipt remain |
 
 ### 9.3 Cross-root
 
@@ -906,6 +989,12 @@ Exit gates:
 - A correction, suppression, block, or revocation invalidates every dependent
   projection.
 - Two roots do not occupy the same evidence cluster with redundant value.
+- A saved Composition preserves the chosen expression version and dependency
+  manifest while later root projections may recompile.
+- A transient Composition does not become a Life object merely because Home or
+  Places rendered it.
+- A withdrawn social Source removes only dependent claims and leaves unrelated
+  history intact.
 
 ## 10. Verification and ratchets
 
@@ -958,7 +1047,10 @@ Begin with the durable seam:
 8. Render the two emitted kinds through root-specific registries.
 9. Prove partial degradation, centralized invalidation, and absence of duplicate
    Places fetching.
-10. Widen producer coverage only after this path is mechanically sound.
+10. Run the generated-Composition and live-Instrument compatibility fixtures
+    through the contract even if final interaction treatment remains in the
+    design lab.
+11. Widen producer coverage only after this path is mechanically sound.
 
 The first slice is successful when it establishes the permanent spine, not
 when it makes the largest visual change. The subsequent packages then add
@@ -990,8 +1082,8 @@ Wait on:
 - final Chat verbs and complex multi-owner workflows;
 - generalized monitoring;
 - Life lens/dossier/Vault rendering;
-- Life Together presentation;
-- final Life Returns arbitration behavior; and
+- production Life Together and revocation-bus implementation;
+- cross-cluster Life seat arithmetic and Life destination presentation; and
 - hard-coded destination geometry or routes owned by those roots.
 
 The architecture should make those future designs easier to integrate. If a
