@@ -1397,3 +1397,41 @@ Canvas 1446ece2 republished; changed boards pushed to project a26e3228.
 Per §16.6, the program is now ready for the one last review; after
 acceptance, next work is native interaction, real photography, and
 device-level composition — not canvas expansion.
+
+## 18. Final two corrections — executed 2026-08-31
+
+**1 · Aeneas (overclaim withdrawn).** Both renders now carry the safer
+direction verbatim in spirit: "Virgil sends Aeneas along the same
+Campanian coast you crossed — past the Sirens' cliffs traditionally
+placed on the Sorrentine peninsula, then into Cumae. Rome mapped its
+founding story onto a coastline people already sailed. It will keep."
+"Not myth," "pilot's log," and "one bay north" are removed; the layered
+myth/politics/geography reading is respected via "traditionally placed"
+and "mapped its founding story onto."
+
+**2 · Post-Occasion causal repair (the seven steps, all landed):**
+1. Your Occurrence = the noodle bar, the people, Dana's photo.
+2. "Sam's Georgian note left the evening when the place changed; it sits
+   with him, not inside this night" (Yours view). Findings no longer say
+   "re-scoped": "Vesper cannot rewrite the scope of his authored claim,
+   so nothing pretended it applied to the backup."
+3–4. The Grant Moment origin now happens "in the post-event link — her
+   bounded web Life view, no install"; her tap only *prepares* the ask,
+   and the board states in bold that **nothing is retained or shared
+   until Sam agrees**.
+5. Dana's view separates the kept evening (photo + place) from the note,
+   which "sits separately, a retained contribution with his name, not
+   part of the night's record"; Sam's receipt card says the same.
+6. Thin-participant continuity defined both ways at once: the guest link
+   *is* her bounded web Life view (cast line, lane header, origin card),
+   and hosting is "the first moment identity is required — the bridge
+   from guest link to account carries everything she already kept, and
+   asks only then, never as an entry toll."
+7. Sam's view: "Dana retained it, and later shared it once — attributed,
+   under his grants." "Used twice" is gone.
+
+The ask/receipt/custodian copy on the Grant Moment board now names "your
+Georgian note" consistently. Sweep for "used twice," "re-scoped," "link
+only," "pilot," "one bay north," "not myth": clean. Zero new boards or
+kinds. Per the verdict, semantic canvases close on acceptance and the
+program moves to native interaction.
