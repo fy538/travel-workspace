@@ -418,3 +418,31 @@ semantic-result envelope and judgment receipt that Chat and Life can consume;
 model-authored Composition and prose producers need the corresponding exact
 Source/public-research owner adapters before promotion. Root-native portfolio
 policy remains downstream and must not be pulled back into shared judgment.
+
+### S2C — judged semantic-result envelope — contract landed
+
+Backend commit `112d49edd` consolidates the backend half of the previously
+frontend-only `SemanticResultEnvelopeV0` doctrine:
+
+- `SemanticResultEnvelopeV1` now binds exactly one Direct State, Composition,
+  Instrument, Receipt, owner-link, prose, or silence result to its explicit
+  four-root return context;
+- family, audience, selected resources, root revisions, and active Instrument
+  identity must survive return without introducing foreign resources;
+- every non-silent result requires return context, while silence cannot pretend
+  that a continuation exists; and
+- `JudgedSemanticResultEnvelope` binds that expression to the exact
+  value-over-silence receipt, admitted product move, owner/evidence/grant
+  dependencies, correction target, and selected candidate identity.
+
+Root-native `Read` and `Week Shape` remain intentionally outside the cross-root
+semantic-result union. They can be value-judged on Home without masquerading as
+portable Chat/Life content. The seven portable families remain the common
+language.
+
+The contract and binding tests cover exact return, foreign-resource rejection,
+family/audience alignment, admitted Direct State, and typed silence. Repository
+hooks pass. S2C is not yet complete: Chat and Life still need production
+producers that can supply evidence-bearing expressions to this envelope. The
+existing free-form Concierge reply and raw Life Return must not be relabeled as
+conforming output without claim/source admission.
