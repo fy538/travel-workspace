@@ -5,15 +5,15 @@ owner: founder / backend / frontend
 created: 2026-09-01
 last_verified: 2026-09-01
 expires: 2026-10-01
-why_new: Record the concrete Package 0–1 and Package 2A implementation outcome without implying that the v2 roots are already the production renderer. This status sheet is the handoff from architecture freeze through the dark typed compiler boundary.
+why_new: Record the concrete Package 0–1, Package 2A, and Package 2B implementation outcome without implying that the v2 roots are production-ready. This status sheet is the handoff from architecture freeze through the first internal Home renderer.
 source_of_truth_for:
-  - Package 0–1 and Package 2A completion status and known deferred work
+  - Package 0–1, Package 2A, and Package 2B completion status and known deferred work
 depends_on:
   - docs/working/home-and-places-root-implementation-program-2026-08-31.md
   - docs/working/home-and-places-root-consumer-graph-2026-09-01.md
 ---
 
-# Home and Places — Package 0–1 status
+# Home and Places — Package 0–2B status
 
 ## Completed
 
@@ -76,16 +76,44 @@ what a user sees:
   Places states, destinations, and degradations);
 - `EXPO_PUBLIC_ROOT_PROJECTION_V2` is registered as a default-off,
   development/internal-only migration gate with an explicit review date;
-- Home and Places mount opt-in shadow reads behind that gate while continuing
-  to render the v1 compatibility treatment. Mock mode makes no v2 request and
-  the flag cannot activate in a public release build; and
+- Home and Places mount opt-in reads behind that gate; Places remains on its v1
+  renderer while Home's first v2 renderer is now available. Mock mode makes no
+  v2 request and the flag cannot activate in a public release build; and
 - the native v2 kind registries, renderer parity, and duplicate Places fetch
   removal remain deliberately deferred to the next package.
+
+## Package 2B — Home native v2 renderer (completed 2026-09-01)
+
+The internal Home path can now consume the typed envelope without translating
+it back into the v1 semantic-result contract:
+
+- `HomeRootV2UnitRenderer` is a client-owned registry for every kind currently
+  emitted by the Home v2 adapter (`now_commitment_instrument`,
+  `now_recovery_instrument`, `now_prepared_possibility`,
+  `motion_occasion_row`, and `continuity_reconstruction`), with a safe generic
+  fallback for future kinds;
+- `HomeRootV2Screen` renders the envelope's orientation, canonical region
+  order, degradation notice, owner/source doors, capability actions, and Rest
+  Close from semantic payloads only; no server component, route, or geometry
+  appears in the wire contract;
+- the Home root selects v2 only when `EXPO_PUBLIC_ROOT_PROJECTION_V2` is
+  explicitly enabled in a development/internal build. Otherwise, or on a v2
+  read error, the existing v1 root remains the serving path;
+- a typed v2 mock fixture makes the initial composition testable without a
+  backend, while real builds use the authenticated v2 endpoint; and
+- Chat, Life, Places serving, and the existing v1 Home contract remain
+  unchanged.
+
+This is a renderer and serving-cutover scaffold, not promotion evidence. The
+v2 envelope still needs a first-class orientation/week-shape producer, the
+complete Home posture matrix, real-data captures, and action/readback evidence
+before the flag can be broadened.
 
 ## Verification
 
 - Backend v2 contract/adapter/gate/portfolio/compiler tests: **11 passed**.
-- Frontend root query/invalidation and v2 flag tests: **9 passed**.
+- Frontend root query/invalidation, v2 flag, renderer, and Home v2 screen tests:
+  **15 passed**.
 - Frontend TypeScript typecheck: **passed**.
 - API contract audit and OpenAPI mobile projection: **passed against the
   implementation app worktree** with 428 paths, 473 operations, and 1,190
@@ -105,7 +133,8 @@ Package 0–1 and Package 2A establish the permanent seam and a dark typed
 transport; they do not make v2 production visible. The following remain the
 renderer/convergence portion of Package 2 and later:
 
-- native kind registries and full real-data renderer parity;
+- first-class v2 orientation/week-shape producers and full Home posture/real-
+  data renderer parity;
 - generated Composition compatibility and live-Instrument fixtures through the
   renderer path;
 - removal of duplicate Places feed fetching in `PlacesWorkspace`; and
