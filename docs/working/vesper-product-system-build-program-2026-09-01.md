@@ -344,3 +344,40 @@ S2 is now active. The next implementation seam is the shared judgment and
 value-composition runtime: it must transform these owner portfolios into a
 bounded product move, result family, medium, anatomy, and silence decision
 without importing root layout or treating missing truth as model permission.
+
+### S2A — shared value-over-silence contract — landed
+
+Backend commit `62f783748` adds the first presentation-neutral S2 runtime over
+the S1 mesh. One typed candidate now binds:
+
+- its immediate job and material trigger;
+- one of the four canonical product moves;
+- Direct State, Composition, Instrument, Receipt, owner-link, or prose result;
+- target root and root-owned treatment;
+- exact owner operations and explicitly acceptable omissions;
+- novelty-to-person, evidence strength, epistemic yield, present relevance,
+  compression, feasibility, and attention burden;
+- audience, grants, owner/evidence dependencies, expiry, and correction; and
+- one lead medium plus at most one distinct supporting medium.
+
+The evaluator resolves those requirements against a real ordered
+`OwnerReadPortfolio`, fails closed on missing, stale, unauthorized, or
+unaccepted partial truth, applies practical/protected-commitment precedence,
+uses the existing situated-judgment counterfactual receipt, and selects one
+candidate or typed silence. A partial read is usable only when that candidate
+declares the exact omission irrelevant; absence never becomes model
+permission. Interpretive moves require new-to-person material and nonzero
+epistemic yield, while a practical Instrument can remain useful without
+pretending operational state is editorial novelty.
+
+The S2A suite covers new supported value, known-material repetition, accepted
+and unaccepted partial truth, practical instruments, group grant enforcement,
+operational precedence, and medium/family consistency. Forty-one adjacent
+value-composition, situated-judgment, treatment, and semantic-composition tests
+pass, and repository hooks pass.
+
+S2 is not complete. Next, current owner-backed producers must emit these value
+candidates before Home/Places selection and agentic response composition;
+selected decisions must then compile into the existing typed Direct State,
+Composition, Instrument, Receipt, link, prose, and silence contracts without
+copying root layout into judgment.
