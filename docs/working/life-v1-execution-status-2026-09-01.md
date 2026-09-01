@@ -24,6 +24,11 @@ internal flag can expose a native Time root backed by a typed read projection.
 No public promotion, generalized dossier system, Together persistence, or
 repository-wide noun migration was attempted.
 
+Current review refs: parent `codex/life-v1-foundation-docs` at `fcbd626`, app
+`codex/life-native-foundation` at `bd3730d2`, and backend
+`codex/life-root-projection` at `9a546301f`. The active main checkouts remain
+untouched and retain their pre-existing work.
+
 ## Landed checkpoints
 
 ### Backend (`Travel Agent`)
