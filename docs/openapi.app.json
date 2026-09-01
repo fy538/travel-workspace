@@ -85300,6 +85300,16 @@
               }
             ]
           },
+          "treatment": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SurfaceTreatmentProjection"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "why_this": {
             "type": "string",
             "maxLength": 500,
@@ -91163,7 +91173,7 @@
           "composition_fingerprint"
         ],
         "title": "SurfaceTreatmentProjection",
-        "description": "Common backend envelope for any surface treatment projection."
+        "description": "Common envelope for one treatment projected onto its owning surface."
       },
       "TakeGenerationRequest": {
         "properties": {
