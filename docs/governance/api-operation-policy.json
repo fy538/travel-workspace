@@ -10,7 +10,12 @@
   "operations": {
     "GET /admin/intake/dead-letters": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "admin_intake_dead_letters"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "admin_intake_dead_letters"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "intake",
@@ -20,7 +25,12 @@
     },
     "GET /admin/intake/metrics": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "admin_intake_metrics"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "admin_intake_metrics"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "intake",
@@ -30,7 +40,12 @@
     },
     "POST /admin/intake/dead-letters/{event_id}/replay": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "admin_intake_dead_letter_replay"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "admin_intake_dead_letter_replay"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "intake",
@@ -40,7 +55,12 @@
     },
     "POST /admin/intake/submissions/{submission_id}/replay": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "admin_intake_submission_replay"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "admin_intake_submission_replay"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "intake",
@@ -50,7 +70,13 @@
     },
     "GET /api/experience-graph/anchors": {
       "audience": "app",
-      "consumers": [{"kind": "app_url", "name": "listExperienceGraphAnchors", "source": "travel-app/utils/api/http.ts"}],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "listExperienceGraphAnchors",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -60,7 +86,13 @@
     },
     "GET /api/experience-graph/anchors/{anchor_id}": {
       "audience": "app",
-      "consumers": [{"kind": "app_url", "name": "getExperienceGraphAnchor", "source": "travel-app/utils/api/http.ts"}],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "getExperienceGraphAnchor",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -86,7 +118,12 @@
     },
     "POST /api/experience-graph/anchors": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "experience-graph-anchor-command"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "experience-graph-anchor-command"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -96,7 +133,12 @@
     },
     "POST /api/experience-graph/openings": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "experience-graph-opening-command"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "experience-graph-opening-command"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -106,7 +148,13 @@
     },
     "PATCH /api/experience-graph/openings/{opening_id}/status": {
       "audience": "app",
-      "consumers": [{"kind": "app_url", "name": "updateExperienceGraphOpeningStatus", "source": "travel-app/utils/api/http.ts"}],
+      "consumers": [
+        {
+          "kind": "app_url",
+          "name": "updateExperienceGraphOpeningStatus",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -116,7 +164,12 @@
     },
     "POST /api/experience-graph/plans": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "create_plan_route"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "create_plan_route"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -126,7 +179,13 @@
     },
     "POST /api/experience-graph/plans/{plan_id}/lifecycle": {
       "audience": "app",
-      "consumers": [{"kind": "app_transport", "name": "transitionExperienceGraphPlanLifecycle", "source": "travel-app/utils/api/http.ts"}],
+      "consumers": [
+        {
+          "kind": "app_transport",
+          "name": "transitionExperienceGraphPlanLifecycle",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -136,7 +195,12 @@
     },
     "PATCH /api/experience-graph/plans/{plan_id}": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "update_plan_route"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "update_plan_route"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -146,7 +210,12 @@
     },
     "POST /api/experience-graph/plan-relations": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "create_plan_relation_route"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "create_plan_relation_route"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -156,7 +225,12 @@
     },
     "POST /api/experience-graph/occasions": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "create_occasion_route"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "create_occasion_route"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -166,7 +240,13 @@
     },
     "POST /api/experience-graph/occasions/{occasion_id}/lifecycle": {
       "audience": "app",
-      "consumers": [{"kind": "app_transport", "name": "transitionExperienceGraphOccasionLifecycle", "source": "travel-app/utils/api/http.ts"}],
+      "consumers": [
+        {
+          "kind": "app_transport",
+          "name": "transitionExperienceGraphOccasionLifecycle",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -176,7 +256,13 @@
     },
     "POST /api/experience-graph/occasions/{occasion_id}/anchors/{anchor_id}/link": {
       "audience": "app",
-      "consumers": [{"kind": "app_transport", "name": "linkExperienceGraphAnchorToOccasion", "source": "travel-app/utils/api/http.ts"}],
+      "consumers": [
+        {
+          "kind": "app_transport",
+          "name": "linkExperienceGraphAnchorToOccasion",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -186,7 +272,12 @@
     },
     "POST /api/experience-graph/commitments": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "create_commitment_route"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "create_commitment_route"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -196,7 +287,12 @@
     },
     "POST /api/experience-graph/commitments/from-trip-block": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "adopt_trip_block_commitment_route"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "adopt_trip_block_commitment_route"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -206,7 +302,12 @@
     },
     "GET /api/experience-graph/commitments/{commitment_id}/provider-evidence": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "list_commitment_provider_evidence_route"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "list_commitment_provider_evidence_route"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -216,7 +317,12 @@
     },
     "POST /api/experience-graph/commitments/{commitment_id}/execution-tasks": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "issue_execution_task_route"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "issue_execution_task_route"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -226,7 +332,12 @@
     },
     "POST /api/experience-graph/execution-tasks/{task_id}/revoke": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "revoke_execution_task_route"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "revoke_execution_task_route"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -236,7 +347,12 @@
     },
     "POST /api/experience-graph/reconciled-occurrence": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "record_reconciled_occurrence_route"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "record_reconciled_occurrence_route"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -246,7 +362,12 @@
     },
     "POST /api/experience-graph/provider-evidence": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "record_provider_evidence_route"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "record_provider_evidence_route"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -256,7 +377,12 @@
     },
     "GET /api/experience-graph/occasion-invitations": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "list_occasion_invitations_route"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "list_occasion_invitations_route"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -266,7 +392,12 @@
     },
     "POST /api/experience-graph/occasions/{occasion_id}/invitations": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "create_occasion_invitation_route"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "create_occasion_invitation_route"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -276,7 +407,12 @@
     },
     "POST /api/experience-graph/occasion-invitations/{invitation_id}/response": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "respond_to_occasion_invitation_route"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "respond_to_occasion_invitation_route"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -286,7 +422,12 @@
     },
     "POST /api/experience-graph/occasions/{occasion_id}/leave": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "leave_occasion_route"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "leave_occasion_route"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -296,7 +437,12 @@
     },
     "POST /api/experience-graph/occasions/{occasion_id}/transfer-organizer": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "transfer_occasion_organizer_route"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "transfer_occasion_organizer_route"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -306,7 +452,12 @@
     },
     "PATCH /api/experience-graph/commitments/{commitment_id}": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "update_commitment_route"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "update_commitment_route"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -316,7 +467,12 @@
     },
     "PATCH /api/experience-graph/outcomes/{outcome_id}": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "update_outcome_route"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "update_outcome_route"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -326,7 +482,12 @@
     },
     "POST /api/experience-graph/occasions/{occasion_id}/decisions": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "create_occasion_decision_route"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "create_occasion_decision_route"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -336,7 +497,12 @@
     },
     "GET /api/experience-graph/occasions/{occasion_id}/decisions": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "list_occasion_decisions_route"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "list_occasion_decisions_route"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -346,7 +512,12 @@
     },
     "POST /api/experience-graph/occasion-decisions/{decision_id}/votes": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "cast_occasion_decision_vote_route"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "cast_occasion_decision_vote_route"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -356,7 +527,12 @@
     },
     "POST /api/experience-graph/occasion-decisions/{decision_id}/resolve": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "resolve_occasion_decision_route"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "resolve_occasion_decision_route"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -366,7 +542,12 @@
     },
     "GET /api/experience-graph/occasion-decisions/{decision_id}": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "get_occasion_decision_route"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "get_occasion_decision_route"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -376,7 +557,12 @@
     },
     "POST /api/experience-graph/occurrence-evidence": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "experience-graph-occurrence-command"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "experience-graph-occurrence-command"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -386,7 +572,12 @@
     },
     "POST /api/experience-graph/outcomes": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "experience-graph-outcome-command"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "experience-graph-outcome-command"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -396,7 +587,13 @@
     },
     "POST /api/experience-graph/encounter-outcomes": {
       "audience": "app",
-      "consumers": [{"kind": "app_transport", "name": "recordExperienceGraphEncounterOutcome", "source": "travel-app/utils/api/http.ts"}],
+      "consumers": [
+        {
+          "kind": "app_transport",
+          "name": "recordExperienceGraphEncounterOutcome",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -406,7 +603,13 @@
     },
     "PATCH /api/experience-graph/encounter-outcomes/{outcome_id}": {
       "audience": "app",
-      "consumers": [{"kind": "app_transport", "name": "updateExperienceGraphEncounterOutcome", "source": "travel-app/utils/api/http.ts"}],
+      "consumers": [
+        {
+          "kind": "app_transport",
+          "name": "updateExperienceGraphEncounterOutcome",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "experience-graph",
@@ -416,7 +619,12 @@
     },
     "POST /api/relationships/pair-conversations": {
       "audience": "server",
-      "consumers": [{"kind": "server", "name": "relationship-handoff-command"}],
+      "consumers": [
+        {
+          "kind": "server",
+          "name": "relationship-handoff-command"
+        }
+      ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "relationships",
@@ -1840,13 +2048,13 @@
       "consumers": [
         {
           "kind": "declared",
-          "name": "Backend substrate for U3 (venue-less Tier-C attribution) — read-only preview of a domain-matched suggestion. FE review-queue consumer is a named next increment, not yet built."
+          "name": "Backend substrate for U3 (venue-less Tier-C attribution) \u2014 read-only preview of a domain-matched suggestion. FE review-queue consumer is a named next increment, not yet built."
         }
       ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "booking",
-      "reason": "See docs/working/Booking Capture — Un-anchored Handoffs.md §U3 — backend + tests shipped, no FE consumer yet by design.",
+      "reason": "See docs/working/Booking Capture \u2014 Un-anchored Handoffs.md \u00a7U3 \u2014 backend + tests shipped, no FE consumer yet by design.",
       "removal_trigger": null,
       "review_by": null
     },
@@ -2682,6 +2890,22 @@
       "removal_trigger": null,
       "review_by": null
     },
+    "POST /api/life/refind": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "lifeRefind",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": "EXPO_PUBLIC_LIFE_REFIND_LANE",
+      "lifecycle": "active",
+      "owner": "life",
+      "reason": "Life refinding: target-first retrieval over the viewer's own trips and bookings behind the flag-off LifeRefind lane in Universal Search.",
+      "removal_trigger": "Remove only if the Life refinding lane is deleted or replaced by a successor contract that preserves the life-refind-result.v1 envelope semantics.",
+      "review_by": "2026-10-31"
+    },
     "POST /api/lookup/": {
       "audience": "app",
       "consumers": [],
@@ -2723,13 +2947,13 @@
       "consumers": [
         {
           "kind": "declared",
-          "name": "Backend substrate for U3 (venue-less Tier-C attribution) — the ONLY write path, gated on an explicit human confirm. FE review-queue consumer is a named next increment, not yet built."
+          "name": "Backend substrate for U3 (venue-less Tier-C attribution) \u2014 the ONLY write path, gated on an explicit human confirm. FE review-queue consumer is a named next increment, not yet built."
         }
       ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "booking",
-      "reason": "See docs/working/Booking Capture — Un-anchored Handoffs.md §U3 — backend + tests shipped, no FE consumer yet by design.",
+      "reason": "See docs/working/Booking Capture \u2014 Un-anchored Handoffs.md \u00a7U3 \u2014 backend + tests shipped, no FE consumer yet by design.",
       "removal_trigger": null,
       "review_by": null
     },
@@ -2738,13 +2962,13 @@
       "consumers": [
         {
           "kind": "declared",
-          "name": "MessageBubble.handleLinkPress (travel-app/components/chat/MessageBubble.tsx) — called via api.postLinkSurfaced on every assistant-message link tap."
+          "name": "MessageBubble.handleLinkPress (travel-app/components/chat/MessageBubble.tsx) \u2014 called via api.postLinkSurfaced on every assistant-message link tap."
         }
       ],
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "booking",
-      "reason": "U2 outbound-link instrumentation; see docs/working/Booking Capture — Un-anchored Handoffs.md §U2.",
+      "reason": "U2 outbound-link instrumentation; see docs/working/Booking Capture \u2014 Un-anchored Handoffs.md \u00a7U2.",
       "removal_trigger": null,
       "review_by": null
     },
@@ -2992,7 +3216,7 @@
       "feature_flag": null,
       "lifecycle": "active",
       "owner": "integrations",
-      "reason": "Provider callback surface — SendGrid Inbound Parse (unified ingestion Phase 3, docs/working/unified-ingestion-research-2026-07-27.md §12.7). Not under /webhooks/ because it needs the per-request path-secret pattern, not this repo's shared /webhooks/ auth middleware.",
+      "reason": "Provider callback surface \u2014 SendGrid Inbound Parse (unified ingestion Phase 3, docs/working/unified-ingestion-research-2026-07-27.md \u00a712.7). Not under /webhooks/ because it needs the per-request path-secret pattern, not this repo's shared /webhooks/ auth middleware.",
       "removal_trigger": null,
       "review_by": null
     },
@@ -3404,11 +3628,27 @@
       "audience": "app",
       "lifecycle": "retiring",
       "owner": "places",
-      "reason": "app/site/[siteId].tsx sources from GET /api/entities/site/{id} since the 2026-08-11 entity-envelope migration (data/sites.ts). The FE client method (api.getSiteDetail) was itself retired in the same effort (Slice 4) once a full-repo grep confirmed zero remaining callers — so unlike the usual transport-only case, there is no longer even an http.ts implementation to call. The standalone backend route is unchanged and still reachable — kept live for any other consumer and for its own route tests (tests/api/test_sites_route.py in travel-agent).",
+      "reason": "app/site/[siteId].tsx sources from GET /api/entities/site/{id} since the 2026-08-11 entity-envelope migration (data/sites.ts). The FE client method (api.getSiteDetail) was itself retired in the same effort (Slice 4) once a full-repo grep confirmed zero remaining callers \u2014 so unlike the usual transport-only case, there is no longer even an http.ts implementation to call. The standalone backend route is unchanged and still reachable \u2014 kept live for any other consumer and for its own route tests (tests/api/test_sites_route.py in travel-agent).",
       "feature_flag": null,
-      "removal_trigger": "Delete this route once nothing calls it — check for any other caller before removing (see docs/decisions/2026-08-11-entity-envelope.md, Slice 4).",
+      "removal_trigger": "Delete this route once nothing calls it \u2014 check for any other caller before removing (see docs/decisions/2026-08-11-entity-envelope.md, Slice 4).",
       "review_by": "2026-09-15",
       "consumers": []
+    },
+    "GET /api/root-projections/v1/life": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_transport",
+          "name": "getLifeRootProjectionV1",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "life",
+      "reason": "Additive typed Life v1 read projection; native client root remains independently flag-gated.",
+      "removal_trigger": "Remove only after an equivalent canonical Life read contract is landed.",
+      "review_by": "2026-10-30"
     }
   },
   "retired_operations": {
