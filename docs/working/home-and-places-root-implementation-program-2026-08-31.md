@@ -800,8 +800,11 @@ Design constraints:
 
 Exit gates:
 
-- Home compiler does not consume the generic full `ExperienceProjection`;
-- Places compiler does not consume `PlacesFeed`;
+- Home and Places migration selectors consume bounded candidate tuples rather
+  than widening the v1 compiler's generic full read; final compiler cutover is
+  Package 2 work;
+- the v1 Places bridge remains the characterization carrier until the v2
+  compiler owns ordering, partial failure, and typed state;
 - each adapter has privacy, unknown, stale, correction, and unavailable tests;
 - partial source failure preserves an honest root;
 - no candidate can become visible without an owner and evidence path;

@@ -48,6 +48,9 @@ depends_on:
 - Home and Places adapters convert current owner reads into bounded,
   owner/evidence-backed candidates. They preserve source identity but do not
   treat legacy section order as a new hierarchy.
+- Separate Home and Places selectors now apply the shared gates while keeping
+  each root's candidate boundary explicit; they do not yet replace the v1
+  serving compiler.
 - Deterministic hard gates reject missing owners/evidence, unauthorized
   audience, stale/revoked/unknown/expired/non-feasible candidates, and
   candidates outside the target root. Cluster arbitration precedes seat
