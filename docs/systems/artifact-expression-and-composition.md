@@ -82,9 +82,21 @@ navigation instructions.
 
 ## Composition brief contract
 
-The first fixture-only `CompositionBriefV0` contract is implemented in
-`travel-app/utils/compositionBrief.ts`, with A01 editorial and A06 live
-instrument fixtures. It is not an API payload or production writer. A present
+Two deliberately separate contracts now exercise this boundary:
+
+- `travel-app/utils/compositionBrief.ts` keeps the complete A01–A06
+  `CompositionBriefV0` fixture portfolio and saved-composition lifecycle
+  materializers. It remains fixture-only and performs no durable write.
+- `backend/core/models/composition_v1.py` and
+  `backend/root_projection/v2/semantic_composition.py` provide the first
+  executable, storage-neutral `CompositionBriefV1` admission seam. It validates
+  claim-local evidence, known-versus-new contribution, audience, social
+  authorship, lead/support medium coherence, live freshness, lifecycle intent,
+  and complete text fallback. An admitted brief can become a typed
+  `RootComposition` payload without losing the brief receipt.
+
+The backend seam is dark architecture, not evidence that an agent producer,
+saved-composition writer, or public composition endpoint is complete. A present
 brief contains:
 
 - schema version and composition identity for the current evaluation;
@@ -196,10 +208,11 @@ and return target; it never carries client geometry or grants action authority.
 | `CanonicalArtifactProjectionV1` | Legacy-named viewer-safe semantic read model over an Intake anchor | Preserve as a read spine; align its naming and expand owner adapters deliberately, not into a visual DSL |
 | `CardBlueprintV1` / `ComposedChatCard` | Constrained Chat delivery grammar | Keep Chat-specific; do not universalize across roots |
 | Adaptive composition lab | Native treatment and environment fixture lab | Migrate to orthogonal expression dimensions; retain old treatment keys only as compatibility adapters |
-| `CompositionBriefV0` fixture compiler | Claim-local Source admission, novelty, medium coherence, authority, audience, and lifecycle compilation for A01–A06 | Keep fixture-only until shadow evaluation justifies a production boundary |
+| `CompositionBriefV0` fixture compiler | Claim-local Source admission, novelty, medium coherence, authority, audience, and lifecycle compilation for A01–A06 | Keep as the broad fixture oracle and saved-lifecycle laboratory |
+| `CompositionBriefV1` backend compiler | Executable, storage-neutral admission of generated claims into a renderer-neutral brief and typed `RootComposition` payload | Keep dark until a real agent producer and human evaluation earn delivery; do not add a writer by implication |
 | `ArtifactCirculationV0` fixture compiler | One stable identity through Home, Chat, Places, and Life with root-native medium, action, persistence, correction, spatial-binding, and return-envelope rules | Use to derive native semantic renderers; never clone one cross-root card |
 | `SemanticResultEnvelopeV0` fixture contract | Tagged Direct State, Composition, Instrument, receipt, owner link, prose, or silence result plus exact return context | Keep fixture-only until a public backend contract is explicitly approved and generated |
-| `RootProjectionEnvelopeV2` generated contract | Dark Home/Places API seam with owner-backed units, actions, destinations, lifecycle, and bounded payload families | Keep distinct from the fixture envelope; validate generated values directly and do not imply native medium support beyond their typed anatomy |
+| `RootProjectionEnvelopeV2` generated contract | Dark Home/Places API seam with owner-backed units, actions, destinations, lifecycle, bounded payload families, and an optional admitted composition brief | Keep distinct from the fixture envelope; validate generated values directly and do not imply native medium support beyond their typed anatomy |
 | Four-root semantic portfolio lab | Five selected situations rendered as contract readback across every root | Use for content, owner, demand, failure, and handoff review; it is not final visual evidence |
 | Internal four-root compatibility shell | Default-off Home/Chat/Places/Life labels over existing Trips/Concierge/Places/Atlas routes | Use only to evaluate navigation continuity; never claim target surfaces are implemented from labels alone |
 | `HomePortfolioCompositionV0` fixture composer | Current-consequence precedence, response-free value, bounded page selection, absorption, power diversity, and explicit suppression across one shared evidence world | Keep renderer-neutral; do not turn its scores or reason codes into a production ranking API without longitudinal evaluation |
@@ -255,24 +268,38 @@ and return target; it never carries client geometry or grants action authority.
    retire superseded compatibility taxonomies deliberately.
 
 Execution state on 2026-09-01: steps 1–3 are complete at fixture-contract
-altitude. All six now compile and circulate under one identity through the four
-roots. A01 and A06 prove opposite saved-versus-live persistence; A02 proves
-attributed withdrawal; A03 proves immutable versioned revision; A04 proves
-known-versus-new admission; and A05 plus the Home portfolio composer prove
-page-level selection across quiet, emerging, and urgent states.
+altitude, and the first backend shadow compiler from step 5 is executable but
+does not yet have a model producer or human evaluation. All six fixture cases
+compile and circulate under one identity through the four roots. A01 and A06
+prove opposite saved-versus-live persistence; A02 proves attributed withdrawal;
+A03 proves immutable versioned revision; A04 proves known-versus-new admission;
+and A05 plus the Home portfolio composer prove page-level selection across
+quiet, emerging, and urgent states.
 
-The fixture result contract and generated root-v2 contract now have separate
+The fixture result contract and generated root-v2 contract have separate
 conformance ratchets. Root v2 preserves instrument identity and exact
-candidate/payload medium agreement. Its current `RootComposition` payload has
-prose anatomy only, so the client supports prose natively, degrades unknown
-richer media to a complete text alternative, and fails richer lead/support
-metadata in conformance until typed evidence, sequence, comparison, or spatial
-anatomy exists. The legacy Places adapter therefore emits prose rather than a
-false spatial claim. Canonical artifact readers expose only actions their
-mounted surface can execute; `open_owner` requires a canonical destination,
-while correction and source inspection remain dark until their owner command
-contracts exist.
+candidate/payload medium agreement. Its current native composition anatomy is
+prose-only, so the client supports prose natively, renders a complete text
+alternative for richer declared media, and fails richer lead/support metadata
+in conformance until typed evidence, sequence, comparison, or spatial anatomy
+exists. Unknown unit kinds and semantic silence are omitted instead of entering
+a generic card fallback.
 
-Native medium-specific anatomy beyond prose, live producer evaluation, and
-agent shadow evaluation remain next; no production saved-composition writer or
-generalized ranking API has been authorized.
+Legacy owner reads no longer impersonate generated composition: a canonical
+Outcome projects as direct state, and a legacy Places card projects as an owner
+link. The first admitted `CompositionBriefV1` may travel inside
+`RootComposition`, but no serving adapter emits one merely because prose is
+available. Canonical artifact readers expose only actions their mounted surface
+can execute; `open_owner` requires a canonical destination, while correction
+and source inspection remain dark until their owner command contracts exist.
+
+Typed Home/Places destinations now register an ephemeral exact-return context
+containing the origin root, projection and revision, active unit/family,
+audience, viewer, selected Resources, represented time, and continuation. Only
+a short token crosses the native route. The registry is navigation state with a
+bounded TTL and single-use consumption, not product memory or a backend grant.
+
+Native medium-specific anatomy beyond prose, real agent-produced brief
+evaluation, destination-side return restoration, and human comparison remain
+next. No production saved-composition writer, multiplayer causal invalidation
+owner, or generalized ranking API has been authorized.
