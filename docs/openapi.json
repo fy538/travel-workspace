@@ -30832,6 +30832,74 @@
         }
       }
     },
+    "/api/root-projections/v2/places/runtime": {
+      "get": {
+        "tags": [
+          "root-projections"
+        ],
+        "summary": "Get Places Root Runtime V1",
+        "description": "Serve governed Places value through the mature capability workspace.",
+        "operationId": "get_places_root_runtime_v1_api_root_projections_v2_places_runtime_get",
+        "parameters": [
+          {
+            "name": "context_handle",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Context Handle"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlacesRootRuntimeEnvelopeV1"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/root-projections/v1/life": {
       "get": {
         "tags": [
@@ -89447,6 +89515,36 @@
           "feed"
         ],
         "title": "PlacesRootProjection"
+      },
+      "PlacesRootRuntimeEnvelopeV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "places-root-runtime.v1",
+            "title": "Schema Version",
+            "default": "places-root-runtime.v1"
+          },
+          "root": {
+            "type": "string",
+            "const": "places",
+            "title": "Root",
+            "default": "places"
+          },
+          "semantic": {
+            "$ref": "#/components/schemas/RootProjectionEnvelopeV2"
+          },
+          "workspace_feed": {
+            "$ref": "#/components/schemas/PlacesFeed"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "semantic",
+          "workspace_feed"
+        ],
+        "title": "PlacesRootRuntimeEnvelopeV1",
+        "description": "One request containing semantic judgment and its native workspace data."
       },
       "PlacesSavedPage": {
         "properties": {
