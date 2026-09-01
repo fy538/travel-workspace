@@ -97,8 +97,10 @@ it back into the v1 semantic-result contract:
   Close from semantic payloads only; no server component, route, or geometry
   appears in the wire contract;
 - the Home root selects v2 only when `EXPO_PUBLIC_ROOT_PROJECTION_V2` is
-  explicitly enabled in a development/internal build. Otherwise, or on a v2
-  read error, the existing v1 root remains the serving path;
+  explicitly enabled in a development/internal build. With the flag off, the
+  existing v1 root remains the serving path; a v2 read error stays an explicit
+  guarded internal recovery state rather than silently mixing v1 and v2
+  snapshots;
 - a typed v2 mock fixture makes the initial composition testable without a
   backend, while real builds use the authenticated v2 endpoint; and
 - Chat, Life, Places serving, and the existing v1 Home contract remain
