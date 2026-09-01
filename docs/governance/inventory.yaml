@@ -73,12 +73,124 @@ rules:
     disposition: keep_authoritative
     rationale: Accepted decisions and their supersession index are durable governance records.
 
+  - glob: docs/contracts/*.md
+    disposition: keep_authoritative
+    rationale: Accepted cross-repository experience contracts define current product behavior and implementation boundaries.
+
+  - glob: docs/design-archive/**/*.md
+    disposition: keep_reference
+    rationale: Accepted design bundles preserve visual and semantic evidence while textual decisions and contracts retain authority.
+
   - glob: docs/working/*itinerary-redesign*.md
     disposition: keep_authoritative
     rationale: Active itinerary-redesign implementation and operational evidence; expires with the current rollout program.
 
 
 overrides:
+  docs/working/ai-native-effortless-editing-and-composition-research-2026-08-31.md:
+    disposition: keep_reference
+    rationale: Active research on low-friction AI-native editing and composition; canonical interaction, contribution, and expression contracts retain authority.
+
+  docs/working/claude-code-design-mcp-interaction-kernel-lab-handoff-2026-08-31.md:
+    disposition: keep_reference
+    rationale: Execution handoff for the bounded Interaction Kernel Lab; it is research scaffolding rather than product or production authority.
+
+  docs/working/claude-design-code-interaction-kernel-lab-v2-1-integrity-fix-handoff-2026-09-01.md:
+    disposition: keep_reference
+    rationale: Corrective V2.1 prototype handoff preserving experimental integrity requirements without promoting the lab to product canon.
+
+  docs/working/claude-design-interaction-kernel-lab-execution-report-2026-08-31.md:
+    disposition: keep_reference
+    rationale: Point-in-time execution evidence for the first Interaction Kernel Lab and its unresolved founder review questions.
+
+  docs/working/claude-design-interaction-kernel-lab-v2-1-execution-report-2026-09-01.md:
+    disposition: keep_reference
+    rationale: Current V2.1 fixture-state execution receipt; participant evidence and product promotion remain explicitly absent.
+
+  docs/working/claude-design-interaction-kernel-lab-v2-controlled-comparison-handoff-2026-08-31.md:
+    disposition: keep_reference
+    rationale: Controlled-comparison research handoff for direct, language, and hybrid treatments; it does not settle the interaction model.
+
+  docs/working/claude-design-interaction-kernel-lab-v2-execution-report-2026-08-31.md:
+    disposition: keep_reference
+    rationale: Superseded V2 execution evidence retained to explain the semantic-integrity failure and the need for the V2.1 correction.
+
+  docs/working/form-chat-hybrid-comparative-interaction-research-2026-08-31.md:
+    disposition: keep_reference
+    rationale: Comparative interaction research supporting the kernel experiment; canonical root and contribution contracts retain authority.
+
+  docs/working/home-and-places-root-consumer-graph-2026-09-01.md:
+    disposition: keep_reference
+    rationale: Code-grounded consumer and dependency graph supporting the Home and Places migration program without replacing root contracts.
+
+  docs/working/home-and-places-root-implementation-program-2026-08-31.md:
+    disposition: keep_reference
+    rationale: Staged implementation program for the accepted Home and Places anatomy; current execution status and root contracts remain authoritative.
+
+  docs/working/home-and-places-root-implementation-status-2026-09-01.md:
+    disposition: keep_reference
+    rationale: Current implementation receipt for the dark Home and Places projection stack; code and generated contracts remain executable truth.
+
+  docs/working/home-places-root-implementation-status-2026-08-31.md:
+    disposition: keep_reference
+    rationale: Earlier Home and Places implementation snapshot retained as migration provenance and superseded by the September status report.
+
+  docs/working/life-anchors-fresh-design-audit-and-correction-brief-2026-08-30.md:
+    disposition: keep_reference
+    rationale: Design audit and correction brief supporting the accepted Life anatomy; the Life decision and v1 contract retain authority.
+
+  docs/working/life-behavior-prototype-correction-and-landing-handoff-2026-09-01.md:
+    disposition: keep_reference
+    rationale: Corrective design-to-code handoff for accepted Life behavior fixtures; it is not implementation or usability proof.
+
+  docs/working/life-contribution-lifecycle-code-audit-2026-09-01.md:
+    disposition: keep_reference
+    rationale: Point-in-time code audit for contribution, later return, and causal repair seams supporting the Life v1 program.
+
+  docs/working/life-human-refinding-code-audit-2026-09-01.md:
+    disposition: keep_reference
+    rationale: Point-in-time audit of human refinding capabilities and gaps; the compact Life contract owns the target behavior.
+
+  docs/working/life-next-behavior-prototype-handoff-2026-08-31.md:
+    disposition: keep_reference
+    rationale: Prototype handoff for Life Together, refinding, arbitration, and contribution sequences retained as design provenance.
+
+  docs/working/life-refind-landing-map-2026-09-01.md:
+    disposition: keep_reference
+    rationale: Cross-repository landing map for the bounded Life refinding slice and its contract-closure evidence.
+
+  docs/working/life-return-arbitration-policy-2026-09-01.md:
+    disposition: keep_reference
+    rationale: Detailed deterministic arbitration policy supporting the canonical one-seat cross-root behavior.
+
+  docs/working/life-returns-layer-ruling-2026-08-30.md:
+    disposition: keep_reference
+    rationale: Design ruling and negative oracle for Life Returns; accepted Life decisions and the v1 contract retain authority.
+
+  docs/working/life-together-consumer-arc-code-audit-2026-09-01.md:
+    disposition: keep_reference
+    rationale: Point-in-time multiplayer code audit supporting the accepted Together sequence while implementation remains incomplete.
+
+  docs/working/life-v1-destination-and-refinding-contract-2026-09-01.md:
+    disposition: keep_reference
+    rationale: Detailed destination and refinding extraction supporting the compact authoritative Life v1 experience contract.
+
+  docs/working/life-v1-engineering-transformation-sequence-2026-09-01.md:
+    disposition: keep_reference
+    rationale: Engineering sequence for transforming legacy Atlas into the flagged Life root without claiming product completion.
+
+  docs/working/life-v1-execution-status-2026-09-01.md:
+    disposition: keep_reference
+    rationale: Current cross-repository execution receipt for the flagged Life foundation; code and generated contracts remain executable truth.
+
+  docs/working/life-v1-non-regrettable-engineering-execution-plan-2026-09-01.md:
+    disposition: keep_reference
+    rationale: Bounded implementation plan that derived the additive Life foundation while avoiding repository-wide migration.
+
+  docs/working/plan-occasion-projection-and-consumer-architecture-research-round-3-2026-08-31.md:
+    disposition: keep_reference
+    rationale: Active research on Plan, Occasion, projections, social circulation, and consumer architecture; canonical owners and root contracts retain authority.
+
   docs/working/minimum-four-root-projection-and-owner-read-contracts-2026-08-29.md:
     disposition: keep_reference
     rationale: Active field-to-owner and minimum projection/read extraction from the selected four-root portfolio; canonical owner, contribution, four-root, and expression contracts retain authority.
