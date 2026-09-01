@@ -111,11 +111,38 @@ v2 envelope still needs a first-class orientation/week-shape producer, the
 complete Home posture matrix, real-data captures, and action/readback evidence
 before the flag can be broadened.
 
+## Post-review corrections — 2026-09-01
+
+The implementation review found several places where the seam was typed but
+not yet truthful under bounded reads or real user consequences. Those gaps are
+now closed in the backend and the internal Home consumer:
+
+- bounded Experience Graph queries prefer recent rows and filter inactive or
+  expired openings before applying limits, so old records cannot starve the
+  current Home read;
+- Home adapters interleave commitment, opening, occasion, and outcome families
+  instead of allowing one family to consume the entire bounded portfolio;
+- adapters emit canonical status/freshness, explicit target-root projections,
+  and recovery instruments/actions; Places friend cards no longer manufacture a
+  contribution grant from the card itself;
+- gate diagnostics now contain one final decision per candidate, and compiler
+  revisions hash all visible candidate content (including actions, sources, and
+  explanation) rather than only lifecycle fields;
+- Home projection validation enforces the four unique regions, unique unit IDs,
+  and a real dominant unit; source failures degrade independently for the
+  bounded portfolio; and
+- the mobile v2 cache keys now match root invalidation prefixes, source doors
+  are available on instrument units, and typed action/continuation destinations
+  route by their declared owner root.
+
+These are seam corrections, not a production promotion. The remaining
+promotion gates listed below are unchanged.
+
 ## Verification
 
-- Backend v2 contract/adapter/gate/portfolio/compiler tests: **11 passed**.
-- Frontend root query/invalidation, v2 flag, renderer, and Home v2 screen tests:
-  **15 passed**.
+- Backend v2 contract/adapter/gate/portfolio/compiler tests: **15 passed**.
+- Frontend root query/invalidation, v2 flag, renderer, navigation, and Home v2
+  screen tests: **17 passed**.
 - Frontend TypeScript typecheck: **passed**.
 - API contract audit and OpenAPI mobile projection: **passed against the
   implementation app worktree** with 428 paths, 473 operations, and 1,190
