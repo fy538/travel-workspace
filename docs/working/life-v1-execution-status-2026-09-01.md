@@ -25,10 +25,10 @@ Time root and a truth-aware refinding lane backed by typed read projections.
 No public promotion, generalized dossier system, Together persistence, or
 repository-wide noun migration was attempted.
 
-Consolidated review refs: parent `codex/dynamic-artifact-contract`, app
-`codex/root-convergence-native` (`9eb3d87d3`), and backend
-`codex/dynamic-artifact-runtime` (`b83d2393c`). Safety tags preserve every
-pre-convergence `main`; the convergence receipt records final local landing.
+Landed review refs: `baseline/four-root-convergence-2026-09-01` in each
+repository, app `main` at `9eb3d87d3`, and backend `main` at `b83d2393c`.
+Safety tags preserve every pre-convergence `main`; the convergence receipt
+records the final local workspace landing.
 
 ## Landed checkpoints
 

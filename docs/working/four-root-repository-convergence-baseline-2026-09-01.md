@@ -33,7 +33,7 @@ feed, promote new navigation publicly, or turn generated prose into evidence.
 
 | Repository | Pre-convergence `main` | Reviewed candidate | Usefulness ruling |
 | --- | --- | --- | --- |
-| Workspace | `a8580f8` | `codex/dynamic-artifact-contract` | Keep: canonical decisions, contracts, flags, generated API snapshots, preserved research lineage, and cross-repo status now agree. |
+| Workspace | `a8580f8` | `e4147b5` | Keep: canonical decisions, contracts, flags, generated API snapshots, preserved research lineage, and cross-repo status now agree. |
 | Backend | `193cd419` | `b83d2393c` | Keep: read-only root projections, semantic Composition, source media, Life projection/refinding, custody hardening, dark semantic facade, and canonical four-root orientations share existing owners. |
 | App | `e006fae` | `9eb3d87d3` | Keep: internal Home/Places/Life consumers, canonical return handoff, native composition/media rendering, refinding destinations, and root-specific primitives are additive and flag-gated. |
 
@@ -137,8 +137,14 @@ and are not silently re-baselined here.
 
 ## Landing and rollback
 
-Fast-forward local `main` in the order backend, app, workspace only after the
-final contract and documentation checks. Add
-`baseline/four-root-convergence-2026-09-01` at each landed tip. Retain safety and
-preservation refs until a later cleanup confirms no unique commit is needed.
-Do not push as part of this local convergence.
+The local fast-forwards completed in the reviewed order: backend at
+`b83d2393c`, app at `9eb3d87d3`, then workspace at `e4147b5` plus this landing
+receipt. `baseline/four-root-convergence-2026-09-01` marks each landed tip, and
+`safety/pre-four-root-convergence-2026-09-01` preserves each prior local
+`main`.
+
+Redundant merged branch names and worktrees were removed. The workspace
+research-preservation branch and both app preservation branches remain. The
+superseded backend semantic-facade merge tip is retained as
+`archive/agentic-semantic-facade-pre-convergence-2026-09-01`. No remote branch
+was changed.
