@@ -262,16 +262,18 @@ System scope does not mean simultaneous unsynchronized rewrites.
 
 ## Immediate execution ruling
 
-Continue S2 through semantic result compilation and Chat/Life consumption. S1
-is closed; Home and Places now judge producer-declared value against exact owner
-truth before either root spends layout budget. The next highest-leverage seam
-is completing the shared result pipeline so composition anatomy, suppression,
-and judgment receipts are reusable beyond the two dark root routes.
+Continue S2 through evidence-bearing semantic-result production for Chat and
+Life while advancing S3 through joined native serving envelopes. S1 is closed;
+Home and Places judge producer-declared value against exact owner truth before
+either root spends layout budget. Places now proves the required cutover shape:
+judgment governs the mature capability workspace instead of replacing it with a
+thin semantic inspection screen or running as a decorative shadow request.
 
-In parallel only where worktree ownership is explicit, continue native
-Home/Places rendering against the current v2 contract and keep Life/Chat behind
-their existing typed boundaries. Do not publicly promote a root until the S1
-reads and S2 judgment runtime can supply it honestly.
+The next native seam is the equivalent joined Home runtime: retain the mature
+temporal shell and focused workspaces, but make the admitted v2 projection its
+single server-owned content authority. Chat and Life remain behind their typed
+boundaries until they can emit or organize evidence-bearing semantic results;
+do not relabel free-form Concierge prose or raw Life returns as conformance.
 
 ## Execution status — 2026-09-01
 
@@ -446,3 +448,34 @@ hooks pass. S2C is not yet complete: Chat and Life still need production
 producers that can supply evidence-bearing expressions to this envelope. The
 existing free-form Concierge reply and raw Life Return must not be relabeled as
 conforming output without claim/source admission.
+
+### S3A — governed Places runtime joined to the native workspace — landed
+
+Backend commit `9ccf4ca17`, app commit `ca6d67ede`, and workspace contract
+commit `6f1b219` establish the first native serving join between S2 judgment and
+an existing production-shaped root:
+
+- `PlacesRootRuntimeEnvelopeV1` returns one semantic v2 projection and the
+  corresponding admitted subset of the mature `PlacesFeed` from a single
+  owner read;
+- root-card admission is applied on the server, and each surviving section is
+  revalidated with a server-owned `single`, `fork`, or `choice` treatment after
+  filtering; obsolete count doors disappear rather than lying about hidden
+  cardinality;
+- map, search, save totals, context handles, focused readers, social rows,
+  offline behavior, partial-source disclosure, and existing action navigation
+  remain owned by the mature Places workspace;
+- the native root requests the joined runtime when gated on, does not issue the
+  old root request or a second feed request on the healthy path, and wakes the
+  v1 compatibility root only after a runtime failure; and
+- the thin `PlacesRootV2Screen` remains an inspection surface, not the product
+  cutover renderer.
+
+Verification covers 141 backend projection/Places tests, 16 focused mobile
+root/workspace/route tests, TypeScript, Expo lint, and the full OpenAPI mobile
+projection and schema-bridge contract. The generated contract contains 432
+mobile paths, 477 operations, and 1,254 schemas.
+
+S3 is now active alongside S2. This is a system slice, not a one-loop proof: it
+establishes the reusable cutover pattern by which judgment changes a native
+root without throwing away its mature capabilities.
