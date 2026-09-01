@@ -94,6 +94,26 @@ flags:
       dedicated v2 renderers can consume the immutable envelope without adapting
       it back into the v1 contract.
 
+  - name: PLACES_ROOT_V2_RENDERER_ENABLED
+    repo: travel-app
+    location: constants/featureFlags.ts:PLACES_ROOT_V2_RENDERER_ENABLED
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-10-01
+    status: active
+    target_journey: P05
+    cohort: development or explicit internal builds only; requires the shared root-v2 gate and cannot activate in a public release build
+    kill_switch: Unset EXPO_PUBLIC_PLACES_ROOT_V2_RENDERER or EXPO_PUBLIC_ROOT_PROJECTION_V2, or set either false; Places immediately retains the established v1 workspace renderer.
+    promotion_removal_question: >
+      By 2026-10-01, has the native World Field renderer passed real-data,
+      navigation, accessibility, degradation, and device-visual review, or should
+      the renderer remain dark or be removed?
+    notes: >
+      Independent second gate for the dark Places v2 renderer. It allows Home v2
+      evaluation without replacing the mature Places workspace and grants no new
+      read, audience, or action authority.
+
   # ── travel-agent (backend) ──────────────────────────────────────────────
   - name: WORLDFOUNDRY_DOGFOOD_SERVING_ENABLED
     repo: travel-agent
