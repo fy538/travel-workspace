@@ -76,10 +76,11 @@ what a user sees:
   Places states, destinations, and degradations);
 - `EXPO_PUBLIC_ROOT_PROJECTION_V2` is registered as a default-off,
   development/internal-only migration gate with an explicit review date;
-- Home mounts its opt-in v2 read behind that gate; Places remains on its v1
-  renderer while its state-specific v2 renderer is still dark. Mock mode makes
-  no v2 request and the flag cannot activate in a public release build. Native
-  v2 kind registries and Home renderer parity were completed in Package 2B.
+- Home mounts its opt-in v2 read behind that gate; Places keeps its v1 renderer
+  by default while a separate internal-only World Field renderer is now dark
+  and independently gated. Mock mode makes no v2 request and the flag cannot
+  activate in a public release build. Native v2 kind registries and Home
+  renderer parity were completed in Package 2B.
 
 ## Package 2B — Home native v2 renderer (completed 2026-09-01)
 
@@ -135,6 +136,10 @@ honest producer boundary:
 - The compatibility Places workspace accepts the root envelope as its feed
   authority and disables its second `usePlacesFeed` network read when seeded;
   the unused v2 shadow request was removed from `PlacesRootExperience`.
+- A dark `PlacesRootV2Screen` now consumes World Field units directly, including
+  the server-authored scope/search-map chrome and typed source/action doors.
+  `EXPO_PUBLIC_PLACES_ROOT_V2_RENDERER` is a second explicit internal gate, so
+  Home can be dogfooded without replacing the mature Places workspace.
 
 These are bounded producer/authority corrections. They do not promote Places
 v2, change Chat or Life, or claim final Home editorial coverage.
@@ -200,6 +205,7 @@ renderer/convergence portion of Package 2 and later:
 
 - full Home posture/real-data renderer parity, including generated
   Composition and live-Instrument compatibility fixtures;
+- state-specific Places Focus/Path/Live producers and their native renderers;
 - generated Composition compatibility and live-Instrument fixtures through the
   renderer path;
 - promotion of the state-specific Places renderer and removal of the remaining
