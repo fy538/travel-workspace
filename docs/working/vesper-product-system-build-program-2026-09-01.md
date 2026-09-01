@@ -96,7 +96,7 @@ Keep the landed workspace/backend/app convergence, safety tags, generated
 contracts, feature gates, legacy compatibility owners, and known-debt ledger.
 Do not delete mature authorities while the new system is dark.
 
-### S1 — Canonical owner-read mesh — next
+### S1 — Canonical owner-read mesh — complete
 
 Implement the minimum reader package already derived from the integrated
 portfolio as shared, typed owner adapters:
@@ -116,7 +116,7 @@ name revisions and freshness, preserve unknown, and never widen audience.
 **Exit:** all seven groups have typed results, canonical owner adapters, bounded
 failure states, and at least two real consumers across the four roots or Chat.
 
-### S2 — Judgment and value-composition runtime
+### S2 — Judgment and value-composition runtime — active
 
 Replace first-qualifying-object behavior with one cross-domain admission and
 composition pipeline:
@@ -262,11 +262,11 @@ System scope does not mean simultaneous unsynchronized rewrites.
 
 ## Immediate execution ruling
 
-Begin S1, the canonical owner-read mesh. It is the highest-leverage unfinished
-system seam because every root, every agentic operation, multiplayer admission,
-composition, consequence readback, and continuity decision depends on the same
-bounded owner truth. Implement it as seven typed capability groups, not as one
-demo reader and not as a universal context endpoint.
+Continue S2 through semantic result compilation and Chat/Life consumption. S1
+is closed; Home and Places now judge producer-declared value against exact owner
+truth before either root spends layout budget. The next highest-leverage seam
+is completing the shared result pipeline so composition anatomy, suppression,
+and judgment receipts are reusable beyond the two dark root routes.
 
 In parallel only where worktree ownership is explicit, continue native
 Home/Places rendering against the current v2 contract and keep Life/Chat behind
@@ -376,8 +376,45 @@ operational precedence, and medium/family consistency. Forty-one adjacent
 value-composition, situated-judgment, treatment, and semantic-composition tests
 pass, and repository hooks pass.
 
-S2 is not complete. Next, current owner-backed producers must emit these value
-candidates before Home/Places selection and agentic response composition;
-selected decisions must then compile into the existing typed Direct State,
-Composition, Instrument, Receipt, link, prose, and silence contracts without
-copying root layout into judgment.
+### S2B — producer manifests, scoped reads, and pre-layout root judgment — landed
+
+Backend commit `0d7dc1cd1` moves value intent upstream of Home and Places
+layout rather than deriving it from already-shaped cards:
+
+- the presentation-neutral `ValueCandidate` contract now lives in core and can
+  be emitted by any product producer without importing lived-experience or a
+  root renderer;
+- every current Home and Places v2 production producer binds an explicit
+  product move, result family, role, novelty posture, evidence requirements,
+  value signals, burden, medium, audience, expiry, and exact owner-read scope;
+- Direct State, Composition, Instrument, Receipt, owner-link, Read, Week Shape,
+  and prose are distinct value result families rather than one generic card;
+- candidate-declared reads compile before root selection, including several
+  resource-scoped invocations of the same semantic operation, so evidence for
+  one Place cannot accidentally admit another Place;
+- owner-read portfolio budget overflow remains present as typed unavailable
+  truth instead of truncating the ordered request/read contract;
+- the shared value runtime evaluates each proposal against silence and the same
+  owner portfolio, after which Home and Places retain their own evidence-cluster,
+  seat, posture, and cumulative-attention policies; and
+- value manifests and judgment metadata remain internal: admitted candidates
+  compile into native `RootUnit` payloads and do not leak into the public root
+  response.
+
+This pass also makes migration gaps explicit. Legacy Trip rows, un-ingested
+public/editorial sources, ungranted group receipts, generic city/dossier cards,
+and other objects without an exact canonical reader are withheld rather than
+being justified by an unrelated broad read. Those are owner-adapter work, not
+reasons to weaken admission.
+
+Focused verification covers 114 root-projection, value-composition,
+situated-judgment, owner-read, agentic-portfolio, canonical-reader, and API
+tests. The backend commit passed every repository hook, including import-cycle,
+async database, broad-exception, public-projection, route-auth, size, secret,
+and status ratchets.
+
+S2 is still active. Next, selected value decisions must compile a reusable
+semantic-result envelope and judgment receipt that Chat and Life can consume;
+model-authored Composition and prose producers need the corresponding exact
+Source/public-research owner adapters before promotion. Root-native portfolio
+policy remains downstream and must not be pulled back into shared judgment.
