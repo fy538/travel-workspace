@@ -5,15 +5,15 @@ owner: founder / backend / frontend
 created: 2026-09-01
 last_verified: 2026-09-01
 expires: 2026-10-01
-why_new: Record the concrete Package 0–1, Package 2A, and Package 2B implementation outcome without implying that the v2 roots are production-ready. This status sheet is the handoff from architecture freeze through the first internal Home renderer.
+why_new: Record the concrete Home/Places implementation outcome without implying that the v2 roots are production-ready. This status sheet is the handoff from architecture freeze through runtime Home portfolio activation, Places convergence, and typed continuation rehearsal.
 source_of_truth_for:
-  - Package 0–1, Package 2A, and Package 2B completion status and known deferred work
+  - Home and Places implementation status, promotion boundary, and known deferred work
 depends_on:
   - docs/working/home-and-places-root-implementation-program-2026-08-31.md
   - docs/working/home-and-places-root-consumer-graph-2026-09-01.md
 ---
 
-# Home and Places — Package 0–2B status
+# Home and Places — implementation status
 
 ## Completed
 
@@ -61,27 +61,20 @@ depends_on:
 - The pure v2 modules are lazily importable without initializing the legacy
   Places/lived-experience dependency graph.
 
-#### Serving-topology clarification — 2026-09-01
+#### Serving-topology update — 2026-09-01
 
-Package 1 completed the bounded portfolio **substrate**, not its activation in
-the serving routes. `BoundedRootReadPortfolio` and `run_bounded_reads` are
-executable and covered by independent-timeout/degradation tests, but the
-current `GET /api/root-projections/v2/home` route still performs one bounded
-Experience Graph read and the current Places route still adapts one canonical
-`PlacesFeed` read. Consequently:
+The bounded portfolio is now active on `GET /api/root-projections/v2/home`.
+Five independently degrading reads contribute candidates: Experience Graph,
+legacy Plan/Trip state, automatic Places context, explicit saves, and action
+receipts. An unavailable source omits that family and emits a stable
+degradation instead of failing the whole Home projection.
 
-- Home does not yet aggregate operational Trip state, current Moment/location,
-  artifact/Source clusters, relationship grants, provider receipts, and prior
-  exposure as independently degrading owner reads;
-- a failed Home graph read remains a whole-root failure rather than one omitted
-  source family; and
-- Places reports degradations exposed by its canonical feed producers, but it
-  is not yet a four-state root portfolio.
-
-Runtime portfolio activation, real-owner rehearsal data, and source-by-source
-degradation evidence therefore remain Package 2/3 work. Future status updates
-must distinguish tested substrate, route activation, and production-shaped
-evidence explicitly.
+This activation remains deliberately bounded. Artifact/Source clusters,
+relationship grants outside the graph, prior exposure, and broad provider
+state are not yet direct Home readers. Places still adapts one canonical
+`PlacesFeed`; its v2 endpoint is a semantic shadow, not a four-state runtime
+portfolio. Tested substrate, active serving, and production-shaped evidence
+therefore remain separate claims.
 
 ## Package 2A — typed dark boundary (completed 2026-09-01)
 
@@ -114,9 +107,11 @@ The internal Home path can now consume the typed envelope without translating
 it back into the v1 semantic-result contract:
 
 - `HomeRootV2UnitRenderer` is a client-owned registry for every kind currently
-  emitted by the Home v2 adapter (`now_commitment_instrument`,
+  emitted by the active Home portfolio: `now_commitment_instrument`,
   `now_recovery_instrument`, `now_prepared_possibility`,
-  `motion_occasion_row`, and `continuity_since_you_looked`). Future kinds remain
+  `motion_occasion_row`, `motion_loose_end_row`, `motion_all_plans_door`,
+  `horizon_aperture_row`, `continuity_capability_field`,
+  `continuity_since_you_looked`, and `continuity_life_door`. Future kinds remain
   dark until their native renderer and tests are registered; there is no
   generic-card promotion bypass;
 - `HomeRootV2Screen` renders the envelope's orientation, canonical region
@@ -156,15 +151,18 @@ honest producer boundary:
   and `CompositionBriefV1`. The complete and mobile OpenAPI snapshots were
   regenerated in an isolated workspace lane rather than overwriting concurrent
   changes in the primary checkout.
-- Places v2 adapters now leave Home/Life/Path-owned reasons (`gap`, `expiry`,
+- Places v2 adapters leave Home/Life/Path-owned reasons (`gap`, `expiry`,
   `group_waiting`, `anniversary`, `harvest`, `register`) out of World Field
   rather than presenting them under the wrong spatial grammar.
-- The compatibility Places workspace accepts the root envelope as its feed
-  authority and disables its second `usePlacesFeed` network read when seeded;
-  the unused v2 shadow request was removed from `PlacesRootExperience`.
-- A dark `PlacesRootV2Screen` now consumes World Field units directly, including
-  the server-authored scope/search-map chrome and typed source/action doors.
-  `EXPO_PUBLIC_PLACES_ROOT_V2_RENDERER` is a second explicit internal gate, so
+- The compatibility Places workspace accepts the v1 root envelope as its feed
+  authority and disables its second `usePlacesFeed` network read when seeded.
+  A separately gated v2 request may run in semantic shadow, but cannot replace
+  the mature workspace.
+- A dark `PlacesRootV2Screen` can inspect World Field units directly, including
+  server-authored scope/search-map chrome and typed source/action doors. It is
+  rehearsal/debug infrastructure only. The existing
+  `EXPO_PUBLIC_PLACES_ROOT_V2_RENDERER` environment name is retained for
+  internal-build compatibility, but now enables only the semantic shadow read;
   Home can be dogfooded without replacing the mature Places workspace.
 
 These are bounded producer/authority corrections. They do not promote Places
@@ -234,37 +232,105 @@ now closed in the backend and the internal Home consumer:
 These are seam corrections, not a production promotion. The remaining
 promotion gates listed below are unchanged.
 
+## Integrated convergence execution — 2026-09-01
+
+The latest package converts the earlier seam into a broader, executable
+Home/Places rehearsal while preserving the product boundaries accepted after
+the August pivot.
+
+### Home
+
+- The v2 route now composes the active five-source portfolio described above.
+  Legacy Plans remain canonical owners during migration; the adapter projects
+  their current consequence without importing the Trips Home page hierarchy.
+- Automatic Places context contributes one current-world aperture and carries
+  the exact opaque context handle into Places. Explicit saves contribute
+  refinding doors. Action receipts contribute causal evidence without
+  pretending a request was a completed result.
+- A deterministic one-person rehearsal covers ordinary New York, an open
+  weekend, a shared Saturday Occasion, a live Plan, a recent Europe return,
+  and a ferry disruption. Together those cases exercise the four Home
+  postures and all four Places encounter-state contracts without creating one
+  privileged behavior loop.
+- The native Home registry now renders the ten kinds actually emitted by the
+  active portfolio. Unsupported members of the larger accepted union still
+  render nothing.
+- Typed Home doors resolve canonical Trip, Place, venue, site, dossier,
+  experience, person, artifact, save, receipt, and Places-context references.
+  Commitment repair opens Chat with a viewer-resolved Experience Graph seed;
+  unfinished Plan continuation carries Trip scope. The short return token
+  still preserves the originating projection and unit.
+
+### Places
+
+- The mature Places workspace is the canonical serving renderer. Search, map,
+  saved collections, editorial reading, social rows, offline behavior, and
+  exact context propagation are not discarded when the v2 shadow flag is on.
+- The v2 adapter now points known cards at their canonical objects instead of
+  the UI-level `places_card` placeholder and emits typed open-owner actions.
+- Consent-bearing social fixture data is scoped to the exact group Trip in
+  mock mode. Passing a Places context handle now reaches the mock projection
+  rather than being silently dropped; this prevents a contribution from
+  leaking into a different Lisbon occasion.
+- The World Field boundary is explicit: gap/expiry/group-waiting belong to
+  Home, anniversary/harvest to continuity, and register to Path. The shadow
+  compiler omits those reasons rather than recreating the legacy omnibus feed.
+
+### Promotion and deletion verdict
+
+- **Home v2 remains development/internal only.** Its architecture and
+  deterministic scenarios are credible enough for dogfood, but not yet for a
+  public default.
+- **Places v2 remains shadow only.** The internal inspection renderer is not a
+  replacement for the mature workspace.
+- **No further legacy deletion is safe in this slice.** The removed v2 serving
+  branch in `PlacesRootExperience` was dead as a product path; the remaining
+  v1 Home/Places compatibility owners still serve released behavior or
+  capabilities absent from v2.
+- Exact semantic return is implemented, but the stronger Home→Places
+  navigation law—depth inside the Home origin stack without selecting the
+  Places tab—does not yet have a production route family. Do not call Package
+  4 complete until that native navigation behavior and owner readback are
+  exercised on device.
+
 ## Verification
 
-- Backend artifact projection, graph projection, root compiler, semantic
-  admission, Life projection, return arbitration, and API suites: **137 passed**.
-- Frontend artifact, semantic anatomy, root conformance/navigation/return,
-  Home/Places, Life root, and Life refinding suites: **86 passed**.
+- Backend Home/Places rehearsal, portfolio, compiler, return, composition, and
+  API suites: **69 passed** in the final focused run.
+- Frontend root mock, conformance, renderer, navigation, return, invalidation,
+  Places-route, and workspace-navigation suites: **38 passed** in the final
+  focused run.
 - Frontend TypeScript typecheck and generated-contract typecheck: **passed**.
-- Full workspace contract check, API audit, and deterministic OpenAPI mobile
-  projection: **passed** with 431 paths, 476 operations, and 1,253 schemas in
-  the app projection; the audit reports 551 active, 13 dark, and 62 retiring
-  operations with no unflagged operation.
-- Ruff, formatting, import-cycle, boundary, surface-registry, and related
-  pre-commit checks: **passed** for changed files.
+- Complete OpenAPI and active-mobile contract check: **passed** with 564 paths,
+  626 operations, and 1,406 schemas in the complete snapshot; the app
+  projection remains current at 431 paths, 476 operations, and 1,253 schemas.
+- Convergence candidate validation and relevant Ruff, formatting, import-cycle,
+  boundary, status-guard, and pre-commit checks: **passed**.
 
-The backend commit hooks report two repository-baseline failures unrelated to
-these files: the broad-exception count is above its audited ceiling and three
-pre-existing backend files exceed the size budget. Those checks were skipped
-only for the backend commits; no new broad exception was introduced.
+The repository-wide suites are not green and therefore are not promotion
+evidence. The complete backend canary reported 24 failures in unrelated vector
+release, research fixture, bundle-review, privacy-coverage, itinerary-operation,
+and dead-handler tests. The complete frontend run reported 29 failing suites /
+33 failing tests across existing trip-hero, controls, fixture, detail-hook,
+typography, and interaction-adoption contracts. One adjacent failure—the
+scoped Mara/Dao Places social fixture—was corrected here and its focused rerun
+passes; the entire suite has not been rerun after that correction.
 
 ## Deliberately not claimed yet
 
-Package 0–1 and Package 2A establish the permanent seam and a dark typed
-transport; they do not make v2 production visible. The following remain the
-renderer/convergence portion of Package 2 and later:
+The current packages establish the permanent seam, an active internal Home
+portfolio, and a Places semantic shadow; they do not make v2 production
+visible. The following remain:
 
 - full Home posture/real-data and human visual evaluation, including real
   model-authored Composition and live-Instrument compatibility evidence;
 - state-specific Places Focus/Path/Live producers and their native renderers;
-- live-Instrument fixtures and confirmed consequence/readback through the
-  renderer path;
-- promotion of the state-specific Places renderer and removal of the remaining
+- confirmed owner/provider consequence readback through the renderer path;
+- Home→Places depth that remains in the Home stack, followed by exact native
+  return after map/search/detail/action movement;
+- exposure/novelty, direct artifact/Source, and relationship-grant readers in
+  Home's runtime portfolio;
+- promotion of any state-specific Places renderer and removal of the remaining
   v1 root/feed compatibility authority; and
 - deletion of legacy Trips/Places compatibility code after route-state,
   action/readback, degradation, and social/grant gates pass.
