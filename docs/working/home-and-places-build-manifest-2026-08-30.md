@@ -206,7 +206,7 @@ browse pair `field_browse_shelf` + `field_editorial_cover` ruled in.)*
 | "Why this?" provenance inspector — one inspectable source trail on every consequential projection, both roots (contribution-and-consequence §3.8; generalizes `path_evidence_apparatus`) | all consequential units | **BUILD** (adopted 2026-08-30) |
 | Route strip (linear register of the same encoding) | Home, handoff, Live | **BUILD** (small) |
 | Projection envelope (12 fields) + push-not-tab navigation + readback refresh + canonical seen | every cross-root tap | **BUILD** — the §11.4 contract |
-| Admission & hierarchy compiler (§9 brief, hard gates, ranking, density taper) | both roots | **ADAPT** — 🔑 the `concierge_feed` ranker already exists and was ruled ADOPT-not-build; the gates and density taper wrap it |
+| Admission & hierarchy compiler (§9 brief, hard gates, ranking, density taper) | both roots | **BUILD/ADAPT** — reuse `concierge_feed` inputs and characterization fixtures, but do not make its old numeric rank output the new roots' ordering authority |
 | Degradation compiler (§10 rules) | both roots | **BUILD** — **compression law (ruled 2026-08-30, recovered from the pre-pivot rhythm study): compression shrinks media and drops the note; small plates stay — a row without its plate is a different composition, not a quieter one** |
 
 | Two-tier read producer (anchor + grounded voice line + merge rule) | Home; Places cold start | **BUILD** |
@@ -241,7 +241,8 @@ expense-ledger receipts → unchanged receipt union, surfaced by owner views.
 Net-new (BUILD), roughly ordered by unblocking power:
 
 1. **Admission compiler + degradation compiler** — every page composes
-   through them; wraps the existing `concierge_feed` ranker.
+   through them; the old `concierge_feed` ranker remains a source of proven
+   signals during migration, not a permanent wrapper or hierarchy authority.
 2. **Projection envelope + push navigation + provenance label** — the
    §11.4 contract; unblocks every cross-root tap.
 3. **Map-grammar renderer + route strip + difference diagram** — the one
