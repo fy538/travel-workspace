@@ -298,8 +298,49 @@ selector, root-v2 contract, and Home-portfolio tests pass. Repository hooks,
 including import, async-DB, broad-exception, public-projection, size, secret,
 and status ratchets, pass.
 
-S1 is not complete. The next increment binds the seven typed families to the
-existing canonical Source/Intake, Places/world, Experience Graph/Trip,
-provider/receipt, Life/refinding, relationship/grant, and Situation providers;
-then root projection and agentic planning must consume those bindings rather
-than presentation-specific or transcript-derived reads.
+### S1B — canonical adapters and real consumers — landed
+
+Backend commits `138d2b732` and `0ec3cbdea` complete the first owner-read mesh:
+
+- Source reads bind to confirmed Intake anchors, custody, claim, correction,
+  withdrawal, and evidence identity;
+- Place reads bind exact catalog entities and status while naming unavailable
+  current-condition, reachability, and route truth instead of inventing it;
+- Occasion, Plan, Commitment, and Life reads share one bounded,
+  viewer-relative Experience Graph projection per request;
+- consequence reads bind viewer-safe provider evidence and exact or trip-scoped
+  canonical action receipts, including recovery capability;
+- relationship reads bind addressed handoffs, membership epochs, and scoped use
+  grants without exposing private message prose;
+- Moment reads bind server-resolved Places context and retain condition,
+  availability, and position gaps explicitly; and
+- operation-specific resource scoping prevents one root portfolio from leaking
+  unrelated identities into a semantic reader.
+
+Dark Home and Places v2 routes now execute the shared mesh and carry owner
+revisions plus honest degradation in their envelopes. Agentic-turn planning
+can compile and execute the same ordered portfolio from the semantic operations
+selected for a turn. Request-local coalescing prevents Occasion, Plan,
+Commitment, and Life operations from rereading the same graph projection.
+
+Focused verification: 101 owner-read, agentic-facade, root-projection, and root
+route tests pass; both backend commits pass every repository hook. The complete
+offline collection ran 19,954 tests: 19,844 passed, 30 skipped, 56 expected
+failures unexpectedly passed, and 24 unrelated existing failures remained in
+itinerary test isolation, embedding-release fixtures, legacy Places
+relationship expectations, research-worker tests, audit coverage, and reviewed
+data-promotion tooling. None touched the S1 files or failed in the focused and
+adjacent S1 suites.
+
+### S1 exit ruling
+
+S1 is complete. All seven capability groups have typed results, canonical
+adapters, bounded failure, revisions, audience/grant enforcement, and at least
+two real consumers. Route and live-condition truth remain explicitly
+unavailable capabilities to be supplied by S4; their honest absence is not an
+unfinished owner-read contract.
+
+S2 is now active. The next implementation seam is the shared judgment and
+value-composition runtime: it must transform these owner portfolios into a
+bounded product move, result family, medium, anatomy, and silence decision
+without importing root layout or treating missing truth as model permission.
