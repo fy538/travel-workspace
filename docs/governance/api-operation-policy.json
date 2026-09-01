@@ -1690,6 +1690,38 @@
       "removal_trigger": "Remove this route and its transport only if the sectioned Places migration is abandoned before activation.",
       "review_by": "2026-10-30"
     },
+    "GET /api/root-projections/home": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "getHomeRootProjection",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": "EXPO_PUBLIC_FOUR_ROOT_SHELL",
+      "lifecycle": "active",
+      "owner": "root-projection",
+      "reason": "The internal four-root Home consumes a viewer-relative temporal projection over canonical Experience Graph owners.",
+      "removal_trigger": "Remove only if Home adopts a replacement projection contract that preserves owner revisions, authority, silence, and cross-root selection.",
+      "review_by": "2026-10-31"
+    },
+    "GET /api/root-projections/places": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "getPlacesRootProjection",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": "EXPO_PUBLIC_FOUR_ROOT_SHELL",
+      "lifecycle": "active",
+      "owner": "root-projection",
+      "reason": "The internal four-root Places surface consumes the existing Places owner through the shared revisioned root envelope without client re-ranking.",
+      "removal_trigger": "Remove only if Places adopts a replacement root envelope with equivalent context, freshness, and cross-root selection semantics.",
+      "review_by": "2026-10-31"
+    },
     "PUT /api/places/scope": {
       "audience": "app",
       "consumers": [

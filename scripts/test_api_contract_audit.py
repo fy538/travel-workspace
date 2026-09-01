@@ -166,6 +166,41 @@ class APIContractAuditTests(unittest.TestCase):
         findings, _, _ = audit(openapi, policy, consumers, {"TEST_DARK_FLAG"})
         self.assertIn("stale-policy", {finding.code for finding in findings})
 
+    def test_declared_app_source_resolves_against_selected_worktree(self) -> None:
+        key = "GET /api/things"
+        openapi, policy = self._files(
+            [("GET", "/api/things", "list_things")],
+            {
+                key: {
+                    **self._policy("active"),
+                    "consumers": [
+                        {
+                            "kind": "app_source",
+                            "name": "listThings",
+                            "source": "travel-app/utils/api/http.ts",
+                        }
+                    ],
+                }
+            },
+        )
+        app_root = openapi.parent / "travel-app-worktree"
+        source = app_root / "utils" / "api" / "http.ts"
+        source.parent.mkdir(parents=True)
+        source.write_text(
+            'return _request("/api/things");\n',
+            encoding="utf-8",
+        )
+
+        findings, _, _ = audit(
+            openapi,
+            policy,
+            discovered_mobile_consumers={},
+            registered_feature_flags={"TEST_DARK_FLAG"},
+            app_root=app_root,
+        )
+
+        self.assertEqual(findings, [])
+
     def test_retired_operation_cannot_reappear_in_openapi(self) -> None:
         key = "POST /api/things/{thing_id}/apply"
         openapi, policy = self._files(

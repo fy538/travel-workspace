@@ -313,6 +313,20 @@ def _relative(path: Path) -> str:
         return resolved.as_posix()
 
 
+def _declared_source_path(source_name: str, app_root: Path) -> Path:
+    """Resolve checked-in mobile sources against the selected app checkout.
+
+    Policy stores stable workspace-relative paths (``travel-app/...``), while
+    audits may intentionally target a worktree through ``--app-root``.  Keep
+    the policy portable and substitute only that leading app directory.
+    """
+
+    source = Path(source_name)
+    if source.parts and source.parts[0] == APP_ROOT.name:
+        return app_root.joinpath(*source.parts[1:])
+    return WORKSPACE_ROOT / source
+
+
 def _transport_method_at(source: str, position: int) -> str | None:
     """Return the facade method enclosing a transport call.
 
@@ -716,7 +730,7 @@ def audit(
                 continue
             source_name = declared.get("source")
             if source_name:
-                source_path = WORKSPACE_ROOT / source_name
+                source_path = _declared_source_path(source_name, app_root)
                 if not source_path.exists():
                     findings.append(
                         Finding(

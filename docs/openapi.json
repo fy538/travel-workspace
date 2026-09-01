@@ -30449,6 +30449,130 @@
         }
       }
     },
+    "/api/root-projections/home": {
+      "get": {
+        "tags": [
+          "root-projections"
+        ],
+        "summary": "Get Home Root Projection",
+        "description": "Return Home's viewer-relative temporal projection.\n\nThe first serving adapter reads the Experience Graph's canonical Plan,\nOccasion, Commitment, Opening, and Outcome projection. It does not invoke\nConcierge, infer state from transcripts, or create durable Home truth.",
+        "operationId": "get_home_root_projection_api_root_projections_home_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RootProjectionEnvelopeV1"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/root-projections/places": {
+      "get": {
+        "tags": [
+          "root-projections"
+        ],
+        "summary": "Get Places Root Projection",
+        "description": "Return Places through the shared root envelope.\n\nExisting Places context, ranking, relationship, provider-cache, and\neditorial readers remain authoritative. The adapter adds root identity,\nrevision, freshness, and typed cross-root doors without re-ranking rows.",
+        "operationId": "get_places_root_projection_api_root_projections_places_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 50,
+              "minimum": 1,
+              "default": 20,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 500,
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RootProjectionEnvelopeV1"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/users/{user_id}/saves": {
       "post": {
         "tags": [
@@ -60047,6 +60171,96 @@
         "title": "DigestRunResponse",
         "description": "Result of a manual digest run."
       },
+      "DirectStateResult": {
+        "properties": {
+          "result_id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Result Id"
+          },
+          "represented_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Represented Refs",
+            "default": []
+          },
+          "owner_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Owner Refs",
+            "default": []
+          },
+          "audience": {
+            "$ref": "#/components/schemas/ProjectionAudience",
+            "default": "private"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ProjectionStatus"
+          },
+          "accessible_summary": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Accessible Summary"
+          },
+          "family": {
+            "type": "string",
+            "const": "direct_state",
+            "title": "Family",
+            "default": "direct_state"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Label"
+          },
+          "value": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Value"
+          },
+          "freshness": {
+            "$ref": "#/components/schemas/ProjectionFreshness"
+          },
+          "basis": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 1,
+            "title": "Basis"
+          },
+          "correction_capability_ref": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Correction Capability Ref"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "result_id",
+          "status",
+          "accessible_summary",
+          "label",
+          "value",
+          "freshness",
+          "basis"
+        ],
+        "title": "DirectStateResult"
+      },
       "DiscoverFeedItem": {
         "properties": {
           "id": {
@@ -68663,6 +68877,176 @@
         "title": "HomeFeed",
         "description": "Full payload for ``GET /trips/{trip_id}/home_cards``.\n\nThree zones; clients render top-to-bottom: anchor, active, ambient."
       },
+      "HomePosture": {
+        "type": "string",
+        "enum": [
+          "ordinary",
+          "emerging",
+          "planning",
+          "live",
+          "returned",
+          "quiet",
+          "cold",
+          "urgent"
+        ],
+        "title": "HomePosture"
+      },
+      "HomeRegionKind": {
+        "type": "string",
+        "enum": [
+          "now",
+          "in_motion",
+          "horizons",
+          "continuity"
+        ],
+        "title": "HomeRegionKind"
+      },
+      "HomeRegionProjection": {
+        "properties": {
+          "kind": {
+            "$ref": "#/components/schemas/HomeRegionKind"
+          },
+          "results": {
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/DirectStateResult"
+                },
+                {
+                  "$ref": "#/components/schemas/RootCompositionResult"
+                },
+                {
+                  "$ref": "#/components/schemas/InstrumentResult"
+                },
+                {
+                  "$ref": "#/components/schemas/ReceiptResult"
+                },
+                {
+                  "$ref": "#/components/schemas/OwnerLinkResult"
+                },
+                {
+                  "$ref": "#/components/schemas/ProseResult"
+                },
+                {
+                  "$ref": "#/components/schemas/SilenceResult"
+                }
+              ],
+              "discriminator": {
+                "propertyName": "family",
+                "mapping": {
+                  "composition": "#/components/schemas/RootCompositionResult",
+                  "direct_state": "#/components/schemas/DirectStateResult",
+                  "instrument": "#/components/schemas/InstrumentResult",
+                  "owner_link": "#/components/schemas/OwnerLinkResult",
+                  "prose": "#/components/schemas/ProseResult",
+                  "receipt": "#/components/schemas/ReceiptResult",
+                  "silence": "#/components/schemas/SilenceResult"
+                }
+              }
+            },
+            "type": "array",
+            "title": "Results",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind"
+        ],
+        "title": "HomeRegionProjection"
+      },
+      "HomeRootProjection": {
+        "properties": {
+          "root": {
+            "type": "string",
+            "const": "home",
+            "title": "Root",
+            "default": "home"
+          },
+          "posture": {
+            "$ref": "#/components/schemas/HomePosture"
+          },
+          "orientation": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DirectStateResult"
+              },
+              {
+                "$ref": "#/components/schemas/RootCompositionResult"
+              },
+              {
+                "$ref": "#/components/schemas/InstrumentResult"
+              },
+              {
+                "$ref": "#/components/schemas/ReceiptResult"
+              },
+              {
+                "$ref": "#/components/schemas/OwnerLinkResult"
+              },
+              {
+                "$ref": "#/components/schemas/ProseResult"
+              },
+              {
+                "$ref": "#/components/schemas/SilenceResult"
+              }
+            ],
+            "title": "Orientation",
+            "discriminator": {
+              "propertyName": "family",
+              "mapping": {
+                "composition": "#/components/schemas/RootCompositionResult",
+                "direct_state": "#/components/schemas/DirectStateResult",
+                "instrument": "#/components/schemas/InstrumentResult",
+                "owner_link": "#/components/schemas/OwnerLinkResult",
+                "prose": "#/components/schemas/ProseResult",
+                "receipt": "#/components/schemas/ReceiptResult",
+                "silence": "#/components/schemas/SilenceResult"
+              }
+            }
+          },
+          "dominant_result_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dominant Result Id"
+          },
+          "regions": {
+            "items": {
+              "$ref": "#/components/schemas/HomeRegionProjection"
+            },
+            "type": "array",
+            "title": "Regions"
+          },
+          "doors": {
+            "items": {
+              "$ref": "#/components/schemas/RootDoor"
+            },
+            "type": "array",
+            "title": "Doors",
+            "default": []
+          },
+          "required_response_count": {
+            "type": "integer",
+            "const": 0,
+            "title": "Required Response Count",
+            "default": 0
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "posture",
+          "orientation",
+          "regions"
+        ],
+        "title": "HomeRootProjection"
+      },
       "HoodReceipt": {
         "properties": {
           "type": {
@@ -69062,6 +69446,116 @@
         ],
         "title": "InitialPlanCommitmentState",
         "description": "Intrinsic softness that may be asserted when a first plan is born.\n\nProvider and traveler-confirmed states require their own canonical\nchronology.  Keeping them out of ``materialize_shape`` prevents an\naccepted draft from manufacturing booking or occurrence truth."
+      },
+      "InstrumentOperation": {
+        "properties": {
+          "capability_ref": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,119}$",
+            "title": "Capability Ref"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Label"
+          },
+          "requires_confirmation": {
+            "type": "boolean",
+            "title": "Requires Confirmation",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "capability_ref",
+          "label"
+        ],
+        "title": "InstrumentOperation"
+      },
+      "InstrumentResult": {
+        "properties": {
+          "result_id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Result Id"
+          },
+          "represented_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Represented Refs",
+            "default": []
+          },
+          "owner_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Owner Refs",
+            "default": []
+          },
+          "audience": {
+            "$ref": "#/components/schemas/ProjectionAudience",
+            "default": "private"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ProjectionStatus"
+          },
+          "accessible_summary": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Accessible Summary"
+          },
+          "family": {
+            "type": "string",
+            "const": "instrument",
+            "title": "Family",
+            "default": "instrument"
+          },
+          "instrument_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "freshness": {
+            "$ref": "#/components/schemas/ProjectionFreshness"
+          },
+          "operations": {
+            "items": {
+              "$ref": "#/components/schemas/InstrumentOperation"
+            },
+            "type": "array",
+            "title": "Operations",
+            "default": []
+          },
+          "fallback": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Fallback"
+          },
+          "basis": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 1,
+            "title": "Basis"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "result_id",
+          "status",
+          "accessible_summary",
+          "instrument_ref",
+          "freshness",
+          "fallback",
+          "basis"
+        ],
+        "title": "InstrumentResult"
       },
       "IntakeArtifactCandidate": {
         "properties": {
@@ -75761,6 +76255,18 @@
         "title": "LatencyDistribution",
         "description": "Percentile + spread summary for one latency series.\n\nAll values are integer milliseconds \u2014 the underlying column is an\nINTEGER and we explicitly cast back so a float-formatted ``stddev``\ndoesn't leak into the response (would surprise frontend code that\nkeys off integer ms throughout)."
       },
+      "LeadMedium": {
+        "type": "string",
+        "enum": [
+          "evidence",
+          "sequence",
+          "comparison",
+          "spatial",
+          "prose",
+          "instrument"
+        ],
+        "title": "LeadMedium"
+      },
       "LeaseInfo": {
         "properties": {
           "acquired": {
@@ -82362,6 +82868,78 @@
         ],
         "title": "OrganizerHandoffLeaveResponse"
       },
+      "OwnerLinkResult": {
+        "properties": {
+          "result_id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Result Id"
+          },
+          "represented_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Represented Refs",
+            "default": []
+          },
+          "owner_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Owner Refs",
+            "default": []
+          },
+          "audience": {
+            "$ref": "#/components/schemas/ProjectionAudience",
+            "default": "private"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ProjectionStatus"
+          },
+          "accessible_summary": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Accessible Summary"
+          },
+          "family": {
+            "type": "string",
+            "const": "owner_link",
+            "title": "Family",
+            "default": "owner_link"
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Reason"
+          },
+          "selected_substate": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Selected Substate"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "result_id",
+          "status",
+          "accessible_summary",
+          "reason"
+        ],
+        "title": "OwnerLinkResult"
+      },
       "ParagraphBlock": {
         "properties": {
           "type": {
@@ -84753,6 +85331,26 @@
         ],
         "title": "PlacesAreaPreview"
       },
+      "PlacesCandidateProjection": {
+        "properties": {
+          "place": {
+            "$ref": "#/components/schemas/PlacesRankedItem"
+          },
+          "why_here_basis": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 1,
+            "title": "Why Here Basis"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "place",
+          "why_here_basis"
+        ],
+        "title": "PlacesCandidateProjection"
+      },
       "PlacesCard": {
         "properties": {
           "id": {
@@ -86829,6 +87427,75 @@
         "title": "PlacesRelationshipTruth",
         "description": "Grounded relationship markers with factual encounter provenance."
       },
+      "PlacesRootProjection": {
+        "properties": {
+          "root": {
+            "type": "string",
+            "const": "places",
+            "title": "Root",
+            "default": "places"
+          },
+          "state": {
+            "$ref": "#/components/schemas/PlacesState",
+            "default": "world_field"
+          },
+          "context": {
+            "$ref": "#/components/schemas/PlacesContext"
+          },
+          "search_scope": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesSearchScope"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "map": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesMapSummary"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "highlight": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesGuidePreview"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "candidates": {
+            "items": {
+              "$ref": "#/components/schemas/PlacesCandidateProjection"
+            },
+            "type": "array",
+            "title": "Candidates",
+            "default": []
+          },
+          "doors": {
+            "items": {
+              "$ref": "#/components/schemas/RootDoor"
+            },
+            "type": "array",
+            "title": "Doors",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "context"
+        ],
+        "title": "PlacesRootProjection"
+      },
       "PlacesSavedPage": {
         "properties": {
           "scope_label": {
@@ -87324,6 +87991,16 @@
         ],
         "title": "PlacesStarterCity",
         "description": "A corpus city with approved editorial coverage, never personalization."
+      },
+      "PlacesState": {
+        "type": "string",
+        "enum": [
+          "world_field",
+          "place_focus",
+          "place_path",
+          "live_reduction"
+        ],
+        "title": "PlacesState"
       },
       "PlacesTwoPlaceComparison": {
         "properties": {
@@ -90416,6 +91093,17 @@
         "title": "ProactiveNotification",
         "description": "An inbox notification from the delivery system.\n\nSourced from ``notification_deliveries`` (channel='in_app') joined with its\ndelivery envelope and optional learning outcome. The legacy public name is\nretained for API compatibility."
       },
+      "ProductRoot": {
+        "type": "string",
+        "enum": [
+          "home",
+          "chat",
+          "places",
+          "life",
+          "unknown"
+        ],
+        "title": "ProductRoot"
+      },
       "ProfileAppearanceResponse": {
         "properties": {
           "avatar_url": {
@@ -91206,6 +91894,37 @@
         ],
         "title": "ProjectedPlan",
         "description": "Viewer-safe Plan context for Home, Chat, and Places."
+      },
+      "ProjectionAudience": {
+        "type": "string",
+        "enum": [
+          "private",
+          "group",
+          "public"
+        ],
+        "title": "ProjectionAudience"
+      },
+      "ProjectionFreshness": {
+        "type": "string",
+        "enum": [
+          "fresh",
+          "stale",
+          "unknown"
+        ],
+        "title": "ProjectionFreshness"
+      },
+      "ProjectionStatus": {
+        "type": "string",
+        "enum": [
+          "current",
+          "pending",
+          "partial",
+          "failed",
+          "stale",
+          "unknown",
+          "revoked"
+        ],
+        "title": "ProjectionStatus"
       },
       "PromoteToTripRequest": {
         "properties": {
@@ -92086,6 +92805,74 @@
         ],
         "title": "ProposalSummary",
         "description": "Lightweight proposal for list views.\n\nDeliberately omits ``proposed_entity_*`` \u2014 the deep-link affordance\nis a detail-page concern, not a list-row concern.\n\n``my_vote`` is the authenticated viewer's current vote (\"approve\",\n\"reject\", \"neutral\") or ``None`` if they haven't voted yet. The\nmobile client uses this to filter the \"Needs your vote\" digest."
+      },
+      "ProseResult": {
+        "properties": {
+          "result_id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Result Id"
+          },
+          "represented_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Represented Refs",
+            "default": []
+          },
+          "owner_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Owner Refs",
+            "default": []
+          },
+          "audience": {
+            "$ref": "#/components/schemas/ProjectionAudience",
+            "default": "private"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ProjectionStatus"
+          },
+          "accessible_summary": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Accessible Summary"
+          },
+          "family": {
+            "type": "string",
+            "const": "prose",
+            "title": "Family",
+            "default": "prose"
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "Text"
+          },
+          "citation_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Citation Refs",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "result_id",
+          "status",
+          "accessible_summary",
+          "text"
+        ],
+        "title": "ProseResult"
       },
       "ProtectedDependency": {
         "properties": {
@@ -93528,6 +94315,113 @@
         "type": "object",
         "title": "ReceiptOcrResult",
         "description": "Legible facts extracted from a receipt, never inferred defaults."
+      },
+      "ReceiptOwnerResult": {
+        "properties": {
+          "owner_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "partial",
+              "failed"
+            ],
+            "title": "Status"
+          },
+          "detail": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Detail"
+          },
+          "recovery_capability_ref": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Recovery Capability Ref"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "owner_ref",
+          "status",
+          "detail"
+        ],
+        "title": "ReceiptOwnerResult"
+      },
+      "ReceiptResult": {
+        "properties": {
+          "result_id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Result Id"
+          },
+          "represented_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Represented Refs",
+            "default": []
+          },
+          "owner_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Owner Refs",
+            "default": []
+          },
+          "audience": {
+            "$ref": "#/components/schemas/ProjectionAudience",
+            "default": "private"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ProjectionStatus"
+          },
+          "accessible_summary": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Accessible Summary"
+          },
+          "family": {
+            "type": "string",
+            "const": "receipt",
+            "title": "Family",
+            "default": "receipt"
+          },
+          "command_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "owner_results": {
+            "items": {
+              "$ref": "#/components/schemas/ReceiptOwnerResult"
+            },
+            "type": "array",
+            "title": "Owner Results"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "result_id",
+          "status",
+          "accessible_summary",
+          "command_ref",
+          "owner_results"
+        ],
+        "title": "ReceiptResult"
       },
       "RecommendationAction": {
         "properties": {
@@ -96757,6 +97651,285 @@
         ],
         "title": "RibbonDay"
       },
+      "RootCompositionResult": {
+        "properties": {
+          "result_id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Result Id"
+          },
+          "represented_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Represented Refs",
+            "default": []
+          },
+          "owner_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Owner Refs",
+            "default": []
+          },
+          "audience": {
+            "$ref": "#/components/schemas/ProjectionAudience",
+            "default": "private"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ProjectionStatus"
+          },
+          "accessible_summary": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Accessible Summary"
+          },
+          "family": {
+            "type": "string",
+            "const": "composition",
+            "title": "Family",
+            "default": "composition"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 180,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "substance": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 1,
+            "title": "Substance"
+          },
+          "lead_medium": {
+            "$ref": "#/components/schemas/LeadMedium"
+          },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Source Refs",
+            "default": []
+          },
+          "why_now": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 1,
+            "title": "Why Now"
+          },
+          "novelty": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 1,
+            "title": "Novelty"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "result_id",
+          "status",
+          "accessible_summary",
+          "title",
+          "substance",
+          "lead_medium",
+          "why_now",
+          "novelty"
+        ],
+        "title": "RootCompositionResult"
+      },
+      "RootDoor": {
+        "properties": {
+          "target_root": {
+            "$ref": "#/components/schemas/ProductRoot"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Label"
+          },
+          "capability_ref": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,119}$",
+            "title": "Capability Ref"
+          },
+          "selected_resource_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Selected Resource Refs",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "target_root",
+          "label",
+          "capability_ref"
+        ],
+        "title": "RootDoor"
+      },
+      "RootProjectionDegradation": {
+        "properties": {
+          "owner_kind": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Owner Kind"
+          },
+          "code": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,119}$",
+            "title": "Code"
+          },
+          "effect": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 1,
+            "title": "Effect"
+          },
+          "retryable": {
+            "type": "boolean",
+            "title": "Retryable",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "owner_kind",
+          "code",
+          "effect"
+        ],
+        "title": "RootProjectionDegradation"
+      },
+      "RootProjectionEnvelopeV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "root-projection-envelope.v1",
+            "title": "Schema Version",
+            "default": "root-projection-envelope.v1"
+          },
+          "projection_id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Projection Id"
+          },
+          "revision": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Revision"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "represented_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Represented At"
+          },
+          "viewer_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "audience": {
+            "$ref": "#/components/schemas/ProjectionAudience",
+            "default": "private"
+          },
+          "freshness": {
+            "$ref": "#/components/schemas/ProjectionFreshness"
+          },
+          "source_revisions": {
+            "items": {
+              "$ref": "#/components/schemas/RootSourceRevision"
+            },
+            "type": "array",
+            "title": "Source Revisions",
+            "default": []
+          },
+          "degradations": {
+            "items": {
+              "$ref": "#/components/schemas/RootProjectionDegradation"
+            },
+            "type": "array",
+            "title": "Degradations",
+            "default": []
+          },
+          "payload": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/HomeRootProjection"
+              },
+              {
+                "$ref": "#/components/schemas/PlacesRootProjection"
+              }
+            ],
+            "title": "Payload",
+            "discriminator": {
+              "propertyName": "root",
+              "mapping": {
+                "home": "#/components/schemas/HomeRootProjection",
+                "places": "#/components/schemas/PlacesRootProjection"
+              }
+            }
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "projection_id",
+          "revision",
+          "generated_at",
+          "represented_at",
+          "viewer_ref",
+          "freshness",
+          "payload"
+        ],
+        "title": "RootProjectionEnvelopeV1"
+      },
+      "RootSourceRevision": {
+        "properties": {
+          "owner_kind": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Owner Kind"
+          },
+          "owner_id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Owner Id"
+          },
+          "revision": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "owner_kind",
+          "owner_id",
+          "revision"
+        ],
+        "title": "RootSourceRevision"
+      },
       "RouteRequest": {
         "properties": {
           "trip_id": {
@@ -99641,6 +100814,81 @@
         ],
         "title": "SharedRelationshipMemoryClaim",
         "description": "Group-safe projection created by an explicit member share action."
+      },
+      "SilenceResult": {
+        "properties": {
+          "result_id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Result Id"
+          },
+          "represented_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "maxItems": 0,
+            "title": "Represented Refs",
+            "default": []
+          },
+          "owner_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "maxItems": 0,
+            "title": "Owner Refs",
+            "default": []
+          },
+          "audience": {
+            "$ref": "#/components/schemas/ProjectionAudience",
+            "default": "private"
+          },
+          "status": {
+            "type": "string",
+            "const": "current",
+            "title": "Status",
+            "default": "current"
+          },
+          "accessible_summary": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Accessible Summary"
+          },
+          "family": {
+            "type": "string",
+            "const": "silence",
+            "title": "Family",
+            "default": "silence"
+          },
+          "reason_code": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,119}$",
+            "title": "Reason Code"
+          },
+          "next_eligible_evaluation_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Eligible Evaluation At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "result_id",
+          "accessible_summary",
+          "reason_code"
+        ],
+        "title": "SilenceResult"
       },
       "SimilarVenueResponse": {
         "properties": {
@@ -108737,6 +109985,47 @@
         "title": "TripsHomeReceiptCandidates",
         "description": "2+ options and which one (if any) leads, from ``focus.pick``/``compare``.\n\nScoped to ``focus.pick``/``focus.compare`` only (``DeckPickCandidate``\nsubstrate: ``saved_cluster``, ``stay_compare``). ``near_you`` also reaches\nthe crown through ``focus``, but ``focus.near_you`` is a structurally\ndifferent payload (``DeckNearYouPlace``: no ``leading`` flag, a raw\n``walk_min`` int rather than a pre-formatted string) \u2014 force-fitting it\nhere would mean inventing a leader that doesn't exist. It stays on\n``stamp`` until it earns its own shape."
       },
+      "TripsHomeReceiptCarriedForward": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "carried_forward",
+            "title": "Kind",
+            "default": "carried_forward"
+          },
+          "statement": {
+            "type": "string",
+            "title": "Statement"
+          },
+          "basis": {
+            "type": "string",
+            "title": "Basis"
+          },
+          "attribution": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attribution"
+          },
+          "withdrawable": {
+            "type": "boolean",
+            "title": "Withdrawable",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "statement",
+          "basis"
+        ],
+        "title": "TripsHomeReceiptCarriedForward",
+        "description": "A standing consequence with causal lineage and an owner.\n\nPromoted into the receipt union 2026-08-30 (design kernel \u00a711.12.10)\nafter four independent derivations: the manifest \u00a77 candidate, C1's\nkept-for-you return, C2's recompilation receipt, and C3's residue\nreceipt. The anatomy is always the same: *because named prior\nevidence exists \u2192 this present judgment, guarantee, or possibility\nis different* \u2014 never a memory narration, never a capability claim\nabout the person.\n\n``statement`` is the standing consequence (\"Next Sunday morning\nstays empty on every shape Vesper prepares\"). ``basis`` names the\nprior evidence that causes it (\"Dana's note, kept from the visit\") \u2014\nan unexplained carried-forward receipt is inadmissible, mirroring\nthe Move-carries-basis law (\u00a711.12.6). ``attribution`` carries a\nperson's name only under a may-name grant; ``withdrawable`` is true\nwhen the underlying contribution can still be revoked, in which\ncase revocation must unwind this receipt from every governed\nprojection and stop all future resurfacing \u2014 while stating, per the\n\u00a711.14.8 propagation-boundary amendment, what cannot be recalled:\nalready-perceived content and external deliveries are outside the\nsystem's reach, and the receipt says so rather than promising\nerasure (artifacts unwind; occurrences don't)."
+      },
       "TripsHomeReceiptChecklist": {
         "properties": {
           "kind": {
@@ -109436,6 +110725,9 @@
                   },
                   {
                     "$ref": "#/components/schemas/TripsHomeReceiptConditions"
+                  },
+                  {
+                    "$ref": "#/components/schemas/TripsHomeReceiptCarriedForward"
                   }
                 ],
                 "discriminator": {
@@ -109443,6 +110735,7 @@
                   "mapping": {
                     "call": "#/components/schemas/TripsHomeReceiptCall",
                     "candidates": "#/components/schemas/TripsHomeReceiptCandidates",
+                    "carried_forward": "#/components/schemas/TripsHomeReceiptCarriedForward",
                     "checklist": "#/components/schemas/TripsHomeReceiptChecklist",
                     "conditions": "#/components/schemas/TripsHomeReceiptConditions",
                     "diff": "#/components/schemas/TripsHomeReceiptDiff",
