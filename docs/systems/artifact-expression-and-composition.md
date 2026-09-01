@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: product / cross-repo architecture / frontend
 created: 2026-08-29
-last_verified: 2026-08-29
+last_verified: 2026-09-01
 why_new: Defines how Artifacts and canonical truth become generated compositions, instruments, direct state expressions, or saved compositions without creating a universal generated-output owner or server-authored UI language.
 source_of_truth_for: [artifact-composition-boundary, composition-lifecycle, agent-composition-boundary, cross-root-composition-projection]
 ---
@@ -199,13 +199,14 @@ and return target; it never carries client geometry or grants action authority.
 | `CompositionBriefV0` fixture compiler | Claim-local Source admission, novelty, medium coherence, authority, audience, and lifecycle compilation for A01–A06 | Keep fixture-only until shadow evaluation justifies a production boundary |
 | `ArtifactCirculationV0` fixture compiler | One stable identity through Home, Chat, Places, and Life with root-native medium, action, persistence, correction, spatial-binding, and return-envelope rules | Use to derive native semantic renderers; never clone one cross-root card |
 | `SemanticResultEnvelopeV0` fixture contract | Tagged Direct State, Composition, Instrument, receipt, owner link, prose, or silence result plus exact return context | Keep fixture-only until a public backend contract is explicitly approved and generated |
+| `RootProjectionEnvelopeV2` generated contract | Dark Home/Places API seam with owner-backed units, actions, destinations, lifecycle, and bounded payload families | Keep distinct from the fixture envelope; validate generated values directly and do not imply native medium support beyond their typed anatomy |
 | Four-root semantic portfolio lab | Five selected situations rendered as contract readback across every root | Use for content, owner, demand, failure, and handoff review; it is not final visual evidence |
 | Internal four-root compatibility shell | Default-off Home/Chat/Places/Life labels over existing Trips/Concierge/Places/Atlas routes | Use only to evaluate navigation continuity; never claim target surfaces are implemented from labels alone |
 | `HomePortfolioCompositionV0` fixture composer | Current-consequence precedence, response-free value, bounded page selection, absorption, power diversity, and explicit suppression across one shared evidence world | Keep renderer-neutral; do not turn its scores or reason codes into a production ranking API without longitudinal evaluation |
 | Editorial map composition | Specialized renderer-neutral spatial contract | Use as an exemplar for medium-specific semantics and native rendering |
 | Lived-experience composition authority | Selection/suppression lineage for treatments | Keep distinct from saved user-facing composition |
 | Atlas/Discover `visual_slots` composition | Legacy server-resolved visual assembly | Compatibility only; do not use as the general artifact architecture |
-| `CanonicalArtifactCard` | Dev/gallery and limited artifact reading implementation | Decompose toward medium renderers and root-native anatomy; do not grow a universal prop matrix |
+| `CanonicalArtifactCard` | Dev/gallery and limited artifact reading implementation | Keep callback-owned actions capability-filtered; decompose toward medium renderers and root-native anatomy; do not grow a universal prop matrix |
 
 ## Invariants
 
@@ -253,11 +254,25 @@ and return target; it never carries client geometry or grants action authority.
 8. Add persistence only after save/share/correction behavior requires it, then
    retire superseded compatibility taxonomies deliberately.
 
-Execution state on 2026-08-29: steps 1–3 are complete at fixture-contract
+Execution state on 2026-09-01: steps 1–3 are complete at fixture-contract
 altitude. All six now compile and circulate under one identity through the four
 roots. A01 and A06 prove opposite saved-versus-live persistence; A02 proves
 attributed withdrawal; A03 proves immutable versioned revision; A04 proves
 known-versus-new admission; and A05 plus the Home portfolio composer prove
-page-level selection across quiet, emerging, and urgent states. Native semantic
-renderer evaluation and agent shadow evaluation remain next; no production
-persistence, ranking API, or UI has been authorized.
+page-level selection across quiet, emerging, and urgent states.
+
+The fixture result contract and generated root-v2 contract now have separate
+conformance ratchets. Root v2 preserves instrument identity and exact
+candidate/payload medium agreement. Its current `RootComposition` payload has
+prose anatomy only, so the client supports prose natively, degrades unknown
+richer media to a complete text alternative, and fails richer lead/support
+metadata in conformance until typed evidence, sequence, comparison, or spatial
+anatomy exists. The legacy Places adapter therefore emits prose rather than a
+false spatial claim. Canonical artifact readers expose only actions their
+mounted surface can execute; `open_owner` requires a canonical destination,
+while correction and source inspection remain dark until their owner command
+contracts exist.
+
+Native medium-specific anatomy beyond prose, live producer evaluation, and
+agent shadow evaluation remain next; no production saved-composition writer or
+generalized ranking API has been authorized.
