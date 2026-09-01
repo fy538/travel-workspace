@@ -543,3 +543,35 @@ agentic-portfolio, value-composition, API, and mature Places tests, and every
 changed-repository hook passes. This adapter admits evidence-bearing Places
 angles today and is reusable by future Home Composition producers; it does not
 authorize Chat or Life UI work.
+
+### S4A — root action semantics and consequence admission — landed
+
+Backend commit `163b62905`, app commit `847118839`, and workspace contract
+commit `fe11ed0` establish the first serving boundary between an interface
+door and a real-world consequence:
+
+- every root action now declares whether it navigates, prepares work with
+  Vesper, proposes a canonical change, or executes one;
+- navigation and preparation are explicitly non-consequential and therefore
+  do not borrow confirmation theater from a later commit step;
+- proposal and execution actions must name an exact lived-experience decision
+  family and require confirmation;
+- the root runtime joins those consequence actions to the existing activation,
+  gateway, and canonical-readback portfolio, withholding the control unless
+  that family is released and permits the requested mode; and
+- withholding an unsafe control does not hide the evidence-bearing unit, so a
+  person can still understand the situation and prepare a response.
+
+The first corrected product behavior is commitment recovery. Home no longer
+asks for confirmation merely to enter Chat; it offers the low-friction
+`chat.prepare_commitment_repair` capability. A later proposal or commit must be
+a separate, owner-bound action. This directly supports the consequence canon:
+understanding is cheap, preparation is smooth, and confirmation is reserved
+for the boundary where the world or shared state would actually change.
+
+Verification covers 201 adjacent root, live-engine consequence/gateway,
+owner-read, value-composition, API, and mature Places tests; generated mobile
+contracts, TypeScript, lint, schema bridge, and the 432-path active-mobile
+projection pass. S4 remains active: no proposal/execute family is promoted by
+this package, and the client still needs a server-issued consequence resolver
+before a released mutation can appear.
