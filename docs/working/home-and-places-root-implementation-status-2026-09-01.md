@@ -140,7 +140,8 @@ promotion gates listed below are unchanged.
 
 ## Verification
 
-- Backend v2 contract/adapter/gate/portfolio/compiler tests: **15 passed**.
+- Backend v2 contract/adapter/gate/portfolio/compiler tests: **28 passed**
+  across `tests/root_projection`.
 - Frontend root query/invalidation, v2 flag, renderer, navigation, and Home v2
   screen tests: **17 passed**.
 - Frontend TypeScript typecheck: **passed**.
