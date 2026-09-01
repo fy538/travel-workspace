@@ -1247,3 +1247,41 @@ flags:
     kill_switch: zero prevents provider-backed shadow execution; the global shadow switch remains the primary off control
     promotion_removal_question: By 2026-09-09, is any nonzero provider budget justified by the frozen comparison protocol?
     notes: Cost ceiling for private shadow observation; no delivery, mutation, group, or memory cost is authorized.
+
+  - name: EXPO_PUBLIC_LIFE_REFIND_LANE
+    repo: travel-app
+    location: utils/lifeRefindFlag.ts:LIFE_REFIND_LANE_ENABLED
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-11-30
+    status: active
+    target_journey: P02
+    cohort: development or explicit internal builds only; public release builds cannot activate it
+    kill_switch: Unset EXPO_PUBLIC_LIFE_REFIND_LANE or set it false; Universal Search renders without the LifeRefind lane and never calls /api/life/refind.
+    promotion_removal_question: >
+      By 2026-11-30, has the dark LifeRefind lane proven target-first refinding
+      over the viewer's own history at 1:1 (founder checkpoint per the
+      2026-09-01 landing handoff), or should the lane and its route be removed?
+    notes: >
+      Dark Life refinding slice. Backend serves POST /api/life/refind
+      unconditionally; this mobile flag is the only activation gate and is
+      default-off everywhere.
+
+  - name: EXPO_PUBLIC_LIFE_ROOT_V1
+    repo: travel-app
+    location: utils/lifeRootFlag.ts:LIFE_ROOT_V1_ENABLED
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-10-30
+    status: active
+    target_journey: P02
+    cohort: development or explicit internal builds only; public release builds stay on Atlas compatibility
+    kill_switch: Unset EXPO_PUBLIC_LIFE_ROOT_V1 or set it false; the four-root Life tab uses the reversible Atlas compatibility owner.
+    promotion_removal_question: >
+      By 2026-10-30, does the native Time root have real-data, destination,
+      accessibility, and cross-root arbitration evidence for promotion?
+    notes: >
+      Additive Life v1 native root. Time is the only fully served lens in this
+      package; Places, Threads, and People remain labeled future lenses.

@@ -16896,6 +16896,66 @@
         }
       }
     },
+    "/api/life/refind": {
+      "post": {
+        "tags": [
+          "life"
+        ],
+        "summary": "Life Refind",
+        "description": "Viewer-scoped refinding over the caller's own trips and bookings.",
+        "operationId": "life_refind_api_life_refind_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LifeRefindRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LifeRefindResultV1"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/trips/{trip_id}/members": {
       "get": {
         "tags": [
@@ -22274,6 +22334,136 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/RootProjectionEnvelopeV1"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/root-projections/v2/home": {
+      "get": {
+        "tags": [
+          "root-projections"
+        ],
+        "summary": "Get Home Root Projection V2",
+        "description": "Dark v2 Home path; v1 remains the public compatibility response.",
+        "operationId": "get_home_root_projection_v2_api_root_projections_v2_home_get",
+        "parameters": [
+          {
+            "name": "timezone",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "default": "UTC",
+              "title": "Timezone"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RootProjectionEnvelopeV2"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/root-projections/v2/places": {
+      "get": {
+        "tags": [
+          "root-projections"
+        ],
+        "summary": "Get Places Root Projection V2",
+        "description": "Dark v2 Places path over bounded candidate adapters.",
+        "operationId": "get_places_root_projection_v2_api_root_projections_v2_places_get",
+        "parameters": [
+          {
+            "name": "context_handle",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Context Handle"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RootProjectionEnvelopeV2"
                 }
               }
             }
@@ -34039,27 +34229,15 @@
         }
       }
     },
-    "/api/root-projections/v2/home": {
+    "/api/root-projections/v1/life": {
       "get": {
         "tags": [
           "root-projections"
         ],
-        "summary": "Get Home Root Projection",
-        "description": "Return Home's viewer-relative temporal projection.\n\nThe first serving adapter reads the Experience Graph's canonical Plan,\nOccasion, Commitment, Opening, and Outcome projection. It does not invoke\nConcierge, infer state from transcripts, or create durable Home truth.",
-        "operationId": "get_home_root_projection_api_root_projections_v2_home_get",
+        "summary": "Get Life Root Projection V1",
+        "description": "Return the first read-only Life root over canonical graph records.\n\nThis route is intentionally additive and does not replace the legacy Atlas\nowner.  It serves the bounded Time lens only; richer lenses and Return\narbitration remain dark until their owner contracts are available.",
+        "operationId": "get_life_root_projection_v1_api_root_projections_v1_life_get",
         "parameters": [
-          {
-            "name": "timezone",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 64,
-              "default": "UTC",
-              "title": "Timezone"
-            }
-          },
           {
             "name": "authorization",
             "in": "header",
@@ -34083,75 +34261,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RootProjectionEnvelopeV2"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/root-projections/v2/places": {
-      "get": {
-        "tags": [
-          "root-projections"
-        ],
-        "summary": "Get Places Root Projection",
-        "description": "Return Places through the shared root envelope.\n\nExisting Places context, ranking, relationship, provider-cache, and\neditorial readers remain authoritative. The adapter adds root identity,\nrevision, freshness, and typed cross-root doors without re-ranking rows.",
-        "operationId": "get_places_root_projection_api_root_projections_v2_places_get",
-        "parameters": [
-          {
-            "name": "context_handle",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 200
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Context Handle"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Authorization"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RootProjectionEnvelopeV2"
+                  "$ref": "#/components/schemas/LifeRootProjectionV1"
                 }
               }
             }
@@ -56334,6 +56444,43 @@
         ],
         "title": "HomeRootProjection"
       },
+      "HomeUnitKind": {
+        "type": "string",
+        "enum": [
+          "world_read",
+          "root_shell",
+          "week_shape",
+          "now_commitment_instrument",
+          "now_prepared_possibility",
+          "now_decision",
+          "now_recovery_instrument",
+          "now_temporal_posture",
+          "now_annotated_evidence",
+          "now_attributed_comparison",
+          "now_invitation",
+          "now_merged_into_read",
+          "motion_occasion_row",
+          "motion_loose_end_row",
+          "motion_all_plans_door",
+          "horizon_editorial_passage",
+          "horizon_mechanism_row",
+          "horizon_aperture_row",
+          "horizon_hidden_system",
+          "people_note_door",
+          "people_participants_row",
+          "people_waiting_row",
+          "people_authorized_door",
+          "people_gathering",
+          "people_status_aperture",
+          "continuity_capability_field",
+          "continuity_since_you_looked",
+          "continuity_life_door",
+          "continuity_settling",
+          "continuity_voice_horizon",
+          "continuity_reconstruction"
+        ],
+        "title": "HomeUnitKind"
+      },
       "HomeWeekDayProjection": {
         "properties": {
           "date": {
@@ -63244,6 +63391,111 @@
           "state"
         ],
         "title": "LedgerRow"
+      },
+      "LifeRefindRequest": {
+        "properties": {
+          "q": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Q"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "limit": {
+            "type": "integer",
+            "maximum": 20.0,
+            "minimum": 1.0,
+            "title": "Limit",
+            "default": 10
+          }
+        },
+        "type": "object",
+        "required": [
+          "q"
+        ],
+        "title": "LifeRefindRequest"
+      },
+      "LifeRefindResultV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "life-refind-result.v1",
+            "title": "Schema Version",
+            "default": "life-refind-result.v1"
+          },
+          "query": {
+            "$ref": "#/components/schemas/RefindQueryEcho"
+          },
+          "viewer": {
+            "$ref": "#/components/schemas/RefindViewer"
+          },
+          "form": {
+            "type": "string",
+            "enum": [
+              "SF",
+              "GA",
+              "EP",
+              "MR",
+              "RP",
+              "HC"
+            ],
+            "title": "Form"
+          },
+          "confidence": {
+            "$ref": "#/components/schemas/RefindConfidence"
+          },
+          "governed_answer": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RefindGovernedAnswer"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/RefindResult"
+            },
+            "type": "array",
+            "title": "Results",
+            "default": []
+          },
+          "candidate_note": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RefindCandidateNote"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "retention": {
+            "$ref": "#/components/schemas/RefindRetention"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "query",
+          "viewer",
+          "form",
+          "confidence"
+        ],
+        "title": "LifeRefindResultV1",
+        "description": "One refinding response. The CONTRACT is the stable thing; the\nsubstrate behind it (legacy itinerary/booking rows today, the\nexperience graph after the migration) is not part of this shape."
       },
       "LifecycleTimezoneSource": {
         "type": "string",
@@ -73781,6 +74033,46 @@
         ],
         "title": "PlacesState"
       },
+      "PlacesUnitKind": {
+        "type": "string",
+        "enum": [
+          "scope_handle",
+          "provenance_label",
+          "search_map_affordance",
+          "field_lead_composition",
+          "field_branch_lead",
+          "field_branch",
+          "field_returned_understanding",
+          "field_continuity_doors",
+          "field_balanced_fallback",
+          "field_browse_shelf",
+          "field_editorial_cover",
+          "focus_identity_map",
+          "focus_verdict",
+          "focus_relationship_trace",
+          "focus_human_note",
+          "focus_horizon_doors",
+          "focus_possibility_row",
+          "focus_action_seam",
+          "path_relation_statement",
+          "path_difference_diagram",
+          "path_distinction_rows",
+          "path_evidence_apparatus",
+          "path_consequence",
+          "path_next_rows",
+          "live_instrument",
+          "live_burden_receipt",
+          "live_fallback",
+          "live_temporal_posture",
+          "live_action_seam",
+          "live_branch_field",
+          "social_attributed_evidence",
+          "social_relational_relevance",
+          "social_plural_comparison",
+          "social_participation_consequence"
+        ],
+        "title": "PlacesUnitKind"
+      },
       "PlacesVenueAddPreviewRequest": {
         "properties": {
           "bounded_opportunity_id": {
@@ -80001,6 +80293,687 @@
         "title": "RedactionPolicy",
         "description": "Owner-controlled toggles for what the PUBLIC projection may reveal.\n\nDefault-deny: a viewer sees only what these toggles explicitly allow,\non top of the always-public artifact (hero, narrative, chosen photos).\nExact dates are OFF by default; the destination headline is on (it's\nthe point of the share) but can be turned off."
       },
+      "RefindAroundThis": {
+        "properties": {
+          "resource": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "relation": {
+            "type": "string",
+            "enum": [
+              "preceding",
+              "following",
+              "same_day",
+              "parent_day"
+            ],
+            "title": "Relation"
+          },
+          "time_role": {
+            "type": "string",
+            "enum": [
+              "planned",
+              "occurred",
+              "captured"
+            ],
+            "title": "Time Role"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "resource",
+          "relation",
+          "time_role"
+        ],
+        "title": "RefindAroundThis"
+      },
+      "RefindAudience": {
+        "properties": {
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "private",
+              "bounded_shared"
+            ],
+            "title": "Visibility"
+          },
+          "grant_basis": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Grant Basis"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "visibility"
+        ],
+        "title": "RefindAudience"
+      },
+      "RefindAuthorship": {
+        "properties": {
+          "author_ref": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Author Ref"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "author_ref"
+        ],
+        "title": "RefindAuthorship",
+        "description": "Author of the underlying object: ``user:<uuid>``, ``vesper``, or\n``external:<label>``. Claim-local roles arrive with the composition\nlanes (out of scope for this slice)."
+      },
+      "RefindCandidateNote": {
+        "properties": {
+          "distinguishing_cues": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Distinguishing Cues",
+            "default": []
+          },
+          "max_candidates": {
+            "type": "integer",
+            "maximum": 5.0,
+            "minimum": 1.0,
+            "title": "Max Candidates",
+            "default": 3
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "RefindCandidateNote"
+      },
+      "RefindConfidence": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "single",
+              "bounded_candidates",
+              "none"
+            ],
+            "title": "Kind"
+          },
+          "abstain_reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Abstain Reason"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind"
+        ],
+        "title": "RefindConfidence"
+      },
+      "RefindConflict": {
+        "properties": {
+          "claim": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Claim"
+          },
+          "source_refs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Source Refs",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "claim"
+        ],
+        "title": "RefindConflict"
+      },
+      "RefindContinue": {
+        "properties": {
+          "destination": {
+            "type": "string",
+            "enum": [
+              "chat",
+              "places",
+              "owner_object"
+            ],
+            "title": "Destination"
+          },
+          "authority_tier": {
+            "type": "string",
+            "enum": [
+              "advise_only",
+              "propose_reversible"
+            ],
+            "title": "Authority Tier"
+          },
+          "context_envelope_ref": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Context Envelope Ref"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "destination",
+          "authority_tier"
+        ],
+        "title": "RefindContinue"
+      },
+      "RefindCue": {
+        "properties": {
+          "cue": {
+            "type": "string",
+            "enum": [
+              "keyword",
+              "kind",
+              "place",
+              "weekday",
+              "unused_state",
+              "occurrence_state",
+              "plan_membership",
+              "time_adjacency"
+            ],
+            "title": "Cue"
+          },
+          "detail_key": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Detail Key"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "cue",
+          "detail_key"
+        ],
+        "title": "RefindCue",
+        "description": "One structured why-it-matched cue. Machine cues, never free prose."
+      },
+      "RefindGovernedAnswer": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "occurrence_answer",
+              "plan_listing",
+              "skipped_set",
+              "identity_answer"
+            ],
+            "title": "Kind"
+          },
+          "occurrence_state": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ExperienceOccurrenceState"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "subject_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Subject Refs",
+            "default": []
+          },
+          "detail": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Detail"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind"
+        ],
+        "title": "RefindGovernedAnswer",
+        "description": "Structured governed answer for GA-form queries.\n\nNever prose: a machine ``kind`` plus structured state and refs. The\nsupporting targets still appear in ``results`` with full truth/source/\nrepair blocks (benchmark §1 GA contract)."
+      },
+      "RefindIdentity": {
+        "properties": {
+          "semantic_type": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Semantic Type"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Title"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "semantic_type",
+          "title"
+        ],
+        "title": "RefindIdentity"
+      },
+      "RefindParent": {
+        "properties": {
+          "episode_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "relationship_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "RefindParent"
+      },
+      "RefindQueryEcho": {
+        "properties": {
+          "query_id": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 1,
+            "title": "Query Id"
+          },
+          "asked_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Asked At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "query_id",
+          "asked_at"
+        ],
+        "title": "RefindQueryEcho",
+        "description": "Anonymized query echo — the raw query text is never persisted."
+      },
+      "RefindRepair": {
+        "properties": {
+          "operations": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "correct_occurrence",
+                "detach",
+                "exclude_return",
+                "release_downstream",
+                "delete_source"
+              ]
+            },
+            "type": "array",
+            "title": "Operations",
+            "default": []
+          },
+          "scope_preview_required": {
+            "type": "boolean",
+            "title": "Scope Preview Required",
+            "default": true
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "RefindRepair"
+      },
+      "RefindResult": {
+        "properties": {
+          "rank": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Rank"
+          },
+          "resource": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "identity": {
+            "$ref": "#/components/schemas/RefindIdentity"
+          },
+          "why_matched": {
+            "items": {
+              "$ref": "#/components/schemas/RefindCue"
+            },
+            "type": "array",
+            "title": "Why Matched",
+            "default": []
+          },
+          "time_roles": {
+            "$ref": "#/components/schemas/RefindTimeRoles"
+          },
+          "truth": {
+            "$ref": "#/components/schemas/RefindTruth"
+          },
+          "authorship": {
+            "$ref": "#/components/schemas/RefindAuthorship"
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/components/schemas/RefindSourceItem"
+            },
+            "type": "array",
+            "title": "Sources",
+            "default": []
+          },
+          "parent": {
+            "$ref": "#/components/schemas/RefindParent"
+          },
+          "around_this": {
+            "items": {
+              "$ref": "#/components/schemas/RefindAroundThis"
+            },
+            "type": "array",
+            "maxItems": 3,
+            "title": "Around This",
+            "default": []
+          },
+          "audience": {
+            "$ref": "#/components/schemas/RefindAudience"
+          },
+          "repair": {
+            "$ref": "#/components/schemas/RefindRepair"
+          },
+          "continues": {
+            "items": {
+              "$ref": "#/components/schemas/RefindContinue"
+            },
+            "type": "array",
+            "title": "Continues",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "rank",
+          "resource",
+          "identity",
+          "time_roles",
+          "truth",
+          "authorship",
+          "audience"
+        ],
+        "title": "RefindResult"
+      },
+      "RefindRetention": {
+        "properties": {
+          "durable_state_created": {
+            "type": "boolean",
+            "const": false,
+            "title": "Durable State Created",
+            "default": false
+          },
+          "telemetry": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Telemetry",
+            "default": [
+              "query_id",
+              "result_ids",
+              "form",
+              "latency_ms"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "RefindRetention",
+        "description": "Hard invariant for scoring dimension 8 (state restraint)."
+      },
+      "RefindSourceItem": {
+        "properties": {
+          "ref": {
+            "$ref": "#/components/schemas/SourceRef"
+          },
+          "custody": {
+            "type": "string",
+            "enum": [
+              "original",
+              "derived"
+            ],
+            "title": "Custody"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "degraded",
+              "deleted"
+            ],
+            "title": "Status"
+          },
+          "used_state": {
+            "type": "string",
+            "enum": [
+              "used",
+              "unused",
+              "unknown"
+            ],
+            "title": "Used State"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "ref",
+          "custody",
+          "status",
+          "used_state"
+        ],
+        "title": "RefindSourceItem"
+      },
+      "RefindTimeRoles": {
+        "properties": {
+          "planned": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Planned"
+          },
+          "occurred": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "no_evidence",
+                  "did_not_happen"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occurred"
+          },
+          "captured": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Captured"
+          },
+          "authored": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Authored"
+          },
+          "generated": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Generated"
+          },
+          "current_world_checked": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current World Checked"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "RefindTimeRoles",
+        "description": "Time roles kept separate — never collapsed (benchmark §2)."
+      },
+      "RefindTruth": {
+        "properties": {
+          "occurrence_state": {
+            "$ref": "#/components/schemas/ExperienceOccurrenceState"
+          },
+          "truth_mode": {
+            "type": "string",
+            "enum": [
+              "direct_observed",
+              "source_extracted",
+              "user_confirmed",
+              "inferred",
+              "external_verified",
+              "unknown"
+            ],
+            "title": "Truth Mode"
+          },
+          "confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence"
+          },
+          "conflicts": {
+            "items": {
+              "$ref": "#/components/schemas/RefindConflict"
+            },
+            "type": "array",
+            "title": "Conflicts",
+            "default": []
+          },
+          "missing_evidence": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Missing Evidence",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "occurrence_state",
+          "truth_mode",
+          "confidence"
+        ],
+        "title": "RefindTruth"
+      },
+      "RefindViewer": {
+        "properties": {
+          "viewer_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Viewer Id"
+          },
+          "scope": {
+            "type": "string",
+            "enum": [
+              "mine",
+              "together"
+            ],
+            "title": "Scope",
+            "default": "mine"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "viewer_id"
+        ],
+        "title": "RefindViewer"
+      },
       "RegisterDeviceRequest": {
         "properties": {
           "token": {
@@ -81749,6 +82722,116 @@
         ],
         "title": "RibbonDay"
       },
+      "RootAction": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Label"
+          },
+          "capability_ref": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,119}$",
+            "title": "Capability Ref"
+          },
+          "requires_confirmation": {
+            "type": "boolean",
+            "title": "Requires Confirmation",
+            "default": false
+          },
+          "destination": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RootDestination"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "label",
+          "capability_ref"
+        ],
+        "title": "RootAction"
+      },
+      "RootAudience": {
+        "type": "string",
+        "enum": [
+          "private",
+          "group",
+          "public"
+        ],
+        "title": "RootAudience"
+      },
+      "RootComposition": {
+        "properties": {
+          "family": {
+            "type": "string",
+            "const": "composition",
+            "title": "Family",
+            "default": "composition"
+          },
+          "composition_id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Composition Id"
+          },
+          "expression_version": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Expression Version"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 180,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "substance": {
+            "type": "string",
+            "maxLength": 1400,
+            "minLength": 1,
+            "title": "Substance"
+          },
+          "lead_medium": {
+            "$ref": "#/components/schemas/LeadMedium"
+          },
+          "support_medium": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LeadMedium"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "basis": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Basis"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "composition_id",
+          "expression_version",
+          "title",
+          "substance",
+          "lead_medium",
+          "basis"
+        ],
+        "title": "RootComposition"
+      },
       "RootCompositionResult": {
         "properties": {
           "result_id": {
@@ -81842,6 +82925,104 @@
         ],
         "title": "RootCompositionResult"
       },
+      "RootDegradation": {
+        "properties": {
+          "owner_kind": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Owner Kind"
+          },
+          "code": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,119}$",
+            "title": "Code"
+          },
+          "effect": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Effect"
+          },
+          "retryable": {
+            "type": "boolean",
+            "title": "Retryable",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "owner_kind",
+          "code",
+          "effect"
+        ],
+        "title": "RootDegradation"
+      },
+      "RootDestination": {
+        "properties": {
+          "target_root": {
+            "$ref": "#/components/schemas/ProductRoot"
+          },
+          "capability_ref": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,119}$",
+            "title": "Capability Ref"
+          },
+          "resource_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Resource Refs",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "target_root",
+          "capability_ref"
+        ],
+        "title": "RootDestination",
+        "description": "An owner capability, never a client route."
+      },
+      "RootDirectState": {
+        "properties": {
+          "family": {
+            "type": "string",
+            "const": "direct_state",
+            "title": "Family",
+            "default": "direct_state"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Label"
+          },
+          "value": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Value"
+          },
+          "basis": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Basis"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "label",
+          "value",
+          "basis"
+        ],
+        "title": "RootDirectState"
+      },
       "RootDoor": {
         "properties": {
           "target_root": {
@@ -81875,6 +83056,93 @@
           "capability_ref"
         ],
         "title": "RootDoor"
+      },
+      "RootFreshness": {
+        "type": "string",
+        "enum": [
+          "fresh",
+          "stale",
+          "unknown"
+        ],
+        "title": "RootFreshness"
+      },
+      "RootInstrument": {
+        "properties": {
+          "family": {
+            "type": "string",
+            "const": "instrument",
+            "title": "Family",
+            "default": "instrument"
+          },
+          "instrument_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "operation_capabilities": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Operation Capabilities",
+            "default": []
+          },
+          "fallback": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Fallback"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "instrument_ref",
+          "fallback"
+        ],
+        "title": "RootInstrument"
+      },
+      "RootLifecycle": {
+        "type": "string",
+        "enum": [
+          "ephemeral",
+          "expiring",
+          "live",
+          "saved",
+          "durable"
+        ],
+        "title": "RootLifecycle"
+      },
+      "RootLink": {
+        "properties": {
+          "family": {
+            "type": "string",
+            "const": "link",
+            "title": "Family",
+            "default": "link"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Label"
+          },
+          "relation": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Relation"
+          },
+          "target": {
+            "$ref": "#/components/schemas/ResourceRef"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "label",
+          "relation",
+          "target"
+        ],
+        "title": "RootLink"
       },
       "RootProjectionDegradation": {
         "properties": {
@@ -81998,6 +83266,300 @@
         ],
         "title": "RootProjectionEnvelopeV1"
       },
+      "RootProjectionEnvelopeV2": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "root-projection-envelope.v2",
+            "title": "Schema Version",
+            "default": "root-projection-envelope.v2"
+          },
+          "root": {
+            "type": "string",
+            "enum": [
+              "home",
+              "places"
+            ],
+            "title": "Root"
+          },
+          "viewer_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "projection": {
+            "$ref": "#/components/schemas/RootProjectionV2"
+          },
+          "source_revisions": {
+            "items": {
+              "$ref": "#/components/schemas/RootSourceRevision"
+            },
+            "type": "array",
+            "title": "Source Revisions",
+            "default": []
+          },
+          "degradations": {
+            "items": {
+              "$ref": "#/components/schemas/RootDegradation"
+            },
+            "type": "array",
+            "title": "Degradations",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "root",
+          "viewer_ref",
+          "projection"
+        ],
+        "title": "RootProjectionEnvelopeV2"
+      },
+      "RootProjectionV2": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "root-projection.v2",
+            "title": "Schema Version",
+            "default": "root-projection.v2"
+          },
+          "root": {
+            "type": "string",
+            "enum": [
+              "home",
+              "places"
+            ],
+            "title": "Root"
+          },
+          "projection_id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Projection Id"
+          },
+          "revision": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Revision"
+          },
+          "represented_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Represented At"
+          },
+          "home_posture": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RootHomePosture"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "places_state": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesState"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "chrome": {
+            "items": {
+              "$ref": "#/components/schemas/RootUnit"
+            },
+            "type": "array",
+            "title": "Chrome",
+            "default": []
+          },
+          "regions": {
+            "items": {
+              "$ref": "#/components/schemas/RootRegionProjection"
+            },
+            "type": "array",
+            "title": "Regions",
+            "default": []
+          },
+          "units": {
+            "items": {
+              "$ref": "#/components/schemas/RootUnit"
+            },
+            "type": "array",
+            "title": "Units",
+            "default": []
+          },
+          "dominant_unit_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dominant Unit Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "root",
+          "projection_id",
+          "revision",
+          "represented_at"
+        ],
+        "title": "RootProjectionV2"
+      },
+      "RootRead": {
+        "properties": {
+          "family": {
+            "type": "string",
+            "const": "read",
+            "title": "Family",
+            "default": "read"
+          },
+          "scale": {
+            "$ref": "#/components/schemas/RootReadScale",
+            "default": "line"
+          },
+          "anchor": {
+            "type": "string",
+            "maxLength": 180,
+            "minLength": 1,
+            "title": "Anchor"
+          },
+          "voice": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Voice"
+          },
+          "basis": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Basis"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "anchor",
+          "basis"
+        ],
+        "title": "RootRead"
+      },
+      "RootReceipt": {
+        "properties": {
+          "family": {
+            "type": "string",
+            "const": "receipt",
+            "title": "Family",
+            "default": "receipt"
+          },
+          "receipt_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "detail": {
+            "type": "string",
+            "maxLength": 600,
+            "minLength": 1,
+            "title": "Detail"
+          },
+          "repair_capability": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Repair Capability"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "receipt_ref",
+          "detail"
+        ],
+        "title": "RootReceipt"
+      },
+      "RootRegion": {
+        "type": "string",
+        "enum": [
+          "now",
+          "in_motion",
+          "horizons",
+          "continuity"
+        ],
+        "title": "RootRegion"
+      },
+      "RootRegionProjection": {
+        "properties": {
+          "region": {
+            "$ref": "#/components/schemas/RootRegion"
+          },
+          "units": {
+            "items": {
+              "$ref": "#/components/schemas/RootUnit"
+            },
+            "type": "array",
+            "title": "Units",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "region"
+        ],
+        "title": "RootRegionProjection"
+      },
+      "RootSilence": {
+        "properties": {
+          "family": {
+            "type": "string",
+            "const": "silence",
+            "title": "Family",
+            "default": "silence"
+          },
+          "reason_code": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,119}$",
+            "title": "Reason Code"
+          },
+          "next_evaluation_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Evaluation At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "reason_code"
+        ],
+        "title": "RootSilence"
+      },
       "RootSourceRevision": {
         "properties": {
           "owner_kind": {
@@ -82027,6 +83589,178 @@
           "revision"
         ],
         "title": "RootSourceRevision"
+      },
+      "RootStatus": {
+        "type": "string",
+        "enum": [
+          "current",
+          "pending",
+          "partial",
+          "stale",
+          "unknown",
+          "revoked"
+        ],
+        "title": "RootStatus"
+      },
+      "RootUnit": {
+        "properties": {
+          "unit_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Unit Id"
+          },
+          "kind": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/HomeUnitKind"
+              },
+              {
+                "$ref": "#/components/schemas/PlacesUnitKind"
+              }
+            ],
+            "title": "Kind"
+          },
+          "region": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RootRegion"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "state": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesState"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "evidence_cluster_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Evidence Cluster Id"
+          },
+          "surface_seat_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Surface Seat Id"
+          },
+          "represented_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Represented Refs"
+          },
+          "owner_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Owner Refs"
+          },
+          "audience": {
+            "$ref": "#/components/schemas/RootAudience"
+          },
+          "status": {
+            "$ref": "#/components/schemas/RootStatus"
+          },
+          "freshness": {
+            "$ref": "#/components/schemas/RootFreshness"
+          },
+          "lifecycle": {
+            "$ref": "#/components/schemas/RootLifecycle"
+          },
+          "payload": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/RootDirectState"
+              },
+              {
+                "$ref": "#/components/schemas/RootComposition"
+              },
+              {
+                "$ref": "#/components/schemas/RootInstrument"
+              },
+              {
+                "$ref": "#/components/schemas/RootReceipt"
+              },
+              {
+                "$ref": "#/components/schemas/RootLink"
+              },
+              {
+                "$ref": "#/components/schemas/RootRead"
+              },
+              {
+                "$ref": "#/components/schemas/RootSilence"
+              },
+              {
+                "$ref": "#/components/schemas/RootWeekShape"
+              }
+            ],
+            "title": "Payload",
+            "discriminator": {
+              "propertyName": "family",
+              "mapping": {
+                "composition": "#/components/schemas/RootComposition",
+                "direct_state": "#/components/schemas/RootDirectState",
+                "instrument": "#/components/schemas/RootInstrument",
+                "link": "#/components/schemas/RootLink",
+                "read": "#/components/schemas/RootRead",
+                "receipt": "#/components/schemas/RootReceipt",
+                "silence": "#/components/schemas/RootSilence",
+                "week_shape": "#/components/schemas/RootWeekShape"
+              }
+            }
+          },
+          "actions": {
+            "items": {
+              "$ref": "#/components/schemas/RootAction"
+            },
+            "type": "array",
+            "title": "Actions",
+            "default": []
+          },
+          "destination": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RootDestination"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "why_this": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Why This"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "unit_id",
+          "kind",
+          "evidence_cluster_id",
+          "surface_seat_id",
+          "represented_refs",
+          "owner_refs",
+          "audience",
+          "status",
+          "freshness",
+          "lifecycle",
+          "payload",
+          "why_this"
+        ],
+        "title": "RootUnit",
+        "description": "An admitted candidate, retaining the identity needed for readback."
       },
       "SaveBoardRequest": {
         "properties": {
@@ -99175,958 +100909,183 @@
         ],
         "title": "RelationshipScopeKind"
       },
-      "HomeUnitKind": {
-        "enum": [
-          "world_read",
-          "root_shell",
-          "week_shape",
-          "now_commitment_instrument",
-          "now_prepared_possibility",
-          "now_decision",
-          "now_recovery_instrument",
-          "now_temporal_posture",
-          "now_annotated_evidence",
-          "now_attributed_comparison",
-          "now_invitation",
-          "now_merged_into_read",
-          "motion_occasion_row",
-          "motion_loose_end_row",
-          "motion_all_plans_door",
-          "horizon_editorial_passage",
-          "horizon_mechanism_row",
-          "horizon_aperture_row",
-          "horizon_hidden_system",
-          "people_note_door",
-          "people_participants_row",
-          "people_waiting_row",
-          "people_authorized_door",
-          "people_gathering",
-          "people_status_aperture",
-          "continuity_capability_field",
-          "continuity_since_you_looked",
-          "continuity_life_door",
-          "continuity_settling",
-          "continuity_voice_horizon",
-          "continuity_reconstruction"
-        ],
-        "title": "HomeUnitKind",
-        "type": "string"
-      },
-      "PlacesUnitKind": {
-        "enum": [
-          "scope_handle",
-          "provenance_label",
-          "search_map_affordance",
-          "field_lead_composition",
-          "field_branch_lead",
-          "field_branch",
-          "field_returned_understanding",
-          "field_continuity_doors",
-          "field_balanced_fallback",
-          "field_browse_shelf",
-          "field_editorial_cover",
-          "focus_identity_map",
-          "focus_verdict",
-          "focus_relationship_trace",
-          "focus_human_note",
-          "focus_horizon_doors",
-          "focus_possibility_row",
-          "focus_action_seam",
-          "path_relation_statement",
-          "path_difference_diagram",
-          "path_distinction_rows",
-          "path_evidence_apparatus",
-          "path_consequence",
-          "path_next_rows",
-          "live_instrument",
-          "live_burden_receipt",
-          "live_fallback",
-          "live_temporal_posture",
-          "live_action_seam",
-          "live_branch_field",
-          "social_attributed_evidence",
-          "social_relational_relevance",
-          "social_plural_comparison",
-          "social_participation_consequence"
-        ],
-        "title": "PlacesUnitKind",
-        "type": "string"
-      },
-      "RootAction": {
-        "additionalProperties": false,
+      "RootWeekDay": {
         "properties": {
-          "label": {
-            "maxLength": 80,
-            "minLength": 1,
-            "title": "Label",
-            "type": "string"
+          "date": {
+            "type": "string",
+            "format": "date",
+            "title": "Date"
           },
-          "capability_ref": {
-            "pattern": "^[a-z][a-z0-9_.:-]{1,119}$",
-            "title": "Capability Ref",
-            "type": "string"
+          "mark": {
+            "$ref": "#/components/schemas/RootWeekMark"
           },
-          "requires_confirmation": {
-            "default": false,
-            "title": "Requires Confirmation",
-            "type": "boolean"
-          },
-          "destination": {
+          "note": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/RootDestination"
+                "type": "string",
+                "maxLength": 180
               },
               {
                 "type": "null"
               }
             ],
-            "default": null
+            "title": "Note"
+          },
+          "represented_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Represented Refs",
+            "default": []
           }
         },
-        "required": [
-          "label",
-          "capability_ref"
-        ],
-        "title": "RootAction",
-        "type": "object"
-      },
-      "RootAudience": {
-        "enum": [
-          "private",
-          "group",
-          "public"
-        ],
-        "title": "RootAudience",
-        "type": "string"
-      },
-      "RootComposition": {
         "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "date",
+          "mark"
+        ],
+        "title": "RootWeekDay",
+        "description": "One bounded local-day mark in Home's zero-demand week shape."
+      },
+      "RootHomePosture": {
+        "type": "string",
+        "enum": [
+          "urgent",
+          "live",
+          "planning",
+          "available",
+          "returned",
+          "ordinary",
+          "quiet",
+          "cold"
+        ],
+        "title": "RootHomePosture",
+        "description": "Canonical Home postures used by the v2 composition policy."
+      },
+      "RootWeekShape": {
         "properties": {
           "family": {
-            "const": "composition",
-            "default": "composition",
+            "type": "string",
+            "const": "week_shape",
             "title": "Family",
-            "type": "string"
+            "default": "week_shape"
           },
-          "composition_id": {
-            "maxLength": 160,
+          "timezone": {
+            "type": "string",
+            "maxLength": 64,
             "minLength": 1,
-            "title": "Composition Id",
-            "type": "string"
+            "title": "Timezone"
           },
-          "expression_version": {
-            "maxLength": 80,
-            "minLength": 1,
-            "title": "Expression Version",
-            "type": "string"
+          "days": {
+            "items": {
+              "$ref": "#/components/schemas/RootWeekDay"
+            },
+            "type": "array",
+            "maxItems": 7,
+            "minItems": 7,
+            "title": "Days"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "timezone",
+          "days"
+        ],
+        "title": "RootWeekShape",
+        "description": "A seven-day structural read, never a schedule editor."
+      },
+      "RootReadScale": {
+        "type": "string",
+        "enum": [
+          "mast",
+          "line",
+          "state"
+        ],
+        "title": "RootReadScale",
+        "description": "Server-selected expression scale for a world read."
+      },
+      "RootWeekMark": {
+        "type": "string",
+        "enum": [
+          "none",
+          "today",
+          "tentative",
+          "committed",
+          "critical"
+        ],
+        "title": "RootWeekMark"
+      },
+      "LifeDeliveryState": {
+        "type": "string",
+        "enum": [
+          "rich",
+          "ordinary",
+          "thin",
+          "yielded"
+        ],
+        "title": "LifeDeliveryState"
+      },
+      "LifeEntry": {
+        "properties": {
+          "entry_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Entry Id"
+          },
+          "kind": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,79}$",
+            "title": "Kind"
           },
           "title": {
+            "type": "string",
             "maxLength": 180,
             "minLength": 1,
-            "title": "Title",
-            "type": "string"
+            "title": "Title"
           },
-          "substance": {
-            "maxLength": 1400,
-            "minLength": 1,
-            "title": "Substance",
-            "type": "string"
-          },
-          "lead_medium": {
-            "$ref": "#/components/schemas/LeadMedium"
-          },
-          "support_medium": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/LeadMedium"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null
-          },
-          "basis": {
-            "maxLength": 300,
-            "minLength": 1,
-            "title": "Basis",
-            "type": "string"
-          }
-        },
-        "required": [
-          "composition_id",
-          "expression_version",
-          "title",
-          "substance",
-          "lead_medium",
-          "basis"
-        ],
-        "title": "RootComposition",
-        "type": "object"
-      },
-      "RootDegradation": {
-        "additionalProperties": false,
-        "properties": {
-          "owner_kind": {
-            "maxLength": 80,
-            "minLength": 1,
-            "title": "Owner Kind",
-            "type": "string"
-          },
-          "code": {
-            "pattern": "^[a-z][a-z0-9_.:-]{1,119}$",
-            "title": "Code",
-            "type": "string"
-          },
-          "effect": {
-            "maxLength": 300,
-            "minLength": 1,
-            "title": "Effect",
-            "type": "string"
-          },
-          "retryable": {
-            "default": false,
-            "title": "Retryable",
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "owner_kind",
-          "code",
-          "effect"
-        ],
-        "title": "RootDegradation",
-        "type": "object"
-      },
-      "RootDestination": {
-        "additionalProperties": false,
-        "description": "An owner capability, never a client route.",
-        "properties": {
-          "target_root": {
-            "$ref": "#/components/schemas/ProductRoot"
-          },
-          "capability_ref": {
-            "pattern": "^[a-z][a-z0-9_.:-]{1,119}$",
-            "title": "Capability Ref",
-            "type": "string"
-          },
-          "resource_refs": {
-            "default": [],
-            "items": {
-              "$ref": "#/components/schemas/ResourceRef"
-            },
-            "title": "Resource Refs",
-            "type": "array"
-          }
-        },
-        "required": [
-          "target_root",
-          "capability_ref"
-        ],
-        "title": "RootDestination",
-        "type": "object"
-      },
-      "RootDirectState": {
-        "additionalProperties": false,
-        "properties": {
-          "family": {
-            "const": "direct_state",
-            "default": "direct_state",
-            "title": "Family",
-            "type": "string"
-          },
-          "label": {
-            "maxLength": 120,
-            "minLength": 1,
-            "title": "Label",
-            "type": "string"
-          },
-          "value": {
+          "subtitle": {
+            "type": "string",
             "maxLength": 500,
             "minLength": 1,
-            "title": "Value",
-            "type": "string"
-          },
-          "basis": {
-            "maxLength": 300,
-            "minLength": 1,
-            "title": "Basis",
-            "type": "string"
-          }
-        },
-        "required": [
-          "label",
-          "value",
-          "basis"
-        ],
-        "title": "RootDirectState",
-        "type": "object"
-      },
-      "RootFreshness": {
-        "enum": [
-          "fresh",
-          "stale",
-          "unknown"
-        ],
-        "title": "RootFreshness",
-        "type": "string"
-      },
-      "RootInstrument": {
-        "additionalProperties": false,
-        "properties": {
-          "family": {
-            "const": "instrument",
-            "default": "instrument",
-            "title": "Family",
-            "type": "string"
-          },
-          "instrument_ref": {
-            "$ref": "#/components/schemas/ResourceRef"
-          },
-          "operation_capabilities": {
-            "default": [],
-            "items": {
-              "type": "string"
-            },
-            "title": "Operation Capabilities",
-            "type": "array"
-          },
-          "fallback": {
-            "maxLength": 500,
-            "minLength": 1,
-            "title": "Fallback",
-            "type": "string"
-          }
-        },
-        "required": [
-          "instrument_ref",
-          "fallback"
-        ],
-        "title": "RootInstrument",
-        "type": "object"
-      },
-      "RootLifecycle": {
-        "enum": [
-          "ephemeral",
-          "expiring",
-          "live",
-          "saved",
-          "durable"
-        ],
-        "title": "RootLifecycle",
-        "type": "string"
-      },
-      "RootLink": {
-        "additionalProperties": false,
-        "properties": {
-          "family": {
-            "const": "link",
-            "default": "link",
-            "title": "Family",
-            "type": "string"
-          },
-          "label": {
-            "maxLength": 120,
-            "minLength": 1,
-            "title": "Label",
-            "type": "string"
-          },
-          "relation": {
-            "maxLength": 300,
-            "minLength": 1,
-            "title": "Relation",
-            "type": "string"
-          },
-          "target": {
-            "$ref": "#/components/schemas/ResourceRef"
-          }
-        },
-        "required": [
-          "label",
-          "relation",
-          "target"
-        ],
-        "title": "RootLink",
-        "type": "object"
-      },
-      "RootProjectionV2": {
-        "additionalProperties": false,
-        "properties": {
-          "schema_version": {
-            "const": "root-projection.v2",
-            "default": "root-projection.v2",
-            "title": "Schema Version",
-            "type": "string"
-          },
-          "root": {
-            "enum": [
-              "home",
-              "places"
-            ],
-            "title": "Root",
-            "type": "string"
-          },
-          "projection_id": {
-            "maxLength": 160,
-            "minLength": 1,
-            "title": "Projection Id",
-            "type": "string"
-          },
-          "revision": {
-            "maxLength": 160,
-            "minLength": 1,
-            "title": "Revision",
-            "type": "string"
-          },
-          "represented_at": {
-            "format": "date-time",
-            "title": "Represented At",
-            "type": "string"
-          },
-          "home_posture": {
-            "anyOf": [
-              {
-                "maxLength": 80,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Home Posture"
-          },
-          "places_state": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/PlacesState"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null
-          },
-          "regions": {
-            "default": [],
-            "items": {
-              "$ref": "#/components/schemas/RootRegionProjection"
-            },
-            "title": "Regions",
-            "type": "array"
-          },
-          "units": {
-            "default": [],
-            "items": {
-              "$ref": "#/components/schemas/RootUnit"
-            },
-            "title": "Units",
-            "type": "array"
-          },
-          "dominant_unit_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Dominant Unit Id"
-          }
-        },
-        "required": [
-          "root",
-          "projection_id",
-          "revision",
-          "represented_at"
-        ],
-        "title": "RootProjectionV2",
-        "type": "object"
-      },
-      "RootRead": {
-        "additionalProperties": false,
-        "properties": {
-          "family": {
-            "const": "read",
-            "default": "read",
-            "title": "Family",
-            "type": "string"
-          },
-          "anchor": {
-            "maxLength": 180,
-            "minLength": 1,
-            "title": "Anchor",
-            "type": "string"
-          },
-          "voice": {
-            "anyOf": [
-              {
-                "maxLength": 500,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Voice"
-          },
-          "basis": {
-            "maxLength": 300,
-            "minLength": 1,
-            "title": "Basis",
-            "type": "string"
-          }
-        },
-        "required": [
-          "anchor",
-          "basis"
-        ],
-        "title": "RootRead",
-        "type": "object"
-      },
-      "RootReceipt": {
-        "additionalProperties": false,
-        "properties": {
-          "family": {
-            "const": "receipt",
-            "default": "receipt",
-            "title": "Family",
-            "type": "string"
-          },
-          "receipt_ref": {
-            "$ref": "#/components/schemas/ResourceRef"
-          },
-          "detail": {
-            "maxLength": 600,
-            "minLength": 1,
-            "title": "Detail",
-            "type": "string"
-          },
-          "repair_capability": {
-            "anyOf": [
-              {
-                "maxLength": 120,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Repair Capability"
-          }
-        },
-        "required": [
-          "receipt_ref",
-          "detail"
-        ],
-        "title": "RootReceipt",
-        "type": "object"
-      },
-      "RootRegion": {
-        "enum": [
-          "now",
-          "in_motion",
-          "horizons",
-          "continuity"
-        ],
-        "title": "RootRegion",
-        "type": "string"
-      },
-      "RootRegionProjection": {
-        "additionalProperties": false,
-        "properties": {
-          "region": {
-            "$ref": "#/components/schemas/RootRegion"
-          },
-          "units": {
-            "default": [],
-            "items": {
-              "$ref": "#/components/schemas/RootUnit"
-            },
-            "title": "Units",
-            "type": "array"
-          }
-        },
-        "required": [
-          "region"
-        ],
-        "title": "RootRegionProjection",
-        "type": "object"
-      },
-      "RootSilence": {
-        "additionalProperties": false,
-        "properties": {
-          "family": {
-            "const": "silence",
-            "default": "silence",
-            "title": "Family",
-            "type": "string"
-          },
-          "reason_code": {
-            "pattern": "^[a-z][a-z0-9_.:-]{1,119}$",
-            "title": "Reason Code",
-            "type": "string"
-          },
-          "next_evaluation_at": {
-            "anyOf": [
-              {
-                "format": "date-time",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Next Evaluation At"
-          }
-        },
-        "required": [
-          "reason_code"
-        ],
-        "title": "RootSilence",
-        "type": "object"
-      },
-      "RootStatus": {
-        "enum": [
-          "current",
-          "pending",
-          "partial",
-          "stale",
-          "unknown",
-          "revoked"
-        ],
-        "title": "RootStatus",
-        "type": "string"
-      },
-      "RootUnit": {
-        "additionalProperties": false,
-        "description": "An admitted candidate, retaining the identity needed for readback.",
-        "properties": {
-          "unit_id": {
-            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
-            "title": "Unit Id",
-            "type": "string"
-          },
-          "kind": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/HomeUnitKind"
-              },
-              {
-                "$ref": "#/components/schemas/PlacesUnitKind"
-              }
-            ],
-            "title": "Kind"
-          },
-          "region": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/RootRegion"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null
-          },
-          "state": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/PlacesState"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null
-          },
-          "evidence_cluster_id": {
-            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
-            "title": "Evidence Cluster Id",
-            "type": "string"
-          },
-          "surface_seat_id": {
-            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
-            "title": "Surface Seat Id",
-            "type": "string"
+            "title": "Subtitle"
           },
           "represented_refs": {
             "items": {
               "$ref": "#/components/schemas/ResourceRef"
             },
-            "title": "Represented Refs",
-            "type": "array"
+            "type": "array",
+            "maxItems": 12,
+            "minItems": 1,
+            "title": "Represented Refs"
           },
           "owner_refs": {
             "items": {
               "$ref": "#/components/schemas/ResourceRef"
             },
-            "title": "Owner Refs",
-            "type": "array"
-          },
-          "audience": {
-            "$ref": "#/components/schemas/RootAudience"
-          },
-          "status": {
-            "$ref": "#/components/schemas/RootStatus"
-          },
-          "freshness": {
-            "$ref": "#/components/schemas/RootFreshness"
-          },
-          "lifecycle": {
-            "$ref": "#/components/schemas/RootLifecycle"
-          },
-          "payload": {
-            "discriminator": {
-              "mapping": {
-                "composition": "#/components/schemas/RootComposition",
-                "direct_state": "#/components/schemas/RootDirectState",
-                "instrument": "#/components/schemas/RootInstrument",
-                "link": "#/components/schemas/RootLink",
-                "read": "#/components/schemas/RootRead",
-                "receipt": "#/components/schemas/RootReceipt",
-                "silence": "#/components/schemas/RootSilence"
-              },
-              "propertyName": "family"
-            },
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/RootDirectState"
-              },
-              {
-                "$ref": "#/components/schemas/RootComposition"
-              },
-              {
-                "$ref": "#/components/schemas/RootInstrument"
-              },
-              {
-                "$ref": "#/components/schemas/RootReceipt"
-              },
-              {
-                "$ref": "#/components/schemas/RootLink"
-              },
-              {
-                "$ref": "#/components/schemas/RootRead"
-              },
-              {
-                "$ref": "#/components/schemas/RootSilence"
-              }
-            ],
-            "title": "Payload"
-          },
-          "actions": {
-            "default": [],
-            "items": {
-              "$ref": "#/components/schemas/RootAction"
-            },
-            "title": "Actions",
-            "type": "array"
-          },
-          "destination": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/RootDestination"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null
-          },
-          "why_this": {
-            "maxLength": 500,
-            "minLength": 1,
-            "title": "Why This",
-            "type": "string"
-          }
-        },
-        "required": [
-          "unit_id",
-          "kind",
-          "evidence_cluster_id",
-          "surface_seat_id",
-          "represented_refs",
-          "owner_refs",
-          "audience",
-          "status",
-          "freshness",
-          "lifecycle",
-          "payload",
-          "why_this"
-        ],
-        "title": "RootUnit",
-        "type": "object"
-      },
-      "RootProjectionEnvelopeV2": {
-        "additionalProperties": false,
-        "properties": {
-          "schema_version": {
-            "const": "root-projection-envelope.v2",
-            "default": "root-projection-envelope.v2",
-            "title": "Schema Version",
-            "type": "string"
-          },
-          "root": {
-            "enum": [
-              "home",
-              "places"
-            ],
-            "title": "Root",
-            "type": "string"
-          },
-          "viewer_ref": {
-            "$ref": "#/components/schemas/ResourceRef"
-          },
-          "projection": {
-            "$ref": "#/components/schemas/RootProjectionV2"
-          },
-          "source_revisions": {
-            "default": [],
-            "items": {
-              "$ref": "#/components/schemas/RootSourceRevision"
-            },
-            "title": "Source Revisions",
-            "type": "array"
-          },
-          "degradations": {
-            "default": [],
-            "items": {
-              "$ref": "#/components/schemas/RootDegradation"
-            },
-            "title": "Degradations",
-            "type": "array"
-          }
-        },
-        "required": [
-          "root",
-          "viewer_ref",
-          "projection"
-        ],
-        "title": "RootProjectionEnvelopeV2",
-        "type": "object"
-      },
-      "RootCandidate": {
-        "additionalProperties": false,
-        "description": "One owner-backed semantic candidate before surface admission.",
-        "properties": {
-          "candidate_id": {
-            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
-            "title": "Candidate Id",
-            "type": "string"
-          },
-          "root": {
-            "enum": [
-              "home",
-              "places"
-            ],
-            "title": "Root",
-            "type": "string"
-          },
-          "kind": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/HomeUnitKind"
-              },
-              {
-                "$ref": "#/components/schemas/PlacesUnitKind"
-              }
-            ],
-            "title": "Kind"
-          },
-          "region": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/RootRegion"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null
-          },
-          "state": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/PlacesState"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null
-          },
-          "dominant_job": {
-            "maxLength": 120,
-            "minLength": 1,
-            "title": "Dominant Job",
-            "type": "string"
-          },
-          "material_trigger": {
-            "maxLength": 300,
-            "minLength": 1,
-            "title": "Material Trigger",
-            "type": "string"
-          },
-          "evidence_cluster_id": {
-            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
-            "title": "Evidence Cluster Id",
-            "type": "string"
-          },
-          "surface_seat_id": {
-            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
-            "title": "Surface Seat Id",
-            "type": "string"
-          },
-          "semantic_role": {
-            "maxLength": 120,
-            "minLength": 1,
-            "title": "Semantic Role",
-            "type": "string"
-          },
-          "represented_refs": {
-            "default": [],
-            "items": {
-              "$ref": "#/components/schemas/ResourceRef"
-            },
-            "title": "Represented Refs",
-            "type": "array"
-          },
-          "owner_refs": {
-            "default": [],
-            "items": {
-              "$ref": "#/components/schemas/ResourceRef"
-            },
-            "title": "Owner Refs",
-            "type": "array"
+            "type": "array",
+            "maxItems": 8,
+            "minItems": 1,
+            "title": "Owner Refs"
           },
           "source_refs": {
-            "default": [],
             "items": {
               "$ref": "#/components/schemas/ResourceRef"
             },
-            "title": "Source Refs",
-            "type": "array"
+            "type": "array",
+            "maxItems": 16,
+            "minItems": 1,
+            "title": "Source Refs"
           },
           "grant_refs": {
-            "default": [],
             "items": {
               "$ref": "#/components/schemas/ResourceRef"
             },
+            "type": "array",
             "title": "Grant Refs",
-            "type": "array"
-          },
-          "projected_surfaces": {
-            "default": [],
-            "items": {
-              "$ref": "#/components/schemas/ProductRoot"
-            },
-            "title": "Projected Surfaces",
-            "type": "array"
+            "default": []
           },
           "audience": {
             "$ref": "#/components/schemas/RootAudience",
@@ -100142,179 +101101,261 @@
           },
           "lifecycle": {
             "$ref": "#/components/schemas/RootLifecycle",
-            "default": "ephemeral"
-          },
-          "owner_surface": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/ProductRoot"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null
-          },
-          "fact_key": {
-            "anyOf": [
-              {
-                "maxLength": 300,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null,
-            "title": "Fact Key"
-          },
-          "novelty": {
-            "maxLength": 300,
-            "minLength": 1,
-            "title": "Novelty",
-            "type": "string"
-          },
-          "burden": {
-            "maxLength": 300,
-            "minLength": 1,
-            "title": "Burden",
-            "type": "string"
-          },
-          "admission_priority": {
-            "default": 50,
-            "maximum": 100,
-            "minimum": 0,
-            "title": "Admission Priority",
-            "type": "integer"
-          },
-          "feasible": {
-            "default": true,
-            "title": "Feasible",
-            "type": "boolean"
-          },
-          "actions": {
-            "default": [],
-            "items": {
-              "$ref": "#/components/schemas/RootAction"
-            },
-            "title": "Actions",
-            "type": "array"
+            "default": "durable"
           },
           "destination": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/RootDestination"
+                "$ref": "#/components/schemas/ResourceRef"
               },
               {
                 "type": "null"
               }
-            ],
-            "default": null
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "entry_id",
+          "kind",
+          "title",
+          "subtitle",
+          "represented_refs",
+          "owner_refs",
+          "source_refs"
+        ],
+        "title": "LifeEntry",
+        "description": "One bounded, source-backed door on a Life lens page."
+      },
+      "LifeLens": {
+        "type": "string",
+        "enum": [
+          "time",
+          "places",
+          "people",
+          "threads"
+        ],
+        "title": "LifeLens"
+      },
+      "LifeReturn": {
+        "properties": {
+          "return_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Return Id"
           },
-          "payload": {
-            "discriminator": {
-              "mapping": {
-                "composition": "#/components/schemas/RootComposition",
-                "direct_state": "#/components/schemas/RootDirectState",
-                "instrument": "#/components/schemas/RootInstrument",
-                "link": "#/components/schemas/RootLink",
-                "read": "#/components/schemas/RootRead",
-                "receipt": "#/components/schemas/RootReceipt",
-                "silence": "#/components/schemas/RootSilence"
-              },
-              "propertyName": "family"
-            },
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/RootDirectState"
-              },
-              {
-                "$ref": "#/components/schemas/RootComposition"
-              },
-              {
-                "$ref": "#/components/schemas/RootInstrument"
-              },
-              {
-                "$ref": "#/components/schemas/RootReceipt"
-              },
-              {
-                "$ref": "#/components/schemas/RootLink"
-              },
-              {
-                "$ref": "#/components/schemas/RootRead"
-              },
-              {
-                "$ref": "#/components/schemas/RootSilence"
-              }
-            ],
-            "title": "Payload"
+          "operation": {
+            "$ref": "#/components/schemas/LifeReturnOperation"
           },
-          "lead_medium": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/LeadMedium"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null
+          "title": {
+            "type": "string",
+            "maxLength": 180,
+            "minLength": 1,
+            "title": "Title"
           },
-          "support_medium": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/LeadMedium"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": null
+          "substance": {
+            "type": "string",
+            "maxLength": 1400,
+            "minLength": 1,
+            "title": "Substance"
           },
-          "dependency_refs": {
-            "default": [],
+          "represented_refs": {
             "items": {
               "$ref": "#/components/schemas/ResourceRef"
             },
-            "title": "Dependency Refs",
-            "type": "array"
+            "type": "array",
+            "maxItems": 12,
+            "minItems": 1,
+            "title": "Represented Refs"
           },
-          "why_this": {
-            "maxLength": 500,
-            "minLength": 1,
-            "title": "Why This",
-            "type": "string"
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "maxItems": 16,
+            "minItems": 1,
+            "title": "Source Refs"
           },
-          "expires_at": {
+          "audience": {
+            "$ref": "#/components/schemas/RootAudience",
+            "default": "private"
+          },
+          "freshness": {
+            "$ref": "#/components/schemas/RootFreshness",
+            "default": "fresh"
+          },
+          "lifecycle": {
+            "$ref": "#/components/schemas/RootLifecycle",
+            "default": "durable"
+          },
+          "destination": {
             "anyOf": [
               {
-                "format": "date-time",
-                "type": "string"
+                "$ref": "#/components/schemas/ResourceRef"
               },
               {
                 "type": "null"
               }
-            ],
-            "default": null,
-            "title": "Expires At"
+            ]
+          },
+          "grant_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Grant Refs",
+            "default": []
           }
         },
+        "additionalProperties": false,
+        "type": "object",
         "required": [
-          "candidate_id",
-          "root",
-          "kind",
-          "dominant_job",
-          "material_trigger",
-          "evidence_cluster_id",
-          "surface_seat_id",
-          "semantic_role",
-          "novelty",
-          "burden",
-          "payload",
-          "why_this"
+          "return_id",
+          "operation",
+          "title",
+          "substance",
+          "represented_refs",
+          "source_refs"
         ],
-        "title": "RootCandidate",
-        "type": "object"
+        "title": "LifeReturn",
+        "description": "One admitted substantive Return; never a recap or generic prompt."
+      },
+      "LifeReturnOperation": {
+        "type": "string",
+        "enum": [
+          "reconstruct",
+          "explain",
+          "differentiate",
+          "transfer",
+          "reenter"
+        ],
+        "title": "LifeReturnOperation"
+      },
+      "LifeRootProjectionV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "life-root-projection.v1",
+            "title": "Schema Version",
+            "default": "life-root-projection.v1"
+          },
+          "root": {
+            "type": "string",
+            "const": "life",
+            "title": "Root",
+            "default": "life"
+          },
+          "projection_id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Projection Id"
+          },
+          "revision": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Revision"
+          },
+          "represented_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Represented At"
+          },
+          "viewer_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "active_lens": {
+            "$ref": "#/components/schemas/LifeLens"
+          },
+          "delivery_state": {
+            "$ref": "#/components/schemas/LifeDeliveryState"
+          },
+          "sections": {
+            "items": {
+              "$ref": "#/components/schemas/LifeSection"
+            },
+            "type": "array",
+            "maxItems": 4,
+            "title": "Sections"
+          },
+          "featured_return": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LifeReturn"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "total_entry_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Total Entry Count"
+          },
+          "source_revisions": {
+            "items": {
+              "$ref": "#/components/schemas/RootSourceRevision"
+            },
+            "type": "array",
+            "title": "Source Revisions",
+            "default": []
+          },
+          "degradations": {
+            "items": {
+              "$ref": "#/components/schemas/RootDegradation"
+            },
+            "type": "array",
+            "title": "Degradations",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "projection_id",
+          "revision",
+          "represented_at",
+          "viewer_ref",
+          "active_lens",
+          "delivery_state",
+          "sections",
+          "total_entry_count"
+        ],
+        "title": "LifeRootProjectionV1",
+        "description": "Versioned Life root envelope; this is a read model, not a route response yet."
+      },
+      "LifeSection": {
+        "properties": {
+          "lens": {
+            "$ref": "#/components/schemas/LifeLens"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Label"
+          },
+          "entries": {
+            "items": {
+              "$ref": "#/components/schemas/LifeEntry"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Entries"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "lens",
+          "label",
+          "entries"
+        ],
+        "title": "LifeSection"
       }
     }
   }
