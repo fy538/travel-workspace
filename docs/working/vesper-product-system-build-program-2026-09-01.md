@@ -262,18 +262,22 @@ System scope does not mean simultaneous unsynchronized rewrites.
 
 ## Immediate execution ruling
 
-Continue S2 through evidence-bearing semantic-result production for Chat and
-Life while advancing S3 through joined native serving envelopes. S1 is closed;
-Home and Places judge producer-declared value against exact owner truth before
-either root spends layout budget. Places now proves the required cutover shape:
-judgment governs the mature capability workspace instead of replacing it with a
-thin semantic inspection screen or running as a decorative shadow request.
+Continue S2 through evidence-bearing semantic-result production while
+advancing S3 through joined native serving envelopes. S1 is closed; Home and
+Places judge producer-declared value against exact owner truth before either
+root spends layout budget. Places proves the required cutover shape: judgment
+governs the mature capability workspace instead of replacing it with a thin
+semantic inspection screen or running as a decorative shadow request. Home has
+the same resilient authority posture for its native v2 composition; its next
+serving package is a joined runtime envelope rather than another compatibility
+screen.
 
-The next native seam is the equivalent joined Home runtime: retain the mature
-temporal shell and focused workspaces, but make the admitted v2 projection its
-single server-owned content authority. Chat and Life remain behind their typed
-boundaries until they can emit or organize evidence-bearing semantic results;
-do not relabel free-form Concierge prose or raw Life returns as conformance.
+Chat and Life remain behind their typed boundaries until their design lanes
+settle and they can emit or organize evidence-bearing semantic results. Do not
+relabel free-form Concierge prose or raw Life returns as conformance. The next
+shared engineering seam is S4: root-visible Instruments and actions must be
+compiled from the existing consequence capability/readback registry so that
+the live engine is legible during ordinary life as well as active travel.
 
 ## Execution status — 2026-09-01
 
@@ -511,3 +515,31 @@ pass.
 Home is production-shaped but not yet publicly promoted. Evidence-bearing
 Composition/public-research sources, live condition/route adapters, device
 navigation, and production flag/rollback evidence remain later package work.
+
+### S2D — approved editorial evidence adapter — landed
+
+Backend commit `4b81f8f46` closes the first public/editorial Source gap without
+weakening value admission:
+
+- an editorial angle now requests `source.inspect` against its exact Dossier
+  identity rather than borrowing evidence from the current Moment;
+- only an approved Dossier with persisted editorial evidence can return a
+  current canonical Source read;
+- the read preserves the Dossier revision, editorial claim/evidence identity,
+  and an explicit `approved_editorial` custody posture; and
+- draft, missing, citationless, generic, or unsupported generated material is
+  still withheld before root layout.
+
+This is the correct boundary between Vesper's editorial ambition and its truth
+system. The application may produce a genuinely new interpretation, comparison,
+or opening, but the model-authored expression is not its own evidence. Research
+workers remain producers; the approved Dossier and evidence graph are the
+inspectable Source authority. Correction and withdrawal stay false for public
+editorial material because those powers belong to the source/editorial
+workflow, not to the viewer's private artifact custody.
+
+Verification covers 184 adjacent root-projection, canonical-reader,
+agentic-portfolio, value-composition, API, and mature Places tests, and every
+changed-repository hook passes. This adapter admits evidence-bearing Places
+angles today and is reusable by future Home Composition producers; it does not
+authorize Chat or Life UI work.
