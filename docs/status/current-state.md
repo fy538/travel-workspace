@@ -89,11 +89,20 @@ constitutes visual selection, or certifies the production shell.
 As of 2026-08-31, the Home and Places semantic design phase is closed against
 the accepted C1/C2/C3/F5 portfolio. The accepted bundle defines 65 root kinds
 (Home 31 and Places 34) plus 13 shared instruments and lifts the blanket hold
-on contract-bounded native implementation. This does **not** change the runtime
-facts above: the compatibility shell still labels legacy routes, the backend
-semantic facade remains off or shadow-only, the new Home preview is fixture
-driven, and complete Chat and Life roots plus native/real-data validation remain
-open.
+on contract-bounded native implementation.
+
+The first production-shaped projection spine now also exists: authenticated
+read-only Home and Places endpoints compile canonical owner reads into a
+generated mobile contract; gated native Home consumes the Home projection; and
+gated Places carries the existing canonical Places feed unchanged inside the
+root envelope. Returned Home, Urgent Home, and saved-scope Places have registered
+native captures. This is implementation evidence, not production conformance:
+the compatibility shell remains internal and default-off; C2 contribution
+authority, C3 causal receipt/unwind, exact native return-envelope behavior,
+provider recovery, complete unit-union coverage, and real-data validation remain
+open. Complete Chat and Life are unchanged by this package. See the
+[bounded implementation status](../working/home-places-root-implementation-status-2026-08-31.md)
+for the exact proved and unproved boundary.
 
 ### Contribution-contract conformance
 
