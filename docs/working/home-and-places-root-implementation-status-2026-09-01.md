@@ -61,6 +61,28 @@ depends_on:
 - The pure v2 modules are lazily importable without initializing the legacy
   Places/lived-experience dependency graph.
 
+#### Serving-topology clarification — 2026-09-01
+
+Package 1 completed the bounded portfolio **substrate**, not its activation in
+the serving routes. `BoundedRootReadPortfolio` and `run_bounded_reads` are
+executable and covered by independent-timeout/degradation tests, but the
+current `GET /api/root-projections/v2/home` route still performs one bounded
+Experience Graph read and the current Places route still adapts one canonical
+`PlacesFeed` read. Consequently:
+
+- Home does not yet aggregate operational Trip state, current Moment/location,
+  artifact/Source clusters, relationship grants, provider receipts, and prior
+  exposure as independently degrading owner reads;
+- a failed Home graph read remains a whole-root failure rather than one omitted
+  source family; and
+- Places reports degradations exposed by its canonical feed producers, but it
+  is not yet a four-state root portfolio.
+
+Runtime portfolio activation, real-owner rehearsal data, and source-by-source
+degradation evidence therefore remain Package 2/3 work. Future status updates
+must distinguish tested substrate, route activation, and production-shaped
+evidence explicitly.
+
 ## Package 2A — typed dark boundary (completed 2026-09-01)
 
 The first compiler slice now crosses the repository boundary without changing
