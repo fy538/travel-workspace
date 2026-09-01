@@ -1129,11 +1129,17 @@ proved restating was necessary):
 9. **Availability is purpose-scoped** (P9). Another person's calendar
    or availability is usable only through the permission and purpose
    that supplied it.
-10. **Implementation hold**: the grant store, retention, relay, Outcome
-    inference, and projector invalidation stay unbuilt until the
-    corrected fixtures pass re-review (they are corrected as of this
-    entry; the 19-gate matrix board carries the honest verdicts,
-    including standing partials no board can close).
+10. **Implementation hold — LIFTED 2026-08-31 (founder re-review).** The
+    corrected fixtures passed: C2/G8, C3/G9, and C3/G16 promoted to PASS;
+    C3/G14 stays deliberately not-exercised and C3/G19 deliberately
+    partial in their proper labs. The blanket hold is replaced by
+    **contract-bounded implementation scope**: the grant store,
+    retention, relay, Outcome inference, and projector invalidation may
+    build strictly within the C&C five axes, the receipt union, the
+    projection envelope, and the unwind doctrine as drawn — nothing
+    beyond what the accepted boards and contracts specify. Semantic
+    canvas work is closed; the next phase is native interaction and
+    real-data validation.
 
 ## 12. Adjacent system rulings
 

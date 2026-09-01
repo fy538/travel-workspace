@@ -1435,3 +1435,27 @@ Georgian note" consistently. Sweep for "used twice," "re-scoped," "link
 only," "pilot," "one bay north," "not myth": clean. Zero new boards or
 kinds. Per the verdict, semantic canvases close on acceptance and the
 program moves to native interaction.
+
+## 19. Acceptance and promotion — 2026-08-31 · SEMANTIC PHASE CLOSED
+
+Founder verdict: ready to close semantically. The administrative pass:
+
+1. **The one stale sentence fixed** — C2 Findings F10 now says the unwind
+   spans "the first Occasion's planning projection, Dana's retained
+   copy, and the relay" (was "two occasions and a relay").
+2. **Promoted on founder re-review:** C2/Gate 8 → PASS · C3/Gate 9 →
+   PASS · C3/Gate 16 → PASS. Matrix cells, both findings boards, and the
+   Overview updated in agreement; each promoted cell is dated.
+3. **Deliberately open, lab-bound:** C3/Gate 14 NOT EXERCISED (C1
+   carries answer-and-stop) · C3/Gate 19 PARTIAL (capability delta needs
+   live evidence) · native photography, map behavior, voice/deferral,
+   complete Chat/Life validation.
+4. **The blanket implementation hold is lifted** (kernel §11.14.10
+   amended): grant store, retention, relay, Outcome inference, and
+   projector invalidation build within contract-bounded scope — the
+   C&C five axes, the receipt union, the projection envelope, and the
+   unwind doctrine as drawn.
+5. **Canvas work stops here.** The Overview kick now reads "SEMANTIC
+   PHASE CLOSED 2026-08-31 · NEXT: NATIVE INTERACTION + REAL-DATA
+   VALIDATION." No further semantic boards, kinds, or systems from this
+   program.
