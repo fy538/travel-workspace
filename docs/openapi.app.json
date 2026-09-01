@@ -22233,27 +22233,21 @@
         "operationId": "get_places_root_projection_api_root_projections_places_get",
         "parameters": [
           {
-            "name": "limit",
+            "name": "context_handle",
             "in": "query",
             "required": false,
             "schema": {
-              "type": "integer",
-              "maximum": 50,
-              "minimum": 1,
-              "default": 20,
-              "title": "Limit"
-            }
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "maximum": 500,
-              "minimum": 0,
-              "default": 0,
-              "title": "Offset"
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Context Handle"
             }
           },
           {
@@ -73093,6 +73087,9 @@
           "context": {
             "$ref": "#/components/schemas/PlacesContext"
           },
+          "feed": {
+            "$ref": "#/components/schemas/PlacesFeed"
+          },
           "search_scope": {
             "anyOf": [
               {
@@ -73143,7 +73140,8 @@
         "additionalProperties": false,
         "type": "object",
         "required": [
-          "context"
+          "context",
+          "feed"
         ],
         "title": "PlacesRootProjection"
       },
