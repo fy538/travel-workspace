@@ -13,10 +13,10 @@ depends_on:
 
 # Life Next Behavior Prototype Handoff
 
-**Date:** 2026-08-31  
-**Audience:** Claude Design and Claude Code  
-**Status:** Working handoff for the next Life design/prototype phase  
-**Design project:** `/Users/feihuyan/Downloads/vesper-life-anchors`  
+**Date:** 2026-08-31
+**Audience:** Claude Design and Claude Code
+**Status:** Working handoff for the next Life design/prototype phase
+**Design project:** `/Users/feihuyan/Downloads/vesper-life-anchors`
 **Workspace:** `/Users/feihuyan/travel-workspace`
 
 ## Executive decision
@@ -314,9 +314,9 @@ visible.
 
 ## 5. Workstream A — Together as a complete consumer experience
 
-**Priority:** 1  
-**Primary owner:** Claude Design  
-**Code partner:** Claude Code  
+**Priority:** 1
+**Primary owner:** Claude Design
+**Code partner:** Claude Code
 **Suggested board family:** `17 Together Consumer Arc`
 
 ### 5.1 Question
@@ -430,9 +430,9 @@ The workstream passes only if:
 
 ## 6. Workstream B — Human refinding as an interactive experience
 
-**Priority:** 2  
-**Primary owner:** Claude Design  
-**Code partner:** Claude Code  
+**Priority:** 2
+**Primary owner:** Claude Design
+**Code partner:** Claude Code
 **Suggested board family:** `18 Human Refinding Flow`
 
 ### 6.1 Question
@@ -546,8 +546,8 @@ Write the audit to:
 
 ## 7. Workstream C — Return arbitration and scarcity
 
-**Priority:** 3  
-**Primary owner:** Shared  
+**Priority:** 3
+**Primary owner:** Shared
 **Suggested board family:** `19 Return Arbitration Lab`
 
 ### 7.1 Question
@@ -654,8 +654,8 @@ small explicit admission policy over the controlled fixtures.
 
 ## 8. Workstream D — One contribution through its complete lifecycle
 
-**Priority:** 4  
-**Primary owner:** Shared  
+**Priority:** 4
+**Primary owner:** Shared
 **Suggested board family:** `20 Contribution Lifecycle`
 
 ### 8.1 Question
