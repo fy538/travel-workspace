@@ -76,6 +76,8 @@ Wedge journeys = the group-trip path (journeys 02 → 05). "Serves" cites
   governs the Home, Chat, Places, and Life postures, the compounding context
   loop, one-identity cross-root projections, Life's container-and-lens model,
   context-preserving handoffs, engine placement, and parallel-lane promotion.
+  The compact build-facing Life surface cut is
+  [`docs/contracts/life-v1-experience.md`](../contracts/life-v1-experience.md).
 - [Contribution and Consequence](contribution-and-consequence.md) governs how
   questions, observations, Sources, invitations, corrections, and world events
   become immediate value, independent Source/claim/projection lifecycles,
