@@ -915,3 +915,31 @@ suppression mechanics. It does not yet close seven-posture native visual
 acceptance, the remaining kernel §12.7 instrument/register details, broader
 real-owner families, physical devices, Android, process death, public-shell
 promotion, or compatibility deletion. Chat and Life were not modified.
+
+## Home seven-posture native checkpoint — 2026-09-02
+
+The first complete native posture matrix is now active in mock/internal Home:
+
+- Available, Planning, Live, Returned, Quiet, Cold, and Urgent each have a
+  typed v2 envelope, a posture-specific crown, and a registered polish flow;
+- mock persona switching selects the matching envelope on the actual Home tab;
+- all fixture units conform to the wire contract and an explicit native kind;
+- Cold promotes `now_invitation`; Planning can promote an owner-backed
+  `motion_loose_end_row`; and Quiet keeps useful Horizons/Continuity while its
+  action list remains empty;
+- the week band, ghost anchor register, compact subordinate In-motion row, and
+  single continuation/source-door choice now follow the accepted page laws.
+
+The dogfood rehearsal also passes posture into the selector, fixing the former
+split in which compilation knew a case was Returned while arbitration treated
+it as Ordinary. Backend commit: `152776b4e`. App implementation commit:
+`e7a6ae7e7` (followed by formatting-only token cleanup commits).
+
+Forty focused native tests, TypeScript, scenario registry validation, dry-run
+registration of all seven flows, and backend rehearsal/composition tests pass.
+Manual simulator launch and deep-link hierarchy inspection reaches all seven
+expected v2 crowns. The full capture runner currently fails before assertions
+because Simulator denies Maestro's app-launch request; accepted visual evidence
+therefore remains open, along with backend-real population, error capture,
+physical-device/Android proof, and public promotion. Chat and Life were not
+modified.

@@ -1232,3 +1232,37 @@ accessible ghost anchors, one In-motion row treatment, carried-leg color, and
 one primary plus at most one Door—then fixes only the native components or
 producer declarations that the evidence contradicts. Places keeps its own
 selector and can proceed independently. Chat and Life remain untouched.
+
+## 16. Home seven-posture native checkpoint — 2026-09-02
+
+Backend commit `152776b4e` and app commit `e7a6ae7e7` complete the executable
+posture package described above:
+
+- one typed native fixture exists for Available, Planning, Live, Returned,
+  Quiet, Cold, and Urgent;
+- fixture selection follows the existing mock-persona runtime, so every case
+  traverses the real feature-gated Home tab and `HomeRootExperience` owner;
+- every content unit must pass both v2 envelope conformance and the explicit
+  Home native-kind registry;
+- `now_invitation` is now a first-class Cold renderer;
+- subordinate In-motion units use the ruled compact row, while an In-motion
+  dominant promotes into a crown treatment instead of remaining a tiny row;
+- the week shape is a banded seam and the world-read anchor uses the accepted
+  ghost register; and
+- a typed cross-root destination displaces the generic source door, preventing
+  two competing Doors on one unit while preserving source inspection when no
+  destination exists.
+
+The backend rehearsal now carries the resolved posture into selection as well
+as compilation, preventing a valid Returned case from being arbitrated under
+the Ordinary fallback. Focused verification passes 40 app tests, TypeScript,
+scenario registry validation, the seven-flow dry run, and backend rehearsal /
+composition tests. Simulator deep links and hierarchy inspection resolve all
+seven postures. Aggregate automated screenshots are still blocked by a local
+Maestro/SpringBoard launch failure and remain an evidence gate rather than a
+reason to weaken the contract.
+
+This closes fixture completeness and structural native parity. It does not
+close backend-real seven-posture population, final crown silhouettes and visual
+approval, failure/error capture, physical-device/Android proof, broader owner
+families, or public promotion. Chat and Life remain outside this package.

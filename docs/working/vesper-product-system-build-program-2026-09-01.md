@@ -1903,3 +1903,27 @@ composition system but does not promote the shell. The immediate follow-on is
 the production-shaped seven-posture native matrix and remaining kernel §12.7
 component laws, followed by physical-device/process-death evidence and broader
 real-owner consequences. Chat and Life were not modified.
+
+### S4O — Home seven-posture native system — landed; visual/backend-real promotion pending
+
+Backend commit `152776b4e` and app commit `e7a6ae7e7` land the next
+dependency-ordered Home package. The resolved posture now survives rehearsal
+selection, and the app carries an executable typed matrix for all seven
+accepted postures through existing mock personas and the real flagged Home
+owner. Cold's invitation is explicitly promoted; Planning's owner-backed loose
+edge can occupy the page crown; subordinate In-motion material remains a
+single compact row; Quiet is useful at zero demand; and Urgent suppresses
+unrelated Horizons and Continuity.
+
+The native structure also adopts the banded week seam, accepted ghost anchor
+ink, dominant-versus-subordinate In-motion treatments, and one typed Door when
+a destination already exists. Seven polish scenarios are registered and their
+IDs validate. Forty focused app tests, TypeScript, the seven-flow dry run, and
+backend rehearsal/composition tests pass. A booted iOS simulator resolves all
+seven posture-specific crowns through deep links and native hierarchy.
+
+This is not shell promotion. The local aggregate capture run is blocked by
+Simulator denying Maestro's launch request, and there is not yet a backend-real
+seven-posture population, accepted visual verdict, error capture, physical
+device/Android evidence, or complete owner-family consequence matrix. Those
+remain S4 gates. Chat and Life were not changed.

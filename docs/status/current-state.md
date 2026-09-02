@@ -362,6 +362,37 @@ seven-posture rehearsal against production-shaped portfolios plus application
 of the outstanding §12.7 instrument/register rules. Chat and Life were
 unchanged.
 
+### Home seven-posture native system — 2026-09-02
+
+Backend commit `152776b4e` repairs the dogfood rehearsal boundary: the resolved
+Home posture now reaches both selection and compilation. Returned therefore
+selects its Continuity crown, while a Planning case without an admitted
+In-motion decision honestly falls back to its world read.
+
+App commit `e7a6ae7e7` makes the complete accepted posture set executable in the
+actual flagged Home tab rather than a gallery. A typed matrix covers Available,
+Planning, Live, Returned, Quiet, Cold, and Urgent, and existing mock personas
+select those envelopes at runtime. Every non-chrome fixture unit passes the
+explicit native renderer registry; Cold's `now_invitation` is promoted rather
+than falling through a generic card.
+
+The same slice applies the low-risk §12.7 structural laws that were still
+missing: the week renders as a banded temporal seam; world-read anchors use the
+accepted ghost ink; subordinate In-motion material is one 44pt status row
+without an icon plate; a dominant In-motion decision expands into the crown;
+and a unit with a typed continuation no longer shows a second competing source
+door. Seven registered polish flows now correspond to the seven postures.
+
+Verification passes **40 focused app tests**, TypeScript, scenario-ID
+validation, the seven-flow dry run, focused lint with no new errors, and the
+backend rehearsal/composition set. On the booted iOS simulator, manual launch,
+persona deep links, and Maestro hierarchy inspection resolved `home-v2-screen`
+plus the expected posture-specific crown for all seven cases. The aggregate
+Maestro capture runner remains blocked by a local Simulator launch-service
+failure, so this is executable native hierarchy evidence—not accepted visual,
+backend-real, physical-device, Android, or public-shell evidence. Chat and Life
+were unchanged.
+
 ### Contribution-contract conformance
 
 The accepted [Contribution and Consequence
