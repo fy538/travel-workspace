@@ -139,6 +139,20 @@ accounts, physical-device observations, degraded and negative probes, and a
 passing machine-audited release artifact remain required. The procedure is in
 the [cross-family rehearsal runbook](../working/lived-experience-cross-family-rehearsal-runbook-2026-09-02.md).
 
+The local cross-family path now also executes through canonical judgment and
+owned root treatment rather than stopping at fixture creation. Shared Plan
+repair reconstructs the current proposal and is Home-owned; encounter
+confirmation is Place-owned; and addressed handoff revalidates its exact
+relationship command, pair audience, entity binding, custody, permissions,
+revision, and expiry before selecting Place. A repeatable shadow-rehearsal
+runner verifies pending evaluation, durable arc persistence, and completed
+replay across the three families. Home v2 reads canonical open Plan proposals
+as exact group coordination candidates, and a fresh local run joined the
+persisted shared-Plan arc back onto the matching Home candidate and reviewed
+consequence action. The portfolio now fails closed on missing adapter runtime
+or canonical provider coverage independently of gateway readiness. These are
+local system-integration results, not release or physical-device evidence.
+
 ### Contribution-contract conformance
 
 The accepted [Contribution and Consequence

@@ -101,6 +101,21 @@ does not press a control or create release evidence. Store the manifest outside
 the repository. Re-run the exact command once and compare the files; the second
 manifest must be byte-identical.
 
+Evaluate the complete authority-to-treatment path before opening a client:
+
+```bash
+PYTHONPATH=. .venv/bin/python scripts/run_lived_experience_shadow_rehearsal.py \
+  --manifest <private-manifest-path> \
+  --output <private-shadow-report-path>
+```
+
+This first command is read-only for pending workflows. Review the three
+actions, owned treatments, revisions, and blockers, then add `--apply` to
+persist the shadow arcs. Run it once more without `--apply`; completed workflow
+and arc readback must still pass. The report is local or environment
+integration evidence only. It does not dispatch a consequence, satisfy a
+physical-device probe, or promote a family.
+
 The manifest is the coordinate source for later capture. Do not infer workflow,
 family, owner, scope, target, revision, or Source identity from a screenshot.
 
@@ -159,12 +174,15 @@ while the same system seams are exercised repeatedly.
 
 ### 3. Addressed Place handoff
 
-1. Capture the sender-visible control in both obligated root contexts without
-   exposing private message text in telemetry.
+1. Capture the sender-visible control on its one selected owner surface without
+   exposing private message text in telemetry. Record suppressed alternatives;
+   do not duplicate the control merely to satisfy both downstream root
+   obligations.
 2. Send once and verify one canonical relationship handoff and one pair-room
    message owned by the sender-authored prepared command.
-3. Verify the recipient projection on the secondary account; do not infer a
-   group Occasion or public distribution.
+3. Verify the recipient projection on the secondary account and the resulting
+   viewer-correct Home and Places refreshes; do not infer a group Occasion or
+   public distribution.
 4. Replay and relaunch; no duplicate message or handoff may appear.
 5. In a separately provisioned pending command, revoke or delete the exact
    Intake Source and verify dispatch becomes terminally unavailable and every

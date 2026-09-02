@@ -1311,3 +1311,46 @@ device observation was manufactured. The remaining stop is intentionally
 external and empirical: clean dogfood deployment, two signed-in real accounts,
 physical Home/Places lifecycle capture, negative and degraded probes, and a
 passing `audit_lived_experience_release.py --evidence` artifact.
+
+### S7E — executable cross-family judgment and root ownership — landed locally
+
+Backend commits `810dfdcac`, `ebd08a5c8`, `7eca60777`, and `fcc2bd307`
+close three false-green seams exposed by running the canonical cohort as one
+system rather than reviewing each family declaration independently.
+
+- shared Plan repair reconstructs its exact open operation proposal from the
+  canonical Plan owner, uses the canonical membership epoch, and no longer
+  treats differing observation timestamps as Plan revision drift;
+- addressed Place handoff now has a real adapter and one relationship-owned,
+  content-free decision projection over the exact command revision, sender,
+  recipient, personal pair room, canonical entity binding, Source/anchor
+  custody, delivery permissions, and expiry. Private sender copy never enters
+  the engine frame or durable arc;
+- default binding rejects missing or ambiguous relationship command targets,
+  canonical provider coverage participates in runtime readiness, and the
+  integration portfolio carries adapter-runtime readiness separately from
+  producer, gateway, readback, and surface claims. An empty adapter module can
+  no longer appear executable merely because its consequence gateway exists;
+- `scripts/run_lived_experience_shadow_rehearsal.py` now performs read-only
+  preflight, optional persisted shadow execution, and completed-arc replay
+  verification for all three families while preserving the no-domain-effect
+  boundary; and
+- Home v2 now reads exact open Plan proposals as group-scoped coordination
+  candidates. Canonical shared-Plan openings carry an `app.home` target and
+  choose Home before the retained Chat proposal path, so Home can bind the
+  actual judgment instead of merely declaring a root obligation.
+
+Fresh local run `system-2026-09-02e`, pinned to backend `fcc2bd307` and app
+`7fc3eb798`, passed all three persisted families with no material unknowns:
+addressed handoff selected Place, encounter confirmation selected Place, and
+shared Plan repair selected Home. A subsequent real Home portfolio read found
+the exact proposal candidate, joined the durable Home treatment, and attached
+the reviewed `Apply this change` consequence action. This is executable local
+system evidence, not physical-device or release evidence.
+
+Root obligation language is now lifecycle-aware. The judgment engine selects
+one owning treatment surface; it does not duplicate the same control across
+roots to satisfy a checklist. For addressed handoff, Place owns sender
+confirmation in this candidate. Home and Places remain obligated to refresh
+their viewer-correct dependent projections after the relationship owner
+executes and verifies the consequence.
