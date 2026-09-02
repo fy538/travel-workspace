@@ -1978,6 +1978,22 @@
       "removal_trigger": "Remove only after Places has a successor serving contract that preserves both governed semantic admission and the mature capability workspace without duplicate root reads.",
       "review_by": "2026-10-31"
     },
+    "POST /api/root-projections/v2/consequences/resolve": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "resolveRootConsequence",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": "LIVED_EXPERIENCE_CONSEQUENCE_RESOLUTION_ENABLED",
+      "lifecycle": "active",
+      "owner": "root-projection",
+      "reason": "A confirmed root action submits only its opaque server-issued grant; the backend revalidates the persisted recipient, family, target, scope, revision, workflow, owner gateway, idempotency boundary, and expiry before canonical readback.",
+      "removal_trigger": "Remove only if all consequential root actions move to a successor owner-command boundary with equivalent server-issued authority, replay safety, and canonical readback.",
+      "review_by": "2026-10-31"
+    },
     "PUT /api/places/scope": {
       "audience": "app",
       "consumers": [
