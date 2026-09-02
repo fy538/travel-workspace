@@ -18,7 +18,7 @@ from committed registries; follow the linked authority for evidence and detail.
 <!-- Run `make docs-status-sync` to update this block. -->
 | Signal | Current value | Authority |
 |---|---:|---|
-| API contract | 564 paths / 626 operations / 1406 schemas | [`docs/openapi.json`](../openapi.json) |
+| API contract | 570 paths / 632 operations / 1426 schemas | [`docs/openapi.json`](../openapi.json) |
 | Canonical journeys | 28 total / 12 golden path / 7 holistic extension | [`journeys.yaml`](../journeys/journeys.yaml) |
 | Feature flags | 97 registered / 95 active / 2 resolved | [`registry.yaml`](../flags/registry.yaml) |
 | System charters | 23 Markdown documents | [`systems/`](../systems/) |
@@ -169,14 +169,29 @@ selection substitution, mixed-viewer authority, split multiplayer grants, or
 producer failure yields no root candidate. Root freshness can no longer relabel
 stale Source truth as fresh.
 
-This is runtime, compiler, and renderer evidence, not a live content claim.
-The pipeline currently invokes only an injected governed producer; no default
-prompt/model producer or route activation exists. Source selection policy is
-also still absent, and the known-to-person baseline contains canonical retained
-claims but not a claim-level semantic-receipt plus exposure resolver. Therefore
-neither default portfolio receives generated contributions yet. Backend commit
-`0f8c32aac` carries the owner-backed material and invocation package; 148
-root-projection, owner-read, and semantic-result tests pass.
+This is runtime, compiler, renderer, and authenticated-delivery evidence, not a
+live content claim. The pipeline still invokes only an injected governed
+producer; no default prompt/model producer, production Source-selection policy,
+or route activation exists.
+
+Admitted semantic contributions now derive one root-neutral `fact_key` from
+canonical claim meaning and authority rather than producer IDs or presentation
+copy. Home and Places bind that key to a short-lived, recipient- and
+projection-specific proof. The app records a content-free delivery receipt only
+after the native unit remains in the measured viewport; mounting below the fold
+does not count. Recent delivered keys can suppress the exact same semantic fact
+on a later projection, while `not_rendered` and telemetry outage do not. This is
+deliberately separate from live-engine treatment identity: delivery says which
+meaning reached the surface, not which real-world intervention was offered or
+executed.
+
+This closes exact repeat suppression, not human understanding or a complete
+known-to-person model. A delivery receipt does not prove comprehension,
+agreement, memory, or that every underlying claim was previously known.
+Therefore neither default portfolio receives generated contributions yet.
+Backend commits `0f8c32aac`, `cbe300c9a`, and `9f52a1294`, plus app commit
+`d89111d6f`, carry the owner-backed material, semantic identity, authenticated
+delivery, and qualified viewport packages.
 
 ### Contribution-contract conformance
 

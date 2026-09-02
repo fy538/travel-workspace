@@ -1522,9 +1522,44 @@ negative cases.
 
 S2 remains active. Exact Source selection is still supplied by the caller; no
 production selection/ranking policy chooses the best governed set. The
-known-to-person baseline does not yet join claim-level semantic receipts with
-the existing coarse exposure ledger, so it cannot reconstruct every previously
-received claim. The producer is an injected protocol rather than a default
-prompt/model implementation, and no serving route populates the Home/Places
-production parameter. Those are the next runtime dependencies; the existing
-projection architecture does not need to be replaced to add them.
+producer is an injected protocol rather than a default prompt/model
+implementation, and no serving route populates the Home/Places production
+parameter. Those are the next runtime dependencies; the existing projection
+architecture does not need to be replaced to add them.
+
+### S2J / S3H — semantic delivery identity and qualified exposure — landed in shadow
+
+Backend commits `cbe300c9a` and `9f52a1294` and app commit `d89111d6f` add the
+missing repeat-suppression lifecycle at the shared judgment-to-root seam.
+
+- The compiler derives one root-neutral semantic `fact_key` from admitted claim
+  meaning, canonical evidence revisions, authorship, novelty, confidence,
+  subjects, and audience. Producer identity, title, medium, and expression copy
+  cannot manufacture novelty; a corrected Source revision creates a new fact
+  identity.
+- Root compilation preserves that key, and both selectors can suppress an
+  exact fact previously delivered to the viewer. This is semantic continuity,
+  not a presentation fingerprint and not the live engine's causal target.
+- A server-issued delivery projection binds recipient, root, projection and
+  revision, unit, fact key, and expiry with a short-lived proof. The dedicated
+  event route records only content-free, idempotent lifecycle receipts.
+- Native Home and the dark Places v2 renderer report `rendered` only after
+  measured viewport dwell. Fetch and below-fold mount are not exposure.
+  `not_rendered` never enters the suppression set, and read failure keeps the
+  root useful by failing open.
+- Semantic delivery and live-engine treatment use independent proofs, durable
+  client receipt identities, and server lifecycles even when one unit carries
+  both.
+
+This package does not convert exposure into a psychological assertion. It does
+not prove that the person read, understood, accepted, remembered, or already
+knew each claim. It establishes only that one admitted semantic fact reached a
+qualified root viewport. The three delivery flags remain default-off, and no
+default producer or route activation was introduced.
+
+The next dependency remains within S2/S3: add a production Source-selection
+policy and default governed producer across the maintained situation matrix,
+then activate them behind the existing dark serving boundary. Selection must
+optimize value over silence using owner reads, delivered-fact suppression,
+current Place/Moment relevance, multiplayer grants, burden, and root-native
+jobs; it must not become an engagement feed or a trip-recap heuristic.

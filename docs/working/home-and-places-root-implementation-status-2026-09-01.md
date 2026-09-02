@@ -382,10 +382,51 @@ Backend commit `0f8c32aac` implements the next shadow-runtime layer:
 Focused and adjacent verification now covers **148** root-projection,
 owner-read, and semantic-result tests, plus every changed backend commit hook.
 The runtime remains intentionally cold on default Home and Places routes. It
-has no production Source-selection policy, no claim-level semantic-receipt and
-exposure resolver, and no default prompt/model producer. Those are activation
-dependencies, not reasons to create a second contribution or projection
-architecture.
+has no production Source-selection policy or default prompt/model producer.
+Those are activation dependencies, not reasons to create a second contribution
+or projection architecture.
+
+### Semantic delivery identity and qualified root exposure — 2026-09-02
+
+Backend commits `cbe300c9a` and `9f52a1294`, app commit `d89111d6f`, and the
+corresponding generated contract close the exact-repeat seam without confusing
+it with live-engine consequence:
+
+- an admitted contribution derives a root-neutral `fact_key` from canonical
+  claim text, operation, authorship, novelty, confidence, claim-local Source
+  roles, Source identities and revisions, subjects, and audience. Generator
+  IDs, titles, media choice, and surface expression copy do not change it;
+  correcting a canonical Source revision does;
+- `RootUnit` retains the key through compilation. Home and Places selectors can
+  reject an exact key already delivered to the viewer with the explicit
+  `repeated_exposure` gate rather than relying on page position or card copy;
+- the server wraps each deliverable unit in a short-lived HMAC proof binding
+  recipient, root, projection identity and revision, unit, fact key, and
+  expiry. `POST /api/events/root-delivery` accepts only that proof-bound,
+  content-free receipt and remains unavailable through generic event ingress;
+- recent-delivery lookup suppresses `rendered`, `opened`, `dismissed`, or
+  `acted` facts. An explicit `not_rendered` receipt never claims delivery, and
+  a receipt-reader outage fails open rather than blanking a root;
+- native Home and the dark Places v2 renderer share measured viewport geometry.
+  A unit must remain visible for the qualified dwell before the client reports
+  delivery. Fetch, render-tree mount, and below-fold layout do not count; and
+- semantic delivery and causal treatment retain independent dwell identities,
+  device receipts, server proofs, and dedupe keys. One unit may carry either or
+  both without one lifecycle standing in for the other.
+
+The three delivery flags remain default-off. This package proves exact semantic
+delivery and repeat suppression only. It does **not** prove comprehension,
+agreement, memory, general familiarity, or claim-level knowledge for every
+fact in a composition. It also does not add a production Source selector,
+default model producer, public route activation, or device/release evidence.
+
+Verification covers 165 focused backend root-projection, route, receipt,
+private/multiplayer, correction, repeated-exposure, and fail-open tests; 22
+focused mobile utility, transport, boundary, Home, and Places tests; TypeScript
+and generated-contract typechecks; Expo lint with zero errors; API-boundary and
+schema-bridge checks; and deterministic schema regeneration. The aggregate
+mobile fast gate still stops on pre-existing size-budget overruns in the
+unchanged mature `PlacesSectionFeed.tsx` and `PlacesWorkspace.tsx`.
 
 ## Integrated convergence execution — 2026-09-01
 
@@ -483,8 +524,10 @@ visible. The following remain:
 - confirmed owner/provider consequence readback through the renderer path;
 - Home→Places depth that remains in the Home stack, followed by exact native
   return after map/search/detail/action movement;
-- exposure/novelty, direct artifact/Source, and relationship-grant readers in
-  Home's runtime portfolio;
+- a production Source-selection policy, default governed producer, and a
+  complete known-to-person resolver beyond exact delivered-fact suppression;
+- direct artifact/Source and broader relationship-grant readers in Home's
+  runtime portfolio;
 - promotion of any state-specific Places renderer and removal of the remaining
   v1 root/feed compatibility authority; and
 - deletion of legacy Trips/Places compatibility code after route-state,

@@ -10610,6 +10610,66 @@
         }
       }
     },
+    "/api/events/root-delivery": {
+      "post": {
+        "tags": [
+          "events"
+        ],
+        "summary": "Log Root Delivery Exposure",
+        "description": "Record one proof-bound Home or Places semantic delivery observation.",
+        "operationId": "log_root_delivery_exposure_api_events_root_delivery_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RootDeliveryExposureReceipt"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SurfaceExposureResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/events/batch": {
       "post": {
         "tags": [
@@ -85023,6 +85083,157 @@
         ],
         "title": "RootDegradation"
       },
+      "RootDeliveryExposureReceipt": {
+        "properties": {
+          "contract_version": {
+            "type": "integer",
+            "const": 1,
+            "title": "Contract Version",
+            "default": 1
+          },
+          "exposure_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Exposure Id"
+          },
+          "identity": {
+            "$ref": "#/components/schemas/RootDeliveryIdentity"
+          },
+          "presentation_proof": {
+            "type": "string",
+            "maxLength": 2048,
+            "minLength": 20,
+            "title": "Presentation Proof"
+          },
+          "outcome": {
+            "$ref": "#/components/schemas/RootDeliveryOutcome"
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Observed At"
+          },
+          "client_event_ref": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@+-]{0,159}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Client Event Ref"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "exposure_id",
+          "identity",
+          "presentation_proof",
+          "outcome",
+          "observed_at"
+        ],
+        "title": "RootDeliveryExposureReceipt",
+        "description": "Client observation of one proof-bearing semantic root delivery."
+      },
+      "RootDeliveryIdentity": {
+        "properties": {
+          "contract_version": {
+            "type": "integer",
+            "const": 1,
+            "title": "Contract Version",
+            "default": 1
+          },
+          "recipient_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Recipient Id"
+          },
+          "root": {
+            "type": "string",
+            "enum": [
+              "home",
+              "places"
+            ],
+            "title": "Root"
+          },
+          "projection_id": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Projection Id"
+          },
+          "projection_revision": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Projection Revision"
+          },
+          "unit_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Unit Id"
+          },
+          "fact_key": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Fact Key"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Expires At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "recipient_id",
+          "root",
+          "projection_id",
+          "projection_revision",
+          "unit_id",
+          "fact_key",
+          "expires_at"
+        ],
+        "title": "RootDeliveryIdentity",
+        "description": "Server-derived identity for one semantic unit in one root revision."
+      },
+      "RootDeliveryOutcome": {
+        "type": "string",
+        "enum": [
+          "rendered",
+          "opened",
+          "dismissed",
+          "acted",
+          "not_rendered"
+        ],
+        "title": "RootDeliveryOutcome"
+      },
+      "RootDeliveryProjection": {
+        "properties": {
+          "identity": {
+            "$ref": "#/components/schemas/RootDeliveryIdentity"
+          },
+          "presentation_proof": {
+            "type": "string",
+            "maxLength": 2048,
+            "minLength": 20,
+            "title": "Presentation Proof"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "identity",
+          "presentation_proof"
+        ],
+        "title": "RootDeliveryProjection",
+        "description": "Proof-bearing delivery envelope returned with one root unit."
+      },
       "RootDestination": {
         "properties": {
           "target_root": {
@@ -85753,6 +85964,18 @@
             "type": "array",
             "title": "Owner Refs"
           },
+          "fact_key": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 300
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fact Key"
+          },
           "audience": {
             "$ref": "#/components/schemas/RootAudience"
           },
@@ -85829,6 +86052,16 @@
             "anyOf": [
               {
                 "$ref": "#/components/schemas/SurfaceTreatmentProjection"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "delivery": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RootDeliveryProjection"
               },
               {
                 "type": "null"

@@ -1867,6 +1867,21 @@
       "removal_trigger": "Remove the transport if surface treatment adoption is abandoned before a product caller is activated.",
       "review_by": "2026-10-30"
     },
+    "POST /api/events/root-delivery": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_transport",
+          "name": "RootDeliveryExposureTransport"
+        }
+      ],
+      "feature_flag": "ROOT_DELIVERY_EXPOSURE_ENABLED",
+      "lifecycle": "active",
+      "owner": "root-projection",
+      "reason": "The typed Home and Places transport returns proof-bound semantic-delivery observations; root viewport callers remain independently gated with the v2 shell.",
+      "removal_trigger": "Remove the transport and semantic suppression reader if the four-root runtime abandons cross-surface delivery continuity.",
+      "review_by": "2026-10-30"
+    },
     "GET /api/places": {
       "audience": "app",
       "consumers": [
