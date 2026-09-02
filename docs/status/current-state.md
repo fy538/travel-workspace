@@ -3,7 +3,7 @@ doc_type: current_status
 status: active
 owner: engineering
 created: 2026-07-09
-last_verified: 2026-09-01
+last_verified: 2026-09-02
 why_new: Replace duplicated prose scorecards with one generated view of executable registries.
 supersedes: []
 source_of_truth_for: [cross-repo-current-state-summary]
@@ -124,6 +124,20 @@ compatibility posture. Public build flags still cannot activate this shell or
 declare release eligibility. This is rollout integrity, not release evidence:
 the signed cross-family rehearsal, physical-device observations, and reviewed
 family promotion remain pending.
+
+The release-evidence path is now executable without making release depend on
+itself. A governed rehearsal posture can expose already-reviewed shadow
+consequences only to an explicit user-and-family cohort on one exact deployed
+backend revision, and dispatch revalidates that posture before owner mutation.
+An idempotent operator tool provisions the same two principals across private
+encounter confirmation, multiplayer Plan repair, and addressed Place handoff,
+including canonical Plan/occurrence owners, Intake custody, Experience Graph
+Source lineage, relationship command authority, workflows, and root openings.
+A local three-family run and byte-identical replay pass. This is integration
+evidence, not release evidence: clean dogfood revisions, two real signed-in
+accounts, physical-device observations, degraded and negative probes, and a
+passing machine-audited release artifact remain required. The procedure is in
+the [cross-family rehearsal runbook](../working/lived-experience-cross-family-rehearsal-runbook-2026-09-02.md).
 
 ### Contribution-contract conformance
 

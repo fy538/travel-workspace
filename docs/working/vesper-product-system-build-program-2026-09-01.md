@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / architecture / engineering
 created: 2026-09-01
-last_verified: 2026-09-01
+last_verified: 2026-09-02
 expires: 2026-10-01
 why_new: Reconciles the post-pivot engine, four-root, artifact, agentic, multiplayer, consequence, and continuity programs into one dependency-ordered product-system build rather than a collection of proof loops.
 supersedes:
@@ -293,15 +293,24 @@ The integrated Home/Places serving lifecycle is now landed in shadow. Both
 roots can present an exact admitted consequence, resolve its opaque grant
 through the canonical owner, verify current truth, refresh every dependent read
 model, expose repair through a short-lived opaque Undo grant, and refuse to
-claim `acted` when owner readback is rejected or unverified. The next active
-seam is release evidence across private, shared-Plan, and addressed-pair
-families on real accounts and devices: restart, replay, stale grant,
-membership/source revocation, degraded readback, process death, rollback, and
-older-client terminal behavior. Chat and Life UI remain outside this package;
-their typed contracts participate without forcing unsettled surface design into
-the cutover.
+claim `acted` when owner readback is rejected or unverified. A revision-pinned,
+account-scoped rehearsal posture now breaks the former circular gate without
+promoting a family: reviewed shadow owners may expose controls only to the
+named cohort on the exact deployed backend revision, and dispatch revalidates
+that authority after the tap. One idempotent operator tool now provisions the
+same two principals through all three canonical family shapes and returns a
+content-free manifest of their owner coordinates.
 
-## Execution status — 2026-09-01
+The next active seam is empirical system evidence, not another bespoke family:
+deploy clean candidate revisions, provision the fixture for two real dogfood
+accounts, run the complete Home/Places lifecycle on physical devices, exercise
+restart, replay, stale grant, membership and Source revocation, degraded
+readback, process death, repair, rollback, and older-client terminals, then
+submit the revision-matched artifact to the machine gate. Chat and Life UI
+remain outside this package; their typed contracts participate without forcing
+unsettled surface design into the cutover.
+
+## Execution status — 2026-09-02
 
 ### S1A — typed owner-read contract and portfolio coordinator — landed
 
@@ -1232,3 +1241,73 @@ and canonical family fixtures, run the database legacy audit, capture the
 revision-pinned Home/Places device lifecycle, fill the evidence artifact, and
 let the gate name the remaining failures. Do not mark any family `BOUND` or
 surface `RELEASED` before that artifact passes.
+
+### S7C — revision-pinned governed rehearsal access — landed
+
+Backend commit `5074414e8` removes a circularity in the evidence gate without
+weakening it. Previously, mutating controls appeared only for a `RELEASED`
+family, while release itself required physical evidence that the control had
+appeared. The correction introduces a third authorization posture,
+`governed_rehearsal`, which is neither release nor a general feature flag.
+
+- access requires an explicit enable, exact deployed `GIT_SHA`, matching pinned
+  backend revision, explicit UUID user cohort, and explicit subset of the three
+  release families;
+- the family must still be a reviewed shadow row with registered canonical
+  gateway and non-unbound producer, gateway, and readback declarations;
+- only target-capable Home or Places projections can carry the control;
+- ordinary public users and every unlisted family remain withheld; and
+- consequence dispatch reloads and revalidates the current authorization after
+  grant verification and before owner binding or mutation, so removing the
+  cohort or changing the deployed revision closes already-present doors.
+
+Focused verification covers the three authorization postures, malformed and
+partial environment configuration, revision mismatch, cohort isolation,
+family isolation, root projection admission, and dispatch-time revocation.
+The wider lived-experience and root-projection suite passes. No family release
+declaration changed.
+
+### S7D — canonical two-account, cross-family fixture — landed locally
+
+Backend commits `ca8caead4` and `c52543c70` make the empirical run
+operational instead of leaving it as a hand-authored database exercise.
+
+`scripts/provision_lived_experience_rehearsal.py` now creates one isolated,
+revision-pinned cohort across the complete consequence portfolio:
+
+- a canonical Trip, two-person roster, itinerary, Plan proposal, and shared
+  Plan-repair opening;
+- manual occurrence evidence, canonical reconciliation proposal, and private
+  encounter-confirmation opening;
+- custody-verified Intake Source, observation, confirmed candidate, accepted
+  consequence proposal, content-free Experience Graph Source projection,
+  relationship-owned prepared Place-handoff command, personal pair room, and
+  addressed-handoff opening; and
+- one private manifest binding the backend and app revisions, opaque account
+  refs, actual principal UUIDs, owner targets and revisions, workflows,
+  openings, roots, canonical resources, and Source lineage.
+
+The tool defaults to read-only preflight. Local application uses explicit
+fixture users; dogfood or staging requires two explicit real user UUIDs, two
+non-placeholder account references, clean backend and app revisions, and a
+private output path. It never resolves a consequence, creates device evidence,
+or labels the result a release. Replaying the same run returns a byte-identical
+manifest and does not duplicate Plans, evidence, graph Sources, relationship
+commands, or openings.
+
+Running this complete path exposed two real Intake-to-graph defects that narrow
+unit tests had missed. Persisted joined rows used SQLAlchemy columns as mapping
+keys and therefore lost observation lineage at the compiler boundary. Candidate
+confirmation audit observations were also mistaken for semantic repairs,
+causing confirmed anchors to fail compilation and graph custody revalidation.
+Both canonical read paths now preserve string field identity and distinguish
+confirmation lifecycle evidence from `wrong_time`, `separate_from_occasion`,
+and `keep_occurrence_forget_interpretation` repairs.
+
+The local three-family provisioning and exact replay pass. This is strong
+system-integration evidence but still not S7 release evidence: the manifest is
+bound to local fixture accounts and pre-commit revisions, and no physical
+device observation was manufactured. The remaining stop is intentionally
+external and empirical: clean dogfood deployment, two signed-in real accounts,
+physical Home/Places lifecycle capture, negative and degraded probes, and a
+passing `audit_lived_experience_release.py --evidence` artifact.
