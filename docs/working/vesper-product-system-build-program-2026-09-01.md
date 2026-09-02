@@ -1200,6 +1200,33 @@ environment-specific `xgraph23` audit remain pending until a real dogfood or
 staging rehearsal is run. That red state is the current truth, not unfinished
 architecture.
 
+### S8A — coherent product-shell rehearsal posture — landed
+
+App commit `7fc3eb798` removes an accidental independence among the four-root
+shell label gate, Home v2 projection gate, and governed Places runtime gate.
+
+- one `ProductSystemRolloutConfig` now resolves the complete client posture as
+  `legacy`, `compatibility`, or `governed_rehearsal`;
+- the compatibility posture may still exercise the target navigation labels
+  and retained route owners without claiming governed roots;
+- the governed posture requires an explicit internal build plus the shell,
+  Home v2, and governed Places runtime gates together. If either root gate is
+  absent, both Home and Places remain on compatibility reads inside the shell
+  rather than presenting a half-migrated product;
+- individual renderers remain available through their development galleries,
+  so coherent shell rollout does not prevent isolated component work;
+- existing `FOUR_ROOT_SHELL`, `ROOT_PROJECTION_V2`, and
+  `PLACES_ROOT_V2_RENDERER_ENABLED` exports now adapt the unified decision,
+  preventing old consumers from reconstructing a conflicting posture; and
+- client build flags have a literal `releaseEligible: false` boundary. Only the
+  revision-pinned backend rehearsal portfolio and real-device evidence can
+  authorize a later release posture.
+
+Five rollout cases, the Home/Places cutover tests, navigation contracts,
+return restoration, invalidation, treatment exposure, TypeScript, and Expo
+lint pass. Pre-existing asynchronous-motion and hook-dependency warnings remain
+outside this package. Chat and Life UI are unchanged.
+
 The next work is operational and empirical: create the two dogfood accounts
 and canonical family fixtures, run the database legacy audit, capture the
 revision-pinned Home/Places device lifecycle, fill the evidence artifact, and

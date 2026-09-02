@@ -116,6 +116,15 @@ visual selection, or production shell. The backend and app preserve the same
 generated contract, and legacy Atlas/You machinery remains the compatibility
 owner while migration is dark.
 
+The client shell now resolves one explicit system posture rather than allowing
+its shell, Home v2, and governed Places gates to drift independently. An
+internal governed rehearsal activates Home and the mature Places workspace over
+their server-governed reads together; a missing root gate leaves both on the
+compatibility posture. Public build flags still cannot activate this shell or
+declare release eligibility. This is rollout integrity, not release evidence:
+the signed cross-family rehearsal, physical-device observations, and reviewed
+family promotion remain pending.
+
 ### Contribution-contract conformance
 
 The accepted [Contribution and Consequence
