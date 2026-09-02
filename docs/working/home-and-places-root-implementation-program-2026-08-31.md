@@ -1151,3 +1151,25 @@ The architecture should make those future designs easier to integrate. If a
 later Chat or Life lane requires Home or Places to abandon canonical owners,
 five-axis authority, exact return, surface ownership, or causal readback, that
 would be a whole-product doctrine change—not an ordinary design refinement.
+
+## 13. Real save-owner checkpoint — 2026-09-02
+
+Backend commit `be675841c` proves the first ordinary Home/Places action loop
+against real PostgreSQL rather than a fixture owner:
+
+1. the Saves API creates a private venue save with durable idempotency;
+2. replay returns the same canonical save rather than duplicating the write;
+3. the Saves API and Places saved-venue read model independently recover that
+   same row;
+4. the final Home v2 response admits one continuity unit retaining both the
+   `entity_save` and canonical venue references and a typed Places destination;
+5. unsave removes the row from the owner list, Places, and a fresh Home
+   projection without a second Home write.
+
+This closes the backend half of the existing-owner readback requirement for
+Save/Clear. It does not promote the roots and does not generalize one bookmark
+into proof for provider booking, Plan mutation, encounter confirmation, or
+their repair families. The dependency-ordered next step is to point the native
+Home→Places save/detail/return rehearsal at the exact backend and app revisions,
+then prove restart and supersession behavior. Chat and Life remain outside this
+package.

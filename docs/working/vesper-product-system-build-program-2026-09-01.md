@@ -1835,3 +1835,27 @@ both TypeScript gates, API boundaries, surface/core-tab checks, metadata, and
 all 349 Maestro syntax validations. This remains mock-owner evidence: real
 backend, physical-device, process-death, concurrency, Android, and public-shell
 promotion are still open.
+
+### S4M / S3L — canonical Saves owner into Places and Home — backend-proven
+
+Backend commit `be675841c` replaces an important inference with real database
+evidence. A save created through the authenticated Saves API is idempotently
+replayable, visible from the canonical owner list, visible from Places' saved-
+venue model, and admitted by the final Home v2 serving route as a private
+continuity unit. The unit carries the exact `entity_save` and canonical venue
+references and returns to Places rather than copying venue ownership into Home.
+Unsave retracts the same row and a fresh read removes it from Saves, Places,
+and Home without a UI-authored compensation record.
+
+The dedicated real-PostgreSQL integration test passes. The adjacent save,
+identity, application-effect, Places, Home-portfolio, and root-route portfolio
+passes **44 tests**. The wider offline backend canary reaches **20,071 passes**
+with **25 unrelated failures**, none in this action/readback path.
+
+This closes one real owner/projection dependency, not S4 as a whole. App commit
+`e3a2cf293` still proves the corresponding native save/detail/return behavior
+against the shared mock owner. The next package must join those two halves on a
+revision-pinned build and exercise cold restart plus real supersession; physical
+iOS and Android evidence, other owner/provider action families, edge-gesture
+policy, visual review, and public-shell promotion remain open. Chat and Life
+were not modified.

@@ -703,6 +703,26 @@ surface invariants, core-tab review, metadata validation, and the complete
 evidence; it does not turn the save into a real-backend or physical-device
 claim.
 
+Backend commit `be675841c` now closes the server-side half of that distinction
+with a real-PostgreSQL cross-boundary test. One authenticated Places save is
+written through the canonical Saves API with a durable idempotency key, replayed
+without duplication, read back through the Saves API, joined by Places' saved-
+venue read model, and admitted into the final Home v2 continuity region from
+that same `entity_saves` row. The Home unit retains the exact private save and
+venue references and points back to the canonical Places entity. Removing the
+save through the API then removes it from the owner list, Places read model,
+and a fresh Home v2 projection; no compensating Home record or client state is
+required.
+
+The real-Postgres test passes, as do **44** adjacent Saves, identity,
+application-effect, Places-projection, Home-portfolio, and root-API tests. The
+full offline backend canary reached **20,071 passed** with **25 unrelated
+failures**; none are in this owner/projection family. This proves the real
+backend owner and projection loop independently. It does **not** yet prove that
+the native save gesture is configured against this backend revision, survives
+process death, and returns on a physical device. That app-to-server rehearsal
+is now the remaining real-owner gate.
+
 ## Integrated convergence execution — 2026-09-01
 
 The latest package converts the earlier seam into a broader, executable
@@ -762,8 +782,8 @@ the August pivot.
   native route family and passing direct, Search/Saved, Reading/Dossier, Map,
   and save/detail/readback iOS simulator paths. Do not call Package 4 promotion
   complete until physical-device and Android return, process-death/
-  supersession degradation, edge-gesture policy, and real-backend owner
-  readback are exercised on a revision-pinned build.
+  supersession degradation, edge-gesture policy, and native-to-real-backend
+  owner readback are exercised on a revision-pinned build.
 
 ## Verification
 
@@ -797,7 +817,8 @@ visible. The following remain:
 - full Home posture/real-data and human visual evaluation, including real
   model-authored Composition and live-Instrument compatibility evidence;
 - state-specific Places Focus/Path/Live producers and their native renderers;
-- confirmed owner/provider consequence readback through the renderer path;
+- native renderer readback against the now-proven real Saves owner, plus
+  confirmed provider consequence readback for other action families;
 - physical-device evidence that Home→Places depth remains in the Home stack and
   returns exactly after map/search/detail/action movement, including physical
   process-death and superseded-origin rehearsal of the implemented safe

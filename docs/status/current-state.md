@@ -290,6 +290,18 @@ mock nested-media and read-after-write evidence—not real-backend, physical
 device, process-death, concurrent supersession, Android, edge-gesture, or
 public-shell promotion. Chat and Life were unchanged.
 
+Backend commit `be675841c` proves the complementary real-owner half for Saves.
+An authenticated, idempotent venue save is durably read through the Saves API,
+Places' saved-venue model, and the final Home v2 continuity region with the
+same private save and canonical venue references. API unsave removes it from
+all three on fresh reads, with no duplicate Home state. The real-PostgreSQL
+test and **44** adjacent owner/projection tests pass. The full offline backend
+canary reaches **20,071 passed / 25 unrelated failures**. This is real backend
+evidence, but it remains separate from the simulator's mock-owner evidence:
+native-to-server wiring on pinned revisions, restart, real supersession,
+physical iOS, Android, edge gesture, and shell promotion are still open. Chat
+and Life were unchanged.
+
 ### Contribution-contract conformance
 
 The accepted [Contribution and Consequence
