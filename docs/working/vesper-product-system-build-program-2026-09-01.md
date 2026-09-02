@@ -1457,10 +1457,38 @@ the 31-scenario polish-registry check. The Places workspace QA scaffold was
 validated in dry-run, but no running Metro target or physical capture was
 available, so the package is not visual or release evidence.
 
-S2 remains active. The compiler is intentionally not wired to default root
-producers: the repository still lacks the production assembler that obtains
-canonical Source owner reads, known-to-person/exposure state, current
-Place/Moment context, and existing audience grants, and then asks a governed
-producer for the smallest adequate contribution. The immediate next package
-is that assembler/producer and portfolio integration—not another root-specific
-card, a generic Artifact shelf, or a model draft treated as its own authority.
+### S2H / S3F — canonical owner-read assembly and portfolio merge — landed in shadow
+
+Backend commit `d98cd02e3` moves the contribution boundary upstream of model
+generation and downstream of canonical authority:
+
+- producer-readable material cannot enter a seed unless its exact Source
+  identity is present in an available canonical Source read;
+- subjects come only from Source, Place, or Moment reads, while seed owners
+  come only from the reads that actually authorized selected material,
+  selected context, or shared state. Unrelated portfolio reads cannot donate
+  authority;
+- private ordinary/current-world, open-interval, and recent-return assemblies
+  are covered. Live/shared assembly requires one exact canonical grant common
+  to every selected Source, selected context read, and relationship or
+  coordination owner. Split grants fail closed;
+- producer context stays private to the producer input. The downstream
+  compiler sees the admitted seed and therefore still detects Source mutation,
+  audience widening, owner/subject invention, known-claim relabeling, and weak
+  synthesis;
+- a rejected assembly never invokes the producer. Successful production joins
+  Home and Places through one shared pre-judgment merge; each root receives
+  only its native expression and still passes through existing treatment,
+  value judgment, selection, and renderer contracts.
+
+Verification covers 111 root-projection, owner-read, and semantic-result tests,
+plus every changed backend commit hook. No API schema or mobile change was
+needed for this internal seam.
+
+S2 remains active. The route parameter is intentionally unpopulated by
+default: canonical material selection/loading, exposure-backed
+known-to-person resolution, and the governed producer invocation are still
+missing. That next runtime must build the request from owner state, not accept
+Source text, subject scope, or grants from the model. After it produces real
+shadow output across the situation matrix, the existing Home and Places paths
+can consume it without another projection architecture.

@@ -160,9 +160,12 @@ then express that contribution through distinct native Home and Places grammar
 without changing Source metadata, ownership, audience, expiry, or claim
 lineage. Home uses a temporal editorial passage; Places uses a spatial field
 composition. This is compiler and renderer evidence, not a live content claim:
-the production assembler that reads canonical Sources, exposure/known state,
-current Place/Moment context, and grants and invokes a governed producer is
-still absent, and neither default portfolio receives generated contributions.
+an owner-read assembly gate now admits producer material only when exact Source,
+subject, owner, context, and shared-grant authority already exists, and both
+Home and Places accept the resulting production object before judgment. The
+canonical material selector/loader, exposure-backed known-to-person resolver,
+and governed producer invocation are still absent, however, so neither default
+portfolio receives generated contributions.
 
 ### Contribution-contract conformance
 

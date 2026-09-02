@@ -323,13 +323,35 @@ The Places workspace design contract and dry-run QA scaffold pass, but no Metro
 session or device capture was available; this is deterministic compiler and
 native-renderer evidence, not visual or release certification.
 
-This package does **not** generate a live contribution or insert one into the
-default portfolios. That would require authority the compiler cannot create.
-The next S2 package must assemble a seed from canonical Source owner reads,
-known-to-person/exposure state, current Place/Moment context, and existing
-audience grants; invoke a governed composition producer; then feed its admitted
-candidates into both portfolios. The producer's draft must never become the
-source of its own truth or authorization.
+### Canonical owner-read assembly and shared portfolio seam — 2026-09-02
+
+Backend commit `d98cd02e3` implements the next authority layer without turning
+generated text into its own evidence:
+
+- producer-readable material is private server input; the compiler receives
+  only a seed assembled from exact canonical owner reads;
+- every material Source must already appear in an available Source read, and
+  every subject must already appear in Source, Place, or Moment authority;
+- unrelated reads cannot donate owner scope. Owner overflow rejects the
+  assembly instead of being silently truncated;
+- a non-private assembly requires one identical canonical grant across every
+  selected Source, every selected Place/Moment context read, and the relevant
+  relationship or coordination owner. A grant on only one Source cannot
+  authorize the others;
+- rejected assembly never calls the producer. Producer failure, compiler
+  rejection, and admission remain distinct fail-closed states;
+- Home and Places now accept the same production object at their shared
+  pre-judgment portfolio boundary and select only their native expression.
+  Existing treatment, value judgment, root selection, and rendering still run
+  after that merge.
+
+Focused and adjacent verification covers **111** root-projection, owner-read,
+and semantic-result tests; all changed backend hooks pass. This still does
+**not** generate a live contribution on a default route. The remaining S2
+dependency is a canonical material selector/loader, known-to-person exposure
+resolver, and governed producer invocation. Only that owner-backed runtime may
+construct the assembly request; a model draft cannot supply its own Sources,
+subjects, owners, grants, or novelty baseline.
 
 ## Integrated convergence execution — 2026-09-01
 
