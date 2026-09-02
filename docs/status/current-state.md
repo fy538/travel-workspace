@@ -185,8 +185,10 @@ independent exact Source, Place, and Relationship owner reads; canonical
 assembly rejects any grant substitution before generation.
 
 This is runtime, compiler, renderer, and authenticated-delivery evidence, not a
-live content claim. The pipeline still invokes only an injected governed
-producer; no default prompt/model producer or route activation exists.
+live content claim. A structured prompt/producer adapter and optional route seam
+now exist, but the adapter requires a separately approved model role and the
+configured route producer remains absent. The serving flag is also default-off,
+so no generated contribution is live.
 
 Admitted semantic contributions now derive one root-neutral `fact_key` from
 canonical claim meaning and authority rather than producer IDs or presentation
@@ -206,6 +208,36 @@ Therefore neither default portfolio receives generated contributions yet.
 Backend commits `0f8c32aac`, `cbe300c9a`, `9f52a1294`, and `66d83911f`, plus app
 commit `d89111d6f`, carry the owner-backed material, governed selection,
 semantic identity, authenticated delivery, and qualified viewport packages.
+
+The structured producer path now has a content-free four-situation acceptance
+gate. Ordinary/current-world, open-interval, recent-return, and live/shared
+baselines must each traverse selection, exact owner reads, governed material,
+production, compilation, and distinct Home/Places expression. Separate probes
+cover earned silence, exact repetition, authority withdrawal, expiry, provider
+and parse failure, compiler rejection, and latency. The artifact records opaque
+selection identity, Source kinds/count, audience/grant shape, root identities,
+payload hashes, timing, and outcome only; it contains no Source prose,
+generated copy, claim text, named person, Place, or raw Source ID.
+
+Backend commit `e54631927` adds the missing production-attempt continuity
+boundary. Before exact owner reads or model work, each viewer must atomically
+claim the exact revision-bound Source group. Active leases and typed terminal
+cooldowns exclude repeat attempts; concurrent losers try the next bounded
+group or return explicit silence. Produced, producer-silence, producer-failure,
+compiler-rejected, and pipeline-rejected outcomes remain distinct without
+persisting generated content. A stale worker cannot complete or surface work
+after another request reclaims its lease, and an attempt-store outage keeps the
+optional producer cold rather than generating without ownership.
+
+This attempt ledger is not the delivery ledger and not the live-engine
+treatment ledger. It says that Vesper already spent judgment/generation work
+on one exact Source group; qualified delivery separately says a semantic fact
+reached the viewport; treatment/consequence separately says a real-world move
+was offered or executed. The additive migration has one Alembic head, and a
+real two-thread PostgreSQL test proves exclusive claim, expiry repair, stale
+worker rejection, and cooldown exclusion. The adjacent portfolio passes 231
+tests. Model-role approval, real-model editorial adjudication, cohort rollout,
+and device evidence remain open.
 
 ### Contribution-contract conformance
 

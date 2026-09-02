@@ -524,6 +524,49 @@ not a claim about real-model content quality or device presentation. Model-role
 approval, real generated outputs, editorial adjudication, and internal-cohort
 evidence remain necessary before enabling the existing double-dark serving gate.
 
+### Content-free production-attempt continuity — 2026-09-02
+
+Backend commit `e54631927` closes a different repeat boundary from semantic
+delivery. Before the runtime opens canonical owner reads, loads governed
+material, or calls the structured producer, it now acquires an atomic lease for
+`viewer × exact Source group`:
+
+- the group key already binds situation, audience, every Source identity and
+  revision, subject revision, and grant revision. Corrected or newly revised
+  evidence creates a new group rather than inheriting an old suppression;
+- one durable row contains only viewer, opaque group key, situation, audience,
+  lifecycle state, attempt count, lease token/times, and retry boundary. It
+  stores no Source IDs, prose, claims, people, Places, generated draft, or root
+  payload;
+- active leases and terminal cooldowns become selector exclusions. If another
+  Home or Places request wins the same group concurrently, the loser considers
+  the next bounded group or returns typed repeat silence without opening owner
+  reads or paying for a model call;
+- terminal outcomes distinguish produced, earned producer silence, producer
+  failure, compiler rejection, and pre-/post-producer pipeline rejection. Their
+  retry windows are explicit rather than an undifferentiated permanent cache;
+- completion requires the current lease token. Work from an expired worker is
+  withheld if another request has reclaimed the group; and
+- attempt-store failure fails the optional contribution path closed. The
+  established Home or Places root still returns, but generation cannot proceed
+  without durable ownership.
+
+The ledger does not claim delivery, comprehension, memory, treatment, or
+consequence. Qualified semantic delivery continues to use its proof-bound
+viewport receipt and root-neutral `fact_key`; causal treatment continues to use
+its own identity and receipt. Attempt continuity prevents duplicated internal
+work, delivery continuity prevents repeated surfaced meaning, and the
+live-engine lifecycle governs real-world action.
+
+The migration remains the single Alembic head. A real PostgreSQL two-thread
+race proves exactly one claimant, expiry repair, stale-token rejection, and
+terminal cooldown exclusion. The complete adjacent Home/Places/Source suite
+passes **231** tests. The wider offline repository run completed with **20,076
+passed** and **25 pre-existing unrelated failures** in itinerary, vector
+release, research, privacy-coverage, and fixture-promotion areas. No model role
+was assigned and no rollout flag changed, so this is concurrency and continuity
+evidence—not content quality, device, cohort, or release evidence.
+
 ## Integrated convergence execution — 2026-09-01
 
 The latest package converts the earlier seam into a broader, executable
@@ -620,8 +663,10 @@ visible. The following remain:
 - confirmed owner/provider consequence readback through the renderer path;
 - Home→Places depth that remains in the Home stack, followed by exact native
   return after map/search/detail/action movement;
-- a default governed producer, dark Home/Places invocation, and a complete
-  known-to-person resolver beyond exact delivered-fact suppression;
+- explicit model-role approval, real-model editorial adjudication, and
+  smallest-cohort Home/Places activation through the existing double-dark
+  serving seam, plus a complete known-to-person resolver beyond exact
+  delivered-fact suppression;
 - direct artifact/Source and broader relationship-grant readers in Home's
   runtime portfolio;
 - promotion of any state-specific Places renderer and removal of the remaining

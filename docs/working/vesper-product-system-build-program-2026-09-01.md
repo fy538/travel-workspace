@@ -1728,3 +1728,44 @@ review before the production gate can reach even the smallest internal cohort.
 The structured adapter is also exercised with a complete nested draft encoded
 as provider-style JSON and re-entered through compilation; strict enum decoding
 and character/source budgets are therefore verified beyond the silence path.
+
+### S2N / S3K — production-attempt continuity and concurrency — landed in shadow
+
+Backend commit `e54631927` makes Source generation continuous across Home and
+Places requests without turning delivery telemetry into a generation cache.
+
+- `root_source_contribution_attempts` stores a content-free lifecycle per
+  viewer and exact opaque Source-group key. The key already changes with
+  situation, audience, Source revision, subject revision, or grant revision;
+  the row stores none of the underlying Source IDs, prose, claims, named
+  people, Places, generated copy, or root payload.
+- Discovery remains metadata-only. The selector first excludes active leases
+  and terminal cooldowns, then atomically claims the chosen group before exact
+  owner reads, governed material loading, or model work. A concurrent loser
+  advances through the same bounded doctrine plan and otherwise returns typed
+  repeat silence.
+- The lease is longer than the structured producer's bounded invocation but
+  remains expirable for repair. A reclaimed lease invalidates the stale
+  worker's completion, and stale generated work is never returned to either
+  root.
+- Terminal outcomes preserve the important distinctions already proven by the
+  matrix: produced, earned producer silence, provider/parse failure, compiler
+  rejection, and pipeline rejection. Each has an explicit retry interval; no
+  outcome becomes an infinite learned belief about the person.
+- Failure to read or claim the attempt store keeps the optional producer cold.
+  Home and Places retain their established root responses because the entire
+  producer path remains optional and default-off.
+
+This is deliberately separate from the semantic delivery lifecycle and causal
+treatment lifecycle. Attempt continuity answers whether Vesper already spent
+bounded production work on these exact revisions. Delivery answers whether a
+root-neutral semantic fact actually reached the viewport. Treatment and
+consequence answer whether a real-world move was offered or executed. None may
+stand in for the others.
+
+The additive migration is the single Alembic head. A real PostgreSQL
+two-thread race verifies exclusive claim, lease expiry and repair, stale-worker
+rejection, and terminal exclusion. Focused and adjacent verification passes
+231 tests; the wider offline suite reaches 20,076 passes with 25 known
+unrelated failures. The model-role approval and real-model matrix remain the
+next activation dependency; Chat and Life were not changed.

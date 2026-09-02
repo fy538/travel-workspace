@@ -192,6 +192,10 @@ flags:
       Double-dark gate for the governed Source contribution orchestrator. It
       grants no Source, audience, delivery, treatment, consequence, or memory
       authority and cannot activate without a separately assigned producer.
+      When configured, the producer must atomically claim a content-free exact
+      Source-group attempt before owner reads or model work; attempt-store
+      failure omits the optional contribution rather than generating without
+      continuity ownership.
 
   - name: LIVED_EXPERIENCE_CONSEQUENCE_RESOLUTION_ENABLED
     repo: travel-agent
