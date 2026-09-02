@@ -279,13 +279,24 @@ concrete owner family are now landed. Private occurrence reconciliation proves
 the reusable command shape: emit while the decision is pending, target the
 exact proposal rather than the depicted Place, bind the roster epoch, execute
 only through the canonical writer, and verify the result through the same
-owner. Shared Plan repair now applies that shape to a multiplayer mutation by
-carrying both Plan and roster epochs into the existing proposal owner. The next
-shared seam is an addressed Place handoff. It must preserve its named recipient
-and relationship boundary at commit time, then join the same canonical
-readback, invalidation, correction, and continuity chain. The client must never
-reconstruct authority from a capability name or from the object a root unit
-happens to depict.
+owner. Shared Plan repair applies that shape to a multiplayer mutation by
+carrying both Plan and roster epochs into the existing proposal owner.
+Addressed Place handoff now applies it to a different multiplayer act:
+preserving something for one named person without fabricating public
+distribution or a group decision. Upstream Intake deletion atomically revokes
+undelivered authority and the visible source-bound handoff, while an already
+executed command remains an audit receipt and a recipient-created Occasion
+remains independently owned. The client never reconstructs authority from a
+capability name or from the object a root unit happens to depict.
+
+The active seam is now the integrated serving lifecycle: Home and Places must
+show canonical completion, withdrawal, correction, and repair without keeping
+a dead card or concealing what changed. Release evidence must exercise private,
+shared-Plan, and addressed-pair consequences on real accounts and devices,
+including restart, replay, stale grant, membership/source revocation, degraded
+readback, and older-client terminal behavior. Chat and Life UI remain outside
+this package; their typed contracts participate without forcing unsettled
+surface design into the cutover.
 
 ## Execution status — 2026-09-01
 
@@ -1010,3 +1021,55 @@ promotion, rollout needs either a canonical backfill for repairable pre-
 system package should then prove visible repair continuity across Home and
 Places receipts and finish the addressed-handoff prepare → deliver → respond →
 revoke/repair lifecycle before release gates are evaluated.
+
+### S5B / S6C — causal custody revocation for addressed handoff — landed
+
+Backend commit `91ba922d0` connects the relationship-owned handoff lifecycle to
+the Source custody that authorized it. Multiplayer delivery can no longer
+survive deletion merely because an opaque command handle was prepared earlier.
+
+- preparation and final dispatch re-read the exact Intake-backed graph Source;
+  missing, malformed, quarantined, failed, deleted, or explicitly revoked
+  custody fails closed;
+- deleting an Intake submission calls the relationship owner inside the same
+  transaction that cancels contribution workflows and scrubs the retained
+  source. Every still-prepared source-bound command is revoked by guarded state
+  transition before the deletion commits;
+- every available or kept final handoff justified by that Source is locked,
+  transitioned to revoked, and given one content-free causal-revocation event;
+  replay of deletion emits neither another transition nor another event;
+- an executed command remains immutable evidence that delivery occurred. Its
+  current visible projection can still be withdrawn, preserving the
+  distinction between historical receipt and present permission;
+- an Occasion created through the recipient's explicit `open together` choice
+  remains canonical Occasion truth. Revoking the upstream handoff does not
+  retroactively erase a separately authorized shared consequence;
+- if authority narrows between prepare and dispatch, execution consumes the
+  stale prepared command into a terminal revoked state instead of retaining a
+  grant that can retry forever; and
+- the lived-experience readiness portfolio now recognizes addressed handoff as
+  registered with a canonical gateway and causal revocation. Surface release
+  remains pending rather than being inferred from backend completeness.
+
+Verification covers 84 adjacent Intake, relationship, API, readiness, replay,
+and Postgres lifecycle tests in the package's broad suite, with 23 focused
+relationship/custody tests rerun after the concurrency repair. Every changed-
+file repository hook passes, including the guarded-status-transition ratchet.
+No public contract shape changed.
+
+The `xgraph23` rollout policy is now explicit: this is a pre-production system,
+so non-production environments reset or quarantine legacy anonymous
+`mark_happened` affinity aggregates before promotion. Vesper will not fabricate
+source identity through a probabilistic backfill. Migration `xgraph23` is a
+promotion prerequisite, and all new occurrence-derived meaning must be written
+through its exact contribution ledger. If production data with anonymous
+aggregates is discovered before release, promotion stops for an adjudicated
+reconciliation plan rather than silently inheriting ambiguous meaning.
+
+S4, S5, and S6 are now joined across three materially different owner shapes:
+private occurrence, shared Plan, and addressed pair handoff. The next package is
+not a fourth bespoke consequence. It is the cross-family serving and release
+gate: visible Home/Places completion and repair continuity, terminal-card
+behavior, real-account/device lifecycle, restart/replay, degraded owner
+readback, and rollback evidence. Addressed handoff stays dark until that
+portfolio passes; no Chat or Life UI change is required to run it.
