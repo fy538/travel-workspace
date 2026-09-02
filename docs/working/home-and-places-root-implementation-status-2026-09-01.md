@@ -516,7 +516,10 @@ contract rather than a checklist:
   structural envelope for later model-backed and dogfood evidence without
   turning private content into release telemetry.
 
-The adjacent suite passes **214** tests. This is deterministic structural proof,
+The adjacent suite passes **216** tests. The structured adapter also decodes a
+complete provider-style nested draft and re-enters the governed compiler, so
+the positive JSON path is covered alongside silence, parse failure, character
+and Source ceilings, retry, and timeout behavior. This is deterministic structural proof,
 not a claim about real-model content quality or device presentation. Model-role
 approval, real generated outputs, editorial adjudication, and internal-cohort
 evidence remain necessary before enabling the existing double-dark serving gate.

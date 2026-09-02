@@ -1718,10 +1718,13 @@ before that activation:
   and candidate derivation. The live/shared baseline uses an addressed human
   contribution plus public context under the exact relationship grant.
 
-The focused and adjacent regression portfolio now covers **214** tests across
+The focused and adjacent regression portfolio now covers **216** tests across
 root projections, canonical owner reads, Places content, Discover, Home/Places
 APIs, producer/orchestration, and the matrix. This proves structural acceptance
 and fail-closed semantics. It does **not** prove that a real model consistently
 adds substantive editorial value; once the named role is approved, actual
 model outputs must populate this same evidence contract and pass editorial
 review before the production gate can reach even the smallest internal cohort.
+The structured adapter is also exercised with a complete nested draft encoded
+as provider-style JSON and re-entered through compilation; strict enum decoding
+and character/source budgets are therefore verified beyond the silence path.
