@@ -3342,6 +3342,26 @@
       "removal_trigger": "Replace with the adopted mobile relationship reader or remove the dark namespace.",
       "review_by": "2026-10-30"
     },
+    "POST /api/relationships/place-handoff-commands": {
+      "audience": "server",
+      "consumers": [],
+      "feature_flag": "RELATIONSHIP_UUID_HANDOFFS_ENABLED",
+      "lifecycle": "dark",
+      "owner": "relationships",
+      "reason": "The relationship owner freezes private handoff copy, recipient, pair room, custody, permissions, delivery, expiry, and revision before a lived-experience workflow may carry its content-free command handle.",
+      "removal_trigger": "Promote only after the Chat composer and full prepare-to-readback lifecycle have device proof, or remove with the addressed-handoff family.",
+      "review_by": "2026-10-31"
+    },
+    "POST /api/relationships/place-handoff-commands/{command_id}/revoke": {
+      "audience": "server",
+      "consumers": [],
+      "feature_flag": "RELATIONSHIP_UUID_HANDOFFS_ENABLED",
+      "lifecycle": "dark",
+      "owner": "relationships",
+      "reason": "A sender can invalidate an undelivered prepared command by exact owner revision without exposing its private payload to workflow infrastructure.",
+      "removal_trigger": "Promote with the prepared-command composer or remove if all preparation becomes an internal owner-only RPC with equivalent revision and revocation semantics.",
+      "review_by": "2026-10-31"
+    },
     "POST /api/relationships/place-handoffs": {
       "audience": "app",
       "consumers": [

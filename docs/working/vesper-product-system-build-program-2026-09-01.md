@@ -910,3 +910,52 @@ correction propagation. The next dependency is the relationship-owned
 prepared handoff command, followed by source-aware derived-state retraction
 and explicit repair continuity in Home/Places receipts before any consequence
 family is promoted from shadow.
+
+### S4J / S5A — relationship-owned addressed Place handoff — landed
+
+Backend commit `369e6d239` closes the third consequence-owner shape: a sender
+can preserve something Place-grounded for one specific person without turning
+it into a public post or pretending it is a shared Plan decision.
+
+- a new relationship-owned prepared command persists the sender, explicit
+  recipient, canonical UUID Place, authorized personal pair room,
+  sender-authored private copy, source custody, permission envelope, delivery
+  mode, expiry, idempotency identity, lifecycle, and revision;
+- preparation and delivery are separate. Preparing writes no message and no
+  final handoff. The server returns only a content-free handle, and the sender
+  can revoke an undelivered command by exact revision;
+- the durable execution envelope now distinguishes `command_targets` from
+  presentation targets. A Home, Places, or Chat artifact may explain and offer
+  a consequence without its rendered object becoming mutation authority;
+- the Intake bridge refuses to emit an addressed-handoff workflow unless the
+  relationship handle is still prepared and matches the same authorizing
+  sender, named addressee, expiry window, and owner revision. The root
+  treatment belongs to the sender; the friend is an affected principal and the
+  command's addressee, not the person authorized to press Send;
+- dispatch re-reads the private command inside the relationship owner,
+  revalidates the exact current pair room, active Place, source custody, and
+  pull consent, then atomically writes the sender-authored message, final
+  handoff, immutable event, and command result;
+- replay returns the same resulting handoff without sending twice. Canonical
+  readback advances only when the executed command still names that exact
+  final handoff; stale, revoked, expired, missing, or mismatched commands fail
+  closed; and
+- preparation and revoke endpoints remain dark behind
+  `RELATIONSHIP_UUID_HANDOFFS_ENABLED`. No Chat or Life surface was changed,
+  and the family remains shadow pending full lifecycle and device proof.
+
+Verification covers 128 relationship, API, migration, account-lifecycle,
+Intake, execution-envelope, target, gateway, readback, registry, and adjacent
+lived-experience tests; two Postgres atomicity/replay acceptances; every
+backend commit hook; and TypeScript generation. The complete contract now
+contains 569 paths / 631 operations / 1,422 schemas. Both new preparation
+operations are deliberately excluded from the active mobile projection, which
+remains 434 paths / 479 operations / 1,265 schemas.
+
+S4, S5, and S6 remain active. The next architecture-bearing package is
+source-aware derived-state retraction: when occurrence truth is corrected or
+withdrawn, affinity, Home/Places projections, and causal receipts must stop
+serving the superseded implication without deleting the historical evidence.
+After that, the addressed-handoff lifecycle needs end-to-end prepare → send →
+recipient response → revoke/repair proof before any visible multiplayer
+treatment is promoted.

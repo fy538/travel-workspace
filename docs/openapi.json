@@ -29172,6 +29172,136 @@
         }
       }
     },
+    "/api/relationships/place-handoff-commands": {
+      "post": {
+        "tags": [
+          "relationships"
+        ],
+        "summary": "Prepare Relationship Handoff",
+        "description": "Freeze one exact addressed handoff without delivering it.",
+        "operationId": "prepare_relationship_handoff_api_relationships_place_handoff_commands_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RelationshipPlaceHandoffPrepareRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RelationshipPlaceHandoffCommandResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/relationships/place-handoff-commands/{command_id}/revoke": {
+      "post": {
+        "tags": [
+          "relationships"
+        ],
+        "summary": "Revoke Prepared Relationship Handoff",
+        "description": "Revoke an undelivered relationship command at its owner boundary.",
+        "operationId": "revoke_prepared_relationship_handoff_api_relationships_place_handoff_commands__command_id__revoke_post",
+        "parameters": [
+          {
+            "name": "command_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Command Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RelationshipPlaceHandoffCommandActionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RelationshipPlaceHandoffCommandResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/relationships/place-handoffs": {
       "post": {
         "tags": [
@@ -69693,6 +69823,16 @@
         ],
         "title": "HandoffAction"
       },
+      "HandoffCommandStatus": {
+        "type": "string",
+        "enum": [
+          "prepared",
+          "executed",
+          "revoked",
+          "expired"
+        ],
+        "title": "HandoffCommandStatus"
+      },
       "HandoffDeliveryMode": {
         "type": "string",
         "enum": [
@@ -98906,6 +99046,86 @@
         ],
         "title": "RelationshipPlaceHandoffActionRequest"
       },
+      "RelationshipPlaceHandoffCommandActionRequest": {
+        "properties": {
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Revision"
+          }
+        },
+        "type": "object",
+        "required": [
+          "expected_revision"
+        ],
+        "title": "RelationshipPlaceHandoffCommandActionRequest"
+      },
+      "RelationshipPlaceHandoffCommandResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "sender_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Sender User Id"
+          },
+          "recipient_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Recipient User Id"
+          },
+          "status": {
+            "$ref": "#/components/schemas/HandoffCommandStatus"
+          },
+          "revision": {
+            "type": "integer",
+            "title": "Revision"
+          },
+          "resulting_handoff_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resulting Handoff Id"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Expires At"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "sender_user_id",
+          "recipient_user_id",
+          "status",
+          "revision",
+          "expires_at",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "RelationshipPlaceHandoffCommandResponse",
+        "description": "Content-free handle safe for workflow and mobile transport."
+      },
       "RelationshipPlaceHandoffCreateRequest": {
         "properties": {
           "recipient_user_id": {
@@ -99017,6 +99237,118 @@
         ],
         "title": "RelationshipPlaceHandoffCreateRequest",
         "description": "Create a handoff for one explicitly named recipient.\n\n``canonical_entity_ref`` is the public command identity. The graph-local\nUUID remains accepted only as a compatibility input for internal callers\nduring the clean-break cutover."
+      },
+      "RelationshipPlaceHandoffPrepareRequest": {
+        "properties": {
+          "recipient_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Recipient User Id"
+          },
+          "world_entity_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "World Entity Id"
+          },
+          "canonical_entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "conversation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Conversation Id"
+          },
+          "source_anchor_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Anchor Id"
+          },
+          "source_artifact_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Artifact Id"
+          },
+          "message": {
+            "type": "string",
+            "maxLength": 280,
+            "minLength": 1,
+            "title": "Message"
+          },
+          "artifact_ref": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Artifact Ref"
+          },
+          "permissions": {
+            "$ref": "#/components/schemas/RelationshipHandoffPermissionRequest"
+          },
+          "delivery_mode": {
+            "$ref": "#/components/schemas/HandoffDeliveryMode",
+            "default": "send_now"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Idempotency Key"
+          }
+        },
+        "type": "object",
+        "required": [
+          "recipient_user_id",
+          "conversation_id",
+          "message",
+          "idempotency_key"
+        ],
+        "title": "RelationshipPlaceHandoffPrepareRequest",
+        "description": "Freeze an addressed handoff without delivering it."
       },
       "RelationshipPlaceHandoffResponse": {
         "properties": {
