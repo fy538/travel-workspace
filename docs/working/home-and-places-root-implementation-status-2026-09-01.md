@@ -681,6 +681,28 @@ cold. The corrected native simulator flow passes **1/1 in 23 seconds**, and
 the focused continuity selection passes **5 suites / 37 tests**. This proves
 Search/Saved nesting without changing either owner or creating product memory.
 
+App commit `e3a2cf293` completes the representative simulator matrix across
+the remaining mature Places layers:
+
+- editorial continuity passes through direct guide → Dossier → cold-converged
+  Reading, then Reading → Dossier → the already-existing Reading owner;
+- Dossier return now uses the same semantic-dismissal law as collections,
+  avoiding a cloned Reading route while preserving the exact context and root
+  token;
+- Map opens as another Places medium, returns to the existing Home-owned
+  workspace, and leaves the final Home return identity intact; and
+- saving `Alfama Fado Walking Tour` must first produce the canonical success
+  consequence, then survive Experience-detail movement and reappear from the
+  shared Saves owner before exact Home return.
+
+The three new PR-smoke flows pass **1/1** each on the pinned iPhone 16 Pro /
+iOS 18.2 simulator in **30s**, **25s**, and **42s**. The adjacent selection
+passes **31 suites / 256 tests**, both TypeScript gates, API boundaries,
+surface invariants, core-tab review, metadata validation, and the complete
+349-flow Maestro syntax sweep. This is canonical mock-owner read-after-write
+evidence; it does not turn the save into a real-backend or physical-device
+claim.
+
 ## Integrated convergence execution — 2026-09-01
 
 The latest package converts the earlier seam into a broader, executable
@@ -737,11 +759,11 @@ the August pivot.
   v1 Home/Places compatibility owners still serve released behavior or
   capabilities absent from v2.
 - Exact semantic return and the stronger Home→Places navigation law now have a
-  native route family and passing direct plus Search/Saved-nested iOS simulator
-  paths. Do not call Package 4 promotion complete until map/Reading/detail/
-  action movement, physical-device return, process-death/supersession
-  degradation, edge-gesture policy, and real owner readback are exercised on a
-  revision-pinned build.
+  native route family and passing direct, Search/Saved, Reading/Dossier, Map,
+  and save/detail/readback iOS simulator paths. Do not call Package 4 promotion
+  complete until physical-device and Android return, process-death/
+  supersession degradation, edge-gesture policy, and real-backend owner
+  readback are exercised on a revision-pinned build.
 
 ## Verification
 

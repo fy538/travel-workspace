@@ -968,6 +968,20 @@ Implementation checkpoint — 2026-09-02:
   replacing itself with a second root. The corrected iOS simulator flow passes
   1/1 in 23 seconds; five focused suites / 37 tests and the relevant type,
   boundary, registry, surface, metadata, and lint gates pass.
+- App commit `e3a2cf293` extends the same law through Reading/Dossier, Map, and
+  one canonical mock-owner action. Dossier now dismisses to an existing
+  serialized Reading owner or converges there cold; Map unwinds to the same
+  Home-owned Places workspace; and an Experience save must emit its canonical
+  success consequence, survive detail movement, read back as saved from the
+  shared Saves owner, and still return to the exact Home unit. The three new
+  PR-smoke flows pass individually in 30s, 25s, and 42s on iPhone 16 Pro / iOS
+  18.2. The adjacent selection passes 31 suites / 256 tests, both TypeScript
+  gates, API boundaries, surface and core-tab checks, metadata, and the full
+  349-flow syntax sweep.
+- The remaining Package 4 gate is no longer ordinary nested media or mock
+  action continuity. It is physical-device and Android return, process-death
+  and real concurrent supersession, real-backend action/readback, visual
+  review, and a deliberate iOS edge-gesture/shell decision.
 
 ### Package 5 — Native convergence and deletion
 

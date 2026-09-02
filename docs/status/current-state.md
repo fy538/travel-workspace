@@ -276,6 +276,20 @@ pass. Remaining nested evidence is map, Reading, entity detail, and a verified
 owner action; the physical/device, process-death, concurrency, and rollout
 limits above remain unchanged. Chat and Life were not modified.
 
+App commit `e3a2cf293` extends native simulator coverage through the product's
+other representative Places media and a consequence-bearing action. Direct
+guide → Dossier → Reading and Reading → Dossier → existing Reading owner both
+preserve context and the root token; Map returns to the same Home-owned Places
+workspace; and an Experience save emits its canonical success consequence,
+survives detail movement, reads back as saved from the shared Saves owner, and
+then returns to the exact Home unit. The three PR-smoke flows pass in 30s, 25s,
+and 42s on iPhone 16 Pro / iOS 18.2. The adjacent selection passes 31 suites /
+256 tests plus both TypeScript gates, boundaries, surface/core-tab checks,
+metadata, and all 349 Maestro syntax validations. This closes representative
+mock nested-media and read-after-write evidence—not real-backend, physical
+device, process-death, concurrent supersession, Android, edge-gesture, or
+public-shell promotion. Chat and Life were unchanged.
+
 ### Contribution-contract conformance
 
 The accepted [Contribution and Consequence

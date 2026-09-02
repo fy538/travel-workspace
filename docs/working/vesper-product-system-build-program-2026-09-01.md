@@ -1823,3 +1823,15 @@ Semantic dismissal now restores an existing matching Places owner or converges
 there from a cold entry. The corrected Home → Places → Search → Saved → Places
 → exact Home flow is PR smoke and passes 1/1 in 23 seconds on the same pinned
 iOS simulator, with five focused suites / 37 tests and adjacent gates passing.
+
+App commit `e3a2cf293` closes the remaining representative nested-media and
+mock-action gaps. Reading/Dossier now exercises both cold convergence and
+return to an existing serialized owner; Map unwinds without changing root
+ownership; and an Experience save is accepted only after its success
+consequence appears, then reads back as saved after detail movement before the
+exact Home return. The three PR-smoke flows pass in 30s, 25s, and 42s on the
+pinned iOS simulator. The adjacent portfolio passes 31 suites / 256 tests,
+both TypeScript gates, API boundaries, surface/core-tab checks, metadata, and
+all 349 Maestro syntax validations. This remains mock-owner evidence: real
+backend, physical-device, process-death, concurrency, Android, and public-shell
+promotion are still open.
