@@ -1127,3 +1127,51 @@ readback, verify repair after relaunch, and capture rollback evidence. Only
 then may one release portfolio move from shadow to visible; promotion still
 occurs by reviewed family policy, not by screen or by a successful founder
 scenario.
+
+### S6D / S7B — executable cross-family promotion gate — landed, evidence pending
+
+Backend commits `0eb182646` and `99b5297a7` turn the remaining release work
+into a machine-audited system boundary rather than a founder checklist.
+
+- one revision-pinned rehearsal artifact must cover private encounter
+  confirmation, multiplayer shared-Plan repair, and addressed pair handoff;
+- every family must prove control presentation, canonical owner readback,
+  dependent projection refresh, idempotent replay, stale-grant rejection,
+  scope revocation, honest degraded readback, restart recovery, rollback
+  withholding, and older-client terminal behavior;
+- encounter and shared Plan additionally require verified canonical repair;
+  addressed handoff additionally requires recipient projection and causal
+  Source-revocation propagation;
+- control presentation, owner verification, restart, and older-client behavior
+  require physical-device evidence. Automated tests cannot self-promote those
+  claims, and multiplayer runs require at least two distinct opaque real-account
+  references;
+- the integration portfolio now carries release-rehearsal status and refuses a
+  hypothetical fully bound/readback-complete family unless its rehearsal row
+  also passes. Flipping readiness or surface declarations is therefore
+  insufficient to expose a mutation; and
+- `scripts/audit_lived_experience_release.py --template` emits the complete
+  pending evidence contract, while `--evidence` reports deterministic global
+  and family blockers with a nonzero exit status until the portfolio is real.
+
+The legacy occurrence-meaning stop line is executable as well.
+`scripts/audit_xgraph23_rollout.py` verifies that the source-addressable
+contribution ledger exists and counts active personal and companion affinity
+rows that still contain anonymous `mark_happened` evidence. Missing `xgraph23`
+or any active anonymous row blocks promotion. Quarantined/non-active legacy
+rows do not continue serving, and no probabilistic source backfill is offered.
+The release artifact requires both the ledger and zero-active-anonymous audit
+as global passed evidence.
+
+Verification covers 18 release, legacy-rollout, integration-portfolio, and
+root-governance tests plus every backend repository hook. The generated
+template intentionally audits red: all device/account observations and the
+environment-specific `xgraph23` audit remain pending until a real dogfood or
+staging rehearsal is run. That red state is the current truth, not unfinished
+architecture.
+
+The next work is operational and empirical: create the two dogfood accounts
+and canonical family fixtures, run the database legacy audit, capture the
+revision-pinned Home/Places device lifecycle, fill the evidence artifact, and
+let the gate name the remaining failures. Do not mark any family `BOUND` or
+surface `RELEASED` before that artifact passes.
