@@ -567,6 +567,44 @@ release, research, privacy-coverage, and fixture-promotion areas. No model role
 was assigned and no rollout flag changed, so this is concurrency and continuity
 evidence—not content quality, device, cohort, or release evidence.
 
+### Native Home→Places depth and exact semantic return — 2026-09-02
+
+App commit `31a54cbbb` closes the code-level navigation gap without creating a
+second Places root:
+
+- Home-origin Places doors now push `/(tabs)/trips/places` inside the Home
+  navigator, so Home remains the selected root while the same mature
+  `PlacesRootExperience`, workspace, canonical reads, and mutations remain the
+  semantic owner;
+- a presentation-only route family selects Home depth or the canonical Places
+  tab family. The family and one ephemeral `rootReturnToken` survive scoped
+  browse, map, Search, Saved, Reading, feed-card doors, dossiers, and supported
+  Place, venue, experience, and site details;
+- native and explicit back unwind through the same route ancestry. Map detail
+  return still restores its exact scope, layer, pin, context, and event window;
+  the final return to Home consumes the token, revalidates canonical owner
+  reads, and restores the exact originating semantic unit;
+- ordinary Places callers retain their existing routes and tab ownership. The
+  token is in-memory navigation continuity, never product memory, a Source, or
+  evidence that survives process death; and
+- the Places surface registry and operating contract now include the Home-depth
+  family, so future QA cannot silently omit this route from either root's
+  change impact.
+
+Verification passes **37 Places/navigation suites and 287 tests**, TypeScript
+and generated test-contract typechecks, API-boundary checks, surface-index and
+surface-invariant validators, the core-tab registry, and the 31-scenario QA
+registry. Expo lint reports no errors; its remaining touched-file warnings all
+exist at `HEAD`. The repository-wide size-budget gate still fails on four
+pre-existing unrelated files/functions. External design-canon lookup validates
+the manifest but was not hash-verified because the operator-owned historical
+bundle was not supplied.
+
+This is implementation evidence, not physical-device or release evidence.
+Gesture behavior, exact scroll restoration, superseded-origin recomposition,
+cold-link/process-death degradation, and visual continuity still require a
+revision-pinned device rehearsal before Package 4 can be promoted.
+
 ## Integrated convergence execution — 2026-09-01
 
 The latest package converts the earlier seam into a broader, executable
@@ -622,11 +660,10 @@ the August pivot.
   branch in `PlacesRootExperience` was dead as a product path; the remaining
   v1 Home/Places compatibility owners still serve released behavior or
   capabilities absent from v2.
-- Exact semantic return is implemented, but the stronger Home→Places
-  navigation law—depth inside the Home origin stack without selecting the
-  Places tab—does not yet have a production route family. Do not call Package
-  4 complete until that native navigation behavior and owner readback are
-  exercised on device.
+- Exact semantic return and the stronger Home→Places navigation law now have a
+  native route family in code. Do not call Package 4 promotion complete until
+  native gestures, exact restoration, degradation, and owner readback are
+  exercised on a revision-pinned device.
 
 ## Verification
 
@@ -661,8 +698,9 @@ visible. The following remain:
   model-authored Composition and live-Instrument compatibility evidence;
 - state-specific Places Focus/Path/Live producers and their native renderers;
 - confirmed owner/provider consequence readback through the renderer path;
-- Home→Places depth that remains in the Home stack, followed by exact native
-  return after map/search/detail/action movement;
+- physical-device evidence that Home→Places depth remains in the Home stack and
+  returns exactly after map/search/detail/action movement, including
+  superseded-origin and process-death degradation;
 - explicit model-role approval, real-model editorial adjudication, and
   smallest-cohort Home/Places activation through the existing double-dark
   serving seam, plus a complete known-to-person resolver beyond exact

@@ -1769,3 +1769,28 @@ rejection, and terminal exclusion. Focused and adjacent verification passes
 231 tests; the wider offline suite reaches 20,076 passes with 25 known
 unrelated failures. The model-role approval and real-model matrix remain the
 next activation dependency; Chat and Life were not changed.
+
+### S4L / S7F — native Home→Places depth and semantic return — landed; device evidence pending
+
+App commit `31a54cbbb` turns the accepted cross-root law into one native route
+family without inventing another Places product or owner.
+
+- A Home Places door pushes `/(tabs)/trips/places` inside the Home navigator;
+  an explicit Places-tab action continues to use `/(tabs)/places`.
+- Both route families mount the same mature Places root, workspace, canonical
+  feeds, maps, collections, entity readers, and owner mutations. Route family
+  changes presentation ancestry only.
+- One ephemeral `rootReturnToken` crosses scoped browse, map, Search, Saved,
+  Reading, feed-card actions, and supported details. Map return retains exact
+  spatial state; final Home return refreshes canonical reads and restores the
+  originating semantic unit.
+- The Places operating contract and QA registry now claim both route families,
+  preventing a Home-depth change from escaping Places surface review.
+
+Focused verification passes 37 suites / 287 tests, both TypeScript gates, API
+boundaries, surface registry and invariants, core-tab review, and the complete
+scenario-ID registry. No rollout gate changed, no second read owner was added,
+and Chat and Life were not modified. S4's code path is ready for the
+revision-pinned physical rehearsal; S7 promotion remains open on native gesture
+and scroll evidence, superseded-origin and process-death degradation, visual
+review, and public-shell approval.

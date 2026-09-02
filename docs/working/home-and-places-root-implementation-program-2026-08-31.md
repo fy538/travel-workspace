@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / architecture / backend / frontend
 created: 2026-08-31
-last_verified: 2026-08-31
+last_verified: 2026-09-02
 expires: 2026-09-30
 why_new: Records the code-audited current state, target architecture, selective demolition plan, Chat/Life dependency boundaries, implementation sequence, and promotion gates for the post-pivot Home and Places roots.
 source_of_truth_for: []
@@ -924,6 +924,20 @@ Exit gates:
 - action success is never inferred from request dispatch;
 - a superseded origin returns to an honest recomposed state; and
 - a revoked Source cannot survive in cached Home/Places prose.
+
+Implementation checkpoint — 2026-09-02:
+
+- App commit `31a54cbbb` implements a native Home-stack Places route family and
+  carries exact ephemeral return identity through map, Search, collections,
+  card doors, and supported details while reusing the canonical Places owner.
+- Existing owner-grant, verified readback, repair, invalidation, and semantic
+  return packages provide the corresponding action boundary; this route package
+  does not infer success from navigation or create a new writer.
+- Focused code evidence passes 37 suites / 287 tests plus type, API-boundary,
+  route, and surface-registry checks. Package 4 is code-complete enough for the
+  physical rehearsal, but its promotion exit remains open until native gesture,
+  exact scroll, superseded-origin, cold-link/process-death, degraded readback,
+  and visual-continuity evidence is captured on one pinned revision.
 
 ### Package 5 — Native convergence and deletion
 
