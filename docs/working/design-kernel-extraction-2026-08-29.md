@@ -1225,6 +1225,62 @@ proved restating was necessary):
    TypingIndicator, ErrorBanner) all carry borderLeft today and must
    adopt this ruling when touched.
 
+7. **Page-level composition laws — RULED 2026-09-02 (founder, from the
+   cards-and-instruments critique board: canvas page `critique`,
+   project file `Critique - Cards and Instruments.dc.html`).** §11 and
+   §12.1–§12.6 govern single marks and single cards; these govern how
+   cards and instruments sit *next to each other*. Nine accepted, one
+   withdrawn:
+   - **(a) One instrument per crown.** A crown carries one drawing. The
+     Saturday crown's map already carries the interval; sunset becomes a
+     word in the footnote, not a second instrument. (Critique 02.)
+   - **(b) Silhouette adjacency.** Adjacent instruments differ in
+     silhouette — band → bars → curve, never band → band, never
+     dot-line → dot-line. When they cannot, the lesser one steps down
+     the degradation ladder to its sentence. One-meaning-per-mark holds
+     inside an instrument; this is the same law between them. (03.)
+   - **(c) Two kicker registers per screen.** Section = mute mono with
+     the rule; unit = gold mono. Oxblood appears only on the crown's
+     status line, which is a different atom (sans + dot, never a
+     kicker). The ghost kicker is a footnote, not a third register.
+     (04.)
+   - **(d) The week strip is a banded seam** (containment step 2:
+     hairline top and bottom, square, full-width), never an outlined
+     box under the crown. (05.)
+   - **(e) Crown ≥ unit in ink, not just in points.** Unit titles hold
+     at serif 16/500; the crown title may take serif 22/600. A reading
+     title is a promise, not a headline. (06.)
+   - **(f) Ghost anchors are present.** Ghost = ink 55% (#8F877C), not
+     #B5AFA5 (≈1.6:1 on cream, which vanishes on device). Still silent,
+     still second to the two real labels. A label never touches its own
+     mark. Water wears planning-ink at 20% and the stroke carries the
+     colour — never a grey wash. (07.) *Applies to the native
+     instruments too: `DayBand`/`TideCurve` anchors use
+     `colors.text.tertiary` today.*
+   - **(g) One in-motion row.** 44px, status mark + one line + chevron
+     across all seven Home states; a 32px avatar only when a person is
+     the subject; no icon plates. The subject decides the mark, not the
+     state. (08.)
+   - **(h) The carried leg is gold.** Ink is reserved for now-dots,
+     extremes, and the primary button; the ThinWeek burden strip's
+     near-black bar breaks the gold-mass-is-yours law. (09.)
+   - **(i) One primary + at most one door at a page's foot.** Utilities
+     (share, correct your trace) go to the scope handle; a door always
+     wears its arrow; four gold words in a grid are a toolbar. (10.)
+   - **Withdrawn — the hatch hero plate (01).** The critique proposed
+     dropping the notice's hero plate; founder ruled the plate stays:
+     the first opening on a screen is meant to be highlighted and a
+     photograph is what highlights it. The diagonal hatch is a
+     placeholder register — the absence of a design decision, never
+     one — and is replaced when the photograph is sourced.
+   Housekeeping carried with the ruling: the Instruments catalog board
+   is stale against its own screens (diamond endpoint on the basis
+   strip, "usually quiet by noon" ghost label) and must be resynced
+   before any screen is redrawn; annotation boards (MP*, C2) are
+   cards-in-cards and should flatten to one level.
+   **Not yet applied to any board or component** — recorded here first;
+   application is the next canvas/native pass.
+
 ## 13. Not kernel — do not cite as kernel
 
 - The 24-kind Trips section union, its ANCILLARY/POST_HERO orders, and the
