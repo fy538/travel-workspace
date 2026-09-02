@@ -263,21 +263,22 @@ System scope does not mean simultaneous unsynchronized rewrites.
 ## Immediate execution ruling
 
 Continue S2 through evidence-bearing semantic-result production while
-advancing S3 through joined native serving envelopes. S1 is closed; Home and
+advancing S3 and S4 through causal native serving. S1 is closed; Home and
 Places judge producer-declared value against exact owner truth before either
 root spends layout budget. Places proves the required cutover shape: judgment
 governs the mature capability workspace instead of replacing it with a thin
-semantic inspection screen or running as a decorative shadow request. Home has
-the same resilient authority posture for its native v2 composition; its next
-serving package is a joined runtime envelope rather than another compatibility
-screen.
+semantic inspection screen or running as a decorative shadow request. Both
+roots now preserve an exact lived-experience treatment from server judgment to
+actual viewport exposure and user engagement.
 
 Chat and Life remain behind their typed boundaries until their design lanes
 settle and they can emit or organize evidence-bearing semantic results. Do not
 relabel free-form Concierge prose or raw Life returns as conformance. The next
-shared engineering seam is S4: root-visible Instruments and actions must be
-compiled from the existing consequence capability/readback registry so that
-the live engine is legible during ordinary life as well as active travel.
+shared engineering seam is the S4 consequence resolver: a released
+proposal/execute control must carry server-issued scope, expected revision,
+target, idempotency, and owner-gateway identity through canonical commit and
+readback. The client must never reconstruct that authority from a capability
+name.
 
 ## Execution status — 2026-09-01
 
@@ -575,3 +576,49 @@ contracts, TypeScript, lint, schema bridge, and the 432-path active-mobile
 projection pass. S4 remains active: no proposal/execute family is promoted by
 this package, and the client still needs a server-issued consequence resolver
 before a released mutation can appear.
+
+### S4B — causal treatment identity and native exposure — landed
+
+Backend commits `da7653748`, `a980bd121`, and `a5ede9f2b`; app commits
+`876a61625`, `33273a114`, and `6a4cb6655`; and workspace contract commits
+`d6968bb` and `129af86` carry the lived-experience decision through the native
+roots instead of stopping at server selection:
+
+- content-free surface treatment identity now lives in the shared core rather
+  than depending upward on live-engine orchestration;
+- every target-bound Home or Places unit may carry its exact arc, treatment,
+  family, target projection, expiry, composition fingerprint, surface instance,
+  and signed presentation proof;
+- one bounded durable lookup resolves all eligible root targets, while foreign,
+  expired, unsigned, cross-surface, or non-selected treatments fail closed;
+- direct proposal/execute controls require that causal binding and a matching
+  consequence family before action governance can admit them;
+- Home records `rendered` only after the exact native unit remains in its
+  measured viewport, then records `opened` for navigation/preparation or
+  `acted` only after a confirmed proposal/execution boundary;
+- the joined Places runtime explicitly binds a semantic unit and treatment to
+  the exact mature section/card identity that renders it, so the client does
+  not reverse-engineer semantic IDs from feed content;
+- stacked and forked Places cards use card-level viewport geometry rather than
+  treating fetch, mount, or whole-section presence as exposure; card actions
+  distinguish openings from state-changing save/clear behavior; and
+- exposure reporting reuses stable device receipts and server idempotency
+  across ambiguous failures and remounts without blocking the interface.
+
+The remaining limitation is explicit: horizontally scrolling Places rails do
+not emit a `rendered` treatment receipt until the rail owns horizontal
+viewability. Their `opened` and `acted` receipts are already causal. Silence is
+safer than falsely claiming that an off-screen rail card was seen.
+
+Verification covers 13 focused backend runtime/API/treatment tests, 73 wider
+Places root/workspace/feed tests, 29 shared Home/Places exposure tests,
+TypeScript, changed-file lint, repository hooks, and the deterministic OpenAPI
+contract. The complete contract now contains 565 paths, 627 operations, and
+1,409 schemas; the active mobile projection contains 432 paths, 477 operations,
+and 1,256 schemas.
+
+S4 remains active. Treatment identity proves which intervention was presented
+and engaged; it is not yet authority to mutate. The next package is the
+server-issued consequence resolver and canonical readback envelope, followed
+by multiplayer projection invalidation and continuity repair over the same
+causal chain.
