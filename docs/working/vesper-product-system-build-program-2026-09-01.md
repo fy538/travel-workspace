@@ -861,3 +861,52 @@ Verification covers 92 proposal, occurrence, consequence, readback, registry,
 portfolio, and root API tests plus every backend commit hook. The next repair
 package can now bind occurrence correction and itinerary operation Undo without
 guessing backward from a card or proposal label.
+
+### S4I / S6A — canonical consequence repair transport — landed
+
+Backend commits `1ef064973` and `2f996bf29`, plus app commit `54fa4ee98`, turn
+the repair target into an owner-bound recovery system rather than a decorative
+“Undo” label:
+
+- repair is a new causal action against the canonical object returned by
+  verified readback, not a replay or mutation of the original surface card;
+- the shared repair contract distinguishes exact Undo from correction.
+  Correction must carry another owner-prepared target; the client cannot submit
+  or improvise a replacement object;
+- shared Plan Undo verifies the exact proposal-backed operation, delegates to
+  the existing proposal and itinerary-history owners, commits the typed inverse,
+  closes the proposal projection, invalidates Plan/Home/world read models, and
+  independently reads back the inverse operation;
+- private occurrence Undo writes `did_not_happen` only for the affected person
+  and supersedes the reconciliation proposal. Prepared correction atomically
+  writes `did_not_happen` on the old block and `happened` on the reviewed new
+  block, preserving plural participant truth;
+- both owners make replay idempotent, recheck current membership and canonical
+  source identity, return a distinct repair receipt and decision, and verify a
+  new canonical repair operation;
+- a successful root consequence now issues a short-lived opaque repair grant
+  only after canonical readback and only for a registered repair owner. The
+  grant is bound to the persisted arc, original decision, action receipt,
+  readback, canonical object, recipient, relationship scope, and scope
+  fingerprint;
+- the repair endpoint accepts only that opaque grant. It reloads durable causal
+  lineage and chooses the family owner server-side; the mobile client cannot
+  submit family, target, scope, recipient, revision, replacement, or
+  idempotency coordinates; and
+- consequence and repair grants now share one integrity envelope, avoiding two
+  subtly different signing implementations while retaining distinct token and
+  claim contracts.
+
+Verification covers 58 adjacent backend consequence, repair, grant, owner,
+readback, registry, root API, and replay tests; a mobile authority-boundary
+wire test; TypeScript; backend and app commit hooks; and the complete
+cross-repository contract checker. The complete contract now contains 567
+paths / 629 operations / 1,418 schemas; the active mobile projection contains
+434 paths / 479 operations / 1,265 schemas.
+
+S4 and S6 remain active. This package proves the reusable recovery seam across
+both private and multiplayer canonical truth, but it does not yet claim full
+correction propagation. The next dependency is the relationship-owned
+prepared handoff command, followed by source-aware derived-state retraction
+and explicit repair continuity in Home/Places receipts before any consequence
+family is promoted from shadow.

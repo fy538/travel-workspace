@@ -22672,6 +22672,66 @@
         }
       }
     },
+    "/api/root-projections/v2/consequences/repair": {
+      "post": {
+        "tags": [
+          "root-projections"
+        ],
+        "summary": "Repair Root Consequence V1",
+        "description": "Repair one verified consequence from an opaque server-issued grant.",
+        "operationId": "repair_root_consequence_v1_api_root_projections_v2_consequences_repair_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RootConsequenceRepairRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RootConsequenceRepairResolutionV1"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/root-projections/v1/life": {
       "get": {
         "tags": [
@@ -46531,6 +46591,15 @@
         ],
         "title": "ConsequenceGrantEffect"
       },
+      "ConsequenceRepairKind": {
+        "type": "string",
+        "enum": [
+          "undo",
+          "correct"
+        ],
+        "title": "ConsequenceRepairKind",
+        "description": "Closed recovery postures with distinct authority requirements."
+      },
       "ConversationAgencyResponse": {
         "properties": {
           "mode": {
@@ -51191,6 +51260,15 @@
           "rejected"
         ],
         "title": "DomainActionReceiptStatus"
+      },
+      "DomainRepairStatus": {
+        "type": "string",
+        "enum": [
+          "applied",
+          "already_applied",
+          "rejected"
+        ],
+        "title": "DomainRepairStatus"
       },
       "DossierDetail": {
         "properties": {
@@ -84600,6 +84678,120 @@
         ],
         "title": "RootCompositionResult"
       },
+      "RootConsequenceRepairRequest": {
+        "properties": {
+          "repair_grant": {
+            "type": "string",
+            "maxLength": 4096,
+            "minLength": 80,
+            "title": "Repair Grant"
+          }
+        },
+        "type": "object",
+        "required": [
+          "repair_grant"
+        ],
+        "title": "RootConsequenceRepairRequest"
+      },
+      "RootConsequenceRepairResolutionV1": {
+        "properties": {
+          "contract_version": {
+            "type": "integer",
+            "const": 1,
+            "title": "Contract Version",
+            "default": 1
+          },
+          "grant_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Grant Id"
+          },
+          "repair_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Repair Id"
+          },
+          "arc_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Arc Id"
+          },
+          "family_id": {
+            "type": "string",
+            "title": "Family Id"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/ConsequenceRepairKind"
+          },
+          "owner": {
+            "type": "string",
+            "title": "Owner"
+          },
+          "changed": {
+            "type": "boolean",
+            "title": "Changed"
+          },
+          "repair_status": {
+            "$ref": "#/components/schemas/DomainRepairStatus"
+          },
+          "readback_status": {
+            "$ref": "#/components/schemas/ReadbackStatus"
+          },
+          "source_canonical_ref": {
+            "$ref": "#/components/schemas/CausalDomainRef"
+          },
+          "repair_receipt_ref": {
+            "$ref": "#/components/schemas/CausalDomainRef"
+          },
+          "repair_decision_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CausalDomainRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "repaired_canonical_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CausalDomainRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "repair_readback_ref": {
+            "$ref": "#/components/schemas/CausalDomainRef"
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Observed At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "grant_id",
+          "repair_id",
+          "arc_id",
+          "family_id",
+          "kind",
+          "owner",
+          "changed",
+          "repair_status",
+          "readback_status",
+          "source_canonical_ref",
+          "repair_receipt_ref",
+          "repair_readback_ref",
+          "observed_at"
+        ],
+        "title": "RootConsequenceRepairResolutionV1",
+        "description": "Owner repair receipt and canonical post-repair readback."
+      },
       "RootConsequenceResolutionV1": {
         "properties": {
           "contract_version": {
@@ -84714,6 +84906,29 @@
           },
           "readback_ref": {
             "$ref": "#/components/schemas/CausalDomainRef"
+          },
+          "repair_grant": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Repair Grant"
+          },
+          "repair_expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Repair Expires At"
           },
           "observed_at": {
             "type": "string",

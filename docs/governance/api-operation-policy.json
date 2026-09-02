@@ -1994,6 +1994,22 @@
       "removal_trigger": "Remove only if all consequential root actions move to a successor owner-command boundary with equivalent server-issued authority, replay safety, and canonical readback.",
       "review_by": "2026-10-31"
     },
+    "POST /api/root-projections/v2/consequences/repair": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_source",
+          "name": "resolveRootConsequenceRepair",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": "LIVED_EXPERIENCE_CONSEQUENCE_RESOLUTION_ENABLED",
+      "lifecycle": "active",
+      "owner": "root-projection",
+      "reason": "A verified consequence may return a short-lived opaque repair grant. The app submits only that grant; the backend reloads persisted causal lineage and the canonical owner performs and reads back the exact repair.",
+      "removal_trigger": "Remove only if consequence recovery moves to a successor boundary that preserves server-selected canonical targets, current owner authority, idempotent repair, and post-repair readback.",
+      "review_by": "2026-10-31"
+    },
     "PUT /api/places/scope": {
       "audience": "app",
       "consumers": [
