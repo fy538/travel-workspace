@@ -959,3 +959,54 @@ serving the superseded implication without deleting the historical evidence.
 After that, the addressed-handoff lifecycle needs end-to-end prepare → send →
 recipient response → revoke/repair proof before any visible multiplayer
 treatment is promoted.
+
+### S6B — source-aware occurrence projection repair — landed
+
+Backend commit `0cad2ab4f` makes correction propagate through the meaning
+derived from occurrence truth, rather than changing only the canonical
+participation row while leaving stale Place memory behind.
+
+- migration `xgraph23` adds an exact contribution ledger beside the aggregate
+  traveler affinity projection. Canonical occurrence evidence is keyed by
+  person, Trip, and block, with active/retracted lifecycle, original Place,
+  weight, signal kind, Trip context, and the exact companion projections it
+  created;
+- marking an occurrence happened now writes the canonical participant—not
+  merely the operation principal—and applies one idempotent, source-addressed
+  personal contribution plus only the pair projections justified by the Trip
+  roster at that write;
+- correcting that occurrence retracts the exact source from both the personal
+  and original companion projections. An independent save, rating, plan
+  choice, another visit, or another companion relationship for the same Place
+  remains intact;
+- a repair known to supersede a previously materialized venue visit fails
+  closed when that exact source ledger row is unavailable. A normal first-time
+  `did_not_happen` mark remains valid and does not invent a contribution;
+- factual zero-weight attendance can enrich an existing Place record with
+  visit provenance, but it no longer refreshes preference recency or replaces
+  the preference's Trip context. When correction leaves an active aggregate
+  with no weight, signals, or evidence, the empty projection is removed while
+  the retracted contribution remains auditable;
+- replayed correction is a no-op, and a later reconfirmation reactivates the
+  same source exactly once. This preserves correction/Undo symmetry without
+  double-counting personal or multiplayer meaning; and
+- occurrence repair continues to invalidate canonical itinerary, conflict,
+  Plan, and Home read models and now also clears the affected person's Places
+  taste cache locally and across workers.
+
+Verification covers 108 adjacent Postgres and unit tests across canonical
+occurrence commits, personal and companion affinity, correction visibility,
+repair owners and grants, root projections, Places ranking/cache behavior, and
+the outcome-closure scenario. The package's full commit-hook set passes. No API
+shape changed, so the complete and active mobile OpenAPI projections remain
+569 paths / 631 operations / 1,422 schemas and 434 paths / 479 operations /
+1,265 schemas respectively.
+
+S6 remains active. This closes forward source-aware propagation for occurrence
+truth created after `xgraph23`; it deliberately does not pretend that older
+anonymous `mark_happened` aggregate evidence can be repaired precisely. Before
+promotion, rollout needs either a canonical backfill for repairable pre-
+`xgraph23` occurrences or an explicit legacy reconciliation policy. The next
+system package should then prove visible repair continuity across Home and
+Places receipts and finish the addressed-handoff prepare → deliver → respond →
+revoke/repair lifecycle before release gates are evaluated.
