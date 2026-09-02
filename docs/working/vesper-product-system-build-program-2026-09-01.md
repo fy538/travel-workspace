@@ -1481,7 +1481,7 @@ generation and downstream of canonical authority:
   only its native expression and still passes through existing treatment,
   value judgment, selection, and renderer contracts.
 
-Verification covers 111 root-projection, owner-read, and semantic-result tests,
+Verification covers 112 root-projection, owner-read, and semantic-result tests,
 plus every changed backend commit hook. No API schema or mobile change was
 needed for this internal seam.
 

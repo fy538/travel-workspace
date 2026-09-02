@@ -345,7 +345,7 @@ generated text into its own evidence:
   Existing treatment, value judgment, root selection, and rendering still run
   after that merge.
 
-Focused and adjacent verification covers **111** root-projection, owner-read,
+Focused and adjacent verification covers **112** root-projection, owner-read,
 and semantic-result tests; all changed backend hooks pass. This still does
 **not** generate a live contribution on a default route. The remaining S2
 dependency is a canonical material selector/loader, known-to-person exposure
