@@ -1557,9 +1557,56 @@ knew each claim. It establishes only that one admitted semantic fact reached a
 qualified root viewport. The three delivery flags remain default-off, and no
 default producer or route activation was introduced.
 
-The next dependency remains within S2/S3: add a production Source-selection
-policy and default governed producer across the maintained situation matrix,
-then activate them behind the existing dark serving boundary. Selection must
-optimize value over silence using owner reads, delivered-fact suppression,
-current Place/Moment relevance, multiplayer grants, burden, and root-native
-jobs; it must not become an engagement feed or a trip-recap heuristic.
+The next dependency remains within S2/S3, but the code audit separates it into
+two packages. The current pipeline accepts exact `SourceContributionSelectionV1`
+coordinates and has exact material loaders; it does not yet own a bounded
+discovery inventory from which production selection can safely choose. A model
+must not become a hidden Source index, authority resolver, ranker, and writer in
+one step.
+
+### S2K — governed Source opportunity inventory and selection — next
+
+Build a bounded, viewer-correct preflight over the reviewed Source families:
+
+- recent retained Experience Anchors owned by the viewer;
+- approved dossiers already related to the current canonical Place/Moment
+  scope, rather than a global editorial crawl; and
+- live or kept addressed Place handoffs visible under the exact relationship
+  grant.
+
+Each opportunity must expose only the metadata needed to form an exact
+selection: canonical ResourceRef and revision, Source kind, represented time,
+freshness/expiry, audience and grant boundary, subject refs, owner ref, and a
+bounded retrieval signal. Discovery does not expose private producer prose to
+root payloads and does not itself authorize use. The planner may form only a
+small bounded set of candidate Source groups, then expand each selected group
+through the existing owner-read and material-loader gates. Missing context,
+split grants, stale/withdrawn custody, insufficient Source count, repeated
+delivery, excessive burden, or weak present relevance yields silence.
+
+Selection must optimize value over silence across ordinary/current-world,
+open-interval, recent-return, and live/shared situations. It may use bounded
+deterministic retrieval or a separately governed selection adapter, but every
+chosen Source ID must come from the preflight inventory and be revalidated by
+the existing exact pipeline. It must not become an engagement feed,
+trip-recap heuristic, or personality inference layer.
+
+### S2L / S3I — default governed producer and dark serving activation — follows S2K
+
+Only after S2K can reliably produce an exact authorized selection should the
+runtime install a default producer:
+
+- a prompt-registry-owned, versioned structured-output adapter receives only
+  `SourceContributionProducerInputV1`;
+- model, token, latency, and retry budgets are explicit; timeout, parse failure,
+  provider outage, or rejected compilation produces silence rather than
+  deterministic filler prose;
+- the existing compiler remains the final authority for Sources, claims,
+  novelty, subjects, owners, audience, grants, anatomy, and root jobs; and
+- Home and Places routes invoke the pipeline only behind a separate default-off
+  production gate, merge the admitted contribution before value judgment, and
+  retain independent delivery/treatment/consequence lifecycles.
+
+The accepted situation matrix, not one polished trip story, is the serving
+gate. Chat and Life remain typed consumers/owners during this package; their
+visual surfaces are not redesigned through a Home/Places producer activation.
