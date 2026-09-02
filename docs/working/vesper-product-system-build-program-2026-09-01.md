@@ -274,15 +274,17 @@ actual viewport exposure and user engagement.
 Chat and Life remain behind their typed boundaries until their design lanes
 settle and they can emit or organize evidence-bearing semantic results. Do not
 relabel free-form Concierge prose or raw Life returns as conformance. The
-generic S4 consequence resolver and its prepared-authority boundary are now
-landed. The next shared seam is concrete owner binding across a small portfolio
-of materially different consequence families: private occurrence
-reconciliation, shared Plan repair, and an addressed Place handoff. Those
-families must revalidate current owner revision, audience, affected principals,
-and relationship membership at commit time, then propagate canonical readback,
-invalidation, correction, and continuity through the same causal chain. The
-client must never reconstruct authority from a capability name or from the
-object a root unit happens to depict.
+generic S4 consequence resolver, prepared-authority boundary, and first
+concrete owner family are now landed. Private occurrence reconciliation proves
+the reusable command shape: emit while the decision is pending, target the
+exact proposal rather than the depicted Place, bind the roster epoch, execute
+only through the canonical writer, and verify the result through the same
+owner. The next shared seam applies that shape to shared Plan repair and an
+addressed Place handoff. Those families must revalidate current owner revision,
+audience, affected principals, and relationship membership at commit time,
+then propagate canonical readback, invalidation, correction, and continuity
+through the same causal chain. The client must never reconstruct authority
+from a capability name or from the object a root unit happens to depict.
 
 ## Execution status — 2026-09-01
 
@@ -716,3 +718,46 @@ concrete owner gateways and readback for private occurrence reconciliation,
 shared Plan repair, and addressed Place handoff, with current membership-epoch
 revalidation and dependent projection invalidation before any group control is
 served.
+
+### S4E — first concrete owner command and roster revalidation — landed
+
+Backend commit `0e03a414d` binds private encounter confirmation to its actual
+occurrence owner and corrects the producer lifecycle that the concrete binding
+exposed:
+
+- occurrence reconciliation now emits the lived-experience opening when a
+  private proposal is staged and still pending, rather than after the person
+  has already confirmed or corrected it;
+- the opening carries both its depicted venue and distinct canonical proposal
+  and itinerary-block references, so Place can present the encounter without
+  becoming the mutation owner;
+- the prepared consequence promotes the emission-time roster fingerprint into
+  the expected owner revision, and the gateway re-reads that fingerprint before
+  dispatch;
+- the canonical reconciliation writer independently verifies that the
+  recipient is still a Trip member inside its locked transaction, preventing a
+  stale root grant from bypassing the owner route's membership boundary;
+- the gateway accepts only an exact `encounter-candidate` proposal target and
+  only the `execute` mode, delegates confirmation to the existing occurrence
+  writer, returns deterministic content-free receipts, and treats replay of an
+  already confirmed/corrected proposal as already applied;
+- readback re-opens the exact viewer-scoped proposal through the occurrence
+  owner, verifies positive terminal state against the receipt's domain
+  decision, and reports missing scope, pending state, rejection, or supersession
+  as explicit non-verified outcomes; and
+- the runtime now has one consequence registry containing both owner-bound
+  read models and command families. Registration is not release: encounter
+  gateway and readback status remain shadow, and no root control appears until
+  the independent surface and longitudinal gates pass.
+
+Verification covers 53 adjacent owner-gateway, consequence, prepared-authority,
+portfolio, producer, root API, and lifecycle tests plus every backend commit
+hook. No public response schema changed, so the complete and active-mobile
+OpenAPI projections remain at 566 paths / 628 operations / 1,414 schemas and
+433 paths / 478 operations / 1,261 schemas respectively.
+
+S4 remains active. The immediate next package is not a one-off encounter UI;
+it is the shared Plan-repair command/readback binding, followed by addressed
+Place handoff and dependent Home/Places invalidation over the same registry,
+grant, owner receipt, and readback chain. Encounter surface release remains
+deliberately withheld until that shared continuity behavior is present.
