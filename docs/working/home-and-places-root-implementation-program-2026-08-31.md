@@ -947,10 +947,20 @@ Implementation checkpoint — 2026-09-02:
 - Code evidence passes 48 backend authority/revision tests and 54 app
   Home/Places suites / 363 tests, plus focused lint, both TypeScript gates,
   API boundaries, route/surface registries, core-tab review, and surface
-  invariants. Package 4 is code-complete enough for the physical rehearsal,
-  but promotion remains open until native gesture/scroll, physical process
-  death, degraded readback, and visual continuity are captured on one pinned
-  revision.
+  invariants.
+- App commit `1c134d964` adds the PR-smoke native rehearsal
+  `.maestro/47-home-places-semantic-return.yaml` and an explicit Home-depth
+  Places return control. A pinned iPhone 16 Pro / iOS 18.2 simulator run proves
+  that Home remains the selected tab, the shared Places owner opens as depth,
+  and return restores the originating Home unit at its semantic offset after a
+  canonical fresh read. The adjacent selection passes 33 suites / 251 tests.
+- Package 4 now has native happy-path evidence, not merely code readiness.
+  Promotion remains open on physical-device return, Android hardware back,
+  nested map/Search/detail/action token propagation, process-death and
+  supersession degradation, real-backend owner readback, visual review, and a
+  deliberate iOS edge-gesture decision. The simulator edge-swipe attempt did
+  not unwind this nested headerless stack; the explicit back control is the
+  currently proven path.
 
 ### Package 5 — Native convergence and deletion
 

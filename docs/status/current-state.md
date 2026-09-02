@@ -251,9 +251,20 @@ supersession, unavailable read, or missing/consumed token keeps the recomposed
 Home and cannot arm a later stale jump. Evidence passes 48 backend tests and 54
 app suites / 363 tests plus both TypeScript gates, lint, API boundaries, and
 route/surface checks. This closes the code-level route and degradation gaps,
-not the physical-device or rollout gate: native gesture/scroll geometry,
-physical process death/supersession, visual continuity, and explicit shell
-promotion remain unverified. Chat and Life were unchanged.
+not the physical-device or rollout gate.
+
+App commit `1c134d964` adds the native iOS simulator proof: the Home tab remains
+selected while its Places depth opens, an explicit `Back to Home` control
+unwinds the route (or safely replaces to canonical Home without history), and
+the fresh-read resolver restores the same typed Home unit at its semantic
+offset. The PR-smoke Maestro flow passes 1/1 on iPhone 16 Pro / iOS 18.2; the
+adjacent selection passes 33 suites / 251 tests plus TypeScript, contract,
+boundary, registry, and surface checks. This narrows the remaining gate to
+physical-device and Android return, nested map/Search/detail/action movement,
+process death and concurrent real-owner supersession, real-backend readback,
+visual continuity, an explicit iOS edge-gesture decision, and shell promotion.
+The edge-swipe attempt did not unwind this nested headerless stack; the visible
+back control is the proven path. Chat and Life were unchanged.
 
 ### Contribution-contract conformance
 

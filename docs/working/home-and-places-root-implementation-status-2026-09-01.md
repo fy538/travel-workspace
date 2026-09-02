@@ -601,9 +601,9 @@ the manifest but was not hash-verified because the operator-owned historical
 bundle was not supplied.
 
 This is implementation evidence, not physical-device or release evidence.
-Gesture behavior, exact scroll restoration, superseded-origin recomposition,
-cold-link/process-death degradation, and visual continuity still require a
-revision-pinned device rehearsal before Package 4 can be promoted.
+Superseded-origin recomposition, cold-link/process-death degradation, and
+visual continuity still require revision-pinned native rehearsal before
+Package 4 can be promoted.
 
 ### Fresh-read return reconciliation — 2026-09-02
 
@@ -638,6 +638,38 @@ This proves deterministic code-level degradation, not physical process death,
 native gesture behavior, or device scroll geometry. The remaining Package 4
 return gate is a revision-pinned device rehearsal of exact restore and honest
 recomposition; it is no longer an unspecified implementation behavior.
+
+### Native simulator semantic-return rehearsal — 2026-09-02
+
+App commit `1c134d964` closes the first native-evidence gap with a deterministic
+iOS simulator rehearsal rather than another mock renderer assertion:
+
+- Home opens the canonical Places workspace as Home-owned depth while the Home
+  tab remains selected;
+- Home-depth Places now exposes an explicit `Back to Home` control in the feed
+  and terminal-state headers. It unwinds native history when present and falls
+  back to canonical Home when a stale or direct route has no history;
+- returning performs the canonical fresh-read comparison and restores the same
+  typed Home unit at its semantic scroll position. The rehearsal verifies that
+  the earlier orientation is still offscreen, so success is not merely a route
+  change to the top of Home; and
+- `.maestro/47-home-places-semantic-return.yaml` is part of PR smoke rather
+  than an ad hoc local script.
+
+The pinned iPhone 16 Pro / iOS 18.2 simulator run passes **1/1** flow, and the
+adjacent Home/Places selection passes **33 suites / 251 tests** plus TypeScript,
+generated-contract, API-boundary, metadata, scenario-registry, surface-
+invariant, and core-tab checks. The captured depth screen shows the Home tab
+selected over the shared Places owner; the return screen shows
+`opening.water-route` restored below the top of Home.
+
+This is meaningful native proof, but it is deliberately narrower than a
+production claim. It does **not** prove a physical device, Android hardware
+back, process death or token-registry loss, concurrent real-owner
+supersession, nested map/Search/detail/action return, or real-backend owner
+readback. An attempted iOS edge-swipe did not unwind this headerless nested
+stack, so the explicit control is the proven return path and edge-gesture
+support remains an open shell decision rather than completed evidence.
 
 ## Integrated convergence execution — 2026-09-01
 
@@ -695,9 +727,10 @@ the August pivot.
   v1 Home/Places compatibility owners still serve released behavior or
   capabilities absent from v2.
 - Exact semantic return and the stronger Home→Places navigation law now have a
-  native route family in code. Do not call Package 4 promotion complete until
-  native gestures, exact restoration, degradation, and owner readback are
-  exercised on a revision-pinned device.
+  native route family and a passing iOS simulator happy path. Do not call
+  Package 4 promotion complete until nested movement, physical-device return,
+  process-death/supersession degradation, edge-gesture policy, and real owner
+  readback are exercised on a revision-pinned build.
 
 ## Verification
 

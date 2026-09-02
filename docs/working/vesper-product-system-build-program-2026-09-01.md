@@ -1770,7 +1770,7 @@ rejection, and terminal exclusion. Focused and adjacent verification passes
 unrelated failures. The model-role approval and real-model matrix remain the
 next activation dependency; Chat and Life were not changed.
 
-### S4L / S7F — native Home→Places depth and semantic return — landed; device evidence pending
+### S4L / S7F — native Home→Places depth and semantic return — simulator-proven; physical and nested evidence pending
 
 App commit `31a54cbbb` turns the accepted cross-root law into one native route
 family without inventing another Places product or owner.
@@ -1799,8 +1799,19 @@ family without inventing another Places product or owner.
 Verification passes 48 backend authority/revision tests and 54 app
 Home/Places/root-projection suites / 363 tests, both TypeScript gates, API
 boundaries, surface registry and invariants, core-tab review, and the complete
-scenario-ID registry. No rollout gate changed, no second read owner was added,
-and Chat and Life were not modified. S4's code path is ready for the
-revision-pinned physical rehearsal; S7 promotion remains open on native gesture
-and scroll evidence, physical process-death/supersession rehearsal, visual
-review, and public-shell approval.
+scenario-ID registry. App commit `1c134d964` then adds an explicit Home-depth
+Places return control and promotes
+`.maestro/47-home-places-semantic-return.yaml` into PR smoke. A pinned iPhone
+16 Pro / iOS 18.2 simulator run proves the same shared Places owner opens under
+Home ancestry, Home remains selected, and canonical fresh-read return restores
+the originating typed unit at its prior semantic offset. The adjacent native
+selection passes 33 suites / 251 tests and the contract, registry, boundary,
+and surface checks.
+
+No rollout gate changed, no second read owner was added, and Chat and Life were
+not modified. S4 now has native simulator happy-path evidence. S7 promotion
+remains open on physical-device and Android return, nested
+map/Search/detail/action movement, process-death and real-owner supersession,
+real-backend readback, visual review, and public-shell approval. An iOS
+edge-swipe did not unwind the nested headerless stack in the simulator, so the
+explicit control is proven while edge-gesture support remains unresolved.
