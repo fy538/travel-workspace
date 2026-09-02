@@ -323,6 +323,45 @@ evidence—not physical-device, Android, process-death, concurrent supersession,
 other owner-family, visual-approval, or public-shell promotion evidence. Chat
 and Life were unchanged.
 
+### Home page composition arbitration — 2026-09-02
+
+Backend commit `c2bd2fc01` replaces Home's generic twelve-item selector with a
+Home-specific page arbitration pass after candidate-level value judgment. The
+shared gate still owns truth, authority, freshness, exposure, evidence-cluster,
+and seat admission; the Home pass now owns the page-level relationships that
+cannot be decided one card at a time:
+
+- posture selects one explicit crown identity, including a truthful world read
+  when Quiet has no unresolved foreground;
+- Quiet admits zero unresolved demand, other postures admit at most one, and
+  optional doors do not become demands merely because they are actionable;
+- one In-motion row survives page composition;
+- Urgent preserves the direct read, week shape, recovery crown, and at most one
+  non-demanding live row while Horizons and Continuity yield;
+- the world read and week shape no longer spend the content allowance; and
+- earned low-demand returns are not product-count-capped after each has beaten
+  silence, although owner reads and an optional caller safety bound remain
+  finite.
+
+The admission report carries the exact dominant candidate and structured
+composition suppressions. Non-empty Home projections must name one admitted
+dominant across chrome or any owner region; an entirely withheld/degraded
+projection may remain empty rather than fabricate a crown.
+
+App commit `89bf47fd7` consumes that contract. Chrome dominance resolves through
+the existing world read, while a dominant from Now, In motion, Horizons, or
+Continuity is promoted into one page-level crown and removed from its ordinary
+row position. Empty regions no longer render headings, and exact semantic
+restoration targets the promoted crown rather than its former region slot.
+
+Verification passes **180 backend root-projection tests**, **29 focused app
+tests**, Ruff, backend formatting, TypeScript, and Prettier. No OpenAPI shape
+changed. This is deterministic composition and native semantic structure, not
+visual approval of every posture: the remaining Home package is native
+seven-posture rehearsal against production-shaped portfolios plus application
+of the outstanding §12.7 instrument/register rules. Chat and Life were
+unchanged.
+
 ### Contribution-contract conformance
 
 The accepted [Contribution and Consequence

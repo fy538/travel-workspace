@@ -875,3 +875,43 @@ This boundary is intentional: the app has a coherent v2 contract, native
 semantic renderer seam, exact-return behavior, and an independently flagged
 Life foundation without turning any of them into a repository-wide renderer or
 public rollout.
+
+## Home page-level arbitration checkpoint — 2026-09-02
+
+Backend commit `c2bd2fc01` implements the composition layer that was still
+missing between per-candidate value admission and Home compilation. This is not
+another producer or card. It is a deterministic Home-only arbiter over already
+owner-read, value-qualified candidates:
+
+1. resolve the posture-specific crown and preserve its identity through the
+   compiler;
+2. spend no content budget on `world_read` or `week_shape`;
+3. admit zero unresolved demands in Quiet and at most one elsewhere;
+4. keep one In-motion row across the page;
+5. apply Urgent's suppression contract without manufacturing a critical row;
+6. keep individually earned Quiet returns without the old arbitrary default
+   count of twelve; and
+7. emit structured suppression reasons for tests and internal evaluation.
+
+The shared selector remains unchanged for Places. The shared gate continues to
+own hard truth/authority and duplicate-seat decisions, so Home posture policy
+does not become a new universal ranker. The projection contract now recognizes
+that the crown can be a chrome world read or a unit from any Home region. It
+requires a crown for every non-empty projection but permits an honestly empty
+degraded projection when all owner-backed material is unavailable.
+
+App commit `89bf47fd7` removes the previous native assumption that only a Now
+unit could dominate. A non-Now dominant is rendered once in a page-level crown
+before the week band; a chrome dominant remains the world read. The unit keeps
+its canonical region and references, exact-return restoration follows the
+promoted crown, and empty region labels yield by existence gate.
+
+Focused verification passes 180 backend root-projection/API tests and 29 app
+renderer, conformance, return, and governed-cutover tests, together with Ruff,
+formatting, TypeScript, and Prettier. The API schema shape did not change.
+
+This closes deterministic dominance, demand, one-row, richness, and Urgent
+suppression mechanics. It does not yet close seven-posture native visual
+acceptance, the remaining kernel §12.7 instrument/register details, broader
+real-owner families, physical devices, Android, process death, public-shell
+promotion, or compatibility deletion. Chat and Life were not modified.

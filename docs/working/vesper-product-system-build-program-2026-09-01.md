@@ -1873,3 +1873,33 @@ This closes one real owner/projection/native dependency, not S4 as a whole.
 Cold process restart, real concurrent supersession, physical iOS and Android,
 other owner/provider action families, edge-gesture policy, visual review, and
 public-shell promotion remain open. Chat and Life were not modified.
+
+### S4N — Home page composition arbitration — landed; native posture evidence pending
+
+Backend commit `c2bd2fc01` adds the missing page-level judgment after shared
+value admission. Home now selects one posture-specific crown, separates demand
+from optional actionability, admits zero unresolved demand in Quiet and at most
+one elsewhere, limits In-motion to one row, and applies Urgent suppression.
+Chrome no longer competes with content for the same allowance, and production
+richness is no longer governed by the former arbitrary twelve-unit default;
+each return still has to beat silence and all owner reads remain bounded.
+
+The admission report carries the chosen crown and structured suppression
+reasons into compilation. A non-empty Home projection must resolve that crown
+through chrome or one of the four regions; a completely unavailable owner
+portfolio may compile an empty degraded projection rather than fabricate
+orientation. Places retains the shared generic selector and is not re-ranked by
+Home posture.
+
+App commit `89bf47fd7` makes the crown genuinely page-level. The native screen
+can promote a unit from In motion, Horizons, or Continuity without losing it,
+keeps a chrome world-read crown in the existing orientation treatment, removes
+the promoted unit from its ordinary row, yields empty region headings, and
+restores exact return to the crown's new measured position.
+
+Verification passes 180 backend root-projection/API tests and 29 focused app
+tests plus Ruff, formatting, TypeScript, and Prettier. This advances S4's
+composition system but does not promote the shell. The immediate follow-on is
+the production-shaped seven-posture native matrix and remaining kernel §12.7
+component laws, followed by physical-device/process-death evidence and broader
+real-owner consequences. Chat and Life were not modified.

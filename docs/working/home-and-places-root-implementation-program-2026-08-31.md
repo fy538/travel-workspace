@@ -1201,3 +1201,34 @@ local native-to-real Save/Clear continuity only. Cold process restart,
 concurrent supersession, physical iOS, Android, other owner/provider families,
 visual acceptance, and public-shell promotion remain downstream gates. Chat
 and Life remain outside this package.
+
+## 15. Home page composition checkpoint — 2026-09-02
+
+Backend commit `c2bd2fc01` and app commit `89bf47fd7` complete the first
+runtime application of the accepted Home page-composition laws:
+
+- individual value-over-silence judgment remains upstream and shared;
+- Home alone arbitrates posture, one crown, zero/one unresolved demand,
+  one In-motion row, and Urgent suppression;
+- chrome cannot evict content merely by consuming the same numerical budget;
+- production Home no longer uses an arbitrary twelve-unit richness ceiling;
+- explicit caller bounds remain available and cannot evict the chosen crown;
+- the compiler and native conformance layer recognize a dominant in chrome or
+  any semantic Home region; and
+- the native crown is page-level, so a Planning decision or Returned
+  continuity unit cannot disappear merely because it is not a Now unit.
+
+The pure portfolio tests cover Quiet, Planning, Urgent, Available, a
+chrome-dominant projection, content bounds, rich returns, and honest total
+degradation. The adjacent verified set is 180 backend tests and 29 app tests,
+plus static gates. OpenAPI regeneration is unnecessary because no response
+field changed.
+
+The next dependency-ordered Home package is not another selector rewrite. It
+is a production-shaped seven-posture native rehearsal that checks the arbiter's
+actual outputs against the screen-level §12.7 laws—one instrument per crown,
+silhouette adjacency, two kicker registers, banded week seam, crown ink,
+accessible ghost anchors, one In-motion row treatment, carried-leg color, and
+one primary plus at most one Door—then fixes only the native components or
+producer declarations that the evidence contradicts. Places keeps its own
+selector and can proceed independently. Chat and Life remain untouched.
