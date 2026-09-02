@@ -417,8 +417,8 @@ it with live-engine consequence:
 The three delivery flags remain default-off. This package proves exact semantic
 delivery and repeat suppression only. It does **not** prove comprehension,
 agreement, memory, general familiarity, or claim-level knowledge for every
-fact in a composition. It also does not add a production Source selector,
-default model producer, public route activation, or device/release evidence.
+fact in a composition. It also does not add a default model producer, public
+route activation, or device/release evidence.
 
 Verification covers 165 focused backend root-projection, route, receipt,
 private/multiplayer, correction, repeated-exposure, and fail-open tests; 22
@@ -427,6 +427,44 @@ and generated-contract typechecks; Expo lint with zero errors; API-boundary and
 schema-bridge checks; and deterministic schema regeneration. The aggregate
 mobile fast gate still stops on pre-existing size-budget overruns in the
 unchanged mature `PlacesSectionFeed.tsx` and `PlacesWorkspace.tsx`.
+
+### Governed Source opportunity discovery and selection — 2026-09-02
+
+Backend commit `66d83911f` closes the pre-model Source-selection seam without
+turning the model into an index, authority resolver, ranker, and writer:
+
+- discovery is bounded to 32 exact metadata-only coordinates across current
+  retained Experience Anchors, approved and evidenced dossiers under the
+  already-resolved canonical Places context, and recipient-visible live or
+  kept Place handoffs. Producer prose, Anchor claims, dossier bodies, and human
+  messages do not enter the inventory;
+- ordinary and open-interval Anchors require an exact canonical context link.
+  A recent-return bridge is separately bounded to lived evidence updated within
+  45 days and the current return context; it is a retrieval fact, not a claim
+  that every artifact concerns every Place;
+- handoff discovery rechecks recipient, lifecycle, expiry, graph-to-canonical
+  Place binding, owner, and exact relationship grant. Dossiers recheck approval,
+  contextual Place identity, current revision, and evidence receipts;
+- a deterministic situation table forms only complementary pairs and retains
+  at most 12 inspectable groups. It prefers lived evidence plus world context
+  after a return, and addressed perspective plus world context in ordinary or
+  live/shared situations. It never promotes two generic public readings into
+  personal value merely because inventory exists;
+- low discovery budgets interleave Source families so the bound cannot starve
+  the complementary evidence required for synthesis. Stale, future, expired,
+  public-only, context-free, split-grant, or exact excluded-repeat groups return
+  an explicit silence result;
+- the chosen Source, subject, and grant coordinates expand into one exact owner
+  read per Source plus the required Place and Relationship reads. The existing
+  material loader and compiler still revalidate every ID. Assembly additionally
+  rejects a canonical grant that differs from the selected grant before the
+  producer can run.
+
+Verification covers **187** root-projection, canonical-owner, Places-content,
+and Discover tests, plus every changed backend commit hook. The selector is now
+a real shadow-runtime dependency. It is not a live feed or release claim: the
+default governed producer, latency/retry/failure budgets, dark route invocation,
+and situation-matrix dogfood remain the next package.
 
 ## Integrated convergence execution — 2026-09-01
 
@@ -524,8 +562,8 @@ visible. The following remain:
 - confirmed owner/provider consequence readback through the renderer path;
 - Home→Places depth that remains in the Home stack, followed by exact native
   return after map/search/detail/action movement;
-- a production Source-selection policy, default governed producer, and a
-  complete known-to-person resolver beyond exact delivered-fact suppression;
+- a default governed producer, dark Home/Places invocation, and a complete
+  known-to-person resolver beyond exact delivered-fact suppression;
 - direct artifact/Source and broader relationship-grant readers in Home's
   runtime portfolio;
 - promotion of any state-specific Places renderer and removal of the remaining

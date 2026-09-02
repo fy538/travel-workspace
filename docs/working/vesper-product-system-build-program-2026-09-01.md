@@ -1564,7 +1564,7 @@ discovery inventory from which production selection can safely choose. A model
 must not become a hidden Source index, authority resolver, ranker, and writer in
 one step.
 
-### S2K — governed Source opportunity inventory and selection — next
+### S2K — governed Source opportunity inventory and selection — landed in shadow
 
 Build a bounded, viewer-correct preflight over the reviewed Source families:
 
@@ -1591,7 +1591,40 @@ chosen Source ID must come from the preflight inventory and be revalidated by
 the existing exact pipeline. It must not become an engagement feed,
 trip-recap heuristic, or personality inference layer.
 
-### S2L / S3I — default governed producer and dark serving activation — follows S2K
+Backend commit `66d83911f` implements this dependency:
+
+- `SourceContributionOpportunityInventoryV1` admits at most 32 viewer- and
+  clock-correct coordinates. Each carries exact Source revision, Source kind,
+  represented time, freshness/expiry, allowed audience, canonical subject and
+  owner refs, grant boundary, and a small enum of retrieval facts. The contract
+  contains no producer context or human prose;
+- the production adapter reads viewer-owned retained Anchors, approved dossiers
+  only from the automatic canonical Places subtree, and recipient-visible live
+  or kept handoffs whose graph identity resolves to a canonical Place parent.
+  Dossier evidence receipts, Anchor custody/claims/retention, and handoff
+  recipient/status/expiry/grant are rechecked before an opportunity exists;
+- recent-return Anchors may bridge to the current return context only when they
+  are lived evidence updated within 45 days. Ordinary/open-interval Anchors need
+  an exact canonical context link. This bounds retrieval without declaring a
+  generated relationship true;
+- discovery interleaves Source families under a low bound. The selector uses an
+  explicit situation doctrine, considers no more than 12 complementary Source
+  pairs, and returns typed silence for insufficient, stale, future, expired,
+  context-free, public-only, split-grant, or excluded exact-repeat groups;
+- a live/shared pair may combine one addressed handoff with grant-neutral public
+  context, but the exact relationship grant is then attached to every Source,
+  Place, and Relationship owner-read request. Assembly compares the resulting
+  common canonical grant with the selected grant before producer invocation;
+  substitution fails closed; and
+- exact read-plan execution returns an `OwnerReadPortfolio` in request order.
+  The existing material loader, assembly, producer boundary, compiler, value
+  judgment, root selector, and delivery lifecycle remain independently binding.
+
+Verification covers **187** root-projection, canonical-owner, Places-content,
+and Discover tests plus every changed backend commit hook. S2K is complete in
+shadow. No default producer or serving route was activated.
+
+### S2L / S3I — default governed producer and dark serving activation — next
 
 Only after S2K can reliably produce an exact authorized selection should the
 runtime install a default producer:

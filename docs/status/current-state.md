@@ -169,10 +169,24 @@ selection substitution, mixed-viewer authority, split multiplayer grants, or
 producer failure yields no root candidate. Root freshness can no longer relabel
 stale Source truth as fresh.
 
+A governed preflight now supplies that exact selection instead of asking the
+model to discover its own evidence. It inventories at most 32 metadata-only
+coordinates across viewer-owned retained Experience Anchors, approved
+evidence-bearing dossiers in the current canonical Places context, and live or
+kept addressed Place handoffs. Every coordinate carries an exact revision,
+clock, freshness/expiry, audience and grant boundary, canonical subjects and
+owners, and named retrieval facts—but no Anchor claims, dossier prose, or human
+message. A deterministic doctrine table considers at most 12 complementary
+Source pairs for ordinary/current-world, open-interval, recent-return, and
+live/shared situations. Missing context, public-only pairs, stale or future
+evidence, split grants, repeated exact groups, or insufficient complementary
+Sources produces explicit silence. The chosen IDs and grant then expand into
+independent exact Source, Place, and Relationship owner reads; canonical
+assembly rejects any grant substitution before generation.
+
 This is runtime, compiler, renderer, and authenticated-delivery evidence, not a
 live content claim. The pipeline still invokes only an injected governed
-producer; no default prompt/model producer, production Source-selection policy,
-or route activation exists.
+producer; no default prompt/model producer or route activation exists.
 
 Admitted semantic contributions now derive one root-neutral `fact_key` from
 canonical claim meaning and authority rather than producer IDs or presentation
@@ -189,9 +203,9 @@ This closes exact repeat suppression, not human understanding or a complete
 known-to-person model. A delivery receipt does not prove comprehension,
 agreement, memory, or that every underlying claim was previously known.
 Therefore neither default portfolio receives generated contributions yet.
-Backend commits `0f8c32aac`, `cbe300c9a`, and `9f52a1294`, plus app commit
-`d89111d6f`, carry the owner-backed material, semantic identity, authenticated
-delivery, and qualified viewport packages.
+Backend commits `0f8c32aac`, `cbe300c9a`, `9f52a1294`, and `66d83911f`, plus app
+commit `d89111d6f`, carry the owner-backed material, governed selection,
+semantic identity, authenticated delivery, and qualified viewport packages.
 
 ### Contribution-contract conformance
 
