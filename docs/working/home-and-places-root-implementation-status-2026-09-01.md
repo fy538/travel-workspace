@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / backend / frontend
 created: 2026-09-01
-last_verified: 2026-09-01
+last_verified: 2026-09-02
 expires: 2026-10-01
 why_new: Record the concrete Home/Places implementation outcome without implying that the v2 roots are production-ready. This status sheet is the handoff from architecture freeze through runtime Home portfolio activation, Places convergence, and typed continuation rehearsal.
 source_of_truth_for:
@@ -64,17 +64,20 @@ depends_on:
 #### Serving-topology update — 2026-09-01
 
 The bounded portfolio is now active on `GET /api/root-projections/v2/home`.
-Five independently degrading reads contribute candidates: Experience Graph,
-legacy Plan/Trip state, automatic Places context, explicit saves, and action
-receipts. An unavailable source omits that family and emits a stable
-degradation instead of failing the whole Home projection.
+Eight independently degrading reads contribute candidates: Experience Graph,
+legacy Plan/Trip state, open Plan proposals, automatic Places context,
+explicit saves, action receipts, bounded contextual Places value, and
+recipient-authorized addressed Place handoffs. An unavailable source omits
+that family and emits a stable degradation instead of failing the whole Home
+projection.
 
-This activation remains deliberately bounded. Artifact/Source clusters,
-relationship grants outside the graph, prior exposure, and broad provider
-state are not yet direct Home readers. Places still adapts one canonical
-`PlacesFeed`; its v2 endpoint is a semantic shadow, not a four-state runtime
-portfolio. Tested substrate, active serving, and production-shaped evidence
-therefore remain separate claims.
+This activation remains deliberately bounded. General Artifact/Source
+clusters, prior exposure, and broad provider state are not yet direct Home
+readers. Addressed Place handoffs are the one direct relationship contribution
+and carry their exact relationship grant; they are not a generic activity
+feed. Places still adapts one canonical `PlacesFeed`; its v2 endpoint is a
+semantic shadow, not a four-state runtime portfolio. Tested substrate, active
+serving, and production-shaped evidence therefore remain separate claims.
 
 ## Package 2A — typed dark boundary (completed 2026-09-01)
 
@@ -110,7 +113,8 @@ it back into the v1 semantic-result contract:
   emitted by the active Home portfolio: `now_commitment_instrument`,
   `now_recovery_instrument`, `now_prepared_possibility`,
   `motion_occasion_row`, `motion_loose_end_row`, `motion_all_plans_door`,
-  `horizon_aperture_row`, `continuity_capability_field`,
+  `horizon_editorial_passage`, `horizon_aperture_row`, `people_note_door`,
+  `continuity_capability_field`,
   `continuity_since_you_looked`, and `continuity_life_door`. Future kinds remain
   dark until their native renderer and tests are registered; there is no
   generic-card promotion bypass;
@@ -231,6 +235,34 @@ now closed in the backend and the internal Home consumer:
 
 These are seam corrections, not a production promotion. The remaining
 promotion gates listed below are unchanged.
+
+## Production-shaped Home value slice — 2026-09-02
+
+The first package after the sequencing correction returns S2/S3 work to
+visible product value while preserving the system architecture already built:
+
+- Home may take at most two current-world contributions from the canonical
+  Places feed. A source-backed editorial angle must carry real preview
+  substance and becomes a complete-on-view read; a grounded place,
+  experience, area, or city remains a typed Door into Places. Saves, memories,
+  generic friend activity, notices, and prompts are not copied into Home.
+- Recipient-authorized `send_now` Place handoffs can become private,
+  attributed Home reads only after the Experience Graph entity resolves to a
+  canonical Places identity. The sender's message is preserved as human copy;
+  Vesper supplies placement and the typed Places Door without paraphrasing or
+  inferring relationship meaning.
+- Both families enter the existing owner-read, value-over-silence, treatment,
+  consequence, and continuity spine. Neither creates a new Home feed model or
+  a second durable writer.
+- The native Home renderer now explicitly admits
+  `horizon_editorial_passage` and `people_note_door`, and read payloads preserve
+  their typed destination instead of degrading to a generic source door.
+
+Backend commit `ce1cc3e94` and mobile commit `ed28aeb26` carry the slice.
+Focused and adjacent verification covers 45 backend root-projection tests,
+four native renderer tests, TypeScript typecheck, and Expo lint. Physical
+device evidence remains a later promotion gate; this package is not public
+promotion evidence.
 
 ## Integrated convergence execution — 2026-09-01
 

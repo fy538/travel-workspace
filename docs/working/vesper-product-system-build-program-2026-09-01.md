@@ -301,14 +301,23 @@ that authority after the tap. One idempotent operator tool now provisions the
 same two principals through all three canonical family shapes and returns a
 content-free manifest of their owner coordinates.
 
-The next active seam is empirical system evidence, not another bespoke family:
-deploy clean candidate revisions, provision the fixture for two real dogfood
-accounts, run the complete Home/Places lifecycle on physical devices, exercise
-restart, replay, stale grant, membership and Source revocation, degraded
-readback, process death, repair, rollback, and older-client terminals, then
-submit the revision-matched artifact to the machine gate. Chat and Life UI
-remain outside this package; their typed contracts participate without forcing
-unsettled surface design into the cutover.
+The cross-family physical rehearsal is now a **prepared promotion gate**, not
+the active product-design milestone. Its fixture, revision binding, negative
+probes, and machine audit stay intact and must run before promotion, but running
+them now would prove a technically coherent shadow system whose principal Home
+and Places value is still too thin.
+
+The next active seam returns to S2 and S3: make the post-pivot intelligence
+visibly useful through production-shaped Home and Places. The serving program
+must exercise ordinary New York, an open weekend, a recent return, and a
+live/shared situation with several result families—substantive source-backed
+understanding, grounded possibility, attributed multiplayer contribution,
+practical consequence, and continuity—rather than making one operational
+control the product demonstration. Home and Places should consume the same
+owner-read, value-over-silence, treatment, consequence, and repair spine that
+the rehearsal already proved locally. Chat and Life remain typed destinations
+and authority owners in this package; their unsettled visual surfaces are not
+pulled into the Home/Places cutover.
 
 ## Execution status — 2026-09-02
 
@@ -1354,3 +1363,35 @@ roots to satisfy a checklist. For addressed handoff, Place owns sender
 confirmation in this candidate. Home and Places remain obligated to refresh
 their viewer-correct dependent projections after the relationship owner
 executes and verifies the consequence.
+
+### S2E / S3C — contextual and multiplayer Home value — landed in shadow
+
+Backend commit `ce1cc3e94` and app commit `ed28aeb26` implement the first
+production-shaped value package after moving physical rehearsal back to its
+proper role as a promotion gate.
+
+- The Home portfolio now has eight independently degrading owner reads. Its
+  two new readers reuse the canonical Places feed and relationship handoff
+  owner instead of inventing another feed, social graph, or durable Home
+  writer.
+- Home admits at most two qualifying Places contributions. Editorial angles
+  must contain substantive source-backed preview material; grounded world
+  objects remain typed Places doors. Saved, memory, generic friend, notice,
+  and prompt cards stay with their current owners.
+- An addressed `send_now` Place handoff appears only for its recipient, only
+  while live or kept, and only after its graph entity resolves to a canonical
+  Places identity. The human message stays verbatim and attributed. The
+  projection carries the exact handoff and relationship grant without making
+  an intimacy inference.
+- The native Home registry explicitly promotes
+  `horizon_editorial_passage` and `people_note_door`; read units with a typed
+  destination now open that destination rather than falling back to a generic
+  source door.
+
+This advances `Make sense` and `Open possibility`, including multiplayer as a
+value multiplier, on the same judgment/composition/continuity spine already
+used by consequence work. It does not redesign Chat or Life, promote the root
+publicly, or discharge the later device rehearsal gate. The next S2/S3 package
+should broaden the situation matrix—ordinary New York, open weekend, recent
+return, and live/shared—using existing canonical Sources and owners before
+adding another cross-family control.
