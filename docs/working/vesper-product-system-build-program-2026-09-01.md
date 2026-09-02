@@ -289,14 +289,17 @@ executed command remains an audit receipt and a recipient-created Occasion
 remains independently owned. The client never reconstructs authority from a
 capability name or from the object a root unit happens to depict.
 
-The active seam is now the integrated serving lifecycle: Home and Places must
-show canonical completion, withdrawal, correction, and repair without keeping
-a dead card or concealing what changed. Release evidence must exercise private,
-shared-Plan, and addressed-pair consequences on real accounts and devices,
-including restart, replay, stale grant, membership/source revocation, degraded
-readback, and older-client terminal behavior. Chat and Life UI remain outside
-this package; their typed contracts participate without forcing unsettled
-surface design into the cutover.
+The integrated Home/Places serving lifecycle is now landed in shadow. Both
+roots can present an exact admitted consequence, resolve its opaque grant
+through the canonical owner, verify current truth, refresh every dependent read
+model, expose repair through a short-lived opaque Undo grant, and refuse to
+claim `acted` when owner readback is rejected or unverified. The next active
+seam is release evidence across private, shared-Plan, and addressed-pair
+families on real accounts and devices: restart, replay, stale grant,
+membership/source revocation, degraded readback, process death, rollback, and
+older-client terminal behavior. Chat and Life UI remain outside this package;
+their typed contracts participate without forcing unsettled surface design into
+the cutover.
 
 ## Execution status — 2026-09-01
 
@@ -618,8 +621,8 @@ roots instead of stopping at server selection:
   the exact mature section/card identity that renders it, so the client does
   not reverse-engineer semantic IDs from feed content;
 - stacked and forked Places cards use card-level viewport geometry rather than
-  treating fetch, mount, or whole-section presence as exposure; card actions
-  distinguish openings from state-changing save/clear behavior; and
+  treating fetch, mount, or whole-section presence as exposure; native
+  save/clear engagement remains distinct from owner-verified causal action; and
 - exposure reporting reuses stable device receipts and server idempotency
   across ambiguous failures and remounts without blocking the interface.
 
@@ -1073,3 +1076,54 @@ gate: visible Home/Places completion and repair continuity, terminal-card
 behavior, real-account/device lifecycle, restart/replay, degraded owner
 readback, and rollback evidence. Addressed handoff stays dark until that
 portfolio passes; no Chat or Life UI change is required to run it.
+
+### S4K / S7A — native Home/Places consequence terminals — landed in shadow
+
+Backend commits `058b6ac01` and `7cbff433e`, app commits `6ed01724a` and
+`2fe11cd89`, and workspace contract commit `efb1cd7` close the production
+serving path from causal family judgment to an honest native terminal without
+turning either root into a writer.
+
+- reviewed consequence controls are attached from exact lived-experience
+  family identity after causal treatment binding, never from card kind or
+  depicted object. Shared Plan repair, encounter confirmation, and addressed
+  Place handoff therefore use the same recipe registry while retaining distinct
+  effects and canonical owners;
+- release governance still runs after recipe attachment and strips every
+  shadow or unready control. The evidence-bearing unit can remain visible while
+  its mutation stays dark, so adding UI transport cannot accidentally promote
+  a family;
+- the mature Places runtime repeats each admitted unit's actions only on its
+  exact server-authored card binding and rejects any action mismatch. The
+  client neither derives a capability from a Place card nor joins semantic and
+  mature identities heuristically;
+- one mobile consequence lifecycle submits only the opaque grant, invalidates
+  Home, Places, Plan, proposal, occurrence, Experience Graph, profile, and
+  conversation read models, and reports success only after non-rejected owner
+  completion plus verified canonical readback;
+- a verified response may carry an opaque repair grant into the global
+  post-action receipt. Undo resolves through the repair owner and again requires
+  verified readback; rejected, conflicted, offline, stale, and unverified states
+  retain truthful refresh or Retry behavior rather than optimistic completion;
+- Home and Places both reserve confirmation for `propose` or `execute`, then
+  record the causal treatment as `acted` only after owner verification. Local
+  Places Save/Clear taps remain section engagement and no longer masquerade as
+  a verified lived-experience consequence; and
+- Chat and Life UI were not changed. This package extends the system spine
+  through two output roots while respecting the explicit design-lane boundary.
+
+Verification covers the backend action/runtime contract suites, the shared
+mobile consequence/repair hook, Home consequence behavior, 73 adjacent Places
+root/workspace/feed tests, TypeScript, changed-file lint, deterministic OpenAPI
+generation, and repository hooks. The complete contract contains 569 paths /
+631 operations / 1,422 schemas; the active mobile projection contains 434
+paths / 479 operations / 1,265 schemas.
+
+This is serving infrastructure, not family promotion. The remaining release
+package must exercise all three families with signed-in multi-account fixtures
+and actual device navigation, prove restart/replay and process-death behavior,
+observe stale and revoked grants, force degraded and conflicting owner
+readback, verify repair after relaunch, and capture rollback evidence. Only
+then may one release portfolio move from shadow to visible; promotion still
+occurs by reviewed family policy, not by screen or by a successful founder
+scenario.
