@@ -264,6 +264,36 @@ four native renderer tests, TypeScript typecheck, and Expo lint. Physical
 device evidence remains a later promotion gate; this package is not public
 promotion evidence.
 
+### Places substance and exact-depth correction — 2026-09-02
+
+The follow-on review closed two product-coherence failures in the first slice:
+
+- an approved editorial angle with bounded preview substance now reaches the
+  Places semantic root as a `read` / `make_sense` contribution. Places no
+  longer throws away the body and reduces an authored reading to its title and
+  an Open link. Angles without usable preview substance remain smaller owner
+  links; overlong content is declined rather than silently truncated;
+- `places.open_entity` now resolves an exact venue, site, accommodation, or
+  experience destination before falling back to the broader Places context.
+  The short exact-return token survives that detail handoff. An addressed
+  Place note therefore opens the object it names instead of discarding its
+  identity at the tab boundary.
+
+Backend commit `5c7ef3fe1` and mobile commit `36b4e9a48` carry the correction.
+Verification covers 38 adjacent backend root/runtime tests, 14 native
+Places/Home/navigation tests, TypeScript typecheck, and Expo lint.
+
+The Artifact/Source audit also narrows the next package. The repository has a
+canonical artifact projection, executable `source.inspect` owner reads,
+claim-local composition admission, native evidence/sequence/comparison/spatial
+renderers, and an Opening that can retain an admitted private Home draft. It
+does **not** yet have a production contribution compiler that joins multiple
+governed Sources with current Place/Moment truth into a novel composition.
+Adding a recent-artifact count, recap, or generic Source shelf to Home would be
+a flat report and is not an acceptable substitute. The next S2 package should
+build that shared producer boundary and drive it through more than one
+situation family before another root-specific card is added.
+
 ## Integrated convergence execution — 2026-09-01
 
 The latest package converts the earlier seam into a broader, executable

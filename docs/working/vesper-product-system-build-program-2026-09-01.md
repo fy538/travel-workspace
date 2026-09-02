@@ -1395,3 +1395,31 @@ publicly, or discharge the later device rehearsal gate. The next S2/S3 package
 should broaden the situation matrix—ordinary New York, open weekend, recent
 return, and live/shared—using existing canonical Sources and owners before
 adding another cross-family control.
+
+### S2F / S3D — Places substance, exact depth, and producer-gap ruling — landed
+
+Backend commit `5c7ef3fe1` and app commit `36b4e9a48` close two places where a
+typed system still delivered a thin product:
+
+- qualified editorial angles now preserve their bounded source-backed preview
+  as a Places `read` with the `Make sense` move, rather than reducing the
+  contribution to an owner-link title;
+- `places.open_entity` resolves exact venue, site, accommodation, or
+  experience identity and carries exact return through the detail route,
+  rather than dropping every typed entity at the generic Places tab.
+
+The accompanying source audit makes the next dependency explicit. Canonical
+Artifact projections, `source.inspect`, claim-local composition admission,
+semantic result binding, and native multi-medium renderers are implemented.
+What remains absent is the **production contribution compiler** between those
+layers: a bounded producer that selects governed Sources, distinguishes known
+from novel claims, joins current Place/Moment evidence, creates the smallest
+adequate evidence/sequence/comparison/spatial/prose brief, and yields silence
+when the connection is weak.
+
+Do not fill that gap with a recent-artifact shelf, trip-statistics card, recap,
+or reflection prompt. Those would surface input inventory, not return value.
+The next package should establish one shared source-to-contribution contract
+and exercise it across at least ordinary/current-world, recent-return, and
+authorized multiplayer inputs. Home and Places then receive root-native
+projections of the admitted contribution; neither becomes its durable owner.
