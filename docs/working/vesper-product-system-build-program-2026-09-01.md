@@ -841,3 +841,23 @@ commit hook. The next implementation package is the relationship-owned
 prepared handoff command and its correction/revocation lifecycle, followed by
 its owner gateway/readback and the shared repair/Undo layer across all three
 families.
+
+### S4H — canonical repair targets — landed
+
+Backend commit `17ffa0637` makes consequence readback usable by later repair
+instead of echoing proposal state as if it were the real-world result:
+
+- encounter receipts keep the occurrence proposal decision as their domain
+  decision, while canonical readback now identifies the exact Trip, resolved
+  block, and participant occurrence written by the owner;
+- shared Plan receipts keep the accepted/applied proposal revision as their
+  domain decision, while canonical readback now identifies the exact itinerary
+  operation that changed the Plan; and
+- the durable occurrence-stage causal arc therefore points at owner objects
+  that correction and Undo can actually address, preserving the distinction
+  between “we decided” and “what happened.”
+
+Verification covers 92 proposal, occurrence, consequence, readback, registry,
+portfolio, and root API tests plus every backend commit hook. The next repair
+package can now bind occurrence correction and itinerary operation Undo without
+guessing backward from a card or proposal label.
