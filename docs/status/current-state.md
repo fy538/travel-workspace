@@ -260,11 +260,21 @@ the fresh-read resolver restores the same typed Home unit at its semantic
 offset. The PR-smoke Maestro flow passes 1/1 on iPhone 16 Pro / iOS 18.2; the
 adjacent selection passes 33 suites / 251 tests plus TypeScript, contract,
 boundary, registry, and surface checks. This narrows the remaining gate to
-physical-device and Android return, nested map/Search/detail/action movement,
+physical-device and Android return, nested map/Reading/detail/action movement,
 process death and concurrent real-owner supersession, real-backend readback,
 visual continuity, an explicit iOS edge-gesture decision, and shell promotion.
 The edge-swipe attempt did not unwind this nested headerless stack; the visible
 back control is the proven path. Chat and Life were unchanged.
+
+App commit `a92401579` proves the first nested continuation through Search and
+Saved. The rehearsal exposed and fixed an unconditional collection `replace`
+that cloned the Places root and broke final Home return. Saved now dismisses to
+the existing serialized Places owner, with cold-entry convergence as fallback.
+Home → Places → Search → Saved → Places → exact Home passes 1/1 in 23 seconds
+on the pinned iOS simulator; five focused suites / 37 tests and adjacent gates
+pass. Remaining nested evidence is map, Reading, entity detail, and a verified
+owner action; the physical/device, process-death, concurrency, and rollout
+limits above remain unchanged. Chat and Life were not modified.
 
 ### Contribution-contract conformance
 

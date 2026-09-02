@@ -956,11 +956,18 @@ Implementation checkpoint — 2026-09-02:
   canonical fresh read. The adjacent selection passes 33 suites / 251 tests.
 - Package 4 now has native happy-path evidence, not merely code readiness.
   Promotion remains open on physical-device return, Android hardware back,
-  nested map/Search/detail/action token propagation, process-death and
+  nested map/Reading/detail/action token propagation, process-death and
   supersession degradation, real-backend owner readback, visual review, and a
   deliberate iOS edge-gesture decision. The simulator edge-swipe attempt did
   not unwind this nested headerless stack; the explicit back control is the
   currently proven path.
+- App commit `a92401579` additionally proves Home → Places → Search utility →
+  Saved → Places → exact Home return in PR smoke. The rehearsal caught and
+  removed a duplicate-root defect: Saved now dismisses to an existing matching
+  Places owner, or converges to it when opened cold, instead of unconditionally
+  replacing itself with a second root. The corrected iOS simulator flow passes
+  1/1 in 23 seconds; five focused suites / 37 tests and the relevant type,
+  boundary, registry, surface, metadata, and lint gates pass.
 
 ### Package 5 — Native convergence and deletion
 

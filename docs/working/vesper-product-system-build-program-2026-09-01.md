@@ -1811,7 +1811,15 @@ and surface checks.
 No rollout gate changed, no second read owner was added, and Chat and Life were
 not modified. S4 now has native simulator happy-path evidence. S7 promotion
 remains open on physical-device and Android return, nested
-map/Search/detail/action movement, process-death and real-owner supersession,
+map/Reading/detail/action movement, process-death and real-owner supersession,
 real-backend readback, visual review, and public-shell approval. An iOS
 edge-swipe did not unwind the nested headerless stack in the simulator, so the
 explicit control is proven while edge-gesture support remains unresolved.
+
+App commit `a92401579` advances the proof through Search and Saved. Its first
+native run found that the collection exit cloned a second Places root, leaving
+the original search-active root underneath and breaking final Home return.
+Semantic dismissal now restores an existing matching Places owner or converges
+there from a cold entry. The corrected Home → Places → Search → Saved → Places
+→ exact Home flow is PR smoke and passes 1/1 in 23 seconds on the same pinned
+iOS simulator, with five focused suites / 37 tests and adjacent gates passing.

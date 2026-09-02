@@ -666,10 +666,20 @@ selected over the shared Places owner; the return screen shows
 This is meaningful native proof, but it is deliberately narrower than a
 production claim. It does **not** prove a physical device, Android hardware
 back, process death or token-registry loss, concurrent real-owner
-supersession, nested map/Search/detail/action return, or real-backend owner
+supersession, nested map/Reading/detail/action return, or real-backend owner
 readback. An attempted iOS edge-swipe did not unwind this headerless nested
 stack, so the explicit control is the proven return path and edge-gesture
 support remains an open shell decision rather than completed evidence.
+
+App commit `a92401579` extends this from a one-hop route to a representative
+nested owner path: Home → Places → Search utility → Saved → Places → the exact
+Home unit. The first rehearsal exposed that collection return used
+`router.replace`, cloning a second Places root and leaving the search-active
+owner underneath. Collection return now uses semantic dismissal: it pops to
+the matching serialized Places owner when present and converges there when
+cold. The corrected native simulator flow passes **1/1 in 23 seconds**, and
+the focused continuity selection passes **5 suites / 37 tests**. This proves
+Search/Saved nesting without changing either owner or creating product memory.
 
 ## Integrated convergence execution — 2026-09-01
 
@@ -727,10 +737,11 @@ the August pivot.
   v1 Home/Places compatibility owners still serve released behavior or
   capabilities absent from v2.
 - Exact semantic return and the stronger Home→Places navigation law now have a
-  native route family and a passing iOS simulator happy path. Do not call
-  Package 4 promotion complete until nested movement, physical-device return,
-  process-death/supersession degradation, edge-gesture policy, and real owner
-  readback are exercised on a revision-pinned build.
+  native route family and passing direct plus Search/Saved-nested iOS simulator
+  paths. Do not call Package 4 promotion complete until map/Reading/detail/
+  action movement, physical-device return, process-death/supersession
+  degradation, edge-gesture policy, and real owner readback are exercised on a
+  revision-pinned build.
 
 ## Verification
 
