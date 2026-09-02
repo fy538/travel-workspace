@@ -87687,6 +87687,34 @@
         ],
         "title": "PlacesCardKind"
       },
+      "PlacesCardTreatmentBindingV1": {
+        "properties": {
+          "unit_id": {
+            "type": "string",
+            "title": "Unit Id"
+          },
+          "section_reason": {
+            "$ref": "#/components/schemas/PlacesSectionReason"
+          },
+          "card_id": {
+            "type": "string",
+            "title": "Card Id"
+          },
+          "treatment": {
+            "$ref": "#/components/schemas/SurfaceTreatmentProjection"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "unit_id",
+          "section_reason",
+          "card_id",
+          "treatment"
+        ],
+        "title": "PlacesCardTreatmentBindingV1",
+        "description": "Exact causal identity for one semantic unit rendered as a mature card."
+      },
       "PlacesCardVerb": {
         "type": "string",
         "enum": [
@@ -89535,6 +89563,14 @@
           },
           "workspace_feed": {
             "$ref": "#/components/schemas/PlacesFeed"
+          },
+          "card_treatments": {
+            "items": {
+              "$ref": "#/components/schemas/PlacesCardTreatmentBindingV1"
+            },
+            "type": "array",
+            "title": "Card Treatments",
+            "default": []
           }
         },
         "additionalProperties": false,
