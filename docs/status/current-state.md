@@ -153,19 +153,30 @@ consequence action. The portfolio now fails closed on missing adapter runtime
 or canonical provider coverage independently of gateway readiness. These are
 local system-integration results, not release or physical-device evidence.
 
-The shared Source-to-contribution compiler now also exists in shadow. It can
+The shared Source-to-contribution runtime now also exists in shadow. It can
 admit one evidence-bound semantic contribution across private ordinary,
 open-interval, recent-return, and explicitly authorized live/shared situations,
 then express that contribution through distinct native Home and Places grammar
 without changing Source metadata, ownership, audience, expiry, or claim
 lineage. Home uses a temporal editorial passage; Places uses a spatial field
-composition. This is compiler and renderer evidence, not a live content claim:
-an owner-read assembly gate now admits producer material only when exact Source,
-subject, owner, context, and shared-grant authority already exists, and both
-Home and Places accept the resulting production object before judgment. The
-canonical material selector/loader, exposure-backed known-to-person resolver,
-and governed producer invocation are still absent, however, so neither default
-portfolio receives generated contributions.
+composition. Exact owner-backed loaders now resolve retained Experience
+Anchors, approved evidence-bearing dossiers, and attributed Place handoffs at
+their current revision, audience, expiry, and custody boundary. The handoff's
+human prose stays outside owner-read payloads and enters only the bounded
+producer material path. A selected Source set, one viewer, and one represented
+clock are fixed before loading; omission, withdrawal, expiry, stale evidence,
+selection substitution, mixed-viewer authority, split multiplayer grants, or
+producer failure yields no root candidate. Root freshness can no longer relabel
+stale Source truth as fresh.
+
+This is runtime, compiler, and renderer evidence, not a live content claim.
+The pipeline currently invokes only an injected governed producer; no default
+prompt/model producer or route activation exists. Source selection policy is
+also still absent, and the known-to-person baseline contains canonical retained
+claims but not a claim-level semantic-receipt plus exposure resolver. Therefore
+neither default portfolio receives generated contributions yet. Backend commit
+`0f8c32aac` carries the owner-backed material and invocation package; 148
+root-projection, owner-read, and semantic-result tests pass.
 
 ### Contribution-contract conformance
 

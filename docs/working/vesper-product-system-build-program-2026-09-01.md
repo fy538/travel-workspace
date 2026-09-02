@@ -1485,10 +1485,46 @@ Verification covers 112 root-projection, owner-read, and semantic-result tests,
 plus every changed backend commit hook. No API schema or mobile change was
 needed for this internal seam.
 
-S2 remains active. The route parameter is intentionally unpopulated by
-default: canonical material selection/loading, exposure-backed
-known-to-person resolution, and the governed producer invocation are still
-missing. That next runtime must build the request from owner state, not accept
-Source text, subject scope, or grants from the model. After it produces real
-shadow output across the situation matrix, the existing Home and Places paths
-can consume it without another projection architecture.
+### S2I / S3G — canonical material loading and bounded pipeline — landed in shadow
+
+Backend commit `0f8c32aac` closes the owner-backed loading and invocation seam
+without activating generated content on a default route:
+
+- exact loaders resolve retained private Experience Anchors, approved dossiers
+  with editorial evidence receipts, and attributed Place handoffs. They derive
+  canonical revision, author, freshness, audience, represented time, and expiry
+  from the owning domain rather than from producer input;
+- private Anchor claims and attributed handoff prose enter the
+  known-to-person baseline, while public dossier claims remain research context
+  rather than presumed human knowledge;
+- the canonical Source reader now resolves one exact live/kept Place handoff,
+  preserves its expiry and relationship grant, and keeps the authored message
+  out of the owner-read payload. Group use requires that exact grant; public use
+  is rejected;
+- `SourceContributionSelectionV1` fixes the exact Source coordinates, subjects,
+  situation, audience, roots, and moves before the material loader runs. The
+  pipeline derives one Person viewer and one represented clock from the owner
+  portfolio and rejects a loader that substitutes a different Source set;
+- any material omission, withdrawal, expiry, malformed identity, unsupported
+  kind, evidence gap, audience mismatch, mixed-viewer portfolio, or too-small
+  source set keeps the producer cold. Successful material load then passes
+  through the existing owner-read assembly, governed producer, compiler,
+  admission, and root-candidate path;
+- stale Anchor evidence remains stale through the root candidate rather than
+  being promoted to fresh merely because a new composition was generated.
+
+Verification covers **148** root-projection, owner-read, and semantic-result
+tests plus every changed backend commit hook. The portfolio includes private
+ordinary/current-world, open-interval and recent-return production; approved
+public research context; attributed multiplayer material; split-grant,
+withdrawal, expiry, stale, substitution, mixed-viewer, and producer-failure
+negative cases.
+
+S2 remains active. Exact Source selection is still supplied by the caller; no
+production selection/ranking policy chooses the best governed set. The
+known-to-person baseline does not yet join claim-level semantic receipts with
+the existing coarse exposure ledger, so it cannot reconstruct every previously
+received claim. The producer is an injected protocol rather than a default
+prompt/model implementation, and no serving route populates the Home/Places
+production parameter. Those are the next runtime dependencies; the existing
+projection architecture does not need to be replaced to add them.

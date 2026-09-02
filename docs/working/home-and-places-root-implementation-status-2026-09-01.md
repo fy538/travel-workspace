@@ -345,13 +345,47 @@ generated text into its own evidence:
   Existing treatment, value judgment, root selection, and rendering still run
   after that merge.
 
-Focused and adjacent verification covers **112** root-projection, owner-read,
-and semantic-result tests; all changed backend hooks pass. This still does
-**not** generate a live contribution on a default route. The remaining S2
-dependency is a canonical material selector/loader, known-to-person exposure
-resolver, and governed producer invocation. Only that owner-backed runtime may
-construct the assembly request; a model draft cannot supply its own Sources,
+Focused and adjacent verification at this checkpoint covered **112**
+root-projection, owner-read, and semantic-result tests; all changed backend
+hooks passed. It still did **not** generate a live contribution on a default
+route. The next package therefore had to add owner-backed material loading and
+governed invocation without allowing a model draft to supply its own Sources,
 subjects, owners, grants, or novelty baseline.
+
+### Canonical material loading and bounded producer pipeline — 2026-09-02
+
+Backend commit `0f8c32aac` implements the next shadow-runtime layer:
+
+- retained Experience Anchors, approved evidence-bearing dossiers, and
+  attributed Place handoffs now have exact canonical material loaders. The
+  loaders resolve current revisions, custody, authorship, freshness, audience,
+  and expiry from existing owners and fail closed on missing evidence,
+  withdrawal, expiry, revision conflict, malformed identity, or unsupported
+  Source kind;
+- the Source owner-read registry now supports an exact Place handoff without
+  exposing its human message in the owner-read payload. It preserves the
+  relationship grant and expiry; non-private use requires the same explicit
+  grant, and public material remains forbidden;
+- Anchor claims and addressed human prose are treated as already known input,
+  preventing the producer from relabeling them as Vesper novelty. Approved
+  dossier claims remain outside that baseline because availability as public
+  research does not prove the person already knew them;
+- one typed selection fixes Sources, subjects, situation, audience, roots, and
+  moves before loading. The pipeline derives one viewer and represented clock
+  from canonical reads, rejects selection substitution or mixed-viewer input,
+  and invokes the producer only after every selected material is available;
+- the existing owner assembly and compiler still independently verify exact
+  Source, subject, owner, context, audience, grant, novelty, and evidence
+  authority. Stale Source material now produces stale root candidates rather
+  than fresh-looking generated value.
+
+Focused and adjacent verification now covers **148** root-projection,
+owner-read, and semantic-result tests, plus every changed backend commit hook.
+The runtime remains intentionally cold on default Home and Places routes. It
+has no production Source-selection policy, no claim-level semantic-receipt and
+exposure resolver, and no default prompt/model producer. Those are activation
+dependencies, not reasons to create a second contribution or projection
+architecture.
 
 ## Integrated convergence execution — 2026-09-01
 
