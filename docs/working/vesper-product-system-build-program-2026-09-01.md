@@ -622,3 +622,50 @@ and engaged; it is not yet authority to mutate. The next package is the
 server-issued consequence resolver and canonical readback envelope, followed
 by multiplayer projection invalidation and continuity repair over the same
 causal chain.
+
+### S4C — server-issued consequence authority and canonical readback — landed
+
+Backend commit `01be6f554`, app commit `119b0b765`, and workspace contract
+commit `3e1b7da` close the public authority gap between a rendered root action
+and the existing owner-gateway machinery:
+
+- an admitted proposal or execution receives an opaque, short-lived server
+  grant only after release governance, exact treatment binding, durable arc
+  recovery, target parsing, workflow binding, and signing authority all pass;
+- the grant seals recipient, arc, opening, treatment, family, effect, owner,
+  typed target, composition, scope fingerprint, workflow, expected revision,
+  surface instance, issue time, and expiry;
+- the mobile resolver submits only that grant. It cannot choose or reconstruct
+  a family, domain owner, target, scope, revision, recipient, or idempotency
+  key;
+- the server verifies the signature and expiry, then compares every
+  authority-bearing claim with the current durable arc before selecting the
+  registered family gateway;
+- owner dispatch is idempotent at a deterministic grant identity, an accepted
+  receipt advances the causal arc once, retry must reproduce the same owner
+  decision and receipt references, and canonical readback is returned through
+  that same owner;
+- missing workflow identity, scope drift, foreign recipients, altered tokens,
+  stale treatment, absent owner gateways, and replay drift fail closed; and
+- the endpoint and action grants have an independent default-off release gate,
+  so treatment exposure or a configured signing secret alone cannot release a
+  mutation.
+
+The public response is intentionally content-free but operationally honest: it
+names changed versus already-applied/rejected state, owner, effect, audience,
+scope, domain-decision reference, action receipt, canonical reference,
+readback status/reference, observation time, and expiry. It does not let
+assistant prose stand in for execution truth.
+
+Verification covers 78 adjacent backend consequence, persistence, gateway,
+root-contract, runtime, API, and exposure tests; a dedicated mobile wire test;
+TypeScript; changed-file lint; every backend repository hook; and the full
+cross-repository contract check. The complete contract now contains 566 paths,
+628 operations, and 1,414 schemas; the active mobile projection contains 433
+paths, 478 operations, and 1,261 schemas.
+
+S4 is still active. The generic authority and readback path is now real, but no
+mutating family is promoted merely by this infrastructure. The next package
+must bind concrete owner command/readback adapters and richer correction/Undo
+capabilities, then release each family through the same portfolio rather than
+adding a root-specific write shortcut.
