@@ -185,10 +185,9 @@ independent exact Source, Place, and Relationship owner reads; canonical
 assembly rejects any grant substitution before generation.
 
 This is runtime, compiler, renderer, and authenticated-delivery evidence, not a
-live content claim. A structured prompt/producer adapter and optional route seam
-now exist, but the adapter requires a separately approved model role and the
-configured route producer remains absent. The serving flag is also default-off,
-so no generated contribution is live.
+live content claim. A structured prompt/producer adapter, registered model role,
+and optional route seam now exist. The independent serving flag remains
+default-off, so no generated contribution is live by default.
 
 Admitted semantic contributions now derive one root-neutral `fact_key` from
 canonical claim meaning and authority rather than producer IDs or presentation
@@ -224,20 +223,25 @@ boundary. Before exact owner reads or model work, each viewer must atomically
 claim the exact revision-bound Source group. Active leases and typed terminal
 cooldowns exclude repeat attempts; concurrent losers try the next bounded
 group or return explicit silence. Produced, producer-silence, producer-failure,
-compiler-rejected, and pipeline-rejected outcomes remain distinct without
-persisting generated content. A stale worker cannot complete or surface work
-after another request reclaims its lease, and an attempt-store outage keeps the
-optional producer cold rather than generating without ownership.
+compiler-rejected, and pipeline-rejected outcomes remain distinct. The attempt
+row stays content-free; an admitted production is retained separately for at
+most six hours under the exact viewer, Source-group revision, situation, and
+audience boundary. Lease completion and production retention now commit in one
+transaction, so a cooldown cannot be burned while its useful output is lost. A
+stale worker cannot complete or surface work after another request reclaims its
+lease, and an attempt-store outage keeps the optional producer cold rather than
+generating without ownership.
 
 This attempt ledger is not the delivery ledger and not the live-engine
 treatment ledger. It says that Vesper already spent judgment/generation work
 on one exact Source group; qualified delivery separately says a semantic fact
 reached the viewport; treatment/consequence separately says a real-world move
-was offered or executed. The additive migration has one Alembic head, and a
-real two-thread PostgreSQL test proves exclusive claim, expiry repair, stale
-worker rejection, and cooldown exclusion. The adjacent portfolio passes 231
-tests. Model-role approval, real-model editorial adjudication, cohort rollout,
-and device evidence remain open.
+was offered or executed. The additive migration has one Alembic head.
+PostgreSQL tests cover exclusive claim, expiry repair, stale-worker rejection,
+cooldown exclusion, and atomic output retention. Home and Places now reuse that
+same admitted production when their exact governed group matches, while their
+compilers still produce different temporal and spatial expressions. Real-model
+editorial adjudication, cohort rollout, and device evidence remain open.
 
 App commit `31a54cbbb` supplies the missing native Home→Places depth. A
 Home-origin Places door stays inside the Home navigator while rendering the
@@ -339,8 +343,9 @@ cannot be decided one card at a time:
 - Urgent preserves the direct read, week shape, recovery crown, and at most one
   non-demanding live row while Horizons and Continuity yield;
 - the world read and week shape no longer spend the content allowance; and
-- earned low-demand returns are not product-count-capped after each has beaten
-  silence, although owner reads and an optional caller safety bound remain
+- earned low-demand returns are not governed by an arbitrary card-count cap
+  after each has beaten silence. They share a posture-specific cumulative
+  attention budget, while owner reads and an optional caller safety bound remain
   finite.
 
 The admission report carries the exact dominant candidate and structured

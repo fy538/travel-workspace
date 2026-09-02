@@ -75190,6 +75190,14 @@
           "workspace_feed": {
             "$ref": "#/components/schemas/PlacesFeed"
           },
+          "field_units": {
+            "items": {
+              "$ref": "#/components/schemas/RootUnit"
+            },
+            "type": "array",
+            "title": "Field Units",
+            "default": []
+          },
           "card_treatments": {
             "items": {
               "$ref": "#/components/schemas/PlacesCardTreatmentBindingV1"

@@ -1673,15 +1673,14 @@ part of this package:
   governance, consequence binding, value judgment, root selection, delivery,
   and native rendering.
 
-This is **not live model activation**. Repository policy requires an explicit
-decision before adding a new model-registry role and default. The configured
-producer therefore intentionally returns absent, even if the rollout flag is
-manually enabled, until that role is authorized. No existing model role is
-silently reused as a workaround. Chat and Life remain untouched.
+This is **not live model activation**. The producer now has an explicit
+model-registry role and surface registration; no unrelated model role is reused
+as a workaround. The independent rollout flag remains default-off, so the
+producer is cold on default routes. Chat and Life remain untouched.
 
-### S2M / S3J — structural situation-matrix gate — landed; model rehearsal next
+### S2M / S3J — structural situation-matrix gate — landed; editorial cohort rehearsal next
 
-After the model role/default is explicitly authorized:
+Before any internal cohort activation:
 
 1. bind that role to the structured producer without weakening the double gate;
 2. run the accepted ordinary/current-world, open-interval, recent-return, and
@@ -1767,8 +1766,49 @@ The additive migration is the single Alembic head. A real PostgreSQL
 two-thread race verifies exclusive claim, lease expiry and repair, stale-worker
 rejection, and terminal exclusion. Focused and adjacent verification passes
 231 tests; the wider offline suite reaches 20,076 passes with 25 known
-unrelated failures. The model-role approval and real-model matrix remain the
-next activation dependency; Chat and Life were not changed.
+unrelated failures. The real-model editorial matrix remains the next activation
+dependency; Chat and Life were not changed.
+
+### S2O / S3M — retained Source value and one mature Places owner — landed in shadow
+
+Backend commit `dde07bef9` and app commit `1a3a0550b` close the principal gaps
+found in the post-integration architecture review:
+
+- a successful Source production is no longer discarded after the attempt
+  ledger starts its cooldown. The content-free attempt transition and a
+  short-lived, exact-group production payload commit atomically; a later Home
+  or Places request can reuse the admitted meaning without repeating owner
+  reads or model work;
+- the retained payload is bounded to six hours and remains keyed by viewer,
+  Source/subject/grant revisions, situation, and audience. It is an ephemeral
+  rendering input, not durable memory, a delivery receipt, or a learned claim;
+- the joined Places runtime now carries native semantic field units alongside
+  the admitted mature feed and card-treatment joins. The mature workspace
+  renders those units in the same scroll, with the same exact return,
+  consequence, delivery, and treatment behavior; the debug v2 screen is not a
+  production dependency;
+- the root envelope is the sole data owner when present. The disabled legacy
+  feed query no longer receives root data as `initialData`, focus refreshes the
+  actual root projection, and cached valid Home/Places data survives a failed
+  background refresh instead of falling back or flashing blank;
+- exact candidate-declared owner reads receive bounded portfolio seats before
+  broad situation reads. Final projection time advances through composition
+  and owner observation rather than claiming the request-start instant;
+- Home arbitration now applies a posture-specific cumulative attention budget
+  after value judgment and its demand/motion laws. This preserves several light
+  openings while preventing a page full of independently admissible cards; and
+- synchronous canonical material loading leaves the async event loop through a
+  worker thread. Root pull semantics and receptivity are explicit policy inputs;
+  receptivity remains honestly unknown because Moment still reports availability
+  as unavailable rather than inventing a behavioral signal.
+
+The generated mobile contract adds `field_units` to
+`PlacesRootRuntimeEnvelopeV1`. Focused verification passes 228 backend root and
+owner tests, 79 Home/Places app tests, TypeScript, focused lint, all changed-file
+backend hooks, import-boundary checks, and the lived-experience architecture
+registry. This is architecture and contract evidence, not visual approval or
+rollout evidence. The production gate remains default-off; Chat and Life were
+not changed.
 
 ### S4L / S7F — native Home→Places depth and semantic return — simulator-proven; physical and nested evidence pending
 
