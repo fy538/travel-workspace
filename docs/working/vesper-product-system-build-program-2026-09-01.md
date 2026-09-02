@@ -470,10 +470,40 @@ language.
 
 The contract and binding tests cover exact return, foreign-resource rejection,
 family/audience alignment, admitted Direct State, and typed silence. Repository
-hooks pass. S2C is not yet complete: Chat and Life still need production
-producers that can supply evidence-bearing expressions to this envelope. The
-existing free-form Concierge reply and raw Life Return must not be relabeled as
-conforming output without claim/source admission.
+hooks pass.
+
+### S2D — shared semantic-result production boundary — landed; root producers pending
+
+Backend commit `a7a2a83ae` turns the S2C models into a reusable producer seam
+without treating an existing reply or root card as conforming by association.
+
+- `SemanticResultProductionInput` accepts an already-judged expression and
+  derives its return envelope rather than trusting a producer to repeat family,
+  audience, Instrument identity, viewer, clock, or restoration coordinates;
+- the generic compiler supports every portable semantic-result family and
+  retains the complete value-over-silence receipt, selected candidate, product
+  move, owner/evidence/grant dependencies, and correction identity;
+- the first strict adapter compiles an admitted `CompositionBriefV1` into a
+  portable Composition only when surface, product move, audience, lead and
+  supporting medium, admitted subjects, selected owners, and selected evidence
+  Sources still match exactly;
+- source freshness becomes explicit current, stale, or unknown result state,
+  while oversize portable substance or accessibility fallback is rejected
+  instead of being silently truncated; and
+- earned silence compiles through the same seam but cannot carry a fabricated
+  continuation.
+
+The acceptance case deliberately targets Chat to prove that this contract is
+not Home/Places-specific, but it does not alter Chat UI or relabel Concierge's
+free-form answer. Four focused end-to-end cases and 20 adjacent composition and
+value tests pass, along with every repository hook.
+
+S2 remains active. A real Chat producer must supply an admitted brief or another
+typed result from exact owner reads; a real Life Return must do the same before
+either surface claims conformance. The current raw Life Return and ordinary
+Concierge prose remain outside this boundary. The next integration package
+should bind this compiler to those production read paths behind their existing
+dark contracts, not introduce another universal presentation object.
 
 ### S3A — governed Places runtime joined to the native workspace — landed
 
