@@ -1679,7 +1679,7 @@ producer therefore intentionally returns absent, even if the rollout flag is
 manually enabled, until that role is authorized. No existing model role is
 silently reused as a workaround. Chat and Life remain untouched.
 
-### S2M / S3J — model assignment and situation-matrix rehearsal — next
+### S2M / S3J — structural situation-matrix gate — landed; model rehearsal next
 
 After the model role/default is explicitly authorized:
 
@@ -1693,3 +1693,35 @@ After the model role/default is explicitly authorized:
    evidence independently, and keep the flag as an immediate kill switch; and
 5. remove or retain the package based on matrix-level evidence, not one polished
    trip vignette.
+
+Backend commit `de7bb3bb4` establishes the model-independent acceptance gate
+before that activation:
+
+- one content-free rehearsal case is derived from an actual orchestration
+  result. It records only situation, audience, expected/observed outcome,
+  bounded Source kinds/count, grant count, opaque selection identity, root
+  identities, payload hashes, elapsed time, and blockers—never Source prose,
+  generated copy, claims, people, Places, or raw IDs;
+- the baseline portfolio requires exactly one produced ordinary/current-world,
+  open-interval, recent-return, and live/shared case. The first three must be
+  private and grant-free; live/shared must be group-scoped and carry canonical
+  grant evidence;
+- every produced baseline must contain both Home and Places, and their payload
+  hashes must differ. A cloned cross-root expression fails the gate even if the
+  underlying semantic contribution is admitted;
+- separate probes require earned producer silence, exact-repeat selection
+  silence, authority/material rejection, Source expiry, provider failure,
+  structured parse failure, compiler rejection, and the explicit latency
+  ceiling. These outcomes are not collapsed into one generic failure; and
+- the deterministic test executes all four baselines through selection,
+  canonical portfolio assembly, material loading, production, compilation,
+  and candidate derivation. The live/shared baseline uses an addressed human
+  contribution plus public context under the exact relationship grant.
+
+The focused and adjacent regression portfolio now covers **214** tests across
+root projections, canonical owner reads, Places content, Discover, Home/Places
+APIs, producer/orchestration, and the matrix. This proves structural acceptance
+and fail-closed semantics. It does **not** prove that a real model consistently
+adds substantive editorial value; once the named role is approved, actual
+model outputs must populate this same evidence contract and pass editorial
+review before the production gate can reach even the smallest internal cohort.

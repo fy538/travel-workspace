@@ -496,6 +496,31 @@ behavior, and the existing Home/Places API suite. The next step is explicit
 model-role assignment followed by the four-situation rehearsal; this checkpoint
 is architectural and regression evidence, not content-quality or release proof.
 
+### Content-free situation-matrix acceptance gate — 2026-09-02
+
+Backend commit `de7bb3bb4` turns “test the whole matrix” into an executable
+contract rather than a checklist:
+
+- ordinary/current-world, open-interval, recent-return, and live/shared each
+  execute as produced baselines through the full governed shadow pipeline;
+- every produced case must reach both Home and Places with distinct payload
+  hashes, preventing a shared semantic contribution from becoming one cloned
+  card mounted twice;
+- live/shared must carry group audience plus an exact grant count, while the
+  three private baselines must remain grant-free;
+- earned silence, excluded exact repeat, withdrawn authority, Source expiry,
+  provider outage, parse failure, compiler rejection, and latency overflow are
+  independently observable acceptance probes; and
+- the resulting artifact contains no Source prose, generated copy, claims,
+  named people, Places, or source IDs. It can therefore become the stable
+  structural envelope for later model-backed and dogfood evidence without
+  turning private content into release telemetry.
+
+The adjacent suite passes **214** tests. This is deterministic structural proof,
+not a claim about real-model content quality or device presentation. Model-role
+approval, real generated outputs, editorial adjudication, and internal-cohort
+evidence remain necessary before enabling the existing double-dark serving gate.
+
 ## Integrated convergence execution — 2026-09-01
 
 The latest package converts the earlier seam into a broader, executable
