@@ -119,8 +119,9 @@ it back into the v1 semantic-result contract:
   dark until their native renderer and tests are registered; there is no
   generic-card promotion bypass;
 - `HomeRootV2Screen` renders the envelope's orientation, canonical region
-  order, degradation notice, owner/source doors, capability actions, and Rest
-  Close from semantic payloads only; no server component, route, or geometry
+  order, owner/source doors, capability actions, and Rest Close from semantic
+  payloads only; structured owner degradations remain an operator/API signal
+  and are not printed as product copy; no server component, route, or geometry
   appears in the wire contract;
 - the Home root selects v2 only when `EXPO_PUBLIC_ROOT_PROJECTION_V2` is
   explicitly enabled in a development/internal build. With the flag off, the
@@ -723,6 +724,41 @@ the native save gesture is configured against this backend revision, survives
 process death, and returns on a physical device. That app-to-server rehearsal
 is now the remaining real-owner gate.
 
+### Native-to-real saved Place continuity — 2026-09-02
+
+The backend and native halves are now joined on the local real API without a
+second Home owner:
+
+1. backend commit `b30f8b70c` binds the Save Door's display identity from the
+   canonical Place owner read rather than emitting the generic `Saved venue`;
+2. backend commit `a9b0249a2` adds a default-read-only, idempotent operator
+   fixture that owns only one catalog venue and one canonical private Save;
+3. app commit `d5df71912` drives the named Home Door into the Place-owned venue
+   detail, removes the Save through the native control, verifies its absence
+   from both the Saves owner and a fresh Home projection, restores it through
+   the canonical application service, and verifies the exact Home return;
+4. app commit `ea67fed6c` prevents an actionable Home card from collapsing its
+   source, destination, and action descendants into one inaccessible iOS
+   element, and removes raw backend degradation effects from Home and Places
+   product surfaces; and
+5. backend commit `08a14498d` makes recent canonical Save attention win within
+   its low-demand continuity lane. Previously, equal Save priorities fell back
+   to random UUID order at the Home unit budget, so a newly restored Save could
+   disappear while an older one remained.
+
+The end-to-end rehearsal passes on iPhone 16 Pro / iOS 18.2 simulator against
+the real local PostgreSQL-backed API. Focused verification passes **15 backend
+tests** and **18 app tests**, plus Ruff, backend formatting, TypeScript,
+Prettier, shell syntax, registered scenario validation, Home and Places QA
+preflight, and the native rehearsal itself. The runnable Places QA registry
+surface is named `places`; `places-root` is the contract name and has no
+separate registry entry.
+
+This closes the local native-to-real Saves loop. It does not prove physical
+iOS, Android, process-death or token-registry loss, concurrent real-owner
+supersession, other owner/provider action families, visual approval, or public
+shell promotion. Chat and Life were not modified.
+
 ## Integrated convergence execution — 2026-09-01
 
 The latest package converts the earlier seam into a broader, executable
@@ -782,8 +818,9 @@ the August pivot.
   native route family and passing direct, Search/Saved, Reading/Dossier, Map,
   and save/detail/readback iOS simulator paths. Do not call Package 4 promotion
   complete until physical-device and Android return, process-death/
-  supersession degradation, edge-gesture policy, and native-to-real-backend
-  owner readback are exercised on a revision-pinned build.
+  supersession degradation, edge-gesture policy, and physical-device evidence
+  are exercised on a revision-pinned build. The canonical Saves family now has
+  local native-to-real-backend owner readback evidence.
 
 ## Verification
 
@@ -817,8 +854,8 @@ visible. The following remain:
 - full Home posture/real-data and human visual evaluation, including real
   model-authored Composition and live-Instrument compatibility evidence;
 - state-specific Places Focus/Path/Live producers and their native renderers;
-- native renderer readback against the now-proven real Saves owner, plus
-  confirmed provider consequence readback for other action families;
+- confirmed native provider consequence readback for action families beyond
+  the now-proven local real Saves owner;
 - physical-device evidence that Home→Places depth remains in the Home stack and
   returns exactly after map/search/detail/action movement, including physical
   process-death and superseded-origin rehearsal of the implemented safe

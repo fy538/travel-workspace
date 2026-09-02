@@ -1836,7 +1836,7 @@ all 349 Maestro syntax validations. This remains mock-owner evidence: real
 backend, physical-device, process-death, concurrency, Android, and public-shell
 promotion are still open.
 
-### S4M / S3L — canonical Saves owner into Places and Home — backend-proven
+### S4M / S3L — canonical Saves owner into Places and Home — local native-to-real proven
 
 Backend commit `be675841c` replaces an important inference with real database
 evidence. A save created through the authenticated Saves API is idempotently
@@ -1852,10 +1852,24 @@ identity, application-effect, Places, Home-portfolio, and root-route portfolio
 passes **44 tests**. The wider offline backend canary reaches **20,071 passes**
 with **25 unrelated failures**, none in this action/readback path.
 
-This closes one real owner/projection dependency, not S4 as a whole. App commit
-`e3a2cf293` still proves the corresponding native save/detail/return behavior
-against the shared mock owner. The next package must join those two halves on a
-revision-pinned build and exercise cold restart plus real supersession; physical
-iOS and Android evidence, other owner/provider action families, edge-gesture
-policy, visual review, and public-shell promotion remain open. Chat and Life
-were not modified.
+Backend commits `b30f8b70c`, `08a14498d`, and `a9b0249a2`, with app commits
+`ea67fed6c` and `d5df71912`, now join that owner proof to the native path against
+the local real API. The Save Door receives its name only from the canonical
+Place owner read. The native run removes the Save through the Place detail,
+verifies owner and Home absence, canonically restores it, opens the named Door,
+and returns to the exact freshly projected Home unit. Nested Home controls
+remain individually accessible and machine-oriented degradation effects no
+longer appear as consumer copy.
+
+That run also found a cross-layer judgment defect rather than weakening the
+test: equal Save candidates hit the generic UUID tie-break at Home's bounded
+unit budget. The Home adapter now encodes canonical Save recency as a small
+lane-local priority gradient, preserving Saves below current-world and
+coordination candidates while making recent explicit attention the meaningful
+tie-break. Focused verification passes 15 backend tests and 18 app tests plus
+the local real-backend iOS simulator rehearsal and adjacent static gates.
+
+This closes one real owner/projection/native dependency, not S4 as a whole.
+Cold process restart, real concurrent supersession, physical iOS and Android,
+other owner/provider action families, edge-gesture policy, visual review, and
+public-shell promotion remain open. Chat and Life were not modified.

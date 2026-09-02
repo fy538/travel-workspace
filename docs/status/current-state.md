@@ -302,6 +302,27 @@ native-to-server wiring on pinned revisions, restart, real supersession,
 physical iOS, Android, edge gesture, and shell promotion are still open. Chat
 and Life were unchanged.
 
+Backend commits `b30f8b70c`, `08a14498d`, and `a9b0249a2`, together with app
+commits `ea67fed6c` and `d5df71912`, now join that backend owner proof to the
+native Home→Places path on the local real API. Home resolves the saved venue's
+name through the canonical Place owner read, exposes its destination and
+nested controls independently to assistive technology, and keeps structured
+backend degradation diagnostics out of product copy. A deterministic operator
+fixture and runner prove native unsave, absence from the Saves owner and fresh
+Home projection, canonical reprovisioning, named Home readback, Place-owned
+detail, and exact semantic return on iPhone 16 Pro / iOS 18.2 simulator.
+
+The rehearsal also exposed and fixed an admission defect: equally ranked Saves
+were previously selected by random UUID order when Home reached its bounded
+unit budget. Recent explicit Save attention now resolves contention inside the
+low-demand continuity lane without outranking current-world or coordination
+value. Focused verification passes 15 backend tests and 18 app tests plus Ruff,
+backend formatting, TypeScript, Prettier, shell syntax, Home/Places QA
+preflight, and the real native rehearsal. This is simulator and local-real-API
+evidence—not physical-device, Android, process-death, concurrent supersession,
+other owner-family, visual-approval, or public-shell promotion evidence. Chat
+and Life were unchanged.
+
 ### Contribution-contract conformance
 
 The accepted [Contribution and Consequence

@@ -1173,3 +1173,31 @@ their repair families. The dependency-ordered next step is to point the native
 Home→Places save/detail/return rehearsal at the exact backend and app revisions,
 then prove restart and supersession behavior. Chat and Life remain outside this
 package.
+
+## 14. Native-to-real save continuity checkpoint — 2026-09-02
+
+Backend commits `b30f8b70c`, `08a14498d`, and `a9b0249a2`, plus app commits
+`ea67fed6c` and `d5df71912`, complete the next dependency in section 13 on the
+local real API:
+
+- Home derives the saved Place's consumer identity from the canonical Place
+  owner read while retaining the Save and Place as distinct references;
+- an idempotent operator fixture creates no Trip, conversation, Opening, or
+  projection row and therefore cannot make the test pass through duplicated
+  Home state;
+- the native flow removes the Save through Place detail, verifies that both
+  the owner list and fresh Home projection retract it, restores the same Place
+  through the canonical Save application service, and returns through the
+  exact newly read Home unit;
+- actionable Home cards expose nested source, destination, and action controls
+  as separate accessibility elements, while structured degradation diagnostics
+  remain available to operators rather than appearing as user copy; and
+- bounded Home contention among Saves now follows canonical `saved_at` recency
+  instead of random UUID ordering. This is a lane-local `why now` rule; Saves
+  still remain below current-world and coordination value.
+
+The real-backend simulator rehearsal and its focused tests pass. This closes
+local native-to-real Save/Clear continuity only. Cold process restart,
+concurrent supersession, physical iOS, Android, other owner/provider families,
+visual acceptance, and public-shell promotion remain downstream gates. Chat
+and Life remain outside this package.
