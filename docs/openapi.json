@@ -87997,6 +87997,14 @@
           },
           "treatment": {
             "$ref": "#/components/schemas/SurfaceTreatmentProjection"
+          },
+          "actions": {
+            "items": {
+              "$ref": "#/components/schemas/RootAction"
+            },
+            "type": "array",
+            "title": "Actions",
+            "default": []
           }
         },
         "additionalProperties": false,
@@ -88008,7 +88016,7 @@
           "treatment"
         ],
         "title": "PlacesCardTreatmentBindingV1",
-        "description": "Exact causal identity for one semantic unit rendered as a mature card."
+        "description": "Exact causal identity and controls for one rendered mature card.\n\nActions remain part of the semantic unit.  Repeating them on the binding is\nan exact server-authored join for the mature Places renderer, not a second\nclient-owned action model."
       },
       "PlacesCardVerb": {
         "type": "string",
