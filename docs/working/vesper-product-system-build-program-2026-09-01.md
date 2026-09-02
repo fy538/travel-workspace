@@ -1624,10 +1624,10 @@ Verification covers **187** root-projection, canonical-owner, Places-content,
 and Discover tests plus every changed backend commit hook. S2K is complete in
 shadow. No default producer or serving route was activated.
 
-### S2L / S3I — default governed producer and dark serving activation — next
+### S2L / S3I — structured governed producer and dark serving seam — landed in shadow
 
-Only after S2K can reliably produce an exact authorized selection should the
-runtime install a default producer:
+Only after S2K could reliably produce an exact authorized selection should the
+runtime install a structured producer:
 
 - a prompt-registry-owned, versioned structured-output adapter receives only
   `SourceContributionProducerInputV1`;
@@ -1643,3 +1643,53 @@ runtime install a default producer:
 The accepted situation matrix, not one polished trip story, is the serving
 gate. Chat and Life remain typed consumers/owners during this package; their
 visual surfaces are not redesigned through a Home/Places producer activation.
+
+Backend implementation after commit `66d83911f` closes the model-independent
+part of this package:
+
+- prompt-registry-owned system and user prompts define one bounded editorial
+  job and preserve independent content-hash versions. Producer material occurs
+  only in the private user prompt; the system prompt contains no viewer data;
+- `SourceContributionProducerDecisionV1` makes a valid draft and earned silence
+  equally explicit outcomes. No novel relationship, insufficient evidence,
+  weak present relevance, excessive burden, or unsafe root expression can end
+  as filler. Provider/schema failure remains a separate fail-closed state;
+- `StructuredSourceContributionProducer` requires an injected `ModelRole` and
+  enforces source-count, serialized-input, output-token, wall-clock, and schema
+  retry budgets. Tool-call JSON is decoded through the strict contract rather
+  than trusted as already-instantiated Python values;
+- one orchestration result preserves the exact metadata inventory, deterministic
+  selection or typed silence, canonical owner-read portfolio, material load,
+  governed production, compiler decision, and root candidates. Selection
+  silence opens neither the owner readers nor the producer;
+- Home and Places have one optional pre-judgment join. It is double-dark: the
+  new production flag defaults off, and a separately configured producer must
+  exist. Known discovery, owner, database, timeout, parse, or provider failures
+  omit only this optional contribution and do not fail the root; and
+- Home maps urgent/live, planning, returned, and ordinary posture to live/shared,
+  open-interval, recent-return, and ordinary/current-world contribution
+  situations. Places uses the same doctrine and supplies its exact resolved
+  context. Both still pass admitted candidates through treatment, action
+  governance, consequence binding, value judgment, root selection, delivery,
+  and native rendering.
+
+This is **not live model activation**. Repository policy requires an explicit
+decision before adding a new model-registry role and default. The configured
+producer therefore intentionally returns absent, even if the rollout flag is
+manually enabled, until that role is authorized. No existing model role is
+silently reused as a workaround. Chat and Life remain untouched.
+
+### S2M / S3J — model assignment and situation-matrix rehearsal — next
+
+After the model role/default is explicitly authorized:
+
+1. bind that role to the structured producer without weakening the double gate;
+2. run the accepted ordinary/current-world, open-interval, recent-return, and
+   live/shared fixture matrix, including earned silence and every authority,
+   expiry, repeat, provider, parse, and latency failure;
+3. review the contribution substance against the Editorial Canon and compare
+   Home and Places root-native expressions without rewarding generic recap;
+4. enable only for the smallest internal cohort, capture delivery and treatment
+   evidence independently, and keep the flag as an immediate kill switch; and
+5. remove or retain the package based on matrix-level evidence, not one polished
+   trip vignette.

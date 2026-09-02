@@ -466,6 +466,36 @@ a real shadow-runtime dependency. It is not a live feed or release claim: the
 default governed producer, latency/retry/failure budgets, dark route invocation,
 and situation-matrix dogfood remain the next package.
 
+### Structured Source producer and double-dark root wiring — 2026-09-02
+
+The next backend package completes the production-shaped seam without claiming
+that generated contributions are live:
+
+- a versioned structured prompt and strict decision schema permit either one
+  governed draft or explicit earned silence. The producer is instructed to add
+  new intellectual work rather than paraphrase known attention, infer a person,
+  manufacture intimacy, or ask for more input;
+- the adapter has explicit Source, input-character, output-token, timeout, and
+  schema-retry ceilings. It requires a named model role as a constructor input;
+  no existing role is borrowed and no unapproved registry default is added;
+- a single orchestration preserves discovery inventory, exact deterministic
+  selection, owner-read portfolio, canonical material load, production, and
+  compiler result. A silent selection performs no content read and no model
+  call;
+- Home and Places now share the same optional pre-judgment production seam.
+  Each receives only its native expression, after which all existing judgment,
+  consequence, selection, delivery, and renderer contracts remain binding; and
+- the serving seam requires both a default-off backend flag and a configured
+  producer. The latter is intentionally absent pending model-role approval, so
+  current routes preserve established response behavior. Known optional
+  failures collapse to absence rather than failing either root.
+
+Focused verification covers producer budgets and retry/silence behavior,
+orchestration stop/proceed behavior, feature-gate truth tables, route fail-closed
+behavior, and the existing Home/Places API suite. The next step is explicit
+model-role assignment followed by the four-situation rehearsal; this checkpoint
+is architectural and regression evidence, not content-quality or release proof.
+
 ## Integrated convergence execution — 2026-09-01
 
 The latest package converts the earlier seam into a broader, executable

@@ -115,6 +115,103 @@ flags:
       read, audience, or action authority.
 
   # ── travel-agent (backend) ──────────────────────────────────────────────
+  - name: ROOT_DELIVERY_PROJECTION_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:root_delivery_projection_enabled
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-12-01
+    status: active
+    target_journey: P02,P05
+    cohort: smallest internal founder cohort after proof-bearing Home and Places renderers are device-verified
+    kill_switch: Set ROOT_DELIVERY_PROJECTION_ENABLED=false; Home and Places omit semantic delivery identities and proofs while preserving admitted root content.
+    promotion_removal_question: >
+      By 2026-12-01, do Home and Places preserve stable semantic fact identity,
+      exact recipient/root binding, and device-safe fallback across the accepted
+      situation matrix, or should proof-bearing delivery remain dark or be removed?
+    notes: >
+      Binds content-free semantic delivery identity to an admitted root unit. It
+      grants no exposure, suppression, treatment, consequence, or memory authority.
+
+  - name: ROOT_DELIVERY_EXPOSURE_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:root_delivery_exposure_enabled
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-12-01
+    status: active
+    target_journey: P02,P05
+    cohort: smallest internal founder cohort after qualified viewport measurement is device-verified
+    kill_switch: Set ROOT_DELIVERY_EXPOSURE_ENABLED=false; semantic delivery observations are rejected and no new receipt rows are accepted.
+    promotion_removal_question: >
+      By 2026-12-01, do authenticated rendered/not-rendered receipts reflect the
+      qualified native viewport lifecycle without asserting attention,
+      understanding, or memory, or should exposure ingestion remain dark?
+    notes: >
+      Content-free semantic-delivery observation gate. It is independent from
+      lived-experience treatment exposure and never authorizes suppression alone.
+
+  - name: ROOT_DELIVERY_SUPPRESSION_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:root_delivery_suppression_enabled
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-12-01
+    status: active
+    target_journey: P02,P05
+    cohort: smallest internal founder cohort after projection and exposure gates produce verified exact-delivery receipts
+    kill_switch: Set ROOT_DELIVERY_SUPPRESSION_ENABLED=false; Home and Places stop reading recent semantic delivery facts and retain normal admission behavior.
+    promotion_removal_question: >
+      By 2026-12-01, does exact semantic repeat suppression reduce redundant
+      delivery without hiding revised evidence, useful recurrence, or a distinct
+      root-native expression, or should suppression remain off or be removed?
+    notes: >
+      Reads qualified exact-delivery fact keys only. A fetch, below-fold mount,
+      not-rendered receipt, treatment exposure, or title similarity is insufficient.
+
+  - name: ROOT_SOURCE_CONTRIBUTION_PRODUCTION_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:root_source_contribution_production_enabled
+    default: false
+    category: experiment
+    owner: fy538
+    expires: 2026-12-01
+    status: active
+    target_journey: P02,P05,P07
+    cohort: none until an explicit model role and the four-situation rehearsal are approved; then the smallest internal founder cohort only
+    kill_switch: Set ROOT_SOURCE_CONTRIBUTION_PRODUCTION_ENABLED=false or remove the configured producer; either condition omits generated Source contributions while preserving the established Home and Places roots.
+    promotion_removal_question: >
+      By 2026-12-01, has the ordinary, open-interval, recent-return, and
+      live/shared matrix demonstrated substantive root-native value, earned
+      silence, authority safety, bounded latency, and independent rollback, or
+      should the producer and serving seam remain dark or be removed?
+    notes: >
+      Double-dark gate for the governed Source contribution orchestrator. It
+      grants no Source, audience, delivery, treatment, consequence, or memory
+      authority and cannot activate without a separately assigned producer.
+
+  - name: LIVED_EXPERIENCE_CONSEQUENCE_RESOLUTION_ENABLED
+    repo: travel-agent
+    location: backend/core/feature_flags.py:lived_experience_consequence_resolution_enabled
+    default: false
+    category: release
+    owner: fy538
+    expires: 2026-12-01
+    status: active
+    target_journey: P02,P05,P07
+    cohort: smallest internal founder cohort after the named owner gateway, readback, repair, and device confirmation path is verified
+    kill_switch: Set LIVED_EXPERIENCE_CONSEQUENCE_RESOLUTION_ENABLED=false; resolve and repair routes return unavailable and no owner mutation is dispatched.
+    promotion_removal_question: >
+      By 2026-12-01, has every promoted consequence family demonstrated exact
+      recipient authority, current owner revalidation, idempotent readback,
+      causal repair, and device confirmation, or should resolution remain dark?
+    notes: >
+      Separate command-authority gate. Root projection, semantic delivery,
+      exposure, treatment identity, and visible actions cannot activate it.
+
   - name: WORLDFOUNDRY_DOGFOOD_SERVING_ENABLED
     repo: travel-agent
     location: backend/core/feature_flags.py:38
