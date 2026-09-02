@@ -1423,3 +1423,44 @@ The next package should establish one shared source-to-contribution contract
 and exercise it across at least ordinary/current-world, recent-return, and
 authorized multiplayer inputs. Home and Places then receive root-native
 projections of the admitted contribution; neither becomes its durable owner.
+
+### S2G / S3E — governed Source contribution compiler — landed in shadow
+
+Backend commit `0b3cbfcac` and app commit `b875af02f` implement the
+authority-preserving half of that boundary.
+
+- A `SourceContributionSeedV1` fixes the governed Sources, known-to-person
+  claims, current clock and situation, audience and canonical grant refs,
+  permitted product moves and roots, and allowable subjects and owners before
+  generation.
+- A producer may propose a semantic claim set and up to one expression per
+  root. It cannot mint or mutate Sources, widen audience, introduce owners or
+  subjects, relabel an already-known claim as novel, restate an unsupported
+  synthesis, or bypass the existing Composition admission rules.
+- One admitted contribution preserves shared claim and evidence identity while
+  compiling distinct root-native expressions: a temporal Home
+  `horizon_editorial_passage` and a spatial Places
+  `field_lead_composition`. The roots do not clone presentation or become
+  durable owners.
+- The situation matrix covers private ordinary/current-world, open-interval,
+  and recent-return cases plus live/shared multiplayer. The shared case is
+  admitted only when an existing canonical use, Occasion-membership, or
+  relationship grant authorizes that exact audience.
+- Both expressions remain complete on view, retain optional Source inspection,
+  and carry their Source, subject, owner, lifecycle, expiry, and grant lineage.
+  The mobile Places registry now renders the admitted field composition; the
+  corresponding Home kind was already native.
+
+Verification covers 95 focused and adjacent backend tests and 31 focused
+mobile renderer tests, plus TypeScript typecheck, Expo lint with no errors, and
+the 31-scenario polish-registry check. The Places workspace QA scaffold was
+validated in dry-run, but no running Metro target or physical capture was
+available, so the package is not visual or release evidence.
+
+S2 remains active. The compiler is intentionally not wired to default root
+producers: the repository still lacks the production assembler that obtains
+canonical Source owner reads, known-to-person/exposure state, current
+Place/Moment context, and existing audience grants, and then asks a governed
+producer for the smallest adequate contribution. The immediate next package
+is that assembler/producer and portfolio integration—not another root-specific
+card, a generic Artifact shelf, or a model draft treated as its own authority.

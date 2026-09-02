@@ -287,12 +287,49 @@ The Artifact/Source audit also narrows the next package. The repository has a
 canonical artifact projection, executable `source.inspect` owner reads,
 claim-local composition admission, native evidence/sequence/comparison/spatial
 renderers, and an Opening that can retain an admitted private Home draft. It
-does **not** yet have a production contribution compiler that joins multiple
-governed Sources with current Place/Moment truth into a novel composition.
-Adding a recent-artifact count, recap, or generic Source shelf to Home would be
-a flat report and is not an acceptable substitute. The next S2 package should
-build that shared producer boundary and drive it through more than one
-situation family before another root-specific card is added.
+now has the authority-preserving half of the production contribution boundary;
+the production seed assembler and governed producer remain absent. Adding a
+recent-artifact count, recap, or generic Source shelf to Home would still be a
+flat report and is not an acceptable substitute.
+
+### Governed Source contribution compiler — 2026-09-02
+
+Backend commit `0b3cbfcac` and mobile commit `b875af02f` establish the shared
+contract between governed evidence and root-native value:
+
+- `SourceContributionSeedV1` freezes the Sources, represented time, audience,
+  permitted roots and moves, subject/owner scope, canonical audience grants,
+  and claims already known to the person before a producer drafts anything;
+- the compiler rejects invented or mutated Sources, expired evidence, widened
+  audience, unauthorized roots/moves/subjects/owners, relabeled known claims,
+  unsupported synthesis, unused claims, invalid root jobs, and expressions
+  that fail the existing claim-local Composition admission contract;
+- a successful compile preserves one contribution and one evidence identity
+  while admitting distinct root-native briefs. Home receives a temporal
+  `horizon_editorial_passage`; Places receives a spatial
+  `field_lead_composition`. This is not one cloned card mounted in two tabs;
+- private ordinary/current-world, open-interval, and recent-return cases pass.
+  A live/shared case passes only with an existing canonical use, Occasion, or
+  relationship grant. Source visibility by itself cannot widen the audience;
+- both root candidates are complete on view, retain `source.inspect` evidence
+  doors, and preserve Source expiry, lifecycle, subject, owner, and grant
+  references. The app now explicitly renders the admitted Places field
+  composition; Home already rendered its admitted editorial passage kind.
+
+Focused verification covers **95** backend root-projection and semantic-result
+tests and **31** mobile Home/Places renderer tests. TypeScript typecheck, Expo
+lint with zero errors, and the 31-scenario polish registry validation pass.
+The Places workspace design contract and dry-run QA scaffold pass, but no Metro
+session or device capture was available; this is deterministic compiler and
+native-renderer evidence, not visual or release certification.
+
+This package does **not** generate a live contribution or insert one into the
+default portfolios. That would require authority the compiler cannot create.
+The next S2 package must assemble a seed from canonical Source owner reads,
+known-to-person/exposure state, current Place/Moment context, and existing
+audience grants; invoke a governed composition producer; then feed its admitted
+candidates into both portfolios. The producer's draft must never become the
+source of its own truth or authorization.
 
 ## Integrated convergence execution — 2026-09-01
 

@@ -153,6 +153,17 @@ consequence action. The portfolio now fails closed on missing adapter runtime
 or canonical provider coverage independently of gateway readiness. These are
 local system-integration results, not release or physical-device evidence.
 
+The shared Source-to-contribution compiler now also exists in shadow. It can
+admit one evidence-bound semantic contribution across private ordinary,
+open-interval, recent-return, and explicitly authorized live/shared situations,
+then express that contribution through distinct native Home and Places grammar
+without changing Source metadata, ownership, audience, expiry, or claim
+lineage. Home uses a temporal editorial passage; Places uses a spatial field
+composition. This is compiler and renderer evidence, not a live content claim:
+the production assembler that reads canonical Sources, exposure/known state,
+current Place/Moment context, and grants and invokes a governed producer is
+still absent, and neither default portfolio receives generated contributions.
+
 ### Contribution-contract conformance
 
 The accepted [Contribution and Consequence
