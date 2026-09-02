@@ -803,3 +803,41 @@ specific person without pretending it is a shared Plan decision. After that,
 owner receipts must drive dependent Home/Places refresh and repair/Undo
 continuity consistently across all three families before any mutation control
 is promoted.
+
+### S4G — durable owner readback continuity and handoff command ruling — landed
+
+Backend commit `0db9dd898` closes the restart gap after a successful owner
+action and sharpens the third multiplayer family instead of registering a
+gateway that lacks authority:
+
+- a verified canonical readback now advances the durable decision arc from
+  action receipt to occurrence, persisting both the readback reference and the
+  owner's canonical action reference;
+- retry from an occurrence-stage arc is supported only when owner dispatch and
+  readback reproduce the same domain decision, action receipt, readback, and
+  occurrence references; replay neither mutates nor persists the arc twice;
+- a conflicting, missing, stale, or rejected readback still cannot advance the
+  causal chain, so later outcome/learning logic cannot learn from an
+  unverified action;
+- this gives private occurrence and shared Plan application one common durable
+  completion shape even though their domain writers and social authority are
+  materially different; and
+- the addressed Place handoff readiness row now reflects reality: its Intake
+  activation producer is verified in shadow, while the gateway remains
+  unbound because no relationship-owned prepared command yet contains the pair
+  conversation, sender-authored message, permission envelope, delivery mode,
+  source custody, expiry, and command revision.
+
+The handoff ruling is architecture-bearing. A Place plus recipient does not
+authorize Vesper to invent what is said, which private pair room receives it,
+or how long and under what permissions it persists. The relationship domain
+must store that correctable private command; the workflow and root grant may
+carry only its opaque ID and revision. Until then, the truthful surface action
+is prepare/navigate, not propose/execute.
+
+Verification covers 57 causal readback, consequence replay, readiness,
+activation, portfolio, Intake bridge, and root API tests plus every backend
+commit hook. The next implementation package is the relationship-owned
+prepared handoff command and its correction/revocation lifecycle, followed by
+its owner gateway/readback and the shared repair/Undo layer across all three
+families.
