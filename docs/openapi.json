@@ -100882,9 +100882,9 @@
         "properties": {
           "contract_version": {
             "type": "integer",
-            "const": 1,
+            "const": 2,
             "title": "Contract Version",
-            "default": 1
+            "default": 2
           },
           "grant_id": {
             "type": "string",
@@ -100927,6 +100927,45 @@
           "scope_fingerprint": {
             "type": "string",
             "title": "Scope Fingerprint"
+          },
+          "authorization_refs": {
+            "items": {
+              "$ref": "#/components/schemas/CausalDomainRef"
+            },
+            "type": "array",
+            "title": "Authorization Refs"
+          },
+          "affected_principal_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Affected Principal Ids"
+          },
+          "experience_scope_ref": {
+            "$ref": "#/components/schemas/CausalDomainRef"
+          },
+          "relationship_scope_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CausalDomainRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "relationship_scope_revision": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Relationship Scope Revision"
           },
           "action_receipt_ref": {
             "$ref": "#/components/schemas/CausalDomainRef"
@@ -100979,6 +101018,9 @@
           "readback_status",
           "audience",
           "scope_fingerprint",
+          "authorization_refs",
+          "affected_principal_ids",
+          "experience_scope_ref",
           "action_receipt_ref",
           "readback_ref",
           "observed_at",

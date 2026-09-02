@@ -273,12 +273,16 @@ actual viewport exposure and user engagement.
 
 Chat and Life remain behind their typed boundaries until their design lanes
 settle and they can emit or organize evidence-bearing semantic results. Do not
-relabel free-form Concierge prose or raw Life returns as conformance. The next
-shared engineering seam is the S4 consequence resolver: a released
-proposal/execute control must carry server-issued scope, expected revision,
-target, idempotency, and owner-gateway identity through canonical commit and
-readback. The client must never reconstruct that authority from a capability
-name.
+relabel free-form Concierge prose or raw Life returns as conformance. The
+generic S4 consequence resolver and its prepared-authority boundary are now
+landed. The next shared seam is concrete owner binding across a small portfolio
+of materially different consequence families: private occurrence
+reconciliation, shared Plan repair, and an addressed Place handoff. Those
+families must revalidate current owner revision, audience, affected principals,
+and relationship membership at commit time, then propagate canonical readback,
+invalidation, correction, and continuity through the same causal chain. The
+client must never reconstruct authority from a capability name or from the
+object a root unit happens to depict.
 
 ## Execution status — 2026-09-01
 
@@ -669,3 +673,46 @@ mutating family is promoted merely by this infrastructure. The next package
 must bind concrete owner command/readback adapters and richer correction/Undo
 capabilities, then release each family through the same portfolio rather than
 adding a root-specific write shortcut.
+
+### S4D — prepared command authority and multiplayer scope — landed
+
+Backend commit `ef9efb7c5` and app commit `127d69878` close a deeper authority
+gap that the first opaque-grant package exposed: the object presented by a root
+unit is not necessarily the canonical object a consequence may mutate.
+
+- the immutable lived-experience workflow now reconstructs a typed prepared
+  consequence containing the exact owner command target, authorizing Source
+  and producer references, audience, affected principals, experience scope,
+  relationship scope and revision, expected owner revision, and expiry;
+- a Place unit may therefore depict a venue while its consequence targets one
+  private occurrence proposal or one addressed handoff; presentation identity
+  can no longer grant mutation authority by resemblance;
+- group consequences fail closed without a revision-bound relationship scope,
+  and every prepared command includes its recipient among an explicit,
+  deduplicated affected-principal set;
+- consequence grant v2 signs the prepared-context fingerprint and every
+  authority-bearing coordinate, while retaining the root projection reference
+  separately as presentation provenance;
+- resolution reloads the immutable workflow and compares the current prepared
+  command with the signed grant before gateway dispatch; command, audience,
+  principal, scope, authorization, revision, expiry, or workflow drift rejects
+  the action;
+- the canonical response now returns content-free authorization references,
+  affected principals, and experience/relationship scope beside owner receipt
+  and readback; and
+- the grant binder is genuinely default-off: root compilation passes the
+  independent consequence-resolution release gate instead of relying on an
+  endpoint-only check.
+
+Verification covers 74 adjacent consequence, gateway, readback, Home/Places
+projection, and API tests; the dedicated mobile wire test; TypeScript; backend
+repository hooks; and the complete cross-repository contract checker. The
+complete contract remains 566 paths / 628 operations / 1,414 schemas; the
+active mobile projection remains 433 paths / 478 operations / 1,261 schemas.
+
+S4 remains active and S5 is now an explicit dependency of consequence release.
+No mutating family is promoted by this package. The next package must bind
+concrete owner gateways and readback for private occurrence reconciliation,
+shared Plan repair, and addressed Place handoff, with current membership-epoch
+revalidation and dependent projection invalidation before any group control is
+served.
