@@ -1784,13 +1784,23 @@ family without inventing another Places product or owner.
   Reading, feed-card actions, and supported details. Map return retains exact
   spatial state; final Home return refreshes canonical reads and restores the
   originating semantic unit.
+- Backend commit `708b1b86c` makes projection revision semantic: rotating
+  opaque action grants and presentation proofs remain usable but no longer
+  create false content revisions. App commit `6a32beebf` consumes that contract
+  through a fresh-read resolver. Exact restore requires the same viewer,
+  projection revision, unit, family, audience, and selected resource revisions;
+  any drift, failed read, or missing/consumed token keeps recomposed Home.
+- Renderer restoration is one-shot and explicitly settles both success and
+  disappearance, preventing a stale unit ID from firing against a later
+  composition.
 - The Places operating contract and QA registry now claim both route families,
   preventing a Home-depth change from escaping Places surface review.
 
-Focused verification passes 37 suites / 287 tests, both TypeScript gates, API
+Verification passes 48 backend authority/revision tests and 54 app
+Home/Places/root-projection suites / 363 tests, both TypeScript gates, API
 boundaries, surface registry and invariants, core-tab review, and the complete
 scenario-ID registry. No rollout gate changed, no second read owner was added,
 and Chat and Life were not modified. S4's code path is ready for the
 revision-pinned physical rehearsal; S7 promotion remains open on native gesture
-and scroll evidence, superseded-origin and process-death degradation, visual
+and scroll evidence, physical process-death/supersession rehearsal, visual
 review, and public-shell approval.

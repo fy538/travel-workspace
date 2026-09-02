@@ -605,6 +605,40 @@ Gesture behavior, exact scroll restoration, superseded-origin recomposition,
 cold-link/process-death degradation, and visual continuity still require a
 revision-pinned device rehearsal before Package 4 can be promoted.
 
+### Fresh-read return reconciliation — 2026-09-02
+
+Backend commit `708b1b86c` and app commit `6a32beebf` close the code-level
+superseded-origin and process-death ambiguity left by the native route package:
+
+- a Home return now asks the canonical v2 data owner for a fresh projection
+  before arming any semantic scroll. It restores only when root, viewer,
+  projection ID/revision, active unit, payload family, audience, and selected
+  resource revisions still agree;
+- a changed projection, viewer, unit, audience, resource revision, unavailable
+  fresh read, missing/expired token, or already-consumed token performs no
+  stale jump. The current Home composition remains in place;
+- a restoration request is single-outcome. The renderer disarms it after the
+  unit is laid out and restored, or after the unit disappears before layout,
+  so a later composition cannot resurrect an old scroll target; and
+- the backend projection revision no longer hashes rotating opaque consequence
+  grants or presentation proofs. Those authorities remain in the returned
+  unit and continue to rotate, but an otherwise unchanged semantic projection
+  keeps a stable revision. `represented_at` remains a fresh-read timestamp,
+  not content identity.
+
+The backend authority/revision family passes **48 tests**. The complete
+Home/Places/root-projection app selection passes **54 suites / 363 tests**;
+the focused return family passes **21 tests**, both TypeScript gates pass, and
+touched-file lint has no warnings or errors. API boundaries, core-tab review,
+scenario and surface registries, and surface invariants pass. Two broader
+ratchets remain red only on untouched pre-existing files: Chat/inbound
+query-key ownership and three oversized legacy Places components.
+
+This proves deterministic code-level degradation, not physical process death,
+native gesture behavior, or device scroll geometry. The remaining Package 4
+return gate is a revision-pinned device rehearsal of exact restore and honest
+recomposition; it is no longer an unspecified implementation behavior.
+
 ## Integrated convergence execution — 2026-09-01
 
 The latest package converts the earlier seam into a broader, executable
@@ -699,8 +733,9 @@ visible. The following remain:
 - state-specific Places Focus/Path/Live producers and their native renderers;
 - confirmed owner/provider consequence readback through the renderer path;
 - physical-device evidence that Home→Places depth remains in the Home stack and
-  returns exactly after map/search/detail/action movement, including
-  superseded-origin and process-death degradation;
+  returns exactly after map/search/detail/action movement, including physical
+  process-death and superseded-origin rehearsal of the implemented safe
+  recomposition contract;
 - explicit model-role approval, real-model editorial adjudication, and
   smallest-cohort Home/Places activation through the existing double-dark
   serving seam, plus a complete known-to-person resolver beyond exact

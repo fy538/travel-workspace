@@ -933,11 +933,24 @@ Implementation checkpoint — 2026-09-02:
 - Existing owner-grant, verified readback, repair, invalidation, and semantic
   return packages provide the corresponding action boundary; this route package
   does not infer success from navigation or create a new writer.
-- Focused code evidence passes 37 suites / 287 tests plus type, API-boundary,
-  route, and surface-registry checks. Package 4 is code-complete enough for the
-  physical rehearsal, but its promotion exit remains open until native gesture,
-  exact scroll, superseded-origin, cold-link/process-death, degraded readback,
-  and visual-continuity evidence is captured on one pinned revision.
+- Backend commit `708b1b86c` and app commit `6a32beebf` make the return law
+  executable rather than implicit. Home revalidates its canonical projection
+  before scrolling; only the same viewer, stable semantic revision, unit,
+  family, audience, and selected resource revisions restore. Every drift or
+  unavailable/missing/consumed token keeps the fresh composition, and the
+  one-shot renderer request cannot fire again later.
+- The compiler now excludes rotating opaque consequence grants and
+  presentation proofs from semantic revision identity while preserving them in
+  the served unit. Therefore a fresh timestamp/authority rotation does not
+  manufacture supersession, while visible candidate change still changes the
+  revision.
+- Code evidence passes 48 backend authority/revision tests and 54 app
+  Home/Places suites / 363 tests, plus focused lint, both TypeScript gates,
+  API boundaries, route/surface registries, core-tab review, and surface
+  invariants. Package 4 is code-complete enough for the physical rehearsal,
+  but promotion remains open until native gesture/scroll, physical process
+  death, degraded readback, and visual continuity are captured on one pinned
+  revision.
 
 ### Package 5 — Native convergence and deletion
 

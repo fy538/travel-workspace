@@ -239,17 +239,21 @@ worker rejection, and cooldown exclusion. The adjacent portfolio passes 231
 tests. Model-role approval, real-model editorial adjudication, cohort rollout,
 and device evidence remain open.
 
-App commit `31a54cbbb` now supplies the missing native Home→Places depth. A
+App commit `31a54cbbb` supplies the missing native Home→Places depth. A
 Home-origin Places door stays inside the Home navigator while rendering the
 same mature Places owner used by the canonical Places tab. Its ephemeral exact
 return identity survives map, Search, Saved, Reading, feed-card, and supported
-detail movement; the final Home return revalidates owner reads and restores the
-originating semantic unit. Focused evidence passes 37 suites / 287 tests plus
-type, API-boundary, route, and surface-registry checks. This closes the
-code-level route-family gap, not the physical-device or rollout gate: native
-gesture/scroll restoration, superseded origin, process-death degradation,
-visual continuity, and explicit shell promotion remain unverified. Chat and
-Life were unchanged.
+detail movement. Backend commit `708b1b86c` keeps semantic projection revisions
+stable across opaque grant/proof rotation; app commit `6a32beebf` now performs
+a canonical fresh read before any final Home scroll. Exact viewer, revision,
+unit, family, audience, and selected-resource identity restores once; any
+supersession, unavailable read, or missing/consumed token keeps the recomposed
+Home and cannot arm a later stale jump. Evidence passes 48 backend tests and 54
+app suites / 363 tests plus both TypeScript gates, lint, API boundaries, and
+route/surface checks. This closes the code-level route and degradation gaps,
+not the physical-device or rollout gate: native gesture/scroll geometry,
+physical process death/supersession, visual continuity, and explicit shell
+promotion remain unverified. Chat and Life were unchanged.
 
 ### Contribution-contract conformance
 
