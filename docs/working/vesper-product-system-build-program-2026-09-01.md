@@ -279,12 +279,13 @@ concrete owner family are now landed. Private occurrence reconciliation proves
 the reusable command shape: emit while the decision is pending, target the
 exact proposal rather than the depicted Place, bind the roster epoch, execute
 only through the canonical writer, and verify the result through the same
-owner. The next shared seam applies that shape to shared Plan repair and an
-addressed Place handoff. Those families must revalidate current owner revision,
-audience, affected principals, and relationship membership at commit time,
-then propagate canonical readback, invalidation, correction, and continuity
-through the same causal chain. The client must never reconstruct authority
-from a capability name or from the object a root unit happens to depict.
+owner. Shared Plan repair now applies that shape to a multiplayer mutation by
+carrying both Plan and roster epochs into the existing proposal owner. The next
+shared seam is an addressed Place handoff. It must preserve its named recipient
+and relationship boundary at commit time, then join the same canonical
+readback, invalidation, correction, and continuity chain. The client must never
+reconstruct authority from a capability name or from the object a root unit
+happens to depict.
 
 ## Execution status — 2026-09-01
 
@@ -761,3 +762,44 @@ it is the shared Plan-repair command/readback binding, followed by addressed
 Place handoff and dependent Home/Places invalidation over the same registry,
 grant, owner receipt, and readback chain. Encounter surface release remains
 deliberately withheld until that shared continuity behavior is present.
+
+### S4F — shared Plan owner command and dependent invalidation — landed
+
+Backend commit `b44cee73b` proves that the consequence architecture also holds
+for a multiplayer Plan mutation rather than only a private occurrence:
+
+- the domain command intent now carries the prepared relationship-scope
+  identity and revision into the owner gateway; signing multiplayer authority
+  without delivering it to the commit boundary is no longer possible;
+- a shared Plan consequence accepts only the exact canonical proposal target
+  and the `execute` mode. The proposal already exists, so treating its
+  acceptance as another vague “propose” action would be false product grammar;
+- before application, the owner transaction locks the proposal, verifies the
+  recipient is still in the Trip, recomputes the complete roster fingerprint,
+  locks and compares the current Plan head, and only then invokes the existing
+  organizer/policy/ballot-aware proposal resolver and itinerary writer;
+- the gateway does not duplicate organizer rules, consensus policy, rebase
+  logic, operation preview, or Plan application. Those remain owned by the
+  canonical proposal gateway;
+- a successful application invalidates conflict scan, Plan state, Home feed,
+  world/proposal projections, and every registered cross-worker cache reached
+  by those owner invalidators;
+- retry re-reads the canonical proposal and current roster, returns an
+  already-applied receipt without repeating the operation, and readback binds
+  the applied proposal revision to the same domain-decision reference; and
+- the unified consequence registry now contains three canonical readers and
+  two execute-only command owners. Shared Plan gateway/readback remain shadow,
+  with surface release and longitudinal group-resolution proof still open.
+
+Verification covers 88 proposal writer, producer, shadow, consequence,
+prepared-authority, portfolio, root API, and owner-gateway tests; every backend
+commit hook; and the full cross-repository contract checker. The public
+contract remains unchanged at 566 paths / 628 operations / 1,414 schemas and
+433 active-mobile paths / 478 operations / 1,261 schemas.
+
+S4 and S5 remain active. The next command family is addressed Place handoff,
+which tests a different multiplayer shape: a contribution is preserved for a
+specific person without pretending it is a shared Plan decision. After that,
+owner receipts must drive dependent Home/Places refresh and repair/Undo
+continuity consistently across all three families before any mutation control
+is promoted.
