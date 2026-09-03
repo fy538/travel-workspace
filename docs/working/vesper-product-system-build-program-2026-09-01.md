@@ -839,6 +839,55 @@ read-only dogfood audit did not establish that population. Do not reintroduce
 name matching or ask the user to classify artifacts merely to make a demo
 non-empty; inspect and repair the authoritative binding pipeline instead.
 
+Backend commit `0740aa112` closes the earlier authoritative population gap
+without creating a fuzzy resolver or a second identity owner:
+
+- `capture_context.subject_entity_ref` is now the typed form of a deliberate
+  Point/Bring gesture. Intake validates the exact `EntityRef`, follows
+  authorized redirects, and verifies owner visibility in the custody
+  transaction. Ambient location, candidate titles, and extracted place prose
+  do not receive that authority;
+- the confirmed owner Anchor read preserves this explicit subject even when no
+  activation proposal was needed. This lets the existing Source reader join an
+  artifact to Place content by exact application identity;
+- Experience Graph compilation resolves that subject only through an already
+  accepted global or owner-scoped graph binding. A model-generated claim named
+  `world_entity_id` is no longer capable of assigning graph identity;
+- the compiled anchor and action receipt carry both the canonical `EntityRef`
+  and internal graph UUID. The graph bridge locks and revalidates the accepted
+  mapping inside its write transaction, including replay, so a withdrawn or
+  changed binding cannot be reasserted across the compile/write gap;
+- `make canonical-owner-evidence-audit OWNER_ACCOUNTS='--account label=UUID
+  …'` now emits a repeatable-read, read-only account inventory across custody,
+  confirmation, explicit subject, deterministic graph anchor, accepted
+  binding, activation, owner projection, and root Source discovery; and
+- this uses the existing bounded capture-context envelope and existing
+  `canonical_links` projection. It adds no migration or public API shape and
+  leaves Chat and Life unchanged.
+
+The exact two-account audit on 2026-09-03 reports zero live Intake submissions,
+zero confirmed candidates, zero graph anchors, zero accepted anchor bindings,
+and zero handed-off activations for both Dao and Lena corporate. Dao still has
+three recent itinerary-block Source opportunities plus one `source_omitted`
+finding; Lena has no Source opportunity and `context_unavailable`. Both direct
+snapshots verified `repeatable read` and `transaction_read_only=on`, and the
+report records `mutation_performed: false`. The earliest remaining dogfood gap
+is therefore real capture/admission population, not an inability to preserve a
+known subject. The end-to-end Postgres proof covers validated capture,
+confirmation, accepted binding, stale-binding rejection, graph projection, and
+canonical owner read. The focused architecture portfolio passes **315 tests**;
+the direct Postgres identity portfolio passes **4 tests**; and all repository
+hooks pass.
+
+One existing convergence issue surfaced during contract verification: the
+workspace's committed OpenAPI contract includes the entity-resolution endpoint
+from the unmerged `codex/entity-shell-resolution` backend lane, while this
+integrated backend branch does not yet contain that implementation. The failed
+regeneration was discarded; no generated contract was hand-edited or committed.
+Merge or explicitly reject that reviewed Home/Places lane before the next
+contract-sensitive API change, rather than normalizing the mismatch by deleting
+the workspace contract.
+
 The next P1 sequence is therefore:
 
 1. make one explicit operator decision at the existing mutation boundary: if
@@ -847,11 +896,14 @@ The next P1 sequence is therefore:
    rerun the canonical Source listing and runtime trace. Do not bind the two
    held rows, broaden the consequence profile, or turn on a serving flag as a
    side effect;
-2. audit the two real accounts for admitted Intake anchors, deterministic graph
-   anchors, accepted identity bindings, and valid activation receipts. Repair
-   the authoritative identity population path where data is absent; do not
-   infer a site, transport hub, or Place from titles. Then rehearse canonical
-   editorial context alone and with the newly linkable real lived evidence;
+2. use the new read-only audit as the population gate for the two real accounts.
+   The 2026-09-03 result is truthfully empty, so the next capture-capable
+   Home/Places or connector path must pass an exact `subject_entity_ref` when a
+   person deliberately points at a canonical object. Do not fabricate an
+   artifact, infer a site or Place from titles, or require a classification
+   chore merely to populate the demo. Once a real admission exists, rerun the
+   same audit and rehearse canonical editorial context alone and with that lived
+   evidence;
 3. establish the governed path by which real current conditions earn an
    Opening with explicit Source, subject, or Place lineage. Rehearse historical
    Source, current Opening, and their lawful combination independently; do not
@@ -884,9 +936,10 @@ rejected. The selector now correctly withholds the known low-information
 itinerary-only pairs before generation. Governed present-context composition
 including the upstream exact relationship selector is implemented but still
 awaits a deliberately activated policy-bound Source corpus and truthful Opening
-substrate in dogfood. The owner-evidence identity bridge is also implemented,
-but truthful dogfood value still depends on accepted bindings being present in
-the real account data. Full-portfolio quality calibration,
+substrate in dogfood. The owner-evidence identity and explicit-subject bridges
+are implemented, but the canonical accounts currently contain no Intake
+admission to exercise them; any admitted subject also needs an accepted graph
+binding for graph-native consequence. Full-portfolio quality calibration,
 social-perspective transformation, and correct earned silence across those
 richer cases remain release dependencies.
 P1 must not be marked complete from deterministic fixtures, compiler
