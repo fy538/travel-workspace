@@ -450,6 +450,21 @@ into concrete product evidence:
   incompatibility is fixed; this model remains outside the surface's twelve-
   second product latency budget.
 
+Backend commit `d953018dc` turns those observations into durable calibration
+evidence without retaining the underlying private material or generated copy.
+The checked-in provider receipt uses opaque case labels and records only the
+provider/model posture, situation, audience, terminal outcome, timeout ceiling,
+zero-candidate proof, and bounded compiler reason codes. A companion
+fingerprinter reduces any selected orchestration attempt to pipeline, assembly,
+compiler, and nested expression codes. It reproduces the live GPT-4.1 rejection
+shape—invalid semantic job, rejected expression, missing lead anatomy, and
+unused claim—without allowing the rejected prose into the receipt. The focused
+and adjacent Source/root regression passes **225 tests**. The complete offline
+repository suite reaches **20,170 passing tests** but retains 24 failures in
+unrelated itinerary, embedding-release, Places relationship, lazy-research,
+handler/privacy-audit, and reviewed-promotion baselines; none exercises this
+package.
+
 The provider path is therefore structurally portable and fail-closed, but the
 P1 exit is still unmet. We have not yet observed one admitted real-owner model
 contribution, much less a good two-account portfolio. The next bottleneck is
@@ -468,10 +483,10 @@ false rather than implying a repair path that does not exist.
 
 The next P1 sequence is therefore:
 
-1. preserve GPT-4.1 as the funded diagnostic path, capture its rejected Lena
-   draft and Dao timeout as calibration cases, and decide the smallest prompt
-   or producer-contract correction that teaches semantic job ids and lead
-   anatomy without weakening compiler admission;
+1. use the now-captured GPT-4.1 rejection fingerprint to make a founder-reviewed
+   prompt-or-producer decision: teach the finite semantic job vocabulary and
+   lead anatomy without weakening compiler admission or duplicating the
+   composition contract inside freeform prose;
 2. rerun the default-off producer under the twelve-second surface budget for
    both internal accounts, and require admitted output or earned silence—not a
    longer hidden timeout—as the operational result;
