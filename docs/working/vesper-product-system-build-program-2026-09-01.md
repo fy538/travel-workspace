@@ -112,11 +112,12 @@ in the domain layer, or a second writer hidden behind the semantic facade.
 The following packages are the current sequencing authority. They preserve the
 system ambition while making dependencies, exits, and promotion gates clear.
 
-Latest increment: app commit `922628363` binds Home/Places Source inspection
-and removal to the originating interaction and account lifetime. The owner
+Latest increments: app commit `922628363` binds Home/Places Source inspection
+and removal to the originating interaction and account lifetime; `15a93e12f`
+keeps provenance inspection out of generated-content reception history. The owner
 controls are implemented; do not schedule them again as missing architecture.
 Native modal behavior and real-account editorial value remain unverified.
-S1X / S4X below records the exact coverage and outstanding gates. P0 remains
+S1X / S4X and S1Y below record coverage and outstanding gates. P0 remains
 red, P1's real-data exit remains open, and Chat/Life changes remain held.
 
 ### P0 — Stabilize and land the integrated baseline — immediate
@@ -3229,3 +3230,77 @@ provider-detail flow across native navigation/account/offline transitions, and
 resolve in-scope P0 gate debt without touching held Chat/Life behavior. A
 synthetic successful feed, a widened policy batch, or enabled serving flags
 cannot substitute for authorized account material and editorial evaluation.
+
+### S1Y — Provenance inspection is not content reception — corrected
+
+App commit `15a93e12f` removes a false learning signal at both native roots.
+Home and Places previously emitted an `opened` root-delivery and treatment
+event immediately on `source.inspect`, before its awaited owner read could
+succeed, fail, or be abandoned. The backend's
+`get_recent_root_received_fact_keys` admits proof-verified opened/acted events
+into the conservative received-claim baseline. Thus a trust-control interaction
+could suppress future substance as already received, without the person ever
+opening that substance.
+
+Both roots still call the existing canonical Source inspector, but no longer
+report its invocation or completion as generated-content reception. Source
+removal likewise remains custody/repair, not positive content engagement.
+Ordinary viewport exposure, explicit content opening, and owner-verified
+consequence reporting retain their separate existing behavior. The shared
+interaction helper and Places contract document the distinction; Home already
+references that shared Source contract. No new telemetry taxonomy, client
+event endpoint, backend schema, prompt, or inferred knowledge state is added.
+This change prevents new misclassification by this app version; it neither
+rewrites historical events nor changes older clients.
+
+Two deferred-inspection regressions first fail on the previous implementation
+and pass after the correction. The broader root/Places/Source/interaction
+portfolio passes **266 tests in 31 suites**. Existing backend delivery,
+Source continuity, and lifecycle telemetry behavior passes **26 tests** with
+no backend modifications. App and test-contract TypeScript checks, focused
+ESLint, API import boundaries, mutation-key ownership, and commit hooks pass.
+These checks establish the caller classification and existing downstream
+semantics, not a real-account editorial-quality result.
+
+The separate downstream mock/HTTP seam command also passes **161 tests in six
+suites**, active OpenAPI projection verification, generated-type freshness,
+and interface typechecking. This is still not a passing outer `qa:parity`
+gate; S1X's ownership and size-budget failures have not been repaired here.
+
+#### Native evidence advanced; release acceptance remains open
+
+The earlier Metro failure was investigated rather than retained as a permanent
+blocker. A booted iPhone 16 Pro and installed development build are available.
+Starting Expo with `--localhost` initially bound only IPv6 `::1`; the native
+bundle URL used `127.0.0.1`, producing a visible development-server connection
+error even when a `localhost` doctor probe passed. Restarting this session's
+server with `NODE_OPTIONS=--dns-result-order=ipv4first npm start -- --localhost`
+made the actual IPv4 status/bundle endpoint reachable. Explicitly opening
+`exp+travel-app://expo-development-client/?url=http%3A%2F%2F127.0.0.1%3A8081`
+connected the installed development client to the current bundle.
+
+Registered scenario and external design-hash checks pass. The runner's
+`places-workspace` / `polish/places-workspace-default` flow then completes in
+mock mode, including search results and empty search, recent queries, forced
+loading/offline recovery, a Reading return, and experience save/detail return.
+The successful local run is
+`travel-app/.maestro/runs/20260903T235647Z-places-workspace`; its manifest records
+one of one selected captures and the flow produces four PNGs. All four were
+opened for diagnostic inspection. The earlier runs ending `235128Z` and
+`235439Z` failed readiness and must not be counted as product captures.
+
+The successful run is not a post-pivot release verdict. Its screenshots show
+the legacy Plans/Vesper/Places shell, and the manifest's upcoming-trip label
+does not match the visible `TODAY` posture. Resolve that scenario/clock mismatch
+before treating it as future-trip coverage. The run also does not exercise a
+retained Source inspector, account switching, a real provider resolution,
+Android, or production account evidence. Its structured verdict is scaffolded
+but deliberately pending: external reference identity was verified, not a
+complete visual/intent comparison. Do not promote native acceptance from a
+successful Maestro exit alone.
+
+The next native package can now use the working bundle connection: reconcile
+registered scenario state with the frozen fixture clock, add representative
+post-pivot Source and semantic-root coverage, and verify the inspector's
+navigation/account/modal lifecycle. Keep this separate from P1 real-data
+editorial activation and preserve the Chat/Life hold.
