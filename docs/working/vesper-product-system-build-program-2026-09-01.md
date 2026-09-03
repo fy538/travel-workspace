@@ -112,6 +112,13 @@ in the domain layer, or a second writer hidden behind the semantic facade.
 The following packages are the current sequencing authority. They preserve the
 system ambition while making dependencies, exits, and promotion gates clear.
 
+Latest increment: app commit `922628363` binds Home/Places Source inspection
+and removal to the originating interaction and account lifetime. The owner
+controls are implemented; do not schedule them again as missing architecture.
+Native modal behavior and real-account editorial value remain unverified.
+S1X / S4X below records the exact coverage and outstanding gates. P0 remains
+red, P1's real-data exit remains open, and Chat/Life changes remain held.
+
 ### P0 — Stabilize and land the integrated baseline — immediate
 
 Finish convergence before adding another architecture-bearing family:
@@ -3148,3 +3155,77 @@ bind the interaction to the existing auth/session and origin context. Canonical
 Intake deletion remains the owner; suppressing a stale UI callback must never
 pretend to undo a server mutation that already committed. No app change is
 included in S0W, and this finding is not evidence of an observed disclosure.
+
+### S1X / S4X — Source inspection lifetime and truthful removal receipts — landed
+
+App commit `922628363` repairs the shared Home/Places Source inspector without
+introducing a new Source owner, API, surface, or composition. Deferred-read
+regressions first reproduced four failures in the previous implementation:
+late alert publication after unmount, navigation, or account change, and a
+retained confirmation dispatching deletion after navigation.
+
+Inspection now belongs to one mounted interaction, latest inspection request,
+account identity, account-session revision, and navigation revision. Leaving
+and returning to the same path or account cannot revive an abandoned request.
+The returned canonical submission must match the requested Source. Cancelled,
+superseded, duplicate, or stale confirmation callbacks cannot dispatch a new
+removal. Account teardown invalidates pending work synchronously before query
+cache clearing; this ephemeral revision is not a new authentication authority.
+
+The existing Intake deletion hook accepts an optional result-lifetime guard.
+Home/Places opt in so an old-account response cannot repopulate a cleared or
+new-account cache. Existing callers retain their previous default behavior.
+Only a matching owner response with deleted custody confirms removal. A
+confirmed removal followed by a failed root refresh says the Source was
+removed and the roots need refreshing; transport uncertainty asks the user to
+check the Source before retrying rather than asserting deletion failed.
+Offline feedback remains owned by the existing network gate.
+
+An already-dispatched canonical deletion may still commit after navigation.
+The same account's projections are refreshed without publishing feedback into
+an abandoned view; an account change suppresses result application and root
+refresh. Suppression does not cancel or undo a committed server mutation.
+These distinctions preserve canonical owner truth and causal repair rather
+than making screen lifetime another write authority.
+
+Both root surface contracts now document this continuity boundary. It does
+**not** guarantee dismissal of a native system alert that was already visible
+before navigation or logout. That platform behavior still requires device
+verification and may require a declarative inspector in a later package.
+No Chat or Life screen, backend contract, model prompt, serving flag, or root
+layout changed.
+
+Verification:
+
+- A fresh post-commit focused rerun passes **65 tests in six suites**, covering
+  deferred reads, stale confirmations, account teardown, duplicate actions,
+  deletion receipts, opt-in cache guards, provider opening, Intake lifecycle,
+  and the existing Intake-v2 capture path.
+- The broader Home/Places and authenticated-account-boundary portfolio passes
+  **238 tests in 29 suites**.
+- The downstream mock/HTTP parity script passes **161 tests in six suites**,
+  plus its generated-contract and TypeScript checks. The outer `qa:parity`
+  command still fails its query-key ownership prerequisite; the downstream
+  result is not a waiver or a green full parity gate.
+- Canonical owner and retention checks pass **25 backend tests**, including
+  PostgreSQL cases, with no backend edits in this package.
+- App and test-contract typechecking, API boundaries, schema bridge,
+  mutation-key ownership, scenario coverage, and both external-design
+  contract checks pass. Focused lint has no errors; existing import-order
+  warnings remain in the account-teardown test.
+
+Outstanding gates remain explicit. A wider capture run reports two audio-test
+failures because assertions omit the existing sixth optional capture-origin
+argument; those screen/tests are unchanged here, but no fresh detached-main
+run was made. Existing query-key ownership violations and Home/general size
+budgets remain red; no budget was raised. The native doctor cannot reach
+Metro on port 8081, so no native acceptance or screenshot evidence is claimed.
+The full app suite was not rerun. These overlapping portfolios must not be
+summed into a fictitious whole-suite total.
+
+Next, separate implementation completion from activation and device evidence:
+retain the real-account P1 sequence above, verify the existing inspector and
+provider-detail flow across native navigation/account/offline transitions, and
+resolve in-scope P0 gate debt without touching held Chat/Life behavior. A
+synthetic successful feed, a widened policy batch, or enabled serving flags
+cannot substitute for authorized account material and editorial evaluation.
