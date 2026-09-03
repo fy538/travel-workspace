@@ -350,6 +350,48 @@ test and child-doc backlogs stay explicit debt; they do not become evidence
 that the post-pivot branch is green, and they do not silently expand P0 into an
 unbounded legacy cleanup.
 
+### Current P1 activation evidence
+
+P1 is now active, but its internal-cohort exit is not yet met. Three backend
+commits establish the first production-shaped editorial path:
+
+- `7f77ac3f1` derives evidence strength, epistemic yield, present relevance,
+  compression, and attention burden from each admitted brief instead of
+  labeling every generated candidate high-value. It also rejects exact and
+  bounded lexical paraphrases of claims already known to the person, rejects a
+  narrow deterministic set of unsupported identity/psychology readings, and
+  prevents Home and Places from becoming cloned expressions of the same job.
+- `96c7dc450` adds a portable ten-case editorial calibration corpus across
+  ordinary New York, an open weekend, recent return, live/shared context,
+  practical disruption, creepy inference, homework, cloned roots,
+  insufficient evidence, and earned silence. Its seven dimensions are new
+  substance, evidence support, non-paraphrase, present relevance,
+  non-creepiness, completeness on view, and root distinctness. The harness
+  compares a judge with human-gold labels; it does not call a model during
+  tests and is not a release gate.
+- `750cf2f53` gives the producer a bounded fourteen-day novelty baseline from
+  prior output only when the exact semantic unit has a server-verified
+  delivered outcome. Retention alone does not make a claim known. Home
+  delivery cannot imply that the person saw the Places expression, current
+  governed Source claims precede delivery history, withdrawn or unavailable
+  current material keeps both history and generation cold, and history-store
+  failure degrades to an empty aid rather than authorizing a claim.
+
+The combined editorial, root, judgment, value, continuity, API, and exposure
+portfolio passes **294 tests** plus all changed-file hooks. Full-repository
+static typing still reports its inherited baseline; the newly added continuity
+plumbing adds no local type error.
+
+This is meaningful P1 architecture, not proof of editorial quality. The
+known-to-person resolver is intentionally conservative and does not infer broad
+topic familiarity. The delivery baseline can recover only still-retained
+governed productions and therefore under-remembers rather than inventing
+knowledge after a same-group production is replaced. The qualitative judge has
+not yet been calibrated against real model runs, the production flag remains
+default-off, the complete telemetry vocabulary has not been audited, and the
+two-account real-owner-data exit has not been rehearsed. Those are the next P1
+dependencies; P1 must not be marked complete from deterministic fixtures.
+
 ## Historical execution ledger — through 2026-09-02
 
 The entries below preserve implementation provenance, commits, tests, and
