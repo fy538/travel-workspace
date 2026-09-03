@@ -29,6 +29,8 @@ Backend branch `codex/entity-shell-resolution`:
   relationship projection.
 - `9373f8665` — explicit accommodation Plan relationship reader.
 - `3cfe3201e` — bounded situation characterization tests.
+- `147aff72a` — expired route facts now produce typed silence instead of stale
+  directions or an invalid response TTL.
 
 Mobile branch `codex/entity-shell-resolution`:
 
@@ -54,8 +56,9 @@ Mobile branch `codex/entity-shell-resolution`:
 
 ## Verification
 
-- Backend focused relationship/presentation tests: passing.
-- Backend situation characterization tests: passing.
+- Backend focused relationship/presentation/situation tests: passing (67
+  tests).
+- Backend touched-file lint/format checks: passing.
 - Mobile TypeScript check: passing.
 - Mobile site data and smoke tests: passing.
 - OpenAPI projection check against the entity branches: passing (`438` paths,
