@@ -353,7 +353,7 @@ unbounded legacy cleanup.
 
 ### Current P1 activation evidence
 
-P1 is now active, but its internal-cohort exit is not yet met. Five backend
+P1 is now active, but its internal-cohort exit is not yet met. Six backend
 commits establish the first production-shaped editorial path:
 
 - `7f77ac3f1` derives evidence strength, epistemic yield, present relevance,
@@ -389,6 +389,17 @@ commits establish the first production-shaped editorial path:
   Source identity, subject and candidate identifiers, and semantic fact keys
   cannot enter its outbound properties. Durable attempt rows, root-delivery
   receipts, and canonical owner/provider readback remain the truth owners.
+- `405d68fe3` makes the mature Trip owner visible to the new intelligence path
+  without migrating or duplicating its truth. Recent-return discovery can now
+  admit exact latest-itinerary revisions explicitly marked `happened` or
+  `skipped`, but only for a viewer represented by canonical participation
+  scope and only into a private composition. Titles and times remain behind
+  exact Source read and material-loading gates; changed Trip or block revisions
+  fail closed. Deterministic selection prefers an explicit plan/reality
+  contrast—and, within those, a movement substitution—over a merely newer pair
+  of activities. This lets the August fixture select `Ferry to Amalfi`
+  (`skipped`) with `Coast bus to Amalfi` (`happened`) instead of producing a
+  generic recent-activity recap.
 
 The earlier combined editorial, root, judgment, value, continuity, API, and
 exposure portfolio passes **294 tests**. The new telemetry slice passes a
@@ -397,6 +408,20 @@ editorial regression, plus all changed-file hooks. The changed telemetry and
 continuity modules pass targeted mypy. Full-repository static typing still
 reports an inherited 112-error baseline across 30 files; none is in those two
 modules.
+
+The itinerary-Source slice passes 65 focused discovery, selection, material,
+owner-read, orchestration, and runtime tests and a 231-test root/API regression.
+Real local owner data now yields complete pre-production selections for two
+accounts: the August Nice-to-Rome fixture resolves the ferry-to-bus change, and
+the Tokyo return fixture resolves two confirmed occurrences. Exact owner reads,
+private audience checks, material loading, and assembly all succeed for both.
+The default Anthropic producer then reached the provider and failed because the
+configured account has no remaining credit. An existing OpenAI override exposed
+two separate portability issues: `gpt-5-mini` is sent the legacy `max_tokens`
+parameter, while `gpt-4o-mini` reaches structured generation but fails the
+current producer schema closed. No model output was admitted or served. These
+are now explicit operational/calibration dependencies, not evidence that Source
+discovery still lacks real data.
 
 This is meaningful P1 architecture, not proof of editorial quality. The
 known-to-person resolver is intentionally conservative and does not infer broad
@@ -410,9 +435,11 @@ false rather than implying a repair path that does not exist.
 
 The next P1 sequence is therefore:
 
-1. run the default-off producer for the two signed-in internal accounts across
-   the full situation portfolio using real owner data and retained proofs;
-2. calibrate actual model outputs against the human-gold editorial corpus,
+1. restore one supported, funded structured-provider path, then run the
+   default-off producer for the two internal accounts whose exact real-owner
+   Source assemblies now pass;
+2. calibrate the resulting model outputs across the full situation portfolio
+   against the human-gold editorial corpus,
    recording both admitted value and earned silence rather than optimizing an
    aggregate engagement score;
 3. bind Source-generated meaning to an inspectable correction target and prove
@@ -422,9 +449,11 @@ The next P1 sequence is therefore:
 5. rehearse private and granted shared cases across both accounts, then decide
    whether the internal-cohort exit is met.
 
-The production flag remains default-off and the two-account real-owner-data
-exit has not been rehearsed. Those are release dependencies; P1 must not be
-marked complete from deterministic fixtures or telemetry coverage alone.
+The production flag remains default-off. Two-account real-owner discovery,
+selection, readback, material, and assembly have now been rehearsed; admitted
+two-account model output and full-portfolio calibration have not. Those remain
+release dependencies, and P1 must not be marked complete from deterministic
+fixtures, pre-production assembly, or telemetry coverage alone.
 
 ## Historical execution ledger — through 2026-09-02
 
