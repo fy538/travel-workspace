@@ -321,7 +321,14 @@ user value itself.
 
 ### Current convergence evidence
 
-As of the September 2 P0 rerun:
+Latest September 3 backend rerun (S0W): **20,362 passed, six failed** across
+the complete offline selection. The remaining failures are five lazy-research
+conversation fixtures and the `_execute_post_atlas_draft` dead-handler audit;
+Chat/Life remain held. No production gate is waived. The app's broad baseline
+and documentation-ownership debt below have not been freshly re-certified by
+that backend run.
+
+Historical September 2 P0 comparison:
 
 - generated OpenAPI and app projections agree: 570 complete paths / 632
   operations / 1,426 schemas, and 435 active-mobile paths / 480 operations /
@@ -879,14 +886,12 @@ canonical owner read. The focused architecture portfolio passes **315 tests**;
 the direct Postgres identity portfolio passes **4 tests**; and all repository
 hooks pass.
 
-One existing convergence issue surfaced during contract verification: the
-workspace's committed OpenAPI contract includes the entity-resolution endpoint
-from the unmerged `codex/entity-shell-resolution` backend lane, while this
-integrated backend branch does not yet contain that implementation. The failed
-regeneration was discarded; no generated contract was hand-edited or committed.
-Merge or explicitly reject that reviewed Home/Places lane before the next
-contract-sensitive API change, rather than normalizing the mismatch by deleting
-the workspace contract.
+That audit also exposed an entity-resolution contract ahead of its backend
+implementation. This convergence issue is now resolved: `fcca91a12` integrated
+the entity-shell lane, the generated contract is aligned, and S4S/S4T connect
+deliberate provider opening and viewer-safe existing identity reuse to Places.
+Do not repeat the old merge task or delete the endpoint from the contract.
+Provider activation and native acceptance remain separate gates.
 
 App commit `b5fd2c9f9` now connects that explicit-subject contract to one real,
 deliberate product gesture without adding another root feed or asking the person
@@ -904,15 +909,17 @@ does not turn the attachment into proof of a visit, preference, or personal
 meaning. Ordinary OS shares and existing Chat intake behavior are unchanged,
 and no Life surface was modified.
 
-This closes the UI-to-Intake handoff seam, not the full consequence loop. A real
-person still has to make a capture before the two-account dogfood audit can turn
-non-empty. The admitted submission preserves the selected subject immediately,
-but the current Experience Anchor/graph path still requires a confirmed
-interpretation candidate and an accepted graph binding before graph-native
-consequence appears. The next architecture package should create the smallest
-deterministic, Source-bound attachment consequence that can be read through the
-canonical owner without auto-confirming model interpretations, while preserving
-correction, deletion, audience, and binding withdrawal.
+The UI-to-Intake handoff and its deterministic attachment consequence are now
+implemented (S1Q/S1R). A retained, exact-subject `source_attachment` can be read
+through its canonical owner and paired with independently reviewed world
+context without requiring interpretation confirmation or an Experience Anchor.
+Graph-native interpreted consequences still require their separate confirmation
+and binding authority; they are not prerequisites for attachment-based value.
+The shared Home/Places inspector also re-reads Intake and supports confirmed
+removal of one exact Source, with dependent production invalidation. A real
+person must still make an authorized capture before the account audit can turn
+non-empty. No visit, preference, photo-content understanding, or shared-use
+authority follows merely from that capture.
 
 Focused verification passes 10 suites / 70 tests, both TypeScript checks, API
 boundaries, schema bridge, lint with its inherited warning baseline, staged-file
@@ -959,7 +966,8 @@ The next P1 sequence is therefore:
    earning silence;
 7. rehearse the landed single-Source correction through the real local API,
    then decide the plural Source repair manifest and direct challenge to
-   Vesper-authored synthesis before exposing a consumer correction control;
+   Vesper-authored synthesis before expanding beyond the shipped exact-Source
+   inspection/removal control;
 8. rehearse proof expiry against the real local API across foreground,
    background/resume, and failed-refresh paths without treating analytics as
    success; and
@@ -974,11 +982,11 @@ itinerary-only pairs before generation. Governed present-context composition
 including the upstream exact relationship selector is implemented but still
 awaits a deliberately activated policy-bound Source corpus and truthful Opening
 substrate in dogfood. The owner-evidence identity and explicit-subject bridges
-are implemented, but the canonical accounts currently contain no Intake
-admission to exercise them; any admitted subject also needs an accepted graph
-binding for graph-native consequence. Full-portfolio quality calibration,
-social-perspective transformation, and correct earned silence across those
-richer cases remain release dependencies.
+are implemented, but the latest recorded account audit contains no Intake
+admission to exercise them. Attachment-based explicit attention no longer
+requires a graph binding; interpreted graph-native consequence still does.
+Full-portfolio quality calibration, social-perspective transformation, and
+correct earned silence across those richer cases remain release dependencies.
 P1 must not be marked complete from deterministic fixtures, compiler
 admission, latency, candidate count, or telemetry coverage alone.
 
@@ -3076,3 +3084,67 @@ them here. Keep their baseline classification distinct from the earlier
 verified five failures. The next bounded P0 work is this remaining test and
 audit isolation, subject to the Chat/Life hold. None of it authorizes corpus
 promotion, production alias switching, or a new model-serving rollout.
+
+### S0W — Release validation and delegated privacy coverage — repaired
+
+Backend commit `0a2c2b9b0` separates two distinct structure-bundle guarantees.
+An altered legacy review must fail at immutable-archive provenance. A synthetic
+current-policy validator input must pass that prerequisite and still reject
+changed geometry, extra reparent columns, changed operation ordering, missing
+zero-write attestations, and a non-independent reviewer. Each parameterized
+case first validates its unmodified input, then checks the intended rejection
+boundary. The synthetic inputs exist only in memory for unit tests: no archive,
+review receipt, production policy, or real worker execution claim is rewritten.
+The real-calendar cascade test also supplies an explicit evaluation day so its
+authored-pin assertion is independent of today's date. Wall-clock freshness
+remains separately tested and enforced.
+
+The previously failing later-directory run now passes **974 tests** across
+tools, voice, workers, and World Foundry, with 47 deselected. This supersedes
+S0V's eight tail failures, not its other outstanding findings.
+
+Backend commit `c48bdd0cd` repairs the public-egress audit without adding the
+published-story reader to the global list of privacy primitives. One explicit
+delegation edge is checked: the public wrapper must call the registered owner
+reader, and that reader must contain an actual named guard call. A missing
+edge, removed helper, uninspectable helper, comment, or string literal cannot
+satisfy that delegated check. A registered delegated surface cannot fall back
+to the older direct-marker heuristic, and unavailable surface source now fails
+instead of skipping the audit. The other surfaces retain their existing narrow
+direct-marker contract; this is not a general dataflow/security proof.
+
+The audit and adjacent profile/share behavior pass **52 tests**, including
+PostgreSQL cases for private/revoked-share exclusion; an expanded run adding
+the story-projection tests passes **90 tests**. Ruff, formatting, applicable
+commit hooks, and the cross-repository contract/place-identity checks pass.
+Neither package changes application runtime, Chat, Life, prompts, API
+contracts, or serving flags.
+
+The complete offline backend rerun finishes with **20,362 passed, six failed,
+30 skipped, 56 xpassed, and 1,325 deselected** in 545.53 seconds. Unlike the
+previous capped runs, it reaches the end of the selected suite. All six
+remaining failures are the five lazy-research conversation-fixture cases and
+`test_audit_returns_no_dead_handlers` reporting `_execute_post_atlas_draft`.
+Their tests and the implicated research worker, composed-card writer, and
+Atlas-handler files have no diff against local `main`; the five fixture
+failures also reproduced in isolation in S0V. This is not a fresh detached-main
+whole-suite execution and does not certify all cross-test interactions.
+Repository-wide acceptance remains red, with these held-area repairs and the
+separate app/documentation debts still explicit.
+
+The current P1 summary above is also reconciled with the landed attachment,
+entity-shell, and root inspector code. Graph interpretation remains a separate
+authority; it is no longer a prerequisite for explicit attachment-based
+attention. Do not repeat those completed implementation tasks merely because
+an older paragraph described them as future work.
+
+The next product-bearing repair candidate is the **lifetime of Home/Places
+Source inspection**, not a new Source owner or another surface. Inspection of
+`travel-app/hooks/useRootSourceInspection.ts` finds an awaited owner read and
+retained native-alert callbacks without explicit unmount, navigation,
+supersession, or account-lifetime guards. The next package should reproduce
+those transitions with deferred reads and stale confirmation callbacks, then
+bind the interaction to the existing auth/session and origin context. Canonical
+Intake deletion remains the owner; suppressing a stale UI callback must never
+pretend to undo a server mutation that already committed. No app change is
+included in S0W, and this finding is not evidence of an observed disclosure.
