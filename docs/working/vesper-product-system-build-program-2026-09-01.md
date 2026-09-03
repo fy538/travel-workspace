@@ -2886,10 +2886,62 @@ Remaining work is explicit:
 2. Run backend-real device acceptance for tap, failure/retry, venue/site detail,
    and exact Home/Places return. Synthetic tests verify contracts, not provider
    quality, account material, or native transition polish.
-3. Consider a viewer-scoped bulk lookup of already-resolved external identities
-   in Places reads. Today a later tap may still enter the resolution endpoint,
-   which can reuse its existing canonical mapping; the client does not install
-   a global identity cache or expose another owner's provisional shell.
+3. The viewer-scoped bulk lookup is implemented in S4T below for qualified
+   nearby candidates and the compatibility list. Device acceptance must still
+   verify that a later read opens the canonical target directly; no global
+   client identity cache is introduced.
 4. Continue the independent Source-attention-to-reviewed-world work above. This
    navigation integration does not demonstrate generated editorial value or
    replace the remaining Home/Places novelty and substance evaluation.
+
+### S4T — Existing canonical identity continuity — implemented; native acceptance pending
+
+Backend commit `4e4a35611` closes the read-side continuation of S4S. A provider
+candidate that has already been resolved can now expose its authorized
+canonical venue/site on the next Places read, without another materialization
+request. This is a contract-sensitive runtime enrichment using existing fields;
+it adds no schema, route, provider, prompt, flag, owner, or mobile implementation.
+
+The canonical identity read batches at most 200 distinct external refs. Verified
+global mappings take precedence over only the requesting owner's active
+mapping; retired and disputed mappings do not qualify. Existing scoped
+redirects are followed in batches, then the current destination is checked
+again: a verified venue/site or this viewer's provisional target may be
+returned. An eligible mapping alone cannot expose a target that has become
+another person's private provisional entity. Unsupported global targets do
+not fall back to older owner identities. There is no shared identity cache.
+
+Places applies this enrichment **after** qualification/ranking and outside the
+taste cache. The provider display ID, source, order, score, imagery, personal
+markers, and operational unknowns remain unchanged. Only the typed canonical
+door and corresponding legacy venue coordinate are added; the new-resolution
+affordance becomes unnecessary. Incompatible type/ID results are withheld, and
+a database or redirect-conflict failure leaves the original candidate intact.
+It neither invents a relationship nor grants a Plan action. New provider
+materialization remains behind its existing default-off flag; reading an
+already-authorized entity is not new materialization.
+
+The production nearby section and compatibility ranked list consume this
+shared enrichment. Corpus-only text Search, map, saved readers, and verified
+gap candidates retain their current owners; no provider search expansion is
+implied. Chat and Life remain untouched.
+
+Verification passes **667 tests** across the complete Places test directory
+and adjacent external-identity, redirect, entity-resolution, and entity-route
+tests. The PostgreSQL cases execute rather than skip: two-account isolation,
+global precedence, private-target reclassification, retirement/dispute, and
+cross-kind redirect chains are exercised. New-module mypy, Ruff, formatting,
+architectural commit hooks, and the cross-repository contract/place-identity
+check pass. The generated API remains unchanged. This establishes owner-safe
+read continuity, not provider quality, native navigation polish, or editorial
+value.
+
+The whole-backend offline run stopped at its five-failure cap after **12,469
+passes**, 12 skips, and 55 expected-failure tests unexpectedly passing. All five
+failures reproduce independently on the pre-package `7f205bc82` checkout:
+`test_enabled_commit_authenticates_and_returns_terminal_result` leaves its
+post-commit `get_trip` read unmocked; four `test_embedding_release.py` cases
+provide an incomplete durable-corpus receipt. This is a partial broad run, not
+a green repository-wide gate. The affected 667-test portfolio above is green.
+Native provider/detail acceptance and the independent P1 Source-attention-to-
+reviewed-world value work remain open.
