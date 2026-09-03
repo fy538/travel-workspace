@@ -107,7 +107,7 @@ Do not introduce a `v3` projection namespace to avoid finishing `v2`. Do not
 solve cross-root coherence with a universal context service, presentation DTO
 in the domain layer, or a second writer hidden behind the semantic facade.
 
-## Forward engineering roadmap — 2026-09-02
+## Forward engineering roadmap — 2026-09-03
 
 The following packages are the current sequencing authority. They preserve the
 system ambition while making dependencies, exits, and promotion gates clear.
@@ -644,9 +644,9 @@ remaining blocker is therefore truthful substrate readiness, not another
 selection heuristic: either attach governed evidence to those dossiers or use
 another receipted world-context Source before recalibrating generated copy.
 
-Backend commits `e32009eb2` and `de2cc9612` land the governed current-context
-seam needed for a connection to become useful in the present without
-misrepresenting present state as past evidence:
+Backend commits `e32009eb2`, `de2cc9612`, `6b5936d4b`, and `9a9fcc433` land the
+governed current-context seam needed for a connection to become useful in the
+present without misrepresenting present state as past evidence:
 
 - Experience Graph reads now evaluate at the exact represented clock, and
   Moment exposes active Opening availability as exact, content-addressed owner
@@ -670,55 +670,81 @@ misrepresenting present state as past evidence:
 - any admitted Home or Places composition that uses an Opening expires no
   later than that Opening. Native Home Opening candidates and Home orientation
   now also declare exact `moment.read` requirements instead of the prior
-  `life.search` shortcut.
+  `life.search` shortcut;
+- discovery reduces current Openings to a bounded metadata-only opportunity
+  inventory. It never serializes the Opening's subject, reason, treatment, or
+  other prose into Source discovery;
+- each selected Source group may carry **at most one** Opening, and only when an
+  explicit relationship exists through Source lineage, exact subject identity,
+  or canonical Place ancestry. Topical similarity, title matching, co-presence,
+  and a universal "current context" blob are not joins;
+- relationship precedence is deterministic: explicit Source lineage, then
+  exact subject, then canonical Place ancestry. Within the same Source doctrine,
+  a group with a valid present-context relationship may outrank an otherwise
+  equivalent group, but an Opening cannot manufacture a stronger evidence
+  doctrine or satisfy the independent-Source threshold;
+- the selected exact Opening revision participates in the contribution-group
+  identity. Continuity therefore cannot replay a cached expression after the
+  attached Opening changes or disappears; and
+- accepted Openings are terminal everywhere in this path. Commit `6b5936d4b`
+  centralizes the current-state predicate and removes accepted candidates from
+  graph projection, repository reads, Moment availability, context loading,
+  and discovery.
 
-This is an end-to-end architecture seam behind the existing default-off
-production path, not yet automatic consequence discovery. The pipeline can
-now consume and safely compose an explicitly selected current Opening, but the
-opportunity selector does not yet attach one. That upstream join must remain
-metadata-first and owner-backed: exact subject, Place ancestry, Source lineage,
-or a reviewed consequence relationship may justify the attachment; a topical
-similarity guess or universal context blob may not.
+This is now an end-to-end, metadata-first current-context join behind the
+existing default-off production path. Discovery can find a related current
+Opening, selection can attach its exact ref, `moment.read` can revalidate it,
+the producer can use it without treating it as historical evidence, and the
+compiled expression cannot outlive it. The seam remains deliberately private:
+shared present context still needs its own reviewed grant and owner contract.
+Reviewed consequence relationships are also not guessed into existence; they
+remain a later typed relationship family.
 
-Focused and architecture-adjacent verification is green at **225 tests**, and
-all repository hooks pass. The complete offline collection ran 20,198 passing
-tests with 30 skipped, 56 expected failures unexpectedly passing, and 25
+Focused and architecture-adjacent verification is green at **233 tests**, and
+all repository hooks pass. The earlier complete offline collection ran 20,198
+passing tests with 30 skipped, 56 expected failures unexpectedly passing, and 25
 failures in untouched itinerary test isolation, embedding-release fixtures,
 legacy Places relationships, research-worker tests, public-egress/audit
 coverage, and reviewed data-promotion tooling. None of those failures traverse
 the current-context or canonical Opening path.
 
+A read-only rehearsal against the actual local application database prevents
+the implementation from being mistaken for live product progress. Both known
+internal accounts currently have **zero active Openings and zero historical
+Opening rows**. Dao's account exposes three itinerary-block Sources but no
+receipted world-context dossier eligible for the richer doctrine; Lena's
+corporate account exposes no eligible Source set. Both therefore produce typed
+selection silence before generation. No synthetic Opening or evidence was
+inserted to make the path look populated. The architecture is ahead of its
+truthful substrate.
+
 The next P1 sequence is therefore:
 
-1. make one receipted world-context path real in dogfood. Attach governed
-   editorial evidence to an eligible dossier, or select another already
-   receipted Source, then rerun occurrence-plus-world-context discovery and
-   generation. Do not return to prompt tuning against the rejected
-   itinerary-only pairs;
-2. add the metadata-first current-context opportunity join upstream of the
-   landed pipeline. Start with exact active Openings whose subject, Place
-   ancestry, Source lineage, or reviewed consequence relationship intersects
-   the selected evidence group. Emit exact Opening refs, let `moment.read`
-   revalidate them, and prefer silence when no explicit relationship exists;
-3. evaluate admitted output and silence separately. Structural admission,
+1. activate truthful substrate across the existing system rather than build
+   another isolated loop. Establish the governed path by which real editorial
+   evidence earns a dossier receipt and real current conditions earn an
+   Opening with explicit Source, subject, or Place lineage. Rehearse both
+   independently and together; do not seed a synthetic success case or tune
+   against rejected itinerary-only pairs;
+2. evaluate admitted output and silence separately. Structural admission,
    latency, and root count are operational gates; new substance,
    non-paraphrase, present relevance, and root distinctness are editorial
    gates. A pass in the first group cannot compensate for a failure in the
    second;
-4. extend the richer evidence-role portfolio to explicitly granted social
+3. extend the richer evidence-role portfolio to explicitly granted social
    perspective. Do not reuse private Opening context in a shared expression;
    shared present context needs its own reviewed grant and owner contract;
-5. only after one model/prompt posture clears that portfolio, add its versioned
+4. only after one model/prompt posture clears that portfolio, add its versioned
    quality receipt and rerun private plus granted shared real-owner cases for
    both accounts. Keep the flag dark if the model invents value rather than
    earning silence;
-6. rehearse the landed single-Source correction through the real local API,
+5. rehearse the landed single-Source correction through the real local API,
    then decide the plural Source repair manifest and direct challenge to
    Vesper-authored synthesis before exposing a consumer correction control;
-7. rehearse proof expiry against the real local API across foreground,
+6. rehearse proof expiry against the real local API across foreground,
    background/resume, and failed-refresh paths without treating analytics as
    success; and
-8. rehearse private and granted shared cases across both accounts, then decide
+7. rehearse private and granted shared cases across both accounts, then decide
    whether the internal-cohort exit is met.
 
 The production flag remains default-off. Two-account real-owner discovery,
@@ -726,8 +752,9 @@ selection, readback, material, and assembly have now been rehearsed; admitted
 two-account model output is operationally demonstrated but editorially
 rejected. The selector now correctly withholds the known low-information
 itinerary-only pairs before generation. Governed present-context composition
-is implemented but still awaits an upstream exact relationship selector and a
-real receipted dogfood case. Full-portfolio quality calibration,
+including the upstream exact relationship selector, is implemented but still
+awaits truthful Opening and receipted Source substrate in dogfood.
+Full-portfolio quality calibration,
 social-perspective transformation, and correct earned silence across those
 richer cases remain release dependencies.
 P1 must not be marked complete from deterministic fixtures, compiler
