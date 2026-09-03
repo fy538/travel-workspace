@@ -52853,7 +52853,6 @@
           "brief",
           "dossier_snippet",
           "status",
-          "display_policy",
           "tail"
         ],
         "title": "EntityEnvelope",
