@@ -2945,3 +2945,60 @@ provide an incomplete durable-corpus receipt. This is a partial broad run, not
 a green repository-wide gate. The affected 667-test portfolio above is green.
 Native provider/detail acceptance and the independent P1 Source-attention-to-
 reviewed-world value work remain open.
+
+### S1U — Novelty admission and shared-context isolation — corrected; P1 value gate remains open
+
+Backend commit `6fcaf0a25` corrects two existing judgment-path weaknesses rather
+than widening generation or adding another memory owner.
+
+**Audience is checked before private novelty history enters generation.** The
+received-claim loader returns viewer-only text without a current audience or
+purpose grant. Previously the pipeline could pass that text into a group or
+public synthesis alongside otherwise correctly governed Sources. It now calls
+that loader only for private synthesis. Shared synthesis continues to use
+known statements from its exact, currently reauthorized Source material. The
+assembly boundary independently rejects directly supplied unscoped receipt
+history for group/public requests, even when the other Sources have valid
+grants. Rejection exposes no private claim text. This closes a potential
+generation-context disclosure path; no live disclosure incident was established.
+
+This does not disable multiplayer synthesis or claim that shared receipt
+history is permanently out of scope. Reusing older shared claims requires an
+authority-bearing reader that can revalidate the exact audience, purpose,
+grant, and revocation state. A bare tuple of strings cannot stand in for those
+facts. Until that reader exists, shared material already governed for the
+current synthesis is the available novelty baseline.
+
+**A changed assertion is not automatically an already-known assertion.** The
+bounded matcher previously erased word boundaries and non-ASCII text in its
+exact key and could treat high word overlap as equivalence despite changed
+quantities, negation, or modal force. Exact matching now preserves Unicode,
+word boundaries, decimal/time separators, signs, and amount symbols. The
+English lexical check protects polarity, modality, conditions, selected scope
+markers, and ordered comparisons/directional relations; replacing content
+predicates is no longer merely a small modifier. Non-Latin text uses exact
+matching rather than matching only the surviving ASCII fragments. Existing
+bounded paraphrase examples and genuinely substantive extensions remain in
+the regression portfolio.
+
+These are conservative repetition checks, not semantic understanding or a
+person-knowledge model. A non-match establishes neither novelty nor truth;
+the existing evidence, authority, editorial-operation, root-job, and value
+gates still apply. Semantic paraphrases outside this bounded heuristic,
+broader authorized prior context, and real human-rated novelty remain P1 work.
+No new personal retrieval, retention, inferred interest, or knowledge from
+passive impressions was introduced.
+
+Verification passes **293 tests** across root projection, contribution
+persistence, PostgreSQL attempt/receipt behavior, and API wiring, including
+group/public producer isolation and changed-assertion regressions. The three
+touched runtime modules pass focused mypy; Ruff, formatting, architectural
+commit hooks, and cross-repository contract checks also pass. No schema,
+prompt, rollout flag, Chat, or Life change was made. This is an intelligence-
+admission correction, not completion of the real-account editorial portfolio
+or the broader product-system goal.
+
+The capped whole-backend offline rerun again reached 12,469 passes before the
+same five baseline failures documented in S4T. No new failure appeared before
+that cap; the remainder was not certified by that run. The separately executed
+293-test affected portfolio includes this package's new cases and is green.
