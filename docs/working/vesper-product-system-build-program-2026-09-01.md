@@ -605,15 +605,19 @@ configured Anthropic default cannot currently be calibrated because that
 provider account has no credit. No generated result is served, and the
 production flag remains default-off.
 
-Backend commit `7359b08e9` corrects the selection seam exposed by that
-calibration. It does not attempt to prompt better prose from insufficient
-evidence:
+Backend commits `7359b08e9` and `698145cb7` correct the selection seam exposed
+by that calibration. They do not attempt to prompt better prose from
+insufficient evidence:
 
 - an explicit itinerary occurrence now carries a canonical Place revision
   only when its block is linked to an owned venue, site, or experience with an
   exact Place parent;
 - recent-return discovery can retrieve approved, receipted dossiers for that
   exact occurrence Place in addition to the user's present Places context;
+- bounded canonical ancestry permits a neighborhood occurrence to meet
+  city-level editorial context. It walks only the explicit Place parent chain,
+  carries every exact revision, and never broadens to siblings or inferred
+  destinations;
 - the selector admits an itinerary occurrence plus approved world context as
   `recent_return.lived_occurrence_with_world_context`; and
 - two itinerary blocks no longer form a Home/Places contribution merely
@@ -626,10 +630,19 @@ This is an evidence-role change, not a retrospective-data deletion. The Trip
 owner still preserves the factual sequence for appropriate consumers. Home and
 Places simply stop treating sequence as editorial value. The query joins only
 the block's explicit catalog identity; it does not infer a destination from a
-title or attach an unlinked transit block to every Place in its Trip. **116
+title or attach an unlinked transit block to every Place in its Trip. **117
 Source-contribution and Home-composition tests pass**, including the new exact
-Place join, occurrence-plus-world-context selection, and itinerary-only earned
-silence cases. Chat and Life are unchanged.
+Place join, canonical-ancestor join, occurrence-plus-world-context selection,
+and itinerary-only earned-silence cases. Chat and Life are unchanged.
+
+A read-only real-dogfood replay now produces the correct pre-generation
+result. Lena's unlinked itinerary facts earn `no_compatible_group` silence.
+Dao's three lived blocks resolve exactly to Tokyo neighborhoods and their Tokyo
+city ancestor, but the two approved Tokyo dossiers currently have no editorial
+evidence receipts, so discovery omits them and also earns silence. The
+remaining blocker is therefore truthful substrate readiness, not another
+selection heuristic: either attach governed evidence to those dossiers or use
+another receipted world-context Source before recalibrating generated copy.
 
 The next P1 sequence is therefore:
 
