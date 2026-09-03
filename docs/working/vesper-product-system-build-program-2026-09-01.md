@@ -318,7 +318,7 @@ user value itself.
 
 ### Current convergence evidence
 
-As of the last September 2 review:
+As of the September 2 P0 rerun:
 
 - generated OpenAPI and app projections agree: 570 complete paths / 632
   operations / 1,426 schemas, and 435 active-mobile paths / 480 operations /
@@ -326,15 +326,29 @@ As of the last September 2 review:
 - focused backend validation passes 227 tests;
 - app typechecking and the focused 12-suite / 67-test portfolio pass;
 - cross-repository import boundaries pass;
-- the broad backend run reports 20,094 passed, 26 failed, and 2 errors;
-- the broad app run reports 1,151 suites and 7,746 tests passed, with 21 suites
-  / 24 tests failing; and
-- documentation status and surface contraction remain blocked by concurrent
-  unclassified docs and a stale generated route inventory.
+- the broad backend run reports 20,095 passed and 26 failed;
+- the broad app run reports 1,152 suites and 7,747 tests passed, with 20 suites
+  / 23 tests failing;
+- all 20 app failures reproduce against detached `main`;
+- 24 deterministic backend failures reproduce against detached `main`, while
+  the notification failure passes in isolation and is cross-test leakage;
+- the one branch backend regression—shared Plan repair selecting Home over an
+  opening already addressed to the proposal owner—is fixed by backend commit
+  `463ad7d25`, with 44 treatment/adapter/portfolio tests passing;
+- the stale route inventory and four missing Home-depth Places owners are fixed
+  by app commit `d0a092b33`; and
+- documentation status remains blocked by concurrent unclassified workspace
+  docs, while child-doc governance reports a 145-item inherited backlog.
 
-These numbers are a convergence baseline, not a quality waiver. P0 must
-classify broad failures as branch regression or inherited debt and close every
-unexplained delta before promotion.
+These numbers are a convergence baseline, not a quality waiver. Contract,
+schema, place identity, API coverage, typecheck, root-surface contraction,
+import boundaries, route ordering, canonical-doc budget, links, release scope,
+flag registry, and compatibility checks pass. P0 has no unexplained code
+regression. It remains **convergence-ready but not repository-clean** until the
+owners of concurrent workspace docs classify their files. The inherited broad
+test and child-doc backlogs stay explicit debt; they do not become evidence
+that the post-pivot branch is green, and they do not silently expand P0 into an
+unbounded legacy cleanup.
 
 ## Historical execution ledger — through 2026-09-02
 
