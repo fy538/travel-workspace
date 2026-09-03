@@ -144,8 +144,9 @@ Turn the governed but mostly shadowed composition path into useful output:
   distinctness;
 - implement a bounded known-to-person resolver beyond exact prior delivery;
 - retain only governed contributions and dependency manifests; and
-- add telemetry for admission, suppression, exposure, engagement, correction,
-  action, expiry, and silence.
+- extend the landed opportunity, production, admission, suppression, and
+  delivery telemetry through canonical correction, action readback, expiry,
+  and silence outcomes without turning analytics into product truth.
 
 **Exit:** two signed-in internal accounts receive a populated portfolio from
 real owner data; admitted results add substance rather than echoing the user;
@@ -352,7 +353,7 @@ unbounded legacy cleanup.
 
 ### Current P1 activation evidence
 
-P1 is now active, but its internal-cohort exit is not yet met. Three backend
+P1 is now active, but its internal-cohort exit is not yet met. Five backend
 commits establish the first production-shaped editorial path:
 
 - `7f77ac3f1` derives evidence strength, epistemic yield, present relevance,
@@ -369,28 +370,61 @@ commits establish the first production-shaped editorial path:
   non-creepiness, completeness on view, and root distinctness. The harness
   compares a judge with human-gold labels; it does not call a model during
   tests and is not a release gate.
-- `750cf2f53` gives the producer a bounded fourteen-day novelty baseline from
-  prior output only when the exact semantic unit has a server-verified
-  delivered outcome. Retention alone does not make a claim known. Home
-  delivery cannot imply that the person saw the Places expression, current
-  governed Source claims precede delivery history, withdrawn or unavailable
-  current material keeps both history and generation cold, and history-store
-  failure degrades to an empty aid rather than authorizing a claim.
+- `750cf2f53` introduces a bounded fourteen-day novelty baseline from retained
+  governed production and exact proof-bound root-delivery history. Retention
+  alone does not make a claim known; Home delivery cannot imply receipt of the
+  Places expression, current governed Source claims precede delivery history,
+  withdrawn or unavailable material keeps both history and generation cold,
+  and history-store failure degrades to an empty aid rather than authorizing a
+  claim.
+- `5db26814d` corrects that baseline so an impression is not mistaken for
+  knowledge. Rendered and dismissed outcomes suppress repetitive presentation
+  only. Opened and acted-on outcomes may enter the conservative
+  known-to-person aid; neither proves belief, understanding, or a downstream
+  real-world consequence.
+- `5e7c98c56` adds a content-free, stage-bounded editorial lifecycle event for
+  opportunity silence, production or cache reuse, value admission, root
+  admission, and authenticated root delivery. It permits only controlled
+  reason codes and low-cardinality classifications. Generated copy, claim and
+  Source identity, subject and candidate identifiers, and semantic fact keys
+  cannot enter its outbound properties. Durable attempt rows, root-delivery
+  receipts, and canonical owner/provider readback remain the truth owners.
 
-The combined editorial, root, judgment, value, continuity, API, and exposure
-portfolio passes **294 tests** plus all changed-file hooks. Full-repository
-static typing still reports its inherited baseline; the newly added continuity
-plumbing adds no local type error.
+The earlier combined editorial, root, judgment, value, continuity, API, and
+exposure portfolio passes **294 tests**. The new telemetry slice passes a
+25-test focused path and a **253-test** wider root, Source, API, core, and
+editorial regression, plus all changed-file hooks. The changed telemetry and
+continuity modules pass targeted mypy. Full-repository static typing still
+reports an inherited 112-error baseline across 30 files; none is in those two
+modules.
 
 This is meaningful P1 architecture, not proof of editorial quality. The
 known-to-person resolver is intentionally conservative and does not infer broad
 topic familiarity. The delivery baseline can recover only still-retained
 governed productions and therefore under-remembers rather than inventing
-knowledge after a same-group production is replaced. The qualitative judge has
-not yet been calibrated against real model runs, the production flag remains
-default-off, the complete telemetry vocabulary has not been audited, and the
-two-account real-owner-data exit has not been rehearsed. Those are the next P1
-dependencies; P1 must not be marked complete from deterministic fixtures.
+knowledge after a same-group production is replaced. `acted` records engagement
+with the root unit, not successful execution of a message, booking, Plan change,
+or any other consequence. Source-generated candidates also do not yet expose a
+canonical correction reference, so correction availability currently reports
+false rather than implying a repair path that does not exist.
+
+The next P1 sequence is therefore:
+
+1. run the default-off producer for the two signed-in internal accounts across
+   the full situation portfolio using real owner data and retained proofs;
+2. calibrate actual model outputs against the human-gold editorial corpus,
+   recording both admitted value and earned silence rather than optimizing an
+   aggregate engagement score;
+3. bind Source-generated meaning to an inspectable correction target and prove
+   that a correction changes subsequent known-to-person and serving behavior;
+4. join root-unit action engagement to canonical consequence readback and add
+   expiry observation without treating analytics as success; and
+5. rehearse private and granted shared cases across both accounts, then decide
+   whether the internal-cohort exit is met.
+
+The production flag remains default-off and the two-account real-owner-data
+exit has not been rehearsed. Those are release dependencies; P1 must not be
+marked complete from deterministic fixtures or telemetry coverage alone.
 
 ## Historical execution ledger — through 2026-09-02
 
