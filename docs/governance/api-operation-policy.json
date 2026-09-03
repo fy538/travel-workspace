@@ -712,6 +712,21 @@
       "removal_trigger": null,
       "review_by": "2026-10-30"
     },
+    "POST /api/me/entity-resolutions": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_direct",
+          "name": "entity_resolution_object_page_boundary"
+        }
+      ],
+      "feature_flag": "ENTITY_PROVIDER_RESOLUTION_ENABLED",
+      "lifecycle": "active",
+      "owner": "places",
+      "reason": "Explicit provider candidate resolution at the object-page navigation boundary; canary-gated and idempotent.",
+      "removal_trigger": null,
+      "review_by": "2026-10-30"
+    },
     "GET /api/me/profile-portrait": {
       "audience": "app",
       "consumers": [

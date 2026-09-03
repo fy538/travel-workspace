@@ -33473,6 +33473,74 @@
         }
       }
     },
+    "/api/me/entity-resolutions": {
+      "post": {
+        "summary": "Resolve Entity Candidate",
+        "description": "Make one provider candidate routable through a canonical entity ref.\n\nThis is an explicit mutation boundary: search remains side-effect free,\nordinary entity GETs remain provider-free, and retries return the same\nreceipt. Provider IDs are never exposed as app navigation IDs.",
+        "operationId": "resolve_entity_candidate_api_me_entity_resolutions_post",
+        "parameters": [
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "title": "X-Idempotency-Key"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EntityResolutionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityResolutionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/me/entities/{entity_type}/{entity_id}/presentation": {
       "get": {
         "summary": "Get My Entity Presentation",
@@ -33566,6 +33634,22 @@
             "schema": {
               "type": "string",
               "title": "Entity Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
             }
           }
         ],
@@ -52593,6 +52677,59 @@
         "title": "EntityDetailPresentation",
         "description": "One authenticated read model for the mobile object page.\n\n``revision`` is a rendering-contract revision, not an entity version.  It\nlets a client reject a response that was composed for a newer UI contract\nwithout coupling that client to a database schema version."
       },
+      "EntityDisplayPolicy": {
+        "properties": {
+          "map_surface": {
+            "type": "string",
+            "enum": [
+              "mapbox",
+              "provider_map",
+              "none"
+            ],
+            "title": "Map Surface"
+          },
+          "provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider"
+          },
+          "provider_map_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider Map Url"
+          },
+          "attribution_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attribution Label"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "map_surface"
+        ],
+        "title": "EntityDisplayPolicy",
+        "description": "Rendering instructions derived from catalog/source policy.\n\nThe client does not infer map ownership from ``catalog_state``.  A\nprovider-backed owner shell may require a provider handoff, while a\nverified catalog object can use the app's Mapbox surface."
+      },
       "EntityEnvelope": {
         "properties": {
           "ref": {
@@ -52601,6 +52738,15 @@
           "name": {
             "type": "string",
             "title": "Name"
+          },
+          "catalog_state": {
+            "type": "string",
+            "enum": [
+              "verified",
+              "owner_provisional"
+            ],
+            "title": "Catalog State",
+            "default": "verified"
           },
           "lineage": {
             "$ref": "#/components/schemas/EntityLineageResponse"
@@ -52665,6 +52811,9 @@
           "status": {
             "$ref": "#/components/schemas/EntityStatusResponse"
           },
+          "display_policy": {
+            "$ref": "#/components/schemas/EntityDisplayPolicy"
+          },
           "tail": {
             "oneOf": [
               {
@@ -52704,6 +52853,7 @@
           "brief",
           "dossier_snippet",
           "status",
+          "display_policy",
           "tail"
         ],
         "title": "EntityEnvelope",
@@ -53222,6 +53372,60 @@
         "type": "object",
         "title": "EntityRelationshipPresentation",
         "description": "Viewer-specific relationship, never part of the public envelope."
+      },
+      "EntityResolutionRequest": {
+        "properties": {
+          "external_ref": {
+            "$ref": "#/components/schemas/ExternalRef"
+          },
+          "entity_type_hint": {
+            "type": "string",
+            "enum": [
+              "venue",
+              "site"
+            ],
+            "title": "Entity Type Hint",
+            "default": "venue"
+          },
+          "source_surface": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Surface"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "external_ref"
+        ],
+        "title": "EntityResolutionRequest",
+        "description": "The smallest mutation needed to make a provider result openable.\n\nThe client sends the provider identity, not a copied provider payload.\nProvider names, coordinates, hours, photos, and reviews remain owned by\nthe provider adapter and its source policy."
+      },
+      "EntityResolutionResponse": {
+        "properties": {
+          "receipt": {
+            "$ref": "#/components/schemas/ResolutionReceipt"
+          },
+          "canonical_ref": {
+            "$ref": "#/components/schemas/EntityRef"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "receipt",
+          "canonical_ref"
+        ],
+        "title": "EntityResolutionResponse",
+        "description": "Stable result the app can route without parsing provider IDs."
       },
       "EntitySave": {
         "properties": {
@@ -55729,6 +55933,30 @@
           "new_expires_at"
         ],
         "title": "ExtendResponse"
+      },
+      "ExternalRef": {
+        "properties": {
+          "provider": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Provider"
+          },
+          "external_id": {
+            "type": "string",
+            "maxLength": 512,
+            "minLength": 1,
+            "title": "External Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "provider",
+          "external_id"
+        ],
+        "title": "ExternalRef",
+        "description": "Provider-owned identity that must resolve before durable use."
       },
       "FacetChip": {
         "properties": {
@@ -74603,6 +74831,26 @@
             "minLength": 1,
             "title": "Id"
           },
+          "canonical_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "external_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ExternalRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "canonical_venue_id": {
             "anyOf": [
               {
@@ -83642,6 +83890,27 @@
         ],
         "title": "ReplanPayload"
       },
+      "RequestedRef": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/EntityRef"
+          },
+          {
+            "$ref": "#/components/schemas/ExternalRef"
+          }
+        ]
+      },
+      "ResolutionMethod": {
+        "type": "string",
+        "enum": [
+          "direct",
+          "materialized",
+          "provider_match",
+          "redirected",
+          "merged"
+        ],
+        "title": "ResolutionMethod"
+      },
       "ResolutionOutcome": {
         "type": "string",
         "enum": [
@@ -83651,6 +83920,38 @@
           "denied"
         ],
         "title": "ResolutionOutcome"
+      },
+      "ResolutionReceipt": {
+        "properties": {
+          "requested_ref": {
+            "$ref": "#/components/schemas/RequestedRef"
+          },
+          "canonical_ref": {
+            "$ref": "#/components/schemas/EntityRef"
+          },
+          "method": {
+            "$ref": "#/components/schemas/ResolutionMethod"
+          },
+          "evidence": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Evidence"
+          },
+          "resolved_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Resolved At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "requested_ref",
+          "canonical_ref",
+          "method",
+          "resolved_at"
+        ],
+        "title": "ResolutionReceipt"
       },
       "ResolveIntakeCandidateRequest": {
         "properties": {
