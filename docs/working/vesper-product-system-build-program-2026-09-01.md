@@ -888,6 +888,43 @@ Merge or explicitly reject that reviewed Home/Places lane before the next
 contract-sensitive API change, rather than normalizing the mismatch by deleting
 the workspace contract.
 
+App commit `b5fd2c9f9` now connects that explicit-subject contract to one real,
+deliberate product gesture without adding another root feed or asking the person
+to classify an artifact. Venue, site, and experience object pages—the canonical
+details reached from both Home and Places—offer **Bring a photo**. The picker
+hands the existing custody-first Intake path both the selected source bytes and
+the exact app-owned `EntityRef`; Intake receives `source_channel=photo_library`
+and `capture_context.subject_entity_ref`. A bounded display name is carried only
+for receipt copy and cannot stand in for identity.
+
+After custody verification, the explicit-subject flow returns value first:
+**Held with {place}**, a deletion-capable custody receipt, and Done. Interpretation
+review is optional and appears only when candidates exist. The receipt explicitly
+does not turn the attachment into proof of a visit, preference, or personal
+meaning. Ordinary OS shares and existing Chat intake behavior are unchanged,
+and no Life surface was modified.
+
+This closes the UI-to-Intake handoff seam, not the full consequence loop. A real
+person still has to make a capture before the two-account dogfood audit can turn
+non-empty. The admitted submission preserves the selected subject immediately,
+but the current Experience Anchor/graph path still requires a confirmed
+interpretation candidate and an accepted graph binding before graph-native
+consequence appears. The next architecture package should create the smallest
+deterministic, Source-bound attachment consequence that can be read through the
+canonical owner without auto-confirming model interpretations, while preserving
+correction, deletion, audience, and binding withdrawal.
+
+Focused verification passes 10 suites / 70 tests, both TypeScript checks, API
+boundaries, schema bridge, lint with its inherited warning baseline, staged-file
+secret/import guards, Places design checks, and the full polish-scenario ID
+registry. `verify:fast` proceeds through all of those checks and then fails on
+three existing Places file-size budgets in `PlacesSectionFeed.tsx`,
+`PlacesWorkspace.tsx`, and `PlacesFeedCardView.tsx`; none is changed by this
+package. Native diagnostic inspection shows the three-action object-page capsule
+remains balanced, but no visual approval is claimed: both registered Places
+Maestro flows currently stop on stale harness expectations (`Trips` root copy
+and a missing `Porto` fixture), producing zero accepted paired captures.
+
 The next P1 sequence is therefore:
 
 1. make one explicit operator decision at the existing mutation boundary: if
@@ -897,13 +934,13 @@ The next P1 sequence is therefore:
    held rows, broaden the consequence profile, or turn on a serving flag as a
    side effect;
 2. use the new read-only audit as the population gate for the two real accounts.
-   The 2026-09-03 result is truthfully empty, so the next capture-capable
-   Home/Places or connector path must pass an exact `subject_entity_ref` when a
-   person deliberately points at a canonical object. Do not fabricate an
-   artifact, infer a site or Place from titles, or require a classification
-   chore merely to populate the demo. Once a real admission exists, rerun the
-   same audit and rehearse canonical editorial context alone and with that lived
-   evidence;
+   The 2026-09-03 result is truthfully empty. The shared Home/Places object-page
+   capture path now passes an exact `subject_entity_ref` when a person
+   deliberately points at a canonical object; use that path for an authorized
+   real admission, then rerun the same audit. Do not fabricate an artifact,
+   infer a site or Place from titles, or require a classification chore merely
+   to populate the demo. Rehearse canonical editorial context alone and with
+   that lived evidence only after the owner read is non-empty;
 3. establish the governed path by which real current conditions earn an
    Opening with explicit Source, subject, or Place lineage. Rehearse historical
    Source, current Opening, and their lawful combination independently; do not
@@ -2598,3 +2635,33 @@ Simulator denying Maestro's launch request, and there is not yet a backend-real
 seven-posture population, accepted visual verdict, error capture, physical
 device/Android evidence, or complete owner-family consequence matrix. Those
 remain S4 gates. Chat and Life were not changed.
+
+### S4P / S2P — Place-object Point/Bring into canonical Intake — landed; owner consequence next
+
+App commit `b5fd2c9f9` makes one existing product gesture cross the post-pivot
+system boundary end to end. The canonical venue, site, and experience detail
+shell shared by Home and Places now supports bringing one or more photos to the
+exact object. It reuses the custody-first Intake owner, carries a validated
+`subject_entity_ref` and precise source channel, and returns a value-first
+receipt before offering optional interpretation review. A route label can make
+the receipt legible but cannot establish identity or evidence.
+
+The package intentionally adds no request card to Home, no duplicate Places
+feed, and no direct artifact write from the client. It does not infer visit,
+preference, or meaning, and it leaves ordinary OS shares, Chat, and Life
+unchanged. This is the first consumer-side population path for backend commit
+`0740aa112`'s explicit-subject admission seam.
+
+Ten focused suites / 70 tests, TypeScript, test-contract TypeScript, lint, API
+boundaries, schema bridge, design checks, scenario registry, and staged-file
+guards pass. Repository `verify:fast` remains red only at three inherited
+Places file-size budgets. Native inspection is diagnostic rather than approval:
+the action capsule is coherent, while registered Places flows need their stale
+root-label and fixture expectations repaired before paired visual capture can
+count as evidence.
+
+The next dependency is not another capture affordance. It is a deterministic,
+retractable Source attachment consequence readable from the canonical owner,
+so explicit Point/Bring can affect Home and Places without forcing candidate
+review or silently promoting a model interpretation. Real-account capture and
+the read-only owner-evidence audit must then prove population and readback.
