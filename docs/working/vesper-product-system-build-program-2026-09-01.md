@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / architecture / engineering
 created: 2026-09-01
-last_verified: 2026-09-02
+last_verified: 2026-09-03
 expires: 2026-10-01
 why_new: Reconciles the post-pivot engine, four-root, artifact, agentic, multiplayer, consequence, and continuity programs into one dependency-ordered product-system build, and separates the current forward roadmap from the historical implementation ledger.
 supersedes:
@@ -786,6 +786,59 @@ negative/success verification paths pass a 51-test policy, Source, trace, and
 runtime-acceptance portfolio plus all repository hooks. The real local apply
 has **not** been executed.
 
+Backend commit `441a8b5df` closes the missing canonical owner-evidence seam
+without requiring an activation gesture, title inference, or a new public
+contract:
+
+- the Intake-to-Experience-Graph bridge and the Experience Anchor read model
+  now derive the same deterministic graph-anchor identity from owner,
+  submission, and candidate key;
+- a retained confirmed anchor populates its existing `canonical_links` from
+  an accepted global or owner-scoped graph identity binding. This is the
+  primary low-friction path: admitting an artifact and resolving its real
+  entity can make that identity useful without asking the person to perform a
+  second activation step;
+- an independently validated consequence-activation receipt may contribute
+  additional exact entity refs. The receipt counts only when its durable
+  execution envelope, fingerprint, composition scope, Opening, actor, Source,
+  producer lineage, workflow type, and live workflow status all still agree;
+- graph identity and activation identity are deduplicated into one exact
+  owner-link set. Candidate prose, display title, extracted place text, and
+  temporal proximity never grant canonical identity;
+- Source discovery now resolves retained anchors and addressed Place handoffs
+  before it searches canonical Place content. An exact site, venue,
+  experience, accommodation, transport hub, or Place can therefore meet
+  reviewed world interpretation at that same entity and through bounded
+  canonical Place ancestry;
+- recent-return recency no longer attaches an unbound artifact to every Place
+  in the trip. Recency can prioritize an artifact that already has exact
+  identity, but it cannot create the identity bridge;
+- transport hubs now participate as canonical Place-owner targets while
+  preserving their exact hub identity and parent Place. Addressed handoff
+  readback likewise resolves the accepted canonical binding instead of
+  projecting an internal graph UUID as though it were a Place id; and
+- the implementation reuses the existing `canonical_links` response field, so
+  it requires neither a database migration nor OpenAPI/app type regeneration.
+  Chat and Life remain unchanged.
+
+The focused identity, Intake, Source, owner-read, selection, and composition
+portfolio passes **84 tests**; the architecture-adjacent root and inbound
+portfolio passes **533 tests**; and all backend commit hooks pass. A complete
+local repository run reached **21,501 passing tests**, 55 skipped, and 49
+failures in unrelated API isolation, mutable Postgres fixture assumptions,
+embedding/review bundles, legacy research and Places tests, and existing audit
+debt. Isolated examples confirm stale fixed corpus ids, missing API mocks, and
+an already-dead tool handler rather than a regression through this package.
+Repository-wide mypy also remains red on its inherited baseline; no claim of a
+globally clean typecheck is made.
+
+This commit closes a code seam, not the dogfood substrate. Existing real
+anchors become useful only when the Experience Graph identity owner has an
+accepted binding or a valid activation receipt already exists. The earlier
+read-only dogfood audit did not establish that population. Do not reintroduce
+name matching or ask the user to classify artifacts merely to make a demo
+non-empty; inspect and repair the authoritative binding pipeline instead.
+
 The next P1 sequence is therefore:
 
 1. make one explicit operator decision at the existing mutation boundary: if
@@ -794,11 +847,11 @@ The next P1 sequence is therefore:
    rerun the canonical Source listing and runtime trace. Do not bind the two
    held rows, broaden the consequence profile, or turn on a serving flag as a
    side effect;
-2. connect real owner evidence to those Sources through exact entity identity.
-   The current Nice-to-Rome itinerary facts are not enough merely because their
-   titles mention Amalfi or Sorrento; intake or owner data must retain the
-   actual site, transport hub, Place, or artifact relationship. Rehearse
-   canonical editorial context alone and with real lived evidence;
+2. audit the two real accounts for admitted Intake anchors, deterministic graph
+   anchors, accepted identity bindings, and valid activation receipts. Repair
+   the authoritative identity population path where data is absent; do not
+   infer a site, transport hub, or Place from titles. Then rehearse canonical
+   editorial context alone and with the newly linkable real lived evidence;
 3. establish the governed path by which real current conditions earn an
    Opening with explicit Source, subject, or Place lineage. Rehearse historical
    Source, current Opening, and their lawful combination independently; do not
@@ -829,10 +882,11 @@ selection, readback, material, and assembly have now been rehearsed; admitted
 two-account model output is operationally demonstrated but editorially
 rejected. The selector now correctly withholds the known low-information
 itinerary-only pairs before generation. Governed present-context composition
-including the upstream exact relationship selector, is implemented but still
+including the upstream exact relationship selector is implemented but still
 awaits a deliberately activated policy-bound Source corpus and truthful Opening
-substrate in dogfood.
-Full-portfolio quality calibration,
+substrate in dogfood. The owner-evidence identity bridge is also implemented,
+but truthful dogfood value still depends on accepted bindings being present in
+the real account data. Full-portfolio quality calibration,
 social-perspective transformation, and correct earned silence across those
 richer cases remain release dependencies.
 P1 must not be marked complete from deterministic fixtures, compiler
