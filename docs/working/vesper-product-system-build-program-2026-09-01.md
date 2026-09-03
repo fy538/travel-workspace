@@ -133,7 +133,9 @@ unexplained regression; and safety gates remain default-off.
 
 Turn the governed but mostly shadowed composition path into useful output:
 
-- approve the exact retained role of the Source contribution model;
+- operate the now-approved Source contribution role over canonical owners,
+  treating legacy dossiers as compatibility context rather than the authority
+  for post-pivot Place interpretation;
 - run real models only through the evidence, authority, novelty, and treatment
   pipeline;
 - build an editorial/evaluation corpus spanning ordinary New York, an open
@@ -718,33 +720,88 @@ selection silence before generation. No synthetic Opening or evidence was
 inserted to make the path look populated. The architecture is ahead of its
 truthful substrate.
 
+Backend commits `8720733bb` and `01df3aa68` close the first truthful-substrate
+read seam without promoting any content or changing a public route:
+
+- one accepted World Foundry Place-content primitive version is now an exact
+  canonical Source coordinate: immutable row UUID plus content hash. Its owner
+  read revalidates accepted review, active lifecycle, grounding, public scope,
+  review receipt, consequence-policy binding, represented clock, and validity;
+- the owner read exposes only custody, claim, evidence, revision, and expiry
+  coordinates. Editorial prose remains behind the governed material-loading
+  gate, where the producer receives a bounded claim, observable target,
+  interpretation, conditions, and limits;
+- recent itinerary evidence now preserves its exact linked venue, site, or
+  experience revision as well as the containing Place hierarchy. Discovery
+  can therefore join lived evidence to editorial interpretation by canonical
+  identity rather than title similarity or guessed destination;
+- discovery is metadata-only and bounded. It admits canonical Place content
+  only for explicitly related entity subjects, preserves the primitive's Home
+  and/or Places surface eligibility through group selection, and prevents a
+  Places-only interpretation from leaking into Home;
+- legacy approved dossiers remain a compatibility Source. They still work
+  where evidence receipts exist, but an otherwise equivalent canonical
+  Place-content Source wins deterministic selection; and
+- a missing, changed, private, retracted, expired, ungrounded, unreviewed, or
+  policy-unbound primitive earns absence rather than a synthetic success.
+
+The architectural portfolio passes **169 tests**, covering Source discovery,
+exact owner reads, material loading, root eligibility, canonical-over-legacy
+preference, itinerary entity identity, current-context joining, contribution
+assembly, and adjacent Place-content authority. Both commits pass every
+repository hook. Full-repository mypy remains red on inherited errors outside
+this slice; no new error is reported in the new canonical Place-content Source
+module.
+
+The fresh read-only corpus audit is intentionally more precise than saying
+"editorial evidence exists." The local target contains **13 accepted/active
+Place-content primitives, 25 primitive-observation edges, and zero policy
+bindings**. Consequently the new canonical Source listing returns **zero**,
+which is the correct fail-closed result. The already independent-reviewed
+`place-content.2026-08.policy-proposal-05` remains byte- and target-exact on a
+fresh repeatable-read preview: all **11 reviewed rows return `bind`** against
+local target fingerprint
+`a7c46596c90eeeccd3e69bf50ee144dd833ab6ded3f8783fa9f623a81ee4eab6`.
+The two Sorrento rows excluded from that proposal remain held because their
+required bus observation expired. The preview performed no database, vector,
+flag, or model mutation; no binding has been applied.
+
 The next P1 sequence is therefore:
 
-1. activate truthful substrate across the existing system rather than build
-   another isolated loop. Establish the governed path by which real editorial
-   evidence earns a dossier receipt and real current conditions earn an
-   Opening with explicit Source, subject, or Place lineage. Rehearse both
-   independently and together; do not seed a synthetic success case or tune
-   against rejected itinerary-only pairs;
-2. evaluate admitted output and silence separately. Structural admission,
+1. make one explicit operator decision at the existing mutation boundary: if
+   the reviewed eleven-row policy batch is still the intended interpretation
+   scope, apply that exact preview under the guarded serializable adapter, then
+   rerun the canonical Source listing and runtime trace. Do not bind the two
+   held rows, broaden the consequence profile, or turn on a serving flag as a
+   side effect;
+2. connect real owner evidence to those Sources through exact entity identity.
+   The current Nice-to-Rome itinerary facts are not enough merely because their
+   titles mention Amalfi or Sorrento; intake or owner data must retain the
+   actual site, transport hub, Place, or artifact relationship. Rehearse
+   canonical editorial context alone and with real lived evidence;
+3. establish the governed path by which real current conditions earn an
+   Opening with explicit Source, subject, or Place lineage. Rehearse historical
+   Source, current Opening, and their lawful combination independently; do not
+   seed a synthetic success case or tune against rejected itinerary-only pairs;
+4. evaluate admitted output and silence separately. Structural admission,
    latency, and root count are operational gates; new substance,
    non-paraphrase, present relevance, and root distinctness are editorial
    gates. A pass in the first group cannot compensate for a failure in the
    second;
-3. extend the richer evidence-role portfolio to explicitly granted social
+5. extend the richer evidence-role portfolio to explicitly granted social
    perspective. Do not reuse private Opening context in a shared expression;
    shared present context needs its own reviewed grant and owner contract;
-4. only after one model/prompt posture clears that portfolio, add its versioned
+6. only after one model/prompt posture clears that portfolio, add its versioned
    quality receipt and rerun private plus granted shared real-owner cases for
    both accounts. Keep the flag dark if the model invents value rather than
    earning silence;
-5. rehearse the landed single-Source correction through the real local API,
+7. rehearse the landed single-Source correction through the real local API,
    then decide the plural Source repair manifest and direct challenge to
    Vesper-authored synthesis before exposing a consumer correction control;
-6. rehearse proof expiry against the real local API across foreground,
+8. rehearse proof expiry against the real local API across foreground,
    background/resume, and failed-refresh paths without treating analytics as
    success; and
-7. rehearse private and granted shared cases across both accounts, then decide
+9. rehearse private and granted shared cases across both accounts, then decide
    whether the internal-cohort exit is met.
 
 The production flag remains default-off. Two-account real-owner discovery,
@@ -753,7 +810,8 @@ two-account model output is operationally demonstrated but editorially
 rejected. The selector now correctly withholds the known low-information
 itinerary-only pairs before generation. Governed present-context composition
 including the upstream exact relationship selector, is implemented but still
-awaits truthful Opening and receipted Source substrate in dogfood.
+awaits a deliberately activated policy-bound Source corpus and truthful Opening
+substrate in dogfood.
 Full-portfolio quality calibration,
 social-perspective transformation, and correct earned silence across those
 richer cases remain release dependencies.
