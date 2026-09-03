@@ -2816,9 +2816,80 @@ The immediate sequence is therefore revised:
    any serving flag;
 3. use real inspector sessions to decide whether detach/reassign is a genuine
    recurring need; do not generalize it from architecture alone;
-4. connect the now-integrated entity-resolution boundary to the native Places
-   object-opening path only after provider budget, source policy, and owner-
-   provisional treatments pass dogfood review; and
+4. stage the native Places object-opening integration behind the existing
+   default-off capability, then activate it only after provider budget, source
+   policy, and owner-provisional treatments pass dogfood review; and
 5. retain correction as an owner-specific capability: Source withdrawal,
    generated-expression feedback, Place-world-fact correction, and entity
    identity review must not collapse into one generic edit action.
+
+### S4S / S1S — Places provider-to-canonical opening — implemented; rollout and device acceptance pending
+
+Backend commit `7f205bc82` and app commit `ccd20434e` connect the entity-shell
+boundary to deliberate Places opening. This is an integration package, not a
+new product loop or another entity owner. A provider-backed candidate can become
+an addressable venue/site through the existing authenticated resolution ledger;
+merely seeing or searching for that candidate still performs no materialization.
+
+The server emits `PlacesRankedItem.resolution_available` only when the
+default-off `ENTITY_PROVIDER_RESOLUTION_ENABLED` flag and provider owner-shell
+policy permit resolution. This boolean advertises a capability, not authority:
+the endpoint still enforces its own authorization and policy. Canonical refs
+open directly regardless of the provider flag. The API snapshot, active mobile
+projection, and generated TypeScript are synchronized; no hand-maintained DTO
+was introduced.
+
+One shared opener now serves compact rows, category carousels, single and
+conviction candidates, and register cards. It routes the exact returned typed
+canonical reference, never a parsed provider/display ID. Its pending state
+prevents duplicate provider requests; an uncertain failure retains the same
+logical idempotency key while the component remains mounted. Offline attempts
+do not call the endpoint. Unmount, route change, or context replacement prevents
+a delayed response from navigating the person away from their current activity.
+Failure leaves the person in Places with retry feedback, and engagement is
+recorded only after opening. Mock mode refuses provider resolution rather than
+mapping arbitrary identities to unrelated canonical fixtures.
+
+Search, saved rows, and root feed cards pass their exact Places/Home return
+context into the typed venue/site route. Existing bounded itinerary previews
+remain venue-only and require the exact canonical venue and server-issued
+opportunity; the opener performs no Plan commit. Venue Save remains a separate
+existing owner action, including its existing provider handling. The opening
+flag does not turn that older Save path off. Site cards cannot inherit a
+venue-only save control. Neither opening nor resolving asserts a visit,
+preference, Source contribution, public catalog membership, or shared state.
+Chat and Life are unchanged.
+
+Verification: 41 backend projection/policy/route tests pass. The broader
+32-suite app Places, workspace smoke, opening, routing, HTTP, and mock portfolio
+passes, with an additional mock rejection regression. TypeScript, focused
+ESLint, new-module formatting, API boundaries, schema bridge, contract/place-
+identity checks, and commit hooks pass. The registered QA scenarios and external
+hash-pinned Home Surfaces design references verify. Device preflight cannot
+capture because Metro is not running on port 8081; no visual or backend-real
+provider acceptance is claimed.
+
+Repository-wide size gates are still red. Home-surface debt remains in
+`PlacesSectionFeed`, `PlacesWorkspace`, and `PlacesFeedCardView`; general size
+debt remains in the HTTP memory extension, Plan screen, HTTP facade, and API
+interface. This package adds eight context-forwarding lines to the already-
+over-budget workspace and eleven/seven lines to the already-over-budget
+HTTP/interface facades. No budget was raised and those checks are not counted
+as passing. The resolution behavior itself lives in small dedicated helper,
+data, and hook modules rather than another controller branch.
+
+Remaining work is explicit:
+
+1. Review real provider cost, retention/display policy, and owner-provisional
+   detail behavior before opting an internal environment into resolution. No
+   provider or serving flag was enabled by this package.
+2. Run backend-real device acceptance for tap, failure/retry, venue/site detail,
+   and exact Home/Places return. Synthetic tests verify contracts, not provider
+   quality, account material, or native transition polish.
+3. Consider a viewer-scoped bulk lookup of already-resolved external identities
+   in Places reads. Today a later tap may still enter the resolution endpoint,
+   which can reuse its existing canonical mapping; the client does not install
+   a global identity cache or expose another owner's provisional shell.
+4. Continue the independent Source-attention-to-reviewed-world work above. This
+   navigation integration does not demonstrate generated editorial value or
+   replace the remaining Home/Places novelty and substance evaluation.

@@ -89587,6 +89587,11 @@
               }
             ]
           },
+          "resolution_available": {
+            "type": "boolean",
+            "title": "Resolution Available",
+            "default": false
+          },
           "canonical_venue_id": {
             "anyOf": [
               {
