@@ -2636,7 +2636,7 @@ seven-posture population, accepted visual verdict, error capture, physical
 device/Android evidence, or complete owner-family consequence matrix. Those
 remain S4 gates. Chat and Life were not changed.
 
-### S4P / S2P — Place-object Point/Bring into canonical Intake — landed; owner consequence next
+### S4P / S2P — Place-object Point/Bring into canonical Intake — landed
 
 App commit `b5fd2c9f9` makes one existing product gesture cross the post-pivot
 system boundary end to end. The canonical venue, site, and experience detail
@@ -2660,8 +2660,100 @@ the action capsule is coherent, while registered Places flows need their stale
 root-label and fixture expectations repaired before paired visual capture can
 count as evidence.
 
-The next dependency is not another capture affordance. It is a deterministic,
-retractable Source attachment consequence readable from the canonical owner,
-so explicit Point/Bring can affect Home and Places without forcing candidate
-review or silently promoting a model interpretation. Real-account capture and
-the read-only owner-evidence audit must then prove population and readback.
+The direct dependency named here is now implemented by S4Q below. Real-account
+capture and read-only owner-evidence audit remain necessary to prove that the
+path is populated and useful rather than merely connected.
+
+### S4Q / S2Q — Explicit Source attachment owner and Home/Places consequence — landed; real population and editorial value pending
+
+Backend commit `50edf16eb` makes the deliberate Place-photo Bring useful to the
+post-pivot system without manufacturing an Experience Anchor or waiting for a
+model interpretation to become personal truth.
+
+The new `source_attachment.v1` projection is an Intake-owned canonical read over
+existing submission and Source-object custody. It is admitted only when all of
+the following are true:
+
+- the person invoked the canonical `entity_detail` affordance;
+- the request carries an exact validated `subject_entity_ref`;
+- the source channel is `photo_library` or `camera`;
+- at least one primary or attachment Source is a server-verified image with a
+  valid custody receipt; and
+- Source retention remains explicitly `source_and_derived`.
+
+A channel label alone cannot grant retention: a photo-channel request carrying
+only text remains ephemeral. Generic OS shares, Chat attachments, ambient
+context, and inferred Place names do not enter this owner path.
+
+The implementation keeps the retention layers deliberately independent. The
+Source attachment may remain in private custody with no semantic candidate. If
+interpretation later runs, it cannot downgrade the explicit retention grant or
+confirm a visit, preference, occurrence, or personal meaning. Releasing the
+derived interpretation does not release the retained photo. Conversely,
+deleting the original submission removes the owner projection and atomically
+evicts every retained generated Home/Places contribution whose authority
+manifest depends on that Source. Attachment revisions are based on stable
+custody and subject facts rather than generic semantic-processing timestamps,
+so interpreting or dismissing a candidate does not churn an otherwise
+unchanged Source identity.
+
+`source.inspect` now reads one exact attachment revision under the viewer's
+private authority. It exposes the attachment and its custody evidence, the
+exact canonical subject, no semantic Claim refs, and a withdrawal capability.
+Group and public use fail closed because no shared-use grant exists. Source
+discovery can then emit that attachment as **explicit attention**, resolve its
+exact entity and bounded Place ancestry, and pair it with independently
+reviewed Place content. The attachment contributes the fact that the person
+deliberately directed private attention at this Place; reviewed world content
+must contribute the new substance. The producer is explicitly forbidden from
+inferring a visit, preference, personal meaning, or the image contents.
+
+This pairing flows through the existing Source selection, owner-read,
+governed-material, semantic-composition, and Home/Places projection fields. It
+adds no root-specific feed, public route, database table, migration, OpenAPI
+shape, app DTO, or native component. It also leaves Chat and Life unchanged.
+Recent-return selection gives the exact attention-plus-world-context group
+first consideration; ordinary, open-interval, and live/shared situations keep
+addressed social perspective ahead of it.
+
+The account audit now reports direct retained attachment submissions separately
+from confirmed Experience Anchors, checks their owner projection independently,
+and inventories `source_attachment` discovery. A missing attachment no longer
+gets mislabeled as a graph-binding failure, and an Anchor read failure no longer
+hides an otherwise valid Source attachment read.
+
+Verification passes Ruff, formatting, import-boundary checks, all repository
+commit hooks, and an affected **545-test** API, Intake, owner-read,
+root-projection, contribution, and audit portfolio. Its real-PostgreSQL proof
+covers binary upload and scan finalization, exact subject retention, semantic
+admission, release of derived interpretation, revision stability, generated
+production retention, owner deletion, and dependent-production retraction. A
+whole-repository non-paid run was also attempted and reached roughly 90% before
+a slow integration test was interrupted; its 50 recorded failures span
+unrelated existing itinerary, booking, vector-release, research, scenario,
+Places, and audit surfaces, with none in this package. Repository-wide mypy
+remains red on the integrated branch's inherited baseline; the new Source
+attachment modules pass isolated type checking.
+
+This closes the architectural owner/consequence seam, not the product-value
+gate. The system still has not interpreted photo pixels, produced a
+model-authored contribution from real account material, or proved that the
+result is novel and worth Home/Places attention. The generated projection can
+be withdrawn through the canonical original-delete path, but root-native
+inspection, detach/reassign, and correction treatments remain product work.
+No serving or model flag was enabled.
+
+The immediate P1 sequence is now:
+
+1. decide and, if still intended, apply only the exact independently reviewed
+   eleven-row Place-content policy batch through its existing guarded operator;
+2. make authorized Place-photo captures through the shipped object affordance
+   for the two real internal accounts, then rerun the read-only owner-evidence
+   audit and require non-empty attachment owner reads and Source discovery;
+3. run the governed producer on those exact attachment-plus-reviewed-world
+   groups and evaluate novelty, substance, non-paraphrase, non-creepiness,
+   completeness on view, and Home-versus-Places treatment under the existing
+   kill switch; and
+4. use that evidence to specify the smallest native **Why this? / withdraw /
+   detach or reassign** treatment. Do not invent a universal Source manager or
+   make candidate review a prerequisite for value.
