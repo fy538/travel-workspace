@@ -503,6 +503,33 @@ from 847 to 820 lines while increasing `PlacesSectionFeed.tsx` from 559 to 564,
 so decomposition of the feed remains explicit structural debt rather than a
 reason to duplicate the receipt lifecycle again.
 
+App commit `f4d7ad490`, backed by backend contract test commit `31d5c4a78`,
+closes the next expiry seam in shadow. Home and the joined Places runtime now
+observe the earliest semantic-delivery or causal-treatment proof expiry, emit a
+proof-bound `not_rendered` receipt only for the expiring stream, and request a
+fresh canonical root composition. The client does not locally rewrite or
+re-rank the remaining units. While the fresh read is unresolved—or if it
+fails—the expired governed projection is withheld and the existing compatibility
+owner wakes rather than leaving an actionable stale possibility on screen.
+
+The absence claim is deliberately conservative. Any local positive lifecycle
+attempt—`rendered`, `opened`, `dismissed`, or owner-readback-gated `acted`—blocks
+`not_rendered`, including a pending or completed receipt persisted by an earlier
+app session. Unreadable durable storage is treated as unknown positive history,
+not as evidence of absence. Delivery and treatment may expire independently,
+and each is observed without inventing the other. The existing backend accepts
+late non-rendering only with the exact signed semantic identity, excludes it
+from both repeat suppression and the received-by-person baseline, and continues
+to reject expired positive delivery.
+
+The focused app portfolio passes 62 expiry, durable receipt, Home, Places,
+viewport, interaction, and fallback tests. Both TypeScript gates, focused lint,
+API boundaries, and the schema bridge pass. The backend expiry, delivery,
+Source-telemetry, and event-route portfolio passes 21 tests plus all applicable
+changed-file hooks. This is deterministic lifecycle evidence; foreground and
+background/resume native timing and a failed real-network refresh remain
+promotion work.
+
 The next P1 sequence is therefore:
 
 1. use the now-captured GPT-4.1 rejection fingerprint to make a founder-reviewed
@@ -518,8 +545,9 @@ The next P1 sequence is therefore:
    aggregate engagement score;
 4. bind Source-generated meaning to an inspectable correction target and prove
    that a correction changes subsequent known-to-person and serving behavior;
-5. add expiry observation to the now owner-readback-gated root interaction
-   receipts without treating analytics as success; and
+5. rehearse proof expiry against the real local API across foreground,
+   background/resume, and failed-refresh paths without treating analytics as
+   success; and
 6. rehearse private and granted shared cases across both accounts, then decide
    whether the internal-cohort exit is met.
 
