@@ -423,6 +423,39 @@ current producer schema closed. No model output was admitted or served. These
 are now explicit operational/calibration dependencies, not evidence that Source
 discovery still lacks real data.
 
+Backend commit `a1df5b6f6` closes the provider-wire defects without weakening
+the canonical contribution contract. GPT-5-family Chat Completions now receive
+`max_completion_tokens` and no unsupported custom temperature. Synthetic
+structured-output calls may explicitly request OpenAI strict function decoding;
+the adapter projects Pydantic schemas into OpenAI's supported strict subset,
+while ordinary agent tools retain their optional-argument semantics and the
+unchanged canonical schema remains the post-call validator. Free-key maps are
+not representable in OpenAI strict mode, so that projection exposes them only
+as empty objects and deliberately relies on canonical validation to reject any
+model-selected branch that requires map content. It does not silently broaden
+or reinterpret the product model.
+
+The first live-provider rerun converted the ambiguous infrastructure failure
+into concrete product evidence:
+
+- GPT-4.1 completed strict structured generation for Lena's exact ferry-skipped
+  / coast-bus-happened Sources. Its draft was schema-valid but the deterministic
+  compiler rejected it for a prose sentence where a shared semantic job id was
+  required, a supporting section where exactly one lead was required, and the
+  resulting unused claim. No candidate reached Home or Places.
+- GPT-4.1 did not complete Dao's Tokyo contribution inside the thirty-second
+  diagnostic ceiling, so production failed closed.
+- GPT-5 mini now reaches the API with the correct token parameter but also did
+  not finish Lena's contribution inside thirty seconds. The earlier request
+  incompatibility is fixed; this model remains outside the surface's twelve-
+  second product latency budget.
+
+The provider path is therefore structurally portable and fail-closed, but the
+P1 exit is still unmet. We have not yet observed one admitted real-owner model
+contribution, much less a good two-account portfolio. The next bottleneck is
+the producer's ability to express Vesper's canonical composition grammar under
+the real latency budget—not Source authority, owner reads, or JSON validity.
+
 This is meaningful P1 architecture, not proof of editorial quality. The
 known-to-person resolver is intentionally conservative and does not infer broad
 topic familiarity. The delivery baseline can recover only still-retained
@@ -435,18 +468,22 @@ false rather than implying a repair path that does not exist.
 
 The next P1 sequence is therefore:
 
-1. restore one supported, funded structured-provider path, then run the
-   default-off producer for the two internal accounts whose exact real-owner
-   Source assemblies now pass;
-2. calibrate the resulting model outputs across the full situation portfolio
+1. preserve GPT-4.1 as the funded diagnostic path, capture its rejected Lena
+   draft and Dao timeout as calibration cases, and decide the smallest prompt
+   or producer-contract correction that teaches semantic job ids and lead
+   anatomy without weakening compiler admission;
+2. rerun the default-off producer under the twelve-second surface budget for
+   both internal accounts, and require admitted output or earned silence—not a
+   longer hidden timeout—as the operational result;
+3. calibrate the resulting model outputs across the full situation portfolio
    against the human-gold editorial corpus,
    recording both admitted value and earned silence rather than optimizing an
    aggregate engagement score;
-3. bind Source-generated meaning to an inspectable correction target and prove
+4. bind Source-generated meaning to an inspectable correction target and prove
    that a correction changes subsequent known-to-person and serving behavior;
-4. join root-unit action engagement to canonical consequence readback and add
+5. join root-unit action engagement to canonical consequence readback and add
    expiry observation without treating analytics as success; and
-5. rehearse private and granted shared cases across both accounts, then decide
+6. rehearse private and granted shared cases across both accounts, then decide
    whether the internal-cohort exit is met.
 
 The production flag remains default-off. Two-account real-owner discovery,
