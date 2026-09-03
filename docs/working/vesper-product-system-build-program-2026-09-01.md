@@ -3002,3 +3002,77 @@ The capped whole-backend offline rerun again reached 12,469 passes before the
 same five baseline failures documented in S4T. No new failure appeared before
 that cap; the remainder was not certified by that run. The separately executed
 293-test affected portfolio includes this package's new cases and is green.
+
+### S0V — Baseline test isolation repairs — broader verification reopened
+
+Backend commit `f92ee3628` repairs the five inherited failures that stopped
+the S4T/S1U broad runs. The embedding release fixture now includes every
+durable corpus, including `place_content_primitives`. Parameterized regressions
+remove each corpus independently from each of the two receipt manifests and
+check invalid digests. Production certification remains unchanged: neither an
+incomplete release nor a missing physical collection is accepted.
+
+The itinerary commit-route test now supplies its post-commit canonical Trip
+read explicitly. It checks travel and local Plan event payloads, read-model
+invalidation, and absence of repeated read/invalidation/event work on an
+idempotent replay. This repairs an undeclared database dependency rather than
+removing the owner read or weakening the database-isolation guard.
+
+Backend commit `b8d1e5b42` also isolates two embedding-failure tests from the
+configured Qdrant client. Those tests now inject their client and verify that
+an embedding failure never queries vectors; strict mode still raises and
+non-strict mode still returns the bounded empty fallback. The production
+Postgres/Qdrant environment-pairing guard remains intact.
+
+Backend commit `17df12468` completes the related release-test repair. Synthetic
+activation receipts use the current durable inventory and expect two alias
+operations per changed corpus. The immutable August 12 nine-corpus review is
+not rewritten: its exact-byte and canonical hashes remain checked, while the
+test explicitly verifies that it cannot certify today's larger inventory.
+Historical acceptance is not current activation authority.
+
+The complete vector test directory, itinerary commit-route file, and three
+release certification/activation/review files pass **319 tests** in isolation.
+Ruff, formatting, applicable commit hooks, and the
+cross-repository contract/place-identity checks pass. No production runtime,
+schema, prompts, rollout settings, Chat, or Life changes are included. These
+repairs reopen broader verification; they do not close P0 or replace P1's
+real-account editorial value gate.
+
+The broader offline run advances past the old 61% stop to **19,490 passed,
+10 failed, 28 skipped, 56 xpassed**, with 1,325 deselected, before its ten-failure
+cap. This run predates the final release-test repair; three of those ten
+failures are covered by the green 319-test portfolio above. A separate run of
+`tests/tools`, `tests/voice`, `tests/workers`, and `tests/world_foundry` completes
+with **959 passed, 8 failed, 47 deselected**, covering the directories beyond
+the broad run's stopping point. These runs overlap and must not be added into
+a fictitious whole-suite total. The full suite has not passed.
+
+Remaining observed failures are explicit follow-up work, not waived gates:
+
+- Five lazy-research worker tests reproduce in isolation because their personal
+  conversation stubs omit the `trip_id` read by the composed-card writer. The
+  worker, writer, and tests are unchanged in this package; Chat is held.
+- The dead-handler audit reports `_execute_post_atlas_draft`; removal or
+  rewiring belongs with the held Chat/Life ownership decision, not a silent
+  change to this audit's allowlist.
+- The public-egress audit cannot recognize the delegation from
+  `list_public_stories_for_user` to `list_published_trip_stories_for_owner`.
+  Inspection finds title redaction and the current share/photo checks in the
+  latter. Repair needs an explicit transitive coverage proof, not a waived
+  privacy gate; this inspection alone is not a full security certification.
+- Seven structure-bundle negative tests reject at the supported-worker/
+  independent-review authorization boundary before reaching the mutation
+  guard they expect. Preserve immutable historical evidence and production
+  provenance requirements; isolate mutation tests with valid synthetic
+  authority rather than making old reviews newly eligible.
+- One dogfood cascade test expects one authored-pin failure but now also sees
+  the fixture's stale wall-clock condition. Freeze its evaluation context or
+  assert the intended finding without weakening freshness checks.
+
+The two later audit findings and eight tail failures are observed outside this
+package's changed files; a fresh detached-main comparison has not been run for
+them here. Keep their baseline classification distinct from the earlier
+verified five failures. The next bounded P0 work is this remaining test and
+audit isolation, subject to the Chat/Life hold. None of it authorizes corpus
+promotion, production alias switching, or a new model-serving rollout.
