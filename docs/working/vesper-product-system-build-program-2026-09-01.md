@@ -2757,3 +2757,68 @@ The immediate P1 sequence is now:
 4. use that evidence to specify the smallest native **Why this? / withdraw /
    detach or reassign** treatment. Do not invent a universal Source manager or
    make candidate review a prerequisite for value.
+
+### S4R / S1R — Entity-shell integration and Source-owner controls — landed; rollout remains dark
+
+Backend merge commit `fcca91a12` integrates the previously isolated entity-
+shell lane into the current post-pivot system without reverting the newer
+Source or root-projection work. The explicit
+`POST /api/me/entity-resolutions` boundary now resolves a provider identity
+into one canonical `EntityRef`; search stays read-only, ordinary entity reads
+stay provider-free, retries are ledger-backed, and unverified provider shells
+remain owner-visible rather than entering the public catalog. Venue and site
+are the only admitted lazy-materialization types. The feature flag remains off
+by default.
+
+The integration also carries provider retention policy, source-safe display
+policy, bounded status evidence, redirect-aware entity reads, a single-head
+migration, and an explicit one-review-at-a-time operator tool. It does not
+authorize broad backfill or automatic catalog merging. Backend follow-up
+commit `5351a4ec6` closes two review findings: SQLAlchemy metadata now declares
+the same request-state constraints as the migration, and absence of a
+permanent-closure signal no longer becomes a fabricated verified `operating`
+claim. App commit `71ad54043` regenerates the already-committed OpenAPI
+contract into TypeScript and makes the Places mocks honest about verified
+catalog state. Focused verification passes 121 backend tests, TypeScript, and
+the import, cycle, route-order, and Alembic single-head gates.
+
+Backend commit `cc6636426`, workspace commit `c2fa9ed`, and app commit
+`0d46a331c` then close the smallest root-native Source control seam. Every
+admitted `RootUnit` now preserves its exact evidence coordinates. A governed
+contribution receives a **Why this?** capability only when one of those
+coordinates is a real retained `source_attachment`; generic compositions do
+not receive a guessed Source control. Home and Places use the same native
+inspector, re-read the canonical Intake owner before presenting custody state,
+and expose removal only for one exact attachment. Removal requires a second
+explicit confirmation and delegates to Intake's authenticated deletion path.
+The dependent generated Home/Places item then disappears through the existing
+Source invalidation path while the underlying Place remains unchanged.
+
+This is deliberately provenance and control, not another homework card. The
+generated contribution is complete before inspection. The inspector says only
+that the item combines attention the person deliberately retained with
+separately reviewed context; it explicitly disclaims visit, preference, and
+personal-meaning inference. No Source bytes or image interpretation enter the
+root envelope. Ambiguous or plural Source ownership gets an explanation but
+no guessed withdrawal target. Chat and Life were not changed.
+
+Verification passes 113 adjacent backend source/runtime/root/API tests, 42
+focused app Home/Places/contract tests, TypeScript, ESLint, Prettier, OpenAPI
+regeneration, and repository commit hooks. Full-repository formatting remains
+red only on six unrelated pre-existing files outside this package.
+
+The immediate sequence is therefore revised:
+
+1. populate the exact attachment-plus-reviewed-world path with authorized
+   internal-account material and require non-empty owner-read/audit evidence;
+2. evaluate the generated Home and Places contributions for novelty,
+   substance, compression, non-paraphrase, and non-creepiness before enabling
+   any serving flag;
+3. use real inspector sessions to decide whether detach/reassign is a genuine
+   recurring need; do not generalize it from architecture alone;
+4. connect the now-integrated entity-resolution boundary to the native Places
+   object-opening path only after provider budget, source policy, and owner-
+   provisional treatments pass dogfood review; and
+5. retain correction as an owner-specific capability: Source withdrawal,
+   generated-expression feedback, Place-world-fact correction, and entity
+   identity review must not collapse into one generic edit action.
