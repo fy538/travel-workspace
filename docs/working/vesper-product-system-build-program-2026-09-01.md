@@ -530,6 +530,42 @@ changed-file hooks. This is deterministic lifecycle evidence; foreground and
 background/resume native timing and a failed real-network refresh remain
 promotion work.
 
+Backend commit `b23c5ca3c` closes the first canonical Source-correction seam
+without promoting an ephemeral composition into a new truth owner.
+
+- Source assembly derives correction only from the exact canonical owner reads
+  that authorized production. When exactly one admitted Source exposes owner
+  correction, that revision survives through the seed, compiler, value
+  candidate, semantic result boundary, and bounded telemetry. A combined read
+  or contribution with more than one correctable Source remains unbound rather
+  than selecting the first Source by accident.
+- Intake's existing `wrong_time`, `separate_from_occasion`,
+  `keep_occurrence_forget_interpretation`, and `delete_derived` owner actions
+  now evict every retained generated contribution whose authority receipt
+  depends on that Experience Anchor. Eviction occurs inside the correction
+  transaction. Historical delivery receipts remain evidence that an old
+  expression was seen, but the stale generated copy can neither serve nor
+  enter the proof-backed known-to-person claim baseline.
+- A real PostgreSQL test proves this causal sequence for all four owner actions:
+  retained contribution visible -> generated claim available to novelty ->
+  canonical Intake correction -> contribution absent from serving -> old claim
+  absent from later novelty. The adjacent Source, owner-read, compiler,
+  continuity, API-wiring, telemetry, and Intake portfolio passes **148 tests**,
+  and every changed-file commit hook passes.
+- The same real-database run uncovered a latent strict-enum hydration failure in
+  the retained-production completion path; database strings are now restored
+  through the declared enum types before strict contract construction.
+
+This is a correction projection, not yet a complete correction experience. It
+does not add a public Root API field or Home/Places repair control, and Chat and
+Life remain unchanged. A claim with several independently correctable Sources
+still needs a plural repair manifest. A user also needs a separate way to
+challenge Vesper's synthesis when the underlying Sources are right. Finally, a
+producer that began before a correction can still finish after the correction;
+the old revision will not match subsequent Source selection, but final-write
+revision validation is still required before we can claim race-complete
+invalidation and a fully correction-aware novelty baseline.
+
 The next P1 sequence is therefore:
 
 1. use the now-captured GPT-4.1 rejection fingerprint to make a founder-reviewed
@@ -543,8 +579,9 @@ The next P1 sequence is therefore:
    against the human-gold editorial corpus,
    recording both admitted value and earned silence rather than optimizing an
    aggregate engagement score;
-4. bind Source-generated meaning to an inspectable correction target and prove
-   that a correction changes subsequent known-to-person and serving behavior;
+4. rehearse the landed single-Source correction through the real local API,
+   then decide the plural Source repair manifest and direct challenge to
+   Vesper-authored synthesis before exposing a consumer correction control;
 5. rehearse proof expiry against the real local API across foreground,
    background/resume, and failed-refresh paths without treating analytics as
    success; and
