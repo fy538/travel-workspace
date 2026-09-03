@@ -766,6 +766,26 @@ The two Sorrento rows excluded from that proposal remain held because their
 required bus observation expired. The preview performed no database, vector,
 flag, or model mutation; no binding has been applied.
 
+Backend commit `c32d8502c` turns that hand-described boundary into an
+executable operator workflow. From `travel-agent`,
+`make place-content-policy-preview` reloads and verifies the exact batch,
+review, reviewer provenance, declared input bytes, target identity, primitive
+state, and canonical Source visibility under a read-only repeatable-read
+transaction. It currently reports 11 `bind`, eight public Home/Places-eligible
+rows, zero canonical public Sources, and no blockers. Preview is the default and
+cannot call the apply adapter.
+
+`make place-content-policy-apply` refuses to run unless the operator supplies
+both `POLICY_BATCH_ID` and `POLICY_TARGET_FINGERPRINT` copied from the fresh
+preview. The apply adapter then revalidates under a serializable advisory lock.
+After commit it must prove all eleven rows re-preview as `noop` and all eight
+public root-eligible rows appear through the canonical Source reader; a missing
+row is a failed verification rather than hidden partial success. It still does
+not enable a serving flag, write Qdrant, or call a model. The command and its
+negative/success verification paths pass a 51-test policy, Source, trace, and
+runtime-acceptance portfolio plus all repository hooks. The real local apply
+has **not** been executed.
+
 The next P1 sequence is therefore:
 
 1. make one explicit operator decision at the existing mutation boundary: if
