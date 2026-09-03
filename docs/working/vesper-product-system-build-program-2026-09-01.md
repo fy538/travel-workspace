@@ -475,11 +475,33 @@ This is meaningful P1 architecture, not proof of editorial quality. The
 known-to-person resolver is intentionally conservative and does not infer broad
 topic familiarity. The delivery baseline can recover only still-retained
 governed productions and therefore under-remembers rather than inventing
-knowledge after a same-group production is replaced. `acted` records engagement
-with the root unit, not successful execution of a message, booking, Plan change,
-or any other consequence. Source-generated candidates also do not yet expose a
-canonical correction reference, so correction availability currently reports
-false rather than implying a repair path that does not exist.
+knowledge after a same-group production is replaced. Source-generated
+candidates also do not yet expose a canonical correction reference, so
+correction availability currently reports false rather than implying a repair
+path that does not exist.
+
+App commit `85cb77f52` closes the client-side split between semantic delivery
+and causal treatment for Home and Places interactions. One shared helper advances
+both evidence streams when a user opens a represented destination, resource, or
+non-mutating capability. For `propose` and `execute`, it emits `acted` only after
+the existing canonical owner command returns a non-rejected result and a
+verified readback. A rejected or conflicting readback remains dark. The mature
+Places feed now joins each server-authored card binding back to its admitted
+semantic unit, so qualified viewport dwell records both delivery and treatment
+rather than silently losing the meaning receipt. Native semantic Places units
+and mature cards also use the same confirmation, owner-command, readback, and
+receipt controller instead of two parallel implementations.
+
+These receipts remain learning evidence, not domain truth: successful execution
+is established only by the canonical owner's resolution and readback response.
+The focused Home/Places interaction portfolio passes 37 tests; an adjacent
+Places-feed and root-exposure portfolio passes 51 more. Production TypeScript,
+test-contract TypeScript, modified-file lint, API-boundary, and schema-bridge
+checks pass. The inherited Home-surface size-budget gate remains red for three
+already-over-budget Places files; this package reduces `PlacesWorkspace.tsx`
+from 847 to 820 lines while increasing `PlacesSectionFeed.tsx` from 559 to 564,
+so decomposition of the feed remains explicit structural debt rather than a
+reason to duplicate the receipt lifecycle again.
 
 The next P1 sequence is therefore:
 
@@ -496,8 +518,8 @@ The next P1 sequence is therefore:
    aggregate engagement score;
 4. bind Source-generated meaning to an inspectable correction target and prove
    that a correction changes subsequent known-to-person and serving behavior;
-5. join root-unit action engagement to canonical consequence readback and add
-   expiry observation without treating analytics as success; and
+5. add expiry observation to the now owner-readback-gated root interaction
+   receipts without treating analytics as success; and
 6. rehearse private and granted shared cases across both accounts, then decide
    whether the internal-cohort exit is met.
 
