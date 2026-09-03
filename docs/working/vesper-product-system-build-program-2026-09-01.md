@@ -605,6 +605,32 @@ configured Anthropic default cannot currently be calibrated because that
 provider account has no credit. No generated result is served, and the
 production flag remains default-off.
 
+Backend commit `7359b08e9` corrects the selection seam exposed by that
+calibration. It does not attempt to prompt better prose from insufficient
+evidence:
+
+- an explicit itinerary occurrence now carries a canonical Place revision
+  only when its block is linked to an owned venue, site, or experience with an
+  exact Place parent;
+- recent-return discovery can retrieve approved, receipted dossiers for that
+  exact occurrence Place in addition to the user's present Places context;
+- the selector admits an itinerary occurrence plus approved world context as
+  `recent_return.lived_occurrence_with_world_context`; and
+- two itinerary blocks no longer form a Home/Places contribution merely
+  because they happened on the same trip, contrast `happened` with `skipped`,
+  or describe a movement substitution. Those facts remain canonical evidence,
+  but without a second evidence role that can add substance they now produce
+  explicit selection silence.
+
+This is an evidence-role change, not a retrospective-data deletion. The Trip
+owner still preserves the factual sequence for appropriate consumers. Home and
+Places simply stop treating sequence as editorial value. The query joins only
+the block's explicit catalog identity; it does not infer a destination from a
+title or attach an unlinked transit block to every Place in its Trip. **116
+Source-contribution and Home-composition tests pass**, including the new exact
+Place join, occurrence-plus-world-context selection, and itinerary-only earned
+silence cases. Chat and Life are unchanged.
+
 The next P1 sequence is therefore:
 
 1. stop prompt-only tuning against the two low-information itinerary pairs.
@@ -612,11 +638,13 @@ The next P1 sequence is therefore:
    candidate, then run blind founder/judge calibration over the twelve-case
    corpus. Require correct earned silence on both new recap oracles before any
    serving decision;
-2. add portfolio cases whose selected Sources can actually support Vesper's
-   promised value: occurrence plus approved world context, occurrence plus a
-   current opening or practical consequence, and explicitly granted social
-   perspective. Preserve metadata-first discovery and exact owner reads; do
-   not solve this by giving the producer a universal context blob;
+2. extend the evidence-role portfolio from the now-landed occurrence plus
+   approved world-context path to occurrence plus a current opening or
+   practical consequence, and explicitly granted social perspective. Preserve
+   metadata-first discovery and exact owner reads; do not solve this by giving
+   the producer a universal context blob. Keep Moment/current truth distinct
+   from Source evidence and decide whether the consequence join belongs before
+   production or in root composition;
 3. evaluate admitted output and silence separately. Structural admission,
    latency, and root count are operational gates; new substance,
    non-paraphrase, present relevance, and root distinctness are editorial
@@ -637,11 +665,13 @@ The next P1 sequence is therefore:
 
 The production flag remains default-off. Two-account real-owner discovery,
 selection, readback, material, and assembly have now been rehearsed; admitted
-two-account model output is now operationally demonstrated but editorially
-rejected. Full-portfolio quality calibration and correct earned silence remain
-release dependencies. P1 must not be marked complete from deterministic
-fixtures, compiler admission, latency, candidate count, or telemetry coverage
-alone.
+two-account model output is operationally demonstrated but editorially
+rejected. The selector now correctly withholds the known low-information
+itinerary-only pairs before generation. Full-portfolio quality calibration,
+present-consequence composition, social-perspective transformation, and
+correct earned silence across those richer cases remain release dependencies.
+P1 must not be marked complete from deterministic fixtures, compiler
+admission, latency, candidate count, or telemetry coverage alone.
 
 ## Historical execution ledger — through 2026-09-02
 
