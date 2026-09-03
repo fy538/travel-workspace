@@ -5,7 +5,7 @@ owner: founder / product / architecture / engineering
 created: 2026-09-01
 last_verified: 2026-09-02
 expires: 2026-10-01
-why_new: Reconciles the post-pivot engine, four-root, artifact, agentic, multiplayer, consequence, and continuity programs into one dependency-ordered product-system build rather than a collection of proof loops.
+why_new: Reconciles the post-pivot engine, four-root, artifact, agentic, multiplayer, consequence, and continuity programs into one dependency-ordered product-system build, and separates the current forward roadmap from the historical implementation ledger.
 supersedes:
   - execution sequencing in systematic-product-engine-roadmap-2026-08-23.md
   - execution sequencing in home-and-places-root-implementation-program-2026-08-31.md
@@ -88,141 +88,173 @@ implementation may overlap where ownership is disjoint.
 | **7. Continuity and causal repair** | Organize Sources, episodes, people, Places, Threads, saved Compositions, Occurrences, plural Outcomes, corrections, withdrawal, and forgetting | An archive dump, inferred self-model, or engagement carousel |
 | **8. Delivery, shell, and operations** | Mount the four roots, route interruptions, cache and invalidate projections, support offline/degraded behavior, and expose safe operational evidence | A compatibility shell presented as finished product |
 
-## Build packages
+## Architecture guardrails for the next phase
 
-### S0 — Converged baseline and stop lines — complete
+The implementation has advanced diagonally through the original S0–S7
+packages. Forward work therefore follows remaining dependencies, not the old
+package numbers. Ownership stays explicit:
 
-Keep the landed workspace/backend/app convergence, safety tags, generated
-contracts, feature gates, legacy compatibility owners, and known-debt ledger.
-Do not delete mature authorities while the new system is dark.
+- domain owners keep durable truth and all canonical writes;
+- `lived_experience` owns generic judgment, treatment, composition,
+  consequence coordination, and causal dependency metadata;
+- `root_projection/v2` owns bounded reads, root-native selection, semantic
+  composition, and projection contracts;
+- the mobile app owns native rendering, navigation, viewport exposure, and
+  platform behavior; and
+- adapters may connect these layers, but may not become another truth store.
 
-### S1 — Canonical owner-read mesh — complete
+Do not introduce a `v3` projection namespace to avoid finishing `v2`. Do not
+solve cross-root coherence with a universal context service, presentation DTO
+in the domain layer, or a second writer hidden behind the semantic facade.
 
-Implement the minimum reader package already derived from the integrated
-portfolio as shared, typed owner adapters:
+## Forward engineering roadmap — 2026-09-02
 
-1. Source inspection, claims, custody, provenance, and effective use;
-2. Place focus, current conditions, and path/reachability;
-3. Occasion, Plan, and Commitment state;
-4. provider readback and canonical receipt state;
-5. Life index and episode reconstruction;
-6. relationship context and effective audience; and
-7. ephemeral Moment compilation.
+The following packages are the current sequencing authority. They preserve the
+system ambition while making dependencies, exits, and promotion gates clear.
 
-The same readers must be consumable by root projection and agentic-turn
-planning without returning presentation geometry. Reads degrade independently,
-name revisions and freshness, preserve unknown, and never widen audience.
+### P0 — Stabilize and land the integrated baseline — immediate
 
-**Exit:** all seven groups have typed results, canonical owner adapters, bounded
-failure states, and at least two real consumers across the four roots or Chat.
+Finish convergence before adding another architecture-bearing family:
 
-### S2 — Judgment and value-composition runtime — active
+1. resolve ownership of concurrent documentation without overwriting another
+   task's work;
+2. regenerate the app route inventory and classify every unregistered doc;
+3. compare all broad-suite failures with `main`, fixing every branch regression
+   and recording inherited debt separately;
+4. review the integrated diff by architectural family rather than by commit;
+5. land in backend -> OpenAPI -> app -> workspace order; and
+6. converge branches and tag the known-good baseline.
 
-Replace first-qualifying-object behavior with one cross-domain admission and
-composition pipeline:
+**Exit:** worktrees are clean; contract, focused, import-boundary, route,
+documentation, and generated-schema checks pass; broad-suite deltas contain no
+unexplained regression; and safety gates remain default-off.
 
-- material trigger and immediate job;
-- evidence and known-to-person novelty;
-- authority, audience, grant, freshness, and correction dependencies;
-- current consequence, feasibility, receptivity, burden, and repetition;
-- product move and result family;
-- one lead medium and at most one supporting medium;
-- bounded semantic anatomy and complete textual fallback; and
-- explicit suppression or silence.
+### P1 — Activate real post-pivot intelligence internally
 
-Home and Places retain separate selectors because temporal and spatial value
-are different. Chat uses the same semantic operation and result contracts.
-Life uses deterministic return arbitration and stable organization rather than
-engagement ranking.
+Turn the governed but mostly shadowed composition path into useful output:
 
-**Exit:** the runtime can compose all accepted Direct State, Composition,
-Instrument, Receipt, owner-link, prose, and silence families from real owner
-reads; model-authored claims remain shadowed until evidence and human review
-admit them.
+- approve the exact retained role of the Source contribution model;
+- run real models only through the evidence, authority, novelty, and treatment
+  pipeline;
+- build an editorial/evaluation corpus spanning ordinary New York, an open
+  weekend, a recent return, live/shared context, practical disruption, and
+  earned silence;
+- evaluate genuinely new substance, evidence support, non-paraphrase,
+  present relevance, non-creepiness, completeness on view, and root
+  distinctness;
+- implement a bounded known-to-person resolver beyond exact prior delivery;
+- retain only governed contributions and dependency manifests; and
+- add telemetry for admission, suppression, exposure, engagement, correction,
+  action, expiry, and silence.
 
-### S3 — Native four-root product
+**Exit:** two signed-in internal accounts receive a populated portfolio from
+real owner data; admitted results add substance rather than echoing the user;
+Home and Places remain recognizably different; weak material yields silence;
+and a kill switch can remove all model-authored serving.
 
-Mount the real root roles, not compatibility labels:
+### P2 — Make Moment and receptivity truthful
 
-- **Home:** stable Now / In motion / Horizons / Continuity anatomy with dynamic
-  dominance and honest quiet;
-- **Chat:** clean multimodal contribution and agency surface with contextual
-  instruments, receipts, correction, and exact return;
-- **Places:** World Field / Place Focus / Place Path / Live Reduction over the
-  mature map, search, save, and provider substrate;
-- **Life:** Time / Places / Threads / People over one corpus, with dossiers,
-  bounded returns, search, Vault custody, and exact refinding.
+Compile only defensible low-risk signals: timezone and local time, explicit
+location context and permission, Plan/Occasion lifecycle, deadlines, provider
+changes, weather and movement facts, foreground/background state,
+user-initiated versus system-initiated entry, and explicit availability or
+deferral. Never infer mood, fatigue, personality, relationship strength, or
+interest from dwell time, silence, or weak behavioral proxies.
 
-Do not build all accepted unit kinds before mounting the roots. Add a kind only
-when the system runtime can produce its evidence, authority, degradation, and
-action behavior.
+**Exit:** every treatment can explain why it appeared on Home, as an
+interruption, or not at all; it expires; and a material Moment change produces
+a bounded, testable change in treatment.
 
-**Exit:** each root is production-shaped with real data, each can stop, and one
-canonical identity moves through all four without duplication or visual
-disguise.
+### P3 — Produce a Home and Places internal release candidate
 
-### S4 — Consequence and live-world engine
+Home must exercise its full posture system—Now, In motion, Horizons, and
+Continuity—across ordinary, open, returning, live, shared, quiet, degraded, and
+cached states. Enforce region, attention, repetition, and demand budgets.
 
-Bind semantic operations to existing owner gateways and provider adapters:
+Places must ship the production World Field / Focus / Path / Live Reduction
+composition over the mature map, search, save, provider, and movement
+workspace. Semantic results should deepen spatial understanding and action,
+not replace the map with a thin inspection feed.
+
+Run cross-root physical checks on iOS and Android for navigation, process
+death, offline and stale states, account switching, supersession,
+accessibility, performance, and exact semantic continuation.
+
+**Exit:** Home and Places are suitable for an internal cohort with real data,
+real judgment, native degraded states, and one coherent owner-backed world.
+
+### P4 — Bring Chat and Life onto the shared spine
+
+Do not redesign either root from scratch. Make the existing Chat workbench
+adopt contribution and custody, semantic results, contextual instruments,
+receipts, owner handoffs, correction, and exact return. Keep it sparse and
+input-oriented rather than turning it into another feed.
+
+Make Life one finite, searchable corpus organized through Time, Places,
+Threads, and People, with dossiers, exact refinding, correction, bounded
+Return, and Together only where durable audience truth exists.
+
+**Exit:** one canonical identity can enter through Chat, alter Home and Places,
+be found in Life, and return exactly to Chat; correction propagates across the
+loop; Chat remains clean; and Life remains an organizer rather than a second
+Home.
+
+### P5 — Complete multiplayer authority and projection
+
+Finish durable audience and grant records; separate author, subject,
+custodian, viewer, actor, beneficiary, and payer authority; preserve membership
+epochs; persist attributed contributions; project viewer-relative truth; and
+support withdrawal, leave, mute, and block overlays. Complete conversational
+Occasion creation and invitation, shared consequence, plural Outcomes,
+relationship-aware Home and Places value, and Life Together without creating a
+broadcast social feed.
+
+**Exit:** individual, pair, and group views are correct for two real accounts;
+membership change and withdrawal do not leak or resurrect information; and
+social evidence makes the shared world more useful rather than more performative.
+
+### P6 — Expand the consequence and live-world engine
+
+Reuse the existing protocol:
 
 ```text
-inspect -> compose -> propose -> commit -> monitor -> reconcile
+inspect -> prepare -> propose -> authorize -> commit -> monitor -> reconcile
 ```
 
-Support ordinary local life, gatherings, travel, weather, movement,
-reservations, and disruptions. Every mutation is revision-bound, capability
-checked, idempotent, receipt-backed, and followed by owner/provider readback.
-Pending, partial, failed, stale, unknown, reversed, and superseded remain
-distinct.
+Expand it deliberately across Plan and itinerary repair, booking state,
+route/movement, weather and event changes, invitations and participation,
+delegated monitoring, and provider ambiguity. Every control must read canonical
+truth back; pending, partial, failed, stale, unknown, reversed, and superseded
+remain distinct; and roots that depend on an outcome refresh from the same
+owner event.
 
-**Exit:** every displayed action either completes through canonical readback or
-shows an honest recovery state; no assistant sentence is treated as execution
-truth.
+**Exit:** each supported action is idempotent, revision-bound, capability
+checked, receipt-backed, recoverable, and incapable of claiming success from
+assistant prose alone.
 
-### S5 — Multiplayer throughout the system
+### P7 — Promote and retire as one four-root product
 
-Complete the shared Occasion and relationship flows without introducing a
-separate social product:
+Run one promotion posture across Home, Chat, Places, and Life with two accounts,
+real data, device and performance evidence, accessibility, offline and
+process-death recovery, correction and withdrawal, provider degradation, and
+kill switches. Remove compatibility routes, labels, and duplicate writers only
+after replacement parity and rollback are demonstrated.
 
-- search and address people;
-- prepare an Occasion conversationally;
-- invite without inferring contact authority;
-- contribute Artifacts, availability, judgments, boundaries, and actions;
-- synthesize privately supplied input without exposing rationale;
-- support participation, decisions, delegation, leave, mute, and withdrawal;
-- project attributed social evidence only where it changes meaning or action;
-- preserve one shared consequence and plural personal Outcomes.
+**Exit:** Home / Chat / Places / Life are the actual product. Legacy Trips,
+Concierge, Places-feed, and Atlas paths are either explicit focused workspaces,
+headless capabilities, or removed.
 
-**Exit:** individual, pair, and group states are viewer-correct across Home,
-Chat, Places, and Life; withdrawal and membership-epoch changes invalidate all
-dependent projections.
+## Stop lines
 
-### S6 — Continuity, learning, and causal repair
-
-Connect what happened back into Life and future judgment without turning
-activity into personality:
-
-- reconcile Plan, provider truth, Occurrence, and Outcome;
-- keep Source, Claim, Composition, and owner truth distinct;
-- implement correction, supersession, withdrawal, release, and forgetting;
-- admit later continuity only when it changes a present job;
-- preserve plural Outcomes and relationship-specific grants;
-- support saved Composition versions and dependency manifests.
-
-**Exit:** correction and forgetting cross every affected projection, and a
-later return can explain exactly which authorized evidence made it useful.
-
-### S7 — Shell cutover, retirement, and operational proof
-
-Promote the four-root shell only after S1–S6 satisfy their serving gates.
-Exercise real data, signed-in multiple accounts, degraded providers, device
-navigation, accessibility, performance, offline behavior, process death,
-replay, and correction. Remove legacy presentation and duplicate writers only
-after parity and rollback gates pass.
-
-**Exit:** Home / Chat / Places / Life are the production product; legacy Trips,
-Concierge, Places-feed, and Atlas compatibility paths are either retained
-headless capabilities, explicit focused workspaces, or deleted.
+- No new semantic unit kind without a named owner, consequence, degradation,
+  correction, and deletion story.
+- No repository-wide noun migration before serving contracts stabilize.
+- No new provider integration merely to advertise scope.
+- No model-generated content reaches a user before editorial evaluation.
+- No public serving flag before the internal cohort gate passes.
+- No social feed, engagement-ranking objective, or inferred self-model.
+- No duplicate truth store and no client reconstruction of authority.
+- No new doctrine document unless implementation exposes a real contradiction.
 
 ## Cross-package acceptance portfolio
 
@@ -262,64 +294,54 @@ System scope does not mean simultaneous unsynchronized rewrites.
 
 ## Immediate execution ruling
 
-Continue S2 through evidence-bearing semantic-result production while
-advancing S3 and S4 through causal native serving. S1 is closed; Home and
-Places judge producer-declared value against exact owner truth before either
-root spends layout budget. Places proves the required cutover shape: judgment
-governs the mature capability workspace instead of replacing it with a thin
-semantic inspection screen or running as a decorative shadow request. Both
-roots now preserve an exact lived-experience treatment from server judgment to
-actual viewport exposure and user engagement.
+Execute **P0, then P1**. Do not add another projection generation, provider
+family, or visual unit before the integrated baseline is explainably green.
+Once converged, spend the next product-bearing cycle on real, governed
+intelligence across the evaluation portfolio. The critical proof is not one
+behavior loop or one operational control; it is whether the same system can
+add non-obvious, evidence-backed value in several situations while knowing
+when to be silent.
 
-Chat and Life remain behind their typed boundaries until their design lanes
-settle and they can emit or organize evidence-bearing semantic results. Do not
-relabel free-form Concierge prose or raw Life returns as conformance. The
-generic S4 consequence resolver, prepared-authority boundary, and first
-concrete owner family are now landed. Private occurrence reconciliation proves
-the reusable command shape: emit while the decision is pending, target the
-exact proposal rather than the depicted Place, bind the roster epoch, execute
-only through the canonical writer, and verify the result through the same
-owner. Shared Plan repair applies that shape to a multiplayer mutation by
-carrying both Plan and roster epochs into the existing proposal owner.
-Addressed Place handoff now applies it to a different multiplayer act:
-preserving something for one named person without fabricating public
-distribution or a group decision. Upstream Intake deletion atomically revokes
-undelivered authority and the visible source-bound handoff, while an already
-executed command remains an audit receipt and a recipient-created Occasion
-remains independently owned. The client never reconstructs authority from a
-capability name or from the object a root unit happens to depict.
+Home and Places are the first internal release surfaces because their design
+and serving paths are furthest along. This does not make them the whole
+product. Chat and Life remain real authorities and typed destinations during
+P1–P3, then join the shared spine in P4. Multiplayer, consequence, continuity,
+and repair are cross-cutting system properties throughout—not later feature
+lanes—and their complete authority work is sequenced in P5–P6 only where a
+durable dependency is still missing.
 
-The integrated Home/Places serving lifecycle is now landed in shadow. Both
-roots can present an exact admitted consequence, resolve its opaque grant
-through the canonical owner, verify current truth, refresh every dependent read
-model, expose repair through a short-lived opaque Undo grant, and refuse to
-claim `acted` when owner readback is rejected or unverified. A revision-pinned,
-account-scoped rehearsal posture now breaks the former circular gate without
-promoting a family: reviewed shadow owners may expose controls only to the
-named cohort on the exact deployed backend revision, and dispatch revalidates
-that authority after the tap. One idempotent operator tool now provisions the
-same two principals through all three canonical family shapes and returns a
-content-free manifest of their owner coordinates.
+The prepared cross-family physical rehearsal remains a mandatory promotion
+gate, not the current product milestone. Preserve its fixtures, revision
+binding, negative probes, and machine audit. Run it after the product is useful
+enough to promote, rather than treating technical coherence in shadow as the
+user value itself.
 
-The cross-family physical rehearsal is now a **prepared promotion gate**, not
-the active product-design milestone. Its fixture, revision binding, negative
-probes, and machine audit stay intact and must run before promotion, but running
-them now would prove a technically coherent shadow system whose principal Home
-and Places value is still too thin.
+### Current convergence evidence
 
-The next active seam returns to S2 and S3: make the post-pivot intelligence
-visibly useful through production-shaped Home and Places. The serving program
-must exercise ordinary New York, an open weekend, a recent return, and a
-live/shared situation with several result families—substantive source-backed
-understanding, grounded possibility, attributed multiplayer contribution,
-practical consequence, and continuity—rather than making one operational
-control the product demonstration. Home and Places should consume the same
-owner-read, value-over-silence, treatment, consequence, and repair spine that
-the rehearsal already proved locally. Chat and Life remain typed destinations
-and authority owners in this package; their unsettled visual surfaces are not
-pulled into the Home/Places cutover.
+As of the last September 2 review:
 
-## Execution status — 2026-09-02
+- generated OpenAPI and app projections agree: 570 complete paths / 632
+  operations / 1,426 schemas, and 435 active-mobile paths / 480 operations /
+  1,269 schemas;
+- focused backend validation passes 227 tests;
+- app typechecking and the focused 12-suite / 67-test portfolio pass;
+- cross-repository import boundaries pass;
+- the broad backend run reports 20,094 passed, 26 failed, and 2 errors;
+- the broad app run reports 1,151 suites and 7,746 tests passed, with 21 suites
+  / 24 tests failing; and
+- documentation status and surface contraction remain blocked by concurrent
+  unclassified docs and a stale generated route inventory.
+
+These numbers are a convergence baseline, not a quality waiver. P0 must
+classify broad failures as branch regression or inherited debt and close every
+unexplained delta before promotion.
+
+## Historical execution ledger — through 2026-09-02
+
+The entries below preserve implementation provenance, commits, tests, and
+decisions already made. They are evidence for the current architecture, but
+they are **not** the forward sequencing authority; P0–P7 above governs what
+happens next.
 
 ### S1A — typed owner-read contract and portfolio coordinator — landed
 
