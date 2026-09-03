@@ -353,8 +353,8 @@ unbounded legacy cleanup.
 
 ### Current P1 activation evidence
 
-P1 is now active, but its internal-cohort exit is not yet met. Six backend
-commits establish the first production-shaped editorial path:
+P1 is now active, but its internal-cohort exit is not yet met. The following
+backend commits establish the first production-shaped editorial path:
 
 - `7f77ac3f1` derives evidence strength, epistemic yield, present relevance,
   compression, and attention burden from each admitted brief instead of
@@ -362,7 +362,8 @@ commits establish the first production-shaped editorial path:
   bounded lexical paraphrases of claims already known to the person, rejects a
   narrow deterministic set of unsupported identity/psychology readings, and
   prevents Home and Places from becoming cloned expressions of the same job.
-- `96c7dc450` adds a portable ten-case editorial calibration corpus across
+- `96c7dc450`, extended by `5e75b4b96`, establishes a portable twelve-case
+  editorial calibration corpus across
   ordinary New York, an open weekend, recent return, live/shared context,
   practical disruption, creepy inference, homework, cloned roots,
   insufficient evidence, and earned silence. Its seven dimensions are new
@@ -465,11 +466,12 @@ unrelated itinerary, embedding-release, Places relationship, lazy-research,
 handler/privacy-audit, and reviewed-promotion baselines; none exercises this
 package.
 
-The provider path is therefore structurally portable and fail-closed, but the
-P1 exit is still unmet. We have not yet observed one admitted real-owner model
-contribution, much less a good two-account portfolio. The next bottleneck is
-the producer's ability to express Vesper's canonical composition grammar under
-the real latency budget—not Source authority, owner reads, or JSON validity.
+At this checkpoint the provider path was structurally portable and fail-closed,
+but no real-owner model contribution had yet been admitted. The immediate
+bottleneck was the producer's ability to express Vesper's canonical composition
+grammar under the real latency budget—not Source authority, owner reads, or
+JSON validity. The later compact-proposal calibration below supersedes that
+operational finding while preserving it as provenance.
 
 This is meaningful P1 architecture, not proof of editorial quality. The
 known-to-person resolver is intentionally conservative and does not infer broad
@@ -566,33 +568,80 @@ the old revision will not match subsequent Source selection, but final-write
 revision validation is still required before we can claim race-complete
 invalidation and a fully correction-aware novelty baseline.
 
+Backend commits `6cd89bef6`, `82c440548`, and `5e75b4b96` complete the next
+producer-calibration package without promoting it:
+
+- the provider schema now exposes the exact eight-value semantic human-job
+  vocabulary, requires one expression for every authorized root, and bounds
+  each expression to authorized roots and product moves;
+- the compiler independently rejects non-canonical or root-varying human jobs,
+  partial root coverage, unsupported psychographic inference, and cloned lead
+  anatomy even when the display copy changes;
+- known Anthropic and OpenAI API failures normalize at the structured-producer
+  boundary and fail optional contribution production closed, while arbitrary
+  application defects remain visible;
+- the provider now returns a compact semantic proposal. The server reattaches
+  audience, `vesper_prepare` authority, subjects, owners, exact Source
+  metadata, and generation clock from the admitted seed before the unchanged
+  compiler runs. This removes model discretion over custody and avoids
+  repeating the same authority manifest in every root expression;
+- the compact strict schema is 13,411 characters rather than 15,616 for the
+  representative two-root input, and the real GPT-4.1 path now completes in
+  roughly 5.1–6.6 seconds instead of exhausting the 11–12 second window; and
+- the human-gold corpus now pins two additional false accepts observed in
+  calibration: a plan-versus-reality recap labeled as synthesis, and two
+  co-occurring itinerary stops labeled as “variety.” A map wrapper does not
+  make either contribution root-native or novel.
+
+The real-account result is deliberately classified in two layers.
+Operationally, compact GPT-4.1 produced two strict, compiler-admitted
+candidates for each of the two internal accounts under the twelve-second
+ceiling. Editorially, all four expressions fail the product bar: one pair
+merely restates that a bus happened and a ferry was skipped; the other merely
+restates that a market and a record shop both happened. Prompt language
+explicitly rejects these forms, but GPT-4.1 still false-accepts them. Compact
+GPT-5 mini timed out for both accounts at approximately 12.1 seconds. The
+configured Anthropic default cannot currently be calibrated because that
+provider account has no credit. No generated result is served, and the
+production flag remains default-off.
+
 The next P1 sequence is therefore:
 
-1. use the now-captured GPT-4.1 rejection fingerprint to make a founder-reviewed
-   prompt-or-producer decision: teach the finite semantic job vocabulary and
-   lead anatomy without weakening compiler admission or duplicating the
-   composition contract inside freeform prose;
-2. rerun the default-off producer under the twelve-second surface budget for
-   both internal accounts, and require admitted output or earned silence—not a
-   longer hidden timeout—as the operational result;
-3. calibrate the resulting model outputs across the full situation portfolio
-   against the human-gold editorial corpus,
-   recording both admitted value and earned silence rather than optimizing an
-   aggregate engagement score;
-4. rehearse the landed single-Source correction through the real local API,
+1. stop prompt-only tuning against the two low-information itinerary pairs.
+   Restore access to the configured quality model or explicitly select another
+   candidate, then run blind founder/judge calibration over the twelve-case
+   corpus. Require correct earned silence on both new recap oracles before any
+   serving decision;
+2. add portfolio cases whose selected Sources can actually support Vesper's
+   promised value: occurrence plus approved world context, occurrence plus a
+   current opening or practical consequence, and explicitly granted social
+   perspective. Preserve metadata-first discovery and exact owner reads; do
+   not solve this by giving the producer a universal context blob;
+3. evaluate admitted output and silence separately. Structural admission,
+   latency, and root count are operational gates; new substance,
+   non-paraphrase, present relevance, and root distinctness are editorial
+   gates. A pass in the first group cannot compensate for a failure in the
+   second;
+4. only after one model/prompt posture clears that portfolio, add its versioned
+   quality receipt and rerun private plus granted shared real-owner cases for
+   both accounts. Keep the flag dark if the model invents value rather than
+   earning silence;
+5. rehearse the landed single-Source correction through the real local API,
    then decide the plural Source repair manifest and direct challenge to
    Vesper-authored synthesis before exposing a consumer correction control;
-5. rehearse proof expiry against the real local API across foreground,
+6. rehearse proof expiry against the real local API across foreground,
    background/resume, and failed-refresh paths without treating analytics as
    success; and
-6. rehearse private and granted shared cases across both accounts, then decide
+7. rehearse private and granted shared cases across both accounts, then decide
    whether the internal-cohort exit is met.
 
 The production flag remains default-off. Two-account real-owner discovery,
 selection, readback, material, and assembly have now been rehearsed; admitted
-two-account model output and full-portfolio calibration have not. Those remain
-release dependencies, and P1 must not be marked complete from deterministic
-fixtures, pre-production assembly, or telemetry coverage alone.
+two-account model output is now operationally demonstrated but editorially
+rejected. Full-portfolio quality calibration and correct earned silence remain
+release dependencies. P1 must not be marked complete from deterministic
+fixtures, compiler admission, latency, candidate count, or telemetry coverage
+alone.
 
 ## Historical execution ledger — through 2026-09-02
 
