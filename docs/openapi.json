@@ -102881,6 +102881,14 @@
             "type": "array",
             "title": "Owner Refs"
           },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Source Refs",
+            "default": []
+          },
           "fact_key": {
             "anyOf": [
               {
