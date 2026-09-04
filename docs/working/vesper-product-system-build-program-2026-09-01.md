@@ -119,6 +119,8 @@ controls are implemented; do not schedule them again as missing architecture.
 Native modal behavior and real-account editorial value remain unverified.
 S1X / S4X and S1Y below record coverage and outstanding gates. P0 remains
 red, P1's real-data exit remains open, and Chat/Life changes remain held.
+App commit `57bb8128e` additionally separates native live and future Places
+scenarios and carries the verified clock into those product flows (S0Z).
 
 ### P0 — Stabilize and land the integrated baseline — immediate
 
@@ -3304,3 +3306,65 @@ registered scenario state with the frozen fixture clock, add representative
 post-pivot Source and semantic-root coverage, and verify the inspector's
 navigation/account/modal lifecycle. Keep this separate from P1 real-data
 editorial activation and preserve the Chat/Life hold.
+
+### S0Z — Native Places scenario state and clock continuity — corrected
+
+App commit `57bb8128e` resolves S1Y's upcoming-versus-TODAY mismatch without
+changing product posture or rewriting the default persona to satisfy a stale
+capture expectation. The default mock explicitly authors Lisbon as `live`;
+the canonical M0 scenario describes it that way. Its capture is now labeled
+live and asserts the Lisbon TODAY eyebrow. Genuine future coverage comes from
+the existing `M2-ben-loose-planning` persona: Kyoto starts June 17, after the
+runner's June 3 clock, and the new flow asserts PLANNING rather than TODAY
+before and after opening/cancelling scoped Search. No fixture dates, provider
+facts, bookings, or runtime content are invented for the test.
+
+There was a separate clock-continuity defect: the runner verified a frozen
+clock at boot, but product flows could select a persona again without carrying
+that clock. The screenshot-mode route then applied the persona's default date
+or cleared the clock for a persona without one. The runner now supplies its
+persona/clock arguments to product flows as well as readiness. Every
+persona-selection link in these two Places flows explicitly reapplies that
+clock. Existing manual persona-selection behavior and other flows are not
+silently changed. Those other flows still need their own audit; the manifest's
+boot clock alone must not be treated as proof of the final capture's time.
+
+The existing cross-tab planning anchor and historical planning comparison now
+point to the actual Kyoto planning capture. The old Lisbon screenshots remain
+historical evidence, not newly relabeled future-state or visual acceptance.
+The shared registry test initially caught the stale anchor and passes after
+its reference was corrected; the validator was not weakened.
+
+Validation passes 18 Node harness tests (including the verdict-schema script's
+internal assertions), 14 focused mock-feed/mast/scenario Jest tests, application
+and test-contract typechecking, targeted ESLint, both flows' Maestro syntax and
+metadata checks, scenario registry checks, and external reference identity.
+The repository-wide metadata command remains red on the unchanged
+`52-home-places-real-save-readback.yaml` fixture label
+`home-places-save-rehearsal`, which is outside its allowed fixture enum. No
+exception or broader enum was added to bypass that gate.
+
+The initial new planning run
+`travel-app/.maestro/runs/20260904T000222Z-places-workspace` completes in native
+mock mode. Its image was opened and visibly confirms Kyoto PLANNING. This is
+scenario/navigation evidence, not a full design verdict or backend-real proof.
+The three-tab shell, sparse mock material, Source-inspector lifecycle, and
+post-pivot governed-root acceptance remain separate work.
+
+Post-commit reruns also complete: `20260904T000450Z-places-workspace`
+captures the corrected default/live flow, and
+`20260904T000624Z-places-workspace` captures Ben/future-trip. Both manifests
+identify commit `57bb8128e` and the explicit frozen clock. The current Lisbon
+image was opened and confirms TODAY; Kyoto's initial image confirms PLANNING.
+Both structured verdicts remain pending, not passing visual/intent acceptance.
+This closes the observed scenario-label/reference defect and these two flows'
+clock handoff, not the rest of the native portfolio.
+
+Next production-shell coverage must respect the existing rollout boundary:
+`productSystemRollout` joins the shell, Home v2, and governed Places gates;
+mock v2/runtime endpoints deliberately remain dark. Do not make those mocks
+return attractive synthetic success merely to obtain four-tab screenshots.
+Use the existing local backend rehearsal path after verifying its target,
+auth/account identity, fixture scope, and effects, or explicitly label an
+isolated renderer gallery as component evidence. No serving or rollout flag
+was changed in S0Z.
