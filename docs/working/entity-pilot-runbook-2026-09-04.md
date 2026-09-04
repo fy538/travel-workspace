@@ -61,6 +61,14 @@ Mocks or SQLite-only tests do not substitute for it. Native simulator/device
 evidence is a separate gate and must be attached before calling a surface
 accepted.
 
+For the existing mock Maestro lane, the installed development client must be
+connected to the current Metro bundle and its persisted runtime mode must be
+compatible with the journey metadata. Start Expo on a LAN host when the client
+cannot reach loopback, and clear/reset any stale `dev.mockModeOverride=false`
+before a mock journey. A sign-in screen or the guarded “Couldn’t open your
+account” state is a QA-lane configuration failure; it is not native entity
+acceptance and must be recorded as such.
+
 ## 3. Canary enablement
 
 Enable only for an explicitly opted-in internal account. The backend feature
