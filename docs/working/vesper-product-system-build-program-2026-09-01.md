@@ -143,6 +143,10 @@ evidence fingerprint, restores the existing receipt membership boundary at
 the owner adapter, and rejects partial exact scope and audience widening.
 Its focused suite passes **392 tests**; the latest standard full backend run
 is active in session **6651**, covering both handoff and receipt repairs.
+S0AK traces the remaining group receipt path through the real producer,
+request compiler, and owner reader. It is currently rejected, not shipped.
+The proposed shared read-grant resolution below requires explicit approval;
+no permission-model change is inferred from goal continuation.
 
 ### P0 — Stabilize and land the integrated baseline — immediate
 
@@ -3945,3 +3949,83 @@ its separate revision, visibility, and lifecycle review.
 No native acceptance or model-authored editorial portfolio is claimed here.
 The local API still predates these backend repairs. Shared timing-model
 approval, Chat/Life surface hold, and the complete P0–P7 objective remain.
+
+### S0AK — Group receipt trace and proposed shared read-grant resolution
+
+Backend test commit `00dd60e17` makes the remaining gap reproducible through
+the actual Home producer, request compiler, and canonical owner registry:
+
+1. `home_candidates_from_receipts` labels the candidate with the receipt's
+   group audience and puts its Trip locator in `grant_refs`.
+2. `with_value_contract` adds that locator to the declared read requirement.
+3. `_operation_resource_refs` keeps only the first receipt scope and recognized
+   use-grant kinds. A Trip locator is not one of those grants, so it is removed.
+4. The owner verifies current membership but returns `UNAUTHORIZED` with
+   `explicit_use_grant_required`; no payload or grant is returned.
+5. Separately, `_resolve_reads` compares the requirement's exact reference
+   tuple with the compiled request. Dropping the Trip also changes that tuple,
+   so fixing only the owner reader would leave a read-matching gap.
+
+The regression preserves the denial; it does **not** certify positive group
+receipt admission. The combined focused suite passes **393 tests** in
+`/tmp/vesper-group-receipt-boundary.log`; applicable test commit gates pass.
+No production code changed in this increment. The ongoing S0AJ broad run
+still covers the production code; its collection predates this additional
+test. Session **6651**, PID **18031** was verified live at the 89% audit stage.
+
+#### Recommendation — resolve authority, do not relabel locators
+
+Adopt a bounded, owner-resolved read-disclosure contract before extending
+shared receipt serving. This implements the accepted Contribution Use Grant
+semantics without introducing a universal grant table or a second owner.
+It requires founder review because it crosses the shared model/authorization
+boundary; an approval request is outstanding, separately from P2's timing
+read-model request.
+
+The contract should preserve these distinctions:
+
+- **Source audience versus receiving surface:** a group-authored receipt on
+  one member's Home remains group-origin evidence. Viewing it privately is
+  not publication, forwarding, a new group, or wider derivative use. Do not
+  bypass policy by simply relabeling all candidates private.
+- **Locator versus authority:** a Trip ID, membership ID, or caller-supplied
+  `use_grant` reference identifies what to resolve; its presence does not
+  prove permission. `_explicit_grants` currently only filters reference kinds;
+  that helper alone is not an authority resolver.
+- **Owner-resolved scope:** bind viewer, exact resource and revision, canonical
+  audience owner and current membership epoch, named operation/purpose and
+  consumer, permitted disclosure, effective lifecycle, and invalidation
+  dependencies. Membership is one input to the policy, not a general grant.
+- **Read versus consequence:** this proof authorizes only the named read or
+  projection. It cannot authorize retention, inference, sending, joining,
+  provider contact, spend, or publication. Existing writers remain owners.
+- **Canonical scope across consumers:** producer requirements, compiled reads,
+  returned proofs, and value judgment must preserve one exact normalized
+  identity. Unsupported or ambiguous scope is rejected explicitly, not
+  silently removed and later reported as missing data.
+
+After approval, implement in dependency order:
+
+1. Define storage-neutral read-disclosure request/decision contracts with
+   explicit denial and freshness semantics. Reuse existing authority axes;
+   synchronize generated contracts only where the models are exposed.
+2. Resolve the proof through current Source, Relationship, Trip/Occasion, and
+   receipt owner policies. Never echo caller references as verified authority.
+   Begin with the evidenced receipt path, but keep the resolver operation- and
+   purpose-bound so other families cannot borrow that permission.
+3. Connect Home's candidate, read compilation, owner envelope, and value
+   resolution without a Trip-ID-as-grant shortcut. Preserve attribution and
+   original scope while making authorized private consumption work.
+4. Key reuse by viewer, resource revision, purpose, audience owner/epoch, and
+   effective lifetime. Leaving, removal/rejoining, withdrawal, correction, or
+   expiry must force owner re-resolution; no cross-account cached authority.
+5. Verify positive admission and independent degradation end to end, including
+   wrong Trip/person, forged grant, purpose substitution, group-to-public use,
+   membership loss/rejoin, stale receipt, private evidence, and attempts to
+   turn a read proof into an action mandate. Existing denied cases remain
+   denied; passing a narrow producer test is not the release gate.
+
+This is a shared product-system dependency across multiplayer, composition,
+continuity, and consequence—not a new social settings screen. It does not
+require a Chat/Life redesign. No shared fields or permission semantics have
+been changed pending approval; the broader P0–P7 goal remains active.
