@@ -143,3 +143,27 @@ pass; backend entity-research/model and entity identity suites pass. The
 existing situation endpoint test could not import the repository's full API
 because the local environment lacks the pre-existing `openai` dependency; no
 failure was caused by the new route.
+
+## Object-page follow-on execution — 2026-09-04
+
+The guarded rebuild now has three additional, additive slices:
+
+- Travel Agent `67e4f6556` — explicit `paragraph_sources` provenance on the
+  read-only research brief; invalid or unresolvable source numbers fail closed.
+- Travel App `748786ae5` — paragraph markers render only from that explicit
+  mapping; generated API types and mock parity are retained.
+- Travel App `2377099e9` — large-text metadata stacks pair and closing facts at
+  the 1.3 font-scale threshold; instrument labels remain clamped.
+- Travel App `a6e907766` — optional request-scoped situation summary slot; no
+  request is made without an explicit validated situation request.
+- Travel App `47e63347a` — Ask Vesper handoff wired through the existing
+  canonical ConversationSeed owner for site and experience pages.
+- Workspace `fixture-contract-audit-2026-09-04.md` — records why the design
+  fixture pack remains reference-only and which future fields are gated.
+
+Verification: mobile typecheck, object projection tests, and touched-file
+Prettier checks pass; backend entity-research tests and commit hooks pass.
+No catalog backfill, research refresh, provider lookup, or fixture migration
+was run. Full native visual evidence for the new renderer remains open because
+the captured Places run used the default-off feature flag and pre-follow-on
+commit SHA.
