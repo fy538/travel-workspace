@@ -244,3 +244,13 @@ The doorway reuses the canonical `RelationshipPlaceNoteAction` owner, so pair
 membership, recipient resolution, consent, idempotency, and delivery remain
 outside the entity page. Mobile typecheck and the relationship summary/action
 tests pass. No handoff was sent and no production data changed.
+
+## Relationship readback slice — 2026-09-04
+
+- Travel App `470b8af10` — the rebuilt object page now renders the bounded v2
+  relationship readback when present: visit count, last-visited date, active
+  Plan title, and the viewer's private verdict. The projection is explicit and
+  does not render private prose or companion details.
+
+The pure projection test and relationship/action tests pass, along with mobile
+typecheck. No backend contract or data source changed.
