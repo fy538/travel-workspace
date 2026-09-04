@@ -4949,5 +4949,18 @@ cleanup does not simply advance their dates or bypass the hook. Remote
 publication is held across all three repositories to avoid publishing a
 cross-repository contract without its corresponding backend. Local `main`
 consolidation and preservation can complete independently of that gate.
+The same pre-push pass also reports four substantial packages without
+`FEATURE.md` (`application`, `domains`, `lived_experience`, `root_projection`)
+and 165 uncovered operations from the older backend route-coverage checker.
+The newer workspace API-operation registry passes; the two coverage checks
+need reconciliation, not blanket additions to a dark-endpoint allowlist.
+Neither check is disabled by this consolidation.
 Evidence: `/tmp/vesper-consolidation-backend-prepush-venv.log` (the retry uses
 the backend virtual environment for SQLAlchemy-dependent parity checks).
+
+Final local landing: all three primary worktrees are clean on `main`. Backend
+`4c1ff58ff` is 215 commits ahead of origin/main; app `d5e90faa8` is 156 ahead.
+Every local feature branch is contained in its repository's main. The only
+unmerged remote branches are the six dependency updates listed above. Origins
+were fetched again before the fast-forwards; no competing main history was
+found. Remote main branches have not been updated by this operation.
