@@ -189,7 +189,9 @@ Turn the governed but mostly shadowed composition path into useful output:
 - evaluate genuinely new substance, evidence support, non-paraphrase,
   present relevance, non-creepiness, completeness on view, and root
   distinctness;
-- implement a bounded known-to-person resolver beyond exact prior delivery;
+- extend the existing bounded exact/near-lexical and explicit-receipt novelty
+  resolver with broader authorized prior context; do not rebuild it or treat
+  passive exposure as knowledge;
 - retain only governed contributions and dependency manifests; and
 - extend the landed opportunity, production, admission, suppression, and
   delivery telemetry through canonical correction, action readback, expiry,
@@ -472,6 +474,11 @@ backend commits establish the first production-shaped editorial path:
   only. Opened and acted-on outcomes may enter the conservative
   known-to-person aid; neither proves belief, understanding, or a downstream
   real-world consequence.
+- `d02278139` keeps that history meaningful under bounded reads: root, outcome,
+  proof status, time, and distinct semantic identity are resolved before the
+  event limit; the exact received root expression is selected before the
+  retained-production limit. Unrelated activity and unseen generation cannot
+  crowd already-received claims out of the novelty aid (S0AO).
 - `5e7c98c56` adds a content-free, stage-bounded editorial lifecycle event for
   opportunity silence, production or cache reuse, value admission, root
   admission, and authenticated root delivery. It permits only controlled
@@ -4200,3 +4207,66 @@ production Clerk parity, or the complete Home/Places editorial portfolio.
 The local API remains on its earlier process version, so these native results
 do not promote S0AI–S0AM's newer backend adapters. The completed 20,490-pass
 backend run above is the current code-level evidence for those repairs.
+
+### S0AO — Repetition control survives busy Home/Places history
+
+Backend `d02278139` fixes two pre-limit filtering gaps in the existing
+cross-root editorial path. It does not introduce another memory system or
+claim to implement semantic knowledge.
+
+Previously the delivery reader selected the latest 256 generic root events
+and only then separated Home from Places, proof-recorded observations from
+unproved rows, and explicit opens/actions from passive renders. Repeated
+events for one semantic identity could also consume the entire budget. The
+novelty loader then selected the latest 64 retained productions before looking
+for the exact expressions actually received. A burst of ordinary activity or
+unseen generation could therefore make a previously received contribution
+appear absent from the next producer's prior context.
+
+The existing `user_events` owner now exposes a scoped read which applies
+recipient, event kind, proof marker, outcome, root, and represented-time bounds
+before ranking. It keeps the latest qualifying event for each semantic fact
+and then applies the bounded result limit. Ordinary impression suppression and
+explicit-receipt novelty retain their different accepted outcomes; an opened
+event can survive a later render without that render becoming knowledge.
+
+The retained-production read now selects an admitted compilation containing
+the exact received root **and fact key on the same candidate** before limiting
+rows. Malformed candidate arrays cannot raise an extraction error, and future
+production cannot consume the represented-clock budget. Existing Python
+claim-author/novelty checks remain in place. Expired presentation may still be
+recently received; this is historical context, not authority to reuse stale
+world facts. Source correction/removal still deletes the dependent production
+and therefore removes its claim text from subsequent novelty reads.
+
+Validation:
+
+- **15 PostgreSQL regressions failed before the repair**, including the actual
+  default-budget case with one opened contribution behind 260 passive renders
+  and 65 unseen productions (`/tmp/vesper-novelty-history-red.log`).
+- All **15 pass** after the repair. Their synthetic users, events, and
+  productions use one rolled-back transaction per test; none is retained
+  (`/tmp/vesper-novelty-history-postgres.log`).
+- The combined PostgreSQL lease, receipt, correction/removal, and new history
+  suite passes **21 tests**. Existing owner tests clean up their temporary
+  users through their established teardown
+  (`/tmp/vesper-novelty-history-repair.log`). All database checks explicitly
+  target local `127.0.0.1:5432/vesper`, not a production default.
+- **312 integration tests pass** across root projection, Source production,
+  delivery, query shape and invalid bounds, and API wiring
+  (`/tmp/vesper-novelty-history-integration.log`). Existing private-versus-shared
+  history isolation remains covered; no history is newly admitted to shared
+  generation. The changed runtime files pass focused mypy, Ruff, formatting,
+  import boundaries, whitespace, and all applicable commit gates.
+- Standard full backend regression is running in session **50726**, logged at
+  `/tmp/vesper-novelty-history-backend.log`. Collect this same run; the preceding
+  20,490-pass/one-failure result predates this change.
+
+This bounded runtime-read repair has no schema, shared-model, prompt, auth
+policy, mobile contract, Chat/Life surface, external integration, or serving-
+flag change. It reduces repeated content caused by dropped prior context; it
+does not prove that new output is insightful, understood, or remembered.
+Broader authorized prior context, cross-root history prioritization beyond the
+existing merge order, human-rated editorial quality, and two-account P1
+activation remain open. There is no native or production promotion claim, and
+shared timing/read-grant approvals remain outstanding.
