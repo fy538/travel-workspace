@@ -43173,6 +43173,98 @@
         }
       }
     },
+    "/api/me/entities/{entity_type}/{entity_id}/research-requests": {
+      "post": {
+        "summary": "Request Entity Research",
+        "description": "Queue one explicit research request without changing the read path.\n\nThis endpoint is deliberately narrow: only verified, catalog-backed\nvenue/site/accommodation entities can enter the existing research queue.\nExperiences and owner-provisional shells remain ineligible until their\nrespective durable write contracts exist. The idempotency key is stored in\nqueue metadata so retries cannot create duplicate work.",
+        "operationId": "request_entity_research_api_me_entities__entity_type___entity_id__research_requests_post",
+        "parameters": [
+          {
+            "name": "entity_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "enum": [
+                "venue",
+                "site",
+                "accommodation",
+                "experience"
+              ],
+              "type": "string",
+              "title": "Entity Type"
+            }
+          },
+          {
+            "name": "entity_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Entity Id"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "title": "X-Idempotency-Key"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EntityResearchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityResearchRequestResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/me/entities/{entity_type}/{entity_id}/presentation-v2": {
       "get": {
         "summary": "Get My Entity Presentation V2",
@@ -67032,6 +67124,61 @@
           "generated_at"
         ],
         "title": "EntityResearchBrief"
+      },
+      "EntityResearchRequest": {
+        "properties": {
+          "force_refresh": {
+            "type": "boolean",
+            "title": "Force Refresh",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "EntityResearchRequest",
+        "description": "Explicit, user-triggered request to refresh one public entity brief."
+      },
+      "EntityResearchRequestResponse": {
+        "properties": {
+          "revision": {
+            "type": "string",
+            "const": "entity-research-request-v1",
+            "title": "Revision",
+            "default": "entity-research-request-v1"
+          },
+          "entity_ref": {
+            "$ref": "#/components/schemas/EntityRef"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "already_fresh",
+              "already_pending",
+              "queued",
+              "ineligible"
+            ],
+            "title": "Status"
+          },
+          "request_id": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Request Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "entity_ref",
+          "status"
+        ],
+        "title": "EntityResearchRequestResponse"
       },
       "EntityResearchSource": {
         "properties": {
