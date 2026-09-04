@@ -189,6 +189,12 @@ The prior claim that Source delivery was blocked only by substrate was too
 strong: it described discovery, not the complete served path. The deterministic
 final-admission regression now covers that missing seam. Production data,
 native acceptance, and broader baseline convergence remain separate gates.
+S0AV closes the next review's private-Place consumer and map-policy gaps, fixes
+exact Google map handoffs, and expires abandoned Places location acquisition.
+The full backend/app runs retain the existing one/23 failures, respectively;
+no new failures were introduced. The detailed ledger below records the clean
+code commits, a successful default Places capture, the still-failing native
+trip-continuity flow, and schema sync blocked by expired API review policies.
 S0AK traces the remaining group receipt path through the real producer,
 request compiler, and owner reader. It is currently rejected, not shipped.
 The proposed shared read-grant resolution below requires explicit approval;
@@ -4756,3 +4762,85 @@ Native photo permission/account switching and rendered Source delivery remain
 unverified by this unit/integration package. This repair does not close the
 pending timing/read-grant proposals, activate Source serving, or declare P0–P7
 complete.
+
+### S0AV — Private Place consumers, map policy, and location lifetime (2026-09-04)
+
+The following 24-hour review found four new gaps and one earlier location
+acquisition gap. This repair closes those code paths without changing Chat/Life
+surfaces, shared schemas, prompts, provider integrations, or serving flags.
+
+1. **Keep private sites out of the legacy public route.** `/api/sites/{id}`
+   now requires verified catalog state, matching public venue behavior. Missing
+   and private sites return 404. The authenticated entity reader retains the
+   owner's access; this is not a migration of private data into public browse.
+2. **Preserve private viewer context across exact Place consumers.** Private
+   canonical `place.read`, private Source-attachment/anchor discovery, and
+   private Intake activation validation pass the requesting owner to the
+   existing envelope reader. Group/public reads do not inherit that access.
+   Missing or inaccessible attachment subjects become a local omission instead
+   of throwing a domain `NotFoundError` through the entire optional discovery.
+3. **Honor map policy through the adapters and screens.** Venue and Site detail
+   retain generated `catalog_state` and `display_policy`. The shared
+   `EntityLocationMap` chooses the existing Mapbox preview, a deliberate
+   provider handoff, or complete omission including section spacing. Coordinates
+   cannot override an explicit policy. Missing policy on a known private shell
+   fails closed; older public fixtures retain compatibility. A late external
+   open failure cannot toast after the screen/account lifetime ends.
+4. **Bind Google map handoffs to the exact provider identity.** Generated URLs
+   now contain a readable, encoded `query` and the exact encoded
+   `query_place_id`; an opaque provider ID is no longer used as search prose.
+5. **Make location acquisition one bounded gesture.** The hook single-flights
+   permission/GPS through the owner write and expires undispatched work on
+   unmount, account change, navigation leave/return, or scope replacement. The
+   mutation rechecks lifetime at dispatch and strips guard callbacks from the
+   HTTP payload. Already-submitted work can refresh the same account after
+   navigation, but not a replacement account. Readback failure does not turn
+   an accepted write into “Your scope is unchanged.” Acquisition/payload
+   conversion has a separate bounded helper; the gesture and position owner
+   remain distinct, with tighter physical-size ratchets rather than exceptions.
+
+Landed code: backend `4c6b63e34`; app `3083d6d85` on
+`codex/integrated-home-places-rehearsal`. Both child working trees are clean;
+unrelated workspace Life/inventory/design-document edits are preserved.
+
+Regression evidence:
+
+- Focused backend checks: **109 passed**. A separate **16-pass** run includes
+  one actual local-Postgres owner/stranger/anonymous/public regression plus
+  overlapping unit coverage. Synthetic users/sites are transactionally rolled
+  back; no provider requests or durable user-data changes are required.
+- Final focused mobile checks: **75 passed in eight suites**, covering adapter
+  propagation, map modes, external-open lifetime, GPS/account/navigation/scope
+  races, single-flight acquisition, dispatch serialization, and readback errors.
+- Full mobile suite: **7,987 passed; 23 failed across 19 suites**, with
+  **1,174 suites passing**. All failing test names and failure messages are
+  identical to S0AU's baseline, not new regressions. Evidence:
+  `/tmp/vesper-five-fixes-app-full.json` and `.log`.
+- Full offline backend: **20,518 passed; one failed**, with 30 skips, 1,340
+  deselections, and 56 XPASS results. The sole failure remains the pre-existing
+  `_execute_post_atlas_draft` dead-handler audit. The later private-activation
+  regression and Postgres test are covered by the focused/supplemental runs.
+  Evidence: `/tmp/vesper-five-fixes-backend-full.log`.
+- Final `verify:fast` passes both TypeScript checks, boundaries, schema bridge,
+  and size ratchets; lint remains **174 warnings / zero errors**. App doc links
+  pass for **904 Markdown files**. Backend changed-file Ruff checks pass.
+- Offline schema export produces **no change** to the committed full snapshot.
+  The required sync stops at mobile projection because three unrelated API
+  operation policies expired on September 3 (cross-day suggestions and both
+  location-sharing operations). Their review dates were not extended to bypass
+  governance. App projection and generated types remain unchanged; this is a
+  blocked regeneration gate, not a completed sync.
+- Native preflight and design-reference checks pass. The original two-flow
+  capture produced 0/2 shots: the default flow still waited for the retired
+  “Trips” tab, while trip continuity could not find “Porto” after Add to trip.
+  The selector now matches the actual “Home” tab. A fresh, filtered run captures
+  and opens the Lisbon screen successfully: **1/1 captured**, run
+  `travel-app/.maestro/runs/20260904T152026Z-places`. This is a capture receipt,
+  not a passing structured design verdict. Trip-continuity capture remains
+  unsuccessful; no itinerary or chooser behavior was changed to satisfy it.
+
+Native QA is recorded separately from these automated checks. Neither the
+ordinary mock Places capture nor mocked external-open/GPS tests certify private
+provider-map rendering, native permission/account switching, or production auth.
+No P0–P7 completion, shared read-grant approval, or new serving readiness is
+claimed by this repair.
