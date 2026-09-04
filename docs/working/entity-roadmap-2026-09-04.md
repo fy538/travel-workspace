@@ -530,5 +530,7 @@ Validation recorded for this continuation:
   outstanding; no flag was enabled and no catalog row was backfilled.
 
 The next unclosed gates are native state evidence, a reviewed pilot receipt,
-one later-consumer withholding proof, and explicit operational ownership. They
-are release gates, not reasons to enlarge the catalog now.
+and explicit operational ownership. The later-consumer benefit/withholding
+proof is now present in the real PostgreSQL loop-closure scenario, but it is
+not a production rollout receipt. These remain release gates, not reasons to
+enlarge the catalog now.
