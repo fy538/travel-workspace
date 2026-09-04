@@ -42,7 +42,7 @@ Inspected local `main` on September 4 (after the continuation receipts below):
   read-only entity health report.
 - Mobile: `35c110f47` — research lifecycle, object truth fixes, grounded
   generic venue handoffs, and sequenced native itinerary placement sheets.
-- Workspace: `9f8a9ffe3` — roadmap, runbook and validation ledger.
+- Workspace: `1c4510a0a` — roadmap, runbook and validation ledger.
 
 These are local source baselines, not deployment or public-release evidence.
 No database job, provider call, canary, or backfill was run to write this
