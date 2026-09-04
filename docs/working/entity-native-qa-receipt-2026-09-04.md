@@ -85,7 +85,8 @@ These are scoped mock-lane passes. They do not certify real-backend auth,
 research lifecycle states, live situation freshness, source attribution,
 relationship differences across two accounts, accessibility at large text or
 screen-reader navigation, Android, or the full loading/error/empty matrix.
-the guarded `ObjectPageRebuild` flag-on route, or full shared-renderer
-convergence. Those remain separate gates in the entity roadmap and must be
-attached to a reviewed pilot receipt before any capability is enabled. No production rows,
-research jobs, provider calls, or backfill were created by this run.
+They also do not certify the guarded `ObjectPageRebuild` flag-on route or full
+shared-renderer convergence. Those remain separate gates in the entity roadmap
+and must be attached to a reviewed pilot receipt before any capability is
+enabled. No production rows, research jobs, provider calls, or backfill were
+created by this run.
