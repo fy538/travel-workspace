@@ -40,9 +40,11 @@ Inspected local `main` on September 4 (after the continuation receipts below):
 
 - Backend: `9f3d80959` — research gating, persistence hardening and the
   read-only entity health report.
-- Mobile: `35c110f47` — research lifecycle, object truth fixes, grounded
-  generic venue handoffs, and sequenced native itinerary placement sheets.
-- Workspace: `151fff2` — roadmap, runbook and validation ledger.
+- Mobile: `6e3fe8545` — canonical mock envelope bridge plus the guarded venue
+  object-page native journey (the preceding route/action implementation is
+  `35c110f47`).
+- Workspace: `c339dea` — roadmap, runbook and validation ledger before this
+  receipt update.
 
 These are local source baselines, not deployment or public-release evidence.
 No database job, provider call, canary, or backfill was run to write this
@@ -54,7 +56,7 @@ checks remain in the execution log.
 | Identity | Canonical refs, external identities, private provisional shells, redirects and alias-aware reads | Cross-entry and cross-owner identity/repair certification |
 | Relationship | Save, Plan, personal attendance and private outcome projection; bounded page readback | Two-user later-read proof, correction and retraction across consumers |
 | Situation | Separate no-store contextual read and expiry handling | Foreground/background, context-change and stale-action certification |
-| Object UI | Guarded shared renderer on venue, site and experience routes; default venue route still retains its compatibility composition | Flag-on shared-renderer acceptance, action parity and current-build native design/accessibility/real-backend evidence |
+| Object UI | Guarded shared renderer on venue, site and experience routes; default venue route still retains its compatibility composition; venue flag-on contract slice now native-evidenced | Site/experience and state-matrix acceptance, plus current-build accessibility and real-backend evidence |
 | Research | Read-only persisted brief; explicit gated queue request; idempotency and rate controls | End-to-end job state, artifact readiness, provenance, freshness and retry closure |
 | People | Bounded authorized exact-place lines and gated addressed-handoff doorway | Grant/revocation and recipient experience proof; richer inline people citations remain separate |
 | Operations | Read-only entity-health counts | Queue age, artifact mismatch, repair evidence, operational ownership and rollout receipt |
@@ -325,8 +327,10 @@ cannot substitute for native evidence. Record platform limitations explicitly.
 
 Exit: accepted captures and functional journeys on the intended release
 platforms, with accessibility checks and no unsupported verbs or fake content.
-The core page may pass with research/handoff disabled; enabling either requires
-the corresponding states to pass separately.
+The venue flag-on Keep/Ask slice is an intermediate receipt, not this exit:
+site/experience, real-backend, accessibility, platform, and state-matrix
+evidence remain open. The core page may pass with research/handoff disabled;
+enabling either requires the corresponding states to pass separately.
 
 ## 10. Phase 5 — Operate a bounded internal pilot
 
@@ -464,10 +468,22 @@ For each later implementation package:
 
 ## 14. Immediate recommendation and decisions
 
-Start with E0 and E1: resolve conflicting current contracts and build the
-two-user continuity/repair test. That gives the next fixes a real target.
-Then pursue E2/E3 for the core experience and E4–E6 as an independently gated
-research capability, with E7 establishing freshness rules for both.
+E0/E1 and the first E4–E10 implementation slices are now landed and locally
+validated. The next work should stay evidence-gated:
+
+1. Finish E8 with site and experience flag-on journeys, then run the real
+   backend/auth and accessibility/platform state matrix. Keep research and
+   addressed handoffs disabled in the core-page verdict until their own states
+   are evidenced.
+2. Prepare E9’s owner-reviewed pilot receipt: exact deployed revisions,
+   enabled capabilities, thresholds, cost ceiling, health report and rollback.
+   Do not enable a flag or scheduler as part of this documentation step.
+3. Close the remaining E1/E2 repair inventory for stale mounted screens,
+   account changes, merge/retraction/deletion and handoff revocation, then
+   re-run the affected consumer proofs.
+4. Only after those gates, choose one named E10 receiving experience for a
+   second transfer proof. Treat accommodation, spots, neighbourhoods and any
+   coverage/backfill as separate product decisions.
 
 Decisions to accept before the relevant execution boundary:
 
@@ -496,7 +512,8 @@ Completed implementation packages in this lane:
 | E5 | Explicit source metadata write-back; stale idempotency replay refresh; page-artifact worker gate; fail-closed global budget, atomic queue claim and abandoned-lease recovery | `travel-agent:e9d89fc0d`, `350e5f931`, `5eee43f31`, `f2a6d846a`, `83583a42d`, `0bd02d8da`, `97ee0019f`, `ea940a044` |
 | E6 | Generated mobile status contract; centralized research state reducer; stale content age label; status-error recovery copy and tests; stable locale metadata formatting; stale-age preservation during unknown status | `travel-app:9904f3411`, `9abfc997d`, `462d56a0d`, `ce504cfa9`, `71f154151`, `a3636e13c` |
 | Contract | OpenAPI snapshots, active projection, generated schema, identity seams and schema bridge are synchronized | `workspace:93ea30e` |
-| E8 (native default-route slice) | Current mobile build passes venue identity/save/private-handoff, registered Places capture, and explicit plan-placement review/commit on iPhone 16 Pro in the mock lane; the default venue route is flag-off, so shared `ObjectPageRebuild` acceptance remains open | `travel-app:47735f406`, `travel-app:35c110f47`, [native QA receipt](entity-native-qa-receipt-2026-09-04.md) |
+| E8 (native default-route slice) | Current mobile build passes venue identity/save/private-handoff, registered Places capture, and explicit plan-placement review/commit on iPhone 16 Pro in the mock lane; the default venue route is flag-off, so shared `ObjectPageRebuild` acceptance remains open. The rebuild intentionally omits the legacy Add-to-trip ladder per the Places contract. | `travel-app:47735f406`, `travel-app:35c110f47`, [native QA receipt](entity-native-qa-receipt-2026-09-04.md) |
+| E8 (native guarded-renderer slice) | Flag-on venue route passes on the iPhone 16 Pro mock lane with canonical `Cervejaria Ramiro`, `Keep place`, visible Ask handoff, and an explicit assertion that the legacy Add-to-trip ladder is absent. This proves the intended shared renderer contract for one venue only. | `travel-app:7b4d0601b`, `travel-app:6e3fe8545`, [native QA receipt](entity-native-qa-receipt-2026-09-04.md) |
 | E10 (later-consumer slice) | Real PostgreSQL second-occasion loop closure changes candidate choice from a prior explicit outcome, then reopens after correction and withholds on changed roster/occasion; chat attachment snapshots remain catalog-only | `travel-agent:18b71b9f7`, `422a5f6c8` |
 | E9 (health receipt) | Read-only, content-free entity health report now includes queue age, retry/lease, duplicate-active, and completed-without-fresh-brief integrity metrics | `travel-agent:9f3d80959` |
 
@@ -544,9 +561,9 @@ Validation recorded for this continuation:
   Production canary and any backfill remain intentionally outstanding; no
   flag was enabled and no catalog row was backfilled.
 
-The next unclosed gates are the broader native state matrix (including a
-real-backend journey and accessibility verdict), a reviewed pilot receipt,
-and explicit operational ownership. The later-consumer benefit/withholding
-proof is now present in the real PostgreSQL loop-closure scenario, but it is
-not a production rollout receipt. These remain release gates, not reasons to
-enlarge the catalog now.
+The next unclosed gates are the broader native state matrix (site and
+experience flag-on, real-backend journey, accessibility and platform verdict),
+a reviewed pilot receipt, and explicit operational ownership. The
+later-consumer benefit/withholding proof is now present in the real PostgreSQL
+loop-closure scenario, but it is not a production rollout receipt. These remain
+release gates, not reasons to enlarge the catalog now.
