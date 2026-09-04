@@ -45,8 +45,9 @@ Inspected local `main` on September 4 (after the continuation receipts below):
 - Workspace: `9f8a9ffe3` — roadmap, runbook and validation ledger.
 
 These are local source baselines, not deployment or public-release evidence.
-No new test suite, native capture, database job, or provider call was run to
-write this roadmap. Earlier passing checks are recorded in the execution log.
+No database job, provider call, canary, or backfill was run to write this
+roadmap. Native captures are recorded in the linked receipt; earlier passing
+checks remain in the execution log.
 
 | Layer | Existing implementation to preserve | Remaining evidence or work |
 | --- | --- | --- |

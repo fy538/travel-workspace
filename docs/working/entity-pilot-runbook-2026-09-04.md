@@ -70,10 +70,11 @@ Mocks or SQLite-only tests do not substitute for it. Native simulator/device
 evidence is a separate gate and must be attached before calling a surface
 accepted.
 
-The core venue object-page smoke has a scoped current-build receipt at
+The venue object-page and explicit placement smoke have a scoped current-build receipt at
 [`entity-native-qa-receipt-2026-09-04.md`](./entity-native-qa-receipt-2026-09-04.md).
-It proves the mock-lane identity/save/private-handoff path only; it does not
-replace real-backend, accessibility, platform, or full state-matrix evidence.
+It proves the mock-lane identity/save/private-handoff and one canonical
+placement path; it does not replace real-backend, accessibility, platform, or
+full state-matrix evidence.
 
 For the existing mock Maestro lane, the installed development client must be
 connected to the current Metro bundle and its persisted runtime mode must be

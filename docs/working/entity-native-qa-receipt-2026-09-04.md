@@ -7,7 +7,7 @@ expires: 2026-10-04
 scope: entity-object-page-and-plan-handoff
 backfill: false
 created: 2026-09-04
-why_new: "Records the current-build native smoke evidence for the rebuilt venue object page and its private handoff doorway."
+why_new: "Records current-build native smoke evidence for the rebuilt venue object page, private handoff doorway, and explicit placement boundary."
 doc_type: working
 ---
 
