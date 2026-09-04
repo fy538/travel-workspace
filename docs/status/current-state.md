@@ -179,6 +179,14 @@ read-only identity boundaries, not production dossier, active-seat, real-data,
 or full result-set composition evidence. Chat, entity implementation, and Life
 surface UI remain unchanged.
 
+Backend commit `3e287a33e` closes the corresponding Life serving seam. The
+additive `/api/root-projections/v1/life` route now builds the finite corpus
+inventory before compiling the requested lens and rejects an untracked record
+or any lens-local change to canonical identity, owner/source lineage, audience,
+or grants. The wire contract is unchanged and the guard is read-only; real
+corpus breadth, dossier destinations, Returns, withdrawal repair, and native
+evidence remain open.
+
 The broad post-package canaries are not promotion evidence: backend recorded
 20,554 passed with two failures and one teardown error (the existing
 parallel-load bounded-read timeout expectation and unrelated dead Atlas
