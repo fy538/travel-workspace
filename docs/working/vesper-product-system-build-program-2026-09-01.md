@@ -181,6 +181,32 @@ must represent exact attention windows from canonical commitments, deadlines,
 or explicit deferral, with expiry and evidence. Do not restore broad Live
 suppression as a shortcut for that missing context.
 
+Implementation seam verified in S0AD: the canonical `Commitment` already has
+an optional `time: TimeWindow`, but `ProjectedCommitment` drops it. The
+coordination owner read exposes revision-bound references, participants, and
+an optional purpose string—not a timed attention contract. Preserve canonical
+timing through a reviewed read-contract extension; do not add a second schedule
+store or parse `protected_intention` prose to manufacture a window. An Opening
+reference in `MomentOwnerRead.availability_refs` is present-world opportunity
+context, not evidence that the person is free or receptive.
+
+Before wiring exact protection into root judgment, review these distinctions:
+
+- a settled timed commitment versus an optional possibility or broad Plan
+  horizon; a scheduled item alone does not prove exclusive attention;
+- explicit deferral/unavailability versus inferred mood or silent behavior;
+- the participant whose attention is constrained versus everyone who can see
+  a shared commitment;
+- half-open effective windows, clock/timezone authority, cancellation,
+  revision change, and expiry; and
+- in-context pull presentation versus interruption eligibility. The same
+  person opening Home does not authorize a push or resolve receptivity.
+
+That extension is contract-sensitive and requires the shared-model review,
+generated-contract workflow where exposed, and cross-root conformance tests.
+S0AD repairs clock validity using existing fields; it does not claim to have
+implemented this richer attention model.
+
 **Exit:** every treatment can explain why it appeared on Home, as an
 interruption, or not at all; it expires; and a material Moment change produces
 a bounded, testable change in treatment.
@@ -3582,3 +3608,54 @@ real-content portfolio and coherent Place utility, alongside P2's exact
 Moment/attention ownership. Stabilize the rehearsal mode transition as a
 separate infrastructure task. Do not mistake an honest sparse object page for
 completion of the broader P0–P7 system or the value-rich Home/Places vision.
+
+### S0AD — Current-context clock coherence; exact attention seam identified
+
+Backend `db6548e34` makes Opening context use the consuming request's explicit
+clock. The canonical graph compiler already excluded expired rows, but its
+projection did not exclude future-created rows. Downstream Moment and discovery
+reads treated candidate/shown status alone as current, trusting a supplied
+graph snapshot; the material loader separately checked expiry but not creation.
+Five newly added regression cases failed before the repair: two Moment expiry
+boundaries, two future-created material reads, and the graph creation boundary.
+
+The shared current-Opening predicate now requires candidate/shown status and
+aware, bounded times with `created_at <= represented_at < expires_at`. Moment
+reads, Source-opportunity discovery, and governed current-context loading all
+use that rule. The graph compiler rejects future-created Openings, and the
+bounded repository query excludes them before LIMIT so they cannot consume the
+current-context budget. The existing seven-day legacy-null-expiry resolution
+remains at the canonical graph compiler; downstream consumers do not invent
+another lifetime. Current-context loading rejects a naive request clock before
+reading owners. Exact revision, private audience, custody, and lineage gates
+remain in place; nothing writes or reschedules an Opening.
+
+Evidence:
+
+- **340 focused tests pass** across core graph projection, clock predicates,
+  canonical owner reads, the complete root-projection test directory, and
+  Home/Places attention-posture tests. Coverage includes creation/expiry exact
+  boundaries, offset-equivalent clocks, naive or missing times, terminal
+  statuses, exact stale references, private/shared behavior, and the actual
+  bounded repository's emitted SQL predicate before LIMIT.
+- Ruff, import boundaries, whitespace validation, and all applicable backend
+  commit gates pass. No API response shape, shared model, schema, prompt,
+  provider policy, feature default, or Chat/Life surface changed. No new native
+  evidence is claimed; the owned local API has not been restarted onto this
+  commit.
+- A fresh full offline backend run is active in tool session **38369**, logged
+  at `/tmp/vesper-moment-clock-backend.log`. Collect that existing process next;
+  do not restart it just because a turn ends. Collection began before the final
+  naive-clock guard/test and bounded-query regression test were added; the
+  focused 340-test run covers the final committed tree. A completed broad run
+  must be reported with that timing limitation, not as exact final-tree proof.
+
+P2 investigation also located the missing attention seam: `Commitment.time`
+already owns an optional TimeWindow, but `ProjectedCommitment` does not carry
+it. `CoordinationOwnerRead.protected_intention` is a purpose string, not a time
+window, and current Moment availability refs are Opening coordinates, not a
+person's availability. The P2 section above now records the contract-sensitive
+next step and the distinctions needed before wiring protected attention into
+root judgment. This round closes stale/future context admission; exact
+commitment protection, explicit deferral, receptivity, P1 editorial value, and
+the full P0–P7 program remain unfinished.
