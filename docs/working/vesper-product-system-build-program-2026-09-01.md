@@ -174,6 +174,13 @@ user-initiated versus system-initiated entry, and explicit availability or
 deferral. Never infer mood, fatigue, personality, relationship strength, or
 interest from dwell time, silence, or weak behavioral proxies.
 
+Keep lifecycle and attention protection separate. S0AB removes the incorrect
+Home/Places assumption that Live alone proves a protected commitment. Urgent
+still supplies conservative posture-level protection; the next Moment work
+must represent exact attention windows from canonical commitments, deadlines,
+or explicit deferral, with expiry and evidence. Do not restore broad Live
+suppression as a shortcut for that missing context.
+
 **Exit:** every treatment can explain why it appeared on Home, as an
 interruption, or not at all; it expires; and a material Moment change produces
 a bounded, testable change in treatment.
@@ -3441,3 +3448,76 @@ Next: resolve the absent fixture unit against the governed selection contract,
 separately stabilize the mock-to-real native boot/reload transition, then rerun
 the complete consequence/readback lane. Neither task replaces P1's real-data
 editorial portfolio, the wider P0–P7 program, or the ongoing Chat/Life hold.
+
+### S0AB — Live is not exclusive attention — repaired; real owner loop passes
+
+Backend `bc02a17ad` fixes the reason S0AA's Home fixture disappeared. An
+instrumented local run through the unchanged value evaluator found the exact
+Save candidate and its current, authorized, source-bound Place read. Its
+suppression receipt said `protected_commitment_owns`, not missing Place scope,
+insufficient identity, recency exclusion, or novelty. `_home_policy` treated
+every Live posture as protected attention; `_places_policy` made the same
+assumption. A general current-trip door can establish Live, so a whole ongoing
+trip was silencing discovery and continuity before root selection.
+
+The accepted Home contract allows a compact supporting field in Live and
+reserves broad suppression for Urgent. Places similarly treats lifecycle as
+a modifier, not a prohibition on exploring the destination. The root policy
+mapping now uses Urgent alone for posture-derived protection. The shared
+judgment policy is unchanged and still honors an explicit protected-commitment
+input; authorization, source binding, freshness, value, novelty, action
+authority, and root budgets remain in force. Exact Moment-owned protected
+windows remain P2 work, not a capability claimed by this change. App contract
+commit `193271a43` records that distinction for both roots.
+
+The regression tests first failed on the Live policy and the named Save's
+absence after real judgment/selection/compilation. They now pass, including
+Urgent suppression and denied-owner exclusion. The focused suite spans root
+composition/routes/projections, value composition, situated judgment, and
+owner-read portfolios: **331 passed**. This is not a fixture allowlist or a
+special case for the bookshop.
+
+The fresh full offline backend regression is running separately at
+`/tmp/vesper-root-attention-backend.log` (owned pytest PID 98091 at this
+checkpoint). Its result is pending; S0AA's full-suite count is not reused as
+evidence for this changed code. Resume the existing process before starting
+another broad run.
+
+After restarting only the owned local API with the existing no-model/no-search
+and disabled-background-task configuration, the real Home API keeps Live
+posture and admits four units, including the exact named bookshop. The native
+runner then completes the entire sequence on the installed iPhone 16 Pro /
+iOS 18.2 development client:
+
+1. Verify the compiled/runtime local API, governed-root flags, and QA account.
+2. Open the exact Save-derived Home unit into the Place-owned page.
+3. Remove its Save through the product and observe the unsaved control.
+4. Verify the canonical Save owner and Home both withdraw that venue.
+5. Restore the private fixture through the canonical Save application service.
+6. Reverify native identity/configuration, reopen the new Home unit, observe
+   the saved control, and return to that same unit.
+
+The removed Save was `e6ce8954-4df7-46d8-941a-9392805c9d85`; restoration creates
+`345b9ded-256f-4343-8986-ed5e64193060` for fixture venue `21003`. A final direct
+owner/API check confirms the new private `qa_rehearsal` Save and matching named
+Home unit. The venue remains, and canonical local mutation history/effects are
+not erased. No real user's production bookmark was removed.
+
+Native records: initial preflight `/tmp/vesper-maestro.Eta3Dw`; unsave
+`/tmp/vesper-maestro.raZad7/.maestro/tests/2026-09-03_202920`; second preflight
+`/tmp/vesper-maestro.vey49C/.maestro/tests/2026-09-03_202944`; final readback
+`/tmp/vesper-maestro.W9zXel/.maestro/tests/2026-09-03_202958`.
+The current `travel-app/home-places-real-unsaved-detail.png` (20:29:40 local)
+and `travel-app/home-places-real-saved-detail.png` (20:30:16 local) were opened.
+They confirm the Place identity and changed save control, not full visual or
+editorial acceptance. In particular, the no-model/no-brief fixture exposes
+technical fallback copy under “Vesper · For you.” That copy originates in
+`backend/api/routes/takes.py::_fallback_take`; it must not be counted as earned
+personalized substance. Proper absent/degraded object-page content is still
+P3 work; no copy or model-serving change was smuggled into this repair.
+
+This successful run does not prove that S0AA's Hermes reload crash is repaired,
+nor cover Source-inspector account/modal lifetime, Android, physical-device
+behavior, the complete posture portfolio, production auth, or real editorial
+quality. Chat and Life remain held. The goal remains the complete P0–P7 product
+system; this closes one real cross-root ownership/consequence gap within it.
