@@ -33844,6 +33844,77 @@
         }
       }
     },
+    "/api/me/entities/{entity_type}/{entity_id}/people-lines": {
+      "get": {
+        "summary": "Get My Entity People Lines",
+        "description": "Return addressed, exact-place lines authorized for this viewer.\n\nThe object page never infers friends from co-presence or circle\nmembership. When the clean relationship handoff owner is disabled, the\ncapability is absent rather than represented by synthetic people.",
+        "operationId": "get_my_entity_people_lines_api_me_entities__entity_type___entity_id__people_lines_get",
+        "parameters": [
+          {
+            "name": "entity_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "enum": [
+                "venue",
+                "site",
+                "accommodation",
+                "experience"
+              ],
+              "type": "string",
+              "title": "Entity Type"
+            }
+          },
+          {
+            "name": "entity_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Entity Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityPeopleLinesResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/entities/{entity_type}/{entity_id}": {
       "get": {
         "summary": "Get Entity Detail",
@@ -53472,6 +53543,107 @@
         ],
         "title": "EntityLineageResponse",
         "description": "Where the entity sits in the place hierarchy — never more than one\nlevel of neighborhood above it. See entity_lineage.py for why a joined\nplace_id is not trusted as a neighborhood without checking its type."
+      },
+      "EntityPeopleLine": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "author": {
+            "$ref": "#/components/schemas/EntityPeopleLineAuthor"
+          },
+          "grant_kind": {
+            "type": "string",
+            "const": "left_for_you",
+            "title": "Grant Kind",
+            "default": "left_for_you"
+          },
+          "precision": {
+            "type": "string",
+            "const": "place",
+            "title": "Precision",
+            "default": "place"
+          },
+          "made_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Made At"
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 280,
+            "minLength": 1,
+            "title": "Text"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "author",
+          "made_at",
+          "text"
+        ],
+        "title": "EntityPeopleLine",
+        "description": "One exact-place line the viewer is authorized to see."
+      },
+      "EntityPeopleLineAuthor": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "display": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Display"
+          },
+          "monogram": {
+            "type": "string",
+            "maxLength": 2,
+            "minLength": 1,
+            "title": "Monogram"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "display",
+          "monogram"
+        ],
+        "title": "EntityPeopleLineAuthor"
+      },
+      "EntityPeopleLinesResponse": {
+        "properties": {
+          "revision": {
+            "type": "string",
+            "const": "entity-people-lines-v1",
+            "title": "Revision",
+            "default": "entity-people-lines-v1"
+          },
+          "entity_ref": {
+            "$ref": "#/components/schemas/EntityRef"
+          },
+          "lines": {
+            "items": {
+              "$ref": "#/components/schemas/EntityPeopleLine"
+            },
+            "type": "array",
+            "maxItems": 3,
+            "title": "Lines"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "entity_ref"
+        ],
+        "title": "EntityPeopleLinesResponse"
       },
       "EntityPresentationCategory": {
         "properties": {
