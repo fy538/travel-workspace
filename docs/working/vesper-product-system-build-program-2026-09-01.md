@@ -3727,3 +3727,49 @@ Collect this existing process next; do not run another duplicate suite while
 it is live. S0AD/S0AE's final focused **345-test** evidence remains valid, but
 the full final-tree result is still pending. Shared read-model approval also
 remains pending; no approval is inferred from automatic goal continuation.
+
+### S0AG — Real sessions no longer inherit mock time
+
+App `58dbceffb` repairs a second clock-coherence boundary. The dev/internal
+startup hydrator restored the saved mock clock regardless of the resolved API
+mode, allowing a real-backend session to use a frozen QA date for client-side
+lifecycle judgments. Its cancellation flag only protected React's readiness
+update, not the preceding process-global mode/persona/store/clock mutations.
+
+The hydrator now ignores a storage completion after unmount, resolves the API
+mode before time, restores a valid saved clock only in mock mode, and otherwise
+clears the in-memory override. Invalid/empty saved values no longer retain an
+earlier override or silently become epoch zero. The saved mock value is not
+deleted; it remains available when mock mode is deliberately selected again.
+The existing real-API screenshot deep link clears mock time immediately, and
+the local Home/Places preflight now rejects a non-null clock override before
+reading the QA account. No API/schema, auth topology, product layout, Chat/Life
+surface, server model policy, or production serving default was changed.
+
+Evidence:
+
+- Six of the first seven new hydration cases failed before implementation.
+  The final hydration and preflight suite passes **26 tests**, including
+  persisted/compiled real mode, mock restoration, invalid/absent time, failed
+  storage, abandoned hydration, and rejection of frozen-clock real config.
+- Typechecking and focused lint pass. Direct contract/mock-real parity passes
+  the committed OpenAPI projection/type comparison and **161 tests**. The
+  broader `qa:parity` command remains blocked by the already recorded query-key
+  ownership violations in ComposedChatCard, collaboration actions, and inbound
+  items; those files were not changed or waived.
+- Native preflight passes on the first attempt in
+  `/tmp/vesper-real-clock-preflight.OxxJjq`. The nonmutating real Home → exact
+  Save-derived Place → same Home unit readback passes in
+  `/tmp/vesper-real-clock-readback.Li7dqL`. The fresh saved-detail screenshot was
+  opened: identity, saved control, map/directions, and absent diagnostic card
+  remain correct for the fixture. No Save was removed or reprovisioned.
+
+This does not prove a cold-start stress portfolio, Android/physical-device
+parity, production auth, full visual acceptance, or resolution of the earlier
+Hermes crash/second-attempt transition. RootLayout's font-timeout fallback can
+still bypass pending persona readiness; that separate bootstrap-topology seam
+needs explicit treatment rather than being declared fixed by cancellation or
+clock cleanup. The full backend standard run remains live in session **12968**
+(PID 8438 at this checkpoint), logged at `/tmp/vesper-moment-standard-backend.log`.
+Collect it without restarting. P2's shared read-model extension still awaits
+approval, and the broader P0–P7 product system remains the goal.
