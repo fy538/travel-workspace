@@ -183,6 +183,8 @@ suppression as a shortcut for that missing context.
 
 Implementation seam verified in S0AD: the canonical `Commitment` already has
 an optional `time: TimeWindow`, but `ProjectedCommitment` drops it. The
+repository also omitted persisted `time_window` when constructing the canonical
+Commitment; S0AE repairs that earlier loss without extending a shared model. The
 coordination owner read exposes revision-bound references, participants, and
 an optional purpose string—not a timed attention contract. Preserve canonical
 timing through a reviewed read-contract extension; do not add a second schedule
@@ -3659,3 +3661,39 @@ next step and the distinctions needed before wiring protected attention into
 root judgment. This round closes stale/future context admission; exact
 commitment protection, explicit deferral, receptivity, P1 editorial value, and
 the full P0–P7 program remain unfinished.
+
+### S0AE — Preserve persisted commitment timing at the canonical read boundary
+
+Backend `ae5b43260` restores the existing `commitments.time_window` column to
+the existing `Commitment.time` field in the graph repository. Writes already
+persist this value, but `get_experience_projection` omitted it when constructing
+canonical Commitments. This was a separate data-loss seam before the projected
+model omission found in S0AD. The repair reuses the existing TimeWindow parser;
+it adds no field, migration, inferred window, schedule owner, or attention policy.
+
+Five repository tests use the real row-to-model path and wrap the real compiler.
+Before the repair, four failed: valid bounded/open-ended windows disappeared,
+and invalid naive/reversed windows were never validated. Afterward all pass;
+null remains unknown, timezone-aware bounds survive, and invalid dictionary
+windows fail before compilation. Identity, revision, participation, and private
+visibility are retained. The final focused suite passes **345 tests** across
+graph timing, owner reads, all root-projection tests, and attention-posture
+regressions. Ruff, whitespace checks, and applicable commit gates pass.
+
+This does **not** expose commitment time in the shared projection or owner-read
+DTOs yet. That contract-sensitive extension remains pending explicit shared-model
+approval under the repository instructions; approval was requested without
+blocking the independent mapping repair. Chat/Life surfaces, command writers,
+API shapes, database schema, model policy, and serving defaults are unchanged.
+
+The S0AD broad regression is still the existing live session **38369**, process
+4876, at this checkpoint. Its log is `/tmp/vesper-moment-clock-backend.log`; it
+has additional failures and must not be reported as matching the six-failure
+baseline. This invocation explicitly set `AI_MODE=off` and `WEB_SEARCH_MODE=off`,
+unlike the earlier comparison run. `tests/conftest.py` deliberately preserves
+the runner's provider modes, so that difference is a possible confounder, not
+yet a proven explanation. Collect the complete failures, classify them against
+the earlier baseline, and rerun affected tests under the standard offline
+configuration. Then run the full standard offline suite against the final tree;
+the existing process predates this mapping repair and the last S0AD tests.
+Do not start a duplicate broad run while that process is still live.
