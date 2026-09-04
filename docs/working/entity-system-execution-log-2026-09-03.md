@@ -254,3 +254,13 @@ tests pass. No handoff was sent and no production data changed.
 
 The pure projection test and relationship/action tests pass, along with mobile
 typecheck. No backend contract or data source changed.
+
+## Research-request failure replay — 2026-09-04
+
+- Travel Agent `0b3c48a46` — idempotent replay of a permanently failed queue
+  item now returns `already_failed` instead of the misleading `already_fresh`.
+- Travel App `7af2a95dd` + workspace `56b0d05` — regenerated the OpenAPI
+  snapshots and mobile schema for the additive status.
+
+The focused request suite passes (**5 tests**), `make contract-check` passes,
+and no queue item was retried or mutated.
