@@ -4,7 +4,7 @@ date: 2026-09-04
 owner: mobile-product
 status: active
 expires: 2026-10-04
-scope: entity-object-page-and-private-venue-handoff
+scope: entity-object-page-and-plan-handoff
 backfill: false
 created: 2026-09-04
 why_new: "Records the current-build native smoke evidence for the rebuilt venue object page and its private handoff doorway."
@@ -14,13 +14,13 @@ doc_type: working
 # Entity native QA receipt
 
 This receipt records current-build native smoke passes for the rebuilt venue
-object page and the registered Places route. It is evidence for the core page
-and its private handoff doorway, not a production rollout receipt or proof of
-the complete state matrix.
+object page, the registered Places route, and the explicit plan-placement
+boundary. It is evidence for those slices, not a production rollout receipt
+or proof of the complete state matrix.
 
 ## Run
 
-- Mobile repository: `travel-app` at `47735f406` (includes the continuity fix
+- Core context run: `travel-app` at `47735f406` (includes the continuity fix
   from `4579a1fc7`)
 - Device: iPhone 16 Pro simulator, iOS 18.2
 - UDID: `AF31B886-E837-4962-834A-5CBAD5C306DB`
@@ -43,6 +43,18 @@ the complete state matrix.
   - `/Users/feihuyan/travel-workspace/travel-app/54-03-contextual-private-vesper.png`
 - Raw pass log: `/tmp/entity-native-maestro-pass.log`
 
+The explicit plan-placement flow also passed on the follow-up mobile commit:
+
+- Mobile repository: `travel-app` at `35c110f47`
+- Flow: `travel-app/.maestro/54c-journey-07-venue-plan-outcome.yaml`
+- Fixture: currently unplanned `Pastéis de Belém` in the `Porto` trip
+- Result: pass through Add to trip → choose trip → choose day → review →
+  Add to itinerary → affected plan projection
+- Captured screenshots:
+  - `/Users/feihuyan/travel-workspace/travel-app/54-04-explicit-plan-review.png`
+  - `/Users/feihuyan/travel-workspace/travel-app/54-05-affected-plan-projection.png`
+- Raw pass log: `/tmp/entity-native-plan-maestro-pass7.log`
+
 A second registered Places capture also passed after updating its stale shell
 assertion from `Home` to the current `Plans` label:
 
@@ -62,6 +74,8 @@ assertion from `Home` to the current `Plans` label:
 5. The private chat composer and completed assistant response render, and the
    response names the focused venue rather than only describing generic venue
    context.
+6. A currently unplanned venue can be placed through the canonical, explicit
+   review boundary and the committed result returns to the affected plan.
 
 ## Limits and next gate
 
