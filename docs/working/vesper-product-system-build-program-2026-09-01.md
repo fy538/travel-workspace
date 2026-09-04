@@ -152,6 +152,13 @@ additional failures. S0AN fixes the app's five-second boot fallback so it
 cannot mount data-reading providers before runtime configuration settles;
 fonts alone may fall back. This does not close native crash robustness or
 provide a stuck-storage recovery experience.
+S0AO scopes root-delivery and received-claim history before read budgets, so
+busy feeds do not erase previously received context. Its completed full backend
+run reports **20,497 passed and one failed**, the same orphan Atlas handler
+audit. S0AP separates Places feed rendering, viewport bookkeeping, editorial
+navigation, and the explicit location action; all Home-surface file-size gates
+now pass without raising the previous limits. Broader app baseline and owner-
+query-key convergence remain open.
 S0AK traces the remaining group receipt path through the real producer,
 request compiler, and owner reader. It is currently rejected, not shipped.
 The proposed shared read-grant resolution below requires explicit approval;
@@ -4258,9 +4265,12 @@ Validation:
   history isolation remains covered; no history is newly admitted to shared
   generation. The changed runtime files pass focused mypy, Ruff, formatting,
   import boundaries, whitespace, and all applicable commit gates.
-- Standard full backend regression is running in session **50726**, logged at
-  `/tmp/vesper-novelty-history-backend.log`. Collect this same run; the preceding
-  20,490-pass/one-failure result predates this change.
+- Standard full backend regression completed: **20,497 passed, one failed,
+  30 skipped, 56 xpassed, 1,340 deselected**, in 440.14 seconds
+  (`/tmp/vesper-novelty-history-backend.log`). The sole failure remains
+  `tests/scripts/test_audit_dead_handlers.py::test_audit_returns_no_dead_handlers`
+  for the unused `_execute_post_atlas_draft` handler. No additional failure
+  appeared; this result supersedes the preceding 20,490-pass run for this tree.
 
 This bounded runtime-read repair has no schema, shared-model, prompt, auth
 policy, mobile contract, Chat/Life surface, external integration, or serving-
@@ -4270,3 +4280,84 @@ Broader authorized prior context, cross-root history prioritization beyond the
 existing merge order, human-rated editorial quality, and two-account P1
 activation remain open. There is no native or production promotion claim, and
 shared timing/read-grant approvals remain outstanding.
+
+### S0AP — Places composition has bounded client responsibilities
+
+App commit `3b4a54897` separates responsibilities that had accumulated inside
+three oversized files. This is a behavior-preserving architecture refactor,
+not another product grammar, a redesign, or a new projection owner.
+
+- `PlacesWorkspace` retains feed, search, and route coordination. Its existing
+  explicit location action moves to `usePlacesLocationAction`, which requests
+  a fix only after a tap and delegates to the same position data facade.
+- `PlacesSectionFeed` retains feed/section/card geometry, viewport registration,
+  semantic joins, section identity, exposure, and the native semantic-unit path.
+  `PlacesFeedSectionContent` renders a single authored section's card collection
+  and doors. There is no additional native host wrapper or client ranking.
+- `PlacesFeedCardView` retains renderer-family dispatch. The editorial family
+  moves to its own renderer with the same city, area, dossier, and Home-return
+  parameters. Opening is still distinct from an owner-confirmed consequence.
+- Pure viewport/layout compatibility helpers move to `utils/placesFeedViewport`;
+  old imports remain valid through re-exports. Horizontal-rail passive exposure
+  remains disabled until horizontal viewability has an owner.
+
+The three previous size failures are removed by separation, not exemptions:
+`PlacesSectionFeed` falls from 564 to 332 lines (previous budget 334),
+`PlacesWorkspace` from 828 to 768 (budget 769), and `PlacesFeedCardView` from
+184 to 125 (budget 176). Budgets now ratchet those smaller sizes and cover all
+four extracted modules too. The Places surface contract records the boundaries.
+
+Code-level evidence: **33 suites / 255 tests pass**, including card rendering,
+exposure, owner-action dispatch, location denial/error behavior, semantic
+navigation, and workspace screens
+(`/tmp/vesper-places-boundaries-regression.log`). Typecheck, focused lint,
+whitespace, and all Home-surface budgets pass. The complete `verify:fast` chain
+now passes, including both application and contract-test typechecks, API/import
+boundaries, and schema bridge (`/tmp/vesper-places-boundaries-verify-fast.log`).
+Its broad lint step retains 174 warnings and zero errors; this is not a warning-
+ratchet or whole-app-suite pass. The direct mock/real parity script also passes
+**161 tests**, projection/schema freshness, and interface typechecking
+(`/tmp/vesper-places-boundaries-parity.log`). The higher-level query-key ownership
+gate remains separate. All 31 polish scenario IDs and 358 Maestro metadata
+entries validate. Applicable commit gates pass. No API contract, serving default,
+Chat/Life surface, owner writer, or authorization model changes.
+
+Device evidence is deliberately narrower:
+
+- The registered `places-workspace-planning` flow passes after the QA runner
+  seeds and verifies mock mode/persona/clock. Kyoto remains PLANNING before and
+  after Search/cancel. One screenshot was captured and inspected at
+  `travel-app/.maestro/runs/20260904T022121Z-places-workspace`; no visual-intent
+  verdict or design promotion was issued.
+- The reading/map return flows (49/50) do **not** pass. Initial direct execution
+  inherited real-local mode. After verified mock boot, both stop before Places
+  because `default` is now a returned Home posture without
+  `opening.water-route`. An experimental switch to the existing Mara planning
+  fixture reaches that Opening but fails the old requirement that the mast be
+  off-screen. That fixture edit was reverted; no assertions were weakened and
+  neither flow changed in the commit. Logs remain under
+  `/tmp/vesper-places-boundaries-native.pBbG5H`,
+  `/tmp/vesper-places-boundaries-retry.Gcgplx`, and
+  `/tmp/vesper-places-boundaries-mara.frDRQA`. A follow-up must select current
+  fixtures and verify semantic/scroll restoration meaningfully, not merely
+  remove the visibility assertion.
+
+- Real-local restoration initially failed twice with the preflight still
+  reporting mock mode (`/tmp/vesper-places-boundaries-real.n8360l` and
+  `/tmp/vesper-places-boundaries-real-settled.dDZNG5`). Opening the real-local
+  mode link separately allowed the persisted override to settle to `false`;
+  the subsequent native preflight passes at
+  `/tmp/vesper-places-boundaries-real-restored.nUB5x3`. That verifies the actual
+  local origin, existing QA account, rollout posture, and cleared runtime mock
+  clock. It does not establish robustness of the combined mode-transition flow.
+  The existing Save was independently inspected using the read-only provisioner
+  (`apply: false`) against local Postgres; no fixture data was created or changed.
+  The subsequent **Home -> saved Place -> same Home** native readback also
+  passes in that run, using those inspected identifiers. It makes no save or
+  unsave write. Both real checks use local API `:8765`, AI/web OFF, never the
+  app's production default. The simulator is left in real-local mode.
+
+This refactor does not close the outstanding shared time/read-grant approvals,
+full real-account editorial acceptance, production auth parity, or the broader
+app baseline. The local API process remains on its earlier backend version;
+these device checks cannot promote the newer backend owner/history repairs.
