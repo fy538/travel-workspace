@@ -117,13 +117,13 @@ generated contract, and legacy Atlas/You machinery remains the compatibility
 owner while migration is dark.
 
 The client shell now resolves one explicit system posture rather than allowing
-its shell, Home v2, and governed Places gates to drift independently. An
-internal governed rehearsal activates Home and the mature Places workspace over
-their server-governed reads together; a missing root gate leaves both on the
-compatibility posture. Public build flags still cannot activate this shell or
-declare release eligibility. This is rollout integrity, not release evidence:
-the signed cross-family rehearsal, physical-device observations, and reviewed
-family promotion remain pending.
+its shell, Home v2, governed Places, and Life v1 gates to drift independently.
+An internal governed rehearsal activates Home, the mature Places workspace, and
+the Life root over their server-governed reads together; a missing root gate
+leaves the roots on the compatibility posture. Public build flags still cannot
+activate this shell or declare release eligibility. This is rollout integrity,
+not release evidence: the signed cross-family rehearsal, physical-device
+observations, and reviewed family promotion remain pending.
 
 The release-evidence path is now executable without making release depend on
 itself. A governed rehearsal posture can expose already-reviewed shadow
