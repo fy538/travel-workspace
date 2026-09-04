@@ -501,6 +501,11 @@ Validation recorded for this continuation:
 - Backend focused entity/research suites pass, including the live PostgreSQL
   relationship continuity test and queue lifecycle tests.
 - Mobile TypeScript, schema bridge and object-page projection tests pass.
+- Full offline aggregate runs are not a release pass: the backend aggregate
+  still reports the pre-existing refresh-memory/Postgres-leak and dead-Atlas-
+  handler failures; the frontend aggregate still reports 24 unrelated
+  convention/navigation/history fixture failures. These are recorded as
+  validation exclusions, not silently attributed to the entity changes.
 - Native simulator/device captures, production canary, and any backfill remain
   intentionally outstanding; no flag was enabled and no catalog row was
   backfilled.
