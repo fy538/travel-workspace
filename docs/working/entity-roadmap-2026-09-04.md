@@ -36,11 +36,13 @@ in Phase 0, not silently treated as superseded canon.
 
 ## 2. Baseline and evidence limits
 
-Inspected local `main` on September 4:
+Inspected local `main` on September 4 (after the continuation receipts below):
 
-- Backend: `f7fb3ff71` — research gating and persistence hardening.
-- Mobile: `ff6d0e2b5` — research lifecycle and object truth fixes.
-- Workspace: `6c53cc5` — latest coordination commit at inspection.
+- Backend: `9f3d80959` — research gating, persistence hardening and the
+  read-only entity health report.
+- Mobile: `4579a1fc7` — research lifecycle, object truth fixes and grounded
+  generic venue handoffs.
+- Workspace: `c25c17c1c` — roadmap, runbook and validation ledger.
 
 These are local source baselines, not deployment or public-release evidence.
 No new test suite, native capture, database job, or provider call was run to
@@ -493,6 +495,7 @@ Completed implementation packages in this lane:
 | E5 | Explicit source metadata write-back; stale idempotency replay refresh; page-artifact worker gate; fail-closed global budget, atomic queue claim and abandoned-lease recovery | `travel-agent:e9d89fc0d`, `350e5f931`, `5eee43f31`, `f2a6d846a`, `83583a42d`, `0bd02d8da`, `97ee0019f`, `ea940a044` |
 | E6 | Generated mobile status contract; centralized research state reducer; stale content age label; status-error recovery copy and tests; stable locale metadata formatting; stale-age preservation during unknown status | `travel-app:9904f3411`, `9abfc997d`, `462d56a0d`, `ce504cfa9`, `71f154151`, `a3636e13c` |
 | Contract | OpenAPI snapshots, active projection, generated schema, identity seams and schema bridge are synchronized | `workspace:93ea30e` |
+| E8 (native core slice) | Current mobile build passes the venue identity/save/private-handoff smoke on iPhone 16 Pro in the mock lane; scoped receipt records the screenshots and limits | `travel-app:4579a1fc7`, [native QA receipt](entity-native-qa-receipt-2026-09-04.md) |
 | E10 (later-consumer slice) | Real PostgreSQL second-occasion loop closure changes candidate choice from a prior explicit outcome, then reopens after correction and withholds on changed roster/occasion; chat attachment snapshots remain catalog-only | `travel-agent:18b71b9f7`, `422a5f6c8` |
 | E9 (health receipt) | Read-only, content-free entity health report now includes queue age, retry/lease, duplicate-active, and completed-without-fresh-brief integrity metrics | `travel-agent:9f3d80959` |
 
@@ -522,18 +525,17 @@ Validation recorded for this continuation:
   handler failures; the frontend aggregate still reports 24 unrelated
   convention/navigation/history fixture failures. These are recorded as
   validation exclusions, not silently attributed to the entity changes.
-- Native Maestro attempts were made against the installed `com.fyan.vesper`
-  binary on a booted iPhone 16 Pro simulator using
-  `.maestro/54b-journey-07-venue-context.yaml`. The first run had no Metro
-  server and remained in the Expo development launcher. With Metro running,
-  the real-auth bundle reached sign-in; a mock-configured retry then hit the
-  persisted `dev.mockModeOverride=false` and produced guarded 401/profile
-  failure before the expected `Plans` surface. This is recorded as a
-  reproducible QA-environment/configuration prerequisite, not native
-  acceptance. Production canary and any backfill remain intentionally
-  outstanding; no flag was enabled and no catalog row was backfilled.
+- Native Maestro runs initially found two QA-lane prerequisites (Metro
+  reachability and a persisted real-API override). After those were corrected
+  without changing product flags, the current mobile SHA passed
+  `.maestro/54b-journey-07-venue-context.yaml` end-to-end in the mock lane.
+  The scoped result is recorded in the [native QA receipt](entity-native-qa-receipt-2026-09-04.md); it covers the venue identity/save/private-handoff
+  path, not the complete real-backend or accessibility state matrix.
+  Production canary and any backfill remain intentionally outstanding; no
+  flag was enabled and no catalog row was backfilled.
 
-The next unclosed gates are native state evidence, a reviewed pilot receipt,
+The next unclosed gates are the broader native state matrix (including a
+real-backend journey and accessibility verdict), a reviewed pilot receipt,
 and explicit operational ownership. The later-consumer benefit/withholding
 proof is now present in the real PostgreSQL loop-closure scenario, but it is
 not a production rollout receipt. These remain release gates, not reasons to
