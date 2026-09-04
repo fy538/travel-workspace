@@ -141,8 +141,11 @@ completed latest-tree full regression.
 S0AJ binds Home receipt references and consequence readback to the same mutable
 evidence fingerprint, restores the existing receipt membership boundary at
 the owner adapter, and rejects partial exact scope and audience widening.
-Its focused suite passes **392 tests**; the latest standard full backend run
-is active in session **6651**, covering both handoff and receipt repairs.
+Its focused suite passes **392 tests**; the standard full backend run completed
+with **20,464 passes and six inherited failures**, covering both handoff and
+receipt repairs. S0AL fixes the five stale research fixtures without changing
+runtime behavior; a fresh full run is active in session **39164**. The orphan
+Atlas handler audit and broader P0 convergence remain unresolved.
 S0AK traces the remaining group receipt path through the real producer,
 request compiler, and owner reader. It is currently rejected, not shipped.
 The proposed shared read-grant resolution below requires explicit approval;
@@ -3876,10 +3879,10 @@ Evidence:
   backend commit gates pass. Backend worktree is clean after the commit.
 
 The S0AH full regression has completed with the result above. Its collection
-started before this increment; the next full run must cover both this handoff
-repair and S0AJ's receipt work. Do not count the earlier process as latest-tree
-validation. The local API has not been restarted onto these changes, and no
-new native or real-data editorial acceptance is claimed.
+started before this increment; S0AJ now records the completed full run covering
+both this handoff repair and the receipt work. The local API has not been
+restarted onto these changes, and no new native or real-data editorial
+acceptance is claimed.
 
 The follow-up receipt audit found missing exact-target validation and a
 creation-time-only envelope revision; S0AJ below repairs those paths and the
@@ -3931,10 +3934,12 @@ Evidence:
   usable payload or evidence while its independent current peer remains usable.
 - Ruff, formatting, import boundaries, whitespace, and all applicable commit
   gates pass. Backend worktree is clean after the commit.
-- Fresh standard full regression started after commit in session **6651**,
-  logged at `/tmp/vesper-receipt-handoff-backend.log`. It covers S0AI and S0AJ;
-  collect this process before starting another broad run. S0AH's completed
-  20,422-pass/six-failure result is the preceding comparison, not this result.
+- The standard full regression completed in session **6651**, logged at
+  `/tmp/vesper-receipt-handoff-backend.log`: **20,464 passed, six failed,
+  30 skipped, 56 xpassed, and 1,325 deselected** in 429.03 seconds. It covers
+  S0AI and S0AJ, with the same five lazy-research fixture failures and orphan
+  Atlas handler audit as the preceding comparison. S0AK's additional test and
+  S0AL's fixture updates postdate this collection.
 
 Remaining consequence work is not hidden by these passing checks. In
 particular, Home's group receipt candidates carry a Trip reference as their
@@ -3969,9 +3974,9 @@ the actual Home producer, request compiler, and canonical owner registry:
 The regression preserves the denial; it does **not** certify positive group
 receipt admission. The combined focused suite passes **393 tests** in
 `/tmp/vesper-group-receipt-boundary.log`; applicable test commit gates pass.
-No production code changed in this increment. The ongoing S0AJ broad run
-still covers the production code; its collection predates this additional
-test. Session **6651**, PID **18031** was verified live at the 89% audit stage.
+No production code changed in this increment. The completed S0AJ broad run
+covers the production code; its collection predates this additional test.
+The 20,464-pass/six-failure result is recorded above.
 
 #### Recommendation — resolve authority, do not relabel locators
 
@@ -4029,3 +4034,41 @@ This is a shared product-system dependency across multiplayer, composition,
 continuity, and consequence—not a new social settings screen. It does not
 require a Chat/Life redesign. No shared fields or permission semantics have
 been changed pending approval; the broader P0–P7 goal remains active.
+
+### S0AL — Repair stale test fixtures without weakening the writer guard
+
+Backend test commit `e96e9478b` resolves the five inherited lazy-research
+fixture failures. Each test mocked a personal conversation with a namespace
+containing only `conversation_type`. The real composed-card writer now passes
+the canonical conversation's optional `trip_id` to the existing terminal-Trip
+write guard; the incomplete doubles raised `AttributeError` before reaching
+the mocked persistence boundary.
+
+The tests now use the actual `Conversation` model with consistent conversation
+and actor identifiers. All existing fallback, content, metadata, truncation,
+and privacy assertions remain. The happy path covers both trip-less and
+trip-bound conversations and explicitly verifies `writable_trip_id`; the
+fallback verifies the trip-less value. Nothing bypasses or changes the real
+writer's terminal-Trip guard.
+
+Evidence:
+
+- Before the fixture repair: **five failed, 20 passed**, each with the missing
+  `trip_id` attribute (`/tmp/vesper-lazy-fixture-red.log`).
+- After repair: **26 passed** in the entire lazy-research module, including
+  the added trip-bound case (`/tmp/vesper-lazy-fixture-focused.log`).
+- Combined research and composed-card API coverage: **28 passed**
+  (`/tmp/vesper-lazy-fixture-integration.log`). Ruff, formatting, whitespace,
+  and applicable commit gates pass.
+- Fresh standard full regression started on the committed test tree in
+  session **39164**, logged at `/tmp/vesper-baseline-fixture-backend.log`.
+  Collect it without restarting. Do not declare the full suite green from
+  the focused result.
+
+No production source, worker policy, prompt, API shape, schema, Chat/Life
+surface, writer, or external state changed. The remaining known broad-suite
+failure is the unused `_execute_post_atlas_draft` handler: the implementation
+and its unit tests remain, but no production caller was found. It is not
+allowlisted, suppressed, or rewired merely to pass the audit; its disposition
+belongs to the held Chat-related work. Shared read-grant and timing-model
+approval remain outstanding. P0 and the complete product goal remain open.
