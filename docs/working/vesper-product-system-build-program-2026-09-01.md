@@ -3477,11 +3477,12 @@ composition/routes/projections, value composition, situated judgment, and
 owner-read portfolios: **331 passed**. This is not a fixture allowlist or a
 special case for the bookshop.
 
-The fresh full offline backend regression is running separately at
-`/tmp/vesper-root-attention-backend.log` (owned pytest PID 98091 at this
-checkpoint). Its result is pending; S0AA's full-suite count is not reused as
-evidence for this changed code. Resume the existing process before starting
-another broad run.
+The fresh full offline backend regression completed at
+`/tmp/vesper-root-attention-backend.log`: **20,385 passed, six failed, 30 skipped,
+56 xpassed, and 1,325 deselected** in 549.68 seconds. The six failures remain
+the five lazy-research fixtures and dead-handler audit recorded in S0AA; no
+Chat/Life implementation or baseline waiver was added. This is a new run of
+the changed code, not a reused earlier count.
 
 After restarting only the owned local API with the existing no-model/no-search
 and disabled-background-task configuration, the real Home API keeps Live
@@ -3521,3 +3522,63 @@ nor cover Source-inspector account/modal lifetime, Android, physical-device
 behavior, the complete posture portfolio, production auth, or real editorial
 quality. Chat and Life remain held. The goal remains the complete P0–P7 product
 system; this closes one real cross-root ownership/consequence gap within it.
+
+### S0AC — Place editorial admission respects returned authority
+
+App `08aff3018` addresses S0AB's visible fallback defect without changing shared
+generation or the Chat/Life hold. The backend's legacy personal-generation
+endpoint may successfully return either a genuine curator Take or a synthetic
+diagnostic Take. Previously the Venue and Experience screens passed either
+response into the personal slot, giving diagnostic failure prose a “For you”
+treatment. Merely hiding it inside the card would also have prevented the
+parent screen's real brief/description fallback from rendering.
+
+A shared, pure Place-layer resolver now rejects explicit diagnostic markers
+(`model_used` or `context_hash` equal to `fallback`, or `extras.fallback_error`)
+and respects the returned `tier`. Both parent screens and `SpotTake` use it:
+genuine curator content retains curator presentation; genuine personal content
+retains its personal treatment; missing content yields to the existing brief
+or ordinary Place utility. It does not strip failure prose and relabel the
+remainder as an earned read. The curator card no longer asks the person to
+provide taste information before offering value. This follows the Editorial
+and Content Canon's value-before-input and omission-safe content direction.
+
+Verification:
+
+- Five focused Jest suites pass: **50 tests**, including layer admission,
+  genuine personal/curator rendering, derived-from presentation, Venue brief
+  presence/absence, Experience description fallback, and existing object-page
+  smoke behavior. Existing curator fixtures now specify their required tier;
+  streaming hooks are stubbed in the screen suites to avoid unintended SSE
+  requests. Existing asynchronous test warnings remain; this is not a
+  whole-app regression pass.
+- App typecheck passes. Focused ESLint has zero errors and 55 warnings,
+  including existing large-file/require-import conventions. Scenario registry,
+  Places design-reference validation, Places doctor, all 358 Maestro flow
+  metadata records, and diff whitespace checks pass.
+- Doctor left the simulator in mock mode. The first real preflight correctly
+  refused that state (`/tmp/vesper-take-preflight.xYP0YL`); its screenshot was
+  opened and explicitly shows the mock banner. After the existing real-mode
+  transition/reload, preflight passes in `/tmp/vesper-take-preflight.xBPeFb`.
+  This is further evidence that mock-to-real handoff needs stabilization, not
+  evidence that the earlier Hermes problem has been repaired.
+- The nonmutating real readback passes in `/tmp/vesper-take-readback.MCQEem`:
+  exact Home Save unit → named Place → saved control → no diagnostic copy →
+  return to the same Home unit. The saved-detail screenshot was reopened: the
+  technical card is gone, and identity, saved state, map, and directions remain.
+  Existing fixture Save `345b9ded-256f-4343-8986-ed5e64193060` was not removed or
+  reprovisioned in this round. No production data or rollout default changed.
+
+Evidence limit: this is a real local no-model/no-brief Venue state and focused
+test coverage, not a complete Places visual verdict, real editorial-quality
+acceptance, native Experience coverage, or production-auth proof. The generic
+“More like this” row and “What should I know before going?” prompt remain in
+the captured page; eliminating diagnostic prose does not make that composition
+the finished post-pivot experience. The shared endpoint and its generation/
+telemetry semantics remain unchanged and need a separately scoped review.
+
+Next: preserve this content-admission boundary while advancing P3's meaningful
+real-content portfolio and coherent Place utility, alongside P2's exact
+Moment/attention ownership. Stabilize the rehearsal mode transition as a
+separate infrastructure task. Do not mistake an honest sparse object page for
+completion of the broader P0–P7 system or the value-rich Home/Places vision.
