@@ -33784,6 +33784,77 @@
         }
       }
     },
+    "/api/me/entities/{entity_type}/{entity_id}/research-status": {
+      "get": {
+        "summary": "Get My Entity Research Status",
+        "description": "Read the viewer-safe lifecycle of an entity research request.\n\nThe queue row is operational state, not public content.  A completed row\nonly becomes ``ready`` when the page-readable brief is present; this keeps\na worker's success marker from producing a permanently queued or empty UI.",
+        "operationId": "get_my_entity_research_status_api_me_entities__entity_type___entity_id__research_status_get",
+        "parameters": [
+          {
+            "name": "entity_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "enum": [
+                "venue",
+                "site",
+                "accommodation",
+                "experience"
+              ],
+              "type": "string",
+              "title": "Entity Type"
+            }
+          },
+          {
+            "name": "entity_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Entity Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityResearchStatusResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/me/entities/{entity_type}/{entity_id}/presentation-v2": {
       "get": {
         "summary": "Get My Entity Presentation V2",
@@ -54232,6 +54303,93 @@
           "url"
         ],
         "title": "EntityResearchSource"
+      },
+      "EntityResearchStatusResponse": {
+        "properties": {
+          "revision": {
+            "type": "string",
+            "const": "entity-research-status-v1",
+            "title": "Revision",
+            "default": "entity-research-status-v1"
+          },
+          "entity_ref": {
+            "$ref": "#/components/schemas/EntityRef"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "absent",
+              "queued",
+              "running",
+              "ready",
+              "stale",
+              "failed",
+              "unavailable"
+            ],
+            "title": "Status"
+          },
+          "request_id": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Request Id"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At"
+          },
+          "brief_generated_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Brief Generated At"
+          },
+          "brief_expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Brief Expires At"
+          },
+          "retryable": {
+            "type": "boolean",
+            "title": "Retryable",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "entity_ref",
+          "status"
+        ],
+        "title": "EntityResearchStatusResponse",
+        "description": "Viewer-safe lifecycle state for one explicitly requested brief.\n\nQueue implementation details stay private.  In particular, a caller gets\na stable request identity and a typed failure/absence state, but never the\nworker's raw exception or another actor's request metadata."
       },
       "EntityResolutionRequest": {
         "properties": {
