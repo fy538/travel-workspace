@@ -132,6 +132,11 @@ coordination repair has **329 focused passes**, with its full run pending
 (S0AH). Shared timing read-model approval, real-account editorial acceptance,
 native bootstrap robustness, and baseline convergence remain open. Chat/Life
 surfaces remain held.
+S0AI additionally closes the mismatch between exact relationship lookup and
+Source inspection: both reject unusable or stale handoff evidence, and
+relationship envelopes now expire with their grants. This has **349 focused
+owner/projection passes and 34 relationship-domain/API passes**, not yet a
+completed latest-tree full regression.
 
 ### P0 — Stabilize and land the integrated baseline — immediate
 
@@ -3821,3 +3826,53 @@ The local API has not been restarted onto these backend changes; no native
 acceptance is claimed for this increment. Exact timing propagation into the
 shared read models still awaits explicit approval. This closes a correctness
 gap in an existing system seam, not P2 or the overall product-system goal.
+
+### S0AI — Handoff evidence preserves lifecycle through owner reads
+
+Backend `c01a0aee0` aligns the Relationship and Source adapters over existing
+PlaceHandoff authority. Exact repository lookup intentionally allows an
+authorized participant to inspect historical handoffs. The relationship
+adapter previously treated every such row as a current grant, even after
+revocation, dismissal, or expiry, and ignored requested revisions. Source
+inspection checked lifecycle in part but also ignored requested revisions.
+
+Both adapters now require available/kept state, creation and last update no
+later than the consuming clock, and an unexpired half-open lifetime. Exact
+stale revisions return `CONFLICT`. Broad relationship reads filter unusable
+rows before applying the existing 24-result adapter bound; exact reads fail
+closed if any requested handoff is unusable. Valid relationships are not
+inferred from expired or revoked historical material. A current relationship
+envelope carries the earliest finite expiry of its represented handoffs so
+downstream reads cannot treat the combined grant as indefinitely current.
+
+This is classified as a bounded `safe-backend` adapter correction: canonical
+membership and sharing rules, repository writers, shared model shapes, API
+contracts, prompts, and surface designs are unchanged. It is not a new social
+permission model or approval for broader use of a friend's material.
+
+Evidence:
+
+- **14 failures before the fix**, from the initial 19 new cases, in
+  `/tmp/vesper-handoff-owner-red.log`.
+- Final **349 focused passes**, including an additional actual owner-read
+  portfolio case where a revoked exact target yields no payload, grants, or
+  represented references while an independently requested current handoff
+  remains usable (`/tmp/vesper-handoff-owner-focused.log`).
+- **34 relationship-domain/API passes** in
+  `/tmp/vesper-handoff-owner-domain.log`.
+- Ruff, formatting, import boundaries, whitespace checks, and all applicable
+  backend commit gates pass. Backend worktree is clean after the commit.
+
+The S0AH full regression remains live in session **64944**, PID **13541** at
+this checkpoint, with active CPU in its 89% audit stage. Its collection started
+before this increment: collect it without restarting, then run the standard
+offline suite on the final handoff tree. Do not count the earlier process as
+latest-tree validation. The local API has not been restarted onto these
+changes, and no new native or real-data editorial acceptance is claimed.
+
+Follow-up audit still needed: the consequence receipt reader can omit missing
+exact targets, and its envelope revision currently uses creation timestamps
+rather than mutable readback state. Provider-status and receipt authorization
+need their own owner-boundary review; this handoff repair does not certify
+those paths. P0–P7, the pending shared timing-model approval, and the Chat/Life
+surface hold remain unchanged.
