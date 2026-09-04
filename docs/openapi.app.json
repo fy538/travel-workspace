@@ -33612,6 +33612,158 @@
         }
       }
     },
+    "/api/me/entities/{entity_type}/{entity_id}/presentation-v2": {
+      "get": {
+        "summary": "Get My Entity Presentation V2",
+        "description": "Return the additive canonical relationship/action object read.\n\nViewer-specific content is private and snapshot-backed.  The short-lived\nresponse is intentionally not publicly cacheable; clients should refetch\nafter owner mutations instead of relying on stale optimistic state.",
+        "operationId": "get_my_entity_presentation_v2_api_me_entities__entity_type___entity_id__presentation_v2_get",
+        "parameters": [
+          {
+            "name": "entity_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "enum": [
+                "venue",
+                "site",
+                "accommodation",
+                "experience"
+              ],
+              "type": "string",
+              "title": "Entity Type"
+            }
+          },
+          {
+            "name": "entity_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Entity Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityDetailPresentationV2"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/me/entities/{entity_type}/{entity_id}/situation": {
+      "post": {
+        "summary": "Get My Entity Situation",
+        "description": "Return a short-lived Plan/route note without persisting viewer location.",
+        "operationId": "get_my_entity_situation_api_me_entities__entity_type___entity_id__situation_post",
+        "parameters": [
+          {
+            "name": "entity_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "enum": [
+                "venue",
+                "site",
+                "accommodation",
+                "experience"
+              ],
+              "type": "string",
+              "title": "Entity Type"
+            }
+          },
+          {
+            "name": "entity_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Entity Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EntitySituationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntitySituationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/entities/{entity_type}/{entity_id}": {
       "get": {
         "summary": "Get Entity Detail",
@@ -52535,6 +52687,88 @@
         ],
         "title": "EditorialOperation"
       },
+      "EntityActionCapability": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "save",
+              "unsave",
+              "add_to_plan",
+              "ask_in_chat",
+              "open_map",
+              "book",
+              "record_outcome",
+              "correct_outcome"
+            ],
+            "title": "Kind"
+          },
+          "owner": {
+            "type": "string",
+            "enum": [
+              "save",
+              "plan",
+              "chat",
+              "map",
+              "booking",
+              "outcome"
+            ],
+            "title": "Owner"
+          },
+          "availability": {
+            "type": "string",
+            "enum": [
+              "available",
+              "needs_context",
+              "unavailable"
+            ],
+            "title": "Availability"
+          },
+          "required_context": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Required Context",
+            "default": []
+          },
+          "reason_code": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason Code"
+          },
+          "destination": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 512,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Destination"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind",
+          "owner",
+          "availability"
+        ],
+        "title": "EntityActionCapability",
+        "description": "A truthful, owner-bound action advertised by an entity read."
+      },
       "EntityConditionalJudgmentPresentation": {
         "properties": {
           "key": {
@@ -52676,6 +52910,93 @@
         ],
         "title": "EntityDetailPresentation",
         "description": "One authenticated read model for the mobile object page.\n\n``revision`` is a rendering-contract revision, not an entity version.  It\nlets a client reject a response that was composed for a newer UI contract\nwithout coupling that client to a database schema version."
+      },
+      "EntityDetailPresentationV2": {
+        "properties": {
+          "revision": {
+            "type": "string",
+            "const": "entity-detail-v2",
+            "title": "Revision",
+            "default": "entity-detail-v2"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/EntityEnvelope"
+          },
+          "categories": {
+            "items": {
+              "$ref": "#/components/schemas/EntityPresentationCategory"
+            },
+            "type": "array",
+            "maxItems": 4,
+            "title": "Categories"
+          },
+          "facts": {
+            "items": {
+              "$ref": "#/components/schemas/EntityPresentationFact"
+            },
+            "type": "array",
+            "maxItems": 3,
+            "title": "Facts"
+          },
+          "relationship": {
+            "$ref": "#/components/schemas/PlaceRelationshipProjection"
+          },
+          "take": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityPresentationTake"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "interpretation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityInterpretationProjection"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "capabilities": {
+            "items": {
+              "$ref": "#/components/schemas/EntityActionCapability"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "minItems": 1,
+            "title": "Capabilities"
+          },
+          "dependency_revisions": {
+            "items": {
+              "$ref": "#/components/schemas/EntityPresentationDependency"
+            },
+            "type": "array",
+            "title": "Dependency Revisions",
+            "default": []
+          },
+          "treatment": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SurfaceTreatmentProjection"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "entity",
+          "relationship"
+        ],
+        "title": "EntityDetailPresentationV2",
+        "description": "Additive viewer read model backed by the canonical relationship reader."
       },
       "EntityDisplayPolicy": {
         "properties": {
@@ -53081,6 +53402,30 @@
           "label"
         ],
         "title": "EntityPresentationCategory"
+      },
+      "EntityPresentationDependency": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Key"
+          },
+          "revision": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 1,
+            "title": "Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "key",
+          "revision"
+        ],
+        "title": "EntityPresentationDependency",
+        "description": "One revision tag that explains when a viewer-specific read is stale."
       },
       "EntityPresentationFact": {
         "properties": {
@@ -53584,6 +53929,43 @@
         ],
         "title": "EntitySaveCreate"
       },
+      "EntitySituationOrigin": {
+        "properties": {
+          "lat": {
+            "type": "number",
+            "maximum": 90.0,
+            "minimum": -90.0,
+            "title": "Lat"
+          },
+          "lng": {
+            "type": "number",
+            "maximum": 180.0,
+            "minimum": -180.0,
+            "title": "Lng"
+          },
+          "accuracy_m": {
+            "type": "number",
+            "maximum": 100000.0,
+            "exclusiveMinimum": 0.0,
+            "title": "Accuracy M"
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Observed At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "lat",
+          "lng",
+          "accuracy_m",
+          "observed_at"
+        ],
+        "title": "EntitySituationOrigin",
+        "description": "A fresh, request-only origin. It is never echoed or persisted."
+      },
       "EntitySituationPresentation": {
         "properties": {
           "kind": {
@@ -53645,6 +54027,189 @@
         ],
         "title": "EntitySituationPresentation",
         "description": "A bounded current-context note.\n\nThis is absent unless the caller has a policy-approved, source-bound\nsituation.  In particular, it is not a shortcut for guessing open-now or\na raw location/routing response."
+      },
+      "EntitySituationRequest": {
+        "properties": {
+          "intended_use": {
+            "type": "string",
+            "const": "object_page",
+            "title": "Intended Use",
+            "default": "object_page"
+          },
+          "trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Id"
+          },
+          "origin": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntitySituationOrigin"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "travel_mode": {
+            "type": "string",
+            "enum": [
+              "walking",
+              "driving",
+              "cycling",
+              "transit"
+            ],
+            "title": "Travel Mode",
+            "default": "walking"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "EntitySituationRequest"
+      },
+      "EntitySituationResponse": {
+        "properties": {
+          "revision": {
+            "type": "string",
+            "const": "entity-situation-v1",
+            "title": "Revision",
+            "default": "entity-situation-v1"
+          },
+          "entity_ref": {
+            "$ref": "#/components/schemas/EntityRef"
+          },
+          "evaluated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Evaluated At"
+          },
+          "valid_until": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Valid Until"
+          },
+          "plan_trip_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Plan Trip Id"
+          },
+          "route": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntitySituationRoute"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "summary": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 320
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Summary"
+          },
+          "silence_reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Silence Reason"
+          },
+          "material_unknown_kinds": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Material Unknown Kinds",
+            "default": []
+          },
+          "capabilities": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "open_map",
+                "directions"
+              ]
+            },
+            "type": "array",
+            "title": "Capabilities",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "entity_ref",
+          "evaluated_at",
+          "valid_until"
+        ],
+        "title": "EntitySituationResponse"
+      },
+      "EntitySituationRoute": {
+        "properties": {
+          "duration_minutes": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Duration Minutes"
+          },
+          "distance_km": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Distance Km"
+          },
+          "mode": {
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 1,
+            "title": "Mode"
+          },
+          "source_ref": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Source Ref"
+          },
+          "degraded": {
+            "type": "boolean",
+            "title": "Degraded",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "duration_minutes",
+          "distance_km",
+          "mode",
+          "source_ref"
+        ],
+        "title": "EntitySituationRoute"
       },
       "EntityStatusResponse": {
         "properties": {
@@ -55172,6 +55737,16 @@
             "type": "string",
             "format": "uuid",
             "title": "User Id"
+          },
+          "entity_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntityRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "place_verdict": {
             "type": "string",
@@ -73340,6 +73915,121 @@
         "title": "PlaceMapNeighborhood",
         "description": "A child neighborhood that has editorial content, as a drill-in map pin.\n\nOnly neighborhoods that (a) contributed at least one dossier to this feed\nand (b) carry a centroid are surfaced — a pin therefore always corresponds\nto browsable content, never a bare administrative boundary."
       },
+      "PlaceRelationshipProjection": {
+        "properties": {
+          "contract_version": {
+            "type": "integer",
+            "title": "Contract Version",
+            "default": 1
+          },
+          "viewer_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Viewer Id"
+          },
+          "entity_ref": {
+            "$ref": "#/components/schemas/EntityRef"
+          },
+          "states": {
+            "items": {
+              "$ref": "#/components/schemas/RelationshipState"
+            },
+            "type": "array",
+            "uniqueItems": true,
+            "title": "States",
+            "default": []
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/RelationshipEvidence"
+            },
+            "type": "array",
+            "title": "Evidence",
+            "default": []
+          },
+          "encounter_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Encounter Count",
+            "default": 0
+          },
+          "last_lived_on": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Lived On"
+          },
+          "affinity_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Affinity Label"
+          },
+          "active_plan": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RelationshipPlanSummary"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "latest_private_outcome": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RelationshipOutcomeSummary"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "projection_revision": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@+-]{0,159}$",
+            "title": "Projection Revision"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "valid_until": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid Until"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "viewer_id",
+          "entity_ref",
+          "projection_revision",
+          "generated_at"
+        ],
+        "title": "PlaceRelationshipProjection",
+        "description": "One viewer's bounded relationship with one place-like entity.\n\nThe projection joins existing affinity, Plan, occurrence, and outcome\nauthorities. It is not a new source of truth and intentionally contains\nno private prose or group-member details."
+      },
       "PlaceSavedCountResponse": {
         "properties": {
           "count": {
@@ -83042,6 +83732,43 @@
         "title": "RelatedDossierItem",
         "description": "Lightweight dossier stub for the Keep Reading carousel."
       },
+      "RelationshipEvidence": {
+        "properties": {
+          "state": {
+            "$ref": "#/components/schemas/RelationshipState"
+          },
+          "source": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{2,119}$",
+            "title": "Source"
+          },
+          "source_ref": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@+-]{0,159}$",
+            "title": "Source Ref"
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Observed At"
+          },
+          "corrected": {
+            "type": "boolean",
+            "title": "Corrected",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "state",
+          "source",
+          "source_ref",
+          "observed_at"
+        ],
+        "title": "RelationshipEvidence",
+        "description": "A content-free source edge supporting one relationship state."
+      },
       "RelationshipHandoffPermissionRequest": {
         "properties": {
           "media_visibility": {
@@ -83262,6 +83989,43 @@
         ],
         "title": "RelationshipMemoryClaim",
         "description": "One governed claim; corrections supersede rather than erase history."
+      },
+      "RelationshipOutcomeSummary": {
+        "properties": {
+          "verdict": {
+            "type": "string",
+            "enum": [
+              "would_repeat",
+              "good_once",
+              "not_for_me"
+            ],
+            "title": "Verdict"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          },
+          "source_ref": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@+-]{0,159}$",
+            "title": "Source Ref"
+          },
+          "corrected": {
+            "type": "boolean",
+            "title": "Corrected",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "verdict",
+          "updated_at",
+          "source_ref"
+        ],
+        "title": "RelationshipOutcomeSummary",
+        "description": "Owner-scoped, bounded outcome data safe for a private entity read."
       },
       "RelationshipPairConversationRequest": {
         "properties": {
@@ -83666,6 +84430,74 @@
           "changed"
         ],
         "title": "RelationshipPlaceHandoffTransition"
+      },
+      "RelationshipPlanSummary": {
+        "properties": {
+          "trip_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Trip Id"
+          },
+          "trip_title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Title"
+          },
+          "block_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Block Id"
+          },
+          "day_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Day Id"
+          },
+          "source_ref": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@+-]{0,159}$",
+            "title": "Source Ref"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "trip_id",
+          "source_ref"
+        ],
+        "title": "RelationshipPlanSummary",
+        "description": "Content-free summary of the viewer's current Plan relationship."
+      },
+      "RelationshipState": {
+        "type": "string",
+        "enum": [
+          "saved",
+          "planned",
+          "lived",
+          "skipped",
+          "corrected"
+        ],
+        "title": "RelationshipState"
       },
       "RelationshipVisibilityRequest": {
         "properties": {

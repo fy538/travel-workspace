@@ -4844,3 +4844,110 @@ ordinary mock Places capture nor mocked external-open/GPS tests certify private
 provider-map rendering, native permission/account switching, or production auth.
 No P0–P7 completion, shared read-grant approval, or new serving readiness is
 claimed by this repair.
+
+### S0AW — Repository consolidation, 2026-09-04
+
+The founder requested preservation of uncommitted work, investigation of all
+branches, consolidation onto `main`, and normal publication to each origin.
+The workspace and both children remain independent repositories; no submodules,
+force pushes, branch deletions, or worktree removals are part of this operation.
+
+**Inventory and merge decisions**
+
+- Workspace integration started at `9af29dc`, 120 commits beyond local `main`;
+  local `main` itself was 78 commits beyond origin. Backend integration started
+  at `4c6b63e34`, 141 beyond local `main`, which was 63 beyond origin. App
+  integration started at `3083d6d85`, 62 beyond local `main`, which was 78 beyond
+  origin. All three origin/main tips were ancestors, not competing histories.
+- All primary work was performed on
+  `codex/repository-consolidation-2026-09-04`. The three secondary worktrees were
+  clean. The existing integration, research-preservation, and backup histories
+  are retained; already-contained branches do not need duplicate merges.
+- Workspace `1733dde` preserves eight previously untracked design documents,
+  seven illustration experiments, and the existing Life zero-record contract
+  and spec edits. Metadata and inventory entries distinguish working design
+  explorations from canon. No illustration is selected for production here.
+- Workspace merge `c8f94a0` preserves the unique entity object-page design
+  handoff from `codex/entity-frontend-handoff` (`94c20af`). Its historical
+  implementation limits remain dated guidance, not a fresh capability claim.
+- Backend merge `4c1ff58ff` incorporates the ten unique entity-lane commits
+  through `c59eaff64`: alias-aware personal relationship reads, content-based
+  revisions, additive v2 presentation, and request-only expiring situation
+  responses. No backfill, production rollout, or passive GPS is authorized.
+- App merge `d5e90faa8` incorporates the fifteen unique entity-lane commits
+  through `8682310a9`. Fifteen conflicted files were reconciled deliberately:
+  the integration branch's lifetime-aware canonical opening hook, caller-owned
+  idempotency key, root-return token, and centralized map display policy win
+  over duplicate weaker implementations. Useful relationship invalidations,
+  expiry handling, additive v2/situation adapters, and deterministic persisted
+  venue Takes are retained. Opening a venue no longer generates a Take. The
+  additive v2 and situation adapters are not described as mounted migrations.
+- The full OpenAPI snapshot, mobile projection, and generated TypeScript are
+  regenerated together. The two new adapter operations and three generated
+  aliases are classified. The three September-3-expired retiring API entries
+  were inspected: their backend routes remain and no direct mobile callers
+  were found. They remain retiring, with unchanged removal triggers and a
+  September 18 traffic/removal review, rather than being silently reactivated.
+
+**Verification of the merged product lanes**
+
+- Focused backend entity/alias/situation coverage: **50 passed**.
+- Full offline backend: **20,537 passed, one failed, 30 skipped, 1,341
+  deselected, 56 XPASS**. The failure is the same existing
+  `test_audit_returns_no_dead_handlers` / `_execute_post_atlas_draft` finding.
+- Full app: **7,997 passed, 23 failed**, across 1,177 passing and 19 failing
+  suites. Failure names were compared with the prior S0AV JSON: **zero new
+  failures and zero resolved baseline failures**. The first merged run exposed
+  one stale site-adapter expectation; it now checks the preserved catalog state
+  and display policy explicitly, and the full suite was rerun.
+- `verify:fast` passes: both TypeScript checks, API boundaries, schema bridge,
+  and surface size ratchets. Lint has **173 warnings, zero errors**.
+- Full snapshot/projection/type contract check, API operation coverage,
+  workspace inventory, workspace links, and generated status synchronization
+  pass. Workspace inventory contains 505 classified documents; living links
+  cover 399 documents. Snapshot totals are 573 paths / 635 operations / 1,445
+  schemas; the active-mobile projection has 438 paths / 483 operations / 1,288
+  schemas.
+- The broad documentation check is **not green**: it retains 145 existing
+  child-document lifecycle issues and the app Design Language's existing
+  3,506-word versus 3,500-word canon-budget overage. No historical verification
+  dates or accepted decisions were fabricated to clear those checks.
+- Native QA is not rerun or promoted by Git consolidation. S0AV's unsuccessful
+  trip-continuity capture and unverified private-provider/native GPS behavior
+  remain open. Passing unit tests do not replace those release requirements.
+
+Local evidence: `/tmp/vesper-consolidation-backend-focused.log`,
+`/tmp/vesper-consolidation-backend-full.log`,
+`/tmp/vesper-consolidation-app-full.json`,
+`/tmp/vesper-consolidation-verify-fast.log`,
+`/tmp/vesper-consolidation-final-contract.log`, and
+`/tmp/vesper-consolidation-docs-final.log`. These are local run receipts, not
+portable CI evidence or production certification.
+
+**Dependency branches deliberately remain separate**
+
+Six remote Dependabot branches contain unique commits: backend Python bundle
+`3bffd7a0d`, app npm bundle `0ade45802`, keyboard controller `d4e43b3d7`,
+Reanimated `b7aa69925`, safe-area context `b9d6bd879`, and screens `0210edb7d`.
+The npm bundle changes React, Sentry, Query, and voice packages; four standalone
+branches change native runtime packages. Several proposed versions differ from
+the installed Expo SDK's bundled version map. The Python bundle upgrades 16
+packages, and the existing test environment does not contain those upgrades.
+They are investigated and preserved, not merged on the strength of unrelated
+product tests. A dedicated dependency pass needs reproducible installs,
+compatibility review, and native/voice verification before landing them.
+
+This consolidation establishes a shared code baseline; it does not complete
+P0–P7, certify a release, or supersede the outstanding product-system roadmap.
+
+**Publication boundary**
+
+The backend's installed pre-push gate finds two stale document headers and 35
+expired active documents, including fundraising-program research and strategy
+references. These require actual review, supersession, or retirement; this
+cleanup does not simply advance their dates or bypass the hook. Remote
+publication is held across all three repositories to avoid publishing a
+cross-repository contract without its corresponding backend. Local `main`
+consolidation and preservation can complete independently of that gate.
+Evidence: `/tmp/vesper-consolidation-backend-prepush-venv.log` (the retry uses
+the backend virtual environment for SQLAlchemy-dependent parity checks).

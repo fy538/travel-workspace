@@ -712,6 +712,26 @@
       "removal_trigger": null,
       "review_by": "2026-10-30"
     },
+    "GET /api/me/entities/{entity_type}/{entity_id}/presentation-v2": {
+      "audience": "app",
+      "consumers": [{"kind": "app_url", "name": "getEntityDetailPresentationV2", "source": "travel-app/utils/api/http.ts"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "places",
+      "reason": "Additive authenticated relationship/capability adapter from the entity lane; v1 remains the mounted compatibility read. Adapter availability is not a completed screen migration.",
+      "removal_trigger": null,
+      "review_by": "2026-10-04"
+    },
+    "POST /api/me/entities/{entity_type}/{entity_id}/situation": {
+      "audience": "app",
+      "consumers": [{"kind": "app_url", "name": "getEntitySituation", "source": "travel-app/utils/api/http.ts"}],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "places",
+      "reason": "Authenticated request-only Plan/route adapter with no-store responses and client expiry; no passive location acquisition or new mounted consumer is implied.",
+      "removal_trigger": null,
+      "review_by": "2026-10-04"
+    },
     "POST /api/me/entity-resolutions": {
       "audience": "app",
       "consumers": [
@@ -1167,9 +1187,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "location-consent",
-      "reason": "The consent flow is currently mediated through the named concierge tool and home-feed receipt; no mobile screen calls this direct status endpoint yet.",
+      "reason": "Reviewed 2026-09-04: members.py and API tests retain this authenticated endpoint; mobile transport/caller search still finds none. The named concierge tool and home-feed receipt remain the consent path. Retain retirement status pending traffic review; no new consumer is authorized.",
       "removal_trigger": "Adopt it from an explicit mobile location-settings journey or remove the unused direct endpoint after traffic review.",
-      "review_by": "2026-09-03"
+      "review_by": "2026-09-18"
     },
     "PUT /api/trips/{trip_id}/location-sharing": {
       "audience": "app",
@@ -1177,9 +1197,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "location-consent",
-      "reason": "The consent flow is currently mediated through the named concierge tool and home-feed receipt; no mobile screen calls this direct update endpoint yet.",
+      "reason": "Reviewed 2026-09-04: members.py and API tests retain this authenticated endpoint; mobile transport/caller search still finds none. Consent still uses the named concierge tool. Retain retirement status pending traffic review rather than deleting a potentially externally used write.",
       "removal_trigger": "Adopt it from an explicit mobile location-settings journey or remove the unused direct endpoint after traffic review.",
-      "review_by": "2026-09-03"
+      "review_by": "2026-09-18"
     },
     "PUT /api/me/location": {
       "audience": "app",
@@ -1203,9 +1223,9 @@
       "feature_flag": null,
       "lifecycle": "retiring",
       "owner": "itinerary",
-      "reason": "Backend computation is integrated and tested, but no mobile surface has adopted the suggestions yet; it must gain a named journey or be removed.",
+      "reason": "Reviewed 2026-09-04: trips.py retains the computation endpoint, but the mobile transport/interface still have no caller. Keep it retiring pending a scoped consumer decision and deployed-traffic review; consolidation does not activate suggestions.",
       "removal_trigger": "Activate only with a named mobile consumer and a user-visible suggestion review flow; otherwise remove it.",
-      "review_by": "2026-09-03"
+      "review_by": "2026-09-18"
     },
     "GET /api/angles/{angle_id}": {
       "audience": "app",
