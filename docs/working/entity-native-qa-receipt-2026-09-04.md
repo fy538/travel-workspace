@@ -13,13 +13,15 @@ doc_type: working
 
 # Entity native QA receipt
 
-This receipt records a current-build native smoke pass for the rebuilt venue
-object page. It is evidence for the core page and its private handoff doorway,
-not a production rollout receipt or proof of the complete state matrix.
+This receipt records current-build native smoke passes for the rebuilt venue
+object page and the registered Places route. It is evidence for the core page
+and its private handoff doorway, not a production rollout receipt or proof of
+the complete state matrix.
 
 ## Run
 
-- Mobile repository: `travel-app` at `4579a1fc7`
+- Mobile repository: `travel-app` at `47735f406` (includes the continuity fix
+  from `4579a1fc7`)
 - Device: iPhone 16 Pro simulator, iOS 18.2
 - UDID: `AF31B886-E837-4962-834A-5CBAD5C306DB`
 - App id: `com.fyan.vesper`
@@ -41,6 +43,14 @@ not a production rollout receipt or proof of the complete state matrix.
   - `/Users/feihuyan/travel-workspace/travel-app/54-03-contextual-private-vesper.png`
 - Raw pass log: `/tmp/entity-native-maestro-pass.log`
 
+A second registered Places capture also passed after updating its stale shell
+assertion from `Home` to the current `Plans` label:
+
+- Flow: `travel-app/.maestro/polish/places.yaml`
+- Run folder: `travel-app/.maestro/runs/20260904T232355Z-places`
+- Result: one full screenshot captured (`places-default.png`)
+- Raw runner log: `/tmp/entity-places-runner.log`
+
 ## Assertions covered
 
 1. The rebuilt route opens from the dev handoff and lands on the current Plans
@@ -55,7 +65,7 @@ not a production rollout receipt or proof of the complete state matrix.
 
 ## Limits and next gate
 
-This is a scoped mock-lane pass. It does not certify real-backend auth,
+These are scoped mock-lane passes. They do not certify real-backend auth,
 research lifecycle states, live situation freshness, source attribution,
 relationship differences across two accounts, accessibility at large text or
 screen-reader navigation, Android, or the full loading/error/empty matrix.

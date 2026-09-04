@@ -495,7 +495,7 @@ Completed implementation packages in this lane:
 | E5 | Explicit source metadata write-back; stale idempotency replay refresh; page-artifact worker gate; fail-closed global budget, atomic queue claim and abandoned-lease recovery | `travel-agent:e9d89fc0d`, `350e5f931`, `5eee43f31`, `f2a6d846a`, `83583a42d`, `0bd02d8da`, `97ee0019f`, `ea940a044` |
 | E6 | Generated mobile status contract; centralized research state reducer; stale content age label; status-error recovery copy and tests; stable locale metadata formatting; stale-age preservation during unknown status | `travel-app:9904f3411`, `9abfc997d`, `462d56a0d`, `ce504cfa9`, `71f154151`, `a3636e13c` |
 | Contract | OpenAPI snapshots, active projection, generated schema, identity seams and schema bridge are synchronized | `workspace:93ea30e` |
-| E8 (native core slice) | Current mobile build passes the venue identity/save/private-handoff smoke on iPhone 16 Pro in the mock lane; scoped receipt records the screenshots and limits | `travel-app:4579a1fc7`, [native QA receipt](entity-native-qa-receipt-2026-09-04.md) |
+| E8 (native core slice) | Current mobile build passes the venue identity/save/private-handoff smoke and the registered Places capture on iPhone 16 Pro in the mock lane; scoped receipt records the screenshots and limits | `travel-app:47735f406`, [native QA receipt](entity-native-qa-receipt-2026-09-04.md) |
 | E10 (later-consumer slice) | Real PostgreSQL second-occasion loop closure changes candidate choice from a prior explicit outcome, then reopens after correction and withholds on changed roster/occasion; chat attachment snapshots remain catalog-only | `travel-agent:18b71b9f7`, `422a5f6c8` |
 | E9 (health receipt) | Read-only, content-free entity health report now includes queue age, retry/lease, duplicate-active, and completed-without-fresh-brief integrity metrics | `travel-agent:9f3d80959` |
 
@@ -529,8 +529,11 @@ Validation recorded for this continuation:
   reachability and a persisted real-API override). After those were corrected
   without changing product flags, the current mobile SHA passed
   `.maestro/54b-journey-07-venue-context.yaml` end-to-end in the mock lane.
-  The scoped result is recorded in the [native QA receipt](entity-native-qa-receipt-2026-09-04.md); it covers the venue identity/save/private-handoff
-  path, not the complete real-backend or accessibility state matrix.
+  The registered `polish/places.yaml` capture also passed after its stale
+  Plans-shell assertion was corrected. The scoped result is recorded in the
+  [native QA receipt](entity-native-qa-receipt-2026-09-04.md); it covers the
+  venue identity/save/private-handoff and Places default paths, not the
+  complete real-backend or accessibility state matrix.
   Production canary and any backfill remain intentionally outstanding; no
   flag was enabled and no catalog row was backfilled.
 
