@@ -87,6 +87,10 @@ rules:
 
 
 overrides:
+  docs/working/home-places-life-productization-program-2026-09-04.md:
+    disposition: keep_reference
+    rationale: Active dependency-ordered Home, Places, and Life productization plan subordinate to the canonical four-root contract and product-system build program.
+
   docs/working/four-root-repository-convergence-baseline-2026-09-01.md:
     disposition: keep_reference
     rationale: Reviewed cross-repository landing receipt recording usefulness, verification evidence, inherited debt, rollback points, and promotion boundaries without replacing canonical product or system authority.

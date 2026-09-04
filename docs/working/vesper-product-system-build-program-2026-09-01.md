@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / architecture / engineering
 created: 2026-09-01
-last_verified: 2026-09-03
+last_verified: 2026-09-04
 expires: 2026-10-01
 why_new: Reconciles the post-pivot engine, four-root, artifact, agentic, multiplayer, consequence, and continuity programs into one dependency-ordered product-system build, and separates the current forward roadmap from the historical implementation ledger.
 supersedes:
@@ -112,13 +112,30 @@ in the domain layer, or a second writer hidden behind the semantic facade.
 The following packages are the current sequencing authority. They preserve the
 system ambition while making dependencies, exits, and promotion gates clear.
 
+### September 4 sequencing amendment — Home, Places, and Life
+
+The founder is advancing entity implementation in a separate task and holding
+Chat surface behavior. Life therefore no longer waits in full for P4. Its
+deterministic corpus, lenses, refinding, destination, Return-arbitration, and
+repair work may proceed alongside P1–P3, using the same acceptance world as
+Home and Places. Chat remains a typed origin/destination and existing owner,
+not a surface implementation lane.
+
+The detailed execution authority for this bounded program is
+[`home-places-life-productization-program-2026-09-04.md`](home-places-life-productization-program-2026-09-04.md).
+It does not alter domain ownership, authorize entity implementation in this
+lane, or promote any serving flag. P4 now owns the later Chat adoption and any
+remaining Life closure that depends on the complete four-root loop; it is no
+longer the starting gate for all Life work.
+
 Latest increments: app commit `922628363` binds Home/Places Source inspection
 and removal to the originating interaction and account lifetime; `15a93e12f`
 keeps provenance inspection out of generated-content reception history. The owner
 controls are implemented; do not schedule them again as missing architecture.
 Native modal behavior and real-account editorial value remain unverified.
 S1X / S4X and S1Y below record coverage and outstanding gates. P0 remains
-red, P1's real-data exit remains open, and Chat/Life changes remain held.
+red, P1's real-data exit remains open, Chat surface changes remain held, and
+Life follows the September 4 bounded sequencing amendment above.
 App commit `57bb8128e` additionally separates native live and future Places
 scenarios and carries the verified clock into those product flows (S0Z).
 
@@ -131,8 +148,9 @@ offline run with **20,413 passes and six inherited failures** (S0AF); the newer
 coordination repair has **329 focused passes**, with a completed full run of
 **20,422 passes and the same six inherited failures** (S0AH). Shared timing
 read-model approval, real-account editorial acceptance,
-native bootstrap robustness, and baseline convergence remain open. Chat/Life
-surfaces remain held.
+native bootstrap robustness, and baseline convergence remain open. Chat
+surfaces remain held; Life may advance only within the bounded productization
+program above.
 S0AI additionally closes the mismatch between exact relationship lookup and
 Source inspection: both reject unusable or stale handoff evidence, and
 relationship envelopes now expire with their grants. This has **349 focused
@@ -311,16 +329,18 @@ accessibility, performance, and exact semantic continuation.
 **Exit:** Home and Places are suitable for an internal cohort with real data,
 real judgment, native degraded states, and one coherent owner-backed world.
 
-### P4 — Bring Chat and Life onto the shared spine
+### P4 — Complete Chat adoption and remaining Life cross-root closure
 
 Do not redesign either root from scratch. Make the existing Chat workbench
 adopt contribution and custody, semantic results, contextual instruments,
 receipts, owner handoffs, correction, and exact return. Keep it sparse and
 input-oriented rather than turning it into another feed.
 
-Make Life one finite, searchable corpus organized through Time, Places,
-Threads, and People, with dossiers, exact refinding, correction, bounded
-Return, and Together only where durable audience truth exists.
+Complete any Life behavior that depends on Chat's full shared-spine adoption.
+Life's finite corpus, Time/Places/Threads/People lenses, exact refinding,
+destinations, bounded Return, Together, and causal repair begin earlier under
+the September 4 Home/Places/Life program; this package must not schedule them
+again as wholly missing.
 
 **Exit:** one canonical identity can enter through Chat, alter Home and Places,
 be found in Life, and return exactly to Chat; correction propagates across the
@@ -430,13 +450,16 @@ behavior loop or one operational control; it is whether the same system can
 add non-obvious, evidence-backed value in several situations while knowing
 when to be silent.
 
-Home and Places are the first internal release surfaces because their design
-and serving paths are furthest along. This does not make them the whole
-product. Chat and Life remain real authorities and typed destinations during
-P1–P3, then join the shared spine in P4. Multiplayer, consequence, continuity,
-and repair are cross-cutting system properties throughout—not later feature
-lanes—and their complete authority work is sequenced in P5–P6 only where a
-durable dependency is still missing.
+Home and Places remain the most advanced internal release surfaces because
+their design and serving paths are furthest along. This does not make them the
+whole product. Life's deterministic productization now advances beside them
+under the September 4 bounded program so the continuity root can constrain
+what Home and Places should not absorb. Chat remains a real authority and typed
+origin/destination during this work, then receives its surface-level shared-
+spine adoption in P4. Multiplayer, consequence, continuity, and repair are
+cross-cutting system properties throughout—not later feature lanes—and their
+complete authority work is sequenced in P5–P6 only where a durable dependency
+is still missing.
 
 The prepared cross-family physical rehearsal remains a mandatory promotion
 gate, not the current product milestone. Preserve its fixtures, revision
