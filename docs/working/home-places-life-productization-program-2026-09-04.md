@@ -270,6 +270,39 @@ Every surfaced contribution is judged independently on:
 - authorized social use; and
 - truthful silence when the bar is not met.
 
+### 4.4 Design-to-runtime acceptance matrix
+
+The accepted Home/Places design bundle and the Life v1 contract are now
+treated as runtime obligations, not as a gallery to imitate. Before a unit is
+implemented or promoted, the serving path must be able to name the evidence,
+owner, present reason, destination, and honest failure behavior below. A
+visual treatment without these fields is not an admitted product unit.
+
+| Root / state | Dominant value job | Minimum evidence and owner | Native destination / consequence | Must yield when |
+| --- | --- | --- | --- | --- |
+| Home / ordinary | Make sense of what is worth attention in the current week | Current Moment or held Place/Plan owner plus one fresh, inspectable Source | Complete-on-view read or optional Place/Chat door; no required input | The result is only a save count, generic nearby list, or recap |
+| Home / returned | Carry forward one useful transfer from the journey into present New York life | Journey/Outcome and Source lineage plus a present Place, person, or commitment | One substantive passage, comparison, or current possibility; Life retains the journey | It merely repeats tickets, routes, photos, or a connection the person already made |
+| Home / live or disrupted | Help it work by reducing a current practical burden | Current Commitment/Plan revision, provider/world fact, affected people, and fallback owner | Prepared action, monitor, or recovery instrument with canonical readback | State is stale/unknown, success is unverified, or no safe next step exists |
+| Home / social | Make an authorized other person's contribution useful now | Attributed author, subject, audience/grant, membership epoch, and Source | Viewer-relative opening, Place depth, or Occasion consequence | Audience, authorship, or withdrawal authority is unresolved |
+| Home / sparse | Open a cold but immediately usable possibility without manufacturing intimacy | Only explicit account/Place/world truth; no inferred preference | Honest cold value or silence; no setup task | The unit needs the person to classify, reflect, or populate the app first |
+| Places / World Field | Make the world around a scope intelligible and worth entering | One server-governed scope/result set, fresh Place/world facts, and bounded sources | Focus, map, or one optional branch over the same context handle | Map/list/search transformations change inventory or only expose popularity |
+| Places / Focus | Explain this Place as world, current affordance, relationship, and human perspective | Canonical entity identity plus provider freshness, viewer-safe relationship, and attributed/source evidence | One canonical object page, action, or typed horizon door | The page guesses identity, repeats Home's thesis, or hides missing provider truth |
+| Places / Path | Teach a supported relation or difference that Focus alone cannot | Two or more exact supported identities plus relation-local sources and analogy limit | Sparse comparison/sequence/diagram or typed next door | It is generic similarity, graph residue, or an unsupported analogy |
+| Places / Live Reduction | Help a current spatial/practical situation work | Current condition, reachability, timing, affected people, authority, alternatives, and expiry | Instrument, fallback, execution preview, and receipt/readback | It cannot distinguish pending, partial, failed, stale, unknown, or superseded |
+| Life / lenses | Preserve one governed corpus while changing the person's route into it | Stable owner/source/audience/grant identity for every entry | Time, Places, Threads, or People lens with one full-record door | Lens-local projection mutates canonical identity or becomes an adaptive feed |
+| Life / dossier and refind | Restore context without asking the person to organize history | Canonical object/container, containment chain, truth state, and Source lineage | Dossier, target-first refinding, or exact owner destination | Search creates memory, drops negative truth, or forks a second object |
+| Life / Return and Together | Carry forward a supported distinction or attributed shared record | New evidence/trigger, viewer-relative grants, author, and correction/withdrawal path | Uncarded Return, shared record, or deliberate Continue door | It is recap, inferred intimacy, unbounded social feed, or stale after withdrawal |
+
+The matrix is deliberately asymmetric: Home and Places are output-heavy,
+Chat remains the contribution/agency surface, and Life is the continuity and
+inspection surface. It does not require every state to appear in every root,
+and it does not authorize new stores, semantic kinds, or a public shell.
+
+For each real-data review, record the matrix row alongside the exact
+candidate ID and Source receipt. The review cannot be accepted when the
+candidate is visually compelling but its evidence, owner, destination, or
+yield rule is missing.
+
 ## 5. Workstream A — shared three-root composition and acceptance
 
 This workstream begins first and then supports the three surface workstreams in
