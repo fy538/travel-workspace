@@ -775,6 +775,19 @@ be added merely to make Home look populated. The next operator step is an
 authorized real capture through the existing object-page/Intake path, a fresh
 owner audit, then human review of the actual Home output.
 
+#### Latest owner-audit receipt — 2026-09-04
+
+The two-account audit was rerun locally against the named Dao and Lena
+accounts with a repeatable-read, read-only transaction. It performed **zero
+database writes, model calls, or provider calls**. Both accounts returned zero
+Intake submissions, explicit subjects, confirmed candidates, graph anchors,
+accepted bindings, handed-off activations, and attached Source records. Dao's
+read-only discovery lens exposed three itinerary-block opportunities, each
+with `source_omitted`; Lena returned `context_unavailable`. This is an
+evidence-population receipt only—not a Home-value result—and it leaves the
+HPL-H manifest correctly `not_started` until an authorized real artifact is
+captured and served through Home.
+
 ## 13. Stop lines
 
 - No new root, feed, universal context service, or duplicate owner.
