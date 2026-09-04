@@ -79,6 +79,19 @@ The guarded shared-renderer slice also passed on the same simulator:
   `/Users/feihuyan/travel-workspace/travel-app/54-06-venue-rebuild-intended-verbs.png`
 - Raw pass log: `/tmp/entity-native-rebuild-maestro.log`
 
+The equivalent guarded site slice also passed:
+
+- Mobile source: `travel-app` at `464e7da98`
+- Flow: `travel-app/.maestro/54e-journey-07-site-rebuild.yaml`
+- Object-page rebuild flag: on
+- Research requests: disabled; no queue request or provider call
+- Result: pass through rebuild route → canonical `Museu Nacional do Azulejo`
+  identity → `Keep place` → absence of the legacy `Add to trip` ladder →
+  visible `object-rebuild-ask` handoff
+- Captured screenshot:
+  `/Users/feihuyan/travel-workspace/travel-app/54-07-site-rebuild-intended-verbs.png`
+- Raw pass log: `/tmp/entity-native-site-rebuild-maestro.log`
+
 ## Assertions covered
 
 1. The default venue route opens from the dev handoff and lands on the current Plans
@@ -95,6 +108,8 @@ The guarded shared-renderer slice also passed on the same simulator:
 7. The guarded shared object renderer uses the same canonical venue identity,
    exposes the intended Keep/Ask contract, and does not regress into the
    compatibility route's generic Add-to-trip ladder.
+8. The guarded shared object renderer carries the same identity and verb
+   contract for a site (`Museu Nacional do Azulejo`).
 
 ## Limits and next gate
 
@@ -102,9 +117,9 @@ These are scoped mock-lane passes. They do not certify real-backend auth,
 research lifecycle states, live situation freshness, source attribution,
 relationship differences across two accounts, accessibility at large text or
 screen-reader navigation, Android, or the full loading/error/empty matrix.
-They also do not certify the full shared-renderer state matrix across site and
-experience. The flag-on venue route is now evidenced as one bounded acceptance
-slice; broader route convergence and rollout remain gates in the entity
-roadmap and must be attached to a reviewed pilot receipt before any capability
-is enabled. No production rows, research jobs, provider calls, or backfill were
-created by this run.
+They also do not certify the full shared-renderer state matrix or the
+experience route. The flag-on venue and site routes are now evidenced as two
+bounded acceptance slices; experience, broader state/platform convergence,
+and rollout remain gates in the entity roadmap and must be attached to a
+reviewed pilot receipt before any capability is enabled. No production rows,
+research jobs, provider calls, or backfill were created by this run.
