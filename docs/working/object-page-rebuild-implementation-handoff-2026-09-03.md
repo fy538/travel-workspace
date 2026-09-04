@@ -3,34 +3,36 @@ doc_type: working
 status: active
 owner: founder / product / design / engineering
 created: 2026-09-03
-last_verified: 2026-09-03
+last_verified: 2026-09-04
 expires: 2026-10-03
 why_new: Preserves the object-page design handoff and its unresolved engineering decisions without promoting design fixtures into canonical runtime authority.
 source_of_truth_for: []
 supersedes: []
 ---
 
-# Object Page Rebuild — Implementation Handoff (2026-09-03, rev 3)
+# Object Page Rebuild — Implementation Handoff (2026-09-03, rev 4)
 
-**Status:** design handoff from the Claude Design project *Vesper — Entity Object Handoff Lab* (`dd48304b`), boards 01–14. Rev 3: **board 14 is the page** (founder, 2026-09-03: "probably the best we have so far"); §2 is rewritten to it. Rev 2's rulings (§0) still hold. The entity-resolution brief's Part I rules (identity, privacy, source use, no Take on open) stay locked. Non-canonical until diffed into canon.
+**Status:** design handoff from the Claude Design project *Vesper — Entity Object Handoff Lab* (`dd48304b`), reorganised 09-03: boards 00–07 working set (**06 = the page**), Z1–Z5 archive. Rev 4 records the later photography-or-nothing ruling and resolves the board renumbering. Rev 2's rulings (§0) still hold. The entity-resolution brief's Part I rules (identity, privacy, source use, no Take on open) stay locked. Non-canonical until diffed into canon.
 
 ## 0. Rulings of 2026-09-03 (founder, in chat)
 
 1. **Seed identity, not opinion.** Seed lightweight canonical entities broadly — name, kind, coordinates, address, provider ids — from open datasets (Foursquare OS Places, Overture, OpenStreetMap; never Google). "No backfill" in the brief was a fence around one engineering slice, not product law. The named cost is dedupe: two sources for one place must become one `EntityRef` before pins can land on it.
 2. **Web search on demand, never on the read path.** Opening a page queues research for that one place (the person acted, so this is not backfill). The result lands seconds to a minute later as a persisted, sourced brief with an as-of, cached for everyone, refreshed on a TTL. It describes; it does not judge. The provider-only row becomes the long tail; the brief's three destinations collapse to **known / matched / made**.
 3. **The interpretation is a composition.** One paragraph block in Vesper's voice built from: the cached web brief (LLM); Vesper's dossier or angle when one touches the place (governed, optional input; the only source of a verdict); and *today* (deterministic, per viewer, no model): open-until with source and as-of, your keep and line, friends' lines by grant, whether it is in tonight's Occasion. **Cite, never absorb:** friends' words appear verbatim, attributed; today-facts and quotes are injected by code, not generated. No inferred taste, ever. This retires the stored-Take-per-(entity, mode) model and its mode-key defect.
-4. **The plate, square, and one blob.** Adopt board 03's plate with the riso illustration full-bleed at the top and **square corners**. No sections: the page is the plate, the name, **one readable body of generated text split into short paragraphs**, a strip of faces for who has been, the verbs as text, the metadata rows, stop. Sections were "too messy"; board 08 (restyled sections) was rejected, board 09/10 (the blob) accepted.
+4. **The plate, square, and one blob.** Adopt the plate full-bleed at the top with **square corners**. **Imagery ruling (later 09-03): a photograph or nothing — no riso, no illustration, no stock.** A friend's photo appears only behind her mark. No sections: the page is the plate, the name, **one readable body of generated text split into short paragraphs**, a strip of faces for who has been, the verbs as text, the metadata rows, stop. Sections were "too messy"; the restyled-sections board was rejected, and the blob board was accepted (both retained in the Z archive).
 5. **No "Add to trip".** The trip picker / day picker / review sheet is the travel-app grammar and does not belong on the object page. Verbs: **Keep** (top bar; a kept place is the pin) · **Ask Vesper** (Chat) · **Leave for someone** (the directed act; the dark addressed-handoff) · **Tonight?** only while an Occasion is live on Home. No primary button. The in-plan state becomes a sentence in the body ("it's in tonight"), not a strip.
 6. **Citations inline, mixed.** The body cites the way a good answer does: small inline markers after the sentence they support, mixing web sources and people — `[1] [2]` for the web, a face for a friend, an umber face for you — with a sources line under the body listing them. A marker opens its source (the page, or the friend's line verbatim with its grant).
+
+**Execution:** the agent-ready brief is `docs/working/object-page-rebuild/build-brief-2026-09-03.md` with `fixtures.json` beside it (token map, components, contracts, ranker table, composition template, state machines, acceptance tests, PR steps). This document remains the *why*.
 
 ## 1. What is being replaced
 
 Three implementations of one object: the bespoke venue route (18 render units, 4 action ladders), `EntityObjectPage` (site only; no verbs, no hours), `ExperienceDetail` (rail last, no status, no not-found). Accommodation stays outside by decision. The rebuild is one page component for venue · site · experience · neighbourhood-as-entity · spot, with the container page sharing chrome and carrying the map as its hero.
 
-## 2. The page (board 14) — the spec
+## 2. The page (board 06) — the spec
 
 ```
-plate        your kept photo if you have one → a permitted provider photo → the riso illustration; full-bleed, square corners
+plate        a photograph or nothing: your kept photo → a permitted provider photo fetched live with its credit → NO plate (title under a warm bar). Never an illustration, stock, or a gallery. Containers and spots use Vesper's map as the plate
 top bar      back · Keep (bookmark) · share  (share absent on an owner-private shell)
 kicker       CUISINE/KIND · TOWN   (town is the door to the container page)
 name         System Sans 600 24/27
@@ -57,7 +59,7 @@ end          paper
 
 **Rules that survive from the law (board 02):** each input has one owner; absent stays absent; nothing generated on the read path; the sparse page ends above the fold; removing one input removes exactly its sentences and its marker. Today-facts and quotes are injected verbatim by code, never by the model; markers are attached by the code that placed the sentence.
 
-**Rejected on the way here (kept as record):** board 08 (restyled sections), board 13's refinements (the founder preferred board 12's variant 2 as the base), the map strip on the entity page, "Add to trip".
+**Rejected on the way here (kept as record):** the restyled-sections and refinement boards in the Z archive, the map strip on the entity page, "Add to trip".
 
 ## 3. Inputs → wire
 
@@ -75,7 +77,7 @@ end          paper
 
 **Keep:** `ObjectPageShell` chrome (plate geometry now square), `SpotTopBar` (Save/Keep = reference verb; share constrained on owner-private), `ObjectPageStateShell`, `StayLocationMap` with `mapSurface` (for the instrument top), the title register (`objectTitle` sans 600 24/27), `PlaceShareOwnerSheet`.
 
-**New:** `ObjectBody` (paragraphs + inline citation markers + sources) · `PresenceByline` · `FactPair` + `FactRanker` (the table above) · `ClosingRow` · `WhereRow` (address + snippet + directions handoff) · `InstrumentTop` (sparse hero fallback) · `CandidateResolvingRow` · `OriginStopCard` (retryable / honest) · `SpotPage` admission · `ProvenanceLine` · the research job + cache · plate source resolver (your photo → permitted photo → illustration).
+**New:** `ObjectBody` (paragraphs + inline citation markers + sources) · `PresenceByline` · `FactPair` + `FactRanker` (the table above) · `ClosingRow` · `WhereRow` (address + snippet + directions handoff) · `InstrumentTop` (sparse hero fallback) · `CandidateResolvingRow` · `OriginStopCard` (retryable / honest) · `SpotPage` admission · `ProvenanceLine` · the research job + cache · plate source resolver (your photo → permitted provider photo with credit → none).
 
 **Delete from the page:** `SpotPlanningRail` and the trip/day/review ladder, `ItineraryStopStrip`, `WhyForYouCallout` and its route param, `OrderSkip`, the `Details` drawer, `WorldSection`, `AskVesperBlock` disc, `SpotTake` (streaming personal Take), the one-photo scroller, `CatalogEvidenceDisclosure` from the ordinary path, `EntityInterpretationBlock` (unwired; superseded by the composition).
 
@@ -100,4 +102,4 @@ end          paper
 
 ## 7. Fixtures and boards
 
-Hortus (real dinner; body, hours, prices fixture) · Café Aurora (brief fixture B) · Aurora Bar / Bar Aurora (C) · Museu do Azulejo (A) · Harbor Textile Archive (E) · Sorrento (container) · "The stairs at Marina Grande" (spot). Boards: 01 audit · 02 law · 03 languages · 04 kinds · 05 people slot · 06 five paths · 08 plate simplified (rejected) · 09 the blob · 10 typeset · 11 element order · 12 the pair · 13 refined (base not adopted) · **14 where + dynamic facts (the page)**. Raw code inventory: `social-aperture-generators/object-page-audit-raw.md`.
+Hortus (real dinner; body, hours, prices fixture) · Café Aurora (brief fixture B) · Aurora Bar / Bar Aurora (C) · Museu do Azulejo (A) · Harbor Textile Archive (E) · Sorrento (container) · "The stairs at Marina Grande" (spot). Boards (reorganised): 01 audit · 02 law · 03 three kinds (on the page) · 04 people slot · 05 five paths (on the page) · **06 the page** · 07 this handoff · Z1–Z5 archive (languages, blob, typeset, element order, the pair). Deleted: the restyled-sections and refinements boards. Raw code inventory: `social-aperture-generators/object-page-audit-raw.md`.

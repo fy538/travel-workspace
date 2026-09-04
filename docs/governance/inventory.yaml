@@ -159,6 +159,10 @@ overrides:
     disposition: keep_reference
     rationale: Founder design handoff with explicitly non-canonical engineering questions and fixture content.
 
+  docs/working/object-page-rebuild/build-brief-2026-09-03.md:
+    disposition: keep_reference
+    rationale: Execution-shaped object-page proposal and acceptance fixtures; proposed API and composition contracts are not yet runtime authority.
+
   docs/working/pin-as-ambient-unit-working-decision-2026-09-02.md:
     disposition: keep_reference
     rationale: Founder-accepted working exploration; privacy and multiplayer canon still govern until explicit promotion.

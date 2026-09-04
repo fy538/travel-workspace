@@ -1,0 +1,87 @@
+{
+  "$schema_note": "Design fixtures for the object page rebuild (2026-09-03). Shapes follow EntityDetailPresentation + two new inputs (research, people). All content synthetic except Hortus being the founder's real dinner; its body/hours/prices are fixture. Expected blocks assert render order and ranker output.",
+  "viewers": {
+    "arrival_sorrento_evening": { "location": { "lat": 40.6297, "lng": 14.3655, "explicit_once": true }, "local_time": "2026-08-19T19:40:00+02:00", "occasion_live": { "id": "occ_tonight", "label": "Tonight · Sorrento · 4 of you" }, "last_open_at": null, "text_scale": 1.0 },
+    "planning_brooklyn": { "location": null, "local_time": "2026-09-03T14:10:00-04:00", "occasion_live": null, "last_open_at": null, "text_scale": 1.0 },
+    "large_text": { "location": { "lat": 40.6297, "lng": 14.3655, "explicit_once": true }, "local_time": "2026-08-19T19:40:00+02:00", "occasion_live": null, "last_open_at": null, "text_scale": 1.3 }
+  },
+  "entities": {
+    "hortus": {
+      "presentation": {
+        "revision": "entity-detail-v1",
+        "entity": { "ref": { "type": "venue", "id": "fx-hortus" }, "name": "Hortus", "catalog_state": "verified", "lineage": { "neighborhood_name": null, "city_name": "Sorrento", "place_slug": "sorrento" }, "lat": 40.6255, "lng": 14.3835, "photo_urls": { "primary": "fixture://hortus-provider.jpg", "attribution": "A. Rossi via provider" }, "brief": null, "dossier_snippet": null, "status": { "operating": "open", "open_now": true, "hours": { "close": "23:00" }, "as_of": "2026-08-19T16:02:00+02:00", "sources": ["listing"] }, "display_policy": { "map_surface": "mapbox" }, "tail": { "kind": "venue", "venue_type": "restaurant", "cuisine_type": "garden restaurant", "price_range": "€€€", "price_per_person_estimate": 55, "reservation_required": true, "reservation_url": "fixture://reserve", "address": "Via Rota 20, Sorrento" } },
+        "categories": [{ "label": "Garden restaurant" }],
+        "facts": [ { "label": "Price", "value": "€€€ · about €55 a head", "source_mode": "catalog" }, { "label": "Table", "value": "Reserve on weekends", "source_mode": "catalog" } ],
+        "relationship": { "face": "lived", "saved": true, "encounter_count": 1, "last_encounter_date": "2026-08-19" },
+        "take": null,
+        "actions": ["unsave", "ask_in_chat", "open_map"]
+      },
+      "viewer_kept_photo": "fixture://hortus-yours.jpg",
+      "viewer_line": { "text": "Ask for the table under the lemons. The provolone course is the point.", "made_at": "2026-08-19", "audience": ["dana", "circle:6"] },
+      "research": { "text_paragraphs": [ "A garden restaurant on the Sorrento cliff, set among lemon trees a few streets back from the piazza. People go for the courses rather than the view, which comes free with the table.", "The kitchen runs a set sequence in the evening. The provolone course is the one the regulars talk about; the fish is whatever came in that morning, priced accordingly." ], "sources": [ { "n": 1, "title": "A Sorrento dining guide [fixture]", "url": "fixture://src1", "retrieved_at": "2026-09-01" }, { "n": 2, "title": "A food writer's column, 2026 [fixture]", "url": "fixture://src2", "retrieved_at": "2026-09-01" } ], "paragraph_sources": [[1, 2], [2]], "generated_at": "2026-09-01T10:00:00Z", "expires_at": "2026-10-01T10:00:00Z" },
+      "dossier": { "title": "Sorrento after the boats leave [fixture]", "verdict_sentence": "Book the edge table, go on a weeknight, and let them run the courses." },
+      "people": [ { "id": "ln_dana_hortus", "author": { "id": "dana", "display": "Dana", "monogram": "D" }, "grant_kind": "left_for_you", "precision": "place", "made_at": "2026-08-06", "text": "The table at the edge. Order whatever they caught, nothing else.", "photo": { "url": "fixture://dana-hortus.jpg" }, "thread_ref": null, "used_in": null, "can_take_back": false } ],
+      "situations": {
+        "arrival": { "viewer": "arrival_sorrento_evening", "expected": { "plate": "yours", "kicker": "GARDEN RESTAURANT · SORRENTO", "byline": ["D", "F"], "pair": ["open_until", "from_you"], "closing_row": ["price", "table"], "where": true, "verbs": ["Tonight?", "Ask Vesper", "Leave for someone"], "body_paragraph_jobs": ["what_it_is", "what_it_is", "reserving", "who_has_been", "what_to_do"], "markers_in_order": ["1", "2", "2", "1", "D", "F"], "uncited_paragraphs": 1 } },
+        "planning": { "viewer": "planning_brooklyn", "expected": { "pair": ["price", "table"], "closing_row": ["hours_week", "from_anchor"], "verbs": ["Ask Vesper", "Leave for someone"] } },
+        "many": { "viewer": "arrival_sorrento_evening", "people_override": [ "ln_dana_hortus", { "id": "ln_theo", "author": { "id": "theo", "display": "Theo", "monogram": "T" }, "grant_kind": "circle", "precision": "place", "made_at": "2026-07-30", "text": "Lunch is the better meal here; the terrace is empty at one.", "can_take_back": false }, { "id": "ln_nora", "author": { "id": "nora", "display": "Nora", "monogram": "N" }, "grant_kind": "circle", "precision": "place", "made_at": "2026-06-12", "text": "Skip dessert, walk to the marina for it.", "can_take_back": false } ], "expected": { "byline": ["D", "T", "N", "F"], "markers_in_order": ["1", "2", "2", "1", "D", "T", "N", "F"] } },
+        "withdrawn": { "viewer": "arrival_sorrento_evening", "people_override": [], "expected": { "byline": ["F"], "markers_in_order": ["1", "2", "2", "1", "F"], "residue_text_forbidden": ["Dana", "removed", "withdrawn"] } },
+        "blocked": { "viewer": "arrival_sorrento_evening", "people_override": ["ln_dana_hortus"], "note": "Nora's line exists server-side but the viewer blocked her: the endpoint omits it. Render must equal 'arrival'.", "expected": { "byline": ["D", "F"] } },
+        "large_text": { "viewer": "large_text", "expected": { "pair_columns": 1, "closing_row_columns": 1, "kicker_pt": 9, "body_pt": 21 } }
+      }
+    },
+    "cafe_aurora": {
+      "presentation": {
+        "revision": "entity-detail-v1",
+        "entity": { "ref": { "type": "venue", "id": "fx-cafe-aurora" }, "name": "Café Aurora", "catalog_state": "owner_provisional", "lineage": { "neighborhood_name": "Williamsburg", "city_name": "Brooklyn", "place_slug": "williamsburg" }, "lat": 40.7185, "lng": -73.9615, "photo_urls": null, "brief": null, "dossier_snippet": null, "status": { "operating": "unknown", "open_now": null, "hours": null, "as_of": null, "sources": [] }, "display_policy": { "map_surface": "provider_map", "provider": "google_places", "attribution_label": "Map data ©2026 [fixture]" }, "tail": { "kind": "venue", "venue_type": "cafe", "cuisine_type": null, "price_range": null, "reservation_required": null, "address": "Wythe Ave, Williamsburg (approx.)" } },
+        "categories": [{ "label": "Café" }],
+        "facts": [ { "label": "Details", "value": "Basic · source available", "source_mode": "catalog" } ],
+        "relationship": { "face": "new", "saved": false, "encounter_count": 0 },
+        "take": null,
+        "actions": ["save", "ask_in_chat", "open_map"]
+      },
+      "viewer_kept_photo": null,
+      "people": [],
+      "situations": {
+        "t0": { "viewer": "planning_brooklyn", "research": null, "expected": { "plate": "none", "share_visible": false, "byline": null, "pair": ["from_you_or_where", "where"], "closing_row": ["hours_not_checked", "price_unknown"], "body_paragraph_jobs": ["catalog_only", "catalog_only", "research_queued"], "markers_in_order": [], "ends_above_fold": true } },
+        "t40": { "viewer": "planning_brooklyn", "research": { "text_paragraphs": [ "A small café on the Williamsburg side, better known for its bread than its coffee, with a counter and four tables.", "Opens at seven and sells out of the morning loaf by ten; the afternoon is quiet." ], "sources": [ { "n": 1, "title": "A neighbourhood guide [fixture]", "url": "fixture://src3", "retrieved_at": "2026-09-03" }, { "n": 2, "title": "A bakery write-up, 2026 [fixture]", "url": "fixture://src4", "retrieved_at": "2026-09-03" } ], "paragraph_sources": [[1, 2], [2]], "generated_at": "2026-09-03T14:11:00-04:00", "expires_at": "2026-10-03" }, "expected": { "arrival_line": true, "unchanged_boxes": ["plate", "kicker", "name", "pair"], "markers_in_order": ["1", "2", "2"] } }
+      }
+    },
+    "aurora_bar": {
+      "presentation": {
+        "revision": "entity-detail-v1",
+        "entity": { "ref": { "type": "venue", "id": "412" }, "name": "Aurora Bar", "catalog_state": "verified", "lineage": { "neighborhood_name": "Bairro Alto", "city_name": "Lisbon", "also_listed_as": "Bar Aurora" }, "lat": 38.7139, "lng": -9.1445, "photo_urls": { "primary": "fixture://aurora-provider.jpg", "attribution": "via provider [fixture]" }, "brief": null, "dossier_snippet": null, "status": { "operating": "open", "open_now": true, "hours": null, "as_of": "2026-09-03T13:02:00Z", "sources": ["provider"] }, "display_policy": { "map_surface": "mapbox" }, "tail": { "kind": "venue", "venue_type": "bar", "price_range": "€€", "reservation_required": false } },
+        "categories": [{ "label": "Bar" }],
+        "facts": [ { "label": "Price", "value": "€€", "source_mode": "catalog" }, { "label": "Table", "value": "Walk in", "source_mode": "catalog" } ],
+        "relationship": { "face": "saved", "saved": true, "encounter_count": 0 },
+        "take": { "tier": "curator", "headline": "The back room after eleven; the front is for the queue.", "verdict": { "opinion": "worth-it", "confidence": "high" } },
+        "actions": ["unsave", "ask_in_chat", "open_map"]
+      },
+      "people": [],
+      "situations": { "matched": { "viewer": "planning_brooklyn", "expected": { "plate": "provider", "credit_line": true, "provenance_line": "ALSO LISTED AS “BAR AURORA”", "byline": ["F"], "byline_label": "You saved this", "pair": ["open", "from_you_or_price"] } } }
+    },
+    "museu_do_azulejo": {
+      "presentation": {
+        "revision": "entity-detail-v1",
+        "entity": { "ref": { "type": "site", "id": "7" }, "name": "Museu do Azulejo", "catalog_state": "verified", "lineage": { "neighborhood_name": "Xabregas", "city_name": "Lisbon" }, "lat": 38.7249, "lng": -9.1132, "photo_urls": null, "brief": { "text": "Five centuries of tile in a former convent; the chapel is the reason to go." }, "dossier_snippet": "Five centuries of tile in a former convent; the chapel is the reason to go.", "status": { "operating": "open", "open_now": true, "hours": { "close": "18:00" }, "as_of": "2026-09-03T12:38:00Z", "sources": ["provider"] }, "display_policy": { "map_surface": "mapbox" }, "tail": { "kind": "site", "site_type": "museum", "admission": "listed" } },
+        "categories": [{ "label": "Museum" }],
+        "facts": [ { "label": "Admission", "value": "Listed", "source_mode": "catalog" } ],
+        "relationship": { "face": "new", "saved": false, "encounter_count": 0 },
+        "take": null,
+        "actions": ["save", "ask_in_chat", "open_map"]
+      },
+      "people": [],
+      "situations": { "known": { "viewer": "planning_brooklyn", "expected": { "plate": "none", "pair": ["open_until", "from_anchor"], "body_paragraph_jobs": ["stable_brief_labelled", "no_one_has_been"], "sources_label": "STABLE BRIEF · FROM THE RECORD, NOT A TAKE" } } }
+    },
+    "harbor_textile_archive": { "candidate_only": true, "external_ref": { "provider": "google_places", "external_id": "fx-harbor" }, "entity_type_hint": "site", "expected": { "resolution": "conflict_unsupported", "origin_card": "honest_stop", "retry_button": false } },
+    "sorrento_container": {
+      "kind": "container", "name": "Sorrento", "plate": "map", "pins": ["ln_dana_hortus", "ln_dana_marina"], "kept": ["fx-hortus", "fx-boat-820"],
+      "situations": { "arrival": { "viewer": "arrival_sorrento_evening", "expected": { "pair": ["now", "from_you"], "verbs": ["Open the map", "Ask Vesper", "Read the dossier"], "byline_label": "Dana left two things here; you kept two" } } }
+    },
+    "spot_stairs": {
+      "kind": "spot", "name": "The stairs at Marina Grande", "maker": "dana", "coords_source": "photo", "lat": 40.6297, "lng": 14.3655, "made_at": "2026-08-06",
+      "line": { "id": "ln_dana_marina", "text": "Go before nine. After that the whole cliff comes down the stairs and the water is just backs.", "grant_kind": "circle", "precision": "place" },
+      "situations": { "arrival": { "viewer": "arrival_sorrento_evening", "expected": { "plate": "map", "pair": ["from_you", "where_from_photo"], "verbs": ["Keep for me", "Reply"], "closing_row": ["seen_by", "hours_not_a_thing"] } } }
+    }
+  }
+}
