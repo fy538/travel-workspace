@@ -659,6 +659,22 @@ The next implementation round should do the following in order:
 10. Promote to the unified internal rehearsal only after cross-root and native
     gates pass.
 
+### 11. Execution note — 2026-09-04
+
+Items 1–2 are now executable in the backend HPL manifest and compact snapshot.
+The existing four-root compiler supplies the first owner worlds; HPL-05 is the
+negative sparse oracle, and HPL-06 preserves object identity across a canonical
+correction. The native local preflight and rollout resolver require Home v2,
+governed Places, and Life v1 together before reporting a three-root rehearsal.
+HPL-04 also preserves viewer-relative group authority in Life while retaining
+private records as private.
+
+Items 3–10 remain deliberately open: the manifest is not real-account value,
+active-seat arbitration, a complete Places result-set proof, a production Life
+corpus, a Return generator, causal withdrawal, native device evidence, or
+cohort readiness. The next surface package should consume these worlds rather
+than grow another fixture or owner store.
+
 ## 12. Verification commands and evidence
 
 Every cross-repository API change follows backend -> OpenAPI -> app order.
