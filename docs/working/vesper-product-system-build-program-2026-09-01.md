@@ -144,8 +144,9 @@ the owner adapter, and rejects partial exact scope and audience widening.
 Its focused suite passes **392 tests**; the standard full backend run completed
 with **20,464 passes and six inherited failures**, covering both handoff and
 receipt repairs. S0AL fixes the five stale research fixtures without changing
-runtime behavior; a fresh full run is active in session **39164**. The orphan
-Atlas handler audit and broader P0 convergence remain unresolved.
+runtime behavior; the completed standard full run reports **20,471 passed and
+one failed** (the orphan Atlas handler audit). Broader P0 convergence remains
+unresolved. S0AM's provider owner-read repair postdates that run.
 S0AK traces the remaining group receipt path through the real producer,
 request compiler, and owner reader. It is currently rejected, not shipped.
 The proposed shared read-grant resolution below requires explicit approval;
@@ -3886,9 +3887,9 @@ acceptance is claimed.
 
 The follow-up receipt audit found missing exact-target validation and a
 creation-time-only envelope revision; S0AJ below repairs those paths and the
-adapter's missing membership enforcement. Provider-status still needs its own
-owner-boundary review. P0–P7, the pending shared timing-model approval, and the
-Chat/Life surface hold remain unchanged.
+adapter's missing membership enforcement. S0AM records the subsequent bounded
+provider-status owner-read repair and remaining limits. P0–P7, the pending
+shared timing-model approval, and the Chat/Life surface hold remain unchanged.
 
 ### S0AJ — Receipt readback is exact, state-sensitive, and scope-checked
 
@@ -3948,8 +3949,8 @@ beside the singular receipt scope. That is not yet a complete canonical grant
 handoff for the group path; the current tests certify private Home receipt
 identity and existing viewer membership, not group receipt admission end to
 end. Resolve that audience/projection seam explicitly rather than accepting
-an arbitrary Trip ID as a grant. Provider-status owner readback still needs
-its separate revision, visibility, and lifecycle review.
+an arbitrary Trip ID as a grant. S0AM adds provider-status revision, visibility,
+and lifecycle checks without implementing the pending shared grant resolver.
 
 No native acceptance or model-authored editorial portfolio is claimed here.
 The local API still predates these backend repairs. Shared timing-model
@@ -4060,10 +4061,11 @@ Evidence:
 - Combined research and composed-card API coverage: **28 passed**
   (`/tmp/vesper-lazy-fixture-integration.log`). Ruff, formatting, whitespace,
   and applicable commit gates pass.
-- Fresh standard full regression started on the committed test tree in
-  session **39164**, logged at `/tmp/vesper-baseline-fixture-backend.log`.
-  Collect it without restarting. Do not declare the full suite green from
-  the focused result.
+- The standard full regression completed in session **39164**, logged at
+  `/tmp/vesper-baseline-fixture-backend.log`: **20,471 passed, one failed,
+  30 skipped, 56 xpassed, and 1,325 deselected** in 426.57 seconds. All five
+  fixture failures are cleared in the full run; the one remaining failure
+  is `test_audit_returns_no_dead_handlers`. This predates S0AM's provider code.
 
 No production source, worker policy, prompt, API shape, schema, Chat/Life
 surface, writer, or external state changed. The remaining known broad-suite
@@ -4072,3 +4074,64 @@ and its unit tests remain, but no production caller was found. It is not
 allowlisted, suppressed, or rewired merely to pass the audit; its disposition
 belongs to the held Chat-related work. Shared read-grant and timing-model
 approval remain outstanding. P0 and the complete product goal remain open.
+
+### S0AM — Provider readback binds canonical state and current evidence
+
+Backend `0972614fb` replaces the consequence adapter's unqualified provider
+history read with a bounded status snapshot. Previously it chose the first
+history row, ignored its expiry, copied the caller's requested Commitment
+revision, and fingerprinted the returned rows without validating current
+owner state.
+
+`read_commitment_provider_status` now reads the current Commitment revision,
+visibility, provider state, and most recently recorded matching evidence in
+one participant-scoped SQL query. The evidence must match both the canonical
+provider state and provider reference. The reference participates only in the
+database comparison; raw provider identifiers do not leave this projection.
+The separate provider-history API is unchanged.
+
+The owner adapter rejects a missing/wrong owner, stale requested revision,
+unsupported private-to-shared/public disclosure, mismatched evidence, invalid
+or future timestamps, and expired evidence. Returned owner coordinates carry
+the actual revision. The envelope carries the supporting evidence's expiry;
+null expiry stays unspecified rather than acquiring an invented lifetime.
+The query does not filter expired evidence before selecting the latest match:
+an expired latest observation cannot revive an older matching confirmation.
+
+This is a bounded read adapter repair using existing tables and membership
+rules. No shared model, database schema, provider writer, execution task,
+credential, API response shape, prompt, or serving default changed. It does
+not implement the pending read-grant resolver or permit wider reuse.
+
+Evidence:
+
+- **12 provider-read regressions failed before the adapter change**, covering
+  expiry/clock validity, stale revisions, wrong owners, state disagreement,
+  preserved canonical revision/expiry, and independent peer reads
+  (`/tmp/vesper-provider-owner-red.log`).
+- **407 focused tests pass**, including final SQL-shape checks, absent access
+  or evidence, null expiry, and denial of private disclosure despite a supplied
+  grant (`/tmp/vesper-provider-owner-focused.log`). The portfolio test uses
+  separate Commitment identities and remains deterministic under concurrency.
+- PostgreSQL first executed the query in read-only mode against the explicit
+  local QA database. A subsequent transaction-scoped fixture verified actual
+  lateral-query behavior: latest expired evidence stays selected, the owner
+  revision survives, an outsider sees no row, a different provider reference
+  yields no supporting evidence, and raw provider references remain absent.
+  The entire fixture transaction was rolled back; no fixture data was retained
+  (`/tmp/vesper-provider-query-smoke.log`). No provider call was made.
+- Ruff, formatting, import boundaries, whitespace, and applicable backend
+  commit gates pass. The backend worktree is clean after the commit.
+- A fresh standard full backend run is active in session **74006**, logged at
+  `/tmp/vesper-provider-owner-backend.log`. Collect it without duplication.
+  The preceding 20,471-pass/one-failure result predates this production change.
+
+Limits remain explicit. Matching evidence is not a persisted per-revision
+event link; comprehensive callback-ordering and multi-provider reconciliation
+still belong to the provider/execution owners. The existing coarse readback
+status mapping is unchanged, including conservative unknowns for provider
+states it cannot express precisely. Provider confirmation does not prove
+attendance, Occurrence, completion of the whole Plan, or personal Outcome.
+Shared read authorization still requires the S0AK review. The local API has
+not been restarted onto this code, and no new native or production promotion
+is claimed. P0–P7 and the Chat/Life hold remain intact.
