@@ -493,7 +493,7 @@ Completed implementation packages in this lane:
 | E5 | Explicit source metadata write-back; stale idempotency replay refresh; page-artifact worker gate; fail-closed global budget, atomic queue claim and abandoned-lease recovery | `travel-agent:e9d89fc0d`, `350e5f931`, `5eee43f31`, `f2a6d846a`, `83583a42d`, `0bd02d8da`, `97ee0019f`, `ea940a044` |
 | E6 | Generated mobile status contract; centralized research state reducer; stale content age label; status-error recovery copy and tests; stable locale metadata formatting | `travel-app:9904f3411`, `9abfc997d`, `462d56a0d`, `ce504cfa9`, `71f154151` |
 | Contract | OpenAPI snapshots, active projection, generated schema, identity seams and schema bridge are synchronized | `workspace:93ea30e` |
-| E10 (withholding slice) | Chat attachment snapshots are explicitly catalog-only and tested to omit relationship, research and viewer identity | `travel-agent:422a5f6c8` |
+| E10 (later-consumer slice) | Real PostgreSQL second-occasion loop closure changes candidate choice from a prior explicit outcome, then reopens after correction and withholds on changed roster/occasion; chat attachment snapshots remain catalog-only | `travel-agent:18b71b9f7`, `422a5f6c8` |
 
 Validation recorded for this continuation:
 
@@ -501,6 +501,14 @@ Validation recorded for this continuation:
   367 facade exports classified).
 - Backend focused entity/research suites pass, including the live PostgreSQL
   relationship continuity test and queue lifecycle tests.
+- The real PostgreSQL second-occasion loop-closure proof passes independently
+  with the repository virtualenv (`.venv/bin/pytest
+  tests/scenarios/test_micro_journey_loop_closure.py -q`: 5 passed). It
+  demonstrates a later decision changing from a prior `good_once` outcome,
+  reopening after correction, and withholding under changed roster/occasion
+  conditions. The ambient Homebrew pytest lacks the optional `openai` package
+  needed only while constructing that full HTTP scenario harness, so that
+  runner mismatch is recorded rather than treated as a product failure.
 - Mobile TypeScript, schema bridge and object-page projection tests pass.
 - The touched mobile files also pass the date-locale convention test after
   replacing implicit device-locale formatting with the app's stable `en-US`
