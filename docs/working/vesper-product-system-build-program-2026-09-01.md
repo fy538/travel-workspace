@@ -159,6 +159,10 @@ audit. S0AP separates Places feed rendering, viewport bookkeeping, editorial
 navigation, and the explicit location action; all Home-surface file-size gates
 now pass without raising the previous limits. Broader app baseline and owner-
 query-key convergence remain open.
+S0AQ binds Home/Places action, repair, and receipt callbacks to their originating
+account session and separates verified owner completion from failed projection
+refresh. It preserves same-account global Undo across navigation without
+promoting consequence families or certifying native account switching.
 S0AK traces the remaining group receipt path through the real producer,
 request compiler, and owner reader. It is currently rejected, not shipped.
 The proposed shared read-grant resolution below requires explicit approval;
@@ -4361,3 +4365,75 @@ This refactor does not close the outstanding shared time/read-grant approvals,
 full real-account editorial acceptance, production auth parity, or the broader
 app baseline. The local API process remains on its earlier backend version;
 these device checks cannot promote the newer backend owner/history repairs.
+
+### S0AQ — Root consequences retain account and readback identity
+
+Investigation of the Home/Places action path found a shared gap beneath both
+surfaces: `useRootConsequenceActions` accepted retained confirmation/Retry/Undo
+callbacks without checking the originating account session. Delayed results
+could invalidate the newly active account's caches and publish a stale receipt.
+The network gate checks offline state, not account lifetime. A second gap put
+projection refresh inside the action failure path, so refresh rejection could
+turn already verified owner completion into an unconfirmed-write Retry.
+
+App commit `120abb3a7` makes the shared data facade capture the authenticated
+account key and existing account-teardown revision. A session-bound guard runs before queuing, inside
+the mutation's transport callback, and after asynchronous owner/refresh results.
+Account changes, A -> B -> A round trips, and teardown invalidate old closures.
+An abandoned account returns no resolution to the root, preventing those late
+results from earning `acted` through the existing Home/Places callbacks. Each
+session holds its own in-flight lock, so an old completion cannot unlock a new
+account's operation. This is local lifetime fencing, not a new permission model.
+
+The server still receives only its opaque consequence or repair grant; the
+guard function is an internal mutation variable, not a wire field. Owner
+recipient, revision, expiry, and canonical readback checks remain unchanged.
+Already dispatched server work is not claimed to be cancelled.
+
+Projection reconciliation is now best-effort and separate from owner outcome.
+Verified actions and repairs retain truthful completion and eligible Undo even
+when refresh fails, with an explicit refresh note. They no longer offer a
+write Retry merely because a read-model refresh rejected. Stale-grant and
+missing-grant failures likewise cannot claim that refresh succeeded when it
+failed. Existing unknown/unverified and rejected owner states remain distinct
+from success.
+
+Navigation alone does not invalidate an already submitted operation or its
+global Undo. Same-account readback, refresh, and repair can complete after the
+originating screen unmounts. In contrast, abandoning an initial confirmation
+within the same account is a separate surface-lifetime concern; this increment
+does not claim to solve native dialog dismissal or that entire interaction.
+The existing app parity document records these responsibilities.
+
+Validation:
+
+- **Six regressions failed before the repair**
+  (`/tmp/vesper-consequence-session-red.log`). The final consequence suite has
+  **20 passing cases**, including dispatch-time teardown, unauthenticated
+  dispatch, old-account success/failure, stale Undo/Retry, account changes
+  during refresh, delayed repair, same-account Undo after unmount, verified
+  action/repair with failed refresh, and overlapping old/new session locks.
+- The broader Home/Places, Source inspection, and teardown run passes
+  **33 suites / 295 tests** (`/tmp/vesper-consequence-session-regression.log`).
+  Existing root tests still distinguish opened from owner-verified acted.
+- `verify:fast`, focused lint, application and contract-test typechecks,
+  whitespace, and applicable commit gates pass. The direct mock/real parity
+  script passes **161 tests** plus schema/projection freshness and interface
+  parity (`/tmp/vesper-consequence-session-parity.log`). This is not a claim
+  that the separate query-key ownership or whole-app baseline is green.
+- The **four existing FastAPI consequence/repair endpoint tests pass**, covering
+  default-off behavior, opaque-grant input, authenticated recipient binding,
+  and owner readback output (`/tmp/vesper-consequence-session-api.log`). These
+  use in-process route tests with substituted owner services, not production
+  actions or a new multi-account native certification.
+- Real-local native preflight and **Home -> existing saved Place -> same Home**
+  both pass (`/tmp/vesper-consequence-session-native.2MfM2Z`). This reuses the
+  previously inspected canonical QA Save without provisioning or unsaving.
+  It verifies continued shell integration against local API `:8765`, AI/web
+  OFF, not the newly repaired account-switch/Undo race on a device. No mode
+  change was needed; the simulator remains real-local.
+
+No backend code, shared model, OpenAPI shape, Chat/Life surface, serving flag,
+or family activation changed. The Home/Places multi-account mutation, repair,
+restart, and native dialog portfolio remains a release gate, not inferred from
+these deterministic lifecycle tests.
