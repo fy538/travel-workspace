@@ -170,3 +170,29 @@ No catalog backfill, research refresh, provider lookup, or fixture migration
 was run. Full native visual evidence for the new renderer remains open because
 the captured Places run used the default-off feature flag and pre-follow-on
 commit SHA.
+
+## Contract and smoke follow-on — 2026-09-04
+
+The follow-on gates and boundary regressions are now characterized on local
+`main`:
+
+- Travel Agent `f203814b7` — route tests assert that public research briefs
+  use a short shared cache while owner-provisional reads remain private and
+  `no-store`.
+- Travel App `91f077670` — site and venue smoke mocks explicitly model an
+  absent v2 presentation read, preserving the sparse 404 path instead of
+  relying on an accidental mock shape.
+- Travel App `f5243fa82` — the hand-typed research-brief alias is registered
+  in the schema-bridge manifest; no API surface was expanded by the manifest
+  entry.
+
+Verification after these commits: backend entity route/research tests (25)
+and the focused entity research/field/identity suite (42) pass; mobile
+typecheck, object projection tests (8), and site/venue smoke tests (37) pass;
+the static Places QA gates pass; and `make contract-check` passes (574
+complete-snapshot paths, 439 active-mobile paths, generated types current,
+canonical place identity seams green, and 363 facade exports covered by the
+schema bridge). No catalog backfill, research refresh, provider lookup, or
+fixture migration was run. Native visual evidence for the guarded renderer
+remains an explicit follow-up because the earlier capture used the default-off
+flag and the current installed internal binary may need a rebuild.
