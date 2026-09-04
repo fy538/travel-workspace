@@ -493,6 +493,7 @@ Completed implementation packages in this lane:
 | E5 | Explicit source metadata write-back; stale idempotency replay refresh; page-artifact worker gate; fail-closed global budget, atomic queue claim and abandoned-lease recovery | `travel-agent:e9d89fc0d`, `350e5f931`, `5eee43f31`, `f2a6d846a`, `83583a42d`, `0bd02d8da`, `97ee0019f`, `ea940a044` |
 | E6 | Generated mobile status contract; centralized research state reducer; stale content age label; status-error recovery copy and tests | `travel-app:9904f3411`, `9abfc997d`, `462d56a0d`, `ce504cfa9` |
 | Contract | OpenAPI snapshots, active projection, generated schema, identity seams and schema bridge are synchronized | `workspace:93ea30e` |
+| E10 (withholding slice) | Chat attachment snapshots are explicitly catalog-only and tested to omit relationship, research and viewer identity | `travel-agent:422a5f6c8` |
 
 Validation recorded for this continuation:
 
