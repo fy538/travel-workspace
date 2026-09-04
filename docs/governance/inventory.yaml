@@ -1049,6 +1049,10 @@ overrides:
     disposition: keep_reference
     rationale: Active Life-root production spec in progress on the parallel design track.
 
+  docs/working/claude-code-design-entity-resolution-object-page-handoff-2026-09-02.md:
+    disposition: keep_reference
+    rationale: Preserved design-lane handoff for candidate resolution and entity object pages; historical implementation limits must be checked against the consolidated code.
+
   docs/working/four-root-continuity-motion-2026-08-29.md:
     disposition: keep_reference
     rationale: Proposed continuity-motion patterns 9-12 cited by the kernel authority map.
