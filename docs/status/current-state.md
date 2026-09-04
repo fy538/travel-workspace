@@ -3,7 +3,7 @@ doc_type: current_status
 status: active
 owner: engineering
 created: 2026-07-09
-last_verified: 2026-09-02
+last_verified: 2026-09-04
 why_new: Replace duplicated prose scorecards with one generated view of executable registries.
 supersedes: []
 source_of_truth_for: [cross-repo-current-state-summary]
@@ -138,6 +138,31 @@ evidence, not release evidence: clean dogfood revisions, two real signed-in
 accounts, physical-device observations, degraded and negative probes, and a
 passing machine-audited release artifact remain required. The procedure is in
 the [cross-family rehearsal runbook](../working/lived-experience-cross-family-rehearsal-runbook-2026-09-02.md).
+
+### Home · Places · Life acceptance world — 2026-09-04
+
+The integrated productization lane now has an additive HPL-01–HPL-06 scenario
+manifest (`travel-agent` commit `abf7d6bc1`). Each world carries one represented
+clock, two viewer identities, explicit owner revisions, Source and grant refs,
+and expected Home, Places, and Life seats. The manifest compiles the existing
+Home/Places rehearsal graph through the Life v1 adapter; it does not seed a
+second store or claim real-account evidence.
+
+The Life adapter preserves viewer-safe multiplayer authority for shared
+occasion-linked plans, occasions, outcomes, and commitments (`travel-agent`
+commit `d33a4f42f`), including group audience, an explicit occasion grant, and
+attributed member owners across supported lenses. Causal withdrawal, complete
+correction repair, and a production shared corpus remain open.
+
+The internal native preflight and product-system resolver now require Life v1
+alongside Home v2 and governed Places before reporting a governed three-root
+rehearsal (`travel-app` commits `09931b20e` and `1daafb8fc`). The Life root and
+four-root shell remain default-off; compatibility and public posture are
+unchanged. This is rollout integrity and deterministic fixture evidence, not
+device, real-data, visual, or release evidence. Active-seat arbitration,
+real-owner Home value, Places scoped result-set closure, Life corpus/dossiers,
+native matrix, and cohort gates remain pending per the [Home, Places, and Life
+Productization Program](../working/home-places-life-productization-program-2026-09-04.md).
 
 The local cross-family path now also executes through canonical judgment and
 owned root treatment rather than stopping at fixture creation. Shared Plan
