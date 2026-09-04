@@ -491,7 +491,7 @@ Completed implementation packages in this lane:
 | E1 | PostgreSQL two-member continuity test: shared occurrence/identity remains equal while private verdicts differ by viewer | `travel-agent:b1f5a9fcf` |
 | E4 | Viewer-safe lifecycle endpoint; completed status requires a readable brief; experience/provisional requests remain unavailable | `travel-agent:4f018f2f0` |
 | E5 | Explicit source metadata write-back; stale idempotency replay refresh; page-artifact worker gate; fail-closed global budget, atomic queue claim and abandoned-lease recovery | `travel-agent:e9d89fc0d`, `350e5f931`, `5eee43f31`, `f2a6d846a`, `83583a42d`, `0bd02d8da`, `97ee0019f`, `ea940a044` |
-| E6 | Generated mobile status contract; centralized research state reducer; stale content age label; status-error recovery copy and tests | `travel-app:9904f3411`, `9abfc997d`, `462d56a0d`, `ce504cfa9` |
+| E6 | Generated mobile status contract; centralized research state reducer; stale content age label; status-error recovery copy and tests; stable locale metadata formatting | `travel-app:9904f3411`, `9abfc997d`, `462d56a0d`, `ce504cfa9`, `71f154151` |
 | Contract | OpenAPI snapshots, active projection, generated schema, identity seams and schema bridge are synchronized | `workspace:93ea30e` |
 | E10 (withholding slice) | Chat attachment snapshots are explicitly catalog-only and tested to omit relationship, research and viewer identity | `travel-agent:422a5f6c8` |
 
@@ -502,14 +502,21 @@ Validation recorded for this continuation:
 - Backend focused entity/research suites pass, including the live PostgreSQL
   relationship continuity test and queue lifecycle tests.
 - Mobile TypeScript, schema bridge and object-page projection tests pass.
+- The touched mobile files also pass the date-locale convention test after
+  replacing implicit device-locale formatting with the app's stable `en-US`
+  locale (`travel-app:71f154151`).
 - Full offline aggregate runs are not a release pass: the backend aggregate
   still reports the pre-existing refresh-memory/Postgres-leak and dead-Atlas-
   handler failures; the frontend aggregate still reports 24 unrelated
   convention/navigation/history fixture failures. These are recorded as
   validation exclusions, not silently attributed to the entity changes.
-- Native simulator/device captures, production canary, and any backfill remain
-  intentionally outstanding; no flag was enabled and no catalog row was
-  backfilled.
+- A native Maestro attempt was made against the installed `com.fyan.vesper`
+  binary on booted iPhone 16 Pro simulator using
+  `.maestro/54b-journey-07-venue-context.yaml`; it failed before reaching the
+  entity assertions because the expected `Plans` surface was not visible.
+  This is recorded as an environment/current-build mismatch, not native
+  acceptance. Production canary and any backfill remain intentionally
+  outstanding; no flag was enabled and no catalog row was backfilled.
 
 The next unclosed gates are native state evidence, a reviewed pilot receipt,
 one later-consumer withholding proof, and explicit operational ownership. They
