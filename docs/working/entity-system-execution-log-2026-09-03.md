@@ -158,6 +158,9 @@ The guarded rebuild now has three additional, additive slices:
   request is made without an explicit validated situation request.
 - Travel App `47e63347a` — Ask Vesper handoff wired through the existing
   canonical ConversationSeed owner for site and experience pages.
+- Travel App `a95d1591d` — bounded viewer relationship copy is shared between
+  the legacy page and the rebuild, so planned/lived/saved/affinity labels do
+  not fork across object surfaces.
 - Workspace `fixture-contract-audit-2026-09-04.md` — records why the design
   fixture pack remains reference-only and which future fields are gated.
 
