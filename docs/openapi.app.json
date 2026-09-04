@@ -22798,9 +22798,18 @@
           "root-projections"
         ],
         "summary": "Get Life Root Projection V1",
-        "description": "Return the first read-only Life root over canonical graph records.\n\nThis route is intentionally additive and does not replace the legacy Atlas\nowner.  It serves the bounded Time lens only; richer lenses and Return\narbitration remain dark until their owner contracts are available.",
+        "description": "Return the first read-only Life root over canonical graph records.\n\nThis route is intentionally additive and does not replace the legacy Atlas\nowner. Each request names one lens explicitly; unsupported lenses resolve\nto an honest thin projection until their canonical owner contracts exist.",
         "operationId": "get_life_root_projection_v1_api_root_projections_v1_life_get",
         "parameters": [
+          {
+            "name": "lens",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/LifeLens",
+              "default": "time"
+            }
+          },
           {
             "name": "authorization",
             "in": "header",
@@ -53812,6 +53821,17 @@
             "type": "array",
             "maxItems": 12,
             "title": "Sources"
+          },
+          "paragraph_sources": {
+            "items": {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Paragraph Sources"
           },
           "generated_at": {
             "type": "string",
