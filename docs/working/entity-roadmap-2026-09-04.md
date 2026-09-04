@@ -481,3 +481,30 @@ Decisions to accept before the relevant execution boundary:
 The roadmap is successful when an existing place supports immediate value,
 truthful personal continuity, authorized multiplayer differences, live honesty
 and causal repair—without needing a larger catalog to make the demo work.
+
+## 15. Execution ledger — 2026-09-04 continuation
+
+Completed implementation packages in this lane:
+
+| Package | Evidence | Commit(s) |
+| --- | --- | --- |
+| E1 | PostgreSQL two-member continuity test: shared occurrence/identity remains equal while private verdicts differ by viewer | `travel-agent:b1f5a9fcf` |
+| E4 | Viewer-safe lifecycle endpoint; completed status requires a readable brief; experience/provisional requests remain unavailable | `travel-agent:4f018f2f0` |
+| E5 | Explicit source metadata write-back; stale idempotency replay refresh; page-artifact worker gate; fail-closed global budget and atomic queue claim | `travel-agent:e9d89fc0d`, `350e5f931`, `5eee43f31`, `f2a6d846a`, `83583a42d`, `0bd02d8da`, `97ee0019f` |
+| E6 | Generated mobile status contract; centralized research state reducer; stale content age label; status-error recovery copy and tests | `travel-app:9904f3411`, `9abfc997d`, `462d56a0d`, `ce504cfa9` |
+| Contract | OpenAPI snapshots, active projection, generated schema, identity seams and schema bridge are synchronized | `workspace:93ea30e` |
+
+Validation recorded for this continuation:
+
+- `make contract-check` passes (577 snapshot paths, 442 active-mobile paths,
+  367 facade exports classified).
+- Backend focused entity/research suites pass, including the live PostgreSQL
+  relationship continuity test and queue lifecycle tests.
+- Mobile TypeScript, schema bridge and object-page projection tests pass.
+- Native simulator/device captures, production canary, and any backfill remain
+  intentionally outstanding; no flag was enabled and no catalog row was
+  backfilled.
+
+The next unclosed gates are native state evidence, a reviewed pilot receipt,
+one later-consumer withholding proof, and explicit operational ownership. They
+are release gates, not reasons to enlarge the catalog now.
