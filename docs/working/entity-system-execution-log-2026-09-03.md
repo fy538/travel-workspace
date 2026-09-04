@@ -196,3 +196,28 @@ schema bridge). No catalog backfill, research refresh, provider lookup, or
 fixture migration was run. Native visual evidence for the guarded renderer
 remains an explicit follow-up because the earlier capture used the default-off
 flag and the current installed internal binary may need a rebuild.
+
+## Explicit research and people-line slices — 2026-09-04
+
+The next safe object-page boundaries are now landed on local `main`:
+
+- Travel Agent `180991b63` — gated `POST /api/me/entities/{type}/{id}/research-requests`
+  with a small idempotent request body, cache-safe response, verified catalog
+  eligibility, and reuse of the existing `research_queue`. It never runs on
+  a GET, never promotes owner-provisional shells, and leaves experience
+  queueing unsupported until that authority exists.
+- Travel App `27fa415bf` — generated request adapter, network-gated mutation,
+  stable idempotency key, and an internal-only `Read up` verb on sparse venue,
+  site, and accommodation object pages. Mock mode remains side-effect free.
+- Travel App `4c741bb63` — schema-bridge classifications for the new request
+  aliases and the previously landed people-lines response alias.
+- Workspace `60f25a9` — complete and active OpenAPI snapshots for the request
+  endpoint and response models.
+
+Verification: backend request/entity suites **32 passed**; mobile typecheck
+and focused entity hook tests pass; `make contract-check` passes with **576**
+complete-snapshot paths, **441** active-mobile paths, **1295** generated
+schemas, and **366** facade exports covered. No catalog backfill, provider
+refresh, or research worker run was performed. The queue worker remains the
+existing explicit operational owner; native visual evidence and addressed
+handoff UI are still gated follow-ups.

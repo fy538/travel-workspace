@@ -10,9 +10,9 @@ source_of_truth_for: []
 supersedes: []
 ---
 
-# Object Page Rebuild — Implementation Handoff (2026-09-03, rev 5)
+# Object Page Rebuild — Implementation Handoff (2026-09-03, rev 6)
 
-**Status:** design handoff from the Claude Design project *Vesper — Entity Object Handoff Lab* (`dd48304b`), reorganised 09-03: boards 00–07 working set (**06 = the page**), Z1–Z5 archive. Rev 5 records the first implementation slices: a guarded mobile object-page skeleton/ranker and a read-only persisted research projection. Rev 4's photography-or-nothing ruling and Rev 2's other rulings still hold. The entity-resolution brief's Part I rules (identity, privacy, source use, no Take on open) stay locked. Non-canonical until the remaining contracts are promoted.
+**Status:** design handoff from the Claude Design project *Vesper — Entity Object Handoff Lab* (`dd48304b`), reorganised 09-03: boards 00–07 working set (**06 = the page**), Z1–Z5 archive. Rev 6 records the explicit research-request boundary and viewer-scoped people-line projection alongside the guarded mobile object-page skeleton/ranker and read-only persisted research projection. Rev 4's photography-or-nothing ruling and Rev 2's other rulings still hold. The entity-resolution brief's Part I rules (identity, privacy, source use, no Take on open) stay locked. Non-canonical until the remaining contracts are promoted.
 
 ## 0. Rulings of 2026-09-03 (founder, in chat)
 
@@ -66,10 +66,10 @@ end          paper
 | Input | Reads | Change needed |
 |---|---|---|
 | Identity | `entity.name`, `ref`, `lineage`, `categories` / `venue_type` | render city when neighbourhood absent; "also listed as …" provenance line for a matched candidate |
-| Web brief | **landed read slice**: `EntityResearchBrief {text_paragraphs, sources[{number,title,url,retrieved_at}], generated_at, expires_at}` | `GET /api/entities/{type}/{id}/research` exposes completed persisted briefs only; missing stays 404. Queue/refresh remains a separately governed write boundary. |
+| Web brief | **landed read + request slices**: `EntityResearchBrief {text_paragraphs, sources[{number,title,url,retrieved_at}], generated_at, expires_at}` plus `EntityResearchRequest` | `GET /api/entities/{type}/{id}/research` exposes completed persisted briefs only; `POST /api/me/entities/{type}/{id}/research-requests` is an internal, idempotent explicit queue tap. It is disabled by default, never runs on GET, and does not support owner-provisional or experience shells. |
 | Dossier / angle | existing governed pipeline, `place_slug` link | optional input to composition; the only permitted source of a verdict |
 | Today | `status {operating, open_now, hours, as_of, sources}`, `relationship {saved, encounters, active_trip}`, your line, **people_lines[]**, tonight's Occasion | deterministic template, per viewer; unify `status.hours` / `tail.hours` |
-| People | **new**: `people_lines[] {author, grant_kind, precision, made_at, text, photo?, thread_ref?, used_in?}` resolved viewer-relative server-side (audience, block, precision) | needed before any friend appears; withdrawal recompiles the body |
+| People | **landed bounded projection**: `EntityPeopleLinesResponse {entity_ref, lines<=3 {author {id, display, monogram}, made_at, text}}` resolved viewer-relative server-side from accepted exact-place UUID handoffs | byline renders only when the relationship owner is enabled; quote/body citations, media, and mark-opened sheet remain future work |
 | Metadata rows | `status` + venue tail `cuisine_type, price_range, price_per_person_estimate, avg_duration_minutes, reservation_required` + `presentation.facts[]` with `source_mode / observed_at` | render with provenance; stop dropping it at the mapper |
 | Verbs | Occasion-live flag from Home; Chat seed; addressed-handoff create | remove itinerary ladders from the page |
 
@@ -77,17 +77,17 @@ end          paper
 
 **Keep:** `ObjectPageShell` chrome (plate geometry now square), `SpotTopBar` (Save/Keep = reference verb; share constrained on owner-private), `ObjectPageStateShell`, `StayLocationMap` with `mapSurface` (for the instrument top), the title register (`objectTitle` sans 600 24/27), `PlaceShareOwnerSheet`.
 
-**New:** `ObjectBody` (paragraphs + inline citation markers + sources) · `PresenceByline` · `FactPair` + `FactRanker` (the table above) · `ClosingRow` · `WhereRow` (address + snippet + directions handoff) · `InstrumentTop` (sparse hero fallback) · `CandidateResolvingRow` · `OriginStopCard` (retryable / honest) · `SpotPage` admission · `ProvenanceLine` · the research job + cache · plate source resolver (your photo → permitted provider photo with credit → none). The guarded mobile skeleton and deterministic ranker are now landed; the richer citation/people/read-job pieces remain gated.
+**New:** `ObjectBody` (paragraphs + inline citation markers + sources) · `PresenceByline` · `FactPair` + `FactRanker` (the table above) · `ClosingRow` · `WhereRow` (address + snippet + directions handoff) · `InstrumentTop` (sparse hero fallback) · `CandidateResolvingRow` · `OriginStopCard` (retryable / honest) · `SpotPage` admission · `ProvenanceLine` · the research job + cache · plate source resolver (your photo → permitted provider photo with credit → none). The guarded mobile skeleton, deterministic ranker, explicit research request boundary, and bounded people byline are now landed; richer citation, handoff UI, and provider-photo pieces remain gated.
 
 **Delete from the page:** `SpotPlanningRail` and the trip/day/review ladder, `ItineraryStopStrip`, `WhyForYouCallout` and its route param, `OrderSkip`, the `Details` drawer, `WorldSection`, `AskVesperBlock` disc, `SpotTake` (streaming personal Take), the one-photo scroller, `CatalogEvidenceDisclosure` from the ordinary path, `EntityInterpretationBlock` (unwired; superseded by the composition).
 
 ## 5. Sequence
 
 0. One page component; square plate; metadata rows with NOW first and provenance; text verbs. Zero new data. (Fixes buried hours, unrendered price/cuisine, three block orders.)
-1. Lightweight identity seed for one city + dedupe rule; candidate paths collapse to known / matched / made.
-2. Research job on open → `research_brief` cached; `ObjectBody` renders web + today (template) with inline markers; sparse page = three sentences.
+1. Lightweight identity seed for one city + dedupe rule; candidate paths collapse to known / matched / made. (No broad backfill is authorized in this pass.)
+2. Explicit `Read up` request → existing `research_queue` item with idempotency; `research_brief` remains cached and sparse until the worker completes. `ObjectBody` currently renders persisted paragraphs and explicit source markers only.
 3. Dossier as optional input; verdict only from it.
-4. `people_lines` API behind grants; faces in the strip; friends cited inline; the mark-opened sheet.
+4. `people_lines` API behind the UUID relationship owner; faces in the strip for exact-place addressed lines. Friends cited inline and the mark-opened sheet remain gated until their grant and UI contracts land.
 5. Spot admission (person-made places) and owner-shell promotion.
 6. Live-details check; share contract for owner-private; `map_surface` on the wire.
 
