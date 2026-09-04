@@ -3645,9 +3645,9 @@ Evidence:
   provider policy, feature default, or Chat/Life surface changed. No new native
   evidence is claimed; the owned local API has not been restarted onto this
   commit.
-- A fresh full offline backend run is active in tool session **38369**, logged
-  at `/tmp/vesper-moment-clock-backend.log`. Collect that existing process next;
-  do not restart it just because a turn ends. Collection began before the final
+- The broad run in session **38369**, logged at
+  `/tmp/vesper-moment-clock-backend.log`, is now complete; S0AF records the
+  provider-mode confounder and affected-file comparison. Collection began before the final
   naive-clock guard/test and bounded-query regression test were added; the
   focused 340-test run covers the final committed tree. A completed broad run
   must be reported with that timing limitation, not as exact final-tree proof.
@@ -3686,14 +3686,44 @@ approval under the repository instructions; approval was requested without
 blocking the independent mapping repair. Chat/Life surfaces, command writers,
 API shapes, database schema, model policy, and serving defaults are unchanged.
 
-The S0AD broad regression is still the existing live session **38369**, process
-4876, at this checkpoint. Its log is `/tmp/vesper-moment-clock-backend.log`; it
-has additional failures and must not be reported as matching the six-failure
-baseline. This invocation explicitly set `AI_MODE=off` and `WEB_SEARCH_MODE=off`,
-unlike the earlier comparison run. `tests/conftest.py` deliberately preserves
-the runner's provider modes, so that difference is a possible confounder, not
-yet a proven explanation. Collect the complete failures, classify them against
-the earlier baseline, and rerun affected tests under the standard offline
-configuration. Then run the full standard offline suite against the final tree;
-the existing process predates this mapping repair and the last S0AD tests.
-Do not start a duplicate broad run while that process is still live.
+The S0AD broad regression completed with a provider-mode confounder. S0AF below
+records its full count, the completed affected-file comparison, and the fresh
+standard-mode run of the final committed tree. Neither this earlier run nor its
+six-failure comparison is promoted to exact final-tree full-suite evidence.
+
+### S0AF — Regression configuration reconciled; final-tree full run started
+
+The completed S0AD run (`/tmp/vesper-moment-clock-backend.log`) reports **119
+failed, 20,293 passed, 30 skipped, 56 xpassed, and 1,325 deselected** in 507.05
+seconds. Its command forced `AI_MODE=off` and `WEB_SEARCH_MODE=off`. This was
+not the standard offline comparison configuration: those application policies
+short-circuit mocked provider/retry paths that ordinary unit tests deliberately
+exercise, and `tests/conftest.py` preserves the runner's initial policy.
+
+Evidence rather than a baseline waiver:
+
+- The isolated async retry success test fails with `AIProviderBlockedError`
+  under `AI_MODE=off`. With runner overrides unset, the complete async retry
+  and web-handler suites pass **41 tests** (`/tmp/vesper-provider-mode-standard.log`).
+- Every test file containing a failure in the 119-failure run was then rerun
+  under the standard offline configuration: **549 passed, six failed** in
+  193.49 seconds (`/tmp/vesper-provider-mode-affected.log`). All 113 additional
+  failures clear without changing their implementation, tests, or waivers.
+- The remaining failures are exactly the five lazy-research fixture failures
+  and dead-handler audit already recorded before the clock work. This does not
+  make those failures acceptable for release; it separates inherited debt from
+  the misconfigured comparison. Chat/Life implementation remains held.
+
+Backend documentation commit `4c6cf734b` adds the explicit standard offline
+command and the provider-policy distinction to `docs/operations/Dev Modes.md`.
+It changes no application flag, saved configuration, or running API process.
+Markers and mocks remain intended test isolation, not a blanket assertion that
+legacy dependency-leak warnings are absent.
+
+The fresh full standard offline run of the final tree is now active in tool
+session **12968**, logged at `/tmp/vesper-moment-standard-backend.log`. Command:
+`env -u AI_MODE -u WEB_SEARCH_MODE -u LLM_VCR_MODE PYTHONPATH=. .venv/bin/pytest tests/ -q -m 'not requires_postgres and not requires_api_keys'`.
+Collect this existing process next; do not run another duplicate suite while
+it is live. S0AD/S0AE's final focused **345-test** evidence remains valid, but
+the full final-tree result is still pending. Shared read-model approval also
+remains pending; no approval is inferred from automatic goal continuation.
