@@ -494,6 +494,7 @@ Completed implementation packages in this lane:
 | E6 | Generated mobile status contract; centralized research state reducer; stale content age label; status-error recovery copy and tests; stable locale metadata formatting; stale-age preservation during unknown status | `travel-app:9904f3411`, `9abfc997d`, `462d56a0d`, `ce504cfa9`, `71f154151`, `a3636e13c` |
 | Contract | OpenAPI snapshots, active projection, generated schema, identity seams and schema bridge are synchronized | `workspace:93ea30e` |
 | E10 (later-consumer slice) | Real PostgreSQL second-occasion loop closure changes candidate choice from a prior explicit outcome, then reopens after correction and withholds on changed roster/occasion; chat attachment snapshots remain catalog-only | `travel-agent:18b71b9f7`, `422a5f6c8` |
+| E9 (health receipt) | Read-only, content-free entity health report now includes queue age, retry/lease, duplicate-active, and completed-without-fresh-brief integrity metrics | `travel-agent:9f3d80959` |
 
 Validation recorded for this continuation:
 
@@ -513,6 +514,9 @@ Validation recorded for this continuation:
 - The touched mobile files also pass the date-locale convention test after
   replacing implicit device-locale formatting with the app's stable `en-US`
   locale (`travel-app:71f154151`).
+- The read-only entity health report regression passes and remains content-free
+  (`travel-agent:9f3d80959`); it reports anomaly counts without repair,
+  refresh, provider calls, or backfill.
 - Full offline aggregate runs are not a release pass: the backend aggregate
   still reports the pre-existing refresh-memory/Postgres-leak and dead-Atlas-
   handler failures; the frontend aggregate still reports 24 unrelated
