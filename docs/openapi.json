@@ -67154,6 +67154,7 @@
             "enum": [
               "already_fresh",
               "already_pending",
+              "already_failed",
               "queued",
               "ineligible"
             ],
