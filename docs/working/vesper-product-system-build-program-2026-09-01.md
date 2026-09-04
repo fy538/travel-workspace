@@ -3368,3 +3368,76 @@ Use the existing local backend rehearsal path after verifying its target,
 auth/account identity, fixture scope, and effects, or explicitly label an
 isolated renderer gallery as component evidence. No serving or rollout flag
 was changed in S0Z.
+
+### S0AA — Local real-owner rehearsal boundary — hardened, integration still open
+
+Backend `396ca213c` and app `fbfa38ffd` harden the existing real Home/Places
+Save rehearsal. The prior runner checked port 8000 but did not select a local
+API on the device; the existing `localApi` deep-link switch targets 8765.
+It also executed `.env` as shell, accepted an implicit database/account, and
+silently ignored restoration failures. Those were not safe assumptions for a
+flow whose native action removes a Save.
+
+The writer now requires an exact explicitly named local PostgreSQL database,
+rejects remote hosts and libpq routing overrides, and refuses an existing Save
+whose source, sharing, note, or rehearsal scope has been changed. A loopback
+host alone cannot distinguish a remote tunnel: verifying the actual listener
+and matching API/provisioner configuration remains an operator responsibility.
+The local listener was verified as the native PostgreSQL process, with the
+existing `vesper` database and Mara QA account, not a Fly proxy. Read-only
+inspection found the existing labelled bookshop and its untouched private Save.
+
+The runner now parses dotenv as data without replacing explicit environment
+overrides; requires `QA_ALLOW_DATABASE` and `QA_USER_ID`; uses 8765 consistently;
+and checks fresh HTTP and native account identity. A dedicated read-only dev
+preflight requires real API mode, development auth, both compiled and active
+API origins pinned to local 8765, and the complete governed-rehearsal posture.
+It runs before provisioning and before final readback. Missing named Home
+admission now fails before the UI removal instead of becoming a scroll timeout.
+Restoration failures are visible. An assertion failure is no longer retried as
+a driver disconnect merely because startup logs also contain connection noise.
+All three flows use the existing `runner` fixture metadata value; this is not a
+new fixture exemption or a claim to cover the canonical dogfood pack.
+
+For this run only, Metro was restarted with explicit internal/governed flags
+and local API/auth process overrides. The owned API process uses `AI_MODE=off`,
+`WEB_SEARCH_MODE=off`, and both background-task/LLM-loop disable flags. No `.env`,
+committed rollout default, provider serving policy, Chat, or Life implementation
+was changed. These development flags do not confer release eligibility.
+
+Evidence and remaining gaps:
+
+- 18 backend provisioner tests, 18 app guard/preflight/gallery tests, and six
+  Node runner/metadata tests pass. App typechecking, focused lint, shell syntax,
+  all three Maestro syntax checks, and all 358 flows' metadata checks pass.
+- The fresh full offline backend run finishes with **20,377 passed, six
+  failed, 30 skipped, 56 xpassed, and 1,325 deselected** in 552.18 seconds
+  (`/tmp/vesper-rehearsal-safety-backend.log`). The six failures are the same
+  five lazy-research fixture failures and one dead-handler audit already
+  recorded in the preceding baseline. No waiver or Chat/Life fix was added.
+  Documentation spine, canon budget, and all 398 living-document links pass.
+- The first native attempt in `/tmp/vesper-maestro.DLoSfu` correctly rejects
+  the still-mock device before fixture provisioning. Its diagnostic screenshot
+  was opened and shows the mock banner and refusal. It is not product evidence.
+- A later reload attempt crashes in Hermes (`EXC_BAD_ACCESS`, JavaScript
+  runtime thread); the corresponding Maestro hierarchy read errors and hangs.
+  The stuck owned driver was terminated. This identifies an observed native
+  stability problem, not its root cause or a proven code regression.
+- The subsequent preflight completes in
+  `/tmp/vesper-maestro-retry.2dQDHc/.maestro/tests/2026-09-03_202156`.
+  Native local configuration and account readiness are evidenced, not the full
+  Home-to-Place consequence/readback journey or visual acceptance.
+- The runner then stops because the real Home projection does not admit the
+  expected fixture unit. Direct owner inspection still finds the same Save;
+  it ranks first among six Saves and is within the adapter's top-four bound.
+  The API returns a live posture and a legacy-trip door, with bounded owner
+  degradations. This is not explained by the fixture falling outside recency
+  limits. Trace the candidate's exact owner-read/judgment/admission result next;
+  do not force a Save into Home or remove current gates to satisfy the flow.
+- No UI unsave was performed. Provisioning reused the existing fixture; its
+  Save identity is unchanged. No end-to-end native pass is claimed.
+
+Next: resolve the absent fixture unit against the governed selection contract,
+separately stabilize the mock-to-real native boot/reload transition, then rerun
+the complete consequence/readback lane. Neither task replaces P1's real-data
+editorial portfolio, the wider P0–P7 program, or the ongoing Chat/Life hold.
