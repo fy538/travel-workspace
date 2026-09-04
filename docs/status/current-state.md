@@ -165,8 +165,7 @@ four-root shell remain default-off; compatibility and public posture are
 unchanged. This is rollout integrity and deterministic fixture evidence, not
 device, real-data, visual, or release evidence. Active-seat arbitration,
 real-owner Home value, Places scoped result-set closure, Life production
-corpus/dossiers,
-native matrix, and cohort gates remain pending per the [Home, Places, and Life
+corpus/dossiers, native matrix, and cohort gates remain pending per the [Home, Places, and Life
 Productization Program](../working/home-places-life-productization-program-2026-09-04.md).
 
 The next bounded seams are now executable. Backend commit `1b449b38e` adds a
@@ -179,6 +178,14 @@ preserving server-owned scope through map/list transformations. These are
 read-only identity boundaries, not production dossier, active-seat, real-data,
 or full result-set composition evidence. Chat, entity implementation, and Life
 surface UI remain unchanged.
+
+The broad post-package canaries are not promotion evidence: backend recorded
+20,554 passed with two failures and one teardown error (the existing
+parallel-load bounded-read timeout expectation and unrelated dead Atlas
+handler audit), while frontend recorded 1,177 passing suites and 20 failures
+across legacy/entity/Chat/profile/navigation contracts. The HPL-focused
+backend/app suites, TypeScript, OpenAPI parity, and docs-link checks passed;
+all three repositories are clean.
 
 The local cross-family path now also executes through canonical judgment and
 owned root treatment rather than stopping at fixture creation. Shared Plan

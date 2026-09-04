@@ -732,6 +732,18 @@ For every completed package record:
 - known degradations and rollback; and
 - explicit claims that remain unproven.
 
+### Broad canary note — 2026-09-04
+
+The post-package offline canaries are recorded for context, not promotion:
+backend completed with **20,554 passed, 2 failed, 1 teardown error, 20
+skipped, and 56 expected passes**. The failures were the existing
+parallel-load bounded-read timeout expectation and the unrelated dead Atlas
+handler audit. Frontend completed with **1,177 suites passed and 20 failed
+(8,007 tests passed and 24 failed)**; the failures were in legacy/entity/Chat
+and profile/navigation contracts outside this lane. The HPL focused suites,
+TypeScript, OpenAPI parity, and docs-link checks passed. No package is
+considered release-ready from these broad results.
+
 ## 13. Stop lines
 
 - No new root, feed, universal context service, or duplicate owner.
