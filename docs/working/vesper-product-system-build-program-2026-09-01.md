@@ -122,6 +122,17 @@ red, P1's real-data exit remains open, and Chat/Life changes remain held.
 App commit `57bb8128e` additionally separates native live and future Places
 scenarios and carries the verified clock into those product flows (S0Z).
 
+September 3 follow-through: S0AB–S0AH correct Live attention suppression,
+Place editorial admission, Opening evaluation clocks, canonical Commitment
+time mapping, real-session clock isolation, and exact coordination reads.
+These are landed seam repairs, not completion of Moment or the production
+Home/Places portfolio. The clock/timing backend tree has a completed standard
+offline run with **20,413 passes and six inherited failures** (S0AF); the newer
+coordination repair has **329 focused passes**, with its full run pending
+(S0AH). Shared timing read-model approval, real-account editorial acceptance,
+native bootstrap robustness, and baseline convergence remain open. Chat/Life
+surfaces remain held.
+
 ### P0 — Stabilize and land the integrated baseline — immediate
 
 Finish convergence before adding another architecture-bearing family:
@@ -3691,7 +3702,7 @@ records its full count, the completed affected-file comparison, and the fresh
 standard-mode run of the final committed tree. Neither this earlier run nor its
 six-failure comparison is promoted to exact final-tree full-suite evidence.
 
-### S0AF — Regression configuration reconciled; final-tree full run started
+### S0AF — Regression configuration reconciled; clock/timing full run completed
 
 The completed S0AD run (`/tmp/vesper-moment-clock-backend.log`) reports **119
 failed, 20,293 passed, 30 skipped, 56 xpassed, and 1,325 deselected** in 507.05
@@ -3720,12 +3731,13 @@ It changes no application flag, saved configuration, or running API process.
 Markers and mocks remain intended test isolation, not a blanket assertion that
 legacy dependency-leak warnings are absent.
 
-The fresh full standard offline run of the final tree is now active in tool
+The fresh full standard offline run of the clock/timing tree completed in tool
 session **12968**, logged at `/tmp/vesper-moment-standard-backend.log`. Command:
 `env -u AI_MODE -u WEB_SEARCH_MODE -u LLM_VCR_MODE PYTHONPATH=. .venv/bin/pytest tests/ -q -m 'not requires_postgres and not requires_api_keys'`.
-Collect this existing process next; do not run another duplicate suite while
-it is live. S0AD/S0AE's final focused **345-test** evidence remains valid, but
-the full final-tree result is still pending. Shared read-model approval also
+Result: **20,413 passed, six failed, 30 skipped, 56 xpassed, and 1,325 deselected**
+in 463.52 seconds. The six are exactly the prior five lazy-research fixture
+failures and dead-handler audit. This closes the broad-regression uncertainty
+for S0AD/S0AE, not those inherited release failures. Shared read-model approval
 remains pending; no approval is inferred from automatic goal continuation.
 
 ### S0AG — Real sessions no longer inherit mock time
@@ -3769,7 +3781,43 @@ parity, production auth, full visual acceptance, or resolution of the earlier
 Hermes crash/second-attempt transition. RootLayout's font-timeout fallback can
 still bypass pending persona readiness; that separate bootstrap-topology seam
 needs explicit treatment rather than being declared fixed by cancellation or
-clock cleanup. The full backend standard run remains live in session **12968**
-(PID 8438 at this checkpoint), logged at `/tmp/vesper-moment-standard-backend.log`.
-Collect it without restarting. P2's shared read-model extension still awaits
-approval, and the broader P0–P7 product system remains the goal.
+clock cleanup. The full backend standard run in session **12968** has completed;
+S0AF above records its 20,413 passes and six inherited failures. P2's shared
+read-model extension still awaits approval, and the broader P0–P7 product
+system remains the goal.
+
+### S0AH — Exact coordination reads fail closed without disabling peer reads
+
+Backend `cc6774655` repairs the existing coordination owner-read boundary.
+Previously a request for several exact Plans, Occasions, or Commitments could
+silently omit unavailable targets and still report `CURRENT`; requested
+revisions were not checked. A supplied graph's viewer was also not validated.
+
+The reader now checks exact scope separately for each resource kind, rejects
+missing targets, returns `CONFLICT` for a requested revision that no longer
+matches, and rejects a graph belonging to another viewer as `UNAUTHORIZED`.
+An identical UUID in another resource kind cannot satisfy the request. Broad
+reads and exact requests without a revision retain their existing semantics.
+One failed exact coordination request carries no usable payload or represented
+references, while independent current peer requests remain usable.
+
+Evidence:
+
+- Eight new regression cases failed before implementation, recorded in
+  `/tmp/vesper-coordination-exact-red.log`.
+- The final focused suite passes **329 tests** across canonical owner reads,
+  the core owner-read executor, root projections, and attention posture
+  (`/tmp/vesper-coordination-exact-focused.log`). This includes an actual
+  registry/portfolio execution with a stale Commitment and a current peer Plan.
+- Ruff, formatting, import-boundary checks, whitespace checks, and commit
+  gates pass. No model fields, API shapes, migrations, writers, model policy,
+  Chat/Life surfaces, or serving defaults changed.
+- A fresh standard full backend regression is running in session **64944**,
+  logged at `/tmp/vesper-coordination-exact-backend.log`. Collect this process
+  without restarting it. S0AF's completed result predates this repair and is
+  not final-tree evidence for it.
+
+The local API has not been restarted onto these backend changes; no native
+acceptance is claimed for this increment. Exact timing propagation into the
+shared read models still awaits explicit approval. This closes a correctness
+gap in an existing system seam, not P2 or the overall product-system goal.
