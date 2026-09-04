@@ -166,6 +166,15 @@ promoting consequence families or certifying native account switching.
 S0AR consolidates Home/Places pre-dispatch confirmation lifetime: abandoned,
 cancelled, superseded, or expired controls cannot dispatch. That view boundary
 ends at submission, preserving S0AQ's same-account receipt and Undo behavior.
+S0AS refreshes the app baseline comparison and fixes stale audio-intake,
+Places layering, and Toast motion test contracts without changing runtime.
+Matching failing test names do not prove
+an inherited-only baseline: root-to-Chat conversation ownership and instrument
+tertiary-ink coverage have additional branch-specific violations. Their repair
+and the broader release gates remain open; do not waive them as fixture debt.
+The final complete app run passes **1,170 suites / 7,946 tests**, with
+**19 suites / 23 tests failing**, zero pending tests, and no runtime-error
+suites. P0 is not green.
 S0AK traces the remaining group receipt path through the real producer,
 request compiler, and owner reader. It is currently rejected, not shipped.
 The proposed shared read-grant resolution below requires explicit approval;
@@ -4508,3 +4517,85 @@ dialog. Native background/foreground behavior, real account switching, and the
 cross-family mutation/repair release portfolio remain open. The earlier 49/50
 navigation fixture/scroll assertions are not repaired by this work. The full
 P0–P7 objective and the shared timing/read-grant approval boundaries remain.
+
+### S0AS — Baseline comparison by failure detail, not just suite count
+
+App `6845a3c51` updates only two audio share-capture test assertions. The
+existing production caller now passes a sixth optional capture-origin argument;
+ordinary audio and Trip-scoped audio deliberately pass `undefined`. The older
+five-argument assertions failed on this branch and passed on detached local
+`main` (`9eb3d87d3`). The correction asserts absence explicitly rather than
+loosening argument matching, removing coverage, or changing intake behavior.
+The three related audio, intake-v2, and entity-photo suites pass **14 tests**
+(`/tmp/vesper-p0-audio-origin-tests.log`), and `verify:fast` passes
+(`/tmp/vesper-p0-app-verify.log`). This is test-only validation, not new native
+audio, provider, or Chat acceptance.
+
+The initial whole-app serial run terminated with **exit 139** after 146 passing
+and 20 failing suite reports, before producing its final JSON. The macOS report
+`node-2026-09-03-225535.ips` identifies that run's PID 39892, `SIGSEGV`, and V8
+garbage-collection frames. That establishes a terminal test-process crash, not
+an app-native crash diagnosis or a complete test result. A retry uses two Jest
+workers and a 384 MB idle-worker recycle limit through a command-local config;
+no repository configuration or dependency was changed.
+
+That bounded retry completed: **1,168 passed / 21 failed suites; 7,929 passed /
+24 failed tests; one passing snapshot**, with no pending tests. It exposed a
+second branch-specific stale assertion in the Places architecture contract and
+an inherited Toast mock import error. The Places test still required the feed
+to mount leaf cards directly after S0AP extracted section composition. The
+Toast test's local Reanimated mock omitted `ReduceMotion`, which the real
+shared motion presets now import. Both were rerun on detached main: Places
+passed there; Toast reproduced the same import error
+(`/tmp/vesper-p0-main-additional.json`). The complete bounded result is
+`/tmp/vesper-p0-app-bounded.json`; it predates the following test-only repair.
+
+App `24901591b` updates the Places assertion to require feed -> section -> card
+composition and checks both orchestration layers for forbidden leaf renderer
+implementations. It does not restore coupling or waive file-size budgets. The
+Toast mock now exports the matching reduced-motion enum; the production motion
+code and accessibility policy are unchanged. Four affected/adjacent suites
+pass **43 tests**, including Places exposure and workspace state
+(`/tmp/vesper-p0-test-contracts.log`). Focused lint has zero errors and the
+existing import-order warning; contract-test typechecking and commit gates
+pass. A final complete bounded run covers both committed test repairs.
+
+That final run completed on app `24901591b`: **1,170 passed / 19 failed suites;
+7,946 passed / 23 failed tests; one passing snapshot**, with zero pending tests,
+zero runtime-error suites, and no interruption in 140.202 seconds
+(`/tmp/vesper-p0-app-final.log`, `/tmp/vesper-p0-app-final.json`). All remaining
+failed test names match the detached-main comparison below; the additional
+branch violations inside two assertions still prevent an inherited-only or
+green-baseline claim. The bounded worker run avoids this run's earlier crash;
+it does not establish a fix for the underlying Node/V8 crash. The disposable
+comparison worktree was removed after read-only verification; main's source
+remains in git and the comparison reports remain in `/tmp`.
+
+For the 20 failure suites observed before that crash, a fresh detached-main
+comparison uses the same installed dependencies and current workspace contract
+directory. Its first attempt omitted `TRAVEL_WORKSPACE_DIR` and introduced
+three extra catalog-file errors; that attempt is not baseline evidence. The
+corrected run and final-branch scoped run each report **19 failed / one passed
+suites; 23 failed / 93 passed tests**, with identical failing test names
+(`/tmp/vesper-p0-main-scoped.json`, `/tmp/vesper-p0-branch-scoped.json`).
+
+Inspection of their assertion details finds two material branch deltas:
+
+| Boundary | Inherited failure | Additional branch evidence | Required disposition |
+| --- | --- | --- | --- |
+| Conversation ownership | The source scanner reports `utils/routes.ts` | `utils/rootProjectionNavigation.ts` also calls `conciergeSeed` without an explicit conversation ID or new/continue policy; the commitment destination includes an auto-send prompt | Resolve the owner/admission handoff and test unrelated-current-conversation cases when Chat-boundary work is authorized; do not add a blanket scanner exception. The existing graph-seed test proves context serialization, not conversation ownership. |
+| Tertiary text coverage | The reviewed inventory still lists the now-absent PlanBuildCard use | `app/dev/instruments-gallery.tsx` and `BasisStrip`, `DayBand`, `ProgressTrack`, and `TideCurve` add unreviewed uses | Review meaningful origin, axis, future-stage, and detail labels against the token's decorative/inactive-only contract, then validate through instrument/native design QA. Do not register all five as exempt just to pass. |
+
+The differing root-layout source dump in the control-gallery assertion is not
+an additional assertion violation: the missing gallery registration reproduces
+on both trees. Other matching failures remain debt, not waivers: conversation
+fixtures/history/group voting, the Journey 19 public-profile expectation,
+Chat material/contrast/catalog/interaction conventions, Life rows and native
+inputs, Atlas/You navigation and correction, and shared control/touch targets.
+
+The query-key ownership gate still reports **ten locations** across
+`ComposedChatCard`, `experienceGraphCollaborationActions`, and `inboundItems`.
+It stops before the chained mutation-key check; a separate invocation of the
+mutation-key check passes. Concurrent parent documentation is preserved. Chat/Life
+surfaces, held writers, backend models, serving flags, and the two outstanding
+shared-contract approval requests are unchanged. P0 remains open.
