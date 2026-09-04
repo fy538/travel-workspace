@@ -510,11 +510,14 @@ Validation recorded for this continuation:
   handler failures; the frontend aggregate still reports 24 unrelated
   convention/navigation/history fixture failures. These are recorded as
   validation exclusions, not silently attributed to the entity changes.
-- A native Maestro attempt was made against the installed `com.fyan.vesper`
-  binary on booted iPhone 16 Pro simulator using
-  `.maestro/54b-journey-07-venue-context.yaml`; it failed before reaching the
-  entity assertions because the expected `Plans` surface was not visible.
-  This is recorded as an environment/current-build mismatch, not native
+- Native Maestro attempts were made against the installed `com.fyan.vesper`
+  binary on a booted iPhone 16 Pro simulator using
+  `.maestro/54b-journey-07-venue-context.yaml`. The first run had no Metro
+  server and remained in the Expo development launcher. With Metro running,
+  the real-auth bundle reached sign-in; a mock-configured retry then hit the
+  persisted `dev.mockModeOverride=false` and produced guarded 401/profile
+  failure before the expected `Plans` surface. This is recorded as a
+  reproducible QA-environment/configuration prerequisite, not native
   acceptance. Production canary and any backfill remain intentionally
   outstanding; no flag was enabled and no catalog row was backfilled.
 
