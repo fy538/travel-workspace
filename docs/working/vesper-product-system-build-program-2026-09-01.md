@@ -163,6 +163,9 @@ S0AQ binds Home/Places action, repair, and receipt callbacks to their originatin
 account session and separates verified owner completion from failed projection
 refresh. It preserves same-account global Undo across navigation without
 promoting consequence families or certifying native account switching.
+S0AR consolidates Home/Places pre-dispatch confirmation lifetime: abandoned,
+cancelled, superseded, or expired controls cannot dispatch. That view boundary
+ends at submission, preserving S0AQ's same-account receipt and Undo behavior.
 S0AK traces the remaining group receipt path through the real producer,
 request compiler, and owner reader. It is currently rejected, not shipped.
 The proposed shared read-grant resolution below requires explicit approval;
@@ -4437,3 +4440,71 @@ No backend code, shared model, OpenAPI shape, Chat/Life surface, serving flag,
 or family activation changed. The Home/Places multi-account mutation, repair,
 restart, and native dialog portfolio remains a release gate, not inferred from
 these deterministic lifecycle tests.
+
+### S0AR — One Home/Places confirmation lifetime before owner dispatch
+
+The duplicated Home and Places `Alert` handlers had no effective cancellation,
+unmount, navigation-round-trip, or action-supersession fence. Five Home
+regressions reproduced execution through retained Continue callbacks after each
+of those transitions. S0AQ's account guard is necessary but cannot distinguish
+two different interaction lifetimes in the same account.
+
+App commit `ab1bfb84f` makes both roots use `useRootConsequenceConfirmation`.
+It preserves the existing
+dialog copy and confirmation requirement while binding the pending request to
+the mounted view, navigation revision, account-teardown revision, root/viewer,
+projection identity, and exact represented action. Before dispatch, the named
+unit must still exist uniquely with the same audience and resource revisions,
+the action's fields must still match, and any delivery/treatment expiry must
+remain usable. These are local presentation checks; opaque-grant authorization
+and final canonical truth remain server-owned.
+
+Cancel, OS dismissal, unmount, or departure disarms the request. A removed or
+changed action cannot revive the old dialog when a later render restores its
+previous value. Repeated prompts do not stack; Continue consumes the request
+before invoking the data facade. Conversely, an unrelated projection revision
+does not invalidate an otherwise unchanged action. A new deliberate opening
+after navigation creates a new confirmation, not continuation of an abandoned
+one. Previously retained Cancel callbacks cannot dismiss that newer request.
+
+Once dispatched, navigation and unmount do not pretend to cancel server work.
+The data facade retains S0AQ's account-scoped owner readback, refresh, and global
+Undo. A verified result records the original causal treatment once, with an
+additional teardown check before emitting `acted`. Home and Places no longer
+maintain separate implementations of this transition.
+
+Validation:
+
+- **Five Home regressions failed before repair** through actual retained
+  Continue callbacks (`/tmp/vesper-confirmation-lifetime-red.log`).
+- The shared hook has **36 passing cases**, split evenly across Home and
+  Places: Cancel/dismissal, unmount, navigation round trip, account teardown,
+  removed/changed grants and targets, viewer change, expiry, refreshed evidence
+  after original expiry, action removal/reappearance, duplicate prompts and
+  Continue, unrelated revision refresh, newly opened confirmation, and owner
+  completion after navigation versus teardown.
+- The full adjacent run passes **34 suites / 336 tests**, including Home,
+  Places, account teardown, Source inspection, and S0AQ's consequence/repair
+  behavior (`/tmp/vesper-confirmation-regression.log`). Both existing surface
+  integration tests still earn `acted` only after verified owner readback.
+- `verify:fast`, application and contract-test typechecks, focused lint, and
+  whitespace pass. The direct mock/real parity script passes **161 tests** plus
+  projection/schema freshness and interface checks
+  (`/tmp/vesper-confirmation-parity.log`). The separate query-key ownership and
+  full-app baseline gates are not promoted by these results.
+- Real-local preflight and **Home -> existing saved Place -> same Home** pass
+  (`/tmp/vesper-confirmation-native.uScWkC`), using the existing QA Save and
+  local API `:8765`, AI/web OFF. No fixture provisioning or save/unsave occurred.
+  This is a shell-integration check, not native stale-dialog/action acceptance.
+
+Existing test-only action fixtures were brought into the real projection
+shape: their prepared actions now live
+on the represented unit, and Places evidence includes an explicit usable
+expiry. No production fixture, backend schema, API contract, serving flag,
+Chat/Life surface, or visual layout changed.
+
+Limits: callback fencing does not automatically remove an already-visible OS
+dialog. Native background/foreground behavior, real account switching, and the
+cross-family mutation/repair release portfolio remain open. The earlier 49/50
+navigation fixture/scroll assertions are not repaired by this work. The full
+P0–P7 objective and the shared timing/read-grant approval boundaries remain.
