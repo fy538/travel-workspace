@@ -146,7 +146,12 @@ with **20,464 passes and six inherited failures**, covering both handoff and
 receipt repairs. S0AL fixes the five stale research fixtures without changing
 runtime behavior; the completed standard full run reports **20,471 passed and
 one failed** (the orphan Atlas handler audit). Broader P0 convergence remains
-unresolved. S0AM's provider owner-read repair postdates that run.
+unresolved. S0AM's provider owner-read repair now has a completed full run:
+**20,490 passed, one failed**, with the same orphan Atlas handler audit and no
+additional failures. S0AN fixes the app's five-second boot fallback so it
+cannot mount data-reading providers before runtime configuration settles;
+fonts alone may fall back. This does not close native crash robustness or
+provide a stuck-storage recovery experience.
 S0AK traces the remaining group receipt path through the real producer,
 request compiler, and owner reader. It is currently rejected, not shipped.
 The proposed shared read-grant resolution below requires explicit approval;
@@ -4122,9 +4127,12 @@ Evidence:
   (`/tmp/vesper-provider-query-smoke.log`). No provider call was made.
 - Ruff, formatting, import boundaries, whitespace, and applicable backend
   commit gates pass. The backend worktree is clean after the commit.
-- A fresh standard full backend run is active in session **74006**, logged at
-  `/tmp/vesper-provider-owner-backend.log`. Collect it without duplication.
-  The preceding 20,471-pass/one-failure result predates this production change.
+- The standard full backend run completed in session **74006**, logged at
+  `/tmp/vesper-provider-owner-backend.log`: **20,490 passed, one failed,
+  30 skipped, 56 xpassed, and 1,325 deselected** in 439.12 seconds. The sole
+  failure remains `test_audit_returns_no_dead_handlers`, identifying only
+  `_execute_post_atlas_draft`. This run includes the provider read repair;
+  the earlier 20,471-pass result did not.
 
 Limits remain explicit. Matching evidence is not a persisted per-revision
 event link; comprehensive callback-ordering and multi-provider reconciliation
@@ -4135,3 +4143,60 @@ attendance, Occurrence, completion of the whole Plan, or personal Outcome.
 Shared read authorization still requires the S0AK review. The local API has
 not been restarted onto this code, and no new native or production promotion
 is claimed. P0–P7 and the Chat/Life hold remain intact.
+
+### S0AN — Font fallback cannot bypass runtime configuration
+
+App `64ce5b3c1` closes a remaining startup race after S0AG's clock isolation.
+The root previously mounted providers when either `fontsLoaded && personaReady`
+was true **or** five seconds elapsed. The same still-mounted hydration could
+later change the process-global mock/real mode, persona, and clock underneath
+that tree. The cancellation fence alone could not prevent this: the hydration
+had not been cancelled.
+
+The root now consumes `useAppBootReady`, whose condition is
+`personaReady && (fontsLoaded || fontFallbackReady)`. Providers, splash
+dismissal, observability, and voice registration use that single boundary.
+The system-font fallback is preserved, while data mode must settle before
+provider selection. Existing storage rejection/default-mode semantics and
+ordinary production-build hydration bypass remain unchanged. The root's stale
+comment about UserProvider selecting its mode at module scope was corrected;
+that provider already selects its implementation at render time.
+
+This is a parity-sensitive startup repair, not a route/auth architecture or
+Home/Places composition redesign. No Chat/Life surface, writer, backend API,
+shared model, or serving default changed.
+
+Evidence:
+
+- The extracted original readiness rule failed **three regressions**: pending
+  mock-to-real hydration, pending real-to-mock hydration, and pending hydration
+  despite already loaded fonts (`/tmp/vesper-boot-gate-red.log`).
+- **27 focused tests pass**, covering hydration and the Home/Places preflight.
+  New cases also preserve immediate ready startup, the five-second font-only
+  fallback, timer cleanup, and storage rejection without later partial mode
+  application (`/tmp/vesper-boot-gate-focused.log`).
+- Typecheck and focused lint pass. The direct mock/real parity script passes
+  **161 tests**, active OpenAPI projection validation, generated contract
+  freshness, and API-interface parity (`/tmp/vesper-boot-gate-parity.log`).
+  This is not a claim that the higher-level `qa:parity` ownership gates or the
+  entire app baseline are green; their previously recorded debt remains.
+- The real local-backend simulator preflight passed on its first attempt
+  (`/tmp/vesper-boot-gate-native.j0GLkN`). The existing non-mutating
+  Home -> saved Place -> same Home readback also passed on its first attempt
+  (`/tmp/vesper-boot-gate-readback.HutP9R`). It reused the canonical local QA
+  Save and made no fixture provisioning or unsave write. Native checks used
+  local API `:8765`, AI/web OFF; they did not use the app's production default.
+- Whitespace and applicable app commit gates pass; the app worktree is clean
+  after the commit.
+
+Limits: deterministic delayed-storage behavior is proved by tests, not an
+injected native storage stall. A storage read that never settles now remains
+gated in DEV/internal builds; an explicit recovery experience is still needed
+if that failure must be recoverable without a restart. A rejected read retains
+the pre-existing default-mode fallback rather than introducing a new policy.
+The prior intermittent Hermes/native crash is not established as fixed.
+The device checks verify ordinary startup/readback, not visual intent,
+production Clerk parity, or the complete Home/Places editorial portfolio.
+The local API remains on its earlier process version, so these native results
+do not promote S0AI–S0AM's newer backend adapters. The completed 20,490-pass
+backend run above is the current code-level evidence for those repairs.
