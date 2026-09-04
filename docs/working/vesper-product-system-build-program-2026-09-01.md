@@ -179,6 +179,16 @@ S0AT subsequently removes the five instrument/gallery tertiary-ink violations
 using readable metadata and the specifically ruled ghost-axis token. This is
 shared-component/dev-gallery work, not evidence that the instruments are
 mounted in Home/Places or that their full accessibility/visual gate is closed.
+S0AU repairs four integration/lifetime findings from the subsequent review:
+multi-Source requirements now survive final Home/Places owner admission;
+Place photo intake and provider-object navigation expire with their originating
+account/visit/object; and root repair opens an explicitly owned private Chat
+conversation rather than auto-sending into the ambient selection. This is
+boundary repair, not a Chat/Life layout change or a serving-flag promotion.
+The prior claim that Source delivery was blocked only by substrate was too
+strong: it described discovery, not the complete served path. The deterministic
+final-admission regression now covers that missing seam. Production data,
+native acceptance, and broader baseline convergence remain separate gates.
 S0AK traces the remaining group receipt path through the real producer,
 request compiler, and owner reader. It is currently rejected, not shipped.
 The proposed shared read-grant resolution below requires explicit approval;
@@ -763,9 +773,12 @@ result. Lena's unlinked itinerary facts earn `no_compatible_group` silence.
 Dao's three lived blocks resolve exactly to Tokyo neighborhoods and their Tokyo
 city ancestor, but the two approved Tokyo dossiers currently have no editorial
 evidence receipts, so discovery omits them and also earns silence. The
-remaining blocker is therefore truthful substrate readiness, not another
-selection heuristic: either attach governed evidence to those dossiers or use
-another receipted world-context Source before recalibrating generated copy.
+blocker demonstrated by that discovery-only replay is truthful substrate
+readiness: either attach governed evidence to those dossiers or use another
+receipted world-context Source before recalibrating generated copy. That replay
+did not establish end-to-end serving readiness. S0AU later found and repaired
+the separate final owner-read/admission handoff; substrate readiness alone
+would not have made these compositions appear before that repair.
 
 Backend commits `e32009eb2`, `de2cc9612`, `6b5936d4b`, and `9a9fcc433` land the
 governed current-context seam needed for a connection to become useful in the
@@ -1027,6 +1040,10 @@ The UI-to-Intake handoff and its deterministic attachment consequence are now
 implemented (S1Q/S1R). A retained, exact-subject `source_attachment` can be read
 through its canonical owner and paired with independently reviewed world
 context without requiring interpretation confirmation or an Experience Anchor.
+This earlier statement described the individual owner and upstream pairing
+capabilities, not successful final root admission. S0AU fixes the dropped
+attachment/editorial/itinerary references and mixed-Source read failure at that
+last boundary; both roots now have deterministic integration coverage.
 Graph-native interpreted consequences still require their separate confirmation
 and binding authority; they are not prerequisites for attachment-based value.
 The shared Home/Places inspector also re-reads Intake and supports confirmed
@@ -4653,3 +4670,89 @@ Design Language's stale description of tertiary ink as a general caption color
 now agrees with the existing token contract, while naming the bounded ghost
 axis exception. No unrelated Chat inventory, Chat/Life surface, held writer,
 serving flag, or shared-model approval boundary changed. P0–P7 remain open.
+
+### S0AU — Final Source admission and abandoned-interaction repair
+
+The last-16-hour review identified four actionable gaps. This repair addresses
+all four without changing Home/Places composition, Chat/Life layout, shared
+models, OpenAPI, prompts, serving flags, or the pending shared-read-grant design.
+
+**1. Preserve the complete Source dependency set through final admission.**
+`compile_value_owner_read_requests` now retains `source_attachment`,
+`place_content_primitive`, and `itinerary_block`, alongside the older Source
+kinds. The canonical Source adapter resolves each explicitly named Source
+through its existing exact owner; it does not substitute a viewer-wide search.
+The combined envelope preserves owner/evidence/grant lineage, uses the earliest
+expiry, and has a revision derived from Source coordinates and owner revisions,
+not the time it was read. Correction/withdrawal support is conservative across
+the whole set. A missing, withdrawn, unauthorized, or revision-conflicting
+member cannot be rescued by another valid member. Shared use of a private
+attachment remains rejected. The fan-out is bounded to the existing 32-Source
+composition limit.
+
+The regression starts with a controlled composition draft, then runs the real
+compiler, candidate conversion, exact request compiler, canonical owner
+adapters, and final value judgment. Only storage reads are substituted; this is
+not a live LLM or production-data certification. It covers Home and Places with
+anchor + dossier, attachment + dossier, attachment + place-content, and
+itinerary + dossier, plus withdrawal/revision failures, private-use rejection,
+and stable aggregate revision across read clocks.
+
+**2. Make the Place photo picker an expiring gesture.** Permission and picker
+completion both check the originating account lifetime, navigation revision,
+mounted instance, and exact object scope. A leave/return or object A→B→A does
+not resurrect a gesture. A synchronous in-flight guard prevents double taps
+before React commits busy state. Expired results cannot forward private assets
+into the automatic Intake route or display stale errors. Completion only clears
+local busy state on a still-mounted hook; the next deliberate gesture can run.
+
+**3. Give provider Place opens the same lifetime boundary.** Leaving and
+returning to Places, changing and restoring context, or account teardown
+invalidates pending navigation even if the final pathname matches. Same-account
+retry after an uncertain result retains its request key; a new account lifetime
+cannot reuse that key. Cancellation does not delete or retry the backend's
+durable resolution receipt.
+
+**4. Make root-to-Chat conversation ownership explicit.** A seeded root entry
+uses the existing conversation-create doorway with a new private/private-Trip
+policy. The selected root Trip, graph entity, and prompt stay attached to the
+durable pending turn, and the final route contains an explicit conversation ID
+and the originating root-return token. An unrelated selected/history Trip is
+not used as the destination. The integration test passes a real root repair
+route through the existing create screen and verifies the resulting outbox
+metadata and exact destination. No Chat visual design changed.
+
+Landed code: backend `d31a2948d`; app `968bb69fc`.
+
+Verification:
+
+- Backend Source-family and root-wiring checks: **231 passed**, including all
+  14 new regression cases (`/tmp/vesper-four-fixes-backend-focused.log`). The
+  full offline run passes **20,509 tests**, with **one failure**, the same
+  `_execute_post_atlas_draft` orphan-handler audit as the prior baseline; there
+  are 30 skips, 1,340 deselections, and 56 XPASS results. The full run collected
+  the first 12 new cases; the two later shared-use/revision-stability cases are
+  included in the completed focused run. Evidence:
+  `/tmp/vesper-four-fixes-backend.log`. No additional broad failure appeared.
+- Four focused app regression suites: **58 passed**. After the final lifetime
+  cleanup, both affected hook suites were rerun: **28 passed**.
+- Complete app run: **1,172 suites / 7,968 tests passed; 19 suites / 23 tests
+  failed**, with no new failing test names versus S0AS. Failure-detail comparison
+  also matters: 21 failure messages are unchanged; the remaining two reflect
+  the earlier tertiary-ink cleanup and removal of `rootProjectionNavigation.ts`
+  from the ownership violation. That ownership gate still flags `utils/routes.ts`;
+  it is not green. Evidence: `/tmp/vesper-four-fixes-app-full.json` and `.log`.
+- Final `verify:fast` passes, including both TypeScript checks, boundaries,
+  schema bridge, and Home-surface budgets; lint remains at **174 warnings / zero
+  errors** (`/tmp/vesper-four-fixes-verify-final.log`). Backend formatting/lint
+  and both repositories' commit guards pass. No API schema regeneration was
+  necessary because no API or shared model changed.
+- Workspace living-doc links pass for **398 files**. The wider governance/status
+  checks remain blocked by unrelated, pre-existing new-document metadata and
+  unclassified inventory entries. Those documents and the concurrently edited
+  Life/inventory files were not modified (`/tmp/vesper-four-fixes-docs-check.log`).
+
+Native photo permission/account switching and rendered Source delivery remain
+unverified by this unit/integration package. This repair does not close the
+pending timing/read-grant proposals, activate Source serving, or declare P0–P7
+complete.
