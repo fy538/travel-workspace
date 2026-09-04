@@ -66,6 +66,7 @@ make certify-visual
 make dogfood-status
 make offline-qa
 make reliability-report
+make entity-health
 make test-backend
 make test-frontend
 make test-all
