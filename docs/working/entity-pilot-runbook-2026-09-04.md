@@ -56,6 +56,15 @@ cd ../travel-app
 npm test -- --runInBand __tests__/components/places/objectPageProjection.test.ts
 ```
 
+For a content-free operational snapshot (read-only; no repair or refresh),
+run:
+
+```bash
+cd travel-agent
+PYTHONPATH=. .venv/bin/python scripts/entity_health_report.py
+cd ..
+```
+
 The PostgreSQL continuity test is required evidence for relationship changes.
 Mocks or SQLite-only tests do not substitute for it. Native simulator/device
 evidence is a separate gate and must be attached before calling a surface
@@ -110,6 +119,12 @@ Inspect queue and application telemetry for:
 - rate-limit or budget-store failures
 - source URL validation failures and uncited briefs
 - cross-account relationship/privacy failures (any one is a stop-ship issue)
+
+The `research_health` object in the entity health report is the bounded
+baseline for pending age, retries, expired leases, duplicate active jobs, and
+completed rows without a current page-readable brief. Thresholds still need
+to be set by the pilot owner before enablement; the report itself does not
+declare a healthy rollout.
 
 Stop the canary immediately on a private outcome or requester identity leak,
 a `GET` that mutates the queue, duplicate provider work, a completed queue row
