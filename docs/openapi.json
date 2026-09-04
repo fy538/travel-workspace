@@ -43093,6 +43093,77 @@
         }
       }
     },
+    "/api/entities/{entity_type}/{entity_id}/research": {
+      "get": {
+        "summary": "Get Entity Research",
+        "description": "Return an already-completed research brief without starting research.\n\nThis route is deliberately a read-only cache boundary. A missing brief is\na normal 404: callers may keep the object page sparse and a future,\nseparately governed request endpoint can enqueue work without changing\nthis read path.",
+        "operationId": "get_entity_research_api_entities__entity_type___entity_id__research_get",
+        "parameters": [
+          {
+            "name": "entity_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "enum": [
+                "venue",
+                "site",
+                "accommodation",
+                "experience"
+              ],
+              "type": "string",
+              "title": "Entity Type"
+            }
+          },
+          {
+            "name": "entity_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Entity Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityResearchBrief"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/me/entities/{entity_type}/{entity_id}/presentation-v2": {
       "get": {
         "summary": "Get My Entity Presentation V2",
@@ -66705,6 +66776,98 @@
         "type": "object",
         "title": "EntityRelationshipPresentation",
         "description": "Viewer-specific relationship, never part of the public envelope."
+      },
+      "EntityResearchBrief": {
+        "properties": {
+          "revision": {
+            "type": "string",
+            "const": "entity-research-v1",
+            "title": "Revision",
+            "default": "entity-research-v1"
+          },
+          "text_paragraphs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "minItems": 1,
+            "title": "Text Paragraphs"
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/components/schemas/EntityResearchSource"
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Sources"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expires At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "text_paragraphs",
+          "generated_at"
+        ],
+        "title": "EntityResearchBrief"
+      },
+      "EntityResearchSource": {
+        "properties": {
+          "number": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Number"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "url": {
+            "type": "string",
+            "maxLength": 2048,
+            "minLength": 1,
+            "title": "Url"
+          },
+          "retrieved_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Retrieved At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "number",
+          "title",
+          "url"
+        ],
+        "title": "EntityResearchSource"
       },
       "EntityResolutionRequest": {
         "properties": {
