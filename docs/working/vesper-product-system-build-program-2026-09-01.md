@@ -175,6 +175,10 @@ and the broader release gates remain open; do not waive them as fixture debt.
 The final complete app run passes **1,170 suites / 7,946 tests**, with
 **19 suites / 23 tests failing**, zero pending tests, and no runtime-error
 suites. P0 is not green.
+S0AT subsequently removes the five instrument/gallery tertiary-ink violations
+using readable metadata and the specifically ruled ghost-axis token. This is
+shared-component/dev-gallery work, not evidence that the instruments are
+mounted in Home/Places or that their full accessibility/visual gate is closed.
 S0AK traces the remaining group receipt path through the real producer,
 request compiler, and owner reader. It is currently rejected, not shipped.
 The proposed shared read-grant resolution below requires explicit approval;
@@ -4599,3 +4603,53 @@ It stops before the chained mutation-key check; a separate invocation of the
 mutation-key check passes. Concurrent parent documentation is preserved. Chat/Life
 surfaces, held writers, backend models, serving flags, and the two outstanding
 shared-contract approval requests are unchanged. P0 remains open.
+
+### S0AT — Readable instrument facts and explicitly ruled ghost axes
+
+App `44d946fab` corrects the five instrument/gallery files identified in S0AS.
+The September 2 founder ruling in the design kernel, section 12 item 7(f),
+explicitly names DayBand/TideCurve anchors: use existing `surface.ghostAnchor`,
+not decorative `text.tertiary`. That specific hierarchy must not be flattened
+into a blanket metadata-color substitution. BasisStrip provenance,
+ProgressTrack future-stage and charge-status labels, and gallery warnings
+instead use `metadata.default`. No token value, geometry, copy, action, graph,
+API, or root composition changes.
+
+The current import inventory places these five primitives only in the internal
+`/dev/instruments-gallery` route. No production Home/Places mounting is implied.
+The surface QA index forbids adding polish captures for dev fixtures; this
+increment therefore does not add a new gallery capture matrix or claim native
+visual acceptance from an unrelated Home capture. Registered-scenario
+validation still passes. Dynamic Type, native layout/label collisions, and
+consumer-surface composition remain unverified for these primitives.
+
+Evidence:
+
+- Four existing rendered-component cases fail before the change because their
+  actual text styles contain `#B5AFA5`, not the appropriate semantic ink
+  (`/tmp/vesper-instrument-ink-red.log`). All five primitive cases pass after
+  repair, including both provenance origins and unchanged accessibility
+  sentences. A gallery render checks the actual unbooked-state and fixture
+  warning text styles.
+- Ten new contract checks cover contrast-calculation reference values,
+  metadata on four paper backgrounds, and absence of decorative ink in the
+  five touched files. Together with the six rendered cases, the owned
+  portfolio passes **16 tests**. The run including the global tertiary
+  inventory reports **18 passed / one failed**; its only mismatch is now the
+  inherited stale PlanBuildCard inventory entry, not the five branch additions
+  (`/tmp/vesper-instrument-ink-regression.log`). The global gate is not waived.
+- `metadata.default` measures **4.59:1** on page paper and **4.75–5.14:1** on
+  the three tested card papers. The ruled ghost token measures **2.96:1** on
+  page paper, versus decorative ink's **1.82:1**. The test verifies improvement
+  for ghost axes, explicitly not a 4.5:1 small-text certification. Resolving
+  that art-direction/accessibility tension needs a reviewed design decision;
+  it is not silently certified by adopting the founder's color.
+- `verify:fast`, focused lint, whitespace, app documentation links, and commit
+  gates pass (`/tmp/vesper-instrument-ink-verify.log`). The complete app suite
+  was not rerun for this color-only increment; S0AS remains the latest broad
+  result. No native screenshot or device accessibility result is claimed.
+
+Design Language's stale description of tertiary ink as a general caption color
+now agrees with the existing token contract, while naming the bounded ghost
+axis exception. No unrelated Chat inventory, Chat/Life surface, held writer,
+serving flag, or shared-model approval boundary changed. P0–P7 remain open.
