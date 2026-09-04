@@ -114,3 +114,32 @@ Verification:
   hooks: passed.
 - These fixes change no public request/response schema; no generated contract
   edits were needed. The integration/rollout gates above remain unchanged.
+
+## Object-page execution slice — 2026-09-04
+
+The first implementation slice from the Entity Object Handoff Lab is landed
+on local `main` in the child repositories:
+
+- Travel App `0ecf0e9f0` — internal-only `ObjectPageRebuild`, deterministic
+  fact ranker/body projection, photo-or-nothing provenance plate, square
+  `ObjectPageShell`, and venue/site migration seams.
+- Travel App `f7a348f4a` — experience migration seam; booking and Plan remain
+  the fallback when the flag is off.
+- Travel Agent `1fd47c9b4` — `EntityResearchBrief` model and a read-only
+  `/api/entities/{type}/{id}/research` projection over existing completed
+  brief rows. A missing row is 404; this route never queues, calls a provider,
+  invokes a model, or writes data.
+- Travel App `c83d2fd9d` + workspace `947a080` — client hook, mock/http
+  adapter, and synchronized OpenAPI snapshots/types.
+
+`EXPO_PUBLIC_OBJECT_PAGE_REBUILD_ENABLED` is internal-build-only and defaults
+off. The research request/refresh job, inline citations/source UI,
+viewer-relative people lines, addressed-handoff UI, generalized photo
+endpoint, identity seeding/dedupe, and Occasion-live signal remain gated open
+questions. No catalog backfill or refresh was run.
+
+Verification for this slice: mobile `tsc --noEmit` and object projection tests
+pass; backend entity-research/model and entity identity suites pass. The
+existing situation endpoint test could not import the repository's full API
+because the local environment lacks the pre-existing `openai` dependency; no
+failure was caused by the new route.

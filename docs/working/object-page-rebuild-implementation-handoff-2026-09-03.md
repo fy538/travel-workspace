@@ -10,9 +10,9 @@ source_of_truth_for: []
 supersedes: []
 ---
 
-# Object Page Rebuild — Implementation Handoff (2026-09-03, rev 4)
+# Object Page Rebuild — Implementation Handoff (2026-09-03, rev 5)
 
-**Status:** design handoff from the Claude Design project *Vesper — Entity Object Handoff Lab* (`dd48304b`), reorganised 09-03: boards 00–07 working set (**06 = the page**), Z1–Z5 archive. Rev 4 records the later photography-or-nothing ruling and resolves the board renumbering. Rev 2's rulings (§0) still hold. The entity-resolution brief's Part I rules (identity, privacy, source use, no Take on open) stay locked. Non-canonical until diffed into canon.
+**Status:** design handoff from the Claude Design project *Vesper — Entity Object Handoff Lab* (`dd48304b`), reorganised 09-03: boards 00–07 working set (**06 = the page**), Z1–Z5 archive. Rev 5 records the first implementation slices: a guarded mobile object-page skeleton/ranker and a read-only persisted research projection. Rev 4's photography-or-nothing ruling and Rev 2's other rulings still hold. The entity-resolution brief's Part I rules (identity, privacy, source use, no Take on open) stay locked. Non-canonical until the remaining contracts are promoted.
 
 ## 0. Rulings of 2026-09-03 (founder, in chat)
 
@@ -66,7 +66,7 @@ end          paper
 | Input | Reads | Change needed |
 |---|---|---|
 | Identity | `entity.name`, `ref`, `lineage`, `categories` / `venue_type` | render city when neighbourhood absent; "also listed as …" provenance line for a matched candidate |
-| Web brief | **new**: `research_brief {text, sources[{title,url,retrieved_at}], generated_at, ttl}` per entity, shared | research job queued on open; cached; exposed on the entity envelope |
+| Web brief | **landed read slice**: `EntityResearchBrief {text_paragraphs, sources[{number,title,url,retrieved_at}], generated_at, expires_at}` | `GET /api/entities/{type}/{id}/research` exposes completed persisted briefs only; missing stays 404. Queue/refresh remains a separately governed write boundary. |
 | Dossier / angle | existing governed pipeline, `place_slug` link | optional input to composition; the only permitted source of a verdict |
 | Today | `status {operating, open_now, hours, as_of, sources}`, `relationship {saved, encounters, active_trip}`, your line, **people_lines[]**, tonight's Occasion | deterministic template, per viewer; unify `status.hours` / `tail.hours` |
 | People | **new**: `people_lines[] {author, grant_kind, precision, made_at, text, photo?, thread_ref?, used_in?}` resolved viewer-relative server-side (audience, block, precision) | needed before any friend appears; withdrawal recompiles the body |
@@ -77,7 +77,7 @@ end          paper
 
 **Keep:** `ObjectPageShell` chrome (plate geometry now square), `SpotTopBar` (Save/Keep = reference verb; share constrained on owner-private), `ObjectPageStateShell`, `StayLocationMap` with `mapSurface` (for the instrument top), the title register (`objectTitle` sans 600 24/27), `PlaceShareOwnerSheet`.
 
-**New:** `ObjectBody` (paragraphs + inline citation markers + sources) · `PresenceByline` · `FactPair` + `FactRanker` (the table above) · `ClosingRow` · `WhereRow` (address + snippet + directions handoff) · `InstrumentTop` (sparse hero fallback) · `CandidateResolvingRow` · `OriginStopCard` (retryable / honest) · `SpotPage` admission · `ProvenanceLine` · the research job + cache · plate source resolver (your photo → permitted provider photo with credit → none).
+**New:** `ObjectBody` (paragraphs + inline citation markers + sources) · `PresenceByline` · `FactPair` + `FactRanker` (the table above) · `ClosingRow` · `WhereRow` (address + snippet + directions handoff) · `InstrumentTop` (sparse hero fallback) · `CandidateResolvingRow` · `OriginStopCard` (retryable / honest) · `SpotPage` admission · `ProvenanceLine` · the research job + cache · plate source resolver (your photo → permitted provider photo with credit → none). The guarded mobile skeleton and deterministic ranker are now landed; the richer citation/people/read-job pieces remain gated.
 
 **Delete from the page:** `SpotPlanningRail` and the trip/day/review ladder, `ItineraryStopStrip`, `WhyForYouCallout` and its route param, `OrderSkip`, the `Details` drawer, `WorldSection`, `AskVesperBlock` disc, `SpotTake` (streaming personal Take), the one-photo scroller, `CatalogEvidenceDisclosure` from the ordinary path, `EntityInterpretationBlock` (unwired; superseded by the composition).
 

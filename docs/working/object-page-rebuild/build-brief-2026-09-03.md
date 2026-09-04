@@ -92,6 +92,15 @@ depends_on:
 - `GET /api/me/entities/{type}/{id}/presentation` and `/presentation-v2` → `EntityDetailPresentation` / `EntityDetailPresentationV2`. Use `entity.name`, `entity.lineage`, `categories[]`, `facts[] {label, value, source_mode, observed_at, expires_at}` (**keep provenance — the current mapper drops it**), `relationship`, `take` (persisted only), `entity.status {operating, open_now, hours, as_of, sources}`, `entity.photo_urls`, and `entity.display_policy.map_surface` (**this exists on the wire — the earlier note that map_surface was missing is stale; use it, never infer from catalog_state**). V2 carries canonical relationship/capabilities; live situation remains a separate no-store route.
 - `POST /api/me/entity-resolutions` and the existing entity routes. A generalized exact-photo route is proposed below; it does not exist on local `main` yet.
 
+**Landed read slice (2026-09-04):**
+
+- `GET /api/entities/{type}/{id}/research` returns a sanitized
+  `EntityResearchBrief` from an existing completed brief. The app treats 404
+  as sparse state. It never starts a provider/model call, queue job, or write.
+- The mobile `ObjectPageRebuild` and deterministic `rankObjectFacts` projector
+  are internal-build-only; public builds keep the existing page until the
+  remaining body, people, and action contracts land.
+
 **Proposed (backend, not landed on local `main`):**
 
 The following endpoints and models are design proposals only. They are not in
@@ -99,15 +108,16 @@ the current OpenAPI contract and must not be added to generated types or
 consumers until their source, privacy, cost, and ownership contracts are
 reviewed:
 
-- `GET /api/entities/{type}/{id}/research` → `ResearchBrief { text_paragraphs: string[], sources: [{n, title, url, retrieved_at}], generated_at, expires_at } | 404`. `POST /api/me/entities/{type}/{id}/research-requests` enqueues (idempotent per entity); triggered by the page open, never awaited. Cache shared across viewers; TTL 30 days; regenerate on explicit "read up".
+- `POST /api/me/entities/{type}/{id}/research-requests` enqueues (idempotent per entity); triggered by the page open, never awaited. Cache shared across viewers; TTL 30 days; regenerate on explicit "read up". This remains gated on provider terms, cost ceiling, source retention, and job ownership.
 - `GET /api/me/entities/{type}/{id}/people-lines` → `PeopleLine[] { id, author {id, display, monogram}, grant_kind: 'left_for_you'|'circle'|'city_precision', precision: 'place'|'city', made_at, text, photo?: {url}, thread_ref?, used_in?: {occasion_id, label}, can_take_back: boolean }`. **Viewer-relative resolution is server-side:** blocked, outside audience, wrong precision, withdrawn are simply absent. City-precision lines appear only on the container page.
 - `viewer` context assembled client-side: `{ location?: {lat,lng, explicit_once: true}, local_time, occasion_live?: {id, label}, last_open_at, text_scale }`.
 
-The current entity branch already provides canonical identity, presentation v2,
-and bounded situation reads. It does **not** yet provide `research_brief`,
-`people_lines`, a generalized photo endpoint, `ObjectBody`, or the ranker and
-sheet components below. Those are follow-on contracts, not hidden capabilities
-of the existing API.
+The current entity branch provides canonical identity, presentation v2,
+bounded situation reads, a read-only persisted research projection, and an
+internal guarded object-page renderer. It does **not** yet provide
+`people_lines`, a generalized photo endpoint, addressed-handoff UI, or the
+research request/refresh job. Those remain follow-on contracts, not hidden
+capabilities of the existing API.
 
 ## 5. The body — composition template (`composeBody`)
 
@@ -150,8 +160,8 @@ Pair = top two by that order; closing row = the rest (max 4); a null never enter
 
 ## 9. Steps (each a PR; each green on the tests it names)
 
-0. `ObjectPage` skeleton on venue/site/experience with existing data only: plate resolver (yours/provider/none), kicker, name, pair + closing row via the ranker, facts with provenance, verbs as text, where row, square plate. Tests T1–T6, T11, T14. Owner of stubs: provider photo policy → `TODO(policy)`.
-1. `ResearchBrief` endpoint + queue + `composeBody` paragraphs 1–2, `ObjectBody`, markers, sources, `ArrivalLine`. This requires a separately approved research owner, source policy, TTL, and generated-contract update; it must not become read-path generation. T7–T9.
+0. **Landed behind `OBJECT_PAGE_REBUILD_ENABLED`:** shared skeleton on venue/site/experience with existing data only: provenance-bearing exact-photo plate (venue), kicker, name, deterministic pair + closing row, persisted body, text verbs, where row, and square plate. The v1/v2 compatibility paths remain available. Provider-photo policy and richer citation assertions stay gated.
+1. **Read slice landed:** `EntityResearchBrief` projection + client hook read an existing completed brief and normalize 404 to sparse state. The queue, refresh request, inline markers, sources UI, and `ArrivalLine` still require a separately approved research owner, source policy, TTL, and generated-contract update; this read must not become read-path generation. T7–T9 remain open.
 2. Dossier as optional input; paragraph 4. Mode-key row model retired for browse pages.
 3. `people-lines` endpoint with server-side viewer resolution; byline, paragraph 3, `FaceSheet`, USEFUL/REPLY. T12–T13.
 4. Large-text pass. T10.
