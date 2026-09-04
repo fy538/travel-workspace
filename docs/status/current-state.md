@@ -164,9 +164,21 @@ rehearsal (`travel-app` commits `09931b20e` and `1daafb8fc`). The Life root and
 four-root shell remain default-off; compatibility and public posture are
 unchanged. This is rollout integrity and deterministic fixture evidence, not
 device, real-data, visual, or release evidence. Active-seat arbitration,
-real-owner Home value, Places scoped result-set closure, Life corpus/dossiers,
+real-owner Home value, Places scoped result-set closure, Life production
+corpus/dossiers,
 native matrix, and cohort gates remain pending per the [Home, Places, and Life
 Productization Program](../working/home-places-life-productization-program-2026-09-04.md).
+
+The next bounded seams are now executable. Backend commit `1b449b38e` adds a
+finite Life corpus inventory over the same viewer-relative graph used by the
+four lens reads; repeated entries retain one owner/source/audience/grant
+identity, and sparse lenses remain empty without setup work. Backend commit
+`436eb3f90`, workspace contract `57224b7`, and app contract commit
+`5817c0a38` make Places map responses echo their opaque context handle,
+preserving server-owned scope through map/list transformations. These are
+read-only identity boundaries, not production dossier, active-seat, real-data,
+or full result-set composition evidence. Chat, entity implementation, and Life
+surface UI remain unchanged.
 
 The local cross-family path now also executes through canonical judgment and
 owned root treatment rather than stopping at fixture creation. Shared Plan
