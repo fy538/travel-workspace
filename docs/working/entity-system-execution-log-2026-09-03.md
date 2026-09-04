@@ -213,6 +213,13 @@ The next safe object-page boundaries are now landed on local `main`:
   aliases and the previously landed people-lines response alias.
 - Workspace `60f25a9` — complete and active OpenAPI snapshots for the request
   endpoint and response models.
+- Travel Agent `4d9fbb834` — queue metadata carries only `source_surface` and
+  the public city label needed by the existing worker query builder; no actor
+  identity or private page context is persisted.
+- Travel Agent `9a5a8fe8c` and workspace `33c1904` — content-free,
+  read-only entity health report plus `make entity-health` entry point for
+  pending reviews, duplicate provider candidates, active redirects, stale
+  claims, provisional venue/site shells, and research queue state.
 
 Verification: backend request/entity suites **32 passed**; mobile typecheck
 and focused entity hook tests pass; `make contract-check` passes with **576**
