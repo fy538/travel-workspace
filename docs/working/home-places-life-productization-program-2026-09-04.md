@@ -706,6 +706,7 @@ separate entity lane and Chat surface alone:
 | Life corpus inventory seam | `1b449b38e` in `travel-agent` | complete for governed graph owners | A finite viewer-relative inventory now joins Time, Places, People, and Threads reads by one stable entry identity and rejects lens-local changes to owner, Source, audience, or grants. It is a read-only corpus boundary, not a production dossier or Return generator. |
 | Life corpus serving guard | `3e287a33e`, `aa6310157` in `travel-agent` | complete for additive Life v1 reads | The `/v1/life` route now builds the finite inventory before compiling the selected lens and rejects any selected-lens record that is untracked or changes canonical identity, owner, Source lineage, audience, or grants. HPL tests cover copied IDs and mutated Source revisions. The wire contract is unchanged; real corpus breadth, dossiers, Returns, and device evidence remain open. |
 | Places context continuity | `436eb3f90` in `travel-agent`, `57224b7` workspace contract, `5817c0a38` in `travel-app` | complete for map response boundary | Map responses echo the same opaque context handle already used by feed/search/saved/reading, so map/list transformations can restore server-owned scope without rebuilding it from labels or coordinates. This is an additive contract seam, not proof that every map result set is yet compositionally unified. |
+| HPL-H Home value review gate | `51a15e838` in `travel-agent` | complete for review substrate | A strict, read-only manifest separates owner-evidence population from human editorial value. It requires two named accounts, exact Source receipt references, and explicit evidence, novelty, relevance, root-distinctness, completeness, restraint, and homework-free verdicts. The checked-in manifest is intentionally empty and the gate remains blocked; no real Home result is claimed. |
 | Life lens read boundary | `ff50b80b4` in `travel-agent` | complete for current owners | Time, evidence-backed Places, and evidence-backed People reads are supported; Threads stays honestly thin until a canonical thread owner exists. |
 | Life native selector and hierarchy | `d7f9b3a99`, `38a053f48` in `travel-app` | complete for the dark v1 root | Lens selection is query-backed, supported history doors follow the selected lens, and Return is uncarded; the native gate remains off until the shared rehearsal and device matrix pass. |
 | Three-root native rehearsal preflight | `09931b20e` in `travel-app` | complete for local gate | The read-only local preflight now requires Life v1 alongside the governed Home/Places posture before it reports a rehearsal-ready account; no public rollout or UI promotion is implied. |
@@ -750,6 +751,29 @@ passed **58 tests**, and the focused native rollout/preflight set passed **23
 tests**; TypeScript, contract parity, and docs-link checks remained green. The
 frontend worktree currently contains concurrent entity-lane edits and is not
 claimed clean by this package.
+
+### HPL-H calibration substrate — 2026-09-04
+
+The read-only `canonical-owner-evidence-audit` already answers whether a
+named account has authoritative Intake, graph, activation, owner projection,
+and Source-discovery material. It does not—and must not—call a model or turn
+candidate presence into product value. The new `hpl_home_value_gate.py` keeps
+that boundary explicit. Its manifest accepts only two named accounts and
+stable candidate/source receipt references; a reviewer must score each
+candidate on evidence grounding, new substance, non-paraphrase, present
+relevance, root distinctness, complete-on-view value, non-creepiness, and
+homework-free attention cost. A rejected row reports its exact failed
+dimensions. `status: complete` is possible only when both accounts have an
+accepted candidate and all side-effect counters remain zero.
+
+The checked-in `hpl-home-value-review.yaml` is intentionally `not_started`
+with no rows. Running `make hpl-home-value-gate` therefore exits blocked with
+`no_human_reviews`, `missing_account_coverage`, and
+`no_accepted_home_value`. This is the correct current result: the audit found
+no live Intake population for Dao or Lena, and no synthetic candidate should
+be added merely to make Home look populated. The next operator step is an
+authorized real capture through the existing object-page/Intake path, a fresh
+owner audit, then human review of the actual Home output.
 
 ## 13. Stop lines
 

@@ -196,6 +196,17 @@ across legacy/entity/Chat/profile/navigation contracts. The HPL-focused
 backend/app suites, TypeScript, OpenAPI parity, and docs-link checks passed;
 all three repositories are clean.
 
+The HPL-H real-Home value boundary is now executable as a separate,
+read-only review substrate. `travel-agent/tools/dogfood/content/hpl_home_value_gate.py`
+consumes two named account labels, stable owner-audit/source receipt refs, and
+human verdict dimensions for each actual Home candidate. It reports the exact
+failed dimensions for rejected material and cannot call a model, provider, or
+database. The checked-in manifest is intentionally empty (`not_started`), so
+`make hpl-home-value-gate` remains blocked on `no_human_reviews`, account
+coverage, and accepted value. This keeps the real-owner population gate and
+the editorial value gate separate; no Home quality or release claim follows
+from the presence of the script.
+
 The local cross-family path now also executes through canonical judgment and
 owned root treatment rather than stopping at fixture creation. Shared Plan
 repair reconstructs the current proposal and is Home-owned; encounter
