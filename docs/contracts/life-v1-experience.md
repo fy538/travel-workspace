@@ -158,6 +158,16 @@ supports several distinct ways back in.
 Recent local periods, a few people or places, perhaps one thread, and no need
 for travel spectacle. The same grammar holds.
 
+### Zero-record
+
+When no governed object exists anywhere in the Life corpus, the normal
+masthead, four labeled lenses, and bottom tabs remain. The root may carry one
+frameless threshold illustration and one indicative reassurance sentence. It
+contains no CTA, prompt, example gallery, progress, or category-completion
+target. This is a root-level exception for a genuinely empty corpus, not a
+placeholder treatment for individual lenses or conditional organs. It yields
+to the first real governed object.
+
 ### Thin
 
 One or two honest entries, one full-record door if a history exists, and no
@@ -181,7 +191,9 @@ empty module remains.
 - Held state is implicit. Status marks appear only for meaningful exceptions
   such as planned, live, unresolved, disputed, withdrawn, or lapsed.
 - Loading, error, offline, partial-authority, and empty states preserve the same
-  page anatomy and never fabricate completeness.
+  page anatomy and never fabricate completeness. Missing conditional organs
+  remain air. A nonempty corpus does not render illustrated empty-lens modules;
+  a genuinely empty lens may use at most one plain indicative sentence.
 
 ## V1 cut
 

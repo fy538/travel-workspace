@@ -123,6 +123,46 @@ overrides:
     disposition: keep_reference
     rationale: Comparative interaction research supporting the kernel experiment; canonical root and contribution contracts retain authority.
 
+  docs/working/interaction-kernel-lab-zoomed-out-product-philosophy-review-2026-09-01.md:
+    disposition: keep_reference
+    rationale: Product-philosophy and integrity review of the bounded Interaction Kernel Lab; canonical product, root, contribution, and expression contracts retain authority.
+
+  docs/working/claude-design-interaction-kernel-lab-v2-2-phase-a-execution-report-2026-09-01.md:
+    disposition: keep_reference
+    rationale: Phase A fixture and replay evidence; does not assert participant validation or production completion.
+
+  docs/working/claude-design-interaction-kernel-lab-v2-2-phase-b-execution-report-2026-09-01.md:
+    disposition: keep_reference
+    rationale: Phase B value-fixture execution record with founder walkthrough and model-authored quality still open.
+
+  docs/working/claude-design-multiplayer-prominence-exploration-brief-2026-09-01.md:
+    disposition: keep_reference
+    rationale: Bounded comparative design exploration; canonical multiplayer and root contracts retain authority.
+
+  docs/working/claude-design-social-aperture-and-shared-world-exploration-handoff-2026-09-02.md:
+    disposition: keep_reference
+    rationale: Preserves social-aperture alternatives and open choices without adding a root or granting passive location access.
+
+  docs/working/entity-system-execution-log-2026-09-03.md:
+    disposition: keep_reference
+    rationale: Commit-level entity-lane evidence; not a catalog backfill or release declaration.
+
+  docs/working/entity-system-next-program-2026-09-03.md:
+    disposition: keep_reference
+    rationale: Entity implementation proposal subordinate to the shared product-system program and explicit contract gates.
+
+  docs/working/life-empty-state-illustration-brief-2026-09-01.md:
+    disposition: keep_reference
+    rationale: Zero-record illustration exploration and candidate assets; no asset is promoted into production by preservation.
+
+  docs/working/object-page-rebuild-implementation-handoff-2026-09-03.md:
+    disposition: keep_reference
+    rationale: Founder design handoff with explicitly non-canonical engineering questions and fixture content.
+
+  docs/working/pin-as-ambient-unit-working-decision-2026-09-02.md:
+    disposition: keep_reference
+    rationale: Founder-accepted working exploration; privacy and multiplayer canon still govern until explicit promotion.
+
   docs/working/home-and-places-root-consumer-graph-2026-09-01.md:
     disposition: keep_reference
     rationale: Code-grounded consumer and dependency graph supporting the Home and Places migration program without replacing root contracts.

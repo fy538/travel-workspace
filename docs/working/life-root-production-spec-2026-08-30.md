@@ -316,12 +316,18 @@ one year), 0–1 windows; season 1 = footprints and specimens become
 possible; year 1 = years band, A YEAR AGO TODAY, keepsakes.
 
 Laws: **the floor** = masthead + record + sources (everything held can
-say where it came from) · **absence is never an ask** — no empty-state
-slots, add-prompts, progress meters, or completeness scores; the thin
-page is short, not needy · **one reassurance at most** — where
-reflections would sit, the thin root may speak a single voice line ("the
-record grows as you live it, not as you feed it"), which disappears the
-day a real reflection exists · reads scale down honestly (compact band).
+say where it came from) · **absence is never an ask** — no illustrated
+placeholder for an empty lens or conditional organ, no add-prompt,
+progress meter, or completeness score; the thin page is short, not
+needy · **zero-record threshold, narrowly** — only when the entire
+governed corpus is empty, the ordinary masthead and four lenses may be
+followed by one frameless decorative illustration and one indicative
+reassurance sentence; no CTA or example gallery appears, and the whole
+treatment yields to the first real governed object · **one reassurance
+at most** — where reflections would sit, the thin root may speak a
+single voice line ("the record grows as you live it, not as you feed
+it"), which disappears the day a real reflection exists · reads scale
+down honestly (compact band).
 
 ## 5d. The full scroll (board 08 family)
 
