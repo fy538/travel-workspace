@@ -228,3 +228,19 @@ schemas, and **366** facade exports covered. No catalog backfill, provider
 refresh, or research worker run was performed. The queue worker remains the
 existing explicit operational owner; native visual evidence and addressed
 handoff UI are still gated follow-ups.
+
+## Addressed-handoff object seam — 2026-09-04
+
+The rebuilt object page now has an internal-only sender doorway for the
+existing relationship-owned handoff flow:
+
+- Travel App `7a29dc9dd` — added
+  `RELATIONSHIP_UUID_HANDOFFS_ENABLED` and renders the existing explicit-pair
+  chooser/composer on rebuilt object pages. It remains dark unless both the
+  internal build and the opt-in flag are present; the legacy venue surface is
+  unchanged.
+
+The doorway reuses the canonical `RelationshipPlaceNoteAction` owner, so pair
+membership, recipient resolution, consent, idempotency, and delivery remain
+outside the entity page. Mobile typecheck and the relationship summary/action
+tests pass. No handoff was sent and no production data changed.
