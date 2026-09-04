@@ -686,6 +686,7 @@ separate entity lane and Chat surface alone:
 | Life lens read boundary | `ff50b80b4` in `travel-agent` | complete for current owners | Time, evidence-backed Places, and evidence-backed People reads are supported; Threads stays honestly thin until a canonical thread owner exists. |
 | Life native selector and hierarchy | `d7f9b3a99`, `38a053f48` in `travel-app` | complete for the dark v1 root | Lens selection is query-backed, supported history doors follow the selected lens, and Return is uncarded; the native gate remains off until the shared rehearsal and device matrix pass. |
 | Three-root native rehearsal preflight | `09931b20e` in `travel-app` | complete for local gate | The read-only local preflight now requires Life v1 alongside the governed Home/Places posture before it reports a rehearsal-ready account; no public rollout or UI promotion is implied. |
+| Three-root governed rollout gate | `1daafb8fc` in `travel-app` | complete for config boundary | Governed rehearsal now requires Home v2, Places runtime, and Life v1 together; compatibility and public posture remain unchanged. |
 | API contract projection | `6e19cb8` in the workspace docs repo | complete | Generated contract now includes the Life lens query. |
 
 This ledger is not a release claim. It records what is executable now and
