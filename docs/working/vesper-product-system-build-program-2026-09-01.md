@@ -128,8 +128,9 @@ time mapping, real-session clock isolation, and exact coordination reads.
 These are landed seam repairs, not completion of Moment or the production
 Home/Places portfolio. The clock/timing backend tree has a completed standard
 offline run with **20,413 passes and six inherited failures** (S0AF); the newer
-coordination repair has **329 focused passes**, with its full run pending
-(S0AH). Shared timing read-model approval, real-account editorial acceptance,
+coordination repair has **329 focused passes**, with a completed full run of
+**20,422 passes and the same six inherited failures** (S0AH). Shared timing
+read-model approval, real-account editorial acceptance,
 native bootstrap robustness, and baseline convergence remain open. Chat/Life
 surfaces remain held.
 S0AI additionally closes the mismatch between exact relationship lookup and
@@ -137,6 +138,11 @@ Source inspection: both reject unusable or stale handoff evidence, and
 relationship envelopes now expire with their grants. This has **349 focused
 owner/projection passes and 34 relationship-domain/API passes**, not yet a
 completed latest-tree full regression.
+S0AJ binds Home receipt references and consequence readback to the same mutable
+evidence fingerprint, restores the existing receipt membership boundary at
+the owner adapter, and rejects partial exact scope and audience widening.
+Its focused suite passes **392 tests**; the latest standard full backend run
+is active in session **6651**, covering both handoff and receipt repairs.
 
 ### P0 — Stabilize and land the integrated baseline — immediate
 
@@ -3817,10 +3823,12 @@ Evidence:
 - Ruff, formatting, import-boundary checks, whitespace checks, and commit
   gates pass. No model fields, API shapes, migrations, writers, model policy,
   Chat/Life surfaces, or serving defaults changed.
-- A fresh standard full backend regression is running in session **64944**,
-  logged at `/tmp/vesper-coordination-exact-backend.log`. Collect this process
-  without restarting it. S0AF's completed result predates this repair and is
-  not final-tree evidence for it.
+- The standard full backend regression completed in session **64944**,
+  logged at `/tmp/vesper-coordination-exact-backend.log`: **20,422 passed,
+  six failed, 30 skipped, 56 xpassed, and 1,325 deselected** in 434.93 seconds.
+  The six are the same five lazy-research fixture failures and dead-handler
+  audit. Collection predates S0AI/S0AJ; this is not full-suite evidence for
+  those later increments.
 
 The local API has not been restarted onto these backend changes; no native
 acceptance is claimed for this increment. Exact timing propagation into the
@@ -3863,16 +3871,77 @@ Evidence:
 - Ruff, formatting, import boundaries, whitespace checks, and all applicable
   backend commit gates pass. Backend worktree is clean after the commit.
 
-The S0AH full regression remains live in session **64944**, PID **13541** at
-this checkpoint, with active CPU in its 89% audit stage. Its collection started
-before this increment: collect it without restarting, then run the standard
-offline suite on the final handoff tree. Do not count the earlier process as
-latest-tree validation. The local API has not been restarted onto these
-changes, and no new native or real-data editorial acceptance is claimed.
+The S0AH full regression has completed with the result above. Its collection
+started before this increment; the next full run must cover both this handoff
+repair and S0AJ's receipt work. Do not count the earlier process as latest-tree
+validation. The local API has not been restarted onto these changes, and no
+new native or real-data editorial acceptance is claimed.
 
-Follow-up audit still needed: the consequence receipt reader can omit missing
-exact targets, and its envelope revision currently uses creation timestamps
-rather than mutable readback state. Provider-status and receipt authorization
-need their own owner-boundary review; this handoff repair does not certify
-those paths. P0–P7, the pending shared timing-model approval, and the Chat/Life
-surface hold remain unchanged.
+The follow-up receipt audit found missing exact-target validation and a
+creation-time-only envelope revision; S0AJ below repairs those paths and the
+adapter's missing membership enforcement. Provider-status still needs its own
+owner-boundary review. P0–P7, the pending shared timing-model approval, and the
+Chat/Life surface hold remain unchanged.
+
+### S0AJ — Receipt readback is exact, state-sensitive, and scope-checked
+
+Backend `629453eb1` closes the audited receipt readback gaps across the Home
+producer and canonical consequence adapter. The canonical row remains the
+owner; a new pure `core/action_receipt_identity.py` helper derives its reference
+from mutable readback state and public evidence rather than creation time
+alone. Status, target, public reasons, Source degradation, recovery fields,
+visibility, and supersession affect identity. Private influences and internal
+trace metadata do not enter that fingerprint.
+
+Home and consequence reads now share this reference. If a receipt reverses or
+its evidence changes after projection, exact readback reports `CONFLICT`
+instead of validating the old card. Missing exact targets cannot disappear
+from a batch that still claims current evidence. Superseded, unowned, or
+unresolved-scope receipts cannot become usable evidence.
+
+The receipt API already requires Trip membership; the non-HTTP owner adapter
+now enforces that same existing rule. Trip-list requests verify membership
+before fetching receipts. Exact receipt reads verify the owning Trip, and a
+request-local set avoids repeated checks for the same Trip. Private non-trip
+owner receipts remain readable privately. Private-to-group/public and
+group-to-public promotion are rejected even when a request supplies a grant
+reference; that reference cannot widen the original receipt audience.
+
+Classification: bounded adapter/readback repair using existing ownership and
+audience rules, with a shared pure identity helper—not a shared-model, schema,
+prompt, or auth-model redesign. No new writer, migration, API shape, Chat/Life
+surface, real provider call, or serving-default change. Existing timestamp-only
+Home receipt references are intentionally stale against the new identity and
+must be recomputed rather than silently accepted as current.
+
+Evidence:
+
+- **17 of the initial 18 regression cases failed before implementation**
+  (`/tmp/vesper-receipt-owner-red.log`).
+- **392 focused tests pass** across receipt-specific regressions, all canonical
+  owner reads, core owner execution, action receipt behavior, root projections,
+  and attention posture (`/tmp/vesper-receipt-owner-focused.log`). Additional
+  cases verify private/trace metadata exclusion, one membership check per Trip
+  per request, and rejection of group-to-public promotion.
+- A real registry/portfolio test verifies that a stale receipt contributes no
+  usable payload or evidence while its independent current peer remains usable.
+- Ruff, formatting, import boundaries, whitespace, and all applicable commit
+  gates pass. Backend worktree is clean after the commit.
+- Fresh standard full regression started after commit in session **6651**,
+  logged at `/tmp/vesper-receipt-handoff-backend.log`. It covers S0AI and S0AJ;
+  collect this process before starting another broad run. S0AH's completed
+  20,422-pass/six-failure result is the preceding comparison, not this result.
+
+Remaining consequence work is not hidden by these passing checks. In
+particular, Home's group receipt candidates carry a Trip reference as their
+grant, while the owner-read compiler retains only recognized use-grant kinds
+beside the singular receipt scope. That is not yet a complete canonical grant
+handoff for the group path; the current tests certify private Home receipt
+identity and existing viewer membership, not group receipt admission end to
+end. Resolve that audience/projection seam explicitly rather than accepting
+an arbitrary Trip ID as a grant. Provider-status owner readback still needs
+its separate revision, visibility, and lifecycle review.
+
+No native acceptance or model-authored editorial portfolio is claimed here.
+The local API still predates these backend repairs. Shared timing-model
+approval, Chat/Life surface hold, and the complete P0–P7 objective remain.
