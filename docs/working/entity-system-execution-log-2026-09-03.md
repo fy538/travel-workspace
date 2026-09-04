@@ -74,3 +74,43 @@ flag, then migrate venue relationship/capability regions with physical Places
 QA. Workspace OpenAPI snapshots are intentionally not overwritten in this
 pass because they contain concurrent Home/Places Source changes; they should
 be regenerated and reviewed when these two branches are integrated.
+
+## Review fixes — 2026-09-03
+
+All ten findings from the implementation review are addressed in the entity
+worktrees, on `codex/entity-shell-resolution`. No backfill, migration, provider
+refresh, or production data mutation was run.
+
+Backend commits:
+
+- `a126841bf` — live origin routing bypasses shared cache reads/writes; provider
+  error logs omit origin-bearing URLs; route prose uses the resolved mode;
+  zero-distance arrival yields a valid summary without a positive-duration route.
+- `473aabc8f` — bounded transitive alias reads retain historical identities,
+  respect owner visibility/global precedence, and reject cycles/excessive depth.
+- `c59eaff64` — personal Plan requires planned participation, explicit trip
+  filtering happens before Plan selection (including stays), entity outcomes
+  are selected per requested identity rather than from the global latest twenty,
+  and relationship revisions fingerprint material content rather than aliases
+  alone. Snapshot consumers forward their trip scope.
+
+Mobile commits:
+
+- `7330407cf` — mounted pages withhold expired situation values, including on
+  app foregrounding and failed refetch; save/outcome/occurrence mutations
+  invalidate the relevant v1, v2, and situation consumers.
+- `8682310a9` — invalidation matches numeric hook IDs with string mutation IDs
+  while preserving viewer/entity isolation.
+
+Verification:
+
+- Combined backend relationship, alias, presentation, situation, outcome, and
+  distance tests: **149 passed, 1 PostgreSQL-only test deselected**.
+- New query regression tests execute SQL against isolated in-memory tables;
+  they are not a substitute for PostgreSQL integration verification.
+- Six mobile suites (expiry, invalidation, outcome mutations, saves, site data,
+  site detail smoke): **50 passed**. `tsc --noEmit`: passed.
+- Touched-file Ruff checks/formatting, Prettier, and both repositories' commit
+  hooks: passed.
+- These fixes change no public request/response schema; no generated contract
+  edits were needed. The integration/rollout gates above remain unchanged.
