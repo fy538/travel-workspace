@@ -144,9 +144,11 @@ the [cross-family rehearsal runbook](../working/lived-experience-cross-family-re
 The integrated productization lane now has an additive HPL-01–HPL-06 scenario
 manifest (`travel-agent` commit `abf7d6bc1`). Each world carries one represented
 clock, two viewer identities, explicit owner revisions, Source and grant refs,
-and expected Home, Places, and Life seats. The manifest compiles the existing
-Home/Places rehearsal graph through the Life v1 adapter; it does not seed a
-second store or claim real-account evidence.
+and expected Home, Places, and Life seats. A compact machine-readable snapshot
+is available from the same manifest (`travel-agent` commit `b32f35eae`) for
+operator and native review. The manifest compiles the existing Home/Places
+rehearsal graph through the Life v1 adapter; it does not seed a second store or
+claim real-account evidence.
 
 The Life adapter preserves viewer-safe multiplayer authority for shared
 occasion-linked plans, occasions, outcomes, and commitments (`travel-agent`
