@@ -151,8 +151,10 @@ second store or claim real-account evidence.
 The Life adapter preserves viewer-safe multiplayer authority for shared
 occasion-linked plans, occasions, outcomes, and commitments (`travel-agent`
 commit `d33a4f42f`), including group audience, an explicit occasion grant, and
-attributed member owners across supported lenses. Causal withdrawal, complete
-correction repair, and a production shared corpus remain open.
+attributed member owners across supported lenses. A follow-up privacy boundary
+(`travel-agent` commit `8426531f3`) keeps private outcomes and commitments
+private even when they are linked to a shared occasion. Causal withdrawal,
+complete correction repair, and a production shared corpus remain open.
 
 The internal native preflight and product-system resolver now require Life v1
 alongside Home v2 and governed Places before reporting a governed three-root
