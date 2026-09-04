@@ -681,7 +681,8 @@ separate entity lane and Chat surface alone:
 | Package / slice | Evidence | Status | Remaining boundary |
 | --- | --- | --- | --- |
 | HPL-0 baseline and lane boundary | `d9561c8` in the workspace docs repo | complete | None for this lane; entity and Chat remain separate. |
-| HPL-1 shared three-root rehearsal seam | `49f0e27e5` in `travel-agent` | initial slice complete | The four existing Home/Places worlds now compile Life from the same graph and clock; HPL-04–06 still need dedicated owner/grant/repair scenarios. |
+| HPL-1 shared three-root rehearsal seam | `49f0e27e5` in `travel-agent` | initial slice complete | The four existing Home/Places worlds now compile Life from the same graph and clock; the dedicated HPL-01–06 manifest is recorded below, while active-seat arbitration and repair remain open. |
+| HPL-1 executable scenario manifest | `abf7d6bc1` in `travel-agent` | scenario format complete | HPL-01–06 now carry one represented clock, two viewers, explicit owner revisions, Source/grant refs, and expected Home/Places/Life seats. Active-seat arbitration and cross-root repair remain HPL-2 work. |
 | Life lens read boundary | `ff50b80b4` in `travel-agent` | complete for current owners | Time, evidence-backed Places, and evidence-backed People reads are supported; Threads stays honestly thin until a canonical thread owner exists. |
 | Life native selector and hierarchy | `d7f9b3a99`, `38a053f48` in `travel-app` | complete for the dark v1 root | Lens selection is query-backed, supported history doors follow the selected lens, and Return is uncarded; the native gate remains off until the shared rehearsal and device matrix pass. |
 | API contract projection | `6e19cb8` in the workspace docs repo | complete | Generated contract now includes the Life lens query. |
