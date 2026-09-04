@@ -13,8 +13,8 @@ doc_type: working
 
 # Entity native QA receipt
 
-This receipt records current-build native smoke passes for the rebuilt venue
-object page, the registered Places route, and the explicit plan-placement
+This receipt records current-build native smoke passes for the default venue
+object route, the registered Places route, and the explicit plan-placement
 boundary. It is evidence for those slices, not a production rollout receipt
 or proof of the complete state matrix.
 
@@ -26,6 +26,8 @@ or proof of the complete state matrix.
 - UDID: `AF31B886-E837-4962-834A-5CBAD5C306DB`
 - App id: `com.fyan.vesper`
 - Data lane: mock, runner-seeded (`dev.mockModeOverride=true`)
+- Object-page rebuild flag: off (the runs exercise the default venue route;
+  `ObjectPageRebuild` flag-on acceptance is a separate gate)
 - Research: disabled; no queue request or provider call
 - Flow: `travel-app/.maestro/54b-journey-07-venue-context.yaml`
 - Metro: LAN development bundle with internal-build routes enabled
@@ -65,7 +67,7 @@ assertion from `Home` to the current `Plans` label:
 
 ## Assertions covered
 
-1. The rebuilt route opens from the dev handoff and lands on the current Plans
+1. The default venue route opens from the dev handoff and lands on the current Plans
    shell.
 2. Venue identity renders as `Cervejaria Ramiro` with the `venue-detail-screen`
    test id.
@@ -83,6 +85,7 @@ These are scoped mock-lane passes. They do not certify real-backend auth,
 research lifecycle states, live situation freshness, source attribution,
 relationship differences across two accounts, accessibility at large text or
 screen-reader navigation, Android, or the full loading/error/empty matrix.
-Those remain separate gates in the entity roadmap and must be attached to a
-reviewed pilot receipt before any capability is enabled. No production rows,
+the guarded `ObjectPageRebuild` flag-on route, or full shared-renderer
+convergence. Those remain separate gates in the entity roadmap and must be
+attached to a reviewed pilot receipt before any capability is enabled. No production rows,
 research jobs, provider calls, or backfill were created by this run.

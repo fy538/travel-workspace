@@ -54,7 +54,7 @@ checks remain in the execution log.
 | Identity | Canonical refs, external identities, private provisional shells, redirects and alias-aware reads | Cross-entry and cross-owner identity/repair certification |
 | Relationship | Save, Plan, personal attendance and private outcome projection; bounded page readback | Two-user later-read proof, correction and retraction across consumers |
 | Situation | Separate no-store contextual read and expiry handling | Foreground/background, context-change and stale-action certification |
-| Object UI | Guarded shared renderer on venue, site and experience routes | Current-build native design, accessibility and real-backend acceptance |
+| Object UI | Guarded shared renderer on venue, site and experience routes; default venue route still retains its compatibility composition | Flag-on shared-renderer acceptance, action parity and current-build native design/accessibility/real-backend evidence |
 | Research | Read-only persisted brief; explicit gated queue request; idempotency and rate controls | End-to-end job state, artifact readiness, provenance, freshness and retry closure |
 | People | Bounded authorized exact-place lines and gated addressed-handoff doorway | Grant/revocation and recipient experience proof; richer inline people citations remain separate |
 | Operations | Read-only entity-health counts | Queue age, artifact mismatch, repair evidence, operational ownership and rollout receipt |
@@ -496,7 +496,7 @@ Completed implementation packages in this lane:
 | E5 | Explicit source metadata write-back; stale idempotency replay refresh; page-artifact worker gate; fail-closed global budget, atomic queue claim and abandoned-lease recovery | `travel-agent:e9d89fc0d`, `350e5f931`, `5eee43f31`, `f2a6d846a`, `83583a42d`, `0bd02d8da`, `97ee0019f`, `ea940a044` |
 | E6 | Generated mobile status contract; centralized research state reducer; stale content age label; status-error recovery copy and tests; stable locale metadata formatting; stale-age preservation during unknown status | `travel-app:9904f3411`, `9abfc997d`, `462d56a0d`, `ce504cfa9`, `71f154151`, `a3636e13c` |
 | Contract | OpenAPI snapshots, active projection, generated schema, identity seams and schema bridge are synchronized | `workspace:93ea30e` |
-| E8 (native core slice) | Current mobile build passes the venue identity/save/private-handoff smoke, registered Places capture, and explicit plan-placement review/commit on iPhone 16 Pro in the mock lane; scoped receipt records the screenshots and limits | `travel-app:47735f406`, `travel-app:35c110f47`, [native QA receipt](entity-native-qa-receipt-2026-09-04.md) |
+| E8 (native default-route slice) | Current mobile build passes venue identity/save/private-handoff, registered Places capture, and explicit plan-placement review/commit on iPhone 16 Pro in the mock lane; the default venue route is flag-off, so shared `ObjectPageRebuild` acceptance remains open | `travel-app:47735f406`, `travel-app:35c110f47`, [native QA receipt](entity-native-qa-receipt-2026-09-04.md) |
 | E10 (later-consumer slice) | Real PostgreSQL second-occasion loop closure changes candidate choice from a prior explicit outcome, then reopens after correction and withholds on changed roster/occasion; chat attachment snapshots remain catalog-only | `travel-agent:18b71b9f7`, `422a5f6c8` |
 | E9 (health receipt) | Read-only, content-free entity health report now includes queue age, retry/lease, duplicate-active, and completed-without-fresh-brief integrity metrics | `travel-agent:9f3d80959` |
 
@@ -529,7 +529,9 @@ Validation recorded for this continuation:
 - Native Maestro runs initially found two QA-lane prerequisites (Metro
   reachability and a persisted real-API override). After those were corrected
   without changing product flags, the current mobile SHA passed
-  `.maestro/54b-journey-07-venue-context.yaml` end-to-end in the mock lane.
+  `.maestro/54b-journey-07-venue-context.yaml` end-to-end in the mock lane
+  with the object-page rebuild flag off (the default venue compatibility
+  composition).
   The registered `polish/places.yaml` capture also passed after its stale
   Plans-shell assertion was corrected. The follow-up
   `.maestro/54c-journey-07-venue-plan-outcome.yaml` flow also passed through
@@ -537,7 +539,8 @@ Validation recorded for this continuation:
   sequencing the iOS modal transitions. The scoped result is recorded in the
   [native QA receipt](entity-native-qa-receipt-2026-09-04.md); it covers the
   mock-lane identity/save/private-handoff, Places default, and one explicit
-  placement path, not the complete real-backend or accessibility state matrix.
+  placement path, not the guarded flag-on `ObjectPageRebuild` path, complete
+  real-backend, or accessibility state matrix.
   Production canary and any backfill remain intentionally outstanding; no
   flag was enabled and no catalog row was backfilled.
 
