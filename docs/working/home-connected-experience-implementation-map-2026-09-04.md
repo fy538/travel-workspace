@@ -73,6 +73,11 @@ same return context. A Life destination with no exact Life ref still lands at
 the Life root, so this does not invent a new Life surface or change Chat/Life
 ownership.
 
+Mobile commit `00d2dd892` adds return-registry coverage for audience changes and
+selected-resource revision changes. The restoration contract now has executable
+proof that those changes recomposes Home rather than restoring a stale unit;
+restart behavior remains intentionally represented by the missing-token fallback.
+
 ## 3. Journey-to-code matrix
 
 Status vocabulary: **present and verified** means the seam is visible in code but still needs a journey test; **present but unverified** means a similar path exists but its exact semantics are not proven; **adapt** means a small owner-specific change is likely; **missing** means no honest implementation path was found; **blocked on owner decision** means engineering should not invent the contract.
