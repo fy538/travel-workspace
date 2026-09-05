@@ -93,6 +93,7 @@ The next R1 seam is now explicit in the backend rather than only in the plan:
 |---|---|---|
 | `0965db32d` | Added the additive `life_corpus_entries` Postgres projection table, with viewer/version/record identity, owner revision, separate time roles, lens membership, typed lifecycle/audience state, lineage/dependency manifests, renderer-neutral payload, withdrawal timestamps, and viewer-order/lens/owner indexes; added `build_life_index_query` | This is rebuildable read state, not a new Life truth owner; it is not populated by this change and it is not a server-driven UI tree |
 | `de668635e` | Added `read_life_index_page`, a repository-level bounded reader with one-row lookahead and typed `(sort_at, record_id)` continuation | No HTTP route uses it yet; serving remains on the canonical snapshot path until backfill and shadow comparison certify equivalence |
+| `efc27308c` | Added `compare_life_index_snapshot`, a deterministic shadow comparator for missing, extra, duplicate, kind, sort-key, and lens-membership differences | It compares only fields the canonical snapshot can prove; owner revision, grants, payload, and lineage remain projector-contract checks |
 
 Focused schema, query, repository-reader, and Alembic-chain tests pass (13
 tests for the first unit and 11 for the reader/schema unit). Repository-wide
