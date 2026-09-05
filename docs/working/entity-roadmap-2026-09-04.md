@@ -520,6 +520,7 @@ Completed implementation packages in this lane:
 | Package | Evidence | Commit(s) |
 | --- | --- | --- |
 | E1 | PostgreSQL two-member continuity test: shared occurrence/identity remains equal while private verdicts differ by viewer | `travel-agent:b1f5a9fcf` |
+| E1/E3 | Legacy v1 presentation now adapts non-venue planned/lived relationship state from the canonical projector, keeping site and experience compatibility reads aligned with v2 without a third relationship model; regression coverage includes affinity-only, planned, and lived cases | `travel-agent:363e7f54b` |
 | E4 | Viewer-safe lifecycle endpoint; completed status requires a readable brief; experience/provisional requests remain unavailable; expired artifacts report stale/retryable | `travel-agent:4f018f2f0`, `fb38e24f1` |
 | E5 | Explicit source metadata write-back; stale idempotency replay refresh; page-artifact worker gate; fail-closed global budget, atomic queue claim and abandoned-lease recovery | `travel-agent:e9d89fc0d`, `350e5f931`, `5eee43f31`, `f2a6d846a`, `83583a42d`, `0bd02d8da`, `97ee0019f`, `ea940a044` |
 | E6 | Generated mobile status contract; centralized research state reducer; stale content age label; status-error recovery copy and tests; stable locale metadata formatting; stale-age preservation during unknown status | `travel-app:9904f3411`, `9abfc997d`, `462d56a0d`, `ce504cfa9`, `71f154151`, `a3636e13c` |
@@ -536,6 +537,10 @@ Validation recorded for this continuation:
   367 facade exports classified).
 - Backend focused entity/research suites pass, including the live PostgreSQL
   relationship continuity test and queue lifecycle tests.
+- The legacy v1 presentation compatibility reader now consumes the canonical
+  relationship projection for site, accommodation, and experience reads; its
+  focused presentation/routes suite passes 42 tests, including affinity-only,
+  planned, and lived non-venue cases.
 - A second native-Postgres follow-up pass covering entity presentation,
   private-entity contracts, people-line gating, relationship handoffs and
   outcome feedback passed 66 tests. The current mobile entity
