@@ -850,6 +850,12 @@ tests; do not defer the live engine until content composition is finished.
   updates the root feature contract so future worker/outbox scheduling is the
   producer owner and ordinary GET composition remains a precomputed-value
   handoff. No worker, flag activation, or deployment was implied by the note.
+- **I2 / bounded synchronous reads — implemented:** `travel-agent` commit
+  `f1649f7b1` moves root portfolio readers off the process-wide
+  `asyncio.to_thread` executor onto a fixed eight-worker pool. Timeout and
+  cancellation now cancel queued work or observe a running read's late
+  exception, bounding post-deadline pressure without pretending Python can
+  force-stop an in-flight driver call.
 
 At the next checkpoint update this ledger in place, attach exact receipts, and
 decide the next bounded batch. This keeps the roadmap live without making this
