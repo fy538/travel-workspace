@@ -1422,7 +1422,7 @@ proven:
 | --- | --- | --- |
 | CC-0 | Backend `e0885b98d`; focused Life reader/count suite: 11 passed | Retained-source page and count share one bounded, source-local SQL projection; the invalid full-corpus count expression is gone. |
 | CC-1 | Backend `9f00c92ce` + history projection redaction `be3420377`; retry/authority and action-authority tests pass; mobile `3ff5dac62`; pending-turn outbox: 5 passed | Server-owned authored authority survives persistence/retry without leaking into client history; canonical and legacy Chat routes reject forged authority metadata; a share's Chat gesture ID is distinct from the intake submission and stable across retry. |
-| CC-2 | Backend `ff3915b6b`; semantic-worker retention tests: 2 passed | Semantic completion preserves the original transient custody deadline and does not extend it; derived-only retention remains deadline-free. |
+| CC-2 | Backend `ff3915b6b`; root inventory `2695cdf`; semantic-worker retention tests: 2 passed | Semantic completion preserves the original transient custody deadline and does not extend it; derived-only retention remains deadline-free. The source/derivative copy and consumer inventory is now recorded; the ordinary-Chat versus Ask-image history rule and cleanup implementation remain intentionally open. |
 | CC-3 | Backend `add16495d`; writer/refresh focused suite: 53 passed | Behavioral and engagement writers are explicitly non-authoritative, reversible derived signals with bounded importance, provenance, confidence/expiry, and visible derived labeling during Personal Memory synthesis. |
 | CC-4 | Mobile `33bb0cfa8`; share-capture/audio/intake/outbox suites: 20 passed | Capture now surfaces bounded, source-extracted facts before candidate controls; later Chat continuation remains optional, and the screen keeps a clear receipt/delete/leave path. |
 | CC-5 | Existing owner/activation/correction portfolio: 44 passed | Handoff receipts, exact owner readback, activation replay, and semantic correction helpers remain fail-closed and owner-scoped; no new owner command was invented without an owner contract. |
@@ -1432,7 +1432,8 @@ app-wide typecheck is currently blocked by an unrelated concurrent entity/Places
 change in `app/venue/[venueId]/index.tsx`. The backend pre-commit size budget
 and one pre-existing error-category registration finding also remain outside
 these bounded commits; they were explicitly skipped and must be cleared before
-publication. CC-2 still needs the copy/consumer inventory and Chat-image
-cleanup policy, CC-4 still needs the full useful-first result sequence and
-registered native evidence, and CC-6 remains open for real transport, native,
-and generated-content runs.
+publication. CC-2 now has the copy/consumer inventory, but still needs the
+founder-selected Chat-image history rule and cleanup implementation. CC-4
+still needs the full useful-first result sequence and registered native
+evidence, and CC-6 remains open for real transport, native, and
+generated-content runs.
