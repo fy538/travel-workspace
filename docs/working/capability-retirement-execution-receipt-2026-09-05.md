@@ -86,7 +86,8 @@ removed.
 | Mobile typecheck | Passed | Not native device evidence |
 | Mobile focused Jest | Passed for venue/contract tests and the existing handoff suites | Not native visual QA; Chat behavior unchanged |
 | Mobile changed-file ESLint | 0 errors; baseline warnings remain | Not a release acceptance result |
-| App surface-contraction guard | Baseline failure: generated route inventory is stale | Unrelated generated route state was not regenerated in this lane |
+| App generated route inventory | Refreshed in `travel-app:2e73889fe` | Three already-committed routes were absent from the registry; generated output now matches `app/` |
+| App surface-contraction guard | Two failures remain: `/you/intake-submissions/[submissionId]` and `/you/life-record` have no M-1 owner/exemption | Both are Life routes from the concurrent Life lane; resolving them would violate this pass's explicit no-Life boundary |
 
 The backend pre-commit baseline still reports the repository's existing broad
 exception-count and size-budget failures. Those were not folded into this

@@ -1096,7 +1096,7 @@ recovery remains,” not “fully retired.”
 | CR-3 | Places continuation complete; generalized evidence seam open | Backend venue continuation facts landed in `5e40410f3`; app venue/experience handoff landed in `78a396b73`; no booking session, Trip, day, or return-catch is created by the Places path. Independent non-Trip confirmation association remains open and is not claimed here |
 | CR-4 | Partial: shared resilience and Places complete; retained readers deferred | Generic resilience moved to `backend/core/resilience.py` in `e33dd4764`; Life/stay/cost/history/deep-link readers remain untouched because this lane explicitly does not change Life or Chat |
 | CR-5 | Not started; gated | Deleting execution UI, jobs, provider mutation branches, credentials/config, and route obligations requires CR-1 environment evidence plus CR-4 retained-reader coverage |
-| CR-6 | Not started; local package checks recorded | Contract, typecheck, focused tests, and lint are clean for landed slices; this is not native QA, deployment acceptance, or proof of external decommissioning |
+| CR-6 | Not started; local package checks recorded | Contract, typecheck, focused tests, lint, and generated route inventory are clean for landed slices; the contraction guard still reports two unowned Life routes, which are intentionally deferred. This is not native QA, deployment acceptance, or proof of external decommissioning |
 
 **Next safe step:** obtain the environment-specific, read-only obligation audit
 for each deployed environment, then re-check after the admission closure is
