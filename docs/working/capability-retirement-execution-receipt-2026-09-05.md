@@ -47,7 +47,7 @@ removed.
 - New session creation, checkout/hold/payment, restaurant contact/retry, and
   provider-changing itinerary dispatch fail at server/domain boundaries; stale
   and replayed worker paths are guarded as well.
-- Follow-through hardens the remaining local admission seams: booking-offer and
+- Follow-through (`travel-agent:d10fafd86`) hardens the remaining local admission seams: booking-offer and
   restaurant-attempt writers, plus provider-saga starts and held-price
   reapproval, now fail before creating fresh obligations. Their authenticated
   routes return the stable `410 booking_execution_retired` response. Provider
