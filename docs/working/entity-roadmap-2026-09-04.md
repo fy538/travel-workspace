@@ -535,7 +535,7 @@ Completed implementation packages in this lane:
 | E6 | Generated mobile status contract; centralized research state reducer; stale content age label; status-error recovery copy and tests; stable locale metadata formatting; stale-age preservation during unknown status | `travel-app:9904f3411`, `9abfc997d`, `462d56a0d`, `ce504cfa9`, `71f154151`, `a3636e13c` |
 | E6/E8 | The shared object renderer now makes a terminal `unavailable` research capability explicit (“Read up isn’t available for this place.”) while withholding retry; the renderer regression locks the no-action behavior. | `travel-app:298dc61db` |
 | E6/E8 | Research mutation receipts are now scoped to the mounted account/entity identity: a route or auth transition hides the prior queued/failed result, resets the mutation, and rotates the idempotency key before the next request; late responses and duplicate requests cannot repopulate or overwrite the active page; lifecycle regressions cover both transitions. | `travel-app:ce19d1f3c`, `e264c09f1` |
-| E1/E8 | Keep/Unsave mutations now carry their originating account/entity identity through the optimistic lifecycle: mounted transitions hide old pending/error state, late callbacks update only the originating cache, and stale callbacks cannot emit a receipt, push, or active-page side effect; the regression exercises a pending A→B account/entity transition and read/write calls remain correctly scoped. | `travel-app:b5c0a4fbf`, `49465bab2`, `712fdab69` |
+| E1/E8 | Keep/Unsave mutations now carry their originating account/entity identity through the optimistic lifecycle: mounted transitions hide old pending/error state, late callbacks update only the originating cache, and stale callbacks cannot emit a receipt, push, or active-page side effect. A monotonic identity generation also rejects a late response after an A→B→A return, so matching strings cannot resurrect an earlier mounted lifetime; regressions cover both transition shapes and read/write calls remain correctly scoped. | `travel-app:b5c0a4fbf`, `49465bab2`, `712fdab69`, `76a4df8af` |
 | E1/E8 | The addressed place-note doorway now captures the mounted entity/account/path lifetime before opening or submitting; a route, account, or entity transition suppresses the delayed composer and prevents stale handoff delivery or success UI while leaving the backend owner/revocation contract unchanged; a component regression proves a changed canonical ref cannot submit. | `travel-app:85eba258f`, `0bdbe25bc` |
 | Contract | OpenAPI snapshots, active projection, generated schema, identity seams and schema bridge are synchronized | `workspace:93ea30e` |
 | E8 (native default-route slice) | Current mobile build passes venue identity/save/private-handoff, registered Places capture, and explicit plan-placement review/commit on iPhone 16 Pro in the mock lane; the default venue route is flag-off, so shared `ObjectPageRebuild` acceptance remains open. The rebuild intentionally omits the legacy Add-to-trip ladder per the Places contract. | `travel-app:47735f406`, `travel-app:35c110f47`, [native QA receipt](entity-native-qa-receipt-2026-09-04.md) |
@@ -623,13 +623,13 @@ Validation recorded for this continuation:
   idempotency key, and late or duplicate responses cannot overwrite the
   active request. App-main TypeScript remains clean. This is a client
   transition proof, not native two-account evidence.
-- The primary `useSaveEntity` suite passes (**30 tests**), including the new
-  pending account/entity transition regression. The first Keep request remains
+- The primary `useSaveEntity` suite passes (**31 tests**), including pending
+  account/entity transition regressions. The first Keep request remains
   attributed to account/entity A, the newly mounted B request is not blocked,
-  and late A completion cannot leave B pending. App-main TypeScript and test
-  contract typecheck remain clean.
+  and late A completion cannot leave B pending or reappear as current after an
+  A→B→A return. App-main TypeScript and test contract typecheck remain clean.
 - The addressed-handoff component suite and the focused entity mutation/page
-  group pass (**43 tests** in this run), including the lifetime guard for a
+  group pass (**44 tests** in this run), including the lifetime guard for a
   delayed place-note composer. TypeScript, accessibility governance and
   contract typecheck remain clean; this is a client lifetime proof, not native
   handoff-revocation evidence.

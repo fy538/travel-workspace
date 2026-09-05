@@ -305,3 +305,17 @@ and research lifecycle tests pass (**43 tests**); app-main TypeScript,
 test-contract typecheck, and accessibility governance pass. Backend ownership
 and revocation remain the authoritative server checks; no handoff was sent and
 no production data changed.
+
+## Returned identity-generation repair — 2026-09-04
+
+- Travel App `76a4df8af` — added a monotonic mounted identity generation to
+  Keep/Unsave mutation variables and in-flight locks. A late response from an
+  earlier account/entity lifetime is now stale even when the user has returned
+  to the same account and entity (A→B→A), so it cannot resurrect pending/error
+  state or emit a receipt, push, or active-page callback.
+
+Verification: `useSaveEntity`, research lifecycle, shared renderer, and
+addressed-handoff tests pass (**44 tests**); app-main TypeScript, test-contract
+typecheck, mutation-key ownership, API-boundary, schema-bridge, and
+accessibility governance checks pass. No API contract or production data
+changed.
