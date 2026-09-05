@@ -40,9 +40,9 @@ Inspected local `main` on September 4 (after the continuation receipts below):
 
 - Backend: `9f3d80959` — research gating, persistence hardening and the
   read-only entity health report.
-- Mobile: `377c8a4b5` — canonical mock envelope bridge plus guarded venue,
-  site, and experience object-page native journeys (the preceding
-  route/action implementation is `35c110f47`).
+- Mobile: `ea10e4482` — canonical mock envelope bridge, guarded venue/site/
+  experience journeys, and focused shared-renderer state-contract coverage
+  (the preceding route/action implementation is `35c110f47`).
 - Workspace: `c339dea` — roadmap, runbook and validation ledger before this
   receipt update.
 
@@ -56,7 +56,7 @@ checks remain in the execution log.
 | Identity | Canonical refs, external identities, private provisional shells, redirects and alias-aware reads | Cross-entry and cross-owner identity/repair certification |
 | Relationship | Save, Plan, personal attendance and private outcome projection; bounded page readback | Two-user later-read proof, correction and retraction across consumers |
 | Situation | Separate no-store contextual read and expiry handling | Foreground/background, context-change and stale-action certification |
-| Object UI | Guarded shared renderer on venue, site and experience routes; default venue route still retains its compatibility composition; all three flag-on identity/verb contract slices now native-evidenced | Full state-matrix acceptance, plus current-build accessibility and real-backend evidence |
+| Object UI | Guarded shared renderer on venue, site and experience routes; default venue route still retains its compatibility composition; all three flag-on identity/verb contract slices now native-evidenced; sparse/capability/stale unit cases are locked | Full state-matrix acceptance, plus current-build accessibility and real-backend evidence |
 | Research | Read-only persisted brief; explicit gated queue request; idempotency and rate controls | End-to-end job state, artifact readiness, provenance, freshness and retry closure |
 | People | Bounded authorized exact-place lines and gated addressed-handoff doorway | Grant/revocation and recipient experience proof; richer inline people citations remain separate |
 | Operations | Read-only entity-health counts | Queue age, artifact mismatch, repair evidence, operational ownership and rollout receipt |
@@ -514,7 +514,7 @@ Completed implementation packages in this lane:
 | E6 | Generated mobile status contract; centralized research state reducer; stale content age label; status-error recovery copy and tests; stable locale metadata formatting; stale-age preservation during unknown status | `travel-app:9904f3411`, `9abfc997d`, `462d56a0d`, `ce504cfa9`, `71f154151`, `a3636e13c` |
 | Contract | OpenAPI snapshots, active projection, generated schema, identity seams and schema bridge are synchronized | `workspace:93ea30e` |
 | E8 (native default-route slice) | Current mobile build passes venue identity/save/private-handoff, registered Places capture, and explicit plan-placement review/commit on iPhone 16 Pro in the mock lane; the default venue route is flag-off, so shared `ObjectPageRebuild` acceptance remains open. The rebuild intentionally omits the legacy Add-to-trip ladder per the Places contract. | `travel-app:47735f406`, `travel-app:35c110f47`, [native QA receipt](entity-native-qa-receipt-2026-09-04.md) |
-| E8 (native guarded-renderer slice) | Flag-on venue, site, and experience routes pass on the iPhone 16 Pro mock lane with canonical `Cervejaria Ramiro` / `Museu Nacional do Azulejo` / `LUX Fragil Closing Night`, `Keep place`, visible Ask handoffs, and explicit assertions that the legacy Add-to-trip ladder is absent. This proves the intended shared renderer identity/verb contract for all three current kinds; state-matrix evidence remains open. | `travel-app:7b4d0601b`, `travel-app:6e3fe8545`, `travel-app:464e7da98`, `travel-app:377c8a4b5`, [native QA receipt](entity-native-qa-receipt-2026-09-04.md) |
+| E8 (native guarded-renderer slice) | Flag-on venue, site, and experience routes pass on the iPhone 16 Pro mock lane with canonical `Cervejaria Ramiro` / `Museu Nacional do Azulejo` / `LUX Fragil Closing Night`, `Keep place`, visible Ask handoffs, and explicit assertions that the legacy Add-to-trip ladder is absent. Focused renderer tests also lock sparse, owner-private capability denial, and stale research states. This proves the intended shared renderer identity/verb contract for all three current kinds; native state-matrix evidence remains open. | `travel-app:7b4d0601b`, `travel-app:6e3fe8545`, `travel-app:464e7da98`, `travel-app:377c8a4b5`, `travel-app:ea10e4482`, [native QA receipt](entity-native-qa-receipt-2026-09-04.md) |
 | E10 (later-consumer slice) | Real PostgreSQL second-occasion loop closure changes candidate choice from a prior explicit outcome, then reopens after correction and withholds on changed roster/occasion; chat attachment snapshots remain catalog-only | `travel-agent:18b71b9f7`, `422a5f6c8` |
 | E9 (health receipt) | Read-only, content-free entity health report now includes queue age, retry/lease, duplicate-active, and completed-without-fresh-brief integrity metrics | `travel-agent:9f3d80959` |
 
@@ -533,6 +533,11 @@ Validation recorded for this continuation:
   needed only while constructing that full HTTP scenario harness, so that
   runner mismatch is recorded rather than treated as a product failure.
 - Mobile TypeScript, schema bridge and object-page projection tests pass.
+- The focused mobile shared-renderer state suite passes
+  (`__tests__/components/places/ObjectPageRebuild.test.tsx`: 3 tests),
+  covering sparse body absence, capability/owner-private withholding, and
+  stale research age plus explicit refresh. The four touched screen/mock
+  suites pass 69 tests; TypeScript completes cleanly.
 - The touched mobile files also pass the date-locale convention test after
   replacing implicit device-locale formatting with the app's stable `en-US`
   locale (`travel-app:71f154151`).
