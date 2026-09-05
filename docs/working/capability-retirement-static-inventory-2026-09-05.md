@@ -24,6 +24,49 @@ The inventory is an execution aid, not an authorization to delete code. The
 retirement plan requires a fresh environment-specific obligation check after
 admission closes and before removing recovery paths.
 
+## Current recheck — 2026-09-05
+
+The app contraction guard was rerun at current lane HEAD. It still reports
+three issues:
+
+- generated route inventory is stale;
+- `/you/intake-submissions/[submissionId]` has no M-1 owner or explicit
+  exemption;
+- `/you/life-record` has no M-1 owner or explicit exemption.
+
+These are shared registry/Life-owner work. They are recorded here so the gate
+is not mistaken for a booking failure; Retirement supplies booking dispositions
+to Integration and does not regenerate the route registry over active Places,
+Entity, or Life edits.
+
+The app's booking read hooks are now isolated behind
+`data/bookingReads.ts` (`travel-app:15b4edfdb`). The extraction preserves query
+keys, API methods, polling, and compatibility exports; it does not alter
+provider execution or any generated contract.
+
+### Retained-consumer caller inventory
+
+| Caller | Classification | Retained job / next owner |
+| --- | --- | --- |
+| `travel-app/app/booking/[sessionId].tsx` | Mixed read, recovery, mutation | Keep until the evidence reader and finite recovery paths migrate; Integration coordinates route cutover |
+| `travel-app/components/booking/BookingReceiptPrimitives.tsx` | Retained presentation candidate | Life/Home map to the kept-object/pass family; no second booking renderer by default |
+| `travel-app/components/booking/BookingConfirmationCard.tsx` | Chat presentation | Contribution and Capture + Integration; deferred from this lane |
+| `travel-app/components/booking/HandoffReturnCatchPrompt.tsx` | Compatibility/recovery state | Remove only after external continuation and existing-obligation recovery are proven |
+| `travel-app/app/accommodation/[accommodationId].tsx` | Stay reader with linked expense | Stay owner retains; booking evidence is dependency, not a booking UI deletion target |
+| `travel-app/app/trip-expenses/*` and `components/expense/*` | Expense reader, correction, ledger, payment and dispute | Expense owner retains exact money semantics; assisted contraction follows its brief |
+| `travel-app/app/trip-settings/index.tsx` and permissions | Settings/recovery plus legacy booking controls | Plan/Integration retain leave, grants, privacy and departure; booking-only controls are later candidates |
+| `travel-app/app/(tabs)/trips/[tripId]/object/[kind]/[objectId].tsx` | Exact object destination | Entity/Plan owner decides supported object route; preserve identity and return context |
+| `travel-agent/backend/life/refind_sources.py` | Historical Life reader joining booking rows | Life retains a bounded legacy adapter until its indexed reader and source migration are proven |
+| `travel-agent/backend/core/db/plan_state.py` | Plan read model for booking state/coverage | Plan owner keeps status facts; remove execution assumptions only with owner contract |
+| `travel-agent/backend/api/routes/trips.py` | Stay writes, external attestation, handoff recovery | Trip/Plan owner retains external attestation and liability-reducing recovery |
+| `travel-agent/backend/api/routes/expenses.py` and `core/db/expenses.py` | Linked booking adjustments and expense ledger | Expense owner retains booking references, adjustments, payment lock, and correction |
+| `travel-agent/backend/api/routes/_message_flow.py` | Shared booking card/update projection | Contribution and Capture + Integration; no Chat rewrite in this package |
+| `travel-agent/backend/account/*` / export-deletion callers | Lifecycle and user data rights | Account/export owners retain identifiers and governed deletion behavior |
+| `travel-agent/backend/booking_agent/*` providers, workers, sagas, callbacks | Execution or finite recovery | Candidate for operational closure only after environment obligation audit |
+
+This table distinguishes a read or recovery dependency from a provider-execution
+dependency. A matching filename or import is not, by itself, a deletion target.
+
 ## Static scope
 
 | Area | Evidence inspected | Current finding |

@@ -89,6 +89,10 @@ removed.
 
 - Shared Places resilience no longer depends on the booking provider module:
   `travel-agent:e33dd4764`.
+- Mobile booking reads are now isolated behind
+  `travel-app:15b4edfdb` (`data/bookingReads.ts`), with compatibility exports
+  preserving existing callers. Query keys, API methods, polling, and provider
+  execution behavior were unchanged.
 - Life, stay, cost, history, privacy, export/deletion, and Chat return-catch
   readers were not migrated or deleted in this pass. This is intentional and
   respects the explicit instruction not to change Chat or Life.
@@ -105,8 +109,8 @@ removed.
 | Mobile typecheck | Passed | Not native device evidence |
 | Mobile focused Jest | Passed for venue/contract tests and the existing handoff suites | Not native visual QA; Chat behavior unchanged |
 | Mobile changed-file ESLint | 0 errors; baseline warnings remain | Not a release acceptance result |
-| App generated route inventory | Refreshed in `travel-app:2e73889fe` | Three already-committed routes were absent from the registry; generated output now matches `app/` |
-| App surface-contraction guard | Two failures remain: `/you/intake-submissions/[submissionId]` and `/you/life-record` have no M-1 owner/exemption | Both are Life routes from the concurrent Life lane; resolving them would violate this pass's explicit no-Life boundary |
+| App generated route inventory | Current recheck reports stale generated output | Integration must regenerate at the receiving lane's current HEAD; Retirement does not overwrite active Places/Entity/Life route edits |
+| App surface-contraction guard | Three failures remain: stale generated inventory, `/you/intake-submissions/[submissionId]` without an M-1 owner/exemption, and `/you/life-record` without an M-1 owner/exemption | The two unowned routes are Life-owned; the stale output is shared registry work. Neither is a booking implementation failure |
 
 The complete offline suite also reports four unrelated repository-baseline
 failures (tool-surface snapshot drift, an unregistered concierge error literal,
