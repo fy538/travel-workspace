@@ -292,3 +292,16 @@ tests pass (**37 tests** in the focused mutation/renderer group); app-main
 TypeScript and test contract typecheck pass. No runtime API contract or
 catalog data changed; the save behavior was exercised only through test
 mocks.
+
+## Addressed place-note lifetime guard — 2026-09-04
+
+- Travel App `85eba258f` — bound the addressed place-note doorway to the
+  mounted entity/account/path lifetime. A delayed chooser or open editor now
+  cannot submit a stale canonical ref or show success after the viewer has
+  moved to another object, account, or route.
+
+Verification: the addressed-handoff component, shared renderer, save mutation,
+and research lifecycle tests pass (**42 tests**); app-main TypeScript,
+test-contract typecheck, and accessibility governance pass. Backend ownership
+and revocation remain the authoritative server checks; no handoff was sent and
+no production data changed.
