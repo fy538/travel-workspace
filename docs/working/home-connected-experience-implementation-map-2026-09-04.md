@@ -65,6 +65,14 @@ Legacy owner-only paths and Chat paths still use the existing Chat handoff. This
 is route precision, not a new arrangement surface; the owning lane still has to
 publish and test the canonical destination before a projection can use it.
 
+Mobile commit `f5ef99df1` completes the Life-side continuation of that seam:
+when a `life` destination includes an explicitly allowlisted exact Life resource,
+Home opens that resource (including the short return token) instead of dropping
+the user at the Life root. Trip and source-bound Life readers now preserve the
+same return context. A Life destination with no exact Life ref still lands at
+the Life root, so this does not invent a new Life surface or change Chat/Life
+ownership.
+
 ## 3. Journey-to-code matrix
 
 Status vocabulary: **present and verified** means the seam is visible in code but still needs a journey test; **present but unverified** means a similar path exists but its exact semantics are not proven; **adapt** means a small owner-specific change is likely; **missing** means no honest implementation path was found; **blocked on owner decision** means engineering should not invent the contract.
