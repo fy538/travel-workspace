@@ -813,6 +813,10 @@ tests; do not defer the live engine until content composition is finished.
   canonical-owner suite remains environment-blocked by the missing `openai`
   package; unrelated pre-existing hooks for size, module-state, and error
   category registration were explicitly skipped for this commit.
+- **I2 / typed compatibility regression — implemented and locally tested:**
+  `travel-agent` commit `d98fc3a0e` preserves the existing typed error for
+  unknown value-read operations while applying the new readiness filter. The
+  focused portfolio-read suite passes (14 tests).
 - **Boundary preserved:** no API schema changed, no generated mobile types were
   regenerated, no Life internals were edited, and the pre-existing uncommitted
   Claude-design handoffs and concurrent Life work remain untouched.
