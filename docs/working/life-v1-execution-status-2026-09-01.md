@@ -89,7 +89,10 @@ skipped when intake records occupy the first page. Cursor tampering/version
 drift is rejected explicitly (`8e2d2bcb0`). Retained source rows now resolve to
 an exact Life-owned owner route (`/you/intake-submissions/[submissionId]`)
 rather than disappearing behind an unsafe API URL (`320223f33`, app
-`29f21a745`). Subsequent intake reads now apply the cursor timestamp at the
+`29f21a745`). Record rows now resolve through canonical owner dossiers: kept
+artifacts use `/you/memories/artifacts/...`, reviewable candidates use
+`/you/memories/review/...`, and trip records use the canonical trip entry
+(`28edd6654`). Subsequent intake reads now apply the cursor timestamp at the
 owner query boundary (`5a4d9f938`) instead of repeatedly loading only the
 newest head. The owner queries now also apply the `(updated_at, id)` tie-break
 and can return exact counts when a bounded page is exhausted (`740e94dfd`).
@@ -99,7 +102,10 @@ truncation authority into one internal `LifeIntakePage` service. The public
 route remains an Atlas-plus-intake adapter; no new archive owner or public
 endpoint was introduced. Database-backed intake page readers now fetch one
 look-ahead row and return an explicit continuation bit (`1c22ce1fc`), so
-partial authority is no longer inferred from an exact 100-row response.
+partial authority is no longer inferred from an exact 100-row response. The
+mobile reader carries its originating Life lens into dossier links and uses
+history with a lens-aware fallback when leaving a retained-source record
+(`ebbd4de7a`).
 
 ### Shared workspace
 
@@ -121,6 +127,8 @@ partial authority is no longer inferred from an exact 100-row response.
 - Backend Life serving and intake-page suite: 20 tests passed, including
   cross-kind cursor ties, Places filtering, exact-count escalation, and the
   unified owner-read seam.
+- Canonical dossier and Life-return navigation checks: 21 backend Life tests,
+  3 Life reader tests, and TypeScript compilation passed.
 - Deterministic workspace contract check: passed — 443 mobile paths, 488
   operations, and 1,299 schemas; generated TypeScript exactly matches the app
   projection.
@@ -140,14 +148,15 @@ partial authority is no longer inferred from an exact 100-row response.
    progress beyond the 100-row owner batch. The internal unified owner-level
    intake page service is now in place (`bff449427`), and its readers expose a
    database-backed continuation bit (`1c22ce1fc`). The remaining work is to
-   make every Life object family resolve to a dossier-grade destination and
-   restore Life context after inspection without changing the public shape.
+   cover dossier destinations for any new Life object family and restore
+   scroll position across a process-death/deep-link return without changing
+   the public shape.
 2. Full Places/People/Threads lens projection from production data.
 3. Public rollout, analytics-driven promotion, and removal of legacy Atlas.
 4. Together/multiplayer write paths and generalized Occasion architecture.
 5. Visual composition polish beyond the production HTML design reference.
 
-The next safe increment is to connect one returned refinding row to its exact
-owner dossier and restore its Life context after inspection, then re-run the
-same contract and conformance gates. Do not broaden either flag or add more
-lenses until that destination-and-return seam is proven end to end.
+The next safe increment is to persist and restore Life's scroll/cursor context
+for cold-link and process-death returns, then re-run the same contract and
+conformance gates. Do not broaden either flag or add more lenses until that
+return seam is proven end to end.
