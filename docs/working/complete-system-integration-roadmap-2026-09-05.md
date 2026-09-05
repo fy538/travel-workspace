@@ -1081,3 +1081,18 @@ claim native device acceptance.
   to re-read. The focused cache contract passes (2 tests). This is freshness
   propagation only: it does not grant new Places reads, infer a location, or
   claim personalized source-vector recomposition.
+- **I2 / unscoped singular owner reads — implemented and locally tested:**
+  `travel-agent` commit `fd7f43198` keeps descriptive portfolio operations
+  intact but omits executable `place.read`, provider-status, and receipt reads
+  when no exact owner scope is available. Those requests previously spent a
+  bounded read seat only to return `*_scope_required`; candidate-declared exact
+  reads remain admitted. The focused portfolio suite passes (15 tests), while
+  the API route suite remains environment-blocked by the checkout's missing
+  `openai` package. This closes a serving-budget waste, not the route owner or
+  current-condition/reachability field gap.
+
+I2 therefore remains partial rather than complete: the executable planner no
+longer spends routine seats on unscoped singular owners, but an explicit
+field-coverage result and measured fast-serving/optional-production boundary
+are still required before the package can exit. The next implementation should
+extend this same truthful gate, not add a speculative route service or worker.
