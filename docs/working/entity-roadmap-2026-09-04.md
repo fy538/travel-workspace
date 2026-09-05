@@ -40,7 +40,7 @@ Inspected local `main` on September 4 (after the continuation receipts below):
 
 - Backend: `e6bf7a75f` — research gating, persistence hardening, terminal-Plan
   evidence repair and the read-only entity health report.
-- Mobile entity baseline: `76a4df8af` — canonical mock envelopes for all known
+- Mobile entity baseline: `dddba918c` — canonical mock envelopes for all known
   experiences, guarded venue/site/experience journeys, focused shared-renderer
   state-contract coverage, Dynamic Type/accessibility governance fixes, and
   identity-scoped Keep/Unsave/research/place-note mutation lifetimes.
