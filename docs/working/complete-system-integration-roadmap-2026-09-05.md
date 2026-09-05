@@ -1108,3 +1108,14 @@ extend this same truthful gate, not add a speculative route service or worker.
   conditions, reachability, thresholds, and alternatives. The focused
   portfolio suite passes (16 tests). This is a readiness gate and does not
   promote partial place data or create a route adapter.
+
+- **Places native transition regression — fixed and locally tested:**
+  `travel-app` commit `4c7e73b3d` removes a duplicate share-state block that
+  sat below the Venue detail loading/error early returns. A real local device
+  rehearsal reached the object page and exposed React's hook-order crash when
+  the venue read resolved; the existing share-scope hook was already intended
+  to be unconditional, but the stale second block made the transition render
+  more hooks than the loading render. The focused Venue detail smoke suite now
+  includes a loading→loaded rerender guard (33 tests passing). The full native
+  rehearsal was intentionally stopped after this diagnosis per the current
+  scope; no app-surface redesign or generic fallback was added.
