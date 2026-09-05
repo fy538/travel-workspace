@@ -62,7 +62,21 @@ npm test -- --runInBand \
   __tests__/screens/experience-detail.smoke.test.tsx
 ```
 
-Current deterministic receipt: **96 tests** on `travel-app:01f1c12fb`.
+Current deterministic receipt: **100 tests** on `travel-app:e4d2a3436`.
+
+The mock-only native state harness is:
+
+```bash
+cd travel-app
+maestro test --udid AF31B886-E837-4962-834A-5CBAD5C306DB \
+  .maestro/54g-journey-07-entity-state-matrix.yaml
+```
+
+It covers the compatibility venue loading/error shells, malformed-link
+unavailable state, and the offline save gate. Direct site/experience read
+state overrides are covered by `__tests__/data/entityForceState.test.tsx`;
+flag-on native coverage still requires an internal build with the rebuilt page
+enabled.
 
 For a content-free operational snapshot (read-only; no repair or refresh),
 run:

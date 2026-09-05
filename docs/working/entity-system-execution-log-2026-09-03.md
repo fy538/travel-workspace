@@ -360,3 +360,26 @@ the deferred research-poll and review-commit replacement regressions; the
 venue/experience smoke selection remains green at **39 tests**, including the
 bounded-opening latch reset regression. No API
 contract, itinerary row, research job, or catalog data changed.
+
+## Entity state-matrix harness — 2026-09-05
+
+- Travel App `e4d2a3436` — direct entity envelope/presentation reads and
+  experience detail now honor the existing mock-only force-state harness for
+  loading/error exercise. Research brief/status reads accept named mock faults
+  so a loaded object can be held in an honest status-unknown state without a
+  paid request. The global offline notice now reserves the root safe-area
+  inset, preventing status-bar overlap in the native banner.
+- Travel App `.maestro/54g-journey-07-entity-state-matrix.yaml` — added a
+  compatibility-route native slice for loading geometry, retryable read error,
+  malformed-link unavailable state, and the offline save gate. It intentionally
+  leaves the rebuilt-page flag off; direct site/experience forced-read
+  behavior is covered by the focused hook tests until an internal flag-on build
+  is installed.
+
+Verification: the focused entity/state selection passes **100 tests** on
+`travel-app:e4d2a3436`; TypeScript, test-contract TypeScript, API-boundary,
+schema-bridge, and accessibility-governance checks pass. The iPhone 16 Pro
+mock flow passes all **12 steps** with four captures. This is partial native
+state-matrix evidence; real-backend auth diversity, research, write/readback,
+repair, VoiceOver, Android, and the full flag-on matrix remain open. No API
+contract, research job, provider call, itinerary row, or catalog data changed.

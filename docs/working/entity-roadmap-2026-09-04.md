@@ -40,9 +40,10 @@ Inspected local `main` on September 5 (after the continuation receipts below):
 
 - Backend: `e6bf7a75f` — research gating, persistence hardening, terminal-Plan
   evidence repair and the read-only entity health report.
-- Mobile entity baseline: `01f1c12fb` — canonical mock envelopes for all known
+- Mobile entity baseline: `e4d2a3436` — canonical mock envelopes for all known
   experiences, guarded venue/site/experience journeys, focused shared-renderer
-  state-contract coverage, Dynamic Type/accessibility governance fixes, and
+  state-contract coverage, a mock-only entity state-matrix harness, safe-area
+  corrected offline notice, Dynamic Type/accessibility governance fixes, and
   identity-scoped Keep/Unsave/research/place-note/plan-preview and delayed
   object-action lifetimes.
 - Workspace entity evidence: `2183835` — roadmap, runbook, native receipt and
@@ -537,6 +538,7 @@ Completed implementation packages in this lane:
 | E1/E8 | Keep/Unsave mutations now carry their originating account/entity identity through the optimistic lifecycle: mounted transitions hide old pending/error state, late callbacks update only the originating cache, and stale callbacks cannot emit a receipt, push, or active-page side effect. A monotonic identity generation also rejects a late response after an A→B→A return, so matching strings cannot resurrect an earlier mounted lifetime; regressions cover both transition shapes and read/write calls remain correctly scoped. | `travel-app:b5c0a4fbf`, `49465bab2`, `712fdab69`, `76a4df8af` |
 | E1/E8 | The addressed place-note doorway now captures the mounted entity/account/path lifetime before opening or submitting; a route, account, or entity transition suppresses the delayed composer and prevents stale handoff delivery or success UI while leaving the backend owner/revocation contract unchanged; a component regression proves a changed canonical ref cannot submit. | `travel-app:85eba258f`, `0bdbe25bc` |
 | E1/E2/E8 | Canonical venue and experience plan previews now capture the mounted entity/account/path lifetime, suppress late review sheets and stale errors, clear a visible preview when the route or selected trip changes, reset the signed Places handoff latch for a replacement opening, and guard the shared review sheet, research poller, and trip-picker transition timers; deferred route-replacement regressions cover both entity faces and the shared review/poll surfaces. | `travel-app:f38347b78`, `65909bb18`, `01f1c12fb` |
+| E8 | Direct entity envelope/presentation and experience reads now honor the mock-only force-state harness for loading/error exercise; named research faults can hold a loaded object in status-unknown without a paid request. The root offline banner reserves the iOS safe-area inset. A 12-step iPhone 16 Pro flow covers compatibility loading/error, malformed-link unavailable, and offline save gating; focused tests cover the direct-read contract. | `travel-app:e4d2a3436`, [native QA receipt](entity-native-qa-receipt-2026-09-04.md) |
 | Contract | OpenAPI snapshots, active projection, generated schema, identity seams and schema bridge are synchronized | `workspace:93ea30e` |
 | E8 (native default-route slice) | Current mobile build passes venue identity/save/private-handoff, registered Places capture, and explicit plan-placement review/commit on iPhone 16 Pro in the mock lane; the default venue route is flag-off, so shared `ObjectPageRebuild` acceptance remains open. The rebuild intentionally omits the legacy Add-to-trip ladder per the Places contract. | `travel-app:47735f406`, `travel-app:35c110f47`, [native QA receipt](entity-native-qa-receipt-2026-09-04.md) |
 | E8 (native guarded-renderer slice) | Flag-on venue, site, and experience routes pass on the iPhone 16 Pro mock lane with canonical `Cervejaria Ramiro` / `Museu Nacional do Azulejo` / `LUX Fragil Closing Night`, `Keep place`, visible Ask handoffs, and explicit assertions that the legacy Add-to-trip ladder is absent. Focused renderer tests also lock sparse, owner-private capability denial, and stale research states; all known mock experience IDs resolve to canonical names. The three journeys pass at iOS `accessibility-medium` text size on the post-fix source, and static accessibility governance passes. This proves the intended shared renderer identity/verb contract and one enlarged-text check; full native state-matrix evidence remains open. | `travel-app:7b4d0601b`, `travel-app:6e3fe8545`, `travel-app:464e7da98`, `travel-app:377c8a4b5`, `travel-app:ea10e4482`, `travel-app:dba1e16e9`, `travel-app:d3b22275b`, [native QA receipt](entity-native-qa-receipt-2026-09-04.md) |
@@ -649,8 +651,9 @@ Validation recorded for this continuation:
   Delayed trip-picker timers are guarded by the route lifetime as well; no
   server mutation is cancelled or replayed by these client guards.
 - The exact pilot-focused app selection (object-page projection/rebuild,
-  research lifecycle, Keep/Unsave, venue detail, and experience detail) passes
-  **96 tests**. The original four-suite projection/research/mutation subset is
+  research lifecycle, Keep/Unsave, venue detail, experience detail, and the
+  mock-only direct-read state harness) passes **100 tests**. The original
+  four-suite projection/research/mutation subset is
   included in that count; the corresponding backend
   presentation/research/relationship selection passes **46 tests**. These are
   the current deterministic receipt commands in the pilot runbook.
@@ -698,6 +701,13 @@ Validation recorded for this continuation:
   deep link) passed against the same no-background local backend. Cleared-state
   cold start remains blocked by the Expo development-client picker, while the
   product-level restart path is now evidenced in the native receipt.
+- The mock-only entity state-matrix flow (`54g-journey-07-entity-state-matrix`)
+  passes all 12 steps on the iPhone 16 Pro: compatibility loading geometry,
+  retryable read error, malformed-link unavailable state, and the offline save
+  gate. Direct site/experience forced-read behavior is covered by four focused
+  hook tests; flag-on native loading/error, research, photo failure, auth
+  diversity, VoiceOver, Android, and real-backend mutation/readback remain
+  open.
 
 The next unclosed gates are the broader native state matrix (auth-diverse
 real-backend journeys, sparse/unavailable/photo/account states, VoiceOver, Android and

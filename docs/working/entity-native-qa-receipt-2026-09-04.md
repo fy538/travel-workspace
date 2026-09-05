@@ -209,6 +209,43 @@ The supporting mobile contract checks also pass on the current app checkout:
 `npm run schema-bridge` (the script runs in CI mode). These are static checks
 only; they do not widen the native or backend evidence recorded here.
 
+## Entity state-matrix slice — 2026-09-05
+
+The mobile state harness was extended on `travel-app:e4d2a3436` so direct
+entity and experience reads participate in the existing mock-only
+`guide://dev/force-state` controls. The focused hook suite covers loading,
+retryable error, recovery to the normal fixture, and the equivalent experience
+read contract (`4 tests`). A global offline banner also reserves the iOS
+status-bar inset before rendering its copy.
+
+The native compatibility-route slice passed on the same iPhone 16 Pro
+simulator:
+
+- Flow: `travel-app/.maestro/54g-journey-07-entity-state-matrix.yaml`
+- Data lane: mock (`dev.mockModeOverride=true`); research and rebuilt-page
+  flags remain disabled in this installed binary
+- Command:
+
+  ```bash
+  maestro test --udid AF31B886-E837-4962-834A-5CBAD5C306DB \
+    .maestro/54g-journey-07-entity-state-matrix.yaml
+  ```
+
+- Result: pass (12 steps)
+- Captures:
+  - `/Users/feihuyan/travel-workspace/travel-app/54-09-entity-loading-shell.png`
+  - `/Users/feihuyan/travel-workspace/travel-app/54-10-entity-error-shell.png`
+  - `/Users/feihuyan/travel-workspace/travel-app/54-11-entity-unavailable-shell.png`
+  - `/Users/feihuyan/travel-workspace/travel-app/54-12-entity-offline-save-gate.png`
+
+The flow proves loading geometry, a retryable venue read error, a malformed
+site link rendered as unavailable rather than retryable, and a visible
+`Save place` action that is stopped before mutation while offline. It is a
+partial state-matrix receipt: the flag-on shared renderer's native loading/
+error states, research lifecycle, photo failure, auth diversity, VoiceOver,
+Android, and real-backend write/readback remain open. No API call or data write
+was made by the flow.
+
 ## Follow-up harness disposition — 2026-09-05
 
 A bounded rerun was attempted after the receipt was written to extend the
@@ -253,11 +290,12 @@ These are scoped mock-lane and local-real-backend read passes. They do not
 certify real-backend auth diversity, research lifecycle states, live situation
 freshness, source attribution, relationship differences across two accounts,
 accessibility at large text or screen-reader navigation, Android, or the full
-loading/error/empty matrix. They also do not certify live availability/booking
-or the remaining write/readback and repair paths. The flag-on venue, site, and
-experience routes are now evidenced as three bounded identity/verb slices plus
-an enlarged-text iOS pass and a local-real-backend read pass; broader state
-convergence and rollout remain gates in the entity roadmap and must be attached
-to a reviewed pilot receipt before any capability is enabled. No production
-rows, research jobs, provider calls, booking, or backfill were created by
-these native flows.
+flag-on loading/error/empty matrix. They also do not certify live
+availability/booking or the remaining write/readback and repair paths. The
+flag-on venue, site, and experience routes are evidenced as three bounded
+identity/verb slices plus an enlarged-text iOS pass and a local-real-backend
+read pass; the compatibility route additionally has a partial loading/error/
+unavailable/offline receipt. Broader state convergence and rollout remain
+gates in the entity roadmap and must be attached to a reviewed pilot receipt
+before any capability is enabled. No production rows, research jobs, provider
+calls, booking, or backfill were created by these native flows.
