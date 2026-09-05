@@ -32,6 +32,8 @@ These are repository commits, not a claim of production rollout:
 | Explicit retention authority | `observe()` is an explicit, source-bound retention action; ordinary questions and booking execution no longer require bookkeeping writes. | `eea52e068` |
 | Authored attention | User-authored notes travel into interpretation as attributed context, never as source evidence. | `423e8beb0` |
 | Source-first Life addressability | A retained original gets a source-only Life door before interpretation is confirmed; no semantic claim is fabricated. | `79b00f294` |
+| Admission parity | A shared core adapter resolves Admission → Contribution for pending Chat and the explicit Intake attachment path; durable requests fail closed until T1 custody/authority exists. | `124f8b40f` |
+| Canonical Chat receipt | The resolved policy decision travels with the canonical pending-turn metadata for downstream receipt/audit, without becoming model-minted authority. | `2e3664e26` |
 | Value-first capture | Unresolved shares can continue into contextual Chat with source refs and `answer_only` retention rather than forcing a review workflow. | `09b80dbaa` |
 | Media/recovery truthfulness | Mobile preserves server-side HEIC/scanner capability errors instead of collapsing them into generic retry copy; local retry and custody resumability remain covered by tests. | `cdf048617` |
 
