@@ -79,6 +79,8 @@ is the dominant subject" is replaced by:
 > door. Shared consequences (an arrangement, a decision) still appear where
 > they land, above the region.**
 
+*Amended 2026-09-05 (later the same day): the condition gains "and timely inside the person's window"; see 2026-09-05-home-borrows-life-pass-grammar §5.*
+
 The MP2 "one relational opening" law is read as a **dominance and demand**
 rule: at most one social cause may lead the page, and at most one social unit
 may ask anything. It is not a page-wide count of authored material. This

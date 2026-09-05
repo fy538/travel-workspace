@@ -1190,6 +1190,79 @@ proved restating was necessary):
     canvas work is closed; the next phase is native interaction and
     real-data validation.
 
+### 11.15 The Plan in seven sentences — RULED 2026-09-05 (founder, subtraction pass)
+
+**Why.** The Plans-in-Real-Life project (`cd2e1f82`) grew to ~90 frames, twenty design
+rules and twenty-two open questions, almost all about what happens when something
+changes. The founder judged the project more complicated than the product it describes
+and ruled a subtraction. External evidence agreed: Partiful does not propagate a date
+change (the host sends a text); Apple Invites launched with one role and added capped
+co-hosts sixteen months later, with no approval flow; Google Calendar's "propose new
+time" and Google Docs' suggesting mode both reduce collaboration to *one proposes, the
+owner decides*; push-fatigue research finds most people abandon an app above five
+notifications a week; proactive-assistant research finds help welcome only after a
+problem and only if it can be turned off (sources in the project execution report §3m).
+
+**The seven sentences.** Everything on the Plan/Occasion surface is a consequence of
+these; anything that cannot be derived from them is not part of the customer-facing
+design and belongs in the engineering appendix.
+
+1. **The plan is a page you read.** It is always current when you open it.
+2. **There is one way to change anything: say it** — the pill, Chat, or voice. A few
+   direct controls remain only where the choice is finite and real (a set time, a
+   yes/no, keep-or-use).
+   **Discoverability (applied 2026-09-05, from the gulf-of-execution research):** before
+   any answer, the field's placeholder carries one contextual example in the person's own
+   words ("move it to 10"); after an answer, one "Or say …" line offers the next plausible
+   phrase. Never a command list, never a tutorial. The field is always present after an
+   answer; there is no "Something else…" branch.
+3. **If it is yours, it changes,** with one receipt sentence and Undo. **If it is
+   someone else's, your words go to them,** and you see exactly what they will see
+   before you send. Roles collapse to these two; a grant is "yours, for the afternoon";
+   a guest is the same page with fewer parts.
+4. **Everything that happens to the plan is a sentence on the row it concerns.**
+   Nothing else is added to the page — no feed, no recent-events region, no status
+   chrome. A fact carried from an earlier occasion is one attributed sentence with a
+   door to its origin, never a statement about the person.
+5. **When you come back, at most one sentence at the top says what needs you.** A cue
+   reaches you only for that, bundled per arrangement per day. A change made by a
+   person is told by that person, in their words, not propagated by the system.
+6. **Vesper states facts.** It recommends when asked, or once, in one sentence, when a
+   change defeats what you said you wanted. No recommendation carries a button. It can
+   be turned off.
+7. **If something did not go through, it says so once and keeps your words.** Pending
+   is silent (the page simply does not show the change as done); unknown behaves as
+   pending; "nothing changed" is said only when that is known.
+
+**What this supersedes inside the project.** The project's design recommendations
+R-1–R-20 and proposals PR-1/PR-2 are retired as rules: R-1/2/5–8/15 are consequences of
+sentences 1 and 4; R-9/10/11 of sentence 2; R-12/16 of 5 and 7; R-13 of 6; R-17–R-20 of
+4 and 5; R-3/4/14 move to the type/material mapping as engineering notes. PR-1 (two
+people, no named decider: either resolves loose material; commitments keep their maker)
+is **DEFERRED (founder, 2026-09-05)**: not adopted, not rejected; the owner decides for two people until participant walkthroughs show the asymmetry matters. Revisit trigger: a two-person walkthrough in which the non-owner expects to resolve loose material. PR-2 (peer occasion adopted by the answers of all
+affected) is **withdrawn** as the democratic-input pattern the coordination literature
+names as a paralysis trap. Accepted upstream behaviour B-1–B-7 is untouched. The 09-05
+§11.8 amendment (itinerary is the default; Shape questions are registers) stands and is
+sentence 1's structural form.
+
+**What this does not decide.** Storage of a retained intention, guest delivery and
+identity, Chat continuity, notification decisioning, Outcome records — all remain the
+named lanes' questions (project 07, report §3l).
+
+### 11.16 Crown arbitration and the kept-object grammar — RULED 2026-09-05 (founder; arbitration provisional)
+
+Recorded in decision 2026-09-05-home-borrows-life-pass-grammar. Home
+borrows Life's pass (09B), chip (01A6 v3), and kind mark (01A2). The L1
+pass renders on Home only inside its live window, as the crown. Chip
+interiors are object print, exempt from the 10px UI floor (§11.2) on the
+KEPT receipt and the Life door's shelf only. When several objects qualify
+as dominant: recovery > live commitment > a decision with a deadline > a
+forming arrangement or prepared possibility; ties to the earlier
+deadline; ranks 1 and 2 on the same object merge (the pass in the
+recovery register, original span struck, new span gold); the loser folds
+to one row under the crown with its deadline and never becomes a second
+crown; the one ask belongs to the crown until spent.
+
 ## 12. Adjacent system rulings
 
 <!-- Header restored 2026-08-29: a prior edit dropped the "## 12" line;
@@ -1314,6 +1387,10 @@ proved restating was necessary):
      across all seven Home states; a 32px avatar only when a person is
      the subject; no icon plates. The subject decides the mark, not the
      state. (08.)
+     *Amended 2026-09-05: a row whose subject is a kept object leads with
+     Life's kind mark (15px inline glyph, one stroke family) — print, not
+     a plate; state stays in the words. See decision
+     2026-09-05-home-borrows-life-pass-grammar §1.*
    - **(h) The carried leg is gold.** Ink is reserved for now-dots,
      extremes, and the primary button; the ThinWeek burden strip's
      near-black bar breaks the gold-mass-is-yours law. (09.)

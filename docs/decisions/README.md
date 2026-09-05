@@ -18,6 +18,8 @@ Durable choices that constrain future work belong here. Use the
 
 | Date | Decision | Status |
 |---|---|---|
+| 2026-09-05 | [Adopt the Plan in seven sentences](2026-09-05-adopt-the-plan-in-seven-sentences.md) | accepted |
+| 2026-09-05 | [Home borrows Life's pass grammar; the crown is arbitrated](2026-09-05-home-borrows-life-pass-grammar.md) | accepted |
 | 2026-09-05 | [Amend the Home composition canon](2026-09-05-amend-home-composition-canon.md) | accepted |
 | 2026-09-01 | [Adopt Life v1 behavior sequences](2026-09-01-adopt-life-v1-behavior-sequences.md) | accepted |
 | 2026-08-30 | [Adopt the Life consumer anatomy](2026-08-30-adopt-life-consumer-anatomy.md) | accepted |
