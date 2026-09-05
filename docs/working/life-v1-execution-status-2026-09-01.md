@@ -126,9 +126,10 @@ and can return exact counts when a bounded page is exhausted (`740e94dfd`).
 1. Dossier-grade destinations for every Life object family, exact refinding
    continuation into those destinations, and scroll-position restoration. The
    current depth cursor now uses owner-level `(updated_at, id)` tie-breaks and
-   exact counts when a bounded page is exhausted, but the underlying intake
-   list API still caps each read at 100 rows. A later owner-level page API can
-   remove that ceiling without changing the public Life shape.
+   exact counts when a bounded page is exhausted; repeated reads can therefore
+   progress beyond the 100-row owner batch. A later unified owner-level page
+   API can remove the remaining per-owner batch ceiling without changing the
+   public Life shape.
 2. Full Places/People/Threads lens projection from production data.
 3. Public rollout, analytics-driven promotion, and removal of legacy Atlas.
 4. Together/multiplayer write paths and generalized Occasion architecture.
