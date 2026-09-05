@@ -40,12 +40,14 @@ Inspected local `main` on September 5 (after the continuation receipts below):
 
 - Backend: `e6bf7a75f` — research gating, persistence hardening, terminal-Plan
   evidence repair and the read-only entity health report.
-- Mobile entity baseline: `9d2224ec7` — canonical mock envelopes for all known
+- Mobile entity baseline: `969c416f1` — canonical mock envelopes for all known
   experiences, guarded venue/site/experience journeys, focused shared-renderer
-  state-contract coverage, a mock-only entity state-matrix harness, safe-area
-  corrected offline notice, Dynamic Type/accessibility governance fixes, and
-  identity-scoped Keep/Unsave/research/place-note/plan-preview and delayed
-  object-action lifetimes.
+  state-contract coverage, a mock-only entity state-matrix harness, source-backed
+  citation links, a read-only exact-place people-line sheet, explicit v2
+  loading/error/unavailable route shells, safe-area corrected offline notice,
+  Dynamic Type/accessibility governance fixes, and identity-scoped
+  Keep/Unsave/research/place-note/plan-preview and delayed object-action
+  lifetimes.
 - Workspace entity evidence: `37c1c23` — roadmap, runbook, native receipt,
   execution receipt and a pending-owner-review pilot manifest are committed
   locally.
@@ -60,9 +62,9 @@ checks remain in the execution log.
 | Identity | Canonical refs, external identities, private provisional shells, redirects and alias-aware reads | Cross-entry and cross-owner identity/repair certification |
 | Relationship | Save, Plan, personal attendance and private outcome projection; bounded page readback | Two-user later-read proof, correction and retraction across consumers |
 | Situation | Separate no-store contextual read and expiry handling | Foreground/background, context-change and stale-action certification |
-| Object UI | Guarded shared renderer on venue, site and experience routes; default venue route still retains its compatibility composition; mock and local-real-backend identity/verb slices are native-evidenced for all three kinds; all known mock experience envelopes are canonical; sparse/capability/stale unit cases are locked; post-fix iOS accessibility-medium pass and static governance are recorded | Full state-matrix acceptance, including auth diversity, write/readback, sparse/unavailable/photo/offline/process-restart, VoiceOver, Android and other platform evidence |
+| Object UI | Guarded shared renderer on venue, site and experience routes; default venue route still retains its compatibility composition; mock and local-real-backend identity/verb slices are native-evidenced for all three kinds; all known mock experience envelopes are canonical; sparse/capability/stale unit cases, source-backed citations, and read-only people-line sheet are locked; flag-on v2 route failures remain explicit; post-fix iOS accessibility-medium pass and static governance are recorded | Full state-matrix acceptance, including auth diversity, write/readback, sparse/unavailable/photo/offline/process-restart, VoiceOver, Android and other platform evidence; dedicated design-reference comparison and current-SHA verdict |
 | Research | Read-only persisted brief; explicit gated queue request; idempotency and rate controls | End-to-end job state, artifact readiness, provenance, freshness and retry closure |
-| People | Bounded authorized exact-place lines and gated addressed-handoff doorway | Grant/revocation and recipient experience proof; richer inline people citations remain separate |
+| People | Bounded authorized exact-place lines, read-only face detail, and gated addressed-handoff doorway | Grant/revocation and recipient experience proof; richer inline people citations/actions remain separate |
 | Operations | Read-only entity-health counts | Queue age, artifact mismatch, repair evidence, operational ownership and rollout receipt |
 
 Accommodation has backend presentation/research support but is intentionally

@@ -21,7 +21,7 @@ call, research job, catalog write, or backfill is authorized by this document.
 | Surface | Revision | Evidence |
 | --- | --- | --- |
 | Backend (`travel-agent`) | `e6bf7a75f` | Entity presentation/research gating, queue safety, terminal-plan repair, read-only health report |
-| Mobile (`travel-app`) | `9d2224ec7` | Shared object routes, identity-scoped actions, mock state harness, native matrix slice |
+| Mobile (`travel-app`) | `969c416f1` | Shared object routes, source-backed citation links, read-only people-line sheet, explicit rebuilt-route state shells, dedicated QA surface |
 | Workspace docs | `8073187` | Roadmap, runbook, native receipt, execution log and this manifest |
 
 These are local `main` revisions, not deployed build identifiers. A pilot
@@ -52,6 +52,11 @@ match the reviewed source.
   faults are covered by focused hook tests.
 - Existing flag-on renderer and local-real-backend read receipts remain
   bounded identity/verb evidence only; they are not full release acceptance.
+- Frontend execution added a dedicated `entity-object` surface contract,
+  source-backed inline citation links (orphan markers are withheld), a
+  read-only exact-place people-line sheet, and explicit loading/error/not-found
+  handling for the flag-on v2 route reads. The rebuilt renderer remains
+  internal-build-only and the optional research/relationship flags remain off.
 - Health snapshot (`2026-09-05T03:25:52Z`) is content-free: zero stale claims,
   duplicate-active jobs, expired leases, retried rows or
   completed-without-fresh-brief mismatches; one old pending venue research row
