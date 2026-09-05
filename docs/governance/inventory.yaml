@@ -135,6 +135,14 @@ overrides:
     disposition: keep_reference
     rationale: Fresh code and canon investigation proposing responsibility retirement and lighter booking, itinerary, expense, and administrative surfaces; no product or deletion authority is promoted.
 
+  docs/working/booking-retained-evidence-adapter-brief-2026-09-05.md:
+    disposition: keep_reference
+    rationale: Cross-lane read-adapter contract preserving booking evidence, Life/Home pass composition, exact identities, and recovery boundaries while provider execution retires.
+
+  docs/working/assisted-expense-contraction-brief-2026-09-05.md:
+    disposition: keep_reference
+    rationale: Bounded expense-contraction contract preserving deterministic ledger, receipt custody, correction, payment, privacy, and owner handoffs while reducing form-heavy presentation.
+
   docs/working/capability-retirement-static-inventory-2026-09-05.md:
     disposition: keep_reference
     rationale: Read-only CR-1 static inventory of booking execution entry points, retained consumers, and environment-audit requirements; it does not authorize runtime shutdown or deletion.
