@@ -103084,6 +103084,39 @@
             ],
             "title": "Reservation Required"
           },
+          "booking_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Booking Url"
+          },
+          "phone_number": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Phone Number"
+          },
+          "website": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Website"
+          },
           "wheelchair_accessible": {
             "anyOf": [
               {
@@ -103197,6 +103230,9 @@
           "price_per_person_estimate",
           "avg_duration_minutes",
           "reservation_required",
+          "booking_url",
+          "phone_number",
+          "website",
           "wheelchair_accessible",
           "lat",
           "lng",
@@ -103388,6 +103424,39 @@
             ],
             "title": "Reservation Required"
           },
+          "booking_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Booking Url"
+          },
+          "phone_number": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Phone Number"
+          },
+          "website": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Website"
+          },
           "wheelchair_accessible": {
             "anyOf": [
               {
@@ -103449,6 +103518,9 @@
           "price_per_person_estimate",
           "avg_duration_minutes",
           "reservation_required",
+          "booking_url",
+          "phone_number",
+          "website",
           "wheelchair_accessible",
           "hours",
           "dietary",
