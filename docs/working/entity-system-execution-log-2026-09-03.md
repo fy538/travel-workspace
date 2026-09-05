@@ -281,7 +281,7 @@ dependency resolution; no account, queue, research, or catalog data changed.
 
 ## Keep/Unsave identity transition repair — 2026-09-04
 
-- Travel App `b5c0a4fbf`, `49465bab2` — threaded the originating account/entity identity
+- Travel App `b5c0a4fbf`, `49465bab2`, `712fdab69` — threaded the originating account/entity identity
   through Keep/Unsave mutation variables and optimistic callbacks. Mounted
   transitions now scope pending/error state and in-flight locks to the active
   object; late completions update only their originating cache and cannot emit
