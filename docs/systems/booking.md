@@ -1,9 +1,18 @@
 # Booking — System Charter
 
 > Surface: Trips
-> Maturity (for MVP): Built-dark
-> Status: partial/dark
-> Last updated: 2026-08-09
+> Maturity (for MVP): Built-dark; execution retirement in progress
+> Status: retained evidence/handoff, provider execution retiring
+> Last updated: 2026-09-05
+
+> **Scope decision (2026-09-05):** Vesper helps an experience work around a
+> reservation; it does not operate the reservation business. The detailed
+> retirement contract is [`product-surface-contraction-investigation-2026-09-04.md`](../working/product-surface-contraction-investigation-2026-09-04.md).
+> Keep this charter's historical invariants for retained data/recovery, but do
+> not treat old execution entry points as a roadmap. New provider sessions,
+> holds, checkout/payment, cancellation/rebooking, and automated restaurant
+> contact are being closed at server/domain boundaries. Evidence, history, and
+> simple external handoff remain in scope.
 
 ## Purpose
 The multi-provider booking spine — searches flights, hotels, restaurants, transit,

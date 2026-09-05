@@ -4,7 +4,7 @@ release:
   name: Vesper v1
   status: scope-locked
   decided: 2026-06-30
-  last_verified: 2026-08-23
+  last_verified: 2026-09-05
   owner: founder / engineering
   promise: >-
     This contract governs which surfaces may ship lit and which must stay dark
@@ -149,7 +149,7 @@ capabilities:
     journey_ids: [J10]
     required_layers: [physical]
     flags: []
-    note: Honest non-transacting handoff is in; provider transaction execution is out.
+    note: Honest non-transacting handoff and supplied reservation evidence remain in; provider transaction execution is being closed at backend boundaries. The retirement contract governs the transition and preserves authorized historical reads.
 
   - id: live-booking
     name: Live booking transaction execution
