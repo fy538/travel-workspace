@@ -91,7 +91,8 @@ an exact Life-owned owner route (`/you/intake-submissions/[submissionId]`)
 rather than disappearing behind an unsafe API URL (`320223f33`, app
 `29f21a745`). Subsequent intake reads now apply the cursor timestamp at the
 owner query boundary (`5a4d9f938`) instead of repeatedly loading only the
-newest head.
+newest head. The owner queries now also apply the `(updated_at, id)` tie-break
+and can return exact counts when a bounded page is exhausted (`740e94dfd`).
 
 ### Shared workspace
 
@@ -124,10 +125,10 @@ newest head.
 
 1. Dossier-grade destinations for every Life object family, exact refinding
    continuation into those destinations, and scroll-position restoration. The
-   current depth cursor uses the owner query's timestamp boundary but remains
-   bounded by the existing 100-row intake reads; exact owner-level count and
-   tie-break cursors can remove that ceiling without changing the public Life
-   shape.
+   current depth cursor now uses owner-level `(updated_at, id)` tie-breaks and
+   exact counts when a bounded page is exhausted, but the underlying intake
+   list API still caps each read at 100 rows. A later owner-level page API can
+   remove that ceiling without changing the public Life shape.
 2. Full Places/People/Threads lens projection from production data.
 3. Public rollout, analytics-driven promotion, and removal of legacy Atlas.
 4. Together/multiplayer write paths and generalized Occasion architecture.
