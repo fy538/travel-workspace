@@ -36,7 +36,7 @@ in Phase 0, not silently treated as superseded canon.
 
 ## 2. Baseline and evidence limits
 
-Inspected local `main` on September 4 (after the continuation receipts below):
+Inspected local `main` on September 5 (after the continuation receipts below):
 
 - Backend: `e6bf7a75f` — research gating, persistence hardening, terminal-Plan
   evidence repair and the read-only entity health report.
@@ -45,8 +45,8 @@ Inspected local `main` on September 4 (after the continuation receipts below):
   state-contract coverage, Dynamic Type/accessibility governance fixes, and
   identity-scoped Keep/Unsave/research/place-note/plan-preview mutation
   lifetimes.
-- Workspace entity evidence: `bdd4b88` — roadmap, runbook, native receipt and
-  post-fix evidence are committed locally.
+- Workspace entity evidence: `1afb44c` — roadmap, runbook, native receipt and
+  final deterministic execution receipt are committed locally.
 
 These are local source baselines, not deployment or public-release evidence.
 No database job, provider call, canary, or backfill was run to write this
