@@ -86,7 +86,10 @@ second Life archive. The follow-up merge (`5b0e1a644`, with coverage in
 source-only submissions in one globally ordered cursor. The cursor carries both
 the last consumed Atlas row and intake sort key, so buffered Atlas rows are not
 skipped when intake records occupy the first page. Cursor tampering/version
-drift is rejected explicitly (`8e2d2bcb0`).
+drift is rejected explicitly (`8e2d2bcb0`). Retained source rows now resolve to
+an exact Life-owned owner route (`/you/intake-submissions/[submissionId]`)
+rather than disappearing behind an unsafe API URL (`320223f33`, app
+`29f21a745`).
 
 ### Shared workspace
 
