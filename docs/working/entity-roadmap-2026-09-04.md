@@ -610,6 +610,10 @@ Validation recorded for this continuation:
   real-read portion of E8; auth diversity, mutations/readback, repair,
   offline/process restart, VoiceOver, Android and the full state matrix remain
   open.
+- A bounded venue process-restart flow (stop, relaunch, and reopen the same
+  deep link) passed against the same no-background local backend. Cleared-state
+  cold start remains blocked by the Expo development-client picker, while the
+  product-level restart path is now evidenced in the native receipt.
 
 The next unclosed gates are the broader native state matrix (auth-diverse
 real-backend journeys, sparse/unavailable/photo/account states, VoiceOver, Android and

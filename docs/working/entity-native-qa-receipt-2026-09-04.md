@@ -138,6 +138,15 @@ the live-read portion of the guarded identity/verb gate for the three current
 kinds; it does not close auth diversity, research, write/readback, repair,
 offline, VoiceOver, Android, or the remaining state matrix.
 
+A follow-up real-backend process-restart flow also passed for venue `1`: it
+stopped and relaunched the app, reopened the same deep link, and reasserted
+the canonical identity, `Keep place`, and absence of `Add to trip`. Flow
+`/tmp/entity-real-process-restart.yaml`, log
+`/tmp/entity-native-real-process-restart.log`, and screenshot
+`/Users/feihuyan/travel-workspace/travel-app/entity-real-process-restart-local.png`
+record this bounded restart check. A cleared-state cold start remains a
+development-client harness gate, not a product pass.
+
 The backend companion checks used the same native PostgreSQL instance at
 `localhost:5432` (Alembic head `sourcecache01`): the entity/research/
 relationship suites passed 48 tests, and the real second-occasion loop-closure
