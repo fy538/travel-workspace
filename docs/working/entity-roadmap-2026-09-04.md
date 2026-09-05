@@ -609,7 +609,7 @@ Validation recorded for this continuation:
   (`__tests__/components/places/ObjectPageRebuild.test.tsx`: 4 tests),
   covering sparse body absence, capability/owner-private withholding, stale
   research age plus explicit refresh, and terminal research unavailability
-  without retry. The four touched screen/mock suites pass 69 tests;
+  without retry. The ten focused screen/data/mock suites pass 73 tests;
   TypeScript completes cleanly on the app main checkout.
 - The research-request lifecycle regressions pass with the shared renderer
   (`__tests__/data/entityResearchRequest.test.tsx` plus
