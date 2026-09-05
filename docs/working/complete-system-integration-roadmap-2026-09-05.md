@@ -833,6 +833,12 @@ tests; do not defer the live engine until content composition is finished.
   only, either as an explicit precomputed handoff or through the named opt-in
   migration path; the portfolio reader cannot silently become a second
   production owner.
+- **I1 / cross-root dependency matrix — documented:** workspace commit
+  `pending` adds `cross-root-change-dependency-matrix-2026-09-05.md`, tying the
+  existing consequence and root invalidation paths to their Home, Places, Life,
+  depth, session, and asynchronous-production consumers. It records the
+  remaining background-fan-out, late-completion, and signal-to-judgment gaps
+  without introducing a second authority or an all-account event bus.
 - **Boundary preserved:** no API schema changed, no generated mobile types were
   regenerated, no Life internals were edited, and the pre-existing uncommitted
   Claude-design handoffs and concurrent Life work remain untouched.
