@@ -92,12 +92,12 @@ rather than disappearing behind an unsafe API URL (`320223f33`, app
 `29f21a745`). Subsequent intake reads now apply the cursor timestamp at the
 owner query boundary (`5a4d9f938`) instead of repeatedly loading only the
 newest head. The owner queries now also apply the `(updated_at, id)` tie-break
-  and can return exact counts when a bounded page is exhausted (`740e94dfd`).
-  The follow-up owner-read consolidation (`bff449427`) moves the shared intake
-  cursor boundary, lens filtering, deterministic merge preparation, counts,
-  and truncation authority into one internal `LifeIntakePage` service. The
-  public route remains an Atlas-plus-intake adapter; no new archive owner or
-  public endpoint was introduced.
+and can return exact counts when a bounded page is exhausted (`740e94dfd`).
+The follow-up owner-read consolidation (`bff449427`) moves the shared intake
+cursor boundary, lens filtering, deterministic merge preparation, counts, and
+truncation authority into one internal `LifeIntakePage` service. The public
+route remains an Atlas-plus-intake adapter; no new archive owner or public
+endpoint was introduced.
 
 ### Shared workspace
 
