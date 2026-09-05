@@ -769,10 +769,10 @@ document's creation.
 | Package | State at roadmap creation | Next concrete action |
 | --- | --- | --- |
 | I0 | Planned; investigation baseline recorded | Verify actual engine paths and branch/flag/consumer map; resolve intent/material, shared-change and watch-owner decisions |
-| I1 | In progress; two safe continuity repairs landed | Trace owner identity plus condition signals; agree Life handles/change events and bounded reevaluation inputs |
-| I2 | Reuse/leases and engine adapters present; general live integration partial | Measure serving and signal-to-judgment paths; separate fast practical assessment, authorized reevaluation and optional production |
-| I3 | Capture foundations landed; owner decisions and formats partial | Audit writers/formats, draft precise owner ADR, then implement approved intent/social commands |
-| I4 | Earlier root implementation present; latest Home design ahead | Make live judgment visible through useful preparation and alternatives; integrate accepted Home forms and the complete Places journey |
+| I1 | In progress; request-clock, consequence fan-out, dependency matrix, and capture return repairs landed | Trace remaining owner identity plus condition signals; agree Life handles/change events and bounded reevaluation inputs |
+| I2 | Owner-read readiness and fast root serving are bounded; production worker decision remains open | Measure serving and signal-to-judgment paths; separate fast practical assessment, authorized reevaluation and optional production |
+| I3 | Capture/custody foundations landed; owner decisions and formats partial | Audit writers/formats, draft precise owner ADR, then implement approved intent/social commands |
+| I4 | Renderer promotion boundary audited; Home/Places native rehearsals pass | Make live judgment visible through useful preparation and alternatives; promote only accepted Home forms and the complete Places journey |
 | I5 | Graph/consequence foundations present; lightweight experience incomplete | Complete adaptation and shared consequences over I1–I3, preserving purpose, plural participation and meaningful stop/wait behavior |
 | I6 | Inventories/guards partially present; cutovers not complete | Refresh compatibility and obligation evidence; plan removal and readiness per actual supported consumers |
 
