@@ -278,3 +278,17 @@ Verification: the lifecycle regressions and shared object renderer suite pass
 (**7 tests** total); app-main TypeScript passes. The worktree-only lint
 and typecheck were not used because the isolated worktree has no Expo
 dependency resolution; no account, queue, research, or catalog data changed.
+
+## Keep/Unsave identity transition repair — 2026-09-04
+
+- Travel App `b5c0a4fbf` — threaded the originating account/entity identity
+  through Keep/Unsave mutation variables and optimistic callbacks. Mounted
+  transitions now scope pending/error state and in-flight locks to the active
+  object; late completions update only their originating cache and cannot emit
+  a receipt, push, or callback for the new object.
+
+Verification: `useSaveEntity` plus the research lifecycle and shared renderer
+tests pass (**37 tests** in the focused mutation/renderer group); app-main
+TypeScript and test contract typecheck pass. No runtime API contract or
+catalog data changed; the save behavior was exercised only through test
+mocks.
