@@ -22,6 +22,16 @@ unknown or unpromoted kind rather than route it through a generic card.
 
 ## Current promotion boundary
 
+The Home transport union now contains 35 semantic kinds. Four kinds were
+admitted by the September 5 composition-canon amendment because they are
+legitimate product forms, not because their production or native rendering is
+complete. They are explicitly dark at this boundary:
+
+- `horizon_prepared_alternatives`
+- `horizon_world_fact_row`
+- `people_authored_region`
+- `now_sample_demonstration`
+
 ### Home
 
 The three chrome kinds are rendered by dedicated Home components:
@@ -46,9 +56,10 @@ The backend currently defines additional Home semantic kinds that remain dark:
 `horizon_hidden_system`, `people_participants_row`, `people_waiting_row`,
 `people_authorized_door`, `people_gathering`, `people_status_aperture`,
 `continuity_settling`, `continuity_voice_horizon`, and
-`continuity_reconstruction`. These require a deliberate product/native review;
-their presence in the schema does not authorize server emission to the
-foreground Home path.
+`continuity_reconstruction`. Alongside those historical dark kinds, the four
+canon-admitted forms above require a producer, evidence/revision contract,
+and deliberate native review. Their presence in the schema does not authorize
+server emission to the foreground Home path.
 
 ### Places
 
@@ -72,6 +83,9 @@ experience rather than create a second feed.
 - Home renderer and Home experience suites pass: 21 tests.
 - Places v2 screen and Places root experience suites pass: 9 tests.
 - App TypeScript check passes on the current checkout.
+- Backend OpenAPI, the committed app projection, and generated mobile types
+  agree on the 35-kind Home transport union; this is a contract receipt only,
+  not a renderer-promotion receipt.
 - `utils/rootProjectionV2Conformance.ts` deliberately treats an unregistered
   Home kind as a contract error, and the Places screen filters through its
   explicit registry.
