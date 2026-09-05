@@ -31,7 +31,7 @@
       "status": "retiring",
       "reason": "deployed_version_boundary",
       "owner": "mobile",
-      "canonical": "You at /you",
+      "canonical": "Life continuity root at /(tabs)/life",
       "paths": [
         "travel-app/app/(tabs)/atlas/index.tsx"
       ],
