@@ -909,6 +909,17 @@ tests; do not defer the live engine until content composition is finished.
   product memory. The route test passes (2 tests), along with the root-return
   registry and share-intent suites (23 tests).
 
+### M1 batch update — 2026-09-05
+
+The first two next-batch items are now closed at their current evidence level:
+the capture return contract is implemented, and the Home/Places promotion
+boundary is audited with native tests. The third item remains intentionally
+decision-bound: no source-production queue or scheduler should be added until
+the owner confirms deployment topology, retry/lease ownership, per-account
+budgeting, and the exact serialized input (especially Places context). This is
+the remaining M1 integration decision, not a reason to reintroduce generation
+into a GET path.
+
 At the next checkpoint update this ledger in place, attach exact receipts, and
 decide the next bounded batch. This keeps the roadmap live without making this
 task a bottleneck for Life or turning six former specialist tasks back on.
