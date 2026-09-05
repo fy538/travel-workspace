@@ -124,9 +124,10 @@ newest head.
 
 1. Dossier-grade destinations for every Life object family, exact refinding
    continuation into those destinations, and scroll-position restoration. The
-   current depth cursor is bounded by the existing 100-row intake owner reads;
-   a later owner-level count/cursor can remove that ceiling without changing
-   the public Life shape.
+   current depth cursor uses the owner query's timestamp boundary but remains
+   bounded by the existing 100-row intake reads; exact owner-level count and
+   tie-break cursors can remove that ceiling without changing the public Life
+   shape.
 2. Full Places/People/Threads lens projection from production data.
 3. Public rollout, analytics-driven promotion, and removal of legacy Atlas.
 4. Together/multiplayer write paths and generalized Occasion architecture.
