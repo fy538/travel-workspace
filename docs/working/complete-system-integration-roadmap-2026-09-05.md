@@ -926,6 +926,14 @@ tests; do not defer the live engine until content composition is finished.
   a typed, accessible supporting-claim treatment. The focused composition
   suite and app typecheck pass; this is renderer conformance, not editorial or
   real-data evidence.
+- **I4 / Places result-set seam — contract defined:** workspace commit
+  `2ed2597` defines the additive `PlacesResultSetRef` boundary for feed,
+  search, map, collection, Focus, and Path. It keeps the existing opaque
+  context handle, adds a server-owned set identity/revision, and makes field
+  and map transformations testable without creating a second Places service.
+  The contract is not yet threaded through wire models; the native Places
+  renderer remains dark until that implementation and acceptance portfolio
+  land.
 
 ### M1 batch update — 2026-09-05
 
@@ -940,9 +948,10 @@ budgeting, and the exact serialized input (especially Places context). This is
 the remaining M1 integration decision, not a reason to reintroduce generation
 into a GET path.
 
-The next bounded batch is Places result-set/context identity plus its
-Home→Places→Focus/Path acceptance cases. It may define or thread an explicit
-revision-bearing contract through existing routes, but must not promote the
+The next bounded batch is to thread the Places result-set/context identity
+through the existing wire models and root runtime, with Home→Places→Focus/Path
+acceptance cases. It must preserve the mature workspace and keep the semantic
+renderer dark until real data and native evidence land. It must not promote the
 dark Home kinds, add a generic route service, or create a second Places feed.
 Re-pin all repositories and shared-file ownership before touching generated
 contracts. This keeps the roadmap live without making this task a bottleneck
