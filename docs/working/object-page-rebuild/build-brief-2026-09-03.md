@@ -41,8 +41,8 @@ depends_on:
 | T5 | A null never occupies the pair; the ranker output matches the table in §6 for the four situations | `hortus.arrival`, `hortus.planning`, `cafe_aurora.t0`, `museu.known` |
 | T6 | Plate resolver: kept photo → permitted provider photo with credit → none; never an illustration; friend's photo only in the sheet | `hortus.arrival` (yours), `aurora_bar.matched` (provider), `cafe_aurora.t0` (none) |
 | T7 | Every sentence with a marker resolves to a source in the sources list; friends' quotes are byte-equal to `people_lines[].text`; no sentence claims a fact absent from inputs | `hortus.arrival`, `hortus.many` |
-| T8 | Opening the page triggers no Take generation and no synchronous research call | all |
-| T9 | Arrival: when `research_brief` transitions null → present, only the body, sources and the "just now" line change; plate/name/byline/pair bounding boxes are identical before and after | `cafe_aurora.t0` → `cafe_aurora.t40` |
+| T8 | Opening the page triggers no Take generation, no research enqueue, and no provider call; research runs only on an explicit Read up (corrected 2026-09-04) | all |
+| T9 | Arrival after Read up: when `research_brief` transitions null → present, only the body, sources and the "just now" line change; plate/name/byline/pair bounding boxes are identical before and after | `cafe_aurora.t0` → `cafe_aurora.t40` |
 | T10 | Large text (1.3×): pair and closing row become one column; kickers/source lines keep 9pt; nothing truncates | `hortus.arrival` |
 | T11 | Verbs: Keep in the top bar; Ask + Leave for someone as text; Tonight? present iff `viewer.occasion_live`; never an Add-to-trip ladder | `hortus.arrival` vs `hortus.planning` |
 | T12 | Face tap opens the sheet under the byline; body stays; sheet shows line verbatim, grant, date, photo if any, USEFUL / KEEP FOR ME / REPLY | `hortus.arrival` |
@@ -149,7 +149,7 @@ Pair = top two by that order; closing row = the rest (max 4); a null never enter
 
 - **Resolve** (from the brief): `idle → resolving(key) → {navigate(canonical) | shell(canonical) | fail(retryable) | stop(non_retryable)}`; retry reuses `key`; duplicate taps are no-ops.
 - **Sheet:** `closed → open(line_id)` on face tap; `open → closed` on back/scrim; REPLY → push Chat and keep `open` for return; USEFUL → `sent(line_id)` (idempotent, author-only).
-- **Arrival:** `research=null → present`: show `ArrivalLine` if `generated_at > last_open_at`; swap body in place; on next open, `last_open_at` updates and the line is not shown.
+- **Arrival:** after Read up, `research=null → present`: show `ArrivalLine` if `generated_at > last_open_at`; swap body in place; on next open, `last_open_at` updates and the line is not shown. While queued the verb reads "Read up is on its way"; on failure "Try again".
 - **Live check:** `idle → checking → {success(as_of, source) | unavailable}`; success writes into the `open_until` fact for this session only.
 - **Tonight?:** visible iff `occasion_live`; tap → the Occasion's question sheet (`Put it in` / `Not tonight`); page unchanged.
 

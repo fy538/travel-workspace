@@ -909,8 +909,9 @@ and readback; it must not silently reactivate unsafe legacy retention. Retire a
 legacy writer only after caller inventory, read compatibility, recovery, and
 correction coverage show the replacement is sufficient.
 
-The first executable pass (P0–P4 plus the safe part of P5) is now landed in
-the child repositories. The next executable scope is controlled P5 evidence:
+A partial executable pass now covers the admission policy, source custody,
+admitted Chat handoff, and mobile recovery slices. The full P0–P4 acceptance
+bar is not yet landed; the next executable scope is controlled P5 evidence:
 native/share-extension round trips, relaunch/interrupted-finalize receipts,
 mixed-success recovery in the real transport, and owner agreement for any
 new document family. We can continue that work without waiting for every Life,

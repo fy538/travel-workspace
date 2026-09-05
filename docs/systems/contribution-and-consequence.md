@@ -3,7 +3,7 @@ doc_type: contract
 status: active
 owner: founder / product / architecture / engineering
 created: 2026-08-29
-last_verified: 2026-08-29
+last_verified: 2026-09-04
 why_new: Defines one cross-repository boundary from human contribution through immediate value, retention, consequence, projection, receipt, and causal repair across Chat, Intake, Occasions, Home, Places, and Life.
 supersedes: []
 source_of_truth_for:
@@ -118,6 +118,13 @@ explicit instruction in the current turn
 Confidence, relevance, repetition, model judgment, organizer convenience, and
 silence never expand authority. Current explicit intent may narrow or revoke a
 prior grant.
+
+For Plan/Occasion collaboration, [Multiplayer Product Strategy §5.1](../../travel-agent/docs/product/Multiplayer%20Product%20Strategy.md#51-owner-controlled-collaboration--decision-of-september-4)
+defines owner-only arrangement editing by default and owner-controlled scoped
+collaborative editing. Such a grant changes only the authorized editing scope,
+not the other authority axes or another person's Commitment. Recheck the current
+grant at execution; a comment or suggestion is not an arrangement mutation.
+This product decision does not imply an implemented runtime policy adapter.
 
 ### 3.1 Retention is a three-layer lifecycle
 
@@ -439,6 +446,16 @@ explicit external/public authorization.
 Explicit natural language may authorize a bounded reversible owner command
 without a second confirmation. It does not bypass protected data, spend,
 provider, publication, affected-person, or weak-reversal boundaries.
+
+For [lightweight arrangements](../../travel-agent/docs/product/Multiplayer%20Product%20Strategy.md#52-lightweight-arrangements--decision-of-september-4),
+an optional suggestion is not a pending decision, exploration is not adoption,
+and an accepted arrangement edit is not everyone’s acceptance or attendance.
+An already authorized shared edit need not return to the owner for another
+approval: the current gesture must clearly exercise the live grant within its
+audience and scope. This does not relabel shared work as private T1 or bypass a
+new material boundary. An edit grant alone does not authorize autonomous AI work.
+Repair preserves independent authored contributions and accepted Commitments;
+notification delivery and silence cannot resolve changed participation.
 
 ## 7. Point and Bring ruling
 

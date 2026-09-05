@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / architecture / research
 created: 2026-08-31
-last_verified: 2026-08-31
+last_verified: 2026-09-04
 expires: 2026-09-30
 why_new: Resolves the missing seams among shared and personal Plan/Occasion projections, lightweight prospective structure, bounded dynamic artifacts, social circulation, contribution value, and the personal-world model after the August product pivot.
 source_of_truth_for: []
@@ -12,6 +12,15 @@ source_of_truth_for: []
 # Plan, Occasion, Projection, and Consumer Architecture — Research Round 3
 
 ## Question and status
+
+**September 4 follow-up:** the accepted [lightweight arrangement behavior](../../travel-agent/docs/product/Multiplayer%20Product%20Strategy.md#52-lightweight-arrangements--decision-of-september-4)
+and [implementation handoff](lightweight-arrangements-implementation-handoff-2026-09-04.md)
+reopen §4.2's mandatory personal-Plan parent. A person must be able to retain
+loose intent before creating/naming a Plan. The historical proposal below is
+not an approved schema; do not implement its exactly-one-Plan requirement without
+resolving the new storage docket. Its projection, authority, and lineage lessons
+remain useful. This annotation does not claim a fresh runtime audit of this
+entire August 31 research report.
 
 The prior two HCI rounds established Vesper's relational posture, first-person
 authority, governed memory, mixed initiative, plural Outcomes, stable roots,
@@ -236,6 +245,9 @@ This is why a dynamic visual redesign alone cannot eliminate itinerary-block
 weight: the domain model has no smaller accepted prospective unit to render.
 
 ### 4.2 Recommended boundary
+
+Historical August 31 recommendation, reopened September 4: see the status note
+above and the handoff's D1 before using this section as implementation guidance.
 
 Adopt **PlanItem as a lightweight child of exactly one personal Plan**, not as
 a new aggregate, universal content wrapper, shared object, or public product
