@@ -982,7 +982,8 @@ separate receipts. The design and roadmap remain proposed contracts; the
 following additive backend/workspace seams are implemented and locally tested:
 
 - owner-capability matrix and fail-closed lookup (`a1d7a2785`, `e29830846`);
-- revision-guarded ordinary publication and explicit restore (`a1d7a2785`);
+- revision-guarded ordinary publication and explicit restore
+  (`a1d7a2785`, `605faf9d3`);
 - owner-checked all-lens shadow batch (`42906d8b2`);
 - pure replay/race publication decisions (`8dc6c3d1b`);
 - independent downstream Life outbox schema and lease operations

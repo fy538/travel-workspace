@@ -95,11 +95,13 @@ without changing the Life serving route. Backend commit `a1d7a2785` makes index
 publication compare-and-swap guarded by the exact owner revision read by the
 caller: first inserts and same-revision replays remain idempotent, while a
 changed opaque revision, stale first-insert race, or withdrawn-row replay fails
-closed. Explicit restoration is a separate operation. The same commit adds a
-declarative owner-capability matrix: plans, occasions, outcomes, retained
-sources, and historical Atlas material are shadow-only; anchors, social
-contributions, and future authored compositions are unavailable until their
-authority and revision seams exist (`e29830846` adds the matrix coverage).
+closed. Commit `605faf9d3` additionally requires an existing, row-locked
+withdrawn row before explicit restoration, so restore cannot become an accidental
+insert. Commit `a1d7a2785` also adds a declarative owner-capability matrix: plans,
+occasions, outcomes, retained sources, and historical Atlas material are
+shadow-only; anchors, social contributions, and future authored compositions are
+unavailable until their authority and revision seams exist (`e29830846` adds the
+matrix coverage).
 
 Commit `42906d8b2` adds an owner-checked `LifeShadowBatch` that joins the existing
 canonical lens snapshots into one represented-at clock, validates owner
