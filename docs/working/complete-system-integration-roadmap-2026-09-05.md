@@ -769,7 +769,7 @@ document's creation.
 | Package | State at roadmap creation | Next concrete action |
 | --- | --- | --- |
 | I0 | Planned; investigation baseline recorded | Verify actual engine paths and branch/flag/consumer map; resolve intent/material, shared-change and watch-owner decisions |
-| I1 | Reusable infrastructure present; integration gaps remain | Trace owner identity plus condition signals; agree Life handles/change events and bounded reevaluation inputs |
+| I1 | In progress; two safe continuity repairs landed | Trace owner identity plus condition signals; agree Life handles/change events and bounded reevaluation inputs |
 | I2 | Reuse/leases and engine adapters present; general live integration partial | Measure serving and signal-to-judgment paths; separate fast practical assessment, authorized reevaluation and optional production |
 | I3 | Capture foundations landed; owner decisions and formats partial | Audit writers/formats, draft precise owner ADR, then implement approved intent/social commands |
 | I4 | Earlier root implementation present; latest Home design ahead | Make live judgment visible through useful preparation and alternatives; integrate accepted Home forms and the complete Places journey |
@@ -783,6 +783,25 @@ safe I1 continuity/signal repairs, and measure I2's current serving and evaluati
 paths. Hold M0 before new shared or watch persistence. Do not spend that batch
 rewriting canon, building a universal framework, or only expanding mock smoke
 tests; do not defer the live engine until content composition is finished.
+
+### Execution receipts (2026-09-05)
+
+- **I1 / mobile consequence continuity — implemented and locally tested:**
+  `travel-app` commit `2d30015c5` refreshes the direct Life record-page query
+  prefix whenever a Home/Places/Life consequence resolves or becomes stale.
+  The focused `rootConsequences` Jest suite passes (20 tests). This closes the
+  direct-depth stale-read gap without changing Life ownership or its internals.
+- **I1 / request-clock continuity — implemented; syntax checked, test
+  environment blocked:** `travel-agent` commit `e0d0f52d1` passes the root's
+  `represented_at` into the bounded Home experience-graph reader and adds a
+  regression test. `py_compile` and all commit-hook checks except the known
+  pre-existing backend size budget pass. The focused pytest collection is
+  environment-blocked because this checkout lacks the `openai` package; the
+  existing `backend/concierge/_prompts_skills.py` size-budget overage is
+  unrelated and was explicitly skipped for this commit.
+- **Boundary preserved:** no API schema changed, no generated mobile types were
+  regenerated, no Life internals were edited, and the pre-existing uncommitted
+  Claude-design handoff remains untouched.
 
 At the next checkpoint update this ledger in place, attach exact receipts, and
 decide the next bounded batch. This keeps the roadmap live without making this
