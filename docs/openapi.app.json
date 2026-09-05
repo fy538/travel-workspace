@@ -53833,6 +53833,11 @@
             "format": "date-time",
             "title": "Made At"
           },
+          "valid_until": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Valid Until"
+          },
           "text": {
             "type": "string",
             "maxLength": 280,
@@ -53846,6 +53851,7 @@
           "id",
           "author",
           "made_at",
+          "valid_until",
           "text"
         ],
         "title": "EntityPeopleLine",
@@ -53891,6 +53897,11 @@
           "entity_ref": {
             "$ref": "#/components/schemas/EntityRef"
           },
+          "evaluated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Evaluated At"
+          },
           "lines": {
             "items": {
               "$ref": "#/components/schemas/EntityPeopleLine"
@@ -53903,7 +53914,8 @@
         "additionalProperties": false,
         "type": "object",
         "required": [
-          "entity_ref"
+          "entity_ref",
+          "evaluated_at"
         ],
         "title": "EntityPeopleLinesResponse"
       },
@@ -77146,7 +77158,7 @@
           "scope"
         ],
         "title": "PlacesResultSetRef",
-        "description": "Server-owned identity for one Places inventory and question.\n\n``set_id`` is a continuation identity, not an authorization token.  The\nnormalized scope remains explicit so field, map, and detail readers can\nprove which inventory they are transforming.  ``revision`` is optional\nwhile an endpoint cannot prove a shared source revision; ``None`` is an\nhonest unknown, never a client invitation to invent one."
+        "description": "Server-owned identity for one Places inventory and question.\n\n``set_id`` is a continuation identity, not an authorization token. The\nnormalized scope remains explicit so field, map, and detail readers can\nprove which inventory they are transforming. ``revision`` is optional\nwhile an endpoint cannot prove a shared source revision; ``None`` is an\nhonest unknown, never a client invitation to invent one."
       },
       "PlacesRootProjection": {
         "properties": {
