@@ -22798,7 +22798,7 @@
           "root-projections"
         ],
         "summary": "Get Life Record Page V1",
-        "description": "Return paginated depth from the existing owner-owned Atlas timeline.",
+        "description": "Return one stable, merged page of the canonical Life corpus.",
         "operationId": "get_life_record_page_v1_api_root_projections_v1_life_record_get",
         "parameters": [
           {
@@ -22831,7 +22831,7 @@
                 {
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 160
+                  "maxLength": 512
                 },
                 {
                   "type": "null"
@@ -22887,7 +22887,7 @@
           "root-projections"
         ],
         "summary": "Get Life Root Projection V1",
-        "description": "Return the first read-only Life root over canonical graph records.\n\nThis route is intentionally additive and does not replace the legacy Atlas\nowner. Each request names one lens explicitly; unsupported lenses resolve\nto an honest thin projection until their canonical owner contracts exist.",
+        "description": "Return the compact root preview over the canonical Life corpus.",
         "operationId": "get_life_root_projection_v1_api_root_projections_v1_life_get",
         "parameters": [
           {
@@ -66840,6 +66840,18 @@
             "type": "integer",
             "minimum": 0.0,
             "title": "Total Entry Count"
+          },
+          "visible_entry_count": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Visible Entry Count"
           },
           "source_revisions": {
             "items": {
