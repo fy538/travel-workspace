@@ -605,6 +605,11 @@ Validation recorded for this continuation:
 - The mobile test TypeScript project passes (`npm run
   test:typecheck:contracts`); API boundary and schema-bridge CI checks also
   pass (`npm run api-boundaries`, `npm run schema-bridge`).
+- The separate `npm run query-key-ownership` governance check remains red on
+  ten existing query/invalidation literals in `components/chat/ComposedChatCard.tsx`,
+  `data/experienceGraphCollaborationActions.ts`, and `data/inboundItems.ts`;
+  none are touched by the entity lane, so this remains unrelated baseline
+  drift rather than an entity release verdict.
 - The focused mobile shared-renderer state suite passes
   (`__tests__/components/places/ObjectPageRebuild.test.tsx`: 4 tests),
   covering sparse body absence, capability/owner-private withholding, stale
