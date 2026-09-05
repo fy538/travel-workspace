@@ -63,6 +63,13 @@ independently gated.
 - `node scripts/polish-qa/run-polish-qa.mjs entity-object --dry-run` — scaffolded a run with 3 intended flows and **0 captures**. Metro was not reachable; this is not native acceptance.
 - The approved `/Users/feihuyan/Downloads/vesper-entity-object-handoff-lab` export is still absent. No pixel-level/design verdict is claimed.
 
+### Aggregate canaries
+
+- `make test-backend` — **20,684 passed, 20 skipped, 2 xfailed, 54 xpassed; 15 failed and 1 setup error**. The failures are in unrelated discover, eval, digest, convention, and product-documentation baselines; the scoped entity selections above remain green.
+- Full mobile Jest canary — **1,191 suites passed, 17 failed; 8,103 tests passed, 21 failed**. The failures are unrelated conversation, card, navigation, onboarding, and convention baselines; the scoped entity selections above remain green.
+
+These aggregate runs are recorded for transparency and are not a release-green claim.
+
 ## Current capability verdict
 
 | Capability | Implementation | Deterministic tests | Real backend | Native/design | Enabled |
