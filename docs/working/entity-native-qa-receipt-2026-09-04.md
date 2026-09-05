@@ -168,6 +168,13 @@ require an explicitly seeded/enriched Lisbon corpus; they are not needed for
 the canonical object-page lane and are recorded rather than silently counted
 as passes.
 
+The read-only health report at `2026-09-05T00:41:29Z` reports zero stale
+claims, duplicate active jobs, expired processing leases, retried rows, and
+completed-without-fresh-brief mismatches. It does report one pending venue
+research row with an oldest age of about 25 days and one pending resolution
+review; both remain untouched and require named operational disposition before
+any research canary.
+
 The three guarded journeys were then repeated at iOS `accessibility-medium`
 Dynamic Type on the post-fix source `travel-app:d3b22275b`. All assertions
 passed and the simulator content-size setting was restored to `large`

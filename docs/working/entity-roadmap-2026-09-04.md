@@ -548,6 +548,11 @@ Validation recorded for this continuation:
   site across public and authenticated presentation routes. The corresponding
   cleared-state Maestro flow remained at the Expo development-server picker,
   so native unavailable/process-restart acceptance is intentionally still open.
+- The read-only health report at `2026-09-05T00:41:29Z` found zero stale
+  claims, duplicate-active jobs, expired leases or completed-without-fresh-
+  brief mismatches, alongside one old pending venue research row and one
+  pending resolution review. Those rows were not changed; E9 must assign their
+  disposition before any research canary.
 - The real PostgreSQL second-occasion loop-closure proof passes independently
   with the repository virtualenv (`.venv/bin/pytest
   tests/scenarios/test_micro_journey_loop_closure.py -q`: 5 passed). It
