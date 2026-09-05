@@ -576,6 +576,12 @@ Validation recorded for this continuation:
   dogfood-wedge or explicitly gated skips. The selection includes terminal-Plan
   repair coverage for compatibility commitments and occurrence evidence. This
   is a code-level gate, not evidence of a production catalog or rollout.
+- The broader `make test-all` sweep was also run. Backend completed with 20,623
+  passes, 20 skips, 2 xfails, and 5 failures; frontend completed with 1,183
+  passing suites, 19 unrelated convention/Chat/Atlas/navigation failures, and
+  8,044 passing tests overall. None of the failures touched the entity files
+  or entity-focused suites above, so they remain separate repository baseline
+  drift and do not qualify as a green whole-repository release gate.
 - The no-background local API returned honest `404` responses for an unknown
   site across public and authenticated presentation routes. The corresponding
   cleared-state Maestro flow remained at the Expo development-server picker,
