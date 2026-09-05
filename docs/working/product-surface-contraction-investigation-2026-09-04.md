@@ -1691,8 +1691,9 @@ cross-owner file changes:
 | Retained booking-evidence contract | `booking-retained-evidence-adapter-brief-2026-09-05.md`; workspace `f7af303` | Contract is ready for Life/Home/Integration mapping; no universal reservation DTO or provider operation was introduced |
 | Assisted-expense contract | `assisted-expense-contraction-brief-2026-09-05.md`; workspace `f7af303` | Bounded Trip-owner result and exact-ledger requirements are ready; non-Trip debt and Chat wiring remain explicit receiving-lane decisions |
 
-Validation for the read separation: app typecheck passed, and the focused
-collaborative-refetch and read-model-invalidation suites passed (13 tests).
+Validation for the read separation: app typecheck passed; the focused
+collaborative-refetch and read-model-invalidation suites passed (13 tests),
+followed by the booking component and receipt/trust suites (39 tests).
 Documentation governance and scoped living-link checks passed for the new and
 updated workspace documents.
 
