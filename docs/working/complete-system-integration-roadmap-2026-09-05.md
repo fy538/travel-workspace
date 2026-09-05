@@ -1119,3 +1119,12 @@ extend this same truthful gate, not add a speculative route service or worker.
   includes a loading→loaded rerender guard (33 tests passing). The full native
   rehearsal was intentionally stopped after this diagnosis per the current
   scope; no app-surface redesign or generic fallback was added.
+
+- **Real rehearsal target — hardened:** `travel-app` commit `304d35dda` makes
+  the Home/Places real-save runner require an explicit `DATABASE_URL` matching
+  the healthy local API's Postgres target. The earlier bounded run exposed why
+  this matters: the backend `.env` default pointed the fixture provisioner at
+  the host's port 5432 while the API was using the compose database on 15432,
+  producing a false “fixture not admitted” result. The runner now fails before
+  provisioning when the operator has not named the exact database, preserving
+  the no-implicit-write boundary.
