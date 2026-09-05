@@ -60,6 +60,9 @@ Sentry organization configured):
   accepted the configured 16-image/16-file capacity;
 - the app installed and launched on the booted simulator and accepted a
   `guide://dataUrl=…` marker without an unmatched-route crash.
+- the Android Gradle path reached Expo configuration but could not compile in
+  this machine because no Android SDK is installed (`ANDROID_HOME`/
+  `android/local.properties` is absent); no Android native result is claimed.
 
 This is native compilation and intent-boundary evidence, not proof of an OS
 share-sheet round trip. We still need a controlled simulator/device share of a
