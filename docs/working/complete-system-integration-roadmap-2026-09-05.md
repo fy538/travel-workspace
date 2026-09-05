@@ -827,6 +827,12 @@ tests; do not defer the live engine until content composition is finished.
   rollout flag is enabled. The focused route tests are currently blocked at
   collection because this checkout lacks the `openai` package; both touched
   files pass `compileall` and commit hooks.
+- **I2 / single assembly seam — implemented:** `travel-agent` commit
+  `c89742bae` removes the unused Source-production parameter from the Home
+  portfolio builder. Source candidates now enter at the root-composition seam
+  only, either as an explicit precomputed handoff or through the named opt-in
+  migration path; the portfolio reader cannot silently become a second
+  production owner.
 - **Boundary preserved:** no API schema changed, no generated mobile types were
   regenerated, no Life internals were edited, and the pre-existing uncommitted
   Claude-design handoffs and concurrent Life work remain untouched.
