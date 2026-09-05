@@ -363,7 +363,7 @@ contract, itinerary row, research job, or catalog data changed.
 
 ## Entity state-matrix harness — 2026-09-05
 
-- Travel App `e4d2a3436` — direct entity envelope/presentation reads and
+- Travel App `95446d5a6` — direct entity envelope/presentation reads and
   experience detail now honor the existing mock-only force-state harness for
   loading/error exercise. Research brief/status reads accept named mock faults
   so a loaded object can be held in an honest status-unknown state without a
@@ -376,8 +376,8 @@ contract, itinerary row, research job, or catalog data changed.
   behavior is covered by the focused hook tests until an internal flag-on build
   is installed.
 
-Verification: the focused entity/state selection passes **100 tests** on
-`travel-app:e4d2a3436`; TypeScript, test-contract TypeScript, API-boundary,
+Verification: the focused entity/state selection passes **102 tests** on
+`travel-app:95446d5a6`; TypeScript, test-contract TypeScript, API-boundary,
 schema-bridge, and accessibility-governance checks pass. The iPhone 16 Pro
 mock flow passes all **12 steps** with four captures. This is partial native
 state-matrix evidence; real-backend auth diversity, research, write/readback,

@@ -211,7 +211,7 @@ only; they do not widen the native or backend evidence recorded here.
 
 ## Entity state-matrix slice — 2026-09-05
 
-The mobile state harness was extended on `travel-app:e4d2a3436` so direct
+The mobile state harness was extended on `travel-app:95446d5a6` so direct
 entity and experience reads participate in the existing mock-only
 `guide://dev/force-state` controls. The focused hook suite covers loading,
 retryable error, recovery to the normal fixture, and the equivalent experience

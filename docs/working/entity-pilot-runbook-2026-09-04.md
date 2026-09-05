@@ -62,7 +62,7 @@ npm test -- --runInBand \
   __tests__/screens/experience-detail.smoke.test.tsx
 ```
 
-Current deterministic receipt: **100 tests** on `travel-app:e4d2a3436`.
+Current deterministic receipt: **102 tests** on `travel-app:95446d5a6`.
 
 The mock-only native state harness is:
 
