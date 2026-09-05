@@ -856,6 +856,10 @@ tests; do not defer the live engine until content composition is finished.
   cancellation now cancel queued work or observe a running read's late
   exception, bounding post-deadline pressure without pretending Python can
   force-stop an in-flight driver call.
+- **I2 / rollout contract correction — implemented:** `travel-agent` commit
+  `11cb4adab` clarifies that `ROOT_SOURCE_CONTRIBUTION_PRODUCTION_ENABLED`
+  gates only an explicit worker/migration producer seam. Enabling it cannot
+  silently reintroduce model work into ordinary Home or Places GET responses.
 
 At the next checkpoint update this ledger in place, attach exact receipts, and
 decide the next bounded batch. This keeps the roadmap live without making this
