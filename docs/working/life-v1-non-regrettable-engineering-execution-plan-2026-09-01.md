@@ -26,8 +26,9 @@ current implementation program. This rebaseline supersedes those planning
 instructions; it does not silently amend the canonical Life contract.
 
 This is an investigation and proposed engineering roadmap, not authorization
-to implement schema, authority, or background-processing changes. No runtime
-code was changed during this audit. The program designs the whole Life system;
+to implement schema, authority, or background-processing changes. At the
+planning baseline no runtime code had changed; the small execution commits
+listed below are the first implementation slices. The program designs the whole Life system;
 packages are dependency-ordered implementation units, not an attempt to reduce
 the product to one behavior loop.
 
@@ -356,6 +357,17 @@ interpretation and optional delivery on top.
   generated types, place identity seams, schema bridge, and Occasion behavior.
 - `npm run qa:design:check -- life-root`: **failed** because the manifest lacks
   the checker's required string `surface` and nonempty `pairs` array.
+
+The manifest failure was repaired in app commit `efdcc9471`, after which the
+Life design-reference check passes (with a warning that the tracked evidence is
+HTML rather than a native screenshot). Runtime execution commits are:
+
+- backend `9eeeb88e1`: preserve the record when Return delivery yields;
+- backend `e2058817c`: label bounded corpus previews as partial;
+- app `ca83daf49`: provide typed Life mock data;
+- app `14b5e892d`: distinguish bounded root previews in the native door;
+- app `18e51de7e`: align the surface contract with yielded behavior;
+- app `89367c36e`: keep mock lens destinations aligned.
 
 Passing tests establish the current foundations, not a complete organizer,
 real Together support, coordinated Returns, exact dossiers, real-backend native
