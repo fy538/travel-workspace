@@ -78,6 +78,11 @@ selected-resource revision changes. The restoration contract now has executable
 proof that those changes recomposes Home rather than restoring a stale unit;
 restart behavior remains intentionally represented by the missing-token fallback.
 
+Mobile commit `bf879c7f8` narrows exact Life continuation to retained-record
+resource kinds (`artifact`, `memory_candidate`, `intake_submission`, `reading`,
+and `source`). Incidental people or place refs carried for context cannot
+silently redirect a Life destination to the wrong owner route.
+
 ## 3. Journey-to-code matrix
 
 Status vocabulary: **present and verified** means the seam is visible in code but still needs a journey test; **present but unverified** means a similar path exists but its exact semantics are not proven; **adapt** means a small owner-specific change is likely; **missing** means no honest implementation path was found; **blocked on owner decision** means engineering should not invent the contract.
