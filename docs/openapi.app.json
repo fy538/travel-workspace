@@ -59310,7 +59310,11 @@
           "continuity_life_door",
           "continuity_settling",
           "continuity_voice_horizon",
-          "continuity_reconstruction"
+          "continuity_reconstruction",
+          "horizon_prepared_alternatives",
+          "horizon_world_fact_row",
+          "people_authored_region",
+          "now_sample_demonstration"
         ],
         "title": "HomeUnitKind"
       },
