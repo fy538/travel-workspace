@@ -55,6 +55,21 @@
       ],
       "removal_trigger": "Confirm zero supported-client and deployed traffic to GET /api/discover/map after the Places contract is published, then delete the route.",
       "expires": "2026-09-15"
+    },
+    {
+      "id": "life-exact-history-record-bridge",
+      "status": "retiring",
+      "reason": "external_link",
+      "owner": "mobile",
+      "canonical": "Life full record at /you/life-record",
+      "paths": [
+        "travel-app/app/you/history.tsx"
+      ],
+      "markers": [
+        "compatibility_id: life-exact-history-record-bridge"
+      ],
+      "removal_trigger": "Move remaining filter-only history semantics into Life, then confirm no supported released client or tracked link requires /you/history before removing the adapter.",
+      "expires": "2026-10-05"
     }
   ]
 }
