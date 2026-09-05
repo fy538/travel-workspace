@@ -207,6 +207,20 @@ The supporting mobile contract checks also pass on the current app checkout:
 `npm run schema-bridge` (the script runs in CI mode). These are static checks
 only; they do not widen the native or backend evidence recorded here.
 
+## Follow-up harness disposition — 2026-09-05
+
+A bounded rerun was attempted after the receipt was written to extend the
+mock-lane coverage. The first launch failed inside the iOS simulator's
+`dyld_sim` shared-cache preparation with `EXC_BAD_ACCESS`/`SIGBUS`, before app
+code executed. After restarting the simulator, the app launched but remained
+on the real-auth account-recovery shell rather than entering the intended mock
+fixture lane; the `Plans` assertion therefore failed. This is a development
+client/environment issue, not a product verdict, and no screenshot from that
+attempt is counted as evidence. The temporary local environment override used
+for diagnosis was removed and `.env.local` is back to its original Mapbox-only
+contents. The unavailable-state, auth-diversity, and cleared-state native gates
+remain open until a clean harness run can exercise them.
+
 ## Assertions covered
 
 1. The default venue route opens from the dev handoff and lands on the current Plans
