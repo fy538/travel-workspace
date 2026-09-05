@@ -645,9 +645,11 @@ Validation recorded for this continuation:
   deterministic client proof; native write/readback and account-diversity
   evidence remain open.
 - The exact pilot-focused app selection (object-page projection/rebuild,
-  research lifecycle, and Keep/Unsave) passes **56 tests**. The corresponding
-  backend presentation/research/relationship selection passes **46 tests**;
-  these are the current deterministic receipt commands in the pilot runbook.
+  research lifecycle, Keep/Unsave, venue detail, and experience detail) passes
+  **94 tests**. The original four-suite projection/research/mutation subset is
+  included in that count; the corresponding backend
+  presentation/research/relationship selection passes **46 tests**. These are
+  the current deterministic receipt commands in the pilot runbook.
 - `npm run accessibility-governance` passes after removing the rebuilt
   renderer’s Dynamic Type opt-outs; the three guarded journeys were rerun at
   iOS `accessibility-medium` on `travel-app:d3b22275b` and passed.
