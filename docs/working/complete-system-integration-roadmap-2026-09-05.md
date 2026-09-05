@@ -846,6 +846,10 @@ tests; do not defer the live engine until content composition is finished.
   experience suites pass (21 tests), and the app TypeScript check passes on the
   current integrated checkout. The current app has unrelated uncommitted
   entity-route edits; they were not staged or changed by this batch.
+- **I2 / owner-facing seam documentation:** `travel-agent` commit `d91c4537e`
+  updates the root feature contract so future worker/outbox scheduling is the
+  producer owner and ordinary GET composition remains a precomputed-value
+  handoff. No worker, flag activation, or deployment was implied by the note.
 
 At the next checkpoint update this ledger in place, attach exact receipts, and
 decide the next bounded batch. This keeps the roadmap live without making this
