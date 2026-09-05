@@ -46,7 +46,7 @@ Inspected local `main` on September 5 (after the continuation receipts below):
   corrected offline notice, Dynamic Type/accessibility governance fixes, and
   identity-scoped Keep/Unsave/research/place-note/plan-preview and delayed
   object-action lifetimes.
-- Workspace entity evidence: `892eb28` — roadmap, runbook, native receipt,
+- Workspace entity evidence: `37c1c23` — roadmap, runbook, native receipt,
   execution receipt and a pending-owner-review pilot manifest are committed
   locally.
 
