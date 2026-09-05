@@ -931,9 +931,15 @@ tests; do not defer the live engine until content composition is finished.
   search, map, collection, Focus, and Path. It keeps the existing opaque
   context handle, adds a server-owned set identity/revision, and makes field
   and map transformations testable without creating a second Places service.
-  The contract is not yet threaded through wire models; the native Places
-  renderer remains dark until that implementation and acceptance portfolio
-  land.
+- **I4 / Places result-set seam — wire-threaded and locally tested:** backend
+  commit `c57aef18c` carries the additive reference through feed, search,
+  saved/reading, and map responses, with normalized scope identity and
+  query-child identity. Workspace commit `e381428` and `travel-app` commit
+  `4b70de887` publish the generated contracts. Backend Places suites pass (104
+  tests), app Places suites pass (30 tests), and app typecheck passes. The
+  first implementation is honest about an unknown source revision; native
+  Places promotion still requires a proven shared revision, native return
+  propagation, and real-data acceptance.
 
 ### M1 batch update — 2026-09-05
 
@@ -948,8 +954,8 @@ budgeting, and the exact serialized input (especially Places context). This is
 the remaining M1 integration decision, not a reason to reintroduce generation
 into a GET path.
 
-The next bounded batch is to thread the Places result-set/context identity
-through the existing wire models and root runtime, with Home→Places→Focus/Path
+The next bounded batch is native return propagation and a source-backed
+revision for the Places result-set reference, with Home→Places→Focus/Path
 acceptance cases. It must preserve the mature workspace and keep the semantic
 renderer dark until real data and native evidence land. It must not promote the
 dark Home kinds, add a generic route service, or create a second Places feed.
