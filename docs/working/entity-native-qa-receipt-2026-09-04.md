@@ -108,18 +108,21 @@ the existing event detail fixture:
 - Raw pass log: `/tmp/entity-native-experience-rebuild-maestro.log`
 
 The three guarded journeys were then repeated at iOS `accessibility-medium`
-Dynamic Type on the same simulator. All assertions passed and the simulator
-content-size setting was restored to `large` afterward:
+Dynamic Type on the post-fix source `travel-app:d3b22275b`. All assertions
+passed and the simulator content-size setting was restored to `large`
+afterward:
 
-- Venue: `/tmp/entity-native-rebuild-a11y-maestro.log`, screenshot
-  `/Users/feihuyan/travel-workspace/travel-app/54-09-venue-rebuild-accessibility-medium.png`
-- Site: `/tmp/entity-native-site-rebuild-a11y-maestro.log`, screenshot
-  `/Users/feihuyan/travel-workspace/travel-app/54-10-site-rebuild-accessibility-medium.png`
-- Experience: `/tmp/entity-native-experience-rebuild-a11y-maestro.log`,
+- Venue: `/tmp/entity-native-rebuild-a11y-postfix.log`, screenshot
+  `/Users/feihuyan/travel-workspace/travel-app/54-12-venue-rebuild-accessibility-medium-postfix.png`
+- Site: `/tmp/entity-native-site-rebuild-a11y-postfix.log`, screenshot
+  `/Users/feihuyan/travel-workspace/travel-app/54-13-site-rebuild-accessibility-medium-postfix.png`
+- Experience: `/tmp/entity-native-experience-rebuild-a11y-postfix.log`,
   screenshot
-  `/Users/feihuyan/travel-workspace/travel-app/54-11-experience-rebuild-accessibility-medium.png`
+  `/Users/feihuyan/travel-workspace/travel-app/54-14-experience-rebuild-accessibility-medium-postfix.png`
 
-This is a bounded enlarged-text check, not a VoiceOver, Android, or full
+The static accessibility governance check also passes after removing the
+renderer’s Dynamic Type opt-outs (`npm run accessibility-governance`). This is
+still a bounded enlarged-text check, not a VoiceOver, Android, or full
 accessibility certification.
 
 ## Assertions covered
@@ -142,8 +145,9 @@ accessibility certification.
    contract for a site (`Museu Nacional do Azulejo`).
 9. The guarded shared object renderer carries the same identity and verb
    contract for an experience (`LUX Fragil Closing Night`).
-10. Enlarged-text iOS runs preserve the guarded venue/site/experience identity
-    and Keep/Ask assertions without a route or renderer failure.
+10. Post-fix enlarged-text iOS runs preserve the guarded venue/site/experience
+    identity and Keep/Ask assertions without a route or renderer failure.
+11. Static accessibility governance passes for the renderer and app.
 
 ## Limits and next gate
 
