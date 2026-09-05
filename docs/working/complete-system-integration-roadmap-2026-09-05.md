@@ -897,6 +897,12 @@ tests; do not defer the live engine until content composition is finished.
   producer worker before adding any queue or scheduler code. Reassess after
   those three packages, or earlier if a second owner or paid GET path appears.
 
+- **I4 / renderer coverage audit — documented:** workspace commit `pending`
+  adds `home-places-renderer-coverage-audit-2026-09-05.md`, reconciling the
+  backend Home/Places vocabularies with the actual native promotion registries.
+  Home and Places native suites pass (21 and 9 tests respectively); the audit
+  keeps unpromoted semantic kinds dark and sets the four-part promotion gate.
+
 At the next checkpoint update this ledger in place, attach exact receipts, and
 decide the next bounded batch. This keeps the roadmap live without making this
 task a bottleneck for Life or turning six former specialist tasks back on.
