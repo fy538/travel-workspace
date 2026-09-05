@@ -191,23 +191,26 @@ explicitly excluded and gated, not counted as certified.
 
 ## 7. Phase 2 — Close research as an asynchronous product capability
 
-This is the most concrete unfinished implementation slice. Current mobile
-polling observes brief availability, not durable job state. Its queued label
-can survive completion; later job failure is not directly observed. The brief
-reader currently returns `expires_at=None`, and the worker marks success using
-quality/dossier conditions rather than proof of the page-readable artifact.
+The core implementation slice is now landed and locally tested: a viewer-safe
+status read, explicit gated request, source-bearing brief artifact, expiry/
+stale detection, idempotent replay, page-readable completion gate, atomic
+claiming, abandoned-lease recovery, and fail-closed budget/concurrency
+controls. The remaining work is certification against the full failure matrix
+and an owner-approved canary; it is not permission to turn on paid research or
+backfill entities.
 
 ### 2A. Status and request contract
 
-- Define a public-facing entity research state separately from internal queue
-  statuses: absent, queued, running, ready, stale, failed, unavailable. A client
-  polling timeout is “status unknown/check again,” not proof of worker failure.
-- Choose an additive status read through the existing entity API. Resolve the
-  canonical ref and current viewer eligibility on every read. Do not expose
-  another requester’s identity, raw prompts, queue metadata or provider errors.
-- Return stable job/result identity, safe failure classification and enough
-  timing information for bounded polling. For active-job dedupe, make the
-  existing job discoverable through the authorized entity status read.
+- The public-facing state is implemented separately from internal queue
+  statuses: absent, queued, running, ready, stale, failed, unavailable. Keep a
+  client polling timeout as “status unknown/check again,” not proof of worker
+  failure, and certify that mapping in the native matrix.
+- The additive status read resolves the canonical ref and current viewer
+  eligibility on every read. Certify that it never exposes another requester’s
+  identity, raw prompts, queue metadata or provider errors.
+- Stable job/result identity, safe failure classification and bounded timing
+  are now part of the response; verify active-job discoverability and dedupe
+  under concurrent authorized reads.
 - Transport retry reuses the same idempotency key. A deliberate new attempt
   after terminal failure uses a new key and rechecks eligibility and budget.
   Scope client state to account plus canonical entity; reset it on changes.
@@ -217,9 +220,9 @@ quality/dossier conditions rather than proof of the page-readable artifact.
 
 ### 2B. Artifact success and provenance
 
-- Trace request → queue claim → worker → persistence → brief GET → mobile.
-  Worker “complete” must correspond to this request’s valid readable artifact,
-  not merely an older dossier already associated with the place.
+- The worker completion gate now traces request → queue claim → persistence →
+  brief GET → mobile and requires the request’s valid readable artifact, not
+  merely an older dossier. Certify this with an inspected end-to-end artifact.
 - Certify text, generation/as-of time, source records and paragraph-source
   references as one consistent version. Never leave old citation mappings
   attached to new text or infer citations from paragraph position.
@@ -232,8 +235,9 @@ quality/dossier conditions rather than proof of the page-readable artifact.
 
 ### 2C. Mobile reconciliation
 
-- Render pending, ready, failed, unavailable and polling-paused states from one
-  explicit state model. Clear pending copy when the artifact is ready.
+- The mobile reducer renders pending, ready, failed, unavailable and
+  polling-paused states from one explicit model; certify pending-copy clearing
+  when the artifact is ready.
 - Resume status reads after foreground/remount without enqueueing new work.
   Stop timers on unmount/account change and ignore stale responses.
 - Offer an explicit retry only for eligible terminal states; distinguish a
@@ -243,8 +247,9 @@ quality/dossier conditions rather than proof of the page-readable artifact.
 
 ### 2D. Cost, concurrency and failure tests
 
-- Real PostgreSQL concurrent requests for the same canonical entity produce
-  at most one active job. Exercise different accounts/keys and merge aliases.
+- PostgreSQL concurrency tests now cover at-most-one active job for a
+  canonical entity; extend the evidence to different accounts/keys and merge
+  aliases in the canary rehearsal.
 - Test worker crash/retry, missing artifact, quality hold, provider failure,
   disabled persistence, rate-limit exhaustion and budget-store unavailability.
 - Establish an explicit fail-closed posture for paid requests when budget
@@ -284,11 +289,12 @@ Tasks:
 1. Inventory actual configured TTLs and distinguish content freshness from HTTP
    cache freshness. Preserve existing field defaults until evidence supports a
    change. Recompute time-derived predicates such as “open now” at boundaries.
-2. Propose a separately configured descriptive-brief freshness window (initial
-   candidate: 30 days, for review, not a current guarantee). Exclude volatile
-   hours/availability from that promise. Phase 2 consumes this agreed policy.
-3. Make `already_fresh` depend on eligible artifact freshness, not row presence.
-   Retention may outlive eligibility to influence current advice.
+2. The current descriptive-brief default is 30 days via
+   `ENTITY_RESEARCH_BRIEF_TTL_SECONDS`; treat that as a pilot policy to inspect
+   and revise, not as a universal freshness guarantee. Exclude volatile
+   hours/availability from it.
+3. Keep `already_fresh` bound to eligible artifact freshness, not row presence;
+   retention may outlive eligibility to influence current advice.
 4. Exercise expiry while mounted, offline, backgrounded and across local-day,
    timezone and DST changes. Invalidate changed origin/mode/Plan inputs.
 5. Audit provider field storage, attribution and deletion against current
@@ -327,10 +333,11 @@ cannot substitute for native evidence. Record platform limitations explicitly.
 
 Exit: accepted captures and functional journeys on the intended release
 platforms, with accessibility checks and no unsupported verbs or fake content.
-The venue flag-on Keep/Ask slice is an intermediate receipt, not this exit:
-site/experience, real-backend, accessibility, platform, and state-matrix
-evidence remain open. The core page may pass with research/handoff disabled;
-enabling either requires the corresponding states to pass separately.
+The venue/site/experience flag-on Keep/Ask slices and focused unit suite are
+intermediate receipts, not this exit: real-backend, accessibility, platform,
+and full state-matrix evidence remain open. The core page may pass with
+research/handoff disabled; enabling either requires the corresponding states
+to pass separately.
 
 ## 10. Phase 5 — Operate a bounded internal pilot
 
