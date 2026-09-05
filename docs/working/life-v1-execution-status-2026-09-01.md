@@ -88,6 +88,35 @@ explicit corpus page cap is reached. Root and depth therefore receive the same
 bounded source corpus and can distinguish a complete read from a partial one;
 the existing list wrappers remain unchanged for their other callers.
 
+## 2026-09-05 owner-safe shadow execution
+
+The next safe implementation slice is now landed as additive backend seams,
+without changing the Life serving route. Backend commit `a1d7a2785` makes index
+publication compare-and-swap guarded by the exact owner revision read by the
+caller: first inserts and same-revision replays remain idempotent, while a
+changed opaque revision, stale first-insert race, or withdrawn-row replay fails
+closed. Explicit restoration is a separate operation. The same commit adds a
+declarative owner-capability matrix: plans, occasions, outcomes, retained
+sources, and historical Atlas material are shadow-only; anchors, social
+contributions, and future authored compositions are unavailable until their
+authority and revision seams exist (`e29830846` adds the matrix coverage).
+
+Commit `42906d8b2` adds an owner-checked `LifeShadowBatch` that joins the existing
+canonical lens snapshots into one represented-at clock, validates owner
+capabilities, and forwards the batch to the guarded writer. Commit `8dc6c3d1b`
+extracts the pure publication decision used by replay/race tests. Commit
+`893300606` adds the separate `life_projection_outbox` table and lease/ack/retry
+operations so future owner transactions can deliver Life work without
+competing for Intake's single acknowledgement event; no producer or worker is
+wired to it yet. The workspace replay manifest and validator (`ed0568a`) pin
+W1–W6 transitions and their repair/must-not expectations.
+
+These are scaffolding and shadow-population seams, not a populated index,
+serving cutover, or claim that grouping quality is solved. Owner-specific event
+producers, a worker that rehydrates current owner/authorization state, paged
+backfill, and shadow parity at payload/grant/dependency level remain the next
+connected implementation work.
+
 ## Landed checkpoints
 
 ### Backend (`Travel Agent`)
@@ -232,8 +261,9 @@ Home persister, and account teardown still clears all position keys.
 4. Together/multiplayer write paths and generalized Occasion architecture.
 5. Visual composition polish beyond the production HTML design reference.
 
-The next implementation batch is R0/R1 in the replacement roadmap: make the
-actual Life tab and owner destinations coherent, then replace full-drain reads
-with the indexed canonical corpus query. Remaining dossiers, lenses, custody,
-refinding, shared/prospective continuity, Returns and Atlas deletion are explicit
-packages in that program, rather than indefinite deferrals.
+The next implementation batch is owner-specific Life event delivery and shadow
+replay in the replacement roadmap: connect only owners with trustworthy
+revision/audience contracts, then certify paged backfill and shadow parity before
+any indexed serving switch. Remaining dossiers, lenses, custody, refinding,
+shared/prospective continuity, Returns and Atlas deletion are explicit packages
+in that program, rather than indefinite deferrals.

@@ -975,15 +975,28 @@ It is not evidence of shipped grouping quality, model reliability, scale,
 manual editing, or a complete Atlas replacement. Those require the package
 receipts and evolving-record evaluations above.
 
-## 15. Verification of this documentation delivery
+## 15. Verification and implementation receipt
 
-This pass changed this design, its roadmap references/next batch, and inventory
-classification only. It ran no application tests, model experiments, migrations,
-backfills or deployments and did not modify either child repository.
+The documentation pass and its first non-regrettable execution slice are now
+separate receipts. The design and roadmap remain proposed contracts; the
+following additive backend/workspace seams are implemented and locally tested:
 
-Scoped lifecycle metadata validation passed for the design and roadmap;
-whitespace validation passed. The global link check reports only its pre-existing
-unrelated `state` target in the arrangements execution report. The inventory
-check had 23 pre-existing unclassified documents before this pass and 22 after
-classifying the touched Life roadmap; the new design is classified. These
-remaining workspace issues are not claimed as fixed or as Life runtime failures.
+- owner-capability matrix and fail-closed lookup (`a1d7a2785`, `e29830846`);
+- revision-guarded ordinary publication and explicit restore (`a1d7a2785`);
+- owner-checked all-lens shadow batch (`42906d8b2`);
+- pure replay/race publication decisions (`8dc6c3d1b`);
+- independent downstream Life outbox schema and lease operations
+  (`893300606`);
+- W1–W6 replay manifest and workspace validator (`ed0568a`).
+
+Focused Life contract, shadow, publication, owner-matrix, and outbox tests pass;
+the replay manifest validator passes. No owner producer, backfill, model
+experiment, serving cutover, Atlas deletion, or deployment was performed. The
+index remains dark and the existing canonical snapshot route remains the only
+serving path.
+
+Scoped lifecycle metadata and whitespace validation pass for this design and
+roadmap. The global link check reports only its pre-existing unrelated `state`
+target in the arrangements execution report. The inventory check still has
+pre-existing unclassified documents; those workspace issues are not claimed as
+fixed or as Life runtime failures.

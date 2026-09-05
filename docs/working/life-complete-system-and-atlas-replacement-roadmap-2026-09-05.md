@@ -596,22 +596,29 @@ This replaces the original navigation/index-foundation batch, whose partial
 completion is recorded above. [Engine design section 12](life-organization-and-composition-engine-system-design-2026-09-05.md#12-implementation-units-inside-the-existing-roadmap)
 maps the detailed units back to R1–R7; no new package numbering supersedes R0–R8.
 
-1. **Behavior and owner contracts:** implement the W1–W6 replay manifests and
-   owner/revision/authority adapter matrix. Account for retained originals,
-   admitted anchors, graph owners, historical Atlas material, shared records
-   and composition custody; explicitly mark unavailable owner paths.
-2. **Transaction and schema review:** specify independent downstream Life
-   change delivery, identity/control dependencies, checkpoints, publication
-   compare-and-swap and explicit restoration. Existing tombstone guards do not
-   establish general revision ordering or stale-first-insert safety.
-3. **Connected shadow population:** wire source-custody and anchor changes
-   through owner-backed projectors into the existing versioned index. Do not
-   compete with the intake bridge for the same single-ack outbox events or
-   infer authority from a presentation ID.
-4. **Replay, repair and coverage:** exercise late/duplicate events, partial
-   reads, corrections, deletion during work, reauthorization and first-insert
-   races. Page backfill and fan-out; extend shadow comparison beyond identity
-   and ordering to payload, current grants, dependencies and coverage.
+The non-regrettable contract portion of this batch is now landed in the
+backend/workspace: W1–W6 replay manifests, the owner capability matrix,
+revision-guarded publication and explicit restore, an owner-checked shadow
+batch, pure replay/race decisions, and a separate downstream Life outbox. The
+remaining items below are the connected production work; they are intentionally
+not implied by the scaffolding commits.
+
+1. **Behavior and owner contracts — landed:** the replay manifests and
+   owner/revision/authority matrix account for retained originals, admitted
+   anchors, graph owners, historical Atlas material, shared records and future
+   composition custody; unavailable paths fail closed.
+2. **Transaction and schema review — landed as additive seams:** the separate
+   downstream outbox, owner revision CAS, and explicit restore operation are
+   present. Existing owner transactions still need to call the outbox only after
+   their own authority/revision contracts are reviewed.
+3. **Connected shadow population — next:** wire source-custody and eligible
+   owner changes through owner-backed projectors into the existing versioned
+   index. Do not compete with the intake bridge for the same single-ack outbox
+   events or infer authority from a presentation ID.
+4. **Replay, repair and coverage — partially landed:** pure stale/restore/race
+   decisions and scenario expectations are executable; production replay,
+   paged backfill, fan-out, and shadow comparison of payload, grants,
+   dependencies and coverage remain.
 5. **Reader integration after coverage:** retain actual owner destinations,
    bounded restoration and current authorization at read time. When transports
    change, sync OpenAPI via `scripts/sync-types.sh` and update root/depth/mobile
@@ -628,7 +635,8 @@ query/migration behavior and preserve historical test evidence separately.
 
 The first connected portion is complete when an authorized owner transition
 reliably produces a correct shadow Life record and repair survives replay and
-concurrency. Record remaining owner coverage explicitly. Serving cutover still
+concurrency. The current commits stop before that producer/worker connection;
+record remaining owner coverage explicitly as it lands. Serving cutover still
 requires whole-corpus coverage, measured bounded access, current authorization,
 and matching generated consumers. This does not complete digest, Together,
 Returns or retirement. Avoid a calendar estimate until the delivery/owner
