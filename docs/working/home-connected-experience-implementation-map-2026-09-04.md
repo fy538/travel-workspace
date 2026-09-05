@@ -58,6 +58,13 @@ older memory/Atlas aliases remain unchanged for existing callers. This closes
 the J4 exact-record opening seam; it does not prove the intake write/readback
 journey or resolve the remaining arrangement and loose-Keep contracts.
 
+Mobile commit `e98985c30` extends the same seam for an explicitly allowlisted
+non-Chat owner path: a Plan/Occasion/opening resource can now honor its declared
+Home, Places, or Life route (with the short return token) when one is supplied.
+Legacy owner-only paths and Chat paths still use the existing Chat handoff. This
+is route precision, not a new arrangement surface; the owning lane still has to
+publish and test the canonical destination before a projection can use it.
+
 ## 3. Journey-to-code matrix
 
 Status vocabulary: **present and verified** means the seam is visible in code but still needs a journey test; **present but unverified** means a similar path exists but its exact semantics are not proven; **adapt** means a small owner-specific change is likely; **missing** means no honest implementation path was found; **blocked on owner decision** means engineering should not invent the contract.
