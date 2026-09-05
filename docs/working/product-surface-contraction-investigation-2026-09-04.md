@@ -15,11 +15,14 @@ source_of_truth_for: []
 ## Status and recommendation
 
 **Detailed implementation plan:** [§12–19](#12-capability-retirement-lane--detailed-plan)
-turn the investigation into a bounded booking-retirement program. They include
-updated findings, experience decisions, packages CR-0–CR-6, cross-lane ownership,
-acceptance cases, deployment order, and completion criteria. All implementation
-packages remain planned. The September 4 request authorizes planning, not runtime
-shutdown, external actions, database deletion, or adoption of new schema.
+turned the investigation into a bounded booking-retirement program. The first
+implementation packages are now landed: scope adoption, static inventory,
+server-side admission closure, shared Places resilience cleanup, and the
+session-free venue continuation. The September 5 execution request authorizes
+repository implementation and documentation, not production shutdown, external
+actions, database deletion, or an unapproved shared-model change. The remaining
+packages stay gated on the environment obligation audit and the explicit
+Chat/Life lane boundary.
 
 The subsequent [lightweight arrangements handoff](lightweight-arrangements-implementation-handoff-2026-09-04.md)
 details the Plan/Occasion collaboration replacement, four complete situations,
@@ -27,10 +30,12 @@ inspected code seams, and keep/adapt/replace/retire sequence. Use it for that
 lane; this investigation retains the wider booking and expense responsibility
 analysis. Neither document authorizes deletion or claims runtime completion.
 
-This is a research and recommendation document. It records the founder's
-September 4 direction and a fresh inspection of the two repositories. It does
-not authorize deletion, change release scope, or claim that proposed replacement
-experiences are implemented.
+This is the research, recommendation, and bounded execution record for the
+capability-retirement lane. It records the founder's September 4 direction and
+a fresh inspection of the two repositories. It does not authorize production
+shutdown, external provider actions, destructive data deletion, or claim that
+the full replacement experience is complete. The exact landed revisions and
+remaining gates are recorded in the [execution receipt](capability-retirement-execution-receipt-2026-09-05.md).
 
 **Recommend retiring in-app booking execution, substantially reducing itinerary
 and administrative presentation, and turning expenses into an assisted
@@ -1085,17 +1090,19 @@ recovery remains,” not “fully retired.”
 
 | Package | Status at planning close | Evidence / next dependency |
 | --- | --- | --- |
-| CR-0 | Planned | Founder requested the detailed plan; canonical amendments and exact owner contract remain to be executed |
-| CR-1 | Planned; source investigation available | §2–6 and §12 provide initial inventory; no environment obligation audit performed |
-| CR-2 | Not started | No runtime admission or worker behavior changed |
-| CR-3 | Design proposal available; implementation not started | F3 report and D-1–D-6; non-Trip association/report contract still needs mapping |
-| CR-4 | Not started | Life, stay/cost, history, sharing, privacy, and resilience dependencies identified |
-| CR-5 | Not started | No capability code, tables, jobs, secrets, or external resources removed |
-| CR-6 | Not started | Existing 60-test result is a baseline, not program acceptance |
+| CR-0 | Complete in repository | Scope and owner/interface decisions were recorded in `eb032ca` and the booking/release canon amendments in `7b06de4`; no production shutdown or shared-model expansion was inferred |
+| CR-1 | Source inventory complete; environment audit blocked | Static inventory committed in `0f534c6`; the required per-environment read-only obligation report has not been run and remains a destructive-shutdown gate |
+| CR-2 | Repository implementation complete; rollout gated | Admission and stale/replayed dispatch guards landed in backend `7fb582700`, with focused negative tests; `BOOKING_EXECUTION_RETIRED` remains opt-in (`false`) until environment obligations are audited and deployment is approved |
+| CR-3 | Places continuation complete; generalized evidence seam open | Backend venue continuation facts landed in `5e40410f3`; app venue/experience handoff landed in `78a396b73`; no booking session, Trip, day, or return-catch is created by the Places path. Independent non-Trip confirmation association remains open and is not claimed here |
+| CR-4 | Partial: shared resilience and Places complete; retained readers deferred | Generic resilience moved to `backend/core/resilience.py` in `e33dd4764`; Life/stay/cost/history/deep-link readers remain untouched because this lane explicitly does not change Life or Chat |
+| CR-5 | Not started; gated | Deleting execution UI, jobs, provider mutation branches, credentials/config, and route obligations requires CR-1 environment evidence plus CR-4 retained-reader coverage |
+| CR-6 | Not started; local package checks recorded | Contract, typecheck, focused tests, and lint are clean for landed slices; this is not native QA, deployment acceptance, or proof of external decommissioning |
 
-**On execution authorization, begin CR-0 and CR-1:** settle the retirement scope
-and narrow interface recommendations, update current owners, and produce the
-complete entry-point/consumer inventory plus an environment-specific read-only
-obligation audit. Then close new execution while building the retained external
-journey in parallel. Do not start by deleting `booking_agent/`, its tables, or
-the mobile route; do not start by polishing another booking application.
+**Next safe step:** obtain the environment-specific, read-only obligation audit
+for each deployed environment, then re-check after the admission closure is
+deployed. In parallel, the Life/Chat owners can approve the narrow retained
+evidence and return-context seams. Only after those dependencies are evidenced
+should CR-4 migrate retained readers and CR-5 delete obsolete execution
+footprint. Do not set the retirement control live, drop booking tables, remove
+the compatibility route, or remove the return-catch behavior from Chat as part
+of this repository pass.
