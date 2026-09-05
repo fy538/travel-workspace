@@ -87,6 +87,22 @@ rules:
 
 
 overrides:
+  docs/working/home-connected-experience-plan-2026-09-04.md:
+    disposition: keep_reference
+    rationale: Connected Home prototype and parallel engineering feasibility plan after Revision 3; coordinates existing owners without replacing product canon or authorizing implementation.
+
+  docs/working/claude-design-vesper-home-generous-value-handoff-2026-09-04.md:
+    disposition: keep_reference
+    rationale: User-requested Home-only Claude design handoff for fuller value delivery, multiplayer visibility, and value-first onboarding; proposed compositions do not supersede canonical contracts.
+
+  docs/working/home-connected-experience-implementation-map-2026-09-04.md:
+    disposition: keep_reference
+    rationale: Evidence-linked implementation map for the connected Home journeys; records reuse and owner-contract gaps without authorizing a broad rewrite.
+
+  docs/working/home-connected-experience-fixture-manifest-2026-09-04.md:
+    disposition: keep_reference
+    rationale: Deterministic non-production specimen shared by Home design and journey tests; fixture identifiers do not establish a production schema or personal-data source.
+
   docs/working/claude-design-integration-2026-09-04/00-handoff-index.md:
     disposition: keep_reference
     rationale: User-requested routing index and coordination boundaries for the five Claude design handoffs; not new product authority.
