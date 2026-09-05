@@ -995,6 +995,15 @@ tests; do not defer the live engine until content composition is finished.
   closes the format-audit subtask at the `implemented and locally tested`
   evidence level; native end-to-end receipts and any document-family owner ADR
   remain open.
+- **I4 / source revision freshness contract — centralized and locally tested:**
+  `travel-app` commit `41097fa00` moves the carried-versus-latest revision
+  comparison into `utils/placesResultSetFreshness.ts`, with explicit
+  `current`, `updated`, and `unknown` outcomes. The map surface uses the helper
+  for its existing accessible stale treatment; stable and unknown revisions
+  remain quiet. `travel-agent` commit `de2fbedb5` adds owner-bound tests for
+  canonical catalog scopes and the intentionally unknown Anywhere/Saved
+  scopes. This is continuity and acceptance evidence, not permission or full
+  personalized-freshness evidence.
 
 ### M1 batch update — 2026-09-05
 
