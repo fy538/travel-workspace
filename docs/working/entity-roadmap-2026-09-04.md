@@ -590,7 +590,7 @@ Validation recorded for this continuation:
   site across public and authenticated presentation routes. The corresponding
   cleared-state Maestro flow remained at the Expo development-server picker,
   so native unavailable/process-restart acceptance is intentionally still open.
-- The read-only health report at `2026-09-05T02:33:35Z` found zero stale
+- The read-only health report at `2026-09-05T02:50:05Z` found zero stale
   claims, duplicate-active jobs, expired leases or completed-without-fresh-
   brief mismatches, alongside one old pending venue research row and one
   pending resolution review. Those rows were not changed; E9 must assign their

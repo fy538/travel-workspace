@@ -332,3 +332,16 @@ Verification: venue and experience smoke suites pass (**38 tests** together),
 including deferred route-replacement regressions; app-main TypeScript and
 touched-file lint remain clean apart from the repository's existing warnings.
 No API contract, itinerary row, research job, or catalog data changed.
+
+Final deterministic receipt for this lane: the six-suite mobile selection
+(projection, rebuilt renderer, research lifecycle, Keep/Unsave, venue detail,
+and experience detail) passes **94 tests**; the focused backend
+presentation/research/relationship selection passes **46 tests**; `make
+contract-check`, mobile TypeScript, test-contract TypeScript, API-boundary,
+schema-bridge, and accessibility-governance checks pass. The read-only health
+report at `2026-09-05T02:50:05Z` is unchanged: zero stale claims, duplicate
+active jobs, expired leases, retried rows, or completed-without-fresh-brief
+mismatches, with one pending venue research row and one pending resolution
+review left untouched. Native auth-diversity, mutation/readback, repair,
+VoiceOver, Android/platform, owner-reviewed pilot, and operational disposition
+remain release gates; no flag, scheduler, provider call, or backfill was run.
