@@ -780,7 +780,7 @@ document's creation.
 | I2 | Owner-read readiness, fast root serving, single assembly seam, bounded reads, and late-work limits are implemented; production worker decision remains open | Measure serving and signal-to-judgment paths; separate fast practical assessment, authorized reevaluation, and optional production |
 | I3 | Capture/custody and format boundary audited; supported/rejected cases are locally tested; owner decisions and formats remain partial | Complete native custody evidence, audit remaining writers, draft precise owner ADR, then implement approved intent/social commands |
 | I4 | Renderer promotion boundary, result-set identity, source-backed revision, native returns, and stale-source treatment are implemented locally; semantic promotion remains dark | Complete real-data Home→Places→Focus/Path acceptance and decide whether personalized freshness needs a separate source vector |
-| I5 | Graph/consequence foundations present; lightweight experience incomplete | Complete adaptation and shared consequences over I1–I3, preserving purpose, plural participation and meaningful stop/wait behavior |
+| I5 | Graph/consequence foundations present; movement signal→judgment shadow path is locally evidenced; lightweight experience remains incomplete | Complete adaptation and shared consequences over I1–I3, preserving purpose, plural participation, and meaningful stop/wait behavior |
 | I6 | Inventories/guards partially present; cutovers not complete | Refresh compatibility and obligation evidence; plan removal and readiness per actual supported consumers |
 
 **First execution batch after authorization:** complete I0's owner inventory and
@@ -1004,6 +1004,14 @@ tests; do not defer the live engine until content composition is finished.
   canonical catalog scopes and the intentionally unknown Anywhere/Saved
   scopes. This is continuity and acceptance evidence, not permission or full
   personalized-freshness evidence.
+- **I5 / movement stop boundary — implemented and locally tested:**
+  `travel-agent` commit `91c490187` makes the foreground movement owner reject
+  a missing-clock or expired opening before situation reconstruction, and adds
+  a regression proving no judgment or telemetry is emitted after expiry. The
+  existing movement shadow acceptance still covers signal→authority→admission
+  →treatment→content-free telemetry for a late movement and explicit silence
+  for safe/unknown movement. This is a bounded live-engine path, not a durable
+  watch, scheduler, notification release, or Plan mutation.
 
 ### M1 batch update — 2026-09-05
 
