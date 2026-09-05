@@ -1424,6 +1424,7 @@ proven:
 | CC-1 | Backend `9f00c92ce`; retry/authority and action-authority tests pass; mobile `3ff5dac62`; pending-turn outbox: 5 passed | Server-owned authored authority survives persistence/retry; canonical and legacy Chat routes reject forged authority metadata; a share's Chat gesture ID is distinct from the intake submission and stable across retry. |
 | CC-2 | Backend `ff3915b6b`; semantic-worker retention tests: 2 passed | Semantic completion preserves the original transient custody deadline and does not extend it; derived-only retention remains deadline-free. |
 | CC-3 | Backend `add16495d`; writer/refresh focused suite: 53 passed | Behavioral and engagement writers are explicitly non-authoritative, reversible derived signals with bounded importance, provenance, confidence/expiry, and visible derived labeling during Personal Memory synthesis. |
+| CC-4 | Mobile `33bb0cfa8`; share-capture/audio/intake/outbox suites: 20 passed | Capture now surfaces bounded, source-extracted facts before candidate controls; later Chat continuation remains optional, and the screen keeps a clear receipt/delete/leave path. |
 | CC-5 | Existing owner/activation/correction portfolio: 44 passed | Handoff receipts, exact owner readback, activation replay, and semantic correction helpers remain fail-closed and owner-scoped; no new owner command was invented without an owner contract. |
 
 The mobile outbox and capture tests provide local transport evidence, but the
