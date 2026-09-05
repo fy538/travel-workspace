@@ -233,3 +233,56 @@ Home affordable or unaffordable.
 Open for ruling: D-H2 (one relational opening as a dominance and demand rule).
 Proposed: D-H3, D-H4, D-H6, D-H7, D-H10, D-H11. Withdrawn: D-H1. Not done:
 large-text renders at phone width.
+
+---
+
+# Revision 4 — the "fix all" pass (2026-09-05)
+
+A vision-alignment review on September 5 read every product, system, and
+decision document created or updated since August 14 against the Home boards.
+The principles held. Six things were obvious, and in four of them the canon
+was the thing to change.
+
+## Canon amended — `docs/decisions/2026-09-05-amend-home-composition-canon.md`
+
+| # | Was | Now | Where applied |
+| --- | --- | --- | --- |
+| 1 | Containment = completion (kernel §5.1) | Containment marks a coherent object or experience; findings, techniques, and facts stay bare; the crown keeps its meaning | kernel §5.1; Home root contract rule 3 |
+| 2 | A visible people chapter only when the gathering is the dominant subject (08-30 decision, R1) | A conditional `From your people` region: ≥2 authored contributions unspent above, never a duplicate, disappears when empty, ends with the Life · People door. "One relational opening" is a dominance + demand rule, not a count. **D-H2, D-H3 ruled.** | 08-30 decision (revision note); Home root contract rule 1 |
+| 3 | Two kicker registers per screen (kernel §12.7 c) | Four typographic roles: sans section heading / serif content title / one mono metadata line / short supporting text. **D-H10 ruled.** | kernel §12.7 (c); Home root contract rule 7 |
+| 4 | Closed 31-kind Home union | Four kinds admitted: `horizon_prepared_alternatives`, `horizon_world_fact_row`, `people_authored_region`, `now_sample_demonstration`. Union = 35. | build manifest §1.6; Home root contract rule 4 |
+
+Local commits only: workspace docs `d078608`, `03837fc`; travel-app
+`1ce1818b8`. Nothing pushed.
+
+## Boards changed
+
+- **H1.** Run through the August 29 marginal-deletion test. Eight units in,
+  five out: the standalone skillet unit (repetition — the Today card already
+  carries it), the flea fact (no why-now), and the reading preview (loses to
+  the smaller composition) were cut. A third phone shows the **floor**: only
+  what real owners serve today per the September 1 implementation status —
+  direct-state read, In motion rows, two horizon rows (a saved Place, an
+  addressed handoff), the Life door, the seam. Nothing invented. Diagnostics:
+  revision 4 ≈ 311 words · 1929 px; floor ≈ 150 words · 984 px.
+- **H5.** The two P0 corrections from the connected-experience plan: no marks
+  on alternatives that read as controls; the cooking headline is advice ("To
+  get the texture you photographed, finish the pasta in the sauce"), with the
+  kitchen's actual method stated as unknown.
+- **H6 — new.** The group-travel wedge on Home: an organizer nine weeks out
+  with one decision (the stay, by Friday) and contributions inside the
+  arrangement; a joiner's first Home after the invite (host intent in her
+  words, a held seat, three ways to answer including a quiet decline, the
+  same sample as H3, nothing shared about the joiner); day three under change
+  (the train is out, one recovery instrument, one message to six, a private
+  constraint kept aggregate). All Lisbon facts are fixtures.
+- **H0.** Records the canon events; D-H2, D-H3, D-H10 marked ruled; D-H4 and
+  D-H11 remain open.
+
+## Still open
+
+D-H4 (a present-tense social aperture; social-aperture lane). D-H11
+(production classes; engineering review). The floor phone is the honest
+target for the first internal account; closing the gap between it and the
+pruned page is the content-production and owner-read backlog on H0, not a
+design task. Large-text renders remain unrun.

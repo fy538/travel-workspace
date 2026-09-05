@@ -905,6 +905,49 @@ The Telescope"). Semantic zoom as the fifth axis of dynamism.**
   time, viewer, depth — and static along exactly one, form, which is
   what keeps the five legible.
 
+**Amendment — RULED 2026-09-05 (founder): the itinerary is the default;
+the Shape's questions are registers inside it.** Supersedes the "Shape
+default — the itinerary demoted" paragraph above and its guard. Boards of
+record: Plans in Real Life project `cd2e1f82`, boards 02–09 (composition
+family) and 07 (R-14/R-15).
+
+- **Default projection of any Plan or Occasion is the editorial
+  itinerary grammar:** identity block (kicker · serif title · one thesis
+  line) → rows with a hanging mono time gutter and a serif title → one
+  supporting line → one quiet affordance. This is the 09-04 direction
+  ("preserve the pleasure and clarity of the editorial itinerary; extend
+  what it holds") made kernel.
+- **The Shape's four questions are answered as registers, never as
+  sections.** Settled = bold mono time with its source attributed
+  (a Door to the evidence, or a ticket stub); planned = regular mono
+  time; open/loose = a word in the gutter ("after", "option", "sometime"),
+  never an invented hour; who's in = header avatars + one "with …" phrase
+  on the row where participation differs; unknown = stated in the
+  supporting line. Status buckets (Settled / Flexible / Open / Changed /
+  Unknown) are prohibited as page organization.
+- **Structure is earned, downward as well as upward.** The date rail is
+  earned by more than one day; chapters by a day with more than one real
+  part; a single arrangement is the identity block and its rows and
+  nothing else. **Below one anchor there is no plan page:** a Move
+  ("walk there", "keep this") lives on its owner (Place, Home, Chat) with
+  a receipt; forcing a page onto it is over-structure.
+- **Two light-occasion states of the same grammar:** (a) *order-less
+  material* — when no row carries time meaning, the gutter is dropped and
+  the rows are a plain list in the same type (the Life "kept in mind"
+  treatment); the gutter appears the moment one row has time meaning;
+  (b) *a conditional pair* ("beach, or the Whitney if it rains") is one
+  row with "or" in its title and the condition in the supporting line —
+  never two branches, never a Plan A / Plan B lens.
+- **Survives unchanged beneath:** commitments, booking/provider sagas,
+  the operation ledger, feasibility as a quiet check. The guard is
+  inverted: if a plan page ever grows status tabs or a second lane per
+  status, the Shape has been rebuilt under another name.
+- **Design-language consequences already applied (09-05):** attributed
+  source facts are Doors (§11.1); no customer-facing role below 10px
+  (§11.2); no sentence on a customer surface narrates Vesper's restraint
+  (Editorial Canon §13.3); the §11.7 wardrobe carries in as the ticket
+  stub and the facepile with the dashed chair.
+
 ### 11.9 The Chat entry — RULED 2026-08-29 (founder, seven passes)
 
 Boards of record: Vesper — Chat project, 02 (target entry), 04 (well

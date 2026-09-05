@@ -14,7 +14,7 @@ source_of_truth_for: []
 
 ## 0. Start here
 
-**Current assignment — September 5, connected-journey refinement:** continue the existing **Vesper — Plans in Real Life** project. Read §0.4 first: the new board 09 substantially advances §0.3's journey brief. Preserve its value-first visits, natural follow-up, and explicit social sharing; refine intent-aware adaptation, remove process-heavy customer copy, and make the prototype demonstrate the recovery it illustrates. §0.1–0.3 retain the contraction, assistance-first, and consequence requirements; older defect descriptions are historical where §0.4 records a correction. Do not create another project, expand the operation-screen inventory, or implement production changes for this revision.
+**Current assignment — September 5, recommendation and recovery refinement:** continue the existing **Vesper — Plans in Real Life** project. Read §0.5 first: the latest export addresses much of §0.4, including lighter memory/draft copy, purpose-aware readback, and basic request recovery. Preserve those gains. Make J2f's recommendation fit the actual human concern, reduce its action hierarchy, correct unknown-outcome copy, and repair the remaining prototype defects. §0.1–0.4 retain the underlying requirements; older defect descriptions are historical where later sections record a correction. Do not create another project, expand the operation-screen inventory, or implement production changes for this revision.
 
 This is a **design exploration**, not production implementation, a schema decision, or a new app-wide design system. The original handover preceded project creation; the subsequent [execution report](claude-design-plans-in-real-life-execution-report-2026-09-04.md) records the existing [Plans in Real Life project](https://claude.ai/design/p/cd2e1f82-9786-4ae6-993e-c0dfbe8d6302). The reviewed local export is `/Users/feihuyan/Downloads/vesper-plans-in-real-life/project`. Inspect the current live version before syncing; this revision does not independently certify that it matches the export. Do not invent integration commands or claim a sync succeeded without checking the live project.
 
@@ -173,6 +173,8 @@ Return the connected artifact, a concise journey-friction log, board/code incons
 
 ### 0.4 Connected-journey export review: preserve the intention, not just the schedule
 
+**Review-stage note:** this records the preceding export. See §0.5 for the subsequent corrections, remaining findings, and current assignment; do not reintroduce work already completed.
+
 **Evidence and precedence — September 5.** This review inspected the new `09 Journeys - Value, Adapt, Coordinate.dc.html`, the updated `10 Interactive - Saturday, Shared.dc.html`, and `kit/proto.js` in the local export, with rendered inspection of board 09. These are synthetic design fixtures and source-level findings, not observed participant behavior, verified travel facts, native testing, or certification of the live Claude project. This section updates the next assignment; it does not amend the [Contribution and Consequence contract](../systems/contribution-and-consequence.md), authorize production changes, or settle draft-storage architecture.
 
 #### Preserve the progress; do not restart the family
@@ -224,6 +226,55 @@ Refine the existing three journeys and interactive artifact; add no new screen f
 4. Exact private preparation → explicit send → recipient continuity, plus the authorized-editor contrast. Preserve independent contributions during repair.
 
 Report what is illustrated, simulated, and mechanically exercised separately, with native and participant testing still unclaimed. Keep the editorial page, restrained materials, and small contextual interaction family. **The target remains a beautiful, useful plan with capable assistance—not an itinerary management system with a conversational front door.**
+
+### 0.5 Latest export review: better judgment, lighter completion, dependable recovery
+
+**Evidence — September 5, export files dated 11:39 local.** The review read boards 09/10 and `kit/proto.js`, rendered the revised journey compositions, and exercised the runtime in an isolated JavaScript harness with stubbed DOM and controlled timers. The harness checked state transitions and input-field behavior, not real browser navigation, native gestures, keyboard behavior, a production backend, or participant usability. No design or application code was changed during the review. This section refines the existing assignment, not the accepted ownership, audience, or lifecycle contracts.
+
+#### Confirmed progress to preserve
+
+- The ordinary correction no longer triggers “Remember this about her?”
+- J2g now presents the unfinished draft, its context, and Discard without a retention-policy paragraph. J3c's hypothetical outcome is now an annotation rather than customer copy.
+- J2f names the crowd-avoidance tradeoff and accurately reads back Isuien at about 12:30. It no longer describes timing compatibility alone as a successful experiential resolution.
+- In the exercised sequence, a pending save allowed Home navigation and return; a blocked second mutation retained its input; the first request completed. A failed request could be dismissed into a draft and restored with the original words. These address specific §0.4 defects, not every recovery or multiplayer case.
+
+#### A. J2f: permissible is not necessarily helpful
+
+The prominent “Go early myself” action solves an authorization problem—only change the requester's participation—but not necessarily the human concern. The exchange began with whether the user's mother would enjoy the visit, then her dislike of crowds. Her attendance has not been established; sending the user alone does not inherently address her experience.
+
+**Authority constrains the solution; it should not determine which solution Vesper recommends.** Preserve the useful observation about Ben's move. Do not make splitting up the primary recommendation without supporting context. Consider a quieter alternative or help discussing the timing with Ben, choosing the strongest continuation from what the exchange actually supports. Do not assume the mother is attending, that she follows the user's participation change, or that Ben should be moved automatically. A private reason remains private unless its disclosure is separately authorized.
+
+Show one well-founded recommendation through the existing interaction family. Do not resolve this critique by introducing a profile questionnaire, a new decision screen, or a menu of every theoretically permissible action. A solo option remains valid when it genuinely fits the expressed intention.
+
+#### B. J2f: completion should feel complete
+
+The rendered result combines a success receipt, Ben's change, an alternative, “Go early myself,” “Say something to Ben,” “Undo mine,” and “See Isuien.” Individually useful elements have accumulated into a small task panel above the itinerary.
+
+Refine the hierarchy toward **brief result → useful observation → strongest optional continuation**. This is a hierarchy, not a compulsory three-part template or a universal one-button limit. Keep Undo available but subordinate; make seeing Isuien ordinary navigation rather than another equally prominent decision. Further conversation remains accessible through contextual Vesper. An ordinary successful addition should not leave the person feeling that they acquired four more tasks. Preserve the readable day and its editorial character; no new family of result screens is needed.
+
+#### C. J2e: unknown must not read as confirmed unchanged
+
+The board says “Checking whether that saved” and then “nothing on Monday has changed yet.” Board 10 has the same contradiction. If the effect is unknown, the app cannot promise that nothing changed. The distinction is whether execution is pending, confirmed failed, or awaiting reconciliation—not three variations of reassuring copy.
+
+Illustrative replacement:
+
+> Checking whether Isuien was added. Your request is still here.
+
+Use “nothing changed” only for a known non-application. Keep retry unavailable where it could duplicate an unresolved request, and preserve the authored request without requiring the user to understand the reconciliation mechanism.
+
+#### D. Remaining prototype defects: exact reproductions and expected behavior
+
+1. **Discard leaves the restored words in the composer.** Inject failure → submit “add the bookstore” → resolve failure → Not now → open Ask → Discard. `draft` becomes empty, but the restored input still contains “add the bookstore.” Discard should remove the matching restored draft from state and its field; do not erase a different or newly edited input by indiscriminately clearing every composer. Reopening must not resurrect discarded text.
+2. **Undo reverts another person's independent response.** Nora applies the café alternative → switch to Sam → Sam joins dinner → switch to Nora → Undo. The tested result restores the walk but also returns Sam's response to `unknown`, because Undo restores a whole-state snapshot. Repair only Nora's relevant change and preserve Sam's response and independent edits. This needs a bounded prototype correction, not production persistence architecture or another approval workflow.
+3. **Private request state crosses viewpoints.** Nora starts a slow bookstore addition → switch the research viewer to Maya. Nora's authored request remains in global `req_text`, and Maya's save display binds that same state. Model private request/draft/receipt ownership separately from the shared plan, so viewpoint switching does not expose someone else's private exchange or offer recovery controls for their request. Show the shared accepted result only where appropriate. This is a defect in the simulated multi-viewer artifact, not a claim of a production data leak.
+
+Keep the existing explicit-send boundary and the navigation/input fixes. A global shared state object is acceptable for a prototype only if its projections and repair accurately demonstrate these distinctions; additional screens are not the remedy.
+
+#### Bounded next pass
+
+Keep the composition family and refine the existing boards and runtime. Deliver J2f with a contextually justified recommendation and lighter action hierarchy, consistent uncertainty wording across boards 09/10, and regression checks for the three reproductions above alongside the now-working pending-navigation and failed-input cases. Update the friction log to distinguish fixed, outstanding, illustrated, and exercised behavior. Native and participant validation remain unclaimed.
+
+**The next improvement should make Vesper's help more perceptive and dependable—not make the interface more elaborate.** This is a refinement of a coherent product direction, not a request to reopen the entire design or turn the broader system into a narrow proof gate.
 
 ## 1. Why this project, and why now
 
@@ -591,7 +642,7 @@ Research could disconfirm our proposal: if users cannot see a complete day, find
 4. Include the overlapping-travel stress case as an extension, not another standalone product.
 5. Explicitly show what the person receives before supplying more information. Audit every ask: is it truly necessary to deliver this consequence?
 
-For this review iteration, preserve the existing complete family and board 09's connected journeys. Prioritize §0.4's intent-aware adaptation, lighter customer copy, and executable recovery, retaining §0.1–0.3's contraction and assistance requirements. The original broad composition brief is context, not an instruction to restart all four situations.
+For this review iteration, preserve the existing complete family and board 09's connected journeys. Prioritize §0.5's recommendation quality, completion hierarchy, uncertainty copy, and targeted recovery corrections, retaining §0.1–0.4's underlying requirements and completed improvements. The original broad composition brief is context, not an instruction to restart all four situations.
 
 ### Phase C — make the visual consequences interactive
 
@@ -601,7 +652,7 @@ For this review iteration, preserve the existing complete family and board 09's 
 - Re-entry must show the current state; navigation Back must not undo an edit.
 - Keep, preview, adopt, contribute, participate, grant/revoke, and external handoff must have distinguishable effects even when their UI is small.
 - Let ordinary interactions feel ordinary. Do not add a receipt card for every tap merely to expose correctness to the researcher.
-- Follow §0.3 for active follow-up access, contextual no-mutation answers, interruption/resume, execution uncertainty, and consistent private preparation before explicit sharing; apply §0.4's updated correction and acceptance criteria. Keep prototype recognizer limitations separate from the product's supported capabilities and genuine execution boundaries.
+- Follow §0.3 for active follow-up access, contextual no-mutation answers, interruption/resume, execution uncertainty, and consistent private preparation before explicit sharing; apply §0.5's latest corrections and regression checks, preserving §0.4's completed improvements. Keep prototype recognizer limitations separate from the product's supported capabilities and genuine execution boundaries.
 
 ### Phase D — verify the design, then hand back the decisions
 
@@ -623,7 +674,7 @@ Deliver:
 
 1. **Project URL and active-board map**, with the original kernel lab clearly separate.
 2. **One recommended complete design family**: four full-scroll situations plus the small overlap extension.
-3. **Essential interaction paths**: the three connected journeys in §0.3, refined under §0.4 and incorporating the §0.1 stress cases and §0.2 baseline. Explicitly cover value without mutation, free follow-up, intent-aware adaptation, ordinary change, conditional clarification, interruption/recovery with original words, and exact sender-to-recipient continuity. Report illustrated, simulated, and mechanically tested portions separately.
+3. **Essential interaction paths**: the three connected journeys in §0.3, refined under §0.4–0.5 and incorporating the §0.1 stress cases and §0.2 baseline. Explicitly cover value without mutation, free follow-up, intent-aware adaptation, ordinary change, conditional clarification, interruption/recovery with original words, and exact sender-to-recipient continuity. Include §0.5's discard, independent-response Undo, and private-viewpoint regression checks. Report illustrated, simulated, and mechanically tested portions separately.
 4. **A visual baseline comparison** using the current itinerary at equal scale and comparable content. Explain what was preserved, changed, and intentionally removed.
 5. **Type/material mapping**, including exact reused tokens, proposed exceptions, font loading/fallback, and unresolved old-doc conflicts.
 6. **A concise decision log**: accepted behavior preserved; design recommendations made; architecture-bearing questions still open; contract amendments proposed, if any.

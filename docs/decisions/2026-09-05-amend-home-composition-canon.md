@@ -66,23 +66,45 @@ Containment remains selective. It is not reserved for urgency, and it is not
 applied to every sentence. The crown keeps its meaning: the one dominant,
 finishable thing.
 
-### 2. The people region is conditional, not forbidden
+### 2. The people region is conditional, not forbidden — and holds only what was addressed
 
 R1's clause "a visible people chapter appears only when the gathering itself
 is the dominant subject" is replaced by:
 
 > **Social material renders inside the state, possibility, or continuity it
-> changes. A `From your people` region may additionally render when two or
-> more authored human contributions are not already spent in full above it.
-> It never duplicates a contribution shown in full elsewhere on the page, it
-> disappears when empty, and it ends with the pull door to Life · People.
-> Shared consequences (an arrangement, a decision) still appear where they
-> land, above the region.**
+> changes. An `Addressed to you` region may additionally render when two or
+> more contributions deliberately given to this person are not already spent
+> in full above it. It never duplicates a contribution shown in full
+> elsewhere on the page, it disappears when empty, and it ends with the pull
+> door. Shared consequences (an arrangement, a decision) still appear where
+> they land, above the region.**
 
 The MP2 "one relational opening" law is read as a **dominance and demand**
 rule: at most one social cause may lead the page, and at most one social unit
 may ask anything. It is not a page-wide count of authored material. This
 resolves D-H2 and D-H3.
+
+**The social split (ruled later the same day, founder).** Multiplayer material
+divides by root as follows, and this governs where §2's region and the pull
+door point:
+
+| Material | Root | Form |
+| --- | --- | --- |
+| Directed and shared-consequential: addressed to me, an invitation, a contribution to our arrangement, a decision asked of me, a plan edit under a grant, a change to a shared occasion | **Home** | The consequence, never the notification; inside the object it changes, or in the `Addressed to you` region; one ask per page |
+| Casual sharing: a friend's photograph, note, or place made visible to friends; a featured Status | **Places**, as a `From friends` scope over the same map and field | Finite, situation-ranked, never person-ranked; marks at the precision the author chose (Place, neighborhood, city); city-level statuses in an `Elsewhere` band; ends |
+| The record: what each person addressed, shared, contributed, withdrew, under which grant and epoch | **Life · People** | Stable, indexed by person, never reordered by visits |
+
+The friends map is **semantic, never biometric** (social aperture §9.8): every
+mark answers where they were or what they shared or what is in a plan, who
+authored it, at what precision, for which audience, until when. No live
+location, no presence inferred from anything, no location permission required
+of anyone.
+
+Home's pull door ("What your friends have shared") lands on Places in the
+friends scope. **This closes D-H4**: no present-tense band on Life People and
+no fifth surface; a separate Shared World aperture stays a hypothesis until the
+friends scope proves insufficient. Casual shares with no Place keep their two
+existing homes: a Status doorway on Home while featured, and Life People after.
 
 ### 3. Four typographic roles replace the two-kicker rule
 
@@ -102,7 +124,7 @@ Kernel §12.7 (c) is superseded:
 | --- | --- | --- | --- | --- |
 | `horizon_prepared_alternatives` | Horizons (may lead on a quiet day) | card | two to four grounded, mutually alternative ways into an open window, each with its own time and reason; unnumbered; opening one adopts nothing | BUILD |
 | `horizon_world_fact_row` | Horizons | uncarded fact row | a city-scoped notice with a date, hour, or service consequence inside the person's window; marked by its source; never a standing section; never inferred from a trace | BUILD |
-| `people_authored_region` | With people | banded region of cards | the condition in §2 above | BUILD |
+| `people_authored_region` | With people | banded region of cards | the condition in §2 above; holds only material addressed to this person | BUILD |
 | `now_sample_demonstration` | Now (Cold and Thin postures) | dashed card, stamped SAMPLE | a fixed, reusable demonstration of one capability with a made-up input and its result; never personal; retires after tried or ignored twice | BUILD |
 
 The Home union is now **35 kinds**. The build manifest remains the count
@@ -110,9 +132,6 @@ authority.
 
 ## Not decided here
 
-- Whether a present-tense social aperture beyond Life · People exists. The
-  pull door routes to the existing owner; the social-aperture lane owns the
-  question (D-H4).
 - Production classes and cost (D-H11). The H0 ledger's separation of design
   intent, verified implementation, and measured economics stands as a review
   obligation, not a claim.

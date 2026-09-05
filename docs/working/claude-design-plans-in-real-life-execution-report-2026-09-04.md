@@ -272,6 +272,54 @@ kit owns them):
 follows the brief; the kernel text has not been reconciled. Also noted, not fixed here: the Chat-root frames in
 this project are placeholders and do not reflect the ruled Chat entry (§11.9) — the Chat lane should re-clothe them.
 
+## 3h. Ruling — the itinerary is the default (2026-09-05, founder)
+
+Resolves the conflict between kernel §11.8 (08-29, "Shape default / itinerary demoted") and the 09-04 brief.
+Written into `docs/working/design-kernel-extraction-2026-08-29.md` §11.8 as a dated amendment; recorded on
+boards 07 (R-14 ruled, R-15) and 00; drawn on 02 A9–A10.
+
+- The editorial itinerary grammar is the default projection of any Plan or Occasion. The Shape's four questions
+  (settled / open / who's in / unknown) are registers inside it — bold time with a door to its evidence, regular
+  time, a gutter word, a "with …" phrase, a supporting line — never sections. Status buckets are prohibited as
+  page organization.
+- Structure is earned downward as well as upward: no rail below two days, no chapters below two parts, a single
+  arrangement is the identity block plus rows, and **below one anchor there is no plan page** (a Move lives on
+  its owner with a receipt).
+- Two light states of the same grammar were added: **order-less material** drops the time gutter and renders as a
+  plain list in the same type (A9); a **conditional pair** is one row with "or" in its title and the condition in
+  the supporting line, never two branches (A10).
+- Deliberately outside the family: a single Move, a ritual or recurrence (Life/Home), a same-day question
+  (answered in the sheet, no plan created).
+
+## 3i. §0.5 revision — better judgment, lighter completion, dependable recovery (2026-09-05)
+
+Applied to boards 09, 10, 07 and `kit/proto.js`; composition family unchanged; no new screens.
+
+- **A. J2f recommendation.** "Go early myself" removed as the primary action: it was permissible (change only
+  your own participation) but not shown to be helpful, since the mother's attendance was never established. The
+  recommendation is now the continuation the exchange supports: "Ask Ben about 10:15 →" (opens the J3a outgoing
+  card; drafted words carry no private reason). Solo option stays reachable through Ask Vesper when it fits. No
+  quieter substitute offered (the question was about this temple). No profile question, decision screen or menu.
+- **B. Completion hierarchy.** J2f is now brief result → one observation → one optional continuation. "See it →"
+  is a door inside the receipt sentence (ordinary navigation). Undo present and subordinate (`.undoq`). Six
+  stacked elements became three; the day reads first.
+- **C. Unknown wording.** J2e: "Checking whether Isuien was added. Your request is still here." Board 10 cards:
+  "Checking whether that went through — your request is still here." "Nothing changed" reserved for confirmed
+  non-application. Retry held while unresolved. Recorded as R-16 on board 07.
+- **D. Prototype defects fixed in `kit/proto.js`** (backup `kit/proto.pre05.js.bak` local only):
+  1. Discard clears the field only when it still holds the matching draft; edited/different input left alone;
+     reopening does not resurrect the text.
+  2. Undo entries are scoped (action id + prior values of exactly the keys it changed). Nora's Undo no longer
+     reverts Sam's independent answer. Undo receipt names what came back.
+  3. Private record per viewpoint (`state.priv[you|maya|sam]`: screen, preview, ask, offer, receipt, note, save,
+     save_label, req_text, req_id, draft). Shared plan is one object. Deferred outcomes land on the owner's record
+     via `asOwner()`. Viewer switch touches nobody's private record. Per-viewer undo stacks and timers.
+  Test helper: `PIRL.say(text)`, `PIRL.field()`, `PIRL.priv`, `PIRL.undo`.
+- **Friction log (09)** now distinguishes fixed / outstanding / illustrated / exercised; board 10 lists regression
+  checks R1–R5. Outstanding: retry idempotency beyond one reconciliation asserted not modelled; the J3a card that
+  "Ask Ben about 10:15" opens is drawn, not wired (Kyoto is not the interactive fixture); modal sheet vs in-flow region.
+- Native and participant validation remain unclaimed.
+
 ## 4. Verification (live project, 2026-09-04)
 
 - Every board rendered from the **live project** via `render_preview` serve URLs in headless Chrome
