@@ -534,6 +534,12 @@ Validation recorded for this continuation:
   367 facade exports classified).
 - Backend focused entity/research suites pass, including the live PostgreSQL
   relationship continuity test and queue lifecycle tests.
+- A second native-Postgres follow-up pass covering entity presentation,
+  private-entity contracts, people-line gating, relationship handoffs and
+  outcome feedback passed 66 tests. The current mobile entity
+  screen/renderer/projection set passed 78 tests; these strengthen deterministic
+  privacy/repair evidence but do not substitute for two-account device or
+  platform acceptance.
 - The real PostgreSQL second-occasion loop-closure proof passes independently
   with the repository virtualenv (`.venv/bin/pytest
   tests/scenarios/test_micro_journey_loop_closure.py -q`: 5 passed). It

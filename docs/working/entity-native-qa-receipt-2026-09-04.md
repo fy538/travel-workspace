@@ -145,6 +145,13 @@ scenario passed 5 tests. These checks exercised existing local rows and
 transactional read/write fixtures in their test harness; they did not seed a
 catalog or invoke paid research.
 
+The follow-up privacy/repair coverage on that same database passed 66 tests
+across entity presentation reads, private-entity contracts, entity routes,
+people-lines gating, relationship handoffs, and outcome feedback. On the
+current app checkout, the seven entity screen/renderer/projection suites also
+passed 78 tests. These are deterministic regression checks; the native state
+matrix and two-account device journey remain separate gates.
+
 The three guarded journeys were then repeated at iOS `accessibility-medium`
 Dynamic Type on the post-fix source `travel-app:d3b22275b`. All assertions
 passed and the simulator content-size setting was restored to `large`
