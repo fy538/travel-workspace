@@ -14,9 +14,10 @@ doc_type: working
 # Entity native QA receipt
 
 This receipt records current-build native smoke passes for the default venue
-object route, the registered Places route, and the explicit plan-placement
-boundary. It is evidence for those slices, not a production rollout receipt
-or proof of the complete state matrix.
+object route, the registered Places route, the explicit plan-placement
+boundary, and the guarded shared renderer across venue, site, and experience.
+It is evidence for those slices, not a production rollout receipt or proof of
+the complete state matrix.
 
 ## Run
 
