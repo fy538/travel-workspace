@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / architecture / engineering
 created: 2026-09-01
-last_verified: 2026-09-04
+last_verified: 2026-09-05
 expires: 2026-10-01
 why_new: Records the executed, cross-repository Life v1 foundation and its validation evidence so future design work can build on committed seams rather than re-open the architecture.
 depends_on:
@@ -172,6 +172,13 @@ Home persister, and account teardown still clears all position keys.
 - Deterministic workspace contract check: passed — 443 mobile paths, 488
   operations, and 1,299 schemas; generated TypeScript exactly matches the app
   projection.
+- Device certification harness added at
+  `travel-app/.maestro/73-life-record-device-certification.yaml`. It covers
+  deep-link entry, Time/Places reader switching, and the Life-owner return
+  boundary. The local simulator run reached both reader states; rebuilding the
+  binary to exercise the new back-control selector is currently blocked by an
+  unrelated CocoaPods lock mismatch (`PurchasesHybridCommon` 18.28.0 vs
+  18.30.0).
 - Cross-repository API audit: passed — 551 active, 13 dark, and 62 retiring
   operations; 0 unflagged.
 - Backend formatting, import-boundary, timeout, mutable-state, applicable hooks,
