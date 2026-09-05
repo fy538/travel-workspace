@@ -44,7 +44,9 @@ Inspected local `main` on September 4 (after the continuation receipts below):
   guarded venue/site/experience journeys, focused shared-renderer
   state-contract coverage, and Dynamic Type/accessibility governance fixes
   (the preceding route/action implementation is `35c110f47`).
-- Workspace: `61f46d4` — roadmap, runbook, native receipt and post-fix
+- Workspace entity evidence: `03c7767` — roadmap, runbook, native receipt and
+  post-fix evidence are committed locally (later workspace commits are
+  unrelated).
   accessibility evidence are committed locally.
 
 These are local source baselines, not deployment or public-release evidence.
