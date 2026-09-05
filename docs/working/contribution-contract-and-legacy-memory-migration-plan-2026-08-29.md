@@ -49,6 +49,14 @@ receipts, mixed-success batch evidence, and a separately reviewed readiness
 decision for each new document family. No connector, ambient ingestion, or
 legacy-writer retirement is implied by these commits.
 
+The mobile cold-start handoff now has an explicit regression guard: the app
+replays the `guide://dataUrl=…` marker after `expo-share-intent` reports that
+its native listener is ready. This closes the observed race in which the native
+extension had received a share but the first JS refresh happened before the
+`onChange` listener existed, leaving the app on Home. The guard is covered by
+`ShareIntentHandler.test.tsx`; it does not broaden supported payload types or
+pretend that a source was admitted.
+
 ### Native evidence checkpoint — September 4
 
 The local iOS native target was rebuilt against the current app-config
@@ -64,12 +72,17 @@ Sentry organization configured):
   this machine because no Android SDK is installed (`ANDROID_HOME`/
   `android/local.properties` is absent); no Android native result is claimed.
 
-This is native compilation and intent-boundary evidence, not proof of an OS
-share-sheet round trip. We still need a controlled simulator/device share of a
-text, image, audio, and multi-file payload, followed by server readback and
-relaunch/interrupted-finalize evidence. The committed source of truth for the
-native extension is `app.json`/`app.config.js`; generated `ios/` output is
-ignored and must not be treated as a separately landed contract.
+This is native compilation and intent-boundary evidence, not proof of a full
+payload round trip. A controlled iOS Safari run did launch the native share
+extension and emit the `HandleUrl guide://dataUrl=…` marker in both Debug and
+Release builds; the pre-fix run exposed the cold-start race by returning to
+Home. The Release build now contains the listener-ready replay and the
+regression test passes, but a clean OS share-sheet run that visibly reaches
+`/share-capture` is still required, followed by server readback and
+relaunch/interrupted-finalize evidence for text, image, audio, and multi-file
+payloads. The committed source of truth for the native extension is
+`app.json`/`app.config.js`; generated `ios/` output is ignored and must not be
+treated as a separately landed contract.
 
 ## Outcome
 
