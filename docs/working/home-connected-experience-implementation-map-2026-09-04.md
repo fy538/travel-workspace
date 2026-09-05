@@ -78,10 +78,14 @@ selected-resource revision changes. The restoration contract now has executable
 proof that those changes recomposes Home rather than restoring a stale unit;
 restart behavior remains intentionally represented by the missing-token fallback.
 
-Mobile commit `bf879c7f8` narrows exact Life continuation to retained-record
-resource kinds (`artifact`, `memory_candidate`, `intake_submission`, `reading`,
-and `source`). Incidental people or place refs carried for context cannot
-silently redirect a Life destination to the wrong owner route.
+Mobile commit `bf879c7f8` narrows exact Life continuation to Life-record resource
+kinds. Incidental people or place refs carried for context cannot silently
+redirect a Life destination to the wrong owner route. The follow-on mobile
+commit `b80626984` includes graph-owned `plan`, `occasion`, `commitment`,
+`opening`, `outcome`, and `recovery_instrument` refs when their owner publishes
+the canonical `/you/history` path, while keeping a generic `trip` ref on the
+Home/Plan owner. This matches the current Life adapter's route contract rather
+than guessing from resource kind alone.
 
 ## 3. Journey-to-code matrix
 
