@@ -22,6 +22,31 @@ supersedes: []
 > backend migration. The accepted system contract remains authoritative; this
 > working plan does not itself adopt new product decisions or authorize rollout.
 
+### Execution receipt — September 4, continued
+
+The first implementation pass has now crossed the main backend/mobile seams.
+These are repository commits, not a claim of production rollout:
+
+| Area | Delivered | Commit(s) |
+| --- | --- | --- |
+| Explicit retention authority | `observe()` is an explicit, source-bound retention action; ordinary questions and booking execution no longer require bookkeeping writes. | `eea52e068` |
+| Authored attention | User-authored notes travel into interpretation as attributed context, never as source evidence. | `423e8beb0` |
+| Source-first Life addressability | A retained original gets a source-only Life door before interpretation is confirmed; no semantic claim is fabricated. | `79b00f294` |
+| Value-first capture | Unresolved shares can continue into contextual Chat with source refs and `answer_only` retention rather than forcing a review workflow. | `09b80dbaa` |
+| Media/recovery truthfulness | Mobile preserves server-side HEIC/scanner capability errors instead of collapsing them into generic retry copy; local retry and custody resumability remain covered by tests. | `cdf048617` |
+
+PDF, Apple Wallet, and HEIC/HEIF remain deliberately unsupported at the
+intake boundary: the backend security contract rejects them until a document
+scanner/conversion path is actually available. The mobile layer must mirror
+that boundary, not advertise a normalizer class as a supported product
+capability.
+
+The remaining P5 work is operational evidence, not a reason to widen scope:
+controlled native/share-extension runs, interrupted-finalize and relaunch
+receipts, mixed-success batch evidence, and a separately reviewed readiness
+decision for each new document family. No connector, ambient ingestion, or
+legacy-writer retirement is implied by these commits.
+
 ## Outcome
 
 Make every Vesper input obey one shared rule:
