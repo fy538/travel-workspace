@@ -107,6 +107,21 @@ the existing event detail fixture:
   `/Users/feihuyan/travel-workspace/travel-app/54-08-experience-rebuild-intended-verbs.png`
 - Raw pass log: `/tmp/entity-native-experience-rebuild-maestro.log`
 
+The three guarded journeys were then repeated at iOS `accessibility-medium`
+Dynamic Type on the same simulator. All assertions passed and the simulator
+content-size setting was restored to `large` afterward:
+
+- Venue: `/tmp/entity-native-rebuild-a11y-maestro.log`, screenshot
+  `/Users/feihuyan/travel-workspace/travel-app/54-09-venue-rebuild-accessibility-medium.png`
+- Site: `/tmp/entity-native-site-rebuild-a11y-maestro.log`, screenshot
+  `/Users/feihuyan/travel-workspace/travel-app/54-10-site-rebuild-accessibility-medium.png`
+- Experience: `/tmp/entity-native-experience-rebuild-a11y-maestro.log`,
+  screenshot
+  `/Users/feihuyan/travel-workspace/travel-app/54-11-experience-rebuild-accessibility-medium.png`
+
+This is a bounded enlarged-text check, not a VoiceOver, Android, or full
+accessibility certification.
+
 ## Assertions covered
 
 1. The default venue route opens from the dev handoff and lands on the current Plans
@@ -127,6 +142,8 @@ the existing event detail fixture:
    contract for a site (`Museu Nacional do Azulejo`).
 9. The guarded shared object renderer carries the same identity and verb
    contract for an experience (`LUX Fragil Closing Night`).
+10. Enlarged-text iOS runs preserve the guarded venue/site/experience identity
+    and Keep/Ask assertions without a route or renderer failure.
 
 ## Limits and next gate
 
@@ -135,10 +152,10 @@ research lifecycle states, live situation freshness, source attribution,
 relationship differences across two accounts, accessibility at large text or
 screen-reader navigation, Android, or the full loading/error/empty matrix.
 They also do not certify the full shared-renderer state matrix, live
-availability/booking, real-backend auth, research lifecycle states, or
-accessibility/platform coverage. The flag-on venue, site, and experience
-routes are now evidenced as three bounded identity/verb slices; broader state
-convergence and rollout remain gates in the entity roadmap and must be attached
-to a reviewed pilot receipt before any capability is enabled. No production
-rows, research jobs, provider calls, booking, or backfill were created by this
-run.
+availability/booking, real-backend auth, research lifecycle states, VoiceOver,
+Android, or other platform/accessibility coverage. The flag-on venue, site,
+and experience routes are now evidenced as three bounded identity/verb slices
+plus an enlarged-text iOS pass; broader state convergence and rollout remain
+gates in the entity roadmap and must be attached to a reviewed pilot receipt
+before any capability is enabled. No production rows, research jobs, provider
+calls, booking, or backfill were created by this run.

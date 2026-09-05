@@ -57,7 +57,7 @@ checks remain in the execution log.
 | Identity | Canonical refs, external identities, private provisional shells, redirects and alias-aware reads | Cross-entry and cross-owner identity/repair certification |
 | Relationship | Save, Plan, personal attendance and private outcome projection; bounded page readback | Two-user later-read proof, correction and retraction across consumers |
 | Situation | Separate no-store contextual read and expiry handling | Foreground/background, context-change and stale-action certification |
-| Object UI | Guarded shared renderer on venue, site and experience routes; default venue route still retains its compatibility composition; all three flag-on identity/verb contract slices now native-evidenced; all known mock experience envelopes are canonical; sparse/capability/stale unit cases are locked | Full state-matrix acceptance, plus current-build accessibility and real-backend evidence |
+| Object UI | Guarded shared renderer on venue, site and experience routes; default venue route still retains its compatibility composition; all three flag-on identity/verb contract slices now native-evidenced; all known mock experience envelopes are canonical; sparse/capability/stale unit cases are locked; iOS accessibility-medium pass is recorded | Full state-matrix acceptance, including real-backend, VoiceOver, Android and other platform evidence |
 | Research | Read-only persisted brief; explicit gated queue request; idempotency and rate controls | End-to-end job state, artifact readiness, provenance, freshness and retry closure |
 | People | Bounded authorized exact-place lines and gated addressed-handoff doorway | Grant/revocation and recipient experience proof; richer inline people citations remain separate |
 | Operations | Read-only entity-health counts | Queue age, artifact mismatch, repair evidence, operational ownership and rollout receipt |
@@ -522,7 +522,7 @@ Completed implementation packages in this lane:
 | E6 | Generated mobile status contract; centralized research state reducer; stale content age label; status-error recovery copy and tests; stable locale metadata formatting; stale-age preservation during unknown status | `travel-app:9904f3411`, `9abfc997d`, `462d56a0d`, `ce504cfa9`, `71f154151`, `a3636e13c` |
 | Contract | OpenAPI snapshots, active projection, generated schema, identity seams and schema bridge are synchronized | `workspace:93ea30e` |
 | E8 (native default-route slice) | Current mobile build passes venue identity/save/private-handoff, registered Places capture, and explicit plan-placement review/commit on iPhone 16 Pro in the mock lane; the default venue route is flag-off, so shared `ObjectPageRebuild` acceptance remains open. The rebuild intentionally omits the legacy Add-to-trip ladder per the Places contract. | `travel-app:47735f406`, `travel-app:35c110f47`, [native QA receipt](entity-native-qa-receipt-2026-09-04.md) |
-| E8 (native guarded-renderer slice) | Flag-on venue, site, and experience routes pass on the iPhone 16 Pro mock lane with canonical `Cervejaria Ramiro` / `Museu Nacional do Azulejo` / `LUX Fragil Closing Night`, `Keep place`, visible Ask handoffs, and explicit assertions that the legacy Add-to-trip ladder is absent. Focused renderer tests also lock sparse, owner-private capability denial, and stale research states; all known mock experience IDs resolve to canonical names. This proves the intended shared renderer identity/verb contract for all three current kinds; native state-matrix evidence remains open. | `travel-app:7b4d0601b`, `travel-app:6e3fe8545`, `travel-app:464e7da98`, `travel-app:377c8a4b5`, `travel-app:ea10e4482`, `travel-app:dba1e16e9`, [native QA receipt](entity-native-qa-receipt-2026-09-04.md) |
+| E8 (native guarded-renderer slice) | Flag-on venue, site, and experience routes pass on the iPhone 16 Pro mock lane with canonical `Cervejaria Ramiro` / `Museu Nacional do Azulejo` / `LUX Fragil Closing Night`, `Keep place`, visible Ask handoffs, and explicit assertions that the legacy Add-to-trip ladder is absent. Focused renderer tests also lock sparse, owner-private capability denial, and stale research states; all known mock experience IDs resolve to canonical names. The three journeys also pass at iOS `accessibility-medium` text size. This proves the intended shared renderer identity/verb contract and one enlarged-text check; full native state-matrix evidence remains open. | `travel-app:7b4d0601b`, `travel-app:6e3fe8545`, `travel-app:464e7da98`, `travel-app:377c8a4b5`, `travel-app:ea10e4482`, `travel-app:dba1e16e9`, [native QA receipt](entity-native-qa-receipt-2026-09-04.md) |
 | E10 (later-consumer slice) | Real PostgreSQL second-occasion loop closure changes candidate choice from a prior explicit outcome, then reopens after correction and withholds on changed roster/occasion; chat attachment snapshots remain catalog-only | `travel-agent:18b71b9f7`, `422a5f6c8` |
 | E9 (health receipt) | Read-only, content-free entity health report now includes queue age, retry/lease, duplicate-active, and completed-without-fresh-brief integrity metrics | `travel-agent:9f3d80959` |
 
@@ -576,8 +576,8 @@ Validation recorded for this continuation:
   flag was enabled and no catalog row was backfilled.
 
 The next unclosed gates are the broader native state matrix (real-backend
-journey, sparse/unavailable/photo/account states, accessibility and platform
-verdict),
+journey, sparse/unavailable/photo/account states, VoiceOver, Android and
+platform verdict),
 a reviewed pilot receipt, and explicit operational ownership. The
 later-consumer benefit/withholding proof is now present in the real PostgreSQL
 loop-closure scenario, but it is not a production rollout receipt. These remain
