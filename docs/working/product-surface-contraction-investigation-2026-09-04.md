@@ -1678,3 +1678,28 @@ concurrent schema syncs or route-generator rewrites over active source edits.
 This planning update changes only this document. The next runtime package is
 the independent read-separation package above; all broader contraction outcomes
 remain planned, with their actual owning lanes and dependencies visible.
+
+### 20.13 Execution receipt — independent contraction packages
+
+The “execute all” instruction was applied to the work that can land without
+cross-owner file changes:
+
+| Package | Landed evidence | Status / limitation |
+| --- | --- | --- |
+| Current static recheck and caller classification | `capability-retirement-static-inventory-2026-09-05.md`; workspace `b48eb90` | Current app guard is recorded accurately: stale generated inventory plus two unowned Life routes. Shared registry repair remains with Integration/Life |
+| Booking read separation | `travel-app:15b4edfdb`; `data/bookingReads.ts` with compatibility exports | Implemented and typechecked; query keys, API responses, polling, and mutations unchanged. The retained reader’s final Life/Home composition and route cutover remain owner work |
+| Retained booking-evidence contract | `booking-retained-evidence-adapter-brief-2026-09-05.md`; workspace `f7af303` | Contract is ready for Life/Home/Integration mapping; no universal reservation DTO or provider operation was introduced |
+| Assisted-expense contract | `assisted-expense-contraction-brief-2026-09-05.md`; workspace `f7af303` | Bounded Trip-owner result and exact-ledger requirements are ready; non-Trip debt and Chat wiring remain explicit receiving-lane decisions |
+
+Validation for the read separation: app typecheck passed, and the focused
+collaborative-refetch and read-model-invalidation suites passed (13 tests).
+Documentation governance and scoped living-link checks passed for the new and
+updated workspace documents.
+
+The following were deliberately **not** executed in this lane: route-inventory
+regeneration, `utils/routes.ts` or root-navigation edits, OpenAPI regeneration,
+entity/Life/Home/Plan/Chat edits, provider shutdown, feature-flag enablement,
+database migration/deletion, or production obligation audits. Those changes
+have active receiving owners or require operational authority. This is a
+bounded implementation receipt, not a claim that capability retirement or the
+full product contraction is complete.
