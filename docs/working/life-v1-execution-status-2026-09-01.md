@@ -197,7 +197,8 @@ Home persister, and account teardown still clears all position keys.
   React Native prebuilt to its Debug artifact restored the native linker.
   The build then passed with `SENTRY_DISABLE_AUTO_UPLOAD=true` (the local
   Sentry upload has no org/project configuration). The certification report
-  recorded 1/1 flow passed in 9 seconds.
+  recorded 1/1 flow passed in 9 seconds. A second run after terminating the
+  installed app (cold-launch rehearsal) also passed 1/1 in 8 seconds.
 - Cross-repository API audit: passed — 551 active, 13 dark, and 62 retiring
   operations; 0 unflagged.
 - Backend formatting, import-boundary, timeout, mutable-state, applicable hooks,
@@ -207,16 +208,16 @@ Home persister, and account teardown still clears all position keys.
 
 ## Deliberately deferred
 
-1. Dossier-grade destinations for every Life object family and a real-device
-   cold-launch/deep-link rehearsal of the identity-based scroll restoration.
-   The canonical cursor and mobile restore implementation are landed; device
-   validation and new object-family destinations remain open.
+1. Dossier-grade destinations for every Life object family and deeper
+   cold-launch coverage of identity-based scroll restoration. The canonical
+   cursor, mobile restore implementation, and one simulator cold-launch/deep-
+   link rehearsal are landed; new object-family destinations remain open.
 2. Full Places/People/Threads lens projection from production data.
 3. Public rollout, analytics-driven promotion, and removal of legacy Atlas.
 4. Together/multiplayer write paths and generalized Occasion architecture.
 5. Visual composition polish beyond the production HTML design reference.
 
-The next safe increment is a device-level cold-launch/deep-link rehearsal for
-the persisted Life return anchor, followed by profiling the graph and Atlas
-drains before changing their corpus limits. Do not broaden either flag or add
-more lenses until that return seam is proven end to end.
+The next safe increment is profiling the graph and Atlas drains before changing
+their corpus limits, followed by dossier destinations for the remaining Life
+object families. Do not broaden either flag or add more lenses until those
+return and identity seams are proven end to end.
