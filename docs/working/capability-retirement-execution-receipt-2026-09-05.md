@@ -96,6 +96,8 @@ lane's commits or reclassified as caused by the retirement work.
 ## Explicitly not complete
 
 - No per-environment read-only obligation audit has been run.
+- The executable audit and operator procedure are documented in the
+  [Booking Capability Retirement Audit runbook](../../travel-agent/docs/operations/Booking%20Capability%20Retirement%20Audit.md).
 - The retirement setting has not been enabled in a deployed environment.
 - No provider secret, job registration, route, table, or execution UI was
   deleted.
@@ -106,7 +108,8 @@ lane's commits or reclassified as caused by the retirement work.
 
 ## Next gates
 
-1. Run the redacted read-only obligation audit in every deployed environment.
+1. Run the redacted read-only obligation audit in every deployed environment
+   using the [audit runbook](../../travel-agent/docs/operations/Booking%20Capability%20Retirement%20Audit.md).
 2. Re-run it after CR-2 deployment to account for in-flight work.
 3. Have Life/Chat owners approve the retained evidence and return-context seams.
 4. Migrate retained readers, then remove only the execution footprint proven to
