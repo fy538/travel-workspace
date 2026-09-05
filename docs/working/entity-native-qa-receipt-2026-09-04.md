@@ -92,6 +92,20 @@ The equivalent guarded site slice also passed:
   `/Users/feihuyan/travel-workspace/travel-app/54-07-site-rebuild-intended-verbs.png`
 - Raw pass log: `/tmp/entity-native-site-rebuild-maestro.log`
 
+The guarded experience slice also passed after aligning the mock envelope with
+the existing event detail fixture:
+
+- Mobile source: `travel-app` at `377c8a4b5`
+- Flow: `travel-app/.maestro/54f-journey-07-experience-rebuild.yaml`
+- Object-page rebuild flag: on
+- Research requests: disabled; no queue request, booking, or provider call
+- Result: pass through rebuild route → canonical `LUX Fragil Closing Night`
+  identity → `Keep place` → absence of the legacy `Add to trip` ladder →
+  visible `object-rebuild-ask` handoff
+- Captured screenshot:
+  `/Users/feihuyan/travel-workspace/travel-app/54-08-experience-rebuild-intended-verbs.png`
+- Raw pass log: `/tmp/entity-native-experience-rebuild-maestro.log`
+
 ## Assertions covered
 
 1. The default venue route opens from the dev handoff and lands on the current Plans
@@ -110,6 +124,8 @@ The equivalent guarded site slice also passed:
    compatibility route's generic Add-to-trip ladder.
 8. The guarded shared object renderer carries the same identity and verb
    contract for a site (`Museu Nacional do Azulejo`).
+9. The guarded shared object renderer carries the same identity and verb
+   contract for an experience (`LUX Fragil Closing Night`).
 
 ## Limits and next gate
 
@@ -117,9 +133,11 @@ These are scoped mock-lane passes. They do not certify real-backend auth,
 research lifecycle states, live situation freshness, source attribution,
 relationship differences across two accounts, accessibility at large text or
 screen-reader navigation, Android, or the full loading/error/empty matrix.
-They also do not certify the full shared-renderer state matrix or the
-experience route. The flag-on venue and site routes are now evidenced as two
-bounded acceptance slices; experience, broader state/platform convergence,
-and rollout remain gates in the entity roadmap and must be attached to a
-reviewed pilot receipt before any capability is enabled. No production rows,
-research jobs, provider calls, or backfill were created by this run.
+They also do not certify the full shared-renderer state matrix, live
+availability/booking, real-backend auth, research lifecycle states, or
+accessibility/platform coverage. The flag-on venue, site, and experience
+routes are now evidenced as three bounded identity/verb slices; broader state
+convergence and rollout remain gates in the entity roadmap and must be attached
+to a reviewed pilot receipt before any capability is enabled. No production
+rows, research jobs, provider calls, booking, or backfill were created by this
+run.
