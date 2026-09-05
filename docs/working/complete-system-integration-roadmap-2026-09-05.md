@@ -769,10 +769,10 @@ document's creation.
 | Package | State at roadmap creation | Next concrete action |
 | --- | --- | --- |
 | I0 | Planned; investigation baseline recorded | Verify actual engine paths and branch/flag/consumer map; resolve intent/material, shared-change and watch-owner decisions |
-| I1 | In progress; request-clock, consequence fan-out, dependency matrix, and capture return repairs landed | Trace remaining owner identity plus condition signals; agree Life handles/change events and bounded reevaluation inputs |
+| I1 | In progress; request-clock, consequence fan-out, dependency matrix, capture return, and authority-safe owner-read coalescing landed | Trace remaining owner identity plus condition signals; agree Life handles/change events and bounded reevaluation inputs |
 | I2 | Owner-read readiness and fast root serving are bounded; production worker decision remains open | Measure serving and signal-to-judgment paths; separate fast practical assessment, authorized reevaluation and optional production |
 | I3 | Capture/custody foundations landed; owner decisions and formats partial | Audit writers/formats, draft precise owner ADR, then implement approved intent/social commands |
-| I4 | Renderer promotion boundary audited; Home/Places native rehearsals pass | Make live judgment visible through useful preparation and alternatives; promote only accepted Home forms and the complete Places journey |
+| I4 | Renderer promotion boundary audited; Home/Places native rehearsals pass; prose anatomy mismatch closed | Make live judgment visible through useful preparation and alternatives; promote only accepted Home forms and the complete Places journey |
 | I5 | Graph/consequence foundations present; lightweight experience incomplete | Complete adaptation and shared consequences over I1–I3, preserving purpose, plural participation and meaningful stop/wait behavior |
 | I6 | Inventories/guards partially present; cutovers not complete | Refresh compatibility and obligation evidence; plan removal and readiness per actual supported consumers |
 
@@ -909,17 +909,41 @@ tests; do not defer the live engine until content composition is finished.
   product memory. The route test passes (2 tests), along with the root-return
   registry and share-intent suites (23 tests).
 
+- **I1 / Home transport contract — implemented and locally tested:** backend
+  commit `a67b79742` admits the four September 5 canon forms into the Home
+  enum; workspace commit `d19488d` refreshes the committed OpenAPI snapshots;
+  and `travel-app` commit `dce81ae7f` refreshes generated mobile types. The
+  forms remain dark until producer/native promotion gates pass. The renderer
+  audit is updated in workspace commit `81509d5`.
+- **I1 / authority-safe owner-read coalescing — implemented and locally
+  tested:** `travel-agent` commit `c9f7e3a31` centralizes request identity and
+  coalesces only exact matches of viewer, operation/family, resource refs and
+  revisions, represented clock, timezone, audience, and purpose. Fifteen
+  focused portfolio-read tests pass; different viewers, purposes, or clocks
+  cannot share a request-local result.
+- **I4 / prose composition anatomy — implemented and locally tested:**
+  `travel-app` commit `615f42d93` replaces the declared-native prose no-op with
+  a typed, accessible supporting-claim treatment. The focused composition
+  suite and app typecheck pass; this is renderer conformance, not editorial or
+  real-data evidence.
+
 ### M1 batch update — 2026-09-05
 
 The first two next-batch items are now closed at their current evidence level:
 the capture return contract is implemented, and the Home/Places promotion
-boundary is audited with native tests. The third item remains intentionally
-decision-bound: no source-production queue or scheduler should be added until
+boundary is audited with native tests. The contract union and one renderer
+conformance gap are also closed; neither enables the four dark Home forms.
+The source-production item remains intentionally decision-bound: no queue or
+scheduler should be added until
 the owner confirms deployment topology, retry/lease ownership, per-account
 budgeting, and the exact serialized input (especially Places context). This is
 the remaining M1 integration decision, not a reason to reintroduce generation
 into a GET path.
 
-At the next checkpoint update this ledger in place, attach exact receipts, and
-decide the next bounded batch. This keeps the roadmap live without making this
-task a bottleneck for Life or turning six former specialist tasks back on.
+The next bounded batch is Places result-set/context identity plus its
+Home→Places→Focus/Path acceptance cases. It may define or thread an explicit
+revision-bearing contract through existing routes, but must not promote the
+dark Home kinds, add a generic route service, or create a second Places feed.
+Re-pin all repositories and shared-file ownership before touching generated
+contracts. This keeps the roadmap live without making this task a bottleneck
+for Life or turning six former specialist tasks back on.
