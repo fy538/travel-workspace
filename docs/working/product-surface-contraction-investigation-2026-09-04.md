@@ -18,8 +18,10 @@ source_of_truth_for: []
 extends this plan across booking presentation, arrangements/settings, assisted
 expenses, Life's Atlas replacement, and reusable presentation. It maps those
 changes to the active integration and Life roadmaps without reopening the
-already-landed retirement guards. Start with SC-0 and SC-1a; each later cut
-depends on its named replacement, not a complete application design freeze.
+already-landed retirement guards. Start with the isolated SC-0 / SC-1a read
+package described in [§20.12](#2012-active-lane-coordination-checkpoint).
+Route, object-renderer and shared-contract changes have receiving owners; each
+later cut depends on its named replacement, not a complete design freeze.
 
 **Detailed implementation plan:** [§12–19](#12-capability-retirement-lane--detailed-plan)
 turned the investigation into a bounded booking-retirement program. The first
@@ -1143,6 +1145,11 @@ Plan decision had concurrent uncommitted edits. Those files were read as current
 design input and left to their owner. Pin the committed ruling before Plan
 implementation; this section does not independently promote their draft state.
 
+These are the original planning inspection points, not a frozen shared checkout.
+The later [lane checkpoint](#2012-active-lane-coordination-checkpoint) records
+newer commits, the Strategy/Integration task split, active Entity work, and
+Home's newly committed borrowing from Life. It narrows the first batch below.
+
 | Evidence at inspection | Meaning for the next work |
 | --- | --- |
 | Booking guards and recovery repair are committed; `BOOKING_EXECUTION_RETIRED` defaults to `false` | Reuse the implementation. Enabling retirement and retiring a client workflow are separate decisions; neither is proven by the other |
@@ -1150,7 +1157,7 @@ implementation; this section does not independently promote their draft state.
 | `app/booking/[sessionId].tsx` remains 1,487 lines | Receipt reading and provider execution still share a large route |
 | Trip plan is 2,082 lines; permissions is 599 lines; expenses still has five routes | Much of the visible workflow reduction remains ahead |
 | M-1 registry has 47 surface entries: 11 compatibility, 2 external-handoff, 3 retire, and 31 in other classes | This is a QA inventory, not a count of visible tabs or independently implemented screens; aliases and fixtures must be distinguished |
-| Fresh `surface:contraction:check` reports stale generated routes and missing owners for `/you/intake-submissions/[submissionId]` and `/you/life-record` | Fix inventory truth in SC-0 with the Life owner; do not treat the older two-failure receipt as the current gate result |
+| At the initial inspection, `surface:contraction:check` reported stale generated routes and missing owners for `/you/intake-submissions/[submissionId]` and `/you/life-record` | Recheck before implementing: Integration owns the coordinated registry update, with Life confirming its readers; Retirement supplies the booking dispositions |
 | Life root and exact readers have advanced; indexed corpus primitives are still dark | Consume its current contracts and wait only for the reader/migration needed by a particular deletion |
 | Home canon admits 35 semantic kinds | Audit renderer reuse; this does not require 35 independent visual implementations, nor authorize deleting meaningful distinctions |
 
@@ -1174,29 +1181,39 @@ one giant Chat tool or generic renderer is not architectural reduction either.
 
 ### 20.3 Ownership and dependency map
 
+**Integration** now executes I0–I6. **Strategy** is the separately forked
+positioning/product discussion; older roadmap references to “Strategy” describe
+the pre-fork task. The table names existing ownership and proposed handoffs,
+not new instructions delivered to those tasks. This task does not allocate
+their queues or treat an idle task as relinquishing its surface.
+
 | Package | Execution owner / existing program | Depends on | Concrete endpoint |
 | --- | --- | --- | --- |
-| SC-0 — accurate inventory and replacement contracts | This retirement task, coordinated with Strategy I0/I6 | Current HEADs and exact Life route ownership | Reviewed route/capability dispositions; fresh contraction check; next batch has named readers |
-| SC-1 — booking evidence and presentation contraction | This task for isolated booking code; Strategy for Chat integration; CR-3/CR-4 | SC-0; existing owner APIs; reader contracts for affected consumers | Minimal retained evidence path, session-free new journeys, old execution presentation removable |
-| SC-2 — arrangement and settings contraction | Strategy I3/I5; Plan design owns composition | Current Plan ruling; exact applicable intent/contribution/grant owner decisions | Readable Plan with compact local change/people behavior; legacy editor and admin branches reduced |
-| SC-3 — assisted expenses | Recommend this task as bounded expense implementation owner, coordinated with Strategy | SC-0; accepted expense interaction and current-scope decision; Chat integrations scheduled by Strategy | Complete capture/read/correct/payment-history behavior through small reusable treatments |
-| SC-4 — continuity replacement | Existing Life task R0–R8; Strategy integrates external emitters | Life's own reader, index and migration milestones | Life is the only continuity experience; required legacy links preserve exact jobs |
-| SC-5 — presentation reuse and social containment | Strategy I4; shared primitives coordinated with entity/Life owners | Current renderer inventory and accepted Home/Places composition | Fewer duplicated rendering and production paths with the same useful variety |
-| SC-6 — deletion and operational closure | This task for CR-5/CR-6; Strategy I6 coordinates candidate | Per-family replacement evidence; runtime/provider disposition where relevant | Obsolete UI, execution paths, registrations and maintenance obligations removed |
+| SC-0 — accurate inventory and replacement contracts | Retirement inventories its targets; Integration I0/I6 coordinates shared registry/navigation changes; Life confirms its route ownership | Current HEADs and exact consumer contracts | Reviewed route/capability dispositions; fresh contraction check; next batch has named readers |
+| SC-1 — booking evidence and presentation contraction | Retirement owns isolated booking reads/recovery; Integration coordinates caller migration; Life/Home own their pass/receipt presentation; CR-3/CR-4 | SC-0; existing owner APIs; agreed reader and presentation contracts | Minimal retained evidence path, session-free new journeys, old execution presentation removable |
+| SC-2 — arrangement and settings contraction | Components and Plan owns design; Integration I3/I5 implements coordinated owner integration | Current Plan ruling and journey coverage; exact intent/contribution/grant decisions | Readable Plan with compact local change/people behavior; legacy editor and admin branches reduced |
+| SC-3 — assisted expenses | Retirement can specify the bounded expense-owner/result contract; implementation allocation remains proposed; Contribution and Capture owns intake/Chat behavior; Integration coordinates I3/I5 | SC-0; accepted expense interaction and scope; explicit receiving-owner handoff | Complete capture/read/correct/payment-history behavior through small reusable treatments |
+| SC-4 — continuity replacement | Life R0–R8 owns organization, readers and migration; Integration owns cross-root emitters | Life's own reader, maintenance and migration milestones | Life is the only continuity experience; required legacy links preserve exact jobs |
+| SC-5 — presentation reuse and social containment | Home owns composition; Entities owns object depth; Life owns kept-object presentation; Integration I4 coordinates their shared code | Current renderer inventory and accepted compositions; each owner's active file boundary | Fewer duplicated rendering and production paths with the same useful variety |
+| SC-6 — deletion and operational closure | Retirement owns CR-5/CR-6; Integration I6 coordinates the candidate | Per-family replacement evidence; runtime/provider disposition where relevant | Obsolete UI, execution paths, registrations and maintenance obligations removed |
 
-SC-0 → SC-1a can proceed without a finished Life composition or generalized
-Occasion model. SC-2 and Life continue in their owners. SC-3 experience/owner
-mapping can proceed while booking work lands. SC-5 should accompany ordinary
-I4 work, not become a prerequisite framework project. SC-6 runs per completed
-family; it is not one repository-wide deletion at the end.
+SC-0 → SC-1a read separation can proceed without a finished Life composition or
+generalized Occasion model. SC-1a visual delivery follows the Life/Home
+kept-object boundary. SC-2 and Life continue in their owners. SC-3 experience/
+owner mapping can proceed while booking work lands. SC-5 accompanies ordinary
+I4 work; it is not an additional renderer program in Retirement. SC-6 runs per
+completed family rather than as one repository-wide deletion at the end.
 
 ### 20.4 SC-0 — establish a truthful, small execution boundary
 
 Deliverables:
 
-1. Refresh `travel-app/docs/design-alignment/route-inventory.generated.json`
-   with its generator. Resolve the two unowned Life routes with Life's actual
-   owner or justified exemption; do not broadly exempt `/you/**`.
+1. Re-run the read-only contraction check at current HEAD and record drift.
+   Supply exact booking dispositions to Integration's next registry batch.
+   Integration refreshes `travel-app/docs/design-alignment/route-inventory.generated.json`
+   with its generator after Life confirms its actual owner or justified
+   exemption. Do not broadly exempt `/you/**`, and do not independently
+   regenerate the shared inventory while other lanes are changing routes.
 2. Extend the existing M-1 register/route policies with each next target's user
    job, actual renderer, callers, replacement, retained read/write behavior,
    deletion condition, owner, and evidence revision. Reuse the registry; no
@@ -1211,27 +1228,35 @@ Deliverables:
    alone cannot certify that an external handoff avoids session creation or
    that an old expense link opens its exact retained record.
 
-Commit units: route generator/ownership repair; then selected disposition and
-caller contract changes. Keep generated registries synchronized with the actual
-implementation stage; do not claim a planned redirect already exists.
+Commit units: isolated booking consumer/disposition record; coordinated
+generator/ownership repair in the receiving lane; then the applicable caller
+changes. Keep generated registries synchronized with the actual implementation
+stage; do not claim a planned redirect already exists. Unrelated route drift
+does not block read-facade extraction, but must be reconciled before publishing
+a changed route inventory or accepting a route-removal package.
 
-Exit: fresh route/contraction checks, no unidentified consumer in SC-1a, and a
-bounded next commit list. Repository-wide route reduction targets are not set
-from raw file counts. Track product destinations and compatibility adapters
+Exit: a current check result with named receiving owners, no unidentified
+consumer in SC-1a, and a bounded next commit list. Shared inventory repair must
+pass before caller/route cutover. Repository-wide route reduction targets are
+not set from raw file counts. Track destinations and compatibility adapters
 separately.
 
 ### 20.5 SC-1 — finish the booking replacement before removing its shell
 
-**SC-1a: isolate retained reads.** This is the recommended first code package.
+**SC-1a: isolate retained reads, then compose the retained reader.** Only the
+read separation and its focused regression tests are the first code package.
 
 - Start at `travel-app/data/booking.ts`, which mixes session/offer/coverage
   reads with confirmation, consent, refresh and other mutations. Extract the
   needed read facade into a small `data/` module using existing generated API
   types and query identities. Keep screen data access behind that facade.
-- Build the smallest retained reader from existing receipt primitives and
-  existing authorized responses. It shows source/provider, supported time and
-  amount, exact record status, original/evidence destination when available,
-  and external continuation. Missing evidence remains missing.
+- Map the smallest retained reader onto Life's kept-object/pass family and
+  Home's accepted use of that family before building another receipt surface.
+  Existing booking receipt primitives are reuse candidates, not a competing
+  design authority. The reader needs source/provider, supported time and amount,
+  exact status, original/evidence when available, and external continuation.
+  The facade and tests can land before that visual mapping; route replacement
+  cannot. Missing evidence remains missing.
 - First preserve the session/offer identity model for historical records.
   Do not introduce a universal reservation table/DTO or silently convert
   existing bookings to Source anchors to make the UI uniform.
@@ -1241,11 +1266,17 @@ separately.
   settled record should not start a background recovery workflow. Revalidate
   current access and show stale cached status honestly when offline.
 
-Primary seams: `app/booking/[sessionId].tsx`, `data/booking.ts`,
-`components/booking/BookingReceiptPrimitives.tsx`, current booking read APIs,
-and `utils/routes.ts`. `backend/life/refind_sources.py` and
+First-package seams: `data/booking.ts`, its small extracted read module, and
+focused booking tests. Later seams: `app/booking/[sessionId].tsx`,
+`components/booking/BookingReceiptPrimitives.tsx`, and current booking read APIs.
+`utils/routes.ts` is an Integration handoff, not an independent first-package
+edit. `backend/life/refind_sources.py` and
 `backend/core/accommodation_booking_truth.py` are retained consumers to map,
-not files to rewrite wholesale. A new read facade is not a second truth owner.
+not files to rewrite wholesale. Preserve existing imports with thin re-exports
+where useful so read extraction does not force cross-lane caller edits. Keep
+query identity and current read/poll behavior stable during that extraction;
+change recovery behavior only in its separately verified package. A read facade
+is not a second truth owner.
 
 **SC-1b: switch callers and reduce presentation.**
 
@@ -1257,8 +1288,9 @@ not files to rewrite wholesale. A new read facade is not a second truth owner.
 - Coordinate `components/chat/BookingConfirmationCard.tsx`,
   `hooks/useConciergeBookingCardActions.ts`,
   `components/booking/HandoffReturnCatchPrompt.tsx`, and
-  `backend/concierge/tool_handlers/booking_flow.py` with Strategy. These are
-  deferred Chat edits in this task. Align tool discovery and promises, handle
+  `backend/concierge/tool_handlers/booking_flow.py` through Integration and
+  Contribution and Capture. These are deferred Chat edits in this task.
+  Align tool discovery and promises, handle
   stale calls truthfully, and migrate local return-catch claims without
   treating them as proof of a reservation.
 - Inspect `app/trip-settings/index.tsx` recovery links before removing the
@@ -1363,7 +1395,8 @@ Commit sequence:
 2. Make extraction and known-field reuse work through existing input owners.
    Remove repeated category/date/payer questions when already supported. Do
    not turn possible costs into a review queue. Required Chat wiring remains
-   a scoped Strategy integration, not a composer redesign in this task.
+   a scoped Contribution and Capture / Integration handoff, not a composer
+   redesign or second receipt-intake pipeline in this task.
 3. Reuse one focused expense reader and balance treatment across the arrangement,
    Home when useful, and exact Life retrieval. Dense history expands the same
    ledger view. Keep receipt scope and numerical provenance visible on demand.
@@ -1400,7 +1433,7 @@ already has the visible Life root and indexed-corpus foundations. Contraction
 needs exact source/record readers, preserved year/city/other filter semantics,
 current authorization, originals, correction, and every required legacy link.
 
-- Strategy maps incoming emitters in Home, Places, Chat, notifications and
+- Integration maps incoming emitters in Home, Places, Chat, notifications and
   shared links to Life's accepted destination contract.
 - Life removes old Atlas composition/readers and exclusive producers as their
   jobs migrate. A thin historical URL adapter may outlive the Atlas product.
@@ -1409,6 +1442,10 @@ current authorization, originals, correction, and every required legacy link.
   before backfill/serving changes; follow Life's own migration sequence.
 - This task supplies the booking/expense retained-evidence boundary. It does
   not independently replace Life's index, organize the corpus, or redesign Life.
+- Life's latest work also investigates organization, editorial synthesis and
+  maintenance requirements. Index utilities alone do not replace Atlas's useful
+  enrichment or establish the new experience. Preserve required producers until
+  Life identifies which exact replacement is serving their retained jobs.
 
 **SC-5 consolidates proven duplication during I4.** Map Home semantic kinds to
 their actual renderers and value producers before extracting common code.
@@ -1427,6 +1464,15 @@ Life People. Reuse identity and authored material; do not add a social tab,
 separate social content factory, or duplicate the same contribution in full
 throughout Home. Follow the explicit exceptions and admission conditions in the
 [Home amendment](../decisions/2026-09-05-amend-home-composition-canon.md).
+
+The subsequent [Home/Life pass decision](../decisions/2026-09-05-home-borrows-life-pass-grammar.md)
+also preserves tickets, flights, bookings and other kept objects as useful
+material: Life holds the record; Home can present the timely consequence or
+live pass. Removing Vesper-owned booking execution must not remove these
+objects, their valid live facts, or their external continuation. Reuse the
+accepted visual family without merging backend identities. Its crown-arbitration
+clause is explicitly provisional; native accessibility and the unsettled visual
+details still require the owning design/acceptance work.
 
 Exit: an actual duplicate implementation or independent production path was
 removed, its surviving consumers retain meaning and behavior, and native
@@ -1502,10 +1548,12 @@ Do not set a screen-count or LOC quota. Four roots stay; the useful full-scroll
 richness of Home and Places is not the target of contraction. Source-code
 reduction is meaningful only when supported behavior remains clear and dependable.
 
-Claude design work, where needed, should be bounded to three outputs:
+Claude design work, where needed, should refine the existing owners' outputs:
 
-1. Reservation/evidence reader: normal, cancelled, unknown, missing evidence;
-   original and external continuation in the same composition.
+1. Life/Home kept-object family: verify normal, cancelled, unknown and missing
+   evidence cases, original and external continuation. Request only uncovered
+   booking-reader states; do not commission an independent reservation design
+   while those owners are already composing passes and chips.
 2. Expense result plus expanded inspection: explicit split, receipt-only,
    correction, payment lock and unresolved currency; reuse existing primitives.
 3. The Plan owner's already-selected reduced composition and necessary people/
@@ -1517,15 +1565,19 @@ owner/read contract; basic read-facade separation does not wait on final artwork
 
 ### 20.11 First batch and explicit completion states
 
-**Next batch:** execute SC-0 and SC-1a. Fix current registry drift with exact
-owners, inventory booking read consumers, separate the read facade, implement
-the minimal retained reader and its focused tests, and record a caller migration
-table. Do not start by adding more retirement switches or raising size ceilings.
+**Next batch in this task:** execute the isolated part of SC-0 and SC-1a:
+inventory booking read consumers; record current route drift and its receiving
+owners; separate the read facade behind existing imports; add focused regression
+tests; publish the retained fields and caller migration table. No shared route
+rewrite, new receipt composition, schema regeneration, extra retirement switch,
+or size-ceiling increase belongs to this first package.
 
-Then migrate SC-1b callers in coordination with Strategy and Life, while SC-2
-and SC-4 proceed in their existing programs. Prepare SC-3's bounded interaction
-and owner mapping, then implement it without waiting for all Home content or
-the complete Life index rollout. Fold SC-5 into I4 where duplication is observed.
+Then complete SC-1a presentation using the Life/Home family and migrate SC-1b
+callers through Integration with Life and Contribution and Capture. SC-2 and
+SC-4 proceed in their existing programs. Prepare SC-3's bounded interaction and
+owner mapping, but do not assume ownership of intake/Chat or start a parallel
+expense composer. Once allocated, it need not wait for all Home content or the
+complete Life index rollout. Fold SC-5 into I4 where duplication is observed.
 Apply SC-6 family by family as dependencies close.
 
 | Completion state | Required result |
@@ -1541,3 +1593,88 @@ already-landed CR/Life/Places foundations listed above. None is marked complete
 by writing this section. The next review should assess whole experiences across
 the four roots and the maintenance burden actually removed, then adjust the
 next dependency-bound batch.
+
+### 20.12 Active-lane coordination checkpoint
+
+**Observed September 5, approximately 15:20 EDT.** This checkpoint follows a
+read of the latest Integration, Life, Home, Strategy, Contribution and Capture,
+and Components and Plan task turns. The Entities task tool returned empty turn
+items; its latest user/assistant messages were recovered from that exact local
+task's transcript and checked against its new acceptance plan and commits.
+Only user-visible messages were used. This is an observation, not a lock,
+delivered assignment, or claim that another agent acknowledged a handoff.
+
+| Task / stable ID | Latest observed work | Consequence for Retirement |
+| --- | --- | --- |
+| **Integration** — `01a030af-13a8-74e1-81be-7d526bec3045` | Executing I0–I6. Home transport union/prose handling, authority-safe owner-read coalescing, Places result identity and return propagation have landed; catalog-backed revision work is now committed. Places map/return work remains active | Consume those contracts. Leave shared routing, root queries, result-set identity, renderer unions and schema synchronization to the integration package |
+| **Life** — `01a06ecc-1a79-74a1-9c47-9f24461313ea` | Latest request is research into design/docs and organizing-system requirements. Index/withdrawal primitives exist; serving cutover, incremental maintenance, grouping and editorial intelligence remain incomplete | Supply retained booking/expense evidence needs. Do not create Life groups, replace its source reader, cut Atlas producers or assume the four lenses are a complete replacement |
+| **Entities** — `01a0649a-f267-7d31-a788-81669e1822a8` | User authorized execution of [C0–C8 acceptance work](entity-system-acceptance-plan-2026-09-05.md). C0 documentation and C1 public-share payload hardening have landed; canonical reads, freshness, research lifecycle, people privacy and native acceptance follow | Leave venue/site/experience routes, shared object renderer, `data/entities.ts`, research and people contracts with Entities. Its declared scope excludes accommodation frontend migration and root redesign |
+| **Home** — `01a06f87-e648-74d2-a0ae-f0adb305e44c` | Latest task response recommends connected full-scroll implementation, exact Keep/arrangement destinations and return repair; task was idle when read. Separate current design changes have now committed Home's use of Life passes/chips and provisional crown arbitration | Preserve generous discovery/social/practical value. Reuse the new kept-object family; no separate booking-card redesign or blanket removal of reservation material |
+| **Components and Plan** — `01a06e71-b35c-7ca0-8307-367db90a8a6a` | Latest completed work expands [handoff §0.6](claude-design-plans-in-real-life-handoff-2026-09-04.md#06-end-to-end-journeys-coverage-and-engineering-implications) with entry, contribution, disagreement, conditional-plan and later-return gaps. Plan decision/report/handoff work remains concurrent | Keep itinerary/settings contraction behind the accepted arrangement behavior and owner commands. Do not remove guest contribution, participation or recovery jobs because the new page looks simpler |
+| **Contribution and Capture** — `01a06edc-801f-7683-b6b7-1611c483f0e1` | Latest repair batch separates authored authority from evidence, preserves Bring retention, bounds temporary custody, stabilizes Chat retry identity and fixes source-level Life counts. Task was idle when read | Reuse this intake/Chat path for receipts. Do not add a second OCR-to-memory or expense-ingestion path; preserve source custody separately from financial allocation |
+| **Strategy** — `01a072c6-2735-7152-94ea-bb6958ead53d` | Separate fork discussing understandable promise, adoption and value. “More to discover. Less to figure out.” is a proposed positioning direction, not a newly implemented contract | Contraction should reduce effort while preserving discovery and practical care. Strategy discussion does not itself assign engineering work or change accepted runtime authority |
+
+Useful source anchors at this checkpoint:
+
+- Integration: backend `c57aef18c` / `407173860` (Places identity/catalog
+  revision), app `f267db979` / `84ae8d379` (return propagation), and
+  `615f42d93` (typed prose). Do not repeat already-landed packages.
+- Entities: workspace `d3f82c8` (acceptance plan), app `7a783afae` (public
+  share payloads); prior lifecycle/identity fixes remain part of the baseline.
+- Home/Life design: workspace `c2cabef`, app `8b7d540bd`. Accepted document
+  status does not imply every provisional clause or native visual detail is
+  settled.
+- Capture: backend `42964124e`, app `5a2b02ed4`; reuse the corrected contract
+  rather than the earlier review's superseded failure descriptions.
+- Life: backend `647950ede` is withdrawal/upsert hardening, not a backfill or
+  serving cutover receipt.
+
+#### Work that can proceed independently here
+
+1. Booking read/write/recovery consumer inventory, including accommodation,
+   expense/refund, Life refinding and settings departure dependencies.
+2. Read-facade extraction in booking-owned modules with compatibility exports
+   and tests preserving exact session/offer/query semantics.
+3. A retained-evidence adapter specification: existing owner/reference, allowed
+   facts, source/evidence link, status distinctions, access and recovery needs.
+   Use it as input to the Life/Home reader; no universal new object is needed.
+4. Expense interaction and deterministic-owner analysis. Capture implementation,
+   arrangement placement and shared non-Trip debt remain receiving-owner seams.
+5. Static obsolete-dependency analysis and operational audit preparation. No
+   deployed access, flag enablement, provider action or data deletion is implied.
+
+#### Work that requires a shared boundary before this task edits it
+
+| Boundary | Receiving owner / required artifact | Our next permitted contribution |
+| --- | --- | --- |
+| Shared navigation and route registry | Integration, with Life/Entities confirming exact destinations; current [Places context contract](places-result-set-context-contract-2026-09-05.md) and [dependency matrix](cross-root-change-dependency-matrix-2026-09-05.md) | Submit caller/disposition rows and regression cases; do not rewrite `utils/routes.ts`, root navigation, Places return helpers or generated inventory independently |
+| Booking evidence on Home and in Life | Life/Home field and reader mapping, preserving historical owner identity and supported recovery | Specify source/session/offer/status needs; re-use pass/chip/reader patterns once mapped rather than introduce a parallel artifact system |
+| Shared entity components and accommodation | Entities' current acceptance boundary; Integration resolves any accommodation handoff | Trace booking dependencies in accommodation. Do not infer that its exclusion from Entities makes its screen available for unilateral redesign |
+| Chat/receipt ingestion | Contribution and Capture contract plus Integration's consumer wiring | Supply retained read/correction operations and receipt-only versus allocation cases; no Chat or share-screen edits in this lane |
+| Plan/permissions/expenses | Components and Plan journey coverage and Integration I3/I5 owner decisions | Identify obsolete booking controls and exact retained leave, grant, payment and recovery jobs; no parallel Plan or expense-input composer |
+| OpenAPI/generated types | One bounded API-change package with named owner and isolated schema sync | Avoid contract changes in read extraction. If later necessary, reconcile overlapping model edits and regenerate after the owning source commit |
+
+Handoffs stay small: current source SHA, exact files/consumers, retained user job,
+needed contract or decision, regression cases, and a clear readiness condition.
+For a cross-owner edit, first verify the current accepted contract and file
+boundary; a missing agreement becomes a bounded question for that owner/user.
+It must not stop unrelated booking read work or trigger a freeze across all lanes.
+
+#### Shared-checkout discipline
+
+The inspected repositories are shared `main` checkouts, not isolated lane
+branches. The task histories already record mixed staging and temporarily lost
+unstaged changes during concurrent commits/synchronization. Filename-scoped
+staging alone does not prevent `git commit` from including somebody else's
+already-staged files, nor does it protect overlapping generated output.
+
+Before each package and commit, re-read HEAD, branches, worktrees, status, staged
+paths and the intended files' diff. Never unstage, reset, stash, commit or restore
+another task's work to obtain a clean tree. If the index contains another lane's
+work or an overlapping edit is active, defer that commit or use an explicitly
+isolated `codex/` worktree with a later scoped integration step. Do not run
+concurrent schema syncs or route-generator rewrites over active source edits.
+
+This planning update changes only this document. The next runtime package is
+the independent read-separation package above; all broader contraction outcomes
+remain planned, with their actual owning lanes and dependencies visible.
