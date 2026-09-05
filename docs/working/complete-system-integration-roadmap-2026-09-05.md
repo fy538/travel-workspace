@@ -897,7 +897,7 @@ tests; do not defer the live engine until content composition is finished.
   producer worker before adding any queue or scheduler code. Reassess after
   those three packages, or earlier if a second owner or paid GET path appears.
 
-- **I4 / renderer coverage audit — documented:** workspace commit `pending`
+- **I4 / renderer coverage audit — documented:** workspace commit `97c9e84`
   adds `home-places-renderer-coverage-audit-2026-09-05.md`, reconciling the
   backend Home/Places vocabularies with the actual native promotion registries.
   Home and Places native suites pass (21 and 9 tests respectively); the audit
