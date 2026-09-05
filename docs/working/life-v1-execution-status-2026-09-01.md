@@ -81,11 +81,11 @@ contract, supports Time/Places cursor pagination, shows factual date/place/media
 context, preserves canonical owner destinations, and keeps loading, partial,
 failure, empty, and “read more” states explicit. The backend page is additive
 and reads the existing owner-owned Atlas timeline (`fc361aeed`); it is not a
-second Life archive. Intake anchors and retained source-only submissions are
-currently admitted to the bounded root projection by their own owner readers;
-merging those records into one globally ordered depth cursor is deliberately
-left as a follow-up rather than silently presenting an incomplete cursor as a
-universal archive.
+second Life archive. The follow-up merge (`5b0e1a644`, with coverage in
+`b562eb3b4`) now combines Atlas rows, confirmed intake anchors, and retained
+source-only submissions in one globally ordered cursor. The cursor carries both
+the last consumed Atlas row and intake sort key, so buffered Atlas rows are not
+skipped when intake records occupy the first page.
 
 ### Shared workspace
 
@@ -116,10 +116,11 @@ universal archive.
 
 ## Deliberately deferred
 
-1. Dossier-grade destinations for every Life object family, a globally ordered
-   depth cursor that merges Atlas timeline rows with intake anchors/source-only
-   submissions, exact refinding continuation into those destinations, and
-   scroll-position restoration.
+1. Dossier-grade destinations for every Life object family, exact refinding
+   continuation into those destinations, and scroll-position restoration. The
+   current depth cursor is bounded by the existing 100-row intake owner reads;
+   a later owner-level count/cursor can remove that ceiling without changing
+   the public Life shape.
 2. Full Places/People/Threads lens projection from production data.
 3. Public rollout, analytics-driven promotion, and removal of legacy Atlas.
 4. Together/multiplayer write paths and generalized Occasion architecture.
