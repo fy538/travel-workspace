@@ -171,11 +171,13 @@ passed 78 tests. These are deterministic regression checks; the native state
 matrix and two-account device journey remain separate gates.
 
 The complete entity-focused backend selection (API, Places, core identity,
-database identity, research queue, and health-report tests) passes 177 tests
-with 2 skips. Both skips are the dogfood-wedge-only entity-facet cases that
-require an explicitly seeded/enriched Lisbon corpus; they are not needed for
-the canonical object-page lane and are recorded rather than silently counted
-as passes.
+database identity, research queue, and health-report tests) passes 221 tests
+with 10 skips. The skips are the dogfood-wedge-only or explicitly gated cases
+that require an enriched corpus or unavailable external capability; they are
+not needed for the canonical object-page lane and are recorded rather than
+silently counted as passes. The latest selection includes the terminal-Plan
+repair coverage for geofence, expense, photo, and compatibility commitment
+evidence.
 
 The read-only health report at `2026-09-05T00:41:29Z` reports zero stale
 claims, duplicate active jobs, expired processing leases, retried rows, and

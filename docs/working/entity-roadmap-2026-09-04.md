@@ -542,7 +542,7 @@ Completed implementation packages in this lane:
 
 Validation recorded for this continuation:
 
-- `make contract-check` passes (577 snapshot paths, 442 active-mobile paths,
+- `make contract-check` passes (578 snapshot paths, 443 active-mobile paths,
   367 facade exports classified).
 - Backend focused entity/research suites pass, including the live PostgreSQL
   relationship continuity test and queue lifecycle tests.
@@ -572,9 +572,10 @@ Validation recorded for this continuation:
   privacy/repair evidence but do not substitute for two-account device or
   platform acceptance.
 - The complete entity-focused backend selection (API, Places, core/database
-  identity, research queue and health report) passed 177 tests with 2 recorded
-  dogfood-wedge skips requiring an explicitly seeded Lisbon corpus. This is a
-  code-level gate, not evidence of a production catalog or rollout.
+  identity, research queue and health report) passed 221 tests with 10 recorded
+  dogfood-wedge or explicitly gated skips. The selection includes terminal-Plan
+  repair coverage for compatibility commitments and occurrence evidence. This
+  is a code-level gate, not evidence of a production catalog or rollout.
 - The no-background local API returned honest `404` responses for an unknown
   site across public and authenticated presentation routes. The corresponding
   cleared-state Maestro flow remained at the Expo development-server picker,
