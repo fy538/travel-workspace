@@ -842,6 +842,10 @@ tests; do not defer the live engine until content composition is finished.
 - **Boundary preserved:** no API schema changed, no generated mobile types were
   regenerated, no Life internals were edited, and the pre-existing uncommitted
   Claude-design handoffs and concurrent Life work remain untouched.
+- **Native integration validation:** `travel-app` Home v2 renderer and Home
+  experience suites pass (21 tests), and the app TypeScript check passes on the
+  current integrated checkout. The current app has unrelated uncommitted
+  entity-route edits; they were not staged or changed by this batch.
 
 At the next checkpoint update this ledger in place, attach exact receipts, and
 decide the next bounded batch. This keeps the roadmap live without making this
