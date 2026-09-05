@@ -99,7 +99,7 @@ removed.
 | --- | --- | --- |
 | Backend admission/retirement focused tests | 102 passed, including writer and provider-saga admission seams | Does not certify production queues, callbacks, or external obligations |
 | Backend venue/entity/projection focused tests | 57 passed for the continuation contract | Does not certify retained Life readers or native UI |
-| Backend touched-file Ruff checks | Passed for the landed slices | Broad repository ratchet has pre-existing failures |
+| Backend touched-file Ruff checks | Passed for the landed slices | Full offline-suite failures are listed below and are unrelated to this lane |
 | Broad-exception and frozen-size gates | Passed (`1190` exception ceiling; reviewed frozen sizes) | The initial retirement landing exposed one handler/size drift; both were corrected and recorded here |
 | `make contract-check` | Passed; snapshot, mobile projection, generated types, and bridge coherent | Local contract parity only |
 | Mobile typecheck | Passed | Not native device evidence |
