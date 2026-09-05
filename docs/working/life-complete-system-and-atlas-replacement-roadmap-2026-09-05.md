@@ -69,6 +69,16 @@ real replacement seams, not a claim that the complete program is finished:
 | R4 | Life is always reachable in the four-tab shell; Time/Places/People/Threads readers and bounded position restoration exist | People/Threads remain truthful sparse reads where no owner exists; root composition and dossier/custody behavior are still partial |
 | R8 | No user data or source tables were deleted; all changes are committed locally and generated contracts are synchronized | Atlas retirement, migration certification, real-device QA and deployment remain future work |
 
+The receipt was extended after the initial table: app `935c804a0`, backend
+`424e2d23a`, and workspace `888ec4c` plus the explicit test-alignment commit
+below. The Life-focused backend route/corpus tests, focused mobile Life tests,
+contract check, and mobile typecheck pass. A full mobile run completed with
+1,186 suites passing and 19 pre-existing or intentionally transitional suites
+failing; the two failures directly caused by this replacement were corrected in
+`935c804a0`. The remaining failures are tracked as baseline work, not hidden as
+Life completion evidence. The full backend canary remains a baseline diagnostic
+with 20,640 passes and six unrelated failures plus one external-health error.
+
 The backend pre-commit size-budget check remains skipped only because of a
 pre-existing oversized unrelated concierge prompt file; other hooks and the
 focused Life checks pass. No push or deployment was performed in this pass.
