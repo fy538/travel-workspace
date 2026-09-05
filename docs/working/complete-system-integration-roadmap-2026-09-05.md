@@ -1004,6 +1004,13 @@ tests; do not defer the live engine until content composition is finished.
   canonical catalog scopes and the intentionally unknown Anywhere/Saved
   scopes. This is continuity and acceptance evidence, not permission or full
   personalized-freshness evidence.
+- **I4 / handoff conformance additions — locally tested:** `travel-agent`
+  commit `d16b9bb54` proves that a server-resolved scope change with a new
+  opaque context handle produces a new result-set identity, while
+  `travel-app` commit `95b80f520` proves a Home Places door preserves the
+  context handle, set id, and source revision. These are deterministic
+  contract checks; real-data Focus/Path recomposition and personalized source
+  vectors remain the promotion gate.
 - **I5 / movement stop boundary — implemented and locally tested:**
   `travel-agent` commit `91c490187` makes the foreground movement owner reject
   a missing-clock or expired opening before situation reconstruction, and adds
