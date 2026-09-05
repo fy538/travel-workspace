@@ -902,6 +902,12 @@ tests; do not defer the live engine until content composition is finished.
   backend Home/Places vocabularies with the actual native promotion registries.
   Home and Places native suites pass (21 and 9 tests respectively); the audit
   keeps unpromoted semantic kinds dark and sets the four-part promotion gate.
+- **I1 / capture return continuity — implemented and locally tested:**
+  `travel-app` commit `ee8b6588c` carries an ephemeral root return token into
+  the capture route and completes it on Done/error before using the semantic
+  Trips fallback. The token is never written into intake capture context or
+  product memory. The route test passes (2 tests), along with the root-return
+  registry and share-intent suites (23 tests).
 
 At the next checkpoint update this ledger in place, attach exact receipts, and
 decide the next bounded batch. This keeps the roadmap live without making this
