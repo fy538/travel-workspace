@@ -75,8 +75,10 @@ each history). The Life-focused backend route/corpus tests, focused mobile Life 
 contract check, and mobile typecheck pass. A full mobile run completed with
 1,186 suites passing and 19 pre-existing or intentionally transitional suites
 failing; the two failures directly caused by this replacement were corrected in
-`935c804a0`. The remaining failures are tracked as baseline work, not hidden as
-Life completion evidence. The full backend canary remains a baseline diagnostic
+`935c804a0`; the focused rerun of both affected suites now passes. The full
+mobile suite was not rerun after that two-test correction. The remaining
+failures are tracked as baseline work, not hidden as Life completion evidence.
+The full backend canary remains a baseline diagnostic
 with 20,640 passes and six unrelated failures plus one external-health error.
 
 The backend pre-commit size-budget check remains skipped only because of a
