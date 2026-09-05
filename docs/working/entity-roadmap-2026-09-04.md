@@ -46,8 +46,9 @@ Inspected local `main` on September 5 (after the continuation receipts below):
   corrected offline notice, Dynamic Type/accessibility governance fixes, and
   identity-scoped Keep/Unsave/research/place-note/plan-preview and delayed
   object-action lifetimes.
-- Workspace entity evidence: `6309200` — roadmap, runbook, native receipt and
-  final deterministic execution receipt are committed locally.
+- Workspace entity evidence: `892eb28` — roadmap, runbook, native receipt,
+  execution receipt and a pending-owner-review pilot manifest are committed
+  locally.
 
 These are local source baselines, not deployment or public-release evidence.
 No database job, provider call, canary, or backfill was run to write this
@@ -545,6 +546,7 @@ Completed implementation packages in this lane:
 | E8 (native local-real read slice) | With all API background workers disabled, the guarded venue/site/experience routes also pass against a temporary FastAPI process backed by native PostgreSQL, using existing rows and real HTTP presentation reads. Each preserves canonical identity, `Keep place`, visible `Ask Vesper`, and absence of the legacy Add-to-trip ladder. This closes the real-read portion of E8 only; no auth diversity, mutation, research, or repair claim is implied. | `travel-app:89367c36e`, `travel-agent:e33dd4764`, [native QA receipt](entity-native-qa-receipt-2026-09-04.md) |
 | E10 (later-consumer slice) | Real PostgreSQL second-occasion loop closure changes candidate choice from a prior explicit outcome, then reopens after correction and withholds on changed roster/occasion; chat attachment snapshots remain catalog-only | `travel-agent:18b71b9f7`, `422a5f6c8` |
 | E9 (health receipt) | Read-only, content-free entity health report now includes queue age, retry/lease, duplicate-active, and completed-without-fresh-brief integrity metrics | `travel-agent:9f3d80959` |
+| E9 (pilot preparation) | Owner-reviewable pilot manifest records local source revisions, all flags-off posture, health snapshot, required thresholds/ownership decisions and configuration-first rollback; it does not authorize enablement or data writes | `workspace:892eb28`, [pilot manifest](entity-pilot-release-manifest-2026-09-05.md) |
 
 Validation recorded for this continuation:
 
