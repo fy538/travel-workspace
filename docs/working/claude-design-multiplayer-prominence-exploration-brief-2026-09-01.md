@@ -1356,4 +1356,3 @@ The final standard is:
 > changed, what we are causing together, and what remains useful between us
 > afterward—while preserving each person's authorship, private life, freedom
 > not to respond, and ability to leave.
-

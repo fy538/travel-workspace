@@ -81,4 +81,3 @@ the durable page launch; they must degrade to an honest sparse page.
 - automatic GPS-derived attendance or affection;
 - public sharing of owner-private provisional shells;
 - replacing the owner of Saves, Plans, Occasions, Chat, Outcomes, or Graph.
-

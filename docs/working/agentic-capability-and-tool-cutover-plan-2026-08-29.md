@@ -695,4 +695,3 @@ next slice can adapt `commitment_update`, `occurrence_reconcile`, and
 > The tool surface should teach Vesper how the person's world is structured
 > now—not preserve the product ontology that happened to exist when the first
 > agent was built.
-

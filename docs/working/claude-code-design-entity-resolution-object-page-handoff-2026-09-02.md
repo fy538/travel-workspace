@@ -1019,4 +1019,3 @@ The work succeeds when a person can tap something Vesper found, arrive at one
 real Vesper object, understand exactly as much as the evidence supports, and
 continue without ever needing to know that identity resolution, provider
 policy, or provisional catalog state exists underneath.
-
