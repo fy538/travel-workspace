@@ -64,7 +64,7 @@ real replacement seams, not a claim that the complete program is finished:
 | Package | Landed | Deliberately still open |
 |---|---|---|
 | R0 | `/(tabs)/life` is the visible continuity root; legacy Atlas root/deep links redirect; graph/source fallbacks and Life back navigation land in Life; all four lens routes are accepted | Legacy nested readers, producers, tables and API routes still exist behind compatibility paths |
-| R1 | Root and depth use one normalized corpus assembly; timeline reads no longer call the Atlas HTTP route; source chronology, source revisions, cursor identity and corpus-fingerprint conflict handling are explicit; depth exposes source revisions | The corpus is still reconstructed by draining owner sources on each request; no indexed Life membership table or deep anchor seek exists yet |
+| R1 | Root and depth use one normalized corpus assembly; timeline reads no longer call the Atlas HTTP route; source chronology, source revisions, cursor identity and corpus-fingerprint conflict handling are explicit; depth exposes source revisions; an additive versioned `life_corpus_entries` index and bounded repository keyset reader now exist | The index is still dark: no owner backfill, incremental fan-out, shadow comparison, serving cutover, or deep anchor seek exists yet; the route still reconstructs the current snapshot from owner sources |
 | R2 | Trip/memory correction invalidation now includes Life root and depth query families; stale-cursor restart is actionable in the reader | Incremental Life index, backfill, outbox fan-out and custody/refind invalidation are not implemented |
 | R4 | Life is always reachable in the four-tab shell; Time/Places/People/Threads readers and bounded position restoration exist | People/Threads remain truthful sparse reads where no owner exists; root composition and dossier/custody behavior are still partial |
 | R8 | No user data or source tables were deleted; all changes are committed locally and generated contracts are synchronized | Atlas retirement, migration certification, real-device QA and deployment remain future work |
@@ -84,6 +84,20 @@ with 20,640 passes and six unrelated failures plus one external-health error.
 The backend pre-commit size-budget check remains skipped only because of a
 pre-existing oversized unrelated concierge prompt file; other hooks and the
 focused Life checks pass. No push or deployment was performed in this pass.
+
+### R1 index foundation receipt — September 5, 2026
+
+The next R1 seam is now explicit in the backend rather than only in the plan:
+
+| Commit | Landed | Boundary preserved |
+|---|---|---|
+| `0965db32d` | Added the additive `life_corpus_entries` Postgres projection table, with viewer/version/record identity, owner revision, separate time roles, lens membership, typed lifecycle/audience state, lineage/dependency manifests, renderer-neutral payload, withdrawal timestamps, and viewer-order/lens/owner indexes; added `build_life_index_query` | This is rebuildable read state, not a new Life truth owner; it is not populated by this change and it is not a server-driven UI tree |
+| `de668635e` | Added `read_life_index_page`, a repository-level bounded reader with one-row lookahead and typed `(sort_at, record_id)` continuation | No HTTP route uses it yet; serving remains on the canonical snapshot path until backfill and shadow comparison certify equivalence |
+
+Focused schema, query, repository-reader, and Alembic-chain tests pass (13
+tests for the first unit and 11 for the reader/schema unit). Repository-wide
+parity, size, and timeout ratchets remain pre-existing baseline gates and were
+skipped for these isolated commits; no data was backfilled, deleted, or pushed.
 
 ## 2. Investigation baseline and evidence
 
