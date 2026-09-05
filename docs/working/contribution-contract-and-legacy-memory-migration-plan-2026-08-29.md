@@ -1411,3 +1411,27 @@ The lane is complete for its declared supported portfolio when:
 Completion is not conditional on supporting every possible media family or
 finishing every root's visual design. It is conditional on the supported
 contribution experience actually working across the relevant owners.
+
+### 11.6 Execution receipt — September 5
+
+The first implementation pass has now landed in bounded commits. These are
+engineering receipts, not a claim that the entire portfolio is production
+proven:
+
+| Batch | Commit / evidence | Result |
+| --- | --- | --- |
+| CC-0 | Backend `e0885b98d`; focused Life reader/count suite: 11 passed | Retained-source page and count share one bounded, source-local SQL projection; the invalid full-corpus count expression is gone. |
+| CC-1 | Backend `9f00c92ce`; retry/authority and action-authority tests pass; mobile `3ff5dac62`; pending-turn outbox: 5 passed | Server-owned authored authority survives persistence/retry; canonical and legacy Chat routes reject forged authority metadata; a share's Chat gesture ID is distinct from the intake submission and stable across retry. |
+| CC-2 | Backend `ff3915b6b`; semantic-worker retention tests: 2 passed | Semantic completion preserves the original transient custody deadline and does not extend it; derived-only retention remains deadline-free. |
+| CC-3 | Backend `add16495d`; writer/refresh focused suite: 53 passed | Behavioral and engagement writers are explicitly non-authoritative, reversible derived signals with bounded importance, provenance, confidence/expiry, and visible derived labeling during Personal Memory synthesis. |
+| CC-5 | Existing owner/activation/correction portfolio: 44 passed | Handoff receipts, exact owner readback, activation replay, and semantic correction helpers remain fail-closed and owner-scoped; no new owner command was invented without an owner contract. |
+
+The mobile outbox and capture tests provide local transport evidence, but the
+app-wide typecheck is currently blocked by an unrelated concurrent entity/Places
+change in `app/venue/[venueId]/index.tsx`. The backend pre-commit size budget
+and one pre-existing error-category registration finding also remain outside
+these bounded commits; they were explicitly skipped and must be cleared before
+publication. CC-2 still needs the copy/consumer inventory and Chat-image
+cleanup policy, CC-4 still needs the full useful-first result sequence and
+registered native evidence, and CC-6 remains open for real transport, native,
+and generated-content runs.
