@@ -53,14 +53,24 @@ removed.
   routes return the stable `410 booking_execution_retired` response. Provider
   callbacks and liability-reducing decline/release recovery remain available by
   design.
+- Retirement recovery follow-through (`travel-agent:112287cf1`) closes three audit
+  seams found after the first landing: retirement session cleanup and restaurant
+  dispatch failure writes are state-conditional, so a stale worker snapshot
+  cannot overwrite a callback or operator resolution; the read-only audit now
+  matches the delivery and confirmation-writeback workers, including
+  `delivering` deliveries, confirmed attempts without a writeback marker, and
+  provider/call references; and the one retirement cleanup broad handler was
+  narrowed to the documented operational exception set.
 - Concierge booking-tool discovery and its promise language remain present for
   the deferred Chat lane. They were not removed here because the explicit
   instruction for this pass was not to change Chat.
 - Focused retirement tests passed before later concurrent work was added. The
   setting remains `BOOKING_EXECUTION_RETIRED=false` by default, so repository
   landing does not silently change production behavior.
-- The follow-through suite passed with 102 focused tests across booking CRUD,
-  provider-saga routes/gateway, retirement policy, and the read-only audit.
+- The first follow-through suite passed with 102 focused tests across booking
+  CRUD, provider-saga routes/gateway, retirement policy, and the read-only
+  audit. The audit-repair suite then passed 115 focused tests covering the
+  state-conditional writers, worker cleanup, and classifier parity.
 
 ### CR-3 — retained external continuation
 
@@ -90,6 +100,7 @@ removed.
 | Backend admission/retirement focused tests | 102 passed, including writer and provider-saga admission seams | Does not certify production queues, callbacks, or external obligations |
 | Backend venue/entity/projection focused tests | 57 passed for the continuation contract | Does not certify retained Life readers or native UI |
 | Backend touched-file Ruff checks | Passed for the landed slices | Broad repository ratchet has pre-existing failures |
+| Broad-exception and frozen-size gates | Passed (`1190` exception ceiling; reviewed frozen sizes) | The initial retirement landing exposed one handler/size drift; both were corrected and recorded here |
 | `make contract-check` | Passed; snapshot, mobile projection, generated types, and bridge coherent | Local contract parity only |
 | Mobile typecheck | Passed | Not native device evidence |
 | Mobile focused Jest | Passed for venue/contract tests and the existing handoff suites | Not native visual QA; Chat behavior unchanged |
@@ -97,14 +108,17 @@ removed.
 | App generated route inventory | Refreshed in `travel-app:2e73889fe` | Three already-committed routes were absent from the registry; generated output now matches `app/` |
 | App surface-contraction guard | Two failures remain: `/you/intake-submissions/[submissionId]` and `/you/life-record` have no M-1 owner/exemption | Both are Life routes from the concurrent Life lane; resolving them would violate this pass's explicit no-Life boundary |
 
-The backend pre-commit baseline still reports the repository's existing broad
-exception-count and size-budget failures. Those were not folded into this
-lane's commits or reclassified as caused by the retirement work.
+The complete offline suite also reports four unrelated repository-baseline
+failures (tool-surface snapshot drift, an unregistered concierge error literal,
+an orphaned tool handler, and an unlabeled superseded product-doc link). None
+touches the retirement implementation. The retirement-specific checks,
+including the broad-exception and frozen-size gates, pass after the follow-up
+repair.
 
 ## Explicitly not complete
 
 - No deployed-environment read-only obligation audit has been run. The new
-  command was exercised against the local database on 2026-09-05 and found
+  command was re-exercised against the local database on 2026-09-05 and found
   2,342 additive local obligation counts (including 294 nonterminal sessions,
   235 active offers, 215 active provider sagas, 222 cancellation claims, 108
   active protected dependencies, and 1,268 undelivered booking projection
