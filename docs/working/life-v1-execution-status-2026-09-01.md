@@ -63,6 +63,16 @@ Candidate and trip dossier headers now honor the same Life return context
 The cursor read also evaluates the graph at the carried snapshot clock and
 includes corpus size in the root revision (`5fe91c312`, `2682fa7c9`).
 
+## 2026-09-05 bounded intake serving correction
+
+The canonical Life route no longer drains intake through the compatibility
+`read_all` list wrappers. Backend commit `8512a4f25` reads the anchor and
+retained-source page primitives directly, carries each `(updated_at, id)` keyset
+continuation, detects a stalled continuation, and reports truncation when the
+explicit corpus page cap is reached. Root and depth therefore receive the same
+bounded source corpus and can distinguish a complete read from a partial one;
+the existing list wrappers remain unchanged for their other callers.
+
 ## Landed checkpoints
 
 ### Backend (`Travel Agent`)
@@ -165,6 +175,9 @@ Home persister, and account teardown still clears all position keys.
 - Backend Life serving and intake-page suite: 20 tests passed, including
   cross-kind cursor ties, Places filtering, exact-count escalation, and the
   unified owner-read seam.
+- Latest Life/root route and corpus suite: 36 tests passed, including bounded
+  intake draining, continuation advancement, truncation reporting, canonical
+  corpus ordering, and cursor behavior.
 - Canonical dossier and Life-return navigation checks: 21 backend Life tests,
   3 Life reader tests, and TypeScript compilation passed.
 - Life position persistence and account-boundary checks: 29 focused frontend
@@ -204,5 +217,6 @@ Home persister, and account teardown still clears all position keys.
 5. Visual composition polish beyond the production HTML design reference.
 
 The next safe increment is a device-level cold-launch/deep-link rehearsal for
-the persisted Life return anchor. Do not broaden either flag or add more lenses
-until that return seam is proven end to end.
+the persisted Life return anchor, followed by profiling the graph and Atlas
+drains before changing their corpus limits. Do not broaden either flag or add
+more lenses until that return seam is proven end to end.
