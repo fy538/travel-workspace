@@ -62,7 +62,7 @@ npm test -- --runInBand \
   __tests__/screens/experience-detail.smoke.test.tsx
 ```
 
-Current deterministic receipt: **95 tests** on `travel-app:65909bb18`.
+Current deterministic receipt: **96 tests** on `travel-app:01f1c12fb`.
 
 For a content-free operational snapshot (read-only; no repair or refresh),
 run:

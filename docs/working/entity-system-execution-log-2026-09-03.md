@@ -335,7 +335,7 @@ No API contract, itinerary row, research job, or catalog data changed.
 
 Final deterministic receipt for this lane: the six-suite mobile selection
 (projection, rebuilt renderer, research lifecycle, Keep/Unsave, venue detail,
-and experience detail) passes **95 tests**; the focused backend
+and experience detail) passes **96 tests**; the focused backend
 presentation/research/relationship selection passes **46 tests**; `make
 contract-check`, mobile TypeScript, test-contract TypeScript, API-boundary,
 schema-bridge, and accessibility-governance checks pass. The read-only health
@@ -357,5 +357,6 @@ remain release gates; no flag, scheduler, provider call, or backfill was run.
 
 Verification: the shared renderer/review selection passes **8 tests**, including
 the deferred research-poll and review-commit replacement regressions; the
-venue/experience smoke selection remains green at **38 tests**. No API
+venue/experience smoke selection remains green at **39 tests**, including the
+bounded-opening latch reset regression. No API
 contract, itinerary row, research job, or catalog data changed.
