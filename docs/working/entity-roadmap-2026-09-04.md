@@ -11,6 +11,11 @@ supersedes: []
 
 # Entity roadmap: trustworthy objects, useful continuity
 
+Current execution detail: [Entity system implementation closure and acceptance
+plan (September 5)](entity-system-acceptance-plan-2026-09-05.md). It follows the
+latest local-main fixes and separates core-page, research, and people acceptance;
+the historical execution evidence below is not a current-build release verdict.
+
 ## 1. Outcome and scope
 
 An entity should remain recognizable across Vesper while its facts, the
