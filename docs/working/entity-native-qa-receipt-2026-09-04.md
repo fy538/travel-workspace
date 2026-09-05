@@ -107,6 +107,44 @@ the existing event detail fixture:
   `/Users/feihuyan/travel-workspace/travel-app/54-08-experience-rebuild-intended-verbs.png`
 - Raw pass log: `/tmp/entity-native-experience-rebuild-maestro.log`
 
+The guarded renderer was then exercised against the local real HTTP backend
+and native PostgreSQL (not the mock adapter). The temporary backend ran at
+`http://127.0.0.1:8001` with `SKIP_AUTH=true`, the existing local dev user,
+`DISABLE_API_BACKGROUND_TASKS=true`, and
+`ENTITY_RESEARCH_REQUESTS_ENABLED=false`; the app bundle used real API mode
+with the object-page rebuild flag enabled. The clean rerun used the same
+simulator and route assertions with all API background workers disabled. These
+flows only read existing local rows—no save, research request, provider call,
+or catalog write was performed:
+
+- App checkout: `travel-app:89367c36e` (the entity renderer change remains
+  `d3b22275b`; later commits in this checkout are unrelated Life work).
+- Backend checkout: `travel-agent:e33dd4764` (entity health baseline remains
+  `9f3d80959`; later commits in this checkout are unrelated resilience work).
+- Venue `1` (`J06 Museum 5bc85584`): `/tmp/entity-real-object-page.yaml`,
+  log `/tmp/entity-native-real-venue-no-bg.log`, screenshot
+  `/Users/feihuyan/travel-workspace/travel-app/entity-real-object-page-local.png`.
+- Site `1794` (`Castelo de São Jorge`): `/tmp/entity-real-site-page.yaml`,
+  log `/tmp/entity-native-real-site-no-bg.log`, screenshot
+  `/Users/feihuyan/travel-workspace/travel-app/entity-real-site-page-local.png`.
+- Experience `fb4d6efd-588f-4647-9ca7-3819f90935e8` (`Flavours of Sorrento -
+  Food and Walking Tour`): `/tmp/entity-real-experience-page.yaml`, log
+  `/tmp/entity-native-real-experience-no-bg.log`, screenshot
+  `/Users/feihuyan/travel-workspace/travel-app/entity-real-experience-page-local.png`.
+
+Each real-backend flow passed route identity, `Keep place`, absence of the
+legacy `Add to trip` ladder, and the visible `Ask Vesper` doorway. This closes
+the live-read portion of the guarded identity/verb gate for the three current
+kinds; it does not close auth diversity, research, write/readback, repair,
+offline, VoiceOver, Android, or the remaining state matrix.
+
+The backend companion checks used the same native PostgreSQL instance at
+`localhost:5432` (Alembic head `sourcecache01`): the entity/research/
+relationship suites passed 48 tests, and the real second-occasion loop-closure
+scenario passed 5 tests. These checks exercised existing local rows and
+transactional read/write fixtures in their test harness; they did not seed a
+catalog or invoke paid research.
+
 The three guarded journeys were then repeated at iOS `accessibility-medium`
 Dynamic Type on the post-fix source `travel-app:d3b22275b`. All assertions
 passed and the simulator content-size setting was restored to `large`
@@ -156,15 +194,15 @@ only; they do not widen the native or backend evidence recorded here.
 
 ## Limits and next gate
 
-These are scoped mock-lane passes. They do not certify real-backend auth,
-research lifecycle states, live situation freshness, source attribution,
-relationship differences across two accounts, accessibility at large text or
-screen-reader navigation, Android, or the full loading/error/empty matrix.
-They also do not certify the full shared-renderer state matrix, live
-availability/booking, real-backend auth, research lifecycle states, VoiceOver,
-Android, or other platform/accessibility coverage. The flag-on venue, site,
-and experience routes are now evidenced as three bounded identity/verb slices
-plus an enlarged-text iOS pass; broader state convergence and rollout remain
-gates in the entity roadmap and must be attached to a reviewed pilot receipt
-before any capability is enabled. No production rows, research jobs, provider
-calls, booking, or backfill were created by this run.
+These are scoped mock-lane and local-real-backend read passes. They do not
+certify real-backend auth diversity, research lifecycle states, live situation
+freshness, source attribution, relationship differences across two accounts,
+accessibility at large text or screen-reader navigation, Android, or the full
+loading/error/empty matrix. They also do not certify live availability/booking
+or the remaining write/readback and repair paths. The flag-on venue, site, and
+experience routes are now evidenced as three bounded identity/verb slices plus
+an enlarged-text iOS pass and a local-real-backend read pass; broader state
+convergence and rollout remain gates in the entity roadmap and must be attached
+to a reviewed pilot receipt before any capability is enabled. No production
+rows, research jobs, provider calls, booking, or backfill were created by
+these native flows.

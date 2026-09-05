@@ -40,7 +40,7 @@ Inspected local `main` on September 4 (after the continuation receipts below):
 
 - Backend: `9f3d80959` — research gating, persistence hardening and the
   read-only entity health report.
-- Mobile: `d3b22275b` — canonical mock envelopes for all known experiences,
+- Mobile entity baseline: `d3b22275b` — canonical mock envelopes for all known experiences,
   guarded venue/site/experience journeys, focused shared-renderer
   state-contract coverage, and Dynamic Type/accessibility governance fixes
   (the preceding route/action implementation is `35c110f47`).
@@ -57,7 +57,7 @@ checks remain in the execution log.
 | Identity | Canonical refs, external identities, private provisional shells, redirects and alias-aware reads | Cross-entry and cross-owner identity/repair certification |
 | Relationship | Save, Plan, personal attendance and private outcome projection; bounded page readback | Two-user later-read proof, correction and retraction across consumers |
 | Situation | Separate no-store contextual read and expiry handling | Foreground/background, context-change and stale-action certification |
-| Object UI | Guarded shared renderer on venue, site and experience routes; default venue route still retains its compatibility composition; all three flag-on identity/verb contract slices now native-evidenced; all known mock experience envelopes are canonical; sparse/capability/stale unit cases are locked; post-fix iOS accessibility-medium pass and static governance are recorded | Full state-matrix acceptance, including real-backend, VoiceOver, Android and other platform evidence |
+| Object UI | Guarded shared renderer on venue, site and experience routes; default venue route still retains its compatibility composition; mock and local-real-backend identity/verb slices are native-evidenced for all three kinds; all known mock experience envelopes are canonical; sparse/capability/stale unit cases are locked; post-fix iOS accessibility-medium pass and static governance are recorded | Full state-matrix acceptance, including auth diversity, write/readback, sparse/unavailable/photo/offline/process-restart, VoiceOver, Android and other platform evidence |
 | Research | Read-only persisted brief; explicit gated queue request; idempotency and rate controls | End-to-end job state, artifact readiness, provenance, freshness and retry closure |
 | People | Bounded authorized exact-place lines and gated addressed-handoff doorway | Grant/revocation and recipient experience proof; richer inline people citations remain separate |
 | Operations | Read-only entity-health counts | Queue age, artifact mismatch, repair evidence, operational ownership and rollout receipt |
@@ -479,11 +479,12 @@ For each later implementation package:
 E0/E1 and the first E4–E10 implementation slices are now landed and locally
 validated. The next work should stay evidence-gated:
 
-1. Run the E8 real backend/auth and accessibility/platform state matrix across
-   venue, site, and experience. Add sparse, unavailable, photo, account,
-   offline, large-text, and process-restart cases before treating the shared
-   renderer as release-ready. Keep research and addressed handoffs disabled in
-   the core-page verdict until their own states are evidenced.
+1. Extend E8 from the now-passed local-real-backend identity/verb slice into
+   the complete auth and accessibility/platform state matrix across venue,
+   site, and experience. Add sparse, unavailable, photo, account, offline,
+   large-text, and process-restart cases before treating the shared renderer
+   as release-ready. Keep research and addressed handoffs disabled in the
+   core-page verdict until their own states are evidenced.
 2. Prepare E9’s owner-reviewed pilot receipt: exact deployed revisions,
    enabled capabilities, thresholds, cost ceiling, health report and rollback.
    Do not enable a flag or scheduler as part of this documentation step.
@@ -580,6 +581,15 @@ Validation recorded for this continuation:
   real-backend, or accessibility state matrix.
   Production canary and any backfill remain intentionally outstanding; no
   flag was enabled and no catalog row was backfilled.
+- The guarded venue/site/experience renderer was subsequently run twice
+  against a temporary local FastAPI process backed by native PostgreSQL (not
+  the mock adapter). The clean rerun disabled all API background workers; all
+  three existing local rows passed the same identity/verb assertions. Exact
+  IDs, revisions, screenshots and logs are recorded in the [native QA
+  receipt](entity-native-qa-receipt-2026-09-04.md). This closes only the
+  real-read portion of E8; auth diversity, mutations/readback, repair,
+  offline/process restart, VoiceOver, Android and the full state matrix remain
+  open.
 
 The next unclosed gates are the broader native state matrix (real-backend
 journey, sparse/unavailable/photo/account states, VoiceOver, Android and
