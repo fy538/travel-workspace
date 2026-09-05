@@ -1072,3 +1072,12 @@ doctor. Environment warnings remain explicit: local Postgres is not running,
 and backend full-route tests that require the `openai` package remain
 environment-blocked. These checks do not promote any dark semantic kind or
 claim native device acceptance.
+
+- **I1 / Life correction → Places fan-out — implemented and locally tested:**
+  `travel-app` commit `73f89ffa8` extends the centralized memory-correction
+  invalidation contract to the mature Places feed and projection prefixes.
+  A Life/Atlas correction already refreshed Home/Places root envelopes; it now
+  also forces the spatial readers that can carry the same evidence or ranking
+  to re-read. The focused cache contract passes (2 tests). This is freshness
+  propagation only: it does not grant new Places reads, infer a location, or
+  claim personalized source-vector recomposition.
