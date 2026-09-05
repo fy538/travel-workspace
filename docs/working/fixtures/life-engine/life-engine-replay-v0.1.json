@@ -1,0 +1,106 @@
+{
+  "schema_version": "vesper.life-engine-replay.v0.1",
+  "fixture_version": "2026-09-05.1",
+  "not_production_data": true,
+  "purpose": "Replay owner transitions and verify Life organization, authority, and repair without tuning a model.",
+  "scenarios": [
+    {
+      "scenario_id": "W1",
+      "title": "Europe journey assembled gradually",
+      "owner_kinds": ["retained_source", "experience_anchor", "atlas_timeline"],
+      "transitions": [
+        {"event_id": "w1-source-admitted", "change_kind": "source_admitted", "owner_kind": "retained_source", "owner_id": "fixture-europe-source", "owner_revision": "r1"},
+        {"event_id": "w1-anchor-enriched", "change_kind": "anchor_enriched", "owner_kind": "experience_anchor", "owner_id": "fixture-europe-anchor", "owner_revision": "unavailable"},
+        {"event_id": "w1-correction-replayed", "change_kind": "owner_correction", "owner_kind": "retained_source", "owner_id": "fixture-europe-source", "owner_revision": "r2"}
+      ],
+      "expected": {
+        "record_behavior": "one bounded journey door with nested source-backed segments",
+        "preserve_unknown": ["unsupported movement gaps", "attendance not established by a ticket"],
+        "repair_consumers": ["life", "home", "places", "search"],
+        "must_not": ["invent boarding, meals, overnight stays, or route gaps", "promote a source into a Plan"]
+      }
+    },
+    {
+      "scenario_id": "W2",
+      "title": "Ordinary NYC week without a major occasion",
+      "owner_kinds": ["plan", "retained_source"],
+      "transitions": [
+        {"event_id": "w2-week-opened", "change_kind": "plan_opened", "owner_kind": "plan", "owner_id": "fixture-nyc-week", "owner_revision": "1"},
+        {"event_id": "w2-place-observed", "change_kind": "source_admitted", "owner_kind": "retained_source", "owner_id": "fixture-nyc-place", "owner_revision": "r1"},
+        {"event_id": "w2-italy-imported", "change_kind": "historical_source_imported", "owner_kind": "retained_source", "owner_id": "fixture-italy-source", "owner_revision": "r3"}
+      ],
+      "expected": {
+        "record_behavior": "keep the current week coherent while historical material remains separately addressable",
+        "preserve_unknown": ["no major occasion is required"],
+        "repair_consumers": ["life", "home"],
+        "must_not": ["let an old Italy source take ownership of the current week", "manufacture a social obligation"]
+      }
+    },
+    {
+      "scenario_id": "W3",
+      "title": "Pasta observation becomes reusable understanding",
+      "owner_kinds": ["experience_anchor", "retained_source"],
+      "transitions": [
+        {"event_id": "w3-observation-kept", "change_kind": "observation_admitted", "owner_kind": "experience_anchor", "owner_id": "fixture-pasta-observation", "owner_revision": "unavailable"},
+        {"event_id": "w3-explanation-created", "change_kind": "synthesis_admitted", "owner_kind": "retained_source", "owner_id": "fixture-pasta-explanation", "owner_revision": "r1"},
+        {"event_id": "w3-mechanism-corrected", "change_kind": "owner_correction", "owner_kind": "experience_anchor", "owner_id": "fixture-pasta-observation", "owner_revision": "unavailable"}
+      ],
+      "expected": {
+        "record_behavior": "answer the Ask immediately and persist only separately admitted material",
+        "preserve_unknown": ["one observation does not establish a culinary identity", "the explanation is bounded to the cited mechanism"],
+        "repair_consumers": ["life", "home", "search", "saved_derivatives"],
+        "must_not": ["silently save every query source", "generalize one dish to all pasta or a country-level claim"]
+      }
+    },
+    {
+      "scenario_id": "W4",
+      "title": "Shared dinner with plural perspectives and withdrawal",
+      "owner_kinds": ["occasion", "social_contribution"],
+      "transitions": [
+        {"event_id": "w4-occasion-created", "change_kind": "occasion_created", "owner_kind": "occasion", "owner_id": "fixture-dinner", "owner_revision": "1"},
+        {"event_id": "w4-contribution-addressed", "change_kind": "contribution_addressed", "owner_kind": "social_contribution", "owner_id": "fixture-dana-note", "owner_revision": "unavailable"},
+        {"event_id": "w4-contribution-withdrawn", "change_kind": "audience_withdrawn", "owner_kind": "social_contribution", "owner_id": "fixture-dana-note", "owner_revision": "unavailable"}
+      ],
+      "expected": {
+        "record_behavior": "attribute each contribution and repair the derivative when its grant is withdrawn",
+        "preserve_unknown": ["a participant contribution is not an accepted arrangement edit"],
+        "repair_consumers": ["life", "home", "places", "shared_derivatives"],
+        "must_not": ["widen an addressed audience", "leave a withdrawn contribution visible in a generated composition"]
+      }
+    },
+    {
+      "scenario_id": "W5",
+      "title": "Ambiguous ticket and correction across time",
+      "owner_kinds": ["retained_source", "experience_anchor"],
+      "transitions": [
+        {"event_id": "w5-ticket-imported", "change_kind": "source_admitted", "owner_kind": "retained_source", "owner_id": "fixture-ticket", "owner_revision": "r1"},
+        {"event_id": "w5-attendance-inferred", "change_kind": "occurrence_proposed", "owner_kind": "experience_anchor", "owner_id": "fixture-ticket-attendance", "owner_revision": "unavailable"},
+        {"event_id": "w5-did-not-attend", "change_kind": "owner_correction", "owner_kind": "retained_source", "owner_id": "fixture-ticket", "owner_revision": "r2"},
+        {"event_id": "w5-old-retry", "change_kind": "stale_replay", "owner_kind": "experience_anchor", "owner_id": "fixture-ticket-attendance", "owner_revision": "unavailable"}
+      ],
+      "expected": {
+        "record_behavior": "keep the ticket findable as an unused source while removing the unsupported attendance claim",
+        "preserve_unknown": ["unknown and explicitly did-not-happen are distinct"],
+        "repair_consumers": ["life", "home", "places", "search", "saved_derivatives"],
+        "must_not": ["compare opaque revisions lexicographically", "allow the old inference to win a replay race", "restore attendance from a ticket alone"]
+      }
+    },
+    {
+      "scenario_id": "W6",
+      "title": "Later manual composition over a changing Life record",
+      "owner_kinds": ["authored_composition", "retained_source"],
+      "transitions": [
+        {"event_id": "w6-selection-started", "change_kind": "composition_started", "owner_kind": "authored_composition", "owner_id": "fixture-rome-essay", "owner_revision": "unavailable"},
+        {"event_id": "w6-caption-locked", "change_kind": "human_block_locked", "owner_kind": "authored_composition", "owner_id": "fixture-rome-essay", "owner_revision": "unavailable"},
+        {"event_id": "w6-source-corrected", "change_kind": "source_corrected", "owner_kind": "retained_source", "owner_id": "fixture-rome-source", "owner_revision": "r2"},
+        {"event_id": "w6-version-shared", "change_kind": "composition_shared", "owner_kind": "authored_composition", "owner_id": "fixture-rome-essay", "owner_revision": "unavailable"}
+      ],
+      "expected": {
+        "record_behavior": "preserve selected references, stable block IDs, protected captions, and explicit saved-version semantics",
+        "preserve_unknown": ["a source correction does not silently rewrite human-authored prose"],
+        "repair_consumers": ["life", "home", "shared_derivatives"],
+        "must_not": ["mutate source truth from an editor", "treat selection as publication permission", "make a manual editor a prerequisite for automatic Life"]
+      }
+    }
+  ]
+}

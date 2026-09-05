@@ -11,7 +11,7 @@ include dogfood.mk
 .PHONY: new-worktree land-worktree worktrees
 .PHONY: contract-check occasion-behavior-contract-check place-identity-check mock-real-parity golden-path-qa journey-wedge-qa offline-qa reliability-report reliability-gate entity-health mock-slug-parity surface-contraction-check
 .PHONY: certify-fast certify-logic certify-corpus certify-visual certify-visual-cloud certify-live maestro-flow-check journey-registry-check journey-registry-verify-passes journey-evidence-report dogfood-status corpus-check dogfood-city dogfood-promote dogfood-env-check dogfood-journey-live-api qa-persona dogfood-status-sync
-.PHONY: preflight-eas fly-secrets verify m0-reachability-report docs-governance-check docs-child-governance-check docs-inventory-check docs-inventory-report docs-spine-check docs-canon-check docs-release-check docs-release-sync docs-status-check docs-status-sync docs-links-check docs-home-surfaces-check docs-check life-composition-fixture-check compatibility-check card-arrival-check chat-card-types-check pre-dogfood dogfood-fast dogfood-local dogfood-device dogfood-physical dogfood-staging test-backend-postgres journey-evidence-promote convergence-candidate-check
+.PHONY: preflight-eas fly-secrets verify m0-reachability-report docs-governance-check docs-child-governance-check docs-inventory-check docs-inventory-report docs-spine-check docs-canon-check docs-release-check docs-release-sync docs-status-check docs-status-sync docs-links-check docs-home-surfaces-check docs-check life-composition-fixture-check life-engine-fixture-check compatibility-check card-arrival-check chat-card-types-check pre-dogfood dogfood-fast dogfood-local dogfood-device dogfood-physical dogfood-staging test-backend-postgres journey-evidence-promote convergence-candidate-check
 
 # ── Development ───────────────────────────────────────────────────────────────
 
@@ -218,6 +218,9 @@ docs-home-surfaces-check: ## Gate: external design authority and D/C/P/R/A/F/B/V
 
 life-composition-fixture-check: ## Validate the frozen Life composition dataset for visual and native labs
 	@python3 scripts/check_life_composition_fixture.py
+
+life-engine-fixture-check: ## Validate the W1-W6 Life organization replay manifest
+	@python3 scripts/check_life_engine_fixture.py
 
 docs-check: ## Run all documentation governance gates
 	@python3 scripts/check_docs.py --all
