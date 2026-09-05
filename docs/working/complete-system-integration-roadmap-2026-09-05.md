@@ -1067,8 +1067,10 @@ turning six former specialist tasks back on.
 
 The current integrated checkout also passes the workspace contract check,
 mobile typecheck, the Places freshness/return/conformance suites (15 tests),
-the backend result-set and movement shadow suites (15 tests), and the workspace
-doctor. Environment warnings remain explicit: local Postgres is not running,
+the backend result-set/movement shadow suites (15 tests), and the workspace
+doctor. The latest I1/I2 focused checks add the memory-correction fan-out
+contract (2 app tests) and the portfolio planner/field-coverage suite (16
+backend tests). Environment warnings remain explicit: local Postgres is not running,
 and backend full-route tests that require the `openai` package remain
 environment-blocked. These checks do not promote any dark semantic kind or
 claim native device acceptance.
