@@ -286,3 +286,81 @@ D-H4 (a present-tense social aperture; social-aperture lane). D-H11
 target for the first internal account; closing the gap between it and the
 pruned page is the content-production and owner-read backlog on H0, not a
 design task. Large-text renders remain unrun.
+
+---
+
+# Revision 5 — the social split (2026-09-05)
+
+Founder ruling, later the same day: multiplayer material divides by root.
+
+| Material | Root | Form |
+| --- | --- | --- |
+| Directed and shared-consequential (addressed to me, invited, a contribution to our arrangement, a decision asked of me, a plan edit under a grant, a change to a shared occasion) | Home | The consequence, never the notification; inside the object it changes, or in the `Addressed to you` region; one ask per page |
+| Casual sharing (a friend's photo, note, or place made visible to friends; a featured Status) | Places, as a `From friends` scope over the same map and field | Finite, situation-ranked, never person-ranked; marks at the precision the author chose; city-level statuses in an `Elsewhere` band; ends |
+| The record | Life · People | Stable, by person |
+
+The friends map is semantic, never biometric: every mark answers where they
+were or what they shared, who authored it, at what precision, for which
+audience, until when. No live location, no presence inferred, no location
+permission required of anyone.
+
+**D-H4 closes.** Home's pull door ("What your friends have shared") lands on
+Places in the friends scope. No present-tense band on Life People, no fifth
+surface. The decision record's §2 carries the split; the Home root contract
+rule 1 and the build manifest cite it. Local commits `d8c2b22` (workspace)
+and `f8f9cea8e` (travel-app). Nothing pushed.
+
+## Boards
+
+- **H1 rev 5.** Maya's casual bakery share leaves the lead. The prepared
+  alternatives lead, with her words attributed inside the first option and a
+  metadata pointer to Places. The door at the foot now points to Places ·
+  From friends.
+- **H2 rev 5.** The region is `Addressed to you`: Dana's bookshop and a new
+  fixture, Maya's noodle bar addressed for after Friday's show. Treatment 1
+  distributes both inside the units they change; Treatment 2 groups them.
+  The casual share is off Home entirely.
+- **P1 — new.** Places in the friends scope: the semantic map (Maya and Theo
+  Place-precise, Alex as a neighborhood ring, Dana under `Elsewhere` at city
+  precision), the share as it lives in Places, and the bakery's Place Focus
+  with Maya's note beside the verdict it changes. Four people, four things,
+  and the scope ends.
+
+## Still open
+
+D-H11 (production classes). A friends-scope composer over shares, statuses,
+and handoffs is new work; addressed Place handoffs (MP1) are the only
+relationship read that exists today. Large-text renders remain unrun.
+
+## Merged — 2026-09-05 (project reorganized into one telling)
+
+The founder asked whether the study and the pass could be merged for a more
+intuitive experience, and whether Board 1 (the inventory) was outdated or
+broken. Rendered through the Design runtime and on the canvas, Board 1 was not
+broken; it was outdated by content (the 08-31 union of 31 kinds, lag lines
+citing laws amended 09-05, the superseded kicker typography).
+
+The project `Vesper — Home` (`03538beb`) now holds eight current boards in
+reading order and four archived ones, flat, no folders:
+
+| Board | Holds | Replaces |
+| --- | --- | --- |
+| `00 - Index` | reading order, board status, the fixture world, rulings, open items | itself |
+| `01 - Parts` | every kind in the 35-kind union, lifted from the board that draws it now; drawer specimens (labelled, lag lines kept) where no board redrew a kind; three non-union forms the boards use | Study 1 |
+| `02 - Persona A - The New Yorker` | Sunday ceiling + floor, Monday addressed + sparse, Thursday before / during / after, the Life record (eight phones) | Study 2, H1, H2, H4 |
+| `03 - Persona B - Back from Europe` | day zero (rev 4) + the two baseline states with the type roles applied and composition unrevised | Study 3, H5 |
+| `04 - Persona C - New User` | first open → next open, five phones | Study 4, H3 |
+| `05 - Wedge - Trip Forming` | H6 unchanged | H6 |
+| `06 - Places - From Friends` | P1 unchanged | P1 |
+| `07 - Ledger and Decisions` | H0 plus the history: the rev-2/3 phones the current boards replaced, Treatment 1, the deletion test, what moved under the split | H0 + the before/after strips on H1/H2/H3/H5 |
+| `Z1–Z4 - Baseline 09-04` | the September 4 study, unrevised, stamped archive | Study 1–4 (kept because 07 cites them) |
+
+Rules kept: every phone appears once, at its current revision; process and
+history live on 07, not on the persona boards; the group lives in the file
+name. Canvas 790957aa republished with pages `index`, `reading` (01–06),
+`ledger` (07), `archive` (Z1–Z4).
+
+Honest gaps: 03's phones 2–3 (temporal posture, annotated evidence) are the
+September 4 baseline with only the sans/serif/mono roles applied; their relief
+codas and the evidence crown are not yet revised. `people_status_aperture` on
+01 is drawn from the manifest line only, since no board has ever drawn it.
