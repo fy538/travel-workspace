@@ -775,11 +775,11 @@ document's creation.
 
 | Package | State at roadmap creation | Next concrete action |
 | --- | --- | --- |
-| I0 | Planned; investigation baseline recorded | Verify actual engine paths and branch/flag/consumer map; resolve intent/material, shared-change and watch-owner decisions |
-| I1 | In progress; request-clock, consequence fan-out, dependency matrix, capture return, and authority-safe owner-read coalescing landed | Trace remaining owner identity plus condition signals; agree Life handles/change events and bounded reevaluation inputs |
-| I2 | Owner-read readiness and fast root serving are bounded; production worker decision remains open | Measure serving and signal-to-judgment paths; separate fast practical assessment, authorized reevaluation and optional production |
-| I3 | Capture/custody foundations landed; owner decisions and formats partial | Audit writers/formats, draft precise owner ADR, then implement approved intent/social commands |
-| I4 | Renderer promotion boundary audited; Home/Places native rehearsals pass; prose anatomy mismatch closed | Make live judgment visible through useful preparation and alternatives; promote only accepted Home forms and the complete Places journey |
+| I0 | Implemented/integrated at inventory level; live-engine path matrix recorded; activation decisions remain gated | Resolve the named intent/material, shared-change, and watch-owner decisions before adding durable watches or a second owner |
+| I1 | Integrated for request-clock, consequence fan-out, dependency matrix, capture return, authority-safe owner-read coalescing, and Places continuity | Trace remaining owner identity plus condition signals; agree Life handles/change events and bounded reevaluation inputs |
+| I2 | Owner-read readiness, fast root serving, single assembly seam, bounded reads, and late-work limits are implemented; production worker decision remains open | Measure serving and signal-to-judgment paths; separate fast practical assessment, authorized reevaluation, and optional production |
+| I3 | Capture/custody and format boundary audited; supported/rejected cases are locally tested; owner decisions and formats remain partial | Complete native custody evidence, audit remaining writers, draft precise owner ADR, then implement approved intent/social commands |
+| I4 | Renderer promotion boundary, result-set identity, source-backed revision, native returns, and stale-source treatment are implemented locally; semantic promotion remains dark | Complete real-data Home→Places→Focus/Path acceptance and decide whether personalized freshness needs a separate source vector |
 | I5 | Graph/consequence foundations present; lightweight experience incomplete | Complete adaptation and shared consequences over I1–I3, preserving purpose, plural participation and meaningful stop/wait behavior |
 | I6 | Inventories/guards partially present; cutovers not complete | Refresh compatibility and obligation evidence; plan removal and readiness per actual supported consumers |
 
@@ -985,6 +985,17 @@ tests; do not defer the live engine until content composition is finished.
   and pin-handoff suites pass (13 tests), and app typecheck passes. This is an
   honest stale indication, not yet full real-data Focus/Path recomposition.
 
+- **I3 / intake format and custody boundary — audited and locally evidenced:**
+  workspace document `i3-intake-format-and-custody-audit-2026-09-05.md` records
+  the actual text, JPEG/PNG, audio, HEIC/HEIF, PDF, and Apple Wallet/PKPass
+  entry paths. The supported and rejected cases are covered by the
+  custody-first screen and resumability suites; generic Chat HEIC conversion
+  is explicitly not treated as share-capture support. No new parser,
+  conversion dependency, source writer, or generated contract was added. This
+  closes the format-audit subtask at the `implemented and locally tested`
+  evidence level; native end-to-end receipts and any document-family owner ADR
+  remain open.
+
 ### M1 batch update — 2026-09-05
 
 The first two next-batch items are now closed at their current evidence level:
@@ -1004,9 +1015,11 @@ same set when the catalog revision is stable, and recompose or show an explicit
 stale/unknown state when it changes. It must also decide whether private-save,
 relationship, and provider-status revisions need a separate audience/source
 vector before semantic Places promotion; the catalog digest alone must not be
-overstated as full personalized freshness. Preserve the mature workspace and
-keep the semantic renderer dark until real data and native evidence land. Do
-not promote the dark Home kinds, add a generic route service, or create a
-second Places feed. Re-pin all repositories and shared-file ownership before
-touching generated contracts. This keeps the roadmap live without making this
-task a bottleneck for Life or turning six former specialist tasks back on.
+overstated as full personalized freshness. In parallel, I3 may collect native
+custody receipts and the remaining writer audit without changing the held Chat
+surface. Preserve the mature workspace and keep the semantic renderer dark
+until real data and native evidence land. Do not promote the dark Home kinds,
+add a generic route service, or create a second Places feed. Re-pin all
+repositories and shared-file ownership before touching generated contracts.
+This keeps the roadmap live without making this task a bottleneck for Life or
+turning six former specialist tasks back on.
