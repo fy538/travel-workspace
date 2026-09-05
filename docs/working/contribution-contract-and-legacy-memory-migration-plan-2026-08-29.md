@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / architecture / backend / mobile
 created: 2026-08-29
-last_verified: 2026-09-04
+last_verified: 2026-09-05
 expires: 2026-09-28
 why_new: Translates the accepted Contribution and Consequence Contract into a code-grounded, architecture-spanning migration plan for Chat, Intake, memory, synthesis, behavioral inference, receipts, correction, and mobile contribution surfaces without prematurely committing to a database migration.
 promotes_to: null
@@ -12,9 +12,11 @@ supersedes: []
 
 # Contribution Contract and Legacy Memory Migration Plan
 
-> **Execution update — September 4:** [§10](#10-contribution-and-capture-execution-plan--september-4)
-> is the current proposed work breakdown, baseline, dependency order, and
-> acceptance plan for the contribution/capture lane. Sections 1–9 preserve the
+> **Current execution plan — September 5:** [§11](#11-completion-plan--september-5)
+> records the fresh baseline, remaining repairs, product sequences, owner
+> dependencies, and next commit order. It supersedes earlier suggestions that
+> only native/P5 verification remains. [§10](#10-contribution-and-capture-execution-plan--september-4)
+> remains the full P0–P5 scope and acceptance framework. Sections 1–9 preserve the
 > August 29 architectural rationale and migration inventory; their descriptions
 > of current code are historical, not fresh findings. In particular, the pure
 > policy/models now exist, some unsafe prompts and privacy paths have been
@@ -34,7 +36,7 @@ These are repository commits, not a claim of production rollout:
 | Source-first Life addressability | A retained original gets a source-only Life door before interpretation is confirmed; no semantic claim is fabricated. | `79b00f294` |
 | Admission parity | A shared core adapter resolves Admission → Contribution for pending Chat and the explicit Intake attachment path; durable requests fail closed until T1 custody/authority exists. | `124f8b40f` |
 | Canonical Chat receipt | The resolved policy decision travels with the canonical pending-turn metadata for downstream receipt/audit, without becoming model-minted authority. | `2e3664e26` |
-| Value-first capture | Unresolved shares can continue into contextual Chat with source refs and `answer_only` retention rather than forcing a review workflow. | `09b80dbaa` |
+| Access to immediate Chat value | Unresolved shares can continue into contextual Chat with source refs and `answer_only` retention. The primary share-screen composition still leads with candidate review; this commit does not complete value-first capture. | `09b80dbaa` |
 | Media/recovery truthfulness | Mobile preserves server-side HEIC/scanner capability errors instead of collapsing them into generic retry copy; local retry and custody resumability remain covered by tests. | `cdf048617` |
 
 PDF, Apple Wallet, and HEIC/HEIF remain deliberately unsupported at the
@@ -43,7 +45,8 @@ scanner/conversion path is actually available. The mobile layer must mirror
 that boundary, not advertise a normalizer class as a supported product
 capability.
 
-The remaining P5 work is operational evidence, not a reason to widen scope:
+The P5 work includes operational evidence, alongside the unfinished P1–P4
+work now specified in §11:
 controlled native/share-extension runs, interrupted-finalize and relaunch
 receipts, mixed-success batch evidence, and a separately reviewed readiness
 decision for each new document family. No connector, ambient ingestion, or
@@ -909,11 +912,502 @@ and readback; it must not silently reactivate unsafe legacy retention. Retire a
 legacy writer only after caller inventory, read compatibility, recovery, and
 correction coverage show the replacement is sufficient.
 
-A partial executable pass now covers the admission policy, source custody,
-admitted Chat handoff, and mobile recovery slices. The full P0–P4 acceptance
-bar is not yet landed; the next executable scope is controlled P5 evidence:
-native/share-extension round trips, relaunch/interrupted-finalize receipts,
-mixed-success recovery in the real transport, and owner agreement for any
-new document family. We can continue that work without waiting for every Life,
-Plan, entity, or Home visual decision, but should not promise a consumer
-handoff those owners have not actually agreed to or implemented.
+A partial executable pass covers admission policy, source custody, admitted
+Chat handoff, and mobile recovery slices. The full P0–P4 acceptance bar is not
+yet landed. The September 5 review found remaining lifecycle, retry, writer,
+and result-composition work; §11 now owns the immediate execution order.
+Controlled P5 evidence runs alongside those repairs. Work can proceed without
+waiting for every Life, Plan, entity, or Home visual decision; consumer handoffs
+still require implemented owner contracts.
+
+## 11. Completion plan — September 5
+
+### 11.1 Outcome and current evidence
+
+Complete the contribution experience across the existing product:
+
+> I give Vesper something that has my attention. It helps with that thing now.
+> If I intended to keep or contribute it, it remains easy to find in the right
+> context. I can correct it, and later uses respect that correction.
+
+This is implementation planning, not a new product canon or release receipt.
+The work below completes P0–P5 using the same source, policy, conversation,
+Life, and domain owners. The CC batch identifiers describe executable pieces
+of that scope; they are not another architecture or a competing roadmap.
+
+Fresh inspection used backend `120c34b31`, mobile `73f89ffa8`, and workspace
+`8682452` as planning references. Concurrent work is active. Re-pin commits and
+file ownership before implementation; a reference here does not freeze another
+lane. The earlier contribution repairs are backend `42964124e` and mobile
+`5a2b02ed4`; mobile `ee8b6588c` subsequently added capture return continuity.
+
+| Capability | Evidence-backed status | Remaining work |
+| --- | --- | --- |
+| Ask/Bring admission | Shared `contribution_admission.py` adapter, explicit Intake retention, and pending-turn decisions exist | Complete enforcement across ordinary Chat, replay, copies, and background writers |
+| Authored attention | Semantic worker supplies `user_note` separately from normalized source evidence | Preserve that distinction durably through canonical send/retry and test its effect on returned value |
+| Retained originals | Source-only projections and Life intake readers exist independently of confirmed interpretation | Repair count query; verify large collections, sibling sources, exact re-entry, and correction |
+| Capture to Chat | Durable pending-turn handoff, audio-not-ready handling, reconciliation, and recovery controls exist | Stable identity for one gesture, distinct identities for later gestures, authoritative reconstruction after relaunch |
+| Visible result | Receipts and contextual Chat continuation exist | Generic share result still makes interpretation review primary; deliver usable value before controls |
+| Native evidence | September 4 iOS build included the extension and accepted the marker URL | Full supported-payload round trips, cold/warm repeated shares, real server readback, and interruption/relaunch remain unevidenced; Android build was blocked by missing local SDK |
+| Wider continuity | Life, Home/Places, entity, and repair substrates exist | Approved loose-intention and attributed shared-material commands; complete downstream repair evidence |
+
+The preceding status review reran **337 offline backend tests** (20 deselected)
+and **31 mobile tests** successfully. Those selections did not exercise the
+retained-source count query: a separate local call reproduced
+`TypeError: FromClause.select() takes 1 positional argument but 2 were given`.
+The exact failing expression is in
+`backend/core/db/intake_anchors.py::count_retained_source_projections`.
+Treat the green selections as regression evidence, not full conformance.
+
+Additional code-inspected gaps, requiring the integration reproductions below:
+
+- Pending send adds `__server_authority_user_message` after request validation,
+  but session persistence removes it from saved turn metadata. Canonical retry
+  restores the saved metadata; its fingerprint and authority input therefore
+  need a durable, consistent replacement. The legacy trip Chat route also has
+  a separate request model to audit for reserved-field injection.
+- Semantic completion resets transient expiry to completion time plus 24 hours.
+  Intake expiry currently selects verified sources with non-null deadlines;
+  old null deadlines and abandoned other custody states need explicit inventory.
+- Canonical Chat image persistence creates its own filesystem-backed copy.
+  That copy is not automatically governed by Intake source cleanup.
+- Share capture uses the submission UUID as the Chat gesture ID, while other
+  staging callers default to a new UUID per invocation. Reopened media kind is
+  partly reconstructed from route parameters. These cannot establish complete
+  retry/new-gesture parity.
+- Native replay deduplication retains a content/URL signature. It needs tests
+  for a legitimate later identical share, including platforms without a unique
+  URL marker, and ordering between URL and payload delivery.
+
+### 11.2 Decisions and ownership boundaries
+
+The accepted contribution contract already settles: value before administration;
+Ask does not imply personal learning; deliberate Bring can retain a private
+original; a model interpretation cannot authorize itself; correction follows
+dependencies. Implement those rules rather than reopening them as hypotheses.
+
+| Decision | Recommended implementation direction | When it must be settled |
+| --- | --- | --- |
+| Authored input versus evidence | Preserve authenticated authored input and typed source references separately in server-owned admission/replay provenance. Build display/model text from them; never reconstruct authority from flattened source text. | CC-1 design, before modifying retry persistence |
+| One gesture versus one source | A source has a durable identity. Each intentional Chat question/send has its own identity. Network retry reuses that gesture's immutable request; a later question about the same source starts a new gesture. | CC-1; applies to every staging caller |
+| Conversation history versus source retention | Define authored message history, generated answer history, extracted source text, transcripts, original files, and copied images separately. Recommended default: retain ordinary conversation under its explicit history policy, keep Ask processing copies transient, and make original-source unavailability legible. A source-derived answer cannot be a hidden exemption that reconstructs released material. | CC-2 must record the exact history rule before promising complete Ask expiry or migrating historical content |
+| Inline result versus Chat | A deliberate import can finish with useful source details inline. A question receives its answer in the existing conversation. Contextual Chat is available for depth; creating a conversation is not a prerequisite for source custody. | CC-4 sequences, before changing result hierarchy |
+| Source-only Life destination | Use the existing submission/source reader and exact owner identity; an unconfirmed interpretation is never required to retrieve an original. | CC-0/CC-5 adapter agreement with Life |
+| Loose intention and social material | Reuse an approved intention/arrangement or attributed-contribution owner. If existing owners cannot represent it, document the missing command and minimum schema choice with Integration/Plan. | Before those CC-5 writes; does not block private capture or source readers |
+| Additional media | Keep current supported types and accurate rejection. A future PDF/Wallet/HEIC intake adapter requires scanner, normalization, lifecycle, renderer, and native evidence ownership. | Separate follow-on; not on this completion path |
+
+For behavioral writers, use the canon's distinction between product/situation
+signals and governed person/relationship evidence. A generated preference in
+the first person is not an authored claim. Unresolved semantics must restrict
+promotion rather than permit it. Any proposal to expand longitudinal learning
+is a separately recorded product decision; conservative enforcement of the
+existing rule is ordinary repair work.
+
+This lane owns input meaning, source processing, admission, immediate result,
+receipt, and repair handoff. Life owns organization; Home/Places own later
+selection and expression; Entity owns exact object identity; Plan/Occasion
+owners own arrangement and participant consequences. Detailed composition
+belongs in the dedicated design tool. Production Chat-root redesign and new
+Life navigation are outside this plan.
+
+### 11.3 Execution batches and dependencies
+
+| Batch | Existing scope | Deliverable | Dependencies |
+| --- | --- | --- | --- |
+| CC-0 | P0/P3 | Correct source counts and a current acceptance ledger | Can start immediately |
+| CC-1 | P1/P5 | Durable authored authority and gesture-stable retry across entries | Current source/policy owners; independent of visual design |
+| CC-2 | P1/P5 | One enforced lifecycle across original and processing copies | History decision; coordinates provenance fields with CC-1 |
+| CC-3 | P0/P1 | Remaining writer enforcement and repair lineage | Existing canon; shares policy vocabulary with CC-1/2 |
+| CC-4 | D0/P2/P4 | Useful-first result composition across the consumer portfolio | Design begins immediately; integration uses CC-1/2, CC-3 for learning and CC-5 for owner effects |
+| CC-5 | P3/P4 | Exact owner return, intention/social handoffs, cross-surface correction | CC-0–3 where relevant; new owner commands require their owner agreement |
+| CC-6 | P5 + all exits | Real transport, native, model-quality, and rollout evidence | Collect incrementally; final acceptance after dependent batches |
+
+#### CC-0 — source-reader repair and acceptance ledger
+
+**Code:** `backend/core/db/intake_anchors.py`,
+`backend/life_projection/intake_page.py`; existing
+`tests/inbound/test_intake_anchor_projection.py` and
+`tests/life_projection/test_life_intake_page.py`.
+
+Replace the invalid column-select construction. Express the source-local
+unrepresented-source rule as a reusable SQL predicate used consistently by
+count and page eligibility, with a database aggregate for totals. Avoid reading
+every submission, candidate, and observation into Python to count a large corpus.
+Preserve the current product cardinality: a retained submission contributes one
+source-only record when at least one eligible sibling remains unrepresented.
+Confirm this against Life's latest index and compatibility-reader paths before
+changing their interfaces.
+
+Add database-backed cases for: no records; one source; a confirmed candidate
+representing one of several siblings; all siblings represented; revoked/deleted
+sources; expired transient custody; another owner; and a corpus exceeding the
+page limit. Invoke the real counter through the paginated Life adapter, not a
+mock counter. Verify deterministic continuation and consistent totals under
+the declared represented-time/read semantics.
+
+**Exit:** the reproduced crash is fixed; reader/count predicates agree; the
+production count does not materialize the full corpus. Record baseline failures
+and their exact test owner in this document before larger changes.
+
+#### CC-1 — authored authority and reliable gesture identity
+
+**Backend:** pending-turn model/route/store; canonical and legacy Chat request
+adapters; `_message_flow.py`; `concierge/session.py`, `turn_admission.py`,
+`agent.py`, and `action_authority.py`.
+**Mobile:** `utils/chat/pendingChatTurnOutbox.ts`,
+`components/sharing/ShareIntentHandler.tsx`, `app/share-capture/index.tsx`,
+`hooks/useConciergeHomeConversationEntry.ts`, and
+`app/conversations/create.tsx`.
+
+1. Define one server-owned representation for authenticated authored input,
+   source refs, admission decision/basis, and request identity. Prefer extending
+   the existing pending/message provenance owner over a new table. Persist the
+   minimum replayable provenance or a reference whose lifetime covers retry;
+   do not make message replay depend on an already-released outbox payload.
+2. Make send, failed-message retry, reconnect, and queued execution resolve the
+   same authored authority. Current custody/audience must still be rechecked.
+   Keep all client metadata paths unable to manufacture server provenance.
+   Old flattened messages with insufficient provenance cannot gain write
+   authority through fallback text parsing.
+   Explicit narrowing such as “only answer; do not keep this” outranks a
+   share/import affordance. Define and test that admission path before durable
+   source retention; an Ask about an independently retained original is a
+   different case and must not silently revoke the earlier Keep.
+3. Specify fingerprint inputs and versioned compatibility. Authored content,
+   source selection, audience, requested job, and retention changes remain
+   meaningful conflicts. Server-added receipts, volatile execution state, and
+   metadata stripping cannot make an unchanged logical retry conflict. Do not
+   solve conflicts by dropping policy fields from the fingerprint.
+4. Allocate the client gesture ID before the first stage attempt. Preserve the
+   same request and identity after an ambiguous network result or process
+   restart using the existing scoped resumability mechanisms. Account/device
+   boundaries and local-file availability must remain explicit. Do not store
+   source bytes in route parameters or create a second general-purpose outbox.
+5. Give a deliberate later Ask a new ID while retaining the same source refs.
+   Reconcile accepted/cancelled/expired pending records before offering retry;
+   opening a retained source is not automatically resending its old question.
+6. Rebuild media kind, source refs, and authored note from canonical submission
+   readback after relaunch. Route parameters may carry navigation context but
+   must not change the admitted payload on retry.
+7. Deduplicate native delivery events without suppressing a later intentional
+   identical share. Test stale-payload/new-marker ordering and reset/replay.
+   Apply the same contract on platforms with no unique marker; document the
+   actual native event identity available before choosing the adapter.
+
+**Required tests:** an accepted stage whose response is lost creates one pending
+turn and one canonical user message on retry; failure after message persistence
+replays the original authority/fingerprint; a new question about the same source
+creates a new turn; changed content/audience/retention cannot reuse an ID; forged
+server metadata cannot authorize writes through either Chat route; source text
+containing “remember/save/note” cannot authorize memory; an explicit authored
+Keep still works; an explicit no-retention instruction narrows a new OS import.
+Cover photo/audio/text relaunch, multi-source selection,
+cancel/retry, expiry, logout, and repeated identical native shares.
+
+**Exit:** one gesture survives recovery without duplication or lost authority;
+separate gestures remain possible. These are transport changes within existing
+Chat, not a redesign of its root.
+
+#### CC-2 — source and derivative lifecycle
+
+**Code:** `core/db/intake_v2.py`, `intake_semantics.py`, `intake_lifecycle.py`,
+`chat_images.py`; `workers/intake_semantic_jobs.py`; source deletion/expiry
+outbox consumers; canonical Chat materialization and image readers.
+
+Create a concrete copy/consumer inventory before changing cleanup: original
+upload, normalized text/image, transcript, pending payload, canonical Chat image,
+flattened extracted message text, generated answer, observations, vectors, and
+cached projections. For each, record owner, purpose, expiry trigger, maximum
+retry lifetime, lineage, read-time rejection, and physical cleanup mechanism.
+
+- Establish temporary custody at first admission. Processing completion,
+  failed retry, or re-interpretation cannot extend its maximum 24-hour backstop.
+  Natural completion should release Ask processing material earlier when safe
+  for the declared retry/history contract.
+- Keep explicitly retained originals retained across semantic completion,
+  failure, and replay. Asking about an already retained original does not revoke
+  its prior custody; the new answer's use and learning remain independently scoped.
+- Stop serving expired/revoked sources immediately, even if object deletion or
+  projection recomputation is still queued. Recheck authority before committing
+  late worker results and before hydrating copied media.
+- Converge new source-backed Chat reads on the existing source owner wherever
+  possible. If a derivative copy is necessary, record its parent, purpose and
+  expiry and connect cleanup; avoid indefinitely duplicating Intake bytes into
+  `chat_images`.
+- Inventory old null deadlines, legacy message copies, orphan uploads, and
+  non-verified custody states. Use the appropriate existing upload/security
+  lifecycle for quarantined material; do not sweep it with an assumed Ask rule.
+  Prepare a bounded, dry-run migration/report and compatibility reader before
+  any historical cleanup. Uncertain legacy custody cannot be reclassified from
+  filenames, model guesses, or the date alone.
+- Enforce separate claim/projection eligibility; deleting raw bytes alone does
+  not prove expiry of extracted text or a derived personal claim. Reconcile this
+  with the explicit conversation-history decision in §11.2.
+
+**Tests:** frozen-clock admission/processing/retry beyond the original deadline;
+retained Bring with failed extraction; null-deadline legacy inventory; expiry
+with worker unavailable; delete while extraction is running; retry against
+revoked media; duplicate cleanup delivery; surviving independent sibling; copied
+Chat media rejection and cleanup. Include PostgreSQL/outbox and temporary-file
+evidence, not only model assertions.
+
+**Exit:** each supported entry has a traceable lifecycle for its originals and
+copies; expiry blocks use before cleanup completes; migration preserves legitimate
+retention. A history decision or historical cleanup approval can gate that part
+without delaying the non-extension fix for new temporary sources.
+
+#### CC-3 — remaining memory and background writers
+
+Use the [I3 writer audit](i3-writer-authority-audit-2026-09-05.md) as the discovery
+list, then recheck actual callers and enabled paths. Include explicit memory
+tools, `preference_engine/edit_inference.py`,
+`core/personalization/discover_synthesizer.py`, `core/memory_signal.py`,
+accommodation/planning hooks, reflection, `refresh_memory.py`, and group synthesis.
+
+For each reachable writer, record input gesture/evidence, destination, allowed
+learning target/level, policy gate, replay identity, source revision, and repair
+consumer. Enforce before persistence or promotion. A browser interaction can
+remain bounded product/situation evidence without becoming first-person taste.
+Low importance or `source_mode="inferred"` alone is not a permission gate.
+
+Preserve positive functionality: explicit Keep, authored preferences and
+constraints within their granted scope, and source-bound Point/Bring behavior
+must still work. Do not turn conformance into a demand that users say “remember”
+for every legitimate source import or explicit observation. A retained photo,
+an authored observation, an inferred preference, and a shared contribution have
+different destinations and authority.
+
+Synthesis must consume eligible evidence and retain dependency/version labels.
+Correction or release invalidates its use immediately and triggers bounded
+recomputation through existing jobs. Generated prose cannot return as new
+evidence. Keep independently authored observations and affected participants'
+private context intact. Prompt changes receive the prompt-sensitive validation
+required by Task Intake and remain confined to this behavior, not Chat redesign.
+
+**Exit:** every inventoried reachable writer has an enforced disposition and
+positive/negative tests. Exercise explicit Keep, source-only Bring, behavioral
+signals, correction, late jobs, private/group scope, and synthesis together;
+do not call an audit table itself an enforcement result.
+
+#### CC-4 — useful-first result and receipt design
+
+Extend D0 and [Chat work package A](claude-design-integration-2026-09-04/04-chat.md)
+in the dedicated design tool. Use one reusable interaction vocabulary expressed
+in the existing capture surface and Chat. No new Capture tab or maintenance inbox.
+
+The composition rule is: useful answer/extraction/connection first; compact
+actual custody or owner result where relevant; optional depth and repair.
+Interpretation review is secondary unless a specific uncertainty changes the
+requested consequence. Do not replace review cards with an equally verbose
+policy explanation. Pending analysis must not make an already retained original
+look like an unfinished task the person owes the app.
+
+| Sequence | Complete first result | Quiet consequence and continuation |
+| --- | --- | --- |
+| C1: ticket + arrival question | Answer the question from supported details; expose a material ambiguity only if needed | Ask treatment, no attendance/tracking claim; answer remains reachable under history policy |
+| C2: same ticket deliberately imported | Readable ticket details and a supported practical issue if present | Original retained where authorized; exact Life/source door; analysis can finish later |
+| C3: cliff photo + authored observation | Respond to the buildings/cliffs observation and contribute a supported comparison or explanation beyond paraphrase | Keep permitted original/attention, not an inferred personality; Place/depth continuation is optional |
+| C4: “Keep jazz in mind for Saturday” | Show the precise intention accepted by its owner, or honestly identify an unapplied effect | Soft time and original wording; no naming wizard or invented Trip; later Home use only within scope |
+| C5: contribution to an Occasion | Authored photo/note appears in its actual permitted shared context | Attribution and audience visible where useful; no automatic edit, attendance or personal learning |
+| C6: “That ticket was cancelled; I never went” | The specific supported correction and actual owner readback | Original may remain; dependent occurrence/use is withdrawn; independent later events survive |
+
+Use a supported image or text ticket fixture until document formats are enabled.
+The sequence is about the human job, not a claim that PDF/PKPass support exists.
+Add a receipt-only versus explicitly allocated expense variant using the
+[assisted-expense brief](assisted-expense-contraction-brief-2026-09-05.md): useful
+extraction does not create debt; approved commands go through the existing exact
+Trip expense owner. Expense screen retirement is owned elsewhere.
+
+For every sequence, design entry → first result → leave → reopen → correct,
+including a thin result, partial batch, long note, pending/failure, denied
+permission, lost connection, unavailable owner, and account/audience change.
+Do not create a bespoke full-screen workflow for each case.
+
+**Implementation:** reuse the existing composer/context attachments,
+`IntakeLifecycleReceipt`, source readers, response renderers, and correction
+controls. Extract result-state selection from the large share screen where it
+reduces duplicated branches. Distinguish successful storage from useful model
+output; surface independent verified details while optional interpretation is
+pending. Bound generation, reuse verified extraction, and let the user leave
+after actual server acknowledgment. Routine completion does not require push.
+
+**Exit:** useful value is reachable without Keep/classification first; Chat is
+not an extra toll for already-available details; processing, result and retention
+states remain distinct. Keep/Correct/Undo describe real effects. Receipt/error
+copy exposes no internal authority taxonomy, preserves a clear Done/return, and
+never claims unuploaded local material is safe.
+
+#### CC-5 — owner handoffs and causal repair
+
+Publish a field-to-owner mapping over existing models before adding schema.
+The common handoff needs authenticated contributor/authorship, source identity
+and revision, authored note, truth status, permitted purpose/audience/expiry,
+origin context, canonical destination, actual effect receipt, and repair targets.
+Reuse existing fields and lookups; navigation context does not grant authority.
+
+| Receiving owner | Integration obligation | Completion evidence |
+| --- | --- | --- |
+| Life | Find retained originals independently of candidates; preserve note, media availability, exact identity and appropriate time/place associations | Capture → leave/relaunch → exact original, including unclassified and mixed-success sources; no guessed visit/time |
+| Entity / Places | Preserve exact subject and originating Places context; source association remains distinct from visit, review or public contribution | Return after capture/correction to the same valid object/context; changed permissions fail closed |
+| Home/Places output | Consume eligible evidence and revisions; recompute or reject invalidated dependencies | Correction removes the false basis from a later return; no obligation to emit a card per input |
+| Intention / Plan | Preserve authored wish, soft time, revision, release and optional association through an approved command | C4 survives without compulsory Trip/Plan creation and does not acquire commitment by inference |
+| Occasion / social | Keep contributor, subjects, custody, recipients and canonical owner distinct | C5 attribution/audience survive projection; withdrawal reaches shared uses without deleting unrelated private originals |
+| Expense | Consume the shared receipt Source and explicit instruction; deterministic owner handles allocation/correction | Receipt-only creates no debt; explicit supported allocation produces exact owner readback |
+
+Adopt existing Integration work, including capture return continuity and
+Life-to-Places correction invalidation, after verifying its current contract.
+Do not rebuild those systems. Browser navigation and cache invalidation alone
+do not establish server-side repair or block stale queued work.
+
+For each mutation/release, test canonical source/claim change → owner readback
+→ read-time exclusion → Home/Places/Life/Chat reader updates → queued work
+revalidation. Include an offline/stale client and a delayed projection job.
+Delete, detach, interpretation release, occurrence correction, and audience
+withdrawal are separate commands; only expose those supported by the owner.
+
+**Exit:** C2/C3 refinding and C6 repair run through real owners; intention/social
+sequences name an approved command and implemented consumer. If an owner is not
+ready, ship permitted private handling with honest unapplied-effect readback
+and leave that sequence explicitly incomplete. Do not counterfeit success with
+a chat message, fake semantic confirmation, or pseudo-Trip.
+
+#### CC-6 — integrated evidence and release posture
+
+Run acceptance incrementally as batches land; final certification uses the
+same recorded backend/mobile/schema revisions. Maintain one evidence matrix in
+this plan keyed by C1–C6 and failure variant, with code test, database/transport
+receipt, native capture, content assessment, remaining gap, and owner.
+
+Initial sequence ledger (September 5; component presence is not journey acceptance):
+
+| Sequence | Available foundation | Acceptance still required | Lead / receiving owner |
+| --- | --- | --- | --- |
+| C1: question + source | Source-backed send, authored note, answer-only admission | Retry authority, all processing-copy expiry, actual answer quality and native return | Capture / Chat |
+| C2: deliberate import | Verified retention, source-only reader and Life adapter | Useful inline result, corrected paginated reads, relaunch/refinding with failed interpretation | Capture / Life |
+| C3: authored observation | Separate semantic note input and retained-source path | Note-dependent substantive result, scope-preserving continuity, correction without original loss | Capture / Life / output owners |
+| C4: loose intention | Product contract and existing domain capabilities to evaluate | Accepted exact owner/command, persistence, soft-time readback and scoped later use | Integration / Plan |
+| C5: shared contribution | Existing Occasion/audience and receipt substrates | Approved attributed-material command, actual projection, withdrawal and changed-membership evidence | Occasion owner / Capture |
+| C6: correction | Source/candidate repair and some downstream invalidation | End-to-end dependency exclusion, queued-job rejection and independent-evidence survival | Capture / all affected readers |
+
+All six remain **open at full-journey acceptance**. Replace each cell with dated
+test/receipt references as it closes; keep native, transport and content evidence
+separate rather than turning one green unit test into a journey pass.
+
+1. **Deterministic:** policy/fingerprint tests plus actual DB readers, lifecycle,
+   writer denials and authorized positive cases. Expand the current tests where
+   failures occur at route/session/worker boundaries; helper-only assertions
+   cannot substitute for those paths.
+2. **Real transport:** isolated test application and private test data for stage,
+   send/SSE, lost response, interrupted finalize, partial extraction and repair.
+   Do not start the full scheduled backend simply to check a route.
+3. **Native:** use registered `photo-media-intake` for capture and `vesper-chat`
+   for conversation. Extend the former's contract/registry with share-capture
+   sequences; its current trip-photo-find evidence does not cover them. Exercise
+   true OS delivery, cold/warm start, duplicate callbacks, later identical share,
+   supported text/image/audio/multi-file, permission denial, background/relaunch,
+   account switch, small screen, dynamic type and keyboard.
+4. **Content:** assess C1/C3 and thin/partial variants for actual job completion,
+   added substance, source grounding, latency and cost. Fixtures prove rendering;
+   a bounded real-model run is needed to assess generated usefulness. Repeating
+   the user's own observation is not sufficient added value.
+5. **Readback/repair:** retrieve the same original from Life; inspect current
+   entity/Places context; execute C6 and verify downstream exclusion plus survival
+   of independent evidence. Test shared withdrawal under a changed audience.
+
+Follow the repository's registered screenshot/verdict workflow. Record a
+missing Android SDK or unavailable provider as the exact unproven lane; neither
+an iOS build nor mocked screenshots imply cross-platform end-to-end success.
+Keep historical native receipts dated rather than overwriting them with a pass.
+
+Measure elapsed time to acknowledgment and to first useful result separately;
+record required user actions, source-refinding success, retry duplicates,
+unsupported-format failures and stale post-correction reads. Use representative
+measurements to set latency/cost budgets. C1/C2/C3 require no classification
+action before value; ignoring an optional continuation creates no review debt.
+Avoid content-bearing telemetry or automatic personal interpretation of usage.
+
+Deploy compatible readers/schema before writers, then enable only the paths
+with matching evidence. Rollback disables new processing/effects while preserving
+legitimate sources, reads, correction and receipts. Never route rollback to a
+known unsafe legacy writer. This planning update deploys nothing and authorizes
+no historical deletion or new external connector.
+
+### 11.4 Solo-founder sequence and reviewable commits
+
+Begin **CC-0 and CC-1 engineering** while the dedicated design tool explores
+**CC-4's complete sequences**. These can proceed independently. Coordinate
+CC-1/CC-2 provenance fields together; execute lifecycle and writer changes in
+small batches. Owner discussions for CC-5 can happen early without blocking
+private capture. Integrate the designed result once its underlying readback
+and retry semantics are stable. Collect CC-6 evidence throughout.
+
+Do not assign an artificial one-week deadline. Reliability fixes are bounded;
+history semantics, remaining writer migration and shared-owner gaps carry the
+larger uncertainty. Review the concrete user sequences and boundary decisions,
+not every helper function. Reuse current tests/readers and the agreed four roots.
+
+Suggested commit order (split by child repository and further when necessary):
+
+1. Correct retained-source count and add real pagination/sibling-source tests.
+2. Persist server-owned authored provenance; make send and retry authority and
+   fingerprints consistent; cover canonical and legacy request adapters.
+3. Stabilize per-gesture client admission/recovery across all staging callers;
+   distinguish repeat Ask and native event replay; recover media from readback.
+4. Preserve original temporary deadline and retained-source custody across
+   workers; test expiry/delete races and cleanup outbox.
+5. Reconcile new Chat processing copies with source lifecycle; add compatibility
+   reads and a dry-run historical inventory under the settled history policy.
+6. Enforce writer dispositions and dependent synthesis repair, writer family by
+   writer family; retain authorized positive behaviors.
+7. Record accepted CC-4 sequences and implement shared useful-result hierarchy,
+   compact receipt, clear leave/retry, and bounded Chat continuation.
+8. Complete existing Life/entity/Home/Places handoff and correction tests;
+   implement approved intention/social/expense adapters in separately scoped
+   owner-coordinated commits.
+9. Add native/real-transport/content evidence, update the completion matrix and
+   prepare the bounded rollout/compatibility receipt.
+
+**Validation classification:** documentation planning now; implementation is
+backend contract-sensitive and, for writer/synthesis behavior, prompt-sensitive.
+Mobile is parity-sensitive/streaming-sensitive with product-shape review for
+CC-4. Read the relevant Task Intake and surface contract for each batch. Schema,
+authority-model or background-posture decisions receive the required founder
+review as concrete proposals; routine regression repairs need no new product
+decision.
+
+For backend route/model changes, run workspace `./scripts/sync-types.sh`, review
+full/mobile snapshots and generated types, and fix mobile parity before handing
+off. Run required local backend checks plus applicable PostgreSQL tests; run
+mobile typecheck and focused Jest, real-backend validation for streaming changes,
+and native verdicts for visible changes. Record any unavailable required check
+accurately. Respect size/import/doc checks; use a small shared helper or module
+where it improves ownership rather than bypassing a failing local gate.
+
+Use isolated worktrees for overlapping code work. Check branches, worktree and
+index before every commit; stage explicit owned files and inspect the entire
+staged diff. Another task's staged changes must not enter a contribution commit.
+Root documentation, backend and mobile retain separate histories. Update this
+plan's receipts and the Integration I3 handoff at package boundaries; refresh
+stale implementation statements in the system contract after behavior lands.
+
+### 11.5 Definition of completion
+
+The lane is complete for its declared supported portfolio when:
+
+- giving material produces useful value before optional administration;
+- Ask, Point/Bring, Keep, shared contribution and correction exercise their
+  actual separate authority without a user-facing classification form;
+- originals are findable independently of interpretation confirmation;
+- a lost response/relaunch cannot duplicate a gesture, and a later deliberate
+  gesture about the same source remains possible;
+- original/derived/source-copy lifecycles match their declared policy;
+- every inventoried active writer has an enforced and tested disposition;
+- correction/withdrawal blocks dependent reads and delayed work while preserving
+  independent evidence;
+- owner effects and unavailable effects are represented honestly; and
+- real transport, native and generated-content evidence support the paths being
+  enabled, with remaining format/platform/owner limits stated precisely.
+
+Completion is not conditional on supporting every possible media family or
+finishing every root's visual design. It is conditional on the supported
+contribution experience actually working across the relevant owners.
