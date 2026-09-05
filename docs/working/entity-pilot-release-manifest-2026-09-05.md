@@ -20,9 +20,9 @@ call, research job, catalog write, or backfill is authorized by this document.
 
 | Surface | Revision | Evidence |
 | --- | --- | --- |
-| Backend (`travel-agent`) | `e6bf7a75f` | Entity presentation/research gating, queue safety, terminal-plan repair, read-only health report |
-| Mobile (`travel-app`) | `969c416f1` | Shared object routes, source-backed citation links, read-only people-line sheet, explicit rebuilt-route state shells, dedicated QA surface |
-| Workspace docs | `8073187` | Roadmap, runbook, native receipt, execution log and this manifest |
+| Backend (`travel-agent`) | `120c34b31` | Entity presentation/research gating plus bounded people validity/custody reads and PostgreSQL owner-continuity proof |
+| Mobile (`travel-app`) | `bbb597442` | Shared object routes, safe public sharing, mounted/lifecycle freshness, research identity guards, fail-closed people lines and cache eviction |
+| Workspace docs | `4b3705c` | Roadmap, runbook, native receipt, synchronized API snapshots, execution receipt and this manifest |
 
 These are local `main` revisions, not deployed build identifiers. A pilot
 cannot start until the deployed artifact SHAs/build numbers are recorded and
@@ -40,18 +40,21 @@ match the reviewed source.
 
 ## Evidence available now
 
-- Deterministic mobile selection: **102 tests**; TypeScript,
-  test-contract TypeScript, API-boundary, schema-bridge and accessibility
-  governance checks pass.
-- Backend presentation/research/relationship selection: **46 tests** in the
-  current runbook receipt; the complete entity-focused backend selection is
-  **221 tests with 10 recorded skips**.
+- Deterministic mobile entity selection: **84 tests across 8 suites**, plus
+  people-line lifecycle and mounted-expiry coverage; `tsc` and test-contract
+  TypeScript pass.
+- Backend entity/relationship selections: **80 tests passed**, including a
+  disposable PostgreSQL people-line proof for pair withdrawal and sender
+  revoke. Touched-file Ruff checks pass.
 - iPhone 16 Pro mock native matrix slice: **12 steps**, covering compatibility
   loading geometry, retryable read error, malformed-link unavailable state and
   offline save gating. Direct site/experience forced-read and named research
   faults are covered by focused hook tests.
 - Existing flag-on renderer and local-real-backend read receipts remain
   bounded identity/verb evidence only; they are not full release acceptance.
+- The current execution receipt records the exact cross-repository commits,
+  contract synchronization, lifecycle/privacy behavior, and native/design
+  gates that remain open.
 - Frontend execution added a dedicated `entity-object` surface contract,
   source-backed inline citation links (orphan markers are withheld), a
   read-only exact-place people-line sheet, and explicit loading/error/not-found

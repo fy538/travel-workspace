@@ -26,11 +26,11 @@ This is the execution detail for the existing [entity roadmap](entity-roadmap-20
 not a replacement architecture. The earlier execution log and receipts remain
 historical evidence; their test counts and SHAs are not current-build approval.
 
-This planning turn authorizes no implementation, deployment, flag enablement,
-research spend, provider calls, scheduled work, production writes, or backfill.
-A later instruction to execute this plan should cover the scoped implementation
-and isolated verification packages below. Operational enablement still stops
-at the explicit owner/budget/build gates in section 10.
+The planning turn itself authorized no implementation, deployment, flag
+enablement, research spend, provider calls, scheduled work, production writes,
+or backfill. The later user instruction to execute this plan authorized the
+scoped implementation and isolated verification packages below. Operational
+enablement still stops at the explicit owner/budget/build gates in section 10.
 
 ### Three independently accepted capabilities
 
@@ -63,9 +63,9 @@ Inspected local `main` during planning:
 
 | Repository | Source baseline | Relevant changes already included |
 | --- | --- | --- |
-| `travel-app` | `f267db979` | Shared renderer, citations, people sheet, rebuilt route states, lifecycle/identity fixes `77d876df6`, regressions `809111ead`, and Places result-set detail returns |
-| `travel-agent` | `647950ede` | Canonical composition/relationships, queue artifact guards, active research status fix `303b72584`, and separately owned Life withdrawal guards |
-| workspace | `c27b70e` | Existing roadmap, native/runbook/pilot records and Places return-propagation receipt |
+| `travel-app` | `bbb597442` | C1–C5 route/share/freshness/research/people implementation and lifecycle/cache guards; concurrent Places/booking work remains separate |
+| `travel-agent` | `120c34b31` | C5 people validity/custody read path and PostgreSQL owner-continuity proof; concurrent Life/Places work remains separate |
+| workspace | `4b3705c` | Existing roadmap/runbook/pilot records plus the execution receipt and synchronized API snapshots |
 
 Both child working trees were clean at this inspection. The workspace had
 unrelated Plan/design decision and handoff edits; preserve them. These are
@@ -289,7 +289,7 @@ refetches every 60 seconds and on entry/reconnect. That is useful revalidation,
 not strict expiry or immediate remote withdrawal. Durable handoff events exist;
 that alone does not prove a client invalidation transport exists.
 
-### Proposed contract, requiring approval before implementation
+### Implemented contract; enablement still requires owner decision
 
 - Add server-evaluated projection validity metadata (for example `evaluated_at`
   and `valid_until`) and effective line expiry where needed to
