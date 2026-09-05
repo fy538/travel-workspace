@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / architecture / engineering
 created: 2026-09-01
-last_verified: 2026-09-01
+last_verified: 2026-09-04
 expires: 2026-10-01
 why_new: Records the executed, cross-repository Life v1 foundation and its validation evidence so future design work can build on committed seams rather than re-open the architecture.
 depends_on:
@@ -26,7 +26,7 @@ No public promotion, generalized dossier system, Together persistence, or
 repository-wide noun migration was attempted.
 
 Landed review refs: `baseline/four-root-convergence-2026-09-01` in each
-repository, app `main` at `9eb3d87d3`, and backend `main` at `b83d2393c`.
+repository, app `main` at `dc4f1f66c`, and backend `main` at `fc361aeed`.
 Safety tags preserve every pre-convergence `main`; the convergence receipt
 records the final local workspace landing.
 
@@ -73,6 +73,14 @@ optional server-authored Return rendering. It contains no input prompt,
 client-authored interpretation, arbitrary route push, or infinite-scroll
 archive. `EXPO_PUBLIC_LIFE_ROOT_V1` is default-off and internal/dev-only.
 
+The complete-record door now lands on a dedicated `/you/life-record` reader
+(`dc4f1f66c`). The reader consumes `LifeRecordPageV1` through the generated API
+contract, supports Time/Places cursor pagination, shows factual date/place/media
+context, preserves canonical owner destinations, and keeps loading, partial,
+failure, empty, and “read more” states explicit. The backend page is additive
+and reads the existing owner-owned Atlas timeline (`fc361aeed`); it is not a
+second Life archive.
+
 ### Shared workspace
 
 - `b52bbf9` — initial synchronized flag registry, operation policy, complete
@@ -88,8 +96,10 @@ archive. `EXPO_PUBLIC_LIFE_ROOT_V1` is default-off and internal/dev-only.
 - Backend semantic-facade and prior-trip custody suite: 34 tests passed.
 - Frontend canonical Places projection parity: 13 tests passed.
 - Frontend `tsc --noEmit`: passed.
-- Deterministic workspace contract check: passed — 431 mobile paths, 476
-  operations, and 1,253 schemas; generated TypeScript exactly matches the app
+- Life frontend reader suite: 9 targeted tests passed; complete-record reader
+  mock, error, lens, and cursor-door behavior is covered.
+- Deterministic workspace contract check: passed — 443 mobile paths, 488
+  operations, and 1,299 schemas; generated TypeScript exactly matches the app
   projection.
 - Cross-repository API audit: passed — 551 active, 13 dark, and 62 retiring
   operations; 0 unflagged.

@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / architecture / engineering
 created: 2026-09-01
-last_verified: 2026-09-01
+last_verified: 2026-09-04
 expires: 2026-10-01
 why_new: Converts the accepted Life v1 experience contract into a sequenced cross-repository transformation while preserving separate repositories, generated API contracts, and independently shippable commits.
 depends_on:
@@ -16,18 +16,20 @@ related:
 
 # Life v1 engineering transformation sequence
 
-## Current state, 2026-09-01
+## Current state, 2026-09-04
 
-- The active mobile Life tab still opens the large legacy Atlas screen. The
-  four-root shell names the intended Life posture but does not implement it.
+- The active mobile Life tab can now open the flagged native Life root. The
+  legacy Atlas route remains the default compatibility path while the flag is
+  off; the native root's complete-record door now opens a dedicated paginated
+  reader backed by the existing Atlas timeline.
 - Seven provisional Life primitives exist in the mobile tree; they are useful
   raw material, not proof that the root is assembled.
 - A deterministic `LifeRefindLane` exists dark on mobile and
   `POST /api/life/refind` exists in the backend.
-- The full committed OpenAPI snapshot and operation policy contain the Life
-  route. The active app projection and generated TypeScript do not: contract
-  generation currently stops on unrelated Home/Places operation-registry
-  conflicts. A handwritten Life refind mirror remains in mobile code.
+- The full and active OpenAPI snapshots, operation policy, and generated
+  TypeScript now include the additive `LifeRecordPageV1` depth route. The
+  mobile reader uses that generated contract; the underlying timeline remains
+  Atlas-owned and no second Life archive was introduced.
 - Return arbitration, Together propagation, the full contribution lifecycle,
   and causal repair are not implemented as one system.
 
@@ -69,9 +71,10 @@ all historical nouns.
 Exit: replay fixtures produce stable rich, ordinary, thin, and yielded payloads;
 all counts reconcile with the custody query.
 
-### 2. Build the dedicated native root behind a new flag
+### 2. Build and deepen the dedicated native root behind a new flag
 
-1. Create a dedicated Life screen instead of extending Atlas.
+1. Create a dedicated Life screen instead of extending Atlas. **Landed:**
+   native root, bounded digest, and explicit state handling.
 2. Assemble the accepted primitives into the production composition: speaking
    header, labeled lenses, digest, one scroll door, bounded Returns, fixed
    windows, Everything kept.
@@ -79,6 +82,11 @@ all counts reconcile with the custody query.
 4. Implement loading, offline, partial, error, thin, and yielded states at the
    same time as rich—not afterward.
 5. Ensure every rendered item carries the canonical object handle.
+
+6. Add a dedicated complete-record reader behind the root door, using a
+   cursor-paginated owner projection rather than an unbounded archive. **Landed:**
+   Time/Places reader, generated contract, mock parity, and canonical owner
+   navigation.
 
 Exit: the Time root works on device from real projection data, without cards,
 prompts, filler, or client-side editorial invention.
