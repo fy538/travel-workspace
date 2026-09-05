@@ -1055,3 +1055,11 @@ add a generic route service, or create a second Places feed. Re-pin all
 repositories and shared-file ownership before touching generated contracts.
 This keeps the roadmap live without making this task a bottleneck for Life or
 turning six former specialist tasks back on.
+
+The current integrated checkout also passes the workspace contract check,
+mobile typecheck, the Places freshness/return/conformance suites (15 tests),
+the backend result-set and movement shadow suites (15 tests), and the workspace
+doctor. Environment warnings remain explicit: local Postgres is not running,
+and backend full-route tests that require the `openai` package remain
+environment-blocked. These checks do not promote any dark semantic kind or
+claim native device acceptance.
