@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / architecture / engineering
 created: 2026-09-01
-last_verified: 2026-09-01
+last_verified: 2026-09-04
 expires: 2026-10-01
 why_new: Turns the accepted Life v1 contract and the current three-task convergence state into an execution-grade, collision-safe program with exact packages, commit units, gates, and stop lines.
 depends_on:
@@ -15,7 +15,371 @@ depends_on:
   - ../systems/contribution-and-consequence.md
 ---
 
-# Life v1 — non-regrettable engineering execution plan
+# Life — engineering execution plan
+
+## September 4 rebaseline — current plan
+
+**Read this section first.** Sections 1–16 below preserve the September 1
+foundation plan for provenance. Their task statuses, branch instructions,
+Time-only scope, sequencing, and definition of done are historical, not the
+current implementation program. This rebaseline supersedes those planning
+instructions; it does not silently amend the canonical Life contract.
+
+This is an investigation and proposed engineering roadmap, not authorization
+to implement schema, authority, or background-processing changes. No runtime
+code was changed during this audit. The program designs the whole Life system;
+packages are dependency-ordered implementation units, not an attempt to reduce
+the product to one behavior loop.
+
+### A. Decision and outcome
+
+**Proceed to engineering planning now. Do not require another broad Claude
+Design iteration first.** The design sufficiently establishes the experience:
+one personal corpus, Time / Places / Threads / People, a finite digest,
+progressive depth, Everything Kept, contextual refinding, and optional Returns.
+The main missing work is an organizing and serving system beneath that design.
+
+Life should let someone recognize, revisit, and use what they have lived,
+kept, and have unfolding—without asking them to maintain a database. It is not
+the rendered version of the agent's personal-memory prompt, a chronological
+dump of chat, or a new owner of Plans, people, places, and artifacts.
+
+The current implementation is useful foundation code, **not the full designed
+Life experience**. Preserve and extend its good boundaries. Replace provisional
+adapters and root composition where their semantics cannot serve that experience.
+
+### B. Evidence and authority
+
+Audit workspace: `/Users/feihuyan/travel-workspace`; design export:
+`/Users/feihuyan/Downloads/vesper-life-anchors/project`.
+
+- Workspace HEAD observed: `704f4c2`; backend: `9f3d80959`.
+- App HEAD moved during the audit from `464e7da98` through `ea10e4482` as the
+  Entity lane added Places tests. This was a concurrent working-tree audit,
+  not a frozen three-repository release assessment.
+- Root and backend contain concurrent documentation changes, notably
+  Contribution and Consequence, arrangements, and entity handoffs. Those were
+  inspected as working context and left untouched. The app was clean at the
+  final status check. Recheck all branches/statuses before implementation.
+- The latest completed turn of **Components and Plan** was a design handover,
+  not completed arrangement persistence. **Entities** was still running;
+  no completion or ownership transfer is inferred from its status.
+
+Authority order: accepted product/cross-root/C&C contracts and decisions first;
+accepted design behavior second; newer design proposals as explicit open
+decisions; runtime code as evidence of what exists, not proof of intended policy.
+Some September 1 code-status prose is already stale. A board's fixture-level
+acceptance is not native implementation or observed consumer usability.
+
+| Design material | How this plan uses it |
+|---|---|
+| `00A Canon and Open Arcs` | Selects accepted references; the export README's suggested open board is not authority |
+| `25 Life v1 Root - Production Composition` | Root composition baseline, not another concept contest |
+| 26–29 lens, thinness, growth, and chip studies | State portfolio; resolve any conflict with the current contract explicitly |
+| 06 dossier family, 10 Everything Kept, 11 search | Depth and navigation requirements; conditional organs, not twelve mandatory sections |
+| 21–24 Together, refinding, arbitration, contribution | Behavior fixtures to translate into executable contracts |
+| 30 mixed corpus, 31 kept-intention lifecycle, 32 five doors | Strong prospective direction; owner semantics remain gated |
+| 34 decisions and deltas | Decision docket, not authorization for new persistence or a canonical Ahead section |
+
+In particular, the older empty-lens illustration study does not override the
+current contract's compact treatment when the overall corpus is nonempty.
+Retain the accepted distinction between a genuinely empty Life and an empty lens.
+
+### C. What exists, what it does not yet provide
+
+Paths in this table are relative to the named child repository.
+
+| Area | Observed implementation | Engineering consequence |
+|---|---|---|
+| Life API | Backend `api/routes/root_projections.py`, `core/models/life_projection_v1.py`, `life_projection/*`: typed, authenticated, pure read projection | Reuse boundary and generated models; evolve the content contract |
+| Corpus | `life_projection/corpus.py` normalizes a bounded inventory from graph adapters | It is not yet the complete personal corpus or a paginated custody index |
+| Input coverage | `adapters.py` projects Plan, Occasion, Commitment, Outcome; upstream graph read has bounded default limits | Kept artifacts, source-only material, meaningful chat references, and future intentions are not covered simply by increasing root row limits |
+| Lens semantics | Threads currently derives from Plan relationships; Places/People from subsets of graph records | Implement attention continuity and personal place/person relationships, not renamed graph filters |
+| Counts and depth | Compiler caps visible entries; `total_entry_count` reflects that result | A preview count cannot promise the full record; use explicit count scope and a real full-record query |
+| Arbitration | Life yielded state clears sections/counts; model also disallows candidates in that state | Violates the contract if only a Return should yield: retain the record and suppress just that delivery |
+| Return utility | `root_projection/v2/returns.py` has a pure arbitration policy; no runtime caller was found in the backend search | Tested policy is reusable, but coordinated Life/Home/Places allocation is not established |
+| Native root | App `components/life/LifeRootV1Screen.tsx` has four selectable lenses and generic rows behind an internal flag | This is not yet the designed period/chapter, chip, dossier, or complete-corpus experience |
+| Destinations | Adapter links fall back to `/you/history?...&record=...`; legacy reader does not resolve that record parameter | Fix semantic navigation before promoting generic rows as complete objects |
+| Root controls | Search/archive icons are not actionable; full-record doors are limited; loading/error replace the surface | Complete the actual browsing loop, not just first-viewport rendering |
+| Mock parity | `useLifeRoot` supplies no mock data while `useData` bypasses fetch in mock mode | Provide real typed fixtures; hook-mocked component tests do not catch a blank mock root |
+| Canonical artifact | `api/routes/artifact_projections.py` reads confirmed private intake anchors; canonical mobile reader exists | Reuse exact artifact identity and reader. Together currently returns 403; do not claim shared corpus support |
+| Refinding | `backend/life/refind_sources.py` searches a bounded itinerary/block/trip corpus | Extend candidate coverage and containment; do not mistake it for full personal-memory search |
+| Intake and repair | Durable intake outbox/worker/graph bridge; versioned memory correction outbox and root invalidation utilities exist | Reuse mechanisms after owner audit; they do not automatically organize or repair every Life view |
+| QA | Life surface is registered but its design manifest fails the current checker | Repair the reference manifest and capture native evidence; HTML fixtures alone cannot close this gap |
+
+The current corpus route also needs explicit unavailable/partial-source
+semantics. A successful subset must not be presented as a complete Life record.
+
+### D. Architecture recommendation: an organized read model, not another owner
+
+```text
+Authorized source and object owners
+  → normalized corpus references + lineage
+  → incremental organization and relationship projections
+  → scoped root / full-record / dossier / search read models
+  → native Life views and existing canonical owner destinations
+
+Optional Return production and cross-root allocation consume this corpus;
+they do not decide whether the underlying record continues to exist.
+```
+
+**D1. Preserve source ownership and custody.** Sources, confirmed artifacts,
+governed claims, arrangements, Occasions, Commitments, and canonical entities
+remain with their existing owners. A corpus reference identifies owner, object,
+revision, authorized scope, provenance, and relevant timestamps. It does not
+duplicate every owner's payload or acquire authority by being indexed.
+
+Chat is not an indiscriminate memory feed. An Ask may remain in conversation
+history without becoming a durable personal claim or Life item. Explicit
+Bring/Keep and other permitted write-back follow C&C. Link eligible conversation
+context rather than copying every message or treating the personal-memory
+narrative as a factual Life record. No extra filing step should be required
+merely to make already-authorized material findable.
+
+**D2. Separate admission, organization, and presentation.** Admission asks what
+the actor may retain/read. Organization asks how existing material relates.
+Presentation selects a finite useful view. A source can be in Everything Kept
+and search before it belongs to a rich episode. Failure to infer a group must
+not make retained material disappear.
+
+Use deterministic explicit links, canonical place identity, authored context,
+and temporal evidence first. Use bounded model work for ambiguous relationship
+proposals, meaningful thread continuity, and grounded labeling—not for grants,
+attendance, ownership, or arbitrary screen layout. A planned flight or passed
+date does not establish a completed journey. A dozen photos is not a dozen visits.
+
+**D3. Represent organization without inventing an Occasion for everything.**
+A derived episode/group can span a journey, neighborhood week, or local dinner
+without a user-created Plan. Give persistent navigable groups stable identity
+and revision/lineage semantics; mutable titles are not primary keys. Choose the
+smallest projection storage needed after schema review. Do not add a universal
+Experience owner table merely because several views need grouping.
+
+Membership must be explainable and repairable. Support late evidence, merge and
+split, explicit correction, duplicates, and material that remains ungrouped.
+Do not force single-parent filing: one source can illuminate a time period,
+place, person, and meaningful thread through references rather than copies.
+
+**D4. Organize incrementally.** Build from authorized owner events and scoped
+initial backfill, not repeated scans of every chat on each Life read. Each event
+needs an idempotency key, owner/object revision, changed dependencies, retry and
+dead-letter behavior. Coalesce rebuilds by affected subject/group where safe.
+
+The existing intake outbox has a single published/acknowledged lifecycle.
+**Do not attach a competing Life consumer to that same claim/ack stream.**
+Design explicit fan-out, a downstream durable event, or independent consumer
+receipts transactionally at the appropriate boundary. The correction outbox's
+versioned acknowledgement is a useful pattern, not proof of complete Life repair.
+
+Read endpoints remain side-effect-free and never run an unbounded model pass.
+Materialized summaries improve latency; current authority must still be checked
+when serving them. Async recomputation and client invalidation are not sufficient
+revocation controls. Prevent an older worker or in-flight response from reviving
+withdrawn material after a correction.
+
+**D5. Serve one corpus through several purpose-built queries.** Define root,
+full-record, dossier, Everything Kept, and search contracts together:
+
+- Root: the accepted finite digest, typically four or five meaningful outer
+  blocks—not eight arbitrary leaves. It exposes depth without dumping it.
+- Full record: stable pagination/cursors, deterministic ordering, explicit
+  scope and unit of count. Preview count, total items, groups, lived visits,
+  and kept possibilities are different quantities. Unknown totals stay unknown.
+- Dossier: conditional modules with representative evidence and real doors to
+  depth. A place's world object, my relationship with it, original source,
+  arrangement, and saved composition are related but different destinations.
+- Everything Kept: durable retained material remains reachable without being
+  elevated into a personal narrative or a standalone thread.
+- Search: authorized candidates with containment/context and exact owner
+  destinations. Start with sound corpus coverage and lexical/context filters;
+  semantic retrieval augments, rather than substitutes for, that foundation.
+
+Maintain captured/imported, authored, planned, occurred, and generated time
+separately, including uncertainty and timezone. Treat maps as contextual views
+of the relevant record, not a competing fifth root or a requirement for every
+artifact. People views must not leak hidden participation through labels/counts.
+
+**D6. Keep optional value delivery separate from memory availability.** Factual
+records need no novelty test. Generated Returns do. Use the existing arbitration
+policy behind a coordinated, versioned allocation consumed by the roots—not
+independent GET requests racing to claim seats. Home urgency may remove a
+duplicated Return from Life, never its dossier or source record. A generation
+failure must not break browsing. Define cost budgets, backpressure, and a stale
+delivery policy before enabling background generation.
+
+**D7. Evolve contracts deliberately.** Reuse backend models and generated app
+types. Additive fields may extend v1; changed count, state, and destination
+semantics require an explicit compatibility decision, potentially a v2 read
+model with a v1 adapter. Separate corpus availability from Return delivery state.
+Do not preserve a misleading `yielded` meaning just to avoid a schema version.
+
+### E. Dependencies and decisions—not reasons to pause the whole system
+
+| Decision | Recommendation | What waits / what can proceed |
+|---|---|---|
+| Kept intention before a Plan | Reconcile with arrangements D1: person-owned prospective material with optional Plan association; stable ID, lineage, release, authored temporal hint | Persistence and real future-item writes wait for the owner/schema decision; corpus, past/present records, readers, and fixtures proceed |
+| Ahead composition | A conditional view of approved prospective owners, not a fifth lens or Life-owned planning engine | Accept the precise behavior through the Life docket before changing canon; preserve intended versus occurred in all contracts now |
+| Thread admission | Meaningful attention continuing across contexts; source-specific questions can remain nested | Approve examples and counterexamples before automatic promotion; retained material remains findable meanwhile |
+| Group correction | Reversible source-bound membership correction, no routine organizing homework | New mutation/persistence requires owner review; deterministic projection and lineage tests proceed |
+| Shared material | Read from the existing authorized owner; preserve contributor identity and independent accepted commitments | Together production waits for explicit read/grant contracts; private Life and authorization-negative tests proceed |
+| Saved composition | Exact deliberately kept version, distinguished from ephemeral generated contribution | Confirm custody owner and retrieval contract; do not use short-lived `source_contributions` as an archive |
+| Read-model persistence and workers | Small derived index/projection layer in current backend, no new microservice by default | Schema/background-loop posture requires founder review; pure compiler/query contract work proceeds |
+
+Coordinate against the [arrangements handoff](lightweight-arrangements-implementation-handoff-2026-09-04.md)
+and [Life Unfolding docket](life-unfolding-decision-docket-2026-09-04.md), which are
+working proposals. In particular, do not implement the older mandatory-Plan
+parent rule by creating hidden pseudo-Plans or by storing intentions as user
+preferences. The [Plans in Real Life design handover](claude-design-plans-in-real-life-handoff-2026-09-04.md)
+can refine arrangement surfaces without reopening Life's entire layout.
+
+Entity integration consumes stable entity identity and the current canonical
+resolver; this lane owns the personal relationship view, not a second entity
+page. Chat integration needs clear intake/keep receipts and object context, not
+a Chat redesign here. No edits to those lanes are authorized by this document.
+
+### F. Complete scenario portfolio
+
+Design and test contracts against this portfolio from the start; do not select
+one journey as the architecture for all of Life:
+
+1. Multi-city Europe trip with tickets, photos, restaurants, and conversations:
+   digest → chapters → evidence → exact originals, without duplicate records.
+2. A normal New York week and local dinner with less material: no empty travel
+   shell, invented significance, or demand to complete a memory.
+3. A standalone photo or saved article, without Plan/Occasion/group: immediately
+   reachable through authorized custody and later enriched by relevant context.
+4. Ask-only conversation versus deliberate Bring/Keep: different durable effects.
+5. A friend's restaurant note, kept place, personal intention, arrangement, and
+   saved composition: the five doors remain distinguishable around one entity.
+6. An undated possibility, an upcoming dinner, and a date that passes without
+   attendance evidence: no accidental conversion into a lived visit.
+7. A question about pasta that belongs inside a trip, versus a genuine thread
+   continuing into cooking at home: no automatic thread proliferation.
+8. Shared dinner contributions, contributor withdrawal, and a separately accepted
+   commitment: repair the affected material, not unrelated social history.
+9. Old material imported today, unknown dates, and conflicting source dates:
+   useful placement without pretending import time was occurrence time.
+10. Years of material exceeding all current graph limits: counts reconcile,
+    pagination reaches the oldest item, and root brevity does not limit access.
+11. A late photo changes a grouping; a duplicate arrives; an incorrect relation
+    is corrected: stable links and predictable merge/split behavior.
+12. Home currently owns a live Return: Life retains its record; stale or failed
+    generation does not create an empty Life.
+13. Partial source outage, offline cache, account switch, grant revocation, and
+    delayed worker completion: no false completeness or cross-account recovery.
+
+### G. Proposed execution packages
+
+Each package has backend/app/workspace commit units where applicable. Stage
+explicit files and recheck current branches before every commit. Commit/push
+authorization will come from the execution request, not this planning pass.
+
+| Package | Work and likely seams | Exit condition |
+|---|---|---|
+| P0 — executable contract baseline | Characterize current defects; specify corpus scope, timestamps, count units, grouping, destination types, availability vs Return state; reconcile design manifest against boards 25/06 and approved behaviors | Full scenario matrix and contract decisions are written; known failures have targeted regression cases; pending prospective semantics remain labeled |
+| P1 — complete eligible corpus | Extend owner adapters beyond bounded graph results; include retained source/artifact records without requiring a Plan; implement authorized full-record/custody query and pagination | Material beyond root/graph limits is reachable; count semantics reconcile; private and revoked material are filtered before aggregates |
+| P2 — organization and repair | Stable derived group/membership model, deterministic relationships, scoped backfill, incremental work scheduling, idempotency and correction; bounded semantic proposals only after baseline | Late evidence/duplicate/merge/split/revocation scenarios pass; rebuild yields equivalent authorized records; no whole-chat GET scan |
+| P3 — browsing and destination APIs | Root digests across all four lenses, full records, conditional dossiers, Everything Kept, contextual search; replace legacy record pseudo-links with real typed destinations | Every root leaf and depth door resolves to its intended object/view; no unsupported owner state labeled complete |
+| P4 — native Life experience | Compose accepted root and dossiers, wire search/archive, accurate depth counts, typed real/mock data, last-lens behavior, loading/partial/offline/large-text/accessibility states | All four lenses consume real contracts; native navigation and data parity work, not just mocked hook snapshots |
+| P5 — prospective and multiplayer integration | Consume approved intention/arrangement ownership and shared-material grants; five-door identity, mixed-time views, contextual People/Places, source withdrawal repair | Future material is not attendance; shared views preserve custody and do not expose private context; no extra planning workflow in Life |
+| P6 — Returns and cross-root continuity | Integrate existing candidate policy with coordinated allocation, lineage, freshness, budgets and affected-root invalidation; exact kept-composition custody after owner decision | Life record survives Return yield; no duplicate delivery seat; stale/corrected evidence cannot regenerate an invalid Return |
+| P7 — cutover and operational readiness | Legacy mapping/backfill, comparison audits, opt-in internal rollout, real DB/concurrency tests, native QA, monitoring and rollback | All required scenarios have end-to-end evidence; old material has a real destination; flag rollback remains safe before any Atlas pruning |
+
+Dependency order: P0 → P1 → P2/P3 → P4 → P7. Specify P5/P6 interfaces during
+P0; land their runtime work as owner dependencies settle, and include both in
+the complete-system acceptance before retiring compatibility. Pure reader and
+native work can overlap once contracts are stable, but a solo founder should
+finish coherent package boundaries rather than run several conflicting root
+rewrites. P2 schema approval precedes migrations. P5 waits only on its own
+unresolved owners, not every upstream package.
+
+Suggested commit boundaries within a package: backend model/compiler/tests;
+backend owner queries or approved migration/worker/tests; workspace OpenAPI
+and app-generated types; mobile reader/fixtures/tests; status/acceptance docs.
+Run `scripts/sync-types.sh` for backend API changes and resolve frontend breakage
+in the same coordinated package. Do not claim completion between an incompatible
+backend change and its generated mobile consumer.
+
+Risk classification: query/model changes are contract-sensitive; semantic
+organization is also prompt-sensitive; schema, auth, and background processing
+are founder-only review work. Mobile hooks/navigation are parity-sensitive and
+route architecture may require founder review. Follow both Task Intake guides.
+
+### H. Focused design work that remains
+
+Do a bounded finishing pass alongside P0/P3/P4, using realistic payloads:
+
+- Sparse versus rich dossiers and how representative rows lead into complete
+  records; avoid making all optional dossier organs mandatory.
+- A source with no group, a useful empty lens, and unavailable/partial data.
+- Five doors around one entity; distinguish original source from relationship
+  record and future arrangement without introducing a management dashboard.
+- Approved future/past mixture and kept-versus-lived counts.
+- Direct correction entry, a changed grouping, and a yielded Return with the
+  unchanged record still visible.
+- Native text scaling, scrolling, long labels, map context, and navigation back.
+
+These are state and interaction acceptance questions, not a request to reopen
+the whole visual language. Repair the registered Life design-reference manifest
+first; then use the surface contract's native screenshot/QA path. No screenshot
+or mobile usability acceptance was produced by this investigation.
+
+### I. Research implications
+
+Research reinforces the architecture but does not validate Vesper's complete
+experience. Sellen and Whittaker distinguish useful remembering activities from
+indiscriminate capture. Our application: optimize Life for recognizable cues,
+revisiting and future usefulness, not capture volume or mandatory reflection.
+Their work is conceptual guidance, not evidence for this specific four-lens UI.
+[Beyond total capture](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/p70-sellen.pdf).
+
+OmniQuery studies how contextual connections across captured material improve
+personal question answering. Our application: preserve atomic evidence and
+derive cross-source context so the same corpus supports browsing and refinding.
+Its evaluated system is primarily question answering, not proof that an
+automatically organized Life tab will work; inferred context still needs
+lineage and correction. [OmniQuery, CHI 2025](https://arxiv.org/html/2409.08250v2).
+
+The practical conclusion is not “add a larger memory prompt.” Build trustworthy
+organization and progressive access around the material, then layer grounded
+interpretation and optional delivery on top.
+
+### J. Validation recorded September 4
+
+- Backend targeted offline run: **39 passed** across `tests/life_projection`,
+  `tests/life`, and `tests/eval/test_life_refinding_checks.py`.
+- Mobile targeted run: **26 passed in five suites**: LifeRootV1Screen,
+  LifeRefindLane, LifePrimitives, lifeRefindPresentation, and canonical-artifact
+  Life smoke coverage.
+- App `npm run typecheck`: passed.
+- Workspace `make contract-check`: passed, including active mobile projection,
+  generated types, place identity seams, schema bridge, and Occasion behavior.
+- `npm run qa:design:check -- life-root`: **failed** because the manifest lacks
+  the checker's required string `surface` and nonempty `pairs` array.
+
+Passing tests establish the current foundations, not a complete organizer,
+real Together support, coordinated Returns, exact dossiers, real-backend native
+parity, production concurrency safety, or visual acceptance. No production
+data, scheduled provider loop, database migration, or full application test run
+was exercised. Implementation must add real-Postgres tests for leases,
+fan-out/acknowledgement, pagination and repair races, plus native/device evidence.
+
+Track operational correctness as well as delivery: eligible-but-unreachable
+items, stale projection lag, unresolved destinations, count mismatches, dead
+letters, grouping repair rate, duplicate Return seats, and authorization-denial
+behavior. These are engineering acceptance signals, not invented product-market
+fit targets.
+
+**Next authorized step to request:** execute P0 and P1, with founder review of
+the narrow schema/owner decisions before P2 migrations. This starts building
+the shared system while the arrangement lane finishes its bounded decisions.
+
+---
+
+## Historical September 1 foundation plan
+
+The following sections are retained as historical planning context. Do not
+use their old branch/task status or Time-only completion scope as current truth.
 
 ## 1. Objective
 
