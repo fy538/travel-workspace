@@ -544,6 +544,10 @@ Validation recorded for this continuation:
   identity, research queue and health report) passed 177 tests with 2 recorded
   dogfood-wedge skips requiring an explicitly seeded Lisbon corpus. This is a
   code-level gate, not evidence of a production catalog or rollout.
+- The no-background local API returned honest `404` responses for an unknown
+  site across public and authenticated presentation routes. The corresponding
+  cleared-state Maestro flow remained at the Expo development-server picker,
+  so native unavailable/process-restart acceptance is intentionally still open.
 - The real PostgreSQL second-occasion loop-closure proof passes independently
   with the repository virtualenv (`.venv/bin/pytest
   tests/scenarios/test_micro_journey_loop_closure.py -q`: 5 passed). It

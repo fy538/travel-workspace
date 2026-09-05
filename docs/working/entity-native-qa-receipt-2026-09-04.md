@@ -145,6 +145,15 @@ scenario passed 5 tests. These checks exercised existing local rows and
 transactional read/write fixtures in their test harness; they did not seed a
 catalog or invoke paid research.
 
+The same no-background local API returned an honest `404` for an unknown site
+on the public envelope and both authenticated presentation variants
+(`/api/entities/site/999999`, `/api/me/entities/site/999999/presentation`, and
+`/api/me/entities/site/999999/presentation-v2`). The native UI unavailable
+flow could not be completed because clearing the development client state
+left Maestro at the Expo development-server picker; that harness limitation is
+why unavailable/process-restart remain open native gates rather than being
+counted as passes.
+
 The follow-up privacy/repair coverage on that same database passed 66 tests
 across entity presentation reads, private-entity contracts, entity routes,
 people-lines gating, relationship handoffs, and outcome feedback. On the
