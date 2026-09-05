@@ -124,3 +124,11 @@ accepted design bundle is archived at
 `docs/design-archive/root-boards-2026-08-31-accepted/`. Complete Chat and Life,
 C3/G19 capability delta, native interaction, and real-data validation remain
 open in their proper programs.
+
+**Amended — 2026-09-05.** Clause 1's sentence "a visible people chapter
+appears only when the gathering itself is the dominant subject" is replaced
+by the conditional `From your people` rule, and the kernel's containment law
+and kicker registers are amended, in
+[Amend the Home composition canon](2026-09-05-amend-home-composition-canon.md).
+Four kinds join the Home union there (35 total). This record's text above is
+preserved as written; the amendment governs where they differ.

@@ -247,6 +247,31 @@ as system chrome. Kit-wide change in `kit/plans.css`, so every board updates at 
 - Verified by re-rendering 09 J1a/J2f and 02 A5 from the live project; a wrapped receipt now aligns its second
   line with the text (hanging indent).
 
+## 3g. Documentation-alignment pass (2026-09-05)
+
+After re-reading the product canon, the four-root and contribution contracts, the sixteen decision records since
+August 14, and the design-kernel rulings, four concrete deviations were fixed in the project (kit-wide where the
+kit owns them):
+
+- **Door law (kernel §11.1).** Attributed source facts in supporting lines were inert gold body text. They are now
+  Doors: gold text with the canonical trailing arrow and an invisible 44pt target, opening the evidence (ticket,
+  confirmation, venue). "See Isuien" and other in-page jumps use the one arrow idiom.
+- **Micro-type floor (kernel §11.2).** Capsule labels, time-stamps, the mic slot, map labels and fixture labels
+  were 9–9.5px; all customer-facing roles are now ≥10px.
+- **"Do not narrate the product" (Editorial Canon §13.3).** Sentences describing Vesper's own restraint, storage or
+  monitoring were removed from customer surfaces on 02, 03, 05, 08 and the prototype ("Nothing is saved — that just
+  answers the question", "Vesper isn't watching the reservation", "Vesper doesn't cancel them", "Vesper doesn't book
+  stays…"). The boundary is now shown by the object: a door, a receipt, a stub. Audience and consequence statements
+  ("Only you see this", "Sam sees your answer") remain, as the canon allows.
+- **Physical grammar (kernel §11.7).** The 09:02 train now carries a **ticket stub** plate (03 B2, 09 J1a) instead
+  of a gold sentence; the C1 invitation card carries a **facepile with the dashed empty chair** for the invitee who
+  has not answered. Both are the kernel's wardrobe, not new components.
+
+07 gained R-14 (this pass) and two mapping rows (Door law; type floor). **Still open for ruling:** kernel §11.8
+("Shape default / itinerary demoted", 08-29) versus the 09-04 brief's editorial-itinerary family. This project
+follows the brief; the kernel text has not been reconciled. Also noted, not fixed here: the Chat-root frames in
+this project are placeholders and do not reflect the ruled Chat entry (§11.9) — the Chat lane should re-clothe them.
+
 ## 4. Verification (live project, 2026-09-04)
 
 - Every board rendered from the **live project** via `render_preview` serve URLs in headless Chrome

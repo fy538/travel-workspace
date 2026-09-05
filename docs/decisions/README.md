@@ -18,6 +18,7 @@ Durable choices that constrain future work belong here. Use the
 
 | Date | Decision | Status |
 |---|---|---|
+| 2026-09-05 | [Amend the Home composition canon](2026-09-05-amend-home-composition-canon.md) | accepted |
 | 2026-09-01 | [Adopt Life v1 behavior sequences](2026-09-01-adopt-life-v1-behavior-sequences.md) | accepted |
 | 2026-08-30 | [Adopt the Life consumer anatomy](2026-08-30-adopt-life-consumer-anatomy.md) | accepted |
 | 2026-08-30 | [Adopt the Home and Places consumer anatomy](2026-08-30-adopt-home-and-places-consumer-anatomy.md) | accepted |
