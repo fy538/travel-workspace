@@ -60,6 +60,8 @@ Life lens, and `3110d43c2` makes the Life root's Search and Everything controls
 real, accessible actions rather than inert icons.
 Candidate and trip dossier headers now honor the same Life return context
 (`11c46644c`, `975cceb03`) instead of routing back to Atlas/trips by default.
+The cursor read also evaluates the graph at the carried snapshot clock and
+includes corpus size in the root revision (`5fe91c312`, `2682fa7c9`).
 
 ## Landed checkpoints
 
