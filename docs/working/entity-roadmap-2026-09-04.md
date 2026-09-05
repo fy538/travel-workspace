@@ -523,6 +523,7 @@ Completed implementation packages in this lane:
 | E1/E3 | Legacy v1 presentation now adapts non-venue planned/lived relationship state from the canonical projector, keeping site and experience compatibility reads aligned with v2 without a third relationship model; regression coverage includes affinity-only, planned, and lived cases | `travel-agent:363e7f54b` |
 | E1/E2 | Relationship occurrence readers now suppress lived history from cancelled or archived trips, and PostgreSQL coverage proves both the venue reader and canonical projector repair after trip cancellation | `travel-agent:9477cd1e1` |
 | E3/E8 | Experience detail now distinguishes a 404/unavailable entity from a retryable transport failure and uses the shared unavailable shell; hook regression coverage covers both outcomes | `travel-app:69e6fb6cf` |
+| E1/E3 | v2 entity presentation now composes the envelope and canonical viewer relationship from one repeatable-read snapshot, eliminating mixed-page reads during concurrent relationship changes | `travel-agent:d08bd229d` |
 | E4 | Viewer-safe lifecycle endpoint; completed status requires a readable brief; experience/provisional requests remain unavailable; expired artifacts report stale/retryable | `travel-agent:4f018f2f0`, `fb38e24f1` |
 | E5 | Explicit source metadata write-back; stale idempotency replay refresh; page-artifact worker gate; fail-closed global budget, atomic queue claim and abandoned-lease recovery | `travel-agent:e9d89fc0d`, `350e5f931`, `5eee43f31`, `f2a6d846a`, `83583a42d`, `0bd02d8da`, `97ee0019f`, `ea940a044` |
 | E6 | Generated mobile status contract; centralized research state reducer; stale content age label; status-error recovery copy and tests; stable locale metadata formatting; stale-age preservation during unknown status | `travel-app:9904f3411`, `9abfc997d`, `462d56a0d`, `ce504cfa9`, `71f154151`, `a3636e13c` |
@@ -550,6 +551,9 @@ Validation recorded for this continuation:
 - Experience detail now maps a 404 to the shared unavailable state while
   preserving retry behavior for transport failures; the hook and experience
   smoke coverage remain green.
+- V2 presentation composition now uses one repeatable-read snapshot for the
+  envelope and canonical relationship; the focused suite passes 48 tests and
+  includes a one-snapshot regression.
 - A second native-Postgres follow-up pass covering entity presentation,
   private-entity contracts, people-line gating, relationship handoffs and
   outcome feedback passed 66 tests. The current mobile entity
