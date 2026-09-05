@@ -38,16 +38,14 @@ in Phase 0, not silently treated as superseded canon.
 
 Inspected local `main` on September 4 (after the continuation receipts below):
 
-- Backend: `9f3d80959` — research gating, persistence hardening and the
-  read-only entity health report.
-- Mobile entity baseline: `d3b22275b` — canonical mock envelopes for all known experiences,
-  guarded venue/site/experience journeys, focused shared-renderer
-  state-contract coverage, and Dynamic Type/accessibility governance fixes
-  (the preceding route/action implementation is `35c110f47`).
-- Workspace entity evidence: `03c7767` — roadmap, runbook, native receipt and
-  post-fix evidence are committed locally (later workspace commits are
-  unrelated).
-  accessibility evidence are committed locally.
+- Backend: `e6bf7a75f` — research gating, persistence hardening, terminal-Plan
+  evidence repair and the read-only entity health report.
+- Mobile entity baseline: `76a4df8af` — canonical mock envelopes for all known
+  experiences, guarded venue/site/experience journeys, focused shared-renderer
+  state-contract coverage, Dynamic Type/accessibility governance fixes, and
+  identity-scoped Keep/Unsave/research/place-note mutation lifetimes.
+- Workspace entity evidence: `bdd4b88` — roadmap, runbook, native receipt and
+  post-fix evidence are committed locally.
 
 These are local source baselines, not deployment or public-release evidence.
 No database job, provider call, canary, or backfill was run to write this
