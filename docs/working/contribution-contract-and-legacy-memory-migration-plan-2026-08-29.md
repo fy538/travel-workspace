@@ -872,7 +872,10 @@ and readback; it must not silently reactivate unsafe legacy retention. Retire a
 legacy writer only after caller inventory, read compatibility, recovery, and
 correction coverage show the replacement is sufficient.
 
-The immediate next executable scope is **D0 and P0 together**. We can make
-substantial progress without waiting for every Life, Plan, entity, or Home
-visual decision, but should not promise a consumer handoff those owners have
-not actually agreed to or implemented.
+The first executable pass (P0–P4 plus the safe part of P5) is now landed in
+the child repositories. The next executable scope is controlled P5 evidence:
+native/share-extension round trips, relaunch/interrupted-finalize receipts,
+mixed-success recovery in the real transport, and owner agreement for any
+new document family. We can continue that work without waiting for every Life,
+Plan, entity, or Home visual decision, but should not promise a consumer
+handoff those owners have not actually agreed to or implemented.
