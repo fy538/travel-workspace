@@ -89,7 +89,9 @@ skipped when intake records occupy the first page. Cursor tampering/version
 drift is rejected explicitly (`8e2d2bcb0`). Retained source rows now resolve to
 an exact Life-owned owner route (`/you/intake-submissions/[submissionId]`)
 rather than disappearing behind an unsafe API URL (`320223f33`, app
-`29f21a745`).
+`29f21a745`). Subsequent intake reads now apply the cursor timestamp at the
+owner query boundary (`5a4d9f938`) instead of repeatedly loading only the
+newest head.
 
 ### Shared workspace
 
