@@ -969,6 +969,13 @@ tests; do not defer the live engine until content composition is finished.
   lint/compile pass, and the broad map API suite remains environment-blocked
   by the pre-existing missing `openai` package. The commit hook's known
   pre-existing size-budget overage was skipped explicitly.
+- **I4 / field-origin return acceptance — implemented and locally tested:**
+  `travel-app` commit `84ae8d379` extends the native detail-route bridge so
+  ordinary field-origin `placesReturn` contexts preserve the same result-set
+  id/revision as map-origin returns. The Places route-bridge, pin handoff, and
+  return suites pass (13 tests), and the app typecheck passes. This closes a
+  concrete Home/Places→Focus return gap; it does not yet claim a real-data
+  stale-source recomposition path.
 
 ### M1 batch update — 2026-09-05
 
