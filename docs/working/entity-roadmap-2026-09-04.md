@@ -533,6 +533,7 @@ Completed implementation packages in this lane:
 | E4 | Viewer-safe lifecycle endpoint; completed status requires a readable brief; experience/provisional requests remain unavailable; expired artifacts report stale/retryable | `travel-agent:4f018f2f0`, `fb38e24f1` |
 | E5 | Explicit source metadata write-back; stale idempotency replay refresh; page-artifact worker gate; fail-closed global budget, atomic queue claim and abandoned-lease recovery | `travel-agent:e9d89fc0d`, `350e5f931`, `5eee43f31`, `f2a6d846a`, `83583a42d`, `0bd02d8da`, `97ee0019f`, `ea940a044` |
 | E6 | Generated mobile status contract; centralized research state reducer; stale content age label; status-error recovery copy and tests; stable locale metadata formatting; stale-age preservation during unknown status | `travel-app:9904f3411`, `9abfc997d`, `462d56a0d`, `ce504cfa9`, `71f154151`, `a3636e13c` |
+| E6/E8 | The shared object renderer now makes a terminal `unavailable` research capability explicit (“Read up isn’t available for this place.”) while withholding retry; the renderer regression locks the no-action behavior. | `travel-app:298dc61db` |
 | Contract | OpenAPI snapshots, active projection, generated schema, identity seams and schema bridge are synchronized | `workspace:93ea30e` |
 | E8 (native default-route slice) | Current mobile build passes venue identity/save/private-handoff, registered Places capture, and explicit plan-placement review/commit on iPhone 16 Pro in the mock lane; the default venue route is flag-off, so shared `ObjectPageRebuild` acceptance remains open. The rebuild intentionally omits the legacy Add-to-trip ladder per the Places contract. | `travel-app:47735f406`, `travel-app:35c110f47`, [native QA receipt](entity-native-qa-receipt-2026-09-04.md) |
 | E8 (native guarded-renderer slice) | Flag-on venue, site, and experience routes pass on the iPhone 16 Pro mock lane with canonical `Cervejaria Ramiro` / `Museu Nacional do Azulejo` / `LUX Fragil Closing Night`, `Keep place`, visible Ask handoffs, and explicit assertions that the legacy Add-to-trip ladder is absent. Focused renderer tests also lock sparse, owner-private capability denial, and stale research states; all known mock experience IDs resolve to canonical names. The three journeys pass at iOS `accessibility-medium` text size on the post-fix source, and static accessibility governance passes. This proves the intended shared renderer identity/verb contract and one enlarged-text check; full native state-matrix evidence remains open. | `travel-app:7b4d0601b`, `travel-app:6e3fe8545`, `travel-app:464e7da98`, `travel-app:377c8a4b5`, `travel-app:ea10e4482`, `travel-app:dba1e16e9`, `travel-app:d3b22275b`, [native QA receipt](entity-native-qa-receipt-2026-09-04.md) |
@@ -604,10 +605,11 @@ Validation recorded for this continuation:
   test:typecheck:contracts`); API boundary and schema-bridge CI checks also
   pass (`npm run api-boundaries`, `npm run schema-bridge`).
 - The focused mobile shared-renderer state suite passes
-  (`__tests__/components/places/ObjectPageRebuild.test.tsx`: 3 tests),
-  covering sparse body absence, capability/owner-private withholding, and
-  stale research age plus explicit refresh. The four touched screen/mock
-  suites pass 69 tests; TypeScript completes cleanly.
+  (`__tests__/components/places/ObjectPageRebuild.test.tsx`: 4 tests),
+  covering sparse body absence, capability/owner-private withholding, stale
+  research age plus explicit refresh, and terminal research unavailability
+  without retry. The four touched screen/mock suites pass 69 tests;
+  TypeScript completes cleanly on the app main checkout.
 - `npm run accessibility-governance` passes after removing the rebuilt
   renderer’s Dynamic Type opt-outs; the three guarded journeys were rerun at
   iOS `accessibility-medium` on `travel-app:d3b22275b` and passed.
