@@ -105,7 +105,9 @@ look-ahead row and return an explicit continuation bit (`1c22ce1fc`), so
 partial authority is no longer inferred from an exact 100-row response. The
 mobile reader carries its originating Life lens into dossier links and uses
 history with a lens-aware fallback when leaving a retained-source record
-(`ebbd4de7a`).
+(`ebbd4de7a`). It now persists an account-partitioned lens/offset/anchor and
+the last loaded cursor, restores that offset after the bounded query cache
+hydrates, and clears the position at account teardown (`ec09c0f41`).
 
 ### Shared workspace
 
@@ -129,6 +131,8 @@ history with a lens-aware fallback when leaving a retained-source record
   unified owner-read seam.
 - Canonical dossier and Life-return navigation checks: 21 backend Life tests,
   3 Life reader tests, and TypeScript compilation passed.
+- Life position persistence and account-boundary checks: 29 focused frontend
+  tests passed.
 - Deterministic workspace contract check: passed — 443 mobile paths, 488
   operations, and 1,299 schemas; generated TypeScript exactly matches the app
   projection.
@@ -147,16 +151,16 @@ history with a lens-aware fallback when leaving a retained-source record
    exact counts when a bounded page is exhausted; repeated reads can therefore
    progress beyond the 100-row owner batch. The internal unified owner-level
    intake page service is now in place (`bff449427`), and its readers expose a
-   database-backed continuation bit (`1c22ce1fc`). The remaining work is to
-   cover dossier destinations for any new Life object family and restore
-   scroll position across a process-death/deep-link return without changing
-   the public shape.
+   database-backed continuation bit (`1c22ce1fc`). Dossier destinations and
+   lens-aware return navigation are landed (`28edd6654`, `ebbd4de7a`). The
+   remaining work is to validate scroll restoration on a real cold-launch
+   deep-link path and cover dossier destinations for any new Life object
+   family without changing the public shape.
 2. Full Places/People/Threads lens projection from production data.
 3. Public rollout, analytics-driven promotion, and removal of legacy Atlas.
 4. Together/multiplayer write paths and generalized Occasion architecture.
 5. Visual composition polish beyond the production HTML design reference.
 
-The next safe increment is to persist and restore Life's scroll/cursor context
-for cold-link and process-death returns, then re-run the same contract and
-conformance gates. Do not broaden either flag or add more lenses until that
-return seam is proven end to end.
+The next safe increment is a device-level cold-launch/deep-link rehearsal for
+the persisted Life return anchor. Do not broaden either flag or add more lenses
+until that return seam is proven end to end.
