@@ -834,7 +834,7 @@ tests; do not defer the live engine until content composition is finished.
   migration path; the portfolio reader cannot silently become a second
   production owner.
 - **I1 / cross-root dependency matrix — documented:** workspace commit
-  `pending` adds `cross-root-change-dependency-matrix-2026-09-05.md`, tying the
+  `096828d` adds `cross-root-change-dependency-matrix-2026-09-05.md`, tying the
   existing consequence and root invalidation paths to their Home, Places, Life,
   depth, session, and asynchronous-production consumers. It records the
   remaining background-fan-out, late-completion, and signal-to-judgment gaps
