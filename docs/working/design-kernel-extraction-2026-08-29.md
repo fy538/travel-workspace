@@ -193,8 +193,14 @@ Any new board value outside this ramp is a defect unless ruled in.
 
 ## 5. Composition grammar — the rules that make it one product
 
-1. **Containment = completion.** "A card marks something you can complete
-   here. A row takes you somewhere else." Codified with the scale itself in
+1. **Containment = a coherent object** *(amended 2026-09-05, founder —
+   [decision](../decisions/2026-09-05-amend-home-composition-canon.md);
+   was "containment = completion")*. "A card marks a coherent object or
+   experience — something finishable here, or something whole enough to
+   be held as one thing: an authored share, a prepared afternoon, a
+   shared arrangement, a reading preview. A row takes you somewhere else.
+   Findings, techniques, and facts stay bare." The crown keeps its
+   meaning as the one dominant, finishable thing. Codified with the scale itself in
    `cardSurface.ts` (`CONTAINMENT`: 0 uncardedSection · 2 groupBanded ·
    3 groupOutlined · 3.5 flatObject · 4 quietPanel · 5 crown). Operates on
    objects, not sections; a preview inherits the object's containment.
@@ -1239,11 +1245,15 @@ proved restating was necessary):
      dot-line → dot-line. When they cannot, the lesser one steps down
      the degradation ladder to its sentence. One-meaning-per-mark holds
      inside an instrument; this is the same law between them. (03.)
-   - **(c) Two kicker registers per screen.** Section = mute mono with
-     the rule; unit = gold mono. Oxblood appears only on the crown's
-     status line, which is a different atom (sans + dot, never a
-     kicker). The ghost kicker is a footnote, not a third register.
-     (04.)
+   - **(c) ~~Two kicker registers per screen.~~ SUPERSEDED 2026-09-05
+     by four typographic roles** ([decision](../decisions/2026-09-05-amend-home-composition-canon.md),
+     D-H10): section heading = sans 13/600, sentence case, hairline,
+     only where it navigates; content title = serif, first line of every
+     unit; metadata = one mono line at the 10px floor for time,
+     distance, date, or source; supporting text = one or two sentences.
+     Oxblood still appears only on the crown's status line (sans + dot).
+     Gold mono survives as the Door law's text and as a tappable unit's
+     metadata line. The original (04) ruling is kept here for provenance.
    - **(d) The week strip is a banded seam** (containment step 2:
      hairline top and bottom, square, full-width), never an outlined
      box under the crown. (05.)

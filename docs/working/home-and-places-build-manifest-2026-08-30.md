@@ -121,12 +121,25 @@ unverified claims say so.
 | `continuity_voice_horizon` | voice italic, uncarded | **BUILD** | no-deadline thread; never auto-saves (gallery F8 law) |
 | `continuity_reconstruction` | evidence-first paired timeline | **BUILD** | adopted 2026-08-30 (gallery §10 / worlds E3–E4/F7): the intended/actual sequence from receipts and movement rows — "what actually happened," never a trip report |
 
-**Home union: 31 kinds** *(week_shape + people_status_aperture ruled in 2026-08-30)* (2 chrome + 9 Now, of which one folds into
-`world_read` + 3 Motion + 4 Horizons + 5 People + 6 Continuity — 28
-renderable). The union is the type the Home resolver emits; adding a kind
-is a canon event, not a feature PR. *(Counts corrected 2026-08-30 after
-the coverage audit; `people_gathering` and `continuity_reconstruction`
-adopted the same day.)*
+### 1.6 Admitted 2026-09-05 — the generous-value kinds
+
+Ruled in by the [Home composition canon amendment](../decisions/2026-09-05-amend-home-composition-canon.md)
+after the September 4 `Vesper — Home` revisions. Each is a canon event, not
+a feature PR.
+
+| Kind | Region | Containment | Evidence gate | Grade |
+| --- | --- | --- | --- | --- |
+| `horizon_prepared_alternatives` | Horizons; may lead on a quiet day | card | two to four grounded, mutually alternative ways into an open window, each with its own time and reason; unnumbered, no selection control; opening one adopts nothing | **BUILD** — composer selection over world rhythms + held notes; no store |
+| `horizon_world_fact_row` | Horizons | uncarded fact row | a city-scoped notice with a date, hour, or service consequence inside the person's window; marked by its source metadata; never a standing section; never inferred from a trace | **BUILD** — needs a city-scoped notice source with freshness and licensing |
+| `people_authored_region` | With people | banded region of cards | renders only when ≥2 authored human contributions are not already spent in full above; never duplicates; disappears when empty; ends with the Life · People door | **BUILD** — grant-scoped share reads exist (MP1); the region composer is new |
+| `now_sample_demonstration` | Now — Cold and Thin postures | dashed card stamped SAMPLE | a fixed, reusable demonstration of one capability with a made-up input and its result; never personal; retires after tried or ignored twice | **BUILD** — prepared once; delivery and retirement bookkeeping |
+
+**Home union: 35 kinds** *(31 as of 2026-08-30; the four above admitted
+2026-09-05)* (2 chrome + 10 Now, of which one folds into `world_read` + 3
+Motion + 6 Horizons + 6 People + 6 Continuity — 32 renderable). The union is
+the type the Home resolver emits; adding a kind is a canon event, not a
+feature PR. *(Counts corrected 2026-08-30 after the coverage audit;
+`people_gathering` and `continuity_reconstruction` adopted the same day.)*
 
 ## 2. Places — the state-unit unions
 
