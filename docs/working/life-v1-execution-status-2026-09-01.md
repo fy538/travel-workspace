@@ -97,7 +97,9 @@ The follow-up owner-read consolidation (`bff449427`) moves the shared intake
 cursor boundary, lens filtering, deterministic merge preparation, counts, and
 truncation authority into one internal `LifeIntakePage` service. The public
 route remains an Atlas-plus-intake adapter; no new archive owner or public
-endpoint was introduced.
+endpoint was introduced. Database-backed intake page readers now fetch one
+look-ahead row and return an explicit continuation bit (`1c22ce1fc`), so
+partial authority is no longer inferred from an exact 100-row response.
 
 ### Shared workspace
 
@@ -136,10 +138,10 @@ endpoint was introduced.
    current depth cursor now uses owner-level `(updated_at, id)` tie-breaks and
    exact counts when a bounded page is exhausted; repeated reads can therefore
    progress beyond the 100-row owner batch. The internal unified owner-level
-   intake page service is now in place (`bff449427`), so the remaining work is
-   to replace the bounded source-reader ceiling with a database-level page
-   primitive (or an equivalent continuation contract) without changing the
-   public Life shape.
+   intake page service is now in place (`bff449427`), and its readers expose a
+   database-backed continuation bit (`1c22ce1fc`). The remaining work is to
+   make every Life object family resolve to a dossier-grade destination and
+   restore Life context after inspection without changing the public shape.
 2. Full Places/People/Threads lens projection from production data.
 3. Public rollout, analytics-driven promotion, and removal of legacy Atlas.
 4. Together/multiplayer write paths and generalized Occasion architecture.
