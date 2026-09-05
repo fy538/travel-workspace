@@ -3752,6 +3752,22 @@
       "review_by": "2026-09-15",
       "consumers": []
     },
+    "GET /api/root-projections/v1/life/record": {
+      "audience": "app",
+      "consumers": [
+        {
+          "kind": "app_transport",
+          "name": "getLifeRecordPageV1",
+          "source": "travel-app/utils/api/http.ts"
+        }
+      ],
+      "feature_flag": null,
+      "lifecycle": "active",
+      "owner": "life",
+      "reason": "Cursor-paginated Life depth read backed by the existing owner-owned Atlas timeline.",
+      "removal_trigger": "Remove only after an equivalent canonical Life depth contract is landed.",
+      "review_by": "2026-10-30"
+    },
     "GET /api/root-projections/v1/life": {
       "audience": "app",
       "consumers": [

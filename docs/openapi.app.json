@@ -22792,6 +22792,95 @@
         }
       }
     },
+    "/api/root-projections/v1/life/record": {
+      "get": {
+        "tags": [
+          "root-projections"
+        ],
+        "summary": "Get Life Record Page V1",
+        "description": "Return paginated depth from the existing owner-owned Atlas timeline.",
+        "operationId": "get_life_record_page_v1_api_root_projections_v1_life_record_get",
+        "parameters": [
+          {
+            "name": "lens",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/LifeLens",
+              "default": "time"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 200,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LifeRecordPageV1"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/root-projections/v1/life": {
       "get": {
         "tags": [
@@ -66136,6 +66225,16 @@
         ],
         "title": "LedgerRow"
       },
+      "LifeAuthority": {
+        "type": "string",
+        "enum": [
+          "complete",
+          "partial",
+          "yielded"
+        ],
+        "title": "LifeAuthority",
+        "description": "Authority of the assembled read, including Return-seat suppression.\n\n``YIELDED`` is intentionally not an empty-record state. It means this\nroot may not deliver its optional Return, while the authorized Life record\nremains readable."
+      },
       "LifeDeliveryState": {
         "type": "string",
         "enum": [
@@ -66255,6 +66354,229 @@
           "threads"
         ],
         "title": "LifeLens"
+      },
+      "LifeRecordEntry": {
+        "properties": {
+          "entry_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,159}$",
+            "title": "Entry Id"
+          },
+          "kind": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.:-]{1,79}$",
+            "title": "Kind"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 180,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "subtitle": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Subtitle"
+          },
+          "represented_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "maxItems": 12,
+            "minItems": 1,
+            "title": "Represented Refs"
+          },
+          "owner_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "minItems": 1,
+            "title": "Owner Refs"
+          },
+          "source_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "maxItems": 16,
+            "minItems": 1,
+            "title": "Source Refs"
+          },
+          "grant_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceRef"
+            },
+            "type": "array",
+            "title": "Grant Refs",
+            "default": []
+          },
+          "audience": {
+            "$ref": "#/components/schemas/RootAudience",
+            "default": "private"
+          },
+          "status": {
+            "$ref": "#/components/schemas/RootStatus",
+            "default": "current"
+          },
+          "freshness": {
+            "$ref": "#/components/schemas/RootFreshness",
+            "default": "fresh"
+          },
+          "lifecycle": {
+            "$ref": "#/components/schemas/RootLifecycle",
+            "default": "durable"
+          },
+          "destination": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResourceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "timeline_kind": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Timeline Kind"
+          },
+          "occurred_start": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occurred Start"
+          },
+          "occurred_end": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occurred End"
+          },
+          "place_label": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 180
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Label"
+          },
+          "media_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Media Count",
+            "default": 0
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "entry_id",
+          "kind",
+          "title",
+          "subtitle",
+          "represented_refs",
+          "owner_refs",
+          "source_refs",
+          "timeline_kind"
+        ],
+        "title": "LifeRecordEntry",
+        "description": "One item in the complete, paginated Life record."
+      },
+      "LifeRecordPageV1": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "life-record-page.v1",
+            "title": "Schema Version",
+            "default": "life-record-page.v1"
+          },
+          "viewer_ref": {
+            "$ref": "#/components/schemas/ResourceRef"
+          },
+          "lens": {
+            "$ref": "#/components/schemas/LifeLens"
+          },
+          "represented_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Represented At"
+          },
+          "entries": {
+            "items": {
+              "$ref": "#/components/schemas/LifeRecordEntry"
+            },
+            "type": "array",
+            "maxItems": 200,
+            "title": "Entries"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          },
+          "total_entry_count": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Entry Count"
+          },
+          "authority": {
+            "$ref": "#/components/schemas/LifeAuthority",
+            "default": "complete"
+          },
+          "degradations": {
+            "items": {
+              "$ref": "#/components/schemas/RootDegradation"
+            },
+            "type": "array",
+            "title": "Degradations",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "viewer_ref",
+          "lens",
+          "represented_at",
+          "entries"
+        ],
+        "title": "LifeRecordPageV1",
+        "description": "Cursor-paginated depth read behind a Life full-record door."
       },
       "LifeRefindRequest": {
         "properties": {
