@@ -6,7 +6,7 @@ doc_type: runbook
 owner: Feihuyan
 why_new: "Operational enablement and rollback steps for the entity object-page canary."
 status: active
-last_verified: 2026-09-04
+last_verified: 2026-09-05
 scope: internal-only, no backfill
 ---
 
@@ -57,7 +57,9 @@ npm test -- --runInBand \
   __tests__/components/places/objectPageProjection.test.ts \
   __tests__/components/places/ObjectPageRebuild.test.tsx \
   __tests__/data/entityResearchRequest.test.tsx \
-  __tests__/hooks/useSaveEntity.test.ts
+  __tests__/hooks/useSaveEntity.test.ts \
+  __tests__/screens/venue-detail.smoke.test.tsx \
+  __tests__/screens/experience-detail.smoke.test.tsx
 ```
 
 For a content-free operational snapshot (read-only; no repair or refresh),
