@@ -7,9 +7,7 @@ last_verified: 2026-09-04
 expires: 2026-10-04
 why_new: Defines the dependency-ordered Home, Places, and Life productization program after repository convergence, while Chat behavior and entity implementation proceed in separate lanes.
 source_of_truth_for:
-  - Home, Places, and Life integrated productization sequence
-  - three-root internal-cohort milestone and acceptance portfolio
-  - boundary between this lane, the held Chat surface, and the separate entity lane
+  - September 4 three-root productization and acceptance reference
 depends_on:
   - vesper-product-system-build-program-2026-09-01.md
   - ../systems/four-root-loop-object-surface.md
@@ -18,6 +16,18 @@ depends_on:
 ---
 
 # Home, Places, and Life Productization Program
+
+## September 5 roadmap rebaseline
+
+Use the [Complete-system integration roadmap](complete-system-integration-roadmap-2026-09-05.md)
+for current Strategy sequencing and the
+[Life replacement roadmap](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md)
+for Life execution. Only those two user-owned lanes remain active. This document
+retains the earlier acceptance portfolio and implementation rationale; its Life
+baseline and separate-entity-lane assumption are historical, not current status.
+The [September 5 Home amendment](../decisions/2026-09-05-amend-home-composition-canon.md)
+and newer editorial distinctions take precedence over older narrow-card,
+people-region and blanket anti-recap interpretations in this plan.
 
 ## 0. Decision
 

@@ -87,6 +87,10 @@ rules:
 
 
 overrides:
+  docs/working/complete-system-integration-roadmap-2026-09-05.md:
+    disposition: keep_authoritative
+    rationale: Current two-lane Strategy integration roadmap with code-backed correction packages, Life boundaries, reassessment checkpoints and bounded Luna execution policy; product canon and release approvals retain their authority.
+
   docs/working/home-connected-experience-plan-2026-09-04.md:
     disposition: keep_reference
     rationale: Connected Home prototype and parallel engineering feasibility plan after Revision 3; coordinates existing owners without replacing product canon or authorizing implementation.
@@ -141,7 +145,7 @@ overrides:
 
   docs/working/home-places-life-productization-program-2026-09-04.md:
     disposition: keep_reference
-    rationale: Active dependency-ordered Home, Places, and Life productization plan subordinate to the canonical four-root contract and product-system build program.
+    rationale: September 4 productization and acceptance reference; current ordering and lane allocation moved to the September 5 complete-system integration and Life replacement roadmaps.
 
   docs/working/four-root-repository-convergence-baseline-2026-09-01.md:
     disposition: keep_reference
@@ -1126,8 +1130,8 @@ overrides:
     rationale: Index of the archived root-board set preserved before the Design project pruning.
 
   docs/working/vesper-product-system-build-program-2026-09-01.md:
-    disposition: keep_authoritative
-    rationale: Active dependency-ordered implementation authority for the complete post-pivot product system and its empirical promotion boundary.
+    disposition: keep_reference
+    rationale: Historical post-pivot implementation ledger and retained package contracts; new execution follows the September 5 complete-system integration and Life replacement roadmaps.
 
   docs/working/lived-experience-cross-family-rehearsal-runbook-2026-09-02.md:
     disposition: keep_authoritative

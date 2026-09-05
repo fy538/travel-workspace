@@ -11,7 +11,7 @@ supersedes:
   - execution sequencing in home-and-places-root-implementation-program-2026-08-31.md
   - execution sequencing in life-v1-non-regrettable-engineering-execution-plan-2026-09-01.md
 source_of_truth_for:
-  - post-pivot product-system build sequence
+  - historical post-pivot implementation ledger and retained package contracts
 depends_on:
   - ../systems/four-root-loop-object-surface.md
   - ../systems/artifact-expression-and-composition.md
@@ -22,6 +22,17 @@ depends_on:
 ---
 
 # Vesper Product-System Build Program
+
+## September 5 execution authority
+
+New execution follows the
+[Complete-system integration roadmap](complete-system-integration-roadmap-2026-09-05.md)
+in the Strategy task and the independent
+[Life replacement roadmap](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md).
+They replace this document's forward ordering and older parallel-lane assumptions,
+not its architectural guardrails or historical implementation receipts. The
+dated status and "current" claims below are point-in-time evidence; recheck code
+before scheduling them as missing work or treating them as release acceptance.
 
 ## Decision
 
@@ -107,10 +118,10 @@ Do not introduce a `v3` projection namespace to avoid finishing `v2`. Do not
 solve cross-root coherence with a universal context service, presentation DTO
 in the domain layer, or a second writer hidden behind the semantic facade.
 
-## Forward engineering roadmap — 2026-09-03
+## Historical forward engineering roadmap — 2026-09-03
 
-The following packages are the current sequencing authority. They preserve the
-system ambition while making dependencies, exits, and promotion gates clear.
+The following packages preserve the September 3 sequencing record and useful
+acceptance requirements. The September 5 roadmaps above now own new execution.
 
 ### September 4 sequencing amendment — Home, Places, and Life
 
