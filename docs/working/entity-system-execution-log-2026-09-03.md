@@ -335,7 +335,7 @@ No API contract, itinerary row, research job, or catalog data changed.
 
 Final deterministic receipt for this lane: the six-suite mobile selection
 (projection, rebuilt renderer, research lifecycle, Keep/Unsave, venue detail,
-and experience detail) passes **94 tests**; the focused backend
+and experience detail) passes **95 tests**; the focused backend
 presentation/research/relationship selection passes **46 tests**; `make
 contract-check`, mobile TypeScript, test-contract TypeScript, API-boundary,
 schema-bridge, and accessibility-governance checks pass. The read-only health
@@ -345,3 +345,17 @@ mismatches, with one pending venue research row and one pending resolution
 review left untouched. Native auth-diversity, mutation/readback, repair,
 VoiceOver, Android/platform, owner-reviewed pilot, and operational disposition
 remain release gates; no flag, scheduler, provider call, or backfill was run.
+
+## Shared delayed-action lifetime repair — 2026-09-05
+
+- Travel App `65909bb18` — extended mounted-lifetime protection to the shared
+  object-page research poller, the itinerary review sheet's commit/propose
+  outcomes, and venue/experience trip-picker transition timers. A route,
+  account, object, or situation replacement can no longer publish delayed
+  state into the replacement page; durable itinerary writes are still allowed
+  to finish server-side and are not replayed.
+
+Verification: the shared renderer/review selection passes **8 tests**, including
+the deferred research-poll and review-commit replacement regressions; the
+venue/experience smoke selection remains green at **38 tests**. No API
+contract, itinerary row, research job, or catalog data changed.

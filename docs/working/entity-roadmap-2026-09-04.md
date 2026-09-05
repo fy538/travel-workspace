@@ -40,11 +40,11 @@ Inspected local `main` on September 5 (after the continuation receipts below):
 
 - Backend: `e6bf7a75f` — research gating, persistence hardening, terminal-Plan
   evidence repair and the read-only entity health report.
-- Mobile entity baseline: `f38347b78` — canonical mock envelopes for all known
+- Mobile entity baseline: `65909bb18` — canonical mock envelopes for all known
   experiences, guarded venue/site/experience journeys, focused shared-renderer
   state-contract coverage, Dynamic Type/accessibility governance fixes, and
-  identity-scoped Keep/Unsave/research/place-note/plan-preview mutation
-  lifetimes.
+  identity-scoped Keep/Unsave/research/place-note/plan-preview and delayed
+  object-action lifetimes.
 - Workspace entity evidence: `9ae1122` — roadmap, runbook, native receipt and
   final deterministic execution receipt are committed locally.
 
@@ -536,7 +536,7 @@ Completed implementation packages in this lane:
 | E6/E8 | Research mutation receipts are now scoped to the mounted account/entity identity: a route or auth transition hides the prior queued/failed result, resets the mutation, and rotates the idempotency key before the next request; late responses and duplicate requests cannot repopulate or overwrite the active page; lifecycle regressions cover both transitions. | `travel-app:ce19d1f3c`, `e264c09f1` |
 | E1/E8 | Keep/Unsave mutations now carry their originating account/entity identity through the optimistic lifecycle: mounted transitions hide old pending/error state, late callbacks update only the originating cache, and stale callbacks cannot emit a receipt, push, or active-page side effect. A monotonic identity generation also rejects a late response after an A→B→A return, so matching strings cannot resurrect an earlier mounted lifetime; regressions cover both transition shapes and read/write calls remain correctly scoped. | `travel-app:b5c0a4fbf`, `49465bab2`, `712fdab69`, `76a4df8af` |
 | E1/E8 | The addressed place-note doorway now captures the mounted entity/account/path lifetime before opening or submitting; a route, account, or entity transition suppresses the delayed composer and prevents stale handoff delivery or success UI while leaving the backend owner/revocation contract unchanged; a component regression proves a changed canonical ref cannot submit. | `travel-app:85eba258f`, `0bdbe25bc` |
-| E1/E2/E8 | Canonical venue and experience plan previews now capture the mounted entity/account/path lifetime, suppress late review sheets and stale errors, clear a visible preview when the route or selected trip changes, and reset the signed Places handoff latch for a replacement opening; deferred route-replacement regressions cover both entity faces. | `travel-app:f38347b78` |
+| E1/E2/E8 | Canonical venue and experience plan previews now capture the mounted entity/account/path lifetime, suppress late review sheets and stale errors, clear a visible preview when the route or selected trip changes, reset the signed Places handoff latch for a replacement opening, and guard the shared review sheet, research poller, and trip-picker transition timers; deferred route-replacement regressions cover both entity faces and the shared review/poll surfaces. | `travel-app:f38347b78`, `65909bb18` |
 | Contract | OpenAPI snapshots, active projection, generated schema, identity seams and schema bridge are synchronized | `workspace:93ea30e` |
 | E8 (native default-route slice) | Current mobile build passes venue identity/save/private-handoff, registered Places capture, and explicit plan-placement review/commit on iPhone 16 Pro in the mock lane; the default venue route is flag-off, so shared `ObjectPageRebuild` acceptance remains open. The rebuild intentionally omits the legacy Add-to-trip ladder per the Places contract. | `travel-app:47735f406`, `travel-app:35c110f47`, [native QA receipt](entity-native-qa-receipt-2026-09-04.md) |
 | E8 (native guarded-renderer slice) | Flag-on venue, site, and experience routes pass on the iPhone 16 Pro mock lane with canonical `Cervejaria Ramiro` / `Museu Nacional do Azulejo` / `LUX Fragil Closing Night`, `Keep place`, visible Ask handoffs, and explicit assertions that the legacy Add-to-trip ladder is absent. Focused renderer tests also lock sparse, owner-private capability denial, and stale research states; all known mock experience IDs resolve to canonical names. The three journeys pass at iOS `accessibility-medium` text size on the post-fix source, and static accessibility governance passes. This proves the intended shared renderer identity/verb contract and one enlarged-text check; full native state-matrix evidence remains open. | `travel-app:7b4d0601b`, `travel-app:6e3fe8545`, `travel-app:464e7da98`, `travel-app:377c8a4b5`, `travel-app:ea10e4482`, `travel-app:dba1e16e9`, `travel-app:d3b22275b`, [native QA receipt](entity-native-qa-receipt-2026-09-04.md) |
@@ -644,9 +644,13 @@ Validation recorded for this continuation:
   show a stale error, or remain visible on the replacement object. This is a
   deterministic client proof; native write/readback and account-diversity
   evidence remain open.
+- The shared renderer/review selection passes **8 tests**, including the
+  review-sheet commit lifetime and research-poll replacement regressions.
+  Delayed trip-picker timers are guarded by the route lifetime as well; no
+  server mutation is cancelled or replayed by these client guards.
 - The exact pilot-focused app selection (object-page projection/rebuild,
   research lifecycle, Keep/Unsave, venue detail, and experience detail) passes
-  **94 tests**. The original four-suite projection/research/mutation subset is
+  **95 tests**. The original four-suite projection/research/mutation subset is
   included in that count; the corresponding backend
   presentation/research/relationship selection passes **46 tests**. These are
   the current deterministic receipt commands in the pilot runbook.
