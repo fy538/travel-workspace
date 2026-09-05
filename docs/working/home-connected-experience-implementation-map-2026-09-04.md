@@ -48,6 +48,16 @@ Do not reset or sweep concurrent changes into a Home commit. Re-run the checks a
 
 The principal gap is not “we need more infrastructure.” It is destination and owner precision: several typed Home resources can currently land in generic Chat or the Life root, which is insufficient for a connected prototype that promises recognizable continuity.
 
+### Scoped progress since the initial map
+
+The first implementation slice landed in mobile commit `dd313abd8`:
+`hrefForRootResource` now opens `memory_candidate`, `intake_submission`, and
+`reading` through their exact Life routes, and `artifact` through the
+source-bound canonical artifact reader (`/you/memories/artifacts/[id]`). The
+older memory/Atlas aliases remain unchanged for existing callers. This closes
+the J4 exact-record opening seam; it does not prove the intake write/readback
+journey or resolve the remaining arrangement and loose-Keep contracts.
+
 ## 3. Journey-to-code matrix
 
 Status vocabulary: **present and verified** means the seam is visible in code but still needs a journey test; **present but unverified** means a similar path exists but its exact semantics are not proven; **adapt** means a small owner-specific change is likely; **missing** means no honest implementation path was found; **blocked on owner decision** means engineering should not invent the contract.
