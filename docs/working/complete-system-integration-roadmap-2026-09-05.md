@@ -956,6 +956,19 @@ tests; do not defer the live engine until content composition is finished.
   set. The focused route/return suites pass (36 tests) and the app typecheck
   passes. The source revision remains explicitly unknown until an owner-backed
   revision can be proven, so semantic Places promotion stays dark.
+- **I4 / Places source-backed revision — implemented and locally tested:**
+  `travel-agent` commit `407173860` derives an explicit
+  `places-catalog:v1:<digest>` revision from the server-resolved place subtree,
+  canonical venues/sites/experiences, and approved dossier rows using their
+  owner `updated_at` clocks plus row counts. Feed, search, saved/reading, and
+  map owners echo the revision when that bounded catalog scope is available;
+  global/personal scopes and unavailable source reads remain `revision: null`.
+  The revision is continuity evidence, not a grant and not a presentation
+  hash; private saves, relationship marks, and provider freshness retain their
+  own source semantics. Eighteen focused result/search/collection tests pass,
+  lint/compile pass, and the broad map API suite remains environment-blocked
+  by the pre-existing missing `openai` package. The commit hook's known
+  pre-existing size-budget overage was skipped explicitly.
 
 ### M1 batch update — 2026-09-05
 
@@ -970,15 +983,15 @@ budgeting, and the exact serialized input (especially Places context). This is
 the remaining M1 integration decision, not a reason to reintroduce generation
 into a GET path.
 
-The next bounded batch is now the source-backed revision and Home→Places→
-Focus/Path real-data acceptance cases. The revision owner must identify the
-authoritative source snapshot or correction clock for each supported scope;
-until then, `revision: null` remains the honest contract. Acceptance must prove
-that field/map/detail returns preserve the same set when the source is stable,
-and recompose or show an explicit stale/unknown state when it changes. It must
-preserve the mature workspace and keep the semantic renderer dark until real
-data and native evidence land. It must not promote the dark Home kinds, add a
-generic route service, or create a second Places feed. Re-pin all repositories
-and shared-file ownership before touching generated contracts. This keeps the
-roadmap live without making this task a bottleneck for Life or turning six
-former specialist tasks back on.
+The next bounded batch is Home→Places→Focus/Path real-data acceptance and
+stale-source behavior. It must prove that field/map/detail returns preserve the
+same set when the catalog revision is stable, and recompose or show an explicit
+stale/unknown state when it changes. It must also decide whether private-save,
+relationship, and provider-status revisions need a separate audience/source
+vector before semantic Places promotion; the catalog digest alone must not be
+overstated as full personalized freshness. Preserve the mature workspace and
+keep the semantic renderer dark until real data and native evidence land. Do
+not promote the dark Home kinds, add a generic route service, or create a
+second Places feed. Re-pin all repositories and shared-file ownership before
+touching generated contracts. This keeps the roadmap live without making this
+task a bottleneck for Life or turning six former specialist tasks back on.
