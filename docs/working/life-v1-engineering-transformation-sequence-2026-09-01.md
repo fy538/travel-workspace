@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / architecture / engineering
 created: 2026-09-01
-last_verified: 2026-09-04
+last_verified: 2026-09-05
 expires: 2026-10-01
 why_new: Converts the accepted Life v1 experience contract into a sequenced cross-repository transformation while preserving separate repositories, generated API contracts, and independently shippable commits.
 depends_on:
@@ -15,6 +15,15 @@ related:
 ---
 
 # Life v1 engineering transformation sequence
+
+## September 5 replacement roadmap
+
+Forward sequencing and completion criteria now live in the
+[Life complete-system and Atlas replacement roadmap](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md).
+Life is to become the sole continuity experience; Atlas retirement is a required
+outcome, not an indefinite deferred package. The sequence below is retained as
+historical context. Its implementation claims must be read against the current
+[execution status](life-v1-execution-status-2026-09-01.md) and the new code audit.
 
 ## Current state, 2026-09-04
 

@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / architecture / engineering
 created: 2026-09-01
-last_verified: 2026-09-04
+last_verified: 2026-09-05
 expires: 2026-10-01
 why_new: Turns the accepted Life v1 contract and the current three-task convergence state into an execution-grade, collision-safe program with exact packages, commit units, gates, and stop lines.
 depends_on:
@@ -17,9 +17,18 @@ depends_on:
 
 # Life — engineering execution plan
 
-## September 4 rebaseline — current plan
+## September 5 execution authority
 
-**Read this section first.** Sections 1–16 below preserve the September 1
+The [Life complete-system and Atlas replacement roadmap](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md)
+now owns forward execution and completion criteria. The founder explicitly
+requested Life replace Atlas completely. The rebaseline and foundation plan
+below preserve prior reasoning and implementation history; their indefinite
+Atlas fallback and package ordering are no longer the target program.
+Use [execution status](life-v1-execution-status-2026-09-01.md) for landed evidence.
+
+## September 4 rebaseline — historical planning baseline
+
+**Historical September 4 rebaseline.** Sections 1–16 below preserve the September 1
 foundation plan for provenance. Their task statuses, branch instructions,
 Time-only scope, sequencing, and definition of done are historical, not the
 current implementation program. This rebaseline supersedes those planning

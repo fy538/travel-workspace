@@ -15,6 +15,21 @@ depends_on:
 
 # Life v1 — execution status
 
+## September 5 roadmap and evidence clarification
+
+The [Life complete-system and Atlas replacement roadmap](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md)
+owns the next engineering program. It replaces the prior foundation-only finish
+line with Life as the sole continuity experience and explicit Atlas retirement.
+Planning does not change deployed flags or complete the remaining packages.
+
+The new static audit identifies remaining owner/destination mismatches, actual
+tab exposure, full-history query cost, organization, custody, refinding and
+cross-consumer repair work. The previous device flow uses mock data and checks
+deep-link entry, two lenses and return to `you-screen`; that receiver is the
+profile screen, not the Life root. It does not validate exact legacy-artifact
+reads, real-backend data, deep scroll restoration or native design conformance.
+The recorded test passes below remain valid within that narrower boundary.
+
 ## Outcome
 
 The non-regrettable Life foundation, bounded refinding slice, and shared
@@ -217,7 +232,8 @@ Home persister, and account teardown still clears all position keys.
 4. Together/multiplayer write paths and generalized Occasion architecture.
 5. Visual composition polish beyond the production HTML design reference.
 
-The next safe increment is profiling the graph and Atlas drains before changing
-their corpus limits, followed by dossier destinations for the remaining Life
-object families. Do not broaden either flag or add more lenses until those
-return and identity seams are proven end to end.
+The next implementation batch is R0/R1 in the replacement roadmap: make the
+actual Life tab and owner destinations coherent, then replace full-drain reads
+with the indexed canonical corpus query. Remaining dossiers, lenses, custody,
+refinding, shared/prospective continuity, Returns and Atlas deletion are explicit
+packages in that program, rather than indefinite deferrals.
