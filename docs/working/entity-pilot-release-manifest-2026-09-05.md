@@ -52,7 +52,7 @@ match the reviewed source.
   faults are covered by focused hook tests.
 - Existing flag-on renderer and local-real-backend read receipts remain
   bounded identity/verb evidence only; they are not full release acceptance.
-- Health snapshot (`2026-09-05T02:50:05Z`) is content-free: zero stale claims,
+- Health snapshot (`2026-09-05T03:25:52Z`) is content-free: zero stale claims,
   duplicate-active jobs, expired leases, retried rows or
   completed-without-fresh-brief mismatches; one old pending venue research row
   and one pending resolution review remain untouched.

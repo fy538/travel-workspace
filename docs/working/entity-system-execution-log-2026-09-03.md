@@ -339,7 +339,7 @@ and experience detail) passes **96 tests**; the focused backend
 presentation/research/relationship selection passes **46 tests**; `make
 contract-check`, mobile TypeScript, test-contract TypeScript, API-boundary,
 schema-bridge, and accessibility-governance checks pass. The read-only health
-report at `2026-09-05T02:50:05Z` is unchanged: zero stale claims, duplicate
+  report at `2026-09-05T03:25:52Z` is unchanged: zero stale claims, duplicate
 active jobs, expired leases, retried rows, or completed-without-fresh-brief
 mismatches, with one pending venue research row and one pending resolution
 review left untouched. Native auth-diversity, mutation/readback, repair,
