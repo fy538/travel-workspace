@@ -80291,6 +80291,14 @@
             "$ref": "#/components/schemas/LifeAuthority",
             "default": "complete"
           },
+          "source_revisions": {
+            "items": {
+              "$ref": "#/components/schemas/RootSourceRevision"
+            },
+            "type": "array",
+            "title": "Source Revisions",
+            "default": []
+          },
           "degradations": {
             "items": {
               "$ref": "#/components/schemas/RootDegradation"
