@@ -364,10 +364,16 @@ HTML rather than a native screenshot). Runtime execution commits are:
 
 - backend `9eeeb88e1`: preserve the record when Return delivery yields;
 - backend `e2058817c`: label bounded corpus previews as partial;
+- backend `30c0697c4`: include confirmed owner-private intake anchors in the Life corpus;
+- backend `602fa1f8f`: bound anchor display fields before projection;
 - app `ca83daf49`: provide typed Life mock data;
 - app `14b5e892d`: distinguish bounded root previews in the native door;
 - app `18e51de7e`: align the surface contract with yielded behavior;
 - app `89367c36e`: keep mock lens destinations aligned.
+
+This begins P1 but does not complete it: confirmed anchors now join the
+graph-derived corpus without a Plan, while graph and anchor readers still need
+the complete paginated owner query and full-record consumer described below.
 
 Passing tests establish the current foundations, not a complete organizer,
 real Together support, coordinated Returns, exact dossiers, real-backend native
