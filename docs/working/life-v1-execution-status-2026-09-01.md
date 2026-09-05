@@ -26,7 +26,9 @@ No public promotion, generalized dossier system, Together persistence, or
 repository-wide noun migration was attempted.
 
 Landed review refs: `baseline/four-root-convergence-2026-09-01` in each
-repository, app `main` at `dc4f1f66c`, and backend `main` at `fc361aeed`.
+repository; the complete-record slice is app `dc4f1f66c` and backend
+`fc361aeed`. The child `main` branches may advance independently with other
+in-flight work.
 Safety tags preserve every pre-convergence `main`; the convergence receipt
 records the final local workspace landing.
 
