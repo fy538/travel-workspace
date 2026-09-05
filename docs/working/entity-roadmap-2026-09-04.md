@@ -524,6 +524,7 @@ Completed implementation packages in this lane:
 | Contract | OpenAPI snapshots, active projection, generated schema, identity seams and schema bridge are synchronized | `workspace:93ea30e` |
 | E8 (native default-route slice) | Current mobile build passes venue identity/save/private-handoff, registered Places capture, and explicit plan-placement review/commit on iPhone 16 Pro in the mock lane; the default venue route is flag-off, so shared `ObjectPageRebuild` acceptance remains open. The rebuild intentionally omits the legacy Add-to-trip ladder per the Places contract. | `travel-app:47735f406`, `travel-app:35c110f47`, [native QA receipt](entity-native-qa-receipt-2026-09-04.md) |
 | E8 (native guarded-renderer slice) | Flag-on venue, site, and experience routes pass on the iPhone 16 Pro mock lane with canonical `Cervejaria Ramiro` / `Museu Nacional do Azulejo` / `LUX Fragil Closing Night`, `Keep place`, visible Ask handoffs, and explicit assertions that the legacy Add-to-trip ladder is absent. Focused renderer tests also lock sparse, owner-private capability denial, and stale research states; all known mock experience IDs resolve to canonical names. The three journeys pass at iOS `accessibility-medium` text size on the post-fix source, and static accessibility governance passes. This proves the intended shared renderer identity/verb contract and one enlarged-text check; full native state-matrix evidence remains open. | `travel-app:7b4d0601b`, `travel-app:6e3fe8545`, `travel-app:464e7da98`, `travel-app:377c8a4b5`, `travel-app:ea10e4482`, `travel-app:dba1e16e9`, `travel-app:d3b22275b`, [native QA receipt](entity-native-qa-receipt-2026-09-04.md) |
+| E8 (native local-real read slice) | With all API background workers disabled, the guarded venue/site/experience routes also pass against a temporary FastAPI process backed by native PostgreSQL, using existing rows and real HTTP presentation reads. Each preserves canonical identity, `Keep place`, visible `Ask Vesper`, and absence of the legacy Add-to-trip ladder. This closes the real-read portion of E8 only; no auth diversity, mutation, research, or repair claim is implied. | `travel-app:89367c36e`, `travel-agent:e33dd4764`, [native QA receipt](entity-native-qa-receipt-2026-09-04.md) |
 | E10 (later-consumer slice) | Real PostgreSQL second-occasion loop closure changes candidate choice from a prior explicit outcome, then reopens after correction and withholds on changed roster/occasion; chat attachment snapshots remain catalog-only | `travel-agent:18b71b9f7`, `422a5f6c8` |
 | E9 (health receipt) | Read-only, content-free entity health report now includes queue age, retry/lease, duplicate-active, and completed-without-fresh-brief integrity metrics | `travel-agent:9f3d80959` |
 
@@ -591,8 +592,8 @@ Validation recorded for this continuation:
   offline/process restart, VoiceOver, Android and the full state matrix remain
   open.
 
-The next unclosed gates are the broader native state matrix (real-backend
-journey, sparse/unavailable/photo/account states, VoiceOver, Android and
+The next unclosed gates are the broader native state matrix (auth-diverse
+real-backend journeys, sparse/unavailable/photo/account states, VoiceOver, Android and
 platform verdict),
 a reviewed pilot receipt, and explicit operational ownership. The
 later-consumer benefit/withholding proof is now present in the real PostgreSQL
