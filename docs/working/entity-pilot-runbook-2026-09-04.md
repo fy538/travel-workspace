@@ -53,7 +53,9 @@ PYTHONPATH=. pytest \
   tests/places/test_relationships.py \
   tests/places/test_entity_relationship_reads.py -q
 cd ../travel-app
-npm test -- --runInBand __tests__/components/places/objectPageProjection.test.ts
+npm test -- --runInBand \
+  __tests__/components/places/objectPageProjection.test.ts \
+  __tests__/components/places/ObjectPageRebuild.test.tsx
 ```
 
 For a content-free operational snapshot (read-only; no repair or refresh),
@@ -70,10 +72,12 @@ Mocks or SQLite-only tests do not substitute for it. Native simulator/device
 evidence is a separate gate and must be attached before calling a surface
 accepted.
 
-The venue object-page and explicit placement smoke have a scoped current-build receipt at
+The venue object-page, explicit placement smoke, and guarded venue/site/
+experience renderer slices have a scoped current-build receipt at
 [`entity-native-qa-receipt-2026-09-04.md`](./entity-native-qa-receipt-2026-09-04.md).
-It proves the mock-lane identity/save/private-handoff and one canonical
-placement path; it does not replace real-backend, accessibility, platform, or
+It proves mock-lane identity/save/private-handoff and one canonical placement
+path, plus the guarded shared-renderer Keep/Ask contract for all three current
+object kinds; it does not replace real-backend, accessibility, platform, or
 full state-matrix evidence.
 
 For the existing mock Maestro lane, the installed development client must be
