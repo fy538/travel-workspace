@@ -179,7 +179,7 @@ silently counted as passes. The latest selection includes the terminal-Plan
 repair coverage for geofence, expense, photo, and compatibility commitment
 evidence.
 
-The read-only health report at `2026-09-05T02:27:28Z` reports zero stale
+The read-only health report at `2026-09-05T02:33:35Z` reports zero stale
 claims, duplicate active jobs, expired processing leases, retried rows, and
 completed-without-fresh-brief mismatches. It does report one pending venue
 research row with an oldest age of about 25 days and one pending resolution

@@ -590,7 +590,7 @@ Validation recorded for this continuation:
   site across public and authenticated presentation routes. The corresponding
   cleared-state Maestro flow remained at the Expo development-server picker,
   so native unavailable/process-restart acceptance is intentionally still open.
-- The read-only health report at `2026-09-05T02:27:28Z` found zero stale
+- The read-only health report at `2026-09-05T02:33:35Z` found zero stale
   claims, duplicate-active jobs, expired leases or completed-without-fresh-
   brief mismatches, alongside one old pending venue research row and one
   pending resolution review. Those rows were not changed; E9 must assign their
@@ -633,6 +633,10 @@ Validation recorded for this continuation:
   delayed place-note composer. TypeScript, accessibility governance and
   contract typecheck remain clean; this is a client lifetime proof, not native
   handoff-revocation evidence.
+- The exact pilot-focused app selection (object-page projection/rebuild,
+  research lifecycle, and Keep/Unsave) passes **56 tests**. The corresponding
+  backend presentation/research/relationship selection passes **46 tests**;
+  these are the current deterministic receipt commands in the pilot runbook.
 - `npm run accessibility-governance` passes after removing the rebuilt
   renderer’s Dynamic Type opt-outs; the three guarded journeys were rerun at
   iOS `accessibility-medium` on `travel-app:d3b22275b` and passed.
