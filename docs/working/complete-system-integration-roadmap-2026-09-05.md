@@ -1096,3 +1096,13 @@ longer spends routine seats on unscoped singular owners, but an explicit
 field-coverage result and measured fast-serving/optional-production boundary
 are still required before the package can exit. The next implementation should
 extend this same truthful gate, not add a speculative route service or worker.
+
+- **I2 / executable field coverage — implemented and locally tested:**
+  `travel-agent` commit `81834ff05` adds a typed field-coverage result to the
+  portfolio plan. Each selected operation now reports the requested,
+  currently supported, and missing semantic fields separately from operation
+  readiness; the live disruption fixture proves `route.evaluate` has no
+  canonical fields and the partial place reader is missing current
+  conditions, reachability, thresholds, and alternatives. The focused
+  portfolio suite passes (16 tests). This is a readiness gate and does not
+  promote partial place data or create a route adapter.
