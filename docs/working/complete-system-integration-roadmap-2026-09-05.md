@@ -976,6 +976,14 @@ tests; do not defer the live engine until content composition is finished.
   return suites pass (13 tests), and the app typecheck passes. This closes a
   concrete Home/Places→Focus return gap; it does not yet claim a real-data
   stale-source recomposition path.
+- **I4 / stale-source treatment — implemented and locally tested:**
+  `travel-app` commit `bcc072de6` compares a returned catalog revision with the
+  revision carried into a map return and surfaces a small accessible `VIEW
+  UPDATED` treatment when the source changed. Unknown revisions remain quiet;
+  the screen always uses the server's latest response and never treats the
+  client-carried revision as authority. The Places route-bridge, map-return,
+  and pin-handoff suites pass (13 tests), and app typecheck passes. This is an
+  honest stale indication, not yet full real-data Focus/Path recomposition.
 
 ### M1 batch update — 2026-09-05
 
