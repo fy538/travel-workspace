@@ -44,8 +44,8 @@ Inspected local `main` on September 4 (after the continuation receipts below):
   guarded venue/site/experience journeys, focused shared-renderer
   state-contract coverage, and Dynamic Type/accessibility governance fixes
   (the preceding route/action implementation is `35c110f47`).
-- Workspace: `c339dea` — roadmap, runbook and validation ledger before this
-  receipt update.
+- Workspace: `73a2ce4` — roadmap, runbook, native receipt and post-fix
+  accessibility evidence are committed locally.
 
 These are local source baselines, not deployment or public-release evidence.
 No database job, provider call, canary, or backfill was run to write this
@@ -541,6 +541,9 @@ Validation recorded for this continuation:
   needed only while constructing that full HTTP scenario harness, so that
   runner mismatch is recorded rather than treated as a product failure.
 - Mobile TypeScript, schema bridge and object-page projection tests pass.
+- The mobile test TypeScript project passes (`npm run
+  test:typecheck:contracts`); API boundary and schema-bridge CI checks also
+  pass (`npm run api-boundaries`, `npm run schema-bridge`).
 - The focused mobile shared-renderer state suite passes
   (`__tests__/components/places/ObjectPageRebuild.test.tsx`: 3 tests),
   covering sparse body absence, capability/owner-private withholding, and

@@ -125,6 +125,11 @@ renderer’s Dynamic Type opt-outs (`npm run accessibility-governance`). This is
 still a bounded enlarged-text check, not a VoiceOver, Android, or full
 accessibility certification.
 
+The supporting mobile contract checks also pass on the current app checkout:
+`npm run test:typecheck:contracts`, `npm run api-boundaries`, and
+`npm run schema-bridge` (the script runs in CI mode). These are static checks
+only; they do not widen the native or backend evidence recorded here.
+
 ## Assertions covered
 
 1. The default venue route opens from the dev handoff and lands on the current Plans
