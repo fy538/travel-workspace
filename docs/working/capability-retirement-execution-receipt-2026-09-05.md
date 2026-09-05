@@ -47,12 +47,20 @@ removed.
 - New session creation, checkout/hold/payment, restaurant contact/retry, and
   provider-changing itinerary dispatch fail at server/domain boundaries; stale
   and replayed worker paths are guarded as well.
+- Follow-through hardens the remaining local admission seams: booking-offer and
+  restaurant-attempt writers, plus provider-saga starts and held-price
+  reapproval, now fail before creating fresh obligations. Their authenticated
+  routes return the stable `410 booking_execution_retired` response. Provider
+  callbacks and liability-reducing decline/release recovery remain available by
+  design.
 - Concierge booking-tool discovery and its promise language remain present for
   the deferred Chat lane. They were not removed here because the explicit
   instruction for this pass was not to change Chat.
 - Focused retirement tests passed before later concurrent work was added. The
   setting remains `BOOKING_EXECUTION_RETIRED=false` by default, so repository
   landing does not silently change production behavior.
+- The follow-through suite passed with 102 focused tests across booking CRUD,
+  provider-saga routes/gateway, retirement policy, and the read-only audit.
 
 ### CR-3 — retained external continuation
 
@@ -79,7 +87,7 @@ removed.
 
 | Check | Result | Boundary |
 | --- | --- | --- |
-| Backend admission/retirement focused tests | Passed in the landed slice | Does not certify production queues, callbacks, or external obligations |
+| Backend admission/retirement focused tests | 102 passed, including writer and provider-saga admission seams | Does not certify production queues, callbacks, or external obligations |
 | Backend venue/entity/projection focused tests | 57 passed for the continuation contract | Does not certify retained Life readers or native UI |
 | Backend touched-file Ruff checks | Passed for the landed slices | Broad repository ratchet has pre-existing failures |
 | `make contract-check` | Passed; snapshot, mobile projection, generated types, and bridge coherent | Local contract parity only |
