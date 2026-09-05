@@ -56,13 +56,33 @@ An internal Life-only build can precede full richness. A public replacement
 cannot strand existing material or controls. Full system completion includes
 the broader experience; passing a navigation smoke flow is not its definition.
 
+### Implementation receipt — September 5, 2026
+
+The first execution pass has landed in the two child repositories. These are
+real replacement seams, not a claim that the complete program is finished:
+
+| Package | Landed | Deliberately still open |
+|---|---|---|
+| R0 | `/(tabs)/life` is the visible continuity root; legacy Atlas root/deep links redirect; graph/source fallbacks and Life back navigation land in Life; all four lens routes are accepted | Legacy nested readers, producers, tables and API routes still exist behind compatibility paths |
+| R1 | Root and depth use one normalized corpus assembly; timeline reads no longer call the Atlas HTTP route; source chronology, source revisions, cursor identity and corpus-fingerprint conflict handling are explicit; depth exposes source revisions | The corpus is still reconstructed by draining owner sources on each request; no indexed Life membership table or deep anchor seek exists yet |
+| R2 | Trip/memory correction invalidation now includes Life root and depth query families; stale-cursor restart is actionable in the reader | Incremental Life index, backfill, outbox fan-out and custody/refind invalidation are not implemented |
+| R4 | Life is always reachable in the four-tab shell; Time/Places/People/Threads readers and bounded position restoration exist | People/Threads remain truthful sparse reads where no owner exists; root composition and dossier/custody behavior are still partial |
+| R8 | No user data or source tables were deleted; all changes are committed locally and generated contracts are synchronized | Atlas retirement, migration certification, real-device QA and deployment remain future work |
+
+The backend pre-commit size-budget check remains skipped only because of a
+pre-existing oversized unrelated concierge prompt file; other hooks and the
+focused Life checks pass. No push or deployment was performed in this pass.
+
 ## 2. Investigation baseline and evidence
 
 Inspected the working workspace and both child repositories on September 5.
 Branches observed: `main` in both children, with only remote `main` listed.
 Concurrent integration advanced HEADs during the investigation. Later observed
-heads: workspace `03837fc`, backend `56d11b55f`, app `1ce1818b8`. These identify
-inspection points, not a frozen release candidate. Recheck status before work.
+heads at the start of the pass were workspace `03837fc`, backend `56d11b55f`,
+and app `1ce1818b8`; the execution receipt below supersedes those inspection
+points with workspace `079035c`, backend `332716f8b`, and app `4a4a85bf0`.
+These are still not a frozen release candidate; recheck status before any
+release work.
 
 Read the current Life experience contract, September 4 rebaseline, execution
 status, production-spec anatomy and lens rules, Life Unfolding docket,
