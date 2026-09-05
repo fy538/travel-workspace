@@ -940,6 +940,15 @@ tests; do not defer the live engine until content composition is finished.
   first implementation is honest about an unknown source revision; native
   Places promotion still requires a proven shared revision, native return
   propagation, and real-data acceptance.
+- **I4 / Places native return propagation — implemented and locally tested:**
+  `travel-app` commit `f267db979` carries the server-owned result-set id and
+  optional revision through the map, field, and all supported detail-route
+  return envelopes. Map-originated venue, experience, place, and site returns
+  now preserve the originating identity; a current-location replacement
+  intentionally starts a new context rather than pretending it is the prior
+  set. The focused route/return suites pass (36 tests) and the app typecheck
+  passes. The source revision remains explicitly unknown until an owner-backed
+  revision can be proven, so semantic Places promotion stays dark.
 
 ### M1 batch update — 2026-09-05
 
@@ -954,11 +963,15 @@ budgeting, and the exact serialized input (especially Places context). This is
 the remaining M1 integration decision, not a reason to reintroduce generation
 into a GET path.
 
-The next bounded batch is native return propagation and a source-backed
-revision for the Places result-set reference, with Home→Places→Focus/Path
-acceptance cases. It must preserve the mature workspace and keep the semantic
-renderer dark until real data and native evidence land. It must not promote the
-dark Home kinds, add a generic route service, or create a second Places feed.
-Re-pin all repositories and shared-file ownership before touching generated
-contracts. This keeps the roadmap live without making this task a bottleneck
-for Life or turning six former specialist tasks back on.
+The next bounded batch is now the source-backed revision and Home→Places→
+Focus/Path real-data acceptance cases. The revision owner must identify the
+authoritative source snapshot or correction clock for each supported scope;
+until then, `revision: null` remains the honest contract. Acceptance must prove
+that field/map/detail returns preserve the same set when the source is stable,
+and recompose or show an explicit stale/unknown state when it changes. It must
+preserve the mature workspace and keep the semantic renderer dark until real
+data and native evidence land. It must not promote the dark Home kinds, add a
+generic route service, or create a second Places feed. Re-pin all repositories
+and shared-file ownership before touching generated contracts. This keeps the
+roadmap live without making this task a bottleneck for Life or turning six
+former specialist tasks back on.
