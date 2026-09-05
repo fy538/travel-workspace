@@ -264,3 +264,15 @@ typecheck. No backend contract or data source changed.
 
 The focused request suite passes (**5 tests**), `make contract-check` passes,
 and no queue item was retried or mutated.
+
+## Mounted identity transition repair — 2026-09-04
+
+- Travel App `ce19d1f3c` — scoped `useEntityResearchRequest` mutation receipts
+  to the current account/entity identity. A mounted route transition now hides
+  the prior queued/failed receipt, resets the mutation, and rotates the
+  idempotency key before the next deliberate request.
+
+Verification: the new lifecycle regression and shared object renderer suite
+pass (**5 tests** total); app-main TypeScript passes. The worktree-only lint
+and typecheck were not used because the isolated worktree has no Expo
+dependency resolution; no account, queue, research, or catalog data changed.
