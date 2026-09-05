@@ -87,6 +87,14 @@ rules:
 
 
 overrides:
+  docs/working/life-organization-and-composition-engine-system-design-2026-09-05.md:
+    disposition: keep_reference
+    rationale: Detailed proposed Life engine contracts, evolving behavior cases and implementation units supporting the existing replacement roadmap without claiming shipped behavior.
+
+  docs/working/life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md:
+    disposition: keep_reference
+    rationale: Active Life replacement engineering sequence and bounded implementation receipts; accepted experience and owner contracts retain product authority.
+
   docs/working/complete-system-integration-roadmap-2026-09-05.md:
     disposition: keep_authoritative
     rationale: Current two-lane Strategy integration roadmap with code-backed correction packages, Life boundaries, reassessment checkpoints and bounded Luna execution policy; product canon and release approvals retain their authority.

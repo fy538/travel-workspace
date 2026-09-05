@@ -56,6 +56,23 @@ An internal Life-only build can precede full richness. A public replacement
 cannot strand existing material or controls. Full system completion includes
 the broader experience; passing a navigation smoke flow is not its definition.
 
+### September 5 engine-design refinement
+
+The [Life Organization and Composition Engine system design](life-organization-and-composition-engine-system-design-2026-09-05.md)
+now specifies the evolving record behavior and engineering contracts behind
+R1/R2 and the organization-bearing portions of R3–R7. It adds six multi-step
+scenarios, typed grouping and identity rules, incremental maintenance and repair,
+editorial selection, evaluation comparisons, and a later manual-authorship seam.
+This roadmap remains the only forward package sequence; the design is not a
+second execution status or evidence that those capabilities shipped.
+
+The next phase is system implementation guided by that design, with targeted
+experiments for grouping/retrieval quality—not another broad memory-framework
+survey. Sections 6 and 9 below point to the next connected batch. User-directed
+manual composition is a later extension; protected authorship, source lineage
+and version behavior must be preserved now, but a full editor does not gate
+the automatic Life engine or Atlas replacement.
+
 ### Implementation receipt — September 5, 2026
 
 The first execution pass has landed in the two child repositories. These are
@@ -228,14 +245,15 @@ Source / artifact / memory / entity / Plan / Occasion / outcome owners
 
 ### 4.1 One derived index, existing domain owners
 
-Recommend an indexed Postgres projection in the existing backend. Reuse the
+The versioned Postgres replacement foundation now exists as
+`life_corpus_entries` (see the implementation receipts above). Continue that
+choice rather than reopening extend-in-place versus replacement. Reuse the
 Atlas timeline projector's useful owner adapters, dedupe history and migration
 knowledge, but replace its travel-only public contract with Life records.
-Choose extend-in-place versus a versioned replacement table after inspecting
-existing keys, hide/rename overrides, backfill cost and deployed readers. Prefer
-a versioned derived replacement when preserving the old key assumptions would
-constrain all four lenses. Retire the old projection after comparison and
-consumer migration. This is rebuildable read state, not a new truth owner.
+Preserve existing hide/rename controls and inspect deployed-reader coverage
+during backfill design. Retire the old projection after comparison and consumer
+migration. This is rebuildable read state, not a new truth owner; its current
+existence does not imply population or serving cutover.
 
 Minimum index concepts, to specify concretely in R1:
 
@@ -276,6 +294,11 @@ the backend can actually continue. Deep anchor seeking must not replay every
 page from the newest record.
 
 ### 4.3 Incremental organization
+
+Implementation detail is in [engine design sections 5–7](life-organization-and-composition-engine-system-design-2026-09-05.md#5-system-boundaries-and-proposed-data-contracts):
+typed relations, stable identity, human controls, a durable downstream Life
+change journal, revision/authorization publication checks, and rebuild policy.
+Its six evolving examples constrain the whole system before model tuning.
 
 Use source-local explicit links, canonical entities, authored containment and
 time evidence first. Episodes and periods are derived groups, not automatically
@@ -481,6 +504,12 @@ participants. No obligation or overdue queue is added to Life.
 
 ### R7 — substantive Returns and kept compositions
 
+[Engine design sections 8–9](life-organization-and-composition-engine-system-design-2026-09-05.md#8-from-organized-evidence-to-a-useful-life-page)
+distinguish factual records, Vesper synthesis and human-authored compositions.
+Exact keep/reopen remains part of this package. A full manual-first editor is
+a later extension, not a new prerequisite for R8; source references, protected
+authored choices, saved-version validity and repair must already support it.
+
 Connect source-backed production to existing cross-root Return arbitration.
 Allocation is coordinated by evidence/intent identity and version, not GET
 requests independently racing for a delivery slot. Implement freshness,
@@ -541,11 +570,13 @@ into R4 as available. They remain part of complete-system acceptance. This is
 not permission to reduce Life to browsing while indefinitely deferring value,
 shared material or future continuity.
 
-For one founder: finish one cross-repo package at a time; begin with identity
-and reachable navigation, then the indexed corpus. Do not spend the next round
-only expanding smoke tests or polishing placeholder rows. The first material
-delivery should let the app open the correct objects through a real Life tab
-and read a coherent corpus without the current full-history drains.
+For one founder: finish one connected cross-repo package at a time. Life tab
+navigation and the index foundation have landed; do not restart those steps.
+The next material delivery connects authorized owner changes to a populated,
+repairable shadow index, then extends owner coverage toward serving cutover.
+Design grouping, synthesis and later authorship contracts alongside that work
+so early storage does not constrain the product. Do not spend the next round
+only expanding isolated helper tests or polishing placeholder rows.
 
 | Adjacent lane | Needs to supply | Life owns | Can proceed before it settles? |
 |---|---|---|---|
@@ -559,25 +590,33 @@ Do not hold the whole build for every design lane. Unresolved owner decisions
 block their writes, not the entire Life read system. No sub-agents or other tasks
 were dispatched by this planning pass.
 
-### First execution batch: concrete commit plan
+### Next connected execution batch: owner changes to shadow Life records
 
-1. **Route truth and migration contract:** resolve each source family to its
-   actual owner in backend `life_projection/record.py` and `adapters.py`, app
-   `utils/resourceDestination.ts`, `utils/routes.ts`, and the receiving screens.
-   Until a graph dossier exists, return an explicit limited destination rather
-   than labeling an ignored `record` query parameter exact. Cover legacy kept
-   artifact versus intake-anchor IDs with owner-backed response fixtures.
-2. **Actual Life navigation:** introduce the canonical Life route and use one
-   visibility decision in `app/(tabs)/_layout.tsx`, `FloatingTabBar.tsx`, rollout
-   helpers and back destinations. Keep profile/settings at `/you`. Verify tab
-   tap, selected state, deep link and return independently of screenshot mode.
-3. **R1 query design and implementation:** document the chosen index migration,
-   owner adapter coverage, authorization boundary and cursor invalidation policy;
-   implement bounded owner queries in the domain layer and remove route-to-route
-   reads from `root_projections.py`. Do not merely lower the current page cap.
-4. **Reader integration:** sync OpenAPI with `scripts/sync-types.sh`, update
-   `data/rootProjections.ts`, root/depth consumers and fixtures together, and
-   cover missing/changed anchor recovery without an unbounded page replay.
+This replaces the original navigation/index-foundation batch, whose partial
+completion is recorded above. [Engine design section 12](life-organization-and-composition-engine-system-design-2026-09-05.md#12-implementation-units-inside-the-existing-roadmap)
+maps the detailed units back to R1–R7; no new package numbering supersedes R0–R8.
+
+1. **Behavior and owner contracts:** implement the W1–W6 replay manifests and
+   owner/revision/authority adapter matrix. Account for retained originals,
+   admitted anchors, graph owners, historical Atlas material, shared records
+   and composition custody; explicitly mark unavailable owner paths.
+2. **Transaction and schema review:** specify independent downstream Life
+   change delivery, identity/control dependencies, checkpoints, publication
+   compare-and-swap and explicit restoration. Existing tombstone guards do not
+   establish general revision ordering or stale-first-insert safety.
+3. **Connected shadow population:** wire source-custody and anchor changes
+   through owner-backed projectors into the existing versioned index. Do not
+   compete with the intake bridge for the same single-ack outbox events or
+   infer authority from a presentation ID.
+4. **Replay, repair and coverage:** exercise late/duplicate events, partial
+   reads, corrections, deletion during work, reauthorization and first-insert
+   races. Page backfill and fan-out; extend shadow comparison beyond identity
+   and ordering to payload, current grants, dependencies and coverage.
+5. **Reader integration after coverage:** retain actual owner destinations,
+   bounded restoration and current authorization at read time. When transports
+   change, sync OpenAPI via `scripts/sync-types.sh` and update root/depth/mobile
+   consumers together. A first connected adapter does not authorize a whole-
+   corpus serving switch.
 
 Existing regression homes to extend: backend `tests/life_projection/`,
 `tests/life/`, `tests/api/test_root_projections.py`; app
@@ -587,12 +626,13 @@ Existing regression homes to extend: backend `tests/life_projection/`,
 and `lifeReadingPositionStorage.test.ts`. Add PostgreSQL integration cases for
 query/migration behavior and preserve historical test evidence separately.
 
-The batch is complete when actual tab navigation and exact object reads work,
-the replacement query has a measured bounded access path, and both generated
-contract consumers agree. It does not complete the digest, Together, Returns or
-retirement packages. Avoid a calendar estimate until R1's migration/query
-choice is reviewed; current uncertainty is architectural scope and legacy-data
-shape, not how quickly the existing tests run.
+The first connected portion is complete when an authorized owner transition
+reliably produces a correct shadow Life record and repair survives replay and
+concurrency. Record remaining owner coverage explicitly. Serving cutover still
+requires whole-corpus coverage, measured bounded access, current authorization,
+and matching generated consumers. This does not complete digest, Together,
+Returns or retirement. Avoid a calendar estimate until the delivery/owner
+contracts and migration shape are reviewed.
 
 ## 7. Acceptance portfolio
 
@@ -656,6 +696,12 @@ owns receipts of completed work. The experience contract owns product behavior;
 the production spec/design references own accepted composition; the Life
 Unfolding docket owns pending prospective rulings. Do not accumulate several
 documents that each claim a different next package.
+
+The [engine system design](life-organization-and-composition-engine-system-design-2026-09-05.md)
+owns the detailed proposed grouping, maintenance, synthesis and later authorship
+contracts within this sequence. Promote accepted enduring contracts into their
+canonical homes during implementation; keep empirical thresholds labeled as
+experimental until evaluated. Documentation progress is not runtime completion.
 
 R0 must reconcile the app Life surface contract, August 12 retirement decision's
 old IA, personal-memory compatibility charter, current-state page and machine
