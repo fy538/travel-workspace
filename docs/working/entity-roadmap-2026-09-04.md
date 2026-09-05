@@ -540,6 +540,10 @@ Validation recorded for this continuation:
   screen/renderer/projection set passed 78 tests; these strengthen deterministic
   privacy/repair evidence but do not substitute for two-account device or
   platform acceptance.
+- The complete entity-focused backend selection (API, Places, core/database
+  identity, research queue and health report) passed 177 tests with 2 recorded
+  dogfood-wedge skips requiring an explicitly seeded Lisbon corpus. This is a
+  code-level gate, not evidence of a production catalog or rollout.
 - The real PostgreSQL second-occasion loop-closure proof passes independently
   with the repository virtualenv (`.venv/bin/pytest
   tests/scenarios/test_micro_journey_loop_closure.py -q`: 5 passed). It

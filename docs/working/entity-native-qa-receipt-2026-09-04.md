@@ -152,6 +152,13 @@ current app checkout, the seven entity screen/renderer/projection suites also
 passed 78 tests. These are deterministic regression checks; the native state
 matrix and two-account device journey remain separate gates.
 
+The complete entity-focused backend selection (API, Places, core identity,
+database identity, research queue, and health-report tests) passes 177 tests
+with 2 skips. Both skips are the dogfood-wedge-only entity-facet cases that
+require an explicitly seeded/enriched Lisbon corpus; they are not needed for
+the canonical object-page lane and are recorded rather than silently counted
+as passes.
+
 The three guarded journeys were then repeated at iOS `accessibility-medium`
 Dynamic Type on the post-fix source `travel-app:d3b22275b`. All assertions
 passed and the simulator content-size setting was restored to `large`
