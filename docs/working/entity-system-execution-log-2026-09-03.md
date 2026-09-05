@@ -319,3 +319,16 @@ addressed-handoff tests pass (**44 tests**); app-main TypeScript, test-contract
 typecheck, mutation-key ownership, API-boundary, schema-bridge, and
 accessibility governance checks pass. No API contract or production data
 changed.
+
+## Plan-preview lifetime repair — 2026-09-05
+
+- Travel App `f38347b78` — canonical venue and experience plan previews now
+  capture the mounted entity/account/path lifetime. Late preview responses and
+  stale errors are ignored after a route, selected-trip, bounded-opening, or
+  account transition; an existing review preview is cleared on replacement,
+  and the signed Places handoff latch resets for a new opening.
+
+Verification: venue and experience smoke suites pass (**38 tests** together),
+including deferred route-replacement regressions; app-main TypeScript and
+touched-file lint remain clean apart from the repository's existing warnings.
+No API contract, itinerary row, research job, or catalog data changed.
