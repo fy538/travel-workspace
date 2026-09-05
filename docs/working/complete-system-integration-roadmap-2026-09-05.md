@@ -817,6 +817,16 @@ tests; do not defer the live engine until content composition is finished.
   `travel-agent` commit `d98fc3a0e` preserves the existing typed error for
   unknown value-read operations while applying the new readiness filter. The
   focused portfolio-read suite passes (14 tests).
+- **I2 / fast root serving boundary — implemented; focused pytest environment
+  blocked:** `travel-agent` commit `bdd4add38` makes Home and Places composition
+  consume only an explicitly precomputed Source production by default. Inline
+  optional production remains available only behind the named
+  `allow_inline_source_production` opt-in, so the HTTP roots do not await
+  enrichment/model work on the ordinary response path. Home and Places route
+  regressions assert that the optional producer is not awaited even when its
+  rollout flag is enabled. The focused route tests are currently blocked at
+  collection because this checkout lacks the `openai` package; both touched
+  files pass `compileall` and commit hooks.
 - **Boundary preserved:** no API schema changed, no generated mobile types were
   regenerated, no Life internals were edited, and the pre-existing uncommitted
   Claude-design handoffs and concurrent Life work remain untouched.
