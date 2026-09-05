@@ -44,6 +44,7 @@ independently gated.
 
 - `PYTHONPATH=. .venv/bin/pytest tests/api/test_entity_people_lines.py tests/api/test_entity_research_requests.py tests/research_agent/test_research_queue.py tests/places/test_entity_presentation_read.py tests/places/test_private_entity_contracts.py -q` — **60 passed**.
 - `PYTHONPATH=. .venv/bin/pytest tests/places/test_relationships.py tests/domains/relationships/test_persistence_postgres.py tests/domains/relationships/test_consequence_gateway.py tests/domains/relationships/test_models.py -q` — **20 passed**, including the real PostgreSQL people-line test.
+- `tests/scenarios/test_micro_journey_loop_closure.py` — attempted for the C6 cross-owner gate; all 5 cases stopped during fixture setup on a `NameError` (`Field` missing from a concurrently modified owner-reads module), before journey assertions. This unrelated owner work remains open and was not folded into the entity commits.
 - Touched-file Ruff check/format check — **passed**.
 - Backend pre-commit size-budget hook remains a repository-wide baseline failure (unrelated oversized files/functions); commits used the single documented skip and do not claim a clean whole-repository hook run.
 
