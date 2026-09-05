@@ -799,9 +799,23 @@ tests; do not defer the live engine until content composition is finished.
   environment-blocked because this checkout lacks the `openai` package; the
   existing `backend/concierge/_prompts_skills.py` size-budget overage is
   unrelated and was explicitly skipped for this commit.
+- **I0 / live owner path matrix — implemented:** workspace commit `c533b40`
+  records the current trigger, context, judgment, treatment, consequence,
+  readback, delivery, and activation boundary for all nine registered lived-
+  experience families. It explicitly keeps watch persistence, route ownership,
+  production, and Home kind promotion as gated decisions.
+- **I2 / canonical owner-read readiness — implemented and locally tested:**
+  `travel-agent` commit `4bac11f87` separates legacy semantic availability from
+  canonical owner-read readiness. `route.evaluate` remains selectable as a
+  partial legacy operation, but is omitted from routine owner-read/value-read
+  budgets and retained as a truthful limitation in the compiled plan. The
+  semantic-catalog and portfolio-read suites pass (20 tests). The broader
+  canonical-owner suite remains environment-blocked by the missing `openai`
+  package; unrelated pre-existing hooks for size, module-state, and error
+  category registration were explicitly skipped for this commit.
 - **Boundary preserved:** no API schema changed, no generated mobile types were
   regenerated, no Life internals were edited, and the pre-existing uncommitted
-  Claude-design handoff remains untouched.
+  Claude-design handoffs and concurrent Life work remain untouched.
 
 At the next checkpoint update this ledger in place, attach exact receipts, and
 decide the next bounded batch. This keeps the roadmap live without making this
