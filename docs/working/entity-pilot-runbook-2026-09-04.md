@@ -55,7 +55,8 @@ PYTHONPATH=. pytest \
 cd ../travel-app
 npm test -- --runInBand \
   __tests__/components/places/objectPageProjection.test.ts \
-  __tests__/components/places/ObjectPageRebuild.test.tsx
+  __tests__/components/places/ObjectPageRebuild.test.tsx \
+  __tests__/data/entityResearchRequest.test.tsx
 ```
 
 For a content-free operational snapshot (read-only; no repair or refresh),
