@@ -95,7 +95,13 @@ lane's commits or reclassified as caused by the retirement work.
 
 ## Explicitly not complete
 
-- No per-environment read-only obligation audit has been run.
+- No deployed-environment read-only obligation audit has been run. The new
+  command was exercised against the local database on 2026-09-05 and found
+  2,342 additive local obligation counts (including 294 nonterminal sessions,
+  235 active offers, 215 active provider sagas, 222 cancellation claims, 108
+  active protected dependencies, and 1,268 undelivered booking projection
+  rows). This is local/fixture evidence only; provider state remains
+  unattested.
 - The executable audit and operator procedure are documented in the
   [Booking Capability Retirement Audit runbook](../../travel-agent/docs/operations/Booking%20Capability%20Retirement%20Audit.md).
 - The retirement setting has not been enabled in a deployed environment.
