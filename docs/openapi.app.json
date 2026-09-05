@@ -50774,6 +50774,16 @@
             ],
             "title": "Context Handle"
           },
+          "result_set": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesResultSetRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "trip_id": {
             "anyOf": [
               {
@@ -75963,6 +75973,16 @@
           "context": {
             "$ref": "#/components/schemas/PlacesContext"
           },
+          "result_set": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesResultSetRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "sections": {
             "items": {
               "$ref": "#/components/schemas/PlacesSection"
@@ -76856,6 +76876,16 @@
             ],
             "title": "Context Handle"
           },
+          "result_set": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesResultSetRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "items": {
             "items": {
               "$ref": "#/components/schemas/PlacesReadingItem"
@@ -77059,6 +77089,65 @@
         "title": "PlacesRelationshipTruth",
         "description": "Grounded relationship markers with factual encounter provenance."
       },
+      "PlacesResultSetRef": {
+        "properties": {
+          "set_id": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 1,
+            "title": "Set Id"
+          },
+          "parent_set_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 240,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Set Id"
+          },
+          "context_handle": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Context Handle"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/PlacesScope"
+          },
+          "revision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 300,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Revision"
+          }
+        },
+        "type": "object",
+        "required": [
+          "set_id",
+          "scope"
+        ],
+        "title": "PlacesResultSetRef",
+        "description": "Server-owned identity for one Places inventory and question.\n\n``set_id`` is a continuation identity, not an authorization token.  The\nnormalized scope remains explicit so field, map, and detail readers can\nprove which inventory they are transforming.  ``revision`` is optional\nwhile an endpoint cannot prove a shared source revision; ``None`` is an\nhonest unknown, never a client invitation to invent one."
+      },
       "PlacesRootProjection": {
         "properties": {
           "root": {
@@ -77196,6 +77285,16 @@
               }
             ],
             "title": "Context Handle"
+          },
+          "result_set": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesResultSetRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "items": {
             "items": {
@@ -77352,6 +77451,16 @@
               }
             ],
             "title": "Context Handle"
+          },
+          "result_set": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlacesResultSetRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "items": {
             "items": {
