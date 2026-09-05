@@ -861,6 +861,42 @@ tests; do not defer the live engine until content composition is finished.
   gates only an explicit worker/migration producer seam. Enabling it cannot
   silently reintroduce model work into ordinary Home or Places GET responses.
 
+### M1 direction review — 2026-09-05
+
+- **Evidence:** I0's owner-path matrix, I1's mobile consequence refresh and
+  dependency matrix, and the I2 owner-read, source-seam, readiness, and bounded
+  executor commits are now on the local integration branches. Home v2 and
+  Places native suites pass (21 tests) and the app typecheck passes. Backend
+  route/owner-read pytest collection remains environment-blocked by the missing
+  `openai` package; focused semantic/readiness receipts from before that block
+  remain valid, while no full backend pass is claimed.
+- **Product:** The system is moving in the intended direction: Home and Places
+  can return useful existing value without asking for input or waiting for an
+  editorial generation call. Live-engine capability is expressed through the
+  same bounded composition path, not a fifth surface. The current batch does
+  not yet prove the richness or novelty of the final Home editorial experience.
+- **Architecture:** The producer is no longer an accidental second root owner;
+  canonical owner-read readiness is executable; root synchronous work has an
+  explicit late-work bound. Authority, source custody, consequence readback,
+  and Life ownership remain separate. The absence of a designated production
+  worker is still a real integration gap, not hidden by the GET path.
+- **Economics and reliability:** Ordinary root responses add zero new model
+  production calls. Read timeouts can still leave an in-flight driver call,
+  but only within the fixed root-read pool; queued work is cancelled and late
+  exceptions are observed. Measure actual latency, queue pressure, reuse, and
+  cost once the backend dependency environment is complete.
+- **Scope decision:** Continue the shared-system integration program. Do not
+  widen Home kinds, add a generic route service, create a new intent schema,
+  or activate source production to compensate for missing product evidence.
+  Life's active index work and the dirty Claude/design documents remain outside
+  this batch and are not rewritten.
+- **Next bounded batch:** (1) close the I1 capture-origin/return envelope with
+  one agreed Home/Places/Life destination contract, (2) run the I4 semantic-kind
+  and native renderer coverage audit against the current backend envelope, and
+  (3) return with an explicit owner/deployment decision for a bounded source
+  producer worker before adding any queue or scheduler code. Reassess after
+  those three packages, or earlier if a second owner or paid GET path appears.
+
 At the next checkpoint update this ledger in place, attach exact receipts, and
 decide the next bounded batch. This keeps the roadmap live without making this
 task a bottleneck for Life or turning six former specialist tasks back on.
