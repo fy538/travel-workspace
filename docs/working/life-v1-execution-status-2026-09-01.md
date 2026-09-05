@@ -92,7 +92,12 @@ rather than disappearing behind an unsafe API URL (`320223f33`, app
 `29f21a745`). Subsequent intake reads now apply the cursor timestamp at the
 owner query boundary (`5a4d9f938`) instead of repeatedly loading only the
 newest head. The owner queries now also apply the `(updated_at, id)` tie-break
-and can return exact counts when a bounded page is exhausted (`740e94dfd`).
+  and can return exact counts when a bounded page is exhausted (`740e94dfd`).
+  The follow-up owner-read consolidation (`bff449427`) moves the shared intake
+  cursor boundary, lens filtering, deterministic merge preparation, counts,
+  and truncation authority into one internal `LifeIntakePage` service. The
+  public route remains an Atlas-plus-intake adapter; no new archive owner or
+  public endpoint was introduced.
 
 ### Shared workspace
 
@@ -111,6 +116,9 @@ and can return exact counts when a bounded page is exhausted (`740e94dfd`).
 - Frontend `tsc --noEmit`: passed.
 - Life frontend reader suite: 9 targeted tests passed; complete-record reader
   mock, error, lens, and cursor-door behavior is covered.
+- Backend Life serving and intake-page suite: 20 tests passed, including
+  cross-kind cursor ties, Places filtering, exact-count escalation, and the
+  unified owner-read seam.
 - Deterministic workspace contract check: passed — 443 mobile paths, 488
   operations, and 1,299 schemas; generated TypeScript exactly matches the app
   projection.
@@ -127,8 +135,10 @@ and can return exact counts when a bounded page is exhausted (`740e94dfd`).
    continuation into those destinations, and scroll-position restoration. The
    current depth cursor now uses owner-level `(updated_at, id)` tie-breaks and
    exact counts when a bounded page is exhausted; repeated reads can therefore
-   progress beyond the 100-row owner batch. A later unified owner-level page
-   API can remove the remaining per-owner batch ceiling without changing the
+   progress beyond the 100-row owner batch. The internal unified owner-level
+   intake page service is now in place (`bff449427`), so the remaining work is
+   to replace the bounded source-reader ceiling with a database-level page
+   primitive (or an equivalent continuation contract) without changing the
    public Life shape.
 2. Full Places/People/Threads lens projection from production data.
 3. Public rollout, analytics-driven promotion, and removal of legacy Atlas.
