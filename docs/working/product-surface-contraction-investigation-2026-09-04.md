@@ -3,7 +3,7 @@ doc_type: working
 status: active
 owner: founder / product / architecture
 created: 2026-09-04
-last_verified: 2026-09-04
+last_verified: 2026-09-05
 expires: 2026-10-04
 why_new: Investigates post-pivot surface contraction and plans bounded booking-execution retirement while preserving external reservation usefulness.
 supersedes: []
@@ -13,6 +13,13 @@ source_of_truth_for: []
 # Product surface contraction after the August pivot
 
 ## Status and recommendation
+
+**Next execution sequence:** [§20](#20-next-execution-sequence--september-5-rebaseline)
+extends this plan across booking presentation, arrangements/settings, assisted
+expenses, Life's Atlas replacement, and reusable presentation. It maps those
+changes to the active integration and Life roadmaps without reopening the
+already-landed retirement guards. Start with SC-0 and SC-1a; each later cut
+depends on its named replacement, not a complete application design freeze.
 
 **Detailed implementation plan:** [§12–19](#12-capability-retirement-lane--detailed-plan)
 turned the investigation into a bounded booking-retirement program. The first
@@ -1106,3 +1113,431 @@ should CR-4 migrate retained readers and CR-5 delete obsolete execution
 footprint. Do not set the retirement control live, drop booking tables, remove
 the compatibility route, or remove the return-catch behavior from Chat as part
 of this repository pass.
+
+## 20. Next execution sequence — September 5 rebaseline
+
+### 20.1 Outcome, authority, and current evidence
+
+**Outcome: four useful roots, a small set of readable objects and focused
+interactions, and fewer independently maintained operational workflows.** Home
+and Places retain generous value; Chat accepts natural input; Life organizes
+continuity. Contraction removes work from the person and the implementation.
+It must not make every useful capability available only through a transcript.
+
+This section is the requested detailed plan. It extends the existing research
+and CR packages rather than adding a competing strategy document. Runtime
+implementation, deployment, provider shutdown, and data migration are not
+claimed by this planning update. Earlier implementation receipts remain dated
+evidence. The existing no-Chat/no-Life editing boundary remains in force for
+this capability-retirement task; owner handoffs below are planned dependencies.
+
+The [complete-system integration roadmap](complete-system-integration-roadmap-2026-09-05.md)
+owns overall ordering (I0–I6). The [Life replacement roadmap](life-complete-system-and-atlas-replacement-roadmap-2026-09-05.md)
+owns Life/Atlas work (R0–R8). SC packages below define contraction deliverables
+inside those programs. They do not create seven new teams, services, or goals.
+
+Inspection points: workspace `c27b70e`, backend `647950ede`, app `f267db979`.
+All were on `main`; integration continued during the read-only investigation.
+The Plan design report, handoff, kernel, decision index, and a new seven-sentence
+Plan decision had concurrent uncommitted edits. Those files were read as current
+design input and left to their owner. Pin the committed ruling before Plan
+implementation; this section does not independently promote their draft state.
+
+| Evidence at inspection | Meaning for the next work |
+| --- | --- |
+| Booking guards and recovery repair are committed; `BOOKING_EXECUTION_RETIRED` defaults to `false` | Reuse the implementation. Enabling retirement and retiring a client workflow are separate decisions; neither is proven by the other |
+| Local audit previously reported 2,342 additive counts; no deployed/provider attestation is recorded here | These are not 2,342 distinct customer bookings. Do not use fixture counts as a production obligation estimate or delete rows to make the gate green |
+| `app/booking/[sessionId].tsx` remains 1,487 lines | Receipt reading and provider execution still share a large route |
+| Trip plan is 2,082 lines; permissions is 599 lines; expenses still has five routes | Much of the visible workflow reduction remains ahead |
+| M-1 registry has 47 surface entries: 11 compatibility, 2 external-handoff, 3 retire, and 31 in other classes | This is a QA inventory, not a count of visible tabs or independently implemented screens; aliases and fixtures must be distinguished |
+| Fresh `surface:contraction:check` reports stale generated routes and missing owners for `/you/intake-submissions/[submissionId]` and `/you/life-record` | Fix inventory truth in SC-0 with the Life owner; do not treat the older two-failure receipt as the current gate result |
+| Life root and exact readers have advanced; indexed corpus primitives are still dark | Consume its current contracts and wait only for the reader/migration needed by a particular deletion |
+| Home canon admits 35 semantic kinds | Audit renderer reuse; this does not require 35 independent visual implementations, nor authorize deleting meaningful distinctions |
+
+### 20.2 Retained experience and removal boundaries
+
+| User job | Target experience | Implementation to shrink | Required authority retained |
+| --- | --- | --- | --- |
+| Find somewhere suitable and reserve externally | Place/Experience explains fit and opens the provider directly | Session creation, cart, checkout, contact automation, ordinary booking autonomy | External link identity and return context; no claim of a reservation from a click |
+| Retrieve a ticket or past reservation | Exact evidence reader with original, supported facts, status and useful continuation | Checkout-specific receipt wrapper and booking dashboard navigation | Source/session/offer identity, viewer scope, cancellation/unknown distinctions |
+| Understand and change an arrangement | Current readable Plan; contextual words, narrow real controls, local result | Default block-entry ladder, general Changes feed, repeated administration | Existing Plan/Trip owner, participant and grant scope, revision-aware commands |
+| See who is joining or allowed to edit | People and permissions close to the arrangement | Booking controls, voting/autonomy matrices as default interaction | Invitations, membership, edit grants, protected commitments, leave/revoke |
+| Explain or split a receipt | Immediate interpretation; explicit allocation becomes one compact result | Five-route ordinary expense workflow and repeated supported-field entry | Exact amount/currency, payer/shares, current authorization and payment ledger |
+| Re-find a past year, place, person, or source | Life and its exact object destinations | Competing Atlas/Memory archive homes and dedicated legacy workflows | Custody, existing originals, chronological meaning and correction |
+| Receive value and friends' material | Home/Places compositions over existing sources and shared objects | Separate content factories, an additional social destination, repeated copies | Authorship, audience, source identity, freshness and withdrawal |
+
+Keep the useful calendar/date picker, map, dense balance expansion, original
+document, and focused object reader when the job needs them. A screen earns
+its place by reducing comprehension or action effort. Replacing five screens
+with five equally elaborate sheets is not completion. Moving their logic into
+one giant Chat tool or generic renderer is not architectural reduction either.
+
+### 20.3 Ownership and dependency map
+
+| Package | Execution owner / existing program | Depends on | Concrete endpoint |
+| --- | --- | --- | --- |
+| SC-0 — accurate inventory and replacement contracts | This retirement task, coordinated with Strategy I0/I6 | Current HEADs and exact Life route ownership | Reviewed route/capability dispositions; fresh contraction check; next batch has named readers |
+| SC-1 — booking evidence and presentation contraction | This task for isolated booking code; Strategy for Chat integration; CR-3/CR-4 | SC-0; existing owner APIs; reader contracts for affected consumers | Minimal retained evidence path, session-free new journeys, old execution presentation removable |
+| SC-2 — arrangement and settings contraction | Strategy I3/I5; Plan design owns composition | Current Plan ruling; exact applicable intent/contribution/grant owner decisions | Readable Plan with compact local change/people behavior; legacy editor and admin branches reduced |
+| SC-3 — assisted expenses | Recommend this task as bounded expense implementation owner, coordinated with Strategy | SC-0; accepted expense interaction and current-scope decision; Chat integrations scheduled by Strategy | Complete capture/read/correct/payment-history behavior through small reusable treatments |
+| SC-4 — continuity replacement | Existing Life task R0–R8; Strategy integrates external emitters | Life's own reader, index and migration milestones | Life is the only continuity experience; required legacy links preserve exact jobs |
+| SC-5 — presentation reuse and social containment | Strategy I4; shared primitives coordinated with entity/Life owners | Current renderer inventory and accepted Home/Places composition | Fewer duplicated rendering and production paths with the same useful variety |
+| SC-6 — deletion and operational closure | This task for CR-5/CR-6; Strategy I6 coordinates candidate | Per-family replacement evidence; runtime/provider disposition where relevant | Obsolete UI, execution paths, registrations and maintenance obligations removed |
+
+SC-0 → SC-1a can proceed without a finished Life composition or generalized
+Occasion model. SC-2 and Life continue in their owners. SC-3 experience/owner
+mapping can proceed while booking work lands. SC-5 should accompany ordinary
+I4 work, not become a prerequisite framework project. SC-6 runs per completed
+family; it is not one repository-wide deletion at the end.
+
+### 20.4 SC-0 — establish a truthful, small execution boundary
+
+Deliverables:
+
+1. Refresh `travel-app/docs/design-alignment/route-inventory.generated.json`
+   with its generator. Resolve the two unowned Life routes with Life's actual
+   owner or justified exemption; do not broadly exempt `/you/**`.
+2. Extend the existing M-1 register/route policies with each next target's user
+   job, actual renderer, callers, replacement, retained read/write behavior,
+   deletion condition, owner, and evidence revision. Reuse the registry; no
+   new policy service or universal capability database.
+3. Trace actual reachability: menu, CTA, old chat card, notification, external
+   link, settings recovery, mock route, and dev gallery. Distinguish a tiny
+   redirect from a full renderer behind a compatibility label.
+4. For booking and expenses, name which operations disappear and which remain
+   for inspection, correction, history, or recovery. Reconcile the API policy
+   with real callers; do not mark all booking paths inactive by name.
+5. Add focused behavioral checks for selected replacements. A metadata class
+   alone cannot certify that an external handoff avoids session creation or
+   that an old expense link opens its exact retained record.
+
+Commit units: route generator/ownership repair; then selected disposition and
+caller contract changes. Keep generated registries synchronized with the actual
+implementation stage; do not claim a planned redirect already exists.
+
+Exit: fresh route/contraction checks, no unidentified consumer in SC-1a, and a
+bounded next commit list. Repository-wide route reduction targets are not set
+from raw file counts. Track product destinations and compatibility adapters
+separately.
+
+### 20.5 SC-1 — finish the booking replacement before removing its shell
+
+**SC-1a: isolate retained reads.** This is the recommended first code package.
+
+- Start at `travel-app/data/booking.ts`, which mixes session/offer/coverage
+  reads with confirmation, consent, refresh and other mutations. Extract the
+  needed read facade into a small `data/` module using existing generated API
+  types and query identities. Keep screen data access behind that facade.
+- Build the smallest retained reader from existing receipt primitives and
+  existing authorized responses. It shows source/provider, supported time and
+  amount, exact record status, original/evidence destination when available,
+  and external continuation. Missing evidence remains missing.
+- First preserve the session/offer identity model for historical records.
+  Do not introduce a universal reservation table/DTO or silently convert
+  existing bookings to Source anchors to make the UI uniform.
+- Keep selection of multiple offers explicit where the old session link does
+  not identify one. Never choose the first offer and present it as the receipt.
+- Separate ordinary historical reads from active recovery polling; viewing a
+  settled record should not start a background recovery workflow. Revalidate
+  current access and show stale cached status honestly when offline.
+
+Primary seams: `app/booking/[sessionId].tsx`, `data/booking.ts`,
+`components/booking/BookingReceiptPrimitives.tsx`, current booking read APIs,
+and `utils/routes.ts`. `backend/life/refind_sources.py` and
+`backend/core/accommodation_booking_truth.py` are retained consumers to map,
+not files to rewrite wholesale. A new read facade is not a second truth owner.
+
+**SC-1b: switch callers and reduce presentation.**
+
+- Preserve the already-landed session-free venue/experience continuation.
+  Cover unavailable URL/phone, normal return, and failed external open.
+- Route legacy links to the correct retained reader, preserving origin and
+  identity. Keep the compatibility URL until external callers are accounted
+  for; the old interactive renderer need not live as long as its URL.
+- Coordinate `components/chat/BookingConfirmationCard.tsx`,
+  `hooks/useConciergeBookingCardActions.ts`,
+  `components/booking/HandoffReturnCatchPrompt.tsx`, and
+  `backend/concierge/tool_handlers/booking_flow.py` with Strategy. These are
+  deferred Chat edits in this task. Align tool discovery and promises, handle
+  stale calls truthfully, and migrate local return-catch claims without
+  treating them as proof of a reservation.
+- Inspect `app/trip-settings/index.tsx` recovery links before removing the
+  booking route. A membership/leave blocker must still have a usable supported
+  recovery destination while an actual legacy obligation remains.
+- Delete checkout/cart/hold/contact panels and exclusive hooks only after
+  supported callers and finite recovery users no longer need them. Reuse
+  retained receipt pieces; do not rename the whole booking tree as evidence.
+
+**SC-1c: decouple retained backend readers.** Preserve bounded historical read
+adapters where that is cheaper and clearer than migration. A table may remain
+for evidence while its execution service disappears. Inventory Life, stays,
+expense/refund, export/deletion, confirmation shares and account departure.
+Separate required facts from provider execution dependencies. Remove each
+adapter only when its consumers have an exact replacement.
+
+Acceptance: old confirmed/cancelled/unknown/multiple-offer records; revoked
+access; supported external continuation; no new session/order from new paths;
+stale client/tool calls; correct readback after late callbacks; intact linked
+stay/expense and account lifecycle behavior. The prior 115 tests are a starting
+suite, not evidence for a new client replacement.
+
+SC-1a can be implemented and reviewed locally before a deployed obligation
+audit. Switching or deleting recovery-dependent presentation follows the
+existing CR/runbook gates. No production flag is inferred from an app build.
+
+### 20.6 SC-2 — arrangements absorb itinerary and administration
+
+Use the current Plan design's seven-sentence direction in kernel §11.15:
+a current readable page; say the change through the contextual pill/Chat/voice;
+own material changes within authority, others receive an explicit contribution;
+effects attach to their rows; at most one top-level needs-you sentence; bounded
+assistance; and failure preserves the person's words. Finite direct choices
+such as a set time or yes/no remain allowed by that design. The earlier §4
+examples are not a mandate to build a broad direct-edit toolbar.
+
+The seven sentences define presentation, not permission to simplify away
+commitment authority. “Yours” cannot authorize changing another person's
+participation, spending, provider reservation, or an out-of-scope grant.
+Unknown execution must never look applied. Notification and live-engine policy
+retain their upstream contracts until any required amendment is accepted;
+do not apply a Plan design's notification wording as a global silent policy.
+
+Implementation sequence:
+
+1. Land the read composition over existing Trip/Plan truth. Reuse
+   `components/trip-plan/LocalPlanScreen.tsx` and the current plan-state data
+   seam where suitable; inspect rather than preserve their Trip assumptions
+   for future local intentions. Do not create a pseudo-Trip for a loose Keep.
+2. Connect contextual expression to existing canonical commands for supported
+   owner edits. Use the I3 decisions only for genuinely missing prospective
+   material, contributions, or grants. Do not implement a second planner.
+3. Place the consequential result on the relevant object/row. Replace general
+   Changes navigation in `components/trip/TripHeader.tsx` with local readback
+   and a deliberately opened history path. Old `/changes` links must resolve
+   to their relevant history before the full old screen is retired.
+4. Reduce `app/trip-settings/permissions.tsx` to relevant people/edit access
+   and viewer controls. Remove booking initiation/autonomy controls with SC-1;
+   scope any changes to voting or collaboration policy through the Plan owner.
+5. Consolidate repeated facts across `trip-info`, `trip-dates`, Trip details
+   sections and stay pages only when they represent the same user job.
+   Preserve a useful date picker, per-person stay needs and accountable leave/
+   ownership transfer. Global privacy, account deletion and connectors remain
+   discoverable without requiring an AI request.
+6. Delete superseded editor-only components, operation chrome and route callers
+   after the replacement supports their retained jobs. Keep canonical revision,
+   participation, conflict and correction machinery underneath.
+
+Acceptance spans solo afternoon, hosted dinner, overlapping journeys with split/
+rejoin, and a change while someone is moving. Check distinct personal and shared
+effects, stale grant/preview, failed mutation, local history and exact return.
+These complete situations guide the system; none becomes a mandatory user loop.
+
+### 20.7 SC-3 — assisted expenses with small inspectable results
+
+**Recommended scope:** first replace interaction over the existing Trip expense
+owner. Deliver receipt understanding without a Trip, but do not promise shared
+non-Trip debt until its participant/owner contract is explicitly chosen through
+I3. Never manufacture a Trip to satisfy today's `log_expense` requirement.
+
+Three treatments cover ordinary usage:
+
+| Input / job | Immediate result | Consequence |
+| --- | --- | --- |
+| Receipt alone | Supported merchant/amount/currency and useful explanation; missing information remains uncertain | Private custody follows Bring/Ask; no automatic shared allocation |
+| Explicit supported-scope instruction: “I paid $126; split equally among us three” | Payer, named people, $42 each, source/context and exact scope | Apply only under current financial authority; clarify a missing material fact once |
+| “What do we owe?” or a correction | Compact current balance or changed allocation with focused inspection | Read deterministic ledger; correction/payment commands retain their existing semantics |
+
+Reuse `backend/expenses/receipt_ocr.py`, `settlement.py`, `money.py`,
+`exchange_rates.py`, `backend/core/db/expenses.py`, and the API/concierge
+expense owners. On mobile reuse `data/expenses.ts`, relevant mutation hooks,
+`ExpenseDetail`, `CostsBalanceSheet`, and receipt/amount primitives. The current
+`useCreateExpenseFromReceipt` still requires Trip context; extraction and shared
+debt must not be conflated when removing that presentation requirement.
+
+Commit sequence:
+
+1. Specify the result and inspection contract against existing owners. Include
+   loading, unresolved input, exact applied state, payment lock, review/dispute,
+   private masking, currencies and original receipt. Inventory each current
+   add/edit/detail/balance action before replacing it.
+2. Make extraction and known-field reuse work through existing input owners.
+   Remove repeated category/date/payer questions when already supported. Do
+   not turn possible costs into a review queue. Required Chat wiring remains
+   a scoped Strategy integration, not a composer redesign in this task.
+3. Reuse one focused expense reader and balance treatment across the arrangement,
+   Home when useful, and exact Life retrieval. Dense history expands the same
+   ledger view. Keep receipt scope and numerical provenance visible on demand.
+4. Implement correction, payment-history inspection, payment recording and
+   voiding, and dispute/review actions in that focused treatment. A plain-language
+   correction calls the same deterministic owner; generated prose cannot clear
+   debt. Existing split grammar is immutable: replacement must follow the
+   current owner contract rather than silently editing history.
+5. Replace the five expense route callers with the shared treatment. Retain
+   exact-ID redirects for historical links; remove exclusive forms, route
+   implementations and mocks after the common and exception jobs work.
+6. Close numerical/source gaps before exposing a lighter confident result.
+   Audit `sentinel` conversions and current consumers; unknown exchange rates
+   cannot contribute to a definitive converted settle-up. Preserve original
+   amounts. Review the existing `accommodation_auto` exception explicitly; do
+   not expand it or change existing debts as a side effect of UI contraction.
+
+Keep these guarantees: deterministic rounding and currency precision, stable
+idempotency, participant validation, live payments included in net balances,
+append-only payments with void correction, no debt from masked gifts, and no
+automatic balance change from a provider cancellation/refund. Existing review
+authority remains inspectable even when its dedicated screen disappears.
+
+Acceptance: explicit split; receipt without allocation; an absent/ambiguous
+participant; private gift; stale/missing rate; duplicate submission; correction
+after payment; void and re-record; disputed cost; cancelled booking evidence;
+and a departed participant's still-permitted historical balance. Exercise both
+server and mobile behavior against the same financial outcomes.
+
+### 20.8 SC-4 and SC-5 — consume Life replacement and contain presentation growth
+
+**SC-4 is Life-owned, not another implementation lane here.** Its roadmap
+already has the visible Life root and indexed-corpus foundations. Contraction
+needs exact source/record readers, preserved year/city/other filter semantics,
+current authorization, originals, correction, and every required legacy link.
+
+- Strategy maps incoming emitters in Home, Places, Chat, notifications and
+  shared links to Life's accepted destination contract.
+- Life removes old Atlas composition/readers and exclusive producers as their
+  jobs migrate. A thin historical URL adapter may outlive the Atlas product.
+- Source data is not a deletion candidate simply because its old UI disappears.
+  Verify source withdrawal, counts, chronology and representative legacy records
+  before backfill/serving changes; follow Life's own migration sequence.
+- This task supplies the booking/expense retained-evidence boundary. It does
+  not independently replace Life's index, organize the corpus, or redesign Life.
+
+**SC-5 consolidates proven duplication during I4.** Map Home semantic kinds to
+their actual renderers and value producers before extracting common code.
+Prefer existing composition/receipt/reading/map primitives and native props.
+Do not build a universal model-generated UI schema to reduce a component count.
+
+Candidate shared families to inspect: short finding/readable prose, source or
+authored contribution, prepared sequence/alternatives, practical state/receipt,
+and navigation/expansion. These are implementation candidates, not five new
+product grammars or a fixed limit. A spatial comparison and an authored friend
+share may need different forms even when both use a card container.
+
+Preserve the latest social split: addressed/shared-consequential material in
+Home, casual spatial sharing in Places' friends scope, and durable history in
+Life People. Reuse identity and authored material; do not add a social tab,
+separate social content factory, or duplicate the same contribution in full
+throughout Home. Follow the explicit exceptions and admission conditions in the
+[Home amendment](../decisions/2026-09-05-amend-home-composition-canon.md).
+
+Exit: an actual duplicate implementation or independent production path was
+removed, its surviving consumers retain meaning and behavior, and native
+composition remains useful. Reducing the semantic-kind count is not an outcome.
+
+### 20.9 SC-6 — remove superseded code and finish operational closure
+
+Treat each cut as a bounded change with a replacement record:
+
+1. Identify the exact implementation and callers to remove, including old
+   clients, background jobs, notifications, external links and test fixtures.
+2. Establish the retained job's replacement or explicitly retired responsibility.
+3. Update emitters and preserve exact compatibility handling where needed.
+4. Remove exclusive UI, hooks, mocks and transports; prune unused imports and
+   dependencies. Shared voice, subscription billing, routing, intake and source
+   controls must be traced independently of booking naming.
+5. Remove obsolete design/capture scenarios and launch obligations with the
+   implementation. Transfer retained behavior tests to the replacement. Keep
+   historical evidence as historical; a former screenshot baseline must not
+   force a dead screen back into the product.
+6. Reconcile the surface/route registries, API operation policy, generated
+   contracts, release manifest and affected system/FEATURE documentation.
+7. Record the surviving adapter, if any, with its owner, consumers and objective
+   removal condition. Do not repeatedly extend a compatibility label without
+   shrinking the old implementation.
+
+Booking operation closure additionally follows the
+[audit runbook](../../travel-agent/docs/operations/Booking%20Capability%20Retirement%20Audit.md):
+verify the actual deployed database selected by configuration (`--environment`
+is a label, not a selector), audit each environment, classify and attest provider
+obligations, approve the applicable finite recovery/zero-obligation disposition,
+then close admission under the operational procedure and re-audit in-flight work.
+Retain required callbacks and liability-reducing recovery until resolved.
+If obligations block enablement under the current runbook, record that block;
+this plan does not silently relax it. UI/read separation may still progress.
+
+Only then remove unused provider execution modules, jobs, startup registrations,
+credentials/config requirements and launch canaries. Database/table removal is
+a separate decision based on retained evidence, export and deletion consumers;
+it is not a prerequisite for removing checkout. Rollback may restore a needed
+reader without reopening new provider execution or resurrecting deleted sources.
+
+### 20.10 Validation, measurements, and design handoffs
+
+Validate by the changed responsibility, using existing suites and registered
+native QA rather than building a new proof environment first.
+
+| Change | Required evidence |
+| --- | --- |
+| Inventory / docs | Generator parity, M-1 contraction check, valid lifecycle/links, explicit retained adapter ownership |
+| Booking read/presentation | Focused booking/read/retirement tests; historical/unknown/cancelled access; external open makes no booking write; exact caller return; registered native booking/entity scenarios |
+| Arrangement/permissions | Canonical owner and participant tests; local/multi-day/split scenarios; scoped edit and failure readback; retained history and leave/revoke; registered Plan/settings captures |
+| Expense replacement | Existing settlement property/e2e, expense API and concierge parity tests plus the changed focused mobile suites; dense, private, currency and payment-lock native cases |
+| Life migration | Life-owned parity/index/source-custody/legacy-reader evidence and native acceptance; no second certification program here |
+| Shared rendering | Exhaustive handling for admitted kinds, source/identity/action parity and native comparison for changed families |
+| API/removal | `./scripts/sync-types.sh`, `make contract-check`, `make api-coverage-check`, app typecheck, relevant backend/frontend offline suites and import/architecture gates |
+
+Re-run the full affected offline suite at an integrated candidate or when new
+failures justify it. Attribute failures to inspected revisions; an untouched
+file or large passing count alone does not prove a failure is baseline. Native
+evidence is separate from code/contract checks. Deployment is separately recorded.
+
+Measure each package's before/after using a small ledger in its receipt:
+
+- independent user workflows removed, distinct from route aliases;
+- required screens/questions to complete the representative job;
+- repeated facts the person must supply;
+- exclusive components/hooks/transports/jobs deleted;
+- retained jobs with exact successful destinations and correction paths;
+- actual native/usefulness result and unresolved integration dependencies.
+
+Do not set a screen-count or LOC quota. Four roots stay; the useful full-scroll
+richness of Home and Places is not the target of contraction. Source-code
+reduction is meaningful only when supported behavior remains clear and dependable.
+
+Claude design work, where needed, should be bounded to three outputs:
+
+1. Reservation/evidence reader: normal, cancelled, unknown, missing evidence;
+   original and external continuation in the same composition.
+2. Expense result plus expanded inspection: explicit split, receipt-only,
+   correction, payment lock and unresolved currency; reuse existing primitives.
+3. The Plan owner's already-selected reduced composition and necessary people/
+   settings treatment; do not commission another ninety-frame operational map.
+
+Each handoff names the old UI it replaces and the interactions retained. It
+does not request redesigns of all four roots. Visual exploration can follow the
+owner/read contract; basic read-facade separation does not wait on final artwork.
+
+### 20.11 First batch and explicit completion states
+
+**Next batch:** execute SC-0 and SC-1a. Fix current registry drift with exact
+owners, inventory booking read consumers, separate the read facade, implement
+the minimal retained reader and its focused tests, and record a caller migration
+table. Do not start by adding more retirement switches or raising size ceilings.
+
+Then migrate SC-1b callers in coordination with Strategy and Life, while SC-2
+and SC-4 proceed in their existing programs. Prepare SC-3's bounded interaction
+and owner mapping, then implement it without waiting for all Home content or
+the complete Life index rollout. Fold SC-5 into I4 where duplication is observed.
+Apply SC-6 family by family as dependencies close.
+
+| Completion state | Required result |
+| --- | --- |
+| Planned | Named retained jobs, inspected seams, owner, replacement and deletion conditions |
+| Implemented locally | Replacement code and relevant local checks; no implied serving or release claim |
+| Replaced in supported app | Normal and legacy entry points perform retained jobs through the new treatment; native/real-backend evidence recorded |
+| Old implementation removed | Exclusive code, tests/fixtures, route/transport consumers and maintenance obligations deleted or deliberately retained as bounded adapters |
+| Operationally retired | Deployed workers/providers/credentials and any remaining obligations have exact closure evidence; historical data remains governed |
+
+At this planning close, SC-0–SC-6 are proposed execution packages with the
+already-landed CR/Life/Places foundations listed above. None is marked complete
+by writing this section. The next review should assess whole experiences across
+the four roots and the maintenance burden actually removed, then adjust the
+next dependency-bound batch.

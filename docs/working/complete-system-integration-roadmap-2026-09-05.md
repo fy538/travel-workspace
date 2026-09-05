@@ -574,6 +574,13 @@ Waiting, withdrawing and leaving an idea unadopted are successful possible exits
 
 ### I6 — finish cutovers, reduce surface burden and prepare an internal candidate
 
+The detailed contraction sequence is maintained in
+[surface-contraction plan §20](product-surface-contraction-investigation-2026-09-04.md#20-next-execution-sequence--september-5-rebaseline).
+Its SC packages map to I0/I3–I6 and Life's existing R packages; they do not add
+parallel product programs. Inventory and isolated retained-reader work start
+early, and each obsolete implementation is removed when its specific replacement
+and operational conditions are met. Final candidate acceptance remains here.
+
 **Work:**
 
 - Finish compatibility inventories from I0. Remove obsolete consumers as their
