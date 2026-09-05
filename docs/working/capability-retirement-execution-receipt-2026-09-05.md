@@ -47,6 +47,9 @@ removed.
 - New session creation, checkout/hold/payment, restaurant contact/retry, and
   provider-changing itinerary dispatch fail at server/domain boundaries; stale
   and replayed worker paths are guarded as well.
+- Concierge booking-tool discovery and its promise language remain present for
+  the deferred Chat lane. They were not removed here because the explicit
+  instruction for this pass was not to change Chat.
 - Focused retirement tests passed before later concurrent work was added. The
   setting remains `BOOKING_EXECUTION_RETIRED=false` by default, so repository
   landing does not silently change production behavior.
@@ -83,6 +86,7 @@ removed.
 | Mobile typecheck | Passed | Not native device evidence |
 | Mobile focused Jest | Passed for venue/contract tests and the existing handoff suites | Not native visual QA; Chat behavior unchanged |
 | Mobile changed-file ESLint | 0 errors; baseline warnings remain | Not a release acceptance result |
+| App surface-contraction guard | Baseline failure: generated route inventory is stale | Unrelated generated route state was not regenerated in this lane |
 
 The backend pre-commit baseline still reports the repository's existing broad
 exception-count and size-budget failures. Those were not folded into this
