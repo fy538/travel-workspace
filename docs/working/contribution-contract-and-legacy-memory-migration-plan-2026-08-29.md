@@ -49,6 +49,25 @@ receipts, mixed-success batch evidence, and a separately reviewed readiness
 decision for each new document family. No connector, ambient ingestion, or
 legacy-writer retirement is implied by these commits.
 
+### Native evidence checkpoint — September 4
+
+The local iOS native target was rebuilt against the current app-config
+contract with Sentry source-map upload disabled (the local environment has no
+Sentry organization configured):
+
+- `xcodebuild -workspace ios/TravelApp.xcworkspace -scheme TravelApp -configuration Debug -destination 'platform=iOS Simulator,id=AF31B886-E837-4962-834A-5CBAD5C306DB' CODE_SIGNING_ALLOWED=NO build` → `BUILD SUCCEEDED` when run with `SENTRY_DISABLE_AUTO_UPLOAD=true`;
+- the build included `ShareExtension.appex`, and the generated activation rule
+  accepted the configured 16-image/16-file capacity;
+- the app installed and launched on the booted simulator and accepted a
+  `guide://dataUrl=…` marker without an unmatched-route crash.
+
+This is native compilation and intent-boundary evidence, not proof of an OS
+share-sheet round trip. We still need a controlled simulator/device share of a
+text, image, audio, and multi-file payload, followed by server readback and
+relaunch/interrupted-finalize evidence. The committed source of truth for the
+native extension is `app.json`/`app.config.js`; generated `ios/` output is
+ignored and must not be treated as a separately landed contract.
+
 ## Outcome
 
 Make every Vesper input obey one shared rule:
