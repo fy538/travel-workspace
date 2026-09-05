@@ -175,10 +175,16 @@ Home persister, and account teardown still clears all position keys.
 - Device certification harness added at
   `travel-app/.maestro/73-life-record-device-certification.yaml`. It covers
   deep-link entry, Time/Places reader switching, and the Life-owner return
-  boundary. The local simulator run reached both reader states. CocoaPods was
-  refreshed to match the installed RevenueCat packages; the incremental iOS
-  build now reaches the linker but is blocked by an unrelated native
-  `RCTPackagerConnection` symbol missing from `libexpo-dev-launcher`.
+  boundary. The local simulator run passed on iPhone 16 Pro (iOS 18.2),
+  including both reader states and the explicit return control. Expo and
+  Expo Dev Client package drift was aligned (`expo` 55.0.31,
+  `expo-dev-client` 55.0.40), and CocoaPods was refreshed to match the
+  installed RevenueCat packages. The first fresh build exposed a stale
+  Release React prebuilt in the Debug Pods tree; switching the standard
+  React Native prebuilt to its Debug artifact restored the native linker.
+  The build then passed with `SENTRY_DISABLE_AUTO_UPLOAD=true` (the local
+  Sentry upload has no org/project configuration). The certification report
+  recorded 1/1 flow passed in 9 seconds.
 - Cross-repository API audit: passed — 551 active, 13 dark, and 62 retiring
   operations; 0 unflagged.
 - Backend formatting, import-boundary, timeout, mutable-state, applicable hooks,
