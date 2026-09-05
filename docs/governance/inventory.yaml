@@ -87,6 +87,38 @@ rules:
 
 
 overrides:
+  docs/working/claude-design-integration-2026-09-04/00-handoff-index.md:
+    disposition: keep_reference
+    rationale: User-requested routing index and coordination boundaries for the five Claude design handoffs; not new product authority.
+
+  docs/working/claude-design-integration-2026-09-04/01-home-places.md:
+    disposition: keep_reference
+    rationale: Bounded Claude Home and Places brief for complete everyday value and cross-root destinations.
+
+  docs/working/claude-design-integration-2026-09-04/02-life-anchors.md:
+    disposition: keep_reference
+    rationale: Bounded Claude Life brief for prospective continuity and retrieval alongside the stable record.
+
+  docs/working/claude-design-integration-2026-09-04/03-interaction-kernel.md:
+    disposition: keep_reference
+    rationale: Bounded Claude interaction brief for lightweight arrangements and practical assistance after proposed surface contraction.
+
+  docs/working/claude-design-integration-2026-09-04/04-chat.md:
+    disposition: keep_reference
+    rationale: Bounded Claude Chat integration brief preserving the root while exploring effortless expression and current-state access.
+
+  docs/working/claude-design-integration-2026-09-04/05-entity-objects.md:
+    disposition: keep_reference
+    rationale: Bounded Claude entity integration brief preserving the selected page and ongoing engineering lane.
+
+  docs/working/product-surface-contraction-investigation-2026-09-04.md:
+    disposition: keep_reference
+    rationale: Fresh code and canon investigation proposing responsibility retirement and lighter booking, itinerary, expense, and administrative surfaces; no product or deletion authority is promoted.
+
+  docs/working/capability-retirement-static-inventory-2026-09-05.md:
+    disposition: keep_reference
+    rationale: Read-only CR-1 static inventory of booking execution entry points, retained consumers, and environment-audit requirements; it does not authorize runtime shutdown or deletion.
+
   docs/working/home-places-life-productization-program-2026-09-04.md:
     disposition: keep_reference
     rationale: Active dependency-ordered Home, Places, and Life productization plan subordinate to the canonical four-root contract and product-system build program.
